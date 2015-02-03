@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="91bc88dc763a410b93e612b5463c425c" Name="Diagram1">
+        <EntityTypeShape EntityType="proyectoModel.art_prov" Width="1.5" PointX="11" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectoModel.articulos" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectoModel.mail_pers" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectoModel.mail_prov" Width="1.5" PointX="11" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectoModel.ped_art_prov" Width="1.5" PointX="13.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectoModel.pedidos" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectoModel.personas" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectoModel.proveedores" Width="1.5" PointX="8.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectoModel.rol" Width="1.5" PointX="3.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectoModel.rol_pers" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectoModel.tel_pers" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectoModel.tel_prov" Width="1.5" PointX="11" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectoModel.tipo_pedidos" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectoModel.valor_com" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectoModel.valor_ven" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="proyectoModel.FK_art_prov_articulos" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectoModel.FK_art_prov_proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectoModel.FK_ped_art_prov_ped_art_prov" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectoModel.FK_pers_mail_pers" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectoModel.FK_mail_prov_proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectoModel.FK_pedidos_personas" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectoModel.FK_pedidos_tipo_pedidos" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectoModel.FK_rol_pers_personas" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectoModel.FK_tel_pers_tel_pers" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectoModel.FK_tel_prov_proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectoModel.FK_rol_pers_rol" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectoModel.FK_valor_com_valor_com" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectoModel.FK_valor_ven_valor_ven1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

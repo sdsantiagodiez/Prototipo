@@ -1,0 +1,1017 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="proyectoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="art_prov">
+          <Key>
+            <PropertyRef Name="codigoOriginalArt" />
+            <PropertyRef Name="codigoArProveedor" />
+          </Key>
+          <Property Name="codigoOriginalArt" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="codigoArProveedor" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="stockMinimoArPro" Type="int" />
+          <Property Name="stockActualArPro" Type="int" />
+          <Property Name="obsArPro" Type="nvarchar" MaxLength="300" />
+          <Property Name="descripArPro" Type="nvarchar" MaxLength="150" />
+          <Property Name="fechaUltimaActualizacionArPro" Type="date" />
+          <Property Name="razonSocialProv" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="articulos">
+          <Key>
+            <PropertyRef Name="codigoOriginalArt" />
+          </Key>
+          <Property Name="codigoOriginalArt" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="descripArt" Type="nvarchar" MaxLength="150" />
+          <Property Name="modelosArt" Type="nvarchar" MaxLength="60" />
+          <Property Name="obsArt" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="mail_pers">
+          <Key>
+            <PropertyRef Name="dniPers" />
+          </Key>
+          <Property Name="dniPers" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="mailPers" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="mail_prov">
+          <Key>
+            <PropertyRef Name="razonSocialProv" />
+          </Key>
+          <Property Name="razonSocialProv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mailProv" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ped_art_prov">
+          <Key>
+            <PropertyRef Name="nroPedido" />
+            <PropertyRef Name="codigoArProveedor" />
+          </Key>
+          <Property Name="nroPedido" Type="int" Nullable="false" />
+          <Property Name="codigoArProveedor" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="codigoOriginalAr" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="cantidadArticulos" Type="int" />
+          <Property Name="valorParcial" Type="float" />
+        </EntityType>
+        <EntityType Name="pedidos">
+          <Key>
+            <PropertyRef Name="nroPedido" />
+          </Key>
+          <Property Name="nroPedido" Type="int" Nullable="false" />
+          <Property Name="fechaPed" Type="date" />
+          <Property Name="montoTotalPed" Type="float" />
+          <Property Name="obsPed" Type="nvarchar" MaxLength="150" />
+          <Property Name="codTipoPedido" Type="int" />
+          <Property Name="dniPers" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="personas">
+          <Key>
+            <PropertyRef Name="dniPers" />
+          </Key>
+          <Property Name="dniPers" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="cuitPers" Type="nvarchar" MaxLength="30" />
+          <Property Name="nombrePers" Type="nvarchar" MaxLength="30" />
+          <Property Name="apellidoPers" Type="nvarchar" MaxLength="30" />
+          <Property Name="direccPers" Type="nvarchar" MaxLength="60" />
+          <Property Name="ciudadPers" Type="nvarchar" MaxLength="20" />
+          <Property Name="provinciaPers" Type="nvarchar" MaxLength="20" />
+          <Property Name="codigoPostalPers" Type="nvarchar" MaxLength="20" />
+          <Property Name="obsPers" Type="nvarchar" MaxLength="300" />
+          <Property Name="usuarioPers" Type="nvarchar" MaxLength="30" />
+          <Property Name="contraseniaPers" Type="nvarchar" MaxLength="20" />
+          <Property Name="razonSocialProv" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="proveedores">
+          <Key>
+            <PropertyRef Name="razonSocialProv" />
+          </Key>
+          <Property Name="razonSocialProv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cuitProv" Type="nvarchar" MaxLength="30" />
+          <Property Name="direccionProv" Type="nvarchar" MaxLength="80" />
+          <Property Name="ciudadProv" Type="nvarchar" MaxLength="20" />
+          <Property Name="provinciaProv" Type="nvarchar" MaxLength="20" />
+          <Property Name="codigoPostalProv" Type="nvarchar" MaxLength="15" />
+          <Property Name="obsProv" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="codRol" />
+          </Key>
+          <Property Name="codRol" Type="int" Nullable="false" />
+          <Property Name="descripRol" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="rol_pers">
+          <Key>
+            <PropertyRef Name="codRol" />
+          </Key>
+          <Property Name="codRol" Type="int" Nullable="false" />
+          <Property Name="dniPers" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="tel_pers">
+          <Key>
+            <PropertyRef Name="dniPers" />
+          </Key>
+          <Property Name="dniPers" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="telPers" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tel_prov">
+          <Key>
+            <PropertyRef Name="razonSocialProv" />
+          </Key>
+          <Property Name="razonSocialProv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="telProv" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tipo_pedidos">
+          <Key>
+            <PropertyRef Name="codTipoPedido" />
+          </Key>
+          <Property Name="codTipoPedido" Type="int" Nullable="false" />
+          <Property Name="descripTipoPedido" Type="nvarchar" MaxLength="150" />
+          <Property Name="tipoTipoPedido" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="valor_com">
+          <Key>
+            <PropertyRef Name="codigoArProveedor" />
+            <PropertyRef Name="fechaVal" />
+          </Key>
+          <Property Name="codigoOriginalArt" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="codigoArProveedor" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="fechaVal" Type="date" Nullable="false" />
+          <Property Name="valorCom" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="valor_ven">
+          <Key>
+            <PropertyRef Name="codigoArProveedor" />
+            <PropertyRef Name="fechaVal" />
+          </Key>
+          <Property Name="codigoOriginalArt" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="codigoArProveedor" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="fechaVal" Type="date" Nullable="false" />
+          <Property Name="valorVen" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_art_prov_articulos">
+          <End Role="articulos" Type="Self.articulos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="art_prov" Type="Self.art_prov" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="articulos">
+              <PropertyRef Name="codigoOriginalArt" />
+            </Principal>
+            <Dependent Role="art_prov">
+              <PropertyRef Name="codigoOriginalArt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_art_prov_proveedores">
+          <End Role="proveedores" Type="Self.proveedores" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="art_prov" Type="Self.art_prov" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedores">
+              <PropertyRef Name="razonSocialProv" />
+            </Principal>
+            <Dependent Role="art_prov">
+              <PropertyRef Name="razonSocialProv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mail_prov_proveedores">
+          <End Role="proveedores" Type="Self.proveedores" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mail_prov" Type="Self.mail_prov" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="proveedores">
+              <PropertyRef Name="razonSocialProv" />
+            </Principal>
+            <Dependent Role="mail_prov">
+              <PropertyRef Name="razonSocialProv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ped_art_prov_ped_art_prov">
+          <End Role="art_prov" Type="Self.art_prov" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ped_art_prov" Type="Self.ped_art_prov" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="art_prov">
+              <PropertyRef Name="codigoOriginalArt" />
+              <PropertyRef Name="codigoArProveedor" />
+            </Principal>
+            <Dependent Role="ped_art_prov">
+              <PropertyRef Name="codigoOriginalAr" />
+              <PropertyRef Name="codigoArProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pedidos_personas">
+          <End Role="personas" Type="Self.personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="dniPers" />
+            </Principal>
+            <Dependent Role="pedidos">
+              <PropertyRef Name="dniPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pedidos_tipo_pedidos">
+          <End Role="tipo_pedidos" Type="Self.tipo_pedidos" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_pedidos">
+              <PropertyRef Name="codTipoPedido" />
+            </Principal>
+            <Dependent Role="pedidos">
+              <PropertyRef Name="codTipoPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pers_mail_pers">
+          <End Role="personas" Type="Self.personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mail_pers" Type="Self.mail_pers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="dniPers" />
+            </Principal>
+            <Dependent Role="mail_pers">
+              <PropertyRef Name="dniPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rol_pers_personas">
+          <End Role="personas" Type="Self.personas" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="rol_pers" Type="Self.rol_pers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="dniPers" />
+            </Principal>
+            <Dependent Role="rol_pers">
+              <PropertyRef Name="dniPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rol_pers_rol">
+          <End Role="rol" Type="Self.rol" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="rol_pers" Type="Self.rol_pers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="codRol" />
+            </Principal>
+            <Dependent Role="rol_pers">
+              <PropertyRef Name="codRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_pers_tel_pers">
+          <End Role="personas" Type="Self.personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tel_pers" Type="Self.tel_pers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="dniPers" />
+            </Principal>
+            <Dependent Role="tel_pers">
+              <PropertyRef Name="dniPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_prov_proveedores">
+          <End Role="proveedores" Type="Self.proveedores" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tel_prov" Type="Self.tel_prov" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="proveedores">
+              <PropertyRef Name="razonSocialProv" />
+            </Principal>
+            <Dependent Role="tel_prov">
+              <PropertyRef Name="razonSocialProv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_valor_com_valor_com">
+          <End Role="valor_com" Type="Self.valor_com" Multiplicity="1" />
+          <End Role="valor_com1" Type="Self.valor_com" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="valor_com">
+              <PropertyRef Name="codigoArProveedor" />
+              <PropertyRef Name="fechaVal" />
+            </Principal>
+            <Dependent Role="valor_com1">
+              <PropertyRef Name="codigoArProveedor" />
+              <PropertyRef Name="fechaVal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_valor_ven_valor_ven1">
+          <End Role="valor_ven" Type="Self.valor_ven" Multiplicity="1" />
+          <End Role="valor_ven1" Type="Self.valor_ven" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="valor_ven">
+              <PropertyRef Name="codigoArProveedor" />
+              <PropertyRef Name="fechaVal" />
+            </Principal>
+            <Dependent Role="valor_ven1">
+              <PropertyRef Name="codigoArProveedor" />
+              <PropertyRef Name="fechaVal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="proyectoModelStoreContainer">
+          <EntitySet Name="art_prov" EntityType="Self.art_prov" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="articulos" EntityType="Self.articulos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mail_pers" EntityType="Self.mail_pers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mail_prov" EntityType="Self.mail_prov" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ped_art_prov" EntityType="Self.ped_art_prov" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pedidos" EntityType="Self.pedidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personas" EntityType="Self.personas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="proveedores" EntityType="Self.proveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rol" EntityType="Self.rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rol_pers" EntityType="Self.rol_pers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tel_pers" EntityType="Self.tel_pers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tel_prov" EntityType="Self.tel_prov" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_pedidos" EntityType="Self.tipo_pedidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="valor_com" EntityType="Self.valor_com" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="valor_ven" EntityType="Self.valor_ven" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_art_prov_articulos" Association="Self.FK_art_prov_articulos">
+            <End Role="articulos" EntitySet="articulos" />
+            <End Role="art_prov" EntitySet="art_prov" />
+          </AssociationSet>
+          <AssociationSet Name="FK_art_prov_proveedores" Association="Self.FK_art_prov_proveedores">
+            <End Role="proveedores" EntitySet="proveedores" />
+            <End Role="art_prov" EntitySet="art_prov" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mail_prov_proveedores" Association="Self.FK_mail_prov_proveedores">
+            <End Role="proveedores" EntitySet="proveedores" />
+            <End Role="mail_prov" EntitySet="mail_prov" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ped_art_prov_ped_art_prov" Association="Self.FK_ped_art_prov_ped_art_prov">
+            <End Role="art_prov" EntitySet="art_prov" />
+            <End Role="ped_art_prov" EntitySet="ped_art_prov" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pedidos_personas" Association="Self.FK_pedidos_personas">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="pedidos" EntitySet="pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pedidos_tipo_pedidos" Association="Self.FK_pedidos_tipo_pedidos">
+            <End Role="tipo_pedidos" EntitySet="tipo_pedidos" />
+            <End Role="pedidos" EntitySet="pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pers_mail_pers" Association="Self.FK_pers_mail_pers">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="mail_pers" EntitySet="mail_pers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rol_pers_personas" Association="Self.FK_rol_pers_personas">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="rol_pers" EntitySet="rol_pers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rol_pers_rol" Association="Self.FK_rol_pers_rol">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="rol_pers" EntitySet="rol_pers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_pers_tel_pers" Association="Self.FK_tel_pers_tel_pers">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="tel_pers" EntitySet="tel_pers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_prov_proveedores" Association="Self.FK_tel_prov_proveedores">
+            <End Role="proveedores" EntitySet="proveedores" />
+            <End Role="tel_prov" EntitySet="tel_prov" />
+          </AssociationSet>
+          <AssociationSet Name="FK_valor_com_valor_com" Association="Self.FK_valor_com_valor_com">
+            <End Role="valor_com" EntitySet="valor_com" />
+            <End Role="valor_com1" EntitySet="valor_com" />
+          </AssociationSet>
+          <AssociationSet Name="FK_valor_ven_valor_ven1" Association="Self.FK_valor_ven_valor_ven1">
+            <End Role="valor_ven" EntitySet="valor_ven" />
+            <End Role="valor_ven1" EntitySet="valor_ven" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="proyectoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="art_prov">
+          <Key>
+            <PropertyRef Name="codigoOriginalArt" />
+            <PropertyRef Name="codigoArProveedor" />
+          </Key>
+          <Property Name="codigoOriginalArt" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="codigoArProveedor" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="stockMinimoArPro" Type="Int32" />
+          <Property Name="stockActualArPro" Type="Int32" />
+          <Property Name="obsArPro" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="descripArPro" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="fechaUltimaActualizacionArPro" Type="DateTime" Precision="0" />
+          <Property Name="razonSocialProv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="articulos" Relationship="Self.FK_art_prov_articulos" FromRole="art_prov" ToRole="articulos" />
+          <NavigationProperty Name="proveedores" Relationship="Self.FK_art_prov_proveedores" FromRole="art_prov" ToRole="proveedores" />
+          <NavigationProperty Name="ped_art_prov" Relationship="Self.FK_ped_art_prov_ped_art_prov" FromRole="art_prov" ToRole="ped_art_prov" />
+        </EntityType>
+        <EntityType Name="articulos">
+          <Key>
+            <PropertyRef Name="codigoOriginalArt" />
+          </Key>
+          <Property Name="codigoOriginalArt" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripArt" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="modelosArt" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="obsArt" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="art_prov" Relationship="Self.FK_art_prov_articulos" FromRole="articulos" ToRole="art_prov" />
+        </EntityType>
+        <EntityType Name="mail_pers">
+          <Key>
+            <PropertyRef Name="dniPers" />
+          </Key>
+          <Property Name="dniPers" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mailPers" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="personas" Relationship="Self.FK_pers_mail_pers" FromRole="mail_pers" ToRole="personas" />
+        </EntityType>
+        <EntityType Name="mail_prov">
+          <Key>
+            <PropertyRef Name="razonSocialProv" />
+          </Key>
+          <Property Name="razonSocialProv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mailProv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="proveedores" Relationship="Self.FK_mail_prov_proveedores" FromRole="mail_prov" ToRole="proveedores" />
+        </EntityType>
+        <EntityType Name="ped_art_prov">
+          <Key>
+            <PropertyRef Name="nroPedido" />
+            <PropertyRef Name="codigoArProveedor" />
+          </Key>
+          <Property Name="nroPedido" Type="Int32" Nullable="false" />
+          <Property Name="codigoArProveedor" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="codigoOriginalAr" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cantidadArticulos" Type="Int32" />
+          <Property Name="valorParcial" Type="Double" />
+          <NavigationProperty Name="art_prov" Relationship="Self.FK_ped_art_prov_ped_art_prov" FromRole="ped_art_prov" ToRole="art_prov" />
+        </EntityType>
+        <EntityType Name="pedidos">
+          <Key>
+            <PropertyRef Name="nroPedido" />
+          </Key>
+          <Property Name="nroPedido" Type="Int32" Nullable="false" />
+          <Property Name="fechaPed" Type="DateTime" Precision="0" />
+          <Property Name="montoTotalPed" Type="Double" />
+          <Property Name="obsPed" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="codTipoPedido" Type="Int32" />
+          <Property Name="dniPers" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="personas" Relationship="Self.FK_pedidos_personas" FromRole="pedidos" ToRole="personas" />
+          <NavigationProperty Name="tipo_pedidos" Relationship="Self.FK_pedidos_tipo_pedidos" FromRole="pedidos" ToRole="tipo_pedidos" />
+        </EntityType>
+        <EntityType Name="personas">
+          <Key>
+            <PropertyRef Name="dniPers" />
+          </Key>
+          <Property Name="dniPers" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cuitPers" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="nombrePers" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="apellidoPers" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="direccPers" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="ciudadPers" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="provinciaPers" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="codigoPostalPers" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="obsPers" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="usuarioPers" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="contraseniaPers" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="razonSocialProv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="mail_pers" Relationship="Self.FK_pers_mail_pers" FromRole="personas" ToRole="mail_pers" />
+          <NavigationProperty Name="pedidos" Relationship="Self.FK_pedidos_personas" FromRole="personas" ToRole="pedidos" />
+          <NavigationProperty Name="rol_pers" Relationship="Self.FK_rol_pers_personas" FromRole="personas" ToRole="rol_pers" />
+          <NavigationProperty Name="tel_pers" Relationship="Self.FK_tel_pers_tel_pers" FromRole="personas" ToRole="tel_pers" />
+        </EntityType>
+        <EntityType Name="proveedores">
+          <Key>
+            <PropertyRef Name="razonSocialProv" />
+          </Key>
+          <Property Name="razonSocialProv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cuitProv" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="direccionProv" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="ciudadProv" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="provinciaProv" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="codigoPostalProv" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="obsProv" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="art_prov" Relationship="Self.FK_art_prov_proveedores" FromRole="proveedores" ToRole="art_prov" />
+          <NavigationProperty Name="mail_prov" Relationship="Self.FK_mail_prov_proveedores" FromRole="proveedores" ToRole="mail_prov" />
+          <NavigationProperty Name="tel_prov" Relationship="Self.FK_tel_prov_proveedores" FromRole="proveedores" ToRole="tel_prov" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="codRol" />
+          </Key>
+          <Property Name="codRol" Type="Int32" Nullable="false" />
+          <Property Name="descripRol" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="rol_pers" Relationship="Self.FK_rol_pers_rol" FromRole="rol" ToRole="rol_pers" />
+        </EntityType>
+        <EntityType Name="rol_pers">
+          <Key>
+            <PropertyRef Name="codRol" />
+          </Key>
+          <Property Name="codRol" Type="Int32" Nullable="false" />
+          <Property Name="dniPers" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="personas" Relationship="Self.FK_rol_pers_personas" FromRole="rol_pers" ToRole="personas" />
+          <NavigationProperty Name="rol" Relationship="Self.FK_rol_pers_rol" FromRole="rol_pers" ToRole="rol" />
+        </EntityType>
+        <EntityType Name="tel_pers">
+          <Key>
+            <PropertyRef Name="dniPers" />
+          </Key>
+          <Property Name="dniPers" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telPers" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="personas" Relationship="Self.FK_tel_pers_tel_pers" FromRole="tel_pers" ToRole="personas" />
+        </EntityType>
+        <EntityType Name="tel_prov">
+          <Key>
+            <PropertyRef Name="razonSocialProv" />
+          </Key>
+          <Property Name="razonSocialProv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telProv" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="proveedores" Relationship="Self.FK_tel_prov_proveedores" FromRole="tel_prov" ToRole="proveedores" />
+        </EntityType>
+        <EntityType Name="tipo_pedidos">
+          <Key>
+            <PropertyRef Name="codTipoPedido" />
+          </Key>
+          <Property Name="codTipoPedido" Type="Int32" Nullable="false" />
+          <Property Name="descripTipoPedido" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="tipoTipoPedido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="pedidos" Relationship="Self.FK_pedidos_tipo_pedidos" FromRole="tipo_pedidos" ToRole="pedidos" />
+        </EntityType>
+        <EntityType Name="valor_com">
+          <Key>
+            <PropertyRef Name="codigoArProveedor" />
+            <PropertyRef Name="fechaVal" />
+          </Key>
+          <Property Name="codigoOriginalArt" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="codigoArProveedor" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fechaVal" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="valorCom" Type="Double" Nullable="false" />
+          <NavigationProperty Name="valor_com1" Relationship="Self.FK_valor_com_valor_com" FromRole="valor_com" ToRole="valor_com1" />
+          <NavigationProperty Name="valor_com2" Relationship="Self.FK_valor_com_valor_com" FromRole="valor_com1" ToRole="valor_com" />
+        </EntityType>
+        <EntityType Name="valor_ven">
+          <Key>
+            <PropertyRef Name="codigoArProveedor" />
+            <PropertyRef Name="fechaVal" />
+          </Key>
+          <Property Name="codigoOriginalArt" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="codigoArProveedor" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fechaVal" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="valorVen" Type="Double" Nullable="false" />
+          <NavigationProperty Name="valor_ven1" Relationship="Self.FK_valor_ven_valor_ven1" FromRole="valor_ven" ToRole="valor_ven1" />
+          <NavigationProperty Name="valor_ven2" Relationship="Self.FK_valor_ven_valor_ven1" FromRole="valor_ven1" ToRole="valor_ven" />
+        </EntityType>
+        <Association Name="FK_art_prov_articulos">
+          <End Role="articulos" Type="Self.articulos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="art_prov" Type="Self.art_prov" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="articulos">
+              <PropertyRef Name="codigoOriginalArt" />
+            </Principal>
+            <Dependent Role="art_prov">
+              <PropertyRef Name="codigoOriginalArt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_art_prov_proveedores">
+          <End Role="proveedores" Type="Self.proveedores" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="art_prov" Type="Self.art_prov" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedores">
+              <PropertyRef Name="razonSocialProv" />
+            </Principal>
+            <Dependent Role="art_prov">
+              <PropertyRef Name="razonSocialProv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ped_art_prov_ped_art_prov">
+          <End Role="art_prov" Type="Self.art_prov" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ped_art_prov" Type="Self.ped_art_prov" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="art_prov">
+              <PropertyRef Name="codigoOriginalArt" />
+              <PropertyRef Name="codigoArProveedor" />
+            </Principal>
+            <Dependent Role="ped_art_prov">
+              <PropertyRef Name="codigoOriginalAr" />
+              <PropertyRef Name="codigoArProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pers_mail_pers">
+          <End Role="personas" Type="Self.personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mail_pers" Type="Self.mail_pers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="dniPers" />
+            </Principal>
+            <Dependent Role="mail_pers">
+              <PropertyRef Name="dniPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mail_prov_proveedores">
+          <End Role="proveedores" Type="Self.proveedores" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mail_prov" Type="Self.mail_prov" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="proveedores">
+              <PropertyRef Name="razonSocialProv" />
+            </Principal>
+            <Dependent Role="mail_prov">
+              <PropertyRef Name="razonSocialProv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pedidos_personas">
+          <End Role="personas" Type="Self.personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="dniPers" />
+            </Principal>
+            <Dependent Role="pedidos">
+              <PropertyRef Name="dniPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pedidos_tipo_pedidos">
+          <End Role="tipo_pedidos" Type="Self.tipo_pedidos" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_pedidos">
+              <PropertyRef Name="codTipoPedido" />
+            </Principal>
+            <Dependent Role="pedidos">
+              <PropertyRef Name="codTipoPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rol_pers_personas">
+          <End Role="personas" Type="Self.personas" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="rol_pers" Type="Self.rol_pers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="dniPers" />
+            </Principal>
+            <Dependent Role="rol_pers">
+              <PropertyRef Name="dniPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_pers_tel_pers">
+          <End Role="personas" Type="Self.personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tel_pers" Type="Self.tel_pers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="dniPers" />
+            </Principal>
+            <Dependent Role="tel_pers">
+              <PropertyRef Name="dniPers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_prov_proveedores">
+          <End Role="proveedores" Type="Self.proveedores" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tel_prov" Type="Self.tel_prov" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="proveedores">
+              <PropertyRef Name="razonSocialProv" />
+            </Principal>
+            <Dependent Role="tel_prov">
+              <PropertyRef Name="razonSocialProv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rol_pers_rol">
+          <End Role="rol" Type="Self.rol" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="rol_pers" Type="Self.rol_pers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="codRol" />
+            </Principal>
+            <Dependent Role="rol_pers">
+              <PropertyRef Name="codRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_valor_com_valor_com">
+          <End Role="valor_com" Type="Self.valor_com" Multiplicity="1" />
+          <End Role="valor_com1" Type="Self.valor_com" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="valor_com">
+              <PropertyRef Name="codigoArProveedor" />
+              <PropertyRef Name="fechaVal" />
+            </Principal>
+            <Dependent Role="valor_com1">
+              <PropertyRef Name="codigoArProveedor" />
+              <PropertyRef Name="fechaVal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_valor_ven_valor_ven1">
+          <End Role="valor_ven" Type="Self.valor_ven" Multiplicity="1" />
+          <End Role="valor_ven1" Type="Self.valor_ven" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="valor_ven">
+              <PropertyRef Name="codigoArProveedor" />
+              <PropertyRef Name="fechaVal" />
+            </Principal>
+            <Dependent Role="valor_ven1">
+              <PropertyRef Name="codigoArProveedor" />
+              <PropertyRef Name="fechaVal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="proyectoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="art_prov" EntityType="Self.art_prov" />
+          <EntitySet Name="articulos" EntityType="Self.articulos" />
+          <EntitySet Name="mail_pers" EntityType="Self.mail_pers" />
+          <EntitySet Name="mail_prov" EntityType="Self.mail_prov" />
+          <EntitySet Name="ped_art_prov" EntityType="Self.ped_art_prov" />
+          <EntitySet Name="pedidos" EntityType="Self.pedidos" />
+          <EntitySet Name="personas" EntityType="Self.personas" />
+          <EntitySet Name="proveedores" EntityType="Self.proveedores" />
+          <EntitySet Name="rol" EntityType="Self.rol" />
+          <EntitySet Name="rol_pers" EntityType="Self.rol_pers" />
+          <EntitySet Name="tel_pers" EntityType="Self.tel_pers" />
+          <EntitySet Name="tel_prov" EntityType="Self.tel_prov" />
+          <EntitySet Name="tipo_pedidos" EntityType="Self.tipo_pedidos" />
+          <EntitySet Name="valor_com" EntityType="Self.valor_com" />
+          <EntitySet Name="valor_ven" EntityType="Self.valor_ven" />
+          <AssociationSet Name="FK_art_prov_articulos" Association="Self.FK_art_prov_articulos">
+            <End Role="articulos" EntitySet="articulos" />
+            <End Role="art_prov" EntitySet="art_prov" />
+          </AssociationSet>
+          <AssociationSet Name="FK_art_prov_proveedores" Association="Self.FK_art_prov_proveedores">
+            <End Role="proveedores" EntitySet="proveedores" />
+            <End Role="art_prov" EntitySet="art_prov" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ped_art_prov_ped_art_prov" Association="Self.FK_ped_art_prov_ped_art_prov">
+            <End Role="art_prov" EntitySet="art_prov" />
+            <End Role="ped_art_prov" EntitySet="ped_art_prov" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pers_mail_pers" Association="Self.FK_pers_mail_pers">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="mail_pers" EntitySet="mail_pers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mail_prov_proveedores" Association="Self.FK_mail_prov_proveedores">
+            <End Role="proveedores" EntitySet="proveedores" />
+            <End Role="mail_prov" EntitySet="mail_prov" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pedidos_personas" Association="Self.FK_pedidos_personas">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="pedidos" EntitySet="pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pedidos_tipo_pedidos" Association="Self.FK_pedidos_tipo_pedidos">
+            <End Role="tipo_pedidos" EntitySet="tipo_pedidos" />
+            <End Role="pedidos" EntitySet="pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rol_pers_personas" Association="Self.FK_rol_pers_personas">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="rol_pers" EntitySet="rol_pers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_pers_tel_pers" Association="Self.FK_tel_pers_tel_pers">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="tel_pers" EntitySet="tel_pers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_prov_proveedores" Association="Self.FK_tel_prov_proveedores">
+            <End Role="proveedores" EntitySet="proveedores" />
+            <End Role="tel_prov" EntitySet="tel_prov" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rol_pers_rol" Association="Self.FK_rol_pers_rol">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="rol_pers" EntitySet="rol_pers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_valor_com_valor_com" Association="Self.FK_valor_com_valor_com">
+            <End Role="valor_com" EntitySet="valor_com" />
+            <End Role="valor_com1" EntitySet="valor_com" />
+          </AssociationSet>
+          <AssociationSet Name="FK_valor_ven_valor_ven1" Association="Self.FK_valor_ven_valor_ven1">
+            <End Role="valor_ven" EntitySet="valor_ven" />
+            <End Role="valor_ven1" EntitySet="valor_ven" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="proyectoModelStoreContainer" CdmEntityContainer="proyectoEntities">
+          <EntitySetMapping Name="art_prov">
+            <EntityTypeMapping TypeName="proyectoModel.art_prov">
+              <MappingFragment StoreEntitySet="art_prov">
+                <ScalarProperty Name="codigoOriginalArt" ColumnName="codigoOriginalArt" />
+                <ScalarProperty Name="codigoArProveedor" ColumnName="codigoArProveedor" />
+                <ScalarProperty Name="stockMinimoArPro" ColumnName="stockMinimoArPro" />
+                <ScalarProperty Name="stockActualArPro" ColumnName="stockActualArPro" />
+                <ScalarProperty Name="obsArPro" ColumnName="obsArPro" />
+                <ScalarProperty Name="descripArPro" ColumnName="descripArPro" />
+                <ScalarProperty Name="fechaUltimaActualizacionArPro" ColumnName="fechaUltimaActualizacionArPro" />
+                <ScalarProperty Name="razonSocialProv" ColumnName="razonSocialProv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="articulos">
+            <EntityTypeMapping TypeName="proyectoModel.articulos">
+              <MappingFragment StoreEntitySet="articulos">
+                <ScalarProperty Name="codigoOriginalArt" ColumnName="codigoOriginalArt" />
+                <ScalarProperty Name="descripArt" ColumnName="descripArt" />
+                <ScalarProperty Name="modelosArt" ColumnName="modelosArt" />
+                <ScalarProperty Name="obsArt" ColumnName="obsArt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mail_pers">
+            <EntityTypeMapping TypeName="proyectoModel.mail_pers">
+              <MappingFragment StoreEntitySet="mail_pers">
+                <ScalarProperty Name="dniPers" ColumnName="dniPers" />
+                <ScalarProperty Name="mailPers" ColumnName="mailPers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mail_prov">
+            <EntityTypeMapping TypeName="proyectoModel.mail_prov">
+              <MappingFragment StoreEntitySet="mail_prov">
+                <ScalarProperty Name="razonSocialProv" ColumnName="razonSocialProv" />
+                <ScalarProperty Name="mailProv" ColumnName="mailProv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ped_art_prov">
+            <EntityTypeMapping TypeName="proyectoModel.ped_art_prov">
+              <MappingFragment StoreEntitySet="ped_art_prov">
+                <ScalarProperty Name="nroPedido" ColumnName="nroPedido" />
+                <ScalarProperty Name="codigoArProveedor" ColumnName="codigoArProveedor" />
+                <ScalarProperty Name="codigoOriginalAr" ColumnName="codigoOriginalAr" />
+                <ScalarProperty Name="cantidadArticulos" ColumnName="cantidadArticulos" />
+                <ScalarProperty Name="valorParcial" ColumnName="valorParcial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pedidos">
+            <EntityTypeMapping TypeName="proyectoModel.pedidos">
+              <MappingFragment StoreEntitySet="pedidos">
+                <ScalarProperty Name="nroPedido" ColumnName="nroPedido" />
+                <ScalarProperty Name="fechaPed" ColumnName="fechaPed" />
+                <ScalarProperty Name="montoTotalPed" ColumnName="montoTotalPed" />
+                <ScalarProperty Name="obsPed" ColumnName="obsPed" />
+                <ScalarProperty Name="codTipoPedido" ColumnName="codTipoPedido" />
+                <ScalarProperty Name="dniPers" ColumnName="dniPers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personas">
+            <EntityTypeMapping TypeName="proyectoModel.personas">
+              <MappingFragment StoreEntitySet="personas">
+                <ScalarProperty Name="dniPers" ColumnName="dniPers" />
+                <ScalarProperty Name="cuitPers" ColumnName="cuitPers" />
+                <ScalarProperty Name="nombrePers" ColumnName="nombrePers" />
+                <ScalarProperty Name="apellidoPers" ColumnName="apellidoPers" />
+                <ScalarProperty Name="direccPers" ColumnName="direccPers" />
+                <ScalarProperty Name="ciudadPers" ColumnName="ciudadPers" />
+                <ScalarProperty Name="provinciaPers" ColumnName="provinciaPers" />
+                <ScalarProperty Name="codigoPostalPers" ColumnName="codigoPostalPers" />
+                <ScalarProperty Name="obsPers" ColumnName="obsPers" />
+                <ScalarProperty Name="usuarioPers" ColumnName="usuarioPers" />
+                <ScalarProperty Name="contraseniaPers" ColumnName="contraseniaPers" />
+                <ScalarProperty Name="razonSocialProv" ColumnName="razonSocialProv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proveedores">
+            <EntityTypeMapping TypeName="proyectoModel.proveedores">
+              <MappingFragment StoreEntitySet="proveedores">
+                <ScalarProperty Name="razonSocialProv" ColumnName="razonSocialProv" />
+                <ScalarProperty Name="cuitProv" ColumnName="cuitProv" />
+                <ScalarProperty Name="direccionProv" ColumnName="direccionProv" />
+                <ScalarProperty Name="ciudadProv" ColumnName="ciudadProv" />
+                <ScalarProperty Name="provinciaProv" ColumnName="provinciaProv" />
+                <ScalarProperty Name="codigoPostalProv" ColumnName="codigoPostalProv" />
+                <ScalarProperty Name="obsProv" ColumnName="obsProv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rol">
+            <EntityTypeMapping TypeName="proyectoModel.rol">
+              <MappingFragment StoreEntitySet="rol">
+                <ScalarProperty Name="codRol" ColumnName="codRol" />
+                <ScalarProperty Name="descripRol" ColumnName="descripRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rol_pers">
+            <EntityTypeMapping TypeName="proyectoModel.rol_pers">
+              <MappingFragment StoreEntitySet="rol_pers">
+                <ScalarProperty Name="codRol" ColumnName="codRol" />
+                <ScalarProperty Name="dniPers" ColumnName="dniPers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tel_pers">
+            <EntityTypeMapping TypeName="proyectoModel.tel_pers">
+              <MappingFragment StoreEntitySet="tel_pers">
+                <ScalarProperty Name="dniPers" ColumnName="dniPers" />
+                <ScalarProperty Name="telPers" ColumnName="telPers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tel_prov">
+            <EntityTypeMapping TypeName="proyectoModel.tel_prov">
+              <MappingFragment StoreEntitySet="tel_prov">
+                <ScalarProperty Name="razonSocialProv" ColumnName="razonSocialProv" />
+                <ScalarProperty Name="telProv" ColumnName="telProv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_pedidos">
+            <EntityTypeMapping TypeName="proyectoModel.tipo_pedidos">
+              <MappingFragment StoreEntitySet="tipo_pedidos">
+                <ScalarProperty Name="codTipoPedido" ColumnName="codTipoPedido" />
+                <ScalarProperty Name="descripTipoPedido" ColumnName="descripTipoPedido" />
+                <ScalarProperty Name="tipoTipoPedido" ColumnName="tipoTipoPedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="valor_com">
+            <EntityTypeMapping TypeName="proyectoModel.valor_com">
+              <MappingFragment StoreEntitySet="valor_com">
+                <ScalarProperty Name="codigoOriginalArt" ColumnName="codigoOriginalArt" />
+                <ScalarProperty Name="codigoArProveedor" ColumnName="codigoArProveedor" />
+                <ScalarProperty Name="fechaVal" ColumnName="fechaVal" />
+                <ScalarProperty Name="valorCom" ColumnName="valorCom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="valor_ven">
+            <EntityTypeMapping TypeName="proyectoModel.valor_ven">
+              <MappingFragment StoreEntitySet="valor_ven">
+                <ScalarProperty Name="codigoOriginalArt" ColumnName="codigoOriginalArt" />
+                <ScalarProperty Name="codigoArProveedor" ColumnName="codigoArProveedor" />
+                <ScalarProperty Name="fechaVal" ColumnName="fechaVal" />
+                <ScalarProperty Name="valorVen" ColumnName="valorVen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
