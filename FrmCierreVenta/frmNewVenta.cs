@@ -34,6 +34,7 @@ namespace FrmCierreVenta
             frmCons.ShowDialog();
         }
 
+
       
 
        

@@ -36,15 +36,15 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(27, 20);
+            this.label1.Location = new System.Drawing.Point(58, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(220, 24);
+            this.label1.Size = new System.Drawing.Size(180, 24);
             this.label1.TabIndex = 0;
-            this.label1.Text = "EN CONSTRUCCION..";
+            this.label1.Text = "En construcción...";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(84, 72);
+            this.button1.Location = new System.Drawing.Point(91, 72);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 41);
             this.button1.TabIndex = 1;
@@ -63,7 +63,7 @@
             this.MinimizeBox = false;
             this.Name = "frmEnConstruccion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PROTOTYPE";
+            this.Text = "Prototipo";
             this.ResumeLayout(false);
             this.PerformLayout();
 
