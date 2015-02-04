@@ -44,11 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="frmCerrarVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmCerrarVenta.Designer.cs">
+      <DependentUpon>frmCerrarVenta.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDevolucion.cs">
       <SubType>Form</SubType>
@@ -62,11 +62,11 @@
     <Compile Include="frmEnConstruccion.Designer.cs">
       <DependentUpon>frmEnConstruccion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNewVenta.cs">
+    <Compile Include="frmNuevaVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmNewVenta.Designer.cs">
-      <DependentUpon>frmNewVenta.cs</DependentUpon>
+    <Compile Include="frmNuevaVenta.Designer.cs">
+      <DependentUpon>frmNuevaVenta.cs</DependentUpon>
     </Compile>
     <Compile Include="frmNuevoPedido.cs">
       <SubType>Form</SubType>
@@ -74,11 +74,11 @@
     <Compile Include="frmNuevoPedido.Designer.cs">
       <DependentUpon>frmNuevoPedido.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPpal.cs">
+    <Compile Include="frmMenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPpal.Designer.cs">
-      <DependentUpon>frmPpal.cs</DependentUpon>
+    <Compile Include="frmMenuPrincipal.Designer.cs">
+      <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="frmReserva.cs">
       <SubType>Form</SubType>
@@ -88,8 +88,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="frmCerrarVenta.resx">
+      <DependentUpon>frmCerrarVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDevolucion.resx">
       <DependentUpon>frmDevolucion.cs</DependentUpon>
@@ -97,14 +97,14 @@
     <EmbeddedResource Include="frmEnConstruccion.resx">
       <DependentUpon>frmEnConstruccion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmNewVenta.resx">
-      <DependentUpon>frmNewVenta.cs</DependentUpon>
+    <EmbeddedResource Include="frmNuevaVenta.resx">
+      <DependentUpon>frmNuevaVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNuevoPedido.resx">
       <DependentUpon>frmNuevoPedido.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPpal.resx">
-      <DependentUpon>frmPpal.cs</DependentUpon>
+    <EmbeddedResource Include="frmMenuPrincipal.resx">
+      <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReserva.resx">
       <DependentUpon>frmReserva.cs</DependentUpon>
