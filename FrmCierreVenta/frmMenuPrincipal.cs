@@ -36,12 +36,6 @@ namespace FrmCierreVenta
             frm3.ShowDialog();
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            frmReserva frm4 = new frmReserva();
-            frm4.ShowDialog();
-        }
-
         private void button5_Click(object sender, EventArgs e)
         {
             this.Close();
