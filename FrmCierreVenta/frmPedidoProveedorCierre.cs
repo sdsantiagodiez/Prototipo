@@ -10,16 +10,17 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public partial class frmEnConstruccion : Form
+    public partial class frmPedidoProveedorCierre : Form
     {
-        public frmEnConstruccion()
+        public frmPedidoProveedorCierre()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            this.Close();
+            frmEnConstruccion frmConstruccion = new frmEnConstruccion();
+            frmConstruccion.ShowDialog();
         }
     }
 }

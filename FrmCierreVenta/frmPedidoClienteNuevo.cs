@@ -8,18 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrmCierreVenta
+namespace Vista
 {
-    public partial class frmNewVenta : Form
+    public partial class frmPedidoClienteNuevo : Form
     {
-        public frmNewVenta()
+        public frmPedidoClienteNuevo()
         {
             InitializeComponent();
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            Form1 frmCierre = new Form1();
+            frmPedidoClienteCierre frmCierre = new frmPedidoClienteCierre();
             frmCierre.ShowDialog();
         }
 
@@ -33,10 +33,5 @@ namespace FrmCierreVenta
             frmEnConstruccion frmCons = new frmEnConstruccion();
             frmCons.ShowDialog();
         }
-
-
-      
-
-       
     }
 }

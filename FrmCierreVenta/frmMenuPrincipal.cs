@@ -8,31 +8,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrmCierreVenta
+namespace Vista
 {
-    public partial class frmPpal : Form
+    public partial class frmMenuPrincipal : Form
     {
-        public frmPpal()
+        public frmMenuPrincipal()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            frmDevolucion frm1 = new frmDevolucion();
-            frm1.ShowDialog();
-        }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            frmNewVenta frm2 = new frmNewVenta();
+            frmPedidoClienteNuevo frm2 = new frmPedidoClienteNuevo();
             frm2.ShowDialog();
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            frmNuevoPedido frm3 = new frmNuevoPedido();
+            frmPedidoProveedorNuevo frm3 = new frmPedidoProveedorNuevo();
             frm3.ShowDialog();
         }
 

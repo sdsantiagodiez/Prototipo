@@ -44,17 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmCerrarVenta.cs">
+    <Compile Include="frmPedidoClienteCierre.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCerrarVenta.Designer.cs">
-      <DependentUpon>frmCerrarVenta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmDevolucion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmDevolucion.Designer.cs">
-      <DependentUpon>frmDevolucion.cs</DependentUpon>
+    <Compile Include="frmPedidoClienteCierre.Designer.cs">
+      <DependentUpon>frmPedidoClienteCierre.cs</DependentUpon>
     </Compile>
     <Compile Include="frmEnConstruccion.cs">
       <SubType>Form</SubType>
@@ -62,17 +56,11 @@
     <Compile Include="frmEnConstruccion.Designer.cs">
       <DependentUpon>frmEnConstruccion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNuevaVenta.cs">
+    <Compile Include="frmPedidoClienteNuevo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmNuevaVenta.Designer.cs">
-      <DependentUpon>frmNuevaVenta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmNuevoPedido.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNuevoPedido.Designer.cs">
-      <DependentUpon>frmNuevoPedido.cs</DependentUpon>
+    <Compile Include="frmPedidoClienteNuevo.Designer.cs">
+      <DependentUpon>frmPedidoClienteNuevo.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMenuPrincipal.cs">
       <SubType>Form</SubType>
@@ -80,25 +68,37 @@
     <Compile Include="frmMenuPrincipal.Designer.cs">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPedidoProveedorCierre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPedidoProveedorCierre.Designer.cs">
+      <DependentUpon>frmPedidoProveedorCierre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPedidoProveedorNuevo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPedidoProveedorNuevo.Designer.cs">
+      <DependentUpon>frmPedidoProveedorNuevo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmCerrarVenta.resx">
-      <DependentUpon>frmCerrarVenta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDevolucion.resx">
-      <DependentUpon>frmDevolucion.cs</DependentUpon>
+    <EmbeddedResource Include="frmPedidoClienteCierre.resx">
+      <DependentUpon>frmPedidoClienteCierre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEnConstruccion.resx">
       <DependentUpon>frmEnConstruccion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmNuevaVenta.resx">
-      <DependentUpon>frmNuevaVenta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmNuevoPedido.resx">
-      <DependentUpon>frmNuevoPedido.cs</DependentUpon>
+    <EmbeddedResource Include="frmPedidoClienteNuevo.resx">
+      <DependentUpon>frmPedidoClienteNuevo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPedidoProveedorCierre.resx">
+      <DependentUpon>frmPedidoProveedorCierre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPedidoProveedorNuevo.resx">
+      <DependentUpon>frmPedidoProveedorNuevo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

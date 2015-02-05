@@ -1,4 +1,4 @@
-﻿namespace FrmCierreVenta
+﻿namespace Vista
 {
     partial class frmEnConstruccion
     {

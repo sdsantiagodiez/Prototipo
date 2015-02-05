@@ -1,6 +1,6 @@
-﻿namespace FrmCierreVenta
+﻿namespace Vista
 {
-    partial class frmNewVenta
+    partial class frmPedidoClienteNuevo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewVenta));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoClienteNuevo));
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -75,14 +75,12 @@
             this.ComboBox1 = new System.Windows.Forms.ComboBox();
             this.Button2 = new System.Windows.Forms.Button();
             this.Button1 = new System.Windows.Forms.Button();
-            this.GroupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox5.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView2)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).BeginInit();
-            this.GroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox5
@@ -92,10 +90,10 @@
             this.groupBox5.Controls.Add(this.tableLayoutPanel2);
             this.groupBox5.Controls.Add(this.Label14);
             this.groupBox5.Controls.Add(this.Label13);
-            this.groupBox5.Location = new System.Drawing.Point(705, 23);
+            this.groupBox5.Location = new System.Drawing.Point(710, 20);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(294, 537);
-            this.groupBox5.TabIndex = 13;
+            this.groupBox5.TabIndex = 23;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Detalles";
             // 
@@ -384,12 +382,12 @@
             // 
             this.groupBox2.Controls.Add(this.DataGridView2);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(0, 357);
+            this.groupBox2.Location = new System.Drawing.Point(5, 354);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(692, 203);
-            this.groupBox2.TabIndex = 12;
+            this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Detalle Venta";
+            this.groupBox2.Text = "Detalle";
             // 
             // DataGridView2
             // 
@@ -457,20 +455,20 @@
             this.groupBox4.Controls.Add(this.TextBox1);
             this.groupBox4.Controls.Add(this.ComboBox1);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(0, 19);
+            this.groupBox4.Location = new System.Drawing.Point(5, 16);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(692, 332);
-            this.groupBox4.TabIndex = 11;
+            this.groupBox4.TabIndex = 19;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Articulos a Agregar";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(16, 32);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(8, 31);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 18);
+            this.label9.Size = new System.Drawing.Size(76, 16);
             this.label9.TabIndex = 4;
             this.label9.Text = "Buscar por:";
             // 
@@ -562,18 +560,18 @@
             "Código Original",
             "Código Proveedor",
             "Descripción"});
-            this.ComboBox1.Location = new System.Drawing.Point(107, 28);
+            this.ComboBox1.Location = new System.Drawing.Point(90, 28);
             this.ComboBox1.Name = "ComboBox1";
-            this.ComboBox1.Size = new System.Drawing.Size(121, 24);
+            this.ComboBox1.Size = new System.Drawing.Size(138, 24);
             this.ComboBox1.TabIndex = 0;
             // 
             // Button2
             // 
             this.Button2.AutoSize = true;
-            this.Button2.Location = new System.Drawing.Point(833, 567);
+            this.Button2.Location = new System.Drawing.Point(838, 564);
             this.Button2.Name = "Button2";
             this.Button2.Size = new System.Drawing.Size(120, 40);
-            this.Button2.TabIndex = 12;
+            this.Button2.TabIndex = 22;
             this.Button2.Text = "Siguiente >";
             this.Button2.UseVisualStyleBackColor = true;
             this.Button2.Click += new System.EventHandler(this.Button2_Click);
@@ -581,37 +579,27 @@
             // Button1
             // 
             this.Button1.AutoSize = true;
-            this.Button1.Location = new System.Drawing.Point(19, 567);
+            this.Button1.Location = new System.Drawing.Point(24, 564);
             this.Button1.Name = "Button1";
             this.Button1.Size = new System.Drawing.Size(120, 40);
-            this.Button1.TabIndex = 11;
-            this.Button1.Text = "Borrar Venta Actual";
+            this.Button1.TabIndex = 20;
+            this.Button1.Text = "Borrar Detalle Actual";
             this.Button1.UseVisualStyleBackColor = true;
             // 
-            // GroupBox1
-            // 
-            this.GroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.GroupBox1.Controls.Add(this.groupBox5);
-            this.GroupBox1.Controls.Add(this.groupBox2);
-            this.GroupBox1.Controls.Add(this.groupBox4);
-            this.GroupBox1.Location = new System.Drawing.Point(0, -11);
-            this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(1005, 569);
-            this.GroupBox1.TabIndex = 10;
-            this.GroupBox1.TabStop = false;
-            // 
-            // frmNewVenta
+            // frmPedidoClienteNuevo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 621);
-            this.Controls.Add(this.GroupBox1);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.Button2);
             this.Controls.Add(this.Button1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmNewVenta";
-            this.Text = "Venta (Leandro Jorge)";
+            this.Name = "frmPedidoClienteNuevo";
+            this.Text = "Nuevo Pedido Cliente (Leandro Jorge)";
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -621,7 +609,6 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).EndInit();
-            this.GroupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -629,20 +616,14 @@
 
         #endregion
 
-        internal System.Windows.Forms.Label Label14;
-        internal System.Windows.Forms.Label Label13;
-        internal System.Windows.Forms.DataGridView DataGridView2;
-        internal System.Windows.Forms.Button Button2;
-        internal System.Windows.Forms.Button Button1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label9;
-        internal System.Windows.Forms.DataGridView DataGridView1;
-        internal System.Windows.Forms.Label Label1;
-        internal System.Windows.Forms.TextBox TextBox1;
-        internal System.Windows.Forms.ComboBox ComboBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
@@ -657,24 +638,30 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label8;
+        internal System.Windows.Forms.Label Label14;
+        internal System.Windows.Forms.Label Label13;
+        private System.Windows.Forms.GroupBox groupBox2;
+        internal System.Windows.Forms.DataGridView DataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label8;
-        internal System.Windows.Forms.GroupBox GroupBox1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label9;
+        internal System.Windows.Forms.DataGridView DataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        internal System.Windows.Forms.Label Label1;
+        internal System.Windows.Forms.TextBox TextBox1;
+        internal System.Windows.Forms.ComboBox ComboBox1;
+        internal System.Windows.Forms.Button Button2;
+        internal System.Windows.Forms.Button Button1;
+
     }
 }
