@@ -89,7 +89,7 @@ namespace Controlador
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [dniPers],[cuitPers],[nombrePers],[apellidoPers],[direccPers],[ciudadPers],[provinciaPers],[codigoPostalPers],[obsPers],[usuarioPers],[contraseniaPers],[razonSocialProv]FROM [proyecto].[dbo].[personas]";
+            comando.CommandText = "SELECT [dniPers],[cuitPers],[nombrePers],[apellidoPers],[direccPers],[ciudadPers],[provinciaPers],[codigoPostalPers],[obsPers],[usuarioPers],[contraseniaPers],[razonSocialProv]FROM [proyecto].[dbo].[personas] WHERE [usuarioPers] IS NOT NULL";
 
             comando.Connection.Open();
 
@@ -117,6 +117,53 @@ namespace Controlador
             return allUsrs;
 
         }
+
+        public ModeloPersonas getOne(string pDNIPers)
+        {
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "SELECT [dniPers],[cuitPers],[nombrePers],[apellidoPers],[direccPers],[ciudadPers],[provinciaPers],[codigoPostalPers],[obsPers],[usuarioPers],[contraseniaPers],[razonSocialProv]FROM [proyecto].[dbo].[personas] WHERE ([usuarioPers] IS NOT NULL AND dniPers=@DNIper)";
+
+            comando.Parameters.Add(new SqlParameter("@DNIper", SqlDbType.NVarChar));
+            comando.Parameters["DNIper"].Value = pDNIPers;
+
+            comando.Connection.Open();
+
+            SqlDataReader drPersonas = comando.ExecuteReader();
+           
+            ModeloPersonas modPer = new ModeloPersonas();
+            
+            while (drPersonas.Read())
+            {
+                modPer.dniPers = (string)drPersonas["dniPers"];
+                modPer.cuitPers = (string)drPersonas["cuitPers"];
+                modPer.nombrePres = (string)drPersonas["nombrePers"];
+                modPer.apellidoPers = (string)drPersonas["apellidoPers"];
+                modPer.direccPers = (string)drPersonas["direccPers"];
+                modPer.ciudadPers = (string)drPersonas["ciudadPers"];
+                modPer.provinciaPers = (string)drPersonas["provinciaPers"];
+                modPer.codigoPostalPers = (string)drPersonas["codigoPostalPers"];
+                modPer.obsPers = (string)drPersonas["obsPers"];
+                modPer.usuarioPers = (string)drPersonas["usuarioPers"];
+                modPer.contraseniaPers = (string)drPersonas["contraseniaPers"];
+                
+            }
+            drPersonas.Close();
+
+            comando.Connection.Close();
+
+            return modPer;
+
+        }
+
         }
 
 

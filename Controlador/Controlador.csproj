@@ -40,7 +40,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControladorAlta.cs" />
+    <Compile Include="ControladorBaja.cs" />
     <Compile Include="ControladorBusqueda.cs" />
+    <Compile Include="ControladorDevolucion.cs" />
+    <Compile Include="ControladorInicioSesion.cs" />
+    <Compile Include="ControladorModificacion.cs" />
+    <Compile Include="ControladorPedidoProveedor.cs" />
+    <Compile Include="ControladorProcesarVenta.cs" />
+    <Compile Include="ControladorReportes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

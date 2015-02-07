@@ -54,8 +54,8 @@
   <ItemGroup>
     <Compile Include="CatalogoArticuloProveedores.cs" />
     <Compile Include="CatalogoArticulos.cs" />
-    <Compile Include="CatalogoArticulosProveedores.cs" />
     <Compile Include="CatalogoClientes.cs" />
+    <Compile Include="CatalogoPedidos.cs" />
     <Compile Include="CatalogoProveedores.cs" />
     <Compile Include="CatalogoUsuarios.cs" />
     <Compile Include="Conexion.cs" />
