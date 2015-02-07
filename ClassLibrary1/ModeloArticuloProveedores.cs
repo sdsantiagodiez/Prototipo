@@ -15,6 +15,7 @@ namespace Models
         public string obsArPro { get; set; }
         public DateTime fechaUltimaActualizacionArPro { get; set; }
         public string razonSocialProv { get; set; }
+        public string descripArPro { get; set; }
 
     }
 }
