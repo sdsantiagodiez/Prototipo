@@ -99,5 +99,47 @@ namespace Datos
             comando.Connection.Close();
         //Insertar un nuevo Articulo
         }
+
+        public ModeloArticulos getOne(string pCodArt)
+        { 
+                   
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+            
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType= CommandType.Text;
+
+            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [proyecto].[dbo].[articulos] WHERE codigoOriginalArt = @CodigoArt";
+            
+            comando.Parameters.Add( new SqlParameter("@CodigoArt", SqlDbType.NVarChar));
+
+            comando.Parameters["@CodigoArt"].Value = pCodArt;
+
+            comando.Connection.Open();
+
+            SqlDataReader drArticulos = comando.ExecuteReader();
+            
+            ModeloArticulos modArt = new ModeloArticulos();
+            
+            while (drArticulos.Read())
+            {
+                
+                modArt.codigoOriginalArt = (string)drArticulos["codigoOriginalArt"];
+                modArt.descripArt = (string)drArticulos["descripArt"];
+                modArt.modelosArt = (string)drArticulos["modelosArt"];
+                modArt.obsArt = (string)drArticulos["obsArt"];
+                 }
+            drArticulos.Close();
+
+            comando.Connection.Close();
+
+            return modArt;
+        }
+        }
+       
     }
-}
+

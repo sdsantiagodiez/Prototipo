@@ -19,6 +19,7 @@ namespace Models
         public string usuarioPers { get; set; }
         public string contraseniaPers { get; set; }
         public string razonSocialProv{get;set;}
+        public string direccPers { get; set; }
 
     }
 }

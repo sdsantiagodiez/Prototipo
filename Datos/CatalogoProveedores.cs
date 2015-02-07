@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Controlador
 {
@@ -40,17 +42,122 @@ namespace Controlador
         public List<ModeloProveedores> getAll()
         {
             List<ModeloProveedores> allProvs = new List<ModeloProveedores>();
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
 
-            ModeloProveedores modPro = new ModeloProveedores();
-            allProvs.Add(modPro);
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "SELECT [razonSocialProv],[cuitProv],[direccionProv],[ciudadProv],[provinciaProv],[codigoPostalProv],[obsProv] FROM [proyecto].[dbo].[proveedores]";
+
+            comando.Connection.Open();
+
+            SqlDataReader drProveedores = comando.ExecuteReader();
+            while (drProveedores.Read())
+            {
+                ModeloProveedores modPro = new ModeloProveedores();
+                modPro.razonSocialProv = (string)drProveedores["razonSocialProv"];
+                modPro.cuitProv = (string)drProveedores["cuitProv"];
+                modPro.direccionProv = (string)drProveedores["direccionProv"];
+                modPro.ciudadProv = (string)drProveedores["ciudadProv"];
+                modPro.provinciaProv = (string)drProveedores["provinciaProv"];
+                modPro.codigoPostalProv = (string)drProveedores["codigoPostalProv"];
+                modPro.obsProv = (string)drProveedores["obsProv"];
+                allProvs.Add(modPro);
+            }
+            drProveedores.Close();
+
+            comando.Connection.Close();
 
             return allProvs;
+
         }
 
-        public void agregarNuevaEntidad(ModeloProveedores pModArt)
+        public void agregarNuevaEntidad(ModeloProveedores pModProv)
         {
-            //Insertar un nuevo Articulo
+              //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+            
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType= CommandType.Text;
+
+            comando.CommandText = "INSERT INTO [proyecto].[dbo].[proveedores]([razonSocialProv],[cuitProv],[direccionProv],[ciudadProv],[provinciaProv],[codigoPostalProv],[obsProv])VALUES (@razonSocialProv, @cuitProv, @obsArt, @direccionProv, @ciudadProv, @provinciaProv, @codigoPostalProv,@obsProv)";
+            //Indica los parametros
+            comando.Parameters.Add(new SqlParameter("@razonSocialProv", SqlDbType.NVarChar));
+            comando.Parameters["@razonSocialProv"].Value = pModProv.razonSocialProv;
+            comando.Parameters.Add(new SqlParameter("@cuitProv", SqlDbType.NVarChar));
+            comando.Parameters["@cuitProv"].Value = pModProv.cuitProv;
+            comando.Parameters.Add(new SqlParameter("@direccionProv", SqlDbType.NVarChar));
+            comando.Parameters["@direccionProv"].Value = pModProv.direccionProv;
+            comando.Parameters.Add(new SqlParameter("@ciudadProv", SqlDbType.NVarChar));
+            comando.Parameters["@ciudadProv"].Value = pModProv.ciudadProv;
+            comando.Parameters.Add(new SqlParameter("@provinciaProv", SqlDbType.NVarChar));
+            comando.Parameters["@provinciaProv"].Value = pModProv.provinciaProv;
+            comando.Parameters.Add(new SqlParameter("@codigoPostalProv", SqlDbType.NVarChar));
+            comando.Parameters["@codigoPostalProv"].Value = pModProv.codigoPostalProv;
+            comando.Parameters.Add(new SqlParameter("@obsProv", SqlDbType.NVarChar));
+            comando.Parameters["@obsProv"].Value = pModProv.obsProv;
+
+            comando.Connection.Open();
+            comando.ExecuteNonQuery();
+            comando.Connection.Close();
+        //Insertar un nuevo Proveedor
         }
+            
+
+        public ModeloProveedores getOne(string pRSocialProvedoor)
+        {
+            
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "SELECT [razonSocialProv],[cuitProv],[direccionProv],[ciudadProv],[provinciaProv],[codigoPostalProv],[obsProv] FROM [proyecto].[dbo].[proveedores] WHERE razonSocialProv=@razonSocialProv";
+
+            comando.Parameters.Add(new SqlParameter("@razonSocialProv", SqlDbType.NVarChar));
+
+            comando.Parameters["@razonSocialProv"].Value = pRSocialProvedoor;
+
+            comando.Connection.Open();
+
+            SqlDataReader drProveedores = comando.ExecuteReader();
+
+            ModeloProveedores modPro = new ModeloProveedores();
+
+            while (drProveedores.Read())
+            {
+                
+                modPro.razonSocialProv = (string)drProveedores["razonSocialProv"];
+                modPro.cuitProv = (string)drProveedores["cuitProv"];
+                modPro.direccionProv = (string)drProveedores["direccionProv"];
+                modPro.ciudadProv = (string)drProveedores["ciudadProv"];
+                modPro.provinciaProv = (string)drProveedores["provinciaProv"];
+                modPro.codigoPostalProv = (string)drProveedores["codigoPostalProv"];
+                modPro.obsProv = (string)drProveedores["obsProv"];
+                
+            }
+            drProveedores.Close();
+
+            comando.Connection.Close();
+
+            return modPro;
+
+        }
+    }
 
     }
-}
+
