@@ -9,7 +9,7 @@ namespace Datos
     public class Conexion
     {
         static string connectionString = "Data Source=; Persist Security Info=True;";
-        
+        /*Comentario de prueba*/
 
         public static SqlConnection crearConexion()
         {
