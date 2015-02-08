@@ -282,7 +282,7 @@ namespace Datos
             comando.Parameters.Add(new SqlParameter("@descripArPro", SqlDbType.NVarChar));
             comando.Parameters["@descripArPro"].Value = modArtProv.descripArPro;
 
-            comando.Parameters.Add(new SqlParameter("@fechaUltimaActualizacionArPro", SqlDbType.NVarChar));
+            comando.Parameters.Add(new SqlParameter("@fechaUltimaActualizacionArPro", SqlDbType.DateTime));
             comando.Parameters["@fechaUltimaActualizacionArPro"].Value = modArtProv.fechaUltimaActualizacionArPro;
 
             comando.Parameters.Add(new SqlParameter("@razonSocialProv", SqlDbType.NVarChar));
