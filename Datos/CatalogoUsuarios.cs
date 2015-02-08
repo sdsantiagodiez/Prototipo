@@ -164,7 +164,74 @@ namespace Controlador
 
         }
 
-        }
+        public string actualizarUsuario(ModeloPersonas modPer, string[] pModificar)//el parametro pModificar solo contiene el numero de documento si es que es cambaido.
+        {
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "UPDATE [proyecto].[dbo].[personas] SET [dniPers]=@dniPersNew,[cuitPers]=@cuitPers,[nombrePers]=@nombrePers, [apellidoPers]=@apellidoPers,[direccPers]=@direccPers,[ciudadPers]=@ciudadPers, [provinciaPers]=@provinciaPers, [codigoPostalPers]=@codigoPostalPers,[obsPers]=@obsPers,[razonSocialProv]=@razonSocialProv, [usuarioPers]=@usuarioPers, [contraseniaPers]=@contraseniaPers WHERE [proveedores].dniPers=@dniPersAnt";
+
+            comando.Parameters.Add(new SqlParameter("@dniPersAnt", SqlDbType.NVarChar));
+            comando.Parameters["@dniPersAnt"].Value = modPer.dniPers;
+
+            comando.Parameters.Add(new SqlParameter("@dniPersNew", SqlDbType.NVarChar));
+            comando.Parameters["@dniPersNew"].Value = pModificar[0];
+
+            comando.Parameters.Add(new SqlParameter("@cuitPers", SqlDbType.NVarChar));
+            comando.Parameters["@cuitPers"].Value = modPer.cuitPers;
+
+            comando.Parameters.Add(new SqlParameter("@nombrePres", SqlDbType.NVarChar));
+            comando.Parameters["@nombrePres"].Value = modPer.nombrePres;
+
+            comando.Parameters.Add(new SqlParameter("@apellidoPers", SqlDbType.NVarChar));
+            comando.Parameters["@apellidoPers"].Value = modPer.apellidoPers;
+
+            comando.Parameters.Add(new SqlParameter("@direccPers", SqlDbType.NVarChar));
+            comando.Parameters["@direccPers"].Value = modPer.direccPers;
+
+            comando.Parameters.Add(new SqlParameter("@ciudadPers", SqlDbType.NVarChar));
+            comando.Parameters["@ciudadPers"].Value = modPer.ciudadPers;
+
+            comando.Parameters.Add(new SqlParameter("@provinciaPers", SqlDbType.NVarChar));
+            comando.Parameters["@provinciaPers"].Value = modPer.provinciaPers;
+
+            comando.Parameters.Add(new SqlParameter("@codigoPostalPers", SqlDbType.NVarChar));
+            comando.Parameters["@codigoPostalPers"].Value = modPer.codigoPostalPers;
+
+            comando.Parameters.Add(new SqlParameter("@obsPers", SqlDbType.NVarChar));
+            comando.Parameters["@obsPers"].Value = modPer.obsPers;
+
+            comando.Parameters.Add(new SqlParameter("@usuarioPers", SqlDbType.NVarChar));
+            comando.Parameters["@usuarioPers"].Value = modPer.usuarioPers;
+
+            comando.Parameters.Add(new SqlParameter("@contraseniaPers", SqlDbType.NVarChar));
+            comando.Parameters["@contraseniaPers"].Value = modPer.contraseniaPers;
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected == 0)
+            {
+                return "Error en actualizar";
+            }
+            else
+            {
+                return "Actualizacion finalizada";
+            }
+
+
+        }   
+    
+    
+    }
 
 
     }

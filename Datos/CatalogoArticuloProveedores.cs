@@ -244,6 +244,67 @@ namespace Datos
 
         }
 
+        public string actualizarArticulo(ModeloArticuloProveedores modArtProv, string[] pModificar)//el parametro pModificar solo contiene el codigoOriginalArt[0] y codigoArProveedor[1] si es que fueron cambiados.
+        {
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "UPDATE [proyecto].[dbo].[art_prov] SET [codigoOriginalArt]=@codigoOriginalArtNew,[codigoArProveedor]=@codigoArProveedorNew,[stockMinimoArPro]=@stockMinimoArPro,[stockActualArPro]=@stockActualArPro,[obsArPro]=@obsArPro,[descripArPro]=@descripArPro,[fechaUltimaActualizacionArPro]=@fechaUltimaActualizacionArPro,[razonSocialProv]=@razonSocialProv WHERE ([art_prov].codigoOriginalArt=@codigoOriginalArtAnt AND [art_prov].codigoArProveedor=@codigoArProveedorAnt)";
+
+            comando.Parameters.Add(new SqlParameter("@codigoOriginalAnt", SqlDbType.NVarChar));
+            comando.Parameters["@codigoOriginalAnt"].Value = modArtProv.codigoOriginalArt;
+
+            comando.Parameters.Add(new SqlParameter("@codigoOriginalNew", SqlDbType.NVarChar));
+            comando.Parameters["@codigoOriginalAnt"].Value = pModificar[0];
+
+            comando.Parameters.Add(new SqlParameter("@codigoArProveedorAnt", SqlDbType.NVarChar));
+            comando.Parameters["@codigoArProveedorAnt"].Value = modArtProv.codigoArProveedor;
+
+            comando.Parameters.Add(new SqlParameter("@codigoArProveedorNew", SqlDbType.NVarChar));
+            comando.Parameters["@codigoArProveedorNew"].Value = pModificar[1];
+
+            comando.Parameters.Add(new SqlParameter("@stockMinimoArPro", SqlDbType.Int));
+            comando.Parameters["@stockMinimoArPro"].Value = modArtProv.stockMinimoArPro;
+
+            comando.Parameters.Add(new SqlParameter("@stockActualArPro", SqlDbType.Int));
+            comando.Parameters["@stockActualArPro"].Value = modArtProv.stockActualArPro;
+
+            comando.Parameters.Add(new SqlParameter("@obsArPro", SqlDbType.NVarChar));
+            comando.Parameters["@obsArPro"].Value = modArtProv.obsArPro;
+
+            comando.Parameters.Add(new SqlParameter("@descripArPro", SqlDbType.NVarChar));
+            comando.Parameters["@descripArPro"].Value = modArtProv.descripArPro;
+
+            comando.Parameters.Add(new SqlParameter("@fechaUltimaActualizacionArPro", SqlDbType.NVarChar));
+            comando.Parameters["@fechaUltimaActualizacionArPro"].Value = modArtProv.fechaUltimaActualizacionArPro;
+
+            comando.Parameters.Add(new SqlParameter("@razonSocialProv", SqlDbType.NVarChar));
+            comando.Parameters["@razonSocialProv"].Value = modArtProv.razonSocialProv;
+
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected == 0)
+            {
+                return "Error en actualizar";
+            }
+            else
+            {
+                return "Actualizacion finalizada";
+            }
+
+
+        } 
+    
     }
        
 

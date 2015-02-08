@@ -139,7 +139,53 @@ namespace Datos
 
             return modArt;
         }
-        }
+
+        public string actualizarArticulo(ModeloArticulos modArt, string[] pModificar)//el parametro pModificar solo contiene el codigoOriginalArt si es que es cambiado.
+        {
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "UPDATE [proyecto].[dbo].[articulos] SET [codigoOriginalArt]=@codigoOriginalArtNew, [descripArt]=@descripArt,[modelosArt]=@modelosArt,[obsArt]=@obsArt WHERE [articulos].codigoOriginalArt=@codigoOriginalArtAnt";
+
+            comando.Parameters.Add(new SqlParameter("@codigoOriginalAnt", SqlDbType.NVarChar));
+            comando.Parameters["@codigoOriginalAnt"].Value = modArt.codigoOriginalArt;
+
+            comando.Parameters.Add(new SqlParameter("@codigoOriginalNew", SqlDbType.NVarChar));
+            comando.Parameters["@codigoOriginalAnt"].Value = pModificar[0];
+
+            comando.Parameters.Add(new SqlParameter("@descripArt", SqlDbType.NVarChar));
+            comando.Parameters["@descripArt"].Value = modArt.descripArt;
+
+            comando.Parameters.Add(new SqlParameter("@modelosArt", SqlDbType.NVarChar));
+            comando.Parameters["@modelosArt"].Value = modArt.modelosArt;
+
+            comando.Parameters.Add(new SqlParameter("@obsArt", SqlDbType.NVarChar));
+            comando.Parameters["@obsArt"].Value = modArt.obsArt;
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected == 0)
+            {
+                return "Error en actualizar";
+            }
+            else
+            {
+                return "Actualizacion finalizada";
+            }
+
+
+        }   
+    
+    }
        
     }
 

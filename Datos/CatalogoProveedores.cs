@@ -210,7 +210,7 @@ namespace Controlador
             
         }
 
-        public string ActualizaProveedor(ModeloProveedores modProv, string[] pModifcar)
+        public string actualizarProveedor(ModeloProveedores modProv, string[] pModificar)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
@@ -228,13 +228,13 @@ namespace Controlador
             comando.Parameters["@razonSocialProv"].Value = modProv.razonSocialProv;
 
             comando.Parameters.Add(new SqlParameter("@razonSocialNueva", SqlDbType.NVarChar));
-            comando.Parameters["@razonSocialNueva"].Value = pModifcar[0];
+            comando.Parameters["@razonSocialNueva"].Value = pModificar[0];
 
             comando.Parameters.Add(new SqlParameter("@cuitProv", SqlDbType.NVarChar));
             comando.Parameters["@cuitProv"].Value = modProv.cuitProv;
 
             comando.Parameters.Add(new SqlParameter("@direccionProv", SqlDbType.NVarChar));
-            comando.Parameters["@dirrecionProv"].Value = modProv.direccionProv;
+            comando.Parameters["@direccionProv"].Value = modProv.direccionProv;
 
             comando.Parameters.Add(new SqlParameter("@ciudadProv", SqlDbType.NVarChar));
             comando.Parameters["@ciudadProv"].Value = modProv.ciudadProv;
