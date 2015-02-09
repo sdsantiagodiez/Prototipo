@@ -227,6 +227,37 @@ namespace Controlador
 
         }
 
+        public string bajaCliente(string pDni)
+        {
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "DELETE FROM [proyecto].[dbo].[personas] WHERE [personas].dniPers=@dniPers";
+
+            comando.Parameters.Add(new SqlParameter("@dniPers", SqlDbType.NVarChar));
+            comando.Parameters["@dniPers"].Value = pDni;
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected == 0)
+            {
+                return "Operacion Cancelada";
+            }
+            else
+            {
+                return "Cliente dado de baja";
+            }
+        
+        }
+
         }
     
     

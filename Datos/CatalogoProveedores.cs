@@ -265,6 +265,37 @@ namespace Controlador
 
         }
 
+        public string bajaProveedor(string pRazonSocial)
+        {
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "DELETE FROM [proyecto].[dbo].[proveedores] WHERE [proveedores].razonSocialProv=@razonSocialProv";
+
+            comando.Parameters.Add(new SqlParameter("@razonSocialProv", SqlDbType.NVarChar));
+            comando.Parameters["@razonSocialProv"].Value = pRazonSocial;
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected == 0)
+            {
+                return "Operacion Cancelada";
+            }
+            else
+            {
+                return "Proveedor de baja";
+            }
+
+        }
+
     }
 
     }

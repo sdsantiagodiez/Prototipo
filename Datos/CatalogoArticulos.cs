@@ -183,8 +183,40 @@ namespace Datos
             }
 
 
-        }   
-    
+        }
+
+        public string bajaArticulo(string pCodigoOriginal)
+        {
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "DELETE FROM [proyecto].[dbo].[articulos] WHERE [articulos].codigoOriginalArt=@codigoOriginalArt";
+
+            comando.Parameters.Add(new SqlParameter("@codigoOriginalArt", SqlDbType.NVarChar));
+            comando.Parameters["@codigoOriginalArt"].Value = pCodigoOriginal;
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected == 0)
+            {
+                return "Operacion Cancelada";
+            }
+            else
+            {
+                return "Articulo dado de baja";
+            }
+
+
+        }
+
     }
        
     }

@@ -244,7 +244,7 @@ namespace Datos
 
         }
 
-        public string actualizarArticulo(ModeloArticuloProveedores modArtProv, string[] pModificar)//el parametro pModificar solo contiene el codigoOriginalArt[0] y codigoArProveedor[1] si es que fueron cambiados.
+        public string actualizarArticuloProveedor(ModeloArticuloProveedores modArtProv, string[] pModificar)//el parametro pModificar solo contiene el codigoOriginalArt[0] y codigoArProveedor[1] si es que fueron cambiados.
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
@@ -303,9 +303,43 @@ namespace Datos
             }
 
 
+        }
+
+        public string bajaArticuloProveedor(string pCodigoArtProv)
+        { 
+         
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "DELETE FROM [proyecto].[dbo].[art_prov] WHERE ([art_prov].codigoArProveedor=@codigoArProveedor)";
+
+            comando.Parameters.Add(new SqlParameter("@codigoArProveedor", SqlDbType.NVarChar));
+            comando.Parameters["@codigoArProveedor"].Value = pCodigoArtProv;
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected == 0)
+            {
+                return "Operacion Cancelada";
+            }
+            else
+            {
+                return "Articulo de Proveedor dado de baja";
+            }
+
+
         } 
-    
     }
+
+}
        
 
 
