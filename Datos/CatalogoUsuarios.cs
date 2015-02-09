@@ -118,7 +118,7 @@ namespace Controlador
 
         }
 
-        public ModeloPersonas getOne(string pDNIPers)
+        public ModeloPersonas getOne(string pUser, string pPass)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
@@ -130,10 +130,13 @@ namespace Controlador
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [dniPers],[cuitPers],[nombrePers],[apellidoPers],[direccPers],[ciudadPers],[provinciaPers],[codigoPostalPers],[obsPers],[usuarioPers],[contraseniaPers],[razonSocialProv]FROM [proyecto].[dbo].[personas] WHERE ([usuarioPers] IS NOT NULL AND dniPers=@DNIper)";
+            comando.CommandText = "SELECT [dniPers],[cuitPers],[nombrePers],[apellidoPers],[direccPers],[ciudadPers],[provinciaPers],[codigoPostalPers],[obsPers],[usuarioPers],[contraseniaPers],[razonSocialProv]FROM [proyecto].[dbo].[personas] WHERE ([usuarioPers]=@usuarioPers AND [contraseniaPers]=@contraseniaPers)";
 
-            comando.Parameters.Add(new SqlParameter("@DNIper", SqlDbType.NVarChar));
-            comando.Parameters["DNIper"].Value = pDNIPers;
+            comando.Parameters.Add(new SqlParameter("@usuarioPers", SqlDbType.NVarChar));
+            comando.Parameters["usuarioPers"].Value = pUser;
+
+            comando.Parameters.Add(new SqlParameter("@contraseniaPers", SqlDbType.NVarChar));
+            comando.Parameters["contraseniaPers"].Value = pPass;
 
             comando.Connection.Open();
 
