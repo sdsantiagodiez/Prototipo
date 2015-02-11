@@ -8,9 +8,8 @@ using Models;
 
 namespace Controlador
 {
-    public class ControladorBusqueda
+    class Controlador
     {
-
         public void buscarArticulos(string pCodDes)
         {
             string[][] respuesta = new string[5][];
@@ -23,41 +22,38 @@ namespace Controlador
 
             List<ModeloArticulos> aAll = new List<ModeloArticulos>();
             aAll = ca.getAll();
-            
+
             List<ModeloArticuloProveedores> apAll = new List<ModeloArticuloProveedores>();
             apAll = cap.getAll();
             ModeloArticuloProveedores ap = new ModeloArticuloProveedores();
 
             int i = 0;
 
-       if(pCodDes.Length<=10)
+            if (pCodDes.Length <= 10)
             {
-            
-            
-        
-            #region Busca en los Articulos si el parametro pasado coincide con alguno y lo agrega a aEncontrados
-            foreach (ModeloArticulos modArt in aAll) // el parametro es codigo original o descripcion
-            {
-                if (pCodDes.Equals(modArt.codigoOriginalArt) == true || pCodDes.Equals(modArt.codigoOriginalArt) == true)
+                #region Busca en los Articulos si el parametro pasado coincide con alguno y lo agrega a aEncontrados
+                foreach (ModeloArticulos modArt in aAll) // el parametro es codigo original o descripcion
                 {
-                    aEncontrados.Add(modArt);
-                }
-                else
-                {
-                    if (pCodDes.CompareTo(modArt.codigoOriginalArt) < 10 || pCodDes.CompareTo(modArt.codigoOriginalArt) < 100)
+                    if (pCodDes.Equals(modArt.codigoOriginalArt) == true || pCodDes.Equals(modArt.codigoOriginalArt) == true)
                     {
                         aEncontrados.Add(modArt);
                     }
-                
+                    else
+                    {
+                        if (pCodDes.CompareTo(modArt.codigoOriginalArt) < 10 || pCodDes.CompareTo(modArt.codigoOriginalArt) < 100)
+                        {
+                            aEncontrados.Add(modArt);
+                        }
+
+                    }
+
                 }
 
-            }
-
-            #endregion
+                #endregion
             }
             else
             {
-            
+
 
                 foreach (ModeloArticuloProveedores modArtProv in apAll)
                 {
@@ -67,7 +63,7 @@ namespace Controlador
                     }
                 }
             }
-            
+
 
             if (aEncontrados.Count != 0)
             {
@@ -95,18 +91,13 @@ namespace Controlador
 
 
                 }
-            
+
             }
             else if (ap.codigoArProveedor != "")
             { /*
                Falta ultimo bucle DSD CUS 1.1
                */
             }
-
-
-        
         }
-
-
     }
 }
