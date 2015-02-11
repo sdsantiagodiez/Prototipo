@@ -11,7 +11,6 @@ namespace Datos
 {
     public class CatalogoArticulos
     {
-
         public bool validarDatos(string[] pDatos)
         {
             // Validar si los datos son correctos?
@@ -37,6 +36,57 @@ namespace Datos
             }
 
             return respuesta;
+        }
+
+        /// <summary>
+        /// Busca por codigoOriginal o descripción y devuelve lista de artículos
+        /// </summary>
+        /// <param name="parametro">códigoOriginal o descripción de artículo</param>
+        /// <returns>lista=0 si no encuentra, =1 si parametro es codigoOriginal y >=1 si es descripcion</returns>
+        public List<ModeloArticulos> buscarArticulo(string parametro)
+        {
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [proyecto].[dbo].[articulos] WHERE codigoOriginalArt = @Parametro";
+
+            comando.Parameters.Add(new SqlParameter("@Parametro", SqlDbType.NVarChar));
+
+            comando.Parameters["@paramtro"].Value = parametro;
+
+            comando.Connection.Open();
+
+            SqlDataReader drArticulos = comando.ExecuteReader();
+
+            List<ModeloArticulos> listaArticulos = new List<ModeloArticulos>();
+            ModeloArticulos modArt = new ModeloArticulos();
+
+            if (!drArticulos.HasRows)
+            {
+                comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [proyecto].[dbo].[articulos] WHERE descipArt LIKE @Parametro";
+                drArticulos = comando.ExecuteReader();
+            }
+            if (drArticulos.HasRows)
+            {
+                while (drArticulos.Read())
+                {
+                    modArt.codigoOriginalArt = (string)drArticulos["codigoOriginalArt"];
+                    modArt.descripArt = (string)drArticulos["descripArt"];
+                    modArt.modelosArt = (string)drArticulos["modelosArt"];
+                    modArt.obsArt = (string)drArticulos["obsArt"];
+                    listaArticulos.Add(modArt);
+                }
+            }
+
+            drArticulos.Close();
+            comando.Connection.Close();
+
+            return listaArticulos;
         }
 
         public List<ModeloArticulos> getAll()
@@ -73,6 +123,45 @@ namespace Datos
             return allArts;
         }
 
+        public ModeloArticulos getOne(string pCodigoOriginal)
+        {
+
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [proyecto].[dbo].[articulos] WHERE codigoOriginalArt = @CodigoOriginal";
+
+            comando.Parameters.Add(new SqlParameter("@CodigoArt", SqlDbType.NVarChar));
+
+            comando.Parameters["@CodigoOriginal"].Value = pCodigoOriginal;
+
+            comando.Connection.Open();
+
+            SqlDataReader drArticulos = comando.ExecuteReader();
+
+            ModeloArticulos modArt = new ModeloArticulos();
+
+            while (drArticulos.Read())
+            {
+                modArt.codigoOriginalArt = (string)drArticulos["codigoOriginalArt"];
+                modArt.descripArt = (string)drArticulos["descripArt"];
+                modArt.modelosArt = (string)drArticulos["modelosArt"];
+                modArt.obsArt = (string)drArticulos["obsArt"];
+            }
+
+            drArticulos.Close();
+            comando.Connection.Close();
+
+            return modArt;
+        }
+
         public void agregarNuevaEntidad(ModeloArticulos pModArt)
         { 
             //Creo la conexion y la abro
@@ -98,47 +187,7 @@ namespace Datos
             comando.ExecuteNonQuery();
             comando.Connection.Close();
         //Insertar un nuevo Articulo
-        }
-
-        public ModeloArticulos getOne(string pCodArt)
-        { 
-                   
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-            
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType= CommandType.Text;
-
-            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [proyecto].[dbo].[articulos] WHERE codigoOriginalArt = @CodigoArt";
-            
-            comando.Parameters.Add( new SqlParameter("@CodigoArt", SqlDbType.NVarChar));
-
-            comando.Parameters["@CodigoArt"].Value = pCodArt;
-
-            comando.Connection.Open();
-
-            SqlDataReader drArticulos = comando.ExecuteReader();
-            
-            ModeloArticulos modArt = new ModeloArticulos();
-            
-            while (drArticulos.Read())
-            {
-                
-                modArt.codigoOriginalArt = (string)drArticulos["codigoOriginalArt"];
-                modArt.descripArt = (string)drArticulos["descripArt"];
-                modArt.modelosArt = (string)drArticulos["modelosArt"];
-                modArt.obsArt = (string)drArticulos["obsArt"];
-                 }
-            drArticulos.Close();
-
-            comando.Connection.Close();
-
-            return modArt;
-        }
+        }     
 
         public string actualizarArticulo(ModeloArticulos modArt, string[] pModificar)//el parametro pModificar solo contiene el codigoOriginalArt si es que es cambiado.
         {
@@ -216,8 +265,11 @@ namespace Datos
 
 
         }
+        
+        
+        
 
     }
        
-    }
+}
 
