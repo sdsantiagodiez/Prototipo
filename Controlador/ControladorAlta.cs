@@ -96,7 +96,7 @@ namespace Controlador
             #endregion
 
                case '3'://nuevo Cliente
-            CatalogoClientes cc = new CatalogoClientes();
+            CatalogoPersonas cc = new CatalogoPersonas();
             #region Alta Cliente
             bool rtacli = cc.validarDatos(pParametros);
 
@@ -129,6 +129,5 @@ namespace Controlador
             return respuesta;
 
         }
-
     }
 }
