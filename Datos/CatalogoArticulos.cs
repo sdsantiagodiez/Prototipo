@@ -17,33 +17,43 @@ namespace Datos
             return true;
         }
 
-        public bool existeEntidad(string[] pDatos)
+        /// <summary>
+        /// Determina existencia de articulo de acuerdo a codigoOriginal ingresado
+        /// </summary>
+        /// <param name="codigoOriginal">código original de artículo</param>
+        /// <returns>true si existe, false si no existe</returns>
+        public bool existeEntidad(string codigoOriginal)
         {
-            // Se crea la variable a retornar
-            bool respuesta = false;
-            //Creamos la lista de todos los Articulos
-            List<ModeloArticulos> listArt = this.getAll();
-            
-            foreach (ModeloArticulos modArt in listArt)
-            {
-                if (pDatos[1] == modArt.codigoOriginalArt)// Se busca si el articulo ya existe comparando el codigo original
-                {
-                    respuesta = true;
-                    break;
-                }
-                else { respuesta = false; }
-
-            }
-
+            // Convierte respuesta en false si Count=0 y en true si es cualquier otro número
+            bool respuesta = Convert.ToBoolean(buscarArticulo("codigoOriginal", codigoOriginal).Count);
             return respuesta;
         }
 
         /// <summary>
         /// Busca por codigoOriginal o descripción y devuelve lista de artículos
         /// </summary>
-        /// <param name="parametro">códigoOriginal o descripción de artículo</param>
-        /// <returns>lista=0 si no encuentra, =1 si parametro es codigoOriginal y >=1 si es descripcion</returns>
-        public List<ModeloArticulos> buscarArticulo(string parametro)
+        /// <param name="tipoParametro">"codigoOriginal" o "descripcion"</param>
+        /// <param name="descripcionParametro">string por el que se buscará artículo</param>
+        /// <returns></returns>
+        public List<ModeloArticulos> buscarArticulo(string tipoParametro, string descripcionParametro)
+        {
+            List<ModeloArticulos> listaArticulos = new List<ModeloArticulos>();
+            string tipo = tipoParametro.ToLower();
+            switch (tipo)
+            {
+                case "codigooriginal":
+                    listaArticulos = buscarPorCodigoOriginal(descripcionParametro);
+                    break;
+                case "descripcion":
+                    listaArticulos = buscarPorDescripcion(descripcionParametro);
+                    break;
+                default:
+                    break;
+            }
+            return listaArticulos;
+        }
+
+        private List<ModeloArticulos> buscarPorCodigoOriginal(string codigoOriginal)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -53,11 +63,11 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [proyecto].[dbo].[articulos] WHERE codigoOriginalArt = @Parametro";
+            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [proyecto].[dbo].[articulos] WHERE codigoOriginalArt = @codigoOriginal";
 
             comando.Parameters.Add(new SqlParameter("@Parametro", SqlDbType.NVarChar));
 
-            comando.Parameters["@paramtro"].Value = parametro;
+            comando.Parameters["@codigoOriginal"].Value = codigoOriginal;
 
             comando.Connection.Open();
 
@@ -66,21 +76,51 @@ namespace Datos
             List<ModeloArticulos> listaArticulos = new List<ModeloArticulos>();
             ModeloArticulos modArt = new ModeloArticulos();
 
-            if (!drArticulos.HasRows)
+            while (drArticulos.Read())
             {
-                comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [proyecto].[dbo].[articulos] WHERE descipArt LIKE @Parametro";
-                drArticulos = comando.ExecuteReader();
+                modArt.codigoOriginalArt = (string)drArticulos["codigoOriginalArt"];
+                modArt.descripArt = (string)drArticulos["descripArt"];
+                modArt.modelosArt = (string)drArticulos["modelosArt"];
+                modArt.obsArt = (string)drArticulos["obsArt"];
+                listaArticulos.Add(modArt);
             }
-            if (drArticulos.HasRows)
+
+            drArticulos.Close();
+            comando.Connection.Close();
+
+            return listaArticulos;
+        }
+       
+        private List<ModeloArticulos> buscarPorDescripcion(string descripcion)
+        {
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [proyecto].[dbo].[articulos] WHERE descripArt LIKE @descripcion";
+
+            comando.Parameters.Add(new SqlParameter("@Parametro", SqlDbType.NVarChar));
+
+            comando.Parameters["@descripcion"].Value = descripcion;
+
+            comando.Connection.Open();
+
+            SqlDataReader drArticulos = comando.ExecuteReader();
+
+            List<ModeloArticulos> listaArticulos = new List<ModeloArticulos>();
+            ModeloArticulos modArt = new ModeloArticulos();
+
+            while (drArticulos.Read())
             {
-                while (drArticulos.Read())
-                {
-                    modArt.codigoOriginalArt = (string)drArticulos["codigoOriginalArt"];
-                    modArt.descripArt = (string)drArticulos["descripArt"];
-                    modArt.modelosArt = (string)drArticulos["modelosArt"];
-                    modArt.obsArt = (string)drArticulos["obsArt"];
-                    listaArticulos.Add(modArt);
-                }
+                modArt.codigoOriginalArt = (string)drArticulos["codigoOriginalArt"];
+                modArt.descripArt = (string)drArticulos["descripArt"];
+                modArt.modelosArt = (string)drArticulos["modelosArt"];
+                modArt.obsArt = (string)drArticulos["obsArt"];
+                listaArticulos.Add(modArt);
             }
 
             drArticulos.Close();
@@ -265,9 +305,6 @@ namespace Datos
 
 
         }
-        
-        
-        
 
     }
        

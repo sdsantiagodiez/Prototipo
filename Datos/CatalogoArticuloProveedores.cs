@@ -11,45 +11,188 @@ namespace Datos
 {
     public class CatalogoArticuloProveedores
     {
-         public bool validarDatos(string[] pDatos)
+        public bool validarDatos(string[] pDatos)
         {
             // Validar si los datos son correctos?
             return true;
         }
 
-        public bool existeEntidad(string codArticuloProveedor)
+        /// <summary>
+        /// Determina existencia de articuloProveedor de acuerdo a codigoArticuloProveedor ingresado
+        /// </summary>
+        /// <param name="codigoArticuloProveedor">código articulo proveedor de artículo proveedor</param>
+        /// <returns>true si existe, false si no existe</returns>
+        public bool existeEntidad(string codigoArticuloProveedor)
         {
-            // Se crea la variable a retornar
-            bool respuesta = false;
-            //Creamos la lista de todos los Articulos
-            List<ModeloArticuloProveedores> listArtProv = this.getAll();
-            
-            foreach (ModeloArticuloProveedores modArtProv in listArtProv)
-            {
-                if (codArticuloProveedor== modArtProv.codigoArProveedor)// Se busca si el articulo ya existe comparando el codigo original
-                {
-                    respuesta = true;
-                    break;
-                }
-                else { respuesta = false; }
-
-            }
-
+            // Convierte respuesta en false si Count=0 y en true si es cualquier otro número
+            bool respuesta = Convert.ToBoolean(buscarArticuloProveedor("codigoArticuloProveedor",codigoArticuloProveedor).Count);
             return respuesta;
+        }    
+
+        /// <summary>
+        /// busca articulo proveedor de acuerdo a tipoParametro ingresado
+        /// </summary>
+        /// <param name="tipoParametro">"codigoOriginal" o "codigoArticuloProveedor" o "descripcion"</param>
+        /// <param name="descripcionParametro">string por el que se buscará artículo</param>
+        /// <returns></returns>
+        public List<ModeloArticuloProveedores> buscarArticuloProveedor(string tipoParametro, string descripcionParametro)
+        {
+            List<ModeloArticuloProveedores> listaArticulosProveedores = new List<ModeloArticuloProveedores>();
+            string tipo = tipoParametro.ToLower();
+            switch(tipo)
+            {
+                case "codigooriginal":
+                    listaArticulosProveedores = buscarPorCodigoOriginal(descripcionParametro);
+                    break;
+                case "codigoarticuloproveedor":
+                    listaArticulosProveedores = buscarPorCodigoArticuloProveedor(descripcionParametro);
+                    break;
+                case "descripcion":
+                    listaArticulosProveedores = buscarPorDescripcion(descripcionParametro);
+                    break;
+                default:
+                    break;
+            }
+            return listaArticulosProveedores;
         }
 
-        public List<ModeloArticuloProveedores> getAll()
-        { 
-            List<ModeloArticuloProveedores>allArtProvs = new List<ModeloArticuloProveedores>();
+        private List<ModeloArticuloProveedores> buscarPorDescripcion(string pDescrip)
+        {
+            List<ModeloArticuloProveedores> ArtProvxDesc = new List<ModeloArticuloProveedores>();
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
-            
+
             //crea SQL command
             SqlCommand comando = new SqlCommand();
 
             comando.Connection = ConexionSQL;
 
-            comando.CommandType= CommandType.Text;
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArProveedor],[stockMinimoArPro],[stockActualArPro],[obsArPro],[descripArPro],[fechaUltimaActualizacionArPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov] WHERE descripArPro like @descrip + '%'";
+
+            comando.Parameters.Add(new SqlParameter("@descrip", SqlDbType.NVarChar));
+            comando.Parameters["@descrip"].Value = pDescrip;
+
+            comando.Connection.Open();
+
+            SqlDataReader drArtProveedores = comando.ExecuteReader();
+            while (drArtProveedores.Read())
+            {
+                ModeloArticuloProveedores modArtProv = new ModeloArticuloProveedores();
+                modArtProv.codigoOriginalArt = (string)drArtProveedores["codigoOriginalArt"];
+                modArtProv.codigoArProveedor = (string)drArtProveedores["codigoArProveedor"];
+                modArtProv.stockMinimoArPro = (int)drArtProveedores["stockMinimoArPro"];
+                modArtProv.stockActualArPro = (int)drArtProveedores["stockActualArPro"];
+                modArtProv.obsArPro = (string)drArtProveedores["obsArPro"];
+                modArtProv.descripArPro = (string)drArtProveedores["descripArPro"];
+                modArtProv.fechaUltimaActualizacionArPro = (DateTime)drArtProveedores["fechaUltimaActualizacionArPro"];
+                modArtProv.razonSocialProv = (string)drArtProveedores["razonSocialProv"];
+                ArtProvxDesc.Add(modArtProv);
+            }
+            drArtProveedores.Close();
+
+            comando.Connection.Close();
+
+            return ArtProvxDesc;
+
+        }
+
+        private List<ModeloArticuloProveedores> buscarPorCodigoOriginal(string pCodigoOriginal)
+        {
+            List<ModeloArticuloProveedores> ArtProvxCodOrg = new List<ModeloArticuloProveedores>();
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArProveedor],[stockMinimoArPro],[stockActualArPro],[obsArPro],[descripArPro],[fechaUltimaActualizacionArPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov] WHERE codigoOriginalArt = @codOriginal";
+
+            comando.Parameters.Add(new SqlParameter("@codOriginal", SqlDbType.NVarChar));
+            comando.Parameters["@codOriginal"].Value = pCodigoOriginal;
+
+            comando.Connection.Open();
+
+            SqlDataReader drArtProveedores = comando.ExecuteReader();
+            while (drArtProveedores.Read())
+            {
+                ModeloArticuloProveedores modArtProv = new ModeloArticuloProveedores();
+                modArtProv.codigoOriginalArt = (string)drArtProveedores["codigoOriginalArt"];
+                modArtProv.codigoArProveedor = (string)drArtProveedores["codigoArProveedor"];
+                modArtProv.stockMinimoArPro = (int)drArtProveedores["stockMinimoArPro"];
+                modArtProv.stockActualArPro = (int)drArtProveedores["stockActualArPro"];
+                modArtProv.obsArPro = (string)drArtProveedores["obsArPro"];
+                modArtProv.descripArPro = (string)drArtProveedores["descripArPro"];
+                modArtProv.fechaUltimaActualizacionArPro = (DateTime)drArtProveedores["fechaUltimaActualizacionArPro"];
+                modArtProv.razonSocialProv = (string)drArtProveedores["razonSocialProv"];
+                ArtProvxCodOrg.Add(modArtProv);
+            }
+            drArtProveedores.Close();
+
+            comando.Connection.Close();
+
+            return ArtProvxCodOrg;
+
+        }
+
+        private List<ModeloArticuloProveedores> buscarPorCodigoArticuloProveedor(string pCodigoArticuloProveedor)
+        {
+            List<ModeloArticuloProveedores> articulosProveedores = new List<ModeloArticuloProveedores>();
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArProveedor],[stockMinimoArPro],[stockActualArPro],[obsArPro],[descripArPro],[fechaUltimaActualizacionArPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov] WHERE codigoArProveedor = @codArticuloProveedor";
+
+            comando.Parameters.Add(new SqlParameter("@codArticuloProveedor", SqlDbType.NVarChar));
+            comando.Parameters["@codArticuloProveedor"].Value = pCodigoArticuloProveedor;
+
+            comando.Connection.Open();
+
+            SqlDataReader drArtProveedores = comando.ExecuteReader();
+            while (drArtProveedores.Read())
+            {
+                ModeloArticuloProveedores modArtProv = new ModeloArticuloProveedores();
+                modArtProv.codigoOriginalArt = (string)drArtProveedores["codigoOriginalArt"];
+                modArtProv.codigoArProveedor = (string)drArtProveedores["codigoArProveedor"];
+                modArtProv.stockMinimoArPro = (int)drArtProveedores["stockMinimoArPro"];
+                modArtProv.stockActualArPro = (int)drArtProveedores["stockActualArPro"];
+                modArtProv.obsArPro = (string)drArtProveedores["obsArPro"];
+                modArtProv.descripArPro = (string)drArtProveedores["descripArPro"];
+                modArtProv.fechaUltimaActualizacionArPro = (DateTime)drArtProveedores["fechaUltimaActualizacionArPro"];
+                modArtProv.razonSocialProv = (string)drArtProveedores["razonSocialProv"];
+                articulosProveedores.Add(modArtProv);
+            }
+           
+            drArtProveedores.Close();
+            comando.Connection.Close();
+
+            return articulosProveedores;
+        }
+
+        public List<ModeloArticuloProveedores> getAll()
+        {
+            List<ModeloArticuloProveedores> allArtProvs = new List<ModeloArticuloProveedores>();
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
 
             comando.CommandText = "SELECT [codigoOriginalArt],[codigoArProveedor],[stockMinimoArPro],[stockActualArPro],[obsArPro],[descripArPro],[fechaUltimaActualizacionArPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov]";
 
@@ -62,8 +205,8 @@ namespace Datos
                 modArtProv.codigoOriginalArt = (string)drArtProveedores["codigoOriginalArt"];
                 modArtProv.codigoArProveedor = (string)drArtProveedores["codigoArProveedor"];
                 modArtProv.stockMinimoArPro = (int)drArtProveedores["stockMinimoArPro"];
-                modArtProv.stockActualArPro= (int)drArtProveedores["stockActualArPro"];
-                modArtProv.obsArPro= (string)drArtProveedores["obsArPro"];
+                modArtProv.stockActualArPro = (int)drArtProveedores["stockActualArPro"];
+                modArtProv.obsArPro = (string)drArtProveedores["obsArPro"];
                 modArtProv.descripArPro = (string)drArtProveedores["descripArPro"];
                 modArtProv.fechaUltimaActualizacionArPro = (DateTime)drArtProveedores["fechaUltimaActualizacionArPro"];
                 modArtProv.razonSocialProv = (string)drArtProveedores["razonSocialProv"];
@@ -112,138 +255,7 @@ namespace Datos
             comando.Connection.Close();
         //Insertar un nuevo Articulo
         }
-
-        public ModeloArticuloProveedores getOne(string pCodArtPro, string pCodOrigArt)
-        { 
-                   
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-            
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType= CommandType.Text;
-
-            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArProveedor],[stockMinimoArPro],[stockActualArPro],[obsArPro],[descripArPro],[fechaUltimaActualizacionArPro],[razonSocialProv] FROM [proyecto].[dbo].[art_prov] WHERE (codigoOriginalArt = @CodigoOrgArt AND codigoArProveedor=@codigoArPro";
-            
-            comando.Parameters.Add( new SqlParameter("@CodigoOrgArt", SqlDbType.NVarChar));
-            comando.Parameters["@CodigoOrgArt"].Value = pCodOrigArt;
-
-            comando.Parameters.Add( new SqlParameter("@codigoArPro", SqlDbType.NVarChar));
-            comando.Parameters["@CodigoArPro"].Value = pCodArtPro;
-
-            comando.Connection.Open();
-
-            SqlDataReader drArtProveedores = comando.ExecuteReader();
-            
-            ModeloArticuloProveedores modArtProv = new ModeloArticuloProveedores();
-            
-            while (drArtProveedores.Read())
-            {
-                
-                
-                modArtProv.codigoOriginalArt = (string)drArtProveedores["codigoOriginalArt"];
-                modArtProv.codigoArProveedor = (string)drArtProveedores["codigoArProveedor"];
-                modArtProv.stockMinimoArPro = (int)drArtProveedores["stockMinimoArPro"];
-                modArtProv.stockActualArPro= (int)drArtProveedores["stockActualArPro"];
-                modArtProv.obsArPro= (string)drArtProveedores["obsArPro"];
-                modArtProv.descripArPro = (string)drArtProveedores["descripArPro"];
-                modArtProv.fechaUltimaActualizacionArPro = (DateTime)drArtProveedores["fechaUltimaActualizacionArPro"];
-                modArtProv.razonSocialProv = (string)drArtProveedores["razonSocialProv"];
-                 }
-            drArtProveedores.Close();
-
-            comando.Connection.Close();
-
-            return modArtProv;
-        }
-
-        public List<ModeloArticuloProveedores> getxDesripcion(string pDescrip)
-        {
-            List<ModeloArticuloProveedores> ArtProvxDesc = new List<ModeloArticuloProveedores>();
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArProveedor],[stockMinimoArPro],[stockActualArPro],[obsArPro],[descripArPro],[fechaUltimaActualizacionArPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov] WHERE descripArPro like @descrip + '%'";
-
-            comando.Parameters.Add(new SqlParameter("@descrip", SqlDbType.NVarChar));
-            comando.Parameters["@descrip"].Value = pDescrip;
-
-            comando.Connection.Open();
-
-            SqlDataReader drArtProveedores = comando.ExecuteReader();
-            while (drArtProveedores.Read())
-            {
-                ModeloArticuloProveedores modArtProv = new ModeloArticuloProveedores();
-                modArtProv.codigoOriginalArt = (string)drArtProveedores["codigoOriginalArt"];
-                modArtProv.codigoArProveedor = (string)drArtProveedores["codigoArProveedor"];
-                modArtProv.stockMinimoArPro = (int)drArtProveedores["stockMinimoArPro"];
-                modArtProv.stockActualArPro = (int)drArtProveedores["stockActualArPro"];
-                modArtProv.obsArPro = (string)drArtProveedores["obsArPro"];
-                modArtProv.descripArPro = (string)drArtProveedores["descripArPro"];
-                modArtProv.fechaUltimaActualizacionArPro = (DateTime)drArtProveedores["fechaUltimaActualizacionArPro"];
-                modArtProv.razonSocialProv = (string)drArtProveedores["razonSocialProv"];
-                ArtProvxDesc.Add(modArtProv);
-            }
-            drArtProveedores.Close();
-
-            comando.Connection.Close();
-
-            return ArtProvxDesc;
-
-        }
-
-        public List<ModeloArticuloProveedores> getxCodOrig(string pCodigoOriginal)
-        {
-            List<ModeloArticuloProveedores> ArtProvxCodOrg = new List<ModeloArticuloProveedores>();
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArProveedor],[stockMinimoArPro],[stockActualArPro],[obsArPro],[descripArPro],[fechaUltimaActualizacionArPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov] WHERE codigoOriginalArt like @codOriginal + '%'";
-
-            comando.Parameters.Add(new SqlParameter("@codOriginal", SqlDbType.NVarChar));
-            comando.Parameters["@codOriginal"].Value = pCodigoOriginal;
-
-            comando.Connection.Open();
-
-            SqlDataReader drArtProveedores = comando.ExecuteReader();
-            while (drArtProveedores.Read())
-            {
-                ModeloArticuloProveedores modArtProv = new ModeloArticuloProveedores();
-                modArtProv.codigoOriginalArt = (string)drArtProveedores["codigoOriginalArt"];
-                modArtProv.codigoArProveedor = (string)drArtProveedores["codigoArProveedor"];
-                modArtProv.stockMinimoArPro = (int)drArtProveedores["stockMinimoArPro"];
-                modArtProv.stockActualArPro = (int)drArtProveedores["stockActualArPro"];
-                modArtProv.obsArPro = (string)drArtProveedores["obsArPro"];
-                modArtProv.descripArPro = (string)drArtProveedores["descripArPro"];
-                modArtProv.fechaUltimaActualizacionArPro = (DateTime)drArtProveedores["fechaUltimaActualizacionArPro"];
-                modArtProv.razonSocialProv = (string)drArtProveedores["razonSocialProv"];
-                ArtProvxCodOrg.Add(modArtProv);
-            }
-            drArtProveedores.Close();
-
-            comando.Connection.Close();
-
-            return ArtProvxCodOrg;
-
-        }
-
+        
         public string actualizarArticuloProveedor(ModeloArticuloProveedores modArtProv, string[] pModificar)//el parametro pModificar solo contiene el codigoOriginalArt[0] y codigoArProveedor[1] si es que fueron cambiados.
         {
             //Creo la conexion y la abro
@@ -340,8 +352,3 @@ namespace Datos
     }
 
 }
-       
-
-
-    }
-
