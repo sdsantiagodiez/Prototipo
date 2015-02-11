@@ -9,6 +9,8 @@ using System.Data;
 
 namespace Datos
 {
+    //buscarPorCodigoOriginal y getOne hacen lo mismo
+    //revisar y modificar, si corresponde, existeEntidad y buscarArticulo
     public class CatalogoArticulos
     {
         public bool validarDatos(string[] pDatos)
@@ -176,11 +178,11 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [proyecto].[dbo].[articulos] WHERE codigoOriginalArt = @CodigoOriginal";
+            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [proyecto].[dbo].[articulos] WHERE codigoOriginalArt = @codigoOriginal";
 
-            comando.Parameters.Add(new SqlParameter("@CodigoArt", SqlDbType.NVarChar));
+            comando.Parameters.Add(new SqlParameter("@codigoOriginal", SqlDbType.NVarChar));
 
-            comando.Parameters["@CodigoOriginal"].Value = pCodigoOriginal;
+            comando.Parameters["@codigoOriginal"].Value = pCodigoOriginal;
 
             comando.Connection.Open();
 
