@@ -25,15 +25,20 @@ namespace Vista
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
+
+        private void btnPedidoProv_Click(object sender, EventArgs e)
         {
             frmPedidoProveedorNuevo frm3 = new frmPedidoProveedorNuevo();
             frm3.ShowDialog();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btnEmitirReporte_Click(object sender, EventArgs e)
         {
-            this.Close();
 
         }
     }

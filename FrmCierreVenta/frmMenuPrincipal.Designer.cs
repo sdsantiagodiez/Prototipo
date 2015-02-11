@@ -29,134 +29,219 @@
         private void InitializeComponent()
         {
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnPedidoProv = new System.Windows.Forms.Button();
+            this.btnVenta = new System.Windows.Forms.Button();
+            this.lblBienvenido = new System.Windows.Forms.Label();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
+            this.lblUsuario = new System.Windows.Forms.Label();
+            this.lblHoraLog = new System.Windows.Forms.Label();
+            this.lblNombreUsuario = new System.Windows.Forms.Label();
+            this.lblFechaLog = new System.Windows.Forms.Label();
+            this.lblFecha = new System.Windows.Forms.Label();
+            this.pnlER = new System.Windows.Forms.Panel();
+            this.btnEmitirReporte = new System.Windows.Forms.Button();
+            this.pnlED = new System.Windows.Forms.Panel();
+            this.btnAltBajMod = new System.Windows.Forms.Button();
+            this.pnlEC = new System.Windows.Forms.Panel();
+            this.pnlEV = new System.Windows.Forms.Panel();
+            this.btnDevolucion = new System.Windows.Forms.Button();
+            this.btnReserva = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            this.pnlER.SuspendLayout();
+            this.pnlED.SuspendLayout();
+            this.pnlEC.SuspendLayout();
+            this.pnlEV.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button2
+            // btnPedidoProv
             // 
-            this.button2.Location = new System.Drawing.Point(506, 318);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(162, 96);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "PEDIDO A PROVEEDOR";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnPedidoProv.Location = new System.Drawing.Point(21, 12);
+            this.btnPedidoProv.Name = "btnPedidoProv";
+            this.btnPedidoProv.Size = new System.Drawing.Size(162, 40);
+            this.btnPedidoProv.TabIndex = 2;
+            this.btnPedidoProv.Text = "Nuevo Pedido a Proveedor";
+            this.btnPedidoProv.UseVisualStyleBackColor = true;
+            this.btnPedidoProv.Click += new System.EventHandler(this.btnPedidoProv_Click);
             // 
-            // button3
+            // btnVenta
             // 
-            this.button3.Location = new System.Drawing.Point(726, 318);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(162, 96);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "PEDIDO CLIENTE";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnVenta.Location = new System.Drawing.Point(20, 16);
+            this.btnVenta.Name = "btnVenta";
+            this.btnVenta.Size = new System.Drawing.Size(162, 40);
+            this.btnVenta.TabIndex = 3;
+            this.btnVenta.Text = "Nueva Venta";
+            this.btnVenta.UseVisualStyleBackColor = true;
+            this.btnVenta.Click += new System.EventHandler(this.button3_Click);
             // 
-            // label1
+            // lblBienvenido
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(471, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(455, 42);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "BIENVENIDO LEANDRO";
+            this.lblBienvenido.AutoSize = true;
+            this.lblBienvenido.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.lblBienvenido.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBienvenido.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblBienvenido.Location = new System.Drawing.Point(11, 7);
+            this.lblBienvenido.Name = "lblBienvenido";
+            this.lblBienvenido.Size = new System.Drawing.Size(256, 42);
+            this.lblBienvenido.TabIndex = 5;
+            this.lblBienvenido.Text = "BIENVENIDO";
             // 
-            // button5
+            // btnSalir
             // 
-            this.button5.Location = new System.Drawing.Point(1173, 621);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(162, 96);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "SALIR";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btnSalir.Location = new System.Drawing.Point(59, 490);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(162, 40);
+            this.btnSalir.TabIndex = 6;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.button5_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel1.Controls.Add(this.label27);
-            this.panel1.Controls.Add(this.label31);
-            this.panel1.Controls.Add(this.label28);
-            this.panel1.Controls.Add(this.label30);
-            this.panel1.Controls.Add(this.label29);
-            this.panel1.Location = new System.Drawing.Point(955, 668);
+            this.panel1.Controls.Add(this.lblUsuario);
+            this.panel1.Controls.Add(this.lblHoraLog);
+            this.panel1.Controls.Add(this.lblNombreUsuario);
+            this.panel1.Controls.Add(this.lblFechaLog);
+            this.panel1.Controls.Add(this.lblFecha);
+            this.panel1.Location = new System.Drawing.Point(28, 435);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(212, 49);
+            this.panel1.Size = new System.Drawing.Size(225, 49);
             this.panel1.TabIndex = 21;
             // 
-            // label27
+            // lblUsuario
             // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(10, 5);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(72, 16);
-            this.label27.TabIndex = 14;
-            this.label27.Text = "USUARIO:";
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.Location = new System.Drawing.Point(10, 5);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(72, 16);
+            this.lblUsuario.TabIndex = 14;
+            this.lblUsuario.Text = "USUARIO:";
             // 
-            // label31
+            // lblHoraLog
             // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(150, 31);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(56, 16);
-            this.label31.TabIndex = 18;
-            this.label31.Text = "18:15:14";
+            this.lblHoraLog.AutoSize = true;
+            this.lblHoraLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoraLog.Location = new System.Drawing.Point(166, 31);
+            this.lblHoraLog.Name = "lblHoraLog";
+            this.lblHoraLog.Size = new System.Drawing.Size(56, 16);
+            this.lblHoraLog.TabIndex = 18;
+            this.lblHoraLog.Text = "18:15:14";
             // 
-            // label28
+            // lblNombreUsuario
             // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(88, 5);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(73, 16);
-            this.label28.TabIndex = 15;
-            this.label28.Text = "LEANDRO";
+            this.lblNombreUsuario.AutoSize = true;
+            this.lblNombreUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreUsuario.Location = new System.Drawing.Point(88, 5);
+            this.lblNombreUsuario.Name = "lblNombreUsuario";
+            this.lblNombreUsuario.Size = new System.Drawing.Size(73, 16);
+            this.lblNombreUsuario.TabIndex = 15;
+            this.lblNombreUsuario.Text = "LEANDRO";
             // 
-            // label30
+            // lblFechaLog
             // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(75, 31);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(72, 16);
-            this.label30.TabIndex = 17;
-            this.label30.Text = "23/10/2014";
+            this.lblFechaLog.AutoSize = true;
+            this.lblFechaLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaLog.Location = new System.Drawing.Point(88, 31);
+            this.lblFechaLog.Name = "lblFechaLog";
+            this.lblFechaLog.Size = new System.Drawing.Size(72, 16);
+            this.lblFechaLog.TabIndex = 17;
+            this.lblFechaLog.Text = "23/10/2014";
             // 
-            // label29
+            // lblFecha
             // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(13, 31);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(56, 16);
-            this.label29.TabIndex = 16;
-            this.label29.Text = "FECHA:";
+            this.lblFecha.AutoSize = true;
+            this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFecha.Location = new System.Drawing.Point(20, 31);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(56, 16);
+            this.lblFecha.TabIndex = 16;
+            this.lblFecha.Text = "FECHA:";
+            // 
+            // pnlER
+            // 
+            this.pnlER.Controls.Add(this.btnEmitirReporte);
+            this.pnlER.Location = new System.Drawing.Point(39, 52);
+            this.pnlER.Name = "pnlER";
+            this.pnlER.Size = new System.Drawing.Size(199, 65);
+            this.pnlER.TabIndex = 23;
+            // 
+            // btnEmitirReporte
+            // 
+            this.btnEmitirReporte.Location = new System.Drawing.Point(20, 13);
+            this.btnEmitirReporte.Name = "btnEmitirReporte";
+            this.btnEmitirReporte.Size = new System.Drawing.Size(162, 40);
+            this.btnEmitirReporte.TabIndex = 0;
+            this.btnEmitirReporte.Text = "Emitir Reporte";
+            this.btnEmitirReporte.UseVisualStyleBackColor = true;
+            this.btnEmitirReporte.Click += new System.EventHandler(this.btnEmitirReporte_Click);
+            // 
+            // pnlED
+            // 
+            this.pnlED.Controls.Add(this.btnAltBajMod);
+            this.pnlED.Location = new System.Drawing.Point(39, 364);
+            this.pnlED.Name = "pnlED";
+            this.pnlED.Size = new System.Drawing.Size(200, 65);
+            this.pnlED.TabIndex = 25;
+            // 
+            // btnAltBajMod
+            // 
+            this.btnAltBajMod.Location = new System.Drawing.Point(20, 13);
+            this.btnAltBajMod.Name = "btnAltBajMod";
+            this.btnAltBajMod.Size = new System.Drawing.Size(162, 40);
+            this.btnAltBajMod.TabIndex = 0;
+            this.btnAltBajMod.Text = "Altas, Bajas, y  Modificaciones";
+            this.btnAltBajMod.UseVisualStyleBackColor = true;
+            // 
+            // pnlEC
+            // 
+            this.pnlEC.Controls.Add(this.btnPedidoProv);
+            this.pnlEC.Location = new System.Drawing.Point(38, 123);
+            this.pnlEC.Name = "pnlEC";
+            this.pnlEC.Size = new System.Drawing.Size(200, 62);
+            this.pnlEC.TabIndex = 26;
+            // 
+            // pnlEV
+            // 
+            this.pnlEV.Controls.Add(this.btnDevolucion);
+            this.pnlEV.Controls.Add(this.btnReserva);
+            this.pnlEV.Controls.Add(this.btnVenta);
+            this.pnlEV.Location = new System.Drawing.Point(39, 192);
+            this.pnlEV.Name = "pnlEV";
+            this.pnlEV.Size = new System.Drawing.Size(200, 166);
+            this.pnlEV.TabIndex = 27;
+            // 
+            // btnDevolucion
+            // 
+            this.btnDevolucion.Location = new System.Drawing.Point(20, 108);
+            this.btnDevolucion.Name = "btnDevolucion";
+            this.btnDevolucion.Size = new System.Drawing.Size(162, 40);
+            this.btnDevolucion.TabIndex = 28;
+            this.btnDevolucion.Text = "Procesar Devolución";
+            this.btnDevolucion.UseVisualStyleBackColor = true;
+            // 
+            // btnReserva
+            // 
+            this.btnReserva.Location = new System.Drawing.Point(20, 62);
+            this.btnReserva.Name = "btnReserva";
+            this.btnReserva.Size = new System.Drawing.Size(162, 40);
+            this.btnReserva.TabIndex = 4;
+            this.btnReserva.Text = "Nueva Reserva";
+            this.btnReserva.UseVisualStyleBackColor = true;
             // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1347, 729);
+            this.ClientSize = new System.Drawing.Size(303, 540);
+            this.Controls.Add(this.pnlEV);
+            this.Controls.Add(this.pnlEC);
+            this.Controls.Add(this.pnlED);
+            this.Controls.Add(this.pnlER);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.lblBienvenido);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.IsMdiContainer = true;
             this.MaximizeBox = false;
@@ -166,6 +251,10 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.pnlER.ResumeLayout(false);
+            this.pnlED.ResumeLayout(false);
+            this.pnlEC.ResumeLayout(false);
+            this.pnlEV.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,15 +263,23 @@
         #endregion
 
         private System.Windows.Forms.FontDialog fontDialog1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnPedidoProv;
+        private System.Windows.Forms.Button btnVenta;
+        private System.Windows.Forms.Label lblBienvenido;
+        private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Panel panel1;
-        internal System.Windows.Forms.Label label27;
-        internal System.Windows.Forms.Label label31;
-        internal System.Windows.Forms.Label label28;
-        internal System.Windows.Forms.Label label30;
-        internal System.Windows.Forms.Label label29;
+        internal System.Windows.Forms.Label lblUsuario;
+        internal System.Windows.Forms.Label lblHoraLog;
+        internal System.Windows.Forms.Label lblNombreUsuario;
+        internal System.Windows.Forms.Label lblFechaLog;
+        internal System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.Panel pnlER;
+        private System.Windows.Forms.Button btnEmitirReporte;
+        private System.Windows.Forms.Panel pnlED;
+        private System.Windows.Forms.Panel pnlEC;
+        private System.Windows.Forms.Panel pnlEV;
+        private System.Windows.Forms.Button btnDevolucion;
+        private System.Windows.Forms.Button btnReserva;
+        private System.Windows.Forms.Button btnAltBajMod;
     }
 }
