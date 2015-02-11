@@ -66,6 +66,22 @@ namespace Controlador
             return aEncontrados;
         }
 
+        /// <summary>
+        /// Busca y retorna lista de proveedores. Retorna lista vacía si no encuentra coincidencias
+        /// </summary>
+        /// <param name="parametro">string por la que se buscará proveedor</param>
+        /// <returns>Lista de proveedores o lista vacía si no se ha encontrado coincidencia</returns>
+        public List<ModeloProveedores> buscarProveedor(string parametro)
+        {
+            List<ModeloProveedores> pEncontrados = new List<ModeloProveedores>();
+            CatalogoProveedores cp = new CatalogoProveedores();
 
+            pEncontrados = cp.buscarProveedores("razonSocial",parametro);
+            if (pEncontrados.Count == 0)
+            {
+                pEncontrados = cp.buscarProveedores("cuit", parametro);
+            }
+            return pEncontrados;
+        }
     }
 }

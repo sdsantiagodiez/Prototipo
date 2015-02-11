@@ -80,7 +80,6 @@ namespace Controlador
 
         }
 
-
         public void agregarNuevaEntidad(ModeloPersonas pModPer)
             {
                 //Creo la conexion y la abro
@@ -258,12 +257,8 @@ namespace Controlador
         
         }
 
-        }
+     }
     
     
-    }
-
-
-
-    }
+}
 

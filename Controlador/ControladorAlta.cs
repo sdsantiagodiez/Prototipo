@@ -9,7 +9,7 @@ using Models;
 
 namespace Controlador
 {
-    class ControladorAlta
+    class ControladorAlta : Controlador
     {
         public string altaEntidad(string[] pParametros)//pParametros esta conformado en primer lugar con 0-Articulos, 1-Proveedor, 2 Articulo Proveedor, 3 Cliente
         {
@@ -130,18 +130,5 @@ namespace Controlador
 
         }
 
-        public ModeloProveedores buscarProveedor(string pProveedor)
-        { 
-        //Codificar
-            ModeloProveedores modProv = new ModeloProveedores();
-            return modProv;
-        }
-
-        public string[] buscarArticulo(string pAarticulo)
-        { 
-            //Codificar
-            string[] articulo = new string[0]{};
-            return articulo;
-        }
     }
 }

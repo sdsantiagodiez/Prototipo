@@ -7,43 +7,189 @@ using Models;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace Controlador
+namespace Datos
 {
     public class CatalogoProveedores
     {
-        public bool existeEntidad(string[] pDatos)
-        {
-            // Se crea la variable a retornar
-            bool respuesta = false;
-            //Creamos la lista de todos los Articulos
-            List<ModeloProveedores> listProv = this.getAll();
-
-            foreach (ModeloProveedores modPro in listProv)
-            {
-                if (pDatos[1] == modPro.cuitProv) /*|| (pDatos[2] = modPro.razonSocialProv)*/// Se busca si el proveedor ya existe comparando el codigo original
-                {// ver como pasar los parametros
-                    respuesta = true;
-                    break;
-                }
-                else { respuesta = false; }
-
-            }
-
-            return respuesta;
-        }
-
-
         public bool validarDatos(string[] pDatos)
         {
             //Valida que los parametros sean Validos en el dominio
             bool rta = false;
             return rta;
+        }    
+
+        /// <summary>
+        /// determina existencia de proveedor de acuerdo a cuit y razonSocial ingresados
+        /// </summary>
+        /// <param name="cuit">cuit de proveedor</param>
+        /// <param name="razonSocial">razón social de proveedor</param>
+        /// <returns>true si existe, false si no existe</returns>
+        public bool existeEntidad(string cuit, string razonSocial)
+        {
+            bool respuesta = new bool();
+            ModeloProveedores mp = new ModeloProveedores();
+            mp = getOne(razonSocial);
+            //Vuelve a comparar razonSocial porque no se como ver si getOne devuelve un objeto nulo 
+            if (object.Equals(mp.razonSocialProv.ToLower(), razonSocial.ToLower()))
+            {
+                respuesta = true;
+            }
+            else
+            {
+                // Convierte respuesta en false si Count=0 y en true si es cualquier otro número
+                respuesta = Convert.ToBoolean(buscarProveedores("cuit", cuit).Count);
+            }
+            
+            return respuesta;
         }
+        
+        /// <summary>
+        /// busca proveedores de acuerdo a descripcionParametro ingresada
+        /// </summary>
+        /// <param name="tipoParametro">"razonSocial" o "cuit"</param>
+        /// <param name="descripcionParametro">string por el que se buscará proveedores</param>
+        /// <returns>lista de proveedores</returns>
+        public List<ModeloProveedores> buscarProveedores(string tipoParametro, string descripcionParametro)
+        {
+            List<ModeloProveedores> listaProveedores = new List<ModeloProveedores>();
+
+            switch(tipoParametro.ToLower())
+            {
+                case "razonsocial":
+                    listaProveedores = buscarPorRazonSocial(descripcionParametro.ToLower());
+                    break;
+                case "cuit":
+                    listaProveedores = buscaPorCuit(descripcionParametro);
+                    break;
+                default:
+                    break;
+            }
+            return listaProveedores;
+        }
+
+        private List<ModeloProveedores> buscarPorRazonSocial(string razonSocial)
+        {
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.CommandText = "SELECT [razonSocialProv],[cuitProv],[direccionProv],[ciudadProv],[provinciaProv],[codigoPostalProv],[obsProv],[mail_prov] " +
+                    "FROM [proyecto].[dbo].[proveedores] INNER JOIN [proyecto].[dbo].[mail_prov] ON [proveedores].razonSocialProv = [mail_prov].razonSocialProv " +
+                    "WHERE LOWER([proveedores].razonSocialProv)=@razonSocialProv";
+            comando.Parameters.Add(new SqlParameter("@razonSocialProv", SqlDbType.NVarChar));
+            comando.Parameters["@razonSocialProv"].Value = razonSocial.ToLower();
+            comando.Connection.Open();
+
+            SqlDataReader drProveedores = comando.ExecuteReader();
+
+            ModeloProveedores modPro = new ModeloProveedores();
+            List<ModeloProveedores> listaProveedores = new List<ModeloProveedores>();
+            while (drProveedores.Read())
+            {
+
+                modPro.razonSocialProv = (string)drProveedores["razonSocialProv"];
+                modPro.cuitProv = (string)drProveedores["cuitProv"];
+                modPro.direccionProv = (string)drProveedores["direccionProv"];
+                modPro.ciudadProv = (string)drProveedores["ciudadProv"];
+                modPro.provinciaProv = (string)drProveedores["provinciaProv"];
+                modPro.codigoPostalProv = (string)drProveedores["codigoPostalProv"];
+                modPro.obsProv = (string)drProveedores["obsProv"];
+                listaProveedores.Add(modPro);
+            }
+            drProveedores.Close();
+
+            comando.Connection.Close();
+
+            return listaProveedores;
+        }
+
+        private List<ModeloProveedores> buscaPorCuit(string cuit)
+        {
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.CommandText = 
+                "SELECT [razonSocialProv],[cuitProv],[direccionProv],[ciudadProv],[provinciaProv],[codigoPostalProv],[obsProv]"+
+                "FROM [proyecto].[dbo].[proveedores] WHERE cuitProv = @cuit";
+            comando.Parameters.Add(new SqlParameter("@cuit", SqlDbType.NVarChar));
+            comando.Parameters["@cuit"].Value = cuit;
+            comando.Connection.Open();
+
+            SqlDataReader drProveedores = comando.ExecuteReader();
+            List<ModeloProveedores> listaProveedores = new List<ModeloProveedores>();
+
+            while (drProveedores.Read())
+            {
+                ModeloProveedores modPro = new ModeloProveedores();
+                modPro.razonSocialProv = (string)drProveedores["razonSocialProv"];
+                modPro.cuitProv = (string)drProveedores["cuitProv"];
+                modPro.direccionProv = (string)drProveedores["direccionProv"];
+                modPro.ciudadProv = (string)drProveedores["ciudadProv"];
+                modPro.provinciaProv = (string)drProveedores["provinciaProv"];
+                modPro.codigoPostalProv = (string)drProveedores["codigoPostalProv"];
+                modPro.obsProv = (string)drProveedores["obsProv"];
+                listaProveedores.Add(modPro);
+            }
+
+            drProveedores.Close();
+            comando.Connection.Close();
+
+            return listaProveedores;
+        }
+        
+        public ModeloProveedores getOne(string razonSocial)
+        {
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.CommandText = 
+                "SELECT [razonSocialProv],[cuitProv],[direccionProv],[ciudadProv],[provinciaProv],[codigoPostalProv],[obsProv],[mail_prov] "+
+                "FROM [proyecto].[dbo].[proveedores] INNER JOIN [proyecto].[dbo].[mail_prov] ON [proveedores].razonSocialProv = [mail_prov].razonSocialProv "+
+                "WHERE LOWER([proveedores].razonSocialProv)=@razonSocialProv";
+            comando.Parameters.Add(new SqlParameter("@razonSocialProv", SqlDbType.NVarChar));
+            comando.Parameters["@razonSocialProv"].Value = razonSocial.ToLower();
+            comando.Connection.Open();
+
+            SqlDataReader drProveedores = comando.ExecuteReader();
+
+            ModeloProveedores modPro = new ModeloProveedores();
+
+            while (drProveedores.Read())
+            {
+
+                modPro.razonSocialProv = (string)drProveedores["razonSocialProv"];
+                modPro.cuitProv = (string)drProveedores["cuitProv"];
+                modPro.direccionProv = (string)drProveedores["direccionProv"];
+                modPro.ciudadProv = (string)drProveedores["ciudadProv"];
+                modPro.provinciaProv = (string)drProveedores["provinciaProv"];
+                modPro.codigoPostalProv = (string)drProveedores["codigoPostalProv"];
+                modPro.obsProv = (string)drProveedores["obsProv"];
+
+            }
+            drProveedores.Close();
+
+            comando.Connection.Close();
+
+            return modPro;
+
+        }
+       
         public List<ModeloProveedores> getAll()
         {
             List<ModeloProveedores> allProvs = new List<ModeloProveedores>();
             //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+            SqlConnection ConexionSQL = Conexion.crearConexion();
 
             //crea SQL command
             SqlCommand comando = new SqlCommand();
@@ -74,13 +220,12 @@ namespace Controlador
             comando.Connection.Close();
 
             return allProvs;
-
         }
 
         public void agregarNuevaEntidad(ModeloProveedores pModProv)
         {
               //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+            SqlConnection ConexionSQL = Conexion.crearConexion();
             
             //crea SQL command
             SqlCommand comando = new SqlCommand();
@@ -110,110 +255,12 @@ namespace Controlador
             comando.ExecuteNonQuery();
             comando.Connection.Close();
         //Insertar un nuevo Proveedor
-        }
-            
-
-        public ModeloProveedores getOne(string pRSocialProvedoor)
-        {
-            
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText = "SELECT [razonSocialProv],[cuitProv],[direccionProv],[ciudadProv],[provinciaProv],[codigoPostalProv],[obsProv], [mail_prov] FROM [proyecto].[dbo].[proveedores] INNER JOIN [proyecto].[dbo].[mail_prov] ON [proveedores].razonSocialProv = [mail_prov].razonSocialProv WHERE [proveedores].razonSocialProv=@razonSocialProv";
-
-            comando.Parameters.Add(new SqlParameter("@razonSocialProv", SqlDbType.NVarChar));
-
-            comando.Parameters["@razonSocialProv"].Value = pRSocialProvedoor;
-
-            comando.Connection.Open();
-
-            SqlDataReader drProveedores = comando.ExecuteReader();
-
-            ModeloProveedores modPro = new ModeloProveedores();
-
-            while (drProveedores.Read())
-            {
-                
-                modPro.razonSocialProv = (string)drProveedores["razonSocialProv"];
-                modPro.cuitProv = (string)drProveedores["cuitProv"];
-                modPro.direccionProv = (string)drProveedores["direccionProv"];
-                modPro.ciudadProv = (string)drProveedores["ciudadProv"];
-                modPro.provinciaProv = (string)drProveedores["provinciaProv"];
-                modPro.codigoPostalProv = (string)drProveedores["codigoPostalProv"];
-                modPro.obsProv = (string)drProveedores["obsProv"];
-                
-            }
-            drProveedores.Close();
-
-            comando.Connection.Close();
-
-            return modPro;
-
-        }
-
-        public List<ModeloProveedores> buscaProvxRSoCuit(string pCuitORS)
-        {
-            List<ModeloProveedores> allProvs = new List<ModeloProveedores>();
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText = "SELECT [razonSocialProv],[cuitProv],[direccionProv],[ciudadProv],[provinciaProv],[codigoPostalProv],[obsProv] FROM [proyecto].[dbo].[proveedores] WHERE (([razonSocialProv] like @RazonSocOCuit + '%') OR cuitProv like @RazonSocOCuit + '%')";
-
-            comando.Parameters.Add(new SqlParameter("@RazonSocOCuit", SqlDbType.NVarChar));
-
-            comando.Parameters["@RazonSocOCuit"].Value = pCuitORS;
-
-            comando.Connection.Open();
-
-            SqlDataReader drProveedores = comando.ExecuteReader();
-            while (drProveedores.Read())
-            {
-                ModeloProveedores modPro = new ModeloProveedores();
-                modPro.razonSocialProv = (string)drProveedores["razonSocialProv"];
-                modPro.cuitProv = (string)drProveedores["cuitProv"];
-                modPro.direccionProv = (string)drProveedores["direccionProv"];
-                modPro.ciudadProv = (string)drProveedores["ciudadProv"];
-                modPro.provinciaProv = (string)drProveedores["provinciaProv"];
-                modPro.codigoPostalProv = (string)drProveedores["codigoPostalProv"];
-                modPro.obsProv = (string)drProveedores["obsProv"];
-                allProvs.Add(modPro);
-            }
-            drProveedores.Close();
-
-            comando.Connection.Close();
-
-            return allProvs;
-
-        
-        }
-        public List<ModeloProveedores> buscaProveedores(string pCuitOrS)
-        {
-            List<ModeloProveedores> pActuales = new List<ModeloProveedores>();
-
-            pActuales = buscaProvxRSoCuit(pCuitOrS);
-
-            return pActuales;
-            
-        }
+        }     
 
         public string actualizarProveedor(ModeloProveedores modProv, string[] pModificar)
         {
             //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+            SqlConnection ConexionSQL = Conexion.crearConexion();
 
             //crea SQL command
             SqlCommand comando = new SqlCommand();
@@ -261,13 +308,11 @@ namespace Controlador
             {
                 return "Actualizacion finalizada";
             }
-
-
         }
 
         public string bajaProveedor(string pRazonSocial)
         {
-            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+            SqlConnection ConexionSQL = Conexion.crearConexion();
 
             //crea SQL command
             SqlCommand comando = new SqlCommand();
@@ -293,10 +338,9 @@ namespace Controlador
             {
                 return "Proveedor de baja";
             }
-
         }
 
     }
 
-    }
+}
 

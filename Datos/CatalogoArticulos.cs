@@ -38,8 +38,8 @@ namespace Datos
         public List<ModeloArticulos> buscarArticulo(string tipoParametro, string descripcionParametro)
         {
             List<ModeloArticulos> listaArticulos = new List<ModeloArticulos>();
-            string tipo = tipoParametro.ToLower();
-            switch (tipo)
+
+            switch (tipoParametro.ToLower())
             {
                 case "codigooriginal":
                     listaArticulos = buscarPorCodigoOriginal(descripcionParametro);

@@ -8,27 +8,8 @@ using Models;
 
 namespace Controlador
 {
-    class ControladorModificacion
+    class ControladorModificacion : Controlador
     {
-        public string[] buscaProveedor(string pCuitOrS)// el parametro es el cuit o la razon social
-        {
-            string[] rtafin = new string[1] {"FIN"}; // se crea este string para indicar a la interfaz el final del ciclo 
-
-            CatalogoProveedores cp = new CatalogoProveedores();
-
-            List<ModeloProveedores> pActuales = new List<ModeloProveedores>();
-
-            pActuales = cp.buscaProveedores(pCuitOrS);
-
-            foreach (ModeloProveedores mp in pActuales)
-                {
-                    string[] rtaProv = new string[2] { mp.cuitProv, mp.razonSocialProv };
-                   
-                    return rtaProv;
-                }
-            return rtafin;
-        }
-
         public string[] getDetalles(string pCuit)
         {
             string[] detallesproveedor = new string[9];
@@ -49,8 +30,5 @@ namespace Controlador
             detallesproveedor[8] = pActuales[1].obsProv;
             return detallesproveedor;
         }
-
-        
-    
     }
 }
