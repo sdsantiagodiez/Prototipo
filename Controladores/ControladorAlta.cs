@@ -11,6 +11,8 @@ namespace Controlador
 {
     class ControladorAlta : Controlador
     {
+        /*
+         * Revisar
         public string altaEntidad(string[] pParametros)//pParametros esta conformado en primer lugar con 0-Articulos, 1-Proveedor, 2 Articulo Proveedor, 3 Cliente
         {
             string respuesta;
@@ -129,5 +131,6 @@ namespace Controlador
             return respuesta;
 
         }
+        */
     }
 }

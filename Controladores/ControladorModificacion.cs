@@ -18,7 +18,7 @@ namespace Controlador
             
             List<ModeloProveedores> pActuales = new List<ModeloProveedores>();
 
-            pActuales = cp.buscaProveedores(pCuit);
+            pActuales = cp.buscarProveedores("cuit",pCuit);
             detallesproveedor[0] = pActuales[1].razonSocialProv;
             detallesproveedor[1] = pActuales[1].cuitProv;
             detallesproveedor[2]= pActuales[1].direccionProv;
