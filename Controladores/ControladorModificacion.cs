@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Datos;
-using Models;
+using Modelos;
 
 namespace Controlador
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Datos;
-using Models;
+using Modelos;
 
 
 namespace Controlador
@@ -36,7 +36,7 @@ namespace Controlador
                 { respuesta = "Entidad ya existente"; }
                 else
                 {
-                    Models.ModeloArticulos nuevaEnti = new Models.ModeloArticulos();// Pasarle parametros
+                    Modelos.ModeloArticulos nuevaEnti = new Modelos.ModeloArticulos();// Pasarle parametros
                     ca.agregarNuevaEntidad(nuevaEnti);
                     respuesta = "Entidad Creada satisfactoriamente";
 
@@ -62,7 +62,7 @@ namespace Controlador
                 { respuesta = "Entidad ya existente";  }
                 else
                 {
-                    Models.ModeloProveedores nuevaEnti = new Models.ModeloProveedores();// Pasarle parametros
+                    Modelos.ModeloProveedores nuevaEnti = new Modelos.ModeloProveedores();// Pasarle parametros
                     cp.agregarNuevaEntidad(nuevaEnti);
                     respuesta = "Entidad Creada satisfactoriamente"; 
 
@@ -88,7 +88,7 @@ namespace Controlador
                 { respuesta = "Entidad ya existente"; }
                 else
                 {
-                    Models.ModeloArticuloProveedores nuevaEnti = new Models.ModeloArticuloProveedores();// Pasarle parametros
+                    Modelos.ModeloArticuloProveedores nuevaEnti = new Modelos.ModeloArticuloProveedores();// Pasarle parametros
                     cap.agregarNuevaEntidad(nuevaEnti);
                     respuesta = "Entidad Creada satisfactoriamente";
 
@@ -114,7 +114,7 @@ namespace Controlador
                 { respuesta = "Entidad ya existente"; }
                 else
                 {
-                    Models.ModeloPersonas nuevaEnti = new Models.ModeloPersonas();// Pasarle parametros
+                    Modelos.ModeloPersonas nuevaEnti = new Modelos.ModeloPersonas();// Pasarle parametros
                     cc.agregarNuevaEntidad(nuevaEnti);
                     respuesta = "Entidad Creada satisfactoriamente";
 

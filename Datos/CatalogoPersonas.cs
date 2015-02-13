@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Models;
+using Modelos;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -339,7 +339,7 @@ namespace Datos
                 comando.Parameters.Add(new SqlParameter("@apellidoPers", SqlDbType.NVarChar));
                 comando.Parameters["@apellidoPers"].Value = pModPer.apellidoPers;
                 comando.Parameters.Add(new SqlParameter("@direccionPers", SqlDbType.NVarChar));
-                comando.Parameters["@direcc"].Value = pModPer.direccPers;
+                comando.Parameters["@direccionPers"].Value = pModPer.direccPers;
                 comando.Parameters.Add(new SqlParameter("@ciudadPers", SqlDbType.NVarChar));
                 comando.Parameters["@ciudadPers"].Value = pModPer.ciudadPers;
                 comando.Parameters.Add(new SqlParameter("@provinciaPers", SqlDbType.NVarChar));
