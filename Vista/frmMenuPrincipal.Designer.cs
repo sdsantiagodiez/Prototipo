@@ -166,6 +166,7 @@
             this.pnlER.Name = "pnlER";
             this.pnlER.Size = new System.Drawing.Size(199, 65);
             this.pnlER.TabIndex = 23;
+            this.pnlER.Visible = false;
             // 
             // btnEmitirReporte
             // 
@@ -184,6 +185,7 @@
             this.pnlED.Name = "pnlED";
             this.pnlED.Size = new System.Drawing.Size(200, 65);
             this.pnlED.TabIndex = 25;
+            this.pnlED.Visible = false;
             // 
             // btnAltBajMod
             // 
@@ -201,6 +203,7 @@
             this.pnlEC.Name = "pnlEC";
             this.pnlEC.Size = new System.Drawing.Size(200, 62);
             this.pnlEC.TabIndex = 26;
+            this.pnlEC.Visible = false;
             // 
             // pnlEV
             // 
@@ -211,6 +214,7 @@
             this.pnlEV.Name = "pnlEV";
             this.pnlEV.Size = new System.Drawing.Size(200, 166);
             this.pnlEV.TabIndex = 27;
+            this.pnlEV.Visible = false;
             // 
             // btnDevolucion
             // 

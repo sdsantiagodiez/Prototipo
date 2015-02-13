@@ -33,17 +33,17 @@
             this.btnElimCliente = new System.Windows.Forms.Button();
             this.btnAltaUsuario = new System.Windows.Forms.Button();
             this.pnlED = new System.Windows.Forms.Panel();
-            this.btnModUsuario = new System.Windows.Forms.Button();
-            this.btnElimUsuario = new System.Windows.Forms.Button();
-            this.btnElimProv = new System.Windows.Forms.Button();
-            this.btnModProv = new System.Windows.Forms.Button();
-            this.btnAltaProv = new System.Windows.Forms.Button();
-            this.btnElimArtic = new System.Windows.Forms.Button();
-            this.btnModArtic = new System.Windows.Forms.Button();
-            this.btnAltaArtic = new System.Windows.Forms.Button();
             this.btnModArticProv = new System.Windows.Forms.Button();
             this.btnElimArticProv = new System.Windows.Forms.Button();
             this.btnAltaArticProv = new System.Windows.Forms.Button();
+            this.btnElimArtic = new System.Windows.Forms.Button();
+            this.btnModArtic = new System.Windows.Forms.Button();
+            this.btnAltaArtic = new System.Windows.Forms.Button();
+            this.btnModProv = new System.Windows.Forms.Button();
+            this.btnElimProv = new System.Windows.Forms.Button();
+            this.btnAltaProv = new System.Windows.Forms.Button();
+            this.btnElimUsuario = new System.Windows.Forms.Button();
+            this.btnModUsuario = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.pnlED.SuspendLayout();
             this.SuspendLayout();
@@ -103,51 +103,34 @@
             this.pnlED.Name = "pnlED";
             this.pnlED.Size = new System.Drawing.Size(603, 136);
             this.pnlED.TabIndex = 4;
+            this.pnlED.Visible = false;
             // 
-            // btnModUsuario
+            // btnModArticProv
             // 
-            this.btnModUsuario.Location = new System.Drawing.Point(0, 81);
-            this.btnModUsuario.Name = "btnModUsuario";
-            this.btnModUsuario.Size = new System.Drawing.Size(107, 23);
-            this.btnModUsuario.TabIndex = 5;
-            this.btnModUsuario.Text = "Modificar Usuario";
-            this.btnModUsuario.UseVisualStyleBackColor = true;
+            this.btnModArticProv.Location = new System.Drawing.Point(431, 81);
+            this.btnModArticProv.Name = "btnModArticProv";
+            this.btnModArticProv.Size = new System.Drawing.Size(167, 23);
+            this.btnModArticProv.TabIndex = 12;
+            this.btnModArticProv.Text = "Modificar Articulo de Proveedor";
+            this.btnModArticProv.UseVisualStyleBackColor = true;
             // 
-            // btnElimUsuario
+            // btnElimArticProv
             // 
-            this.btnElimUsuario.Location = new System.Drawing.Point(0, 110);
-            this.btnElimUsuario.Name = "btnElimUsuario";
-            this.btnElimUsuario.Size = new System.Drawing.Size(107, 23);
-            this.btnElimUsuario.TabIndex = 6;
-            this.btnElimUsuario.Text = "Eliminar Usuario";
-            this.btnElimUsuario.UseVisualStyleBackColor = true;
+            this.btnElimArticProv.Location = new System.Drawing.Point(431, 110);
+            this.btnElimArticProv.Name = "btnElimArticProv";
+            this.btnElimArticProv.Size = new System.Drawing.Size(167, 23);
+            this.btnElimArticProv.TabIndex = 13;
+            this.btnElimArticProv.Text = "Eliminar Articulo de Proveedor";
+            this.btnElimArticProv.UseVisualStyleBackColor = true;
             // 
-            // btnElimProv
+            // btnAltaArticProv
             // 
-            this.btnElimProv.Location = new System.Drawing.Point(140, 110);
-            this.btnElimProv.Name = "btnElimProv";
-            this.btnElimProv.Size = new System.Drawing.Size(125, 23);
-            this.btnElimProv.TabIndex = 7;
-            this.btnElimProv.Text = "Eliminar Proveedor";
-            this.btnElimProv.UseVisualStyleBackColor = true;
-            // 
-            // btnModProv
-            // 
-            this.btnModProv.Location = new System.Drawing.Point(140, 81);
-            this.btnModProv.Name = "btnModProv";
-            this.btnModProv.Size = new System.Drawing.Size(125, 23);
-            this.btnModProv.TabIndex = 6;
-            this.btnModProv.Text = "Modificar Proveedor";
-            this.btnModProv.UseVisualStyleBackColor = true;
-            // 
-            // btnAltaProv
-            // 
-            this.btnAltaProv.Location = new System.Drawing.Point(140, 52);
-            this.btnAltaProv.Name = "btnAltaProv";
-            this.btnAltaProv.Size = new System.Drawing.Size(125, 23);
-            this.btnAltaProv.TabIndex = 5;
-            this.btnAltaProv.Text = "Nuevo Proveedor";
-            this.btnAltaProv.UseVisualStyleBackColor = true;
+            this.btnAltaArticProv.Location = new System.Drawing.Point(431, 52);
+            this.btnAltaArticProv.Name = "btnAltaArticProv";
+            this.btnAltaArticProv.Size = new System.Drawing.Size(167, 23);
+            this.btnAltaArticProv.TabIndex = 11;
+            this.btnAltaArticProv.Text = "Nuevo Articulo de Proveedor";
+            this.btnAltaArticProv.UseVisualStyleBackColor = true;
             // 
             // btnElimArtic
             // 
@@ -176,32 +159,50 @@
             this.btnAltaArtic.Text = "Nuevo Articulo";
             this.btnAltaArtic.UseVisualStyleBackColor = true;
             // 
-            // btnModArticProv
+            // btnModProv
             // 
-            this.btnModArticProv.Location = new System.Drawing.Point(431, 81);
-            this.btnModArticProv.Name = "btnModArticProv";
-            this.btnModArticProv.Size = new System.Drawing.Size(167, 23);
-            this.btnModArticProv.TabIndex = 12;
-            this.btnModArticProv.Text = "Modificar Articulo de Proveedor";
-            this.btnModArticProv.UseVisualStyleBackColor = true;
+            this.btnModProv.Location = new System.Drawing.Point(140, 81);
+            this.btnModProv.Name = "btnModProv";
+            this.btnModProv.Size = new System.Drawing.Size(125, 23);
+            this.btnModProv.TabIndex = 6;
+            this.btnModProv.Text = "Modificar Proveedor";
+            this.btnModProv.UseVisualStyleBackColor = true;
             // 
-            // btnElimArticProv
+            // btnElimProv
             // 
-            this.btnElimArticProv.Location = new System.Drawing.Point(431, 110);
-            this.btnElimArticProv.Name = "btnElimArticProv";
-            this.btnElimArticProv.Size = new System.Drawing.Size(167, 23);
-            this.btnElimArticProv.TabIndex = 13;
-            this.btnElimArticProv.Text = "Eliminar Articulo de Proveedor";
-            this.btnElimArticProv.UseVisualStyleBackColor = true;
+            this.btnElimProv.Location = new System.Drawing.Point(140, 110);
+            this.btnElimProv.Name = "btnElimProv";
+            this.btnElimProv.Size = new System.Drawing.Size(125, 23);
+            this.btnElimProv.TabIndex = 7;
+            this.btnElimProv.Text = "Eliminar Proveedor";
+            this.btnElimProv.UseVisualStyleBackColor = true;
             // 
-            // btnAltaArticProv
+            // btnAltaProv
             // 
-            this.btnAltaArticProv.Location = new System.Drawing.Point(431, 52);
-            this.btnAltaArticProv.Name = "btnAltaArticProv";
-            this.btnAltaArticProv.Size = new System.Drawing.Size(167, 23);
-            this.btnAltaArticProv.TabIndex = 11;
-            this.btnAltaArticProv.Text = "Nuevo Articulo de Proveedor";
-            this.btnAltaArticProv.UseVisualStyleBackColor = true;
+            this.btnAltaProv.Location = new System.Drawing.Point(140, 52);
+            this.btnAltaProv.Name = "btnAltaProv";
+            this.btnAltaProv.Size = new System.Drawing.Size(125, 23);
+            this.btnAltaProv.TabIndex = 5;
+            this.btnAltaProv.Text = "Nuevo Proveedor";
+            this.btnAltaProv.UseVisualStyleBackColor = true;
+            // 
+            // btnElimUsuario
+            // 
+            this.btnElimUsuario.Location = new System.Drawing.Point(0, 110);
+            this.btnElimUsuario.Name = "btnElimUsuario";
+            this.btnElimUsuario.Size = new System.Drawing.Size(107, 23);
+            this.btnElimUsuario.TabIndex = 6;
+            this.btnElimUsuario.Text = "Eliminar Usuario";
+            this.btnElimUsuario.UseVisualStyleBackColor = true;
+            // 
+            // btnModUsuario
+            // 
+            this.btnModUsuario.Location = new System.Drawing.Point(0, 81);
+            this.btnModUsuario.Name = "btnModUsuario";
+            this.btnModUsuario.Size = new System.Drawing.Size(107, 23);
+            this.btnModUsuario.TabIndex = 5;
+            this.btnModUsuario.Text = "Modificar Usuario";
+            this.btnModUsuario.UseVisualStyleBackColor = true;
             // 
             // btnSalir
             // 

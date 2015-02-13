@@ -15,6 +15,16 @@ namespace Vista
         public frmAltaBajaModif()
         {
             InitializeComponent();
+
+            //si es encargado de datos muestro el panel
+            //como en frmMenuPrincipal, el codigo del rol de ED es 4
+            foreach (int rol in rolCollection)
+            {
+                if (rol == 4)
+	            {
+                    pnlED.Visible = true;
+	            }
+            }
         }
     }
 }
