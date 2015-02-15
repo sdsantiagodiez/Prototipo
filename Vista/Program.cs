@@ -16,7 +16,12 @@ namespace Vista
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMenuPrincipal());
+
+            frmLogIn loginForm = new frmLogIn();
+            if (loginForm.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new frmMenuPrincipal(loginForm.getRoles(), loginForm.getUsuario()));
+            }
         }
     }
 }

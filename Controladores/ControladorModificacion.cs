@@ -8,7 +8,7 @@ using Modelos;
 
 namespace Controlador
 {
-    class ControladorModificacion : Controlador
+    public class ControladorModificacion : Controlador
     {
         public string[] getDetalles(string pCuit)
         {

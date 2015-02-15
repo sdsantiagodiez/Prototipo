@@ -468,6 +468,47 @@ namespace Datos
             return respuesta;
         }
 
+        public List<ModeloRoles> getRoles(string dniUsuario)
+        {
+            List<ModeloRoles> roles = new List<ModeloRoles>();
+            
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText = "SELECT [rol.codRol],[rol.descripRol] FROM [proyecto].[dbo].[rol] JOIN" +
+                " [proyecto].[dbo].[rol_pers] ON [rol.codRol] = [rol_pers] JOIN"+
+                " [proyecto].[dbo].[personas] ON [personas.dniPers] = [rol_pers.dniPers]" +
+                "WHERE ([personas.dniPers] =@DNIper)";
+
+            comando.Parameters.Add(new SqlParameter("@DNIper", SqlDbType.NVarChar));
+            comando.Parameters["@DNIper"].Value = dniUsuario;
+
+            comando.Connection.Open();
+
+            SqlDataReader drRoles = comando.ExecuteReader();
+
+           ModeloRoles modRol = new ModeloRoles();
+
+            while (drRoles.Read())
+            {
+                modRol.setCodRol((int)drRoles["codRol"]);
+                modRol.setDescripcion((string)drRoles["descripRol"]);
+                roles.Add(modRol);
+            }
+            drRoles.Close();
+
+            comando.Connection.Close();
+
+            return roles;
+        }
+
      }
 }
 

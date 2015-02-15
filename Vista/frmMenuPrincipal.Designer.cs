@@ -72,7 +72,7 @@
             this.btnVenta.TabIndex = 3;
             this.btnVenta.Text = "Nueva Venta";
             this.btnVenta.UseVisualStyleBackColor = true;
-            this.btnVenta.Click += new System.EventHandler(this.button3_Click);
+            this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
             // 
             // lblBienvenido
             // 
@@ -94,7 +94,7 @@
             this.btnSalir.TabIndex = 6;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.button5_Click);
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // panel1
             // 

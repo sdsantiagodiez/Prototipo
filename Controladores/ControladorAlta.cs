@@ -9,7 +9,7 @@ using Modelos;
 
 namespace Controlador
 {
-    class ControladorAlta : Controlador
+    public class ControladorAlta : Controlador
     {
         /*
          * Revisar

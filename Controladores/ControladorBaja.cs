@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Controlador
 {
-    class ControladorBaja
+    public class ControladorBaja
     {
     }
 }

@@ -142,9 +142,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Datos\Datos.csproj">
-      <Project>{99d7e78b-f2a7-475d-b7d7-1f65a207f183}</Project>
-      <Name>Datos</Name>
+    <ProjectReference Include="..\Controladores\Controladores.csproj">
+      <Project>{92aca64e-00ee-448f-988f-f1041ac5f3cf}</Project>
+      <Name>Controladores</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modelos\Modelos.csproj">
       <Project>{12e759c6-8712-4d18-87be-accdada915d6}</Project>

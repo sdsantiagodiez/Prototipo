@@ -8,12 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
-using Datos;
+using Controlador;
 
 namespace Vista
 {
     public partial class frmLogIn : Form
     {
+        private List<ModeloRoles> _roles;
+        private ModeloPersonas _persona;
+    
         public frmLogIn()
         {
             InitializeComponent();
@@ -21,15 +24,48 @@ namespace Vista
 
         private void btnLogIn_Click(object sender, EventArgs e)
         {
+            //capturo los datos ingresados al formulario
             string usuario = txtUsuario.Text;
             string contrasenia = txtContrasenia.Text;
 
-            CatalogoPersonas ctlgPersonas = new CatalogoPersonas();
-            List<ModeloPersonas> usuarios = ctlgPersonas.buscarPersona("usuario","usuario",usuario);
-            if (object.Equals(usuarios[0].contraseniaPers,contrasenia.Trim().ToLower()))
+            //busco el usuario correspondiente y lo guardo
+            ControladorInicioSesion ctrlSesion = new ControladorInicioSesion();
+            this.setPersona(ctrlSesion.buscarUsuario(usuario, contrasenia));
+
+           
+            if (!object.Equals(_persona.dniPers,  null))
             {
-                
+                //busco y guardo los roles del usuario
+                this.setRoles(ctrlSesion.getRoles(_persona));
+
+            //cierro login y devuelvo resultado ok o notifico fallo    
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
+            else
+            {
+                MessageBox.Show("Usuario no encontrado");
+            }
+        }
+
+        public ModeloPersonas getUsuario()
+        {
+            return _persona;
+        }
+
+        private void setPersona(ModeloPersonas persona)
+        {
+            _persona = persona;
+        }
+
+        public List<ModeloRoles> getRoles()
+        {
+            return _roles;
+        }
+
+        private void setRoles(List<ModeloRoles> roles)
+        {
+            _roles = roles;
         }
     }
 }

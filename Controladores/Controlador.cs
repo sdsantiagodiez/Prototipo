@@ -8,7 +8,7 @@ using Modelos;
 
 namespace Controlador
 {
-    class Controlador
+    public class Controlador
     {
 
         /// <summary>

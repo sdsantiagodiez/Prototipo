@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Controlador
 {
-    class ControladorReportes
+    public class ControladorReportes
     {
     }
 }

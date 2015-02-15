@@ -59,10 +59,6 @@
       <Project>{99d7e78b-f2a7-475d-b7d7-1f65a207f183}</Project>
       <Name>Datos</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Vista\Vista.csproj">
-      <Project>{a98a609f-0a54-4577-ba15-3c75c0f10960}</Project>
-      <Name>Vista</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
