@@ -7,20 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Modelos;
 
 namespace Vista
 {
     public partial class frmAltaBajaModif : Form
     {
-        public frmAltaBajaModif()
+        public frmAltaBajaModif(List<ModeloRoles> rolCollection)
         {
             InitializeComponent();
 
             //si es encargado de datos muestro el panel
             //como en frmMenuPrincipal, el codigo del rol de ED es 4
-            foreach (int rol in rolCollection)
+            foreach (ModeloRoles rol in rolCollection)
             {
-                if (rol == 4)
+                int nroRol = rol.getCodRol();
+                if (nroRol == 4)
 	            {
                     pnlED.Visible = true;
 	            }
