@@ -46,7 +46,14 @@ namespace Controlador
 
             return respuesta;
         }
-    
+
+        public void crearPedido()
+        {
+            ModeloPedidoArtProv pActual = new ModeloPedidoArtProv();            
+        
+        }
+
+
     
     }
 }
