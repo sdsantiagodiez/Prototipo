@@ -10,13 +10,16 @@ namespace Controlador
 {
     public class ControladorPedidoProveedor:Controlador
     {
-        public string agregarArticulo(string tipoCodigo, string codArtProv, int cantidad)
+
+        CatalogoArticuloProveedores cap = new CatalogoArticuloProveedores();
+        
+        public string agregarArticulo(string ptipoCodigo, string pcodArtProv, int pcantidad)
         {
             
-            CatalogoArticuloProveedores cap = new CatalogoArticuloProveedores();
+           
             ModeloArticuloProveedores ap = new ModeloArticuloProveedores();
 
-            ap = cap.buscarArticuloProveedor(tipoCodigo, codArtProv)[0];
+            ap = cap.buscarArticuloProveedor(ptipoCodigo, pcodArtProv)[0];
 
             /*Inicializar la linea de Pedido con El articulo de proveedor y la cantidad*/
 
@@ -25,5 +28,25 @@ namespace Controlador
 
             return "El se ha agregado un articulo al pedido";
         }
+
+        public List<string[]> buscarArticulosProveedor(string ptipoCodigo, string pRazonSocial)
+        {
+            List<ModeloArticuloProveedores> apActuales = new List<ModeloArticuloProveedores>();
+
+            List<string[]> respuesta = new List<string[]>();
+
+            apActuales = cap.buscarArticuloProveedor(ptipoCodigo, pRazonSocial);
+
+            foreach (ModeloArticuloProveedores ModArtProv in apActuales)
+            {
+                string[] artipro = { ModArtProv.codigoOriginalArt, ModArtProv.codigoArProveedor,ModArtProv.descripArPro, ModArtProv.stockActualArPro.ToString(), ModArtProv.stockMinimoArPro.ToString(), ModArtProv.fechaUltimaActualizacionArPro.ToShortDateString()};
+
+                respuesta.Add(artipro);
+            }
+
+            return respuesta;
+        }
+    
+    
     }
 }
