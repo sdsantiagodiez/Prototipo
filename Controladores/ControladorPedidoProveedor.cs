@@ -21,6 +21,7 @@ namespace Controlador
 
             ap = cap.buscarArticuloProveedor(ptipoCodigo, pcodArtProv)[0];
 
+
             /*Inicializar la linea de Pedido con El articulo de proveedor y la cantidad*/
 
             /*Agregar la linea de Pedido al pedido Actual que lo deberia tener el mismo controlador*/

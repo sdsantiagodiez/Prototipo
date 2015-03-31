@@ -9,10 +9,15 @@ namespace Modelos
     public class ModeloPedidoArtProv
     {
         public int nroPedido { get; set; }
-        public string codigoArProveedor { get; set; }
-        public string codigoOriginalAr { get; set; }
-        public int cantidadArticulos { get; set; }
-        public float valorParcial { get; set; }
+       /* Estarian incluidos dentro de la linea de pedido
+        * 
+        * public string codigoArProveedor { get; set; } 
+        * public string codigoOriginalAr { get; set; }
+        * public int cantidadArticulos { get; set; }
+        * public float valorParcial { get; set; }
+        * 
+        */
+        public ModeloLineaPedido lineaPedido { get; set; }
 
         public void inicializar()
         { 

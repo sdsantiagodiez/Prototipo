@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ModeloArticulos.cs" />
     <Compile Include="ModeloArticuloProveedores.cs" />
+    <Compile Include="ModeloLineaPedido.cs" />
     <Compile Include="ModeloMailPersonas.cs" />
     <Compile Include="ModeloPedidoArtProv.cs" />
     <Compile Include="ModeloPersonas.cs" />
