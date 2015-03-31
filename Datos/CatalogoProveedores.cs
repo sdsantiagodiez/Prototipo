@@ -257,7 +257,7 @@ namespace Datos
         //Insertar un nuevo Proveedor
         }     
 
-        public string actualizarProveedor(ModeloProveedores modProv, string[] pModificar)
+        public string actualizarProveedor(ModeloProveedores modProv, string[] pModificar)//pModificar indica una nueva razon social
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -273,9 +273,16 @@ namespace Datos
 
             comando.Parameters.Add(new SqlParameter("@razonSocialProv", SqlDbType.NVarChar));
             comando.Parameters["@razonSocialProv"].Value = modProv.razonSocialProv;
-
-            comando.Parameters.Add(new SqlParameter("@razonSocialNueva", SqlDbType.NVarChar));
-            comando.Parameters["@razonSocialNueva"].Value = pModificar[0];
+            if(String.Equals(pModificar, "")==true)//Evalua si no se modifica la razon social
+            {
+                comando.Parameters.Add(new SqlParameter("@razonSocialNueva", SqlDbType.NVarChar));
+                comando.Parameters["@razonSocialNueva"].Value = modProv.razonSocialProv;
+            }
+            else
+            { 
+                comando.Parameters.Add(new SqlParameter("@razonSocialNueva", SqlDbType.NVarChar));
+                comando.Parameters["@razonSocialNueva"].Value = pModificar[0];
+            }
 
             comando.Parameters.Add(new SqlParameter("@cuitProv", SqlDbType.NVarChar));
             comando.Parameters["@cuitProv"].Value = modProv.cuitProv;
