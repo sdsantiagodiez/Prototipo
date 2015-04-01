@@ -13,6 +13,9 @@ namespace Modelos
         public int cantidadArticulos { get; set; }
         public float valorParcial { get; set; }
 
+        public ModeloLineaPedido()
+        { }
+
         public ModeloLineaPedido(ModeloArticuloProveedores pModArtProv, int pCantidad)
         {
             this.codigoArProveedor = pModArtProv.codigoArProveedor;

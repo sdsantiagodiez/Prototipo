@@ -12,7 +12,8 @@ namespace Controlador
     {
 
         CatalogoArticuloProveedores cap = new CatalogoArticuloProveedores();
-        
+
+        ModeloPedidoArtProv pActual = new ModeloPedidoArtProv();
         public string agregarArticulo(string ptipoCodigo, string pcodArtProv, int pcantidad)
         {
             
@@ -21,13 +22,11 @@ namespace Controlador
 
             ap = cap.buscarArticuloProveedor(ptipoCodigo, pcodArtProv)[0];
 
+            ModeloLineaPedido lp = new ModeloLineaPedido(ap, pcantidad);
 
-            /*Inicializar la linea de Pedido con El articulo de proveedor y la cantidad*/
+            pActual.agregarLinea(lp);
 
-            /*Agregar la linea de Pedido al pedido Actual que lo deberia tener el mismo controlador*/
-
-
-            return "El se ha agregado un articulo al pedido";
+            return "El se ha agregado un articulo al pedido actual";
         }
 
         public List<string[]> buscarArticulosProveedor(string ptipoCodigo, string pRazonSocial)
@@ -54,6 +53,29 @@ namespace Controlador
         
         }
 
+        public void modificarCantidadArticulo(string pCodArtProv, int pCant)
+        { 
+            if(pCant>0)
+            {
+                ModeloLineaPedido linea = pActual.buscarLinea(pCodArtProv);
+                
+                int Cantidad = linea.cantidadArticulos;
+
+                if (pCant >= Cantidad)
+                {
+                    pActual.bajaLinea(linea);
+                }
+                else
+                {
+                    linea.cantidadArticulos = (Cantidad-pCant);
+                    pActual.actualizaLinea(linea);
+                    
+                }
+
+
+            }
+        
+        }
 
     
     }
