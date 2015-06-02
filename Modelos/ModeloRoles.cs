@@ -8,8 +8,8 @@ namespace Modelos
 {
     public class ModeloRoles
     {
-        int codRol;
-        string descripcionRol;
+        int codigo;
+        string descripcion;
 
         /*Constructor default*/
         public ModeloRoles()
@@ -18,24 +18,24 @@ namespace Modelos
        
         //geters setters
         #region
-        public int getCodRol()
+        public int getCodigo()
         {
-        return codRol;
+        return codigo;
         }
         
-        public void setCodRol(int pcod)
+        public void setCodigo(int pCodigo)
         {
-            this.codRol = pcod;
+            this.codigo = pCodigo;
         }
 
-        public string getdescripcion()
+        public string getDescripcion()
         {
-            return descripcionRol;
+            return descripcion;
         }
 
-        public void setDescripcion(string pDescri)
+        public void setDescripcion(string pDescripcion)
         {
-            this.descripcionRol = pDescri;
+            this.descripcion = pDescripcion;
         }
         #endregion
     }

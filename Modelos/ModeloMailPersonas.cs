@@ -8,8 +8,17 @@ namespace Modelos
 {
     public class ModeloMailPersonas
     {
-        public string dniPers { get; set; }
-        public string mailPers { get; set; }
-
+        string _dniPers;
+        public string dniPers 
+        {
+            get { return _dniPers; }
+            set { this._dniPers = value; }
+        }
+        string _mailPers;
+        public string mailPers 
+        {
+            get { return _mailPers; }
+            set { this._mailPers = value; }
+        }
     }
 }

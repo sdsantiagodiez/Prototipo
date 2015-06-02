@@ -8,22 +8,48 @@ namespace Modelos
 {
     public class ModeloLineaPedido
     {
-        public string codigoArProveedor { get; set; }
-        public string codigoOriginalAr { get; set; }
-        public int cantidadArticulos { get; set; }
-        public float valorParcial { get; set; }
+        string _codigoArtProveedor;
+        public string codigoArtProveedor
+        {
+            get { return _codigoArtProveedor; }
+            set { this._codigoArtProveedor = value; }
+        }
+        string _codigoOriginalArt;
+        public string codigoOriginalArt
+        {
+            get { return _codigoOriginalArt; }
+            set { this._codigoOriginalArt = value; }
+        }
+        int _cantidadArticulos;
+        public int cantidadArticulos
+        {
+            get { return _cantidadArticulos; }
+            set { this._cantidadArticulos = value; }
+        }
+        decimal _valorParcial;
+        public decimal valorParcial
+        {
+            get { return _valorParcial; }
+            set { this._valorParcial = value; }
+        }
+        decimal _valorUnitario;
+        public decimal valorUnitario
+        {
+            get { return _valorUnitario; }
+            set { this._valorUnitario = value; }
+        }
 
         public ModeloLineaPedido()
         { }
 
         public ModeloLineaPedido(ModeloArticuloProveedores pModArtProv, int pCantidad)
         {
-            this.codigoArProveedor = pModArtProv.codigoArProveedor;
-            this.codigoOriginalAr = pModArtProv.codigoOriginalArt;
+            this.codigoArtProveedor = pModArtProv.codigoArtProveedor;
+            this.codigoOriginalArt = pModArtProv.codigoOriginalArt;
             this.cantidadArticulos = pCantidad;
-            /* this.valorParcial = */ //Deberiamos agregarle el valor Parcial
-
+            this.valorUnitario = pModArtProv.valorVentaArticuloProveedor.valor;
+            //Recordar que se pueden aplicar descuentos
+            this.valorParcial = this.cantidadArticulos * this.valorUnitario;
         }
-
     }
 }
