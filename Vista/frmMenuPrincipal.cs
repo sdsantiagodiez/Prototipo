@@ -30,7 +30,7 @@ namespace Vista
             // se supone que cada usuario puede tener mas de un rol
             foreach (ModeloRoles rol in roles)
             {
-                int nroRol = rol.getCodRol();
+                int nroRol = rol.codigo;
                 switch (nroRol)
                 {
                     case 1: pnlER.Visible = true; break;
