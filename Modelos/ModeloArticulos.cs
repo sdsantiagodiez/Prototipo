@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Modelos
 {
    public class ModeloArticulos
-    {
+   {
+       #region Getters/Setters
        string _codigoOriginalArt;
        public string codigoOriginalArt 
        {
@@ -32,5 +33,6 @@ namespace Modelos
            get { return _obsArt; }
            set { this._obsArt = value; }
        }
-    }
+       #endregion
+   }
 }

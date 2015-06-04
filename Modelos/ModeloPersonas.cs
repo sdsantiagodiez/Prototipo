@@ -8,6 +8,7 @@ namespace Modelos
 {
     public class ModeloPersonas
     {
+        #region Getters/Setters
         string _dniPers;
         public string dniPers 
         {
@@ -80,5 +81,6 @@ namespace Modelos
             get { return _direccPers; }
             set { this._direccPers = value; }
         }
+        #endregion
     }
 }

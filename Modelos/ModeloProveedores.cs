@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace Modelos
 {
    public class ModeloProveedores
-    {
-        string _razonSocialProv;
+   {
+       #region Getters/Setters
+       string _razonSocialProv;
         public string razonSocialProv
         {
             get { return _razonSocialProv; }
@@ -55,6 +56,7 @@ namespace Modelos
         {
             get { return _obsProv; }
             set { _obsProv = value; }
-        }  
-    }
+        }
+       #endregion
+   }
 }

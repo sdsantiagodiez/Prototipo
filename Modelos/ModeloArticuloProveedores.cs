@@ -8,6 +8,7 @@ namespace Modelos
 {
     public class ModeloArticuloProveedores
     {
+        #region Getters/Setters
         string _codigoOriginalArt;
         public string codigoOriginalArt 
         {
@@ -44,7 +45,11 @@ namespace Modelos
         public int stockActualArtPro
         {
             get { return _stockActualArtPro; }
-            set { this._stockActualArtPro = value; }
+            set 
+            { 
+                this._stockActualArtPro = value;
+                this.fechaUltimaActualizacionArtPro = DateTime.Today;
+            }
         }
         string _obsArtPro;
         public string obsArtPro
@@ -70,5 +75,6 @@ namespace Modelos
             get { return _descripArtPro; }
             set { this._descripArtPro = value; }
         }
+        #endregion
     }
 }

@@ -8,6 +8,7 @@ namespace Modelos
 {
     public class ModeloLineaPedido
     {
+        #region Getters/Setters
         string _codigoArtProveedor;
         public string codigoArtProveedor
         {
@@ -38,6 +39,7 @@ namespace Modelos
             get { return _valorUnitario; }
             set { this._valorUnitario = value; }
         }
+        #endregion
 
         public ModeloLineaPedido()
         { }
@@ -47,6 +49,7 @@ namespace Modelos
             this.codigoArtProveedor = pModArtProv.codigoArtProveedor;
             this.codigoOriginalArt = pModArtProv.codigoOriginalArt;
             this.cantidadArticulos = pCantidad;
+            //Sólo considera que la linea sea de venta de artículo y no para una compra a proveedor
             this.valorUnitario = pModArtProv.valorVentaArticuloProveedor.valorArticulo;
             //Recordar que se pueden aplicar descuentos
             this.valorParcial = this.cantidadArticulos * this.valorUnitario;

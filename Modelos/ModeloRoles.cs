@@ -8,39 +8,22 @@ namespace Modelos
 {
     public class ModeloRoles
     {
-        int codigo;
-        string descripcion;
-
-        /*Constructor default*/
-        public ModeloRoles()
-        { 
-        }
-       
-        //geters setters
-        #region
-        public int getCodigo()
+        #region Getters/Setters
+        int _codigo;
+        public int codigo
         {
-        return codigo;
-        }
-        
-        public void setCodigo(int pCodigo)
-        {
-            this.codigo = pCodigo;
+            get { return _codigo; }
+            set { this._codigo = value;}
         }
 
-        public string getDescripcion()
+        string _descripcion;
+        public string descripcion
         {
-            return descripcion;
-        }
-
-        public void setDescripcion(string pDescripcion)
-        {
-            this.descripcion = pDescripcion;
+            get { return _descripcion; }
+            set { this._descripcion = value; }
         }
         #endregion
     }
-
-
-    }
+}
 
     

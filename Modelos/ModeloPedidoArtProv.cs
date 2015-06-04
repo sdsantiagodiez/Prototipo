@@ -8,23 +8,26 @@ namespace Modelos
 {
     public class ModeloPedidoArtProv
     {
-        public ModeloPedidoArtProv()
-        {
-            _lineasPedido = new List<ModeloLineaPedido>();
-        }
+        #region Getters/Setters
         int _nroPedido;
-        public int nroPedido 
+        public int nroPedido
         {
             get { return _nroPedido; }
             set { this._nroPedido = value; }
         }
         List<ModeloLineaPedido> _lineasPedido;
-        public List<ModeloLineaPedido> lineasPedido 
+        public List<ModeloLineaPedido> lineasPedido
         {
             get { return _lineasPedido; }
             set { this._lineasPedido = value; }
         }
+        #endregion
 
+        public ModeloPedidoArtProv()
+        {
+            _lineasPedido = new List<ModeloLineaPedido>();
+        }
+        
         public void inicializar()
         {
             //También hay que asignar numero de pedido
@@ -57,7 +60,7 @@ namespace Modelos
         #region Agregar, Bajar y Actualizar lineas de pedido
         /*
          * Devuelven true si se pudo realizar la operación
-         false si no fue posible
+         * false si no fue posible
          */
         public bool agregarLinea(ModeloLineaPedido pLineaPedido)
         {

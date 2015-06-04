@@ -8,7 +8,7 @@ namespace Modelos
 {
     public class ModeloValorArticulo
     {
-        
+        #region Getters/Setters
         DateTime _fechaUltimaActualizacion;
         public DateTime fechaUltimaActualizacion
         {
@@ -25,6 +25,6 @@ namespace Modelos
                 _fechaUltimaActualizacion = DateTime.Today;
             }
         }
-
+        #endregion
     }
 }
