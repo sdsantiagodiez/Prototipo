@@ -498,7 +498,7 @@ namespace Datos
 
             while (drRoles.Read())
             {
-                modRol.setCodRol((int)drRoles["codRol"]);
+                modRol.setCodigo((int)drRoles["codRol"]);
                 modRol.setDescripcion((string)drRoles["descripRol"]);
                 roles.Add(modRol);
             }

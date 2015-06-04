@@ -47,7 +47,7 @@ namespace Modelos
             this.codigoArtProveedor = pModArtProv.codigoArtProveedor;
             this.codigoOriginalArt = pModArtProv.codigoOriginalArt;
             this.cantidadArticulos = pCantidad;
-            this.valorUnitario = pModArtProv.valorVentaArticuloProveedor.valor;
+            this.valorUnitario = pModArtProv.valorVentaArticuloProveedor.valorArticulo;
             //Recordar que se pueden aplicar descuentos
             this.valorParcial = this.cantidadArticulos * this.valorUnitario;
         }

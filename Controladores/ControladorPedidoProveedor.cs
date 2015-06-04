@@ -39,7 +39,7 @@ namespace Controlador
 
             foreach (ModeloArticuloProveedores ModArtProv in apActuales)
             {
-                string[] artipro = { ModArtProv.codigoOriginalArt, ModArtProv.codigoArProveedor,ModArtProv.descripArPro, ModArtProv.stockActualArPro.ToString(), ModArtProv.stockMinimoArPro.ToString(), ModArtProv.fechaUltimaActualizacionArPro.ToShortDateString()};
+                string[] artipro = { ModArtProv.codigoOriginalArt, ModArtProv.codigoArtProveedor,ModArtProv.descripArtPro, ModArtProv.stockActualArtPro.ToString(), ModArtProv.stockMinimoArtPro.ToString(), ModArtProv.fechaUltimaActualizacionArtPro.ToShortDateString()};
 
                 respuesta.Add(artipro);
             }

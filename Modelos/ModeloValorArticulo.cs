@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
-    class ModeloValorArticulo
+    public class ModeloValorArticulo
     {
+        
         DateTime _fechaUltimaActualizacion;
         public DateTime fechaUltimaActualizacion
         {

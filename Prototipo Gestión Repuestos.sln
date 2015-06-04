@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vista", "Vista\Vista.csproj", "{A98A609F-0A54-4577-BA15-3C75C0F10960}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos", "Datos\Datos.csproj", "{99D7E78B-F2A7-475D-B7D7-1F65A207F183}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controladores", "Controladores\Controladores.csproj", "{92ACA64E-00EE-448F-988F-F1041AC5F3CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{6D3189AC-F9E8-48B7-BA21-DEBA70686D88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{92ACA64E-00EE-448F-988F-F1041AC5F3CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92ACA64E-00EE-448F-988F-F1041AC5F3CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92ACA64E-00EE-448F-988F-F1041AC5F3CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D3189AC-F9E8-48B7-BA21-DEBA70686D88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D3189AC-F9E8-48B7-BA21-DEBA70686D88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D3189AC-F9E8-48B7-BA21-DEBA70686D88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D3189AC-F9E8-48B7-BA21-DEBA70686D88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

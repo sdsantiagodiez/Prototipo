@@ -69,7 +69,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArProveedor],[stockMinimoArPro],[stockActualArPro],[obsArPro],[descripArPro],[fechaUltimaActualizacionArPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov] WHERE descripArPro like @descrip + '%'";
+            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArtProveedor],[stockMinimoArtPro],[stockActualArtPro],[obsArtPro],[descripArtPro],[fechaUltimaActualizacionArtPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov] WHERE descripArtPro like @descrip + '%'";
 
             comando.Parameters.Add(new SqlParameter("@descrip", SqlDbType.NVarChar));
             comando.Parameters["@descrip"].Value = pDescrip;
@@ -81,12 +81,12 @@ namespace Datos
             {
                 ModeloArticuloProveedores modArtProv = new ModeloArticuloProveedores();
                 modArtProv.codigoOriginalArt = (string)drArtProveedores["codigoOriginalArt"];
-                modArtProv.codigoArProveedor = (string)drArtProveedores["codigoArProveedor"];
-                modArtProv.stockMinimoArPro = (int)drArtProveedores["stockMinimoArPro"];
-                modArtProv.stockActualArPro = (int)drArtProveedores["stockActualArPro"];
-                modArtProv.obsArPro = (string)drArtProveedores["obsArPro"];
-                modArtProv.descripArPro = (string)drArtProveedores["descripArPro"];
-                modArtProv.fechaUltimaActualizacionArPro = (DateTime)drArtProveedores["fechaUltimaActualizacionArPro"];
+                modArtProv.codigoArtProveedor = (string)drArtProveedores["codigoArtProveedor"];
+                modArtProv.stockMinimoArtPro = (int)drArtProveedores["stockMinimoArtPro"];
+                modArtProv.stockActualArtPro = (int)drArtProveedores["stockActualArtPro"];
+                modArtProv.obsArtPro = (string)drArtProveedores["obsArtPro"];
+                modArtProv.descripArtPro = (string)drArtProveedores["descripArtPro"];
+                modArtProv.fechaUltimaActualizacionArtPro = (DateTime)drArtProveedores["fechaUltimaActualizacionArtPro"];
                 modArtProv.razonSocialProv = (string)drArtProveedores["razonSocialProv"];
                 ArtProvxDesc.Add(modArtProv);
             }
@@ -111,7 +111,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArProveedor],[stockMinimoArPro],[stockActualArPro],[obsArPro],[descripArPro],[fechaUltimaActualizacionArPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov] WHERE codigoOriginalArt = @codOriginal";
+            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArtProveedor],[stockMinimoArtPro],[stockActualArtPro],[obsArtPro],[descripArtPro],[fechaUltimaActualizacionArtPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov] WHERE codigoOriginalArt = @codOriginal";
 
             comando.Parameters.Add(new SqlParameter("@codOriginal", SqlDbType.NVarChar));
             comando.Parameters["@codOriginal"].Value = pCodigoOriginal;
@@ -123,12 +123,12 @@ namespace Datos
             {
                 ModeloArticuloProveedores modArtProv = new ModeloArticuloProveedores();
                 modArtProv.codigoOriginalArt = (string)drArtProveedores["codigoOriginalArt"];
-                modArtProv.codigoArProveedor = (string)drArtProveedores["codigoArProveedor"];
-                modArtProv.stockMinimoArPro = (int)drArtProveedores["stockMinimoArPro"];
-                modArtProv.stockActualArPro = (int)drArtProveedores["stockActualArPro"];
-                modArtProv.obsArPro = (string)drArtProveedores["obsArPro"];
-                modArtProv.descripArPro = (string)drArtProveedores["descripArPro"];
-                modArtProv.fechaUltimaActualizacionArPro = (DateTime)drArtProveedores["fechaUltimaActualizacionArPro"];
+                modArtProv.codigoArtProveedor = (string)drArtProveedores["codigoArtProveedor"];
+                modArtProv.stockMinimoArtPro = (int)drArtProveedores["stockMinimoArtPro"];
+                modArtProv.stockActualArtPro = (int)drArtProveedores["stockActualArtPro"];
+                modArtProv.obsArtPro = (string)drArtProveedores["obsArtPro"];
+                modArtProv.descripArtPro = (string)drArtProveedores["descripArtPro"];
+                modArtProv.fechaUltimaActualizacionArtPro = (DateTime)drArtProveedores["fechaUltimaActualizacionArtPro"];
                 modArtProv.razonSocialProv = (string)drArtProveedores["razonSocialProv"];
                 ArtProvxCodOrg.Add(modArtProv);
             }
@@ -153,7 +153,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArProveedor],[stockMinimoArPro],[stockActualArPro],[obsArPro],[descripArPro],[fechaUltimaActualizacionArPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov] WHERE codigoArProveedor = @codArticuloProveedor";
+            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArtProveedor],[stockMinimoArtPro],[stockActualArtPro],[obsArtPro],[descripArtPro],[fechaUltimaActualizacionArtPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov] WHERE codigoArtProveedor = @codArticuloProveedor";
 
             comando.Parameters.Add(new SqlParameter("@codArticuloProveedor", SqlDbType.NVarChar));
             comando.Parameters["@codArticuloProveedor"].Value = pCodigoArticuloProveedor;
@@ -165,12 +165,12 @@ namespace Datos
             {
                 ModeloArticuloProveedores modArtProv = new ModeloArticuloProveedores();
                 modArtProv.codigoOriginalArt = (string)drArtProveedores["codigoOriginalArt"];
-                modArtProv.codigoArProveedor = (string)drArtProveedores["codigoArProveedor"];
-                modArtProv.stockMinimoArPro = (int)drArtProveedores["stockMinimoArPro"];
-                modArtProv.stockActualArPro = (int)drArtProveedores["stockActualArPro"];
-                modArtProv.obsArPro = (string)drArtProveedores["obsArPro"];
-                modArtProv.descripArPro = (string)drArtProveedores["descripArPro"];
-                modArtProv.fechaUltimaActualizacionArPro = (DateTime)drArtProveedores["fechaUltimaActualizacionArPro"];
+                modArtProv.codigoArtProveedor = (string)drArtProveedores["codigoArtProveedor"];
+                modArtProv.stockMinimoArtPro = (int)drArtProveedores["stockMinimoArtPro"];
+                modArtProv.stockActualArtPro = (int)drArtProveedores["stockActualArtPro"];
+                modArtProv.obsArtPro = (string)drArtProveedores["obsArtPro"];
+                modArtProv.descripArtPro = (string)drArtProveedores["descripArtPro"];
+                modArtProv.fechaUltimaActualizacionArtPro = (DateTime)drArtProveedores["fechaUltimaActualizacionArtPro"];
                 modArtProv.razonSocialProv = (string)drArtProveedores["razonSocialProv"];
                 articulosProveedores.Add(modArtProv);
             }
@@ -194,7 +194,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArProveedor],[stockMinimoArPro],[stockActualArPro],[obsArPro],[descripArPro],[fechaUltimaActualizacionArPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov]";
+            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArtProveedor],[stockMinimoArtPro],[stockActualArtPro],[obsArtPro],[descripArtPro],[fechaUltimaActualizacionArtPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov]";
 
             comando.Connection.Open();
 
@@ -203,12 +203,12 @@ namespace Datos
             {
                 ModeloArticuloProveedores modArtProv = new ModeloArticuloProveedores();
                 modArtProv.codigoOriginalArt = (string)drArtProveedores["codigoOriginalArt"];
-                modArtProv.codigoArProveedor = (string)drArtProveedores["codigoArProveedor"];
-                modArtProv.stockMinimoArPro = (int)drArtProveedores["stockMinimoArPro"];
-                modArtProv.stockActualArPro = (int)drArtProveedores["stockActualArPro"];
-                modArtProv.obsArPro = (string)drArtProveedores["obsArPro"];
-                modArtProv.descripArPro = (string)drArtProveedores["descripArPro"];
-                modArtProv.fechaUltimaActualizacionArPro = (DateTime)drArtProveedores["fechaUltimaActualizacionArPro"];
+                modArtProv.codigoArtProveedor = (string)drArtProveedores["codigoArtProveedor"];
+                modArtProv.stockMinimoArtPro = (int)drArtProveedores["stockMinimoArtPro"];
+                modArtProv.stockActualArtPro = (int)drArtProveedores["stockActualArtPro"];
+                modArtProv.obsArtPro = (string)drArtProveedores["obsArtPro"];
+                modArtProv.descripArtPro = (string)drArtProveedores["descripArtPro"];
+                modArtProv.fechaUltimaActualizacionArtPro = (DateTime)drArtProveedores["fechaUltimaActualizacionArtPro"];
                 modArtProv.razonSocialProv = (string)drArtProveedores["razonSocialProv"];
                 allArtProvs.Add(modArtProv);
             }
@@ -231,22 +231,22 @@ namespace Datos
 
             comando.CommandType= CommandType.Text;
 
-            comando.CommandText = "INSERT INTO [proyecto].[dbo].[art_prov]([codigoOriginalArt],[codigoArProveedor],[stockMinimoArPro],[stockActualArPro],[obsArPro],[descripArPro],[fechaUltimaActualizacionArPro],[razonSocialProv])VALUES (@codigoOriginalArt, @codigoArProveedor, @stockMinimoArPro, @stockActualArPro, @obsArPro, @descripArPro, @fechaUltimaActualizacionArPro,@razonSocialProv)";
+            comando.CommandText = "INSERT INTO [proyecto].[dbo].[art_prov]([codigoOriginalArt],[codigoArtProveedor],[stockMinimoArtPro],[stockActualArtPro],[obsArtPro],[descripArtPro],[fechaUltimaActualizacionArtPro],[razonSocialProv])VALUES (@codigoOriginalArt, @codigoArtProveedor, @stockMinimoArtPro, @stockActualArtPro, @obsArtPro, @descripArtPro, @fechaUltimaActualizacionArtPro,@razonSocialProv)";
             //Indica los parametros
             comando.Parameters.Add(new SqlParameter("@codigoOriginalArt", SqlDbType.NVarChar));
             comando.Parameters["@codigoOriginalArt"].Value = pModArtProv.codigoOriginalArt;
-            comando.Parameters.Add(new SqlParameter("@codigoArProveedor", SqlDbType.NVarChar));
-            comando.Parameters["@codigoArProveedor"].Value = pModArtProv.codigoArProveedor;
-            comando.Parameters.Add(new SqlParameter("@stockMinimoArPro", SqlDbType.Int));
-            comando.Parameters["@stockMinimoArPro"].Value = pModArtProv.stockMinimoArPro;
-            comando.Parameters.Add(new SqlParameter("@stockActualArPro", SqlDbType.NVarChar));
-            comando.Parameters["@stockActualArPro"].Value = pModArtProv.stockActualArPro;
-            comando.Parameters.Add(new SqlParameter("@obsArPro", SqlDbType.NVarChar));
-            comando.Parameters["@obsArPro"].Value = pModArtProv.obsArPro;
-            comando.Parameters.Add(new SqlParameter("@descripArPro", SqlDbType.NVarChar));
-            comando.Parameters["@descripArPro"].Value = pModArtProv.descripArPro;
-            comando.Parameters.Add(new SqlParameter("@fechaUltimaActualizacionArPro", SqlDbType.DateTime));
-            comando.Parameters["@fechaUltimaActualizacionArPro"].Value = pModArtProv.fechaUltimaActualizacionArPro;
+            comando.Parameters.Add(new SqlParameter("@codigoArtProveedor", SqlDbType.NVarChar));
+            comando.Parameters["@codigoArtProveedor"].Value = pModArtProv.codigoArtProveedor;
+            comando.Parameters.Add(new SqlParameter("@stockMinimoArtPro", SqlDbType.Int));
+            comando.Parameters["@stockMinimoArtPro"].Value = pModArtProv.stockMinimoArtPro;
+            comando.Parameters.Add(new SqlParameter("@stockActualArtPro", SqlDbType.NVarChar));
+            comando.Parameters["@stockActualArtPro"].Value = pModArtProv.stockActualArtPro;
+            comando.Parameters.Add(new SqlParameter("@obsArtPro", SqlDbType.NVarChar));
+            comando.Parameters["@obsArtPro"].Value = pModArtProv.obsArtPro;
+            comando.Parameters.Add(new SqlParameter("@descripArtPro", SqlDbType.NVarChar));
+            comando.Parameters["@descripArtPro"].Value = pModArtProv.descripArtPro;
+            comando.Parameters.Add(new SqlParameter("@fechaUltimaActualizacionArtPro", SqlDbType.DateTime));
+            comando.Parameters["@fechaUltimaActualizacionArtPro"].Value = pModArtProv.fechaUltimaActualizacionArtPro;
             comando.Parameters.Add(new SqlParameter("@razonSocialProv", SqlDbType.NVarChar));
             comando.Parameters["@razonSocialProv"].Value = pModArtProv.razonSocialProv;
 
@@ -256,7 +256,7 @@ namespace Datos
         //Insertar un nuevo Articulo
         }
         
-        public string actualizarArticuloProveedor(ModeloArticuloProveedores modArtProv, string[] pModificar)//el parametro pModificar solo contiene el codigoOriginalArt[0] y codigoArProveedor[1] si es que fueron cambiados.
+        public string actualizarArticuloProveedor(ModeloArticuloProveedores modArtProv, string[] pModificar)//el parametro pModificar solo contiene el codigoOriginalArt[0] y codigoArtProveedor[1] si es que fueron cambiados.
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
@@ -268,7 +268,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "UPDATE [proyecto].[dbo].[art_prov] SET [codigoOriginalArt]=@codigoOriginalArtNew,[codigoArProveedor]=@codigoArProveedorNew,[stockMinimoArPro]=@stockMinimoArPro,[stockActualArPro]=@stockActualArPro,[obsArPro]=@obsArPro,[descripArPro]=@descripArPro,[fechaUltimaActualizacionArPro]=@fechaUltimaActualizacionArPro,[razonSocialProv]=@razonSocialProv WHERE ([art_prov].codigoOriginalArt=@codigoOriginalArtAnt AND [art_prov].codigoArProveedor=@codigoArProveedorAnt)";
+            comando.CommandText = "UPDATE [proyecto].[dbo].[art_prov] SET [codigoOriginalArt]=@codigoOriginalArtNew,[codigoArtProveedor]=@codigoArtProveedorNew,[stockMinimoArtPro]=@stockMinimoArtPro,[stockActualArtPro]=@stockActualArtPro,[obsArtPro]=@obsArtPro,[descripArtPro]=@descripArtPro,[fechaUltimaActualizacionArtPro]=@fechaUltimaActualizacionArtPro,[razonSocialProv]=@razonSocialProv WHERE ([art_prov].codigoOriginalArt=@codigoOriginalArtAnt AND [art_prov].codigoArtProveedor=@codigoArtProveedorAnt)";
 
             comando.Parameters.Add(new SqlParameter("@codigoOriginalAnt", SqlDbType.NVarChar));
             comando.Parameters["@codigoOriginalAnt"].Value = modArtProv.codigoOriginalArt;
@@ -276,26 +276,26 @@ namespace Datos
             comando.Parameters.Add(new SqlParameter("@codigoOriginalNew", SqlDbType.NVarChar));
             comando.Parameters["@codigoOriginalAnt"].Value = pModificar[0];
 
-            comando.Parameters.Add(new SqlParameter("@codigoArProveedorAnt", SqlDbType.NVarChar));
-            comando.Parameters["@codigoArProveedorAnt"].Value = modArtProv.codigoArProveedor;
+            comando.Parameters.Add(new SqlParameter("@codigoArtProveedorAnt", SqlDbType.NVarChar));
+            comando.Parameters["@codigoArtProveedorAnt"].Value = modArtProv.codigoArtProveedor;
 
-            comando.Parameters.Add(new SqlParameter("@codigoArProveedorNew", SqlDbType.NVarChar));
-            comando.Parameters["@codigoArProveedorNew"].Value = pModificar[1];
+            comando.Parameters.Add(new SqlParameter("@codigoArtProveedorNew", SqlDbType.NVarChar));
+            comando.Parameters["@codigoArtProveedorNew"].Value = pModificar[1];
 
-            comando.Parameters.Add(new SqlParameter("@stockMinimoArPro", SqlDbType.Int));
-            comando.Parameters["@stockMinimoArPro"].Value = modArtProv.stockMinimoArPro;
+            comando.Parameters.Add(new SqlParameter("@stockMinimoArtPro", SqlDbType.Int));
+            comando.Parameters["@stockMinimoArtPro"].Value = modArtProv.stockMinimoArtPro;
 
-            comando.Parameters.Add(new SqlParameter("@stockActualArPro", SqlDbType.Int));
-            comando.Parameters["@stockActualArPro"].Value = modArtProv.stockActualArPro;
+            comando.Parameters.Add(new SqlParameter("@stockActualArtPro", SqlDbType.Int));
+            comando.Parameters["@stockActualArtPro"].Value = modArtProv.stockActualArtPro;
 
-            comando.Parameters.Add(new SqlParameter("@obsArPro", SqlDbType.NVarChar));
-            comando.Parameters["@obsArPro"].Value = modArtProv.obsArPro;
+            comando.Parameters.Add(new SqlParameter("@obsArtPro", SqlDbType.NVarChar));
+            comando.Parameters["@obsArtPro"].Value = modArtProv.obsArtPro;
 
-            comando.Parameters.Add(new SqlParameter("@descripArPro", SqlDbType.NVarChar));
-            comando.Parameters["@descripArPro"].Value = modArtProv.descripArPro;
+            comando.Parameters.Add(new SqlParameter("@descripArtPro", SqlDbType.NVarChar));
+            comando.Parameters["@descripArtPro"].Value = modArtProv.descripArtPro;
 
-            comando.Parameters.Add(new SqlParameter("@fechaUltimaActualizacionArPro", SqlDbType.DateTime));
-            comando.Parameters["@fechaUltimaActualizacionArPro"].Value = modArtProv.fechaUltimaActualizacionArPro;
+            comando.Parameters.Add(new SqlParameter("@fechaUltimaActualizacionArtPro", SqlDbType.DateTime));
+            comando.Parameters["@fechaUltimaActualizacionArtPro"].Value = modArtProv.fechaUltimaActualizacionArtPro;
 
             comando.Parameters.Add(new SqlParameter("@razonSocialProv", SqlDbType.NVarChar));
             comando.Parameters["@razonSocialProv"].Value = modArtProv.razonSocialProv;
@@ -329,10 +329,10 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "DELETE FROM [proyecto].[dbo].[art_prov] WHERE ([art_prov].codigoArProveedor=@codigoArProveedor)";
+            comando.CommandText = "DELETE FROM [proyecto].[dbo].[art_prov] WHERE ([art_prov].codigoArtProveedor=@codigoArtProveedor)";
 
-            comando.Parameters.Add(new SqlParameter("@codigoArProveedor", SqlDbType.NVarChar));
-            comando.Parameters["@codigoArProveedor"].Value = pCodigoArtProv;
+            comando.Parameters.Add(new SqlParameter("@codigoArtProveedor", SqlDbType.NVarChar));
+            comando.Parameters["@codigoArtProveedor"].Value = pCodigoArtProv;
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
