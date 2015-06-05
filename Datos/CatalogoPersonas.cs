@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace Datos
 {
-    public class CatalogoPersonas
+    public class CatalogoPersonas : Catalogo
     {
         //Se considera cliente a aquellos con usuario y contraseña = "" 
         //y como usuario a aquellos que tengan completado el campo usuario y contraseña
@@ -31,6 +31,28 @@ namespace Datos
                 respuesta = true;
             }
             return respuesta;
+        }     
+
+        private ModeloPersonas leerDatosPersonas(SqlDataReader drPersonas)
+        {
+            ModeloPersonas modPer = new ModeloPersonas();
+
+            modPer.dni = (string)drPersonas["dni"];
+            //Si algún valor esta null en Base de datos, se asigna null en el objeto
+            //Caso contrario hay una string, y se asigna string
+            modPer.cuit = (drPersonas["cuit"] != DBNull.Value) ? (string)drPersonas["cuit"] : null;
+            modPer.nombre = (drPersonas["nombre"] != DBNull.Value) ? (string)drPersonas["nombre"] : null;
+            modPer.apellido = (drPersonas["apellido"] != DBNull.Value) ? (string)drPersonas["apellido"] : null;
+            modPer.direccion = (drPersonas["direccion"] != DBNull.Value) ? (string)drPersonas["direccion"] : null;
+            modPer.ciudad = (drPersonas["ciudad"] != DBNull.Value) ? (string)drPersonas["ciudad"] : null;
+            modPer.provincia = (drPersonas["provincia"] != DBNull.Value) ? (string)drPersonas["provincia"] : null;
+            modPer.codigoPostal = (drPersonas["codigoPostal"] != DBNull.Value) ? (string)drPersonas["codigoPostal"] : null;
+            modPer.observaciones = (drPersonas["observaciones"] != DBNull.Value) ? (string)drPersonas["observaciones"] : null;
+            modPer.razonSocialProv = (drPersonas["razonSocialProveedor"] != DBNull.Value) ? (string)drPersonas["razonSocialProveedor"] : null;
+            modPer.usuario = (drPersonas["usuario"] != DBNull.Value) ? (string)drPersonas["usuario"] : null;
+            modPer.contrasenia = (drPersonas["contrasenia"] != DBNull.Value) ? (string)drPersonas["contrasenia"] : null;
+
+            return modPer;
         }
 
         //Verificar que funcione metodo en switch
@@ -105,8 +127,8 @@ namespace Datos
             comando.CommandType = CommandType.Text;
             comando.CommandText =
                 "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia]," +
-                    "[codigoPostal],[observaciones],[usuario],[contrasenia],[razonSocialProv]" +
-                    " FROM [proyecto].[dbo].[personas] WHERE (nombre=@nombre " + tipoPersonaSQL + ")";
+                "[codigoPostal],[observaciones],[razonSocialProveedor], [usuario], [contrasenia] " +
+                " FROM [personas] WHERE (nombre=@nombre " + tipoPersonaSQL + ")";
 
             comando.Parameters.Add(new SqlParameter("@nombre", SqlDbType.VarChar));
             comando.Parameters["@nombre"].Value = nombre;
@@ -119,17 +141,8 @@ namespace Datos
             List<ModeloPersonas> pEncontradas = new List<ModeloPersonas>();
             while (drPersonas.Read())
             {
-                modPer.dni = (string)drPersonas["dni"];
-                modPer.cuit = (string)drPersonas["cuit"];
-                modPer.nombre = (string)drPersonas["nombre"];
-                modPer.apellido = (string)drPersonas["apellido"];
-                modPer.direccion = (string)drPersonas["direccion"];
-                modPer.ciudad = (string)drPersonas["ciudad"];
-                modPer.provincia = (string)drPersonas["provincia"];
-                modPer.codigoPostal = (string)drPersonas["codigoPostal"];
-                modPer.observaciones = (string)drPersonas["observaciones"];
-                modPer.usuario = (string)drPersonas["usuario"];
-                modPer.contrasenia = (string)drPersonas["contrasenia"];
+                modPer = this.leerDatosPersonas(drPersonas);
+
                 pEncontradas.Add(modPer);
             }
             drPersonas.Close();
@@ -149,10 +162,10 @@ namespace Datos
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
-            comando.CommandText = 
-                "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia],"+
-                    "[codigoPostal],[observaciones],[usuario],[contrasenia],[razonSocialProv]"+
-                    " FROM [proyecto].[dbo].[personas] WHERE (apellido=@apellido "+tipoPersonaSQL+")";
+            comando.CommandText =
+                "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia]," +
+                "[codigoPostal],[observaciones],[razonSocialProveedor], [usuario], [contrasenia] " +
+                " FROM [personas] WHERE (apellido=@apellido "+tipoPersonaSQL+")";
 
             comando.Parameters.Add(new SqlParameter("@apellido", SqlDbType.VarChar));
             comando.Parameters["@apellido"].Value = apellido;
@@ -161,21 +174,13 @@ namespace Datos
 
             SqlDataReader drPersonas = comando.ExecuteReader();
 
-            ModeloPersonas modPer = new ModeloPersonas();
+            ModeloPersonas modPer;
             List<ModeloPersonas> pEncontradas = new List<ModeloPersonas>();
             while (drPersonas.Read())
             {
-                modPer.dni = (string)drPersonas["dni"];
-                modPer.cuit = (string)drPersonas["cuit"];
-                modPer.nombre = (string)drPersonas["nombre"];
-                modPer.apellido = (string)drPersonas["apellido"];
-                modPer.direccion = (string)drPersonas["direccion"];
-                modPer.ciudad = (string)drPersonas["ciudad"];
-                modPer.provincia = (string)drPersonas["provincia"];
-                modPer.codigoPostal = (string)drPersonas["codigoPostal"];
-                modPer.observaciones = (string)drPersonas["observaciones"];
-                modPer.usuario = (string)drPersonas["usuario"];
-                modPer.contrasenia = (string)drPersonas["contrasenia"];
+                modPer = new ModeloPersonas();
+                modPer = this.leerDatosPersonas(drPersonas);
+
                 pEncontradas.Add(modPer);
             }
             drPersonas.Close();
@@ -196,10 +201,10 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = 
-                "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia],"+
-                "[codigoPostal],[observaciones],[usuario],[contrasenia],[razonSocialProv] "+
-                "FROM [proyecto].[dbo].[personas] WHERE ([usuario] = @usuario)";
+            comando.CommandText =
+                "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia]," +
+                "[codigoPostal],[observaciones],[razonSocialProveedor], [usuario], [contrasenia] " +
+                "FROM [personas] WHERE ([usuario] = @usuario)";
 
             comando.Parameters.Add(new SqlParameter("@usuario", SqlDbType.VarChar));
             comando.Parameters["@usuario"].Value = usuario;
@@ -208,21 +213,11 @@ namespace Datos
 
             SqlDataReader drPersonas = comando.ExecuteReader();
 
-            ModeloPersonas modPer = new ModeloPersonas();
+            ModeloPersonas modPer = new ModeloPersonas(); ;
 
             while (drPersonas.Read())
             {
-                modPer.dni = (string)drPersonas["dni"];
-                modPer.cuit = (string)drPersonas["cuit"];
-                modPer.nombre = (string)drPersonas["nombre"];
-                modPer.apellido = (string)drPersonas["apellido"];
-                modPer.direccion = (string)drPersonas["direccion"];
-                modPer.ciudad = (string)drPersonas["ciudad"];
-                modPer.provincia = (string)drPersonas["provincia"];
-                modPer.codigoPostal = (string)drPersonas["codigoPostal"];
-                modPer.observaciones = (string)drPersonas["observaciones"];
-                modPer.usuario = (string)drPersonas["usuario"];
-                modPer.contrasenia = (string)drPersonas["contrasenia"];
+                modPer = this.leerDatosPersonas(drPersonas);
             }
             drPersonas.Close();
 
@@ -233,6 +228,7 @@ namespace Datos
         
         public ModeloPersonas getOnePorDNI(string dni)
         {
+           
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -243,37 +239,28 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia],[codigoPostal],[observaciones],[usuario],[contrasenia],[razonSocialProv]FROM [proyecto].[dbo].[personas] WHERE ([usuario] IS NULL AND dni=@DNIper)";
+            comando.CommandText =
+                "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia]," +
+                "[codigoPostal],[observaciones],[razonSocialProveedor], [usuario], [contrasenia] " +
+                "FROM [Personas] WHERE ([usuario] IS NULL AND dni=@DNI)";
 
-            comando.Parameters.Add(new SqlParameter("@DNIper", SqlDbType.VarChar));
-            comando.Parameters["@DNIper"].Value = dni;
+            comando.Parameters.Add(new SqlParameter("@DNI", SqlDbType.VarChar));
+            comando.Parameters["@DNI"].Value = dni;
 
             comando.Connection.Open();
 
             SqlDataReader drPersonas = comando.ExecuteReader();
-
             ModeloPersonas modPer = new ModeloPersonas();
-
             while (drPersonas.Read())
             {
-                modPer.dni = (string)drPersonas["dni"];
-                modPer.cuit = (string)drPersonas["cuit"];
-                modPer.nombre = (string)drPersonas["nombre"];
-                modPer.apellido = (string)drPersonas["apellido"];
-                modPer.direccion = (string)drPersonas["direccion"];
-                modPer.ciudad = (string)drPersonas["ciudad"];
-                modPer.provincia = (string)drPersonas["provincia"];
-                modPer.codigoPostal = (string)drPersonas["codigoPostal"];
-                modPer.observaciones = (string)drPersonas["observaciones"];
-                modPer.usuario = (string)drPersonas["usuario"];
-                modPer.contrasenia = (string)drPersonas["contrasenia"];
+                modPer = this.leerDatosPersonas(drPersonas);
 
             }
             drPersonas.Close();
 
             comando.Connection.Close();
-
-            return modPer;
+           
+        return modPer;
         }
 
         public List<ModeloPersonas> getAll()
@@ -289,23 +276,18 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia],[codigoPostal],[observaciones] FROM [proyecto].[dbo].[personas] WHERE [usuario] IS NULL";
+            comando.CommandText = 
+                "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia],"+
+                "[codigoPostal],[observaciones],[razonSocialProveedor], [usuario], [contrasenia] "+
+                "FROM [personas] WHERE [usuario] IS NULL";
 
             comando.Connection.Open();
-
+            ModeloPersonas modPer;
             SqlDataReader drPersonas = comando.ExecuteReader();
             while (drPersonas.Read())
             {
-                ModeloPersonas modPer = new ModeloPersonas();
-                modPer.dni= (string)drPersonas["dni"];
-                modPer.cuit = (string)drPersonas["cuit"];
-                modPer.nombre = (string)drPersonas["nombre"];
-                modPer.apellido = (string)drPersonas["apellido"];
-                modPer.direccion = (string)drPersonas["direccion"];
-                modPer.ciudad = (string)drPersonas["ciudad"];
-                modPer.provincia = (string)drPersonas["provincia"];
-                modPer.codigoPostal = (string)drPersonas["codigoPostal"];
-                modPer.observaciones = (string)drPersonas["observaciones"];
+                modPer = new ModeloPersonas();
+                modPer = this.leerDatosPersonas(drPersonas);
                 allCli.Add(modPer);
             }
             drPersonas.Close();
@@ -317,8 +299,15 @@ namespace Datos
         }
 
         #region Alta/Baja/Modificación
-        
-        public void agregarNuevaEntidad(ModeloPersonas pModPer)
+        /*
+         * True si se realizó correctamente
+         * False si ocurrió algún error
+         */
+
+        public bool agregarNuevaEntidad(ModeloPersonas modPer)
+        {
+            //Se debería chequear antes para notificar al usuario la razón por la que no se podrá realizar la operación
+            if (!this.existeEntidad(modPer.dni))
             {
                 //Creo la conexion y la abro
                 SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -330,33 +319,49 @@ namespace Datos
 
                 comando.CommandType = CommandType.Text;
 
-                comando.CommandText = "INSERT INTO [Personas]([dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia],[codigoPostal],[observaciones]) VALUES (@dni, @cuit, @nombre, @apellido, @direccion, @ciudad, @provincia, @codigoPostal, @observaciones)";
+                comando.CommandText = 
+                    "INSERT INTO [Personas]([dni],[cuit],[nombre],[apellido],[direccion],"+
+                    "[ciudad],[provincia],[codigoPostal],[observaciones],[razonSocialProveedor],"+
+                    " [usuario], [contrasenia]) "+ 
+                    "VALUES (@dni, @cuit, @nombre, @apellido, @direccion, @ciudad, @provincia, "+
+                    "@codigoPostal, @observaciones, @razonSocialProveedor, @usuario, @contrasenia)";
                 //Indica los parametros
-                comando.Parameters.Add(new SqlParameter("@dni", SqlDbType.VarChar));
-                comando.Parameters["@dni"].Value = pModPer.dni;
-                comando.Parameters.Add(new SqlParameter("@cuit", SqlDbType.VarChar));
-                comando.Parameters["@cuit"].Value = pModPer.cuit;
-                comando.Parameters.Add(new SqlParameter("@nombre", SqlDbType.VarChar));
-                comando.Parameters["@nombre"].Value = pModPer.nombre;
-                comando.Parameters.Add(new SqlParameter("@apellido", SqlDbType.VarChar));
-                comando.Parameters["@apellido"].Value = pModPer.apellido;
-                comando.Parameters.Add(new SqlParameter("@direccion", SqlDbType.VarChar));
-                comando.Parameters["@direccion"].Value = pModPer.direccion;
-                comando.Parameters.Add(new SqlParameter("@ciudad", SqlDbType.VarChar));
-                comando.Parameters["@ciudad"].Value = pModPer.ciudad;
-                comando.Parameters.Add(new SqlParameter("@provincia", SqlDbType.VarChar));
-                comando.Parameters["@provincia"].Value = pModPer.provincia;
-                comando.Parameters.Add(new SqlParameter("@codigoPostal", SqlDbType.VarChar));
-                comando.Parameters["@codigoPostal"].Value = pModPer.codigoPostal;
-                comando.Parameters.Add(new SqlParameter("@observaciones", SqlDbType.VarChar));
-                comando.Parameters["@observaciones"].Value = pModPer.observaciones;
-              
-                comando.Connection.Open();
-                comando.ExecuteNonQuery();
-                comando.Connection.Close();
-            }
+                comando.Parameters.Add(this.instanciarParametro(modPer.dni, "@dni"));
+                comando.Parameters.Add(this.instanciarParametro(modPer.cuit, "@cuit"));
+                comando.Parameters.Add(this.instanciarParametro(modPer.nombre, "@nombre"));
+                comando.Parameters.Add(this.instanciarParametro(modPer.apellido, "@apellido"));
+                comando.Parameters.Add(this.instanciarParametro(modPer.direccion, "@direccion"));
+                comando.Parameters.Add(this.instanciarParametro(modPer.ciudad, "@ciudad"));
+                comando.Parameters.Add(this.instanciarParametro(modPer.provincia, "@provincia"));
+                comando.Parameters.Add(this.instanciarParametro(modPer.codigoPostal, "@codigoPostal"));
+                comando.Parameters.Add(this.instanciarParametro(modPer.observaciones, "@observaciones"));
+                comando.Parameters.Add(this.instanciarParametro(modPer.razonSocialProv, "@razonSocialProveedor"));
+                comando.Parameters.Add(this.instanciarParametro(modPer.usuario, "@usuario"));
+                comando.Parameters.Add(this.instanciarParametro(modPer.contrasenia, "@contrasenia"));
 
-        public string actualizarPersona(ModeloPersonas modPer, string[] pModificar)//el parametro pModificar solo contiene el numero de documento si es que es cambiado.
+                comando.Connection.Open();
+                int rowaffected = comando.ExecuteNonQuery();
+                comando.Connection.Close();
+
+                if (rowaffected != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /*No va a haber opción de cambiar DNI. Usuario tendrá
+         * que eliminar usuario anterior y crearlo de nuevo
+         */
+        public bool actualizarPersona(ModeloPersonas modPer)
         { 
          //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -368,55 +373,42 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "UPDATE [proyecto].[dbo].[personas] SET [dni]=@dniNew,[cuit]=@cuit,[nombre]=@nombre, [apellido]=@apellido,[direccion]=@direccion,[ciudad]=@ciudad, [provincia]=@provincia, [codigoPostal]=@codigoPostal,[observaciones]=@observaciones,[razonSocialProv]=@razonSocialProv WHERE [proveedores].dni=@dniAnt";
+            comando.CommandText = 
+                "UPDATE [Personas] SET [cuit]=@cuit,[nombre]=@nombre, [apellido]=@apellido,"+
+                "[direccion]=@direccion,[ciudad]=@ciudad, [provincia]=@provincia, [codigoPostal]=@codigoPostal,"+
+                "[observaciones]=@observaciones,[razonSocialProveedor]=@razonSocialProveedor,[usuario]=@usuario, [contrasenia]=@contrasenia "+
+                "WHERE [Personas].dni=@dni";
 
-            comando.Parameters.Add(new SqlParameter("@dniAnt", SqlDbType.VarChar));
-            comando.Parameters["@dniAnt"].Value = modPer.dni;
-
-            comando.Parameters.Add(new SqlParameter("@dniNew", SqlDbType.VarChar));
-            comando.Parameters["@dniNew"].Value = pModificar[0];
-
-            comando.Parameters.Add(new SqlParameter("@cuit", SqlDbType.VarChar));
-            comando.Parameters["@cuit"].Value = modPer.cuit;
-
-            comando.Parameters.Add(new SqlParameter("@nombre", SqlDbType.VarChar));
-            comando.Parameters["@nombre"].Value = modPer.nombre;
-
-            comando.Parameters.Add(new SqlParameter("@apellido", SqlDbType.VarChar));
-            comando.Parameters["@apellido"].Value = modPer.apellido;
-
-            comando.Parameters.Add(new SqlParameter("@direccion", SqlDbType.VarChar));
-            comando.Parameters["@direccion"].Value = modPer.direccion;
-
-            comando.Parameters.Add(new SqlParameter("@ciudad", SqlDbType.VarChar));
-            comando.Parameters["@ciudad"].Value = modPer.ciudad;
-
-            comando.Parameters.Add(new SqlParameter("@provincia", SqlDbType.VarChar));
-            comando.Parameters["@provincia"].Value = modPer.provincia;
-
-            comando.Parameters.Add(new SqlParameter("@codigoPostal", SqlDbType.VarChar));
-            comando.Parameters["@codigoPostal"].Value = modPer.codigoPostal;
-
-            comando.Parameters.Add(new SqlParameter("@observaciones", SqlDbType.VarChar));
-            comando.Parameters["@observaciones"].Value = modPer.observaciones;
-
+            comando.Parameters.Add(this.instanciarParametro(modPer.dni, "@dni"));
+            comando.Parameters.Add(this.instanciarParametro(modPer.cuit, "@cuit"));
+            comando.Parameters.Add(this.instanciarParametro(modPer.nombre, "@nombre"));
+            comando.Parameters.Add(this.instanciarParametro(modPer.apellido, "@apellido"));
+            comando.Parameters.Add(this.instanciarParametro(modPer.direccion, "@direccion"));
+            comando.Parameters.Add(this.instanciarParametro(modPer.ciudad, "@ciudad"));
+            comando.Parameters.Add(this.instanciarParametro(modPer.provincia, "@provincia"));
+            comando.Parameters.Add(this.instanciarParametro(modPer.codigoPostal, "@codigoPostal"));
+            comando.Parameters.Add(this.instanciarParametro(modPer.observaciones, "@observaciones"));
+            comando.Parameters.Add(this.instanciarParametro(modPer.razonSocialProv, "@razonSocialProveedor"));
+            comando.Parameters.Add(this.instanciarParametro(modPer.usuario, "@usuario"));
+            comando.Parameters.Add(this.instanciarParametro(modPer.contrasenia, "@contrasenia"));
+            
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();           
             comando.Connection.Close();
 
-            if (rowaffected == 0)
+            if (rowaffected != 0)
             {
-                return "Error en actualizar";
+                return true;
             }
             else
             {
-                return "Actualizacion finalizada";
+                return false;
             }
 
 
         }
 
-        public string bajaPersona(string pDni)
+        public bool bajaPersona(string pDni)
         {
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -427,7 +419,8 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "DELETE FROM [proyecto].[dbo].[personas] WHERE [personas].dni=@dni";
+            comando.CommandText = 
+                "DELETE FROM [Personas] WHERE [Personas].dni=@dni";
 
             comando.Parameters.Add(new SqlParameter("@dni", SqlDbType.VarChar));
             comando.Parameters["@dni"].Value = pDni;
@@ -436,13 +429,13 @@ namespace Datos
             int rowaffected = comando.ExecuteNonQuery();
             comando.Connection.Close();
 
-            if (rowaffected == 0)
+            if (rowaffected != 0)
             {
-                return "Operacion Cancelada";
+                return true;
             }
             else
             {
-                return "Cliente dado de baja";
+                return false;
             }
         }
         #endregion
@@ -483,13 +476,12 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [rol.codRol],[rol.descripRol] FROM [proyecto].[dbo].[rol] JOIN" +
-                " [proyecto].[dbo].[rol_pers] ON [rol.codRol] = [rol_pers] JOIN"+
-                " [proyecto].[dbo].[personas] ON [personas.dni] = [rol_pers.dni]" +
-                "WHERE ([personas.dni] =@DNIper)";
+            comando.CommandText = "SELECT [rol.codigo],[rol.descripcion] FROM [rol] JOIN" +
+                " [rol_personas] ON [rol.codigo] = [rol_personas.codigo] "+
+                "WHERE ([rol_personas.dniPersona] = @DNI)";
 
-            comando.Parameters.Add(new SqlParameter("@DNIper", SqlDbType.VarChar));
-            comando.Parameters["@DNIper"].Value = dniUsuario;
+            comando.Parameters.Add(new SqlParameter("@DNI", SqlDbType.VarChar));
+            comando.Parameters["@DNI"].Value = dniUsuario;
 
             comando.Connection.Open();
 
@@ -499,8 +491,8 @@ namespace Datos
 
             while (drRoles.Read())
             {
-                modRol.codigo =(int)drRoles["codRol"];
-                modRol.descripcion =(string)drRoles["descripRol"];
+                modRol.codigo =(int)drRoles["codigo"];
+                modRol.descripcion =(string)drRoles["descripcion"];
                 roles.Add(modRol);
             }
             drRoles.Close();

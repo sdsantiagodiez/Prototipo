@@ -8,11 +8,18 @@ namespace Datos
 {
     public class Conexion
     {
-        static string connectionString = "Data Source=; Persist Security Info=True;";
+    
+        static string connectionString = "";
+        public Conexion()
+        {
+           
+        }
         
-
         public static SqlConnection crearConexion()
         {
+            string startupPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            startupPath = startupPath + @"\Datos\DBPrueba.mdf";
+            connectionString = @"Data Source=(localDB)\v11.0;AttachDbFilename="+startupPath+";Initial Catalog=DBPrueba;Integrated Security=True";
             SqlConnection Conexion;
             try
             {
@@ -24,7 +31,6 @@ namespace Datos
             {
                 Conexion = null;
             }
-
         }
 
 
