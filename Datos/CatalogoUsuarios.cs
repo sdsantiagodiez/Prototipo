@@ -17,7 +17,7 @@ namespace Datos
             if (!respuesta)
             {
                 ModeloPersonas mp = getOnePorUsuario(usuario);
-                if(object.Equals(mp.usuarioPers,usuario))
+                if(object.Equals(mp.usuario,usuario))
                 {
                     respuesta = true;
                 }

@@ -18,7 +18,7 @@ namespace Controlador
         {
             CatalogoPersonas ctlgPersonas = new CatalogoPersonas();
             List<ModeloPersonas> usuarios = ctlgPersonas.buscarPersona("usuario", "usuario", usu);
-            if (object.Equals(usuarios[0].contraseniaPers, con.Trim().ToLower()))
+            if (object.Equals(usuarios[0].contrasenia, con.Trim().ToLower()))
             {
                 return usuarios[0];
             }
@@ -32,7 +32,7 @@ namespace Controlador
         public List<ModeloRoles> getRoles(ModeloPersonas usuario)
         {
             CatalogoPersonas ctlgPersonas = new CatalogoPersonas();
-            return ctlgPersonas.getRoles(usuario.dniPers);
+            return ctlgPersonas.getRoles(usuario.dni);
         }
     }
 }

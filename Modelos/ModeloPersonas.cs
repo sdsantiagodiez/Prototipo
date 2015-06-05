@@ -9,65 +9,65 @@ namespace Modelos
     public class ModeloPersonas
     {
         #region Getters/Setters
-        string _dniPers;
-        public string dniPers 
+        string _dni;
+        public string dni 
         {
-            get{return _dniPers;}
-            set{this._dniPers = value;} 
+            get{return _dni;}
+            set{this._dni = value;} 
         }
-        string _cuitPers;
-        public string cuitPers
+        string _cuit;
+        public string cuit
         {
-            get { return _cuitPers; }
-            set { this._cuitPers = value; }
+            get { return _cuit; }
+            set { this._cuit = value; }
         }
-        string _nombrePres;
-        public string nombrePres
+        string _nombre;
+        public string nombre
         {
-            get { return _nombrePres; }
-            set { this._nombrePres = value; }
+            get { return _nombre; }
+            set { this._nombre = value; }
         }
-        string _apellidoPers;
-        public string apellidoPers
+        string _apellido;
+        public string apellido
         {
-            get { return _apellidoPers; }
-            set { this._apellidoPers = value; }
+            get { return _apellido; }
+            set { this._apellido = value; }
         }
-        string _ciudadPers;
-        public string ciudadPers
+        string _ciudad;
+        public string ciudad
         {
-            get { return _ciudadPers; }
-            set { this._ciudadPers = value; }
+            get { return _ciudad; }
+            set { this._ciudad = value; }
         }
-        string _provinciaPers;
-        public string provinciaPers
+        string _provincia;
+        public string provincia
         {
-            get { return _provinciaPers; }
-            set { this._provinciaPers = value; }
+            get { return _provincia; }
+            set { this._provincia = value; }
         }
-        string _codigoPostalPers;
-        public string codigoPostalPers
+        string _codigoPostal;
+        public string codigoPostal
         {
-            get { return _codigoPostalPers; }
-            set { this._codigoPostalPers = value; }
+            get { return _codigoPostal; }
+            set { this._codigoPostal = value; }
         }
-        string _obsPers;
-        public string obsPers
+        string _observaciones;
+        public string observaciones
         {
-            get { return _obsPers; }
-            set { this._obsPers = value; }
+            get { return _observaciones; }
+            set { this._observaciones = value; }
         }
-        string _usuarioPers;
-        public string usuarioPers
+        string _usuario;
+        public string usuario
         {
-            get { return _usuarioPers; }
-            set { this._usuarioPers = value; }
+            get { return _usuario; }
+            set { this._usuario = value; }
         }
-        string _contraseniaPers;
-        public string contraseniaPers
+        string _contrasenia;
+        public string contrasenia
         {
-            get { return _contraseniaPers; }
-            set { this._contraseniaPers = value; }
+            get { return _contrasenia; }
+            set { this._contrasenia = value; }
         }
         string _razonSocialProv;
         public string razonSocialProv
@@ -75,11 +75,11 @@ namespace Modelos
             get { return _razonSocialProv; }
             set { this._razonSocialProv = value; }
         }
-        string _direccPers;
-        public string direccPers
+        string _direccion;
+        public string direccion
         {
-            get { return _direccPers; }
-            set { this._direccPers = value; }
+            get { return _direccion; }
+            set { this._direccion = value; }
         }
         #endregion
     }
