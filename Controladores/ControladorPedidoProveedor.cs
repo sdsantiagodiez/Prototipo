@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Datos;
 using Modelos;
 
-namespace Controlador
+namespace Controladores
 {
-    public class ControladorPedidoProveedor:Controlador
+    public class ControladorPedidoProveedor: Controlador
     {
 
         CatalogoArticuloProveedores cap = new CatalogoArticuloProveedores();

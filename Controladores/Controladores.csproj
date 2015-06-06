@@ -7,8 +7,8 @@
     <ProjectGuid>{92ACA64E-00EE-448F-988F-F1041AC5F3CF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Controlador</RootNamespace>
-    <AssemblyName>Controlador</AssemblyName>
+    <RootNamespace>Controladores</RootNamespace>
+    <AssemblyName>Controladores</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -7,7 +7,7 @@ using Datos;
 using Modelos;
 
 
-namespace Controlador
+namespace Controladores
 {
     public class ControladorAlta : Controlador
     {

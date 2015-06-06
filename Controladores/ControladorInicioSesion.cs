@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Datos;
 using Modelos;
 
-namespace Controlador
+namespace Controladores
 {
-    public class ControladorInicioSesion
+    public class ControladorInicioSesion 
     {
         /// <summary>
         /// Busca y retorna usuario que coincide con los parametros enviados
