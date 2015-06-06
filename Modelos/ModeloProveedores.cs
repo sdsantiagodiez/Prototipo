@@ -9,53 +9,53 @@ namespace Modelos
    public class ModeloProveedores
    {
        #region Getters/Setters
-       string _razonSocialProv;
-        public string razonSocialProv
+       string _razonSocial;
+        public string razonSocial
         {
-            get { return _razonSocialProv; }
-            set { this._razonSocialProv = value; }
+            get { return _razonSocial; }
+            set { this._razonSocial = value; }
         }
 
-        string _cuitProv;
-        public string cuitProv
+        string _cuit;
+        public string cuit
         {
-            get { return _cuitProv; }
-            set { _cuitProv = value; }
+            get { return _cuit; }
+            set { _cuit = value; }
         }
        
-        string _direccionProv;
-        public string direccionProv
+        string _direccion;
+        public string direccion
         {
-            get { return _direccionProv; }
-            set { _direccionProv = value; }
+            get { return _direccion; }
+            set { _direccion = value; }
         }
        
-        string _ciudadProv;
-        public string ciudadProv
+        string _ciudad;
+        public string ciudad
         {
-            get { return _ciudadProv; }
-            set { _ciudadProv = value; }
+            get { return _ciudad; }
+            set { _ciudad = value; }
         }
 
-        string _provinciaProv;
-        public string provinciaProv
+        string _provincia;
+        public string provincia
         {
-            get { return _provinciaProv; }
-            set { _provinciaProv = value; }
+            get { return _provincia; }
+            set { _provincia = value; }
         }
 
-        string _codigoPostalProv;
-        public string codigoPostalProv
+        string _codigoPostal;
+        public string codigoPostal
         {
-            get { return _codigoPostalProv; }
-            set { _codigoPostalProv = value; }
+            get { return _codigoPostal; }
+            set { _codigoPostal = value; }
         }
        
-        string _obsProv;
-        public string obsProv
+        string _observaciones;
+        public string observaciones
         {
-            get { return _obsProv; }
-            set { _obsProv = value; }
+            get { return _observaciones; }
+            set { _observaciones = value; }
         }
        #endregion
    }

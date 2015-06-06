@@ -11,6 +11,7 @@ namespace Datos
 {
     public class Catalogo
     {
+        #region Instanciar parametro SQL
         //Quizás se podrían concentrar en un sólo método para todos los tipos de datos
         public SqlParameter instanciarParametro(string atributo, string nombreAtributo)
         {
@@ -59,5 +60,8 @@ namespace Datos
             }
             return parametro;
         }
+        #endregion
+
+
     }
 }

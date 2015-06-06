@@ -23,10 +23,8 @@ namespace Datos
 
         public bool existeEntidad(string dni)
         {
-            // Se crea la variable a retornar
             bool respuesta = false;
-            ModeloPersonas mp = getOnePorDNI(dni);
-            if (object.Equals(mp.dni, dni))
+            if (getOnePorDNI(dni) != null)
             {
                 respuesta = true;
             }
@@ -191,6 +189,7 @@ namespace Datos
 
         public ModeloPersonas getOnePorUsuario(string usuario)
         {
+            ModeloPersonas modPer = null;
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -213,10 +212,9 @@ namespace Datos
 
             SqlDataReader drPersonas = comando.ExecuteReader();
 
-            ModeloPersonas modPer = new ModeloPersonas(); ;
-
             while (drPersonas.Read())
             {
+                modPer = new ModeloPersonas();
                 modPer = this.leerDatosPersonas(drPersonas);
             }
             drPersonas.Close();
@@ -228,7 +226,8 @@ namespace Datos
         
         public ModeloPersonas getOnePorDNI(string dni)
         {
-           
+
+            ModeloPersonas modPer = null;
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -250,17 +249,17 @@ namespace Datos
             comando.Connection.Open();
 
             SqlDataReader drPersonas = comando.ExecuteReader();
-            ModeloPersonas modPer = new ModeloPersonas();
+            
             while (drPersonas.Read())
             {
+                modPer = new ModeloPersonas();
                 modPer = this.leerDatosPersonas(drPersonas);
 
             }
             drPersonas.Close();
-
             comando.Connection.Close();
            
-        return modPer;
+            return modPer;
         }
 
         public List<ModeloPersonas> getAll()

@@ -33,7 +33,7 @@ namespace Vista
             this.setPersona(ctrlSesion.buscarUsuario(usuario, contrasenia));
 
            
-            if (!object.Equals(_persona.dniPers,  null))
+            if (!object.Equals(_persona.dni,  null))
             {
                 //busco y guardo los roles del usuario
                 this.setRoles(ctrlSesion.getRoles(_persona));

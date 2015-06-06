@@ -65,7 +65,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [proyecto].[dbo].[articulos] WHERE codigoOriginalArt = @codigoOriginal";
+            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [articulos] WHERE codigoOriginalArt = @codigoOriginal";
 
             comando.Parameters.Add(new SqlParameter("@Parametro", SqlDbType.NVarChar));
 
@@ -103,7 +103,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [proyecto].[dbo].[articulos] WHERE descripArt LIKE @descripcion";
+            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [articulos] WHERE descripArt LIKE @descripcion";
 
             comando.Parameters.Add(new SqlParameter("@Parametro", SqlDbType.NVarChar));
 
@@ -144,7 +144,7 @@ namespace Datos
 
             comando.CommandType= CommandType.Text;
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [proyecto].[dbo].[articulos]";
+            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [articulos]";
 
             comando.Connection.Open();
 
@@ -178,7 +178,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [proyecto].[dbo].[articulos] WHERE codigoOriginalArt = @codigoOriginal";
+            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [articulos] WHERE codigoOriginalArt = @codigoOriginal";
 
             comando.Parameters.Add(new SqlParameter("@codigoOriginal", SqlDbType.NVarChar));
 
@@ -216,7 +216,7 @@ namespace Datos
 
             comando.CommandType= CommandType.Text;
 
-            comando.CommandText = "INSERT INTO [proyecto].[dbo].[articulos]([descripArt],[modelosArt],[obsArt])VALUES (@descripArt, @modelosArt, @obsArt)";
+            comando.CommandText = "INSERT INTO [articulos]([descripArt],[modelosArt],[obsArt])VALUES (@descripArt, @modelosArt, @obsArt)";
             //Indica los parametros
             comando.Parameters.Add(new SqlParameter("@descripArt", SqlDbType.NVarChar));
             comando.Parameters["@descripArt"].Value = pModArt.descripArt;
@@ -243,7 +243,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "UPDATE [proyecto].[dbo].[articulos] SET [codigoOriginalArt]=@codigoOriginalArtNew, [descripArt]=@descripArt,[modelosArt]=@modelosArt,[obsArt]=@obsArt WHERE [articulos].codigoOriginalArt=@codigoOriginalArtAnt";
+            comando.CommandText = "UPDATE [articulos] SET [codigoOriginalArt]=@codigoOriginalArtNew, [descripArt]=@descripArt,[modelosArt]=@modelosArt,[obsArt]=@obsArt WHERE [articulos].codigoOriginalArt=@codigoOriginalArtAnt";
 
             comando.Parameters.Add(new SqlParameter("@codigoOriginalAnt", SqlDbType.NVarChar));
             comando.Parameters["@codigoOriginalAnt"].Value = modArt.codigoOriginalArt;
@@ -287,7 +287,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "DELETE FROM [proyecto].[dbo].[articulos] WHERE [articulos].codigoOriginalArt=@codigoOriginalArt";
+            comando.CommandText = "DELETE FROM [articulos] WHERE [articulos].codigoOriginalArt=@codigoOriginalArt";
 
             comando.Parameters.Add(new SqlParameter("@codigoOriginalArt", SqlDbType.NVarChar));
             comando.Parameters["@codigoOriginalArt"].Value = pCodigoOriginal;

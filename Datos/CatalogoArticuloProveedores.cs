@@ -69,7 +69,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArtProveedor],[stockMinimoArtPro],[stockActualArtPro],[obsArtPro],[descripArtPro],[fechaUltimaActualizacionArtPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov] WHERE descripArtPro like @descrip + '%'";
+            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArtProveedor],[stockMinimoArtPro],[stockActualArtPro],[obsArtPro],[descripArtPro],[fechaUltimaActualizacionArtPro],[razonSocialProv]FROM [art_prov] WHERE descripArtPro like @descrip + '%'";
 
             comando.Parameters.Add(new SqlParameter("@descrip", SqlDbType.NVarChar));
             comando.Parameters["@descrip"].Value = pDescrip;
@@ -111,7 +111,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArtProveedor],[stockMinimoArtPro],[stockActualArtPro],[obsArtPro],[descripArtPro],[fechaUltimaActualizacionArtPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov] WHERE codigoOriginalArt = @codOriginal";
+            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArtProveedor],[stockMinimoArtPro],[stockActualArtPro],[obsArtPro],[descripArtPro],[fechaUltimaActualizacionArtPro],[razonSocialProv]FROM [art_prov] WHERE codigoOriginalArt = @codOriginal";
 
             comando.Parameters.Add(new SqlParameter("@codOriginal", SqlDbType.NVarChar));
             comando.Parameters["@codOriginal"].Value = pCodigoOriginal;
@@ -153,7 +153,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArtProveedor],[stockMinimoArtPro],[stockActualArtPro],[obsArtPro],[descripArtPro],[fechaUltimaActualizacionArtPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov] WHERE codigoArtProveedor = @codArticuloProveedor";
+            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArtProveedor],[stockMinimoArtPro],[stockActualArtPro],[obsArtPro],[descripArtPro],[fechaUltimaActualizacionArtPro],[razonSocialProv]FROM [art_prov] WHERE codigoArtProveedor = @codArticuloProveedor";
 
             comando.Parameters.Add(new SqlParameter("@codArticuloProveedor", SqlDbType.NVarChar));
             comando.Parameters["@codArticuloProveedor"].Value = pCodigoArticuloProveedor;
@@ -194,7 +194,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArtProveedor],[stockMinimoArtPro],[stockActualArtPro],[obsArtPro],[descripArtPro],[fechaUltimaActualizacionArtPro],[razonSocialProv]FROM [proyecto].[dbo].[art_prov]";
+            comando.CommandText = "SELECT [codigoOriginalArt],[codigoArtProveedor],[stockMinimoArtPro],[stockActualArtPro],[obsArtPro],[descripArtPro],[fechaUltimaActualizacionArtPro],[razonSocialProv]FROM [art_prov]";
 
             comando.Connection.Open();
 
@@ -231,7 +231,7 @@ namespace Datos
 
             comando.CommandType= CommandType.Text;
 
-            comando.CommandText = "INSERT INTO [proyecto].[dbo].[art_prov]([codigoOriginalArt],[codigoArtProveedor],[stockMinimoArtPro],[stockActualArtPro],[obsArtPro],[descripArtPro],[fechaUltimaActualizacionArtPro],[razonSocialProv])VALUES (@codigoOriginalArt, @codigoArtProveedor, @stockMinimoArtPro, @stockActualArtPro, @obsArtPro, @descripArtPro, @fechaUltimaActualizacionArtPro,@razonSocialProv)";
+            comando.CommandText = "INSERT INTO [art_prov]([codigoOriginalArt],[codigoArtProveedor],[stockMinimoArtPro],[stockActualArtPro],[obsArtPro],[descripArtPro],[fechaUltimaActualizacionArtPro],[razonSocialProv])VALUES (@codigoOriginalArt, @codigoArtProveedor, @stockMinimoArtPro, @stockActualArtPro, @obsArtPro, @descripArtPro, @fechaUltimaActualizacionArtPro,@razonSocialProv)";
             //Indica los parametros
             comando.Parameters.Add(new SqlParameter("@codigoOriginalArt", SqlDbType.NVarChar));
             comando.Parameters["@codigoOriginalArt"].Value = pModArtProv.codigoOriginalArt;
@@ -268,7 +268,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "UPDATE [proyecto].[dbo].[art_prov] SET [codigoOriginalArt]=@codigoOriginalArtNew,[codigoArtProveedor]=@codigoArtProveedorNew,[stockMinimoArtPro]=@stockMinimoArtPro,[stockActualArtPro]=@stockActualArtPro,[obsArtPro]=@obsArtPro,[descripArtPro]=@descripArtPro,[fechaUltimaActualizacionArtPro]=@fechaUltimaActualizacionArtPro,[razonSocialProv]=@razonSocialProv WHERE ([art_prov].codigoOriginalArt=@codigoOriginalArtAnt AND [art_prov].codigoArtProveedor=@codigoArtProveedorAnt)";
+            comando.CommandText = "UPDATE [art_prov] SET [codigoOriginalArt]=@codigoOriginalArtNew,[codigoArtProveedor]=@codigoArtProveedorNew,[stockMinimoArtPro]=@stockMinimoArtPro,[stockActualArtPro]=@stockActualArtPro,[obsArtPro]=@obsArtPro,[descripArtPro]=@descripArtPro,[fechaUltimaActualizacionArtPro]=@fechaUltimaActualizacionArtPro,[razonSocialProv]=@razonSocialProv WHERE ([art_prov].codigoOriginalArt=@codigoOriginalArtAnt AND [art_prov].codigoArtProveedor=@codigoArtProveedorAnt)";
 
             comando.Parameters.Add(new SqlParameter("@codigoOriginalAnt", SqlDbType.NVarChar));
             comando.Parameters["@codigoOriginalAnt"].Value = modArtProv.codigoOriginalArt;
@@ -329,7 +329,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "DELETE FROM [proyecto].[dbo].[art_prov] WHERE ([art_prov].codigoArtProveedor=@codigoArtProveedor)";
+            comando.CommandText = "DELETE FROM [art_prov] WHERE ([art_prov].codigoArtProveedor=@codigoArtProveedor)";
 
             comando.Parameters.Add(new SqlParameter("@codigoArtProveedor", SqlDbType.NVarChar));
             comando.Parameters["@codigoArtProveedor"].Value = pCodigoArtProv;

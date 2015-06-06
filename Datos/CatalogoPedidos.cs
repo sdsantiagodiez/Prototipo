@@ -23,7 +23,7 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT MAX(nroPedido) FROM [proyecto].[dbo].[pedidos]";
+            comando.CommandText = "SELECT MAX(nroPedido) FROM [pedidos]";
 
             comando.Connection.Open();
 
