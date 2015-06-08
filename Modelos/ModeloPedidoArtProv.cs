@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
-    public class ModeloPedidoArtProv
+    public class ModeloPedido
     {
         #region Getters/Setters
         int _nroPedido;
@@ -23,7 +23,7 @@ namespace Modelos
         }
         #endregion
 
-        public ModeloPedidoArtProv()
+        public ModeloPedido()
         {
             _lineasPedido = new List<ModeloLineaPedido>();
         }
@@ -76,14 +76,22 @@ namespace Modelos
             {
                 this._lineasPedido.Add(pLineaPedido);
             }
-            
             return respuesta;
         }
-        public bool bajaLinea(ModeloLineaPedido pLinea)
+        public bool bajarLinea(ModeloLineaPedido pLinea)
         {
-            return _lineasPedido.Remove(pLinea);
+            bool respuesta = false;
+            foreach(ModeloLineaPedido mLP in _lineasPedido)
+            {
+                if (string.Equals(mLP.codigoArtProveedor,pLinea.codigoArtProveedor))
+                {
+                    _lineasPedido.Remove(mLP);
+                    respuesta = true;
+                }
+            }
+            return respuesta;
         }  
-        public bool actualizaLinea(ModeloLineaPedido pLinea)
+        public bool actualizarLinea(ModeloLineaPedido pLinea)
         {
             /*TEMPORAL: puse que se busque la linea en vez de sacarla porque como la linea viene modificada por la actualización quizas no la detecte al no ser igual (no estoy seguro)*/
             bool respuesta = true;

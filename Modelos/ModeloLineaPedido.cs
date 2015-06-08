@@ -46,11 +46,11 @@ namespace Modelos
 
         public ModeloLineaPedido(ModeloArticuloProveedores pModArtProv, int pCantidad)
         {
-            this.codigoArtProveedor = pModArtProv.codigoArtProveedor;
-            this.codigoOriginalArt = pModArtProv.codigoOriginalArt;
+            this.codigoArtProveedor = pModArtProv.codigoArticuloProveedor;
+            this.codigoOriginalArt = pModArtProv.codigoOriginal;
             this.cantidadArticulos = pCantidad;
             //Sólo considera que la linea sea de venta de artículo y no para una compra a proveedor
-            this.valorUnitario = pModArtProv.valorVentaArticuloProveedor.valorArticulo;
+            this.valorUnitario = pModArtProv.valorVenta.valorArticulo;
             //Recordar que se pueden aplicar descuentos
             this.valorParcial = this.cantidadArticulos * this.valorUnitario;
         }

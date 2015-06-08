@@ -9,29 +9,29 @@ namespace Modelos
    public class ModeloArticulos
    {
        #region Getters/Setters
-       string _codigoOriginalArt;
-       public string codigoOriginalArt 
+       string _codigoOriginal;
+       public string codigoOriginal 
        {
-           get { return _codigoOriginalArt; }
-           set { this._codigoOriginalArt = value; }
+           get { return _codigoOriginal; }
+           set { this._codigoOriginal = value; }
        }
-       string _descripArt;
-       public string descripArt
+       string _descripcion;
+       public string descripcion
        {
-           get { return _descripArt; }
-           set { this._descripArt = value; }
+           get { return _descripcion; }
+           set { this._descripcion = value; }
        }
-       string _modelosArt;
-       public string modelosArt 
+       string _modelos;
+       public string modelos 
        {
-           get { return _modelosArt; }
-           set { this._modelosArt = value; }
+           get { return _modelos; }
+           set { this._modelos = value; }
        }
-       string _obsArt;
-       public string obsArt
+       string _observaciones;
+       public string observaciones
        {
-           get { return _obsArt; }
-           set { this._obsArt = value; }
+           get { return _observaciones; }
+           set { this._observaciones = value; }
        }
        #endregion
    }

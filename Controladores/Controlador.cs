@@ -36,7 +36,7 @@ namespace Controladores
                     aEncontrados = ca.buscarArticulo("descripcion", parametro);
                     foreach(ModeloArticulos ma in aEncontrados)
                     {
-                        apEncontrados.AddRange(cap.buscarArticuloProveedor("codigoOriginal",ma.codigoOriginalArt));
+                        apEncontrados.AddRange(cap.buscarArticuloProveedor("codigoOriginal",ma.codigoOriginal));
                     }
                 }
             }

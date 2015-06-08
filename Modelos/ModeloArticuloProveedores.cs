@@ -9,24 +9,24 @@ namespace Modelos
     public class ModeloArticuloProveedores
     {
         #region Getters/Setters
-        string _codigoOriginalArt;
-        public string codigoOriginalArt 
+        string _codigoOriginal;
+        public string codigoOriginal 
         {
-            get {return _codigoOriginalArt;} 
-            set {this._codigoOriginalArt = value;} 
+            get {return _codigoOriginal;} 
+            set {this._codigoOriginal = value;} 
         }
-        string _codigoArtProveedor;
-        public string codigoArtProveedor
+        string _codigoArticuloProveedor;
+        public string codigoArticuloProveedor
         {
-            get { return _codigoArtProveedor; }
-            set { this._codigoArtProveedor = value; }
+            get { return _codigoArticuloProveedor; }
+            set { this._codigoArticuloProveedor = value; }
         }
 
-        ModeloValorArticulo _valorVentaArticuloProveedor;
-        public ModeloValorArticulo valorVentaArticuloProveedor
+        ModeloValorArticulo _valorVenta;
+        public ModeloValorArticulo valorVenta
         {
-            get { return _valorVentaArticuloProveedor; }
-            set { this._valorVentaArticuloProveedor = value; }
+            get { return _valorVenta; }
+            set { this._valorVenta = value; }
         }
         ModeloValorArticulo _valorCompraArticuloProveedor;
         public ModeloValorArticulo valorCompraArticuloProveedor
@@ -34,46 +34,49 @@ namespace Modelos
             get { return _valorCompraArticuloProveedor; }
             set { this._valorCompraArticuloProveedor = value; }
         }
-
-        int _stockMinimoArtPro;
-        public int stockMinimoArtPro
+        
+        //int nullable en caso de que este definido NULL en la base de datos
+        int? _stockMinimo;
+        public int? stockMinimo
         {
-            get { return _stockMinimoArtPro; }
-            set { this._stockMinimoArtPro = value; }
+            get { return _stockMinimo; }
+            set { this._stockMinimo = value; }
         }
-        int _stockActualArtPro;
-        public int stockActualArtPro
+        //int nullable en caso de que este definido NULL en la base de datos
+        int? _stockActual;
+        public int? stockActual
         {
-            get { return _stockActualArtPro; }
+            get { return _stockActual; }
             set 
             { 
-                this._stockActualArtPro = value;
-                this.fechaUltimaActualizacionArtPro = DateTime.Today;
+                this._stockActual = value;
+                this.fechaActualizacion = DateTime.Today;
             }
         }
-        string _obsArtPro;
-        public string obsArtPro
+        string _observaciones;
+        public string observaciones
         {
-            get { return _obsArtPro; }
-            set { this._obsArtPro = value; }
+            get { return _observaciones; }
+            set { this._observaciones = value; }
         }
-        DateTime _fechaUltimaActualizacionArtPro;
-        public DateTime fechaUltimaActualizacionArtPro
+        //DateTime nullable en caso de que este definido NULL en la base de datos
+        DateTime? _fechaActualizacion;
+        public DateTime? fechaActualizacion
         {
-            get { return _fechaUltimaActualizacionArtPro; }
-            set { this._fechaUltimaActualizacionArtPro = value; }
+            get { return _fechaActualizacion; }
+            set { this._fechaActualizacion = value; }
         }
-        string _razonSocialProv;
-        public string razonSocialProv
+        string _razonSocialProveedor;
+        public string razonSocialProveedor
         {
-            get { return _razonSocialProv; }
-            set { this._razonSocialProv = value; }
+            get { return _razonSocialProveedor; }
+            set { this._razonSocialProveedor = value; }
         }
-        string _descripArtPro;
-        public string descripArtPro
+        string _descripcion;
+        public string descripcion
         {
-            get { return _descripArtPro; }
-            set { this._descripArtPro = value; }
+            get { return _descripcion; }
+            set { this._descripcion = value; }
         }
         #endregion
     }

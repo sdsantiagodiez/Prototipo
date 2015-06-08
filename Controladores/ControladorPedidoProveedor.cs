@@ -13,7 +13,7 @@ namespace Controladores
 
         CatalogoArticuloProveedores cap = new CatalogoArticuloProveedores();
 
-        ModeloPedidoArtProv pActual = new ModeloPedidoArtProv();
+        ModeloPedido pActual = new ModeloPedido();
         public string agregarArticulo(string ptipoCodigo, string pcodArtProv, int pcantidad)
         {
             
@@ -39,7 +39,7 @@ namespace Controladores
 
             foreach (ModeloArticuloProveedores ModArtProv in apActuales)
             {
-                string[] artipro = { ModArtProv.codigoOriginalArt, ModArtProv.codigoArtProveedor,ModArtProv.descripArtPro, ModArtProv.stockActualArtPro.ToString(), ModArtProv.stockMinimoArtPro.ToString(), ModArtProv.fechaUltimaActualizacionArtPro.ToShortDateString()};
+                string[] artipro = { ModArtProv.codigoOriginal, ModArtProv.codigoArticuloProveedor,ModArtProv.descripcion, ModArtProv.stockActual.ToString(), ModArtProv.stockMinimo.ToString(), Convert.ToDateTime(ModArtProv.fechaActualizacion).ToShortDateString()};
 
                 respuesta.Add(artipro);
             }
@@ -49,7 +49,7 @@ namespace Controladores
 
         public void crearPedido()
         {
-            ModeloPedidoArtProv pActual = new ModeloPedidoArtProv();            
+            ModeloPedido pActual = new ModeloPedido();            
         
         }
 
@@ -63,12 +63,12 @@ namespace Controladores
 
                 if (pCant >= Cantidad)
                 {
-                    pActual.bajaLinea(linea);
+                    pActual.bajarLinea(linea);
                 }
                 else
                 {
                     linea.cantidadArticulos = (Cantidad-pCant);
-                    pActual.actualizaLinea(linea);
+                    pActual.actualizarLinea(linea);
                     
                 }
 
