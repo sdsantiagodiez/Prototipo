@@ -11,11 +11,11 @@ namespace Datos
 {
     //buscarPorCodigoOriginal y getOne hacen lo mismo
     //revisar y modificar, si corresponde, existeEntidad y buscarArticulo
-    public class CatalogoArticulos
+    public class CatalogoArticulos : Catalogo
     {
-        public bool validarDatos(string[] pDatos)
+        public bool validarDatos(ModeloArticulos articulo)
         {
-            // Validar si los datos son correctos?
+            // Validar si los datos son correctos
             return true;
         }
 
@@ -26,9 +26,26 @@ namespace Datos
         /// <returns>true si existe, false si no existe</returns>
         public bool existeEntidad(string codigoOriginal)
         {
-            // Convierte respuesta en false si Count=0 y en true si es cualquier otro número
-            bool respuesta = Convert.ToBoolean(buscarArticulo("codigoOriginal", codigoOriginal).Count);
+            bool respuesta = false;
+            if(getOne(codigoOriginal) != null)
+            {
+                respuesta = true;
+            }
             return respuesta;
+        }
+        
+        private ModeloArticulos leerDatosArticulo(SqlDataReader drArticulos)
+        {
+            ModeloArticulos modArt = new ModeloArticulos();
+
+            modArt.codigoOriginal = (string)drArticulos["codigoOriginal"];
+            //Si algún valor esta null en Base de datos, se asigna null en el objeto
+            //Caso contrario hay una string, y se asigna string
+            modArt.descripcion = (drArticulos["descripcion"] != DBNull.Value) ? (string)drArticulos["descripcion"] : null;
+            modArt.modelos= (drArticulos["modelos"] != DBNull.Value) ? (string)drArticulos["modelos"] : null;
+            modArt.observaciones = (drArticulos["observaciones"] != DBNull.Value) ? (string)drArticulos["observaciones"] : null;
+
+            return modArt;
         }
 
         /// <summary>
@@ -62,14 +79,13 @@ namespace Datos
             //crea SQL command
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
-
             comando.CommandType = CommandType.Text;
+            comando.CommandText = 
+                "SELECT [codigoOriginal],[descripcion],[modelos],[observaciones] FROM [articulos] "+
+                "WHERE codigoOriginal LIKE @codigoOriginal";
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [articulos] WHERE codigoOriginalArt = @codigoOriginal";
-
-            comando.Parameters.Add(new SqlParameter("@Parametro", SqlDbType.NVarChar));
-
-            comando.Parameters["@codigoOriginal"].Value = codigoOriginal;
+            comando.Parameters.Add(new SqlParameter("@codigoOriginal", SqlDbType.VarChar));
+            comando.Parameters["@codigoOriginal"].Value = "%" + codigoOriginal + "%";
 
             comando.Connection.Open();
 
@@ -80,10 +96,7 @@ namespace Datos
 
             while (drArticulos.Read())
             {
-                modArt.codigoOriginalArt = (string)drArticulos["codigoOriginalArt"];
-                modArt.descripArt = (string)drArticulos["descripArt"];
-                modArt.modelosArt = (string)drArticulos["modelosArt"];
-                modArt.obsArt = (string)drArticulos["obsArt"];
+                modArt = this.leerDatosArticulo(drArticulos);
                 listaArticulos.Add(modArt);
             }
 
@@ -100,14 +113,13 @@ namespace Datos
             //crea SQL command
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
-
             comando.CommandType = CommandType.Text;
+            comando.CommandText = 
+                "SELECT [codigoOriginal],[descripcion],[modelos],[observaciones] FROM [articulos] "+
+                "WHERE descripcion LIKE @descripcion";
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [articulos] WHERE descripArt LIKE @descripcion";
-
-            comando.Parameters.Add(new SqlParameter("@Parametro", SqlDbType.NVarChar));
-
-            comando.Parameters["@descripcion"].Value = descripcion;
+            comando.Parameters.Add(new SqlParameter("@descripcion", SqlDbType.VarChar));
+            comando.Parameters["@descripcion"].Value = "%" + descripcion + "%";
 
             comando.Connection.Open();
 
@@ -118,10 +130,7 @@ namespace Datos
 
             while (drArticulos.Read())
             {
-                modArt.codigoOriginalArt = (string)drArticulos["codigoOriginalArt"];
-                modArt.descripArt = (string)drArticulos["descripArt"];
-                modArt.modelosArt = (string)drArticulos["modelosArt"];
-                modArt.obsArt = (string)drArticulos["obsArt"];
+                modArt = this.leerDatosArticulo(drArticulos);
                 listaArticulos.Add(modArt);
             }
 
@@ -131,20 +140,50 @@ namespace Datos
             return listaArticulos;
         }
 
-        public List<ModeloArticulos> getAll()
-        { 
-            List<ModeloArticulos>allArts = new List<ModeloArticulos>();
+        public ModeloArticulos getOne(string pCodigoOriginal)
+        {
+            ModeloArticulos modArt = null;
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
-            
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.CommandText = 
+                "SELECT [codigoOriginal],[descripcion],[modelos],[observaciones] FROM [articulos] "+
+                "WHERE codigoOriginal = @codigoOriginal";
+
+            comando.Parameters.Add(instanciarParametro(pCodigoOriginal, "@codigoOriginal"));   
+            comando.Connection.Open();
+
+            SqlDataReader drArticulos = comando.ExecuteReader();
+
+            while (drArticulos.Read())
+            {
+                modArt = new ModeloArticulos();
+                modArt = this.leerDatosArticulo(drArticulos);
+            }
+            drArticulos.Close();
+            comando.Connection.Close();
+
+            return modArt;
+        }
+
+        public List<ModeloArticulos> getAll()
+        {
+            List<ModeloArticulos> allArts = new List<ModeloArticulos>();
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
             //crea SQL command
             SqlCommand comando = new SqlCommand();
 
             comando.Connection = ConexionSQL;
 
-            comando.CommandType= CommandType.Text;
+            comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [articulos]";
+            comando.CommandText = 
+                "SELECT [codigoOriginal],[descripcion],[modelos],[observaciones] FROM [articulos]";
 
             comando.Connection.Open();
 
@@ -152,10 +191,7 @@ namespace Datos
             while (drArticulos.Read())
             {
                 ModeloArticulos modArt = new ModeloArticulos();
-                modArt.codigoOriginalArt = (string)drArticulos["codigoOriginalArt"];
-                modArt.descripArt = (string)drArticulos["descripArt"];
-                modArt.modelosArt = (string)drArticulos["modelosArt"];
-                modArt.obsArt = (string)drArticulos["obsArt"];
+                modArt = this.leerDatosArticulo(drArticulos);
                 allArts.Add(modArt);
             }
             drArticulos.Close();
@@ -165,73 +201,51 @@ namespace Datos
             return allArts;
         }
 
-        public ModeloArticulos getOne(string pCodigoOriginal)
+        #region Alta/Baja/Modificación
+        /*
+         * True si se realizó correctamente
+         * False si ocurrió algún error
+         */
+        public bool agregarNuevaEntidad(ModeloArticulos pModArt)
         {
-
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText = "SELECT [codigoOriginalArt],[descripArt],[modelosArt],[obsArt] FROM [articulos] WHERE codigoOriginalArt = @codigoOriginal";
-
-            comando.Parameters.Add(new SqlParameter("@codigoOriginal", SqlDbType.NVarChar));
-
-            comando.Parameters["@codigoOriginal"].Value = pCodigoOriginal;
-
-            comando.Connection.Open();
-
-            SqlDataReader drArticulos = comando.ExecuteReader();
-
-            ModeloArticulos modArt = new ModeloArticulos();
-
-            while (drArticulos.Read())
+            if (!this.existeEntidad(pModArt.codigoOriginal))
             {
-                modArt.codigoOriginalArt = (string)drArticulos["codigoOriginalArt"];
-                modArt.descripArt = (string)drArticulos["descripArt"];
-                modArt.modelosArt = (string)drArticulos["modelosArt"];
-                modArt.obsArt = (string)drArticulos["obsArt"];
+                SqlConnection ConexionSQL = Conexion.crearConexion();
+                SqlCommand comando = new SqlCommand();
+
+                comando.Connection = ConexionSQL;
+
+                comando.CommandType = CommandType.Text;
+
+                comando.CommandText = 
+                    "INSERT INTO [articulos]([codigoOriginal],[descripcion],[modelos],[observaciones]) "+
+                    "VALUES (@codigoOriginal, @descripcion, @modelos, @observaciones)";
+                //Indica los parametros
+                comando.Parameters.Add(this.instanciarParametro(pModArt.codigoOriginal, "@codigoOriginal"));
+                comando.Parameters.Add(this.instanciarParametro(pModArt.descripcion, "@descripcion"));
+                comando.Parameters.Add(this.instanciarParametro(pModArt.modelos, "@modelos"));
+                comando.Parameters.Add(this.instanciarParametro(pModArt.observaciones, "@observaciones"));
+                
+                comando.Connection.Open();
+                int rowaffected = comando.ExecuteNonQuery();
+                comando.Connection.Close();
+
+                if (rowaffected != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-
-            drArticulos.Close();
-            comando.Connection.Close();
-
-            return modArt;
-        }
-
-        public void agregarNuevaEntidad(ModeloArticulos pModArt)
-        { 
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-            
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType= CommandType.Text;
-
-            comando.CommandText = "INSERT INTO [articulos]([descripArt],[modelosArt],[obsArt])VALUES (@descripArt, @modelosArt, @obsArt)";
-            //Indica los parametros
-            comando.Parameters.Add(new SqlParameter("@descripArt", SqlDbType.NVarChar));
-            comando.Parameters["@descripArt"].Value = pModArt.descripArt;
-            comando.Parameters.Add(new SqlParameter("@modelosArt", SqlDbType.NVarChar));
-            comando.Parameters["@modelosArt"].Value = pModArt.modelosArt;
-            comando.Parameters.Add(new SqlParameter("@obsArt", SqlDbType.NVarChar));
-            comando.Parameters["@obsArt"].Value = pModArt.obsArt;
-
-            comando.Connection.Open();
-            comando.ExecuteNonQuery();
-            comando.Connection.Close();
-        //Insertar un nuevo Articulo
+            else
+            {
+                return false;
+            }
         }     
 
-        public string actualizarArticulo(ModeloArticulos modArt, string[] pModificar)//el parametro pModificar solo contiene el codigoOriginalArt si es que es cambiado.
+        public bool actualizarEntidad(ModeloArticulos pModArt)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
@@ -243,42 +257,34 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "UPDATE [articulos] SET [codigoOriginalArt]=@codigoOriginalArtNew, [descripArt]=@descripArt,[modelosArt]=@modelosArt,[obsArt]=@obsArt WHERE [articulos].codigoOriginalArt=@codigoOriginalArtAnt";
+            comando.CommandText = 
+                "UPDATE [articulos] SET [descripcion]=@descripcion,[modelos]=@modelos,[observaciones]=@observaciones "+
+                "WHERE [articulos].codigoOriginal=@codigoOriginal";
 
-            comando.Parameters.Add(new SqlParameter("@codigoOriginalAnt", SqlDbType.NVarChar));
-            comando.Parameters["@codigoOriginalAnt"].Value = modArt.codigoOriginalArt;
-
-            comando.Parameters.Add(new SqlParameter("@codigoOriginalNew", SqlDbType.NVarChar));
-            comando.Parameters["@codigoOriginalAnt"].Value = pModificar[0];
-
-            comando.Parameters.Add(new SqlParameter("@descripArt", SqlDbType.NVarChar));
-            comando.Parameters["@descripArt"].Value = modArt.descripArt;
-
-            comando.Parameters.Add(new SqlParameter("@modelosArt", SqlDbType.NVarChar));
-            comando.Parameters["@modelosArt"].Value = modArt.modelosArt;
-
-            comando.Parameters.Add(new SqlParameter("@obsArt", SqlDbType.NVarChar));
-            comando.Parameters["@obsArt"].Value = modArt.obsArt;
-
+            comando.Parameters.Add(this.instanciarParametro(pModArt.codigoOriginal, "@codigoOriginal"));
+            comando.Parameters.Add(this.instanciarParametro(pModArt.descripcion, "@descripcion"));
+            comando.Parameters.Add(this.instanciarParametro(pModArt.modelos, "@modelos"));
+            comando.Parameters.Add(this.instanciarParametro(pModArt.observaciones, "@observaciones"));
+            
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
             comando.Connection.Close();
 
-            if (rowaffected == 0)
+            if (rowaffected != 0)
             {
-                return "Error en actualizar";
+                return true;
             }
             else
             {
-                return "Actualizacion finalizada";
+                return false;
             }
 
 
         }
 
-        public string bajaArticulo(string pCodigoOriginal)
+        public bool bajaEntidad(ModeloArticulos pModArt)
         {
-            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+            SqlConnection ConexionSQL = Conexion.crearConexion();
 
             //crea SQL command
             SqlCommand comando = new SqlCommand();
@@ -287,27 +293,25 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "DELETE FROM [articulos] WHERE [articulos].codigoOriginalArt=@codigoOriginalArt";
+            comando.CommandText = 
+                "DELETE FROM [articulos] WHERE [articulos].codigoOriginal=@codigoOriginal";
 
-            comando.Parameters.Add(new SqlParameter("@codigoOriginalArt", SqlDbType.NVarChar));
-            comando.Parameters["@codigoOriginalArt"].Value = pCodigoOriginal;
+            comando.Parameters.Add(this.instanciarParametro(pModArt.codigoOriginal, "@codigoOriginal"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
             comando.Connection.Close();
 
-            if (rowaffected == 0)
+            if (rowaffected != 0)
             {
-                return "Operacion Cancelada";
+                return true;
             }
             else
             {
-                return "Articulo dado de baja";
+                return false;
             }
-
-
         }
-
+        #endregion
     }
        
 }

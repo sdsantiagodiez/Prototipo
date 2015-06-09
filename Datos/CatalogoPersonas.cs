@@ -15,7 +15,7 @@ namespace Datos
         //Se considera cliente a aquellos con usuario y contraseña = "" 
         //y como usuario a aquellos que tengan completado el campo usuario y contraseña
 
-        public bool validarDatos(string[] pDatos)
+        public bool validarDatos(ModeloPersonas persona)
         {
             // Validar si los datos son correctos?
             return true;
@@ -126,10 +126,10 @@ namespace Datos
             comando.CommandText =
                 "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia]," +
                 "[codigoPostal],[observaciones],[razonSocialProveedor], [usuario], [contrasenia] " +
-                " FROM [personas] WHERE (nombre=@nombre " + tipoPersonaSQL + ")";
+                " FROM [personas] WHERE (nombre LIKE @nombre " + tipoPersonaSQL + ")";
 
             comando.Parameters.Add(new SqlParameter("@nombre", SqlDbType.VarChar));
-            comando.Parameters["@nombre"].Value = nombre;
+            comando.Parameters["@nombre"].Value = "%" + nombre + "%";
 
             comando.Connection.Open();
 
@@ -163,10 +163,10 @@ namespace Datos
             comando.CommandText =
                 "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia]," +
                 "[codigoPostal],[observaciones],[razonSocialProveedor], [usuario], [contrasenia] " +
-                " FROM [personas] WHERE (apellido=@apellido "+tipoPersonaSQL+")";
+                " FROM [personas] WHERE (apellido LIKE @apellido "+tipoPersonaSQL+")";
 
             comando.Parameters.Add(new SqlParameter("@apellido", SqlDbType.VarChar));
-            comando.Parameters["@apellido"].Value = apellido;
+            comando.Parameters["@apellido"].Value = "%" + apellido + "%";
 
             comando.Connection.Open();
 
@@ -303,10 +303,10 @@ namespace Datos
          * False si ocurrió algún error
          */
 
-        public bool agregarNuevaEntidad(ModeloPersonas modPer)
+        public bool agregarNuevaEntidad(ModeloPersonas pModPer)
         {
             //Se debería chequear antes para notificar al usuario la razón por la que no se podrá realizar la operación
-            if (!this.existeEntidad(modPer.dni))
+            if (!this.existeEntidad(pModPer.dni))
             {
                 //Creo la conexion y la abro
                 SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -320,23 +320,23 @@ namespace Datos
 
                 comando.CommandText = 
                     "INSERT INTO [Personas]([dni],[cuit],[nombre],[apellido],[direccion],"+
-                    "[ciudad],[provincia],[codigoPostal],[observaciones],[razonSocialProveedor],"+
-                    " [usuario], [contrasenia]) "+ 
+                    "[ciudad],[provincia],[codigoPostal],[observaciones],[razonSocialProveedor], "+
+                    "[usuario], [contrasenia]) "+ 
                     "VALUES (@dni, @cuit, @nombre, @apellido, @direccion, @ciudad, @provincia, "+
                     "@codigoPostal, @observaciones, @razonSocialProveedor, @usuario, @contrasenia)";
                 //Indica los parametros
-                comando.Parameters.Add(this.instanciarParametro(modPer.dni, "@dni"));
-                comando.Parameters.Add(this.instanciarParametro(modPer.cuit, "@cuit"));
-                comando.Parameters.Add(this.instanciarParametro(modPer.nombre, "@nombre"));
-                comando.Parameters.Add(this.instanciarParametro(modPer.apellido, "@apellido"));
-                comando.Parameters.Add(this.instanciarParametro(modPer.direccion, "@direccion"));
-                comando.Parameters.Add(this.instanciarParametro(modPer.ciudad, "@ciudad"));
-                comando.Parameters.Add(this.instanciarParametro(modPer.provincia, "@provincia"));
-                comando.Parameters.Add(this.instanciarParametro(modPer.codigoPostal, "@codigoPostal"));
-                comando.Parameters.Add(this.instanciarParametro(modPer.observaciones, "@observaciones"));
-                comando.Parameters.Add(this.instanciarParametro(modPer.razonSocialProv, "@razonSocialProveedor"));
-                comando.Parameters.Add(this.instanciarParametro(modPer.usuario, "@usuario"));
-                comando.Parameters.Add(this.instanciarParametro(modPer.contrasenia, "@contrasenia"));
+                comando.Parameters.Add(this.instanciarParametro(pModPer.dni, "@dni"));
+                comando.Parameters.Add(this.instanciarParametro(pModPer.cuit, "@cuit"));
+                comando.Parameters.Add(this.instanciarParametro(pModPer.nombre, "@nombre"));
+                comando.Parameters.Add(this.instanciarParametro(pModPer.apellido, "@apellido"));
+                comando.Parameters.Add(this.instanciarParametro(pModPer.direccion, "@direccion"));
+                comando.Parameters.Add(this.instanciarParametro(pModPer.ciudad, "@ciudad"));
+                comando.Parameters.Add(this.instanciarParametro(pModPer.provincia, "@provincia"));
+                comando.Parameters.Add(this.instanciarParametro(pModPer.codigoPostal, "@codigoPostal"));
+                comando.Parameters.Add(this.instanciarParametro(pModPer.observaciones, "@observaciones"));
+                comando.Parameters.Add(this.instanciarParametro(pModPer.razonSocialProv, "@razonSocialProveedor"));
+                comando.Parameters.Add(this.instanciarParametro(pModPer.usuario, "@usuario"));
+                comando.Parameters.Add(this.instanciarParametro(pModPer.contrasenia, "@contrasenia"));
 
                 comando.Connection.Open();
                 int rowaffected = comando.ExecuteNonQuery();
@@ -360,7 +360,7 @@ namespace Datos
         /*No va a haber opción de cambiar DNI. Usuario tendrá
          * que eliminar usuario anterior y crearlo de nuevo
          */
-        public bool actualizarPersona(ModeloPersonas modPer)
+        public bool actualizarEntidad(ModeloPersonas pModPer)
         { 
          //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -378,18 +378,18 @@ namespace Datos
                 "[observaciones]=@observaciones,[razonSocialProveedor]=@razonSocialProveedor,[usuario]=@usuario, [contrasenia]=@contrasenia "+
                 "WHERE [Personas].dni=@dni";
 
-            comando.Parameters.Add(this.instanciarParametro(modPer.dni, "@dni"));
-            comando.Parameters.Add(this.instanciarParametro(modPer.cuit, "@cuit"));
-            comando.Parameters.Add(this.instanciarParametro(modPer.nombre, "@nombre"));
-            comando.Parameters.Add(this.instanciarParametro(modPer.apellido, "@apellido"));
-            comando.Parameters.Add(this.instanciarParametro(modPer.direccion, "@direccion"));
-            comando.Parameters.Add(this.instanciarParametro(modPer.ciudad, "@ciudad"));
-            comando.Parameters.Add(this.instanciarParametro(modPer.provincia, "@provincia"));
-            comando.Parameters.Add(this.instanciarParametro(modPer.codigoPostal, "@codigoPostal"));
-            comando.Parameters.Add(this.instanciarParametro(modPer.observaciones, "@observaciones"));
-            comando.Parameters.Add(this.instanciarParametro(modPer.razonSocialProv, "@razonSocialProveedor"));
-            comando.Parameters.Add(this.instanciarParametro(modPer.usuario, "@usuario"));
-            comando.Parameters.Add(this.instanciarParametro(modPer.contrasenia, "@contrasenia"));
+            comando.Parameters.Add(this.instanciarParametro(pModPer.dni, "@dni"));
+            comando.Parameters.Add(this.instanciarParametro(pModPer.cuit, "@cuit"));
+            comando.Parameters.Add(this.instanciarParametro(pModPer.nombre, "@nombre"));
+            comando.Parameters.Add(this.instanciarParametro(pModPer.apellido, "@apellido"));
+            comando.Parameters.Add(this.instanciarParametro(pModPer.direccion, "@direccion"));
+            comando.Parameters.Add(this.instanciarParametro(pModPer.ciudad, "@ciudad"));
+            comando.Parameters.Add(this.instanciarParametro(pModPer.provincia, "@provincia"));
+            comando.Parameters.Add(this.instanciarParametro(pModPer.codigoPostal, "@codigoPostal"));
+            comando.Parameters.Add(this.instanciarParametro(pModPer.observaciones, "@observaciones"));
+            comando.Parameters.Add(this.instanciarParametro(pModPer.razonSocialProv, "@razonSocialProveedor"));
+            comando.Parameters.Add(this.instanciarParametro(pModPer.usuario, "@usuario"));
+            comando.Parameters.Add(this.instanciarParametro(pModPer.contrasenia, "@contrasenia"));
             
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();           
@@ -407,7 +407,7 @@ namespace Datos
 
         }
 
-        public bool bajaPersona(string pDni)
+        public bool bajaEntidad(ModeloPersonas pModPer)
         {
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -421,8 +421,8 @@ namespace Datos
             comando.CommandText = 
                 "DELETE FROM [Personas] WHERE [Personas].dni=@dni";
 
-            comando.Parameters.Add(new SqlParameter("@dni", SqlDbType.VarChar));
-            comando.Parameters["@dni"].Value = pDni;
+            comando.Parameters.Add(this.instanciarParametro(pModPer.dni, "@dni"));
+
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();

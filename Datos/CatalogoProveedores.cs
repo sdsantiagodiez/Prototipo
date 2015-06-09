@@ -9,14 +9,12 @@ using System.Data;
 
 namespace Datos
 {
-    //GetOne debería retornar Objeto o Null
     public class CatalogoProveedores : Catalogo
     {
-        public bool validarDatos(string[] pDatos)
+        public bool validarDatos(ModeloProveedores proveedor)
         {
             //Valida que los parametros sean Validos en el dominio
-            bool rta = false;
-            return rta;
+            return true;
         }    
 
         /// <summary>
@@ -25,7 +23,7 @@ namespace Datos
         /// <param name="cuit">cuit de proveedor</param>
         /// <param name="razonSocial">razón social de proveedor</param>
         /// <returns>true si existe, false si no existe</returns>
-        public bool existeEntidad(string cuit, string razonSocial)
+        public bool existeEntidad(string razonSocial)
         {
             bool respuesta = false;
             if (getOne(razonSocial) != null)
@@ -89,9 +87,9 @@ namespace Datos
             comando.CommandText = 
                 "SELECT [razonSocial],[cuit],[direccion],[ciudad],[provincia],[codigoPostal],[observaciones]" +
                 "FROM [proveedores]  " +
-                "WHERE LOWER([proveedores].razonSocial)=@razonSocial";
+                "WHERE LOWER([proveedores].razonSocial) LIKE @razonSocial";
             comando.Parameters.Add(new SqlParameter("@razonSocial", SqlDbType.VarChar));
-            comando.Parameters["@razonSocial"].Value = razonSocial.ToLower();
+            comando.Parameters["@razonSocial"].Value = "%" + razonSocial.ToLower() + "%";
             comando.Connection.Open();
 
             SqlDataReader drProveedores = comando.ExecuteReader();
@@ -122,9 +120,9 @@ namespace Datos
             comando.CommandType = CommandType.Text;
             comando.CommandText = 
                 "SELECT [razonSocial],[cuit],[direccion],[ciudad],[provincia],[codigoPostal],[observaciones]"+
-                "FROM [proveedores] WHERE cuit = @cuit";
+                "FROM [proveedores] WHERE cuit LIKE @cuit";
             comando.Parameters.Add(new SqlParameter("@cuit", SqlDbType.VarChar));
-            comando.Parameters["@cuit"].Value = cuit;
+            comando.Parameters["@cuit"].Value = "%" + cuit + "%";
             comando.Connection.Open();
 
             SqlDataReader drProveedores = comando.ExecuteReader();
@@ -190,7 +188,9 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [razonSocial],[cuit],[direccion],[ciudad],[provincia],[codigoPostal],[observaciones] FROM [proveedores]";
+            comando.CommandText = 
+                "SELECT [razonSocial],[cuit],[direccion],[ciudad],[provincia],[codigoPostal],[observaciones] "+
+                "FROM [proveedores]";
 
             comando.Connection.Open();
 
@@ -215,7 +215,7 @@ namespace Datos
          */
         public bool agregarNuevaEntidad(ModeloProveedores pModProv)
         {
-            if (!this.existeEntidad(pModProv.cuit, pModProv.razonSocial))
+            if (!this.existeEntidad(pModProv.razonSocial))
             {
                 //Creo la conexion y la abro
                 SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -262,7 +262,7 @@ namespace Datos
         }     
 
         //No se podrá modificar razonSocial
-        public bool actualizarProveedor(ModeloProveedores modProv)
+        public bool actualizarEntidad(ModeloProveedores pModProv)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -275,17 +275,17 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText = 
-                "UPDATE [proveedores] SET [razonSocial] = @razonSocial, [cuit] = @cuit, [direccion]=@direccion, "+
+                "UPDATE [proveedores] SET [cuit] = @cuit, [direccion]=@direccion, "+
                 "[ciudad]=@ciudad, [provincia]=@provincia, [codigoPostal] = @codigoPostal, [observaciones] = @observaciones "+
                 "WHERE [proveedores].razonSocial=@razonSocial";
 
-            comando.Parameters.Add(this.instanciarParametro(modProv.razonSocial, "@razonSocial"));
-            comando.Parameters.Add(this.instanciarParametro(modProv.cuit, "@cuit"));
-            comando.Parameters.Add(this.instanciarParametro(modProv.direccion, "@direccion"));
-            comando.Parameters.Add(this.instanciarParametro(modProv.ciudad, "@ciudad"));
-            comando.Parameters.Add(this.instanciarParametro(modProv.provincia, "@provincia"));
-            comando.Parameters.Add(this.instanciarParametro(modProv.codigoPostal, "@codigoPostal"));
-            comando.Parameters.Add(this.instanciarParametro(modProv.observaciones, "@observaciones"));
+            comando.Parameters.Add(this.instanciarParametro(pModProv.razonSocial, "@razonSocial"));
+            comando.Parameters.Add(this.instanciarParametro(pModProv.cuit, "@cuit"));
+            comando.Parameters.Add(this.instanciarParametro(pModProv.direccion, "@direccion"));
+            comando.Parameters.Add(this.instanciarParametro(pModProv.ciudad, "@ciudad"));
+            comando.Parameters.Add(this.instanciarParametro(pModProv.provincia, "@provincia"));
+            comando.Parameters.Add(this.instanciarParametro(pModProv.codigoPostal, "@codigoPostal"));
+            comando.Parameters.Add(this.instanciarParametro(pModProv.observaciones, "@observaciones"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();           
@@ -301,7 +301,7 @@ namespace Datos
             }
         }
 
-        public bool bajaProveedor(string pRazonSocial)
+        public bool bajaEntidad(ModeloProveedores pModProv)
         {
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -315,8 +315,7 @@ namespace Datos
             comando.CommandText = 
                 "DELETE FROM [proveedores] WHERE [proveedores].razonSocial=@razonSocial";
 
-            comando.Parameters.Add(new SqlParameter("@razonSocial", SqlDbType.VarChar));
-            comando.Parameters["@razonSocial"].Value = pRazonSocial;
+            comando.Parameters.Add(this.instanciarParametro(pModProv.razonSocial, "@razonSocial"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
