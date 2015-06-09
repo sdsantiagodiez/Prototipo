@@ -40,8 +40,15 @@ namespace Datos
         {
             SqlParameter parametro = new SqlParameter();
 
-            parametro = new SqlParameter(nombreAtributo, SqlDbType.Int);
-            parametro.Value = atributo;
+            if (atributo == null)
+            {
+                parametro = new SqlParameter(nombreAtributo, DBNull.Value);
+            }
+            else
+            {
+                parametro = new SqlParameter(nombreAtributo, SqlDbType.Int);
+                parametro.Value = atributo.Value;
+            }
             return parametro;
         }
 
