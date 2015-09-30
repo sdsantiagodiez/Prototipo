@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
-using Controlador;
+using Controladores;
 
 namespace Vista
 {

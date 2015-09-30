@@ -195,6 +195,7 @@
             this.btnAltBajMod.TabIndex = 0;
             this.btnAltBajMod.Text = "Altas, Bajas, y  Modificaciones";
             this.btnAltBajMod.UseVisualStyleBackColor = true;
+            this.btnAltBajMod.Click += new System.EventHandler(this.btnAltBajMod_Click);
             // 
             // pnlEC
             // 
@@ -224,6 +225,7 @@
             this.btnDevolucion.TabIndex = 28;
             this.btnDevolucion.Text = "Procesar Devolución";
             this.btnDevolucion.UseVisualStyleBackColor = true;
+            this.btnDevolucion.Click += new System.EventHandler(this.btnDevolucion_Click);
             // 
             // btnReserva
             // 
@@ -233,6 +235,7 @@
             this.btnReserva.TabIndex = 4;
             this.btnReserva.Text = "Nueva Reserva";
             this.btnReserva.UseVisualStyleBackColor = true;
+            this.btnReserva.Click += new System.EventHandler(this.btnReserva_Click);
             // 
             // frmMenuPrincipal
             // 

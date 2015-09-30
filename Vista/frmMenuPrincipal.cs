@@ -43,7 +43,7 @@ namespace Vista
             }
 
             //cargo los datos correspondiente al usuario, identificandolo
-            lblNombreUsuario.Text = usuario.nombrePres;
+            lblNombreUsuario.Text = usuario.nombre;
             lblFechaLog.Text = DateTime.Today.ToString("dd/MM/yyyy");
             lblHoraLog.Text = DateTime.Now.ToString("HH:mm:ss tt");
         }
@@ -69,6 +69,21 @@ namespace Vista
         {
             frmPedidoClienteNuevo frmNuevaVenta = new frmPedidoClienteNuevo();
             frmNuevaVenta.ShowDialog();
+        }
+
+        private void btnReserva_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDevolucion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAltBajMod_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

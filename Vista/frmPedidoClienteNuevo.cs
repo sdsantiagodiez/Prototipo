@@ -17,21 +17,10 @@ namespace Vista
             InitializeComponent();
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        private void btnSiguiente_Click(object sender, EventArgs e)
         {
             frmPedidoClienteCierre frmCierre = new frmPedidoClienteCierre();
             frmCierre.ShowDialog();
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Button5_Click(object sender, EventArgs e)
-        {
-            frmEnConstruccion frmCons = new frmEnConstruccion();
-            frmCons.ShowDialog();
         }
     }
 }

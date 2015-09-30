@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoClienteNuevo));
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.grbxDetalleSelec = new System.Windows.Forms.GroupBox();
+            this.btnQuitar = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.tlpDetalles = new System.Windows.Forms.TableLayoutPanel();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -53,108 +53,108 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.Label14 = new System.Windows.Forms.Label();
-            this.Label13 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.DataGridView2 = new System.Windows.Forms.DataGridView();
+            this.lblTotalNmbr = new System.Windows.Forms.Label();
+            this.lblTotalTxt = new System.Windows.Forms.Label();
+            this.grbxDetalleAgregados = new System.Windows.Forms.GroupBox();
+            this.dgvDetalleAgregados = new System.Windows.Forms.DataGridView();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.DataGridView1 = new System.Windows.Forms.DataGridView();
+            this.grbxArtAgregar = new System.Windows.Forms.GroupBox();
+            this.lblCategoriaBuscar = new System.Windows.Forms.Label();
+            this.dgvArtAgregar = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Label1 = new System.Windows.Forms.Label();
-            this.TextBox1 = new System.Windows.Forms.TextBox();
-            this.ComboBox1 = new System.Windows.Forms.ComboBox();
-            this.Button2 = new System.Windows.Forms.Button();
-            this.Button1 = new System.Windows.Forms.Button();
-            this.groupBox5.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView2)).BeginInit();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).BeginInit();
+            this.lblLupa = new System.Windows.Forms.Label();
+            this.txtDescArticulo = new System.Windows.Forms.TextBox();
+            this.cmbxCategoriaBuscar = new System.Windows.Forms.ComboBox();
+            this.btnSiguiente = new System.Windows.Forms.Button();
+            this.btnBorrarDetActual = new System.Windows.Forms.Button();
+            this.grbxDetalleSelec.SuspendLayout();
+            this.tlpDetalles.SuspendLayout();
+            this.grbxDetalleAgregados.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleAgregados)).BeginInit();
+            this.grbxArtAgregar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArtAgregar)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox5
+            // grbxDetalleSelec
             // 
-            this.groupBox5.Controls.Add(this.button4);
-            this.groupBox5.Controls.Add(this.button3);
-            this.groupBox5.Controls.Add(this.tableLayoutPanel2);
-            this.groupBox5.Controls.Add(this.Label14);
-            this.groupBox5.Controls.Add(this.Label13);
-            this.groupBox5.Location = new System.Drawing.Point(710, 20);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(294, 537);
-            this.groupBox5.TabIndex = 23;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Detalles";
+            this.grbxDetalleSelec.Controls.Add(this.btnQuitar);
+            this.grbxDetalleSelec.Controls.Add(this.btnAgregar);
+            this.grbxDetalleSelec.Controls.Add(this.tlpDetalles);
+            this.grbxDetalleSelec.Controls.Add(this.lblTotalNmbr);
+            this.grbxDetalleSelec.Controls.Add(this.lblTotalTxt);
+            this.grbxDetalleSelec.Location = new System.Drawing.Point(710, 20);
+            this.grbxDetalleSelec.Name = "grbxDetalleSelec";
+            this.grbxDetalleSelec.Size = new System.Drawing.Size(294, 537);
+            this.grbxDetalleSelec.TabIndex = 23;
+            this.grbxDetalleSelec.TabStop = false;
+            this.grbxDetalleSelec.Text = "Detalles";
             // 
-            // button4
+            // btnQuitar
             // 
-            this.button4.Location = new System.Drawing.Point(168, 437);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(80, 50);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Quitar";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnQuitar.Location = new System.Drawing.Point(168, 437);
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Size = new System.Drawing.Size(80, 50);
+            this.btnQuitar.TabIndex = 4;
+            this.btnQuitar.Text = "Quitar";
+            this.btnQuitar.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnAgregar
             // 
-            this.button3.Location = new System.Drawing.Point(43, 437);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(80, 50);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Agregar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnAgregar.Location = new System.Drawing.Point(43, 437);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(80, 50);
+            this.btnAgregar.TabIndex = 2;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel2
+            // tlpDetalles
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.label10, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.label7, 1, 9);
-            this.tableLayoutPanel2.Controls.Add(this.label6, 0, 9);
-            this.tableLayoutPanel2.Controls.Add(this.label5, 1, 8);
-            this.tableLayoutPanel2.Controls.Add(this.label3, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label18, 1, 7);
-            this.tableLayoutPanel2.Controls.Add(this.label19, 0, 7);
-            this.tableLayoutPanel2.Controls.Add(this.label20, 1, 6);
-            this.tableLayoutPanel2.Controls.Add(this.label21, 0, 6);
-            this.tableLayoutPanel2.Controls.Add(this.label22, 1, 5);
-            this.tableLayoutPanel2.Controls.Add(this.label23, 0, 5);
-            this.tableLayoutPanel2.Controls.Add(this.label24, 1, 4);
-            this.tableLayoutPanel2.Controls.Add(this.label25, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.label26, 1, 3);
-            this.tableLayoutPanel2.Controls.Add(this.label27, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.label29, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label28, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label4, 0, 8);
-            this.tableLayoutPanel2.Controls.Add(this.label8, 0, 2);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(20, 29);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 10;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(268, 397);
-            this.tableLayoutPanel2.TabIndex = 1;
+            this.tlpDetalles.ColumnCount = 2;
+            this.tlpDetalles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
+            this.tlpDetalles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpDetalles.Controls.Add(this.label10, 1, 2);
+            this.tlpDetalles.Controls.Add(this.label7, 1, 9);
+            this.tlpDetalles.Controls.Add(this.label6, 0, 9);
+            this.tlpDetalles.Controls.Add(this.label5, 1, 8);
+            this.tlpDetalles.Controls.Add(this.label3, 1, 0);
+            this.tlpDetalles.Controls.Add(this.label18, 1, 7);
+            this.tlpDetalles.Controls.Add(this.label19, 0, 7);
+            this.tlpDetalles.Controls.Add(this.label20, 1, 6);
+            this.tlpDetalles.Controls.Add(this.label21, 0, 6);
+            this.tlpDetalles.Controls.Add(this.label22, 1, 5);
+            this.tlpDetalles.Controls.Add(this.label23, 0, 5);
+            this.tlpDetalles.Controls.Add(this.label24, 1, 4);
+            this.tlpDetalles.Controls.Add(this.label25, 0, 4);
+            this.tlpDetalles.Controls.Add(this.label26, 1, 3);
+            this.tlpDetalles.Controls.Add(this.label27, 0, 3);
+            this.tlpDetalles.Controls.Add(this.label29, 1, 1);
+            this.tlpDetalles.Controls.Add(this.label28, 0, 1);
+            this.tlpDetalles.Controls.Add(this.label2, 0, 0);
+            this.tlpDetalles.Controls.Add(this.label4, 0, 8);
+            this.tlpDetalles.Controls.Add(this.label8, 0, 2);
+            this.tlpDetalles.Location = new System.Drawing.Point(20, 29);
+            this.tlpDetalles.Name = "tlpDetalles";
+            this.tlpDetalles.RowCount = 10;
+            this.tlpDetalles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
+            this.tlpDetalles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
+            this.tlpDetalles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
+            this.tlpDetalles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.tlpDetalles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
+            this.tlpDetalles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
+            this.tlpDetalles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
+            this.tlpDetalles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
+            this.tlpDetalles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
+            this.tlpDetalles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.tlpDetalles.Size = new System.Drawing.Size(268, 397);
+            this.tlpDetalles.TabIndex = 1;
             // 
             // label10
             // 
@@ -357,57 +357,57 @@
             this.label8.TabIndex = 18;
             this.label8.Text = "Proveedor:";
             // 
-            // Label14
+            // lblTotalNmbr
             // 
-            this.Label14.AutoSize = true;
-            this.Label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label14.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.Label14.Location = new System.Drawing.Point(153, 504);
-            this.Label14.Name = "Label14";
-            this.Label14.Size = new System.Drawing.Size(64, 16);
-            this.Label14.TabIndex = 8;
-            this.Label14.Text = "1.257,66";
+            this.lblTotalNmbr.AutoSize = true;
+            this.lblTotalNmbr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalNmbr.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lblTotalNmbr.Location = new System.Drawing.Point(153, 504);
+            this.lblTotalNmbr.Name = "lblTotalNmbr";
+            this.lblTotalNmbr.Size = new System.Drawing.Size(64, 16);
+            this.lblTotalNmbr.TabIndex = 8;
+            this.lblTotalNmbr.Text = "1.257,66";
             // 
-            // Label13
+            // lblTotalTxt
             // 
-            this.Label13.AutoSize = true;
-            this.Label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label13.Location = new System.Drawing.Point(82, 502);
-            this.Label13.Name = "Label13";
-            this.Label13.Size = new System.Drawing.Size(51, 18);
-            this.Label13.TabIndex = 7;
-            this.Label13.Text = "Total:";
+            this.lblTotalTxt.AutoSize = true;
+            this.lblTotalTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalTxt.Location = new System.Drawing.Point(82, 502);
+            this.lblTotalTxt.Name = "lblTotalTxt";
+            this.lblTotalTxt.Size = new System.Drawing.Size(51, 18);
+            this.lblTotalTxt.TabIndex = 7;
+            this.lblTotalTxt.Text = "Total:";
             // 
-            // groupBox2
+            // grbxDetalleAgregados
             // 
-            this.groupBox2.Controls.Add(this.DataGridView2);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(5, 354);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(692, 203);
-            this.groupBox2.TabIndex = 21;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Detalle";
+            this.grbxDetalleAgregados.Controls.Add(this.dgvDetalleAgregados);
+            this.grbxDetalleAgregados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbxDetalleAgregados.Location = new System.Drawing.Point(5, 354);
+            this.grbxDetalleAgregados.Name = "grbxDetalleAgregados";
+            this.grbxDetalleAgregados.Size = new System.Drawing.Size(692, 203);
+            this.grbxDetalleAgregados.TabIndex = 21;
+            this.grbxDetalleAgregados.TabStop = false;
+            this.grbxDetalleAgregados.Text = "Detalle";
             // 
-            // DataGridView2
+            // dgvDetalleAgregados
             // 
-            this.DataGridView2.AllowUserToAddRows = false;
-            this.DataGridView2.AllowUserToDeleteRows = false;
-            this.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvDetalleAgregados.AllowUserToAddRows = false;
+            this.dgvDetalleAgregados.AllowUserToDeleteRows = false;
+            this.dgvDetalleAgregados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvDetalleAgregados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetalleAgregados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column7,
             this.Descripcion,
             this.DataGridViewTextBoxColumn5,
             this.Total,
             this.Column6});
-            this.DataGridView2.Location = new System.Drawing.Point(11, 23);
-            this.DataGridView2.Name = "DataGridView2";
-            this.DataGridView2.ReadOnly = true;
-            this.DataGridView2.RowHeadersVisible = false;
-            this.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView2.Size = new System.Drawing.Size(675, 174);
-            this.DataGridView2.TabIndex = 5;
+            this.dgvDetalleAgregados.Location = new System.Drawing.Point(11, 23);
+            this.dgvDetalleAgregados.Name = "dgvDetalleAgregados";
+            this.dgvDetalleAgregados.ReadOnly = true;
+            this.dgvDetalleAgregados.RowHeadersVisible = false;
+            this.dgvDetalleAgregados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDetalleAgregados.Size = new System.Drawing.Size(675, 174);
+            this.dgvDetalleAgregados.TabIndex = 5;
             // 
             // Column7
             // 
@@ -447,52 +447,52 @@
             this.Column6.ReadOnly = true;
             this.Column6.Width = 87;
             // 
-            // groupBox4
+            // grbxArtAgregar
             // 
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.DataGridView1);
-            this.groupBox4.Controls.Add(this.Label1);
-            this.groupBox4.Controls.Add(this.TextBox1);
-            this.groupBox4.Controls.Add(this.ComboBox1);
-            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(5, 16);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(692, 332);
-            this.groupBox4.TabIndex = 19;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Articulos a Agregar";
+            this.grbxArtAgregar.Controls.Add(this.lblCategoriaBuscar);
+            this.grbxArtAgregar.Controls.Add(this.dgvArtAgregar);
+            this.grbxArtAgregar.Controls.Add(this.lblLupa);
+            this.grbxArtAgregar.Controls.Add(this.txtDescArticulo);
+            this.grbxArtAgregar.Controls.Add(this.cmbxCategoriaBuscar);
+            this.grbxArtAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbxArtAgregar.Location = new System.Drawing.Point(5, 16);
+            this.grbxArtAgregar.Name = "grbxArtAgregar";
+            this.grbxArtAgregar.Size = new System.Drawing.Size(692, 332);
+            this.grbxArtAgregar.TabIndex = 19;
+            this.grbxArtAgregar.TabStop = false;
+            this.grbxArtAgregar.Text = "Articulos a Agregar";
             // 
-            // label9
+            // lblCategoriaBuscar
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(8, 31);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(76, 16);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "Buscar por:";
+            this.lblCategoriaBuscar.AutoSize = true;
+            this.lblCategoriaBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategoriaBuscar.Location = new System.Drawing.Point(8, 31);
+            this.lblCategoriaBuscar.Name = "lblCategoriaBuscar";
+            this.lblCategoriaBuscar.Size = new System.Drawing.Size(76, 16);
+            this.lblCategoriaBuscar.TabIndex = 4;
+            this.lblCategoriaBuscar.Text = "Buscar por:";
             // 
-            // DataGridView1
+            // dgvArtAgregar
             // 
-            this.DataGridView1.AllowUserToAddRows = false;
-            this.DataGridView1.AllowUserToDeleteRows = false;
-            this.DataGridView1.AllowUserToOrderColumns = true;
-            this.DataGridView1.AllowUserToResizeRows = false;
-            this.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvArtAgregar.AllowUserToAddRows = false;
+            this.dgvArtAgregar.AllowUserToDeleteRows = false;
+            this.dgvArtAgregar.AllowUserToOrderColumns = true;
+            this.dgvArtAgregar.AllowUserToResizeRows = false;
+            this.dgvArtAgregar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvArtAgregar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArtAgregar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3,
             this.Column4,
             this.Column5});
-            this.DataGridView1.Location = new System.Drawing.Point(11, 68);
-            this.DataGridView1.Name = "DataGridView1";
-            this.DataGridView1.ReadOnly = true;
-            this.DataGridView1.RowHeadersVisible = false;
-            this.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView1.Size = new System.Drawing.Size(675, 258);
-            this.DataGridView1.TabIndex = 3;
+            this.dgvArtAgregar.Location = new System.Drawing.Point(11, 68);
+            this.dgvArtAgregar.Name = "dgvArtAgregar";
+            this.dgvArtAgregar.ReadOnly = true;
+            this.dgvArtAgregar.RowHeadersVisible = false;
+            this.dgvArtAgregar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvArtAgregar.Size = new System.Drawing.Size(675, 258);
+            this.dgvArtAgregar.TabIndex = 3;
             // 
             // Column1
             // 
@@ -537,78 +537,78 @@
             this.Column5.ReadOnly = true;
             this.Column5.Width = 73;
             // 
-            // Label1
+            // lblLupa
             // 
-            this.Label1.Image = ((System.Drawing.Image)(resources.GetObject("Label1.Image")));
-            this.Label1.Location = new System.Drawing.Point(638, 20);
-            this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(32, 32);
-            this.Label1.TabIndex = 2;
+            this.lblLupa.Image = ((System.Drawing.Image)(resources.GetObject("lblLupa.Image")));
+            this.lblLupa.Location = new System.Drawing.Point(638, 20);
+            this.lblLupa.Name = "lblLupa";
+            this.lblLupa.Size = new System.Drawing.Size(32, 32);
+            this.lblLupa.TabIndex = 2;
             // 
-            // TextBox1
+            // txtDescArticulo
             // 
-            this.TextBox1.Location = new System.Drawing.Point(234, 29);
-            this.TextBox1.Name = "TextBox1";
-            this.TextBox1.Size = new System.Drawing.Size(374, 23);
-            this.TextBox1.TabIndex = 1;
+            this.txtDescArticulo.Location = new System.Drawing.Point(234, 29);
+            this.txtDescArticulo.Name = "txtDescArticulo";
+            this.txtDescArticulo.Size = new System.Drawing.Size(374, 23);
+            this.txtDescArticulo.TabIndex = 1;
             // 
-            // ComboBox1
+            // cmbxCategoriaBuscar
             // 
-            this.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.ComboBox1.FormattingEnabled = true;
-            this.ComboBox1.Items.AddRange(new object[] {
+            this.cmbxCategoriaBuscar.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cmbxCategoriaBuscar.FormattingEnabled = true;
+            this.cmbxCategoriaBuscar.Items.AddRange(new object[] {
             "Código Original",
             "Código Proveedor",
             "Descripción"});
-            this.ComboBox1.Location = new System.Drawing.Point(90, 28);
-            this.ComboBox1.Name = "ComboBox1";
-            this.ComboBox1.Size = new System.Drawing.Size(138, 24);
-            this.ComboBox1.TabIndex = 0;
+            this.cmbxCategoriaBuscar.Location = new System.Drawing.Point(90, 28);
+            this.cmbxCategoriaBuscar.Name = "cmbxCategoriaBuscar";
+            this.cmbxCategoriaBuscar.Size = new System.Drawing.Size(138, 24);
+            this.cmbxCategoriaBuscar.TabIndex = 0;
             // 
-            // Button2
+            // btnSiguiente
             // 
-            this.Button2.AutoSize = true;
-            this.Button2.Location = new System.Drawing.Point(838, 564);
-            this.Button2.Name = "Button2";
-            this.Button2.Size = new System.Drawing.Size(120, 40);
-            this.Button2.TabIndex = 22;
-            this.Button2.Text = "Siguiente >";
-            this.Button2.UseVisualStyleBackColor = true;
-            this.Button2.Click += new System.EventHandler(this.Button2_Click);
+            this.btnSiguiente.AutoSize = true;
+            this.btnSiguiente.Location = new System.Drawing.Point(838, 564);
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Size = new System.Drawing.Size(120, 40);
+            this.btnSiguiente.TabIndex = 22;
+            this.btnSiguiente.Text = "Siguiente >";
+            this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
-            // Button1
+            // btnBorrarDetActual
             // 
-            this.Button1.AutoSize = true;
-            this.Button1.Location = new System.Drawing.Point(24, 564);
-            this.Button1.Name = "Button1";
-            this.Button1.Size = new System.Drawing.Size(120, 40);
-            this.Button1.TabIndex = 20;
-            this.Button1.Text = "Borrar Detalle Actual";
-            this.Button1.UseVisualStyleBackColor = true;
+            this.btnBorrarDetActual.AutoSize = true;
+            this.btnBorrarDetActual.Location = new System.Drawing.Point(24, 564);
+            this.btnBorrarDetActual.Name = "btnBorrarDetActual";
+            this.btnBorrarDetActual.Size = new System.Drawing.Size(120, 40);
+            this.btnBorrarDetActual.TabIndex = 20;
+            this.btnBorrarDetActual.Text = "Borrar Detalle Actual";
+            this.btnBorrarDetActual.UseVisualStyleBackColor = true;
             // 
             // frmPedidoClienteNuevo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 621);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.Button2);
-            this.Controls.Add(this.Button1);
+            this.Controls.Add(this.grbxDetalleSelec);
+            this.Controls.Add(this.grbxDetalleAgregados);
+            this.Controls.Add(this.grbxArtAgregar);
+            this.Controls.Add(this.btnSiguiente);
+            this.Controls.Add(this.btnBorrarDetActual);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmPedidoClienteNuevo";
             this.Text = "Nuevo Pedido Cliente (Leandro Jorge)";
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView2)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).EndInit();
+            this.grbxDetalleSelec.ResumeLayout(false);
+            this.grbxDetalleSelec.PerformLayout();
+            this.tlpDetalles.ResumeLayout(false);
+            this.tlpDetalles.PerformLayout();
+            this.grbxDetalleAgregados.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleAgregados)).EndInit();
+            this.grbxArtAgregar.ResumeLayout(false);
+            this.grbxArtAgregar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArtAgregar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -616,10 +616,10 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.GroupBox grbxDetalleSelec;
+        private System.Windows.Forms.Button btnQuitar;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.TableLayoutPanel tlpDetalles;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -640,28 +640,28 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
-        internal System.Windows.Forms.Label Label14;
-        internal System.Windows.Forms.Label Label13;
-        private System.Windows.Forms.GroupBox groupBox2;
-        internal System.Windows.Forms.DataGridView DataGridView2;
+        internal System.Windows.Forms.Label lblTotalNmbr;
+        internal System.Windows.Forms.Label lblTotalTxt;
+        private System.Windows.Forms.GroupBox grbxDetalleAgregados;
+        internal System.Windows.Forms.DataGridView dgvDetalleAgregados;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label9;
-        internal System.Windows.Forms.DataGridView DataGridView1;
+        private System.Windows.Forms.GroupBox grbxArtAgregar;
+        private System.Windows.Forms.Label lblCategoriaBuscar;
+        internal System.Windows.Forms.DataGridView dgvArtAgregar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        internal System.Windows.Forms.Label Label1;
-        internal System.Windows.Forms.TextBox TextBox1;
-        internal System.Windows.Forms.ComboBox ComboBox1;
-        internal System.Windows.Forms.Button Button2;
-        internal System.Windows.Forms.Button Button1;
+        internal System.Windows.Forms.Label lblLupa;
+        internal System.Windows.Forms.TextBox txtDescArticulo;
+        internal System.Windows.Forms.ComboBox cmbxCategoriaBuscar;
+        internal System.Windows.Forms.Button btnSiguiente;
+        internal System.Windows.Forms.Button btnBorrarDetActual;
 
     }
 }
