@@ -71,7 +71,7 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblLupa = new System.Windows.Forms.Label();
-            this.txtDescArticulo = new System.Windows.Forms.TextBox();
+            this.txtBusqArticulo = new System.Windows.Forms.TextBox();
             this.cmbxCategoriaBuscar = new System.Windows.Forms.ComboBox();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.btnBorrarDetActual = new System.Windows.Forms.Button();
@@ -452,7 +452,7 @@
             this.grbxArtAgregar.Controls.Add(this.lblCategoriaBuscar);
             this.grbxArtAgregar.Controls.Add(this.dgvArtAgregar);
             this.grbxArtAgregar.Controls.Add(this.lblLupa);
-            this.grbxArtAgregar.Controls.Add(this.txtDescArticulo);
+            this.grbxArtAgregar.Controls.Add(this.txtBusqArticulo);
             this.grbxArtAgregar.Controls.Add(this.cmbxCategoriaBuscar);
             this.grbxArtAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbxArtAgregar.Location = new System.Drawing.Point(5, 16);
@@ -540,17 +540,19 @@
             // lblLupa
             // 
             this.lblLupa.Image = ((System.Drawing.Image)(resources.GetObject("lblLupa.Image")));
-            this.lblLupa.Location = new System.Drawing.Point(638, 20);
+            this.lblLupa.Location = new System.Drawing.Point(614, 23);
             this.lblLupa.Name = "lblLupa";
             this.lblLupa.Size = new System.Drawing.Size(32, 32);
             this.lblLupa.TabIndex = 2;
+            this.lblLupa.Click += new System.EventHandler(this.lblLupa_Click);
             // 
-            // txtDescArticulo
+            // txtBusqArticulo
             // 
-            this.txtDescArticulo.Location = new System.Drawing.Point(234, 29);
-            this.txtDescArticulo.Name = "txtDescArticulo";
-            this.txtDescArticulo.Size = new System.Drawing.Size(374, 23);
-            this.txtDescArticulo.TabIndex = 1;
+            this.txtBusqArticulo.Location = new System.Drawing.Point(234, 29);
+            this.txtBusqArticulo.Name = "txtBusqArticulo";
+            this.txtBusqArticulo.Size = new System.Drawing.Size(374, 23);
+            this.txtBusqArticulo.TabIndex = 1;
+            this.txtBusqArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescArticulo_KeyPress);
             // 
             // cmbxCategoriaBuscar
             // 
@@ -564,6 +566,7 @@
             this.cmbxCategoriaBuscar.Name = "cmbxCategoriaBuscar";
             this.cmbxCategoriaBuscar.Size = new System.Drawing.Size(138, 24);
             this.cmbxCategoriaBuscar.TabIndex = 0;
+            this.cmbxCategoriaBuscar.SelectionChangeCommitted += new System.EventHandler(this.cmbxCategoriaBuscar_SelectionChangeCommitted);
             // 
             // btnSiguiente
             // 
@@ -658,7 +661,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         internal System.Windows.Forms.Label lblLupa;
-        internal System.Windows.Forms.TextBox txtDescArticulo;
+        internal System.Windows.Forms.TextBox txtBusqArticulo;
         internal System.Windows.Forms.ComboBox cmbxCategoriaBuscar;
         internal System.Windows.Forms.Button btnSiguiente;
         internal System.Windows.Forms.Button btnBorrarDetActual;
