@@ -17,6 +17,10 @@ namespace Vista
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            //agregado para testear frmPedidoClienteNuevo
+            var testForm = new frmPedidoClienteNuevo();
+            testForm.ShowDialog();
+            //
             frmLogIn loginForm = new frmLogIn();
             if (loginForm.ShowDialog() == DialogResult.OK)
             {

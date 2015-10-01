@@ -10,11 +10,20 @@ namespace Controladores
 {
     public class ControladorProcesarVenta
     {
-       
-        public List<ModeloArticulos> buscarArticulos(string categBusq, string busqArt)
+       //funciones a programar
+        //crearPedido
+        //buscarReserva
+        //getDetalles
+        //agregarArticulo
+        //modificarCantidadArticulo
+        //cerrarPedido
+
+        
+        //busqueda de articulos por codigo original o por descripcion
+        public List<ModeloArticuloProveedores> buscarArticulos(string categBusq, string busqArt)
         {
-            CatalogoArticulos ctlgArticulos = new CatalogoArticulos();
-            List<ModeloArticulos> articulos = ctlgArticulos.buscarArticulo(categBusq,busqArt);
+            var ctlgArticuloProv = new CatalogoArticuloProveedores();
+            List<ModeloArticuloProveedores> articulos = ctlgArticuloProv.buscarArticuloProveedor(categBusq,busqArt);
             return articulos;               
         }
     }

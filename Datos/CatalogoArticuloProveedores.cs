@@ -32,7 +32,35 @@ namespace Datos
             return respuesta;
         }
 
-        private ModeloArticuloProveedores leerDatosArticuloProveedor(SqlDataReader drArticulosProveedor)
+        private ModeloArticuloProveedores leerDatosArticuloProveedorConPrecio(SqlDataReader drArticulosProveedor)
+        {
+            ModeloArticuloProveedores modArt = new ModeloArticuloProveedores();
+
+            var modValArtC = new ModeloValorArticulo();
+            modValArtC.fechaUltimaActualizacion = (DateTime)drArticulosProveedor["fechaValorCompra"];
+            modValArtC.valorArticulo = (decimal)drArticulosProveedor["valorCompra"];
+            modArt.valorCompraArticuloProveedor = modValArtC;
+
+            var modValArtV = new ModeloValorArticulo();
+            modValArtV.fechaUltimaActualizacion = (DateTime)drArticulosProveedor["fechaValorVenta"];
+            modValArtV.valorArticulo = (decimal)drArticulosProveedor["valorVenta"];
+            modArt.valorVenta = modValArtV;
+
+            modArt.codigoOriginal = (string)drArticulosProveedor["codigoOriginal"];
+            modArt.codigoArticuloProveedor = (string)drArticulosProveedor["codigoArticuloProveedor"];
+            modArt.razonSocialProveedor = (string)drArticulosProveedor["razonSocialProveedor"];
+            //Si algún valor esta null en Base de datos, se asigna null en el objeto
+            //Caso contrario hay una string, y se asigna string
+            modArt.descripcion = (drArticulosProveedor["descripcion"] != DBNull.Value) ? (string)drArticulosProveedor["descripcion"] : null;
+            modArt.observaciones = (drArticulosProveedor["observaciones"] != DBNull.Value) ? (string)drArticulosProveedor["observaciones"] : null;
+            modArt.stockActual = (drArticulosProveedor["stockActual"] != DBNull.Value) ? (int)drArticulosProveedor["stockActual"] : (int?)null;
+            modArt.stockMinimo = (drArticulosProveedor["stockMinimo"] != DBNull.Value) ? (int)drArticulosProveedor["stockMinimo"] : (int?)null;
+            modArt.fechaActualizacion = (drArticulosProveedor["fechaActualizacion"] != DBNull.Value) ? (DateTime)drArticulosProveedor["fechaActualizacion"] : (DateTime?)null;
+            
+            return modArt;
+        }
+
+        private ModeloArticuloProveedores leerDatosArticuloProveedorSinPrecio(SqlDataReader drArticulosProveedor)
         {
             ModeloArticuloProveedores modArt = new ModeloArticuloProveedores();
 
@@ -46,7 +74,7 @@ namespace Datos
             modArt.stockActual = (drArticulosProveedor["stockActual"] != DBNull.Value) ? (int)drArticulosProveedor["stockActual"] : (int?)null;
             modArt.stockMinimo = (drArticulosProveedor["stockMinimo"] != DBNull.Value) ? (int)drArticulosProveedor["stockMinimo"] : (int?)null;
             modArt.fechaActualizacion = (drArticulosProveedor["fechaActualizacion"] != DBNull.Value) ? (DateTime)drArticulosProveedor["fechaActualizacion"] : (DateTime?)null;
-            
+
             return modArt;
         }
 
@@ -91,9 +119,20 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "SELECT [codigoOriginal],[codigoArticuloProveedor],[stockMinimo],[stockActual],[observaciones],[descripcion]," +
-                "[fechaActualizacion],[razonSocialProveedor] FROM [Articulos_Proveedores] " +
-                 "WHERE descripcion LIKE @descripcion";
+                "SELECT ap.[codigoOriginal],ap.[codigoArticuloProveedor],ap.[stockMinimo],ap.[stockActual],ap.[observaciones], " +
+                "ap.[descripcion],ap.[fechaActualizacion],ap.[razonSocialProveedor],vv.[valor] [valorVenta], vv.[fechaValor] [fechaValorVenta], " +
+                "vc.[valor] [valorCompra], vc.[fechaValor] [fechaValorCompra] " +
+                "FROM [Articulos_Proveedores] ap JOIN " +
+                "( " +
+                "SELECT [codigoOriginal],[codigoArticuloProveedor], MAX([fechaValor]) [fechaValor], [valor] " +
+                "FROM [Valores_Compra] GROUP BY [codigoOriginal],[codigoArticuloProveedor],[valor] " +
+                ") vc ON ap.[codigoOriginal] = vc.[codigoOriginal] AND ap.[codigoArticuloProveedor] = vc.[codigoArticuloProveedor] " +
+                "JOIN " +
+                "( " +
+                "SELECT [codigoOriginal],[codigoArticuloProveedor], MAX([fechaValor]) [fechaValor], [valor] " +
+                "FROM [Valores_Venta] GROUP BY [codigoOriginal],[codigoArticuloProveedor],[valor] " +
+                ") vv ON ap.[codigoOriginal] = vv.[codigoOriginal] AND ap.[codigoArticuloProveedor] = vv.[codigoArticuloProveedor] " +
+                "WHERE ap.descripcion LIKE @descripcion";
 
             comando.Parameters.Add(instanciarParametro(pDescripcion, "@descripcion"));
 
@@ -103,7 +142,7 @@ namespace Datos
             while (drArtProveedores.Read())
             {
                 ModeloArticuloProveedores modArtProv = new ModeloArticuloProveedores();
-                modArtProv = this.leerDatosArticuloProveedor(drArtProveedores);
+                modArtProv = this.leerDatosArticuloProveedorConPrecio(drArtProveedores);
                 articulosProveedores.Add(modArtProv);
             }
             drArtProveedores.Close();
@@ -127,9 +166,20 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "SELECT [codigoOriginal],[codigoArticuloProveedor],[stockMinimo],[stockActual],[observaciones],[descripcion]," +
-                "[fechaActualizacion],[razonSocialProveedor] FROM [Articulos_Proveedores] " +
-                 "WHERE codigoOriginal LIKE @codigoOriginal";
+                "SELECT ap.[codigoOriginal],ap.[codigoArticuloProveedor],ap.[stockMinimo],ap.[stockActual],ap.[observaciones], " +
+                "ap.[descripcion],ap.[fechaActualizacion],ap.[razonSocialProveedor],vv.[valor] [valorVenta], vv.[fechaValor] [fechaValorVenta], " +
+                "vc.[valor] [valorCompra], vc.[fechaValor] [fechaValorCompra] " +
+                "FROM [Articulos_Proveedores] ap JOIN " +
+                "( " +
+                "SELECT [codigoOriginal],[codigoArticuloProveedor], MAX([fechaValor]) [fechaValor], [valor] " +
+                "FROM [Valores_Compra] GROUP BY [codigoOriginal],[codigoArticuloProveedor],[valor] " +
+                ") vc ON ap.[codigoOriginal] = vc.[codigoOriginal] AND ap.[codigoArticuloProveedor] = vc.[codigoArticuloProveedor] " +
+                "JOIN " +
+                "( " +
+                "SELECT [codigoOriginal],[codigoArticuloProveedor], MAX([fechaValor]) [fechaValor], [valor] " +
+                "FROM [Valores_Venta] GROUP BY [codigoOriginal],[codigoArticuloProveedor],[valor] " +
+                ") vv ON ap.[codigoOriginal] = vv.[codigoOriginal] AND ap.[codigoArticuloProveedor] = vv.[codigoArticuloProveedor] " +
+                "WHERE ap.codigoOriginal LIKE @codigoOriginal";
 
             comando.Parameters.Add(instanciarParametro(pCodigoOriginal, "@codigoOriginal"));
 
@@ -139,7 +189,7 @@ namespace Datos
             while (drArtProveedores.Read())
             {
                 ModeloArticuloProveedores modArtProv = new ModeloArticuloProveedores();
-                modArtProv = this.leerDatosArticuloProveedor(drArtProveedores);
+                modArtProv = this.leerDatosArticuloProveedorConPrecio(drArtProveedores);
                 articulosProveedores.Add(modArtProv);
             }
             drArtProveedores.Close();
@@ -163,10 +213,21 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = 
-                "SELECT [codigoOriginal],[codigoArticuloProveedor],[stockMinimo],[stockActual],[observaciones],[descripcion],"+
-                "[fechaActualizacion],[razonSocialProveedor] FROM [Articulos_Proveedores] "+
-                 "WHERE codigoArticuloProveedor LIKE @codigoArticuloProveedor";
+            comando.CommandText =
+                "SELECT ap.[codigoOriginal],ap.[codigoArticuloProveedor],ap.[stockMinimo],ap.[stockActual],ap.[observaciones], " +
+                "ap.[descripcion],ap.[fechaActualizacion],ap.[razonSocialProveedor],vv.[valor] [valorVenta], vv.[fechaValor] [fechaValorVenta], " +
+                "vc.[valor] [valorCompra], vc.[fechaValor] [fechaValorCompra] " +
+                "FROM [Articulos_Proveedores] ap JOIN " +
+                "( " +
+                "SELECT [codigoOriginal],[codigoArticuloProveedor], MAX([fechaValor]) [fechaValor], [valor] " +
+                "FROM [Valores_Compra] GROUP BY [codigoOriginal],[codigoArticuloProveedor],[valor] " +
+                ") vc ON ap.[codigoOriginal] = vc.[codigoOriginal] AND ap.[codigoArticuloProveedor] = vc.[codigoArticuloProveedor] " +
+                "JOIN " +
+                "( " +
+                "SELECT [codigoOriginal],[codigoArticuloProveedor], MAX([fechaValor]) [fechaValor], [valor] " +
+                "FROM [Valores_Venta] GROUP BY [codigoOriginal],[codigoArticuloProveedor],[valor] " +
+                ") vv ON ap.[codigoOriginal] = vv.[codigoOriginal] AND ap.[codigoArticuloProveedor] = vv.[codigoArticuloProveedor] " +
+                "WHERE ap.codigoArticuloProveedor LIKE @codigoArticuloProveedor";
 
             comando.Parameters.Add(instanciarParametro(pCodigoArticuloProveedor, "@codigoArticuloProveedor"));
 
@@ -176,7 +237,7 @@ namespace Datos
             while (drArtProveedores.Read())
             {
                 ModeloArticuloProveedores modArtProv = new ModeloArticuloProveedores();
-                modArtProv = this.leerDatosArticuloProveedor(drArtProveedores);
+                modArtProv = this.leerDatosArticuloProveedorConPrecio(drArtProveedores);
                 articulosProveedores.Add(modArtProv);
             }
            
@@ -209,7 +270,7 @@ namespace Datos
             while (drArtProveedores.Read())
             {
                 modArtProv = new ModeloArticuloProveedores();
-                modArtProv = this.leerDatosArticuloProveedor(drArtProveedores);
+                modArtProv = this.leerDatosArticuloProveedorSinPrecio(drArtProveedores);
             }
             drArtProveedores.Close();
             comando.Connection.Close();
@@ -240,7 +301,7 @@ namespace Datos
             while (drArtProveedores.Read())
             {
                 ModeloArticuloProveedores modArtProv = new ModeloArticuloProveedores();
-                modArtProv = this.leerDatosArticuloProveedor(drArtProveedores);
+                modArtProv = this.leerDatosArticuloProveedorSinPrecio(drArtProveedores);
                 allArtProvs.Add(modArtProv);
             }
             drArtProveedores.Close();

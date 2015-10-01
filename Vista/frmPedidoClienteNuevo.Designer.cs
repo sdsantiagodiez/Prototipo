@@ -33,28 +33,28 @@
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.tlpDetalles = new System.Windows.Forms.TableLayoutPanel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblTotalNmbr = new System.Windows.Forms.Label();
-            this.lblTotalTxt = new System.Windows.Forms.Label();
+            this.lblProvVar = new System.Windows.Forms.Label();
+            this.lblObsVar = new System.Windows.Forms.Label();
+            this.lblObs = new System.Windows.Forms.Label();
+            this.lblFechaActualizVar = new System.Windows.Forms.Label();
+            this.lblCodOrigVar = new System.Windows.Forms.Label();
+            this.lblExistenciaVar = new System.Windows.Forms.Label();
+            this.lblExistencia = new System.Windows.Forms.Label();
+            this.lblUbicacionVar = new System.Windows.Forms.Label();
+            this.lblUbicacion = new System.Windows.Forms.Label();
+            this.lblTarjetaVar = new System.Windows.Forms.Label();
+            this.lblTarjeta = new System.Windows.Forms.Label();
+            this.lblContadoVar = new System.Windows.Forms.Label();
+            this.lblContado = new System.Windows.Forms.Label();
+            this.lblDescVar = new System.Windows.Forms.Label();
+            this.lblDesc = new System.Windows.Forms.Label();
+            this.lblCodProvVar = new System.Windows.Forms.Label();
+            this.lblCodProv = new System.Windows.Forms.Label();
+            this.lblCodOrig = new System.Windows.Forms.Label();
+            this.lblFechaActualiz = new System.Windows.Forms.Label();
+            this.lblProv = new System.Windows.Forms.Label();
+            this.lblTotalVar = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.grbxDetalleAgregados = new System.Windows.Forms.GroupBox();
             this.dgvDetalleAgregados = new System.Windows.Forms.DataGridView();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,14 +88,14 @@
             this.grbxDetalleSelec.Controls.Add(this.btnQuitar);
             this.grbxDetalleSelec.Controls.Add(this.btnAgregar);
             this.grbxDetalleSelec.Controls.Add(this.tlpDetalles);
-            this.grbxDetalleSelec.Controls.Add(this.lblTotalNmbr);
-            this.grbxDetalleSelec.Controls.Add(this.lblTotalTxt);
+            this.grbxDetalleSelec.Controls.Add(this.lblTotalVar);
+            this.grbxDetalleSelec.Controls.Add(this.lblTotal);
             this.grbxDetalleSelec.Location = new System.Drawing.Point(710, 20);
             this.grbxDetalleSelec.Name = "grbxDetalleSelec";
             this.grbxDetalleSelec.Size = new System.Drawing.Size(294, 537);
             this.grbxDetalleSelec.TabIndex = 23;
             this.grbxDetalleSelec.TabStop = false;
-            this.grbxDetalleSelec.Text = "Detalles";
+            this.grbxDetalleSelec.Text = "Detalle Articulo Seleccionado";
             // 
             // btnQuitar
             // 
@@ -120,26 +120,26 @@
             this.tlpDetalles.ColumnCount = 2;
             this.tlpDetalles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
             this.tlpDetalles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpDetalles.Controls.Add(this.label10, 1, 2);
-            this.tlpDetalles.Controls.Add(this.label7, 1, 9);
-            this.tlpDetalles.Controls.Add(this.label6, 0, 9);
-            this.tlpDetalles.Controls.Add(this.label5, 1, 8);
-            this.tlpDetalles.Controls.Add(this.label3, 1, 0);
-            this.tlpDetalles.Controls.Add(this.label18, 1, 7);
-            this.tlpDetalles.Controls.Add(this.label19, 0, 7);
-            this.tlpDetalles.Controls.Add(this.label20, 1, 6);
-            this.tlpDetalles.Controls.Add(this.label21, 0, 6);
-            this.tlpDetalles.Controls.Add(this.label22, 1, 5);
-            this.tlpDetalles.Controls.Add(this.label23, 0, 5);
-            this.tlpDetalles.Controls.Add(this.label24, 1, 4);
-            this.tlpDetalles.Controls.Add(this.label25, 0, 4);
-            this.tlpDetalles.Controls.Add(this.label26, 1, 3);
-            this.tlpDetalles.Controls.Add(this.label27, 0, 3);
-            this.tlpDetalles.Controls.Add(this.label29, 1, 1);
-            this.tlpDetalles.Controls.Add(this.label28, 0, 1);
-            this.tlpDetalles.Controls.Add(this.label2, 0, 0);
-            this.tlpDetalles.Controls.Add(this.label4, 0, 8);
-            this.tlpDetalles.Controls.Add(this.label8, 0, 2);
+            this.tlpDetalles.Controls.Add(this.lblProvVar, 1, 2);
+            this.tlpDetalles.Controls.Add(this.lblObsVar, 1, 9);
+            this.tlpDetalles.Controls.Add(this.lblObs, 0, 9);
+            this.tlpDetalles.Controls.Add(this.lblFechaActualizVar, 1, 8);
+            this.tlpDetalles.Controls.Add(this.lblCodOrigVar, 1, 0);
+            this.tlpDetalles.Controls.Add(this.lblExistenciaVar, 1, 7);
+            this.tlpDetalles.Controls.Add(this.lblExistencia, 0, 7);
+            this.tlpDetalles.Controls.Add(this.lblUbicacionVar, 1, 6);
+            this.tlpDetalles.Controls.Add(this.lblUbicacion, 0, 6);
+            this.tlpDetalles.Controls.Add(this.lblTarjetaVar, 1, 5);
+            this.tlpDetalles.Controls.Add(this.lblTarjeta, 0, 5);
+            this.tlpDetalles.Controls.Add(this.lblContadoVar, 1, 4);
+            this.tlpDetalles.Controls.Add(this.lblContado, 0, 4);
+            this.tlpDetalles.Controls.Add(this.lblDescVar, 1, 3);
+            this.tlpDetalles.Controls.Add(this.lblDesc, 0, 3);
+            this.tlpDetalles.Controls.Add(this.lblCodProvVar, 1, 1);
+            this.tlpDetalles.Controls.Add(this.lblCodProv, 0, 1);
+            this.tlpDetalles.Controls.Add(this.lblCodOrig, 0, 0);
+            this.tlpDetalles.Controls.Add(this.lblFechaActualiz, 0, 8);
+            this.tlpDetalles.Controls.Add(this.lblProv, 0, 2);
             this.tlpDetalles.Location = new System.Drawing.Point(20, 29);
             this.tlpDetalles.Name = "tlpDetalles";
             this.tlpDetalles.RowCount = 10;
@@ -156,227 +156,226 @@
             this.tlpDetalles.Size = new System.Drawing.Size(268, 397);
             this.tlpDetalles.TabIndex = 1;
             // 
-            // label10
+            // lblProvVar
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(91, 71);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(181, 13);
-            this.label10.TabIndex = 19;
-            this.label10.Text = "San Marcos Repuestos S.A.";
+            this.lblProvVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblProvVar.AutoSize = true;
+            this.lblProvVar.Location = new System.Drawing.Point(91, 71);
+            this.lblProvVar.Name = "lblProvVar";
+            this.lblProvVar.Size = new System.Drawing.Size(181, 13);
+            this.lblProvVar.TabIndex = 19;
+            this.lblProvVar.Text = "Seleccione Articulo";
             // 
-            // label7
+            // lblObsVar
             // 
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(91, 319);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(181, 78);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Últimos dos clientes con CLIO2 devolvieron el artículo por mal funcionamiento. No" +
-    " entra hasta marzo por importaciones.";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblObsVar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblObsVar.Location = new System.Drawing.Point(91, 319);
+            this.lblObsVar.Name = "lblObsVar";
+            this.lblObsVar.Size = new System.Drawing.Size(181, 78);
+            this.lblObsVar.TabIndex = 17;
+            this.lblObsVar.Text = "Seleccione Articulo";
+            this.lblObsVar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label6
+            // lblObs
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 351);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Observaciones:";
+            this.lblObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblObs.AutoSize = true;
+            this.lblObs.Location = new System.Drawing.Point(3, 351);
+            this.lblObs.Name = "lblObs";
+            this.lblObs.Size = new System.Drawing.Size(82, 13);
+            this.lblObs.TabIndex = 16;
+            this.lblObs.Text = "Observaciones:";
             // 
-            // label5
+            // lblFechaActualizVar
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(91, 297);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(181, 13);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "15/01/2015";
+            this.lblFechaActualizVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFechaActualizVar.AutoSize = true;
+            this.lblFechaActualizVar.Location = new System.Drawing.Point(91, 297);
+            this.lblFechaActualizVar.Name = "lblFechaActualizVar";
+            this.lblFechaActualizVar.Size = new System.Drawing.Size(181, 13);
+            this.lblFechaActualizVar.TabIndex = 15;
+            this.lblFechaActualizVar.Text = "Seleccione Articulo";
             // 
-            // label3
+            // lblCodOrigVar
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(91, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(181, 13);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "77";
+            this.lblCodOrigVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCodOrigVar.AutoSize = true;
+            this.lblCodOrigVar.Location = new System.Drawing.Point(91, 9);
+            this.lblCodOrigVar.Name = "lblCodOrigVar";
+            this.lblCodOrigVar.Size = new System.Drawing.Size(181, 13);
+            this.lblCodOrigVar.TabIndex = 13;
+            this.lblCodOrigVar.Text = "Seleccione Articulo";
             // 
-            // label18
+            // lblExistenciaVar
             // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(91, 266);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(181, 13);
-            this.label18.TabIndex = 11;
-            this.label18.Text = "2";
+            this.lblExistenciaVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblExistenciaVar.AutoSize = true;
+            this.lblExistenciaVar.Location = new System.Drawing.Point(91, 266);
+            this.lblExistenciaVar.Name = "lblExistenciaVar";
+            this.lblExistenciaVar.Size = new System.Drawing.Size(181, 13);
+            this.lblExistenciaVar.TabIndex = 11;
+            this.lblExistenciaVar.Text = "Seleccione Articulo";
             // 
-            // label19
+            // lblExistencia
             // 
-            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(3, 266);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(82, 13);
-            this.label19.TabIndex = 10;
-            this.label19.Text = "Existencia:";
+            this.lblExistencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblExistencia.AutoSize = true;
+            this.lblExistencia.Location = new System.Drawing.Point(3, 266);
+            this.lblExistencia.Name = "lblExistencia";
+            this.lblExistencia.Size = new System.Drawing.Size(82, 13);
+            this.lblExistencia.TabIndex = 10;
+            this.lblExistencia.Text = "Existencia:";
             // 
-            // label20
+            // lblUbicacionVar
             // 
-            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(91, 235);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(181, 13);
-            this.label20.TabIndex = 9;
-            this.label20.Text = "F-14";
+            this.lblUbicacionVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUbicacionVar.AutoSize = true;
+            this.lblUbicacionVar.Location = new System.Drawing.Point(91, 235);
+            this.lblUbicacionVar.Name = "lblUbicacionVar";
+            this.lblUbicacionVar.Size = new System.Drawing.Size(181, 13);
+            this.lblUbicacionVar.TabIndex = 9;
+            this.lblUbicacionVar.Text = "Seleccione Articulo";
             // 
-            // label21
+            // lblUbicacion
             // 
-            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(3, 235);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(82, 13);
-            this.label21.TabIndex = 8;
-            this.label21.Text = "Ubicación:";
+            this.lblUbicacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUbicacion.AutoSize = true;
+            this.lblUbicacion.Location = new System.Drawing.Point(3, 235);
+            this.lblUbicacion.Name = "lblUbicacion";
+            this.lblUbicacion.Size = new System.Drawing.Size(82, 13);
+            this.lblUbicacion.TabIndex = 8;
+            this.lblUbicacion.Text = "Ubicación:";
             // 
-            // label22
+            // lblTarjetaVar
             // 
-            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(91, 204);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(181, 13);
-            this.label22.TabIndex = 7;
-            this.label22.Text = "1750,00";
+            this.lblTarjetaVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTarjetaVar.AutoSize = true;
+            this.lblTarjetaVar.Location = new System.Drawing.Point(91, 204);
+            this.lblTarjetaVar.Name = "lblTarjetaVar";
+            this.lblTarjetaVar.Size = new System.Drawing.Size(181, 13);
+            this.lblTarjetaVar.TabIndex = 7;
+            this.lblTarjetaVar.Text = "Seleccione Articulo";
             // 
-            // label23
+            // lblTarjeta
             // 
-            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(3, 204);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(82, 13);
-            this.label23.TabIndex = 6;
-            this.label23.Text = "Tarjeta:";
+            this.lblTarjeta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTarjeta.AutoSize = true;
+            this.lblTarjeta.Location = new System.Drawing.Point(3, 204);
+            this.lblTarjeta.Name = "lblTarjeta";
+            this.lblTarjeta.Size = new System.Drawing.Size(82, 13);
+            this.lblTarjeta.TabIndex = 6;
+            this.lblTarjeta.Text = "Tarjeta:";
             // 
-            // label24
+            // lblContadoVar
             // 
-            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(91, 173);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(181, 13);
-            this.label24.TabIndex = 5;
-            this.label24.Text = "1500,00";
+            this.lblContadoVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblContadoVar.AutoSize = true;
+            this.lblContadoVar.Location = new System.Drawing.Point(91, 173);
+            this.lblContadoVar.Name = "lblContadoVar";
+            this.lblContadoVar.Size = new System.Drawing.Size(181, 13);
+            this.lblContadoVar.TabIndex = 5;
+            this.lblContadoVar.Text = "Seleccione Articulo";
             // 
-            // label25
+            // lblContado
             // 
-            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(3, 173);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(82, 13);
-            this.label25.TabIndex = 4;
-            this.label25.Text = "Contado:";
+            this.lblContado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblContado.AutoSize = true;
+            this.lblContado.Location = new System.Drawing.Point(3, 173);
+            this.lblContado.Name = "lblContado";
+            this.lblContado.Size = new System.Drawing.Size(82, 13);
+            this.lblContado.TabIndex = 4;
+            this.lblContado.Text = "Contado:";
             // 
-            // label26
+            // lblDescVar
             // 
-            this.label26.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label26.Location = new System.Drawing.Point(91, 93);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(181, 71);
-            this.label26.TabIndex = 3;
-            this.label26.Text = "Arbol Levas CLIO2, Kangoo, D/Traffic";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblDescVar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDescVar.Location = new System.Drawing.Point(91, 93);
+            this.lblDescVar.Name = "lblDescVar";
+            this.lblDescVar.Size = new System.Drawing.Size(181, 71);
+            this.lblDescVar.TabIndex = 3;
+            this.lblDescVar.Text = "Seleccione Articulo";
+            this.lblDescVar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label27
+            // lblDesc
             // 
-            this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(3, 122);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(82, 13);
-            this.label27.TabIndex = 2;
-            this.label27.Text = "Descripción:";
+            this.lblDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDesc.AutoSize = true;
+            this.lblDesc.Location = new System.Drawing.Point(3, 122);
+            this.lblDesc.Name = "lblDesc";
+            this.lblDesc.Size = new System.Drawing.Size(82, 13);
+            this.lblDesc.TabIndex = 2;
+            this.lblDesc.Text = "Descripción:";
             // 
-            // label29
+            // lblCodProvVar
             // 
-            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(91, 40);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(181, 13);
-            this.label29.TabIndex = 0;
-            this.label29.Text = "11474-L";
+            this.lblCodProvVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCodProvVar.AutoSize = true;
+            this.lblCodProvVar.Location = new System.Drawing.Point(91, 40);
+            this.lblCodProvVar.Name = "lblCodProvVar";
+            this.lblCodProvVar.Size = new System.Drawing.Size(181, 13);
+            this.lblCodProvVar.TabIndex = 0;
+            this.lblCodProvVar.Text = "Seleccione Articulo";
             // 
-            // label28
+            // lblCodProv
             // 
-            this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(3, 33);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(82, 26);
-            this.label28.TabIndex = 1;
-            this.label28.Text = "Código Proveedor:";
+            this.lblCodProv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCodProv.AutoSize = true;
+            this.lblCodProv.Location = new System.Drawing.Point(3, 33);
+            this.lblCodProv.Name = "lblCodProv";
+            this.lblCodProv.Size = new System.Drawing.Size(82, 26);
+            this.lblCodProv.TabIndex = 1;
+            this.lblCodProv.Text = "Código Proveedor:";
             // 
-            // label2
+            // lblCodOrig
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 13);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Código Original:";
+            this.lblCodOrig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCodOrig.AutoSize = true;
+            this.lblCodOrig.Location = new System.Drawing.Point(3, 9);
+            this.lblCodOrig.Name = "lblCodOrig";
+            this.lblCodOrig.Size = new System.Drawing.Size(82, 13);
+            this.lblCodOrig.TabIndex = 12;
+            this.lblCodOrig.Text = "Código Original:";
             // 
-            // label4
+            // lblFechaActualiz
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 290);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 26);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Fecha última actualización:";
+            this.lblFechaActualiz.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFechaActualiz.AutoSize = true;
+            this.lblFechaActualiz.Location = new System.Drawing.Point(3, 290);
+            this.lblFechaActualiz.Name = "lblFechaActualiz";
+            this.lblFechaActualiz.Size = new System.Drawing.Size(82, 26);
+            this.lblFechaActualiz.TabIndex = 14;
+            this.lblFechaActualiz.Text = "Fecha última actualización:";
             // 
-            // label8
+            // lblProv
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 71);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(82, 13);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Proveedor:";
+            this.lblProv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblProv.AutoSize = true;
+            this.lblProv.Location = new System.Drawing.Point(3, 71);
+            this.lblProv.Name = "lblProv";
+            this.lblProv.Size = new System.Drawing.Size(82, 13);
+            this.lblProv.TabIndex = 18;
+            this.lblProv.Text = "Proveedor:";
             // 
-            // lblTotalNmbr
+            // lblTotalVar
             // 
-            this.lblTotalNmbr.AutoSize = true;
-            this.lblTotalNmbr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalNmbr.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblTotalNmbr.Location = new System.Drawing.Point(153, 504);
-            this.lblTotalNmbr.Name = "lblTotalNmbr";
-            this.lblTotalNmbr.Size = new System.Drawing.Size(64, 16);
-            this.lblTotalNmbr.TabIndex = 8;
-            this.lblTotalNmbr.Text = "1.257,66";
+            this.lblTotalVar.AutoSize = true;
+            this.lblTotalVar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalVar.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lblTotalVar.Location = new System.Drawing.Point(153, 504);
+            this.lblTotalVar.Name = "lblTotalVar";
+            this.lblTotalVar.Size = new System.Drawing.Size(64, 16);
+            this.lblTotalVar.TabIndex = 8;
+            this.lblTotalVar.Text = "1.257,66";
             // 
-            // lblTotalTxt
+            // lblTotal
             // 
-            this.lblTotalTxt.AutoSize = true;
-            this.lblTotalTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalTxt.Location = new System.Drawing.Point(82, 502);
-            this.lblTotalTxt.Name = "lblTotalTxt";
-            this.lblTotalTxt.Size = new System.Drawing.Size(51, 18);
-            this.lblTotalTxt.TabIndex = 7;
-            this.lblTotalTxt.Text = "Total:";
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(82, 502);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(51, 18);
+            this.lblTotal.TabIndex = 7;
+            this.lblTotal.Text = "Total:";
             // 
             // grbxDetalleAgregados
             // 
@@ -387,7 +386,7 @@
             this.grbxDetalleAgregados.Size = new System.Drawing.Size(692, 203);
             this.grbxDetalleAgregados.TabIndex = 21;
             this.grbxDetalleAgregados.TabStop = false;
-            this.grbxDetalleAgregados.Text = "Detalle";
+            this.grbxDetalleAgregados.Text = "Detalle Articulos Agregados";
             // 
             // dgvDetalleAgregados
             // 
@@ -566,6 +565,7 @@
             this.cmbxCategoriaBuscar.Name = "cmbxCategoriaBuscar";
             this.cmbxCategoriaBuscar.Size = new System.Drawing.Size(138, 24);
             this.cmbxCategoriaBuscar.TabIndex = 0;
+            this.cmbxCategoriaBuscar.Text = "[Seleccionar...]";
             this.cmbxCategoriaBuscar.SelectionChangeCommitted += new System.EventHandler(this.cmbxCategoriaBuscar_SelectionChangeCommitted);
             // 
             // btnSiguiente
@@ -623,28 +623,28 @@
         private System.Windows.Forms.Button btnQuitar;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.TableLayoutPanel tlpDetalles;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label8;
-        internal System.Windows.Forms.Label lblTotalNmbr;
-        internal System.Windows.Forms.Label lblTotalTxt;
+        private System.Windows.Forms.Label lblProvVar;
+        private System.Windows.Forms.Label lblObsVar;
+        private System.Windows.Forms.Label lblObs;
+        private System.Windows.Forms.Label lblFechaActualizVar;
+        private System.Windows.Forms.Label lblCodOrigVar;
+        private System.Windows.Forms.Label lblExistenciaVar;
+        private System.Windows.Forms.Label lblExistencia;
+        private System.Windows.Forms.Label lblUbicacionVar;
+        private System.Windows.Forms.Label lblUbicacion;
+        private System.Windows.Forms.Label lblTarjetaVar;
+        private System.Windows.Forms.Label lblTarjeta;
+        private System.Windows.Forms.Label lblContadoVar;
+        private System.Windows.Forms.Label lblContado;
+        private System.Windows.Forms.Label lblDescVar;
+        private System.Windows.Forms.Label lblDesc;
+        private System.Windows.Forms.Label lblCodProvVar;
+        private System.Windows.Forms.Label lblCodProv;
+        private System.Windows.Forms.Label lblCodOrig;
+        private System.Windows.Forms.Label lblFechaActualiz;
+        private System.Windows.Forms.Label lblProv;
+        internal System.Windows.Forms.Label lblTotalVar;
+        internal System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.GroupBox grbxDetalleAgregados;
         internal System.Windows.Forms.DataGridView dgvDetalleAgregados;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;

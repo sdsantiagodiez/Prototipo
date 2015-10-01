@@ -21,8 +21,9 @@ namespace Vista
             //Creo lista categorias
 
             var dataSource = new List<Categ>();
-            dataSource.Add(new Categ() { Name = "Codigo Original", Value = "codigoOriginal" });
+            dataSource.Add(new Categ() { Name = "Codigo Original", Value = "codigooriginal" });
             dataSource.Add(new Categ() { Name = "Descripción", Value = "descripcion" });
+            dataSource.Add(new Categ() { Name = "Codigo Proveedor", Value = "codigoarticuloproveedor" });
 
             //Binding de categorias
             this.cmbxCategoriaBuscar.DataSource = dataSource;
@@ -48,13 +49,14 @@ namespace Vista
             string busqArt = this.txtBusqArticulo.Text;
 
             //busco el/los articulos correspondientes
-            ControladorProcesarVenta ctrlProcVenta = new ControladorProcesarVenta();
-            List<ModeloArticulos> artEncontrados = ctrlProcVenta.buscarArticulos(categBusq, busqArt); 
+            var ctrlProcVenta = new ControladorProcesarVenta();
+            List<ModeloArticuloProveedores> artEncontrados = ctrlProcVenta.buscarArticulos(categBusq, busqArt); 
             if (!object.Equals(artEncontrados, null))
             {
-                var bindingList = new BindingList<ModeloArticulos>(artEncontrados);
-                var source = new BindingSource(bindingList, null);
-                this.dgvArtAgregar.DataSource = source;
+                //problema de columnas, debo seleccionarlas
+                //var bindingList = new BindingList<ModeloArticuloProveedores>(artEncontrados);
+                //var source = new BindingSource(bindingList, null);
+                //this.dgvArtAgregar.DataSource = source;
             }
             else
             {
