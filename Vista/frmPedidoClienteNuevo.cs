@@ -50,13 +50,13 @@ namespace Vista
 
             //busco el/los articulos correspondientes
             var ctrlProcVenta = new ControladorProcesarVenta();
-            List<ModeloArticuloProveedores> artEncontrados = ctrlProcVenta.buscarArticulos(categBusq, busqArt); 
+            List<ModeloArticuloProveedores> artEncontrados = ctrlProcVenta.buscarArticulos(categBusq, busqArt);
+            List<ModeloVistaNuevoPedido> artEncVista = ctrlProcVenta.adaptarArt(artEncontrados);
             if (!object.Equals(artEncontrados, null))
             {
-                //problema de columnas, debo seleccionarlas
-                //var bindingList = new BindingList<ModeloArticuloProveedores>(artEncontrados);
-                //var source = new BindingSource(bindingList, null);
-                //this.dgvArtAgregar.DataSource = source;
+                var bindingList = new BindingList<ModeloVistaNuevoPedido>(artEncVista);
+                var source = new BindingSource(bindingList, null);
+                this.dgvArtAgregar.DataSource = source;
             }
             else
             {

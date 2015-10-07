@@ -65,11 +65,6 @@
             this.grbxArtAgregar = new System.Windows.Forms.GroupBox();
             this.lblCategoriaBuscar = new System.Windows.Forms.Label();
             this.dgvArtAgregar = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblLupa = new System.Windows.Forms.Label();
             this.txtBusqArticulo = new System.Windows.Forms.TextBox();
             this.cmbxCategoriaBuscar = new System.Windows.Forms.ComboBox();
@@ -479,12 +474,6 @@
             this.dgvArtAgregar.AllowUserToResizeRows = false;
             this.dgvArtAgregar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvArtAgregar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvArtAgregar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5});
             this.dgvArtAgregar.Location = new System.Drawing.Point(11, 68);
             this.dgvArtAgregar.Name = "dgvArtAgregar";
             this.dgvArtAgregar.ReadOnly = true;
@@ -492,49 +481,6 @@
             this.dgvArtAgregar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArtAgregar.Size = new System.Drawing.Size(675, 258);
             this.dgvArtAgregar.TabIndex = 3;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column1.FillWeight = 121.8274F;
-            this.Column1.HeaderText = "Código Original";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 119;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column2.FillWeight = 90.668F;
-            this.Column2.HeaderText = "Código Proveedor";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 134;
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column3.FillWeight = 90.668F;
-            this.Column3.HeaderText = "Proveedor";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 99;
-            // 
-            // Column4
-            // 
-            this.Column4.FillWeight = 90.668F;
-            this.Column4.HeaderText = "Descripción";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column5.FillWeight = 90.668F;
-            this.Column5.HeaderText = "Precio";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 73;
             // 
             // lblLupa
             // 
@@ -655,11 +601,6 @@
         private System.Windows.Forms.GroupBox grbxArtAgregar;
         private System.Windows.Forms.Label lblCategoriaBuscar;
         internal System.Windows.Forms.DataGridView dgvArtAgregar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         internal System.Windows.Forms.Label lblLupa;
         internal System.Windows.Forms.TextBox txtBusqArticulo;
         internal System.Windows.Forms.ComboBox cmbxCategoriaBuscar;
