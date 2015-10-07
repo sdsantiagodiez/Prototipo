@@ -33,12 +33,6 @@
             this.btnVenta = new System.Windows.Forms.Button();
             this.lblBienvenido = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblUsuario = new System.Windows.Forms.Label();
-            this.lblHoraLog = new System.Windows.Forms.Label();
-            this.lblNombreUsuario = new System.Windows.Forms.Label();
-            this.lblFechaLog = new System.Windows.Forms.Label();
-            this.lblFecha = new System.Windows.Forms.Label();
             this.pnlER = new System.Windows.Forms.Panel();
             this.btnEmitirReporte = new System.Windows.Forms.Button();
             this.pnlED = new System.Windows.Forms.Panel();
@@ -47,11 +41,17 @@
             this.pnlEV = new System.Windows.Forms.Panel();
             this.btnDevolucion = new System.Windows.Forms.Button();
             this.btnReserva = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.lblFecha = new System.Windows.Forms.Label();
+            this.lblFechaLog = new System.Windows.Forms.Label();
+            this.lblHoraLog = new System.Windows.Forms.Label();
+            this.lblUsuario = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblNombreUsuario = new System.Windows.Forms.Label();
             this.pnlER.SuspendLayout();
             this.pnlED.SuspendLayout();
             this.pnlEC.SuspendLayout();
             this.pnlEV.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPedidoProv
@@ -96,69 +96,6 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel1.Controls.Add(this.lblUsuario);
-            this.panel1.Controls.Add(this.lblHoraLog);
-            this.panel1.Controls.Add(this.lblNombreUsuario);
-            this.panel1.Controls.Add(this.lblFechaLog);
-            this.panel1.Controls.Add(this.lblFecha);
-            this.panel1.Location = new System.Drawing.Point(28, 435);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(225, 49);
-            this.panel1.TabIndex = 21;
-            // 
-            // lblUsuario
-            // 
-            this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(10, 5);
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(72, 16);
-            this.lblUsuario.TabIndex = 14;
-            this.lblUsuario.Text = "USUARIO:";
-            // 
-            // lblHoraLog
-            // 
-            this.lblHoraLog.AutoSize = true;
-            this.lblHoraLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHoraLog.Location = new System.Drawing.Point(166, 31);
-            this.lblHoraLog.Name = "lblHoraLog";
-            this.lblHoraLog.Size = new System.Drawing.Size(56, 16);
-            this.lblHoraLog.TabIndex = 18;
-            this.lblHoraLog.Text = "18:15:14";
-            // 
-            // lblNombreUsuario
-            // 
-            this.lblNombreUsuario.AutoSize = true;
-            this.lblNombreUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreUsuario.Location = new System.Drawing.Point(88, 5);
-            this.lblNombreUsuario.Name = "lblNombreUsuario";
-            this.lblNombreUsuario.Size = new System.Drawing.Size(73, 16);
-            this.lblNombreUsuario.TabIndex = 15;
-            this.lblNombreUsuario.Text = "LEANDRO";
-            // 
-            // lblFechaLog
-            // 
-            this.lblFechaLog.AutoSize = true;
-            this.lblFechaLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaLog.Location = new System.Drawing.Point(88, 31);
-            this.lblFechaLog.Name = "lblFechaLog";
-            this.lblFechaLog.Size = new System.Drawing.Size(72, 16);
-            this.lblFechaLog.TabIndex = 17;
-            this.lblFechaLog.Text = "23/10/2014";
-            // 
-            // lblFecha
-            // 
-            this.lblFecha.AutoSize = true;
-            this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFecha.Location = new System.Drawing.Point(20, 31);
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(56, 16);
-            this.lblFecha.TabIndex = 16;
-            this.lblFecha.Text = "FECHA:";
-            // 
             // pnlER
             // 
             this.pnlER.Controls.Add(this.btnEmitirReporte);
@@ -166,7 +103,6 @@
             this.pnlER.Name = "pnlER";
             this.pnlER.Size = new System.Drawing.Size(199, 65);
             this.pnlER.TabIndex = 23;
-            this.pnlER.Visible = false;
             // 
             // btnEmitirReporte
             // 
@@ -185,7 +121,6 @@
             this.pnlED.Name = "pnlED";
             this.pnlED.Size = new System.Drawing.Size(200, 65);
             this.pnlED.TabIndex = 25;
-            this.pnlED.Visible = false;
             // 
             // btnAltBajMod
             // 
@@ -204,7 +139,6 @@
             this.pnlEC.Name = "pnlEC";
             this.pnlEC.Size = new System.Drawing.Size(200, 62);
             this.pnlEC.TabIndex = 26;
-            this.pnlEC.Visible = false;
             // 
             // pnlEV
             // 
@@ -215,7 +149,6 @@
             this.pnlEV.Name = "pnlEV";
             this.pnlEV.Size = new System.Drawing.Size(200, 166);
             this.pnlEV.TabIndex = 27;
-            this.pnlEV.Visible = false;
             // 
             // btnDevolucion
             // 
@@ -237,6 +170,69 @@
             this.btnReserva.UseVisualStyleBackColor = true;
             this.btnReserva.Click += new System.EventHandler(this.btnReserva_Click);
             // 
+            // lblFecha
+            // 
+            this.lblFecha.AutoSize = true;
+            this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFecha.Location = new System.Drawing.Point(10, 31);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(56, 16);
+            this.lblFecha.TabIndex = 16;
+            this.lblFecha.Text = "FECHA:";
+            // 
+            // lblFechaLog
+            // 
+            this.lblFechaLog.AutoSize = true;
+            this.lblFechaLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaLog.Location = new System.Drawing.Point(72, 31);
+            this.lblFechaLog.Name = "lblFechaLog";
+            this.lblFechaLog.Size = new System.Drawing.Size(72, 16);
+            this.lblFechaLog.TabIndex = 17;
+            this.lblFechaLog.Text = "23/10/2014";
+            // 
+            // lblHoraLog
+            // 
+            this.lblHoraLog.AutoSize = true;
+            this.lblHoraLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoraLog.Location = new System.Drawing.Point(150, 31);
+            this.lblHoraLog.Name = "lblHoraLog";
+            this.lblHoraLog.Size = new System.Drawing.Size(56, 16);
+            this.lblHoraLog.TabIndex = 18;
+            this.lblHoraLog.Text = "18:15:14";
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.Location = new System.Drawing.Point(10, 5);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(72, 16);
+            this.lblUsuario.TabIndex = 14;
+            this.lblUsuario.Text = "USUARIO:";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.lblUsuario);
+            this.panel1.Controls.Add(this.lblHoraLog);
+            this.panel1.Controls.Add(this.lblNombreUsuario);
+            this.panel1.Controls.Add(this.lblFechaLog);
+            this.panel1.Controls.Add(this.lblFecha);
+            this.panel1.Location = new System.Drawing.Point(28, 435);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(225, 49);
+            this.panel1.TabIndex = 21;
+            // 
+            // lblNombreUsuario
+            // 
+            this.lblNombreUsuario.AutoSize = true;
+            this.lblNombreUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreUsuario.Location = new System.Drawing.Point(88, 5);
+            this.lblNombreUsuario.Name = "lblNombreUsuario";
+            this.lblNombreUsuario.Size = new System.Drawing.Size(73, 16);
+            this.lblNombreUsuario.TabIndex = 15;
+            this.lblNombreUsuario.Text = "LEANDRO";
+            // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -255,13 +251,12 @@
             this.MinimizeBox = false;
             this.Name = "frmMenuPrincipal";
             this.Text = "Programa Principal - Version Prototype";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.pnlER.ResumeLayout(false);
             this.pnlED.ResumeLayout(false);
             this.pnlEC.ResumeLayout(false);
             this.pnlEV.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,12 +269,6 @@
         private System.Windows.Forms.Button btnVenta;
         private System.Windows.Forms.Label lblBienvenido;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.Panel panel1;
-        internal System.Windows.Forms.Label lblUsuario;
-        internal System.Windows.Forms.Label lblHoraLog;
-        internal System.Windows.Forms.Label lblNombreUsuario;
-        internal System.Windows.Forms.Label lblFechaLog;
-        internal System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Panel pnlER;
         private System.Windows.Forms.Button btnEmitirReporte;
         private System.Windows.Forms.Panel pnlED;
@@ -288,5 +277,11 @@
         private System.Windows.Forms.Button btnDevolucion;
         private System.Windows.Forms.Button btnReserva;
         private System.Windows.Forms.Button btnAltBajMod;
+        internal System.Windows.Forms.Label lblFecha;
+        internal System.Windows.Forms.Label lblFechaLog;
+        internal System.Windows.Forms.Label lblHoraLog;
+        internal System.Windows.Forms.Label lblUsuario;
+        private System.Windows.Forms.Panel panel1;
+        internal System.Windows.Forms.Label lblNombreUsuario;
     }
 }

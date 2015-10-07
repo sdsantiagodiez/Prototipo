@@ -16,11 +16,16 @@ namespace Vista
         public frmMenuPrincipal()
         {
             InitializeComponent();
+            lblNombreUsuario.Text = "Usuario TEST";
+            lblFechaLog.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            lblHoraLog.Text = DateTime.Now.ToString("HH:mm:ss tt");
         }
 
         public frmMenuPrincipal(List<ModeloRoles> roles, ModeloPersonas usuario)
         {
             InitializeComponent();
+            
+            /*Procedimientos a seguir de acuerdo al rol
             //muestro los paneles correspondientes
             //se toman los codigos como siguien:
             //1: Encargado de Reportes
@@ -41,9 +46,16 @@ namespace Vista
                         break;
                 }
             }
+            *///Procedimientos a seguir de acuerdo al rol. Por ahora sin considerar rol
+            
+            
+            //pnlEC.Visible = true; 
+            //        case 3: pnlEV.Visible = true; break;
+            //        case 4: pnlED.Visible = true; break;
 
             //cargo los datos correspondiente al usuario, identificandolo
-            lblNombreUsuario.Text = usuario.nombre;
+            lblNombreUsuario.Text = "Usuario TEST";
+            lblNombreUsuario.Refresh();
             lblFechaLog.Text = DateTime.Today.ToString("dd/MM/yyyy");
             lblHoraLog.Text = DateTime.Now.ToString("HH:mm:ss tt");
         }
@@ -57,7 +69,8 @@ namespace Vista
 
         private void btnEmitirReporte_Click(object sender, EventArgs e)
         {
-
+            frmEnConstruccion frmEnConstruccion = new frmEnConstruccion();
+            frmEnConstruccion.ShowDialog();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -73,17 +86,20 @@ namespace Vista
 
         private void btnReserva_Click(object sender, EventArgs e)
         {
-
+            frmEnConstruccion frmEnConstruccion = new frmEnConstruccion();
+            frmEnConstruccion.ShowDialog();
         }
 
         private void btnDevolucion_Click(object sender, EventArgs e)
         {
-
+            frmEnConstruccion frmEnConstruccion = new frmEnConstruccion();
+            frmEnConstruccion.ShowDialog();
         }
 
         private void btnAltBajMod_Click(object sender, EventArgs e)
         {
-
+            frmAltaBajaModif frmAltaBajaModificacion = new frmAltaBajaModif();
+            frmAltaBajaModificacion.ShowDialog();
         }
     }
 }

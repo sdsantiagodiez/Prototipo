@@ -103,7 +103,6 @@
             this.pnlED.Name = "pnlED";
             this.pnlED.Size = new System.Drawing.Size(603, 136);
             this.pnlED.TabIndex = 4;
-            this.pnlED.Visible = false;
             // 
             // btnModArticProv
             // 

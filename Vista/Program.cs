@@ -17,15 +17,17 @@ namespace Vista
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //agregado para testear frmPedidoClienteNuevo
-            var testForm = new frmPedidoClienteNuevo();
-            testForm.ShowDialog();
+            var menuPrincipal = new frmMenuPrincipal();
+            menuPrincipal.ShowDialog();
+            //var testForm = new frmPedidoClienteNuevo();
+            //testForm.ShowDialog();
             //
-            frmLogIn loginForm = new frmLogIn();
-            if (loginForm.ShowDialog() == DialogResult.OK)
-            {
-                Application.Run(new frmMenuPrincipal(loginForm.getRoles(), loginForm.getUsuario()));
-            }
+            //Sin login por el momento de test
+            //frmLogIn loginForm = new frmLogIn();
+            //if (loginForm.ShowDialog() == DialogResult.OK)
+            //{
+            //    Application.Run(new frmMenuPrincipal(loginForm.getRoles(), loginForm.getUsuario()));
+            //}
         }
     }
 }
