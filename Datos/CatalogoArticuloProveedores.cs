@@ -119,30 +119,38 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "SELECT ap.[codigoOriginal],ap.[codigoArticuloProveedor],ap.[stockMinimo],ap.[stockActual],ap.[observaciones], " +
-                "ap.[descripcion],ap.[fechaActualizacion],ap.[razonSocialProveedor],vv.[valor] AS [valorVenta], vv.[fechaValor] AS [fechaValorVenta], " +
-                "vc.[valor] AS [valorCompra], vc.[fechaValor] AS [fechaValorCompra] " +
-                "FROM [Articulos_Proveedores] ap " +
-				"JOIN " +
-                "( " +
-                "SELECT vc1.codigoArticuloProveedor, vc1.codigoOriginal, vc1.fechaValor, vc1.valor " +
-                "FROM [Valores_Compra] vc1 " +
-				"INNER JOIN " +
-				"(SELECT [codigoArticuloProveedor],[codigoOriginal], MAX([fechaValor]) [fechaValor] " +
-                "FROM [Valores_Compra] " +
-				"GROUP BY [codigoOriginal],[codigoArticuloProveedor]) vc2 ON vc1.codigoOriginal=vc2.codigoOriginal " +
-				"AND vc1.codigoArticuloProveedor= vc2.codigoArticuloProveedor AND vc1.fechaValor = vc2.fechaValor " +
-                ") vc ON ap.[codigoOriginal] = vc.[codigoOriginal] AND ap.[codigoArticuloProveedor] = vc.[codigoArticuloProveedor] " +
-                "JOIN " +
-                "( " +
-                "SELECT vv1.codigoArticuloProveedor, vv1.codigoOriginal, vv1.fechaValor, vv1.valor FROM [Valores_Venta] vv1 " +
-				"INNER JOIN " +
-				"(SELECT [codigoArticuloProveedor],[codigoOriginal], MAX([fechaValor]) [fechaValor] " +
-                "FROM [Valores_Venta] " +
-				"GROUP BY [codigoOriginal],[codigoArticuloProveedor]) vv2 ON vv1.codigoOriginal=vv2.codigoOriginal " +
-				"AND vv1.codigoArticuloProveedor= vv2.codigoArticuloProveedor AND vv1.fechaValor = vv2.fechaValor " +
-                ") vv ON ap.[codigoOriginal] = vv.[codigoOriginal] AND ap.[codigoArticuloProveedor] = vv.[codigoArticuloProveedor] " +
-                "WHERE ap.descripcion LIKE @descripcion";
+                "SELECT "+
+	            "    ap.[codigoOriginal],ap.[codigoArticuloProveedor],ap.[stockMinimo],ap.[stockActual],ap.[observaciones], "+
+                "    ap.[descripcion],ap.[fechaActualizacion],ap.[razonSocialProveedor],vv.[valor] AS [valorVenta], vv.[fechaValor] AS [fechaValorVenta], "+
+                "    vc.[valor] AS [valorCompra], vc.[fechaValor] AS [fechaValorCompra] "+
+                "    FROM [Articulos_Proveedores] ap "+
+	            "   INNER JOIN "+
+                "    ( "+
+                "    SELECT valC.codigoArticuloProveedor, valC.codigoOriginal, valC.fechaValor, valC.valor " +
+	            "        FROM "+
+	            "        ( "+
+		        "            SELECT "+
+			    "                vc1.codigoArticuloProveedor, vc1.codigoOriginal, vc1.fechaValor, vc1.valor,  "+
+			    "                row_number() over(partition by vc1.codigoArticuloProveedor, vc1.codigoOriginal order by vc1.fechaValor desc) rn "+
+			    "                FROM [Valores_Compra] vc1  "+
+	            "        ) valC "+
+		        "            WHERE valC.rn = 1 "+
+                "       ) vc  "+
+	            "    ON (ap.[codigoOriginal] = vc.[codigoOriginal] AND ap.[codigoArticuloProveedor] = vc.[codigoArticuloProveedor]) "+
+                "    INNER JOIN "+
+                "    (  "+
+                "    SELECT valV.codigoArticuloProveedor, valV.codigoOriginal, valV.fechaValor, valV.valor  " +
+	            "        FROM "+
+	            "        ( "+
+		        "            SELECT  "+
+			    "                vv1.codigoArticuloProveedor, vv1.codigoOriginal, vv1.fechaValor, vv1.valor, "+
+			    "                row_number() over(partition by vv1.codigoArticuloProveedor, vv1.codigoOriginal order by vv1.fechaValor desc) rn "+
+			    "                FROM [Valores_Venta] vv1  "+
+	            "        ) valV "+
+		        "            WHERE valV.rn = 1 "+
+                "        ) vv "+
+	            "    ON (ap.[codigoOriginal] = vv.[codigoOriginal] AND ap.[codigoArticuloProveedor] = vv.[codigoArticuloProveedor]) "+
+                "    WHERE ap.descripcion LIKE CONCAT('%',@descripcion,'%') "; 
 
             comando.Parameters.Add(instanciarParametro(pDescripcion, "@descripcion"));
 
