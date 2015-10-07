@@ -57,11 +57,6 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.grbxDetalleAgregados = new System.Windows.Forms.GroupBox();
             this.dgvDetalleAgregados = new System.Windows.Forms.DataGridView();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbxArtAgregar = new System.Windows.Forms.GroupBox();
             this.lblCategoriaBuscar = new System.Windows.Forms.Label();
             this.dgvArtAgregar = new System.Windows.Forms.DataGridView();
@@ -109,6 +104,7 @@
             this.btnAgregar.TabIndex = 2;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // tlpDetalles
             // 
@@ -389,12 +385,6 @@
             this.dgvDetalleAgregados.AllowUserToDeleteRows = false;
             this.dgvDetalleAgregados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDetalleAgregados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetalleAgregados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column7,
-            this.Descripcion,
-            this.DataGridViewTextBoxColumn5,
-            this.Total,
-            this.Column6});
             this.dgvDetalleAgregados.Location = new System.Drawing.Point(11, 23);
             this.dgvDetalleAgregados.Name = "dgvDetalleAgregados";
             this.dgvDetalleAgregados.ReadOnly = true;
@@ -402,44 +392,6 @@
             this.dgvDetalleAgregados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetalleAgregados.Size = new System.Drawing.Size(675, 174);
             this.dgvDetalleAgregados.TabIndex = 5;
-            // 
-            // Column7
-            // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column7.HeaderText = "Código Proveedor";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 132;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            // 
-            // DataGridViewTextBoxColumn5
-            // 
-            this.DataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.DataGridViewTextBoxColumn5.HeaderText = "Precio Unitario";
-            this.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5";
-            this.DataGridViewTextBoxColumn5.ReadOnly = true;
-            this.DataGridViewTextBoxColumn5.Width = 111;
-            // 
-            // Total
-            // 
-            this.Total.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Total.HeaderText = "Precio Parcial";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            this.Total.Width = 107;
-            // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column6.HeaderText = "Cantidad";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 87;
             // 
             // grbxArtAgregar
             // 
@@ -481,6 +433,7 @@
             this.dgvArtAgregar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArtAgregar.Size = new System.Drawing.Size(675, 258);
             this.dgvArtAgregar.TabIndex = 3;
+            this.dgvArtAgregar.SelectionChanged += new System.EventHandler(this.dgvArtAgregar_SelectionChanged);
             // 
             // lblLupa
             // 
@@ -497,6 +450,7 @@
             this.txtBusqArticulo.Name = "txtBusqArticulo";
             this.txtBusqArticulo.Size = new System.Drawing.Size(374, 23);
             this.txtBusqArticulo.TabIndex = 1;
+            this.txtBusqArticulo.Enter += new System.EventHandler(this.txtBusqArticulo_Enter);
             this.txtBusqArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescArticulo_KeyPress);
             // 
             // cmbxCategoriaBuscar
@@ -593,11 +547,6 @@
         internal System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.GroupBox grbxDetalleAgregados;
         internal System.Windows.Forms.DataGridView dgvDetalleAgregados;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.GroupBox grbxArtAgregar;
         private System.Windows.Forms.Label lblCategoriaBuscar;
         internal System.Windows.Forms.DataGridView dgvArtAgregar;
