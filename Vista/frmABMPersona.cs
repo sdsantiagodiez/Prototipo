@@ -26,5 +26,14 @@ namespace Vista
 
         }
 
+        private void radioButtonUsuario_CheckedChanged(object sender, EventArgs e)
+        {
+            checkedListBoxRol.Enabled = radioButtonUsuario.Checked;
+            txtBoxUsuario.Enabled = radioButtonUsuario.Checked;
+            txtBoxContraseña.Enabled= radioButtonUsuario.Checked;
+            txtBoxConfirmarContraseña.Enabled = radioButtonUsuario.Checked;
+            lblRecordatorioUsuario.Visible = !radioButtonUsuario.Checked;
+        }
+
     }
 }

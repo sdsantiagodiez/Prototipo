@@ -35,6 +35,14 @@
             this.toolStripMenuItemGuardar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCancelar = new System.Windows.Forms.ToolStripMenuItem();
             this.tbPagePermisos = new System.Windows.Forms.TabPage();
+            this.panelPermisos = new System.Windows.Forms.Panel();
+            this.txtBoxUsuario = new System.Windows.Forms.TextBox();
+            this.txtBoxContraseña = new System.Windows.Forms.TextBox();
+            this.txtBoxConfirmarContraseña = new System.Windows.Forms.TextBox();
+            this.lblRepetirContraseña = new System.Windows.Forms.Label();
+            this.lblContraseña = new System.Windows.Forms.Label();
+            this.lblUsuario = new System.Windows.Forms.Label();
+            this.checkedListBoxRol = new System.Windows.Forms.CheckedListBox();
             this.tbPageDatos = new System.Windows.Forms.TabPage();
             this.tblLayoutPanelDatos = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxObservaciones = new System.Windows.Forms.GroupBox();
@@ -42,15 +50,18 @@
             this.grpBoxDatosPersonales = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelDatosPersonales = new System.Windows.Forms.TableLayoutPanel();
             this.lblCodigo = new System.Windows.Forms.Label();
-            this.lblApellido = new System.Windows.Forms.Label();
             this.lblDNI = new System.Windows.Forms.Label();
             this.lblCUIT = new System.Windows.Forms.Label();
             this.txtBoxCodigo = new System.Windows.Forms.TextBox();
             this.txtBoxDNI = new System.Windows.Forms.TextBox();
             this.txtBoxCUIT = new System.Windows.Forms.TextBox();
-            this.lblNombre = new System.Windows.Forms.Label();
+            this.lblApellido = new System.Windows.Forms.Label();
             this.txtBoxApellido = new System.Windows.Forms.TextBox();
+            this.lblNombre = new System.Windows.Forms.Label();
             this.txtBoxNombre = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.radioButtonUsuario = new System.Windows.Forms.RadioButton();
+            this.radioButtonCliente = new System.Windows.Forms.RadioButton();
             this.grpBoxDireccion = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelDireccion = new System.Windows.Forms.TableLayoutPanel();
@@ -96,12 +107,16 @@
             this.btnQuitarMail = new System.Windows.Forms.Button();
             this.lstViewMail = new System.Windows.Forms.ListView();
             this.tbCtrlPersonas = new System.Windows.Forms.TabControl();
+            this.lblRecordatorioUsuario = new System.Windows.Forms.Label();
             this.menuStripABM.SuspendLayout();
+            this.tbPagePermisos.SuspendLayout();
+            this.panelPermisos.SuspendLayout();
             this.tbPageDatos.SuspendLayout();
             this.tblLayoutPanelDatos.SuspendLayout();
             this.grpBoxObservaciones.SuspendLayout();
             this.grpBoxDatosPersonales.SuspendLayout();
             this.tblLayoutPanelDatosPersonales.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.grpBoxDireccion.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tblLayoutPanelDireccion.SuspendLayout();
@@ -162,12 +177,100 @@
             // tbPagePermisos
             // 
             this.tbPagePermisos.BackColor = System.Drawing.SystemColors.Control;
+            this.tbPagePermisos.Controls.Add(this.panelPermisos);
             this.tbPagePermisos.Location = new System.Drawing.Point(4, 22);
             this.tbPagePermisos.Name = "tbPagePermisos";
             this.tbPagePermisos.Padding = new System.Windows.Forms.Padding(3);
-            this.tbPagePermisos.Size = new System.Drawing.Size(792, 638);
+            this.tbPagePermisos.Size = new System.Drawing.Size(720, 611);
             this.tbPagePermisos.TabIndex = 1;
             this.tbPagePermisos.Text = "Permisos";
+            // 
+            // panelPermisos
+            // 
+            this.panelPermisos.Controls.Add(this.lblRecordatorioUsuario);
+            this.panelPermisos.Controls.Add(this.txtBoxUsuario);
+            this.panelPermisos.Controls.Add(this.txtBoxContraseña);
+            this.panelPermisos.Controls.Add(this.txtBoxConfirmarContraseña);
+            this.panelPermisos.Controls.Add(this.lblRepetirContraseña);
+            this.panelPermisos.Controls.Add(this.lblContraseña);
+            this.panelPermisos.Controls.Add(this.lblUsuario);
+            this.panelPermisos.Controls.Add(this.checkedListBoxRol);
+            this.panelPermisos.Location = new System.Drawing.Point(24, 18);
+            this.panelPermisos.Name = "panelPermisos";
+            this.panelPermisos.Size = new System.Drawing.Size(676, 423);
+            this.panelPermisos.TabIndex = 2;
+            // 
+            // txtBoxUsuario
+            // 
+            this.txtBoxUsuario.Enabled = false;
+            this.txtBoxUsuario.Location = new System.Drawing.Point(328, 9);
+            this.txtBoxUsuario.Name = "txtBoxUsuario";
+            this.txtBoxUsuario.Size = new System.Drawing.Size(113, 20);
+            this.txtBoxUsuario.TabIndex = 8;
+            // 
+            // txtBoxContraseña
+            // 
+            this.txtBoxContraseña.Enabled = false;
+            this.txtBoxContraseña.Location = new System.Drawing.Point(328, 40);
+            this.txtBoxContraseña.Name = "txtBoxContraseña";
+            this.txtBoxContraseña.Size = new System.Drawing.Size(113, 20);
+            this.txtBoxContraseña.TabIndex = 7;
+            // 
+            // txtBoxConfirmarContraseña
+            // 
+            this.txtBoxConfirmarContraseña.Enabled = false;
+            this.txtBoxConfirmarContraseña.Location = new System.Drawing.Point(328, 70);
+            this.txtBoxConfirmarContraseña.Name = "txtBoxConfirmarContraseña";
+            this.txtBoxConfirmarContraseña.Size = new System.Drawing.Size(113, 20);
+            this.txtBoxConfirmarContraseña.TabIndex = 6;
+            // 
+            // lblRepetirContraseña
+            // 
+            this.lblRepetirContraseña.AutoSize = true;
+            this.lblRepetirContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRepetirContraseña.Location = new System.Drawing.Point(169, 69);
+            this.lblRepetirContraseña.Name = "lblRepetirContraseña";
+            this.lblRepetirContraseña.Size = new System.Drawing.Size(155, 18);
+            this.lblRepetirContraseña.TabIndex = 5;
+            this.lblRepetirContraseña.Text = "Confirmar Contraseña";
+            // 
+            // lblContraseña
+            // 
+            this.lblContraseña.AutoSize = true;
+            this.lblContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContraseña.Location = new System.Drawing.Point(169, 39);
+            this.lblContraseña.Name = "lblContraseña";
+            this.lblContraseña.Size = new System.Drawing.Size(85, 18);
+            this.lblContraseña.TabIndex = 4;
+            this.lblContraseña.Text = "Contraseña";
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.Location = new System.Drawing.Point(169, 8);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(60, 18);
+            this.lblUsuario.TabIndex = 3;
+            this.lblUsuario.Text = "Usuario";
+            // 
+            // checkedListBoxRol
+            // 
+            this.checkedListBoxRol.BackColor = System.Drawing.SystemColors.Control;
+            this.checkedListBoxRol.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.checkedListBoxRol.CheckOnClick = true;
+            this.checkedListBoxRol.Enabled = false;
+            this.checkedListBoxRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkedListBoxRol.FormattingEnabled = true;
+            this.checkedListBoxRol.Items.AddRange(new object[] {
+            "Encargado de Reportes",
+            "Encargado de Compras",
+            "Encargado de Ventas",
+            "Encargado de Datos"});
+            this.checkedListBoxRol.Location = new System.Drawing.Point(196, 122);
+            this.checkedListBoxRol.Name = "checkedListBoxRol";
+            this.checkedListBoxRol.Size = new System.Drawing.Size(213, 114);
+            this.checkedListBoxRol.TabIndex = 0;
             // 
             // tbPageDatos
             // 
@@ -237,15 +340,16 @@
             this.tblLayoutPanelDatosPersonales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tblLayoutPanelDatosPersonales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblCodigo, 0, 0);
-            this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblApellido, 2, 1);
             this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblDNI, 0, 1);
             this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblCUIT, 0, 2);
             this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxCodigo, 1, 0);
             this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxDNI, 1, 1);
             this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxCUIT, 1, 2);
-            this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblNombre, 2, 2);
-            this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxApellido, 3, 1);
-            this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxNombre, 3, 2);
+            this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblApellido, 2, 0);
+            this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxApellido, 3, 0);
+            this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblNombre, 2, 1);
+            this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxNombre, 3, 1);
+            this.tblLayoutPanelDatosPersonales.Controls.Add(this.panel2, 3, 2);
             this.tblLayoutPanelDatosPersonales.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelDatosPersonales.Location = new System.Drawing.Point(3, 16);
             this.tblLayoutPanelDatosPersonales.Name = "tblLayoutPanelDatosPersonales";
@@ -266,17 +370,6 @@
             this.lblCodigo.Size = new System.Drawing.Size(52, 26);
             this.lblCodigo.TabIndex = 0;
             this.lblCodigo.Text = "Código:";
-            // 
-            // lblApellido
-            // 
-            this.lblApellido.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblApellido.AutoSize = true;
-            this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellido.Location = new System.Drawing.Point(278, 31);
-            this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(62, 17);
-            this.lblApellido.TabIndex = 2;
-            this.lblApellido.Text = "Apellido:";
             // 
             // lblDNI
             // 
@@ -324,32 +417,78 @@
             this.txtBoxCUIT.Size = new System.Drawing.Size(107, 20);
             this.txtBoxCUIT.TabIndex = 7;
             // 
+            // lblApellido
+            // 
+            this.lblApellido.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblApellido.AutoSize = true;
+            this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApellido.Location = new System.Drawing.Point(278, 4);
+            this.lblApellido.Name = "lblApellido";
+            this.lblApellido.Size = new System.Drawing.Size(62, 17);
+            this.lblApellido.TabIndex = 2;
+            this.lblApellido.Text = "Apellido:";
+            // 
+            // txtBoxApellido
+            // 
+            this.txtBoxApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxApellido.Location = new System.Drawing.Point(346, 3);
+            this.txtBoxApellido.Name = "txtBoxApellido";
+            this.txtBoxApellido.Size = new System.Drawing.Size(340, 20);
+            this.txtBoxApellido.TabIndex = 8;
+            // 
             // lblNombre
             // 
             this.lblNombre.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(278, 60);
+            this.lblNombre.Location = new System.Drawing.Point(278, 31);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(62, 17);
             this.lblNombre.TabIndex = 3;
             this.lblNombre.Text = "Nombre:";
             // 
-            // txtBoxApellido
-            // 
-            this.txtBoxApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxApellido.Location = new System.Drawing.Point(346, 30);
-            this.txtBoxApellido.Name = "txtBoxApellido";
-            this.txtBoxApellido.Size = new System.Drawing.Size(340, 20);
-            this.txtBoxApellido.TabIndex = 8;
-            // 
             // txtBoxNombre
             // 
             this.txtBoxNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNombre.Location = new System.Drawing.Point(346, 58);
+            this.txtBoxNombre.Location = new System.Drawing.Point(346, 30);
             this.txtBoxNombre.Name = "txtBoxNombre";
             this.txtBoxNombre.Size = new System.Drawing.Size(340, 20);
             this.txtBoxNombre.TabIndex = 9;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.radioButtonUsuario);
+            this.panel2.Controls.Add(this.radioButtonCliente);
+            this.panel2.Location = new System.Drawing.Point(346, 57);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(337, 23);
+            this.panel2.TabIndex = 11;
+            // 
+            // radioButtonUsuario
+            // 
+            this.radioButtonUsuario.AutoSize = true;
+            this.radioButtonUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonUsuario.Location = new System.Drawing.Point(159, 0);
+            this.radioButtonUsuario.Name = "radioButtonUsuario";
+            this.radioButtonUsuario.Size = new System.Drawing.Size(156, 22);
+            this.radioButtonUsuario.TabIndex = 12;
+            this.radioButtonUsuario.TabStop = true;
+            this.radioButtonUsuario.Text = "Usuario de Sistema";
+            this.radioButtonUsuario.UseVisualStyleBackColor = true;
+            this.radioButtonUsuario.CheckedChanged += new System.EventHandler(this.radioButtonUsuario_CheckedChanged);
+            // 
+            // radioButtonCliente
+            // 
+            this.radioButtonCliente.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radioButtonCliente.AutoSize = true;
+            this.radioButtonCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonCliente.Location = new System.Drawing.Point(7, 0);
+            this.radioButtonCliente.Name = "radioButtonCliente";
+            this.radioButtonCliente.Size = new System.Drawing.Size(71, 22);
+            this.radioButtonCliente.TabIndex = 10;
+            this.radioButtonCliente.TabStop = true;
+            this.radioButtonCliente.Text = "Cliente";
+            this.radioButtonCliente.UseVisualStyleBackColor = true;
             // 
             // grpBoxDireccion
             // 
@@ -387,7 +526,7 @@
             this.tblLayoutPanelDireccion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 78F));
             this.tblLayoutPanelDireccion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
             this.tblLayoutPanelDireccion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
-            this.tblLayoutPanelDireccion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tblLayoutPanelDireccion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tblLayoutPanelDireccion.Controls.Add(this.btnQuitarDireccion, 7, 1);
             this.tblLayoutPanelDireccion.Controls.Add(this.btnAgregarDireccion, 6, 1);
             this.tblLayoutPanelDireccion.Controls.Add(this.lblCalle, 0, 0);
@@ -670,11 +809,11 @@
             this.tblLayoutPanelListaNumeroTelefono.Controls.Add(this.btnQuitarNumeroTelefono, 1, 0);
             this.tblLayoutPanelListaNumeroTelefono.Controls.Add(this.lstViewNumeroTelefono, 0, 0);
             this.tblLayoutPanelListaNumeroTelefono.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelListaNumeroTelefono.Location = new System.Drawing.Point(350, 62);
+            this.tblLayoutPanelListaNumeroTelefono.Location = new System.Drawing.Point(350, 61);
             this.tblLayoutPanelListaNumeroTelefono.Name = "tblLayoutPanelListaNumeroTelefono";
             this.tblLayoutPanelListaNumeroTelefono.RowCount = 1;
             this.tblLayoutPanelListaNumeroTelefono.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelListaNumeroTelefono.Size = new System.Drawing.Size(336, 70);
+            this.tblLayoutPanelListaNumeroTelefono.Size = new System.Drawing.Size(336, 71);
             this.tblLayoutPanelListaNumeroTelefono.TabIndex = 3;
             // 
             // btnQuitarNumeroTelefono
@@ -692,7 +831,7 @@
             this.lstViewNumeroTelefono.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstViewNumeroTelefono.Location = new System.Drawing.Point(3, 3);
             this.lstViewNumeroTelefono.Name = "lstViewNumeroTelefono";
-            this.lstViewNumeroTelefono.Size = new System.Drawing.Size(304, 64);
+            this.lstViewNumeroTelefono.Size = new System.Drawing.Size(304, 65);
             this.lstViewNumeroTelefono.TabIndex = 12;
             this.lstViewNumeroTelefono.UseCompatibleStateImageBehavior = false;
             // 
@@ -702,7 +841,7 @@
             this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.08108F));
             this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.91892F));
-            this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tblLayoutPanelNumeroTelefono.Controls.Add(this.btnAgregarNumeroTelefono, 3, 0);
             this.tblLayoutPanelNumeroTelefono.Controls.Add(this.txtBoxNumeroTelefono, 2, 0);
             this.tblLayoutPanelNumeroTelefono.Controls.Add(this.lblNumeroTelefono, 1, 0);
@@ -712,16 +851,16 @@
             this.tblLayoutPanelNumeroTelefono.Name = "tblLayoutPanelNumeroTelefono";
             this.tblLayoutPanelNumeroTelefono.RowCount = 1;
             this.tblLayoutPanelNumeroTelefono.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelNumeroTelefono.Size = new System.Drawing.Size(336, 53);
+            this.tblLayoutPanelNumeroTelefono.Size = new System.Drawing.Size(336, 52);
             this.tblLayoutPanelNumeroTelefono.TabIndex = 2;
             // 
             // btnAgregarNumeroTelefono
             // 
             this.btnAgregarNumeroTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAgregarNumeroTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarNumeroTelefono.Location = new System.Drawing.Point(312, 15);
+            this.btnAgregarNumeroTelefono.Location = new System.Drawing.Point(310, 14);
             this.btnAgregarNumeroTelefono.Name = "btnAgregarNumeroTelefono";
-            this.btnAgregarNumeroTelefono.Size = new System.Drawing.Size(21, 23);
+            this.btnAgregarNumeroTelefono.Size = new System.Drawing.Size(23, 23);
             this.btnAgregarNumeroTelefono.TabIndex = 10;
             this.btnAgregarNumeroTelefono.UseVisualStyleBackColor = true;
             // 
@@ -730,7 +869,7 @@
             this.txtBoxNumeroTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxNumeroTelefono.Location = new System.Drawing.Point(133, 16);
             this.txtBoxNumeroTelefono.Name = "txtBoxNumeroTelefono";
-            this.txtBoxNumeroTelefono.Size = new System.Drawing.Size(173, 20);
+            this.txtBoxNumeroTelefono.Size = new System.Drawing.Size(171, 20);
             this.txtBoxNumeroTelefono.TabIndex = 8;
             // 
             // lblNumeroTelefono
@@ -738,7 +877,7 @@
             this.lblNumeroTelefono.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNumeroTelefono.AutoSize = true;
             this.lblNumeroTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumeroTelefono.Location = new System.Drawing.Point(65, 18);
+            this.lblNumeroTelefono.Location = new System.Drawing.Point(65, 17);
             this.lblNumeroTelefono.Name = "lblNumeroTelefono";
             this.lblNumeroTelefono.Size = new System.Drawing.Size(62, 17);
             this.lblNumeroTelefono.TabIndex = 9;
@@ -752,7 +891,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoNumeroTelefono.Location = new System.Drawing.Point(3, 16);
+            this.cmbBoxTipoNumeroTelefono.Location = new System.Drawing.Point(3, 15);
             this.cmbBoxTipoNumeroTelefono.Name = "cmbBoxTipoNumeroTelefono";
             this.cmbBoxTipoNumeroTelefono.Size = new System.Drawing.Size(44, 21);
             this.cmbBoxTipoNumeroTelefono.TabIndex = 11;
@@ -762,7 +901,7 @@
             this.tblLayoutPanelMail.ColumnCount = 3;
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.39297F));
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.60703F));
-            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tblLayoutPanelMail.Controls.Add(this.lblMail, 0, 0);
             this.tblLayoutPanelMail.Controls.Add(this.txtBoxMail, 1, 0);
             this.tblLayoutPanelMail.Controls.Add(this.btnAgregarMail, 2, 0);
@@ -771,7 +910,7 @@
             this.tblLayoutPanelMail.Name = "tblLayoutPanelMail";
             this.tblLayoutPanelMail.RowCount = 1;
             this.tblLayoutPanelMail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelMail.Size = new System.Drawing.Size(341, 53);
+            this.tblLayoutPanelMail.Size = new System.Drawing.Size(341, 52);
             this.tblLayoutPanelMail.TabIndex = 0;
             // 
             // lblMail
@@ -790,16 +929,16 @@
             this.txtBoxMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxMail.Location = new System.Drawing.Point(94, 16);
             this.txtBoxMail.Name = "txtBoxMail";
-            this.txtBoxMail.Size = new System.Drawing.Size(215, 20);
+            this.txtBoxMail.Size = new System.Drawing.Size(213, 20);
             this.txtBoxMail.TabIndex = 8;
             // 
             // btnAgregarMail
             // 
             this.btnAgregarMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAgregarMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarMail.Location = new System.Drawing.Point(315, 15);
+            this.btnAgregarMail.Location = new System.Drawing.Point(313, 15);
             this.btnAgregarMail.Name = "btnAgregarMail";
-            this.btnAgregarMail.Size = new System.Drawing.Size(23, 22);
+            this.btnAgregarMail.Size = new System.Drawing.Size(25, 22);
             this.btnAgregarMail.TabIndex = 10;
             this.btnAgregarMail.UseVisualStyleBackColor = true;
             // 
@@ -811,11 +950,11 @@
             this.tblLayoutPanelListaMail.Controls.Add(this.btnQuitarMail, 1, 0);
             this.tblLayoutPanelListaMail.Controls.Add(this.lstViewMail, 0, 0);
             this.tblLayoutPanelListaMail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelListaMail.Location = new System.Drawing.Point(3, 62);
+            this.tblLayoutPanelListaMail.Location = new System.Drawing.Point(3, 61);
             this.tblLayoutPanelListaMail.Name = "tblLayoutPanelListaMail";
             this.tblLayoutPanelListaMail.RowCount = 1;
             this.tblLayoutPanelListaMail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelListaMail.Size = new System.Drawing.Size(341, 70);
+            this.tblLayoutPanelListaMail.Size = new System.Drawing.Size(341, 71);
             this.tblLayoutPanelListaMail.TabIndex = 1;
             // 
             // btnQuitarMail
@@ -833,7 +972,7 @@
             this.lstViewMail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstViewMail.Location = new System.Drawing.Point(3, 3);
             this.lstViewMail.Name = "lstViewMail";
-            this.lstViewMail.Size = new System.Drawing.Size(307, 64);
+            this.lstViewMail.Size = new System.Drawing.Size(307, 65);
             this.lstViewMail.TabIndex = 12;
             this.lstViewMail.UseCompatibleStateImageBehavior = false;
             // 
@@ -848,6 +987,17 @@
             this.tbCtrlPersonas.Size = new System.Drawing.Size(728, 637);
             this.tbCtrlPersonas.TabIndex = 1;
             // 
+            // lblRecordatorioUsuario
+            // 
+            this.lblRecordatorioUsuario.AutoSize = true;
+            this.lblRecordatorioUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecordatorioUsuario.ForeColor = System.Drawing.Color.Red;
+            this.lblRecordatorioUsuario.Location = new System.Drawing.Point(43, 239);
+            this.lblRecordatorioUsuario.Name = "lblRecordatorioUsuario";
+            this.lblRecordatorioUsuario.Size = new System.Drawing.Size(572, 20);
+            this.lblRecordatorioUsuario.TabIndex = 9;
+            this.lblRecordatorioUsuario.Text = "*La persona debe ser un usuario de sistema para poder modificar estos campos";
+            // 
             // frmABMPersona
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -860,12 +1010,17 @@
             this.Text = "ABM Personas";
             this.menuStripABM.ResumeLayout(false);
             this.menuStripABM.PerformLayout();
+            this.tbPagePermisos.ResumeLayout(false);
+            this.panelPermisos.ResumeLayout(false);
+            this.panelPermisos.PerformLayout();
             this.tbPageDatos.ResumeLayout(false);
             this.tblLayoutPanelDatos.ResumeLayout(false);
             this.grpBoxObservaciones.ResumeLayout(false);
             this.grpBoxDatosPersonales.ResumeLayout(false);
             this.tblLayoutPanelDatosPersonales.ResumeLayout(false);
             this.tblLayoutPanelDatosPersonales.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.grpBoxDireccion.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tblLayoutPanelDireccion.ResumeLayout(false);
@@ -955,5 +1110,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoPostal;
         private System.Windows.Forms.DataGridViewTextBoxColumn ciudad;
         private System.Windows.Forms.DataGridViewTextBoxColumn provincia;
+        private System.Windows.Forms.CheckedListBox checkedListBoxRol;
+        private System.Windows.Forms.Panel panelPermisos;
+        private System.Windows.Forms.TextBox txtBoxUsuario;
+        private System.Windows.Forms.TextBox txtBoxContraseña;
+        private System.Windows.Forms.TextBox txtBoxConfirmarContraseña;
+        private System.Windows.Forms.Label lblRepetirContraseña;
+        private System.Windows.Forms.Label lblContraseña;
+        private System.Windows.Forms.Label lblUsuario;
+        private System.Windows.Forms.RadioButton radioButtonCliente;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.RadioButton radioButtonUsuario;
+        private System.Windows.Forms.Label lblRecordatorioUsuario;
     }
 }
