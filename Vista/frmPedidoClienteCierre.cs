@@ -7,42 +7,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Modelos;
 
 namespace Vista
 {
     public partial class frmPedidoClienteCierre : Form
     {
+        private List<ModeloArticuloProveedores> ventaActual;
+        
         public frmPedidoClienteCierre()
         {
             InitializeComponent();
         }
 
-        private void frmPedidoClienteCierre_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Button5_Click(object sender, EventArgs e)
+        private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            frmEnConstruccion frmCons = new frmEnConstruccion();
-            frmCons.ShowDialog();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void btnEmitir_Click(object sender, EventArgs e)
         {
             frmEnConstruccion frmConstruccion = new frmEnConstruccion();
             frmConstruccion.ShowDialog();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        }       
+    
+        internal void detalleVenta(List<ModeloArticuloProveedores> list)
         {
-             this.Close();
+ 	        this.ventaActual = list;
+            var bindingList = new BindingList<ModeloArticuloProveedores>(this.ventaActual);
+            var source = new BindingSource(bindingList, null);
+            this.dgvArticulosVenta.DataSource = source;
         }
-       
     }
 }

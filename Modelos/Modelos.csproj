@@ -46,7 +46,6 @@
     <Compile Include="ModeloMailPersonas.cs" />
     <Compile Include="ModeloPedidoArtProv.cs" />
     <Compile Include="ModeloPersonas.cs" />
-    <Compile Include="ModeloVistaNuevoPedido.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModeloProveedores.cs" />
     <Compile Include="ModeloRoles.cs" />
