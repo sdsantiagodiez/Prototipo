@@ -20,5 +20,11 @@ namespace Vista
             btnAgregarMail.Text = char.ConvertFromUtf32(8595);
             btnQuitarMail.Text = char.ConvertFromUtf32(8593);
         }
+
+        private void tableLayoutPanel6_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
     }
 }
