@@ -18,7 +18,7 @@ namespace Vista
             Application.SetCompatibleTextRenderingDefault(false);
 
             var menuPrincipal = new frmMenuPrincipal();
-            menuPrincipal.ShowDialog();
+            Application.Run(menuPrincipal);
             //var testForm = new frmPedidoClienteNuevo();
             //testForm.ShowDialog();
             //

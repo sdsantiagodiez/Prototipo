@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class frmAltaBajaModif
+    partial class frmABMRaiz
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.btnAltaCliente = new System.Windows.Forms.Button();
-            this.btnModCliente = new System.Windows.Forms.Button();
-            this.btnElimCliente = new System.Windows.Forms.Button();
             this.btnAltaUsuario = new System.Windows.Forms.Button();
             this.pnlED = new System.Windows.Forms.Panel();
             this.btnModArticProv = new System.Windows.Forms.Button();
@@ -45,6 +43,8 @@
             this.btnElimUsuario = new System.Windows.Forms.Button();
             this.btnModUsuario = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.btnElimCliente = new System.Windows.Forms.Button();
+            this.btnModCliente = new System.Windows.Forms.Button();
             this.pnlED.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,24 +56,7 @@
             this.btnAltaCliente.TabIndex = 0;
             this.btnAltaCliente.Text = "Nuevo Cliente";
             this.btnAltaCliente.UseVisualStyleBackColor = true;
-            // 
-            // btnModCliente
-            // 
-            this.btnModCliente.Location = new System.Drawing.Point(28, 68);
-            this.btnModCliente.Name = "btnModCliente";
-            this.btnModCliente.Size = new System.Drawing.Size(107, 23);
-            this.btnModCliente.TabIndex = 1;
-            this.btnModCliente.Text = "Modificar Cliente";
-            this.btnModCliente.UseVisualStyleBackColor = true;
-            // 
-            // btnElimCliente
-            // 
-            this.btnElimCliente.Location = new System.Drawing.Point(0, 3);
-            this.btnElimCliente.Name = "btnElimCliente";
-            this.btnElimCliente.Size = new System.Drawing.Size(107, 23);
-            this.btnElimCliente.TabIndex = 2;
-            this.btnElimCliente.Text = "Eliminar Cliente";
-            this.btnElimCliente.UseVisualStyleBackColor = true;
+            this.btnAltaCliente.Click += new System.EventHandler(this.btnAltaCliente_Click);
             // 
             // btnAltaUsuario
             // 
@@ -212,7 +195,25 @@
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             // 
-            // frmAltaBajaModif
+            // btnElimCliente
+            // 
+            this.btnElimCliente.Location = new System.Drawing.Point(0, 3);
+            this.btnElimCliente.Name = "btnElimCliente";
+            this.btnElimCliente.Size = new System.Drawing.Size(107, 23);
+            this.btnElimCliente.TabIndex = 2;
+            this.btnElimCliente.Text = "Eliminar Cliente";
+            this.btnElimCliente.UseVisualStyleBackColor = true;
+            // 
+            // btnModCliente
+            // 
+            this.btnModCliente.Location = new System.Drawing.Point(28, 68);
+            this.btnModCliente.Name = "btnModCliente";
+            this.btnModCliente.Size = new System.Drawing.Size(107, 23);
+            this.btnModCliente.TabIndex = 1;
+            this.btnModCliente.Text = "Modificar Cliente";
+            this.btnModCliente.UseVisualStyleBackColor = true;
+            // 
+            // frmABMRaiz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -221,7 +222,7 @@
             this.Controls.Add(this.pnlED);
             this.Controls.Add(this.btnModCliente);
             this.Controls.Add(this.btnAltaCliente);
-            this.Name = "frmAltaBajaModif";
+            this.Name = "frmABMRaiz";
             this.Text = "Altas, Bajas, y Modificaciones";
             this.pnlED.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -231,8 +232,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnAltaCliente;
-        private System.Windows.Forms.Button btnModCliente;
-        private System.Windows.Forms.Button btnElimCliente;
         private System.Windows.Forms.Button btnAltaUsuario;
         private System.Windows.Forms.Panel pnlED;
         private System.Windows.Forms.Button btnModArticProv;
@@ -247,5 +246,7 @@
         private System.Windows.Forms.Button btnElimUsuario;
         private System.Windows.Forms.Button btnModUsuario;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnElimCliente;
+        private System.Windows.Forms.Button btnModCliente;
     }
 }

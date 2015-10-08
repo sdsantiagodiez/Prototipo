@@ -44,11 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmAltaBajaModif.cs">
+    <Compile Include="frmABMPersona.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAltaBajaModif.Designer.cs">
-      <DependentUpon>frmAltaBajaModif.cs</DependentUpon>
+    <Compile Include="frmABMPersona.Designer.cs">
+      <DependentUpon>frmABMPersona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmABMRaiz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmABMRaiz.Designer.cs">
+      <DependentUpon>frmABMRaiz.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogIn.cs">
       <SubType>Form</SubType>
@@ -94,8 +100,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmAltaBajaModif.resx">
-      <DependentUpon>frmAltaBajaModif.cs</DependentUpon>
+    <EmbeddedResource Include="frmABMPersona.resx">
+      <DependentUpon>frmABMPersona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmABMRaiz.resx">
+      <DependentUpon>frmABMRaiz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogIn.resx">
       <DependentUpon>frmLogIn.cs</DependentUpon>

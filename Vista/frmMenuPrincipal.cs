@@ -54,8 +54,6 @@ namespace Vista
             //        case 4: pnlED.Visible = true; break;
 
             //cargo los datos correspondiente al usuario, identificandolo
-            lblNombreUsuario.Text = "Usuario TEST";
-            lblNombreUsuario.Refresh();
             lblFechaLog.Text = DateTime.Today.ToString("dd/MM/yyyy");
             lblHoraLog.Text = DateTime.Now.ToString("HH:mm:ss tt");
         }
@@ -98,8 +96,8 @@ namespace Vista
 
         private void btnAltBajMod_Click(object sender, EventArgs e)
         {
-            frmAltaBajaModif frmAltaBajaModificacion = new frmAltaBajaModif();
-            frmAltaBajaModificacion.ShowDialog();
+            frmABMRaiz frmABM = new frmABMRaiz();
+            frmABM.ShowDialog();
         }
     }
 }

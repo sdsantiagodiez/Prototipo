@@ -11,9 +11,9 @@ using Modelos;
 
 namespace Vista
 {
-    public partial class frmAltaBajaModif : Form
+    public partial class frmABMRaiz : Form
     {
-        public frmAltaBajaModif(/*List<ModeloRoles> rolCollection*/)
+        public frmABMRaiz(/*List<ModeloRoles> rolCollection*/)
         {
             InitializeComponent();
 
@@ -28,6 +28,12 @@ namespace Vista
                     pnlED.Visible = true;
 	            }
             }*/
+        }
+
+        private void btnAltaCliente_Click(object sender, EventArgs e)
+        {
+            frmABMPersona frmABMPersona = new frmABMPersona();
+            frmABMPersona.ShowDialog();
         }
     }
 }
