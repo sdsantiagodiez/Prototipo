@@ -19,13 +19,15 @@ namespace Vista
         private List<ModeloArticuloProveedores> artVentaActual = new List<ModeloArticuloProveedores>();
         private decimal contado = 1;
         private decimal tarjeta = 1;
-        private ModeloArticuloProveedores artSeleccionado;
+        private ModeloArticuloProveedores artSelecBusq;
+        private ModeloArticuloProveedores artSelecDetalle;
         public frmPedidoClienteNuevo()
         {
             InitializeComponent();
+            this.dgvArtAgregar.AutoGenerateColumns = false;
             //Creo lista categorias
-
             var dataSource = new List<Categ>();
+            dataSource.Add(new Categ() { Name = "Seleccione...", Value = null });
             dataSource.Add(new Categ() { Name = "Codigo Original", Value = "codigooriginal" });
             dataSource.Add(new Categ() { Name = "Descripción", Value = "descripcion" });
             dataSource.Add(new Categ() { Name = "Codigo Proveedor", Value = "codigoarticuloproveedor" });
@@ -42,36 +44,53 @@ namespace Vista
 
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            frmPedidoClienteCierre frmCierre = new frmPedidoClienteCierre();
-            frmCierre.ShowDialog();
+            //compruebo que existan articulos para generar venta
+            if (this.artVentaActual.Count > 0)
+            {
+                //creo el formulario, le paso los articulos de la venta actual, y lo muestro
+                frmPedidoClienteCierre frmCierre = new frmPedidoClienteCierre();
+                frmCierre.detalleVenta(this.artVentaActual);
+                frmCierre.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No se han seleccionado artículos para la venta actual");
+            }
         }
 
         private void lblLupa_Click(object sender, EventArgs e)
         {
-            //FALTA VALIDAR LA DESCRIPCION
-            
+            //
+            //TODO --> VALIDAR EL INPUT
+            //
+
+
             //capturo descripcion parcial
             string busqArt = this.txtBusqArticulo.Text;
 
-            //busco el/los articulos correspondientes
-            var ctrlProcVenta = new ControladorProcesarVenta();
-            artEncontrados = ctrlProcVenta.buscarArticulos(categBusq, busqArt);
-            
-            //lo transformo a un modelo que solo muestre algunas columnas (se podra hacer de otra forma sin modelo extra?)
-            List<ModeloVistaNuevoPedido> artEncVista = ctrlProcVenta.adaptarArt(artEncontrados);
-
-            //bindeo el datagrid con los articulos encontrados
-            if (!object.Equals(artEncontrados, null))
+            //me aseguro que se haya seleccionado una categoria de búsqueda
+            if (!object.Equals(this.categBusq, null))
             {
-                var bindingList = new BindingList<ModeloVistaNuevoPedido>(artEncVista);
-                var source = new BindingSource(bindingList, null);
-                this.dgvArtAgregar.DataSource = source;
+                //busco el/los articulos correspondientes
+                var ctrlProcVenta = new ControladorProcesarVenta();
+                artEncontrados = ctrlProcVenta.buscarArticulos(categBusq, busqArt);
+
+                //bindeo el datagrid con los articulos encontrados
+                if (!object.Equals(artEncontrados, null))
+                {
+                    var bindingList = new BindingList<ModeloArticuloProveedores>(artEncontrados);
+                    var source = new BindingSource(bindingList, null);
+                    this.dgvArtAgregar.DataSource = source;
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron coincidencias");
+                }
             }
             else
             {
-                MessageBox.Show("No se encontraron coincidencias");
+                MessageBox.Show("Por favor seleccione una categoría de búsqueda");
             }
-
         }
 
         private void txtDescArticulo_KeyPress(object sender, KeyPressEventArgs e)
@@ -88,41 +107,14 @@ namespace Vista
             this.categBusq = (string)this.cmbxCategoriaBuscar.SelectedValue;
         }
 
-        private void dgvArtAgregar_SelectionChanged(object sender, EventArgs e)
-        {
-            //busco el indice de la fila seleccionada que coincide con la lista que contiene mayor cantidad de información
-            int articuloSelec = dgvArtAgregar.CurrentCell.RowIndex;
-
-            //asigno el articulo a la variable artSeleccionado en caso de que se decida agregarlo a la venta
-            this.artSeleccionado = artEncontrados[articuloSelec];
-
-            //actualizo lost lbl para mostrar el articulo seleccionado
-            this.lblCodOrigVar.Text = artEncontrados[articuloSelec].codigoOriginal;
-            this.lblCodProvVar.Text = artEncontrados[articuloSelec].codigoArticuloProveedor;
-            this.lblProvVar.Text = artEncontrados[articuloSelec].razonSocialProveedor;
-            this.lblDescVar.Text = artEncontrados[articuloSelec].descripcion;
-            //
-            //TODO modificadores de precio segun metodo de pago
-            this.lblContadoVar.Text = Convert.ToString(artEncontrados[articuloSelec].valorVenta.valorArticulo * contado);
-            this.lblTarjetaVar.Text = Convert.ToString(artEncontrados[articuloSelec].valorVenta.valorArticulo * tarjeta);
-            //
-            /* TODO modificar base de datos y modelo para registrar ubicación del articulo en cuestion en el local
-             * this.lblTarjetaVar.Text = artEncontrados[articuloSelec].ubicacion
-             */
-            this.lblExistenciaVar.Text = Convert.ToString(artEncontrados[articuloSelec].stockActual);
-            this.lblFechaActualizVar.Text = Convert.ToString(artEncontrados[articuloSelec].fechaActualizacion);
-            this.lblObsVar.Text = artEncontrados[articuloSelec].observaciones;
-
-        }
-
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
            //checkeo que haya un articulo seleccionado
-            if (!object.Equals(this.artSeleccionado, null))
+            if (!object.Equals(this.artSelecBusq, null))
             {
                 //lo agrego a la lista de articulos ya seleccionados
-                this.artVentaActual.Add(this.artSeleccionado);
+                this.artVentaActual.Add(this.artSelecBusq);
 
                 //rebindeo los articulos seleccionados a la grid
 
@@ -135,17 +127,54 @@ namespace Vista
                 this.dgvDetalleAgregados.DataSource = source;
 
                 //
-                //
+                //Limpio artselecbusq para manejar el uso del boton en momento equivocado
+                this.artSelecBusq = null;
             }
             else
             {
-                MessageBox.Show("Por favor seleccione un articulo");
+                MessageBox.Show("Por favor seleccione un articulo a agregar de la grilla de busqueda");
             }
         }
 
         private void txtBusqArticulo_Enter(object sender, EventArgs e)
         {
             //se limpian los lbls para no generar errores ya que no hay ninguno seleccionado
+            cleanLbls();
+        }
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            //checkeo que haya un articulo seleccionado
+            if (!object.Equals(this.artSelecDetalle, null))
+            {
+                //lo elimino de la lista de articulos ya seleccionados
+                this.artVentaActual.Remove(this.artSelecDetalle);
+
+                //rebindeo los articulos seleccionados a la grid
+
+                //
+                //TODO La grilla original mostraba Codigo de proveedor, Descripción, Precio Unitario, Precio parcial (?que es esto?) Cantidad
+                //Falta solicitar cantidad y mostrar información adecuada
+
+                var bindingList = new BindingList<ModeloArticuloProveedores>(this.artVentaActual);
+                var source = new BindingSource(bindingList, null);
+                this.dgvDetalleAgregados.DataSource = source;
+
+                //
+                //Limpio artselecdetalle para evitar uso de boton en momento equivocado
+                this.artSelecDetalle = null;
+
+                //se limpian los lbls ya que el articulo previamente seleccionado no se encuentra más en la lista
+                cleanLbls();
+            }
+            else
+            {
+                MessageBox.Show("Por favor seleccione un articulo a eliminar de la grilla de detalles");
+            }
+        }
+
+        private void cleanLbls()
+        {
             this.lblCodOrigVar.Text = "Seleccione Articulo";
             this.lblCodProvVar.Text = "Seleccione Articulo";
             this.lblProvVar.Text = "Seleccione Articulo";
@@ -155,6 +184,97 @@ namespace Vista
             this.lblExistenciaVar.Text = "Seleccione Articulo";
             this.lblFechaActualizVar.Text = "Seleccione Articulo";
             this.lblObsVar.Text = "Seleccione Articulo";
+        }
+
+        private void dgvArtAgregar_Enter(object sender, EventArgs e)
+        {
+            //Limpio artselecdetalle para manejar el uso del boton en momento equivocado
+            this.artSelecDetalle = null;
+        }
+
+        private void dgvDetalleAgregados_Enter(object sender, EventArgs e)
+        {
+            //Limpio artselecbusq para manejar el uso del boton en momento equivocado
+            this.artSelecBusq = null;
+        }
+
+        private void dgvArtAgregar_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //busco el indice de la fila seleccionada que coincide con la lista que contiene mayor cantidad de información
+            int indiceSelecc = dgvArtAgregar.CurrentCell.RowIndex;
+
+            //asigno el articulo a la variable artSelecBusq en caso de que se decida agregarlo a la venta
+            this.artSelecBusq = artEncontrados[indiceSelecc];
+
+            //actualizo lost lbl para mostrar el articulo seleccionado
+            this.lblCodOrigVar.Text = artEncontrados[indiceSelecc].codigoOriginal;
+            this.lblCodProvVar.Text = artEncontrados[indiceSelecc].codigoArticuloProveedor;
+            this.lblProvVar.Text = artEncontrados[indiceSelecc].razonSocialProveedor;
+            this.lblDescVar.Text = artEncontrados[indiceSelecc].descripcion;
+            //
+            //TODO modificadores de precio segun metodo de pago
+            this.lblContadoVar.Text = Convert.ToString(artEncontrados[indiceSelecc].valorVenta.valorArticulo * contado);
+            this.lblTarjetaVar.Text = Convert.ToString(artEncontrados[indiceSelecc].valorVenta.valorArticulo * tarjeta);
+            //
+            /* TODO modificar base de datos y modelo para registrar ubicación del articulo en cuestion en el local
+             * this.lblTarjetaVar.Text = artEncontrados[articuloSelec].ubicacion
+             */
+            this.lblExistenciaVar.Text = Convert.ToString(artEncontrados[indiceSelecc].stockActual);
+            this.lblFechaActualizVar.Text = Convert.ToString(artEncontrados[indiceSelecc].fechaActualizacion);
+            this.lblObsVar.Text = artEncontrados[indiceSelecc].observaciones;
+        }
+
+        private void dgvDetalleAgregados_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //busco el indice de la fila seleccionada
+            int indiceSelecc = this.dgvDetalleAgregados.CurrentCell.RowIndex;
+
+            //asigno el articulo a la variable artSelecDetalle en caso de que se decida removerlo de la venta
+            this.artSelecDetalle = this.artVentaActual[indiceSelecc];
+
+            //actualizo lost lbl para mostrar el articulo seleccionado
+            this.lblCodOrigVar.Text = this.artVentaActual[indiceSelecc].codigoOriginal;
+            this.lblCodProvVar.Text = this.artVentaActual[indiceSelecc].codigoArticuloProveedor;
+            this.lblProvVar.Text = this.artVentaActual[indiceSelecc].razonSocialProveedor;
+            this.lblDescVar.Text = this.artVentaActual[indiceSelecc].descripcion;
+            //
+            //TODO modificadores de precio segun metodo de pago
+            this.lblContadoVar.Text = Convert.ToString(this.artVentaActual[indiceSelecc].valorVenta.valorArticulo * contado);
+            this.lblTarjetaVar.Text = Convert.ToString(this.artVentaActual[indiceSelecc].valorVenta.valorArticulo * tarjeta);
+            //
+            /* TODO modificar base de datos y modelo para registrar ubicación del articulo en cuestion en el local
+             * this.lblTarjetaVar.Text = artEncontrados[articuloSelec].ubicacion
+             */
+            this.lblExistenciaVar.Text = Convert.ToString(this.artVentaActual[indiceSelecc].stockActual);
+            this.lblFechaActualizVar.Text = Convert.ToString(this.artVentaActual[indiceSelecc].fechaActualizacion);
+            this.lblObsVar.Text = this.artVentaActual[indiceSelecc].observaciones;
+        }
+
+        private void btnBorrarDetActual_Click(object sender, EventArgs e)
+        {
+            //solicito confirmación
+            DialogResult dialogResult = MessageBox.Show("¿Realmente desea borrar el detalle actual?", "Confirmación", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //borro la venta actual
+                this.artVentaActual = new List<ModeloArticuloProveedores>();
+
+                //rebindeo grilla detalles
+                this.dgvDetalleAgregados.DataSource = null;
+
+                //se limpian las lbls
+                cleanLbls();
+            }           
+        }
+
+        private void dgvArtAgregar_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnAgregar_Click(sender, e);
+        }
+
+        private void dgvDetalleAgregados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnQuitar_Click(sender, e);
         }
     }
 

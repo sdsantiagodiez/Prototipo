@@ -65,6 +65,11 @@
             this.cmbxCategoriaBuscar = new System.Windows.Forms.ComboBox();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.btnBorrarDetActual = new System.Windows.Forms.Button();
+            this.codOriginal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbxDetalleSelec.SuspendLayout();
             this.tlpDetalles.SuspendLayout();
             this.grbxDetalleAgregados.SuspendLayout();
@@ -95,6 +100,7 @@
             this.btnQuitar.TabIndex = 4;
             this.btnQuitar.Text = "Quitar";
             this.btnQuitar.UseVisualStyleBackColor = true;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
             // btnAgregar
             // 
@@ -392,6 +398,9 @@
             this.dgvDetalleAgregados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetalleAgregados.Size = new System.Drawing.Size(675, 174);
             this.dgvDetalleAgregados.TabIndex = 5;
+            this.dgvDetalleAgregados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleAgregados_CellClick);
+            this.dgvDetalleAgregados.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleAgregados_CellDoubleClick);
+            this.dgvDetalleAgregados.Enter += new System.EventHandler(this.dgvDetalleAgregados_Enter);
             // 
             // grbxArtAgregar
             // 
@@ -426,6 +435,12 @@
             this.dgvArtAgregar.AllowUserToResizeRows = false;
             this.dgvArtAgregar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvArtAgregar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArtAgregar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codOriginal,
+            this.codProveedor,
+            this.proveedor,
+            this.descripcion,
+            this.precio});
             this.dgvArtAgregar.Location = new System.Drawing.Point(11, 68);
             this.dgvArtAgregar.Name = "dgvArtAgregar";
             this.dgvArtAgregar.ReadOnly = true;
@@ -433,7 +448,9 @@
             this.dgvArtAgregar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArtAgregar.Size = new System.Drawing.Size(675, 258);
             this.dgvArtAgregar.TabIndex = 3;
-            this.dgvArtAgregar.SelectionChanged += new System.EventHandler(this.dgvArtAgregar_SelectionChanged);
+            this.dgvArtAgregar.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArtAgregar_CellClick);
+            this.dgvArtAgregar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArtAgregar_CellDoubleClick);
+            this.dgvArtAgregar.Enter += new System.EventHandler(this.dgvArtAgregar_Enter);
             // 
             // lblLupa
             // 
@@ -488,6 +505,42 @@
             this.btnBorrarDetActual.TabIndex = 20;
             this.btnBorrarDetActual.Text = "Borrar Detalle Actual";
             this.btnBorrarDetActual.UseVisualStyleBackColor = true;
+            this.btnBorrarDetActual.Click += new System.EventHandler(this.btnBorrarDetActual_Click);
+            // 
+            // codOriginal
+            // 
+            this.codOriginal.DataPropertyName = "codigoOriginal";
+            this.codOriginal.HeaderText = "Código Original";
+            this.codOriginal.Name = "codOriginal";
+            this.codOriginal.ReadOnly = true;
+            // 
+            // codProveedor
+            // 
+            this.codProveedor.DataPropertyName = "codigoArticuloProveedor";
+            this.codProveedor.HeaderText = "Código Proveedor";
+            this.codProveedor.Name = "codProveedor";
+            this.codProveedor.ReadOnly = true;
+            // 
+            // proveedor
+            // 
+            this.proveedor.DataPropertyName = "razonSocialProveedor";
+            this.proveedor.HeaderText = "Proveedor";
+            this.proveedor.Name = "proveedor";
+            this.proveedor.ReadOnly = true;
+            // 
+            // descripcion
+            // 
+            this.descripcion.DataPropertyName = "descripcion";
+            this.descripcion.HeaderText = "Descripción";
+            this.descripcion.Name = "descripcion";
+            this.descripcion.ReadOnly = true;
+            // 
+            // precio
+            // 
+            this.precio.DataPropertyName = "valorVenta";
+            this.precio.HeaderText = "Precio";
+            this.precio.Name = "precio";
+            this.precio.ReadOnly = true;
             // 
             // frmPedidoClienteNuevo
             // 
@@ -555,6 +608,11 @@
         internal System.Windows.Forms.ComboBox cmbxCategoriaBuscar;
         internal System.Windows.Forms.Button btnSiguiente;
         internal System.Windows.Forms.Button btnBorrarDetActual;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codOriginal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codProveedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn proveedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precio;
 
     }
 }

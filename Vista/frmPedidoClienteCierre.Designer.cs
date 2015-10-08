@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Button5 = new System.Windows.Forms.Button();
-            this.Button2 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnEmitir = new System.Windows.Forms.Button();
+            this.btnVolver = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.DataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgvArticulosVenta = new System.Windows.Forms.DataGridView();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -94,35 +92,13 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosVenta)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // Button5
-            // 
-            this.Button5.AutoSize = true;
-            this.Button5.Location = new System.Drawing.Point(33, 630);
-            this.Button5.Name = "Button5";
-            this.Button5.Size = new System.Drawing.Size(121, 39);
-            this.Button5.TabIndex = 17;
-            this.Button5.Text = "< Anterior";
-            this.Button5.UseVisualStyleBackColor = true;
-            this.Button5.Click += new System.EventHandler(this.Button5_Click);
-            // 
-            // Button2
-            // 
-            this.Button2.AutoSize = true;
-            this.Button2.Location = new System.Drawing.Point(845, 630);
-            this.Button2.Name = "Button2";
-            this.Button2.Size = new System.Drawing.Size(121, 39);
-            this.Button2.TabIndex = 16;
-            this.Button2.Text = "Emitir Comprobante";
-            this.Button2.UseVisualStyleBackColor = true;
-            this.Button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -143,40 +119,40 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnEmitir);
+            this.panel1.Controls.Add(this.btnVolver);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 563);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1002, 55);
             this.panel1.TabIndex = 2;
             // 
-            // button3
+            // btnEmitir
             // 
-            this.button3.Location = new System.Drawing.Point(852, 7);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(120, 40);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Emitir Comprobante";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnEmitir.Location = new System.Drawing.Point(852, 7);
+            this.btnEmitir.Name = "btnEmitir";
+            this.btnEmitir.Size = new System.Drawing.Size(120, 40);
+            this.btnEmitir.TabIndex = 1;
+            this.btnEmitir.Text = "Emitir Comprobante";
+            this.btnEmitir.UseVisualStyleBackColor = true;
+            this.btnEmitir.Click += new System.EventHandler(this.btnEmitir_Click);
             // 
-            // button1
+            // btnVolver
             // 
-            this.button1.Location = new System.Drawing.Point(27, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 40);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Volver";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnVolver.Location = new System.Drawing.Point(27, 7);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(120, 40);
+            this.btnVolver.TabIndex = 0;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.DataGridView2);
+            this.groupBox2.Controls.Add(this.dgvArticulosVenta);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(3, 344);
             this.groupBox2.Name = "groupBox2";
@@ -185,26 +161,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Artículos";
             // 
-            // DataGridView2
+            // dgvArticulosVenta
             // 
-            this.DataGridView2.AllowUserToAddRows = false;
-            this.DataGridView2.AllowUserToDeleteRows = false;
-            this.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvArticulosVenta.AllowUserToAddRows = false;
+            this.dgvArticulosVenta.AllowUserToDeleteRows = false;
+            this.dgvArticulosVenta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvArticulosVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArticulosVenta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column7,
             this.Descripcion,
             this.DataGridViewTextBoxColumn5,
             this.Total,
             this.Column6});
-            this.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGridView2.Location = new System.Drawing.Point(3, 18);
-            this.DataGridView2.Name = "DataGridView2";
-            this.DataGridView2.ReadOnly = true;
-            this.DataGridView2.RowHeadersVisible = false;
-            this.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView2.Size = new System.Drawing.Size(996, 192);
-            this.DataGridView2.TabIndex = 5;
+            this.dgvArticulosVenta.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvArticulosVenta.Location = new System.Drawing.Point(3, 18);
+            this.dgvArticulosVenta.Name = "dgvArticulosVenta";
+            this.dgvArticulosVenta.ReadOnly = true;
+            this.dgvArticulosVenta.RowHeadersVisible = false;
+            this.dgvArticulosVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvArticulosVenta.Size = new System.Drawing.Size(996, 192);
+            this.dgvArticulosVenta.TabIndex = 5;
             // 
             // Column7
             // 
@@ -727,17 +703,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 621);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.Button5);
-            this.Controls.Add(this.Button2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmPedidoClienteCierre";
             this.Text = "Cierre de Pedido Cliente (Leandro Jorge)";
-            this.Load += new System.EventHandler(this.frmPedidoClienteCierre_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosVenta)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -746,24 +719,21 @@
             this.groupBox3.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        internal System.Windows.Forms.Button Button5;
-        internal System.Windows.Forms.Button Button2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox2;
-        internal System.Windows.Forms.DataGridView DataGridView2;
+        internal System.Windows.Forms.DataGridView dgvArticulosVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.Button btnEmitir;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.GroupBox groupBox1;
