@@ -30,10 +30,11 @@ namespace Vista
             }*/
         }
 
-        private void btnAltaCliente_Click(object sender, EventArgs e)
+        
+        private void btnEntidades_Click(object sender, EventArgs e)
         {
-            frmABMPersona frmABMPersona = new frmABMPersona();
-            frmABMPersona.ShowDialog();
+            frmABMEntidad frmABMEntidad = new frmABMEntidad();
+            frmABMEntidad.ShowDialog();
         }
     }
 }

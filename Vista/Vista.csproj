@@ -44,11 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmABMPersona.cs">
+    <Compile Include="frmABMEntidad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmABMPersona.Designer.cs">
-      <DependentUpon>frmABMPersona.cs</DependentUpon>
+    <Compile Include="frmABMEntidad.Designer.cs">
+      <DependentUpon>frmABMEntidad.cs</DependentUpon>
     </Compile>
     <Compile Include="frmABMRaiz.cs">
       <SubType>Form</SubType>
@@ -100,8 +100,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmABMPersona.resx">
-      <DependentUpon>frmABMPersona.cs</DependentUpon>
+    <EmbeddedResource Include="frmABMEntidad.resx">
+      <DependentUpon>frmABMEntidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmABMRaiz.resx">
       <DependentUpon>frmABMRaiz.cs</DependentUpon>
