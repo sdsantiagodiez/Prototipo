@@ -7,24 +7,84 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Modelos;
 
 namespace Vista
 {
     public partial class frmABMEntidad : Form
-    {
-        TableLayoutPanel tblLayoutPanelExtra;
+    { 
         public frmABMEntidad()
         {
             InitializeComponent();
-            tbPageDatos.Text = "Datos";
-            tbPageExtra.Text = "Extra";
+            this.StartPosition = FormStartPosition.CenterScreen;
             btnAgregarMail.Text = char.ConvertFromUtf32(8595);
             btnQuitarMail.Text = char.ConvertFromUtf32(8593);
 
             //tblLayoutPanelExtra
+            this.inicializarListViews();
             
-
         }
+
+        void inicializarListViews()
+        {
+
+            lstViewMail.Columns.Add("Mail", -2, System.Windows.Forms.HorizontalAlignment.Center);
+            lstViewMail.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            lstViewMail.View = View.Details;
+
+            //ver de modificar la barra horizontal cuando hay más de dos items
+            lstViewNumeroTelefono.Columns.Add("TIPO",-2, System.Windows.Forms.HorizontalAlignment.Center);
+            lstViewNumeroTelefono.Columns.Add("N", -2, System.Windows.Forms.HorizontalAlignment.Right);
+            lstViewNumeroTelefono.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            lstViewNumeroTelefono.View = View.Details;
+        }
+        
+        void quitarTextoEnControles(Control con)
+        {
+            //se utiliza para que si el control no esta en ninguno de los if's,
+            //entonces se mete en un control que puede contener una colección de controles
+            bool bandera;
+            foreach (Control c in con.Controls)
+            {
+                bandera = true;
+                if (c is TextBox)
+                {
+                    ((TextBox)c).Clear(); bandera = false; 
+                }
+
+                if (c is ListView)
+                {
+                    
+                    ((ListView)c).Items.Clear(); bandera = false;
+                }
+                   
+                if (c is DataGridView)
+                {
+                    ((DataGridView)c).Rows.Clear(); bandera = false;
+                }
+
+                if (c is ComboBox)
+                {
+                    ((ComboBox)c).SelectedIndex = -1; bandera = false;
+                }
+
+                if (c is RichTextBox)
+                {
+                    ((RichTextBox)c).Clear(); bandera = false;
+                }
+                    
+                if (c is RadioButton)
+                {
+                    ((RadioButton)c).Checked = false; bandera = false;
+                }
+                    
+                if(bandera)
+                    quitarTextoEnControles(c);
+                
+            }
+        }
+
+        #region radiobuttons
 
         private void radioButtonUsuario_CheckedChanged(object sender, EventArgs e)
         {
@@ -152,7 +212,114 @@ namespace Vista
         private void radioButtonProveedor_CheckedChanged(object sender, EventArgs e)
         {
             txtBoxRazonSocial.Enabled = radioButtonProveedor.Checked;
+            txtBoxDNI.Enabled = !radioButtonProveedor.Checked;
+            txtBoxNombre.Enabled = !radioButtonProveedor.Checked;
+            txtBoxApellido.Enabled = !radioButtonProveedor.Checked;
         }
 
+        private void radioButtonCliente_CheckedChanged(object sender, EventArgs e)
+        {
+            btnMasDatos.Enabled = !radioButtonCliente.Checked;
+        }
+
+        #endregion
+
+        private void btnMasDatos_Click(object sender, EventArgs e)
+        {
+            if (radioButtonProveedor.Checked)
+            { 
+            }
+
+            if (radioButtonContactoProveedor.Checked)
+            { 
+            }
+
+            if (radioButtonUsuario.Checked)
+            { 
+            }
+        }
+
+       
+
+        private void btnAgregarMail_Click(object sender, EventArgs e)
+        {
+            
+            ModeloMailPersonas mmp = new ModeloMailPersonas();
+            //Agregar validación por si el mail ya esta incluido
+            if (mmp.validarMail(txtBoxMail.Text))
+            {
+                ListViewItem mail = new ListViewItem(txtBoxMail.Text);
+                lstViewMail.Items.Add(mail);
+           
+            }
+            else
+            {
+                frmMensajeCorto mensaje = new frmMensajeCorto("Error", "El formato de mail ingresado no es válido", "fallo");
+                mensaje.ShowDialog();
+            }
+        }
+        
+        private void btnQuitarMail_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in lstViewMail.SelectedItems)
+            {
+                lstViewMail.Items.Remove(item);
+            }
+        }
+ 
+        private void btnAgregarNumeroTelefono_Click(object sender, EventArgs e)
+        {
+            //Validar numero
+            
+            ListViewItem numero = new ListViewItem(new string[] {(string)cmbBoxTipoNumeroTelefono.Text, txtBoxNumeroTelefono.Text});
+           
+            lstViewNumeroTelefono.Items.Add(numero);
+        }
+
+        private void btnQuitarNumeroTelefono_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in lstViewNumeroTelefono.SelectedItems)
+            {
+                lstViewNumeroTelefono.Items.Remove(item);
+            }
+        }
+
+        private void btnAgregarDireccion_Click(object sender, EventArgs e)
+        {
+            //Validar datos
+            DataGridViewRow row = (DataGridViewRow)dataGridViewDireccion.Rows[0].Clone();
+            row.Cells[0].Value = txtBoxCalle.Text;
+            row.Cells[1].Value = txtBoxNumeroDireccion.Text;
+            row.Cells[2].Value = txtBoxPiso.Text;
+            row.Cells[3].Value = txtBoxDepartamento.Text;
+            row.Cells[4].Value = txtBoxCodigoPostal.Text;
+            row.Cells[5].Value = txtBoxCiudad.Text;
+            row.Cells[6].Value = cmbBoxProvincia.Text;
+            dataGridViewDireccion.Rows.Add(row);
+
+        }
+
+        private void btnQuitarDireccion_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow item in this.dataGridViewDireccion.SelectedRows)
+            {
+                if (!item.IsNewRow)
+                {
+                    dataGridViewDireccion.Rows.RemoveAt(item.Index);
+                }
+            }
+        }
+
+
+        private void toolStripMenuItemNuevo_Click(object sender, EventArgs e)
+        {
+            this.quitarTextoEnControles(this);
+        }
+
+        private void toolStripMenuItemCancelar_Click(object sender, EventArgs e)
+        {
+            frmMensajeCorto confirmarCancelar = new frmMensajeCorto("Confirmación", "¿Esta seguro que desea cancelar y salir de esta ventana?", "confirmacion");
+            confirmarCancelar.ShowDialog();
+        }
     }
 }
