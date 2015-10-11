@@ -16,7 +16,7 @@ namespace Vista
         public frmABMRaiz(/*List<ModeloRoles> rolCollection*/)
         {
             InitializeComponent();
-
+            this.StartPosition = FormStartPosition.CenterScreen;
             //si es encargado de datos muestro el panel
             //como en frmMenuPrincipal, el codigo del rol de ED es 4
            // la validacion se encuentra en el frmMenuPrincipal

@@ -16,6 +16,7 @@ namespace Vista
         public frmMenuPrincipal()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             lblNombreUsuario.Text = "Usuario TEST";
             lblFechaLog.Text = DateTime.Today.ToString("dd/MM/yyyy");
             lblHoraLog.Text = DateTime.Now.ToString("HH:mm:ss tt");

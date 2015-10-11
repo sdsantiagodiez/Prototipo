@@ -15,6 +15,7 @@ namespace Vista
         public frmEnConstruccion()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void button1_Click(object sender, EventArgs e)

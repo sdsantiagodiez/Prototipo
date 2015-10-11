@@ -83,6 +83,7 @@
             this.btn.TabIndex = 2;
             this.btn.Text = "Aceptar";
             this.btn.UseVisualStyleBackColor = true;
+            this.btn.Click += new System.EventHandler(this.btn_Click);
             // 
             // frmMensajeCorto
             // 
