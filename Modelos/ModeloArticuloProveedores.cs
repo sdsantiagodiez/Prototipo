@@ -78,6 +78,12 @@ namespace Modelos
             get { return _descripcion; }
             set { this._descripcion = value; }
         }
+        string _ubicacion;
+        public string ubicacion
+        {
+            get { return _ubicacion; }
+            set { this._ubicacion = value; }
+        }
         #endregion
     }
 }
