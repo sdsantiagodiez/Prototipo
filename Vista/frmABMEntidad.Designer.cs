@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStripABM = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemNuevo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEliminar = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,6 +78,13 @@
             this.cmbBoxProvincia = new System.Windows.Forms.ComboBox();
             this.txtBoxDepartamento = new System.Windows.Forms.TextBox();
             this.dataGridViewDireccion = new System.Windows.Forms.DataGridView();
+            this.calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.piso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.departamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codigoPostal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ciudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.provincia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpBoxContacto = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelContacto = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelListaNumeroTelefono = new System.Windows.Forms.TableLayoutPanel();
@@ -96,13 +103,6 @@
             this.btnQuitarMail = new System.Windows.Forms.Button();
             this.lstViewMail = new System.Windows.Forms.ListView();
             this.btnMasDatos = new System.Windows.Forms.Button();
-            this.calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.piso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.departamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codigoPostal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ciudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.provincia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStripABM.SuspendLayout();
             this.tblLayoutPanelDatos.SuspendLayout();
             this.grpBoxTipoEntidad.SuspendLayout();
@@ -656,7 +656,7 @@
             "Santa Cruz",
             "Santa Fe",
             ""});
-            this.cmbBoxProvincia.Location = new System.Drawing.Point(427, 39);
+            this.cmbBoxProvincia.Location = new System.Drawing.Point(427, 41);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(91, 26);
             this.cmbBoxProvincia.TabIndex = 14;
@@ -671,14 +671,14 @@
             // 
             // dataGridViewDireccion
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewDireccion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewDireccion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewDireccion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDireccion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.calle,
@@ -695,6 +695,53 @@
             this.dataGridViewDireccion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewDireccion.Size = new System.Drawing.Size(683, 100);
             this.dataGridViewDireccion.TabIndex = 1;
+            // 
+            // calle
+            // 
+            this.calle.HeaderText = "Calle";
+            this.calle.Name = "calle";
+            this.calle.ReadOnly = true;
+            // 
+            // numero
+            // 
+            this.numero.HeaderText = "Número";
+            this.numero.Name = "numero";
+            this.numero.ReadOnly = true;
+            this.numero.Width = 70;
+            // 
+            // piso
+            // 
+            this.piso.HeaderText = "Piso";
+            this.piso.Name = "piso";
+            this.piso.ReadOnly = true;
+            this.piso.Width = 70;
+            // 
+            // departamento
+            // 
+            this.departamento.HeaderText = "Departamento";
+            this.departamento.Name = "departamento";
+            this.departamento.ReadOnly = true;
+            this.departamento.Width = 105;
+            // 
+            // codigoPostal
+            // 
+            this.codigoPostal.HeaderText = "CP";
+            this.codigoPostal.Name = "codigoPostal";
+            this.codigoPostal.ReadOnly = true;
+            // 
+            // ciudad
+            // 
+            this.ciudad.HeaderText = "Ciudad";
+            this.ciudad.Name = "ciudad";
+            this.ciudad.ReadOnly = true;
+            this.ciudad.Width = 110;
+            // 
+            // provincia
+            // 
+            this.provincia.HeaderText = "Provincia";
+            this.provincia.Name = "provincia";
+            this.provincia.ReadOnly = true;
+            this.provincia.Width = 110;
             // 
             // grpBoxContacto
             // 
@@ -768,7 +815,7 @@
             this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.25F));
             this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.75F));
-            this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tblLayoutPanelNumeroTelefono.Controls.Add(this.btnAgregarNumeroTelefono, 3, 0);
             this.tblLayoutPanelNumeroTelefono.Controls.Add(this.txtBoxNumeroTelefono, 2, 0);
             this.tblLayoutPanelNumeroTelefono.Controls.Add(this.lblNumeroTelefono, 1, 0);
@@ -785,9 +832,9 @@
             // 
             this.btnAgregarNumeroTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAgregarNumeroTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarNumeroTelefono.Location = new System.Drawing.Point(280, 13);
+            this.btnAgregarNumeroTelefono.Location = new System.Drawing.Point(279, 13);
             this.btnAgregarNumeroTelefono.Name = "btnAgregarNumeroTelefono";
-            this.btnAgregarNumeroTelefono.Size = new System.Drawing.Size(25, 16);
+            this.btnAgregarNumeroTelefono.Size = new System.Drawing.Size(26, 16);
             this.btnAgregarNumeroTelefono.TabIndex = 10;
             this.btnAgregarNumeroTelefono.UseVisualStyleBackColor = true;
             this.btnAgregarNumeroTelefono.Click += new System.EventHandler(this.btnAgregarNumeroTelefono_Click);
@@ -795,7 +842,7 @@
             // txtBoxNumeroTelefono
             // 
             this.txtBoxNumeroTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNumeroTelefono.Location = new System.Drawing.Point(131, 9);
+            this.txtBoxNumeroTelefono.Location = new System.Drawing.Point(130, 9);
             this.txtBoxNumeroTelefono.Name = "txtBoxNumeroTelefono";
             this.txtBoxNumeroTelefono.Size = new System.Drawing.Size(143, 24);
             this.txtBoxNumeroTelefono.TabIndex = 8;
@@ -805,9 +852,9 @@
             this.lblNumeroTelefono.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblNumeroTelefono.AutoSize = true;
             this.lblNumeroTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumeroTelefono.Location = new System.Drawing.Point(63, 12);
+            this.lblNumeroTelefono.Location = new System.Drawing.Point(63, 4);
             this.lblNumeroTelefono.Name = "lblNumeroTelefono";
-            this.lblNumeroTelefono.Size = new System.Drawing.Size(62, 17);
+            this.lblNumeroTelefono.Size = new System.Drawing.Size(58, 34);
             this.lblNumeroTelefono.TabIndex = 9;
             this.lblNumeroTelefono.Text = "Número:";
             // 
@@ -819,7 +866,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoNumeroTelefono.Location = new System.Drawing.Point(3, 8);
+            this.cmbBoxTipoNumeroTelefono.Location = new System.Drawing.Point(3, 10);
             this.cmbBoxTipoNumeroTelefono.Name = "cmbBoxTipoNumeroTelefono";
             this.cmbBoxTipoNumeroTelefono.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxTipoNumeroTelefono.TabIndex = 11;
@@ -829,7 +876,7 @@
             this.tblLayoutPanelMail.ColumnCount = 3;
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.47896F));
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.52103F));
-            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tblLayoutPanelMail.Controls.Add(this.lblMail, 0, 0);
             this.tblLayoutPanelMail.Controls.Add(this.txtBoxMail, 1, 0);
             this.tblLayoutPanelMail.Controls.Add(this.btnAgregarMail, 2, 0);
@@ -855,7 +902,7 @@
             // txtBoxMail
             // 
             this.txtBoxMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxMail.Location = new System.Drawing.Point(97, 9);
+            this.txtBoxMail.Location = new System.Drawing.Point(96, 9);
             this.txtBoxMail.Name = "txtBoxMail";
             this.txtBoxMail.Size = new System.Drawing.Size(230, 24);
             this.txtBoxMail.TabIndex = 8;
@@ -864,9 +911,9 @@
             // 
             this.btnAgregarMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAgregarMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarMail.Location = new System.Drawing.Point(333, 13);
+            this.btnAgregarMail.Location = new System.Drawing.Point(332, 13);
             this.btnAgregarMail.Name = "btnAgregarMail";
-            this.btnAgregarMail.Size = new System.Drawing.Size(33, 16);
+            this.btnAgregarMail.Size = new System.Drawing.Size(34, 16);
             this.btnAgregarMail.TabIndex = 10;
             this.btnAgregarMail.UseVisualStyleBackColor = true;
             this.btnAgregarMail.Click += new System.EventHandler(this.btnAgregarMail_Click);
@@ -883,7 +930,7 @@
             this.tblLayoutPanelListaMail.Name = "tblLayoutPanelListaMail";
             this.tblLayoutPanelListaMail.RowCount = 1;
             this.tblLayoutPanelListaMail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelListaMail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblLayoutPanelListaMail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tblLayoutPanelListaMail.Size = new System.Drawing.Size(369, 57);
             this.tblLayoutPanelListaMail.TabIndex = 1;
             // 
@@ -918,53 +965,6 @@
             this.btnMasDatos.Text = "Más Datos";
             this.btnMasDatos.UseVisualStyleBackColor = true;
             this.btnMasDatos.Click += new System.EventHandler(this.btnMasDatos_Click);
-            // 
-            // calle
-            // 
-            this.calle.HeaderText = "Calle";
-            this.calle.Name = "calle";
-            this.calle.ReadOnly = true;
-            // 
-            // numero
-            // 
-            this.numero.HeaderText = "Número";
-            this.numero.Name = "numero";
-            this.numero.ReadOnly = true;
-            this.numero.Width = 70;
-            // 
-            // piso
-            // 
-            this.piso.HeaderText = "Piso";
-            this.piso.Name = "piso";
-            this.piso.ReadOnly = true;
-            this.piso.Width = 70;
-            // 
-            // departamento
-            // 
-            this.departamento.HeaderText = "Departamento";
-            this.departamento.Name = "departamento";
-            this.departamento.ReadOnly = true;
-            this.departamento.Width = 105;
-            // 
-            // codigoPostal
-            // 
-            this.codigoPostal.HeaderText = "CP";
-            this.codigoPostal.Name = "codigoPostal";
-            this.codigoPostal.ReadOnly = true;
-            // 
-            // ciudad
-            // 
-            this.ciudad.HeaderText = "Ciudad";
-            this.ciudad.Name = "ciudad";
-            this.ciudad.ReadOnly = true;
-            this.ciudad.Width = 110;
-            // 
-            // provincia
-            // 
-            this.provincia.HeaderText = "Provincia";
-            this.provincia.Name = "provincia";
-            this.provincia.ReadOnly = true;
-            this.provincia.Width = 110;
             // 
             // frmABMEntidad
             // 
