@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoClienteNuevo));
             this.grbxDetalleSelec = new System.Windows.Forms.GroupBox();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
+            this.lblCantidad = new System.Windows.Forms.Label();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.tlpDetalles = new System.Windows.Forms.TableLayoutPanel();
@@ -60,16 +62,22 @@
             this.grbxArtAgregar = new System.Windows.Forms.GroupBox();
             this.lblCategoriaBuscar = new System.Windows.Forms.Label();
             this.dgvArtAgregar = new System.Windows.Forms.DataGridView();
-            this.lblLupa = new System.Windows.Forms.Label();
-            this.txtBusqArticulo = new System.Windows.Forms.TextBox();
-            this.cmbxCategoriaBuscar = new System.Windows.Forms.ComboBox();
-            this.btnSiguiente = new System.Windows.Forms.Button();
-            this.btnBorrarDetActual = new System.Windows.Forms.Button();
             this.codOriginal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblLupa = new System.Windows.Forms.Label();
+            this.txtBusqArticulo = new System.Windows.Forms.TextBox();
+            this.cmbxCategoriaBuscar = new System.Windows.Forms.ComboBox();
+            this.btnSiguiente = new System.Windows.Forms.Button();
+            this.btnBorrarDetActual = new System.Windows.Forms.Button();
+            this.codOrig = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codProv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.daaDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbxDetalleSelec.SuspendLayout();
             this.tlpDetalles.SuspendLayout();
             this.grbxDetalleAgregados.SuspendLayout();
@@ -80,6 +88,8 @@
             // 
             // grbxDetalleSelec
             // 
+            this.grbxDetalleSelec.Controls.Add(this.txtCantidad);
+            this.grbxDetalleSelec.Controls.Add(this.lblCantidad);
             this.grbxDetalleSelec.Controls.Add(this.btnQuitar);
             this.grbxDetalleSelec.Controls.Add(this.btnAgregar);
             this.grbxDetalleSelec.Controls.Add(this.tlpDetalles);
@@ -92,11 +102,27 @@
             this.grbxDetalleSelec.TabStop = false;
             this.grbxDetalleSelec.Text = "Detalle Articulo Seleccionado";
             // 
+            // txtCantidad
+            // 
+            this.txtCantidad.Location = new System.Drawing.Point(81, 449);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(44, 20);
+            this.txtCantidad.TabIndex = 10;
+            // 
+            // lblCantidad
+            // 
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Location = new System.Drawing.Point(23, 452);
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(52, 13);
+            this.lblCantidad.TabIndex = 9;
+            this.lblCantidad.Text = "Cantidad:";
+            // 
             // btnQuitar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(168, 437);
+            this.btnQuitar.Location = new System.Drawing.Point(168, 485);
             this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Size = new System.Drawing.Size(80, 50);
+            this.btnQuitar.Size = new System.Drawing.Size(80, 35);
             this.btnQuitar.TabIndex = 4;
             this.btnQuitar.Text = "Quitar";
             this.btnQuitar.UseVisualStyleBackColor = true;
@@ -104,9 +130,9 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(43, 437);
+            this.btnAgregar.Location = new System.Drawing.Point(168, 441);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(80, 50);
+            this.btnAgregar.Size = new System.Drawing.Size(80, 35);
             this.btnAgregar.TabIndex = 2;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -358,17 +384,17 @@
             this.lblTotalVar.AutoSize = true;
             this.lblTotalVar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalVar.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblTotalVar.Location = new System.Drawing.Point(153, 504);
+            this.lblTotalVar.Location = new System.Drawing.Point(74, 494);
             this.lblTotalVar.Name = "lblTotalVar";
-            this.lblTotalVar.Size = new System.Drawing.Size(64, 16);
+            this.lblTotalVar.Size = new System.Drawing.Size(16, 16);
             this.lblTotalVar.TabIndex = 8;
-            this.lblTotalVar.Text = "1.257,66";
+            this.lblTotalVar.Text = "0";
             // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(82, 502);
+            this.lblTotal.Location = new System.Drawing.Point(17, 492);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(51, 18);
             this.lblTotal.TabIndex = 7;
@@ -391,6 +417,13 @@
             this.dgvDetalleAgregados.AllowUserToDeleteRows = false;
             this.dgvDetalleAgregados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDetalleAgregados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetalleAgregados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codOrig,
+            this.codProv,
+            this.daaDescripcion,
+            this.vUnitario,
+            this.cantidad,
+            this.vParcial});
             this.dgvDetalleAgregados.Location = new System.Drawing.Point(11, 23);
             this.dgvDetalleAgregados.Name = "dgvDetalleAgregados";
             this.dgvDetalleAgregados.ReadOnly = true;
@@ -399,7 +432,6 @@
             this.dgvDetalleAgregados.Size = new System.Drawing.Size(675, 174);
             this.dgvDetalleAgregados.TabIndex = 5;
             this.dgvDetalleAgregados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleAgregados_CellClick);
-            this.dgvDetalleAgregados.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleAgregados_CellDoubleClick);
             this.dgvDetalleAgregados.Enter += new System.EventHandler(this.dgvDetalleAgregados_Enter);
             // 
             // grbxArtAgregar
@@ -449,8 +481,42 @@
             this.dgvArtAgregar.Size = new System.Drawing.Size(675, 258);
             this.dgvArtAgregar.TabIndex = 3;
             this.dgvArtAgregar.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArtAgregar_CellClick);
-            this.dgvArtAgregar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArtAgregar_CellDoubleClick);
             this.dgvArtAgregar.Enter += new System.EventHandler(this.dgvArtAgregar_Enter);
+            // 
+            // codOriginal
+            // 
+            this.codOriginal.DataPropertyName = "codigoOriginal";
+            this.codOriginal.HeaderText = "Código Original";
+            this.codOriginal.Name = "codOriginal";
+            this.codOriginal.ReadOnly = true;
+            // 
+            // codProveedor
+            // 
+            this.codProveedor.DataPropertyName = "codigoArticuloProveedor";
+            this.codProveedor.HeaderText = "Código Proveedor";
+            this.codProveedor.Name = "codProveedor";
+            this.codProveedor.ReadOnly = true;
+            // 
+            // proveedor
+            // 
+            this.proveedor.DataPropertyName = "razonSocialProveedor";
+            this.proveedor.HeaderText = "Proveedor";
+            this.proveedor.Name = "proveedor";
+            this.proveedor.ReadOnly = true;
+            // 
+            // descripcion
+            // 
+            this.descripcion.DataPropertyName = "descripcion";
+            this.descripcion.HeaderText = "Descripción";
+            this.descripcion.Name = "descripcion";
+            this.descripcion.ReadOnly = true;
+            // 
+            // precio
+            // 
+            this.precio.DataPropertyName = "valorVenta";
+            this.precio.HeaderText = "Precio";
+            this.precio.Name = "precio";
+            this.precio.ReadOnly = true;
             // 
             // lblLupa
             // 
@@ -507,40 +573,47 @@
             this.btnBorrarDetActual.UseVisualStyleBackColor = true;
             this.btnBorrarDetActual.Click += new System.EventHandler(this.btnBorrarDetActual_Click);
             // 
-            // codOriginal
+            // codOrig
             // 
-            this.codOriginal.DataPropertyName = "codigoOriginal";
-            this.codOriginal.HeaderText = "Código Original";
-            this.codOriginal.Name = "codOriginal";
-            this.codOriginal.ReadOnly = true;
+            this.codOrig.DataPropertyName = "codigoOriginalArt";
+            this.codOrig.HeaderText = "Código Original";
+            this.codOrig.Name = "codOrig";
+            this.codOrig.ReadOnly = true;
             // 
-            // codProveedor
+            // codProv
             // 
-            this.codProveedor.DataPropertyName = "codigoArticuloProveedor";
-            this.codProveedor.HeaderText = "Código Proveedor";
-            this.codProveedor.Name = "codProveedor";
-            this.codProveedor.ReadOnly = true;
+            this.codProv.DataPropertyName = "codigoArtProveedor";
+            this.codProv.HeaderText = "Código Proveedor";
+            this.codProv.Name = "codProv";
+            this.codProv.ReadOnly = true;
             // 
-            // proveedor
+            // daaDescripcion
             // 
-            this.proveedor.DataPropertyName = "razonSocialProveedor";
-            this.proveedor.HeaderText = "Proveedor";
-            this.proveedor.Name = "proveedor";
-            this.proveedor.ReadOnly = true;
+            this.daaDescripcion.DataPropertyName = "descripcion";
+            this.daaDescripcion.HeaderText = "Descripción";
+            this.daaDescripcion.Name = "daaDescripcion";
+            this.daaDescripcion.ReadOnly = true;
             // 
-            // descripcion
+            // vUnitario
             // 
-            this.descripcion.DataPropertyName = "descripcion";
-            this.descripcion.HeaderText = "Descripción";
-            this.descripcion.Name = "descripcion";
-            this.descripcion.ReadOnly = true;
+            this.vUnitario.DataPropertyName = "valorUnitario";
+            this.vUnitario.HeaderText = "Valor Unitario";
+            this.vUnitario.Name = "vUnitario";
+            this.vUnitario.ReadOnly = true;
             // 
-            // precio
+            // cantidad
             // 
-            this.precio.DataPropertyName = "valorVenta";
-            this.precio.HeaderText = "Precio";
-            this.precio.Name = "precio";
-            this.precio.ReadOnly = true;
+            this.cantidad.DataPropertyName = "cantidadArticulos";
+            this.cantidad.HeaderText = "Cantidad";
+            this.cantidad.Name = "cantidad";
+            this.cantidad.ReadOnly = true;
+            // 
+            // vParcial
+            // 
+            this.vParcial.DataPropertyName = "valorParcial";
+            this.vParcial.HeaderText = "Valor Parcial";
+            this.vParcial.Name = "vParcial";
+            this.vParcial.ReadOnly = true;
             // 
             // frmPedidoClienteNuevo
             // 
@@ -613,6 +686,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn proveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn precio;
+        private System.Windows.Forms.TextBox txtCantidad;
+        private System.Windows.Forms.Label lblCantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codOrig;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codProv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn daaDescripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vUnitario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vParcial;
 
     }
 }

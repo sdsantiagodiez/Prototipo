@@ -56,7 +56,8 @@ namespace Datos
             modArt.stockActual = (drArticulosProveedor["stockActual"] != DBNull.Value) ? (int)drArticulosProveedor["stockActual"] : (int?)null;
             modArt.stockMinimo = (drArticulosProveedor["stockMinimo"] != DBNull.Value) ? (int)drArticulosProveedor["stockMinimo"] : (int?)null;
             modArt.fechaActualizacion = (drArticulosProveedor["fechaActualizacion"] != DBNull.Value) ? (DateTime)drArticulosProveedor["fechaActualizacion"] : (DateTime?)null;
-            
+            modArt.ubicacion = (drArticulosProveedor["ubicacion"] != DBNull.Value) ? (string)drArticulosProveedor["ubicacion"] : null;
+
             return modArt;
         }
 
@@ -74,6 +75,7 @@ namespace Datos
             modArt.stockActual = (drArticulosProveedor["stockActual"] != DBNull.Value) ? (int)drArticulosProveedor["stockActual"] : (int?)null;
             modArt.stockMinimo = (drArticulosProveedor["stockMinimo"] != DBNull.Value) ? (int)drArticulosProveedor["stockMinimo"] : (int?)null;
             modArt.fechaActualizacion = (drArticulosProveedor["fechaActualizacion"] != DBNull.Value) ? (DateTime)drArticulosProveedor["fechaActualizacion"] : (DateTime?)null;
+            modArt.ubicacion = (drArticulosProveedor["ubicacion"] != DBNull.Value) ? (string)drArticulosProveedor["ubicacion"] : null;
 
             return modArt;
         }
@@ -120,7 +122,7 @@ namespace Datos
 
             comando.CommandText =
                 "SELECT "+
-	            "    ap.[codigoOriginal],ap.[codigoArticuloProveedor],ap.[stockMinimo],ap.[stockActual],ap.[observaciones], "+
+	            "    ap.[codigoOriginal],ap.[codigoArticuloProveedor],ap.[stockMinimo],ap.[stockActual],ap.[observaciones],ap.[ubicacion], "+
                 "    ap.[descripcion],ap.[fechaActualizacion],ap.[razonSocialProveedor],vv.[valor] AS [valorVenta], vv.[fechaValor] AS [fechaValorVenta], "+
                 "    vc.[valor] AS [valorCompra], vc.[fechaValor] AS [fechaValorCompra] "+
                 "    FROM [Articulos_Proveedores] ap "+
@@ -185,7 +187,7 @@ namespace Datos
 
             comando.CommandText =
                 "SELECT " +
-                "    ap.[codigoOriginal],ap.[codigoArticuloProveedor],ap.[stockMinimo],ap.[stockActual],ap.[observaciones], " +
+                "    ap.[codigoOriginal],ap.[codigoArticuloProveedor],ap.[stockMinimo],ap.[stockActual],ap.[observaciones],ap.[ubicacion], " +
                 "    ap.[descripcion],ap.[fechaActualizacion],ap.[razonSocialProveedor],vv.[valor] AS [valorVenta], vv.[fechaValor] AS [fechaValorVenta], " +
                 "    vc.[valor] AS [valorCompra], vc.[fechaValor] AS [fechaValorCompra] " +
                 "    FROM [Articulos_Proveedores] ap " +
@@ -251,7 +253,7 @@ namespace Datos
 
             comando.CommandText =
                 "SELECT " +
-                "    ap.[codigoOriginal],ap.[codigoArticuloProveedor],ap.[stockMinimo],ap.[stockActual],ap.[observaciones], " +
+                "    ap.[codigoOriginal],ap.[codigoArticuloProveedor],ap.[stockMinimo],ap.[stockActual],ap.[observaciones],ap.[ubicacion], " +
                 "    ap.[descripcion],ap.[fechaActualizacion],ap.[razonSocialProveedor],vv.[valor] AS [valorVenta], vv.[fechaValor] AS [fechaValorVenta], " +
                 "    vc.[valor] AS [valorCompra], vc.[fechaValor] AS [fechaValorCompra] " +
                 "    FROM [Articulos_Proveedores] ap " +
@@ -311,7 +313,7 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "SELECT [codigoOriginal],[codigoArticuloProveedor],[stockMinimo],[stockActual],[observaciones]," +
+                "SELECT [codigoOriginal],[codigoArticuloProveedor],[stockMinimo],[stockActual],[observaciones],[ubicacion]," +
                 "[descripcion],[fechaActualizacion],[razonSocialProveedor] FROM [Articulos_Proveedores] " +
                 "WHERE codigoOriginal = @codigoOriginal AND codigoArticuloProveedor=@codigoArticuloProveedor";
 
@@ -346,7 +348,7 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText = 
-                "SELECT [codigoOriginal],[codigoArticuloProveedor],[stockMinimo],[stockActual],[observaciones],"+
+                "SELECT [codigoOriginal],[codigoArticuloProveedor],[stockMinimo],[stockActual],[observaciones],[ubicacion],"+
                 "[descripcion],[fechaActualizacion],[razonSocialProveedor] FROM [Articulos_Proveedores]";
 
             comando.Connection.Open();

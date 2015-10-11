@@ -16,11 +16,12 @@ namespace Vista
     {
         private string categBusq;
         private List<ModeloArticuloProveedores> artEncontrados;
-        private List<ModeloArticuloProveedores> artVentaActual = new List<ModeloArticuloProveedores>();
+        private List<ModeloLineaPedido> artVentaActual = new List<ModeloLineaPedido>();
         private decimal contado = 1;
         private decimal tarjeta = 1;
         private ModeloArticuloProveedores artSelecBusq;
-        private ModeloArticuloProveedores artSelecDetalle;
+        private ModeloLineaPedido artSelecDetalle;
+
         public frmPedidoClienteNuevo()
         {
             InitializeComponent();
@@ -42,6 +43,7 @@ namespace Vista
 
         }
 
+        #region Botones
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
             //compruebo que existan articulos para generar venta
@@ -58,77 +60,67 @@ namespace Vista
             }
         }
 
-        private void lblLupa_Click(object sender, EventArgs e)
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
-            //
-            //TODO --> VALIDAR EL INPUT
-            //
-
-
-            //capturo descripcion parcial
-            string busqArt = this.txtBusqArticulo.Text;
-
-            //me aseguro que se haya seleccionado una categoria de búsqueda
-            if (!object.Equals(this.categBusq, null))
+            //checkeo que haya un articulo seleccionado
+            if (!object.Equals(this.artSelecBusq, null))
             {
-                //busco el/los articulos correspondientes
-                var ctrlProcVenta = new ControladorProcesarVenta();
-                artEncontrados = ctrlProcVenta.buscarArticulos(categBusq, busqArt);
-
-                //bindeo el datagrid con los articulos encontrados
-                if (!object.Equals(artEncontrados, null))
+                //Verifico la cantidad
+                if (!string.Equals(this.txtCantidad.Text, ""))
                 {
-                    var bindingList = new BindingList<ModeloArticuloProveedores>(artEncontrados);
-                    var source = new BindingSource(bindingList, null);
-                    this.dgvArtAgregar.DataSource = source;
+                    //verifico stock
+                    if (this.artSelecBusq.stockActual >= Int32.Parse(this.txtCantidad.Text))
+                    {                        
+                        //verifico que no exista ya en entre las lineas de pedido
+                        if (!exists(artSelecBusq))
+                        {
+                            //le cambio el formato  y lo agrego a la lista de articulos ya seleccionados
+                            ModeloLineaPedido nuevaLinea = new ModeloLineaPedido(this.artSelecBusq, Int32.Parse(this.txtCantidad.Text));
+                            this.artVentaActual.Add(nuevaLinea);
+
+                            //Actualizo Total
+                            this.lblTotalVar.Text = calcularTotal(artVentaActual);
+
+                            //rebindeo los articulos seleccionados a la grid
+
+                            //
+                            //TODO La grilla original mostraba Codigo de proveedor, Descripción, Precio Unitario, Precio parcial (?que es esto?) Cantidad
+                            //Falta solicitar cantidad y mostrar información adecuada
+
+                            var bindingList = new BindingList<ModeloLineaPedido>(this.artVentaActual);
+                            var source = new BindingSource(bindingList, null);
+                            this.dgvDetalleAgregados.DataSource = source;
+                            //
+                            //Limpio artselecbusq para manejar el uso del boton en momento equivocado
+                            this.artSelecBusq = null;
+                            //Limpio txtbox cantidad
+                            this.txtCantidad.Text = "";
+                            //Limpio lbls
+                            this.cleanLbls();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Este artículo ya se encuentra en los detalles de la venta actual");
+                            //
+                            //Limpio artselecbusq para manejar el uso del boton en momento equivocado
+                            this.artSelecBusq = null;
+                            //Limpio txtbox cantidad
+                            this.txtCantidad.Text = "";
+                            //Limpio lbls
+                            this.cleanLbls();
+                        }
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay suficientes articulos en inventario actual para cubrir el pedido");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("No se encontraron coincidencias");
+                    MessageBox.Show("Por favor ingrese cantidad de artículo");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Por favor seleccione una categoría de búsqueda");
-            }
-        }
-
-        private void txtDescArticulo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-               this.lblLupa_Click(sender, e);
-            }
-        }
-
-        //guarda categoria seleccionada
-        private void cmbxCategoriaBuscar_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            this.categBusq = (string)this.cmbxCategoriaBuscar.SelectedValue;
-        }
-
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-           //checkeo que haya un articulo seleccionado
-            if (!object.Equals(this.artSelecBusq, null))
-            {
-                //lo agrego a la lista de articulos ya seleccionados
-                this.artVentaActual.Add(this.artSelecBusq);
-
-                //rebindeo los articulos seleccionados a la grid
-
-                //
-                //TODO La grilla original mostraba Codigo de proveedor, Descripción, Precio Unitario, Precio parcial (?que es esto?) Cantidad
-                //Falta solicitar cantidad y mostrar información adecuada
-
-                var bindingList = new BindingList<ModeloArticuloProveedores>(this.artVentaActual);
-                var source = new BindingSource(bindingList, null);
-                this.dgvDetalleAgregados.DataSource = source;
-
-                //
-                //Limpio artselecbusq para manejar el uso del boton en momento equivocado
-                this.artSelecBusq = null;
+                
             }
             else
             {
@@ -136,10 +128,27 @@ namespace Vista
             }
         }
 
-        private void txtBusqArticulo_Enter(object sender, EventArgs e)
+        private string calcularTotal(List<ModeloLineaPedido> artVentaActual)
         {
-            //se limpian los lbls para no generar errores ya que no hay ninguno seleccionado
-            cleanLbls();
+            decimal total = 0;
+            foreach (ModeloLineaPedido linea in artVentaActual)
+            {
+                total = total + linea.valorParcial;
+            }
+            return total.ToString("0.##");
+        }
+
+        private bool exists(ModeloArticuloProveedores artSelecBusq)
+        {
+            bool flag = false;
+            foreach (ModeloLineaPedido linea in artVentaActual)
+            {
+                if (linea.codigoOriginalArt == artSelecBusq.codigoOriginal)
+                {
+                    flag = true;
+                }
+            }
+            return flag;
         }
 
         private void btnQuitar_Click(object sender, EventArgs e)
@@ -150,22 +159,22 @@ namespace Vista
                 //lo elimino de la lista de articulos ya seleccionados
                 this.artVentaActual.Remove(this.artSelecDetalle);
 
+                //Actualizo Total
+                this.lblTotalVar.Text = calcularTotal(artVentaActual);
+
                 //rebindeo los articulos seleccionados a la grid
 
                 //
                 //TODO La grilla original mostraba Codigo de proveedor, Descripción, Precio Unitario, Precio parcial (?que es esto?) Cantidad
                 //Falta solicitar cantidad y mostrar información adecuada
 
-                var bindingList = new BindingList<ModeloArticuloProveedores>(this.artVentaActual);
+                var bindingList = new BindingList<ModeloLineaPedido>(this.artVentaActual);
                 var source = new BindingSource(bindingList, null);
                 this.dgvDetalleAgregados.DataSource = source;
 
                 //
                 //Limpio artselecdetalle para evitar uso de boton en momento equivocado
                 this.artSelecDetalle = null;
-
-                //se limpian los lbls ya que el articulo previamente seleccionado no se encuentra más en la lista
-                cleanLbls();
             }
             else
             {
@@ -173,19 +182,25 @@ namespace Vista
             }
         }
 
-        private void cleanLbls()
+        private void btnBorrarDetActual_Click(object sender, EventArgs e)
         {
-            this.lblCodOrigVar.Text = "Seleccione Articulo";
-            this.lblCodProvVar.Text = "Seleccione Articulo";
-            this.lblProvVar.Text = "Seleccione Articulo";
-            this.lblDescVar.Text = "Seleccione Articulo";
-            this.lblContadoVar.Text = "Seleccione Articulo";
-            this.lblTarjetaVar.Text = "Seleccione Articulo";
-            this.lblExistenciaVar.Text = "Seleccione Articulo";
-            this.lblFechaActualizVar.Text = "Seleccione Articulo";
-            this.lblObsVar.Text = "Seleccione Articulo";
-        }
+            //solicito confirmación
+            DialogResult dialogResult = MessageBox.Show("¿Realmente desea borrar el detalle actual?", "Confirmación", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //borro la venta actual
+                this.artVentaActual = new List<ModeloLineaPedido>();
 
+                //rebindeo grilla detalles
+                this.dgvDetalleAgregados.DataSource = null;
+
+                //se limpian las lbls
+                cleanLbls();
+            }
+        }
+        #endregion
+
+        #region DataGridViews
         private void dgvArtAgregar_Enter(object sender, EventArgs e)
         {
             //Limpio artselecdetalle para manejar el uso del boton en momento equivocado
@@ -231,51 +246,78 @@ namespace Vista
 
             //asigno el articulo a la variable artSelecDetalle en caso de que se decida removerlo de la venta
             this.artSelecDetalle = this.artVentaActual[indiceSelecc];
-
-            //actualizo lost lbl para mostrar el articulo seleccionado
-            this.lblCodOrigVar.Text = this.artVentaActual[indiceSelecc].codigoOriginal;
-            this.lblCodProvVar.Text = this.artVentaActual[indiceSelecc].codigoArticuloProveedor;
-            this.lblProvVar.Text = this.artVentaActual[indiceSelecc].razonSocialProveedor;
-            this.lblDescVar.Text = this.artVentaActual[indiceSelecc].descripcion;
-            //
-            //TODO modificadores de precio segun metodo de pago
-            this.lblContadoVar.Text = Convert.ToString(this.artVentaActual[indiceSelecc].valorVenta.valorArticulo * contado);
-            this.lblTarjetaVar.Text = Convert.ToString(this.artVentaActual[indiceSelecc].valorVenta.valorArticulo * tarjeta);
-            //
-            /* TODO modificar base de datos y modelo para registrar ubicación del articulo en cuestion en el local
-             * this.lblTarjetaVar.Text = artEncontrados[articuloSelec].ubicacion
-             */
-            this.lblExistenciaVar.Text = Convert.ToString(this.artVentaActual[indiceSelecc].stockActual);
-            this.lblFechaActualizVar.Text = Convert.ToString(this.artVentaActual[indiceSelecc].fechaActualizacion);
-            this.lblObsVar.Text = this.artVentaActual[indiceSelecc].observaciones;
         }
+        #endregion
 
-        private void btnBorrarDetActual_Click(object sender, EventArgs e)
+        #region Labels, txtBox y Combos
+        private void lblLupa_Click(object sender, EventArgs e)
         {
-            //solicito confirmación
-            DialogResult dialogResult = MessageBox.Show("¿Realmente desea borrar el detalle actual?", "Confirmación", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            //
+            //TODO --> VALIDAR EL INPUT
+            //
+
+
+            //capturo descripcion parcial
+            string busqArt = this.txtBusqArticulo.Text;
+
+            //me aseguro que se haya seleccionado una categoria de búsqueda
+            if (!object.Equals(this.categBusq, null))
             {
-                //borro la venta actual
-                this.artVentaActual = new List<ModeloArticuloProveedores>();
+                //busco el/los articulos correspondientes
+                var ctrlProcVenta = new ControladorProcesarVenta();
+                artEncontrados = ctrlProcVenta.buscarArticulos(categBusq, busqArt);
 
-                //rebindeo grilla detalles
-                this.dgvDetalleAgregados.DataSource = null;
-
-                //se limpian las lbls
-                cleanLbls();
-            }           
+                //bindeo el datagrid con los articulos encontrados
+                if (!object.Equals(artEncontrados, null))
+                {
+                    var bindingList = new BindingList<ModeloArticuloProveedores>(artEncontrados);
+                    var source = new BindingSource(bindingList, null);
+                    this.dgvArtAgregar.DataSource = source;
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron coincidencias");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor seleccione una categoría de búsqueda");
+            }
         }
 
-        private void dgvArtAgregar_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void txtDescArticulo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            btnAgregar_Click(sender, e);
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.lblLupa_Click(sender, e);
+            }
         }
 
-        private void dgvDetalleAgregados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        //guarda categoria seleccionada
+        private void cmbxCategoriaBuscar_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            btnQuitar_Click(sender, e);
+            this.categBusq = (string)this.cmbxCategoriaBuscar.SelectedValue;
         }
+
+        private void txtBusqArticulo_Enter(object sender, EventArgs e)
+        {
+            //se limpian los lbls para no generar errores ya que no hay ninguno seleccionado
+            cleanLbls();
+        }
+
+        private void cleanLbls()
+        {
+            this.lblCodOrigVar.Text = "Seleccione Articulo";
+            this.lblCodProvVar.Text = "Seleccione Articulo";
+            this.lblProvVar.Text = "Seleccione Articulo";
+            this.lblDescVar.Text = "Seleccione Articulo";
+            this.lblContadoVar.Text = "Seleccione Articulo";
+            this.lblTarjetaVar.Text = "Seleccione Articulo";
+            this.lblExistenciaVar.Text = "Seleccione Articulo";
+            this.lblFechaActualizVar.Text = "Seleccione Articulo";
+            this.lblObsVar.Text = "Seleccione Articulo";
+        }
+        #endregion
     }
 
     //clase para llenar combo box categoria a buscar

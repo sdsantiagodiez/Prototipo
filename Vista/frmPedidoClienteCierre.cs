@@ -13,11 +13,12 @@ namespace Vista
 {
     public partial class frmPedidoClienteCierre : Form
     {
-        private List<ModeloArticuloProveedores> ventaActual;
+        private List<ModeloLineaPedido> ventaActual;
         
         public frmPedidoClienteCierre()
         {
             InitializeComponent();
+            this.dgvArticulosVenta.AutoGenerateColumns = false;
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -31,10 +32,10 @@ namespace Vista
             frmConstruccion.ShowDialog();
         }       
     
-        internal void detalleVenta(List<ModeloArticuloProveedores> list)
+        internal void detalleVenta(List<ModeloLineaPedido> list)
         {
  	        this.ventaActual = list;
-            var bindingList = new BindingList<ModeloArticuloProveedores>(this.ventaActual);
+            var bindingList = new BindingList<ModeloLineaPedido>(this.ventaActual);
             var source = new BindingSource(bindingList, null);
             this.dgvArticulosVenta.DataSource = source;
         }
