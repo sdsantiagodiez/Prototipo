@@ -55,5 +55,16 @@ namespace Vista
             var source = new BindingSource(bindingList, null);
             this.dgvArticulosVenta.DataSource = source;
         }
+
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
+            this.lblTotalSinIvaVar.Text = ctrlVenta.getTotal();
+            Decimal totalNeto = Decimal.Parse(ctrlVenta.getTotal());
+            int ivaPorc = Int32.Parse(txtIvaPorc.Text);
+            Decimal ivaNeto = (totalNeto * (ivaPorc / 100));
+            this.lblIvaNetoVar.Text = ivaNeto.ToString("0.##");
+            Decimal total = Decimal.Parse(ctrlVenta.getTotal()) + ivaNeto;
+            this.lblTotalVar.Text = total.ToString("0.##");
+        }
     }
 }
