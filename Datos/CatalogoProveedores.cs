@@ -9,7 +9,7 @@ using System.Data;
 
 namespace Datos
 {
-    public class CatalogoProveedores : Catalogo
+    public class CatalogoProveedores : CatalogoEntidades
     {
         public bool validarDatos(ModeloProveedor proveedor)
         {
@@ -23,10 +23,10 @@ namespace Datos
         /// <param name="cuit">cuit de proveedor</param>
         /// <param name="razonSocial">razón social de proveedor</param>
         /// <returns>true si existe, false si no existe</returns>
-        public bool existeEntidad(string razonSocial)
+        public bool existeEntidad(int codigoEntidad)
         {
             bool respuesta = false;
-            if (getOne(razonSocial) != null)
+            if (getOne(codigoEntidad) != null)
             {
                 respuesta = true;
             }
@@ -37,18 +37,15 @@ namespace Datos
         {
             ModeloProveedor modProv = new ModeloProveedor();
 
-            modProv.razonSocial = (string)drProveedores["razonSocial"];
+            modProv.codigo = (int)drProveedores["codigo"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
+            modProv.razonSocial = (drProveedores["razon_social"] != DBNull.Value) ? (string)drProveedores["razon_social"] : null;
+
             modProv.cuit = (drProveedores["cuit"] != DBNull.Value) ? (string)drProveedores["cuit"] : null;
-           
-            /*REVISAR
-             * modProv.direccion = (drProveedores["direccion"] != DBNull.Value) ? (string)drProveedores["direccion"] : null;
-            modProv.ciudad = (drProveedores["ciudad"] != DBNull.Value) ? (string)drProveedores["ciudad"] : null;
-            modProv.provincia = (drProveedores["provincia"] != DBNull.Value) ? (string)drProveedores["provincia"] : null;
-            modProv.codigoPostal = (drProveedores["codigoPostal"] != DBNull.Value) ? (string)drProveedores["codigoPostal"] : null;
+            modProv.tipoEntidad = (drProveedores["tipo_entidad"] != DBNull.Value) ? (string)drProveedores["tipo_entidad"] : null;
             modProv.observaciones = (drProveedores["observaciones"] != DBNull.Value) ? (string)drProveedores["observaciones"] : null;
-            */
+           
             return modProv;
         }
 
@@ -86,23 +83,29 @@ namespace Datos
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
-            comando.CommandText = 
-                "SELECT [razonSocial],[cuit],[direccion],[ciudad],[provincia],[codigoPostal],[observaciones]" +
-                "FROM [proveedores]  " +
-                "WHERE LOWER([proveedores].razonSocial) LIKE @razonSocial";
+            comando.CommandText =
+                "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[proveedores.razon_social]" +
+                    "FROM [proveedores] " +
+                    "INNER JOIN [entidades] on [entidades.codigo] = [proveedores.codigo_entidad]" +
+                "WHERE LOWER([proveedores].razon_social) LIKE @razonSocial";
             comando.Parameters.Add(new SqlParameter("@razonSocial", SqlDbType.VarChar));
             comando.Parameters["@razonSocial"].Value = "%" + razonSocial.ToLower() + "%";
             comando.Connection.Open();
 
             SqlDataReader drProveedores = comando.ExecuteReader();
 
-            ModeloProveedor modPro = new ModeloProveedor();
+            ModeloProveedor modProveedor = new ModeloProveedor();
             List<ModeloProveedor> listaProveedores = new List<ModeloProveedor>();
             while (drProveedores.Read())
             {
-                modPro = new ModeloProveedor();
-                modPro = this.leerDatosProveedor(drProveedores);
-                listaProveedores.Add(modPro);
+                modProveedor = new ModeloProveedor();
+                modProveedor = this.leerDatosProveedor(drProveedores);
+
+                modProveedor.mails = this.getMails(modProveedor.codigo);
+                modProveedor.telefonos = this.getTelefonos(modProveedor.codigo);
+                modProveedor.domicilios = this.getDomicilios(modProveedor.codigo);
+
+                listaProveedores.Add(modProveedor);
             }
             drProveedores.Close();
 
@@ -121,20 +124,29 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText = 
-                "SELECT [razonSocial],[cuit],[direccion],[ciudad],[provincia],[codigoPostal],[observaciones]"+
-                "FROM [proveedores] WHERE cuit LIKE @cuit";
+               "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[proveedores.razon_social]" +
+                    "FROM [proveedores] " +
+                    "INNER JOIN [entidades] on [entidades.codigo] = [proveedores.codigo_entidad] " +
+                    "WHERE [entidades.cuit] LIKE @cuit";
             comando.Parameters.Add(new SqlParameter("@cuit", SqlDbType.VarChar));
             comando.Parameters["@cuit"].Value = "%" + cuit + "%";
             comando.Connection.Open();
 
+
+            ModeloProveedor modProveedor;
             SqlDataReader drProveedores = comando.ExecuteReader();
             List<ModeloProveedor> listaProveedores = new List<ModeloProveedor>();
 
             while (drProveedores.Read())
             {
-                ModeloProveedor modPro = new ModeloProveedor();
-                modPro = this.leerDatosProveedor(drProveedores);
-                listaProveedores.Add(modPro);
+                modProveedor = new ModeloProveedor();
+                modProveedor = this.leerDatosProveedor(drProveedores);
+
+                modProveedor.mails = this.getMails(modProveedor.codigo);
+                modProveedor.telefonos = this.getTelefonos(modProveedor.codigo);
+                modProveedor.domicilios = this.getDomicilios(modProveedor.codigo);
+
+                listaProveedores.Add(modProveedor);
             }
 
             drProveedores.Close();
@@ -144,9 +156,9 @@ namespace Datos
         }
         #endregion
 
-        public ModeloProveedor getOne(string razonSocial)
+        public ModeloProveedor getOnePorCodigo(int codigoEntidad)
         {
-            ModeloProveedor modPro = null;
+            ModeloProveedor modProveedor = null;
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -154,30 +166,33 @@ namespace Datos
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
-            comando.CommandText = 
-                "SELECT [razonSocial],[cuit],[direccion],[ciudad],[provincia],[codigoPostal],[observaciones] "+
-                "FROM [proveedores]  "+
-                "WHERE LOWER([proveedores].razonSocial)=@razonSocial";
-            comando.Parameters.Add(new SqlParameter("@razonSocial", SqlDbType.VarChar));
-            comando.Parameters["@razonSocial"].Value = razonSocial.ToLower();
+            comando.CommandText =
+               "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[proveedores.razon_social]" +
+                    "FROM [proveedores] " +
+                    "INNER JOIN [entidades] on [entidades.codigo] = [proveedores.codigo_entidad]" +
+                    "WHERE [entidades].codigo = @codigo";
+            comando.Parameters.Add(new SqlParameter("@codigo", SqlDbType.Int));
+            comando.Parameters["@codigo"].Value = codigoEntidad;
             comando.Connection.Open();
 
-            SqlDataReader drProveedores = comando.ExecuteReader();
+            SqlDataReader drEntidades = comando.ExecuteReader();
 
-            while (drProveedores.Read())
+            while (drEntidades.Read())
             {
-                modPro = new ModeloProveedor();
-                modPro = this.leerDatosProveedor(drProveedores);
-
+                modProveedor = new ModeloProveedor();
+                modProveedor = this.leerDatosProveedor(drEntidades);
             }
-            drProveedores.Close();
+            drEntidades.Close();
             comando.Connection.Close();
 
-            return modPro;
+            modProveedor.mails = this.getMails(modProveedor.codigo);
+            modProveedor.telefonos = this.getTelefonos(modProveedor.codigo);
+            modProveedor.domicilios = this.getDomicilios(modProveedor.codigo);
 
+            return modProveedor;
         }
        
-        public List<ModeloProveedor> getAll()
+        public new List<ModeloProveedor> getAll()
         {
             List<ModeloProveedor> allProvs = new List<ModeloProveedor>();
             //Creo la conexion y la abro
@@ -190,18 +205,24 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = 
-                "SELECT [razonSocial],[cuit],[direccion],[ciudad],[provincia],[codigoPostal],[observaciones] "+
-                "FROM [proveedores]";
+            comando.CommandText =
+                "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[proveedores.razon_social]" +
+                    "FROM [proveedores] " +
+                    "INNER JOIN [entidades] on [entidades.codigo] = [proveedores.codigo_entidad]";
 
             comando.Connection.Open();
-
+            ModeloProveedor modProveedor;
             SqlDataReader drProveedores = comando.ExecuteReader();
             while (drProveedores.Read())
             {
-                ModeloProveedor modPro = new ModeloProveedor();
-                modPro = this.leerDatosProveedor(drProveedores);
-                allProvs.Add(modPro);
+                modProveedor = new ModeloProveedor();
+                modProveedor = this.leerDatosProveedor(drProveedores);
+
+                modProveedor.mails = this.getMails(modProveedor.codigo);
+                modProveedor.telefonos = this.getTelefonos(modProveedor.codigo);
+                modProveedor.domicilios = this.getDomicilios(modProveedor.codigo);
+
+                allProvs.Add(modProveedor);
             }
             drProveedores.Close();
 
@@ -209,7 +230,22 @@ namespace Datos
 
             return allProvs;
         }
-       
+
+        public new List<ModeloMail> getMails(int codigoEntidad)
+        {
+            return base.getMails(codigoEntidad);
+        }
+
+        public new List<ModeloDomicilio> getDomicilios(int codigoEntidad)
+        {
+            return base.getDomicilios(codigoEntidad);
+        }
+
+        public new List<ModeloTelefono> getTelefonos(int codigoEntidad)
+        {
+            return base.getTelefonos(codigoEntidad);
+        }
+
         #region Alta/Baja/Modificación
         /*
          * True si se realizó correctamente
@@ -217,7 +253,7 @@ namespace Datos
          */
         public bool agregarNuevaEntidad(ModeloProveedor pModProv)
         {
-            if (!this.existeEntidad(pModProv.razonSocial))
+            if (!this.existeEntidad(pModProv.codigo))
             {
                 //Creo la conexion y la abro
                 SqlConnection ConexionSQL = Conexion.crearConexion();

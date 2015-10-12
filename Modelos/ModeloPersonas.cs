@@ -41,6 +41,25 @@ namespace Modelos
             get { return _tipoPersona; }
             set { this._tipoPersona = value; }
         }
+
+        string _usuario;
+        public string usuario
+        {
+            get { return _usuario; }
+            set { this._usuario = value; }
+        }
+        string _contrasenia;
+        public string contrasenia
+        {
+            get { return _contrasenia; }
+            set { this._contrasenia = value; }
+        }
+        List<ModeloRoles> _roles;
+        public List<ModeloRoles> roles
+        {
+            get { return _roles; }
+            set { this._roles = value; }
+        }
         #endregion
     }
 }

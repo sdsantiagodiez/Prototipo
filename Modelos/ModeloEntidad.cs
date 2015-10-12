@@ -8,8 +8,8 @@ namespace Modelos
 {
     public class ModeloEntidad
     {
-        string _codigo;
-        public string codigo
+        int _codigo;
+        public int codigo
         {
             get { return _codigo; }
             set { this._codigo = value; }

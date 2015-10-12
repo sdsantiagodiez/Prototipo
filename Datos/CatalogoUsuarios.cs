@@ -11,6 +11,7 @@ namespace Datos
 {
     public class CatalogoUsuarios : CatalogoPersonas
     {
+        /*REVISAR
         public bool existeEntidad(string dni, string usuario)
         {
             bool respuesta = this.existeEntidad(dni);
@@ -23,7 +24,7 @@ namespace Datos
             }
             return respuesta;
         }
-       
+       */
         /// <summary>
         /// Genera nombre de usuario en base al nombre y la primera letra del apellido de la persona (y un número según conrresponda)
         /// </summary>

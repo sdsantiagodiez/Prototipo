@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace Datos
 {
-    public class CatalogoPersonas : Catalogo
+    public class CatalogoPersonas : CatalogoEntidades
     {
         //Se considera cliente a aquellos con usuario y contraseña = "" 
         //y como usuario a aquellos que tengan completado el campo usuario y contraseña
@@ -21,10 +21,10 @@ namespace Datos
             return true;
         }
 
-        public bool existeEntidad(string dni)
+        public bool existeEntidad(int codigoEntidad)
         {
             bool respuesta = false;
-            if (getOnePorDNI(dni) != null)
+            if (getOnePorCodigo(codigoEntidad) != null)
             {
                 respuesta = true;
             }
@@ -35,22 +35,20 @@ namespace Datos
         {
             ModeloPersonas modPer = new ModeloPersonas();
 
-            modPer.dni = (string)drPersonas["dni"];
+            modPer.codigo = (int)drPersonas["codigo"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
-            modPer.cuit = (drPersonas["cuit"] != DBNull.Value) ? (string)drPersonas["cuit"] : null;
+            modPer.dni = (drPersonas["dni"] != DBNull.Value) ? (string)drPersonas["dni"] : null;
             modPer.nombre = (drPersonas["nombre"] != DBNull.Value) ? (string)drPersonas["nombre"] : null;
             modPer.apellido = (drPersonas["apellido"] != DBNull.Value) ? (string)drPersonas["apellido"] : null;
-            /*REVISAR
-             * modPer.direccion = (drPersonas["direccion"] != DBNull.Value) ? (string)drPersonas["direccion"] : null;
-            modPer.ciudad = (drPersonas["ciudad"] != DBNull.Value) ? (string)drPersonas["ciudad"] : null;
-            modPer.provincia = (drPersonas["provincia"] != DBNull.Value) ? (string)drPersonas["provincia"] : null;
-            modPer.codigoPostal = (drPersonas["codigoPostal"] != DBNull.Value) ? (string)drPersonas["codigoPostal"] : null;
-            modPer.observaciones = (drPersonas["observaciones"] != DBNull.Value) ? (string)drPersonas["observaciones"] : null;
-            modPer.razonSocialProv = (drPersonas["razonSocialProveedor"] != DBNull.Value) ? (string)drPersonas["razonSocialProveedor"] : null;
             modPer.usuario = (drPersonas["usuario"] != DBNull.Value) ? (string)drPersonas["usuario"] : null;
             modPer.contrasenia = (drPersonas["contrasenia"] != DBNull.Value) ? (string)drPersonas["contrasenia"] : null;
-            */
+            modPer.tipoPersona = (drPersonas["tipo_persona"] != DBNull.Value) ? (string)drPersonas["tipo_persona"] : null;
+
+            modPer.cuit = (drPersonas["cuit"] != DBNull.Value) ? (string)drPersonas["cuit"] : null;
+            modPer.tipoEntidad = (drPersonas["tipo_entidad"] != DBNull.Value) ? (string)drPersonas["tipo_entidad"] : null;
+            modPer.observaciones = (drPersonas["observaciones"] != DBNull.Value) ? (string)drPersonas["observaciones"] : null;
+            
             return modPer;
         }
 
@@ -125,9 +123,11 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia]," +
-                "[codigoPostal],[observaciones],[razonSocialProveedor], [usuario], [contrasenia] " +
-                " FROM [personas] WHERE (nombre LIKE @nombre " + tipoPersonaSQL + ")";
+                "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[personas.dni],"+
+                "[personas.nombre],[personas.apellido],[personas.tipo_persona],[personas.usuario], [personas.contrasenia] " +
+                    "FROM [personas] "+
+                    "INNER JOIN [entidades] on [entidades.codigo] = [personas.codigo_entidad]" +
+                    "WHERE (nombre LIKE @nombre " + tipoPersonaSQL + ")";
 
             comando.Parameters.Add(new SqlParameter("@nombre", SqlDbType.VarChar));
             comando.Parameters["@nombre"].Value = "%" + nombre + "%";
@@ -140,7 +140,12 @@ namespace Datos
             List<ModeloPersonas> pEncontradas = new List<ModeloPersonas>();
             while (drPersonas.Read())
             {
+                modPer = new ModeloPersonas();
                 modPer = this.leerDatosPersonas(drPersonas);
+
+                modPer.mails = this.getMails(modPer.codigo);
+                modPer.telefonos = this.getTelefonos(modPer.codigo);
+                modPer.domicilios = this.getDomicilios(modPer.codigo);
 
                 pEncontradas.Add(modPer);
             }
@@ -162,9 +167,11 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia]," +
-                "[codigoPostal],[observaciones],[razonSocialProveedor], [usuario], [contrasenia] " +
-                " FROM [personas] WHERE (apellido LIKE @apellido "+tipoPersonaSQL+")";
+                "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[personas.dni],"+
+                "[personas.nombre],[personas.apellido],[personas.tipo_persona],[personas.usuario], [personas.contrasenia] " +
+                    "FROM [personas] "+
+                    "INNER JOIN [entidades] on [entidades.codigo] = [personas.codigo_entidad]" +
+                    "WHERE (apellido LIKE @apellido "+tipoPersonaSQL+")";
 
             comando.Parameters.Add(new SqlParameter("@apellido", SqlDbType.VarChar));
             comando.Parameters["@apellido"].Value = "%" + apellido + "%";
@@ -173,12 +180,16 @@ namespace Datos
 
             SqlDataReader drPersonas = comando.ExecuteReader();
 
-            ModeloPersonas modPer;
+            ModeloPersonas modPer = new ModeloPersonas();
             List<ModeloPersonas> pEncontradas = new List<ModeloPersonas>();
             while (drPersonas.Read())
             {
                 modPer = new ModeloPersonas();
                 modPer = this.leerDatosPersonas(drPersonas);
+
+                modPer.mails = this.getMails(modPer.codigo);
+                modPer.telefonos = this.getTelefonos(modPer.codigo);
+                modPer.domicilios = this.getDomicilios(modPer.codigo);
 
                 pEncontradas.Add(modPer);
             }
@@ -188,6 +199,43 @@ namespace Datos
             return pEncontradas;
         }
 
+        public ModeloPersonas getOnePorCodigo(int codigoEntidad)
+        {
+            ModeloPersonas modPersona = null;
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.CommandText =
+               "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[personas.dni]," +
+                "[personas.nombre],[personas.apellido],[personas.tipo_persona],[personas.usuario], [personas.contrasenia] " +
+                    "FROM [personas] " +
+                    "INNER JOIN [entidades] on [entidades.codigo] = [personas.codigo_entidad]" +
+                    "WHERE [entidades].codigo = @codigo";
+            comando.Parameters.Add(new SqlParameter("@codigo", SqlDbType.Int));
+            comando.Parameters["@codigo"].Value = codigoEntidad;
+            comando.Connection.Open();
+
+            SqlDataReader drEntidades = comando.ExecuteReader();
+
+            while (drEntidades.Read())
+            {
+                modPersona = new ModeloPersonas();
+                modPersona = this.leerDatosPersonas(drEntidades);
+            }
+            drEntidades.Close();
+            comando.Connection.Close();
+
+            modPersona.mails = this.getMails(modPersona.codigo);
+            modPersona.telefonos = this.getTelefonos(modPersona.codigo);
+            modPersona.domicilios = this.getDomicilios(modPersona.codigo);
+
+            return modPersona;
+        }
+        
         public ModeloPersonas getOnePorUsuario(string usuario)
         {
             ModeloPersonas modPer = null;
@@ -196,15 +244,14 @@ namespace Datos
 
             //crea SQL command
             SqlCommand comando = new SqlCommand();
-
             comando.Connection = ConexionSQL;
-
             comando.CommandType = CommandType.Text;
-
             comando.CommandText =
-                "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia]," +
-                "[codigoPostal],[observaciones],[razonSocialProveedor], [usuario], [contrasenia] " +
-                "FROM [personas] WHERE ([usuario] = @usuario)";
+                "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[personas.dni]," +
+                "[personas.nombre],[personas.apellido],[personas.tipo_persona],[personas.usuario], [personas.contrasenia] " +
+                    "FROM [personas] " +
+                    "INNER JOIN [entidades] on [entidades.codigo] = [personas.codigo_entidad]" +
+                    "WHERE ([usuario] = @usuario)";
 
             comando.Parameters.Add(new SqlParameter("@usuario", SqlDbType.VarChar));
             comando.Parameters["@usuario"].Value = usuario;
@@ -217,6 +264,10 @@ namespace Datos
             {
                 modPer = new ModeloPersonas();
                 modPer = this.leerDatosPersonas(drPersonas);
+
+                modPer.mails = this.getMails(modPer.codigo);
+                modPer.telefonos = this.getTelefonos(modPer.codigo);
+                modPer.domicilios = this.getDomicilios(modPer.codigo);
             }
             drPersonas.Close();
 
@@ -240,9 +291,11 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia]," +
-                "[codigoPostal],[observaciones],[razonSocialProveedor], [usuario], [contrasenia] " +
-                "FROM [Personas] WHERE ([usuario] IS NULL AND dni=@DNI)";
+                "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[personas.dni]," +
+                "[personas.nombre],[personas.apellido],[personas.tipo_persona],[personas.usuario], [personas.contrasenia] " +
+                    "FROM [personas] " +
+                    "INNER JOIN [entidades] on [entidades.codigo] = [personas.codigo_entidad]" +
+                    "WHERE (dni=@DNI)";
 
             comando.Parameters.Add(new SqlParameter("@DNI", SqlDbType.VarChar));
             comando.Parameters["@DNI"].Value = dni;
@@ -255,7 +308,10 @@ namespace Datos
             {
                 modPer = new ModeloPersonas();
                 modPer = this.leerDatosPersonas(drPersonas);
-
+                
+                modPer.mails = this.getMails(modPer.codigo);
+                modPer.telefonos = this.getTelefonos(modPer.codigo);
+                modPer.domicilios = this.getDomicilios(modPer.codigo);
             }
             drPersonas.Close();
             comando.Connection.Close();
@@ -263,9 +319,9 @@ namespace Datos
             return modPer;
         }
 
-        public List<ModeloPersonas> getAll()
+        public new List<ModeloPersonas> getAll()
         { 
-            List<ModeloPersonas> allCli = new List<ModeloPersonas>();
+            List<ModeloPersonas> personas = new List<ModeloPersonas>();
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -276,10 +332,11 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = 
-                "SELECT [dni],[cuit],[nombre],[apellido],[direccion],[ciudad],[provincia],"+
-                "[codigoPostal],[observaciones],[razonSocialProveedor], [usuario], [contrasenia] "+
-                "FROM [personas] WHERE [usuario] IS NULL";
+            comando.CommandText =
+                "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[personas.dni]," +
+                "[personas.nombre],[personas.apellido],[personas.tipo_persona],[personas.usuario], [personas.contrasenia] " +
+                    "FROM [personas] " +
+                    "INNER JOIN [entidades] on [entidades.codigo] = [personas.codigo_entidad]";
 
             comando.Connection.Open();
             ModeloPersonas modPer;
@@ -288,13 +345,18 @@ namespace Datos
             {
                 modPer = new ModeloPersonas();
                 modPer = this.leerDatosPersonas(drPersonas);
-                allCli.Add(modPer);
+
+                modPer.mails = this.getMails(modPer.codigo);
+                modPer.telefonos = this.getTelefonos(modPer.codigo);
+                modPer.domicilios = this.getDomicilios(modPer.codigo);
+
+                personas.Add(modPer);
             }
             drPersonas.Close();
 
             comando.Connection.Close();
 
-            return allCli;
+            return personas;
 
         }
 
@@ -307,7 +369,7 @@ namespace Datos
         public bool agregarNuevaEntidad(ModeloPersonas pModPer)
         {
             //Se debería chequear antes para notificar al usuario la razón por la que no se podrá realizar la operación
-            if (!this.existeEntidad(pModPer.dni))
+            if (!this.existeEntidad(pModPer.codigo))
             {
                 //Creo la conexion y la abro
                 SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -321,10 +383,10 @@ namespace Datos
 
                 comando.CommandText = 
                     "INSERT INTO [Personas]([dni],[cuit],[nombre],[apellido],[direccion],"+
-                    "[ciudad],[provincia],[codigoPostal],[observaciones],[razonSocialProveedor], "+
+                    "[ciudad],[provincia],[codigoPostal],[observaciones], "+
                     "[usuario], [contrasenia]) "+ 
                     "VALUES (@dni, @cuit, @nombre, @apellido, @direccion, @ciudad, @provincia, "+
-                    "@codigoPostal, @observaciones, @razonSocialProveedor, @usuario, @contrasenia)";
+                    "@codigoPostal, @observaciones, @usuario, @contrasenia)";
                 //Indica los parametros
                 comando.Parameters.Add(this.instanciarParametro(pModPer.dni, "@dni"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.cuit, "@cuit"));
@@ -337,7 +399,6 @@ namespace Datos
                 comando.Parameters.Add(this.instanciarParametro(pModPer.provincia, "@provincia"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.codigoPostal, "@codigoPostal"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.observaciones, "@observaciones"));
-                comando.Parameters.Add(this.instanciarParametro(pModPer.razonSocialProv, "@razonSocialProveedor"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.usuario, "@usuario"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.contrasenia, "@contrasenia"));
                 */
@@ -378,7 +439,7 @@ namespace Datos
             comando.CommandText = 
                 "UPDATE [Personas] SET [cuit]=@cuit,[nombre]=@nombre, [apellido]=@apellido,"+
                 "[direccion]=@direccion,[ciudad]=@ciudad, [provincia]=@provincia, [codigoPostal]=@codigoPostal,"+
-                "[observaciones]=@observaciones,[razonSocialProveedor]=@razonSocialProveedor,[usuario]=@usuario, [contrasenia]=@contrasenia "+
+                "[observaciones]=@observaciones,[usuario]=@usuario, [contrasenia]=@contrasenia "+
                 "WHERE [Personas].dni=@dni";
 
             comando.Parameters.Add(this.instanciarParametro(pModPer.dni, "@dni"));
@@ -391,7 +452,6 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(pModPer.provincia, "@provincia"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.codigoPostal, "@codigoPostal"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.observaciones, "@observaciones"));
-            comando.Parameters.Add(this.instanciarParametro(pModPer.razonSocialProv, "@razonSocialProveedor"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.usuario, "@usuario"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.contrasenia, "@contrasenia"));
             */
@@ -455,17 +515,17 @@ namespace Datos
 
             if (!object.Equals(tipoPersona, "usuario"))
             {
-                respuesta = " AND [usuario]=''";
+                respuesta = " AND [tipo_persona]<>'USR' ";
             }
             else
             {
-                respuesta = "";
+                respuesta = " AND [tipo_persona]='USR' ";
             }
             
             return respuesta;
         }
 
-        public List<ModeloRoles> getRoles(string dniUsuario)
+        public List<ModeloRoles> getRoles(int codigoEntidad)
         {
             List<ModeloRoles> roles = new List<ModeloRoles>();
             
@@ -479,12 +539,14 @@ namespace Datos
 
             comando.CommandType = CommandType.Text;
 
-            comando.CommandText = "SELECT [rol.codigo],[rol.descripcion] FROM [rol] JOIN" +
-                " [rol_personas] ON [rol.codigo] = [rol_personas.codigo] "+
-                "WHERE ([rol_personas.dniPersona] = @DNI)";
+            comando.CommandText = 
+                "SELECT [rol.codigo],[rol.descripcion] "+
+                    "FROM [rol] "+
+                    "INNER JOIN [roles_persona] ON [rol.codigo] = [roles_persona.codigo_rol] "+
+                    "WHERE ([roles_persona.codigo_entidad] = @codigo_entidad)";
 
-            comando.Parameters.Add(new SqlParameter("@DNI", SqlDbType.VarChar));
-            comando.Parameters["@DNI"].Value = dniUsuario;
+            comando.Parameters.Add(new SqlParameter("@codigo_entidad", SqlDbType.Int));
+            comando.Parameters["@codigo_entidad"].Value = codigoEntidad;
 
             comando.Connection.Open();
 
@@ -505,6 +567,20 @@ namespace Datos
             return roles;
         }
 
+        public new List<ModeloMail> getMails(int codigoEntidad)
+        {
+            return base.getMails(codigoEntidad);
+        }
+
+        public new List<ModeloDomicilio> getDomicilios(int codigoEntidad)
+        {
+            return base.getDomicilios(codigoEntidad);
+        }
+
+        public new List<ModeloTelefono> getTelefonos(int codigoEntidad)
+        {
+            return base.getTelefonos(codigoEntidad);
+        }
      }
 }
 
