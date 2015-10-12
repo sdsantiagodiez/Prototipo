@@ -58,7 +58,7 @@
             this.lblRazonSocial = new System.Windows.Forms.Label();
             this.txtBoxCUIT = new System.Windows.Forms.TextBox();
             this.txtBoxRazonSocial = new System.Windows.Forms.TextBox();
-            this.grpBoxDireccion = new System.Windows.Forms.GroupBox();
+            this.grpBoxDomicilio = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelDireccion = new System.Windows.Forms.TableLayoutPanel();
             this.btnQuitarDireccion = new System.Windows.Forms.Button();
@@ -110,7 +110,7 @@
             this.grpBoxObservaciones.SuspendLayout();
             this.grpBoxDatosPersonales.SuspendLayout();
             this.tblLayoutPanelDatosPersonales.SuspendLayout();
-            this.grpBoxDireccion.SuspendLayout();
+            this.grpBoxDomicilio.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tblLayoutPanelDireccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDireccion)).BeginInit();
@@ -175,7 +175,7 @@
             this.tblLayoutPanelDatos.Controls.Add(this.grpBoxTipoEntidad, 0, 0);
             this.tblLayoutPanelDatos.Controls.Add(this.grpBoxObservaciones, 0, 4);
             this.tblLayoutPanelDatos.Controls.Add(this.grpBoxDatosPersonales, 0, 1);
-            this.tblLayoutPanelDatos.Controls.Add(this.grpBoxDireccion, 0, 2);
+            this.tblLayoutPanelDatos.Controls.Add(this.grpBoxDomicilio, 0, 2);
             this.tblLayoutPanelDatos.Controls.Add(this.grpBoxContacto, 0, 3);
             this.tblLayoutPanelDatos.Controls.Add(this.btnMasDatos, 0, 5);
             this.tblLayoutPanelDatos.Location = new System.Drawing.Point(12, 27);
@@ -442,17 +442,17 @@
             this.txtBoxRazonSocial.Size = new System.Drawing.Size(340, 24);
             this.txtBoxRazonSocial.TabIndex = 11;
             // 
-            // grpBoxDireccion
+            // grpBoxDomicilio
             // 
-            this.grpBoxDireccion.Controls.Add(this.tableLayoutPanel1);
-            this.grpBoxDireccion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpBoxDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpBoxDireccion.Location = new System.Drawing.Point(3, 188);
-            this.grpBoxDireccion.Name = "grpBoxDireccion";
-            this.grpBoxDireccion.Size = new System.Drawing.Size(695, 204);
-            this.grpBoxDireccion.TabIndex = 4;
-            this.grpBoxDireccion.TabStop = false;
-            this.grpBoxDireccion.Text = "Dirección";
+            this.grpBoxDomicilio.Controls.Add(this.tableLayoutPanel1);
+            this.grpBoxDomicilio.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpBoxDomicilio.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpBoxDomicilio.Location = new System.Drawing.Point(3, 188);
+            this.grpBoxDomicilio.Name = "grpBoxDomicilio";
+            this.grpBoxDomicilio.Size = new System.Drawing.Size(695, 204);
+            this.grpBoxDomicilio.TabIndex = 4;
+            this.grpBoxDomicilio.TabStop = false;
+            this.grpBoxDomicilio.Text = "Domicilio";
             // 
             // tableLayoutPanel1
             // 
@@ -656,7 +656,7 @@
             "Santa Cruz",
             "Santa Fe",
             ""});
-            this.cmbBoxProvincia.Location = new System.Drawing.Point(427, 41);
+            this.cmbBoxProvincia.Location = new System.Drawing.Point(427, 39);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(91, 26);
             this.cmbBoxProvincia.TabIndex = 14;
@@ -813,9 +813,9 @@
             // 
             this.tblLayoutPanelNumeroTelefono.ColumnCount = 4;
             this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.25F));
-            this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.75F));
-            this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.48148F));
+            this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.51852F));
+            this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tblLayoutPanelNumeroTelefono.Controls.Add(this.btnAgregarNumeroTelefono, 3, 0);
             this.tblLayoutPanelNumeroTelefono.Controls.Add(this.txtBoxNumeroTelefono, 2, 0);
             this.tblLayoutPanelNumeroTelefono.Controls.Add(this.lblNumeroTelefono, 1, 0);
@@ -832,9 +832,9 @@
             // 
             this.btnAgregarNumeroTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAgregarNumeroTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarNumeroTelefono.Location = new System.Drawing.Point(279, 13);
+            this.btnAgregarNumeroTelefono.Location = new System.Drawing.Point(277, 13);
             this.btnAgregarNumeroTelefono.Name = "btnAgregarNumeroTelefono";
-            this.btnAgregarNumeroTelefono.Size = new System.Drawing.Size(26, 16);
+            this.btnAgregarNumeroTelefono.Size = new System.Drawing.Size(28, 16);
             this.btnAgregarNumeroTelefono.TabIndex = 10;
             this.btnAgregarNumeroTelefono.UseVisualStyleBackColor = true;
             this.btnAgregarNumeroTelefono.Click += new System.EventHandler(this.btnAgregarNumeroTelefono_Click);
@@ -844,7 +844,7 @@
             this.txtBoxNumeroTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxNumeroTelefono.Location = new System.Drawing.Point(130, 9);
             this.txtBoxNumeroTelefono.Name = "txtBoxNumeroTelefono";
-            this.txtBoxNumeroTelefono.Size = new System.Drawing.Size(143, 24);
+            this.txtBoxNumeroTelefono.Size = new System.Drawing.Size(141, 24);
             this.txtBoxNumeroTelefono.TabIndex = 8;
             // 
             // lblNumeroTelefono
@@ -866,7 +866,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoNumeroTelefono.Location = new System.Drawing.Point(3, 10);
+            this.cmbBoxTipoNumeroTelefono.Location = new System.Drawing.Point(3, 8);
             this.cmbBoxTipoNumeroTelefono.Name = "cmbBoxTipoNumeroTelefono";
             this.cmbBoxTipoNumeroTelefono.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxTipoNumeroTelefono.TabIndex = 11;
@@ -876,7 +876,7 @@
             this.tblLayoutPanelMail.ColumnCount = 3;
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.47896F));
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.52103F));
-            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tblLayoutPanelMail.Controls.Add(this.lblMail, 0, 0);
             this.tblLayoutPanelMail.Controls.Add(this.txtBoxMail, 1, 0);
             this.tblLayoutPanelMail.Controls.Add(this.btnAgregarMail, 2, 0);
@@ -904,16 +904,16 @@
             this.txtBoxMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxMail.Location = new System.Drawing.Point(96, 9);
             this.txtBoxMail.Name = "txtBoxMail";
-            this.txtBoxMail.Size = new System.Drawing.Size(230, 24);
+            this.txtBoxMail.Size = new System.Drawing.Size(229, 24);
             this.txtBoxMail.TabIndex = 8;
             // 
             // btnAgregarMail
             // 
             this.btnAgregarMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAgregarMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarMail.Location = new System.Drawing.Point(332, 13);
+            this.btnAgregarMail.Location = new System.Drawing.Point(331, 13);
             this.btnAgregarMail.Name = "btnAgregarMail";
-            this.btnAgregarMail.Size = new System.Drawing.Size(34, 16);
+            this.btnAgregarMail.Size = new System.Drawing.Size(35, 16);
             this.btnAgregarMail.TabIndex = 10;
             this.btnAgregarMail.UseVisualStyleBackColor = true;
             this.btnAgregarMail.Click += new System.EventHandler(this.btnAgregarMail_Click);
@@ -986,7 +986,7 @@
             this.grpBoxDatosPersonales.ResumeLayout(false);
             this.tblLayoutPanelDatosPersonales.ResumeLayout(false);
             this.tblLayoutPanelDatosPersonales.PerformLayout();
-            this.grpBoxDireccion.ResumeLayout(false);
+            this.grpBoxDomicilio.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tblLayoutPanelDireccion.ResumeLayout(false);
             this.tblLayoutPanelDireccion.PerformLayout();
@@ -1035,7 +1035,7 @@
         private System.Windows.Forms.Label lblRazonSocial;
         private System.Windows.Forms.TextBox txtBoxCUIT;
         private System.Windows.Forms.TextBox txtBoxRazonSocial;
-        private System.Windows.Forms.GroupBox grpBoxDireccion;
+        private System.Windows.Forms.GroupBox grpBoxDomicilio;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDireccion;
         private System.Windows.Forms.Button btnQuitarDireccion;
