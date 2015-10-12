@@ -262,7 +262,7 @@ namespace ConsoleTest
         private void generarProveedores()
         {
             CatalogoProveedores cp = new CatalogoProveedores();
-            ModeloProveedores proveedor = new ModeloProveedores();
+            ModeloProveedor proveedor = new ModeloProveedor();
 
             List<string> razonesSociales = getRazonSocial();
             List<string> direcciones = getDirecciones();
@@ -280,7 +280,7 @@ namespace ConsoleTest
                 int dir = rnd.Next(longDirecciones);
                 int ciu = rnd.Next(longCiudades);
                 int obs = rnd.Next(longObservaciones);
-                proveedor = new ModeloProveedores();
+                proveedor = new ModeloProveedor();
 
                 proveedor.razonSocial = razonesSociales[i];
                 proveedor.cuit = cuits[i];
@@ -321,9 +321,9 @@ namespace ConsoleTest
         private void bajaEntidades()
         {
             CatalogoProveedores cp = new CatalogoProveedores();
-            List<ModeloProveedores> provs = new List<ModeloProveedores>();
+            List<ModeloProveedor> provs = new List<ModeloProveedor>();
             provs = cp.getAll();
-            foreach(ModeloProveedores p in provs)
+            foreach(ModeloProveedor p in provs)
             {
                 cp.bajaEntidad(p);
             }
@@ -331,9 +331,9 @@ namespace ConsoleTest
         private void actualizarEntidades()
         {
             CatalogoProveedores cp = new CatalogoProveedores();
-            List<ModeloProveedores> provs = new List<ModeloProveedores>();
+            List<ModeloProveedor> provs = new List<ModeloProveedor>();
             provs = cp.getAll();
-            foreach (ModeloProveedores p in provs)
+            foreach (ModeloProveedor p in provs)
             {
                 p.observaciones = "sin";
                 cp.actualizarEntidad(p);
@@ -421,7 +421,7 @@ namespace ConsoleTest
             CatalogoProveedores cp = new CatalogoProveedores();
             CatalogoArticulos ca = new CatalogoArticulos();
             CatalogoArticuloProveedores cap = new CatalogoArticuloProveedores();
-            List<ModeloProveedores> proveedores = cp.getAll();
+            List<ModeloProveedor> proveedores = cp.getAll();
             int cantProveedores = proveedores.Count;
             List<ModeloArticulos> articulos = ca.getAll();
             int cantArticulos = articulos.Count;

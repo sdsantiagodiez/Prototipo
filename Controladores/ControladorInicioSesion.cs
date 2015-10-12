@@ -14,20 +14,23 @@ namespace Controladores
         /// Busca y retorna usuario que coincide con los parametros enviados
         /// </summary>
         /// <returns>ModeloPersonas con usuario, o un modelo vacío si no se encontró</returns>
-        public ModeloPersonas buscarUsuario(string usu, string con)
+        /*REVISAR
+         * public ModeloUsuario buscarUsuario(string usu, string con)
         {
+            
             CatalogoPersonas ctlgPersonas = new CatalogoPersonas();
-            List<ModeloPersonas> usuarios = ctlgPersonas.buscarPersona("usuario", "usuario", usu);
+            List<ModeloUsuario> usuarios = ctlgPersonas.buscarPersona("usuario", "usuario", usu);
             if (object.Equals(usuarios[0].contrasenia, con.Trim().ToLower()))
             {
                 return usuarios[0];
             }
             else
             {
-                ModeloPersonas nuevaPersona = new ModeloPersonas();
+                ModeloUsuario nuevaPersona = new ModeloUsuario();
                 return nuevaPersona;
             }
-        }
+             
+        }*/
 
         public List<ModeloRoles> getRoles(ModeloPersonas usuario)
         {

@@ -11,7 +11,7 @@ namespace Datos
 {
     public class CatalogoProveedores : Catalogo
     {
-        public bool validarDatos(ModeloProveedores proveedor)
+        public bool validarDatos(ModeloProveedor proveedor)
         {
             //Valida que los parametros sean Validos en el dominio
             return true;
@@ -33,20 +33,22 @@ namespace Datos
             return respuesta;
         }
 
-        private ModeloProveedores leerDatosProveedor(SqlDataReader drProveedores)
+        private ModeloProveedor leerDatosProveedor(SqlDataReader drProveedores)
         {
-            ModeloProveedores modProv = new ModeloProveedores();
+            ModeloProveedor modProv = new ModeloProveedor();
 
             modProv.razonSocial = (string)drProveedores["razonSocial"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
             modProv.cuit = (drProveedores["cuit"] != DBNull.Value) ? (string)drProveedores["cuit"] : null;
-            modProv.direccion = (drProveedores["direccion"] != DBNull.Value) ? (string)drProveedores["direccion"] : null;
+           
+            /*REVISAR
+             * modProv.direccion = (drProveedores["direccion"] != DBNull.Value) ? (string)drProveedores["direccion"] : null;
             modProv.ciudad = (drProveedores["ciudad"] != DBNull.Value) ? (string)drProveedores["ciudad"] : null;
             modProv.provincia = (drProveedores["provincia"] != DBNull.Value) ? (string)drProveedores["provincia"] : null;
             modProv.codigoPostal = (drProveedores["codigoPostal"] != DBNull.Value) ? (string)drProveedores["codigoPostal"] : null;
             modProv.observaciones = (drProveedores["observaciones"] != DBNull.Value) ? (string)drProveedores["observaciones"] : null;
-
+            */
             return modProv;
         }
 
@@ -57,9 +59,9 @@ namespace Datos
         /// <param name="tipoParametro">"razonSocial" o "cuit"</param>
         /// <param name="descripcionParametro">string por el que se buscará proveedores</param>
         /// <returns>lista de proveedores</returns>
-        public List<ModeloProveedores> buscarProveedores(string tipoParametro, string descripcionParametro)
+        public List<ModeloProveedor> buscarProveedores(string tipoParametro, string descripcionParametro)
         {
-            List<ModeloProveedores> listaProveedores = new List<ModeloProveedores>();
+            List<ModeloProveedor> listaProveedores = new List<ModeloProveedor>();
 
             switch(tipoParametro.ToLower())
             {
@@ -75,7 +77,7 @@ namespace Datos
             return listaProveedores;
         }
 
-        private List<ModeloProveedores> buscarPorRazonSocial(string razonSocial)
+        private List<ModeloProveedor> buscarPorRazonSocial(string razonSocial)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -94,11 +96,11 @@ namespace Datos
 
             SqlDataReader drProveedores = comando.ExecuteReader();
 
-            ModeloProveedores modPro = new ModeloProveedores();
-            List<ModeloProveedores> listaProveedores = new List<ModeloProveedores>();
+            ModeloProveedor modPro = new ModeloProveedor();
+            List<ModeloProveedor> listaProveedores = new List<ModeloProveedor>();
             while (drProveedores.Read())
             {
-                modPro = new ModeloProveedores();
+                modPro = new ModeloProveedor();
                 modPro = this.leerDatosProveedor(drProveedores);
                 listaProveedores.Add(modPro);
             }
@@ -109,7 +111,7 @@ namespace Datos
             return listaProveedores;
         }
 
-        private List<ModeloProveedores> buscaPorCuit(string cuit)
+        private List<ModeloProveedor> buscaPorCuit(string cuit)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -126,11 +128,11 @@ namespace Datos
             comando.Connection.Open();
 
             SqlDataReader drProveedores = comando.ExecuteReader();
-            List<ModeloProveedores> listaProveedores = new List<ModeloProveedores>();
+            List<ModeloProveedor> listaProveedores = new List<ModeloProveedor>();
 
             while (drProveedores.Read())
             {
-                ModeloProveedores modPro = new ModeloProveedores();
+                ModeloProveedor modPro = new ModeloProveedor();
                 modPro = this.leerDatosProveedor(drProveedores);
                 listaProveedores.Add(modPro);
             }
@@ -142,9 +144,9 @@ namespace Datos
         }
         #endregion
 
-        public ModeloProveedores getOne(string razonSocial)
+        public ModeloProveedor getOne(string razonSocial)
         {
-            ModeloProveedores modPro = null;
+            ModeloProveedor modPro = null;
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -164,7 +166,7 @@ namespace Datos
 
             while (drProveedores.Read())
             {
-                modPro = new ModeloProveedores();
+                modPro = new ModeloProveedor();
                 modPro = this.leerDatosProveedor(drProveedores);
 
             }
@@ -175,9 +177,9 @@ namespace Datos
 
         }
        
-        public List<ModeloProveedores> getAll()
+        public List<ModeloProveedor> getAll()
         {
-            List<ModeloProveedores> allProvs = new List<ModeloProveedores>();
+            List<ModeloProveedor> allProvs = new List<ModeloProveedor>();
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -197,7 +199,7 @@ namespace Datos
             SqlDataReader drProveedores = comando.ExecuteReader();
             while (drProveedores.Read())
             {
-                ModeloProveedores modPro = new ModeloProveedores();
+                ModeloProveedor modPro = new ModeloProveedor();
                 modPro = this.leerDatosProveedor(drProveedores);
                 allProvs.Add(modPro);
             }
@@ -213,7 +215,7 @@ namespace Datos
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
-        public bool agregarNuevaEntidad(ModeloProveedores pModProv)
+        public bool agregarNuevaEntidad(ModeloProveedor pModProv)
         {
             if (!this.existeEntidad(pModProv.razonSocial))
             {
@@ -234,12 +236,12 @@ namespace Datos
 
                 comando.Parameters.Add(this.instanciarParametro(pModProv.razonSocial, "@razonSocial"));
                 comando.Parameters.Add(this.instanciarParametro(pModProv.cuit, "@cuit"));
-                comando.Parameters.Add(this.instanciarParametro(pModProv.direccion, "@direccion"));
+                /*comando.Parameters.Add(this.instanciarParametro(pModProv.direccion, "@direccion"));
                 comando.Parameters.Add(this.instanciarParametro(pModProv.ciudad, "@ciudad"));
                 comando.Parameters.Add(this.instanciarParametro(pModProv.codigoPostal, "@codigoPostal"));
                 comando.Parameters.Add(this.instanciarParametro(pModProv.provincia, "@provincia"));
                 comando.Parameters.Add(this.instanciarParametro(pModProv.observaciones, "@observaciones"));
-
+                */
                 //Insertar un nuevo Proveedor
                 comando.Connection.Open();
                 int rowaffected = comando.ExecuteNonQuery();
@@ -262,7 +264,7 @@ namespace Datos
         }     
 
         //No se podrá modificar razonSocial
-        public bool actualizarEntidad(ModeloProveedores pModProv)
+        public bool actualizarEntidad(ModeloProveedor pModProv)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -281,12 +283,13 @@ namespace Datos
 
             comando.Parameters.Add(this.instanciarParametro(pModProv.razonSocial, "@razonSocial"));
             comando.Parameters.Add(this.instanciarParametro(pModProv.cuit, "@cuit"));
-            comando.Parameters.Add(this.instanciarParametro(pModProv.direccion, "@direccion"));
+            /*REVISAR
+             * comando.Parameters.Add(this.instanciarParametro(pModProv.direccion, "@direccion"));
             comando.Parameters.Add(this.instanciarParametro(pModProv.ciudad, "@ciudad"));
             comando.Parameters.Add(this.instanciarParametro(pModProv.provincia, "@provincia"));
             comando.Parameters.Add(this.instanciarParametro(pModProv.codigoPostal, "@codigoPostal"));
             comando.Parameters.Add(this.instanciarParametro(pModProv.observaciones, "@observaciones"));
-
+            */
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();           
             comando.Connection.Close();
@@ -301,7 +304,7 @@ namespace Datos
             }
         }
 
-        public bool bajaEntidad(ModeloProveedores pModProv)
+        public bool bajaEntidad(ModeloProveedor pModProv)
         {
             SqlConnection ConexionSQL = Conexion.crearConexion();
 

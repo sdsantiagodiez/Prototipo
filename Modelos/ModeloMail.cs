@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
-    public class ModeloMailPersonas
+    public class ModeloMail
     {
         #region Getters/Setters
-        string _mailPers;
-        public string mailPers 
+        string _mail;
+        public string mail 
         {
-            get { return _mailPers; }
-            set 
-            { this._mailPers = value; }
+            get { return _mail; }
+            set { this._mail = value; }
         }
         #endregion
         //Validación básica (xxx@xxx.xxx)
