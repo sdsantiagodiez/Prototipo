@@ -16,16 +16,24 @@ namespace Vista
     {
         private string categBusq;
         private List<ModeloArticuloProveedores> artEncontrados;
-        private List<ModeloLineaPedido> artVentaActual = new List<ModeloLineaPedido>();
+        private List<ModeloLineaPedido> artVentaActual;
         private decimal contado = 1;
         private decimal tarjeta = 1;
         private ModeloArticuloProveedores artSelecBusq;
         private ModeloLineaPedido artSelecDetalle;
+        private ControladorProcesarVenta ctrlProcVenta;
 
         public frmPedidoClienteNuevo()
         {
             InitializeComponent();
+            //creo la venta
+            ctrlProcVenta = new ControladorProcesarVenta();
+            ctrlProcVenta.crearPedido();
+
+            //seteo columnas de datagridviews
             this.dgvArtAgregar.AutoGenerateColumns = false;
+            this.dgvDetalleAgregados.AutoGenerateColumns = false;
+            
             //Creo lista categorias
             var dataSource = new List<Categ>();
             dataSource.Add(new Categ() { Name = "Seleccione...", Value = null });
@@ -49,10 +57,15 @@ namespace Vista
             //compruebo que existan articulos para generar venta
             if (this.artVentaActual.Count > 0)
             {
-                //creo el formulario, le paso los articulos de la venta actual, y lo muestro
+                //creo el formulario y lo muestro
                 frmPedidoClienteCierre frmCierre = new frmPedidoClienteCierre();
-                frmCierre.detalleVenta(this.artVentaActual);
+                frmCierre.detalleVenta(ctrlProcVenta);
                 frmCierre.ShowDialog();
+                //checkeo si se cerró la venta
+                if (frmCierre.emitido==true)
+                {
+                    this.Close();
+                }
             }
             else
             {
@@ -72,25 +85,21 @@ namespace Vista
                     if (this.artSelecBusq.stockActual >= Int32.Parse(this.txtCantidad.Text))
                     {                        
                         //verifico que no exista ya en entre las lineas de pedido
-                        if (!exists(artSelecBusq))
+                        if (!ctrlProcVenta.exists(artSelecBusq))
                         {
-                            //le cambio el formato  y lo agrego a la lista de articulos ya seleccionados
-                            ModeloLineaPedido nuevaLinea = new ModeloLineaPedido(this.artSelecBusq, Int32.Parse(this.txtCantidad.Text));
-                            this.artVentaActual.Add(nuevaLinea);
+                            //lo agrego a la venta actual
+                            ctrlProcVenta.addToVenta(artSelecBusq, Int32.Parse(this.txtCantidad.Text));
+                            
 
                             //Actualizo Total
-                            this.lblTotalVar.Text = calcularTotal(artVentaActual);
+                            this.lblTotalVar.Text = ctrlProcVenta.getTotal();
 
-                            //rebindeo los articulos seleccionados a la grid
-
-                            //
-                            //TODO La grilla original mostraba Codigo de proveedor, Descripción, Precio Unitario, Precio parcial (?que es esto?) Cantidad
-                            //Falta solicitar cantidad y mostrar información adecuada
-
+                            //rebindeo lista
+                            this.artVentaActual = ctrlProcVenta.getVentaActual();
                             var bindingList = new BindingList<ModeloLineaPedido>(this.artVentaActual);
                             var source = new BindingSource(bindingList, null);
                             this.dgvDetalleAgregados.DataSource = source;
-                            //
+                    
                             //Limpio artselecbusq para manejar el uso del boton en momento equivocado
                             this.artSelecBusq = null;
                             //Limpio txtbox cantidad
@@ -128,46 +137,20 @@ namespace Vista
             }
         }
 
-        private string calcularTotal(List<ModeloLineaPedido> artVentaActual)
-        {
-            decimal total = 0;
-            foreach (ModeloLineaPedido linea in artVentaActual)
-            {
-                total = total + linea.valorParcial;
-            }
-            return total.ToString("0.##");
-        }
-
-        private bool exists(ModeloArticuloProveedores artSelecBusq)
-        {
-            bool flag = false;
-            foreach (ModeloLineaPedido linea in artVentaActual)
-            {
-                if (linea.codigoOriginalArt == artSelecBusq.codigoOriginal)
-                {
-                    flag = true;
-                }
-            }
-            return flag;
-        }
-
         private void btnQuitar_Click(object sender, EventArgs e)
         {
             //checkeo que haya un articulo seleccionado
             if (!object.Equals(this.artSelecDetalle, null))
             {
                 //lo elimino de la lista de articulos ya seleccionados
-                this.artVentaActual.Remove(this.artSelecDetalle);
+                ctrlProcVenta.removeFromVenta(this.artSelecDetalle);
+                this.artVentaActual = ctrlProcVenta.getVentaActual();
 
                 //Actualizo Total
-                this.lblTotalVar.Text = calcularTotal(artVentaActual);
+                this.lblTotalVar.Text = ctrlProcVenta.getTotal();
 
                 //rebindeo los articulos seleccionados a la grid
-
-                //
-                //TODO La grilla original mostraba Codigo de proveedor, Descripción, Precio Unitario, Precio parcial (?que es esto?) Cantidad
-                //Falta solicitar cantidad y mostrar información adecuada
-
+                this.artVentaActual = ctrlProcVenta.getVentaActual();
                 var bindingList = new BindingList<ModeloLineaPedido>(this.artVentaActual);
                 var source = new BindingSource(bindingList, null);
                 this.dgvDetalleAgregados.DataSource = source;
@@ -189,7 +172,8 @@ namespace Vista
             if (dialogResult == DialogResult.Yes)
             {
                 //borro la venta actual
-                this.artVentaActual = new List<ModeloLineaPedido>();
+                ctrlProcVenta.borrarActual();
+                this.artVentaActual = ctrlProcVenta.getVentaActual();
 
                 //rebindeo grilla detalles
                 this.dgvDetalleAgregados.DataSource = null;
@@ -230,10 +214,8 @@ namespace Vista
             //TODO modificadores de precio segun metodo de pago
             this.lblContadoVar.Text = Convert.ToString(artEncontrados[indiceSelecc].valorVenta.valorArticulo * contado);
             this.lblTarjetaVar.Text = Convert.ToString(artEncontrados[indiceSelecc].valorVenta.valorArticulo * tarjeta);
-            //
-            /* TODO modificar base de datos y modelo para registrar ubicación del articulo en cuestion en el local
-             * this.lblTarjetaVar.Text = artEncontrados[articuloSelec].ubicacion
-             */
+            this.lblUbicacionVar.Text = artEncontrados[indiceSelecc].ubicacion;
+            
             this.lblExistenciaVar.Text = Convert.ToString(artEncontrados[indiceSelecc].stockActual);
             this.lblFechaActualizVar.Text = Convert.ToString(artEncontrados[indiceSelecc].fechaActualizacion);
             this.lblObsVar.Text = artEncontrados[indiceSelecc].observaciones;
@@ -256,7 +238,7 @@ namespace Vista
             //TODO --> VALIDAR EL INPUT
             //
 
-
+            
             //capturo descripcion parcial
             string busqArt = this.txtBusqArticulo.Text;
 
@@ -264,7 +246,6 @@ namespace Vista
             if (!object.Equals(this.categBusq, null))
             {
                 //busco el/los articulos correspondientes
-                var ctrlProcVenta = new ControladorProcesarVenta();
                 artEncontrados = ctrlProcVenta.buscarArticulos(categBusq, busqArt);
 
                 //bindeo el datagrid con los articulos encontrados
@@ -316,6 +297,7 @@ namespace Vista
             this.lblExistenciaVar.Text = "Seleccione Articulo";
             this.lblFechaActualizVar.Text = "Seleccione Articulo";
             this.lblObsVar.Text = "Seleccione Articulo";
+            this.lblUbicacionVar.Text = "Seleccione Articulo";
         }
         #endregion
     }

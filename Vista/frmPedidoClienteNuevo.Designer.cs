@@ -59,6 +59,12 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.grbxDetalleAgregados = new System.Windows.Forms.GroupBox();
             this.dgvDetalleAgregados = new System.Windows.Forms.DataGridView();
+            this.codOrig = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codProv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.daaDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbxArtAgregar = new System.Windows.Forms.GroupBox();
             this.lblCategoriaBuscar = new System.Windows.Forms.Label();
             this.dgvArtAgregar = new System.Windows.Forms.DataGridView();
@@ -66,18 +72,11 @@
             this.codProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblLupa = new System.Windows.Forms.Label();
             this.txtBusqArticulo = new System.Windows.Forms.TextBox();
             this.cmbxCategoriaBuscar = new System.Windows.Forms.ComboBox();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.btnBorrarDetActual = new System.Windows.Forms.Button();
-            this.codOrig = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codProv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.daaDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbxDetalleSelec.SuspendLayout();
             this.tlpDetalles.SuspendLayout();
             this.grbxDetalleAgregados.SuspendLayout();
@@ -90,14 +89,11 @@
             // 
             this.grbxDetalleSelec.Controls.Add(this.txtCantidad);
             this.grbxDetalleSelec.Controls.Add(this.lblCantidad);
-            this.grbxDetalleSelec.Controls.Add(this.btnQuitar);
             this.grbxDetalleSelec.Controls.Add(this.btnAgregar);
             this.grbxDetalleSelec.Controls.Add(this.tlpDetalles);
-            this.grbxDetalleSelec.Controls.Add(this.lblTotalVar);
-            this.grbxDetalleSelec.Controls.Add(this.lblTotal);
             this.grbxDetalleSelec.Location = new System.Drawing.Point(710, 20);
             this.grbxDetalleSelec.Name = "grbxDetalleSelec";
-            this.grbxDetalleSelec.Size = new System.Drawing.Size(294, 537);
+            this.grbxDetalleSelec.Size = new System.Drawing.Size(294, 487);
             this.grbxDetalleSelec.TabIndex = 23;
             this.grbxDetalleSelec.TabStop = false;
             this.grbxDetalleSelec.Text = "Detalle Articulo Seleccionado";
@@ -120,7 +116,7 @@
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(168, 485);
+            this.btnQuitar.Location = new System.Drawing.Point(617, 566);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(80, 35);
             this.btnQuitar.TabIndex = 4;
@@ -384,7 +380,7 @@
             this.lblTotalVar.AutoSize = true;
             this.lblTotalVar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalVar.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblTotalVar.Location = new System.Drawing.Point(74, 494);
+            this.lblTotalVar.Location = new System.Drawing.Point(520, 575);
             this.lblTotalVar.Name = "lblTotalVar";
             this.lblTotalVar.Size = new System.Drawing.Size(16, 16);
             this.lblTotalVar.TabIndex = 8;
@@ -394,7 +390,7 @@
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(17, 492);
+            this.lblTotal.Location = new System.Drawing.Point(463, 573);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(51, 18);
             this.lblTotal.TabIndex = 7;
@@ -433,145 +429,6 @@
             this.dgvDetalleAgregados.TabIndex = 5;
             this.dgvDetalleAgregados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleAgregados_CellClick);
             this.dgvDetalleAgregados.Enter += new System.EventHandler(this.dgvDetalleAgregados_Enter);
-            // 
-            // grbxArtAgregar
-            // 
-            this.grbxArtAgregar.Controls.Add(this.lblCategoriaBuscar);
-            this.grbxArtAgregar.Controls.Add(this.dgvArtAgregar);
-            this.grbxArtAgregar.Controls.Add(this.lblLupa);
-            this.grbxArtAgregar.Controls.Add(this.txtBusqArticulo);
-            this.grbxArtAgregar.Controls.Add(this.cmbxCategoriaBuscar);
-            this.grbxArtAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grbxArtAgregar.Location = new System.Drawing.Point(5, 16);
-            this.grbxArtAgregar.Name = "grbxArtAgregar";
-            this.grbxArtAgregar.Size = new System.Drawing.Size(692, 332);
-            this.grbxArtAgregar.TabIndex = 19;
-            this.grbxArtAgregar.TabStop = false;
-            this.grbxArtAgregar.Text = "Articulos a Agregar";
-            // 
-            // lblCategoriaBuscar
-            // 
-            this.lblCategoriaBuscar.AutoSize = true;
-            this.lblCategoriaBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoriaBuscar.Location = new System.Drawing.Point(8, 31);
-            this.lblCategoriaBuscar.Name = "lblCategoriaBuscar";
-            this.lblCategoriaBuscar.Size = new System.Drawing.Size(76, 16);
-            this.lblCategoriaBuscar.TabIndex = 4;
-            this.lblCategoriaBuscar.Text = "Buscar por:";
-            // 
-            // dgvArtAgregar
-            // 
-            this.dgvArtAgregar.AllowUserToAddRows = false;
-            this.dgvArtAgregar.AllowUserToDeleteRows = false;
-            this.dgvArtAgregar.AllowUserToOrderColumns = true;
-            this.dgvArtAgregar.AllowUserToResizeRows = false;
-            this.dgvArtAgregar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvArtAgregar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvArtAgregar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.codOriginal,
-            this.codProveedor,
-            this.proveedor,
-            this.descripcion,
-            this.precio});
-            this.dgvArtAgregar.Location = new System.Drawing.Point(11, 68);
-            this.dgvArtAgregar.Name = "dgvArtAgregar";
-            this.dgvArtAgregar.ReadOnly = true;
-            this.dgvArtAgregar.RowHeadersVisible = false;
-            this.dgvArtAgregar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArtAgregar.Size = new System.Drawing.Size(675, 258);
-            this.dgvArtAgregar.TabIndex = 3;
-            this.dgvArtAgregar.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArtAgregar_CellClick);
-            this.dgvArtAgregar.Enter += new System.EventHandler(this.dgvArtAgregar_Enter);
-            // 
-            // codOriginal
-            // 
-            this.codOriginal.DataPropertyName = "codigoOriginal";
-            this.codOriginal.HeaderText = "Código Original";
-            this.codOriginal.Name = "codOriginal";
-            this.codOriginal.ReadOnly = true;
-            // 
-            // codProveedor
-            // 
-            this.codProveedor.DataPropertyName = "codigoArticuloProveedor";
-            this.codProveedor.HeaderText = "Código Proveedor";
-            this.codProveedor.Name = "codProveedor";
-            this.codProveedor.ReadOnly = true;
-            // 
-            // proveedor
-            // 
-            this.proveedor.DataPropertyName = "razonSocialProveedor";
-            this.proveedor.HeaderText = "Proveedor";
-            this.proveedor.Name = "proveedor";
-            this.proveedor.ReadOnly = true;
-            // 
-            // descripcion
-            // 
-            this.descripcion.DataPropertyName = "descripcion";
-            this.descripcion.HeaderText = "Descripción";
-            this.descripcion.Name = "descripcion";
-            this.descripcion.ReadOnly = true;
-            // 
-            // precio
-            // 
-            this.precio.DataPropertyName = "valorVenta";
-            this.precio.HeaderText = "Precio";
-            this.precio.Name = "precio";
-            this.precio.ReadOnly = true;
-            // 
-            // lblLupa
-            // 
-            this.lblLupa.Image = ((System.Drawing.Image)(resources.GetObject("lblLupa.Image")));
-            this.lblLupa.Location = new System.Drawing.Point(614, 23);
-            this.lblLupa.Name = "lblLupa";
-            this.lblLupa.Size = new System.Drawing.Size(32, 32);
-            this.lblLupa.TabIndex = 2;
-            this.lblLupa.Click += new System.EventHandler(this.lblLupa_Click);
-            // 
-            // txtBusqArticulo
-            // 
-            this.txtBusqArticulo.Location = new System.Drawing.Point(234, 29);
-            this.txtBusqArticulo.Name = "txtBusqArticulo";
-            this.txtBusqArticulo.Size = new System.Drawing.Size(374, 23);
-            this.txtBusqArticulo.TabIndex = 1;
-            this.txtBusqArticulo.Enter += new System.EventHandler(this.txtBusqArticulo_Enter);
-            this.txtBusqArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescArticulo_KeyPress);
-            // 
-            // cmbxCategoriaBuscar
-            // 
-            this.cmbxCategoriaBuscar.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.cmbxCategoriaBuscar.FormattingEnabled = true;
-            this.cmbxCategoriaBuscar.Items.AddRange(new object[] {
-            "Código Original",
-            "Código Proveedor",
-            "Descripción"});
-            this.cmbxCategoriaBuscar.Location = new System.Drawing.Point(90, 28);
-            this.cmbxCategoriaBuscar.Name = "cmbxCategoriaBuscar";
-            this.cmbxCategoriaBuscar.Size = new System.Drawing.Size(138, 24);
-            this.cmbxCategoriaBuscar.TabIndex = 0;
-            this.cmbxCategoriaBuscar.Text = "[Seleccionar...]";
-            this.cmbxCategoriaBuscar.SelectionChangeCommitted += new System.EventHandler(this.cmbxCategoriaBuscar_SelectionChangeCommitted);
-            // 
-            // btnSiguiente
-            // 
-            this.btnSiguiente.AutoSize = true;
-            this.btnSiguiente.Location = new System.Drawing.Point(838, 564);
-            this.btnSiguiente.Name = "btnSiguiente";
-            this.btnSiguiente.Size = new System.Drawing.Size(120, 40);
-            this.btnSiguiente.TabIndex = 22;
-            this.btnSiguiente.Text = "Siguiente >";
-            this.btnSiguiente.UseVisualStyleBackColor = true;
-            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
-            // 
-            // btnBorrarDetActual
-            // 
-            this.btnBorrarDetActual.AutoSize = true;
-            this.btnBorrarDetActual.Location = new System.Drawing.Point(24, 564);
-            this.btnBorrarDetActual.Name = "btnBorrarDetActual";
-            this.btnBorrarDetActual.Size = new System.Drawing.Size(120, 40);
-            this.btnBorrarDetActual.TabIndex = 20;
-            this.btnBorrarDetActual.Text = "Borrar Detalle Actual";
-            this.btnBorrarDetActual.UseVisualStyleBackColor = true;
-            this.btnBorrarDetActual.Click += new System.EventHandler(this.btnBorrarDetActual_Click);
             // 
             // codOrig
             // 
@@ -615,6 +472,137 @@
             this.vParcial.Name = "vParcial";
             this.vParcial.ReadOnly = true;
             // 
+            // grbxArtAgregar
+            // 
+            this.grbxArtAgregar.Controls.Add(this.lblCategoriaBuscar);
+            this.grbxArtAgregar.Controls.Add(this.dgvArtAgregar);
+            this.grbxArtAgregar.Controls.Add(this.lblLupa);
+            this.grbxArtAgregar.Controls.Add(this.txtBusqArticulo);
+            this.grbxArtAgregar.Controls.Add(this.cmbxCategoriaBuscar);
+            this.grbxArtAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbxArtAgregar.Location = new System.Drawing.Point(5, 16);
+            this.grbxArtAgregar.Name = "grbxArtAgregar";
+            this.grbxArtAgregar.Size = new System.Drawing.Size(692, 332);
+            this.grbxArtAgregar.TabIndex = 19;
+            this.grbxArtAgregar.TabStop = false;
+            this.grbxArtAgregar.Text = "Articulos a Agregar";
+            // 
+            // lblCategoriaBuscar
+            // 
+            this.lblCategoriaBuscar.AutoSize = true;
+            this.lblCategoriaBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategoriaBuscar.Location = new System.Drawing.Point(8, 31);
+            this.lblCategoriaBuscar.Name = "lblCategoriaBuscar";
+            this.lblCategoriaBuscar.Size = new System.Drawing.Size(76, 16);
+            this.lblCategoriaBuscar.TabIndex = 4;
+            this.lblCategoriaBuscar.Text = "Buscar por:";
+            // 
+            // dgvArtAgregar
+            // 
+            this.dgvArtAgregar.AllowUserToAddRows = false;
+            this.dgvArtAgregar.AllowUserToDeleteRows = false;
+            this.dgvArtAgregar.AllowUserToOrderColumns = true;
+            this.dgvArtAgregar.AllowUserToResizeRows = false;
+            this.dgvArtAgregar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvArtAgregar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArtAgregar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codOriginal,
+            this.codProveedor,
+            this.proveedor,
+            this.descripcion});
+            this.dgvArtAgregar.Location = new System.Drawing.Point(11, 68);
+            this.dgvArtAgregar.Name = "dgvArtAgregar";
+            this.dgvArtAgregar.ReadOnly = true;
+            this.dgvArtAgregar.RowHeadersVisible = false;
+            this.dgvArtAgregar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvArtAgregar.Size = new System.Drawing.Size(675, 258);
+            this.dgvArtAgregar.TabIndex = 3;
+            this.dgvArtAgregar.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArtAgregar_CellClick);
+            this.dgvArtAgregar.Enter += new System.EventHandler(this.dgvArtAgregar_Enter);
+            // 
+            // codOriginal
+            // 
+            this.codOriginal.DataPropertyName = "codigoOriginal";
+            this.codOriginal.HeaderText = "Código Original";
+            this.codOriginal.Name = "codOriginal";
+            this.codOriginal.ReadOnly = true;
+            // 
+            // codProveedor
+            // 
+            this.codProveedor.DataPropertyName = "codigoArticuloProveedor";
+            this.codProveedor.HeaderText = "Código Proveedor";
+            this.codProveedor.Name = "codProveedor";
+            this.codProveedor.ReadOnly = true;
+            // 
+            // proveedor
+            // 
+            this.proveedor.DataPropertyName = "razonSocialProveedor";
+            this.proveedor.HeaderText = "Proveedor";
+            this.proveedor.Name = "proveedor";
+            this.proveedor.ReadOnly = true;
+            // 
+            // descripcion
+            // 
+            this.descripcion.DataPropertyName = "descripcion";
+            this.descripcion.HeaderText = "Descripción";
+            this.descripcion.Name = "descripcion";
+            this.descripcion.ReadOnly = true;
+            // 
+            // lblLupa
+            // 
+            this.lblLupa.Image = ((System.Drawing.Image)(resources.GetObject("lblLupa.Image")));
+            this.lblLupa.Location = new System.Drawing.Point(614, 23);
+            this.lblLupa.Name = "lblLupa";
+            this.lblLupa.Size = new System.Drawing.Size(32, 32);
+            this.lblLupa.TabIndex = 2;
+            this.lblLupa.Click += new System.EventHandler(this.lblLupa_Click);
+            // 
+            // txtBusqArticulo
+            // 
+            this.txtBusqArticulo.Location = new System.Drawing.Point(234, 29);
+            this.txtBusqArticulo.Name = "txtBusqArticulo";
+            this.txtBusqArticulo.Size = new System.Drawing.Size(374, 23);
+            this.txtBusqArticulo.TabIndex = 1;
+            this.txtBusqArticulo.Enter += new System.EventHandler(this.txtBusqArticulo_Enter);
+            this.txtBusqArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescArticulo_KeyPress);
+            // 
+            // cmbxCategoriaBuscar
+            // 
+            this.cmbxCategoriaBuscar.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cmbxCategoriaBuscar.FormattingEnabled = true;
+            this.cmbxCategoriaBuscar.Items.AddRange(new object[] {
+            "Código Original",
+            "Código Proveedor",
+            "Descripción"});
+            this.cmbxCategoriaBuscar.Location = new System.Drawing.Point(90, 28);
+            this.cmbxCategoriaBuscar.Name = "cmbxCategoriaBuscar";
+            this.cmbxCategoriaBuscar.Size = new System.Drawing.Size(138, 24);
+            this.cmbxCategoriaBuscar.TabIndex = 0;
+            this.cmbxCategoriaBuscar.Text = "[Seleccionar...]";
+            this.cmbxCategoriaBuscar.SelectionChangeCommitted += new System.EventHandler(this.cmbxCategoriaBuscar_SelectionChangeCommitted);
+            // 
+            // btnSiguiente
+            // 
+            this.btnSiguiente.AutoSize = true;
+            this.btnSiguiente.Location = new System.Drawing.Point(876, 569);
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Size = new System.Drawing.Size(120, 40);
+            this.btnSiguiente.TabIndex = 22;
+            this.btnSiguiente.Text = "Siguiente >";
+            this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
+            // 
+            // btnBorrarDetActual
+            // 
+            this.btnBorrarDetActual.AutoSize = true;
+            this.btnBorrarDetActual.Location = new System.Drawing.Point(5, 563);
+            this.btnBorrarDetActual.Name = "btnBorrarDetActual";
+            this.btnBorrarDetActual.Size = new System.Drawing.Size(120, 40);
+            this.btnBorrarDetActual.TabIndex = 20;
+            this.btnBorrarDetActual.Text = "Borrar Detalle Actual";
+            this.btnBorrarDetActual.UseVisualStyleBackColor = true;
+            this.btnBorrarDetActual.Click += new System.EventHandler(this.btnBorrarDetActual_Click);
+            // 
             // frmPedidoClienteNuevo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -622,9 +610,12 @@
             this.ClientSize = new System.Drawing.Size(1008, 621);
             this.Controls.Add(this.grbxDetalleSelec);
             this.Controls.Add(this.grbxDetalleAgregados);
+            this.Controls.Add(this.btnQuitar);
             this.Controls.Add(this.grbxArtAgregar);
             this.Controls.Add(this.btnSiguiente);
             this.Controls.Add(this.btnBorrarDetActual);
+            this.Controls.Add(this.lblTotalVar);
+            this.Controls.Add(this.lblTotal);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmPedidoClienteNuevo";
@@ -681,11 +672,6 @@
         internal System.Windows.Forms.ComboBox cmbxCategoriaBuscar;
         internal System.Windows.Forms.Button btnSiguiente;
         internal System.Windows.Forms.Button btnBorrarDetActual;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codOriginal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codProveedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn proveedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precio;
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn codOrig;
@@ -694,6 +680,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn vUnitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn vParcial;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codOriginal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codProveedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn proveedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
 
     }
 }
