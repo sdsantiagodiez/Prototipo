@@ -71,9 +71,9 @@ namespace Controladores
         /// </summary>
         /// <param name="parametro">string por la que se buscará proveedor</param>
         /// <returns>Lista de proveedores o lista vacía si no se ha encontrado coincidencia</returns>
-        public List<ModeloProveedores> buscarProveedor(string parametro)
+        public List<ModeloProveedor> buscarProveedor(string parametro)
         {
-            List<ModeloProveedores> pEncontrados = new List<ModeloProveedores>();
+            List<ModeloProveedor> pEncontrados = new List<ModeloProveedor>();
             CatalogoProveedores cp = new CatalogoProveedores();
 
             pEncontrados = cp.buscarProveedores("razonSocial",parametro);

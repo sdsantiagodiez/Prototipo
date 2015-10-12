@@ -244,13 +244,12 @@ namespace Vista
         private void btnAgregarMail_Click(object sender, EventArgs e)
         {
             
-            ModeloMailPersonas mmp = new ModeloMailPersonas();
+            ModeloMail mMail = new ModeloMail();
             //Agregar validación por si el mail ya esta incluido
-            if (mmp.validarMail(txtBoxMail.Text))
+            if (mMail.validarMail(txtBoxMail.Text))
             {
                 ListViewItem mail = new ListViewItem(txtBoxMail.Text);
                 lstViewMail.Items.Add(mail);
-           
             }
             else
             {
