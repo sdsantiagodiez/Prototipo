@@ -30,8 +30,8 @@ namespace Vista
 
             //busco el usuario correspondiente y lo guardo
             ControladorInicioSesion ctrlSesion = new ControladorInicioSesion();
-            this.setPersona(ctrlSesion.buscarUsuario(usuario, contrasenia));
-
+           /*REVISAR this.setPersona(ctrlSesion.buscarUsuario(usuario, contrasenia));
+            */
            
             if (!object.Equals(_persona.dni,  null))
             {

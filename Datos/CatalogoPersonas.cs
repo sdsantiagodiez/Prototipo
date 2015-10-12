@@ -41,7 +41,8 @@ namespace Datos
             modPer.cuit = (drPersonas["cuit"] != DBNull.Value) ? (string)drPersonas["cuit"] : null;
             modPer.nombre = (drPersonas["nombre"] != DBNull.Value) ? (string)drPersonas["nombre"] : null;
             modPer.apellido = (drPersonas["apellido"] != DBNull.Value) ? (string)drPersonas["apellido"] : null;
-            modPer.direccion = (drPersonas["direccion"] != DBNull.Value) ? (string)drPersonas["direccion"] : null;
+            /*REVISAR
+             * modPer.direccion = (drPersonas["direccion"] != DBNull.Value) ? (string)drPersonas["direccion"] : null;
             modPer.ciudad = (drPersonas["ciudad"] != DBNull.Value) ? (string)drPersonas["ciudad"] : null;
             modPer.provincia = (drPersonas["provincia"] != DBNull.Value) ? (string)drPersonas["provincia"] : null;
             modPer.codigoPostal = (drPersonas["codigoPostal"] != DBNull.Value) ? (string)drPersonas["codigoPostal"] : null;
@@ -49,7 +50,7 @@ namespace Datos
             modPer.razonSocialProv = (drPersonas["razonSocialProveedor"] != DBNull.Value) ? (string)drPersonas["razonSocialProveedor"] : null;
             modPer.usuario = (drPersonas["usuario"] != DBNull.Value) ? (string)drPersonas["usuario"] : null;
             modPer.contrasenia = (drPersonas["contrasenia"] != DBNull.Value) ? (string)drPersonas["contrasenia"] : null;
-
+            */
             return modPer;
         }
 
@@ -329,7 +330,9 @@ namespace Datos
                 comando.Parameters.Add(this.instanciarParametro(pModPer.cuit, "@cuit"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.nombre, "@nombre"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.apellido, "@apellido"));
-                comando.Parameters.Add(this.instanciarParametro(pModPer.direccion, "@direccion"));
+                
+                /*REVISAR
+                 * comando.Parameters.Add(this.instanciarParametro(pModPer.direccion, "@direccion"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.ciudad, "@ciudad"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.provincia, "@provincia"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.codigoPostal, "@codigoPostal"));
@@ -337,7 +340,7 @@ namespace Datos
                 comando.Parameters.Add(this.instanciarParametro(pModPer.razonSocialProv, "@razonSocialProveedor"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.usuario, "@usuario"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.contrasenia, "@contrasenia"));
-
+                */
                 comando.Connection.Open();
                 int rowaffected = comando.ExecuteNonQuery();
                 comando.Connection.Close();
@@ -382,7 +385,8 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(pModPer.cuit, "@cuit"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.nombre, "@nombre"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.apellido, "@apellido"));
-            comando.Parameters.Add(this.instanciarParametro(pModPer.direccion, "@direccion"));
+           /*REVISAR
+            * comando.Parameters.Add(this.instanciarParametro(pModPer.direccion, "@direccion"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.ciudad, "@ciudad"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.provincia, "@provincia"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.codigoPostal, "@codigoPostal"));
@@ -390,7 +394,7 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(pModPer.razonSocialProv, "@razonSocialProveedor"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.usuario, "@usuario"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.contrasenia, "@contrasenia"));
-            
+            */
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();           
             comando.Connection.Close();

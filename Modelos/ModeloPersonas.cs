@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
-    public class ModeloPersonas
+    /// <summary>
+    /// Una persona puede ser un cliente, contacto de proveedor o usuario de sistema
+    /// </summary>
+    public class ModeloPersonas : ModeloEntidad
     {
         #region Getters/Setters
         string _dni;
@@ -14,12 +17,6 @@ namespace Modelos
         {
             get{return _dni;}
             set{this._dni = value;} 
-        }
-        string _cuit;
-        public string cuit
-        {
-            get { return _cuit; }
-            set { this._cuit = value; }
         }
         string _nombre;
         public string nombre
@@ -33,53 +30,16 @@ namespace Modelos
             get { return _apellido; }
             set { this._apellido = value; }
         }
-        string _ciudad;
-        public string ciudad
+        /// <summary>
+        /// CLI: CLIENTE;
+        /// USR: USUARIO;
+        /// CON: CONTACTO DE PROVEEDOR;
+        /// </summary>
+        string _tipoPersona;
+        public string tipoPersona
         {
-            get { return _ciudad; }
-            set { this._ciudad = value; }
-        }
-        string _provincia;
-        public string provincia
-        {
-            get { return _provincia; }
-            set { this._provincia = value; }
-        }
-        string _codigoPostal;
-        public string codigoPostal
-        {
-            get { return _codigoPostal; }
-            set { this._codigoPostal = value; }
-        }
-        string _observaciones;
-        public string observaciones
-        {
-            get { return _observaciones; }
-            set { this._observaciones = value; }
-        }
-        string _usuario;
-        public string usuario
-        {
-            get { return _usuario; }
-            set { this._usuario = value; }
-        }
-        string _contrasenia;
-        public string contrasenia
-        {
-            get { return _contrasenia; }
-            set { this._contrasenia = value; }
-        }
-        string _razonSocialProv;
-        public string razonSocialProv
-        {
-            get { return _razonSocialProv; }
-            set { this._razonSocialProv = value; }
-        }
-        string _direccion;
-        public string direccion
-        {
-            get { return _direccion; }
-            set { this._direccion = value; }
+            get { return _tipoPersona; }
+            set { this._tipoPersona = value; }
         }
         #endregion
     }

@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace Datos
 {
-    class CatalogoUsuarios : CatalogoPersonas
+    public class CatalogoUsuarios : CatalogoPersonas
     {
         public bool existeEntidad(string dni, string usuario)
         {
