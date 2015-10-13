@@ -366,11 +366,12 @@ namespace Datos
          * False si ocurrió algún error
          */
 
-        public bool agregarNuevaEntidad(ModeloPersonas pModPer)
+        public override bool agregarNuevaEntidad(ModeloPersonas pModPer)
         {
             //Se debería chequear antes para notificar al usuario la razón por la que no se podrá realizar la operación
             if (!this.existeEntidad(pModPer.codigo))
             {
+                base.agregarNuevaEntidad(pModPer);
                 //Creo la conexion y la abro
                 SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -382,26 +383,18 @@ namespace Datos
                 comando.CommandType = CommandType.Text;
 
                 comando.CommandText = 
-                    "INSERT INTO [Personas]([dni],[cuit],[nombre],[apellido],[direccion],"+
-                    "[ciudad],[provincia],[codigoPostal],[observaciones], "+
-                    "[usuario], [contrasenia]) "+ 
-                    "VALUES (@dni, @cuit, @nombre, @apellido, @direccion, @ciudad, @provincia, "+
-                    "@codigoPostal, @observaciones, @usuario, @contrasenia)";
+                    "INSERT INTO [Personas]([codigo_entidad],[dni],[nombre],[apellido],"+
+                    "[usuario], [contrasenia],[tipo_persona]) "+
+                    "VALUES (IDENT_CURRENT('entidades'), @dni, @nombre, @apellido," +
+                    "@usuario, @contrasenia,@tipo_persona)";
                 //Indica los parametros
                 comando.Parameters.Add(this.instanciarParametro(pModPer.dni, "@dni"));
-                comando.Parameters.Add(this.instanciarParametro(pModPer.cuit, "@cuit"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.nombre, "@nombre"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.apellido, "@apellido"));
-                
-                /*REVISAR
-                 * comando.Parameters.Add(this.instanciarParametro(pModPer.direccion, "@direccion"));
-                comando.Parameters.Add(this.instanciarParametro(pModPer.ciudad, "@ciudad"));
-                comando.Parameters.Add(this.instanciarParametro(pModPer.provincia, "@provincia"));
-                comando.Parameters.Add(this.instanciarParametro(pModPer.codigoPostal, "@codigoPostal"));
-                comando.Parameters.Add(this.instanciarParametro(pModPer.observaciones, "@observaciones"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.usuario, "@usuario"));
                 comando.Parameters.Add(this.instanciarParametro(pModPer.contrasenia, "@contrasenia"));
-                */
+                comando.Parameters.Add(this.instanciarParametro(pModPer.tipoPersona, "@tipo_persona"));
+                
                 comando.Connection.Open();
                 int rowaffected = comando.ExecuteNonQuery();
                 comando.Connection.Close();

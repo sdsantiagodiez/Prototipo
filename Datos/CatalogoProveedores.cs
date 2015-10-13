@@ -251,10 +251,13 @@ namespace Datos
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
-        public bool agregarNuevaEntidad(ModeloProveedor pModProv)
+        public override bool agregarNuevaEntidad(ModeloProveedor pModProv)
         {
+            //*REVISAR (validar existencia a traves de codigo de una entidad que puede no tener código?)
             if (!this.existeEntidad(pModProv.codigo))
             {
+
+                base.agregarNuevaEntidad(pModProv);
                 //Creo la conexion y la abro
                 SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -266,19 +269,11 @@ namespace Datos
                 comando.CommandType = CommandType.Text;
 
                 comando.CommandText =
-                    "INSERT INTO [Proveedores] ([razonSocial],[cuit],[direccion],[ciudad],[provincia],[codigoPostal],[observaciones]) " +
-                    "VALUES (@razonSocial, @cuit, @direccion, @ciudad, @provincia, @codigoPostal,@observaciones)";
+                    "INSERT INTO [Proveedores] ([codigo_entidad], [razonSocial]) "+
+                    "VALUES (IDENT_CURRENT('entidades'), @razonSocial)";
                 //Indica los parametros
-
                 comando.Parameters.Add(this.instanciarParametro(pModProv.razonSocial, "@razonSocial"));
-                comando.Parameters.Add(this.instanciarParametro(pModProv.cuit, "@cuit"));
-                /*comando.Parameters.Add(this.instanciarParametro(pModProv.direccion, "@direccion"));
-                comando.Parameters.Add(this.instanciarParametro(pModProv.ciudad, "@ciudad"));
-                comando.Parameters.Add(this.instanciarParametro(pModProv.codigoPostal, "@codigoPostal"));
-                comando.Parameters.Add(this.instanciarParametro(pModProv.provincia, "@provincia"));
-                comando.Parameters.Add(this.instanciarParametro(pModProv.observaciones, "@observaciones"));
-                */
-                //Insertar un nuevo Proveedor
+                
                 comando.Connection.Open();
                 int rowaffected = comando.ExecuteNonQuery();
                 comando.Connection.Close();

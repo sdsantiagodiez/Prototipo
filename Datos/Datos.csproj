@@ -64,10 +64,14 @@
     <Compile Include="CatalogoArticuloProveedores.cs" />
     <Compile Include="CatalogoArticulos.cs" />
     <Compile Include="CatalogoClientes.cs" />
+    <Compile Include="CatalogoDomicilios.cs" />
     <Compile Include="CatalogoEntidades.cs" />
+    <Compile Include="CatalogoMails.cs" />
     <Compile Include="CatalogoPersonas.cs" />
     <Compile Include="CatalogoPedidos.cs" />
     <Compile Include="CatalogoProveedores.cs" />
+    <Compile Include="CatalogoProvincias.cs" />
+    <Compile Include="CatalogoTelefonos.cs" />
     <Compile Include="CatalogoUsuarios.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

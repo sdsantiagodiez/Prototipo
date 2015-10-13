@@ -97,49 +97,105 @@ namespace Datos
 
             return entidades;
         }
-        
-        public List<ModeloMail> getMails(int codigoEntidad)
-        {
-            List<ModeloMail> mails = new List<ModeloMail>();
 
+        #region ALTA/BAJA/MODIFICACIÓN entidades
+        /*
+         * True si se realizó correctamente
+         * False si ocurrió algún error
+         */
+        public bool agregarNuevaEntidad(ModeloPersonas pmPersona)
+        {
+            ModeloEntidad mEntidad = new ModeloEntidad();
+            mEntidad.cuit = pmPersona.cuit;
+            mEntidad.tipoEntidad = pmPersona.tipoEntidad;
+            mEntidad.observaciones = pmPersona.observaciones;
+            
+            mEntidad.mails = pmPersona.mails;
+            mEntidad.telefonos = pmPersona.telefonos;
+            mEntidad.domicilios = pmPersona.domicilios;
+
+            return (this.agregarNuevaEntidad(mEntidad));
+        }
+        public bool agregarNuevaEntidad(ModeloProveedor pmProveedor)
+        {
+            ModeloEntidad mEntidad = new ModeloEntidad();
+            mEntidad.cuit = pmProveedor.cuit;
+            mEntidad.tipoEntidad = pmProveedor.tipoEntidad;
+            mEntidad.observaciones = pmProveedor.observaciones;
+            
+            mEntidad.mails = pmProveedor.mails;
+            mEntidad.telefonos = pmProveedor.telefonos;
+            mEntidad.domicilios = pmProveedor.domicilios;
+            
+            return (this.agregarNuevaEntidad(mEntidad));
+        }
+
+        public bool agregarNuevaEntidad(ModeloEntidad pmEntidad)
+        {
+            //Aseguramos que no se haya ingresado algún codigo a la entidad
+            pmEntidad.codigo = 0;
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
             //crea SQL command
             SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText = 
-                "SELECT [mails_entidad.mail] "+
-                    "FROM [mails_entidad] "+
-                    "WHERE mails_entidad.codigo_entidad = @codigo_entidad";
 
-            comando.Parameters.Add(new SqlParameter("@codigo_entidad", SqlDbType.Int));
-            comando.Parameters["@codigo_entidad"].Value = codigoEntidad;
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText =
+                "INSERT INTO [entidades] ([tipo_entidad],[cuit],[observaciones] "+
+                "VALUES (@tipo_entidad, @cuit, @observaciones)";
+            //Indica los parametros
+            comando.Parameters.Add(this.instanciarParametro(pmEntidad.tipoEntidad, "@tipo_entidad"));
+            comando.Parameters.Add(this.instanciarParametro(pmEntidad.cuit, "@cuit"));
+            comando.Parameters.Add(this.instanciarParametro(pmEntidad.observaciones, "@observaciones"));
 
             comando.Connection.Open();
-
-            SqlDataReader drMails = comando.ExecuteReader();
-
-            ModeloMail modMail = new ModeloMail();
-
-            while (drMails.Read())
-            {
-                modMail.mail = (string)drMails["mail"];
-                mails.Add(modMail);
-            }
-            drMails.Close();
-
+            int rowaffected = comando.ExecuteNonQuery();
             comando.Connection.Close();
 
-            return mails;
+            if (rowaffected != 0)
+            {
+                pmEntidad.codigo = this.getUltimoCodigo();
+
+                CatalogoMails cm = new CatalogoMails();
+                List<ModeloMail> listaMails = pmEntidad.mails;
+                foreach (ModeloMail m in listaMails)
+                {
+                    cm.agregarMails(m,pmEntidad.codigo);
+                }
+
+                CatalogoTelefonos ct = new CatalogoTelefonos();
+                List<ModeloTelefono> listaTelefonos = pmEntidad.telefonos;
+                foreach(ModeloTelefono t in listaTelefonos)
+                {
+                    ct.agregarTelefonos(t,pmEntidad.codigo);
+                }
+
+                CatalogoDomicilios cd = new CatalogoDomicilios();
+                List<ModeloDomicilio> listaDomicilios = pmEntidad.domicilios;
+                foreach(ModeloDomicilio d in listaDomicilios)
+                {
+                    cd.agregarDomicilios(d,pmEntidad.codigo);
+                }
+                
+               return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-
-        public List<ModeloDomicilio> getDomicilios(int codigoEntidad)
+        
+        #endregion
+        /// <summary>
+        /// Obtiene el último código de entidad generado en la base de datos
+        /// </summary>
+        /// <returns>ultimo codigo generado; 0 si hubo algún error</returns>
+        public int getUltimoCodigo()
         {
-            List<ModeloDomicilio> domicilios = new List<ModeloDomicilio>();
-
-            //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
             //crea SQL command
@@ -147,77 +203,40 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "SELECT [domicilios_entidad.calle],[domicilios_entidad.numero],[domicilios_entidad.piso],[domicilios_entidad.departamento], " +
-                "[domicilios_entidad.ciudad],[domicilios_entidad.codigo_postal],[provincias.provincia],[paises.pais]" +
-                    "FROM [domicilios_entidad] " +
-                    "INNER JOIN [provincias] on [provincias.codigo_provincia] = [domicilios_entidad.codigo_provincia]"+
-                    "INNER JOIN [paises] on [paises.codigo] = [provincias.codigo_pais]"+
-                    "WHERE ([domicilios_entidad.codigo_entidad] = @codigo_entidad)";
-
-            comando.Parameters.Add(new SqlParameter("@codigo_entidad", SqlDbType.Int));
-            comando.Parameters["@codigo_entidad"].Value = codigoEntidad;
-
+                "select IDENT_CURRENT('entidades') as codigo";
             comando.Connection.Open();
 
-            SqlDataReader drDomicilios = comando.ExecuteReader();
+            SqlDataReader drEntidades = comando.ExecuteReader();
 
-            ModeloDomicilio modDomicilio = new ModeloDomicilio();
+            int ultimoCodigoGenerado = 0;
 
-            while (drDomicilios.Read())
+            while (drEntidades.Read())
             {
-                modDomicilio.calle = (string)drDomicilios["calle"];
-                modDomicilio.numero = (string)drDomicilios["numero"];
-                modDomicilio.piso = (string)drDomicilios["piso"];
-                modDomicilio.departamento = (string)drDomicilios["departamento"];
-                modDomicilio.ciudad = (string)drDomicilios["ciudad"];
-                modDomicilio.codigoPostal = (string)drDomicilios["codigo_postal"];
-                modDomicilio.provincia = (string)drDomicilios["provincia"];
-                modDomicilio.pais = (string)drDomicilios["pais"];
-                domicilios.Add(modDomicilio);
+                ultimoCodigoGenerado = (int)drEntidades["codigo"];
             }
-            drDomicilios.Close();
-
+            drEntidades.Close();
             comando.Connection.Close();
 
-            return domicilios;
+            return ultimoCodigoGenerado;
         }
 
+        public List<ModeloMail> getMails(int codigoEntidad)
+        {
+            
+            CatalogoMails cm = new CatalogoMails();
+            return cm.getMails(codigoEntidad);
+        }
+
+        public List<ModeloDomicilio> getDomicilios(int codigoEntidad)
+        {
+            CatalogoDomicilios cd = new CatalogoDomicilios();
+            return cd.getDomicilios(codigoEntidad);
+        }
+       
         public List<ModeloTelefono> getTelefonos(int codigoEntidad)
         {
-            List<ModeloTelefono> telefonos = new List<ModeloTelefono>();
-
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText = 
-                "SELECT [telefonos_entidad.tipo],[telefonos_entidad.numero] "+
-                    "FROM [telefonos_entidad] " +
-                    "WHERE ([telefonos_entidad.codigo_entidad] = @codigo_entidad)";
-
-            comando.Parameters.Add(new SqlParameter("@codigo_entidad", SqlDbType.Int));
-            comando.Parameters["@codigo_entidad"].Value = codigoEntidad;
-
-            comando.Connection.Open();
-
-            SqlDataReader drTelefonos = comando.ExecuteReader();
-
-            ModeloTelefono modTelefono = new ModeloTelefono();
-
-            while (drTelefonos.Read())
-            {
-                modTelefono.tipo = (string)drTelefonos["descripcion"];
-                modTelefono.numero = (string)drTelefonos["descripcion"];
-                telefonos.Add(modTelefono);
-            }
-            drTelefonos.Close();
-
-            comando.Connection.Close();
-
-            return telefonos;
+            CatalogoTelefonos ct = new CatalogoTelefonos();
+            return ct.getTelefonos(codigoEntidad);
         }
 
     }
