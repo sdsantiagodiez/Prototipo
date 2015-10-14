@@ -254,10 +254,9 @@ namespace Datos
         public override bool agregarNuevaEntidad(ModeloProveedor pModProv)
         {
             //*REVISAR (validar existencia a traves de codigo de una entidad que puede no tener código?)
-            if (!this.existeEntidad(pModProv.codigo))
+            //y continua si se creó exitosamente la entidad
+            if (!this.existeEntidad(pModProv.codigo) && base.agregarNuevaEntidad(pModProv))
             {
-
-                base.agregarNuevaEntidad(pModProv);
                 //Creo la conexion y la abro
                 SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -337,32 +336,8 @@ namespace Datos
 
         public bool bajaEntidad(ModeloProveedor pModProv)
         {
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText = 
-                "DELETE FROM [proveedores] WHERE [proveedores].razonSocial=@razonSocial";
-
-            comando.Parameters.Add(this.instanciarParametro(pModProv.razonSocial, "@razonSocial"));
-
-            comando.Connection.Open();
-            int rowaffected = comando.ExecuteNonQuery();
-            comando.Connection.Close();
-
-            if (rowaffected != 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            //INCOMPLETO
+            return base.bajaEntidad(pModProv.codigo);
         }
         #endregion
     }

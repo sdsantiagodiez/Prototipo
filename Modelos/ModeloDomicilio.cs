@@ -9,6 +9,12 @@ namespace Modelos
     public class ModeloDomicilio
     {
         #region Getters/Setters
+        int _codigoDomicilio;
+        public int codigoDomicilio
+        {
+            get { return _codigoDomicilio; }
+            set { this._codigoDomicilio = value; }
+        }
         string _calle;
         public string calle
         {

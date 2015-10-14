@@ -9,6 +9,12 @@ namespace Modelos
     public class ModeloMail
     {
         #region Getters/Setters
+        int _codigoMail;
+        public int codigoMail
+        {
+            get { return _codigoMail; }
+            set { this._codigoMail = value; }
+        }
         string _mail;
         public string mail 
         {

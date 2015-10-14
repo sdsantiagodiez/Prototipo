@@ -369,9 +369,10 @@ namespace Datos
         public override bool agregarNuevaEntidad(ModeloPersonas pModPer)
         {
             //Se debería chequear antes para notificar al usuario la razón por la que no se podrá realizar la operación
-            if (!this.existeEntidad(pModPer.codigo))
+            //y continua si se creó exitosamente la entidad
+            if (!this.existeEntidad(pModPer.codigo) && base.agregarNuevaEntidad(pModPer))
             {
-                base.agregarNuevaEntidad(pModPer);
+                
                 //Creo la conexion y la abro
                 SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -466,33 +467,8 @@ namespace Datos
 
         public bool bajaEntidad(ModeloPersonas pModPer)
         {
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText = 
-                "DELETE FROM [Personas] WHERE [Personas].dni=@dni";
-
-            comando.Parameters.Add(this.instanciarParametro(pModPer.dni, "@dni"));
-
-
-            comando.Connection.Open();
-            int rowaffected = comando.ExecuteNonQuery();
-            comando.Connection.Close();
-
-            if (rowaffected != 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            //INCOMPLETO
+            return base.bajaEntidad(pModPer.codigo);
         }
         #endregion
         

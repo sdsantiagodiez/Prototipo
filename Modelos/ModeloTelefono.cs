@@ -9,6 +9,12 @@ namespace Modelos
     public class ModeloTelefono
     {
         #region Getters/Setters
+        int _codigoTelefono;
+        public int codigoTelefono
+        {
+            get { return _codigoTelefono; }
+            set { this._codigoTelefono = value; }
+        }
         string _numero;
         public string numero
         {

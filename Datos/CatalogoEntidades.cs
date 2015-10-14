@@ -98,38 +98,63 @@ namespace Datos
             return entidades;
         }
 
+        public ModeloEntidad getValoresEntidad(ModeloPersonas pmPersona)
+        {
+            ModeloEntidad mEntidad = new ModeloEntidad();
+            mEntidad.codigo = pmPersona.codigo;
+            mEntidad.cuit = pmPersona.cuit;
+            mEntidad.tipoEntidad = pmPersona.tipoEntidad;
+            mEntidad.observaciones = pmPersona.observaciones;
+
+            mEntidad.mails = pmPersona.mails;
+            mEntidad.telefonos = pmPersona.telefonos;
+            mEntidad.domicilios = pmPersona.domicilios;
+
+            return mEntidad;
+        }
+        public ModeloEntidad getValoresEntidad(ModeloProveedor pmProveedor)
+        {
+            ModeloEntidad mEntidad = new ModeloEntidad();
+            mEntidad.codigo = pmProveedor.codigo;
+            mEntidad.cuit = pmProveedor.cuit;
+            mEntidad.tipoEntidad = pmProveedor.tipoEntidad;
+            mEntidad.observaciones = pmProveedor.observaciones;
+
+            mEntidad.mails = pmProveedor.mails;
+            mEntidad.telefonos = pmProveedor.telefonos;
+            mEntidad.domicilios = pmProveedor.domicilios;
+
+            return mEntidad;
+        }
         #region ALTA/BAJA/MODIFICACIÓN entidades
         /*
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
+        /// <summary>
+        /// Agrega persona a base de datos entidades con sus respectivos atributos
+        /// </summary>
+        /// <param name="pmPersona"></param>
+        /// <returns></returns>
         public bool agregarNuevaEntidad(ModeloPersonas pmPersona)
         {
-            ModeloEntidad mEntidad = new ModeloEntidad();
-            mEntidad.cuit = pmPersona.cuit;
-            mEntidad.tipoEntidad = pmPersona.tipoEntidad;
-            mEntidad.observaciones = pmPersona.observaciones;
-            
-            mEntidad.mails = pmPersona.mails;
-            mEntidad.telefonos = pmPersona.telefonos;
-            mEntidad.domicilios = pmPersona.domicilios;
-
-            return (this.agregarNuevaEntidad(mEntidad));
+            return (this.agregarNuevaEntidad(this.getValoresEntidad(pmPersona)));
         }
+        /// <summary>
+        /// Agrega proveedor a base de datos entidades con sus respectivos atributos
+        /// </summary>
+        /// <param name="pmProveedor"></param>
+        /// <returns></returns>
         public bool agregarNuevaEntidad(ModeloProveedor pmProveedor)
         {
-            ModeloEntidad mEntidad = new ModeloEntidad();
-            mEntidad.cuit = pmProveedor.cuit;
-            mEntidad.tipoEntidad = pmProveedor.tipoEntidad;
-            mEntidad.observaciones = pmProveedor.observaciones;
-            
-            mEntidad.mails = pmProveedor.mails;
-            mEntidad.telefonos = pmProveedor.telefonos;
-            mEntidad.domicilios = pmProveedor.domicilios;
-            
-            return (this.agregarNuevaEntidad(mEntidad));
+            return (this.agregarNuevaEntidad(this.getValoresEntidad(pmProveedor)));
         }
-
+        
+        /// <summary>
+        /// Agrega entidad propiamente dicha a base de datos
+        /// </summary>
+        /// <param name="pmEntidad"></param>
+        /// <returns></returns>
         public bool agregarNuevaEntidad(ModeloEntidad pmEntidad)
         {
             //Aseguramos que no se haya ingresado algún codigo a la entidad
@@ -160,25 +185,22 @@ namespace Datos
             {
                 pmEntidad.codigo = this.getUltimoCodigo();
 
-                CatalogoMails cm = new CatalogoMails();
                 List<ModeloMail> listaMails = pmEntidad.mails;
                 foreach (ModeloMail m in listaMails)
                 {
-                    cm.agregarMails(m,pmEntidad.codigo);
+                    this.agregarNuevoMail(m,pmEntidad.codigo);
                 }
 
-                CatalogoTelefonos ct = new CatalogoTelefonos();
                 List<ModeloTelefono> listaTelefonos = pmEntidad.telefonos;
                 foreach(ModeloTelefono t in listaTelefonos)
                 {
-                    ct.agregarTelefonos(t,pmEntidad.codigo);
+                    this.agregarNuevoTelefono(t,pmEntidad.codigo);
                 }
 
-                CatalogoDomicilios cd = new CatalogoDomicilios();
                 List<ModeloDomicilio> listaDomicilios = pmEntidad.domicilios;
                 foreach(ModeloDomicilio d in listaDomicilios)
                 {
-                    cd.agregarDomicilios(d,pmEntidad.codigo);
+                    this.agregarNuevoDomicilio(d,pmEntidad.codigo);
                 }
                 
                return true;
@@ -188,7 +210,132 @@ namespace Datos
                 return false;
             }
         }
+
+
+        #region ABM MAILS
+        public bool agregarNuevoMail(ModeloMail pmMail, int pcodigoEntidad)
+        {
+            CatalogoMails cm = new CatalogoMails();
+            return cm.agregarNuevaEntidad(pmMail, pcodigoEntidad);
+        }
+        public bool bajaMail(ModeloMail pmMail)
+        {
+            CatalogoMails cm = new CatalogoMails();
+            return cm.bajaEntidad(pmMail);
+        }
+        public bool actualizarMail(ModeloMail pmMail)
+        {
+            CatalogoMails cm = new CatalogoMails();
+            return cm.actualizarEntidad(pmMail);
+        }
+        #endregion
+        #region ABM DOMICILIOS
+        public bool agregarNuevoDomicilio(ModeloDomicilio pmDomicilio, int pcodigoEntidad)
+        {
+            CatalogoDomicilios cd = new CatalogoDomicilios();
+            return cd.agregarNuevaEntidad(pmDomicilio, pcodigoEntidad);
+        }
+        public bool bajaDomicilio(ModeloDomicilio pmDomicilio)
+        {
+            CatalogoDomicilios cd = new CatalogoDomicilios();
+            return cd.bajaEntidad(pmDomicilio);
+        }
+        public bool actualizarDomicilio(ModeloDomicilio pmDomicilio)
+        {
+            CatalogoDomicilios cd = new CatalogoDomicilios();
+            return cd.actualizarEntidad(pmDomicilio);
+        }
+        #endregion
+        #region ABM TELEFONOS
+        public bool agregarNuevoTelefono(ModeloTelefono pmTelefono, int pcodigoEntidad)
+        {
+            CatalogoTelefonos ct = new CatalogoTelefonos();
+            return ct.agregarNuevaEntidad(pmTelefono, pcodigoEntidad);
+        }
         
+        public bool bajaTelefono(ModeloTelefono pmTelefono)
+        {
+            CatalogoTelefonos ct = new CatalogoTelefonos();
+            return ct.bajaEntidad(pmTelefono);
+        }
+        public bool actualizarTelefono(ModeloTelefono pmTelefono)
+        {
+            CatalogoTelefonos ct = new CatalogoTelefonos();
+            return ct.actualizarEntidad(pmTelefono);
+        }
+
+        #endregion
+        
+        
+        public bool actualizarEntidad(ModeloPersonas pmPersona)
+        {
+            return actualizarEntidad(this.getValoresEntidad(pmPersona));
+        }
+        public bool actualizarEntidad(ModeloProveedor pmProveedor)
+        {
+            return actualizarEntidad(this.getValoresEntidad(pmProveedor));
+        }
+
+        public bool actualizarEntidad(ModeloEntidad pmEntidad)
+        {
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText =
+                "UPDATE [entidades] SET [cuit]=@cuit, [observaciones]=@observaciones,[tipo_entidad]=@tipo_entidad" +
+                "WHERE [entidades].codigo=@codigo_entidad";
+
+            comando.Parameters.Add(this.instanciarParametro(pmEntidad.codigo, "@codigo_entidad"));
+            comando.Parameters.Add(this.instanciarParametro(pmEntidad.cuit, "@cuit"));
+            comando.Parameters.Add(this.instanciarParametro(pmEntidad.observaciones, "@observaciones"));
+            comando.Parameters.Add(this.instanciarParametro(pmEntidad.tipoEntidad, "@tipo_entidad"));
+            
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+            
+            List<ModeloMail> listaMails = pmEntidad.mails;
+            foreach (ModeloMail m in listaMails)
+            {
+                this.actualizarMail(m);
+            }
+
+            List<ModeloTelefono> listaTelefonos = pmEntidad.telefonos;
+            foreach (ModeloTelefono t in listaTelefonos)
+            {
+                this.actualizarTelefono(t);
+            }
+
+            List<ModeloDomicilio> listaDomicilios = pmEntidad.domicilios;
+            foreach (ModeloDomicilio d in listaDomicilios)
+            {
+                this.actualizarDomicilio(d);
+            }
+
+            if (rowaffected != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
+        
+        public bool bajaEntidad(int pCodigoEntidad)
+        {
+            //INCOMPLETO
+            return true;
+        }
         #endregion
         /// <summary>
         /// Obtiene el último código de entidad generado en la base de datos
