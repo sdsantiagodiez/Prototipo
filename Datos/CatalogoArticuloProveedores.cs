@@ -48,7 +48,8 @@ namespace Datos
 
             modArt.codigoOriginal = (string)drArticulosProveedor["codigo_original"];
             modArt.codigoArticuloProveedor = (string)drArticulosProveedor["codigo_articulo_proveedor"];
-            modArt.razonSocialProveedor = (string)drArticulosProveedor["razonSocialProveedor"];
+            modArt.codigoEntidad = (int)drArticulosProveedor["codigo_entidad"];
+            modArt.razonSocialProveedor = (string)drArticulosProveedor["razon_social_proveedor"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
             modArt.descripcion = (drArticulosProveedor["descripcion"] != DBNull.Value) ? (string)drArticulosProveedor["descripcion"] : null;
@@ -67,7 +68,8 @@ namespace Datos
 
             modArt.codigoOriginal = (string)drArticulosProveedor["codigo_original"];
             modArt.codigoArticuloProveedor = (string)drArticulosProveedor["codigo_articulo_proveedor"];
-            modArt.razonSocialProveedor = (string)drArticulosProveedor["razonSocialProveedor"];
+            modArt.codigoEntidad = (int)drArticulosProveedor["codigo_entidad"];
+            modArt.razonSocialProveedor = (string)drArticulosProveedor["razon_social_proveedor"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
             modArt.descripcion = (drArticulosProveedor["descripcion"] != DBNull.Value) ? (string)drArticulosProveedor["descripcion"] : null;
@@ -123,9 +125,11 @@ namespace Datos
             comando.CommandText =
                 "SELECT "+
 	            "    ap.[codigo_original],ap.[codigo_articulo_proveedor],ap.[stock_minimo],ap.[stock_actual],ap.[observaciones],ap.[ubicacion], "+
-                "    ap.[descripcion],ap.[fecha_actualizacion],ap.[razonSocialProveedor],vv.[valor] AS [valor_venta], vv.[fecha_valor] AS [fecha_valor_venta], "+
-                "    vc.[valor] AS [valor_compra], vc.[fecha_valor] AS [fecha_valor_compra] "+
-                "    FROM [Articulos_Proveedores] ap "+
+                "    ap.[descripcion],ap.[fecha_actualizacion],ap.[codigo_entidad],vv.[valor] AS [valor_venta], vv.[fecha_valor] AS [fecha_valor_venta], "+
+                "    vc.[valor] AS [valor_compra], vc.[fecha_valor] AS [fecha_valor_compra] , [prov].razon_social as razon_social_proveedor " +
+                "   FROM [Articulos_Proveedores] ap " +
+                "   INNER JOIN [proveedores] prov " +
+                "   ON [prov].codigo_entidad = [ap].codigo_entidad " +
 	            "   INNER JOIN "+
                 "    ( "+
                 "    SELECT valC.codigo_articulo_proveedor, valC.codigo_original, valC.fecha_valor, valC.valor " +
@@ -188,9 +192,11 @@ namespace Datos
             comando.CommandText =
                 "SELECT " +
                 "    ap.[codigo_original],ap.[codigo_articulo_proveedor],ap.[stock_minimo],ap.[stock_actual],ap.[observaciones],ap.[ubicacion], " +
-                "    ap.[descripcion],ap.[fecha_actualizacion],ap.[razonSocialProveedor],vv.[valor] AS [valor_venta], vv.[fecha_valor] AS [fecha_valor_venta], " +
-                "    vc.[valor] AS [valor_compra], vc.[fecha_valor] AS [fecha_valor_compra] " +
-                "    FROM [Articulos_Proveedores] ap " +
+                "    ap.[descripcion],ap.[fecha_actualizacion],ap.[codigo_entidad],vv.[valor] AS [valor_venta], vv.[fecha_valor] AS [fecha_valor_venta], " +
+                "    vc.[valor] AS [valor_compra], vc.[fecha_valor] AS [fecha_valor_compra], [prov].razon_social as razon_social_proveedor " +
+                "   FROM [Articulos_Proveedores] ap " +
+                "   INNER JOIN [proveedores] prov " +
+                "   ON [prov].codigo_entidad = [ap].codigo_entidad " +
                 "   INNER JOIN " +
                 "    ( " +
                 "    SELECT valC.codigo_articulo_proveedor, valC.codigo_original, valC.fecha_valor, valC.valor " +
@@ -254,9 +260,11 @@ namespace Datos
             comando.CommandText =
                 "SELECT " +
                 "    ap.[codigo_original],ap.[codigo_articulo_proveedor],ap.[stock_minimo],ap.[stock_actual],ap.[observaciones],ap.[ubicacion], " +
-                "    ap.[descripcion],ap.[fecha_actualizacion],ap.[razonSocialProveedor],vv.[valor] AS [valor_venta], vv.[fecha_valor] AS [fecha_valor_venta], " +
-                "    vc.[valor] AS [valor_compra], vc.[fecha_valor] AS [fecha_valor_compra] " +
-                "    FROM [Articulos_Proveedores] ap " +
+                "    ap.[descripcion],ap.[fecha_actualizacion],ap.[codigo_entidad],vv.[valor] AS [valor_venta], vv.[fecha_valor] AS [fecha_valor_venta], " +
+                "    vc.[valor] AS [valor_compra], vc.[fecha_valor] AS [fecha_valor_compra] , [prov].razon_social as razon_social_proveedor " +
+	            "   FROM [Articulos_Proveedores] ap "+
+	            "   INNER JOIN [proveedores] prov "+
+	            "   ON [prov].codigo_entidad = [ap].codigo_entidad "+
                 "   INNER JOIN " +
                 "    ( " +
                 "    SELECT valC.codigo_articulo_proveedor, valC.codigo_original, valC.fecha_valor, valC.valor " +
@@ -313,9 +321,13 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "SELECT [codigo_original],[codigo_articulo_proveedor],[stock_minimo],[stock_actual],[observaciones],[ubicacion]," +
-                "[descripcion],[fecha_actualizacion],[razonSocialProveedor] FROM [Articulos_Proveedores] " +
-                "WHERE codigo_original = @codigo_original AND codigo_articulo_proveedor=@codigo_articulo_proveedor";
+                "SELECT "+
+                "   [codigo_original],[codigo_articulo_proveedor],[stock_minimo],[stock_actual],[observaciones],[ubicacion]," +
+                "   [descripcion],[fecha_actualizacion],[codigo_entidad], [prov].razon_social as razon_social_proveedor  " +
+                "   FROM [Articulos_Proveedores] ap " +
+                "   INNER JOIN [proveedores] prov " +
+                "   ON [prov].codigo_entidad = [ap].codigo_entidad " +
+                "   WHERE codigo_original = @codigo_original AND codigo_articulo_proveedor=@codigo_articulo_proveedor";
 
             comando.Parameters.Add(instanciarParametro(pCodigoOriginal, "@codigo_original"));
             comando.Parameters.Add(instanciarParametro(pCodigoArticuloProveedor, "@codigo_articulo_proveedor"));   
@@ -348,8 +360,12 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText = 
-                "SELECT [codigo_original],[codigo_articulo_proveedor],[stock_minimo],[stock_actual],[observaciones],[ubicacion],"+
-                "[descripcion],[fecha_actualizacion],[razonSocialProveedor] FROM [Articulos_Proveedores]";
+                "SELECT "+
+                "   [codigo_original],[codigo_articulo_proveedor],[stock_minimo],[stock_actual],[observaciones],[ubicacion],"+
+                "   [descripcion],[fecha_actualizacion],[codigo_entidad], [prov].razon_social as razon_social_proveedor   " +
+                "   FROM [Articulos_Proveedores] ap " +
+                "   INNER JOIN [proveedores] prov " +
+                "   ON [prov].codigo_entidad = [ap].codigo_entidad " ;
 
             comando.Connection.Open();
 
@@ -383,7 +399,7 @@ namespace Datos
                 comando.CommandType= CommandType.Text;
                 comando.CommandText = 
                     "INSERT INTO [Articulos_Proveedores]([codigo_original],[codigo_articulo_proveedor],[stock_minimo],[stock_actual],"+
-                    "[observaciones],[descripcion],[fecha_actualizacion],[razonSocialProveedor]) "+
+                    "[observaciones],[descripcion],[fecha_actualizacion],[codigo_entidad]) "+
                     "VALUES (@codigo_original, @codigo_articulo_proveedor, @stock_minimo, @stock_actual, @observaciones, "+
                     "@descripcion, @fecha_actualizacion )";
                 //Indica los parametros
@@ -485,8 +501,6 @@ namespace Datos
             {
                 return false;
             }
-
-
         }
         #endregion
     }

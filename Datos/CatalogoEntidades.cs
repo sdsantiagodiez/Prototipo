@@ -136,18 +136,22 @@ namespace Datos
         /// </summary>
         /// <param name="pmPersona"></param>
         /// <returns></returns>
-        public bool agregarNuevaEntidad(ModeloPersonas pmPersona)
+        virtual public bool agregarNuevaEntidad(ModeloPersonas pmPersona)
         {
-            return (this.agregarNuevaEntidad(this.getValoresEntidad(pmPersona)));
+            ModeloEntidad mEntidad = this.getValoresEntidad(pmPersona);
+            mEntidad.tipoEntidad = "PER";
+            return (this.agregarNuevaEntidad(mEntidad));
         }
         /// <summary>
         /// Agrega proveedor a base de datos entidades con sus respectivos atributos
         /// </summary>
         /// <param name="pmProveedor"></param>
         /// <returns></returns>
-        public bool agregarNuevaEntidad(ModeloProveedor pmProveedor)
+        virtual public bool agregarNuevaEntidad(ModeloProveedor pmProveedor)
         {
-            return (this.agregarNuevaEntidad(this.getValoresEntidad(pmProveedor)));
+            ModeloEntidad mEntidad = this.getValoresEntidad(pmProveedor);
+            mEntidad.tipoEntidad = "PRO";
+            return (this.agregarNuevaEntidad(mEntidad));
         }
         
         /// <summary>
@@ -170,7 +174,7 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "INSERT INTO [entidades] ([tipo_entidad],[cuit],[observaciones] "+
+                "INSERT INTO [entidades] ([tipo_entidad],[cuit],[observaciones]) "+
                 "VALUES (@tipo_entidad, @cuit, @observaciones)";
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro(pmEntidad.tipoEntidad, "@tipo_entidad"));
@@ -267,11 +271,11 @@ namespace Datos
         #endregion
         
         
-        public bool actualizarEntidad(ModeloPersonas pmPersona)
+        virtual public bool actualizarEntidad(ModeloPersonas pmPersona)
         {
             return actualizarEntidad(this.getValoresEntidad(pmPersona));
         }
-        public bool actualizarEntidad(ModeloProveedor pmProveedor)
+        virtual public bool actualizarEntidad(ModeloProveedor pmProveedor)
         {
             return actualizarEntidad(this.getValoresEntidad(pmProveedor));
         }
@@ -289,7 +293,7 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "UPDATE [entidades] SET [cuit]=@cuit, [observaciones]=@observaciones,[tipo_entidad]=@tipo_entidad" +
+                "UPDATE [entidades] SET [cuit]=@cuit, [observaciones]=@observaciones,[tipo_entidad]=@tipo_entidad " +
                 "WHERE [entidades].codigo=@codigo_entidad";
 
             comando.Parameters.Add(this.instanciarParametro(pmEntidad.codigo, "@codigo_entidad"));
@@ -350,18 +354,12 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "select IDENT_CURRENT('entidades') as codigo";
+                "select IDENT_CURRENT('entidades') as codigo ";
             comando.Connection.Open();
 
-            SqlDataReader drEntidades = comando.ExecuteReader();
+            int ultimoCodigoGenerado = Convert.ToInt32(comando.ExecuteScalar());
 
-            int ultimoCodigoGenerado = 0;
 
-            while (drEntidades.Read())
-            {
-                ultimoCodigoGenerado = (int)drEntidades["codigo"];
-            }
-            drEntidades.Close();
             comando.Connection.Close();
 
             return ultimoCodigoGenerado;

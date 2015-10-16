@@ -11,6 +11,8 @@ namespace Datos
 {
     public class CatalogoDomicilios : Catalogo
     {
+        //REVISAR VALIDAR EN ALGUN LADO QUE CALLE NO SEA NULL!!!!
+
         private ModeloDomicilio leerDatosDomicilio(SqlDataReader drDomicilios)
         {
             ModeloDomicilio modDomicilio = new ModeloDomicilio();
@@ -41,12 +43,13 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "SELECT [domicilios_entidad.calle],[domicilios_entidad.numero],[domicilios_entidad.piso],[domicilios_entidad.departamento], " +
-                "[domicilios_entidad.ciudad],[domicilios_entidad.codigo_postal],[provincias.provincia],[paises.pais]" +
+                "SELECT "+
+                "[domicilios_entidad].codigo_domicilio,[domicilios_entidad].calle,[domicilios_entidad].numero,[domicilios_entidad].piso, "+
+                "[domicilios_entidad].departamento, [domicilios_entidad].ciudad,[domicilios_entidad].codigo_postal,[provincias].provincia,[paises].pais " +
                     "FROM [domicilios_entidad] " +
-                    "INNER JOIN [provincias] on [provincias.codigo_provincia] = [domicilios_entidad.codigo_provincia]" +
-                    "INNER JOIN [paises] on [paises.codigo] = [provincias.codigo_pais]" +
-                    "WHERE ([domicilios_entidad.codigo_entidad] = @codigo_entidad)";
+                    "INNER JOIN [provincias] on [provincias].codigo_provincia = [domicilios_entidad].codigo_provincia " +
+                    "INNER JOIN [paises] on [paises].codigo = [provincias].codigo_pais " +
+                    "WHERE ([domicilios_entidad].codigo_entidad = @codigo_entidad)";
 
             comando.Parameters.Add(new SqlParameter("@codigo_entidad", SqlDbType.Int));
             comando.Parameters["@codigo_entidad"].Value = codigoEntidad;

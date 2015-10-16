@@ -26,5 +26,6 @@ namespace Controladores
             List<ModeloArticuloProveedores> articulos = ctlgArticuloProv.buscarArticuloProveedor(categBusq,busqArt);
             return articulos;               
         }
+
     }
 }

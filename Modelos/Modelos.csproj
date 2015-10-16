@@ -44,7 +44,6 @@
     <Compile Include="ModeloPais.cs" />
     <Compile Include="ModeloProvincia.cs" />
     <Compile Include="ModeloTelefono.cs" />
-    <Compile Include="ModeloUsuario.cs" />
     <Compile Include="ModeloValorArticulo.cs" />
     <Compile Include="ModeloArticulos.cs" />
     <Compile Include="ModeloArticuloProveedores.cs" />

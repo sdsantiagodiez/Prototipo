@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 
 
+
 namespace Datos
 {
     public class CatalogoPersonas : CatalogoEntidades
@@ -210,10 +211,10 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-               "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[personas.dni]," +
-                "[personas.nombre],[personas.apellido],[personas.tipo_persona],[personas.usuario], [personas.contrasenia] " +
+               "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
+                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
                     "FROM [personas] " +
-                    "INNER JOIN [entidades] on [entidades.codigo] = [personas.codigo_entidad]" +
+                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad " +
                     "WHERE [entidades].codigo = @codigo";
             comando.Parameters.Add(new SqlParameter("@codigo", SqlDbType.Int));
             comando.Parameters["@codigo"].Value = codigoEntidad;
@@ -225,13 +226,14 @@ namespace Datos
             {
                 modPersona = new ModeloPersonas();
                 modPersona = this.leerDatosPersonas(drEntidades);
+                modPersona.mails = this.getMails(modPersona.codigo);
+                modPersona.telefonos = this.getTelefonos(modPersona.codigo);
+                modPersona.domicilios = this.getDomicilios(modPersona.codigo);
             }
             drEntidades.Close();
             comando.Connection.Close();
 
-            modPersona.mails = this.getMails(modPersona.codigo);
-            modPersona.telefonos = this.getTelefonos(modPersona.codigo);
-            modPersona.domicilios = this.getDomicilios(modPersona.codigo);
+            
 
             return modPersona;
         }
@@ -333,10 +335,10 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[personas.dni]," +
-                "[personas.nombre],[personas.apellido],[personas.tipo_persona],[personas.usuario], [personas.contrasenia] " +
+                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
+                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
                     "FROM [personas] " +
-                    "INNER JOIN [entidades] on [entidades.codigo] = [personas.codigo_entidad]";
+                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad";
 
             comando.Connection.Open();
             ModeloPersonas modPer;
@@ -418,42 +420,32 @@ namespace Datos
         /*No va a haber opción de cambiar DNI. Usuario tendrá
          * que eliminar usuario anterior y crearlo de nuevo
          */
-        public bool actualizarEntidad(ModeloPersonas pModPer)
+        override public bool actualizarEntidad(ModeloPersonas pModPer)
         { 
-         //Creo la conexion y la abro
+            //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
-
             //crea SQL command
             SqlCommand comando = new SqlCommand();
-
             comando.Connection = ConexionSQL;
-
             comando.CommandType = CommandType.Text;
-
             comando.CommandText = 
-                "UPDATE [Personas] SET [cuit]=@cuit,[nombre]=@nombre, [apellido]=@apellido,"+
-                "[direccion]=@direccion,[ciudad]=@ciudad, [provincia]=@provincia, [codigoPostal]=@codigoPostal,"+
-                "[observaciones]=@observaciones,[usuario]=@usuario, [contrasenia]=@contrasenia "+
-                "WHERE [Personas].dni=@dni";
+                "UPDATE [personas] SET [dni]=@dni,[nombre]=@nombre, [apellido]=@apellido,"+
+                "[tipo_persona]=@tipo_persona,[usuario]=@usuario, [contrasenia]=@contrasenia " +
+                "WHERE [Personas].codigo_entidad=@codigo_entidad";
 
+            comando.Parameters.Add(this.instanciarParametro(pModPer.codigo, "@codigo_entidad"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.dni, "@dni"));
-            comando.Parameters.Add(this.instanciarParametro(pModPer.cuit, "@cuit"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.nombre, "@nombre"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.apellido, "@apellido"));
-           /*REVISAR
-            * comando.Parameters.Add(this.instanciarParametro(pModPer.direccion, "@direccion"));
-            comando.Parameters.Add(this.instanciarParametro(pModPer.ciudad, "@ciudad"));
-            comando.Parameters.Add(this.instanciarParametro(pModPer.provincia, "@provincia"));
-            comando.Parameters.Add(this.instanciarParametro(pModPer.codigoPostal, "@codigoPostal"));
-            comando.Parameters.Add(this.instanciarParametro(pModPer.observaciones, "@observaciones"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.usuario, "@usuario"));
             comando.Parameters.Add(this.instanciarParametro(pModPer.contrasenia, "@contrasenia"));
-            */
+            comando.Parameters.Add(this.instanciarParametro(pModPer.tipoPersona, "@tipo_persona"));
+
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();           
             comando.Connection.Close();
 
-            if (rowaffected != 0)
+            if (rowaffected != 0 && base.actualizarEntidad(pModPer))
             {
                 return true;
             }
@@ -461,8 +453,6 @@ namespace Datos
             {
                 return false;
             }
-
-
         }
 
         public bool bajaEntidad(ModeloPersonas pModPer)
@@ -535,21 +525,9 @@ namespace Datos
 
             return roles;
         }
+        
+        
 
-        public new List<ModeloMail> getMails(int codigoEntidad)
-        {
-            return base.getMails(codigoEntidad);
-        }
-
-        public new List<ModeloDomicilio> getDomicilios(int codigoEntidad)
-        {
-            return base.getDomicilios(codigoEntidad);
-        }
-
-        public new List<ModeloTelefono> getTelefonos(int codigoEntidad)
-        {
-            return base.getTelefonos(codigoEntidad);
-        }
      }
 }
 

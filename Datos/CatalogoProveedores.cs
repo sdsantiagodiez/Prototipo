@@ -156,7 +156,7 @@ namespace Datos
         }
         #endregion
 
-        public ModeloProveedor getOnePorCodigo(int codigoEntidad)
+        new public ModeloProveedor getOne(int codigoEntidad)
         {
             ModeloProveedor modProveedor = null;
             //Creo la conexion y la abro
@@ -231,27 +231,13 @@ namespace Datos
             return allProvs;
         }
 
-        public new List<ModeloMail> getMails(int codigoEntidad)
-        {
-            return base.getMails(codigoEntidad);
-        }
-
-        public new List<ModeloDomicilio> getDomicilios(int codigoEntidad)
-        {
-            return base.getDomicilios(codigoEntidad);
-        }
-
-        public new List<ModeloTelefono> getTelefonos(int codigoEntidad)
-        {
-            return base.getTelefonos(codigoEntidad);
-        }
 
         #region Alta/Baja/Modificación
         /*
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
-        public override bool agregarNuevaEntidad(ModeloProveedor pModProv)
+        override public bool agregarNuevaEntidad(ModeloProveedor pModProv)
         {
             //*REVISAR (validar existencia a traves de codigo de una entidad que puede no tener código?)
             //y continua si se creó exitosamente la entidad
@@ -294,7 +280,7 @@ namespace Datos
         }     
 
         //No se podrá modificar razonSocial
-        public bool actualizarEntidad(ModeloProveedor pModProv)
+        override public bool actualizarEntidad(ModeloProveedor pModProv)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -307,24 +293,17 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText = 
-                "UPDATE [proveedores] SET [cuit] = @cuit, [direccion]=@direccion, "+
-                "[ciudad]=@ciudad, [provincia]=@provincia, [codigoPostal] = @codigoPostal, [observaciones] = @observaciones "+
-                "WHERE [proveedores].razonSocial=@razonSocial";
+                "UPDATE [proveedores] SET [razon_social] = @razon_social "+
+                "WHERE [proveedores].codigo_entidad=@codigo_entidad";
 
-            comando.Parameters.Add(this.instanciarParametro(pModProv.razonSocial, "@razonSocial"));
-            comando.Parameters.Add(this.instanciarParametro(pModProv.cuit, "@cuit"));
-            /*REVISAR
-             * comando.Parameters.Add(this.instanciarParametro(pModProv.direccion, "@direccion"));
-            comando.Parameters.Add(this.instanciarParametro(pModProv.ciudad, "@ciudad"));
-            comando.Parameters.Add(this.instanciarParametro(pModProv.provincia, "@provincia"));
-            comando.Parameters.Add(this.instanciarParametro(pModProv.codigoPostal, "@codigoPostal"));
-            comando.Parameters.Add(this.instanciarParametro(pModProv.observaciones, "@observaciones"));
-            */
+            comando.Parameters.Add(this.instanciarParametro(pModProv.razonSocial, "@razon_social"));
+            comando.Parameters.Add(this.instanciarParametro(pModProv.codigo, "@codigo_entidad"));
+            
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();           
             comando.Connection.Close();
 
-            if (rowaffected != 0)
+            if (rowaffected != 0 && base.actualizarEntidad(pModProv))
             {
                 return true;
             }

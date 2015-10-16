@@ -66,6 +66,12 @@ namespace Modelos
             get { return _fechaActualizacion; }
             set { this._fechaActualizacion = value; }
         }
+        int _codigoEntidad;
+        public int codigoEntidad
+        {
+            get { return _codigoEntidad; }
+            set { this._codigoEntidad = value; }
+        }
         string _razonSocialProveedor;
         public string razonSocialProveedor
         {

@@ -215,6 +215,7 @@ namespace Vista
 
         private void dgvArtAgregar_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
             //busco el indice de la fila seleccionada que coincide con la lista que contiene mayor cantidad de información
             int indiceSelecc = dgvArtAgregar.CurrentCell.RowIndex;
 
@@ -224,7 +225,7 @@ namespace Vista
             //actualizo lost lbl para mostrar el articulo seleccionado
             this.lblCodOrigVar.Text = artEncontrados[indiceSelecc].codigoOriginal;
             this.lblCodProvVar.Text = artEncontrados[indiceSelecc].codigoArticuloProveedor;
-            this.lblProvVar.Text = artEncontrados[indiceSelecc].razonSocialProveedor;
+            this.lblProvVar.Text =  artEncontrados[indiceSelecc].razonSocialProveedor;
             this.lblDescVar.Text = artEncontrados[indiceSelecc].descripcion;
             //
             //TODO modificadores de precio segun metodo de pago

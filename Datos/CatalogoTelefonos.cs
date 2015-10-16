@@ -36,9 +36,9 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "SELECT [telefonos_entidad.codigo_telefono],[telefonos_entidad.tipo],[telefonos_entidad.numero] " +
+                "SELECT [telefonos_entidad].codigo_telefono,[telefonos_entidad].tipo,[telefonos_entidad].numero " +
                     "FROM [telefonos_entidad] " +
-                    "WHERE ([telefonos_entidad.codigo_entidad] = @codigo_entidad)";
+                    "WHERE ([telefonos_entidad].codigo_entidad = @codigo_entidad)";
 
             comando.Parameters.Add(new SqlParameter("@codigo_entidad", SqlDbType.Int));
             comando.Parameters["@codigo_entidad"].Value = codigoEntidad;

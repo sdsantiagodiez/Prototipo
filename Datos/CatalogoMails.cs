@@ -35,7 +35,7 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "SELECT [codigo_mail],[mail] " +
+                "SELECT [codigo_mail], [mail] " +
                     "FROM [mails_entidad] " +
                     "WHERE mails_entidad.codigo_entidad = @codigo_entidad";
 

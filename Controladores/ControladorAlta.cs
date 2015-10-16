@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Datos;
 using Modelos;
+using System.Text.RegularExpressions;
 
 
 namespace Controladores
@@ -132,5 +133,34 @@ namespace Controladores
 
         }
         */
+        
+        /// <summary>
+        /// Genera nombre de usuario (REVISAR si es buena idea)
+        /// </summary>
+        /// <param name="pCodigoEntidad"></param>
+        /// <returns></returns>
+        public string generarNombreUsuario(string pNombre, string pApellido)
+        {
+            string nombreDeUsuario = null;
+            
+            nombreDeUsuario = "";
+            //se elimina del nombre y apellido todos los caracteres no alfanuméricos
+            Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+            string nombre = rgx.Replace(pNombre, "");
+            string apellido = rgx.Replace(pApellido, "");
+            nombreDeUsuario = (pApellido[0] + pNombre).ToLower();
+
+            //Si nombreDeUsuario existe, se entra en la iteración para agregar un número al final
+            //del usuario hasta que usuario no exista
+            CatalogoPersonas cp = new CatalogoPersonas();
+            for (int i = 1; cp.getOnePorUsuario(nombreDeUsuario) != null; i++)
+            {
+                //se vuelve a instanciar para que sólo cambie el número al final
+                nombreDeUsuario = "";
+                nombreDeUsuario = (pApellido[0] + pNombre + i.ToString()).ToLower();
+            }
+            
+            return nombreDeUsuario;
+        }
     }
 }
