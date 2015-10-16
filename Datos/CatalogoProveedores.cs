@@ -84,10 +84,10 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[proveedores.razon_social]" +
-                    "FROM [proveedores] " +
-                    "INNER JOIN [entidades] on [entidades.codigo] = [proveedores.codigo_entidad]" +
-                "WHERE LOWER([proveedores].razon_social) LIKE @razonSocial";
+                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[proveedores].razon_social" +
+                "   FROM [proveedores] " +
+                "   INNER JOIN [entidades] on [entidades].codigo = [proveedores].codigo_entidad " +
+                "   WHERE LOWER([proveedores].razon_social) LIKE @razonSocial";
             comando.Parameters.Add(new SqlParameter("@razonSocial", SqlDbType.VarChar));
             comando.Parameters["@razonSocial"].Value = "%" + razonSocial.ToLower() + "%";
             comando.Connection.Open();
@@ -123,11 +123,11 @@ namespace Datos
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
-            comando.CommandText = 
-               "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[proveedores.razon_social]" +
-                    "FROM [proveedores] " +
-                    "INNER JOIN [entidades] on [entidades.codigo] = [proveedores.codigo_entidad] " +
-                    "WHERE [entidades.cuit] LIKE @cuit";
+            comando.CommandText =
+               "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[proveedores].razon_social " +
+                "   FROM [proveedores] " +
+                "   INNER JOIN [entidades] on [entidades].codigo = [proveedores].codigo_entidad " +
+                "   WHERE [entidades.cuit] LIKE @cuit";
             comando.Parameters.Add(new SqlParameter("@cuit", SqlDbType.VarChar));
             comando.Parameters["@cuit"].Value = "%" + cuit + "%";
             comando.Connection.Open();
@@ -167,9 +167,9 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-               "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[proveedores.razon_social]" +
+               "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[proveedores].razon_social " +
                     "FROM [proveedores] " +
-                    "INNER JOIN [entidades] on [entidades.codigo] = [proveedores.codigo_entidad]" +
+                    "INNER JOIN [entidades] on [entidades].codigo = [proveedores].codigo_entidad " +
                     "WHERE [entidades].codigo = @codigo";
             comando.Parameters.Add(new SqlParameter("@codigo", SqlDbType.Int));
             comando.Parameters["@codigo"].Value = codigoEntidad;
@@ -181,13 +181,14 @@ namespace Datos
             {
                 modProveedor = new ModeloProveedor();
                 modProveedor = this.leerDatosProveedor(drEntidades);
+                modProveedor.mails = this.getMails(modProveedor.codigo);
+                modProveedor.telefonos = this.getTelefonos(modProveedor.codigo);
+                modProveedor.domicilios = this.getDomicilios(modProveedor.codigo);
             }
             drEntidades.Close();
             comando.Connection.Close();
 
-            modProveedor.mails = this.getMails(modProveedor.codigo);
-            modProveedor.telefonos = this.getTelefonos(modProveedor.codigo);
-            modProveedor.domicilios = this.getDomicilios(modProveedor.codigo);
+            
 
             return modProveedor;
         }
@@ -206,9 +207,9 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[proveedores.razon_social]" +
-                    "FROM [proveedores] " +
-                    "INNER JOIN [entidades] on [entidades.codigo] = [proveedores.codigo_entidad]";
+                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[proveedores].razon_social " +
+                "   FROM [proveedores] " +
+                "   INNER JOIN [entidades] on [entidades].codigo = [proveedores].codigo_entidad";
 
             comando.Connection.Open();
             ModeloProveedor modProveedor;
@@ -254,10 +255,10 @@ namespace Datos
                 comando.CommandType = CommandType.Text;
 
                 comando.CommandText =
-                    "INSERT INTO [Proveedores] ([codigo_entidad], [razonSocial]) "+
-                    "VALUES (IDENT_CURRENT('entidades'), @razonSocial)";
+                    "INSERT INTO [Proveedores] ([codigo_entidad], [razon_social]) "+
+                    "VALUES (IDENT_CURRENT('entidades'), @razon_social)";
                 //Indica los parametros
-                comando.Parameters.Add(this.instanciarParametro(pModProv.razonSocial, "@razonSocial"));
+                comando.Parameters.Add(this.instanciarParametro(pModProv.razonSocial, "@razon_social"));
                 
                 comando.Connection.Open();
                 int rowaffected = comando.ExecuteNonQuery();

@@ -124,10 +124,10 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[personas.dni],"+
-                "[personas.nombre],[personas.apellido],[personas.tipo_persona],[personas.usuario], [personas.contrasenia] " +
+                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
+                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
                     "FROM [personas] "+
-                    "INNER JOIN [entidades] on [entidades.codigo] = [personas.codigo_entidad]" +
+                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad" +
                     "WHERE (nombre LIKE @nombre " + tipoPersonaSQL + ")";
 
             comando.Parameters.Add(new SqlParameter("@nombre", SqlDbType.VarChar));
@@ -168,10 +168,10 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[personas.dni],"+
-                "[personas.nombre],[personas.apellido],[personas.tipo_persona],[personas.usuario], [personas.contrasenia] " +
+                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
+                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
                     "FROM [personas] "+
-                    "INNER JOIN [entidades] on [entidades.codigo] = [personas.codigo_entidad]" +
+                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad" +
                     "WHERE (apellido LIKE @apellido "+tipoPersonaSQL+")";
 
             comando.Parameters.Add(new SqlParameter("@apellido", SqlDbType.VarChar));
@@ -249,10 +249,10 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[personas.dni]," +
-                "[personas.nombre],[personas.apellido],[personas.tipo_persona],[personas.usuario], [personas.contrasenia] " +
+                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
+                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
                     "FROM [personas] " +
-                    "INNER JOIN [entidades] on [entidades.codigo] = [personas.codigo_entidad]" +
+                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad" +
                     "WHERE ([usuario] = @usuario)";
 
             comando.Parameters.Add(new SqlParameter("@usuario", SqlDbType.VarChar));
@@ -293,10 +293,10 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "SELECT [entidades.codigo],[entidades.tipo_entidad],[entidades.cuit],[entidades.observaciones],[personas.dni]," +
-                "[personas.nombre],[personas.apellido],[personas.tipo_persona],[personas.usuario], [personas.contrasenia] " +
+                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
+                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
                     "FROM [personas] " +
-                    "INNER JOIN [entidades] on [entidades.codigo] = [personas.codigo_entidad]" +
+                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad" +
                     "WHERE (dni=@DNI)";
 
             comando.Parameters.Add(new SqlParameter("@DNI", SqlDbType.VarChar));

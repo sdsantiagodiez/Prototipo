@@ -38,10 +38,11 @@ namespace ConsoleTest
         {
             TestingCatalogo tc = new TestingCatalogo();
             //////////////////////////////////
-            //tc.generarPersonas(1500,"CLI");
+            tc.generarPersonas(1500,"CLI");
             //tc.generarArticulosProveedores();
-            //tc.actualizarEntidad(100006);
-            tc.bajaPersonas();
+            
+            tc.generarProveedores();
+            //tc.actualizarProveedores();
             /////////////////////////////////
             tc.salir();
         }
@@ -320,6 +321,7 @@ namespace ConsoleTest
         }
         #endregion
         #endregion
+        
         #region Proveedores
         private void generarProveedores()
         {
@@ -372,7 +374,14 @@ namespace ConsoleTest
                         md.piso = domiciliosPisos[pis];
                         md.departamento = domiciliosPisos[dpt];
                         md.codigoPostal = "2132";
-                        md.provincia = "Provincia Prueba 1";
+                        if (rnd.Next(1, 11) > 5)
+                        {
+                            md.provincia = "Santa Fe";
+                        }
+                        else
+                        {
+                            md.provincia = "Buenos Aires";
+                        }
                         md.pais = "Argentina";
                         proveedor.domicilios.Add(md);
                         seguirDomicilio = rnd.Next(1, 50);
@@ -408,7 +417,7 @@ namespace ConsoleTest
 
             return lista;
         }
-        private void bajaEntidades()
+        private void bajaProveedores()
         {
             CatalogoProveedores cp = new CatalogoProveedores();
             List<ModeloProveedor> provs = new List<ModeloProveedor>();
@@ -418,7 +427,7 @@ namespace ConsoleTest
                 cp.bajaEntidad(p);
             }
         }
-        private void actualizarEntidades()
+        private void actualizarProveedores()
         {
             CatalogoProveedores cp = new CatalogoProveedores();
             List<ModeloProveedor> provs = new List<ModeloProveedor>();

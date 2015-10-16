@@ -131,7 +131,7 @@ namespace Datos
             comando.CommandType = CommandType.Text;
             comando.CommandText =
                 "UPDATE [domicilios_entidad] SET [calle]=@calle,[numero]=@numero, [piso]=@piso," +
-                "[departamento]=@departamento,[ciudad]=@ciudad, [codigo_postal]=@codigo_postal, [codigo_provincia]=@codigo_provincia" +
+                "[departamento]=@departamento,[ciudad]=@ciudad, [codigo_postal]=@codigo_postal, [codigo_provincia]=@codigo_provincia " +
                 "WHERE [codigo_domicilio]=@codigo_domicilio";
 
             comando.Parameters.Add(this.instanciarParametro(pmDomicilio.codigoDomicilio, "@codigo_domicilio"));
