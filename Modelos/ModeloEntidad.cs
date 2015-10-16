@@ -8,8 +8,15 @@ namespace Modelos
 {
     public class ModeloEntidad
     {
-        string _codigo;
-        public string codigo
+        public ModeloEntidad()
+        {
+            this.mails = new List<ModeloMail>();
+            this.domicilios = new List<ModeloDomicilio>();
+            this.telefonos = new List<ModeloTelefono>();
+        }
+
+        int _codigo;
+        public int codigo
         {
             get { return _codigo; }
             set { this._codigo = value; }

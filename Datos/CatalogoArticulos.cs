@@ -38,7 +38,7 @@ namespace Datos
         {
             ModeloArticulos modArt = new ModeloArticulos();
 
-            modArt.codigoOriginal = (string)drArticulos["codigoOriginal"];
+            modArt.codigoOriginal = (string)drArticulos["codigo_original"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
             modArt.descripcion = (drArticulos["descripcion"] != DBNull.Value) ? (string)drArticulos["descripcion"] : null;
@@ -81,11 +81,11 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText = 
-                "SELECT [codigoOriginal],[descripcion],[modelos],[observaciones] FROM [articulos] "+
-                "WHERE codigoOriginal LIKE @codigoOriginal";
+                "SELECT [codigo_original],[descripcion],[modelos],[observaciones] FROM [articulos] "+
+                "WHERE codigo_original LIKE @codigo_original";
 
-            comando.Parameters.Add(new SqlParameter("@codigoOriginal", SqlDbType.VarChar));
-            comando.Parameters["@codigoOriginal"].Value = "%" + codigoOriginal + "%";
+            comando.Parameters.Add(new SqlParameter("@codigo_original", SqlDbType.VarChar));
+            comando.Parameters["@codigo_original"].Value = "%" + codigoOriginal + "%";
 
             comando.Connection.Open();
 
@@ -115,7 +115,7 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText = 
-                "SELECT [codigoOriginal],[descripcion],[modelos],[observaciones] FROM [articulos] "+
+                "SELECT [codigo_original],[descripcion],[modelos],[observaciones] FROM [articulos] "+
                 "WHERE descripcion LIKE @descripcion";
 
             comando.Parameters.Add(new SqlParameter("@descripcion", SqlDbType.VarChar));
@@ -150,10 +150,10 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText = 
-                "SELECT [codigoOriginal],[descripcion],[modelos],[observaciones] FROM [articulos] "+
-                "WHERE codigoOriginal = @codigoOriginal";
+                "SELECT [codigo_original],[descripcion],[modelos],[observaciones] FROM [articulos] "+
+                "WHERE codigo_original = @codigo_original";
 
-            comando.Parameters.Add(instanciarParametro(pCodigoOriginal, "@codigoOriginal"));   
+            comando.Parameters.Add(instanciarParametro(pCodigoOriginal, "@codigo_original"));   
             comando.Connection.Open();
 
             SqlDataReader drArticulos = comando.ExecuteReader();
@@ -183,7 +183,7 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText = 
-                "SELECT [codigoOriginal],[descripcion],[modelos],[observaciones] FROM [articulos]";
+                "SELECT [codigo_original],[descripcion],[modelos],[observaciones] FROM [articulos]";
 
             comando.Connection.Open();
 
@@ -218,10 +218,10 @@ namespace Datos
                 comando.CommandType = CommandType.Text;
 
                 comando.CommandText = 
-                    "INSERT INTO [articulos]([codigoOriginal],[descripcion],[modelos],[observaciones]) "+
-                    "VALUES (@codigoOriginal, @descripcion, @modelos, @observaciones)";
+                    "INSERT INTO [articulos]([codigo_original],[descripcion],[modelos],[observaciones]) "+
+                    "VALUES (@codigo_original, @descripcion, @modelos, @observaciones)";
                 //Indica los parametros
-                comando.Parameters.Add(this.instanciarParametro(pModArt.codigoOriginal, "@codigoOriginal"));
+                comando.Parameters.Add(this.instanciarParametro(pModArt.codigoOriginal, "@codigo_original"));
                 comando.Parameters.Add(this.instanciarParametro(pModArt.descripcion, "@descripcion"));
                 comando.Parameters.Add(this.instanciarParametro(pModArt.modelos, "@modelos"));
                 comando.Parameters.Add(this.instanciarParametro(pModArt.observaciones, "@observaciones"));
@@ -259,9 +259,9 @@ namespace Datos
 
             comando.CommandText = 
                 "UPDATE [articulos] SET [descripcion]=@descripcion,[modelos]=@modelos,[observaciones]=@observaciones "+
-                "WHERE [articulos].codigoOriginal=@codigoOriginal";
+                "WHERE [articulos].codigo_original=@codigo_original";
 
-            comando.Parameters.Add(this.instanciarParametro(pModArt.codigoOriginal, "@codigoOriginal"));
+            comando.Parameters.Add(this.instanciarParametro(pModArt.codigoOriginal, "@codigo_original"));
             comando.Parameters.Add(this.instanciarParametro(pModArt.descripcion, "@descripcion"));
             comando.Parameters.Add(this.instanciarParametro(pModArt.modelos, "@modelos"));
             comando.Parameters.Add(this.instanciarParametro(pModArt.observaciones, "@observaciones"));
@@ -279,7 +279,6 @@ namespace Datos
                 return false;
             }
 
-
         }
 
         public bool bajaEntidad(ModeloArticulos pModArt)
@@ -294,9 +293,9 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText = 
-                "DELETE FROM [articulos] WHERE [articulos].codigoOriginal=@codigoOriginal";
+                "DELETE FROM [articulos] WHERE [articulos].codigo_original=@codigo_original";
 
-            comando.Parameters.Add(this.instanciarParametro(pModArt.codigoOriginal, "@codigoOriginal"));
+            comando.Parameters.Add(this.instanciarParametro(pModArt.codigoOriginal, "@codigo_original"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();

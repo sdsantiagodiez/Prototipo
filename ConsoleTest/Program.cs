@@ -38,9 +38,13 @@ namespace ConsoleTest
         {
             TestingCatalogo tc = new TestingCatalogo();
             //////////////////////////////////
+            //tc.generarPersonas(1500,"CLI");
+            //tc.generarArticulosProveedores();
+            //tc.generarProveedores();
+            //tc.actualizarProveedores();
+           // tc.generarArticulos(600);
+            tc.generarArticulosProveedores(5000);
 
-            tc.generarArticulosProveedores();
-            
             /////////////////////////////////
             tc.salir();
         }
@@ -51,56 +55,92 @@ namespace ConsoleTest
             Console.ReadKey();
         }
 
-        private void generarDatos()
-        {
-            this.generarPersonas();
-            this.generarProveedores();
-            this.generarArticulos();
-            this.generarPedidos();
-        }
+        //private void generarDatos(int cantidad)
+        //{
+        //    this.generarPersonas(cantidad);
+        //    this.generarProveedores();
+        //    this.generarArticulos(cantidad*5);
+        //    this.generarPedidos();
+        //}
         
         #region Personas
         #region Generar Personas
-        private void generarPersonas()
+        private void generarPersonas(int cantidadPersonas,string tipoPersona)
         {
             CatalogoPersonas cp = new CatalogoPersonas();
             ModeloPersonas persona = new ModeloPersonas();
             List<string> apellidos = getApellidos();
             List<string> nombres = getNombres();
-            List<string> dnis = getDNIs();
-            List<string> direcciones = getDirecciones();
-            List<string> ciudades = getCiudades();
+            List<string> dnis = getDNIs(cantidadPersonas);
             List<string> observaciones = getObservaciones();
-            List<string> cuits = getCUITs();
+            List<string> cuits = getCUITs(cantidadPersonas);
+
+            List<string> domiciliosCalles = getDomiciliosCalles();
+            List<string> domiciliosCiudades = getCiudades();
+            List<string> domiciliosPisos = getDomiciliosPisos();
+            List<string> domiciliosDepartamentos = getDomiciliosDepartamentos();
 
             int longApellidos = apellidos.Count;
             int longNombres = nombres.Count;
-            int longDirecciones = direcciones.Count;
-            int longCiudades = ciudades.Count;
+            int longDomiciliosCalles = domiciliosCalles.Count;
+            int longCiudades = domiciliosCiudades.Count;
             int longObservaciones = observaciones.Count;
+            int longDomiciliosPisos = domiciliosPisos.Count;
+            int longDomiciliosDepartamentos = domiciliosDepartamentos.Count;
 
             Random rnd = new Random();
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < cantidadPersonas; i++)
             {
                 int ape = rnd.Next(longApellidos);
                 int nom = rnd.Next(longNombres);
-                int dir = rnd.Next(longDirecciones);
+                int dir = rnd.Next(longDomiciliosCalles);
                 int ciu = rnd.Next(longCiudades);
                 int obs = rnd.Next(longObservaciones);
+                int pis = rnd.Next(longDomiciliosPisos);
+                int dpt = rnd.Next(longDomiciliosDepartamentos);
                 persona = new ModeloPersonas();
                 
                 persona.apellido = apellidos[ape];
                 persona.nombre = nombres[nom];
                 persona.dni = dnis[i];
                 persona.cuit = cuits[i];
-                persona.direccion = direcciones[dir];
-                persona.ciudad = ciudades[ciu];
+                
+                ModeloDomicilio md = new ModeloDomicilio();
+                //para que cada tanto alguno no tenga domicilio
+                
+                int seguirDomicilio = rnd.Next(1, 100);
+                if(seguirDomicilio < 5)
+                {
+                    //para que cada tanto alguno tenga más de un domicilio
+                    seguirDomicilio = 46;
+                    while (seguirDomicilio > 45)
+                    {
+                        md = new ModeloDomicilio();
+                        md.calle = domiciliosCalles[dir];
+                        md.numero = rnd.Next(50, 5000).ToString();
+                        md.ciudad = domiciliosCiudades[ciu];
+                        md.piso = domiciliosPisos[pis];
+                        md.departamento = domiciliosPisos[dpt];
+                        md.codigoPostal = "2132";
+                        if (rnd.Next(1, 11) > 5)
+                        {
+                            md.provincia = "Santa Fe";
+                        }
+                        else
+                        {
+                            md.provincia = "Buenos Aires";
+                        }
+                        
+                        md.pais = "Argentina";
+                        persona.domicilios.Add(md);
+                        seguirDomicilio = rnd.Next(1, 50);
+                    }
+                }
+                persona.tipoPersona = tipoPersona;
                 persona.observaciones = observaciones[obs];
-                persona.codigoPostal = "2132";
-                persona.provincia = "Santa Fe";
 
                 cp.agregarNuevaEntidad(persona);
- 
+
             }
         }
         private List<string> getApellidos()
@@ -156,52 +196,77 @@ namespace ConsoleTest
 
             return nombres;
         }
-        private List<string> getDNIs()
+        private List<string> getDNIs(int cantidad)
         {
             List<string> lista = new List<string>();
 
             int dni = 20000000;
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < cantidad; i++)
             {
                 lista.Add((dni + i).ToString());
             }
 
                 return lista;
         }
-        private List<string> getCUITs()
+        private List<string> getCUITs(int cantidad)
         {
             List<string> lista = new List<string>();
             int dni = 20000000;
             string prefijo = "21";
             string sufijo = "4";
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < cantidad; i++)
             {
                 lista.Add(prefijo+"-"+(dni + i).ToString()+"-"+sufijo);
             }
             return lista;
         }
-        private List<string> getDirecciones()
+        private List<string> getDomiciliosCalles()
         {
             List<string> lista = new List<string>();
 
-            lista.Add("Buenos Aires 13");
-            lista.Add("Tucumán 1555");
-            lista.Add("General Paz 412");
-            lista.Add("Villegaz 444");
-            lista.Add("Montevideo 240");
-            lista.Add("San Martín 1");
-            lista.Add("Corrientes 65");
-            lista.Add("Independencia 77");
-            lista.Add("Esclavitud 12312");
-            lista.Add("Dermatitis 50");
-            lista.Add("Paloma 12");
-            lista.Add("Uriburu 0");
-            lista.Add("San Pedro 21");
-            lista.Add("El Loco 22");
-            lista.Add("El Loro 99");
-            lista.Add("La Cuñada 69");
-            lista.Add("Martinez 1111");
-            lista.Add("Falsa 123");
+            lista.Add("Buenos Aires");
+            lista.Add("Tucumán");
+            lista.Add("General Paz");
+            lista.Add("Villegaz");
+            lista.Add("Montevideo");
+            lista.Add("San Martín");
+            lista.Add("Corrientes");
+            lista.Add("Independencia");
+            lista.Add("Esclavitud");
+            lista.Add("Dermatitis");
+            lista.Add("Paloma");
+            lista.Add("Uriburu");
+            lista.Add("San Pedro");
+            lista.Add("El Loco");
+            lista.Add("El Loro");
+            lista.Add("La Cuñada");
+            lista.Add("Martinez");
+            lista.Add("Falsa");
+
+            return lista;
+        }
+        private List<string> getDomiciliosPisos()
+        {
+            List<string> lista = new List<string>();
+
+            lista.Add("PB");
+            lista.Add("1");
+            lista.Add("2");
+            lista.Add("3");
+            lista.Add(null);
+            lista.Add(null);
+
+            return lista;
+        }
+        private List<string> getDomiciliosDepartamentos()
+        {
+            List<string> lista = new List<string>();
+
+            lista.Add("A");
+            lista.Add("B");
+            lista.Add("C");
+            lista.Add("D");
+            lista.Add(null);
             lista.Add(null);
 
             return lista;
@@ -236,7 +301,7 @@ namespace ConsoleTest
         }
         #endregion
         #region bajaEntidads
-        private void bajaEntidads()
+        private void bajaPersonas()
         {
             CatalogoPersonas cp = new CatalogoPersonas();
             List<ModeloPersonas> personas = cp.getAll();
@@ -248,16 +313,17 @@ namespace ConsoleTest
 
         #endregion
         #region Actualizar
-        private void actualizarEntidad()
+        private void actualizarEntidad(int codigoEntidad)
         {
             ModeloPersonas mp = new ModeloPersonas();
             CatalogoPersonas cp = new CatalogoPersonas();
-            mp = cp.getOnePorDNI("20000001");
+            mp = cp.getOnePorCodigo(codigoEntidad);
             mp.nombre = "Santiago";
             cp.actualizarEntidad(mp);
         }
         #endregion
         #endregion
+        
         #region Proveedores
         private void generarProveedores()
         {
@@ -265,30 +331,65 @@ namespace ConsoleTest
             ModeloProveedor proveedor = new ModeloProveedor();
 
             List<string> razonesSociales = getRazonSocial();
-            List<string> direcciones = getDirecciones();
-            List<string> ciudades = getCiudades();
             List<string> observaciones = getObservaciones();
-            List<string> cuits = getCUITs();
+            List<string> cuits = getCUITs(razonesSociales.Count);
 
-            int longDirecciones = direcciones.Count;
-            int longCiudades = ciudades.Count;
+            List<string> domiciliosCalles = getDomiciliosCalles();
+            List<string> domiciliosCiudades = getCiudades();
+            List<string> domiciliosPisos = getDomiciliosPisos();
+            List<string> domiciliosDepartamentos = getDomiciliosDepartamentos();
+
+            int longDomiciliosCalles = domiciliosCalles.Count;
+            int longCiudades = domiciliosCiudades.Count;
             int longObservaciones = observaciones.Count;
+            int longDomiciliosPisos = domiciliosPisos.Count;
+            int longDomiciliosDepartamentos = domiciliosDepartamentos.Count;
+            
 
             Random rnd = new Random();
             for (int i = 0; i < razonesSociales.Count; i++)
             {
-                int dir = rnd.Next(longDirecciones);
+                int dir = rnd.Next(longDomiciliosCalles);
                 int ciu = rnd.Next(longCiudades);
                 int obs = rnd.Next(longObservaciones);
+                int pis = rnd.Next(longDomiciliosPisos);
+                int dpt = rnd.Next(longDomiciliosDepartamentos);
                 proveedor = new ModeloProveedor();
 
                 proveedor.razonSocial = razonesSociales[i];
                 proveedor.cuit = cuits[i];
-                proveedor.direccion = direcciones[dir];
-                proveedor.ciudad = ciudades[ciu];
                 proveedor.observaciones = observaciones[obs];
-                proveedor.codigoPostal = "2132";
-                proveedor.provincia = "Santa Fe";
+
+                ModeloDomicilio md = new ModeloDomicilio();
+                //para que cada tanto alguno no tenga domicilio
+                int seguirDomicilio = rnd.Next(1, 100);
+                if (seguirDomicilio < 5)
+                {
+                    //para que cada tanto alguno tenga más de un domicilio
+                    seguirDomicilio = 46;
+                    while (seguirDomicilio > 45)
+                    {
+                        md = new ModeloDomicilio();
+                        md.calle = domiciliosCalles[dir];
+                        md.numero = rnd.Next(50, 5000).ToString();
+                        md.ciudad = domiciliosCiudades[ciu];
+                        md.piso = domiciliosPisos[pis];
+                        md.departamento = domiciliosPisos[dpt];
+                        md.codigoPostal = "2132";
+                        if (rnd.Next(1, 11) > 5)
+                        {
+                            md.provincia = "Santa Fe";
+                        }
+                        else
+                        {
+                            md.provincia = "Buenos Aires";
+                        }
+                        md.pais = "Argentina";
+                        proveedor.domicilios.Add(md);
+                        seguirDomicilio = rnd.Next(1, 50);
+                    }
+                }
+                
 
                 cp.agregarNuevaEntidad(proveedor);
             }
@@ -318,7 +419,7 @@ namespace ConsoleTest
 
             return lista;
         }
-        private void bajaEntidades()
+        private void bajaProveedores()
         {
             CatalogoProveedores cp = new CatalogoProveedores();
             List<ModeloProveedor> provs = new List<ModeloProveedor>();
@@ -328,7 +429,7 @@ namespace ConsoleTest
                 cp.bajaEntidad(p);
             }
         }
-        private void actualizarEntidades()
+        private void actualizarProveedores()
         {
             CatalogoProveedores cp = new CatalogoProveedores();
             List<ModeloProveedor> provs = new List<ModeloProveedor>();
@@ -340,12 +441,13 @@ namespace ConsoleTest
             }
         }
         #endregion
+       
         #region Articulos
-        private void generarArticulos()
+        private void generarArticulos(int cantidadArticulos)
         {
             CatalogoArticulos ca = new CatalogoArticulos();
             ModeloArticulos ma;
-            int cantCodigosOriginales = 1000;
+            int cantCodigosOriginales = cantidadArticulos;
             int cantDescripciones = 250;
             int cantModelos = 50;
             
@@ -416,7 +518,7 @@ namespace ConsoleTest
         #endregion
 
         #region ArticulosProveedores
-        private void generarArticulosProveedores()
+        private void generarArticulosProveedores(int cantidadArticulosProveedores)
         {
             CatalogoProveedores cp = new CatalogoProveedores();
             CatalogoArticulos ca = new CatalogoArticulos();
@@ -425,7 +527,6 @@ namespace ConsoleTest
             int cantProveedores = proveedores.Count;
             List<ModeloArticulos> articulos = ca.getAll();
             int cantArticulos = articulos.Count;
-            int cantArticulosProveedores = 5000;
             Random rnd = new Random();
             ModeloArticuloProveedores map = new ModeloArticuloProveedores();
 
@@ -435,7 +536,7 @@ namespace ConsoleTest
             List<string> modelos = getModelos(cantModelos);
             List<string> observaciones = getObservaciones();
             int cantObservaciones = observaciones.Count;
-            for (int i = 0; i < cantArticulosProveedores; i++)
+            for (int i = 0; i < cantidadArticulosProveedores; i++)
             {
                 int sufijo = 0;
                 int prov = rnd.Next(cantProveedores);
@@ -451,7 +552,7 @@ namespace ConsoleTest
                 int desc = rnd.Next(cantDescripciones + 1);
                 int mod = rnd.Next(cantModelos + 1);
                 int obs = rnd.Next(cantObservaciones);
-
+                map.codigoEntidad = proveedores[prov].codigo;
                 map.descripcion = descripciones[desc];
                 //map.modelos = modelos[mod];
                 map.observaciones = observaciones[obs];

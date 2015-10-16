@@ -83,5 +83,11 @@ namespace Controladores
             }
             return pEncontrados;
         }
+
+        public ModeloProveedor getProveedor(int pCodigoEntidad)
+        {
+            CatalogoProveedores cp = new CatalogoProveedores();
+            return cp.getOne(pCodigoEntidad);
+        }
     }
 }

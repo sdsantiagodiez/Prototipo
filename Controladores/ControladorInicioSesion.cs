@@ -35,7 +35,7 @@ namespace Controladores
         public List<ModeloRoles> getRoles(ModeloPersonas usuario)
         {
             CatalogoPersonas ctlgPersonas = new CatalogoPersonas();
-            return ctlgPersonas.getRoles(usuario.dni);
+            return ctlgPersonas.getRoles(usuario.codigo);
         }
     }
 }

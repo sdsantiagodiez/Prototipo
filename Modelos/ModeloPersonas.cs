@@ -41,17 +41,24 @@ namespace Modelos
             get { return _tipoPersona; }
             set { this._tipoPersona = value; }
         }
-        ModeloMailPersonas _mail;
-        public ModeloMailPersonas mail
+
+        string _usuario;
+        public string usuario
         {
-            get { return _mail; }
-            set { this._mail = value; }
+            get { return _usuario; }
+            set { this._usuario = value; }
         }
-        string _telefono;
-        public string telefono
+        string _contrasenia;
+        public string contrasenia
         {
-            get { return _telefono; }
-            set { this._telefono = value; }
+            get { return _contrasenia; }
+            set { this._contrasenia = value; }
+        }
+        List<ModeloRoles> _roles;
+        public List<ModeloRoles> roles
+        {
+            get { return _roles; }
+            set { this._roles = value; }
         }
         #endregion
     }
