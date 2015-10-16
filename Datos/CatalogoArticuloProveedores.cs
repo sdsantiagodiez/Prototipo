@@ -323,7 +323,7 @@ namespace Datos
             comando.CommandText =
                 "SELECT "+
                 "   [codigo_original],[codigo_articulo_proveedor],[stock_minimo],[stock_actual],[observaciones],[ubicacion]," +
-                "   [descripcion],[fecha_actualizacion],[codigo_entidad], [prov].razon_social as razon_social_proveedor  " +
+                "   [descripcion],[fecha_actualizacion],ap.codigo_entidad, [prov].razon_social as razon_social_proveedor  " +
                 "   FROM [Articulos_Proveedores] ap " +
                 "   INNER JOIN [proveedores] prov " +
                 "   ON [prov].codigo_entidad = [ap].codigo_entidad " +
@@ -362,7 +362,7 @@ namespace Datos
             comando.CommandText = 
                 "SELECT "+
                 "   [codigo_original],[codigo_articulo_proveedor],[stock_minimo],[stock_actual],[observaciones],[ubicacion],"+
-                "   [descripcion],[fecha_actualizacion],[codigo_entidad], [prov].razon_social as razon_social_proveedor   " +
+                "   [descripcion],[fecha_actualizacion],ap.codigo_entidad, [prov].razon_social as razon_social_proveedor   " +
                 "   FROM [Articulos_Proveedores] ap " +
                 "   INNER JOIN [proveedores] prov " +
                 "   ON [prov].codigo_entidad = [ap].codigo_entidad " ;
@@ -401,10 +401,11 @@ namespace Datos
                     "INSERT INTO [Articulos_Proveedores]([codigo_original],[codigo_articulo_proveedor],[stock_minimo],[stock_actual],"+
                     "[observaciones],[descripcion],[fecha_actualizacion],[codigo_entidad]) "+
                     "VALUES (@codigo_original, @codigo_articulo_proveedor, @stock_minimo, @stock_actual, @observaciones, "+
-                    "@descripcion, @fecha_actualizacion )";
+                    "@descripcion, @fecha_actualizacion, @codigo_entidad )";
                 //Indica los parametros
                 comando.Parameters.Add(this.instanciarParametro(pModArtProv.codigoArticuloProveedor,"@codigo_articulo_proveedor"));
                 comando.Parameters.Add(this.instanciarParametro(pModArtProv.codigoOriginal, "@codigo_original"));
+                comando.Parameters.Add(this.instanciarParametro(pModArtProv.codigoEntidad , "@codigo_entidad"));
                 comando.Parameters.Add(this.instanciarParametro(pModArtProv.descripcion, "@descripcion"));
                 comando.Parameters.Add(this.instanciarParametro(pModArtProv.observaciones, "@observaciones"));
                 comando.Parameters.Add(this.instanciarParametro(pModArtProv.stockMinimo, "@stock_minimo"));

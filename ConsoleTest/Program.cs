@@ -38,11 +38,13 @@ namespace ConsoleTest
         {
             TestingCatalogo tc = new TestingCatalogo();
             //////////////////////////////////
-            tc.generarPersonas(1500,"CLI");
+            //tc.generarPersonas(1500,"CLI");
             //tc.generarArticulosProveedores();
-            
-            tc.generarProveedores();
+            //tc.generarProveedores();
             //tc.actualizarProveedores();
+           // tc.generarArticulos(600);
+            tc.generarArticulosProveedores(5000);
+
             /////////////////////////////////
             tc.salir();
         }
@@ -439,6 +441,7 @@ namespace ConsoleTest
             }
         }
         #endregion
+       
         #region Articulos
         private void generarArticulos(int cantidadArticulos)
         {
@@ -515,7 +518,7 @@ namespace ConsoleTest
         #endregion
 
         #region ArticulosProveedores
-        private void generarArticulosProveedores()
+        private void generarArticulosProveedores(int cantidadArticulosProveedores)
         {
             CatalogoProveedores cp = new CatalogoProveedores();
             CatalogoArticulos ca = new CatalogoArticulos();
@@ -524,7 +527,6 @@ namespace ConsoleTest
             int cantProveedores = proveedores.Count;
             List<ModeloArticulos> articulos = ca.getAll();
             int cantArticulos = articulos.Count;
-            int cantArticulosProveedores = 5000;
             Random rnd = new Random();
             ModeloArticuloProveedores map = new ModeloArticuloProveedores();
 
@@ -534,7 +536,7 @@ namespace ConsoleTest
             List<string> modelos = getModelos(cantModelos);
             List<string> observaciones = getObservaciones();
             int cantObservaciones = observaciones.Count;
-            for (int i = 0; i < cantArticulosProveedores; i++)
+            for (int i = 0; i < cantidadArticulosProveedores; i++)
             {
                 int sufijo = 0;
                 int prov = rnd.Next(cantProveedores);
@@ -550,7 +552,7 @@ namespace ConsoleTest
                 int desc = rnd.Next(cantDescripciones + 1);
                 int mod = rnd.Next(cantModelos + 1);
                 int obs = rnd.Next(cantObservaciones);
-
+                map.codigoEntidad = proveedores[prov].codigo;
                 map.descripcion = descripciones[desc];
                 //map.modelos = modelos[mod];
                 map.observaciones = observaciones[obs];

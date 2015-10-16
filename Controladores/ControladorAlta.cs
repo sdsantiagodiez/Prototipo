@@ -148,7 +148,7 @@ namespace Controladores
             Regex rgx = new Regex("[^a-zA-Z0-9 -]");
             string nombre = rgx.Replace(pNombre, "");
             string apellido = rgx.Replace(pApellido, "");
-            nombreDeUsuario = (pApellido[0] + pNombre).ToLower();
+            nombreDeUsuario = (pNombre[0] + pApellido).ToLower();
 
             //Si nombreDeUsuario existe, se entra en la iteración para agregar un número al final
             //del usuario hasta que usuario no exista
@@ -157,7 +157,7 @@ namespace Controladores
             {
                 //se vuelve a instanciar para que sólo cambie el número al final
                 nombreDeUsuario = "";
-                nombreDeUsuario = (pApellido[0] + pNombre + i.ToString()).ToLower();
+                nombreDeUsuario = (pNombre[0] + pApellido + i.ToString()).ToLower();
             }
             
             return nombreDeUsuario;
