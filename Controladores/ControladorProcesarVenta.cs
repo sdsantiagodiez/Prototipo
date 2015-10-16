@@ -84,5 +84,17 @@ namespace Controladores
             ModeloLineaPedido nuevaLinea = new ModeloLineaPedido(articulo, cantidad);
             this.artVentaActual.Add(nuevaLinea);
         }
+
+        public ModeloPersonas getCliente(string dni)
+        {
+            CatalogoClientes catCli = new CatalogoClientes();
+            return catCli.getCliente(dni);
+        }
+
+        public void addClient(ModeloPersonas newCli)
+        {
+            CatalogoClientes catCli = new CatalogoClientes();
+            catCli.agregarNuevaEntidad(newCli);
+        }
     }
 }

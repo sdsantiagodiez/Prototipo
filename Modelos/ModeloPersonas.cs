@@ -81,6 +81,18 @@ namespace Modelos
             get { return _direccion; }
             set { this._direccion = value; }
         }
+        ModeloMailPersonas _mail;
+        public ModeloMailPersonas mail
+        {
+            get { return _mail; }
+            set { this._mail = value; }
+        }
+        string _telefono;
+        public string telefono
+        {
+            get { return _telefono; }
+            set { this._telefono = value; }
+        }
         #endregion
     }
 }

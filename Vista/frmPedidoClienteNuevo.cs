@@ -17,8 +17,6 @@ namespace Vista
         private string categBusq;
         private List<ModeloArticuloProveedores> artEncontrados;
         private List<ModeloLineaPedido> artVentaActual;
-        private decimal contado = 1;
-        private decimal tarjeta = 1;
         private ModeloArticuloProveedores artSelecBusq;
         private ModeloLineaPedido artSelecDetalle;
         private ControladorProcesarVenta ctrlProcVenta;
@@ -182,6 +180,16 @@ namespace Vista
                 cleanLbls();
             }
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            //solicito confirmación
+            DialogResult dialogResult = MessageBox.Show("¿Realmente desea cancelar la venta?", "Confirmación", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
         #endregion
 
         #region DataGridViews
@@ -212,8 +220,7 @@ namespace Vista
             this.lblDescVar.Text = artEncontrados[indiceSelecc].descripcion;
             //
             //TODO modificadores de precio segun metodo de pago
-            this.lblContadoVar.Text = Convert.ToString(artEncontrados[indiceSelecc].valorVenta.valorArticulo * contado);
-            this.lblTarjetaVar.Text = Convert.ToString(artEncontrados[indiceSelecc].valorVenta.valorArticulo * tarjeta);
+            this.lblPrecioVar.Text = Convert.ToString(artEncontrados[indiceSelecc].valorVenta.valorArticulo);
             this.lblUbicacionVar.Text = artEncontrados[indiceSelecc].ubicacion;
             
             this.lblExistenciaVar.Text = Convert.ToString(artEncontrados[indiceSelecc].stockActual);
@@ -266,7 +273,7 @@ namespace Vista
             }
         }
 
-        private void txtDescArticulo_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtBusqArticulo_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
@@ -292,8 +299,7 @@ namespace Vista
             this.lblCodProvVar.Text = "Seleccione Articulo";
             this.lblProvVar.Text = "Seleccione Articulo";
             this.lblDescVar.Text = "Seleccione Articulo";
-            this.lblContadoVar.Text = "Seleccione Articulo";
-            this.lblTarjetaVar.Text = "Seleccione Articulo";
+            this.lblPrecioVar.Text = "Seleccione Articulo";
             this.lblExistenciaVar.Text = "Seleccione Articulo";
             this.lblFechaActualizVar.Text = "Seleccione Articulo";
             this.lblObsVar.Text = "Seleccione Articulo";

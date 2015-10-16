@@ -36,10 +36,28 @@ namespace Vista
             DialogResult dialogResult = MessageBox.Show("¿Realmente desea emitir el comprobante?", "Confirmación", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                var ctrlVenta = new ControladorProcesarVenta();
-                
                 //descuento stock
                 //ctrlVenta.cerrarPedido(ventaActual);
+                
+                //checkeo registro de cliente nuevo
+                if (ckbxRegistrar.Checked)
+                {
+                    //creo el nuevo cliente
+                    //TODO -> Verificación de cadenas
+                    ModeloPersonas newCli = new ModeloPersonas();
+                    newCli.nombre = txtNombre.Text;
+                    newCli.apellido = txtApellido.Text;
+                    newCli.dni = txtDni.Text;
+                    newCli.cuit = txtCuit.Text;
+                    newCli.direccion = txtDireccion.Text;
+                    newCli.mail.mailPers = txtMail.Text;
+                    newCli.telefono = txtTelefono.Text;
+                    newCli.ciudad = txtCiudad.Text;
+                    newCli.provincia = txtProvincia.Text;
+                    newCli.codigoPostal = txtCp.Text;
+
+                    ctrlVenta.addClient(newCli);
+                }
 
                 //imprimo recibo
                 this.print();
@@ -200,6 +218,29 @@ namespace Vista
             graphics.DrawString("Cajero: " + "Ronald McDonald", 
                      new Font("Courier New", 10),
                      new SolidBrush(Color.Black), startX, startY + Offset);
+        }
+
+        private void txtBusqCli_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //TODO -> Validar cadena de entrada
+
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                //busco al cliente de la base de datos
+                ModeloPersonas cliente = ctrlVenta.getCliente(txtBusqCli.Text);
+
+                //lleno textboxs
+                this.txtNombre.Text = cliente.nombre;
+                this.txtApellido.Text = cliente.apellido;
+                this.txtDni.Text = cliente.dni;
+                this.txtCuit.Text = cliente.cuit;
+                this.txtDireccion.Text = cliente.direccion;
+                this.txtMail.Text = cliente.mail.mailPers;
+                this.txtTelefono.Text = cliente.telefono;
+                this.txtCiudad.Text = cliente.ciudad;
+                this.txtProvincia.Text = cliente.provincia;
+                this.txtCp.Text = cliente.codigoPostal;
+            }
         }
     }
 }

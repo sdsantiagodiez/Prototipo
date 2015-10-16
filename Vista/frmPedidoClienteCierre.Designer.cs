@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpCierrePedido = new System.Windows.Forms.TableLayoutPanel();
             this.pnlButtons = new System.Windows.Forms.Panel();
             this.btnEmitir = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
@@ -40,8 +40,10 @@
             this.vUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpComprobCli = new System.Windows.Forms.TableLayoutPanel();
             this.gbxComprobante = new System.Windows.Forms.GroupBox();
+            this.btnCalcular = new System.Windows.Forms.Button();
+            this.lblTotalVar = new System.Windows.Forms.Label();
             this.lblIvaNetoVar = new System.Windows.Forms.Label();
             this.lblTotalSinIvaVar = new System.Windows.Forms.Label();
             this.gbxObservComprob = new System.Windows.Forms.GroupBox();
@@ -88,35 +90,36 @@
             this.lblCiudad = new System.Windows.Forms.Label();
             this.lblProvincia = new System.Windows.Forms.Label();
             this.lblCp = new System.Windows.Forms.Label();
-            this.lblTotalVar = new System.Windows.Forms.Label();
-            this.btnCalcular = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.ckbxRegistrar = new System.Windows.Forms.CheckBox();
+            this.lblBuscarCli = new System.Windows.Forms.Label();
+            this.txtBusqCli = new System.Windows.Forms.TextBox();
+            this.tlpCierrePedido.SuspendLayout();
             this.pnlButtons.SuspendLayout();
             this.gbxArticulos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosVenta)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tlpComprobCli.SuspendLayout();
             this.gbxComprobante.SuspendLayout();
             this.gbxObservComprob.SuspendLayout();
             this.gbxCliente.SuspendLayout();
             this.gbxObservCliente.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tlpCierrePedido
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.pnlButtons, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.gbxArticulos, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.83333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.16667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1008, 621);
-            this.tableLayoutPanel1.TabIndex = 13;
+            this.tlpCierrePedido.ColumnCount = 1;
+            this.tlpCierrePedido.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpCierrePedido.Controls.Add(this.pnlButtons, 0, 2);
+            this.tlpCierrePedido.Controls.Add(this.gbxArticulos, 0, 1);
+            this.tlpCierrePedido.Controls.Add(this.tlpComprobCli, 0, 0);
+            this.tlpCierrePedido.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpCierrePedido.Location = new System.Drawing.Point(0, 0);
+            this.tlpCierrePedido.Name = "tlpCierrePedido";
+            this.tlpCierrePedido.RowCount = 3;
+            this.tlpCierrePedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 63.03571F));
+            this.tlpCierrePedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.96429F));
+            this.tlpCierrePedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tlpCierrePedido.Size = new System.Drawing.Size(1008, 621);
+            this.tlpCierrePedido.TabIndex = 13;
             // 
             // pnlButtons
             // 
@@ -155,9 +158,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbxArticulos.Controls.Add(this.dgvArticulosVenta);
             this.gbxArticulos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxArticulos.Location = new System.Drawing.Point(3, 344);
+            this.gbxArticulos.Location = new System.Drawing.Point(3, 356);
             this.gbxArticulos.Name = "gbxArticulos";
-            this.gbxArticulos.Size = new System.Drawing.Size(1002, 213);
+            this.gbxArticulos.Size = new System.Drawing.Size(1002, 201);
             this.gbxArticulos.TabIndex = 13;
             this.gbxArticulos.TabStop = false;
             this.gbxArticulos.Text = "Artículos";
@@ -181,7 +184,7 @@
             this.dgvArticulosVenta.ReadOnly = true;
             this.dgvArticulosVenta.RowHeadersVisible = false;
             this.dgvArticulosVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulosVenta.Size = new System.Drawing.Size(996, 192);
+            this.dgvArticulosVenta.Size = new System.Drawing.Size(996, 180);
             this.dgvArticulosVenta.TabIndex = 5;
             // 
             // codOriginal
@@ -226,20 +229,20 @@
             this.vParcial.Name = "vParcial";
             this.vParcial.ReadOnly = true;
             // 
-            // tableLayoutPanel2
+            // tlpComprobCli
             // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.gbxComprobante, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.gbxCliente, 0, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1002, 335);
-            this.tableLayoutPanel2.TabIndex = 14;
+            this.tlpComprobCli.ColumnCount = 1;
+            this.tlpComprobCli.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpComprobCli.Controls.Add(this.gbxComprobante, 0, 0);
+            this.tlpComprobCli.Controls.Add(this.gbxCliente, 0, 1);
+            this.tlpComprobCli.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpComprobCli.Location = new System.Drawing.Point(3, 3);
+            this.tlpComprobCli.Name = "tlpComprobCli";
+            this.tlpComprobCli.RowCount = 2;
+            this.tlpComprobCli.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.53314F));
+            this.tlpComprobCli.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54.46686F));
+            this.tlpComprobCli.Size = new System.Drawing.Size(1002, 347);
+            this.tlpComprobCli.TabIndex = 14;
             // 
             // gbxComprobante
             // 
@@ -270,10 +273,29 @@
             this.gbxComprobante.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbxComprobante.Location = new System.Drawing.Point(3, 3);
             this.gbxComprobante.Name = "gbxComprobante";
-            this.gbxComprobante.Size = new System.Drawing.Size(996, 161);
+            this.gbxComprobante.Size = new System.Drawing.Size(996, 152);
             this.gbxComprobante.TabIndex = 0;
             this.gbxComprobante.TabStop = false;
             this.gbxComprobante.Text = "Comprobante";
+            // 
+            // btnCalcular
+            // 
+            this.btnCalcular.Location = new System.Drawing.Point(522, 120);
+            this.btnCalcular.Name = "btnCalcular";
+            this.btnCalcular.Size = new System.Drawing.Size(75, 23);
+            this.btnCalcular.TabIndex = 29;
+            this.btnCalcular.Text = "Calcular";
+            this.btnCalcular.UseVisualStyleBackColor = true;
+            this.btnCalcular.Click += new System.EventHandler(this.btnCalcular_Click);
+            // 
+            // lblTotalVar
+            // 
+            this.lblTotalVar.AutoSize = true;
+            this.lblTotalVar.Location = new System.Drawing.Point(519, 96);
+            this.lblTotalVar.Name = "lblTotalVar";
+            this.lblTotalVar.Size = new System.Drawing.Size(13, 13);
+            this.lblTotalVar.TabIndex = 28;
+            this.lblTotalVar.Text = "0";
             // 
             // lblIvaNetoVar
             // 
@@ -488,11 +510,14 @@
             // 
             // gbxCliente
             // 
+            this.gbxCliente.Controls.Add(this.ckbxRegistrar);
             this.gbxCliente.Controls.Add(this.txtTelefono);
+            this.gbxCliente.Controls.Add(this.txtBusqCli);
             this.gbxCliente.Controls.Add(this.txtProvincia);
             this.gbxCliente.Controls.Add(this.txtCiudad);
             this.gbxCliente.Controls.Add(this.txtCuit);
             this.gbxCliente.Controls.Add(this.txtMail);
+            this.gbxCliente.Controls.Add(this.lblBuscarCli);
             this.gbxCliente.Controls.Add(this.txtApellido);
             this.gbxCliente.Controls.Add(this.txtDni);
             this.gbxCliente.Controls.Add(this.txtDireccion);
@@ -510,80 +535,80 @@
             this.gbxCliente.Controls.Add(this.lblProvincia);
             this.gbxCliente.Controls.Add(this.lblCp);
             this.gbxCliente.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbxCliente.Location = new System.Drawing.Point(3, 170);
+            this.gbxCliente.Location = new System.Drawing.Point(3, 161);
             this.gbxCliente.Name = "gbxCliente";
-            this.gbxCliente.Size = new System.Drawing.Size(996, 162);
+            this.gbxCliente.Size = new System.Drawing.Size(996, 183);
             this.gbxCliente.TabIndex = 1;
             this.gbxCliente.TabStop = false;
             this.gbxCliente.Text = "Cliente";
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(522, 90);
+            this.txtTelefono.Location = new System.Drawing.Point(66, 155);
             this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(78, 20);
+            this.txtTelefono.Size = new System.Drawing.Size(188, 20);
             this.txtTelefono.TabIndex = 38;
             // 
             // txtProvincia
             // 
-            this.txtProvincia.Location = new System.Drawing.Point(288, 125);
+            this.txtProvincia.Location = new System.Drawing.Point(344, 127);
             this.txtProvincia.Name = "txtProvincia";
-            this.txtProvincia.Size = new System.Drawing.Size(146, 20);
+            this.txtProvincia.Size = new System.Drawing.Size(188, 20);
             this.txtProvincia.TabIndex = 37;
             // 
             // txtCiudad
             // 
-            this.txtCiudad.Location = new System.Drawing.Point(69, 125);
+            this.txtCiudad.Location = new System.Drawing.Point(66, 129);
             this.txtCiudad.Name = "txtCiudad";
-            this.txtCiudad.Size = new System.Drawing.Size(146, 20);
+            this.txtCiudad.Size = new System.Drawing.Size(188, 20);
             this.txtCiudad.TabIndex = 36;
             // 
             // txtCuit
             // 
-            this.txtCuit.Location = new System.Drawing.Point(288, 56);
+            this.txtCuit.Location = new System.Drawing.Point(344, 75);
             this.txtCuit.Name = "txtCuit";
-            this.txtCuit.Size = new System.Drawing.Size(146, 20);
+            this.txtCuit.Size = new System.Drawing.Size(188, 20);
             this.txtCuit.TabIndex = 35;
             // 
             // txtMail
             // 
-            this.txtMail.Location = new System.Drawing.Point(288, 90);
+            this.txtMail.Location = new System.Drawing.Point(344, 101);
             this.txtMail.Name = "txtMail";
-            this.txtMail.Size = new System.Drawing.Size(146, 20);
+            this.txtMail.Size = new System.Drawing.Size(188, 20);
             this.txtMail.TabIndex = 33;
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(371, 25);
+            this.txtApellido.Location = new System.Drawing.Point(344, 49);
             this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(229, 20);
+            this.txtApellido.Size = new System.Drawing.Size(188, 20);
             this.txtApellido.TabIndex = 32;
             // 
             // txtDni
             // 
-            this.txtDni.Location = new System.Drawing.Point(69, 56);
+            this.txtDni.Location = new System.Drawing.Point(66, 75);
             this.txtDni.Name = "txtDni";
-            this.txtDni.Size = new System.Drawing.Size(146, 20);
+            this.txtDni.Size = new System.Drawing.Size(188, 20);
             this.txtDni.TabIndex = 31;
             // 
             // txtDireccion
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(69, 90);
+            this.txtDireccion.Location = new System.Drawing.Point(66, 101);
             this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(146, 20);
+            this.txtDireccion.Size = new System.Drawing.Size(188, 20);
             this.txtDireccion.TabIndex = 30;
             // 
             // txtCp
             // 
-            this.txtCp.Location = new System.Drawing.Point(522, 125);
+            this.txtCp.Location = new System.Drawing.Point(344, 153);
             this.txtCp.Name = "txtCp";
-            this.txtCp.Size = new System.Drawing.Size(78, 20);
+            this.txtCp.Size = new System.Drawing.Size(188, 20);
             this.txtCp.TabIndex = 29;
             // 
             // gbxObservCliente
             // 
             this.gbxObservCliente.Controls.Add(this.rtbObsCliente);
-            this.gbxObservCliente.Location = new System.Drawing.Point(636, 25);
+            this.gbxObservCliente.Location = new System.Drawing.Point(630, 49);
             this.gbxObservCliente.Name = "gbxObservCliente";
             this.gbxObservCliente.Size = new System.Drawing.Size(357, 112);
             this.gbxObservCliente.TabIndex = 28;
@@ -601,15 +626,15 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(69, 25);
+            this.txtNombre.Location = new System.Drawing.Point(66, 49);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(243, 20);
+            this.txtNombre.Size = new System.Drawing.Size(188, 20);
             this.txtNombre.TabIndex = 26;
             // 
             // lblApellido
             // 
             this.lblApellido.AutoSize = true;
-            this.lblApellido.Location = new System.Drawing.Point(318, 28);
+            this.lblApellido.Location = new System.Drawing.Point(291, 52);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(47, 13);
             this.lblApellido.TabIndex = 15;
@@ -618,7 +643,7 @@
             // lblTelefono
             // 
             this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Location = new System.Drawing.Point(441, 93);
+            this.lblTelefono.Location = new System.Drawing.Point(8, 158);
             this.lblTelefono.Name = "lblTelefono";
             this.lblTelefono.Size = new System.Drawing.Size(52, 13);
             this.lblTelefono.TabIndex = 14;
@@ -627,7 +652,7 @@
             // lblMail
             // 
             this.lblMail.AutoSize = true;
-            this.lblMail.Location = new System.Drawing.Point(228, 93);
+            this.lblMail.Location = new System.Drawing.Point(309, 104);
             this.lblMail.Name = "lblMail";
             this.lblMail.Size = new System.Drawing.Size(29, 13);
             this.lblMail.TabIndex = 13;
@@ -636,7 +661,7 @@
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(8, 28);
+            this.lblNombre.Location = new System.Drawing.Point(13, 52);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(47, 13);
             this.lblNombre.TabIndex = 12;
@@ -645,7 +670,7 @@
             // lblDni
             // 
             this.lblDni.AutoSize = true;
-            this.lblDni.Location = new System.Drawing.Point(8, 59);
+            this.lblDni.Location = new System.Drawing.Point(31, 80);
             this.lblDni.Name = "lblDni";
             this.lblDni.Size = new System.Drawing.Size(29, 13);
             this.lblDni.TabIndex = 11;
@@ -654,7 +679,7 @@
             // lblCuit
             // 
             this.lblCuit.AutoSize = true;
-            this.lblCuit.Location = new System.Drawing.Point(228, 59);
+            this.lblCuit.Location = new System.Drawing.Point(303, 78);
             this.lblCuit.Name = "lblCuit";
             this.lblCuit.Size = new System.Drawing.Size(35, 13);
             this.lblCuit.TabIndex = 10;
@@ -663,7 +688,7 @@
             // lblDireccion
             // 
             this.lblDireccion.AutoSize = true;
-            this.lblDireccion.Location = new System.Drawing.Point(8, 93);
+            this.lblDireccion.Location = new System.Drawing.Point(8, 104);
             this.lblDireccion.Name = "lblDireccion";
             this.lblDireccion.Size = new System.Drawing.Size(55, 13);
             this.lblDireccion.TabIndex = 9;
@@ -672,7 +697,7 @@
             // lblCiudad
             // 
             this.lblCiudad.AutoSize = true;
-            this.lblCiudad.Location = new System.Drawing.Point(8, 129);
+            this.lblCiudad.Location = new System.Drawing.Point(17, 132);
             this.lblCiudad.Name = "lblCiudad";
             this.lblCiudad.Size = new System.Drawing.Size(43, 13);
             this.lblCiudad.TabIndex = 8;
@@ -681,7 +706,7 @@
             // lblProvincia
             // 
             this.lblProvincia.AutoSize = true;
-            this.lblProvincia.Location = new System.Drawing.Point(228, 128);
+            this.lblProvincia.Location = new System.Drawing.Point(284, 130);
             this.lblProvincia.Name = "lblProvincia";
             this.lblProvincia.Size = new System.Drawing.Size(54, 13);
             this.lblProvincia.TabIndex = 7;
@@ -690,46 +715,54 @@
             // lblCp
             // 
             this.lblCp.AutoSize = true;
-            this.lblCp.Location = new System.Drawing.Point(441, 129);
+            this.lblCp.Location = new System.Drawing.Point(263, 156);
             this.lblCp.Name = "lblCp";
             this.lblCp.Size = new System.Drawing.Size(75, 13);
             this.lblCp.TabIndex = 6;
             this.lblCp.Text = "Código Postal:";
             // 
-            // lblTotalVar
+            // ckbxRegistrar
             // 
-            this.lblTotalVar.AutoSize = true;
-            this.lblTotalVar.Location = new System.Drawing.Point(519, 96);
-            this.lblTotalVar.Name = "lblTotalVar";
-            this.lblTotalVar.Size = new System.Drawing.Size(13, 13);
-            this.lblTotalVar.TabIndex = 28;
-            this.lblTotalVar.Text = "0";
+            this.ckbxRegistrar.AutoSize = true;
+            this.ckbxRegistrar.Location = new System.Drawing.Point(429, 25);
+            this.ckbxRegistrar.Name = "ckbxRegistrar";
+            this.ckbxRegistrar.Size = new System.Drawing.Size(103, 17);
+            this.ckbxRegistrar.TabIndex = 39;
+            this.ckbxRegistrar.Text = "Registrar Cliente";
+            this.ckbxRegistrar.UseVisualStyleBackColor = true;
             // 
-            // btnCalcular
+            // lblBuscarCli
             // 
-            this.btnCalcular.Location = new System.Drawing.Point(522, 120);
-            this.btnCalcular.Name = "btnCalcular";
-            this.btnCalcular.Size = new System.Drawing.Size(75, 23);
-            this.btnCalcular.TabIndex = 29;
-            this.btnCalcular.Text = "Calcular";
-            this.btnCalcular.UseVisualStyleBackColor = true;
-            this.btnCalcular.Click += new System.EventHandler(this.btnCalcular_Click);
+            this.lblBuscarCli.AutoSize = true;
+            this.lblBuscarCli.Location = new System.Drawing.Point(41, 26);
+            this.lblBuscarCli.Name = "lblBuscarCli";
+            this.lblBuscarCli.Size = new System.Drawing.Size(103, 13);
+            this.lblBuscarCli.TabIndex = 40;
+            this.lblBuscarCli.Text = "Buscar Cliente (DNI)";
+            // 
+            // txtBusqCli
+            // 
+            this.txtBusqCli.Location = new System.Drawing.Point(150, 23);
+            this.txtBusqCli.Name = "txtBusqCli";
+            this.txtBusqCli.Size = new System.Drawing.Size(188, 20);
+            this.txtBusqCli.TabIndex = 42;
+            this.txtBusqCli.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusqCli_KeyPress);
             // 
             // frmPedidoClienteCierre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 621);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tlpCierrePedido);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmPedidoClienteCierre";
             this.Text = "Cierre de Pedido Cliente (Leandro Jorge)";
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tlpCierrePedido.ResumeLayout(false);
             this.pnlButtons.ResumeLayout(false);
             this.gbxArticulos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosVenta)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tlpComprobCli.ResumeLayout(false);
             this.gbxComprobante.ResumeLayout(false);
             this.gbxComprobante.PerformLayout();
             this.gbxObservComprob.ResumeLayout(false);
@@ -742,13 +775,13 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tlpCierrePedido;
         private System.Windows.Forms.GroupBox gbxArticulos;
         internal System.Windows.Forms.DataGridView dgvArticulosVenta;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Button btnEmitir;
         private System.Windows.Forms.Panel pnlButtons;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tlpComprobCli;
         private System.Windows.Forms.GroupBox gbxComprobante;
         private System.Windows.Forms.GroupBox gbxCliente;
         private System.Windows.Forms.DateTimePicker dtpFecha;
@@ -804,6 +837,9 @@
         private System.Windows.Forms.Label lblTotalSinIvaVar;
         private System.Windows.Forms.Label lblTotalVar;
         private System.Windows.Forms.Button btnCalcular;
+        private System.Windows.Forms.CheckBox ckbxRegistrar;
+        private System.Windows.Forms.TextBox txtBusqCli;
+        private System.Windows.Forms.Label lblBuscarCli;
     }
 }
 

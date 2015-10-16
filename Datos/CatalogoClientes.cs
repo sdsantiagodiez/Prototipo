@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    class CatalogoClientes : CatalogoPersonas
+    public class CatalogoClientes : CatalogoPersonas
     {
+        public Modelos.ModeloPersonas getCliente(string dni)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
