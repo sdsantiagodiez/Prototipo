@@ -50,14 +50,14 @@ namespace Modelos
             get { return _codigoPostal; }
             set { this._codigoPostal = value; }
         }
-        string _provincia;
-        public string provincia
+        ModeloProvincia _provincia;
+        public ModeloProvincia provincia
         {
             get { return _provincia; }
             set { this._provincia = value; }
         }
-        string _pais;
-        public string pais
+        ModeloPais _pais;
+        public ModeloPais pais
         {
             get { return _pais; }
             set { this._pais = value; }

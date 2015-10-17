@@ -43,18 +43,38 @@ namespace Vista
                 if (ckbxRegistrar.Checked)
                 {
                     //creo el nuevo cliente
-                    //TODO -> Verificación de cadenas
+                    //TODO -> Verificación de cadenas, agregar tipo telefono
                     ModeloPersonas newCli = new ModeloPersonas();
                     newCli.nombre = txtNombre.Text;
                     newCli.apellido = txtApellido.Text;
                     newCli.dni = txtDni.Text;
-                    newCli.cuit = txtCuit.Text;
-                    newCli.direccion = txtDireccion.Text;
-                    newCli.mail.mailPers = txtMail.Text;
-                    newCli.telefono = txtTelefono.Text;
-                    newCli.ciudad = txtCiudad.Text;
-                    newCli.provincia = txtProvincia.Text;
-                    newCli.codigoPostal = txtCp.Text;
+
+                    ModeloTelefono newTel = new ModeloTelefono();
+                    newTel.numero = this.txtNro.Text;
+                    newCli.telefonos.Add(newTel);
+
+                    ModeloMail newMail = new ModeloMail();
+                    newMail.mail = this.txtMail.Text;
+                    newCli.mails.Add(newMail);
+
+                    //TODO -> LLENADO DE COMBOBOXES
+                    ModeloDomicilio newDomicilio = new ModeloDomicilio();
+                        ModeloPais newPais = new ModeloPais();
+                        newPais.codigo = (string)this.cbxPais.SelectedValue;
+                        newPais.pais = this.cbxPais.SelectedText;
+                        newDomicilio.pais = newPais;
+
+                        ModeloProvincia newProvincia = new ModeloProvincia();
+                        newProvincia.codigo = (string)this.cbxProvincia.SelectedValue;
+                        newProvincia.provincia = (string)this.cbxProvincia.SelectedText;
+                        newDomicilio.provincia = newProvincia;
+                    newDomicilio.ciudad = this.txtCiudad.Text;
+                    newDomicilio.calle = this.txtCalle.Text;
+                    newDomicilio.numero = this.txtNro.Text;
+                    newDomicilio.piso = this.txtPiso.Text;
+                    newDomicilio.departamento = this.txtDepto.Text;
+                    newDomicilio.codigoPostal = this.txtCp.Text;
+                    newCli.domicilios.Add(newDomicilio);
 
                     ctrlVenta.addClient(newCli);
                 }
@@ -229,17 +249,39 @@ namespace Vista
                 //busco al cliente de la base de datos
                 ModeloPersonas cliente = ctrlVenta.getCliente(txtBusqCli.Text);
 
-                //lleno textboxs
-                this.txtNombre.Text = cliente.nombre;
-                this.txtApellido.Text = cliente.apellido;
-                this.txtDni.Text = cliente.dni;
-                this.txtCuit.Text = cliente.cuit;
-                this.txtDireccion.Text = cliente.direccion;
-                this.txtMail.Text = cliente.mail.mailPers;
-                this.txtTelefono.Text = cliente.telefono;
-                this.txtCiudad.Text = cliente.ciudad;
-                this.txtProvincia.Text = cliente.provincia;
-                this.txtCp.Text = cliente.codigoPostal;
+                // reporto resultado
+                if (!object.Equals(cliente, null))
+                {
+                    //lleno textboxs
+                    int latest;
+                    this.txtNombre.Text = cliente.nombre;
+                    this.txtApellido.Text = cliente.apellido;
+                    this.txtDni.Text = cliente.dni;
+                    
+                    latest = cliente.telefonos.Count - 1;
+                    this.txtTelefono.Text = cliente.telefonos[latest].numero;
+
+                    latest = cliente.mails.Count - 1;
+                    this.txtMail.Text = cliente.mails[latest].mail;
+
+                    latest = cliente.domicilios.Count - 1;
+                    //TODO -> comboboxes pais y provincia, el texto es la desc, el value es el código, tengo que pedirlos todos a la bd
+                    //this.txtPais.Text = cliente.domicilios[latest].pais.pais;
+                    //this.txtProvincia.Text = cliente.domicilios[latest].provincia.provincia;
+                    this.txtCiudad.Text = cliente.domicilios[latest].ciudad;
+                    this.txtCalle.Text = cliente.domicilios[latest].calle;
+                    this.txtNro.Text = cliente.domicilios[latest].numero;
+                    this.txtPiso.Text = cliente.domicilios[latest].piso;
+                    this.txtDepto.Text = cliente.domicilios[latest].departamento;
+                    this.txtCp.Text = cliente.domicilios[latest].codigoPostal;
+                    //TODO -> AGREGAR TIPO DE TELEFONO
+                }
+                else
+                {
+                    MessageBox.Show("Cliente inexistente");
+                    this.txtDni.Text = this.txtBusqCli.Text;
+                    this.txtBusqCli.Text = "";
+                }
             }
         }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
-    class ModeloProvincia
+    public class ModeloProvincia
     {
         string _codigo;
         public string codigo
@@ -19,12 +19,6 @@ namespace Modelos
         {
             get { return _provincia; }
             set { this._provincia = value; }
-        }
-        string _pais;
-        public string pais
-        {
-            get { return _pais; }
-            set { this._pais = value; }
         }
     }
 }
