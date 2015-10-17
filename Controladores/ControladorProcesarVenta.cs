@@ -97,5 +97,15 @@ namespace Controladores
             CatalogoPersonas catPer = new CatalogoPersonas();
             catPer.agregarNuevaEntidad(newCli);
         }
+
+        public List<ModeloPais> getPaises()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ModeloProvincia> getProvincias()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

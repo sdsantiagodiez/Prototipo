@@ -23,6 +23,38 @@ namespace Vista
         {
             InitializeComponent();
             this.dgvArticulosVenta.AutoGenerateColumns = false;
+
+            //Populo combobox de paises
+            List<ModeloPais> paises = ctrlVenta.getPaises();
+            this.cbxPais.DataSource = paises;
+            this.cbxPais.DisplayMember = "pais";
+            this.cbxPais.ValueMember = "codigo";
+
+            //Lo hago read only
+            this.cbxPais.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            //Populo combobox de provincias
+            List<ModeloProvincia> provincias = ctrlVenta.getProvincias();
+            this.cbxProvincia.DataSource = provincias;
+            this.cbxProvincia.DisplayMember = "provincia";
+            this.cbxProvincia.ValueMember = "codigo";
+
+            //Lo hago read only
+            this.cbxProvincia.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            //Creo lista Tipos de teléfono
+            var dataSource = new List<Tel>();
+            dataSource.Add(new Tel() { Name = "Fijo", Value = "TEL" });
+            dataSource.Add(new Tel() { Name = "Celular", Value = "CEL" });
+            dataSource.Add(new Tel() { Name = "Fax", Value = "FAX" });
+
+            //Binding de telefonos
+            this.cbxTipoTel.DataSource = dataSource;
+            this.cbxTipoTel.DisplayMember = "Name";
+            this.cbxTipoTel.ValueMember = "Value";
+
+            //Lo hago read only
+            this.cbxTipoTel.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -48,6 +80,7 @@ namespace Vista
                     newCli.nombre = txtNombre.Text;
                     newCli.apellido = txtApellido.Text;
                     newCli.dni = txtDni.Text;
+                    newCli.observaciones = rtbObsCliente.Text;
 
                     ModeloTelefono newTel = new ModeloTelefono();
                     newTel.numero = this.txtNro.Text;
@@ -66,7 +99,7 @@ namespace Vista
 
                         ModeloProvincia newProvincia = new ModeloProvincia();
                         newProvincia.codigo = (string)this.cbxProvincia.SelectedValue;
-                        newProvincia.provincia = (string)this.cbxProvincia.SelectedText;
+                        newProvincia.provincia = this.cbxProvincia.SelectedText;
                         newDomicilio.provincia = newProvincia;
                     newDomicilio.ciudad = this.txtCiudad.Text;
                     newDomicilio.calle = this.txtCalle.Text;
@@ -257,6 +290,7 @@ namespace Vista
                     this.txtNombre.Text = cliente.nombre;
                     this.txtApellido.Text = cliente.apellido;
                     this.txtDni.Text = cliente.dni;
+                    this.rtbObsCliente.Text = cliente.observaciones;
                     
                     latest = cliente.telefonos.Count - 1;
                     this.txtTelefono.Text = cliente.telefonos[latest].numero;
@@ -284,5 +318,11 @@ namespace Vista
                 }
             }
         }
+    }
+    //clase para llenar combo box categoria a buscar
+    private class Tel
+    {
+        public string Name { get; set; }
+        public string Value { get; set; }
     }
 }

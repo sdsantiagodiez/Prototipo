@@ -310,7 +310,7 @@ namespace Vista
     }
 
     //clase para llenar combo box categoria a buscar
-    public class Categ
+    private class Categ
     {
         public string Name { get; set; }
         public string Value { get; set; }
