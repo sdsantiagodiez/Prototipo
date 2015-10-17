@@ -84,13 +84,13 @@ namespace Vista
 
                     ModeloTelefono newTel = new ModeloTelefono();
                     newTel.numero = this.txtNro.Text;
+                    newTel.tipo = (string)this.cbxTipoTel.SelectedValue;
                     newCli.telefonos.Add(newTel);
 
                     ModeloMail newMail = new ModeloMail();
                     newMail.mail = this.txtMail.Text;
                     newCli.mails.Add(newMail);
 
-                    //TODO -> LLENADO DE COMBOBOXES
                     ModeloDomicilio newDomicilio = new ModeloDomicilio();
                         ModeloPais newPais = new ModeloPais();
                         newPais.codigo = (string)this.cbxPais.SelectedValue;
@@ -299,7 +299,6 @@ namespace Vista
                     this.txtMail.Text = cliente.mails[latest].mail;
 
                     latest = cliente.domicilios.Count - 1;
-                    //TODO -> comboboxes pais y provincia, el texto es la desc, el value es el código, tengo que pedirlos todos a la bd
                     //this.txtPais.Text = cliente.domicilios[latest].pais.pais;
                     //this.txtProvincia.Text = cliente.domicilios[latest].provincia.provincia;
                     this.txtCiudad.Text = cliente.domicilios[latest].ciudad;
