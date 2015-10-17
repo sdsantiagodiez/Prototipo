@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Modelos;
 using System.IO;
 using System.Data;
 using System.Data.SqlClient;
+using Modelos;
 using Datos;
 
 
@@ -43,7 +43,7 @@ namespace ConsoleTest
             //tc.generarProveedores();
             //tc.actualizarProveedores();
            // tc.generarArticulos(600);
-            tc.generarArticulosProveedores(5000);
+            //tc.generarArticulosProveedores(5000);
 
             /////////////////////////////////
             tc.salir();
