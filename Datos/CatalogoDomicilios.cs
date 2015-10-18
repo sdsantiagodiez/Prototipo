@@ -26,8 +26,10 @@ namespace Datos
             modDomicilio.piso = (drDomicilios["piso"] != DBNull.Value) ? (string)drDomicilios["piso"] : null;
             modDomicilio.ciudad = (drDomicilios["ciudad"] != DBNull.Value) ? (string)drDomicilios["ciudad"] : null;
             modDomicilio.codigoPostal = (drDomicilios["codigo_postal"] != DBNull.Value) ? (string)drDomicilios["codigo_postal"] : null;
-            modDomicilio.provincia = (drDomicilios["provincia"] != DBNull.Value) ? (string)drDomicilios["provincia"] : null;
-            modDomicilio.pais = (drDomicilios["pais"] != DBNull.Value) ? (string)drDomicilios["pais"] : null;
+            modDomicilio.provincia.codigo = (drDomicilios["codigo_provincia"] != DBNull.Value) ? (string)drDomicilios["codigo_provincia"] : null;
+            modDomicilio.provincia.provincia = (drDomicilios["provincia"] != DBNull.Value) ? (string)drDomicilios["provincia"] : null;
+            modDomicilio.pais.codigo = (drDomicilios["codigo_pais"] != DBNull.Value) ? (string)drDomicilios["codigo_pais"] : null;
+            modDomicilio.pais.pais = (drDomicilios["pais"] != DBNull.Value) ? (string)drDomicilios["pais"] : null;
 
             return modDomicilio;
         }
@@ -45,7 +47,8 @@ namespace Datos
             comando.CommandText =
                 "SELECT "+
                 "[domicilios_entidad].codigo_domicilio,[domicilios_entidad].calle,[domicilios_entidad].numero,[domicilios_entidad].piso, "+
-                "[domicilios_entidad].departamento, [domicilios_entidad].ciudad,[domicilios_entidad].codigo_postal,[provincias].provincia,[paises].pais " +
+                "[domicilios_entidad].departamento, [domicilios_entidad].ciudad,[domicilios_entidad].codigo_postal, "+
+                "[provincias].provincia, [provincias].codigo_provincia,[paises].pais, [paises].codigo " +
                     "FROM [domicilios_entidad] " +
                     "INNER JOIN [provincias] on [provincias].codigo_provincia = [domicilios_entidad].codigo_provincia " +
                     "INNER JOIN [paises] on [paises].codigo = [provincias].codigo_pais " +
@@ -80,8 +83,6 @@ namespace Datos
          */
         public bool agregarNuevaEntidad(ModeloDomicilio pmDomicilio, int pCodigoEntidad)
         {
-            CatalogoProvincias cProv = new CatalogoProvincias();
-            string codigoProvincia = cProv.getCodigoProvinciaPorNombre(pmDomicilio.provincia);
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -100,7 +101,7 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(pmDomicilio.departamento, "@departamento"));
             comando.Parameters.Add(this.instanciarParametro(pmDomicilio.ciudad, "@ciudad"));
             comando.Parameters.Add(this.instanciarParametro(pmDomicilio.codigoPostal, "@codigo_postal"));
-            comando.Parameters.Add(this.instanciarParametro(codigoProvincia, "@codigo_provincia"));
+            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.provincia.codigo, "@codigo_provincia"));
             
 
             comando.Connection.Open();
@@ -119,9 +120,6 @@ namespace Datos
 
         public bool actualizarEntidad(ModeloDomicilio pmDomicilio)
         {
-            CatalogoProvincias cProv = new CatalogoProvincias();
-            string codigoProvinciaActual = cProv.getCodigoProvinciaPorNombre(pmDomicilio.provincia);
-
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -141,7 +139,7 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(pmDomicilio.departamento, "@departamento"));
             comando.Parameters.Add(this.instanciarParametro(pmDomicilio.ciudad, "@ciudad"));
             comando.Parameters.Add(this.instanciarParametro(pmDomicilio.codigoPostal, "@codigo_postal"));
-            comando.Parameters.Add(this.instanciarParametro(codigoProvinciaActual, "@codigo_provincia"));
+            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.provincia.codigo, "@codigo_provincia"));
             
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
