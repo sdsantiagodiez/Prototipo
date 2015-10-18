@@ -656,7 +656,7 @@
             "Santa Cruz",
             "Santa Fe",
             ""});
-            this.cmbBoxProvincia.Location = new System.Drawing.Point(427, 39);
+            this.cmbBoxProvincia.Location = new System.Drawing.Point(427, 41);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(91, 26);
             this.cmbBoxProvincia.TabIndex = 14;
@@ -815,7 +815,7 @@
             this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.48148F));
             this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.51852F));
-            this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tblLayoutPanelNumeroTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tblLayoutPanelNumeroTelefono.Controls.Add(this.btnAgregarNumeroTelefono, 3, 0);
             this.tblLayoutPanelNumeroTelefono.Controls.Add(this.txtBoxNumeroTelefono, 2, 0);
             this.tblLayoutPanelNumeroTelefono.Controls.Add(this.lblNumeroTelefono, 1, 0);
@@ -832,9 +832,9 @@
             // 
             this.btnAgregarNumeroTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAgregarNumeroTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarNumeroTelefono.Location = new System.Drawing.Point(277, 13);
+            this.btnAgregarNumeroTelefono.Location = new System.Drawing.Point(274, 13);
             this.btnAgregarNumeroTelefono.Name = "btnAgregarNumeroTelefono";
-            this.btnAgregarNumeroTelefono.Size = new System.Drawing.Size(28, 16);
+            this.btnAgregarNumeroTelefono.Size = new System.Drawing.Size(31, 16);
             this.btnAgregarNumeroTelefono.TabIndex = 10;
             this.btnAgregarNumeroTelefono.UseVisualStyleBackColor = true;
             this.btnAgregarNumeroTelefono.Click += new System.EventHandler(this.btnAgregarNumeroTelefono_Click);
@@ -842,9 +842,9 @@
             // txtBoxNumeroTelefono
             // 
             this.txtBoxNumeroTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNumeroTelefono.Location = new System.Drawing.Point(130, 9);
+            this.txtBoxNumeroTelefono.Location = new System.Drawing.Point(129, 9);
             this.txtBoxNumeroTelefono.Name = "txtBoxNumeroTelefono";
-            this.txtBoxNumeroTelefono.Size = new System.Drawing.Size(141, 24);
+            this.txtBoxNumeroTelefono.Size = new System.Drawing.Size(139, 24);
             this.txtBoxNumeroTelefono.TabIndex = 8;
             // 
             // lblNumeroTelefono
@@ -866,7 +866,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoNumeroTelefono.Location = new System.Drawing.Point(3, 8);
+            this.cmbBoxTipoNumeroTelefono.Location = new System.Drawing.Point(3, 10);
             this.cmbBoxTipoNumeroTelefono.Name = "cmbBoxTipoNumeroTelefono";
             this.cmbBoxTipoNumeroTelefono.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxTipoNumeroTelefono.TabIndex = 11;
@@ -876,7 +876,7 @@
             this.tblLayoutPanelMail.ColumnCount = 3;
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.47896F));
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.52103F));
-            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tblLayoutPanelMail.Controls.Add(this.lblMail, 0, 0);
             this.tblLayoutPanelMail.Controls.Add(this.txtBoxMail, 1, 0);
             this.tblLayoutPanelMail.Controls.Add(this.btnAgregarMail, 2, 0);
@@ -902,18 +902,18 @@
             // txtBoxMail
             // 
             this.txtBoxMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxMail.Location = new System.Drawing.Point(96, 9);
+            this.txtBoxMail.Location = new System.Drawing.Point(95, 9);
             this.txtBoxMail.Name = "txtBoxMail";
-            this.txtBoxMail.Size = new System.Drawing.Size(229, 24);
+            this.txtBoxMail.Size = new System.Drawing.Size(227, 24);
             this.txtBoxMail.TabIndex = 8;
             // 
             // btnAgregarMail
             // 
             this.btnAgregarMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAgregarMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarMail.Location = new System.Drawing.Point(331, 13);
+            this.btnAgregarMail.Location = new System.Drawing.Point(328, 13);
             this.btnAgregarMail.Name = "btnAgregarMail";
-            this.btnAgregarMail.Size = new System.Drawing.Size(35, 16);
+            this.btnAgregarMail.Size = new System.Drawing.Size(38, 16);
             this.btnAgregarMail.TabIndex = 10;
             this.btnAgregarMail.UseVisualStyleBackColor = true;
             this.btnAgregarMail.Click += new System.EventHandler(this.btnAgregarMail_Click);
