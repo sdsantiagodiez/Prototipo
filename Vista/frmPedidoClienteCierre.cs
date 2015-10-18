@@ -18,14 +18,19 @@ namespace Vista
         private List<ModeloLineaPedido> ventaActual;
         public bool emitido = false;
         private ControladorProcesarVenta ctrlVenta;
+        private List<ModeloPais> paises;
+        private List<ModeloProvincia> provincias;
+        private ModeloPersonas cliente;
         
+        
+        #region Instanciaciones
         public frmPedidoClienteCierre()
         {
             InitializeComponent();
             this.dgvArticulosVenta.AutoGenerateColumns = false;
 
             //Populo combobox de paises
-            List<ModeloPais> paises = ctrlVenta.getPaises();
+            paises = ctrlVenta.getPaises();
             this.cbxPais.DataSource = paises;
             this.cbxPais.DisplayMember = "pais";
             this.cbxPais.ValueMember = "codigo";
@@ -34,7 +39,7 @@ namespace Vista
             this.cbxPais.DropDownStyle = ComboBoxStyle.DropDownList;
 
             //Populo combobox de provincias
-            List<ModeloProvincia> provincias = ctrlVenta.getProvincias();
+            provincias = ctrlVenta.getProvincias();
             this.cbxProvincia.DataSource = provincias;
             this.cbxProvincia.DisplayMember = "provincia";
             this.cbxProvincia.ValueMember = "codigo";
@@ -57,6 +62,17 @@ namespace Vista
             this.cbxTipoTel.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
+        internal void detalleVenta(ControladorProcesarVenta instanciaCtrl)
+        {
+            this.ctrlVenta = instanciaCtrl;
+            this.ventaActual = ctrlVenta.getVentaActual();
+            var bindingList = new BindingList<ModeloLineaPedido>(this.ventaActual);
+            var source = new BindingSource(bindingList, null);
+            this.dgvArticulosVenta.DataSource = source;
+        }
+        #endregion
+
+        #region Botones
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -70,12 +86,12 @@ namespace Vista
             {
                 //descuento stock
                 //ctrlVenta.cerrarPedido(ventaActual);
-                
+
                 //checkeo registro de cliente nuevo
                 if (ckbxRegistrar.Checked)
                 {
                     //creo el nuevo cliente
-                    //TODO -> Verificación de cadenas, agregar tipo telefono
+                    //TODO -> Verificación de cadenas
                     ModeloPersonas newCli = new ModeloPersonas();
                     newCli.nombre = txtNombre.Text;
                     newCli.apellido = txtApellido.Text;
@@ -92,15 +108,15 @@ namespace Vista
                     newCli.mails.Add(newMail);
 
                     ModeloDomicilio newDomicilio = new ModeloDomicilio();
-                        ModeloPais newPais = new ModeloPais();
-                        newPais.codigo = (string)this.cbxPais.SelectedValue;
-                        newPais.pais = this.cbxPais.SelectedText;
-                        newDomicilio.pais = newPais;
+                    ModeloPais newPais = new ModeloPais();
+                    newPais.codigo = (string)this.cbxPais.SelectedValue;
+                    newPais.pais = this.cbxPais.SelectedText;
+                    newDomicilio.pais = newPais;
 
-                        ModeloProvincia newProvincia = new ModeloProvincia();
-                        newProvincia.codigo = (string)this.cbxProvincia.SelectedValue;
-                        newProvincia.provincia = this.cbxProvincia.SelectedText;
-                        newDomicilio.provincia = newProvincia;
+                    ModeloProvincia newProvincia = new ModeloProvincia();
+                    newProvincia.codigo = (string)this.cbxProvincia.SelectedValue;
+                    newProvincia.provincia = this.cbxProvincia.SelectedText;
+                    newDomicilio.provincia = newProvincia;
                     newDomicilio.ciudad = this.txtCiudad.Text;
                     newDomicilio.calle = this.txtCalle.Text;
                     newDomicilio.numero = this.txtNro.Text;
@@ -118,20 +134,12 @@ namespace Vista
                 emitido = true;
                 this.Close();
             }
-            
-        }       
-    
-        internal void detalleVenta(ControladorProcesarVenta instanciaCtrl)
-        {
-            this.ctrlVenta = instanciaCtrl;
- 	        this.ventaActual = ctrlVenta.getVentaActual();
-            var bindingList = new BindingList<ModeloLineaPedido>(this.ventaActual);
-            var source = new BindingSource(bindingList, null);
-            this.dgvArticulosVenta.DataSource = source;
+
         }
 
         private void btnCalcular_Click(object sender, EventArgs e)
         {
+            //no funciona bien
             this.lblTotalSinIvaVar.Text = ctrlVenta.getTotal();
             Decimal totalNeto = Decimal.Parse(ctrlVenta.getTotal());
             int ivaPorc = Int32.Parse(txtIvaPorc.Text);
@@ -141,6 +149,39 @@ namespace Vista
             this.lblTotalVar.Text = total.ToString("0.##");
         }
 
+        private void btnSelTel_Click(object sender, EventArgs e)
+        {
+            frmSeleccion frmSel = new frmSeleccion();
+            frmSel.bindList(cliente.telefonos);
+            frmSel.Show();
+            this.txtTelefono.Text = cliente.telefonos[frmSel.selectedIndex].numero;
+        }
+
+        private void btnSelMail_Click(object sender, EventArgs e)
+        {
+            frmSeleccion frmSel = new frmSeleccion();
+            frmSel.bindList(cliente.mails);
+            frmSel.Show();
+            this.txtMail.Text = cliente.mails[frmSel.selectedIndex].mail;
+        }
+
+        private void btnSelDom_Click(object sender, EventArgs e)
+        {
+            frmSeleccion frmSel = new frmSeleccion();
+            frmSel.bindList(cliente.domicilios);
+            frmSel.Show();
+            this.cbxPais.SelectedIndex = paises.IndexOf(cliente.domicilios[frmSel.selectedIndex].pais);
+            this.cbxProvincia.SelectedIndex = provincias.IndexOf(cliente.domicilios[frmSel.selectedIndex].provincia);
+            this.txtCiudad.Text = cliente.domicilios[frmSel.selectedIndex].ciudad;
+            this.txtCalle.Text = cliente.domicilios[frmSel.selectedIndex].calle;
+            this.txtNro.Text = cliente.domicilios[frmSel.selectedIndex].numero;
+            this.txtPiso.Text = cliente.domicilios[frmSel.selectedIndex].piso;
+            this.txtDepto.Text = cliente.domicilios[frmSel.selectedIndex].departamento;
+            this.txtCp.Text = cliente.domicilios[frmSel.selectedIndex].codigoPostal;
+        }
+        #endregion
+
+        #region Impresión
         private void print()
         {
             PrintDialog pd = new PrintDialog();
@@ -192,7 +233,7 @@ namespace Vista
             graphics.DrawString("No. Factura: " + this.txtNroComp.Text,
                      new Font("Courier New", 14),
                      new SolidBrush(Color.Black), startX, startY + Offset);
-            
+
             Offset = Offset + 20;
             graphics.DrawString("Forma de pago: " + this.cbxFormaPago.Text,
                      new Font("Courier New", 14),
@@ -225,7 +266,7 @@ namespace Vista
 
             Offset = Offset + 20;
             String underLine = "------------------------------------------";
-            graphics.DrawString(underLine, 
+            graphics.DrawString(underLine,
                      new Font("Courier New", 10),
                      new SolidBrush(Color.Black), startX, startY + Offset);
 
@@ -242,7 +283,7 @@ namespace Vista
 
             Offset = Offset + 20;
             underLine = "------------------------------------------";
-            graphics.DrawString(underLine, 
+            graphics.DrawString(underLine,
                      new Font("Courier New", 10),
                      new SolidBrush(Color.Black), startX, startY + Offset);
 
@@ -263,16 +304,18 @@ namespace Vista
             }
 
             Offset = Offset + 20;
-            graphics.DrawString("Total : " + ctrlVenta.getTotal(), 
+            graphics.DrawString("Total : " + ctrlVenta.getTotal(),
                      new Font("Courier New", 10),
                      new SolidBrush(Color.Black), startX, startY + Offset);
-            
+
             Offset = Offset + 20;
-            graphics.DrawString("Cajero: " + "Ronald McDonald", 
+            graphics.DrawString("Cajero: " + "Ronald McDonald",
                      new Font("Courier New", 10),
                      new SolidBrush(Color.Black), startX, startY + Offset);
         }
+        #endregion
 
+        #region Búsqueda
         private void txtBusqCli_KeyPress(object sender, KeyPressEventArgs e)
         {
             //TODO -> Validar cadena de entrada
@@ -280,7 +323,7 @@ namespace Vista
             if (e.KeyChar == (char)Keys.Enter)
             {
                 //busco al cliente de la base de datos
-                ModeloPersonas cliente = ctrlVenta.getCliente(txtBusqCli.Text);
+                cliente = ctrlVenta.getCliente(txtBusqCli.Text);
 
                 // reporto resultado
                 if (!object.Equals(cliente, null))
@@ -291,23 +334,32 @@ namespace Vista
                     this.txtApellido.Text = cliente.apellido;
                     this.txtDni.Text = cliente.dni;
                     this.rtbObsCliente.Text = cliente.observaciones;
-                    
+
                     latest = cliente.telefonos.Count - 1;
                     this.txtTelefono.Text = cliente.telefonos[latest].numero;
+                    switch (cliente.telefonos[latest].tipo)
+                    {
+                        case "TEL": this.cbxTipoTel.SelectedIndex = 0; break;
+                        case "CEL": this.cbxTipoTel.SelectedIndex = 1; break;
+                        case "FAX": this.cbxTipoTel.SelectedIndex = 2; break;
+                        default: break;
+                    }
 
                     latest = cliente.mails.Count - 1;
                     this.txtMail.Text = cliente.mails[latest].mail;
 
                     latest = cliente.domicilios.Count - 1;
-                    //this.txtPais.Text = cliente.domicilios[latest].pais.pais;
-                    //this.txtProvincia.Text = cliente.domicilios[latest].provincia.provincia;
+                    this.cbxPais.SelectedIndex = paises.IndexOf(cliente.domicilios[latest].pais);
+                    this.cbxProvincia.SelectedIndex = provincias.IndexOf(cliente.domicilios[latest].provincia);
                     this.txtCiudad.Text = cliente.domicilios[latest].ciudad;
                     this.txtCalle.Text = cliente.domicilios[latest].calle;
                     this.txtNro.Text = cliente.domicilios[latest].numero;
                     this.txtPiso.Text = cliente.domicilios[latest].piso;
                     this.txtDepto.Text = cliente.domicilios[latest].departamento;
                     this.txtCp.Text = cliente.domicilios[latest].codigoPostal;
-                    //TODO -> AGREGAR TIPO DE TELEFONO
+
+                    //muestro botonera de seleccion
+                    this.pnlSelectButtons.Visible = true;
                 }
                 else
                 {
@@ -317,9 +369,13 @@ namespace Vista
                 }
             }
         }
+        #endregion
+
+
     }
+   
     //clase para llenar combo box categoria a buscar
-    private class Tel
+    class Tel
     {
         public string Name { get; set; }
         public string Value { get; set; }

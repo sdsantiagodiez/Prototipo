@@ -34,11 +34,6 @@ namespace Controladores
             throw new NotImplementedException();
         }
 
-        public void print()
-        {
-            throw new NotImplementedException();
-        }
-
         public void crearPedido()
         {
             this.artVentaActual = new List<ModeloLineaPedido>();
