@@ -16,5 +16,11 @@ namespace Modelos
             set { this._razonSocial = value; }
         }
        #endregion
+
+        new public void convertirDatos()
+        {
+            base.convertirDatos();
+            razonSocial = this.convertirString(razonSocial);
+        }
    }
 }

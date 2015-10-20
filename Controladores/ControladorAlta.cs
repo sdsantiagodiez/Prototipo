@@ -153,11 +153,13 @@ namespace Controladores
             //Si nombreDeUsuario existe, se entra en la iteración para agregar un número al final
             //del usuario hasta que usuario no exista
             CatalogoPersonas cp = new CatalogoPersonas();
-            for (int i = 1; cp.getOnePorUsuario(nombreDeUsuario) != null; i++)
+            ModeloPersonas mPersonaBusqueda = new ModeloPersonas();
+            for (int i = 1; cp.buscarPersona(mPersonaBusqueda,"usuario").Count >=1 ; i++)
             {
                 //se vuelve a instanciar para que sólo cambie el número al final
                 nombreDeUsuario = "";
                 nombreDeUsuario = (pNombre[0] + pApellido + i.ToString()).ToLower();
+                mPersonaBusqueda.usuario = nombreDeUsuario;
             }
             
             return nombreDeUsuario;

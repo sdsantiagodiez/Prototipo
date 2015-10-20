@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Modelos
 {
@@ -15,6 +16,7 @@ namespace Modelos
             this.telefonos = new List<ModeloTelefono>();
         }
 
+        #region Getters/Setters
         int _codigo;
         public int codigo
         {
@@ -61,6 +63,34 @@ namespace Modelos
             get { return _tipoEntidad; }
             set { this._tipoEntidad = value; }
         }
-        
+        #endregion
+
+        public void convertirDatos()
+        {
+            cuit = this.convertirString(cuit);
+        }
+
+        /// <summary>
+        /// Quita espacios
+        /// </summary>
+        /// <param name="pString"></param>
+        /// <returns></returns>
+        public string convertirString(string pString)
+        {
+            string stringConvertida = "";
+            if (pString != null)
+            {
+                stringConvertida = pString.Trim();
+                //Se remueven espacios dobles entre palabras
+                RegexOptions options = RegexOptions.None;
+                Regex regex = new Regex(@"[ ]{2,}", options);
+                stringConvertida = regex.Replace(stringConvertida, @" ");
+                if (stringConvertida == "")
+                {
+                    stringConvertida = null;
+                }
+            }
+            return stringConvertida;
+        }
     }
 }

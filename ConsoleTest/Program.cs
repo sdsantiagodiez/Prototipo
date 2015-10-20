@@ -317,7 +317,7 @@ namespace ConsoleTest
         {
             ModeloPersonas mp = new ModeloPersonas();
             CatalogoPersonas cp = new CatalogoPersonas();
-            mp = cp.getOnePorCodigo(codigoEntidad);
+            mp = cp.getOne(codigoEntidad);
             mp.nombre = "Santiago";
             cp.actualizarEntidad(mp);
         }

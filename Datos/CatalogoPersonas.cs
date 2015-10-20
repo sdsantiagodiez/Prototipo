@@ -13,8 +13,18 @@ namespace Datos
 {
     public class CatalogoPersonas : CatalogoEntidades
     {
-        //Se considera cliente a aquellos con usuario y contraseña = "" 
-        //y como usuario a aquellos que tengan completado el campo usuario y contraseña
+        /// <summary>
+        /// permite inicializar substring para consulta sql donde el valor del atributo 
+        /// </summary>
+        /// <param name="nombreParametro">Valor que luego es comparado con una celda de la tabla de datos</param>
+        /// <param name="nombreParametroTabla">nombre de la columna en tabla de datos</param>
+        /// <returns></returns>
+        private string parametroBusqueda(string nombreParametro, string nombreParametroTabla,string comparador)
+        {
+            string querySQL =
+                @" (" + nombreParametro + " IS NULL OR " + nombreParametro + " " + comparador + " " + "LOWER(" + nombreParametroTabla + ") ) ";
+            return querySQL;
+        }
 
         public bool validarDatos(ModeloPersonas persona)
         {
@@ -25,7 +35,7 @@ namespace Datos
         public bool existeEntidad(int codigoEntidad)
         {
             bool respuesta = false;
-            if (getOnePorCodigo(codigoEntidad) != null)
+            if (getOne(codigoEntidad) != null)
             {
                 respuesta = true;
             }
@@ -52,10 +62,159 @@ namespace Datos
             
             return modPer;
         }
-
-        //Verificar que funcione metodo en switch
+        //Si se usa para un login, se debe validar en el logIn que usuario y contraseña no sean Nulls porque sino da valores
         /// <summary>
-        /// Busca por dni, usuario(sólo usuarios), nombre, apellido o nombre y apellido y devuelve lista de Personas
+        /// Busca persona en base a todas sus variables
+        /// </summary>
+        /// <param name="pmPersona"></param>
+        /// <returns></returns>
+        public List<ModeloPersonas> buscarPersona(ModeloPersonas pmPersona)
+        {
+            List<ModeloPersonas> lmPersonas = new List<ModeloPersonas>();
+
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.Parameters.Add(this.instanciarParametro(pmPersona.codigo, "@codigo_entidad"));
+            string codigoEntidadQuery = @" (@codigo_entidad IS NULL OR @codigo_entidad = codigo_entidad) ";
+            comando.Parameters.Add(this.instanciarParametro(pmPersona.cuit, "@cuit"));
+            string cuitQuery = this.parametroBusqueda("@cuit", "cuit","=");
+            comando.Parameters.Add(this.instanciarParametro(pmPersona.dni, "@dni"));
+            string dniQuery = this.parametroBusqueda("@dni", "dni","=");
+            comando.Parameters.Add(this.instanciarParametro(pmPersona.nombre.ToLower(), "@nombre"));
+            string nombreQuery = this.parametroBusqueda("@nombre", "nombre","LIKE");
+            comando.Parameters.Add(this.instanciarParametro(pmPersona.apellido.ToLower(), "@apellido"));
+            string apellidoQuery = this.parametroBusqueda("@apellido", "apellido", "LIKE");
+            comando.Parameters.Add(this.instanciarParametro(pmPersona.usuario, "@usuario"));
+            string usuarioQuery = @" (@usuario IS NULL OR @usuario = usuario) ";
+            comando.Parameters.Add(this.instanciarParametro(pmPersona.contrasenia, "@contrasenia"));
+            string contraseniaQuery = @" (@contrasenia IS NULL OR @contrasenia = contrasenia) ";
+            comando.Parameters.Add(this.instanciarParametro(pmPersona.tipoPersona, "@tipo_persona"));
+            string tipoPersonaQuery = this.parametroBusqueda("@tipo_persona", "tipo_persona", "=");
+
+            string querySQL = codigoEntidadQuery +" AND " + cuitQuery + " AND " + dniQuery + " AND " + nombreQuery + " AND " + apellidoQuery + " AND " + usuarioQuery + " AND " + contraseniaQuery + " AND " + tipoPersonaQuery;
+
+            comando.CommandText =
+                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
+                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
+                    "FROM [personas] " +
+                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad" +
+                    "WHERE "+querySQL ;
+
+            comando.Connection.Open();
+
+            SqlDataReader drPersonas = comando.ExecuteReader();
+
+            ModeloPersonas modPer = new ModeloPersonas();
+            
+            while (drPersonas.Read())
+            {
+                modPer = new ModeloPersonas();
+                modPer = this.leerDatosPersonas(drPersonas);
+
+                modPer.mails = this.getMails(modPer.codigo);
+                modPer.telefonos = this.getTelefonos(modPer.codigo);
+                modPer.domicilios = this.getDomicilios(modPer.codigo);
+
+                lmPersonas.Add(modPer);
+            }
+            drPersonas.Close();
+            comando.Connection.Close();
+
+            return lmPersonas;
+        }
+
+        /// <summary>
+        /// Busca personas en base al parámetro ingresado
+        /// </summary>
+        /// <param name="pmPersona"></param>
+        /// <param name="paramentroBusqueda">cuit,dni,nombre,apellido,usuario,tipoPersona</param>
+        /// <returns></returns>
+        public List<ModeloPersonas> buscarPersona(ModeloPersonas pmPersona, string paramentroBusqueda)
+        {
+            List<ModeloPersonas> lmPersonas = new List<ModeloPersonas>();
+
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            string querySQL = "";
+
+            #region switch parametroBusqueda
+            switch (paramentroBusqueda.ToLower())
+            {
+                case "cuit":
+                    comando.Parameters.Add(this.instanciarParametro(pmPersona.cuit, "@cuit"));
+                    querySQL = " cuit = @cuit ";
+                    break;
+                case "dni":
+                    comando.Parameters.Add(this.instanciarParametro(pmPersona.dni, "@dni"));
+                    querySQL = " dni = @dni ";
+                    break;
+                case "nombre":
+                    comando.Parameters.Add(this.instanciarParametro(pmPersona.nombre, "@nombre"));
+                    querySQL = " nombre = @nombre ";
+                    break;
+                case "apellido":
+                    comando.Parameters.Add(this.instanciarParametro(pmPersona.apellido, "@apellido"));
+                    querySQL = " apellido = @apellido ";
+                    break;
+                case "usuario":
+                    comando.Parameters.Add(this.instanciarParametro(pmPersona.usuario, "@usuario"));
+                    querySQL = " usuario = @usuario ";
+                    break;
+                case "tipoPersona":
+                    comando.Parameters.Add(this.instanciarParametro(pmPersona.tipoPersona, "@tipo_persona"));
+                    querySQL = " tipo_persona = @tipo_persona ";
+                    break;
+                default:
+                    //hace que sql no retorne filas
+                    querySQL = "1 = 2";
+                    break;
+            }
+            #endregion
+            
+            comando.CommandText =
+                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
+                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
+                    "FROM [personas] " +
+                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad" +
+                    "WHERE " + querySQL;
+
+            comando.Connection.Open();
+
+            SqlDataReader drPersonas = comando.ExecuteReader();
+
+            ModeloPersonas modPer = new ModeloPersonas();
+
+            while (drPersonas.Read())
+            {
+                modPer = new ModeloPersonas();
+                modPer = this.leerDatosPersonas(drPersonas);
+
+                modPer.mails = this.getMails(modPer.codigo);
+                modPer.telefonos = this.getTelefonos(modPer.codigo);
+                modPer.domicilios = this.getDomicilios(modPer.codigo);
+
+                lmPersonas.Add(modPer);
+            }
+            drPersonas.Close();
+            comando.Connection.Close();
+
+            return lmPersonas;
+        }
+
+        //eliminarlos y reemplazarlos por los anteriores cuando se puedan probar
+        #region metodos de búsqueda obsoletos
+        /// <summary>
+        /// NO USAR!! usar método buscarPersona
         /// </summary>
         /// <param name="tipoPersona">"cliente" o "usuario"</param>
         /// <param name="tipoParametro">"dni", "nombre","apellido","nombreYapellido"(Considera ambos),"usuario"(Solo para tipo usuario)</param>
@@ -111,7 +270,12 @@ namespace Datos
 
             return pEncontradas;
         }
-
+        /// <summary>
+        /// NO USAR!! usar método buscarPersona
+        /// </summary>
+        /// <param name="tipoPersona"></param>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
         private List<ModeloPersonas> buscarPorNombre(string tipoPersona,string nombre)
         {
             //Creo la conexion y la abro
@@ -155,7 +319,12 @@ namespace Datos
 
             return pEncontradas;
         }
-        
+        /// <summary>
+        /// NO USAR!! usar método buscarPersona
+        /// </summary>
+        /// <param name="tipoPersona"></param>
+        /// <param name="apellido"></param>
+        /// <returns></returns>
         private List<ModeloPersonas> buscarPorApellido(string tipoPersona, string apellido)
         {
             //Creo la conexion y la abro
@@ -199,45 +368,11 @@ namespace Datos
 
             return pEncontradas;
         }
-
-        public ModeloPersonas getOnePorCodigo(int codigoEntidad)
-        {
-            ModeloPersonas modPersona = null;
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
-               "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
-                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
-                    "FROM [personas] " +
-                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad " +
-                    "WHERE [entidades].codigo = @codigo";
-            comando.Parameters.Add(new SqlParameter("@codigo", SqlDbType.Int));
-            comando.Parameters["@codigo"].Value = codigoEntidad;
-            comando.Connection.Open();
-
-            SqlDataReader drEntidades = comando.ExecuteReader();
-
-            while (drEntidades.Read())
-            {
-                modPersona = new ModeloPersonas();
-                modPersona = this.leerDatosPersonas(drEntidades);
-                modPersona.mails = this.getMails(modPersona.codigo);
-                modPersona.telefonos = this.getTelefonos(modPersona.codigo);
-                modPersona.domicilios = this.getDomicilios(modPersona.codigo);
-            }
-            drEntidades.Close();
-            comando.Connection.Close();
-
-            
-
-            return modPersona;
-        }
-        
+        /// <summary>
+        /// NO USAR!! usar método buscarPersona
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
         public ModeloPersonas getOnePorUsuario(string usuario)
         {
             ModeloPersonas modPer = null;
@@ -277,7 +412,11 @@ namespace Datos
 
             return modPer;
         }
-        
+        /// <summary>
+        /// NO USAR!! usar método buscarPersona
+        /// </summary>
+        /// <param name="dni"></param>
+        /// <returns></returns>
         public ModeloPersonas getOnePorDNI(string dni)
         {
 
@@ -319,6 +458,43 @@ namespace Datos
             comando.Connection.Close();
            
             return modPer;
+        }
+        #endregion
+
+        public ModeloPersonas getOne(int codigoEntidad)
+        {
+            ModeloPersonas modPersona = null;
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.CommandText =
+               "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
+                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
+                    "FROM [personas] " +
+                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad " +
+                    "WHERE [entidades].codigo = @codigo";
+            comando.Parameters.Add(new SqlParameter("@codigo", SqlDbType.Int));
+            comando.Parameters["@codigo"].Value = codigoEntidad;
+            comando.Connection.Open();
+
+            SqlDataReader drEntidades = comando.ExecuteReader();
+
+            while (drEntidades.Read())
+            {
+                modPersona = new ModeloPersonas();
+                modPersona = this.leerDatosPersonas(drEntidades);
+                modPersona.mails = this.getMails(modPersona.codigo);
+                modPersona.telefonos = this.getTelefonos(modPersona.codigo);
+                modPersona.domicilios = this.getDomicilios(modPersona.codigo);
+            }
+            drEntidades.Close();
+            comando.Connection.Close();
+
+            return modPersona;
         }
 
         public new List<ModeloPersonas> getAll()
@@ -526,8 +702,6 @@ namespace Datos
             return roles;
         }
         
-        
-
      }
 }
 

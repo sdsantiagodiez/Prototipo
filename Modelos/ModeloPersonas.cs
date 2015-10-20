@@ -61,5 +61,14 @@ namespace Modelos
             set { this._roles = value; }
         }
         #endregion
+
+        new public void convertirDatos()
+        {
+            base.convertirDatos();
+            dni = this.convertirString(dni);
+            nombre = this.convertirString(nombre);
+            apellido = this.convertirString(apellido);
+            usuario = this.convertirString(usuario);
+        }
     }
 }

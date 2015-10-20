@@ -17,8 +17,9 @@ namespace Controladores
             CatalogoProveedores cp = new CatalogoProveedores();
             
             List<ModeloProveedor> pActuales = new List<ModeloProveedor>();
-
-            pActuales = cp.buscarProveedores("cuit",pCuit);
+            ModeloProveedor mProveedor = new ModeloProveedor();
+            mProveedor.cuit = pCuit;
+            pActuales = cp.buscarProveedor(mProveedor,"cuit");
             detallesproveedor[0] = pActuales[1].razonSocial;
             detallesproveedor[1] = pActuales[1].cuit;
             /*REVISAR
