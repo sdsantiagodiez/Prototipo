@@ -18,19 +18,19 @@ namespace ConsoleTest
         #region script Valores
         /*
             --Ejecutar insert hasta obtener cantidad deseada
-            Insert into Valores_Venta(codigoArticuloProveedor, codigoOriginal) (
-            Select codigoArticuloProveedor, codigoOriginal from Articulos_Proveedores
+               Insert into Valores_Compra(codigo_articulo_proveedor, codigo_original) (
+            Select codigo_articulo_proveedor, codigo_original from Articulos_Proveedores
             );
 
             declare @FromDate date = '2011-01-01'
             declare @ToDate date = '2014-12-31'
 
-            update Valores_Venta 
-            set fechaValor = dateadd(day, 
-                           rand(checksum(newid()))*(1+datediff(day, @FromDate, @ToDate)), 
-                           @FromDate);
+            update Valores_Compra 
+            set fecha_valor = dateadd(day, 
+                            rand(checksum(newid()))*(1+datediff(day, @FromDate, @ToDate)), 
+                            @FromDate);
 
-            update Valores_Venta
+            update Valores_Compra
             SET valor = (ABS(CHECKSUM(NewId())) % 500);
          */
         #endregion
