@@ -82,11 +82,10 @@ namespace Controladores
 
         public ModeloPersonas getCliente(string dni)
         {
-            CatalogoPersonas catPer = new CatalogoPersonas();
-            //Ver si se puede cambiar a buscarlo por codigo entidad catPer.GetOne(codigoEntidad)
+            var contBusq = new ControladorBusqueda();
             ModeloPersonas per = new ModeloPersonas();
             per.dni = dni;
-            return catPer.buscarPersona(per,"dni")[0];
+            return contBusq.buscarPersonas(per,"dni")[0];
         }
 
         public void addClient(ModeloPersonas newCli)
@@ -97,14 +96,14 @@ namespace Controladores
 
         public List<ModeloPais> getPaises()
         {
-            var catPais = new CatalogoPaises();
-            return catPais.getAll();
+            var contBusq = new ControladorBusqueda();
+            return contBusq.buscarPaises();
         }
 
         public List<ModeloProvincia> getProvincias()
         {
-            var catProv = new CatalogoProvincias();
-            return catProv.getAll();
+            var contBusq = new ControladorBusqueda();
+            return contBusq.buscarProvincias();
         }
     }
 }
