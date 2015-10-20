@@ -8,6 +8,12 @@ namespace Modelos
 {
     public class ModeloDomicilio
     {
+        public ModeloDomicilio()
+        {
+            provincia = new ModeloProvincia();
+            pais = new ModeloPais();
+        }
+
         #region Getters/Setters
         int _codigoDomicilio;
         public int codigoDomicilio
