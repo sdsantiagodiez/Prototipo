@@ -461,7 +461,7 @@ namespace Datos
         }
         #endregion
 
-        public ModeloPersonas getOne(int codigoEntidad)
+        new public ModeloPersonas getOne(int codigoEntidad)
         {
             ModeloPersonas modPersona = null;
             //Creo la conexion y la abro

@@ -13,7 +13,22 @@ namespace Controladores
         #region Entidades
         
         #region Personas
-        public List<ModeloPersonas> buscar(ModeloPersonas pmPersona)
+        /// <summary>
+        /// Retorna todas las personas de la base de datos
+        /// </summary>
+        /// <returns>Lista de personas</returns>
+        public List<ModeloPersonas> buscarPersonas()
+        {
+            CatalogoPersonas cp = new CatalogoPersonas();
+            
+            return cp.getAll();
+        }
+        /// <summary>
+        /// Retorna personas en base a los valores inicializados en los atributos del modelo
+        /// </summary>
+        /// <param name="pmPersona"></param>
+        /// <returns>Lista de personas</returns>
+        public List<ModeloPersonas> buscarPersonas(ModeloPersonas pmPersona)
         {
             CatalogoPersonas cp = new CatalogoPersonas();
             pmPersona.convertirDatos();
@@ -23,22 +38,30 @@ namespace Controladores
             return lmPersonas;
         }
         /// <summary>
-        /// Busca personas que cumplan con un parámetro de búsqueda
+        /// Busca personas que cumplan con un parámetro de búsqueda o retorna todas si se especifica "all"
         /// </summary>
         /// <param name="pmPersona">Persona con variable a buscar inicializada con algún valor</param>
-        /// <param name="paramentroBusqueda">codigoEntidad,cuit,dni,nombre,apellido,usuario,tipoPersona</param>
+        /// <param name="paramentroBusqueda">all o codigoEntidad,cuit,dni,nombre,apellido,usuario,tipoPersona</param>
         /// <returns>Lista de personas</returns>
-        public List<ModeloPersonas> buscar(ModeloPersonas pmPersona, string paramentroBusqueda)
+        public List<ModeloPersonas> buscarPersonas(ModeloPersonas pmPersona, string paramentroBusqueda)
         {
             List<ModeloPersonas> lmPersonas = new List<ModeloPersonas>();
             CatalogoPersonas cp = new CatalogoPersonas();
-            if (paramentroBusqueda != "codigoEntidad")
+            if (paramentroBusqueda == "codigoEntidad")
             {
-                lmPersonas = cp.buscarPersona(pmPersona, paramentroBusqueda);
+                lmPersonas.Add(cp.getOne(pmPersona.codigo));
+                
             }
             else
             {
-                lmPersonas.Add(cp.getOne(pmPersona.codigo));
+                if (paramentroBusqueda == "all")
+                {
+                    lmPersonas = cp.getAll();
+                }
+                else
+                {
+                    lmPersonas = cp.buscarPersona(pmPersona, paramentroBusqueda);    
+                }
             }
             return lmPersonas;
         }
@@ -46,7 +69,22 @@ namespace Controladores
         #endregion
 
         #region Proveedores
-        public List<ModeloProveedor> buscar(ModeloProveedor pmProveedor)
+        /// <summary>
+        /// Retorna todos los proveedores de la base de datos
+        /// </summary>
+        /// <returns>Lista de personas</returns>
+        public List<ModeloProveedor> buscarProveedores()
+        {
+            CatalogoProveedores cp = new CatalogoProveedores();
+
+            return cp.getAll(); ;
+        }
+        /// <summary>
+        /// Retorna proveedores en base a los valores inicializados en los atributos del modelo
+        /// </summary>
+        /// <param name="pmProveedor"></param>
+        /// <returns>Lista de proveedores</returns>
+        public List<ModeloProveedor> buscarProveedores(ModeloProveedor pmProveedor)
         {
             CatalogoProveedores cp = new CatalogoProveedores();
             pmProveedor.convertirDatos();
@@ -55,16 +93,59 @@ namespace Controladores
             
             return lmProveedor;
         }
-
-        public List<ModeloProveedor> buscar(ModeloProveedor pmProveedor, string paramentroBusqueda)
+        /// <summary>
+        /// Busca proveedores que cumplan con un parámetro de búsqueda o retorna todas si se especifica "all"
+        /// </summary>
+        /// <param name="pmProveedor">Proveedor con variable a buscar inicializada con algún valor</param>
+        /// <param name="paramentroBusqueda">all o codigoEntidad,cuit,razonSocial</param>
+        /// <returns>Lista de proveedores</returns>
+        public List<ModeloProveedor> buscarProveedores(ModeloProveedor pmProveedor, string paramentroBusqueda)
         {
             List<ModeloProveedor> lmProveedor = new List<ModeloProveedor>();
-
+            CatalogoProveedores cp = new CatalogoProveedores();
+            if (paramentroBusqueda == "codigoEntidad")
+            {
+                lmProveedor.Add(cp.getOne(pmProveedor.codigo));    
+            }
+            else
+            {
+                if (paramentroBusqueda == "all")
+                {
+                    lmProveedor = cp.getAll();
+                }
+                else
+                {
+                    lmProveedor = cp.buscarProveedor(pmProveedor, paramentroBusqueda);    
+                }
+            }
+        
             return lmProveedor;
         }
 
         #endregion
 
+        #endregion
+        
+        #region Provincias
+        /// <summary>
+        /// Retorna todas las provincias de la base de datos
+        /// </summary>
+        /// <returns></returns>
+        public List<ModeloProvincia> buscarProvincias()
+        {
+            CatalogoProvincias cp = new CatalogoProvincias();
+
+            return cp.getAll();
+        }
+
+        #endregion
+
+        #region Paises
+        public List<ModeloPais> buscarPaises()
+        {
+            CatalogoPaises cp = new CatalogoPaises();
+            return cp.getAll();
+        }
         #endregion
     }
 }

@@ -20,5 +20,11 @@ namespace Modelos
             get { return _provincia; }
             set { this._provincia = value; }
         }
+        string _codigoPais;
+        public string codigoPais
+        {
+            get { return _codigoPais; }
+            set { _codigoPais = value; }
+        }
     }
 }
