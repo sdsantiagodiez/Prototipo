@@ -84,7 +84,9 @@ namespace Controladores
         {
             CatalogoPersonas catPer = new CatalogoPersonas();
             //Ver si se puede cambiar a buscarlo por codigo entidad catPer.GetOne(codigoEntidad)
-            return catPer.getOnePorDNI(dni);
+            ModeloPersonas per = new ModeloPersonas();
+            per.dni = dni;
+            return catPer.buscarPersona(per,"dni")[0];
         }
 
         public void addClient(ModeloPersonas newCli)
@@ -95,12 +97,14 @@ namespace Controladores
 
         public List<ModeloPais> getPaises()
         {
-            throw new NotImplementedException();
+            var catPais = new CatalogoPaises();
+            return catPais.getAll();
         }
 
         public List<ModeloProvincia> getProvincias()
         {
-            throw new NotImplementedException();
+            var catProv = new CatalogoProvincias();
+            return catProv.getAll();
         }
     }
 }

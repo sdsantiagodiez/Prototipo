@@ -28,6 +28,20 @@ namespace Vista
         {
             InitializeComponent();
             this.dgvArticulosVenta.AutoGenerateColumns = false;
+        }
+
+        public void detalleVenta(ControladorProcesarVenta ctrlProcVenta)
+        {
+            //Guardo el controlador de venta
+            this.ctrlVenta = ctrlProcVenta;
+
+            //busco la venta actual y la bindeo a dgv
+            this.ventaActual = ctrlVenta.getVentaActual();
+
+            var bindingList = new BindingList<ModeloLineaPedido>(this.ventaActual);
+            var source = new BindingSource(bindingList, null);
+            this.dgvArticulosVenta.DataSource = source;
+
 
             //Populo combobox de paises
             paises = ctrlVenta.getPaises();
@@ -60,15 +74,7 @@ namespace Vista
 
             //Lo hago read only
             this.cbxTipoTel.DropDownStyle = ComboBoxStyle.DropDownList;
-        }
 
-        internal void detalleVenta(ControladorProcesarVenta instanciaCtrl)
-        {
-            this.ctrlVenta = instanciaCtrl;
-            this.ventaActual = ctrlVenta.getVentaActual();
-            var bindingList = new BindingList<ModeloLineaPedido>(this.ventaActual);
-            var source = new BindingSource(bindingList, null);
-            this.dgvArticulosVenta.DataSource = source;
         }
         #endregion
 
