@@ -72,7 +72,46 @@ namespace Modelos
 
         public bool validar()
         {
+            return (this.validarCodigo() == true && this.validarCalle() == true && this.validarNumero() == true && this.validarPiso() == true &&
+                    this.validarDepartamento() == true && this.validarCiudad() == true && this.validarCodigoPostal() == true &&
+                    this.validarProvincia() == true && this.validarPais() == true);
+        }
+        public bool validarCodigo()
+        {
             return true;
         }
+        public bool validarCalle()
+        {
+            return true;
+        }
+        public bool validarNumero()
+        {
+            return true;
+        }
+        public bool validarPiso()
+        {
+            return true;
+        }
+        public bool validarDepartamento()
+        {
+            return true;
+        }
+        public bool validarCiudad()
+        {
+            return true;
+        }
+        public bool validarCodigoPostal()
+        {
+            return true;
+        }
+        public bool validarProvincia()
+        {
+            return provincia.validar();
+        }
+        public bool validarPais()
+        {
+            return pais.validar();
+        }
+
     }
 }

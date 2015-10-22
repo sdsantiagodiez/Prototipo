@@ -22,9 +22,15 @@ namespace Modelos
             set { this._mail = value; }
         }
         #endregion
+        
+
+        public bool validar()
+        {
+            return (this.validarMail() == true);
+        }
         //Validación básica (xxx@xxx.xxx)
         //No detecta signos como #, ?, etc.
-        public bool validarMail(string mail)
+        public bool validarMail()
         {
             try
             {
@@ -35,11 +41,6 @@ namespace Modelos
             {
                 return false;
             }
-        }
-
-        public bool validar()
-        {
-            return true;
         }
     }
 }

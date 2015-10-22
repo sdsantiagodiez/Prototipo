@@ -12,128 +12,7 @@ namespace Controladores
 {
     public class ControladorAlta : Controlador
     {
-        /*
-         * Revisar
-        public string altaEntidad(string[] pParametros)//pParametros esta conformado en primer lugar con 0-Articulos, 1-Proveedor, 2 Articulo Proveedor, 3 Cliente
-        {
-            string respuesta;
-            //Se crea el Catalogo de Articulos para interactuar con los Articulos
-           switch(Convert.ToChar(pParametros[0]))
-           {
-               case '0': //nuevo Articulo
-           CatalogoArticulos ca = new CatalogoArticulos();
-            #region Alta Articulo        
-           bool rta = ca.validarDatos(pParametros);
-
-            if (rta == false)//Validamos que los datos ingresados sean correctos
-            {
-                respuesta = "Los parametros ingresados no son válidos";
-            }
-            else
-            {
-                bool rta2 = ca.existeEntidad(pParametros);
-
-                if (rta2 == true)
-                { respuesta = "Entidad ya existente"; }
-                else
-                {
-                    Modelos.ModeloArticulos nuevaEnti = new Modelos.ModeloArticulos();// Pasarle parametros
-                    ca.agregarNuevaEntidad(nuevaEnti);
-                    respuesta = "Entidad Creada satisfactoriamente";
-
-                }
-            }
-            break;
-#endregion
-            
-               case '1'://nuevo Proveedor
-            CatalogoProveedores cp = new CatalogoProveedores();
-            #region Alta Proveedor
-            bool rtaprov = cp.validarDatos(pParametros);
-
-            if (rtaprov == false)//Validamos que los datos ingresados sean correctos
-            {
-                respuesta = "Los parametros ingresados no son válidos"; 
-            }
-            else
-            {
-                bool rta2 = cp.existeEntidad(pParametros);
-
-                if (rta2 == true)
-                { respuesta = "Entidad ya existente";  }
-                else
-                {
-                    Modelos.ModeloProveedores nuevaEnti = new Modelos.ModeloProveedores();// Pasarle parametros
-                    cp.agregarNuevaEntidad(nuevaEnti);
-                    respuesta = "Entidad Creada satisfactoriamente"; 
-
-                }
-            }
-            break;
-#endregion
-
-               case '2'://nuevo Articulo Proveedor
-           CatalogoArticuloProveedores cap = new CatalogoArticuloProveedores();
-            #region Alta Articulo Proveedor
-            bool rtaartprov = cap.validarDatos(pParametros);
-
-            if (rtaartprov == false)//Validamos que los datos ingresados sean correctos
-            {
-                respuesta = "Los parametros ingresados no son válidos";
-            }
-            else
-            {
-                bool rta2 = cap.existeEntidad(pParametros[2]);
-
-                if (rta2 == true)
-                { respuesta = "Entidad ya existente"; }
-                else
-                {
-                    Modelos.ModeloArticuloProveedores nuevaEnti = new Modelos.ModeloArticuloProveedores();// Pasarle parametros
-                    cap.agregarNuevaEntidad(nuevaEnti);
-                    respuesta = "Entidad Creada satisfactoriamente";
-
-                }
-            }
-            break;
-            #endregion
-
-               case '3'://nuevo Cliente
-            CatalogoPersonas cc = new CatalogoPersonas();
-            #region Alta Cliente
-            bool rtacli = cc.validarDatos(pParametros);
-
-            if (rtacli == false)//Validamos que los datos ingresados sean correctos
-            {
-                respuesta = "Los parametros ingresados no son válidos";
-            }
-            else
-            {
-                bool rta2 = cc.existeEntidad(pParametros);
-
-                if (rta2 == true)
-                { respuesta = "Entidad ya existente"; }
-                else
-                {
-                    Modelos.ModeloPersonas nuevaEnti = new Modelos.ModeloPersonas();// Pasarle parametros
-                    cc.agregarNuevaEntidad(nuevaEnti);
-                    respuesta = "Entidad Creada satisfactoriamente";
-
-                }
-            }
-            break;
-            #endregion
-
-
-               default: respuesta = "Error entidad"; break;
-           }
-            
-            
-            return respuesta;
-
-        }
-        */
-        
+        #region Entidades
         /// <summary>
         /// Genera nombre de usuario (REVISAR si es buena idea)
         /// </summary>
@@ -177,5 +56,20 @@ namespace Controladores
                 return false;
             }
         }
+
+        public bool agregarProveedor(ModeloProveedor pmProveedor)
+        {
+            CatalogoProveedores cp = new CatalogoProveedores();
+            if (pmProveedor.validar() == true)
+            {
+                return cp.agregarNuevaEntidad(pmProveedor);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
     }
 }

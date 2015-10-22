@@ -26,5 +26,25 @@ namespace Modelos
             get { return _codigoPais; }
             set { _codigoPais = value; }
         }
+        public bool validar()
+        {
+            return (this.validarCodigo() == true && this.validarCodigoPais() == true && this.validarProvincia() == true);
+        }
+        public bool validarCodigo()
+        {
+            return true;
+        }
+        public bool validarProvincia()
+        {
+            return true;
+        }
+        public bool validarCodigoPais()
+        {
+            ModeloPais mPais = new ModeloPais();
+            mPais.codigo = codigoPais;
+            return mPais.validarCodigo();
+        }
+        
+
     }
 }

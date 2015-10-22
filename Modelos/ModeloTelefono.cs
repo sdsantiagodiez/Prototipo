@@ -34,6 +34,19 @@ namespace Modelos
 
         public bool validar()
         {
+            return (this.validarCodigo() == true && this.validarTipo() == true && this.validarNumero() == true);
+        }
+
+        public bool validarCodigo()
+        {
+            return true;
+        }
+        public bool validarTipo()
+        {
+            return true;
+        }
+        public bool validarNumero()
+        {
             return true;
         }
     }

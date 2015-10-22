@@ -20,5 +20,17 @@ namespace Modelos
             get { return _pais; }
             set { this._pais = value; }
         }
+        public bool validar()
+        {
+            return (this.validarCodigo() == true && this.validarPais() == true);
+        }
+        public bool validarCodigo()
+        {
+            return true;
+        }
+        public bool validarPais()
+        {
+            return true;
+        }
     }
 }

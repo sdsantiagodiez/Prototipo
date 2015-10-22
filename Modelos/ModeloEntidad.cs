@@ -112,6 +112,18 @@ namespace Modelos
         {
             return true;
         }
+        public bool validarTipoEntidad()
+        {
+            if (tipoEntidad == "PER" || tipoEntidad == "PRO")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool validarTelefonos()
         {
             if (telefonos.Count > 0)
@@ -166,17 +178,7 @@ namespace Modelos
                 return true;
             }
         }
-        public bool validarTipoEntidad()
-        {
-            if(tipoEntidad == "PER" || tipoEntidad == "PRO")
-            {
-                return true;
-            }
-            else 
-            {
-                return false;
-            }
-        }
+        
 
     }
 }

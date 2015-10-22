@@ -102,7 +102,7 @@ namespace Datos
                 "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
                 "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
                     "FROM [personas] " +
-                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad" +
+                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad " +
                     "WHERE "+querySQL ;
 
             comando.Connection.Open();
@@ -435,8 +435,8 @@ namespace Datos
                 "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
                 "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
                     "FROM [personas] " +
-                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad" +
-                    "WHERE (dni=@DNI)";
+                    "INNER JOIN [entidades] on [entidades].codigo=[personas].codigo_entidad" +
+                    "WHERE ( dni = @DNI )";
 
             comando.Parameters.Add(new SqlParameter("@DNI", SqlDbType.VarChar));
             comando.Parameters["@DNI"].Value = dni;
