@@ -23,6 +23,21 @@ namespace Modelos
             set { this._descripcion = value; }
         }
         #endregion
+
+        public bool validar()
+        {
+            return (this.validarCodigo() == true && this.validarDescripcion() == true);
+        }
+
+        public bool validarDescripcion()
+        {
+            return true;
+        }
+        
+        public bool validarCodigo()
+        {
+            return true;
+        }
     }
 }
 

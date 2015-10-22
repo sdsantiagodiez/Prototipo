@@ -164,5 +164,18 @@ namespace Controladores
             
             return nombreDeUsuario;
         }
+
+        public bool agregarPersona(ModeloPersonas pmPersona)
+        {
+            CatalogoPersonas cp = new CatalogoPersonas();
+            if(pmPersona.validar() == true)
+            {
+                return cp.agregarNuevaEntidad(pmPersona);
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

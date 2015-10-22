@@ -70,5 +70,73 @@ namespace Modelos
             apellido = this.convertirString(apellido);
             usuario = this.convertirString(usuario);
         }
+        /// <summary>
+        /// Valida todos los atributos de la persona
+        /// </summary>
+        /// <returns>true si todos son válidos. False si al menos uno no es válido</returns>
+        new public bool validar()
+        {
+            return (base.validar() == true && this.validarDNI() == true && this.validarNombre() == true
+                && this.validarApellido() == true && this.validarUsuario() == true && this.validarContrasenia() == true
+                && this.validarRoles() == true && this.validarTipoPersona() == true);
+        }
+
+        public bool validarDNI()
+        {
+            return true;
+        }
+        public bool validarApellido()
+        {
+            return true;
+        }
+        public bool validarNombre()
+        {
+            return true;
+        }
+        public bool validarUsuario()
+        {
+            return true;
+        }
+        public bool validarContrasenia()
+        {
+            return true;
+        }
+        public bool validarRoles()
+        {
+            if(tipoPersona == "USR")
+            {
+                if(roles.Count > 0)
+                {
+                    foreach(ModeloRoles rol in roles)
+                    {
+                        if(rol.validar()== false )
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+                    //Usuario debe tener por lo menos 1 rol asignado
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool validarTipoPersona()
+        {
+            if(tipoPersona == "CLI" || tipoPersona == "USR" || tipoPersona == "CON")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

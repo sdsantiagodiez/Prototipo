@@ -36,5 +36,10 @@ namespace Modelos
                 return false;
             }
         }
+
+        public bool validar()
+        {
+            return true;
+        }
     }
 }

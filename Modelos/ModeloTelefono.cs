@@ -31,5 +31,10 @@ namespace Modelos
             set { this._tipo = value; }
         }
         #endregion
+
+        public bool validar()
+        {
+            return true;
+        }
     }
 }

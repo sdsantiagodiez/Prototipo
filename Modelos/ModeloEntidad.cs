@@ -92,5 +92,91 @@ namespace Modelos
             }
             return stringConvertida;
         }
+
+        public bool validar()
+        {
+            return (this.validarCodigo() == true && this.validarCUIT() == true && this.validarObservaciones() == true &&
+                    this.validarTelefonos() == true && this.validarDomicilios() == true && this.validarMails() == true &&
+                    this.validarTipoEntidad() == true);
+        }
+
+        public bool validarCodigo()
+        {
+            return true;
+        }
+        public bool validarCUIT()
+        {
+            return true;
+        }
+        public bool validarObservaciones()
+        {
+            return true;
+        }
+        public bool validarTelefonos()
+        {
+            if (telefonos.Count > 0)
+            {
+                foreach(ModeloTelefono t in telefonos)
+                {
+                    if(t.validar() == false)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool validarDomicilios()
+        {
+            if (domicilios.Count > 0)
+            {
+                foreach(ModeloDomicilio d in domicilios)
+                {
+                    if(d.validar() == false)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            else
+            { 
+                return true;
+            }
+        }
+        public bool validarMails()
+        {
+            if (mails.Count > 0)
+            {
+                foreach(ModeloMail m in mails)
+                {
+                    if(m.validar() == false)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool validarTipoEntidad()
+        {
+            if(tipoEntidad == "PER" || tipoEntidad == "PRO")
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
+        }
+
     }
 }

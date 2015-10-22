@@ -22,5 +22,15 @@ namespace Modelos
             base.convertirDatos();
             razonSocial = this.convertirString(razonSocial);
         }
+
+        new public bool validar()
+       {
+           return (base.validar() == true && this.validarRazonSocial() == true);
+       }
+
+       public bool validarRazonSocial()
+       {
+           return true;
+       }
    }
 }

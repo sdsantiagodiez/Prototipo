@@ -69,5 +69,10 @@ namespace Modelos
             set { this._pais = value; }
         }
         #endregion
+
+        public bool validar()
+        {
+            return true;
+        }
     }
 }
