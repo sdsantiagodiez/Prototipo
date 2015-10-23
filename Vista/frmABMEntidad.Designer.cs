@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStripABM = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemBuscar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemNuevo = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,7 +78,7 @@
             this.lblPais = new System.Windows.Forms.Label();
             this.cmbBoxPais = new System.Windows.Forms.ComboBox();
             this.tblLayoutPanelDomicilioGrid = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridViewDireccion = new System.Windows.Forms.DataGridView();
+            this.dataGridViewDomicilio = new System.Windows.Forms.DataGridView();
             this.codigoDomicilio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,28 +91,44 @@
             this.codigoPais = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pais = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblLayoutPanelDomicilioAgregarQuitar = new System.Windows.Forms.TableLayoutPanel();
-            this.btnAgregarDireccion = new System.Windows.Forms.Button();
-            this.btnQuitarDireccion = new System.Windows.Forms.Button();
+            this.btnAgregarDomicilio = new System.Windows.Forms.Button();
+            this.btnQuitarDomicilio = new System.Windows.Forms.Button();
             this.grpBoxContacto = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelContacto = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelTelefonoLista = new System.Windows.Forms.TableLayoutPanel();
-            this.lstViewNumeroTelefono = new System.Windows.Forms.ListView();
             this.tblLayoutPanelTelefonoListaAgregarQuitar = new System.Windows.Forms.TableLayoutPanel();
             this.btnAgregarTelefono = new System.Windows.Forms.Button();
             this.btnQuitarTelefono = new System.Windows.Forms.Button();
+            this.dataGridViewTelefono = new System.Windows.Forms.DataGridView();
             this.tblLayoutPanelTelefono = new System.Windows.Forms.TableLayoutPanel();
-            this.txtBoxNumeroTelefono = new System.Windows.Forms.TextBox();
-            this.lblNumeroTelefono = new System.Windows.Forms.Label();
-            this.cmbBoxTipoNumeroTelefono = new System.Windows.Forms.ComboBox();
+            this.txtBoxTelefono = new System.Windows.Forms.TextBox();
+            this.lblTelefono = new System.Windows.Forms.Label();
+            this.cmbBoxTipoTelefono = new System.Windows.Forms.ComboBox();
             this.tblLayoutPanelMail = new System.Windows.Forms.TableLayoutPanel();
             this.lblMail = new System.Windows.Forms.Label();
             this.txtBoxMail = new System.Windows.Forms.TextBox();
             this.tblLayoutPanelMailLista = new System.Windows.Forms.TableLayoutPanel();
-            this.lstViewMail = new System.Windows.Forms.ListView();
             this.tblLayoutPanelMailListaAgregarQuitar = new System.Windows.Forms.TableLayoutPanel();
             this.btnQuitarMail = new System.Windows.Forms.Button();
             this.btnAgregarMail = new System.Windows.Forms.Button();
+            this.dataGridViewMail = new System.Windows.Forms.DataGridView();
+            this.codigoMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnMasDatos = new System.Windows.Forms.Button();
+            this.grpBoxDatosUsuario = new System.Windows.Forms.GroupBox();
+            this.tblLayoutPanelDatosUsuario = new System.Windows.Forms.TableLayoutPanel();
+            this.lstViewMail = new System.Windows.Forms.ListView();
+            this.pnlUsuarioContrasenia = new System.Windows.Forms.Panel();
+            this.chckBoxContrasenia = new System.Windows.Forms.CheckBox();
+            this.txtBoxUsuario = new System.Windows.Forms.TextBox();
+            this.txtBoxContrasenia = new System.Windows.Forms.TextBox();
+            this.lblContrasenia = new System.Windows.Forms.Label();
+            this.lblUsuario = new System.Windows.Forms.Label();
+            this.chckdListBoxRol = new System.Windows.Forms.CheckedListBox();
+            this.codigoTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codigoTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeroTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStripABM.SuspendLayout();
             this.tblLayoutPanelDatos.SuspendLayout();
             this.grpBoxTipoEntidad.SuspendLayout();
@@ -124,16 +140,21 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.tblLayoutPanelDomicilio.SuspendLayout();
             this.tblLayoutPanelDomicilioGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDireccion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDomicilio)).BeginInit();
             this.tblLayoutPanelDomicilioAgregarQuitar.SuspendLayout();
             this.grpBoxContacto.SuspendLayout();
             this.tblLayoutPanelContacto.SuspendLayout();
             this.tblLayoutPanelTelefonoLista.SuspendLayout();
             this.tblLayoutPanelTelefonoListaAgregarQuitar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTelefono)).BeginInit();
             this.tblLayoutPanelTelefono.SuspendLayout();
             this.tblLayoutPanelMail.SuspendLayout();
             this.tblLayoutPanelMailLista.SuspendLayout();
             this.tblLayoutPanelMailListaAgregarQuitar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMail)).BeginInit();
+            this.grpBoxDatosUsuario.SuspendLayout();
+            this.tblLayoutPanelDatosUsuario.SuspendLayout();
+            this.pnlUsuarioContrasenia.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStripABM
@@ -146,7 +167,7 @@
             this.toolStripMenuItemCancelar});
             this.menuStripABM.Location = new System.Drawing.Point(0, 0);
             this.menuStripABM.Name = "menuStripABM";
-            this.menuStripABM.Size = new System.Drawing.Size(947, 24);
+            this.menuStripABM.Size = new System.Drawing.Size(803, 24);
             this.menuStripABM.TabIndex = 0;
             this.menuStripABM.Text = "menuStrip1";
             // 
@@ -169,12 +190,14 @@
             this.toolStripMenuItemEliminar.Name = "toolStripMenuItemEliminar";
             this.toolStripMenuItemEliminar.Size = new System.Drawing.Size(62, 20);
             this.toolStripMenuItemEliminar.Text = "Eliminar";
+            this.toolStripMenuItemEliminar.Click += new System.EventHandler(this.toolStripMenuItemEliminar_Click);
             // 
             // toolStripMenuItemGuardar
             // 
             this.toolStripMenuItemGuardar.Name = "toolStripMenuItemGuardar";
             this.toolStripMenuItemGuardar.Size = new System.Drawing.Size(61, 20);
             this.toolStripMenuItemGuardar.Text = "Guardar";
+            this.toolStripMenuItemGuardar.Click += new System.EventHandler(this.toolStripMenuItemGuardar_Click);
             // 
             // toolStripMenuItemCancelar
             // 
@@ -192,17 +215,19 @@
             this.tblLayoutPanelDatos.Controls.Add(this.grpBoxDatosPersonales, 0, 1);
             this.tblLayoutPanelDatos.Controls.Add(this.grpBoxDomicilio, 0, 2);
             this.tblLayoutPanelDatos.Controls.Add(this.grpBoxContacto, 0, 3);
-            this.tblLayoutPanelDatos.Controls.Add(this.btnMasDatos, 0, 5);
+            this.tblLayoutPanelDatos.Controls.Add(this.btnMasDatos, 0, 6);
+            this.tblLayoutPanelDatos.Controls.Add(this.grpBoxDatosUsuario, 0, 5);
             this.tblLayoutPanelDatos.Location = new System.Drawing.Point(12, 27);
             this.tblLayoutPanelDatos.Name = "tblLayoutPanelDatos";
-            this.tblLayoutPanelDatos.RowCount = 6;
+            this.tblLayoutPanelDatos.RowCount = 7;
             this.tblLayoutPanelDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.tblLayoutPanelDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tblLayoutPanelDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 210F));
             this.tblLayoutPanelDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
             this.tblLayoutPanelDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 122F));
-            this.tblLayoutPanelDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tblLayoutPanelDatos.Size = new System.Drawing.Size(701, 707);
+            this.tblLayoutPanelDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 137F));
+            this.tblLayoutPanelDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 14F));
+            this.tblLayoutPanelDatos.Size = new System.Drawing.Size(701, 826);
             this.tblLayoutPanelDatos.TabIndex = 4;
             // 
             // grpBoxTipoEntidad
@@ -236,7 +261,7 @@
             this.radioButtonContactoProveedor.Location = new System.Drawing.Point(275, 7);
             this.radioButtonContactoProveedor.Name = "radioButtonContactoProveedor";
             this.radioButtonContactoProveedor.Size = new System.Drawing.Size(180, 22);
-            this.radioButtonContactoProveedor.TabIndex = 14;
+            this.radioButtonContactoProveedor.TabIndex = 3;
             this.radioButtonContactoProveedor.TabStop = true;
             this.radioButtonContactoProveedor.Text = "Contacto de Proveedor";
             this.radioButtonContactoProveedor.UseVisualStyleBackColor = true;
@@ -248,7 +273,7 @@
             this.radioButtonProveedor.Location = new System.Drawing.Point(127, 7);
             this.radioButtonProveedor.Name = "radioButtonProveedor";
             this.radioButtonProveedor.Size = new System.Drawing.Size(95, 22);
-            this.radioButtonProveedor.TabIndex = 13;
+            this.radioButtonProveedor.TabIndex = 2;
             this.radioButtonProveedor.TabStop = true;
             this.radioButtonProveedor.Text = "Proveedor";
             this.radioButtonProveedor.UseVisualStyleBackColor = true;
@@ -261,7 +286,7 @@
             this.radioButtonUsuario.Location = new System.Drawing.Point(482, 7);
             this.radioButtonUsuario.Name = "radioButtonUsuario";
             this.radioButtonUsuario.Size = new System.Drawing.Size(156, 22);
-            this.radioButtonUsuario.TabIndex = 12;
+            this.radioButtonUsuario.TabIndex = 4;
             this.radioButtonUsuario.TabStop = true;
             this.radioButtonUsuario.Text = "Usuario de Sistema";
             this.radioButtonUsuario.UseVisualStyleBackColor = true;
@@ -274,7 +299,7 @@
             this.radioButtonCliente.Location = new System.Drawing.Point(9, 7);
             this.radioButtonCliente.Name = "radioButtonCliente";
             this.radioButtonCliente.Size = new System.Drawing.Size(71, 22);
-            this.radioButtonCliente.TabIndex = 10;
+            this.radioButtonCliente.TabIndex = 1;
             this.radioButtonCliente.TabStop = true;
             this.radioButtonCliente.Text = "Cliente";
             this.radioButtonCliente.UseVisualStyleBackColor = true;
@@ -298,7 +323,7 @@
             this.rchTextBoxObservaciones.Location = new System.Drawing.Point(3, 20);
             this.rchTextBoxObservaciones.Name = "rchTextBoxObservaciones";
             this.rchTextBoxObservaciones.Size = new System.Drawing.Size(689, 93);
-            this.rchTextBoxObservaciones.TabIndex = 1;
+            this.rchTextBoxObservaciones.TabIndex = 22;
             this.rchTextBoxObservaciones.Text = "";
             // 
             // grpBoxDatosPersonales
@@ -487,14 +512,14 @@
             // tblLayoutPanelDomicilio
             // 
             this.tblLayoutPanelDomicilio.ColumnCount = 8;
-            this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.73395F));
-            this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.26605F));
+            this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31F));
+            this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69F));
             this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
             this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
             this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
-            this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
             this.tblLayoutPanelDomicilio.Controls.Add(this.lblCalle, 0, 0);
             this.tblLayoutPanelDomicilio.Controls.Add(this.txtBoxCalle, 1, 0);
             this.tblLayoutPanelDomicilio.Controls.Add(this.lblNumero, 2, 0);
@@ -525,7 +550,7 @@
             this.lblCalle.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCalle.AutoSize = true;
             this.lblCalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCalle.Location = new System.Drawing.Point(19, 9);
+            this.lblCalle.Location = new System.Drawing.Point(16, 9);
             this.lblCalle.Name = "lblCalle";
             this.lblCalle.Size = new System.Drawing.Size(43, 17);
             this.lblCalle.TabIndex = 1;
@@ -534,9 +559,9 @@
             // txtBoxCalle
             // 
             this.txtBoxCalle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCalle.Location = new System.Drawing.Point(68, 5);
+            this.txtBoxCalle.Location = new System.Drawing.Point(65, 5);
             this.txtBoxCalle.Name = "txtBoxCalle";
-            this.txtBoxCalle.Size = new System.Drawing.Size(141, 24);
+            this.txtBoxCalle.Size = new System.Drawing.Size(132, 24);
             this.txtBoxCalle.TabIndex = 8;
             // 
             // lblNumero
@@ -544,7 +569,7 @@
             this.lblNumero.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNumero.AutoSize = true;
             this.lblNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumero.Location = new System.Drawing.Point(253, 9);
+            this.lblNumero.Location = new System.Drawing.Point(241, 9);
             this.lblNumero.Name = "lblNumero";
             this.lblNumero.Size = new System.Drawing.Size(62, 17);
             this.lblNumero.TabIndex = 3;
@@ -553,7 +578,7 @@
             // txtBoxNumeroDomicilio
             // 
             this.txtBoxNumeroDomicilio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNumeroDomicilio.Location = new System.Drawing.Point(321, 5);
+            this.txtBoxNumeroDomicilio.Location = new System.Drawing.Point(309, 5);
             this.txtBoxNumeroDomicilio.Name = "txtBoxNumeroDomicilio";
             this.txtBoxNumeroDomicilio.Size = new System.Drawing.Size(49, 24);
             this.txtBoxNumeroDomicilio.TabIndex = 9;
@@ -563,7 +588,7 @@
             this.lblPiso.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPiso.AutoSize = true;
             this.lblPiso.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPiso.Location = new System.Drawing.Point(407, 9);
+            this.lblPiso.Location = new System.Drawing.Point(395, 9);
             this.lblPiso.Name = "lblPiso";
             this.lblPiso.Size = new System.Drawing.Size(39, 17);
             this.lblPiso.TabIndex = 2;
@@ -572,7 +597,7 @@
             // txtBoxPiso
             // 
             this.txtBoxPiso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxPiso.Location = new System.Drawing.Point(452, 5);
+            this.txtBoxPiso.Location = new System.Drawing.Point(440, 5);
             this.txtBoxPiso.Name = "txtBoxPiso";
             this.txtBoxPiso.Size = new System.Drawing.Size(89, 24);
             this.txtBoxPiso.TabIndex = 10;
@@ -582,7 +607,7 @@
             this.lblDepartamento.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDepartamento.AutoSize = true;
             this.lblDepartamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDepartamento.Location = new System.Drawing.Point(552, 9);
+            this.lblDepartamento.Location = new System.Drawing.Point(540, 9);
             this.lblDepartamento.Name = "lblDepartamento";
             this.lblDepartamento.Size = new System.Drawing.Size(42, 17);
             this.lblDepartamento.TabIndex = 7;
@@ -593,7 +618,7 @@
             this.lblProvincia.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblProvincia.AutoSize = true;
             this.lblProvincia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProvincia.Location = new System.Drawing.Point(376, 43);
+            this.lblProvincia.Location = new System.Drawing.Point(364, 43);
             this.lblProvincia.Name = "lblProvincia";
             this.lblProvincia.Size = new System.Drawing.Size(70, 17);
             this.lblProvincia.TabIndex = 6;
@@ -603,15 +628,7 @@
             // 
             this.cmbBoxProvincia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxProvincia.FormattingEnabled = true;
-            this.cmbBoxProvincia.Items.AddRange(new object[] {
-            "Buenos Aires",
-            "Córdoba",
-            "Corrientes",
-            "Tucumán",
-            "Santa Cruz",
-            "Santa Fe",
-            ""});
-            this.cmbBoxProvincia.Location = new System.Drawing.Point(452, 39);
+            this.cmbBoxProvincia.Location = new System.Drawing.Point(440, 39);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(89, 26);
             this.cmbBoxProvincia.TabIndex = 14;
@@ -619,9 +636,9 @@
             // txtBoxDepartamento
             // 
             this.txtBoxDepartamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxDepartamento.Location = new System.Drawing.Point(600, 5);
+            this.txtBoxDepartamento.Location = new System.Drawing.Point(588, 5);
             this.txtBoxDepartamento.Name = "txtBoxDepartamento";
-            this.txtBoxDepartamento.Size = new System.Drawing.Size(80, 24);
+            this.txtBoxDepartamento.Size = new System.Drawing.Size(92, 24);
             this.txtBoxDepartamento.TabIndex = 11;
             // 
             // lblCiudad
@@ -629,7 +646,7 @@
             this.lblCiudad.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCiudad.AutoSize = true;
             this.lblCiudad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCiudad.Location = new System.Drawing.Point(6, 43);
+            this.lblCiudad.Location = new System.Drawing.Point(3, 43);
             this.lblCiudad.Name = "lblCiudad";
             this.lblCiudad.Size = new System.Drawing.Size(56, 17);
             this.lblCiudad.TabIndex = 5;
@@ -638,17 +655,17 @@
             // txtBoxCiudad
             // 
             this.txtBoxCiudad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCiudad.Location = new System.Drawing.Point(68, 40);
+            this.txtBoxCiudad.Location = new System.Drawing.Point(65, 40);
             this.txtBoxCiudad.Name = "txtBoxCiudad";
-            this.txtBoxCiudad.Size = new System.Drawing.Size(141, 24);
-            this.txtBoxCiudad.TabIndex = 13;
+            this.txtBoxCiudad.Size = new System.Drawing.Size(132, 24);
+            this.txtBoxCiudad.TabIndex = 12;
             // 
             // lblCodigoPostal
             // 
             this.lblCodigoPostal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCodigoPostal.AutoSize = true;
             this.lblCodigoPostal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoPostal.Location = new System.Drawing.Point(216, 43);
+            this.lblCodigoPostal.Location = new System.Drawing.Point(204, 43);
             this.lblCodigoPostal.Name = "lblCodigoPostal";
             this.lblCodigoPostal.Size = new System.Drawing.Size(99, 17);
             this.lblCodigoPostal.TabIndex = 4;
@@ -657,17 +674,17 @@
             // txtBoxCodigoPostal
             // 
             this.txtBoxCodigoPostal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCodigoPostal.Location = new System.Drawing.Point(321, 40);
+            this.txtBoxCodigoPostal.Location = new System.Drawing.Point(309, 40);
             this.txtBoxCodigoPostal.Name = "txtBoxCodigoPostal";
             this.txtBoxCodigoPostal.Size = new System.Drawing.Size(49, 24);
-            this.txtBoxCodigoPostal.TabIndex = 12;
+            this.txtBoxCodigoPostal.TabIndex = 13;
             // 
             // lblPais
             // 
             this.lblPais.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPais.AutoSize = true;
             this.lblPais.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPais.Location = new System.Drawing.Point(555, 43);
+            this.lblPais.Location = new System.Drawing.Point(543, 43);
             this.lblPais.Name = "lblPais";
             this.lblPais.Size = new System.Drawing.Size(39, 17);
             this.lblPais.TabIndex = 15;
@@ -677,24 +694,18 @@
             // 
             this.cmbBoxPais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxPais.FormattingEnabled = true;
-            this.cmbBoxPais.Items.AddRange(new object[] {
-            "Argentina",
-            "Brazil",
-            "Chile",
-            "Paraguay",
-            "Uruguay",
-            "Otro"});
-            this.cmbBoxPais.Location = new System.Drawing.Point(600, 39);
+            this.cmbBoxPais.Location = new System.Drawing.Point(588, 39);
             this.cmbBoxPais.Name = "cmbBoxPais";
-            this.cmbBoxPais.Size = new System.Drawing.Size(80, 26);
-            this.cmbBoxPais.TabIndex = 16;
+            this.cmbBoxPais.Size = new System.Drawing.Size(92, 26);
+            this.cmbBoxPais.TabIndex = 15;
+            this.cmbBoxPais.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxPais_SelectionChangeCommitted);
             // 
             // tblLayoutPanelDomicilioGrid
             // 
             this.tblLayoutPanelDomicilioGrid.ColumnCount = 2;
             this.tblLayoutPanelDomicilioGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 94.43631F));
             this.tblLayoutPanelDomicilioGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.56369F));
-            this.tblLayoutPanelDomicilioGrid.Controls.Add(this.dataGridViewDireccion, 0, 0);
+            this.tblLayoutPanelDomicilioGrid.Controls.Add(this.dataGridViewDomicilio, 0, 0);
             this.tblLayoutPanelDomicilioGrid.Controls.Add(this.tblLayoutPanelDomicilioAgregarQuitar, 1, 0);
             this.tblLayoutPanelDomicilioGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelDomicilioGrid.Location = new System.Drawing.Point(3, 78);
@@ -704,18 +715,18 @@
             this.tblLayoutPanelDomicilioGrid.Size = new System.Drawing.Size(683, 100);
             this.tblLayoutPanelDomicilioGrid.TabIndex = 1;
             // 
-            // dataGridViewDireccion
+            // dataGridViewDomicilio
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewDireccion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewDireccion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDireccion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewDomicilio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewDomicilio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewDomicilio.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoDomicilio,
             this.calle,
             this.numero,
@@ -727,12 +738,14 @@
             this.provincia,
             this.codigoPais,
             this.pais});
-            this.dataGridViewDireccion.Location = new System.Drawing.Point(3, 3);
-            this.dataGridViewDireccion.Name = "dataGridViewDireccion";
-            this.dataGridViewDireccion.ReadOnly = true;
-            this.dataGridViewDireccion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewDireccion.Size = new System.Drawing.Size(638, 94);
-            this.dataGridViewDireccion.TabIndex = 1;
+            this.dataGridViewDomicilio.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewDomicilio.Name = "dataGridViewDomicilio";
+            this.dataGridViewDomicilio.ReadOnly = true;
+            this.dataGridViewDomicilio.RowHeadersVisible = false;
+            this.dataGridViewDomicilio.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewDomicilio.Size = new System.Drawing.Size(638, 94);
+            this.dataGridViewDomicilio.TabIndex = 0;
+            this.dataGridViewDomicilio.TabStop = false;
             // 
             // codigoDomicilio
             // 
@@ -812,8 +825,8 @@
             // 
             this.tblLayoutPanelDomicilioAgregarQuitar.ColumnCount = 1;
             this.tblLayoutPanelDomicilioAgregarQuitar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelDomicilioAgregarQuitar.Controls.Add(this.btnAgregarDireccion, 0, 0);
-            this.tblLayoutPanelDomicilioAgregarQuitar.Controls.Add(this.btnQuitarDireccion, 0, 1);
+            this.tblLayoutPanelDomicilioAgregarQuitar.Controls.Add(this.btnAgregarDomicilio, 0, 0);
+            this.tblLayoutPanelDomicilioAgregarQuitar.Controls.Add(this.btnQuitarDomicilio, 0, 1);
             this.tblLayoutPanelDomicilioAgregarQuitar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelDomicilioAgregarQuitar.Location = new System.Drawing.Point(647, 3);
             this.tblLayoutPanelDomicilioAgregarQuitar.Name = "tblLayoutPanelDomicilioAgregarQuitar";
@@ -823,27 +836,28 @@
             this.tblLayoutPanelDomicilioAgregarQuitar.Size = new System.Drawing.Size(33, 94);
             this.tblLayoutPanelDomicilioAgregarQuitar.TabIndex = 2;
             // 
-            // btnAgregarDireccion
+            // btnAgregarDomicilio
             // 
-            this.btnAgregarDireccion.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAgregarDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarDireccion.Location = new System.Drawing.Point(5, 12);
-            this.btnAgregarDireccion.Name = "btnAgregarDireccion";
-            this.btnAgregarDireccion.Size = new System.Drawing.Size(22, 22);
-            this.btnAgregarDireccion.TabIndex = 15;
-            this.btnAgregarDireccion.UseVisualStyleBackColor = true;
-            this.btnAgregarDireccion.Click += new System.EventHandler(this.btnAgregarDireccion_Click);
+            this.btnAgregarDomicilio.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAgregarDomicilio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarDomicilio.Location = new System.Drawing.Point(5, 12);
+            this.btnAgregarDomicilio.Name = "btnAgregarDomicilio";
+            this.btnAgregarDomicilio.Size = new System.Drawing.Size(22, 22);
+            this.btnAgregarDomicilio.TabIndex = 16;
+            this.btnAgregarDomicilio.UseVisualStyleBackColor = true;
+            this.btnAgregarDomicilio.Click += new System.EventHandler(this.btnAgregarDomicilio_Click);
             // 
-            // btnQuitarDireccion
+            // btnQuitarDomicilio
             // 
-            this.btnQuitarDireccion.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnQuitarDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQuitarDireccion.Location = new System.Drawing.Point(5, 59);
-            this.btnQuitarDireccion.Name = "btnQuitarDireccion";
-            this.btnQuitarDireccion.Size = new System.Drawing.Size(22, 22);
-            this.btnQuitarDireccion.TabIndex = 16;
-            this.btnQuitarDireccion.UseVisualStyleBackColor = true;
-            this.btnQuitarDireccion.Click += new System.EventHandler(this.btnQuitarDireccion_Click);
+            this.btnQuitarDomicilio.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnQuitarDomicilio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQuitarDomicilio.Location = new System.Drawing.Point(5, 59);
+            this.btnQuitarDomicilio.Name = "btnQuitarDomicilio";
+            this.btnQuitarDomicilio.Size = new System.Drawing.Size(22, 22);
+            this.btnQuitarDomicilio.TabIndex = 16;
+            this.btnQuitarDomicilio.TabStop = false;
+            this.btnQuitarDomicilio.UseVisualStyleBackColor = true;
+            this.btnQuitarDomicilio.Click += new System.EventHandler(this.btnQuitarDomicilio_Click);
             // 
             // grpBoxContacto
             // 
@@ -880,8 +894,8 @@
             this.tblLayoutPanelTelefonoLista.ColumnCount = 2;
             this.tblLayoutPanelTelefonoLista.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelTelefonoLista.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tblLayoutPanelTelefonoLista.Controls.Add(this.lstViewNumeroTelefono, 0, 0);
             this.tblLayoutPanelTelefonoLista.Controls.Add(this.tblLayoutPanelTelefonoListaAgregarQuitar, 1, 0);
+            this.tblLayoutPanelTelefonoLista.Controls.Add(this.dataGridViewTelefono, 0, 0);
             this.tblLayoutPanelTelefonoLista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelTelefonoLista.Location = new System.Drawing.Point(378, 51);
             this.tblLayoutPanelTelefonoLista.Name = "tblLayoutPanelTelefonoLista";
@@ -889,16 +903,6 @@
             this.tblLayoutPanelTelefonoLista.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelTelefonoLista.Size = new System.Drawing.Size(308, 57);
             this.tblLayoutPanelTelefonoLista.TabIndex = 3;
-            // 
-            // lstViewNumeroTelefono
-            // 
-            this.lstViewNumeroTelefono.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstViewNumeroTelefono.FullRowSelect = true;
-            this.lstViewNumeroTelefono.Location = new System.Drawing.Point(3, 3);
-            this.lstViewNumeroTelefono.Name = "lstViewNumeroTelefono";
-            this.lstViewNumeroTelefono.Size = new System.Drawing.Size(269, 51);
-            this.lstViewNumeroTelefono.TabIndex = 12;
-            this.lstViewNumeroTelefono.UseCompatibleStateImageBehavior = false;
             // 
             // tblLayoutPanelTelefonoListaAgregarQuitar
             // 
@@ -921,7 +925,7 @@
             this.btnAgregarTelefono.Location = new System.Drawing.Point(3, 3);
             this.btnAgregarTelefono.Name = "btnAgregarTelefono";
             this.btnAgregarTelefono.Size = new System.Drawing.Size(21, 19);
-            this.btnAgregarTelefono.TabIndex = 10;
+            this.btnAgregarTelefono.TabIndex = 21;
             this.btnAgregarTelefono.UseVisualStyleBackColor = true;
             this.btnAgregarTelefono.Click += new System.EventHandler(this.btnAgregarNumeroTelefono_Click);
             // 
@@ -933,8 +937,28 @@
             this.btnQuitarTelefono.Name = "btnQuitarTelefono";
             this.btnQuitarTelefono.Size = new System.Drawing.Size(21, 20);
             this.btnQuitarTelefono.TabIndex = 11;
+            this.btnQuitarTelefono.TabStop = false;
             this.btnQuitarTelefono.UseVisualStyleBackColor = true;
             this.btnQuitarTelefono.Click += new System.EventHandler(this.btnQuitarNumeroTelefono_Click);
+            // 
+            // dataGridViewTelefono
+            // 
+            this.dataGridViewTelefono.AllowUserToDeleteRows = false;
+            this.dataGridViewTelefono.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTelefono.ColumnHeadersVisible = false;
+            this.dataGridViewTelefono.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codigoTelefono,
+            this.codigoTipo,
+            this.tipo,
+            this.numeroTelefono});
+            this.dataGridViewTelefono.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewTelefono.Name = "dataGridViewTelefono";
+            this.dataGridViewTelefono.ReadOnly = true;
+            this.dataGridViewTelefono.RowHeadersVisible = false;
+            this.dataGridViewTelefono.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewTelefono.Size = new System.Drawing.Size(250, 51);
+            this.dataGridViewTelefono.TabIndex = 3;
+            this.dataGridViewTelefono.TabStop = false;
             // 
             // tblLayoutPanelTelefono
             // 
@@ -942,9 +966,9 @@
             this.tblLayoutPanelTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tblLayoutPanelTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.48148F));
             this.tblLayoutPanelTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.51852F));
-            this.tblLayoutPanelTelefono.Controls.Add(this.txtBoxNumeroTelefono, 2, 0);
-            this.tblLayoutPanelTelefono.Controls.Add(this.lblNumeroTelefono, 1, 0);
-            this.tblLayoutPanelTelefono.Controls.Add(this.cmbBoxTipoNumeroTelefono, 0, 0);
+            this.tblLayoutPanelTelefono.Controls.Add(this.txtBoxTelefono, 2, 0);
+            this.tblLayoutPanelTelefono.Controls.Add(this.lblTelefono, 1, 0);
+            this.tblLayoutPanelTelefono.Controls.Add(this.cmbBoxTipoTelefono, 0, 0);
             this.tblLayoutPanelTelefono.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelTelefono.Location = new System.Drawing.Point(378, 3);
             this.tblLayoutPanelTelefono.Name = "tblLayoutPanelTelefono";
@@ -953,37 +977,37 @@
             this.tblLayoutPanelTelefono.Size = new System.Drawing.Size(308, 42);
             this.tblLayoutPanelTelefono.TabIndex = 2;
             // 
-            // txtBoxNumeroTelefono
+            // txtBoxTelefono
             // 
-            this.txtBoxNumeroTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNumeroTelefono.Location = new System.Drawing.Point(141, 9);
-            this.txtBoxNumeroTelefono.Name = "txtBoxNumeroTelefono";
-            this.txtBoxNumeroTelefono.Size = new System.Drawing.Size(164, 24);
-            this.txtBoxNumeroTelefono.TabIndex = 8;
+            this.txtBoxTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxTelefono.Location = new System.Drawing.Point(141, 9);
+            this.txtBoxTelefono.Name = "txtBoxTelefono";
+            this.txtBoxTelefono.Size = new System.Drawing.Size(164, 24);
+            this.txtBoxTelefono.TabIndex = 20;
             // 
-            // lblNumeroTelefono
+            // lblTelefono
             // 
-            this.lblNumeroTelefono.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblNumeroTelefono.AutoSize = true;
-            this.lblNumeroTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumeroTelefono.Location = new System.Drawing.Point(63, 12);
-            this.lblNumeroTelefono.Name = "lblNumeroTelefono";
-            this.lblNumeroTelefono.Size = new System.Drawing.Size(62, 17);
-            this.lblNumeroTelefono.TabIndex = 9;
-            this.lblNumeroTelefono.Text = "Número:";
+            this.lblTelefono.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblTelefono.AutoSize = true;
+            this.lblTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTelefono.Location = new System.Drawing.Point(63, 12);
+            this.lblTelefono.Name = "lblTelefono";
+            this.lblTelefono.Size = new System.Drawing.Size(62, 17);
+            this.lblTelefono.TabIndex = 9;
+            this.lblTelefono.Text = "Número:";
             // 
-            // cmbBoxTipoNumeroTelefono
+            // cmbBoxTipoTelefono
             // 
-            this.cmbBoxTipoNumeroTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbBoxTipoNumeroTelefono.FormattingEnabled = true;
-            this.cmbBoxTipoNumeroTelefono.Items.AddRange(new object[] {
+            this.cmbBoxTipoTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbBoxTipoTelefono.FormattingEnabled = true;
+            this.cmbBoxTipoTelefono.Items.AddRange(new object[] {
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoNumeroTelefono.Location = new System.Drawing.Point(3, 10);
-            this.cmbBoxTipoNumeroTelefono.Name = "cmbBoxTipoNumeroTelefono";
-            this.cmbBoxTipoNumeroTelefono.Size = new System.Drawing.Size(54, 26);
-            this.cmbBoxTipoNumeroTelefono.TabIndex = 11;
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 10);
+            this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
+            this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(54, 26);
+            this.cmbBoxTipoTelefono.TabIndex = 19;
             // 
             // tblLayoutPanelMail
             // 
@@ -1017,15 +1041,15 @@
             this.txtBoxMail.Location = new System.Drawing.Point(108, 9);
             this.txtBoxMail.Name = "txtBoxMail";
             this.txtBoxMail.Size = new System.Drawing.Size(258, 24);
-            this.txtBoxMail.TabIndex = 8;
+            this.txtBoxMail.TabIndex = 17;
             // 
             // tblLayoutPanelMailLista
             // 
             this.tblLayoutPanelMailLista.ColumnCount = 2;
             this.tblLayoutPanelMailLista.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelMailLista.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tblLayoutPanelMailLista.Controls.Add(this.lstViewMail, 0, 0);
             this.tblLayoutPanelMailLista.Controls.Add(this.tblLayoutPanelMailListaAgregarQuitar, 1, 0);
+            this.tblLayoutPanelMailLista.Controls.Add(this.dataGridViewMail, 0, 0);
             this.tblLayoutPanelMailLista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelMailLista.Location = new System.Drawing.Point(3, 51);
             this.tblLayoutPanelMailLista.Name = "tblLayoutPanelMailLista";
@@ -1033,15 +1057,6 @@
             this.tblLayoutPanelMailLista.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelMailLista.Size = new System.Drawing.Size(369, 57);
             this.tblLayoutPanelMailLista.TabIndex = 1;
-            // 
-            // lstViewMail
-            // 
-            this.lstViewMail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstViewMail.Location = new System.Drawing.Point(3, 3);
-            this.lstViewMail.Name = "lstViewMail";
-            this.lstViewMail.Size = new System.Drawing.Size(330, 51);
-            this.lstViewMail.TabIndex = 12;
-            this.lstViewMail.UseCompatibleStateImageBehavior = false;
             // 
             // tblLayoutPanelMailListaAgregarQuitar
             // 
@@ -1065,6 +1080,7 @@
             this.btnQuitarMail.Name = "btnQuitarMail";
             this.btnQuitarMail.Size = new System.Drawing.Size(21, 20);
             this.btnQuitarMail.TabIndex = 11;
+            this.btnQuitarMail.TabStop = false;
             this.btnQuitarMail.UseVisualStyleBackColor = true;
             this.btnQuitarMail.Click += new System.EventHandler(this.btnQuitarMail_Click);
             // 
@@ -1075,27 +1091,194 @@
             this.btnAgregarMail.Location = new System.Drawing.Point(3, 3);
             this.btnAgregarMail.Name = "btnAgregarMail";
             this.btnAgregarMail.Size = new System.Drawing.Size(21, 19);
-            this.btnAgregarMail.TabIndex = 10;
+            this.btnAgregarMail.TabIndex = 18;
             this.btnAgregarMail.UseVisualStyleBackColor = true;
             this.btnAgregarMail.Click += new System.EventHandler(this.btnAgregarMail_Click);
+            // 
+            // dataGridViewMail
+            // 
+            this.dataGridViewMail.AllowUserToDeleteRows = false;
+            this.dataGridViewMail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMail.ColumnHeadersVisible = false;
+            this.dataGridViewMail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codigoMail,
+            this.mail});
+            this.dataGridViewMail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewMail.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewMail.Name = "dataGridViewMail";
+            this.dataGridViewMail.ReadOnly = true;
+            this.dataGridViewMail.RowHeadersVisible = false;
+            this.dataGridViewMail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewMail.Size = new System.Drawing.Size(330, 51);
+            this.dataGridViewMail.TabIndex = 14;
+            this.dataGridViewMail.TabStop = false;
+            // 
+            // codigoMail
+            // 
+            this.codigoMail.HeaderText = "codigoMail";
+            this.codigoMail.Name = "codigoMail";
+            this.codigoMail.ReadOnly = true;
+            this.codigoMail.Visible = false;
+            // 
+            // mail
+            // 
+            this.mail.HeaderText = "mail";
+            this.mail.Name = "mail";
+            this.mail.ReadOnly = true;
+            this.mail.Width = 300;
             // 
             // btnMasDatos
             // 
             this.btnMasDatos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMasDatos.Enabled = false;
-            this.btnMasDatos.Location = new System.Drawing.Point(313, 670);
+            this.btnMasDatos.Location = new System.Drawing.Point(313, 800);
             this.btnMasDatos.Name = "btnMasDatos";
-            this.btnMasDatos.Size = new System.Drawing.Size(75, 23);
+            this.btnMasDatos.Size = new System.Drawing.Size(75, 20);
             this.btnMasDatos.TabIndex = 7;
             this.btnMasDatos.Text = "Más Datos";
             this.btnMasDatos.UseVisualStyleBackColor = true;
-            this.btnMasDatos.Click += new System.EventHandler(this.btnMasDatos_Click);
+            // 
+            // grpBoxDatosUsuario
+            // 
+            this.grpBoxDatosUsuario.Controls.Add(this.tblLayoutPanelDatosUsuario);
+            this.grpBoxDatosUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpBoxDatosUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpBoxDatosUsuario.Location = new System.Drawing.Point(3, 660);
+            this.grpBoxDatosUsuario.Name = "grpBoxDatosUsuario";
+            this.grpBoxDatosUsuario.Size = new System.Drawing.Size(695, 131);
+            this.grpBoxDatosUsuario.TabIndex = 8;
+            this.grpBoxDatosUsuario.TabStop = false;
+            this.grpBoxDatosUsuario.Text = "Datos de Usuario";
+            // 
+            // tblLayoutPanelDatosUsuario
+            // 
+            this.tblLayoutPanelDatosUsuario.ColumnCount = 4;
+            this.tblLayoutPanelDatosUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+            this.tblLayoutPanelDatosUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tblLayoutPanelDatosUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tblLayoutPanelDatosUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tblLayoutPanelDatosUsuario.Controls.Add(this.lstViewMail, 3, 0);
+            this.tblLayoutPanelDatosUsuario.Controls.Add(this.pnlUsuarioContrasenia, 0, 0);
+            this.tblLayoutPanelDatosUsuario.Controls.Add(this.chckdListBoxRol, 1, 0);
+            this.tblLayoutPanelDatosUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblLayoutPanelDatosUsuario.Location = new System.Drawing.Point(3, 20);
+            this.tblLayoutPanelDatosUsuario.Name = "tblLayoutPanelDatosUsuario";
+            this.tblLayoutPanelDatosUsuario.RowCount = 1;
+            this.tblLayoutPanelDatosUsuario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 108F));
+            this.tblLayoutPanelDatosUsuario.Size = new System.Drawing.Size(689, 108);
+            this.tblLayoutPanelDatosUsuario.TabIndex = 0;
+            // 
+            // lstViewMail
+            // 
+            this.lstViewMail.Location = new System.Drawing.Point(427, 3);
+            this.lstViewMail.Name = "lstViewMail";
+            this.lstViewMail.Size = new System.Drawing.Size(259, 51);
+            this.lstViewMail.TabIndex = 12;
+            this.lstViewMail.UseCompatibleStateImageBehavior = false;
+            // 
+            // pnlUsuarioContrasenia
+            // 
+            this.pnlUsuarioContrasenia.Controls.Add(this.chckBoxContrasenia);
+            this.pnlUsuarioContrasenia.Controls.Add(this.txtBoxUsuario);
+            this.pnlUsuarioContrasenia.Controls.Add(this.txtBoxContrasenia);
+            this.pnlUsuarioContrasenia.Controls.Add(this.lblContrasenia);
+            this.pnlUsuarioContrasenia.Controls.Add(this.lblUsuario);
+            this.pnlUsuarioContrasenia.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlUsuarioContrasenia.Location = new System.Drawing.Point(3, 3);
+            this.pnlUsuarioContrasenia.Name = "pnlUsuarioContrasenia";
+            this.pnlUsuarioContrasenia.Size = new System.Drawing.Size(244, 102);
+            this.pnlUsuarioContrasenia.TabIndex = 0;
+            // 
+            // chckBoxContrasenia
+            // 
+            this.chckBoxContrasenia.AutoSize = true;
+            this.chckBoxContrasenia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chckBoxContrasenia.Location = new System.Drawing.Point(84, 66);
+            this.chckBoxContrasenia.Name = "chckBoxContrasenia";
+            this.chckBoxContrasenia.Size = new System.Drawing.Size(142, 20);
+            this.chckBoxContrasenia.TabIndex = 10;
+            this.chckBoxContrasenia.Text = "Mostrar contraseña";
+            this.chckBoxContrasenia.UseVisualStyleBackColor = true;
+            // 
+            // txtBoxUsuario
+            // 
+            this.txtBoxUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxUsuario.Location = new System.Drawing.Point(84, 6);
+            this.txtBoxUsuario.Name = "txtBoxUsuario";
+            this.txtBoxUsuario.Size = new System.Drawing.Size(142, 24);
+            this.txtBoxUsuario.TabIndex = 9;
+            // 
+            // txtBoxContrasenia
+            // 
+            this.txtBoxContrasenia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxContrasenia.Location = new System.Drawing.Point(84, 36);
+            this.txtBoxContrasenia.Name = "txtBoxContrasenia";
+            this.txtBoxContrasenia.Size = new System.Drawing.Size(142, 24);
+            this.txtBoxContrasenia.TabIndex = 8;
+            // 
+            // lblContrasenia
+            // 
+            this.lblContrasenia.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblContrasenia.AutoSize = true;
+            this.lblContrasenia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContrasenia.Location = new System.Drawing.Point(-3, 41);
+            this.lblContrasenia.Name = "lblContrasenia";
+            this.lblContrasenia.Size = new System.Drawing.Size(85, 17);
+            this.lblContrasenia.TabIndex = 3;
+            this.lblContrasenia.Text = "Contraseña:";
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.Location = new System.Drawing.Point(19, 11);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(61, 17);
+            this.lblUsuario.TabIndex = 2;
+            this.lblUsuario.Text = "Usuario:";
+            // 
+            // chckdListBoxRol
+            // 
+            this.chckdListBoxRol.FormattingEnabled = true;
+            this.chckdListBoxRol.Location = new System.Drawing.Point(253, 3);
+            this.chckdListBoxRol.Name = "chckdListBoxRol";
+            this.chckdListBoxRol.Size = new System.Drawing.Size(120, 80);
+            this.chckdListBoxRol.TabIndex = 2;
+            // 
+            // codigoTelefono
+            // 
+            this.codigoTelefono.HeaderText = "codigoTelefono";
+            this.codigoTelefono.Name = "codigoTelefono";
+            this.codigoTelefono.ReadOnly = true;
+            this.codigoTelefono.Visible = false;
+            // 
+            // codigoTipo
+            // 
+            this.codigoTipo.HeaderText = "codigoTipo";
+            this.codigoTipo.Name = "codigoTipo";
+            this.codigoTipo.ReadOnly = true;
+            this.codigoTipo.Visible = false;
+            // 
+            // tipo
+            // 
+            this.tipo.HeaderText = "Tipo";
+            this.tipo.Name = "tipo";
+            this.tipo.ReadOnly = true;
+            this.tipo.Width = 50;
+            // 
+            // numeroTelefono
+            // 
+            this.numeroTelefono.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.numeroTelefono.HeaderText = "Número";
+            this.numeroTelefono.Name = "numeroTelefono";
+            this.numeroTelefono.ReadOnly = true;
             // 
             // frmABMEntidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(947, 761);
+            this.ClientSize = new System.Drawing.Size(803, 881);
             this.Controls.Add(this.tblLayoutPanelDatos);
             this.Controls.Add(this.menuStripABM);
             this.MainMenuStrip = this.menuStripABM;
@@ -1116,18 +1299,24 @@
             this.tblLayoutPanelDomicilio.ResumeLayout(false);
             this.tblLayoutPanelDomicilio.PerformLayout();
             this.tblLayoutPanelDomicilioGrid.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDireccion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDomicilio)).EndInit();
             this.tblLayoutPanelDomicilioAgregarQuitar.ResumeLayout(false);
             this.grpBoxContacto.ResumeLayout(false);
             this.tblLayoutPanelContacto.ResumeLayout(false);
             this.tblLayoutPanelTelefonoLista.ResumeLayout(false);
             this.tblLayoutPanelTelefonoListaAgregarQuitar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTelefono)).EndInit();
             this.tblLayoutPanelTelefono.ResumeLayout(false);
             this.tblLayoutPanelTelefono.PerformLayout();
             this.tblLayoutPanelMail.ResumeLayout(false);
             this.tblLayoutPanelMail.PerformLayout();
             this.tblLayoutPanelMailLista.ResumeLayout(false);
             this.tblLayoutPanelMailListaAgregarQuitar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMail)).EndInit();
+            this.grpBoxDatosUsuario.ResumeLayout(false);
+            this.tblLayoutPanelDatosUsuario.ResumeLayout(false);
+            this.pnlUsuarioContrasenia.ResumeLayout(false);
+            this.pnlUsuarioContrasenia.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1167,8 +1356,8 @@
         private System.Windows.Forms.GroupBox grpBoxDomicilio;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDomicilio;
-        private System.Windows.Forms.Button btnQuitarDireccion;
-        private System.Windows.Forms.Button btnAgregarDireccion;
+        private System.Windows.Forms.Button btnQuitarDomicilio;
+        private System.Windows.Forms.Button btnAgregarDomicilio;
         private System.Windows.Forms.Label lblCalle;
         private System.Windows.Forms.TextBox txtBoxCalle;
         private System.Windows.Forms.Label lblNumero;
@@ -1183,17 +1372,16 @@
         private System.Windows.Forms.Label lblProvincia;
         private System.Windows.Forms.ComboBox cmbBoxProvincia;
         private System.Windows.Forms.TextBox txtBoxDepartamento;
-        private System.Windows.Forms.DataGridView dataGridViewDireccion;
+        private System.Windows.Forms.DataGridView dataGridViewDomicilio;
         private System.Windows.Forms.GroupBox grpBoxContacto;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelContacto;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelTelefonoLista;
         private System.Windows.Forms.Button btnQuitarTelefono;
-        private System.Windows.Forms.ListView lstViewNumeroTelefono;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelTelefono;
         private System.Windows.Forms.Button btnAgregarTelefono;
-        private System.Windows.Forms.TextBox txtBoxNumeroTelefono;
-        private System.Windows.Forms.Label lblNumeroTelefono;
-        private System.Windows.Forms.ComboBox cmbBoxTipoNumeroTelefono;
+        private System.Windows.Forms.TextBox txtBoxTelefono;
+        private System.Windows.Forms.Label lblTelefono;
+        private System.Windows.Forms.ComboBox cmbBoxTipoTelefono;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelMail;
         private System.Windows.Forms.Label lblMail;
         private System.Windows.Forms.TextBox txtBoxMail;
@@ -1219,5 +1407,22 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn provincia;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoPais;
         private System.Windows.Forms.DataGridViewTextBoxColumn pais;
+        private System.Windows.Forms.GroupBox grpBoxDatosUsuario;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDatosUsuario;
+        private System.Windows.Forms.Panel pnlUsuarioContrasenia;
+        private System.Windows.Forms.CheckBox chckBoxContrasenia;
+        private System.Windows.Forms.TextBox txtBoxUsuario;
+        private System.Windows.Forms.TextBox txtBoxContrasenia;
+        private System.Windows.Forms.Label lblContrasenia;
+        private System.Windows.Forms.Label lblUsuario;
+        private System.Windows.Forms.CheckedListBox chckdListBoxRol;
+        private System.Windows.Forms.DataGridView dataGridViewTelefono;
+        private System.Windows.Forms.DataGridView dataGridViewMail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigoMail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigoTelefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigoTipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numeroTelefono;
     }
 }

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
+using Controladores;
+
 
 namespace Vista
 {
@@ -26,29 +28,19 @@ namespace Vista
             this.StartPosition = FormStartPosition.CenterScreen;
             btnAgregarMail.Text = char.ConvertFromUtf32(8595);
             btnQuitarMail.Text = char.ConvertFromUtf32(8593);
-            
+
             toolStripMenuItemEliminar.Enabled = false;
             toolStripMenuItemGuardar.Enabled = false;
 
-            //tblLayoutPanelExtra
-            this.inicializarListViews();   
+
+            this.inicializarListViews();
+
+            this.inicializarComboBox();
+
+            this.inicializarCheckedListBox();
         }
 
-        void inicializarListViews()
-        {
-
-            lstViewMail.Columns.Add("Mail", -2, System.Windows.Forms.HorizontalAlignment.Center);
-            lstViewMail.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            lstViewMail.View = View.Details;
-
-            //ver de modificar la barra horizontal cuando hay más de dos items
-            lstViewNumeroTelefono.Columns.Add("TIPO",-2, System.Windows.Forms.HorizontalAlignment.Center);
-            lstViewNumeroTelefono.Columns.Add("N", -2, System.Windows.Forms.HorizontalAlignment.Right);
-            lstViewNumeroTelefono.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            lstViewNumeroTelefono.View = View.Details;
-        }
-        
-        void quitarTextoEnControles(Control con)
+        private void quitarTextoEnControles(Control con)
         {
             //se utiliza para que si el control no esta en ninguno de los if's,
             //entonces se mete en un control que puede contener una colección de controles
@@ -58,15 +50,15 @@ namespace Vista
                 bandera = true;
                 if (c is TextBox)
                 {
-                    ((TextBox)c).Clear(); bandera = false; 
+                    ((TextBox)c).Clear(); bandera = false;
                 }
 
                 if (c is ListView)
                 {
-                    
+
                     ((ListView)c).Items.Clear(); bandera = false;
                 }
-                   
+
                 if (c is DataGridView)
                 {
                     ((DataGridView)c).Rows.Clear(); bandera = false;
@@ -81,26 +73,84 @@ namespace Vista
                 {
                     ((RichTextBox)c).Clear(); bandera = false;
                 }
-                    
+
                 if (c is RadioButton)
                 {
                     ((RadioButton)c).Checked = false; bandera = false;
                 }
-                    
-                if(bandera)
+
+                if (bandera)
                     quitarTextoEnControles(c);
-                
+
             }
         }
 
+        #region Inicializar
+        private void inicializarListViews()
+        {
+            lstViewMail.Columns.Add("Mail", -2, System.Windows.Forms.HorizontalAlignment.Center);
+            lstViewMail.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            lstViewMail.View = View.Details;
+
+        }
+
+        private void inicializarComboBox()
+        {
+            //Populo combobox de paises
+            ControladorBusqueda cBusqueda = new ControladorBusqueda();
+            List<ModeloPais> paises = cBusqueda.buscarPaises();
+            this.cmbBoxPais.DataSource = paises;
+            this.cmbBoxPais.DisplayMember = "pais";
+            this.cmbBoxPais.ValueMember = "codigo";
+            this.cmbBoxPais.SelectedItem = null;
+
+            //Lo hago read only
+            this.cmbBoxPais.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            //combobox de provincias
+
+            this.cmbBoxProvincia.DisplayMember = "provincia";
+            this.cmbBoxProvincia.ValueMember = "codigo";
+            this.cmbBoxProvincia.SelectedItem = null;
+
+            //Lo hago read only
+            this.cmbBoxProvincia.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            //Creo lista Tipos de teléfono
+            var dataSource = new List<Tel>();
+            dataSource.Add(new Tel() { Name = "TEL", Value = "TEL" });
+            dataSource.Add(new Tel() { Name = "CEL", Value = "CEL" });
+            dataSource.Add(new Tel() { Name = "FAX", Value = "FAX" });
+
+            //Binding de telefonos
+            this.cmbBoxTipoTelefono.DataSource = dataSource;
+            this.cmbBoxTipoTelefono.DisplayMember = "Name";
+            this.cmbBoxTipoTelefono.ValueMember = "Value";
+
+            //Lo hago read only
+            this.cmbBoxTipoTelefono.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private void inicializarCheckedListBox()
+        {
+            //REVISAR FALTAN roles en controladores y catalogo
+            ControladorBusqueda cBusqueda = new ControladorBusqueda();
+            List<ModeloRoles> roles = new List<ModeloRoles>();
+            chckdListBoxRol.DataSource = roles;
+            chckdListBoxRol.DisplayMember = "descripcion";
+            chckdListBoxRol.ValueMember = "codigo";
+        }
+
+        #endregion
+
         #region Eventos
-        
+
         //
         // radioButton
         //
         private void radioButtonUsuario_CheckedChanged(object sender, EventArgs e)
         {
-            
+
             //tblLayoutPanelExtra = new System.Windows.Forms.TableLayoutPanel();
             //tbPageExtra.Controls.Clear();
             //tbPageExtra.Controls.Add(tblLayoutPanelExtra);
@@ -108,109 +158,9 @@ namespace Vista
             //tblLayoutPanelExtra.Controls.Add(grpBoxDatosUsuario, 0, 0);
             ////
             //System.Windows.Forms.GroupBox grpBoxDatosUsuario = new GroupBox();
-            
+
 
             //tblLayoutPanelExtra.Visible = radioButtonUsuario.Checked;
-            //#region Pestaña Extra
-            //// 
-            //// grpBoxDatosUsuario
-            //// 
-            //grpBoxDatosUsuario.Controls.Add(panel1);
-            //grpBoxDatosUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //grpBoxDatosUsuario.Location = new System.Drawing.Point(3, 17);
-            //grpBoxDatosUsuario.Name = "grpBoxDatosUsuario";
-            //grpBoxDatosUsuario.Size = new System.Drawing.Size(612, 229);
-            //grpBoxDatosUsuario.TabIndex = 10;
-            //grpBoxDatosUsuario.TabStop = false;
-            //grpBoxDatosUsuario.Text = "Datos Usuario";
-            //// 
-            //// pnlDatosUsuario
-            //// 
-            //pnlDatosUsuario.Controls.Add(lblRepetirContraseña);
-            //pnlDatosUsuario.Controls.Add(checkedListBoxRol);
-            //pnlDatosUsuario.Controls.Add(txtBoxUsuario);
-            //pnlDatosUsuario.Controls.Add(lblUsuario);
-            //pnlDatosUsuario.Controls.Add(txtBoxContraseña);
-            //pnlDatosUsuario.Controls.Add(lblContraseña);
-            //pnlDatosUsuario.Controls.Add(txtBoxConfirmarContraseña);
-            //pnlDatosUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
-            //pnlDatosUsuario.Location = new System.Drawing.Point(3, 20);
-            //pnlDatosUsuario.Name = "pnlDatosUsuario";
-            //pnlDatosUsuario.Size = new System.Drawing.Size(606, 206);
-            //pnlDatosUsuario.TabIndex = 0;
-            //// 
-            //// txtBoxUsuario
-            //// 
-            //txtBoxUsuario.Enabled = false;
-            //txtBoxUsuario.Location = new System.Drawing.Point(319, 8);
-            //txtBoxUsuario.Name = "txtBoxUsuario";
-            //txtBoxUsuario.Size = new System.Drawing.Size(113, 24);
-            //txtBoxUsuario.TabIndex = 8;
-            //// 
-            //// txtBoxContraseña
-            //// 
-            //txtBoxContraseña.Enabled = false;
-            //txtBoxContraseña.Location = new System.Drawing.Point(319, 39);
-            //txtBoxContraseña.Name = "txtBoxContraseña";
-            //txtBoxContraseña.Size = new System.Drawing.Size(113, 24);
-            //txtBoxContraseña.TabIndex = 7;
-            //// 
-            //// txtBoxConfirmarContraseña
-            //// 
-            //txtBoxConfirmarContraseña.Enabled = false;
-            //txtBoxConfirmarContraseña.Location = new System.Drawing.Point(319, 69);
-            //txtBoxConfirmarContraseña.Name = "txtBoxConfirmarContraseña";
-            //txtBoxConfirmarContraseña.Size = new System.Drawing.Size(113, 24);
-            //txtBoxConfirmarContraseña.TabIndex = 6;
-            //// 
-            //// lblUsuario
-            //// 
-            //lblUsuario.AutoSize = true;
-            //lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //lblUsuario.Location = new System.Drawing.Point(160, 7);
-            //lblUsuario.Name = "lblUsuario";
-            //lblUsuario.Size = new System.Drawing.Size(60, 18);
-            //lblUsuario.TabIndex = 3;
-            //lblUsuario.Text = "Usuario";
-            //// 
-            //// lblContraseña
-            //// 
-            //lblContraseña.AutoSize = true;
-            //lblContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //lblContraseña.Location = new System.Drawing.Point(160, 38);
-            //lblContraseña.Name = "lblContraseña";
-            //lblContraseña.Size = new System.Drawing.Size(85, 18);
-            //lblContraseña.TabIndex = 4;
-            //lblContraseña.Text = "Contraseña";
-            //// 
-            //// lblRepetirContraseña
-            //// 
-            //lblRepetirContraseña.AutoSize = true;
-            //lblRepetirContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //lblRepetirContraseña.Location = new System.Drawing.Point(160, 68);
-            //lblRepetirContraseña.Name = "lblRepetirContraseña";
-            //lblRepetirContraseña.Size = new System.Drawing.Size(155, 18);
-            //lblRepetirContraseña.TabIndex = 5;
-            //lblRepetirContraseña.Text = "Confirmar Contraseña";
-            //// 
-            //// checkedListBoxRol
-            //// 
-            //checkedListBoxRol.BackColor = System.Drawing.SystemColors.Control;
-            //checkedListBoxRol.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            //checkedListBoxRol.CheckOnClick = true;
-            //checkedListBoxRol.Enabled = false;
-            //checkedListBoxRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //checkedListBoxRol.FormattingEnabled = true;
-            //checkedListBoxRol.Items.AddRange(new object[] {
-            //        "Encargado de Reportes",
-            //        "Encargado de Compras",
-            //        "Encargado de Ventas",
-            //        "Encargado de Datos"});
-            //checkedListBoxRol.Location = new System.Drawing.Point(187, 121);
-            //checkedListBoxRol.Name = "checkedListBoxRol";
-            //checkedListBoxRol.Size = new System.Drawing.Size(213, 114);
-            //checkedListBoxRol.TabIndex = 0;
-            //#endregion
 
             //grpBoxDatosUsuario = new System.Windows.Forms.GroupBox();
 
@@ -234,130 +184,222 @@ namespace Vista
             btnMasDatos.Enabled = !radioButtonCliente.Checked;
         }
         //
-        // button
+        //Button
         //
-        private void btnMasDatos_Click(object sender, EventArgs e)
-        {
-            if (radioButtonProveedor.Checked)
-            { 
-            }
-
-            if (radioButtonContactoProveedor.Checked)
-            { 
-            }
-
-            if (radioButtonUsuario.Checked)
-            { 
-            }
-        }     
-
         private void btnAgregarMail_Click(object sender, EventArgs e)
         {
-            
             ModeloMail mMail = new ModeloMail();
+            mMail.mail = txtBoxMail.Text;
             //Agregar validación por si el mail ya esta incluido
-            if (mMail.validarMail(txtBoxMail.Text))
+            if (mMail.validarMail() && this.validarMail())
             {
-                ListViewItem mail = new ListViewItem(txtBoxMail.Text);
-                lstViewMail.Items.Add(mail);
+                DataGridViewRow row = (DataGridViewRow)dataGridViewMail.Rows[0].Clone();
+                row.Cells[0].Value = 0;
+                row.Cells[1].Value = txtBoxMail.Text;
+                dataGridViewMail.Rows.Add(row);
+            }
+            else if (!this.validarMail())
+            {
+                frmMensajeCorto mensaje = new frmMensajeCorto("Faltan campos", "El campo número de teléfono esta vacío", "fallo");
+                mensaje.ShowDialog();
             }
             else
             {
                 frmMensajeCorto mensaje = new frmMensajeCorto("Error", "El formato de mail ingresado no es válido", "fallo");
-                mensaje.ShowDialog();
+                mensaje.ShowDialog();   
             }
         }
-        
+
         private void btnQuitarMail_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in lstViewMail.SelectedItems)
+            foreach (DataGridViewRow item in this.dataGridViewMail.SelectedRows)
             {
-                lstViewMail.Items.Remove(item);
+                if (!item.IsNewRow)
+                {
+                    dataGridViewMail.Rows.RemoveAt(item.Index);
+                }
             }
         }
- 
+
         private void btnAgregarNumeroTelefono_Click(object sender, EventArgs e)
         {
             //Validar numero
-            
-            ListViewItem numero = new ListViewItem(new string[] {(string)cmbBoxTipoNumeroTelefono.Text, txtBoxNumeroTelefono.Text});
-           
-            lstViewNumeroTelefono.Items.Add(numero);
+            if (this.validarTelefono())
+            {
+                DataGridViewRow row = (DataGridViewRow)dataGridViewTelefono.Rows[0].Clone();
+                //codigoTelefono
+                row.Cells[0].Value = 0;
+                //codigoTipo
+                row.Cells[1].Value = cmbBoxTipoTelefono.Text;
+                //tipo
+                row.Cells[2].Value = cmbBoxTipoTelefono.SelectedValue.ToString();
+                //numero
+                row.Cells[3].Value = txtBoxTelefono.Text;
+
+                dataGridViewTelefono.Rows.Add(row);
+            }
+            else
+            {
+                frmMensajeCorto mensaje = new frmMensajeCorto("Faltan campos", "El campo número de teléfono esta vacío", "fallo");
+                mensaje.ShowDialog();
+            }
         }
 
         private void btnQuitarNumeroTelefono_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in lstViewNumeroTelefono.SelectedItems)
-            {
-                lstViewNumeroTelefono.Items.Remove(item);
-            }
-        }
-
-        private void btnAgregarDireccion_Click(object sender, EventArgs e)
-        {
-            //Validar datos
-            DataGridViewRow row = (DataGridViewRow)dataGridViewDireccion.Rows[0].Clone();
-            row.Cells[0].Value = txtBoxCalle.Text;
-            row.Cells[1].Value = txtBoxNumeroDomicilio.Text;
-            row.Cells[2].Value = txtBoxPiso.Text;
-            row.Cells[3].Value = txtBoxDepartamento.Text;
-            row.Cells[4].Value = txtBoxCodigoPostal.Text;
-            row.Cells[5].Value = txtBoxCiudad.Text;
-            row.Cells[6].Value = cmbBoxProvincia.Text;
-            dataGridViewDireccion.Rows.Add(row);
-        }
-
-        private void btnQuitarDireccion_Click(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow item in this.dataGridViewDireccion.SelectedRows)
+            
+            foreach (DataGridViewRow item in this.dataGridViewTelefono.SelectedRows)
             {
                 if (!item.IsNewRow)
                 {
-                    dataGridViewDireccion.Rows.RemoveAt(item.Index);
+                    dataGridViewTelefono.Rows.RemoveAt(item.Index);
+                }
+            }
+            
+        }
+
+        private void btnAgregarDomicilio_Click(object sender, EventArgs e)
+        {
+            //Validar datos
+            DataGridViewRow row = (DataGridViewRow)dataGridViewDomicilio.Rows[0].Clone();
+            //cell[0] codigoDomicilio
+            if (this.validarDomicilio())
+            {
+                row.Cells[1].Value = 0;
+                row.Cells[1].Value = txtBoxCalle.Text;
+                row.Cells[2].Value = txtBoxNumeroDomicilio.Text;
+                row.Cells[3].Value = txtBoxPiso.Text;
+                row.Cells[4].Value = txtBoxDepartamento.Text;
+                row.Cells[5].Value = txtBoxCodigoPostal.Text;
+                row.Cells[6].Value = txtBoxCiudad.Text;
+                row.Cells[7].Value = cmbBoxProvincia.SelectedValue.ToString();
+                row.Cells[8].Value = cmbBoxProvincia.Text;
+                row.Cells[9].Value = cmbBoxProvincia.SelectedValue.ToString();
+                row.Cells[10].Value = cmbBoxPais.Text;
+
+                dataGridViewDomicilio.Rows.Add(row);
+            }
+            else
+            {
+                frmMensajeCorto mensaje = new frmMensajeCorto("Faltan campos", "Debe seleccionar un país y provincia para el domicilio", "fallo");
+                mensaje.ShowDialog();
+                
+            }
+        }
+
+        private void btnQuitarDomicilio_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow item in this.dataGridViewDomicilio.SelectedRows)
+            {
+                if (!item.IsNewRow)
+                {
+                    dataGridViewDomicilio.Rows.RemoveAt(item.Index);
                 }
             }
         }
+        
         //
         // toolStrip
         //
-        private void toolStripMenuItemNuevo_Click(object sender, EventArgs e)
-        {
-            this.quitarTextoEnControles(this);
-        }
-
-        private void toolStripMenuItemCancelar_Click(object sender, EventArgs e)
-        {
-            frmMensajeCorto confirmarCancelar = new frmMensajeCorto("Confirmación", "¿Esta seguro que desea cancelar y salir de esta ventana?", "confirmacion");
-            confirmarCancelar.ShowDialog();
-        }
-
+        #region ToolStripMenuItems
+        
         private void toolStripMenuItemBuscar_Click(object sender, EventArgs e)
         {
             string tipoEntidad = this.getTipoEntidad();
             if (tipoEntidad != "")
             {
+                DataGridView dgv = new DataGridView();
                 switch (tipoEntidad)
                 {
                     case TipoEntidadPersona:
                         ModeloPersonas mPersona = this.cargarDatosEnModeloPersona();
-                        this.buscarEntidades(mPersona);
+                        //this.buscarEntidades(mPersona);
+                        List<ModeloPersonas> lmPersonas = new List<ModeloPersonas>();
+                        dgv = this.popularDataGridViewBusqueda(this.crearDataGridViewBusqueda(TipoEntidadPersona),lmPersonas);
                         break;
                     case TipoEntidadProveedor:
                         ModeloProveedor mProveedor = this.cargarDatosEnModeloProveedor();
-                        this.buscarEntidades(mProveedor);
+                        //this.buscarEntidades(mProveedor);
+                        List<ModeloProveedor> lmProveedor = new List<ModeloProveedor>();
+                        dgv = this.popularDataGridViewBusqueda(this.crearDataGridViewBusqueda(TipoEntidadProveedor),lmProveedor);
                         break;
                     default:
                         break;
                 }
+
+                Form frmResultadoBusqueda = new Form();
+                frmResultadoBusqueda.Text = "Resultado de búsqueda";
+                frmResultadoBusqueda.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
+                frmResultadoBusqueda.AutoSize = true;
+                frmResultadoBusqueda.Controls.Add(dgv);
+                frmResultadoBusqueda.Show();
             }
             else
             {
                 frmMensajeCorto seleccionarTipoEntidad = new frmMensajeCorto("Tipo Entidad", "Debe seleccionar un tipo de entidad para realizar la acción", "fallo");
                 seleccionarTipoEntidad.ShowDialog();
             }
-            
+
         }
+
+        private void toolStripMenuItemNuevo_Click(object sender, EventArgs e)
+        {
+            this.quitarTextoEnControles(this);
+        }
+        
+        private void toolStripMenuItemEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItemGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItemCancelar_Click(object sender, EventArgs e)
+        {
+            //Cambiar por un mensaje SI/NO
+            DialogResult dialogResult = MessageBox.Show("¿Esta seguro que desea salir de esta ventana?", "Atención", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            /* Por si se desea agregar algo en el futuro
+            else if (dialogResult == DialogResult.No)
+            {
+                
+            }
+            */
+        }               
+
         #endregion
+
+        #endregion
+
+        #region validar
+
+        private bool validarValorNumerico(string pStringNumero)
+        {
+            int numero;
+            return Int32.TryParse(pStringNumero, out numero);
+        }
+
+        private bool validarDomicilio()
+        {
+            return !(cmbBoxProvincia.SelectedValue == null || cmbBoxProvincia.SelectedValue == null);
+        }
+
+        private bool validarTelefono()
+        {
+            //False si el capo esta vacio. Completar
+            return !(txtBoxTelefono.Text.Trim() == "");
+        }
+
+        private bool validarMail()
+        {
+            return !(txtBoxMail.Text.Trim() == "");
+        }
 
         private bool validarTipoEntidadSeleccion()
         {
@@ -371,6 +413,94 @@ namespace Vista
                 return true;
             }
         }
+
+        #endregion
+
+        private DataGridView crearDataGridViewBusqueda(string tipoEntidad)
+        {
+            DataGridView dgv = new DataGridView();
+            dgv.AutoGenerateColumns = false;
+
+            if (tipoEntidad == TipoEntidadProveedor || tipoEntidad == TipoEntidadPersona)
+            {
+                dgv.Columns.Add("tipo", "Tipo");
+                dgv.Columns[0].FillWeight = 1;
+                dgv.Columns.Add("codigoEntidad", "Código");
+                dgv.Columns[1].FillWeight = 1;
+                dgv.Columns.Add("cuit", "CUIT");
+                dgv.Columns[2].FillWeight = 1;
+                int indiceBase = 0;
+                if (tipoEntidad == TipoEntidadProveedor)
+                {
+                    dgv.Columns.Add("razonSocial", "Razón Social");
+                    dgv.Columns[3].FillWeight = 1;
+                    indiceBase = 4;
+                }
+                else if (tipoEntidad == TipoEntidadPersona)
+                {
+                    dgv.Columns.Add("DNI", "DNI");
+                    dgv.Columns[3].FillWeight = 1;
+                    dgv.Columns.Add("apellido", "Apellido");
+                    dgv.Columns[4].FillWeight = 1;
+                    dgv.Columns.Add("Nombre", "Nombre");
+                    dgv.Columns[5].FillWeight = 1;
+                    indiceBase = 6;
+                }
+                dgv.Columns.Add("direccion", "Domicilio");
+                dgv.Columns[indiceBase].FillWeight = 1;
+                dgv.Columns.Add("ciudad", "Ciudad Domicilio");
+                dgv.Columns[indiceBase + 1].FillWeight = 1;
+                dgv.Columns.Add("provincia", "Provincia Domicilio");
+                dgv.Columns[indiceBase + 2].FillWeight = 1;
+
+                dgv.Width = 800;
+                dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgv.RowHeadersVisible = false;
+            }
+            return dgv;
+        }
+
+        private DataGridView popularDataGridViewBusqueda(DataGridView pdgv, List<ModeloPersonas> plmPersonas)
+        {
+            DataGridViewRow row = (DataGridViewRow)pdgv.Rows[0].Clone();
+            foreach (ModeloPersonas p in plmPersonas)
+            {
+                row = (DataGridViewRow)pdgv.Rows[0].Clone();
+
+                row.Cells[0].Value = p.tipoPersona;
+                row.Cells[1].Value = p.codigo;
+                row.Cells[2].Value = p.cuit;
+                row.Cells[3].Value = p.dni;
+                row.Cells[4].Value = p.apellido;
+                row.Cells[5].Value = p.nombre;
+                row.Cells[6].Value = p.domicilios[0].calle + " " + p.domicilios[0].numero;
+                row.Cells[7].Value = p.domicilios[0].ciudad;
+                row.Cells[8].Value = p.domicilios[0].provincia.provincia;
+
+                pdgv.Rows.Add(row);
+            }
+            return pdgv;
+        }
+        private DataGridView popularDataGridViewBusqueda(DataGridView pdgv, List<ModeloProveedor> plmProveedor)
+        {
+            DataGridViewRow row = (DataGridViewRow)pdgv.Rows[0].Clone();
+            foreach (ModeloProveedor p in plmProveedor)
+            {
+                row = (DataGridViewRow)pdgv.Rows[0].Clone();
+
+                row.Cells[0].Value = "PRO";
+                row.Cells[1].Value = p.codigo;
+                row.Cells[2].Value = p.cuit;
+                row.Cells[3].Value = p.razonSocial;
+                row.Cells[4].Value = p.domicilios[0].calle + " " + p.domicilios[0].numero;
+                row.Cells[5].Value = p.domicilios[0].ciudad;
+                row.Cells[6].Value = p.domicilios[0].provincia.provincia;
+
+                pdgv.Rows.Add(row);
+            }
+            return pdgv;
+        }
+        
 
         private RadioButton getRadioButtonTipoEntidad()
         {
@@ -386,7 +516,9 @@ namespace Vista
             string tipoEntidad = "";
             switch (this.getTipoPersona())
             {
-                case TipoPersonaCliente: case TipoPersonaContactoDeProveedor: case TipoPersonaUsuario:
+                case TipoPersonaCliente:
+                case TipoPersonaContactoDeProveedor:
+                case TipoPersonaUsuario:
                     tipoEntidad = TipoEntidadPersona;
                     break;
                 case TipoEntidadProveedor:
@@ -437,14 +569,22 @@ namespace Vista
         private List<ModeloProveedor> buscarProveedores(ModeloProveedor pmProveedor)
         {
             List<ModeloProveedor> lmProveedores = new List<ModeloProveedor>();
+            ControladorBusqueda cBusqueda = new ControladorBusqueda();
+            lmProveedores = cBusqueda.buscarProveedores(this.cargarDatosEnModeloProveedor());
+
             return lmProveedores;
         }
         private List<ModeloPersonas> buscarPersonas(ModeloPersonas pmPersona)
         {
             List<ModeloPersonas> lmPersonas = new List<ModeloPersonas>();
+            ControladorBusqueda cBusqueda = new ControladorBusqueda();
+            lmPersonas = cBusqueda.buscarPersonas(this.cargarDatosEnModeloPersona());
+
             return lmPersonas;
         }
-        
+
+        #region Pasar datos de controles a Modelos
+       
         private ModeloPersonas cargarDatosEnModeloPersona()
         {
             ModeloPersonas mPersona = new ModeloPersonas();
@@ -461,6 +601,12 @@ namespace Vista
             mPersona.dni = txtBoxDNI.Text;
             mPersona.apellido = txtBoxApellido.Text;
             mPersona.nombre = txtBoxNombre.Text;
+            if (this.getTipoPersona() == TipoPersonaUsuario)
+            {
+                mPersona.usuario = txtBoxUsuario.Text;
+                mPersona.contrasenia = txtBoxContrasenia.Text;
+                mPersona.roles = this.cargarDatosEnModeloRol();
+            }
             return mPersona;
         }
         private ModeloProveedor cargarDatosEnModeloProveedor()
@@ -481,7 +627,15 @@ namespace Vista
         private ModeloEntidad cargarDatosEnModeloEntidad()
         {
             ModeloEntidad mEntidad = new ModeloEntidad();
-            mEntidad.codigo = Convert.ToInt32(txtBoxCodigoEntidad.Text);
+            if (this.validarValorNumerico(txtBoxCodigoEntidad.Text))
+            {
+                mEntidad.codigo = Convert.ToInt32(txtBoxCodigoEntidad.Text);
+            }
+            else
+            {
+                mEntidad.codigo = 0;
+            }
+            
             mEntidad.cuit = txtBoxCUIT.Text;
             mEntidad.domicilios = this.cargarDatosEnModeloDomicilio();
             mEntidad.telefonos = this.cargarDatosEnModeloTelefono();
@@ -490,32 +644,17 @@ namespace Vista
             mEntidad.observaciones = rchTextBoxObservaciones.Text;
             return mEntidad;
         }
-        
+
         private List<ModeloDomicilio> cargarDatosEnModeloDomicilio()
         {
             List<ModeloDomicilio> lModeloDomicilio = new List<ModeloDomicilio>();
             ModeloDomicilio mDomicilio = new ModeloDomicilio();
-            if (dataGridViewDireccion.RowCount == 0)
+            if (dataGridViewDomicilio.Rows.Count > 1)
             {
-                mDomicilio.calle = txtBoxCalle.Text;
-                mDomicilio.numero = txtBoxNumeroDomicilio.Text;
-                mDomicilio.piso = txtBoxPiso.Text;
-                mDomicilio.departamento = txtBoxDepartamento.Text;
-                mDomicilio.ciudad = txtBoxCiudad.Text;
-                mDomicilio.codigoPostal = txtBoxCodigoPostal.Text;
-                
-                //REVISAR VER CODIGO DE COMBOBOX
-                mDomicilio.provincia.provincia = cmbBoxProvincia.SelectedValue.ToString();
-                mDomicilio.pais.pais = cmbBoxPais.SelectedValue.ToString();
-
-
-                lModeloDomicilio.Add(mDomicilio);
-            }
-            else
-            {
-                foreach (DataGridViewRow row in dataGridViewDireccion.Rows)
+                foreach (DataGridViewRow row in dataGridViewDomicilio.Rows)
                 {
                     mDomicilio = new ModeloDomicilio();
+
                     mDomicilio.calle = row.Cells["calle"].Value.ToString();
                     mDomicilio.numero = row.Cells["numero"].Value.ToString();
                     mDomicilio.piso = row.Cells["piso"].Value.ToString();
@@ -524,34 +663,109 @@ namespace Vista
                     mDomicilio.ciudad = row.Cells["ciudad"].Value.ToString();
                     mDomicilio.provincia.provincia = row.Cells["provincia"].Value.ToString();
                     mDomicilio.pais.pais = row.Cells["pais"].Value.ToString();
+
+                    if (this.validarValorNumerico(row.Cells["codigoDomicilio"].Value.ToString()))
+                    {
+                        mDomicilio.codigoDomicilio = Convert.ToInt32(row.Cells["codigoDomicilio"].Value.ToString());
+                    }
+                    else
+                    {
+                        mDomicilio.codigoDomicilio = 0;
+                    }
                     
-                    mDomicilio.codigoDomicilio = Convert.ToInt32(row.Cells["codigoDomicilio"].Value.ToString());
                     mDomicilio.provincia.codigo = row.Cells["codigoProvincia"].Value.ToString();
                     mDomicilio.pais.codigo = row.Cells["codigoPais"].Value.ToString();
 
                     lModeloDomicilio.Add(mDomicilio);
                 }
             }
+
             return lModeloDomicilio;
         }
         private List<ModeloTelefono> cargarDatosEnModeloTelefono()
         {
             List<ModeloTelefono> lModeloTelefono = new List<ModeloTelefono>();
+            ModeloTelefono mTelefono = new ModeloTelefono();
+            foreach (DataGridViewRow row in this.dataGridViewMail.Rows)
+            {
+                mTelefono = new ModeloTelefono();
+                if (this.validarValorNumerico(row.Cells["codigoTelefono"].Value.ToString()))
+                {
+                    mTelefono.codigoTelefono = Convert.ToInt32(row.Cells["codigoTelefono"].Value.ToString());
+                }
+                else
+                {
+                    mTelefono.codigoTelefono = 0;
+                }
+                
+                mTelefono.numero = row.Cells["numero"].Value.ToString();
+                mTelefono.tipo = row.Cells["codigoTipo"].Value.ToString();
+
+                lModeloTelefono.Add(mTelefono);
+            }
             return lModeloTelefono;
         }
         private List<ModeloMail> cargarDatosEnModeloMail()
         {
             List<ModeloMail> lModeloMail = new List<ModeloMail>();
+            ModeloMail mMail = new ModeloMail();
+            foreach (DataGridViewRow row in this.dataGridViewMail.Rows)
+            {
+                mMail = new ModeloMail();
+                mMail.codigoMail = Convert.ToInt32(row.Cells["codigoMail"].Value.ToString());
+                mMail.mail = row.Cells["mail"].Value.ToString();
+
+                lModeloMail.Add(mMail);
+            }
             return lModeloMail;
         }
+        private List<ModeloRoles> cargarDatosEnModeloRol()
+        {
+            List<ModeloRoles> lModeloRol = new List<ModeloRoles>();
+            ModeloRoles mRol = new ModeloRoles();
+            foreach (object itemChecked in chckdListBoxRol.CheckedItems)
+            {
+                DataRowView rol = itemChecked as DataRowView;
+                mRol.codigo = Convert.ToInt32(rol["codigo"].ToString());
+                mRol.descripcion = rol["descripcion"].ToString();
+            }
+            return lModeloRol;
+        }
+       
+        #endregion
 
         private void cargarDatosEnCmbBoxProvincia(List<ModeloProvincia> pLProvincias)
         {
-            
+            this.cmbBoxProvincia.DataSource = pLProvincias;
+            this.cmbBoxProvincia.SelectedItem = null;
         }
         private void cargaDatosEnCmbBoxPais(List<ModeloPais> pLPais)
         {
- 
+            this.cmbBoxPais.DataSource = pLPais;
+            this.cmbBoxPais.SelectedItem = null;
         }
+
+        private void cmbBoxPais_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ControladorBusqueda cBusqueda = new ControladorBusqueda();
+            ModeloProvincia mProvinciaBusqueda = new ModeloProvincia();
+            //Inserto codigoPais del país seleccionado en el comboBox
+            mProvinciaBusqueda.codigoPais = this.cmbBoxPais.SelectedValue.ToString();
+            //this.cmbBoxProvincia.DataSource = provincias;
+            //REVISAR TEMPORAL HASTA QUE ESTE COMPLETO CONTROLADOrBUSQUEDA
+            List<ModeloProvincia> lmProvincias = cBusqueda.buscarProvincias();
+            List<ModeloProvincia> provincias = new List<ModeloProvincia>();
+            foreach (ModeloProvincia p in lmProvincias)
+            {
+                if (p.codigoPais == mProvinciaBusqueda.codigoPais)
+                {
+                    provincias.Add(p);
+                }
+            }
+            this.cargarDatosEnCmbBoxProvincia(provincias);
+        }
+
+
+
     }
 }
