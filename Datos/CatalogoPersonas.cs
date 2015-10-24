@@ -79,22 +79,27 @@ namespace Datos
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
-            comando.Parameters.Add(this.instanciarParametro(pmPersona.codigo, "@codigo_entidad"));
+            int? codigoEntidad = pmPersona.codigo == 0? null : (int?)pmPersona.codigo;
+            comando.Parameters.Add(this.instanciarParametro(codigoEntidad, "@codigo_entidad"));
             string codigoEntidadQuery = @" (@codigo_entidad IS NULL OR @codigo_entidad = codigo_entidad) ";
             comando.Parameters.Add(this.instanciarParametro(pmPersona.cuit, "@cuit"));
             string cuitQuery = this.parametroBusqueda("@cuit", "cuit","=");
             comando.Parameters.Add(this.instanciarParametro(pmPersona.dni, "@dni"));
             string dniQuery = this.parametroBusqueda("@dni", "dni","=");
-            comando.Parameters.Add(this.instanciarParametro(pmPersona.nombre.ToLower(), "@nombre"));
+            //No se puede hacer .ToLower a null
+            string nombre = (pmPersona.nombre == null) ? null : pmPersona.nombre.ToLower();
+            comando.Parameters.Add(this.instanciarParametro(nombre, "@nombre"));
             string nombreQuery = this.parametroBusqueda("@nombre", "nombre","LIKE");
-            comando.Parameters.Add(this.instanciarParametro(pmPersona.apellido.ToLower(), "@apellido"));
+            //No se puede hacer .ToLower a null
+            string apellido = (pmPersona.apellido == null) ? null : pmPersona.apellido.ToLower();
+            comando.Parameters.Add(this.instanciarParametro(apellido, "@apellido"));
             string apellidoQuery = this.parametroBusqueda("@apellido", "apellido", "LIKE");
             comando.Parameters.Add(this.instanciarParametro(pmPersona.usuario, "@usuario"));
             string usuarioQuery = @" (@usuario IS NULL OR @usuario = usuario) ";
             comando.Parameters.Add(this.instanciarParametro(pmPersona.contrasenia, "@contrasenia"));
             string contraseniaQuery = @" (@contrasenia IS NULL OR @contrasenia = contrasenia) ";
             comando.Parameters.Add(this.instanciarParametro(pmPersona.tipoPersona, "@tipo_persona"));
-            string tipoPersonaQuery = this.parametroBusqueda("@tipo_persona", "tipo_persona", "=");
+            string tipoPersonaQuery = @" (@tipo_persona IS NULL OR @tipo_persona = tipo_persona) "; 
 
             string querySQL = codigoEntidadQuery +" AND " + cuitQuery + " AND " + dniQuery + " AND " + nombreQuery + " AND " + apellidoQuery + " AND " + usuarioQuery + " AND " + contraseniaQuery + " AND " + tipoPersonaQuery;
 

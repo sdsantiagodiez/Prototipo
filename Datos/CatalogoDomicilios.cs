@@ -48,7 +48,7 @@ namespace Datos
                 "SELECT "+
                 "[domicilios_entidad].codigo_domicilio,[domicilios_entidad].calle,[domicilios_entidad].numero,[domicilios_entidad].piso, "+
                 "[domicilios_entidad].departamento, [domicilios_entidad].ciudad,[domicilios_entidad].codigo_postal, "+
-                "[provincias].provincia, [provincias].codigo_provincia,[paises].pais, [paises].codigo " +
+                "[provincias].provincia, [provincias].codigo_provincia,[paises].pais, [paises].codigo as codigo_pais " +
                     "FROM [domicilios_entidad] " +
                     "INNER JOIN [provincias] on [provincias].codigo_provincia = [domicilios_entidad].codigo_provincia " +
                     "INNER JOIN [paises] on [paises].codigo = [provincias].codigo_pais " +

@@ -77,7 +77,7 @@ namespace Modelos
         /// <returns></returns>
         public string convertirString(string pString)
         {
-            string stringConvertida = "";
+            string stringConvertida = null;
             if (pString != null)
             {
                 stringConvertida = pString.Trim();

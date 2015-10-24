@@ -71,7 +71,8 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
 
-            comando.Parameters.Add(this.instanciarParametro(pmProveedor.codigo, "@codigo_entidad"));
+            int? codigoEntidad = pmProveedor.codigo == 0 ? null : (int?)pmProveedor.codigo;
+            comando.Parameters.Add(this.instanciarParametro(codigoEntidad, "@codigo_entidad"));
             string codigoEntidadQuery = @" (@codigo_entidad IS NULL OR @codigo_entidad = codigo_entidad) ";
             comando.Parameters.Add(this.instanciarParametro(pmProveedor.cuit, "@cuit"));
             string cuitQuery = this.parametroBusqueda("@cuit", "cuit","=");
