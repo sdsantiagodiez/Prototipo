@@ -83,7 +83,9 @@ namespace Controladores
         public ModeloPersonas getCliente(string dni)
         {
             var contBusq = new ControladorBusqueda();
-            return contBusq.busqPersCompleta(dni);
+            ModeloPersonas mPersona = new ModeloPersonas();
+            mPersona.dni = dni;
+            return contBusq.buscarPersonas(mPersona,"dni")[0];
         }
 
         public void addClient(ModeloPersonas newCli)

@@ -12,30 +12,7 @@ namespace Controladores
     {
         #region Entidades
         
-        #region Personas
-        /// <summary>
-        /// Retorna una persona completa (con mails, telefonos, domicilios)
-        /// </summary>
-        /// <returns>ModeloPersona</returns>
-        public ModeloPersonas busqPersCompleta(string dni){
-            ModeloPersonas per = new ModeloPersonas();
-            per.dni=dni;
-            per = this.buscarPersonas(per)[0];
-            var mails = new List<ModeloMail>();
-            var tels = new List<ModeloTelefono>();
-            var doms = new List<ModeloDomicilio>();
-
-            mails = this.getMail(per.codigo);
-            tels = this.getTel(per.codigo);
-            doms = this.getDoms(per.codigo);
-
-            per.mails = mails;
-            per.telefonos = tels;
-            per.domicilios = doms;
-            
-            return per;
-        }
-        
+        #region Personas        
         /// <summary>
         /// Retorna todas las personas de la base de datos
         /// </summary>
@@ -171,22 +148,6 @@ namespace Controladores
         }
         #endregion
 
-        private List<ModeloDomicilio> getDoms(int codigoEntidad)
-        {
-            var catDom = new CatalogoDomicilios();
-            return catDom.getDomicilios(codigoEntidad);
-        }
-
-        private List<ModeloTelefono> getTel(int codigoEntidad)
-        {
-            var catTel = new CatalogoTelefonos();
-            return catTel.getTelefonos(codigoEntidad);
-        }
-
-        private List<ModeloMail> getMail(int codigoEntidad)
-        {
-            var catMail = new CatalogoMails();
-            return catMail.getMails(codigoEntidad);
-        } 
+        
     }
 }
