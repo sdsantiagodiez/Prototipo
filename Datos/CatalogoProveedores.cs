@@ -76,7 +76,8 @@ namespace Datos
             string codigoEntidadQuery = @" (@codigo_entidad IS NULL OR @codigo_entidad = codigo_entidad) ";
             comando.Parameters.Add(this.instanciarParametro(pmProveedor.cuit, "@cuit"));
             string cuitQuery = this.parametroBusqueda("@cuit", "cuit","=");
-            comando.Parameters.Add(this.instanciarParametro(pmProveedor.razonSocial.ToLower(), "@razon_social"));
+            string razonSocial = pmProveedor.razonSocial == null ? null : pmProveedor.razonSocial.ToLower();
+            comando.Parameters.Add(this.instanciarParametro(razonSocial, "@razon_social"));
             string razonSocialQuery = this.parametroBusqueda("@razon_social", "razon_social","LIKE");
 
             string querySQL = codigoEntidadQuery +" AND " + cuitQuery + " AND " + razonSocialQuery;
