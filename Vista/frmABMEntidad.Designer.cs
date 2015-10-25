@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStripABM = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemBuscar = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemNuevo = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemLimpiarCampos = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEliminar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemGuardar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCancelar = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,6 +129,8 @@
             this.lblContrasenia = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.chckdListBoxRol = new System.Windows.Forms.CheckedListBox();
+            this.EntidadToolStripMenuItemGuardarNueva = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemGuardarCambios = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripABM.SuspendLayout();
             this.tblLayoutPanelDatos.SuspendLayout();
             this.grpBoxTipoEntidad.SuspendLayout();
@@ -161,9 +163,9 @@
             // 
             this.menuStripABM.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemBuscar,
-            this.toolStripMenuItemNuevo,
-            this.toolStripMenuItemEliminar,
             this.toolStripMenuItemGuardar,
+            this.toolStripMenuItemEliminar,
+            this.toolStripMenuItemLimpiarCampos,
             this.toolStripMenuItemCancelar});
             this.menuStripABM.Location = new System.Drawing.Point(0, 0);
             this.menuStripABM.Name = "menuStripABM";
@@ -178,12 +180,12 @@
             this.toolStripMenuItemBuscar.Text = "Buscar";
             this.toolStripMenuItemBuscar.Click += new System.EventHandler(this.toolStripMenuItemBuscar_Click);
             // 
-            // toolStripMenuItemNuevo
+            // toolStripMenuItemLimpiarCampos
             // 
-            this.toolStripMenuItemNuevo.Name = "toolStripMenuItemNuevo";
-            this.toolStripMenuItemNuevo.Size = new System.Drawing.Size(54, 20);
-            this.toolStripMenuItemNuevo.Text = "Nuevo";
-            this.toolStripMenuItemNuevo.Click += new System.EventHandler(this.toolStripMenuItemNuevo_Click);
+            this.toolStripMenuItemLimpiarCampos.Name = "toolStripMenuItemLimpiarCampos";
+            this.toolStripMenuItemLimpiarCampos.Size = new System.Drawing.Size(104, 20);
+            this.toolStripMenuItemLimpiarCampos.Text = "Limpiar campos";
+            this.toolStripMenuItemLimpiarCampos.Click += new System.EventHandler(this.toolStripMenuItemLimpiarCampos_Click);
             // 
             // toolStripMenuItemEliminar
             // 
@@ -194,10 +196,12 @@
             // 
             // toolStripMenuItemGuardar
             // 
+            this.toolStripMenuItemGuardar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.EntidadToolStripMenuItemGuardarNueva,
+            this.ToolStripMenuItemGuardarCambios});
             this.toolStripMenuItemGuardar.Name = "toolStripMenuItemGuardar";
             this.toolStripMenuItemGuardar.Size = new System.Drawing.Size(61, 20);
             this.toolStripMenuItemGuardar.Text = "Guardar";
-            this.toolStripMenuItemGuardar.Click += new System.EventHandler(this.toolStripMenuItemGuardar_Click);
             // 
             // toolStripMenuItemCancelar
             // 
@@ -717,14 +721,14 @@
             // 
             // dataGridViewDomicilio
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewDomicilio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewDomicilio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewDomicilio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDomicilio.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoDomicilio,
@@ -1274,6 +1278,20 @@
             this.chckdListBoxRol.Size = new System.Drawing.Size(120, 80);
             this.chckdListBoxRol.TabIndex = 2;
             // 
+            // EntidadToolStripMenuItemGuardarNueva
+            // 
+            this.EntidadToolStripMenuItemGuardarNueva.Name = "EntidadToolStripMenuItemGuardarNueva";
+            this.EntidadToolStripMenuItemGuardarNueva.Size = new System.Drawing.Size(196, 22);
+            this.EntidadToolStripMenuItemGuardarNueva.Text = "Guardar Nueva Entidad";
+            this.EntidadToolStripMenuItemGuardarNueva.Click += new System.EventHandler(this.EntidadToolStripMenuItemGuardarNueva_Click);
+            // 
+            // ToolStripMenuItemGuardarCambios
+            // 
+            this.ToolStripMenuItemGuardarCambios.Name = "ToolStripMenuItemGuardarCambios";
+            this.ToolStripMenuItemGuardarCambios.Size = new System.Drawing.Size(196, 22);
+            this.ToolStripMenuItemGuardarCambios.Text = "Guardar Cambios";
+            this.ToolStripMenuItemGuardarCambios.Click += new System.EventHandler(this.ToolStripMenuItemGuardarCambios_Click);
+            // 
             // frmABMEntidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1284,6 +1302,7 @@
             this.MainMenuStrip = this.menuStripABM;
             this.Name = "frmABMEntidad";
             this.Text = "ABM Entidades";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmABMEntidad_FormClosing);
             this.menuStripABM.ResumeLayout(false);
             this.menuStripABM.PerformLayout();
             this.tblLayoutPanelDatos.ResumeLayout(false);
@@ -1325,7 +1344,7 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStripABM;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemNuevo;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLimpiarCampos;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEliminar;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBuscar;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemGuardar;
@@ -1424,5 +1443,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoTipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn numeroTelefono;
+        private System.Windows.Forms.ToolStripMenuItem EntidadToolStripMenuItemGuardarNueva;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemGuardarCambios;
     }
 }

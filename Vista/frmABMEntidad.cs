@@ -32,14 +32,15 @@ namespace Vista
             btnQuitarMail.Text = char.ConvertFromUtf32(8593);
 
             toolStripMenuItemEliminar.Enabled = false;
-            toolStripMenuItemGuardar.Enabled = false;
-
+            ToolStripMenuItemGuardarCambios.Enabled = false;
 
             this.inicializarListViews();
 
             this.inicializarComboBox();
 
             this.inicializarCheckedListBox();
+
+            this.inicializarFrmResultadoBusqueda();
         }    
 
         #region Inicializar
@@ -99,6 +100,16 @@ namespace Vista
             chckdListBoxRol.ValueMember = "codigo";
         }
 
+        private void inicializarFrmResultadoBusqueda()
+        {
+            frmResultadoBusqueda.Text = "Resultado de búsqueda";
+            frmResultadoBusqueda.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
+            frmResultadoBusqueda.AutoSize = true;
+
+            frmResultadoBusqueda.FormClosing += frmResultadoBusqueda_FormClosing;                
+        }
+
+        
         #endregion
 
         #region Eventos
@@ -305,13 +316,9 @@ namespace Vista
                     default:
                         break;
                 }
-                frmResultadoBusqueda = new Form();
+                //frmResultadoBusqueda = new Form();
                 frmResultadoBusqueda.Controls.Clear();
                 frmResultadoBusqueda.BringToFront();
-                
-                frmResultadoBusqueda.Text = "Resultado de búsqueda";
-                frmResultadoBusqueda.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
-                frmResultadoBusqueda.AutoSize = true;
                 frmResultadoBusqueda.Controls.Add(dataGridViewResultadoBusqueda);
                 frmResultadoBusqueda.Show();
             }
@@ -322,29 +329,224 @@ namespace Vista
             }
 
         }
-        
+        void frmResultadoBusqueda_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmResultadoBusqueda.Hide();
+            e.Cancel = true; // this cancels the close event.
+        }
+        private DataGridView inicializarDataGridViewResultadoBusqueda(string tipoEntidad)
+        {
+            DataGridView dgv = new DataGridView();
+            dgv.AutoGenerateColumns = false;
+            dgv.ReadOnly = true;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.RowHeadersVisible = false;
+            dgv.DoubleClick += dataGridViewResultadoBusqueda_DoubleClick;
+
+            dgv.Width = 800;
+
+            if (tipoEntidad == TipoEntidadProveedor || tipoEntidad == TipoEntidadPersona)
+            {
+                dgv.Columns.Add("tipo", "Tipo");
+                dgv.Columns[0].FillWeight = 1;
+                dgv.Columns.Add("codigoEntidad", "Código");
+                dgv.Columns[1].FillWeight = 1;
+                dgv.Columns.Add("cuit", "CUIT");
+                dgv.Columns[2].FillWeight = 1;
+
+                int indiceBase = 0;
+                if (tipoEntidad == TipoEntidadProveedor)
+                {
+                    dgv.Columns.Add("razonSocial", "Razón Social");
+                    dgv.Columns[3].FillWeight = 1;
+                    indiceBase = 4;
+                }
+                else if (tipoEntidad == TipoEntidadPersona)
+                {
+                    dgv.Columns.Add("DNI", "DNI");
+                    dgv.Columns[3].FillWeight = 1;
+                    dgv.Columns.Add("apellido", "Apellido");
+                    dgv.Columns[4].FillWeight = 1;
+                    dgv.Columns.Add("Nombre", "Nombre");
+                    dgv.Columns[5].FillWeight = 1;
+                    indiceBase = 6;
+                }
+                dgv.Columns.Add("direccion", "Domicilio");
+                dgv.Columns[indiceBase].FillWeight = 1;
+                dgv.Columns.Add("ciudad", "Ciudad Domicilio");
+                dgv.Columns[indiceBase + 1].FillWeight = 1;
+                dgv.Columns.Add("provincia", "Provincia Domicilio");
+                dgv.Columns[indiceBase + 2].FillWeight = 1;
+            }
+            return dgv;
+        }
         void dataGridViewResultadoBusqueda_DoubleClick(object sender, EventArgs e)
         {
             string tipo = dataGridViewResultadoBusqueda.SelectedCells[0].Value.ToString();
             int codigoEntidadSeleccionada = Convert.ToInt32(dataGridViewResultadoBusqueda.SelectedCells[1].Value.ToString());
-            
+            frmResultadoBusqueda.Hide();
+
+            toolStripMenuItemEliminar.Enabled = true;
+            ToolStripMenuItemGuardarCambios.Enabled = true;
+            EntidadToolStripMenuItemGuardarNueva.Enabled = false;
+
             this.cargarEntidadEnControles(codigoEntidadSeleccionada,tipo);
         }
 
-        private void toolStripMenuItemNuevo_Click(object sender, EventArgs e)
+        private void EntidadToolStripMenuItemGuardarNueva_Click(object sender, EventArgs e)
+        {
+            //Cambiar por un mensaje SI/NO
+            DialogResult dialogResult = MessageBox.Show("¿Crear nueva entidad?", "Atención", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                ControladorAlta cAlta = new ControladorAlta();
+                string tipoEntidad = this.getTipoEntidad();
+                string respuesta = "";
+                bool exito = false;
+                if (tipoEntidad != null)
+                {
+                    switch (tipoEntidad)
+                    {
+                        case TipoEntidadPersona:
+                            ModeloPersonas mPersona = this.cargarDatosEnModeloPersona();
+                            exito = cAlta.agregarPersona(mPersona);
+                            break;
+                        case TipoEntidadProveedor:
+                            ModeloProveedor mProveedor = this.cargarDatosEnModeloProveedor();
+                            exito = cAlta.agregarProveedor(mProveedor);
+                            break;
+                        default:
+                            break;
+                    }
+                    if (exito == true)
+                    {
+                        respuesta = "La operación ha sido exitosa";
+                    }
+                    else
+                    {
+                        respuesta = "La operación ha fallado.";
+                    }
+                }
+                else
+                {
+                    respuesta = "Debe seleccionar un tipo de entidad para realizar la acción";
+                }
+                MessageBox.Show(respuesta);
+            }
+            /* Por si se desea agregar algo en el futuro
+            else if (dialogResult == DialogResult.No)
+            {
+                
+            }
+            */
+            
+        }
+
+        private void ToolStripMenuItemGuardarCambios_Click(object sender, EventArgs e)
+        {
+            //Cambiar por un mensaje SI/NO
+            DialogResult dialogResult = MessageBox.Show("¿Guardar los cambios realizados?", "Atención", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                ControladorModificacion cModificacion = new ControladorModificacion();
+                string tipoEntidad = this.getTipoEntidad();
+                string respuesta = "";
+                bool exito = false;
+                if (tipoEntidad != null)
+                {
+                    switch (tipoEntidad)
+                    {
+                        case TipoEntidadPersona:
+                            ModeloPersonas mPersona = this.cargarDatosEnModeloPersona();
+                            exito = cModificacion.modificarPersona(mPersona);
+                            break;
+                        case TipoEntidadProveedor:
+                            ModeloProveedor mProveedor = this.cargarDatosEnModeloProveedor();
+                            exito = cModificacion.modificarProveedor(mProveedor);
+                            break;
+                        default:
+                            break;
+                    }
+                    if (exito == true)
+                    {
+                        respuesta = "La operación ha sido exitosa";
+                    }
+                    else
+                    {
+                        respuesta = "La operación ha fallado.";
+                    }
+                }
+                else
+                {
+                    respuesta = "Debe seleccionar un tipo de entidad para realizar la acción";
+                }
+                MessageBox.Show(respuesta);
+            }
+            /* Por si se desea agregar algo en el futuro
+            else if (dialogResult == DialogResult.No)
+            {
+                
+            }
+            */
+            
+        }
+
+        private void toolStripMenuItemLimpiarCampos_Click(object sender, EventArgs e)
         {
             this.quitarTextoEnControles(this);
             txtBoxCodigoEntidad.Enabled = true;
+            toolStripMenuItemEliminar.Enabled = false;
+            ToolStripMenuItemGuardarCambios.Enabled = false;
+            EntidadToolStripMenuItemGuardarNueva.Enabled = true;
         }
         
         private void toolStripMenuItemEliminar_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void toolStripMenuItemGuardar_Click(object sender, EventArgs e)
-        {
-
+            //Cambiar por un mensaje SI/NO
+            DialogResult dialogResult = MessageBox.Show("¿Esta seguro que desea elimnar esta entidad?", "Atención", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                ControladorBaja cBaja = new ControladorBaja();
+                string tipoEntidad = this.getTipoEntidad();
+                string respuesta = "";
+                bool exito = false;
+                if (tipoEntidad != null)
+                {
+                    switch (tipoEntidad)
+                    {
+                        case TipoEntidadPersona:
+                            ModeloPersonas mPersona = this.cargarDatosEnModeloPersona();
+                            exito = cBaja.eliminarPersona(mPersona);
+                            break;
+                        case TipoEntidadProveedor:
+                            ModeloProveedor mProveedor = this.cargarDatosEnModeloProveedor();
+                            exito = cBaja.eliminarProveedor(mProveedor);
+                            break;
+                        default:
+                            break;
+                    }
+                    if (exito == true)
+                    {
+                        respuesta = "La operación ha sido exitosa";
+                    }
+                    else
+                    {
+                        respuesta = "La operación ha fallado.";
+                    }
+                }
+                else
+                {
+                    respuesta = "Debe seleccionar un tipo de entidad para realizar la acción";
+                }
+                MessageBox.Show(respuesta);
+            }
+            /* Por si se desea agregar algo en el futuro
+            else if (dialogResult == DialogResult.No)
+            {
+                
+            }
+            */
+            
         }
 
         private void toolStripMenuItemCancelar_Click(object sender, EventArgs e)
@@ -765,54 +967,6 @@ namespace Vista
                     quitarTextoEnControles(c);
             }
         }
-
-        private DataGridView inicializarDataGridViewResultadoBusqueda(string tipoEntidad)
-        {
-            DataGridView dgv = new DataGridView();
-            dgv.AutoGenerateColumns = false;
-            dgv.ReadOnly = true;
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.RowHeadersVisible = false;
-            dgv.DoubleClick += dataGridViewResultadoBusqueda_DoubleClick;
-            
-            dgv.Width = 800;
-
-            if (tipoEntidad == TipoEntidadProveedor || tipoEntidad == TipoEntidadPersona)
-            {
-                dgv.Columns.Add("tipo", "Tipo");
-                dgv.Columns[0].FillWeight = 1;
-                dgv.Columns.Add("codigoEntidad", "Código");
-                dgv.Columns[1].FillWeight = 1;
-                dgv.Columns.Add("cuit", "CUIT");
-                dgv.Columns[2].FillWeight = 1;
-                
-                int indiceBase = 0;
-                if (tipoEntidad == TipoEntidadProveedor)
-                {
-                    dgv.Columns.Add("razonSocial", "Razón Social");
-                    dgv.Columns[3].FillWeight = 1;
-                    indiceBase = 4;
-                }
-                else if (tipoEntidad == TipoEntidadPersona)
-                {
-                    dgv.Columns.Add("DNI", "DNI");
-                    dgv.Columns[3].FillWeight = 1;
-                    dgv.Columns.Add("apellido", "Apellido");
-                    dgv.Columns[4].FillWeight = 1;
-                    dgv.Columns.Add("Nombre", "Nombre");
-                    dgv.Columns[5].FillWeight = 1;
-                    indiceBase = 6;
-                }
-                dgv.Columns.Add("direccion", "Domicilio");
-                dgv.Columns[indiceBase].FillWeight = 1;
-                dgv.Columns.Add("ciudad", "Ciudad Domicilio");
-                dgv.Columns[indiceBase + 1].FillWeight = 1;
-                dgv.Columns.Add("provincia", "Provincia Domicilio");
-                dgv.Columns[indiceBase + 2].FillWeight = 1;
-            }
-            return dgv;
-        }
-
         
         private DataGridView popularDataGridViewResultadoBusqueda(DataGridView pdgv, List<ModeloPersonas> plmPersonas)
         {
@@ -937,6 +1091,13 @@ namespace Vista
             lmPersonas = cBusqueda.buscarPersonas(this.cargarDatosEnModeloPersona());
 
             return lmPersonas;
+        }
+
+        
+
+        private void frmABMEntidad_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmResultadoBusqueda.Close();
         }
 
         
