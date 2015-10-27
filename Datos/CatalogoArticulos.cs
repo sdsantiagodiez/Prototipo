@@ -13,6 +13,20 @@ namespace Datos
     //revisar y modificar, si corresponde, existeEntidad y buscarArticulo
     public class CatalogoArticulos : Catalogo
     {
+
+        /// <summary>
+        /// permite inicializar substring para consulta sql donde el valor del atributo 
+        /// </summary>
+        /// <param name="nombreParametro">Valor que luego es comparado con una celda de la tabla de datos</param>
+        /// <param name="nombreParametroTabla">nombre de la columna en tabla de datos</param>
+        /// <returns></returns>
+        private string parametroBusqueda(string nombreParametro, string nombreParametroTabla, string comparador)
+        {
+            string querySQL =
+                @" (" + nombreParametro + " IS NULL OR " + nombreParametro + " " + comparador + " " + "LOWER(" + nombreParametroTabla + ") ) ";
+            return querySQL;
+        }
+
         public bool validarDatos(ModeloArticulos articulo)
         {
             // Validar si los datos son correctos
@@ -54,6 +68,54 @@ namespace Datos
         /// <param name="tipoParametro">"codigoOriginal" o "descripcion"</param>
         /// <param name="descripcionParametro">string por el que se buscará artículo</param>
         /// <returns></returns>
+        /// 
+
+        public List<ModeloArticulos> buscarArticulo(ModeloArticulos pmArticulo)
+        {
+            List<ModeloArticulos> lmArticulo = new List<ModeloArticulos>();
+
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.Parameters.Add(this.instanciarParametro(pmArticulo.codigoOriginal, "@codigo_original"));
+            string codigoEntidadQuery = @" (@codigo_original IS NULL OR @codigo_original = codigo_original) ";
+            comando.Parameters.Add(this.instanciarParametro(pmArticulo.descripcion, "@descripcion"));
+            string descripcionQuery = this.parametroBusqueda("@descripcion", "descripcion", "=");
+            comando.Parameters.Add(this.instanciarParametro(pmArticulo.modelos, "@modelos"));
+            string modeloQuery = this.parametroBusqueda("@modelos", "modelos", "=");
+            comando.Parameters.Add(this.instanciarParametro(pmArticulo.observaciones.ToLower(), "@observaciones"));
+            string observacionesQuery = this.parametroBusqueda("@observaciones", "observaciones", "LIKE");
+            
+            string querySQL = codigoEntidadQuery + " AND " + descripcionQuery + " AND " + modeloQuery + " AND " + observacionesQuery;
+
+            comando.CommandText =
+                "SELECT [entidades].codigo_original,[entidades].descripcion,[entidades].modelos,[entidades].observaciones," +
+                    "FROM [Articulos] " +
+                    "WHERE " + querySQL;
+
+            comando.Connection.Open();
+
+            SqlDataReader drArticulos = comando.ExecuteReader();
+
+            ModeloArticulos modArt = new ModeloArticulos();
+
+            while (drArticulos.Read())
+            {
+                modArt = new ModeloArticulos();
+                modArt = this.leerDatosArticulo(drArticulos);
+
+                
+                lmArticulo.Add(modArt);
+            }
+            drArticulos.Close();
+            comando.Connection.Close();
+
+            return lmArticulo;
+        }
         public List<ModeloArticulos> buscarArticulo(string tipoParametro, string descripcionParametro)
         {
             List<ModeloArticulos> listaArticulos = new List<ModeloArticulos>();
