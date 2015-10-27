@@ -11,6 +11,20 @@ namespace Datos
 {
     public class CatalogoArticuloProveedores : Catalogo
     {
+
+        /// <summary>
+        /// permite inicializar substring para consulta sql donde el valor del atributo 
+        /// </summary>
+        /// <param name="nombreParametro">Valor que luego es comparado con una celda de la tabla de datos</param>
+        /// <param name="nombreParametroTabla">nombre de la columna en tabla de datos</param>
+        /// <returns></returns>
+        private string parametroBusqueda(string nombreParametro, string nombreParametroTabla, string comparador)
+        {
+            string querySQL =
+                @" (" + nombreParametro + " IS NULL OR " + nombreParametro + " " + comparador + " " + "LOWER(" + nombreParametroTabla + ") ) ";
+            return querySQL;
+        }
+
         public bool validarDatos(ModeloArticuloProveedores articuloProveedor)
         {
             // Validar si los datos son correctos?
@@ -107,6 +121,62 @@ namespace Datos
                     break;
             }
             return listaArticulosProveedores;
+        }
+
+        public List<ModeloArticuloProveedores> buscarArticuloProveedor(ModeloArticuloProveedores pmArticuloProveedores)
+        {
+            List<ModeloArticuloProveedores> lmArticuloProveedores = new List<ModeloArticuloProveedores>();
+
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.Parameters.Add(this.instanciarParametro(pmArticuloProveedores.codigoOriginal, "@codigo_original"));
+            string codigoEntidadQuery = @" (@codigo_original IS NULL OR @codigo_original = codigo_original) ";
+            comando.Parameters.Add(this.instanciarParametro(pmArticuloProveedores.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
+            string codigoEntidadQuery2 = @" (@codigo_articulo_proveedor IS NULL OR @codigo_articulo_proveedor = codigo_articulo_proveedor) ";
+            comando.Parameters.Add(this.instanciarParametro(pmArticuloProveedores.descripcion, "@descripcion"));
+            string descripcionQuery = this.parametroBusqueda("@descripcion", "descripcion", "=");
+            comando.Parameters.Add(this.instanciarParametro(pmArticuloProveedores.stockMinimo, "@stock_minimo"));
+            string StockMinimoQuery = this.parametroBusqueda("@stock_minimo", "stock_minimo", "=");
+            comando.Parameters.Add(this.instanciarParametro(pmArticuloProveedores.stockMinimo, "@stock_actual"));
+            string StockActualQuery = this.parametroBusqueda("@stock_actual", "stock_actual", "=");
+            comando.Parameters.Add(this.instanciarParametro(pmArticuloProveedores.observaciones.ToLower(), "@observaciones"));
+            string observacionesQuery = this.parametroBusqueda("@observaciones", "observaciones", "LIKE");
+            comando.Parameters.Add(this.instanciarParametro(pmArticuloProveedores.ubicacion.ToLower(), "@ubicacion"));
+            string ubicacionQuery = this.parametroBusqueda("@ubicacion", "ubicacion", "LIKE");
+            comando.Parameters.Add(this.instanciarParametro(pmArticuloProveedores.fechaActualizacion.ToString(), "@fecha_actualizacion"));// Pasamos la fecha a String?
+            string fechaActualizacionQuery = this.parametroBusqueda("@fecha_actualizacion", "fecha_actualizacion", "=");
+            
+            string querySQL = codigoEntidadQuery + " AND " + codigoEntidadQuery2 + " AND " + descripcionQuery + " AND " + observacionesQuery +
+            " AND " + StockMinimoQuery + " AND " + StockActualQuery + " AND " + ubicacionQuery + " AND " + fechaActualizacionQuery;  
+            comando.CommandText =
+                "SELECT [codigo_original],[codigo_articulo_proveedor],[stock_minimo],[stock_actual],[observaciones],[ubicacion]," +
+                "   [descripcion],[fecha_actualizacion],ap.codigo_entidad, [prov].razon_social as razon_social_proveedor  " +
+                "FROM [Articulos_Proveedores] INNER JOIN [proveedores] prov " +
+                "   ON [prov].codigo_entidad = [ap].codigo_entidad " +
+                "WHERE " + querySQL;
+
+            comando.Connection.Open();
+
+            SqlDataReader drArticuloProveedores = comando.ExecuteReader();
+
+            ModeloArticuloProveedores modArtProv = new ModeloArticuloProveedores();
+
+            while (drArticuloProveedores.Read())
+            {
+                modArtProv = new ModeloArticuloProveedores();
+                modArtProv = this.leerDatosArticuloProveedorSinPrecio(drArticuloProveedores);
+                
+                lmArticuloProveedores.Add(modArtProv);
+            }
+            drArticuloProveedores.Close();
+            comando.Connection.Close();
+
+            return lmArticuloProveedores;
         }
 
         private List<ModeloArticuloProveedores> buscarPorDescripcion(string pDescripcion)

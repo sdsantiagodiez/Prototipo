@@ -199,13 +199,13 @@ namespace Controladores
         /// </summary>
         /// <param name="pmArticuloProveedores"></param>
         /// <returns>Lista de proveedores</returns>
-        public List<ModeloArticuloProveedores> buscarArticulosProveedores(ModeloProveedor pmArticuloProveedores)
+        public List<ModeloArticuloProveedores> buscarArticulosProveedores(ModeloArticuloProveedores pmArticuloProveedores)
         {
             CatalogoArticuloProveedores cap = new CatalogoArticuloProveedores();
-            pmArticuloProveedores.convertirDatos();
+            //pmArticuloProveedores.convertirDatos(); Ver Metodo
             List<ModeloArticuloProveedores> lmArticuloProveedores = new List<ModeloArticuloProveedores>();
-           // lmArticuloProveedores = cap.buscarArticuloProveedor(pmArticuloProveedores); Ver como definir esto que tambien pasa en Entidad Articulos.
-
+            lmArticuloProveedores = cap.buscarArticuloProveedor(pmArticuloProveedores); 
+            
             return lmArticuloProveedores;
         }
         /// <summary>
