@@ -147,7 +147,6 @@ namespace Controladores
         public List<ModeloArticulos> buscarArticulos(ModeloArticulos pmArticulo)
         {
             CatalogoArticulos ca = new CatalogoArticulos();
-            //pmArticulo.convertirDatos(); Que Hace este Metodo? Martin.
             List<ModeloArticulos> lmArticulo = new List<ModeloArticulos>();
             lmArticulo = ca.buscarArticulo(pmArticulo); //Ver como continuar Martin.
             return lmArticulo;
@@ -202,7 +201,6 @@ namespace Controladores
         public List<ModeloArticuloProveedores> buscarArticulosProveedores(ModeloArticuloProveedores pmArticuloProveedores)
         {
             CatalogoArticuloProveedores cap = new CatalogoArticuloProveedores();
-            //pmArticuloProveedores.convertirDatos(); Ver Metodo
             List<ModeloArticuloProveedores> lmArticuloProveedores = new List<ModeloArticuloProveedores>();
             lmArticuloProveedores = cap.buscarArticuloProveedor(pmArticuloProveedores); 
             
@@ -245,6 +243,7 @@ namespace Controladores
         /// Retorna todas las provincias de la base de datos
         /// </summary>
         /// <returns></returns>
+        
         public List<ModeloProvincia> buscarProvincias()
         {
             CatalogoProvincias cp = new CatalogoProvincias();
@@ -252,6 +251,19 @@ namespace Controladores
             return cp.getAll();
         }
 
+        /// <summary>
+        /// Retorna articulos en base a los valores inicializados en los atributos del modelo
+        /// </summary>
+        /// <param name="pmProvincia"></param>
+        /// <returns>Lista de proveedores</returns>
+        public List<ModeloProvincia> buscarProvincia(ModeloProvincia pmProvincia)
+        {
+            CatalogoProvincias cp = new CatalogoProvincias();
+            List<ModeloProvincia> lmProvincia = new List<ModeloProvincia>();
+            //lmProvincia = cp.buscarArticulo(pmProvincia); //seguir
+            return lmProvincia;
+        }
+       
         #endregion
 
         #region Paises
@@ -262,7 +274,5 @@ namespace Controladores
         }
         #endregion
 
-        
-    
-    }
+       }
 }
