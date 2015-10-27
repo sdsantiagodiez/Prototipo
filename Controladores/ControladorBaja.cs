@@ -3,10 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Modelos;
+using Datos;
 
 namespace Controladores
 {
-    public class ControladorBaja
+    public class ControladorBaja : Controlador
     {
+        public bool eliminarPersona(ModeloPersonas pmPersona)
+        {
+            CatalogoPersonas cp = new CatalogoPersonas();
+
+            return cp.bajaEntidad(pmPersona);
+        }
+        public bool eliminarProveedor(ModeloProveedor pmProveedor)
+        {
+            CatalogoProveedores cp = new CatalogoProveedores();
+
+            return cp.bajaEntidad(pmProveedor);
+        }
     }
 }

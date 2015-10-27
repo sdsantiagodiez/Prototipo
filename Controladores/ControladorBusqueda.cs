@@ -182,7 +182,7 @@ namespace Controladores
         }
 
         #endregion
-
+        
         #region ArticuloProveedores
         /// <summary>
         /// Retorna todos los ArticulosProveedores de la base de datos
@@ -253,7 +253,7 @@ namespace Controladores
         }
 
         #endregion
-        
+
         #region Paises
         public List<ModeloPais> buscarPaises()
         {
@@ -261,6 +261,8 @@ namespace Controladores
             return cp.getAll();
         }
         #endregion
+
+        
     
     }
 }

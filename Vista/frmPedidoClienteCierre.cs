@@ -66,6 +66,7 @@ namespace Vista
             dataSource.Add(new Tel() { Name = "Fijo", Value = "TEL" });
             dataSource.Add(new Tel() { Name = "Celular", Value = "CEL" });
             dataSource.Add(new Tel() { Name = "Fax", Value = "FAX" });
+            dataSource.Add(new Tel() { Name = "Sin Teléfono", Value = null });
 
             //Binding de telefonos
             this.cbxTipoTel.DataSource = dataSource;
@@ -161,6 +162,13 @@ namespace Vista
             frmSel.bindList(cliente.telefonos);
             frmSel.Show();
             this.txtTelefono.Text = cliente.telefonos[frmSel.selectedIndex].numero;
+            switch (cliente.telefonos[frmSel.selectedIndex].tipo)
+            {
+                case "TEL": this.cbxTipoTel.SelectedIndex = 0; break;
+                case "CEL": this.cbxTipoTel.SelectedIndex = 1; break;
+                case "FAX": this.cbxTipoTel.SelectedIndex = 2; break;
+                default: break;
+            }
         }
 
         private void btnSelMail_Click(object sender, EventArgs e)
@@ -176,8 +184,8 @@ namespace Vista
             frmSeleccion frmSel = new frmSeleccion();
             frmSel.bindList(cliente.domicilios);
             frmSel.Show();
-            this.cbxPais.SelectedIndex = paises.IndexOf(cliente.domicilios[frmSel.selectedIndex].pais);
-            this.cbxProvincia.SelectedIndex = provincias.IndexOf(cliente.domicilios[frmSel.selectedIndex].provincia);
+            this.cbxPais.SelectedIndex = paises.FindIndex(a => a.codigo == cliente.domicilios[frmSel.selectedIndex].pais.codigo);
+            this.cbxProvincia.SelectedIndex = provincias.FindIndex(a => a.codigo == cliente.domicilios[frmSel.selectedIndex].provincia.codigo);
             this.txtCiudad.Text = cliente.domicilios[frmSel.selectedIndex].ciudad;
             this.txtCalle.Text = cliente.domicilios[frmSel.selectedIndex].calle;
             this.txtNro.Text = cliente.domicilios[frmSel.selectedIndex].numero;
@@ -334,6 +342,15 @@ namespace Vista
                 // reporto resultado
                 if (!object.Equals(cliente, null))
                 {
+                    //limpio campo de búsqueda
+                    this.txtBusqCli.Text = "";
+
+                    //oculto checkbox registrar cliente;
+                    this.ckbxRegistrar.Visible = false;
+
+                    //muestro botonera de seleccion
+                    this.pnlSelectButtons.Visible = true;
+
                     //lleno textboxs
                     int latest;
                     this.txtNombre.Text = cliente.nombre;
@@ -341,37 +358,62 @@ namespace Vista
                     this.txtDni.Text = cliente.dni;
                     this.rtbObsCliente.Text = cliente.observaciones;
 
-                    latest = cliente.telefonos.Count - 1;
-                    this.txtTelefono.Text = cliente.telefonos[latest].numero;
-                    switch (cliente.telefonos[latest].tipo)
+                    latest = cliente.telefonos.Count;
+                    if (latest > 0)
                     {
-                        case "TEL": this.cbxTipoTel.SelectedIndex = 0; break;
-                        case "CEL": this.cbxTipoTel.SelectedIndex = 1; break;
-                        case "FAX": this.cbxTipoTel.SelectedIndex = 2; break;
-                        default: break;
+                        latest--;
+                        this.txtTelefono.Text = cliente.telefonos[latest].numero;
+                        switch (cliente.telefonos[latest].tipo)
+                        {
+                            case "TEL": this.cbxTipoTel.SelectedIndex = 0; break;
+                            case "CEL": this.cbxTipoTel.SelectedIndex = 1; break;
+                            case "FAX": this.cbxTipoTel.SelectedIndex = 2; break;
+                            default: break;
+                        }
+                    }
+                    else
+                    {
+                        this.btnSelTel.Visible = false;
+                        this.cbxTipoTel.SelectedIndex = 3;
+
                     }
 
-                    latest = cliente.mails.Count - 1;
-                    this.txtMail.Text = cliente.mails[latest].mail;
+                    latest = cliente.mails.Count;
+                    if (latest > 0)
+                    {
+                        latest--;
+                        this.txtMail.Text = cliente.mails[latest].mail;
+                    }
+                    else
+                    {
+                        this.btnSelMail.Visible = false;
+                    }
 
-                    latest = cliente.domicilios.Count - 1;
-                    this.cbxPais.SelectedIndex = paises.IndexOf(cliente.domicilios[latest].pais);
-                    this.cbxProvincia.SelectedIndex = provincias.IndexOf(cliente.domicilios[latest].provincia);
-                    this.txtCiudad.Text = cliente.domicilios[latest].ciudad;
-                    this.txtCalle.Text = cliente.domicilios[latest].calle;
-                    this.txtNro.Text = cliente.domicilios[latest].numero;
-                    this.txtPiso.Text = cliente.domicilios[latest].piso;
-                    this.txtDepto.Text = cliente.domicilios[latest].departamento;
-                    this.txtCp.Text = cliente.domicilios[latest].codigoPostal;
-
-                    //muestro botonera de seleccion
-                    this.pnlSelectButtons.Visible = true;
+                    latest = cliente.domicilios.Count;
+                    if (latest > 0)
+                    {
+                        latest--;
+                        this.cbxPais.SelectedIndex = paises.FindIndex(a => a.codigo == cliente.domicilios[latest].pais.codigo);
+                        this.cbxProvincia.SelectedIndex = provincias.FindIndex(a => a.codigo == cliente.domicilios[latest].provincia.codigo);
+                        this.txtCiudad.Text = cliente.domicilios[latest].ciudad;
+                        this.txtCalle.Text = cliente.domicilios[latest].calle;
+                        this.txtNro.Text = cliente.domicilios[latest].numero;
+                        this.txtPiso.Text = cliente.domicilios[latest].piso;
+                        this.txtDepto.Text = cliente.domicilios[latest].departamento;
+                        this.txtCp.Text = cliente.domicilios[latest].codigoPostal;
+                    }
+                    else
+                    {
+                        this.btnSelDom.Visible = false;
+                    }
+                    
                 }
                 else
                 {
                     MessageBox.Show("Cliente inexistente");
                     this.txtDni.Text = this.txtBusqCli.Text;
                     this.txtBusqCli.Text = "";
+                    this.ckbxRegistrar.Visible = true;
                 }
             }
         }

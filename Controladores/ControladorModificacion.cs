@@ -32,5 +32,30 @@ namespace Controladores
             detallesproveedor[8] = pActuales[1].observaciones;
             return detallesproveedor;
         }
+
+        public bool modificarPersona(ModeloPersonas pmPersona)
+        {
+            CatalogoPersonas cp = new CatalogoPersonas();
+            if (pmPersona.validar() == true)
+            {
+                return cp.actualizarEntidad(pmPersona);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool modificarProveedor(ModeloProveedor pmProveedor)
+        {
+            CatalogoProveedores cp = new CatalogoProveedores();
+            if (pmProveedor.validar() == true)
+            {
+                return cp.actualizarEntidad(pmProveedor);
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

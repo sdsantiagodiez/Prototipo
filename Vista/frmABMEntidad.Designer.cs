@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStripABM = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemBuscar = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemNuevo = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemLimpiarCampos = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEliminar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemGuardar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCancelar = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,6 +100,10 @@
             this.btnAgregarTelefono = new System.Windows.Forms.Button();
             this.btnQuitarTelefono = new System.Windows.Forms.Button();
             this.dataGridViewTelefono = new System.Windows.Forms.DataGridView();
+            this.codigoTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codigoTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeroTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblLayoutPanelTelefono = new System.Windows.Forms.TableLayoutPanel();
             this.txtBoxTelefono = new System.Windows.Forms.TextBox();
             this.lblTelefono = new System.Windows.Forms.Label();
@@ -125,10 +129,8 @@
             this.lblContrasenia = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.chckdListBoxRol = new System.Windows.Forms.CheckedListBox();
-            this.codigoTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codigoTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numeroTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EntidadToolStripMenuItemGuardarNueva = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemGuardarCambios = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripABM.SuspendLayout();
             this.tblLayoutPanelDatos.SuspendLayout();
             this.grpBoxTipoEntidad.SuspendLayout();
@@ -161,9 +163,9 @@
             // 
             this.menuStripABM.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemBuscar,
-            this.toolStripMenuItemNuevo,
-            this.toolStripMenuItemEliminar,
             this.toolStripMenuItemGuardar,
+            this.toolStripMenuItemEliminar,
+            this.toolStripMenuItemLimpiarCampos,
             this.toolStripMenuItemCancelar});
             this.menuStripABM.Location = new System.Drawing.Point(0, 0);
             this.menuStripABM.Name = "menuStripABM";
@@ -178,12 +180,12 @@
             this.toolStripMenuItemBuscar.Text = "Buscar";
             this.toolStripMenuItemBuscar.Click += new System.EventHandler(this.toolStripMenuItemBuscar_Click);
             // 
-            // toolStripMenuItemNuevo
+            // toolStripMenuItemLimpiarCampos
             // 
-            this.toolStripMenuItemNuevo.Name = "toolStripMenuItemNuevo";
-            this.toolStripMenuItemNuevo.Size = new System.Drawing.Size(54, 20);
-            this.toolStripMenuItemNuevo.Text = "Nuevo";
-            this.toolStripMenuItemNuevo.Click += new System.EventHandler(this.toolStripMenuItemNuevo_Click);
+            this.toolStripMenuItemLimpiarCampos.Name = "toolStripMenuItemLimpiarCampos";
+            this.toolStripMenuItemLimpiarCampos.Size = new System.Drawing.Size(104, 20);
+            this.toolStripMenuItemLimpiarCampos.Text = "Limpiar campos";
+            this.toolStripMenuItemLimpiarCampos.Click += new System.EventHandler(this.toolStripMenuItemLimpiarCampos_Click);
             // 
             // toolStripMenuItemEliminar
             // 
@@ -194,10 +196,12 @@
             // 
             // toolStripMenuItemGuardar
             // 
+            this.toolStripMenuItemGuardar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.EntidadToolStripMenuItemGuardarNueva,
+            this.ToolStripMenuItemGuardarCambios});
             this.toolStripMenuItemGuardar.Name = "toolStripMenuItemGuardar";
             this.toolStripMenuItemGuardar.Size = new System.Drawing.Size(61, 20);
             this.toolStripMenuItemGuardar.Text = "Guardar";
-            this.toolStripMenuItemGuardar.Click += new System.EventHandler(this.toolStripMenuItemGuardar_Click);
             // 
             // toolStripMenuItemCancelar
             // 
@@ -519,7 +523,7 @@
             this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
             this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
-            this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
+            this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
             this.tblLayoutPanelDomicilio.Controls.Add(this.lblCalle, 0, 0);
             this.tblLayoutPanelDomicilio.Controls.Add(this.txtBoxCalle, 1, 0);
             this.tblLayoutPanelDomicilio.Controls.Add(this.lblNumero, 2, 0);
@@ -628,7 +632,7 @@
             // 
             this.cmbBoxProvincia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxProvincia.FormattingEnabled = true;
-            this.cmbBoxProvincia.Location = new System.Drawing.Point(440, 39);
+            this.cmbBoxProvincia.Location = new System.Drawing.Point(440, 41);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(89, 26);
             this.cmbBoxProvincia.TabIndex = 14;
@@ -694,7 +698,7 @@
             // 
             this.cmbBoxPais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxPais.FormattingEnabled = true;
-            this.cmbBoxPais.Location = new System.Drawing.Point(588, 39);
+            this.cmbBoxPais.Location = new System.Drawing.Point(588, 41);
             this.cmbBoxPais.Name = "cmbBoxPais";
             this.cmbBoxPais.Size = new System.Drawing.Size(92, 26);
             this.cmbBoxPais.TabIndex = 15;
@@ -717,14 +721,14 @@
             // 
             // dataGridViewDomicilio
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewDomicilio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewDomicilio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewDomicilio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDomicilio.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoDomicilio,
@@ -960,6 +964,34 @@
             this.dataGridViewTelefono.TabIndex = 3;
             this.dataGridViewTelefono.TabStop = false;
             // 
+            // codigoTelefono
+            // 
+            this.codigoTelefono.HeaderText = "codigoTelefono";
+            this.codigoTelefono.Name = "codigoTelefono";
+            this.codigoTelefono.ReadOnly = true;
+            this.codigoTelefono.Visible = false;
+            // 
+            // codigoTipo
+            // 
+            this.codigoTipo.HeaderText = "codigoTipo";
+            this.codigoTipo.Name = "codigoTipo";
+            this.codigoTipo.ReadOnly = true;
+            this.codigoTipo.Visible = false;
+            // 
+            // tipo
+            // 
+            this.tipo.HeaderText = "Tipo";
+            this.tipo.Name = "tipo";
+            this.tipo.ReadOnly = true;
+            this.tipo.Width = 50;
+            // 
+            // numeroTelefono
+            // 
+            this.numeroTelefono.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.numeroTelefono.HeaderText = "Número";
+            this.numeroTelefono.Name = "numeroTelefono";
+            this.numeroTelefono.ReadOnly = true;
+            // 
             // tblLayoutPanelTelefono
             // 
             this.tblLayoutPanelTelefono.ColumnCount = 3;
@@ -1004,7 +1036,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 10);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 8);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxTipoTelefono.TabIndex = 19;
@@ -1246,33 +1278,19 @@
             this.chckdListBoxRol.Size = new System.Drawing.Size(120, 80);
             this.chckdListBoxRol.TabIndex = 2;
             // 
-            // codigoTelefono
+            // EntidadToolStripMenuItemGuardarNueva
             // 
-            this.codigoTelefono.HeaderText = "codigoTelefono";
-            this.codigoTelefono.Name = "codigoTelefono";
-            this.codigoTelefono.ReadOnly = true;
-            this.codigoTelefono.Visible = false;
+            this.EntidadToolStripMenuItemGuardarNueva.Name = "EntidadToolStripMenuItemGuardarNueva";
+            this.EntidadToolStripMenuItemGuardarNueva.Size = new System.Drawing.Size(196, 22);
+            this.EntidadToolStripMenuItemGuardarNueva.Text = "Guardar Nueva Entidad";
+            this.EntidadToolStripMenuItemGuardarNueva.Click += new System.EventHandler(this.EntidadToolStripMenuItemGuardarNueva_Click);
             // 
-            // codigoTipo
+            // ToolStripMenuItemGuardarCambios
             // 
-            this.codigoTipo.HeaderText = "codigoTipo";
-            this.codigoTipo.Name = "codigoTipo";
-            this.codigoTipo.ReadOnly = true;
-            this.codigoTipo.Visible = false;
-            // 
-            // tipo
-            // 
-            this.tipo.HeaderText = "Tipo";
-            this.tipo.Name = "tipo";
-            this.tipo.ReadOnly = true;
-            this.tipo.Width = 50;
-            // 
-            // numeroTelefono
-            // 
-            this.numeroTelefono.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.numeroTelefono.HeaderText = "Número";
-            this.numeroTelefono.Name = "numeroTelefono";
-            this.numeroTelefono.ReadOnly = true;
+            this.ToolStripMenuItemGuardarCambios.Name = "ToolStripMenuItemGuardarCambios";
+            this.ToolStripMenuItemGuardarCambios.Size = new System.Drawing.Size(196, 22);
+            this.ToolStripMenuItemGuardarCambios.Text = "Guardar Cambios";
+            this.ToolStripMenuItemGuardarCambios.Click += new System.EventHandler(this.ToolStripMenuItemGuardarCambios_Click);
             // 
             // frmABMEntidad
             // 
@@ -1284,6 +1302,7 @@
             this.MainMenuStrip = this.menuStripABM;
             this.Name = "frmABMEntidad";
             this.Text = "ABM Entidades";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmABMEntidad_FormClosing);
             this.menuStripABM.ResumeLayout(false);
             this.menuStripABM.PerformLayout();
             this.tblLayoutPanelDatos.ResumeLayout(false);
@@ -1325,7 +1344,7 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStripABM;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemNuevo;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLimpiarCampos;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEliminar;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBuscar;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemGuardar;
@@ -1424,5 +1443,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoTipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn numeroTelefono;
+        private System.Windows.Forms.ToolStripMenuItem EntidadToolStripMenuItemGuardarNueva;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemGuardarCambios;
     }
 }
