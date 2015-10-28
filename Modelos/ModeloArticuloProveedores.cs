@@ -91,5 +91,46 @@ namespace Modelos
             set { this._ubicacion = value; }
         }
         #endregion
+
+        public bool validar()
+        {
+            return (this.validarCodOrig() == true && this.validarCodArtProv() == true && this.validarValores() == true && this.validarStocks() == true
+                && this.validarCodEntidad() == true && this.validarRazonSocialProv() == true && this.validarUbicacion() == true);
+        }
+
+        private bool validarUbicacion()
+        {
+            return true;
+        }
+
+        private bool validarRazonSocialProv()
+        {
+            return true;
+        }
+
+        private bool validarCodEntidad()
+        {
+            return true;
+        }
+
+        private bool validarStocks()
+        {
+            return true;
+        }
+
+        private bool validarValores()
+        {
+            return true;
+        }
+
+        private bool validarCodArtProv()
+        {
+            return true;
+        }
+
+        private bool validarCodOrig()
+        {
+            return true;
+        }
     }
 }

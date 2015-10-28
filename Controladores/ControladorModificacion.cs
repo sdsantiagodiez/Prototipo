@@ -57,5 +57,18 @@ namespace Controladores
                 return false;
             }
         }
+
+        public bool modificarArticuloProveedor(ModeloArticuloProveedores pmArtProv)
+        {
+            CatalogoArticuloProveedores cp = new CatalogoArticuloProveedores();
+            if (pmArtProv.validar() == true)
+            {
+                return cp.actualizarEntidad(pmArtProv);
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

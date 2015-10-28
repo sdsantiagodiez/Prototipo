@@ -30,8 +30,16 @@ namespace Controladores
 
         public void cerrarPedido(List<ModeloLineaPedido> ventaActual)
         {
-            //descontar stock
-            throw new NotImplementedException();
+            var ctrlModif = new ControladorModificacion();
+            var ctlArtProv = new CatalogoArticuloProveedores();
+            var artProv = new ModeloArticuloProveedores();
+
+            foreach (ModeloLineaPedido linea in ventaActual)
+            {
+                artProv = ctlArtProv.getOne(linea.codigoOriginalArt, linea.codigoArtProveedor);
+                artProv.stockActual = artProv.stockActual - linea.cantidadArticulos;
+                ctrlModif.modificarArticuloProveedor(artProv);
+            }
         }
 
         public void crearPedido()

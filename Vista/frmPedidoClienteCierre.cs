@@ -92,7 +92,7 @@ namespace Vista
             if (dialogResult == DialogResult.Yes)
             {
                 //descuento stock
-                //ctrlVenta.cerrarPedido(ventaActual);
+                ctrlVenta.cerrarPedido(ventaActual);
 
                 //checkeo registro de cliente nuevo
                 if (ckbxRegistrar.Checked)
@@ -146,14 +146,26 @@ namespace Vista
 
         private void btnCalcular_Click(object sender, EventArgs e)
         {
-            //no funciona bien
             this.lblTotalSinIvaVar.Text = ctrlVenta.getTotal();
-            Decimal totalNeto = Decimal.Parse(ctrlVenta.getTotal());
-            int ivaPorc = Int32.Parse(txtIvaPorc.Text);
-            Decimal ivaNeto = (totalNeto * (ivaPorc / 100));
-            this.lblIvaNetoVar.Text = ivaNeto.ToString("0.##");
-            Decimal total = Decimal.Parse(ctrlVenta.getTotal()) + ivaNeto;
-            this.lblTotalVar.Text = total.ToString("0.##");
+
+            //TODO -> validar que no sean alfanuméricos
+            if (this.txtDescuentoNeto.Text != "" && this.txtDescuentoPorc.Text != "" && this.txtSenia.Text != "" && this.txtIvaPorc.Text != "")
+            {
+                Decimal totalParcial = Decimal.Parse(ctrlVenta.getTotal());
+                Decimal ivaNeto = (totalParcial * (Decimal.Parse(txtIvaPorc.Text) / 100));
+                this.lblIvaNetoVar.Text = ivaNeto.ToString("0.##");
+
+                Decimal descPorc = (totalParcial * (Decimal.Parse(txtDescuentoPorc.Text) / 100));
+                Decimal descontado = descPorc + Decimal.Parse(txtDescuentoNeto.Text) + Decimal.Parse(txtSenia.Text);
+                this.lblMontoDescontadoVar.Text = descontado.ToString("0.##");
+
+                Decimal total = Decimal.Parse(ctrlVenta.getTotal()) + ivaNeto - descontado;
+                this.lblTotalVar.Text = total.ToString("0.##");
+            }
+            else
+            {
+                MessageBox.Show("Por favor asegurarse que los campos de descuento, iva y seña contengan algún valor numérico");
+            }
         }
 
         private void btnSelTel_Click(object sender, EventArgs e)
