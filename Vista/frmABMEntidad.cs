@@ -15,14 +15,80 @@ namespace Vista
 {
     public partial class frmABMEntidad : Form
     {
+        #region Atributos
+        ModeloPersonas mPersonaSeleccionada;
+        ModeloProveedor mProveedorSeleccionado;
+
         //REVISAR ver si se puede mejorar esto de tantas constantes
         private const string TipoEntidadPersona = "PER";
         private const string TipoEntidadProveedor = "PRO";
         private const string TipoPersonaCliente = "CLI";
         private const string TipoPersonaContactoDeProveedor = "CON";
         private const string TipoPersonaUsuario = "USR";
+        private string _tipoEntidadSeleccionada;
+        private string tipoEntidadSeleccionada
+        {
+            get { return _tipoEntidadSeleccionada; }
+            set 
+            {
+                _tipoEntidadSeleccionada = value;
+                switch (_tipoEntidadSeleccionada)
+                {
+                    case TipoEntidadProveedor:
+                        this.inicializarControlesTipoEntidadProveedor();
+                        break;
+                    case TipoPersonaCliente:
+                        this.inicializarControlesTipoEntidadCliente();
+                        break;
+                    case TipoPersonaUsuario:
+                        this.inicializarControlesTipoEntidadUsuario();
+                        break;
+                    case TipoPersonaContactoDeProveedor:
+                        this.inicializarControlesTipoEntidadContactoProveedor();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private const string ModoFormularioInicio = "Inicia formulario solo con opcion busqueda";
+        private const string ModoFormularioNuevaEntidad = "Nueva Entidad";
+        private const string ModoFormularioEntidadSeleccionada = "Entidad seleccionada de resultado de busqueda";
+        private string _modoFormulario;        
+        /// <summary>
+        /// Indica el modo. Debe inicializarse antes de realizar cualquier acción. 
+        /// </summary>
+        private string modoFormulario
+        {
+            get { return _modoFormulario; }
+            set 
+            {
+                _modoFormulario = value;
+                switch (_modoFormulario)
+                {
+                    case ModoFormularioInicio:
+                        this.inicializarModoFormularioInicio();
+                        break;
+                    case ModoFormularioNuevaEntidad:
+                        this.inicializarModoFormularioNuevaEntidad();
+                        break;
+                    case ModoFormularioEntidadSeleccionada:
+                        this.inicializarModoFormularioEntidadSeleccionada();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        //Revisar el uso de esta variable
+        private const string TipoBusquedaProveedorDeContactoDeProveedor = "Proveedor de contacto de proveedor";
+        private const string TipoBusquedaEntidad = "Entidad";
+        private string tipoResultadoBusqueda = TipoBusquedaEntidad;
+
         private Form frmResultadoBusqueda = new Form();
         DataGridView dataGridViewResultadoBusqueda = new DataGridView();
+        #endregion
 
         public frmABMEntidad()
         {
@@ -31,26 +97,140 @@ namespace Vista
             btnAgregarMail.Text = char.ConvertFromUtf32(8595);
             btnQuitarMail.Text = char.ConvertFromUtf32(8593);
 
-            toolStripMenuItemEliminar.Enabled = false;
-            ToolStripMenuItemGuardarCambios.Enabled = false;
+            this.inicializarModeloSeleccion();
 
-            this.inicializarListViews();
+            modoFormulario = ModoFormularioInicio;
 
             this.inicializarComboBox();
 
             this.inicializarCheckedListBox();
 
             this.inicializarFrmResultadoBusqueda();
-        }    
+           
+            this.tblLayoutPanelForm.Controls.Remove(grpBoxDatosUsuario);
+            this.tblLayoutPanelForm.Controls.Remove(grpBoxContactoProveedor);
+            this.tblLayoutPanelForm.RowCount = this.tblLayoutPanelForm.RowCount - 2;
+        }
+
 
         #region Inicializar
-       
-        private void inicializarListViews()
-        {
-            lstViewMail.Columns.Add("Mail", -2, System.Windows.Forms.HorizontalAlignment.Center);
-            lstViewMail.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            lstViewMail.View = View.Details;
 
+        private void inicializarModeloSeleccion()
+        {
+            mPersonaSeleccionada = new ModeloPersonas();
+            mProveedorSeleccionado = new ModeloProveedor();
+        }
+
+        private void inicializarModoFormularioInicio()
+        {
+            toolStripMenuItemBuscar.Enabled = true;
+            toolStripMenuItemNuevo.Enabled = true;
+            toolStripMenuItemGuardar.Enabled = false;
+            toolStripMenuItemGuardarCambios.Enabled = false;
+            toolStripMenuItemGuardarNuevaEntidad.Enabled = false;
+            toolStripMenuItemEliminar.Enabled = false;
+            toolStripMenuItemLimpiarCampos.Enabled = true;
+            toolStripMenuItemCancelar.Enabled = true;
+
+            grpBoxTipoEntidad.Enabled = true;
+            txtBoxCodigoEntidad.Enabled = true;
+            
+            txtBoxApellido.Enabled = true;
+            txtBoxNombre.Enabled = true;
+            txtBoxCUIT.Enabled = true;
+            txtBoxDNI.Enabled = true;
+            txtBoxRazonSocial.Enabled = true;
+
+            grpBoxDomicilio.Enabled = false;
+            grpBoxContacto.Enabled = false;
+            grpBoxObservaciones.Enabled = false;
+            grpBoxDatosUsuario.Enabled = false;
+            grpBoxContactoProveedor.Enabled = false;
+
+            this.quitarTextoEnControles(this);
+        }
+        private void inicializarModoFormularioNuevaEntidad()
+        {
+            toolStripMenuItemBuscar.Enabled = false;
+            toolStripMenuItemNuevo.Enabled = false;
+            toolStripMenuItemGuardar.Enabled = true;
+            toolStripMenuItemGuardarCambios.Enabled = false;
+            toolStripMenuItemGuardarNuevaEntidad.Enabled = true;
+            toolStripMenuItemEliminar.Enabled = false;
+            toolStripMenuItemLimpiarCampos.Enabled = true;
+            toolStripMenuItemCancelar.Enabled = true;
+
+            grpBoxTipoEntidad.Enabled = true;
+            txtBoxCodigoEntidad.Enabled = false;
+
+            grpBoxDomicilio.Enabled = true;
+            grpBoxContacto.Enabled = true;
+            grpBoxObservaciones.Enabled = true;
+            grpBoxDatosUsuario.Enabled = true;
+            grpBoxContactoProveedor.Enabled = true;
+
+            this.quitarTextoEnControles(this);
+        }
+        private void inicializarModoFormularioEntidadSeleccionada()
+        {
+            toolStripMenuItemBuscar.Enabled = false;
+            toolStripMenuItemNuevo.Enabled = false;
+            toolStripMenuItemGuardar.Enabled = true;
+            toolStripMenuItemGuardarCambios.Enabled = true;
+            toolStripMenuItemGuardarNuevaEntidad.Enabled = false;
+            toolStripMenuItemEliminar.Enabled = true;
+            toolStripMenuItemLimpiarCampos.Enabled = true;
+            toolStripMenuItemCancelar.Enabled = true;
+
+            grpBoxTipoEntidad.Enabled = false;
+            txtBoxCodigoEntidad.Enabled = false;
+
+            grpBoxDomicilio.Enabled = true;
+            grpBoxContacto.Enabled = true;
+            grpBoxObservaciones.Enabled = true;
+            grpBoxDatosUsuario.Enabled = true;
+            grpBoxContactoProveedor.Enabled = true;
+
+            this.quitarTextoEnControles(this);
+        }
+
+        private void inicializarControlesTipoEntidadCliente()
+        {
+            radioButtonCliente.Checked = true;
+
+            this.inicializarControlesTipoEntidadPersona();
+        }
+        private void inicializarControlesTipoEntidadUsuario()
+        {
+            radioButtonUsuario.Checked = true;
+
+            this.inicializarControlesTipoEntidadPersona();
+
+            this.quitarTextoEnControles(grpBoxDatosUsuario);
+        }
+        private void inicializarControlesTipoEntidadContactoProveedor()
+        {
+            radioButtonContactoProveedor.Checked = true;
+
+            this.inicializarControlesTipoEntidadPersona();
+
+            this.quitarTextoEnControles(grpBoxContactoProveedor);
+        }
+        private void inicializarControlesTipoEntidadPersona()
+        {
+            txtBoxRazonSocial.Enabled = false;
+            txtBoxDNI.Enabled = txtBoxNombre.Enabled = txtBoxApellido.Enabled = true;
+
+            txtBoxRazonSocial.Text = null;
+        }
+        private void inicializarControlesTipoEntidadProveedor()
+        {
+            radioButtonProveedor.Checked = true;
+
+            txtBoxRazonSocial.Enabled = true;
+            txtBoxDNI.Enabled = txtBoxNombre.Enabled = txtBoxApellido.Enabled = false;
+
+            txtBoxDNI.Text = txtBoxApellido.Text = txtBoxNombre.Text = null;
         }
 
         private void inicializarComboBox()
@@ -109,55 +289,107 @@ namespace Vista
             frmResultadoBusqueda.FormClosing += frmResultadoBusqueda_FormClosing;                
         }
 
-        
+        private DataGridView inicializarDataGridViewResultadoBusqueda(string tipoEntidad)
+        {
+            DataGridView dgv = new DataGridView();
+            dgv.AutoGenerateColumns = false;
+            dgv.ReadOnly = true;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.RowHeadersVisible = false;
+            dgv.CellContentDoubleClick += dataGridViewResultadoBusqueda_CellContentDoubleClick;
+
+            dgv.Width = 800;
+
+            if (tipoEntidad == TipoEntidadProveedor || tipoEntidad == TipoEntidadPersona)
+            {
+                dgv.Columns.Add("tipo", "Tipo");
+                dgv.Columns[0].FillWeight = 1;
+                dgv.Columns.Add("codigoEntidad", "Código");
+                dgv.Columns[1].FillWeight = 1;
+                dgv.Columns.Add("cuit", "CUIT");
+                dgv.Columns[2].FillWeight = 1;
+
+                int indiceBase = 0;
+                if (tipoEntidad == TipoEntidadProveedor)
+                {
+                    dgv.Columns.Add("razonSocial", "Razón Social");
+                    dgv.Columns[3].FillWeight = 1;
+                    indiceBase = 4;
+                }
+                else if (tipoEntidad == TipoEntidadPersona)
+                {
+                    dgv.Columns.Add("DNI", "DNI");
+                    dgv.Columns[3].FillWeight = 1;
+                    dgv.Columns.Add("apellido", "Apellido");
+                    dgv.Columns[4].FillWeight = 1;
+                    dgv.Columns.Add("Nombre", "Nombre");
+                    dgv.Columns[5].FillWeight = 1;
+                    indiceBase = 6;
+                }
+                dgv.Columns.Add("direccion", "Domicilio");
+                dgv.Columns[indiceBase].FillWeight = 1;
+                dgv.Columns.Add("ciudad", "Ciudad Domicilio");
+                dgv.Columns[indiceBase + 1].FillWeight = 1;
+                dgv.Columns.Add("provincia", "Provincia Domicilio");
+                dgv.Columns[indiceBase + 2].FillWeight = 1;
+            }
+            return dgv;
+        }
         #endregion
 
         #region Eventos
 
-        //
-        // radioButton
-        //
-        private void radioButtonUsuario_CheckedChanged(object sender, EventArgs e)
-        {
-
-            //tblLayoutPanelExtra = new System.Windows.Forms.TableLayoutPanel();
-            //tbPageExtra.Controls.Clear();
-            //tbPageExtra.Controls.Add(tblLayoutPanelExtra);
-            //tblLayoutPanelExtra.Dock = DockStyle.Fill;
-            //tblLayoutPanelExtra.Controls.Add(grpBoxDatosUsuario, 0, 0);
-            ////
-            //System.Windows.Forms.GroupBox grpBoxDatosUsuario = new GroupBox();
-
-
-            //tblLayoutPanelExtra.Visible = radioButtonUsuario.Checked;
-
-            //grpBoxDatosUsuario = new System.Windows.Forms.GroupBox();
-
-            //panel1 = new System.Windows.Forms.Panel();
-            //grpBoxDatosUsuario.Controls.Add(panel1);
-
-            //panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.quitarTextoEnControles(grpBoxDatosUsuario);
-
-        }
-
-        private void radioButtonProveedor_CheckedChanged(object sender, EventArgs e)
-        {
-            txtBoxRazonSocial.Enabled = radioButtonProveedor.Checked;
-            txtBoxDNI.Enabled = !radioButtonProveedor.Checked;
-            txtBoxNombre.Enabled = !radioButtonProveedor.Checked;
-            txtBoxApellido.Enabled = !radioButtonProveedor.Checked;
-            
-        }
-
+        #region RadioButton
         private void radioButtonCliente_CheckedChanged(object sender, EventArgs e)
         {
-            btnMasDatos.Enabled = !radioButtonCliente.Checked;
-            
+            if (radioButtonCliente.Checked == true)
+            {
+                this.tipoEntidadSeleccionada = TipoPersonaCliente;
+            }
+
         }
-        //
-        //Button
-        //
+        private void radioButtonUsuario_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonUsuario.Checked == true)
+            {
+                tipoEntidadSeleccionada = TipoPersonaUsuario;
+
+                this.tblLayoutPanelForm.RowCount = this.tblLayoutPanelForm.RowCount + 1;
+                this.tblLayoutPanelForm.Controls.Add(this.grpBoxDatosUsuario, 0, this.tblLayoutPanelForm.RowCount - 1);
+            }
+            else
+            {
+                this.tblLayoutPanelForm.RowCount = this.tblLayoutPanelForm.RowCount - 1;
+                this.tblLayoutPanelForm.Controls.Remove(this.grpBoxDatosUsuario);
+            }
+            
+            //this.tblLayoutPanelForm.SetRow(this.grpBoxDatosUsuario, this.tblLayoutPanelForm.RowCount - 1);
+        }
+        private void radioButtonProveedor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonProveedor.Checked == true)
+            {
+                this.tipoEntidadSeleccionada = TipoEntidadProveedor;
+            }
+        }
+        private void radioButtonContactoProveedor_CheckedChanged(object sender, EventArgs e)
+        {    
+            if (this.radioButtonContactoProveedor.Checked == true)
+            {
+                this.tipoEntidadSeleccionada = TipoPersonaContactoDeProveedor;
+                
+                this.tblLayoutPanelForm.RowCount = this.tblLayoutPanelForm.RowCount + 1;
+                this.tblLayoutPanelForm.Controls.Add(this.grpBoxContactoProveedor, 0, this.tblLayoutPanelForm.RowCount - 1);
+            }
+            else
+            {
+                this.tblLayoutPanelForm.RowCount = this.tblLayoutPanelForm.RowCount - 1;
+                this.tblLayoutPanelForm.Controls.Remove(this.grpBoxContactoProveedor);
+            }
+        }
+        #endregion
+
+        #region Button
         private void btnAgregarMail_Click(object sender, EventArgs e)
         {
             ModeloMail mMail = new ModeloMail();
@@ -269,33 +501,36 @@ namespace Vista
                 }
             }
         }
-        //
-        //cmbBox
-        //
-        private void cmbBoxPais_SelectionChangeCommitted(object sender, EventArgs e)
+
+        private void btnContactoProveedorSeleccionarProveedor_Click(object sender, EventArgs e)
         {
-            ControladorBusqueda cBusqueda = new ControladorBusqueda();
-            ModeloProvincia mProvinciaBusqueda = new ModeloProvincia();
-            //Inserto codigoPais del país seleccionado en el comboBox
-            mProvinciaBusqueda.codigoPais = this.cmbBoxPais.SelectedValue.ToString();
-            //this.cmbBoxProvincia.DataSource = provincias;
-            //REVISAR TEMPORAL HASTA QUE ESTE COMPLETO CONTROLADOrBUSQUEDA
-            List<ModeloProvincia> lmProvincias = cBusqueda.buscarProvincias();
-            List<ModeloProvincia> provincias = new List<ModeloProvincia>();
-            foreach (ModeloProvincia p in lmProvincias)
+            ModeloProveedor mProveedor = new ModeloProveedor();
+            //VER DE Modificar IF. Ya se usa en cargarDatosEnModeloEntidad()
+            if (this.validarValorNumerico(txtBoxCodigoEntidad.Text))
             {
-                if (p.codigoPais == mProvinciaBusqueda.codigoPais)
-                {
-                    provincias.Add(p);
-                }
+                mProveedor.codigo = Convert.ToInt32(txtBoxCodigoContactoProveedorProveedor.Text);
             }
-            this.cargarDatosEnCmbBoxProvincia(provincias);
+            else
+            {
+                mProveedor.codigo = 0;
+            }
+
+            mProveedor.cuit = txtBoxCUITContactoProveedorProveedor.Text;
+            mProveedor.razonSocial = txtBoxRazonSocialContactoProveedorProveedor.Text;
+            
+            List<ModeloProveedor> lmProveedor = this.buscarProveedores(mProveedor);
+            dataGridViewResultadoBusqueda = this.popularDataGridViewResultadoBusqueda(this.inicializarDataGridViewResultadoBusqueda(TipoEntidadProveedor), lmProveedor);
+
+            tipoResultadoBusqueda = TipoBusquedaProveedorDeContactoDeProveedor;
+
+            frmResultadoBusqueda.Controls.Clear();
+            frmResultadoBusqueda.BringToFront();
+            frmResultadoBusqueda.Controls.Add(dataGridViewResultadoBusqueda);
+            frmResultadoBusqueda.ShowDialog();
         }
-        
-        //
-        // toolStrip
-        //
-                
+        #endregion
+
+        #region toolStripMenuItem
         private void toolStripMenuItemBuscar_Click(object sender, EventArgs e)
         {
             string tipoEntidad = this.getTipoEntidad();
@@ -316,11 +551,10 @@ namespace Vista
                     default:
                         break;
                 }
-                //frmResultadoBusqueda = new Form();
                 frmResultadoBusqueda.Controls.Clear();
                 frmResultadoBusqueda.BringToFront();
                 frmResultadoBusqueda.Controls.Add(dataGridViewResultadoBusqueda);
-                frmResultadoBusqueda.Show();
+                frmResultadoBusqueda.ShowDialog();
             }
             else
             {
@@ -329,175 +563,52 @@ namespace Vista
             }
 
         }
-        void frmResultadoBusqueda_FormClosing(object sender, FormClosingEventArgs e)
+        private void toolStripMenuItemNuevo_Click(object sender, EventArgs e)
         {
-            frmResultadoBusqueda.Hide();
-            e.Cancel = true; // this cancels the close event.
+            tipoEntidadSeleccionada = null;
+            modoFormulario = ModoFormularioNuevaEntidad;
         }
-        private DataGridView inicializarDataGridViewResultadoBusqueda(string tipoEntidad)
-        {
-            DataGridView dgv = new DataGridView();
-            dgv.AutoGenerateColumns = false;
-            dgv.ReadOnly = true;
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.RowHeadersVisible = false;
-            dgv.DoubleClick += dataGridViewResultadoBusqueda_DoubleClick;
-
-            dgv.Width = 800;
-
-            if (tipoEntidad == TipoEntidadProveedor || tipoEntidad == TipoEntidadPersona)
-            {
-                dgv.Columns.Add("tipo", "Tipo");
-                dgv.Columns[0].FillWeight = 1;
-                dgv.Columns.Add("codigoEntidad", "Código");
-                dgv.Columns[1].FillWeight = 1;
-                dgv.Columns.Add("cuit", "CUIT");
-                dgv.Columns[2].FillWeight = 1;
-
-                int indiceBase = 0;
-                if (tipoEntidad == TipoEntidadProveedor)
-                {
-                    dgv.Columns.Add("razonSocial", "Razón Social");
-                    dgv.Columns[3].FillWeight = 1;
-                    indiceBase = 4;
-                }
-                else if (tipoEntidad == TipoEntidadPersona)
-                {
-                    dgv.Columns.Add("DNI", "DNI");
-                    dgv.Columns[3].FillWeight = 1;
-                    dgv.Columns.Add("apellido", "Apellido");
-                    dgv.Columns[4].FillWeight = 1;
-                    dgv.Columns.Add("Nombre", "Nombre");
-                    dgv.Columns[5].FillWeight = 1;
-                    indiceBase = 6;
-                }
-                dgv.Columns.Add("direccion", "Domicilio");
-                dgv.Columns[indiceBase].FillWeight = 1;
-                dgv.Columns.Add("ciudad", "Ciudad Domicilio");
-                dgv.Columns[indiceBase + 1].FillWeight = 1;
-                dgv.Columns.Add("provincia", "Provincia Domicilio");
-                dgv.Columns[indiceBase + 2].FillWeight = 1;
-            }
-            return dgv;
-        }
-        void dataGridViewResultadoBusqueda_DoubleClick(object sender, EventArgs e)
-        {
-            string tipo = dataGridViewResultadoBusqueda.SelectedCells[0].Value.ToString();
-            int codigoEntidadSeleccionada = Convert.ToInt32(dataGridViewResultadoBusqueda.SelectedCells[1].Value.ToString());
-            frmResultadoBusqueda.Hide();
-
-            toolStripMenuItemEliminar.Enabled = true;
-            ToolStripMenuItemGuardarCambios.Enabled = true;
-            EntidadToolStripMenuItemGuardarNueva.Enabled = false;
-
-            this.cargarEntidadEnControles(codigoEntidadSeleccionada,tipo);
-        }
-
-        private void EntidadToolStripMenuItemGuardarNueva_Click(object sender, EventArgs e)
+        
+        private void toolStripMenuItemGuardarNuevaEntidad_Click(object sender, EventArgs e)
         {
             //Cambiar por un mensaje SI/NO
             DialogResult dialogResult = MessageBox.Show("¿Crear nueva entidad?", "Atención", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                ControladorAlta cAlta = new ControladorAlta();
-                string tipoEntidad = this.getTipoEntidad();
-                string respuesta = "";
-                bool exito = false;
-                if (tipoEntidad != null)
-                {
-                    switch (tipoEntidad)
-                    {
-                        case TipoEntidadPersona:
-                            ModeloPersonas mPersona = this.cargarDatosEnModeloPersona();
-                            exito = cAlta.agregarPersona(mPersona);
-                            break;
-                        case TipoEntidadProveedor:
-                            ModeloProveedor mProveedor = this.cargarDatosEnModeloProveedor();
-                            exito = cAlta.agregarProveedor(mProveedor);
-                            break;
-                        default:
-                            break;
-                    }
-                    if (exito == true)
-                    {
-                        respuesta = "La operación ha sido exitosa";
-                    }
-                    else
-                    {
-                        respuesta = "La operación ha fallado.";
-                    }
-                }
-                else
-                {
-                    respuesta = "Debe seleccionar un tipo de entidad para realizar la acción";
-                }
-                MessageBox.Show(respuesta);
+                this.guardarNuevaEntidad();
             }
             /* Por si se desea agregar algo en el futuro
             else if (dialogResult == DialogResult.No)
-            {
-                
+            {   
             }
             */
-            
         }
-
         private void ToolStripMenuItemGuardarCambios_Click(object sender, EventArgs e)
         {
-            //Cambiar por un mensaje SI/NO
             DialogResult dialogResult = MessageBox.Show("¿Guardar los cambios realizados?", "Atención", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                ControladorModificacion cModificacion = new ControladorModificacion();
-                string tipoEntidad = this.getTipoEntidad();
-                string respuesta = "";
-                bool exito = false;
-                if (tipoEntidad != null)
-                {
-                    switch (tipoEntidad)
-                    {
-                        case TipoEntidadPersona:
-                            ModeloPersonas mPersona = this.cargarDatosEnModeloPersona();
-                            exito = cModificacion.modificarPersona(mPersona);
-                            break;
-                        case TipoEntidadProveedor:
-                            ModeloProveedor mProveedor = this.cargarDatosEnModeloProveedor();
-                            exito = cModificacion.modificarProveedor(mProveedor);
-                            break;
-                        default:
-                            break;
-                    }
-                    if (exito == true)
-                    {
-                        respuesta = "La operación ha sido exitosa";
-                    }
-                    else
-                    {
-                        respuesta = "La operación ha fallado.";
-                    }
-                }
-                else
-                {
-                    respuesta = "Debe seleccionar un tipo de entidad para realizar la acción";
-                }
-                MessageBox.Show(respuesta);
+                this.guardarModificacionesEntidad();
             }
-            /* Por si se desea agregar algo en el futuro
+            /* Por si se desea agregar algo en el futuro en caso de que responda NO
             else if (dialogResult == DialogResult.No)
             {
-                
             }
-            */
-            
+            */  
         }
 
         private void toolStripMenuItemLimpiarCampos_Click(object sender, EventArgs e)
         {
-            this.quitarTextoEnControles(this);
-            txtBoxCodigoEntidad.Enabled = true;
-            toolStripMenuItemEliminar.Enabled = false;
-            ToolStripMenuItemGuardarCambios.Enabled = false;
-            EntidadToolStripMenuItemGuardarNueva.Enabled = true;
+            tipoEntidadSeleccionada = null;
+            this.inicializarModeloSeleccion();
+
+            modoFormulario = ModoFormularioInicio;
+            //this.quitarTextoEnControles(this);
+
+            //txtBoxCodigoEntidad.Enabled = true;
+            //toolStripMenuItemEliminar.Enabled = false;
+            //toolStripMenuItemGuardarCambios.Enabled = false;
+            //toolStripMenuItemGuardarNuevaEntidad.Enabled = true;
         }
         
         private void toolStripMenuItemEliminar_Click(object sender, EventArgs e)
@@ -506,47 +617,13 @@ namespace Vista
             DialogResult dialogResult = MessageBox.Show("¿Esta seguro que desea elimnar esta entidad?", "Atención", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                ControladorBaja cBaja = new ControladorBaja();
-                string tipoEntidad = this.getTipoEntidad();
-                string respuesta = "";
-                bool exito = false;
-                if (tipoEntidad != null)
-                {
-                    switch (tipoEntidad)
-                    {
-                        case TipoEntidadPersona:
-                            ModeloPersonas mPersona = this.cargarDatosEnModeloPersona();
-                            exito = cBaja.eliminarPersona(mPersona);
-                            break;
-                        case TipoEntidadProveedor:
-                            ModeloProveedor mProveedor = this.cargarDatosEnModeloProveedor();
-                            exito = cBaja.eliminarProveedor(mProveedor);
-                            break;
-                        default:
-                            break;
-                    }
-                    if (exito == true)
-                    {
-                        respuesta = "La operación ha sido exitosa";
-                    }
-                    else
-                    {
-                        respuesta = "La operación ha fallado.";
-                    }
-                }
-                else
-                {
-                    respuesta = "Debe seleccionar un tipo de entidad para realizar la acción";
-                }
-                MessageBox.Show(respuesta);
+                this.eliminarEntidad();
             }
             /* Por si se desea agregar algo en el futuro
             else if (dialogResult == DialogResult.No)
             {
-                
             }
-            */
-            
+            */    
         }
 
         private void toolStripMenuItemCancelar_Click(object sender, EventArgs e)
@@ -563,8 +640,64 @@ namespace Vista
                 
             }
             */
-        }               
+        }
+        #endregion
 
+        //cmbBox
+        private void cmbBoxPais_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ControladorBusqueda cBusqueda = new ControladorBusqueda();
+            ModeloProvincia mProvinciaBusqueda = new ModeloProvincia();
+            //Inserto codigoPais del país seleccionado en el comboBox
+            mProvinciaBusqueda.codigoPais = this.cmbBoxPais.SelectedValue.ToString();
+            //this.cmbBoxProvincia.DataSource = provincias;
+            //REVISAR TEMPORAL HASTA QUE ESTE COMPLETO CONTROLADOrBUSQUEDA
+            List<ModeloProvincia> lmProvincias = cBusqueda.buscarProvincias();
+            List<ModeloProvincia> provincias = new List<ModeloProvincia>();
+            foreach (ModeloProvincia p in lmProvincias)
+            {
+                if (p.codigoPais == mProvinciaBusqueda.codigoPais)
+                {
+                    provincias.Add(p);
+                }
+            }
+            this.cargarDatosEnCmbBoxProvincia(provincias);
+        }
+
+        //
+        //formClosing
+        //
+        private void frmABMEntidad_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmResultadoBusqueda.Close();
+        }
+        
+        void frmResultadoBusqueda_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmResultadoBusqueda.Hide();
+            e.Cancel = true; // this cancels the close event.
+            //Vuelve el tipo a General en caso de que se haya hecho una búsqueda de proveedor para Contacto de proveedor
+            tipoResultadoBusqueda = TipoBusquedaEntidad;
+        }
+            
+        void dataGridViewResultadoBusqueda_CellContentDoubleClick(object sender, EventArgs e)
+        {
+            string tipo = dataGridViewResultadoBusqueda.SelectedCells[0].Value.ToString();
+            int codigoEntidadSeleccionada = Convert.ToInt32(dataGridViewResultadoBusqueda.SelectedCells[1].Value.ToString());
+            frmResultadoBusqueda.Hide();
+            
+            if (tipoResultadoBusqueda == TipoBusquedaEntidad)
+            {
+                this.inicializarModeloSeleccion();
+                modoFormulario = ModoFormularioEntidadSeleccionada;
+                this.cargarEntidadEnControles(codigoEntidadSeleccionada,tipo);
+            }
+            //REVISAR encontrar mejor manera o extraer lineas de código de "else" a otro método
+            else if (tipoResultadoBusqueda == TipoBusquedaProveedorDeContactoDeProveedor)
+            {
+                this.cargarProveedorDeContactoProveedorEnControles(codigoEntidadSeleccionada);
+            }
+        }
         #endregion
 
         #region validar
@@ -574,6 +707,25 @@ namespace Vista
             int numero;
             return Int32.TryParse(pStringNumero, out numero);
         }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="valorEnControl"></param>
+        ///// <returns>Entero o 0 si no es posible convertir a valor numerico</returns>
+        //private int getNumeroFromControl(string textoEnControl)
+        //{
+        //    int numero;
+        //    Int32.TryParse(textoEnControl, out numero);
+            
+        //    return numero;
+        //}
+
+        //private string getStringFromControl(string textoEnControl)
+        //{
+        //    return textoEnControl.Trim();
+        //}
+
+        //private void setStringEnControl()
 
         private bool validarDomicilio()
         {
@@ -604,10 +756,80 @@ namespace Vista
             }
         }
 
+        private bool validarEntidad(ModeloEntidad pmEntidad)
+        {
+            return true;
+        }
+        
+        private bool validarPersona(ModeloPersonas pmPersona)
+        {
+            bool validez = false;
+            if(this.validarEntidad(pmPersona) == true)
+            {
+                switch (pmPersona.tipoPersona)
+                {
+                    case TipoPersonaCliente:
+                        validez = this.validarCliente(pmPersona);
+                        break;
+                    case TipoPersonaUsuario:
+                        validez = this.validarUsuario(pmPersona);
+                        break;
+                    case TipoPersonaContactoDeProveedor:
+                        validez = this.validarContactoProveedor(pmPersona);
+                        break;
+                    default:
+                        validez = false;
+                        break;
+                }
+            }
+            return validez;
+        }
+        private bool validarCliente(ModeloPersonas pmCliente)
+        {
+            return true;
+        }
+        private bool validarUsuario(ModeloPersonas pmUsuario)
+        {
+            return true;
+        }
+        private bool validarContactoProveedor(ModeloPersonas pmContactoProveedor)
+        {
+            return true;
+        }
+        private bool validarProveedor(ModeloProveedor pmProveedor)
+        {
+            bool validez = false;
+            if (this.validarEntidad(pmProveedor) == true)
+            {
+                //validar razon social y algo más?
+            }
+            return validez;
+        }
+
         #endregion
         
         #region Pasar datos de controles a Modelos
-       
+
+        private ModeloEntidad cargarDatosEnModeloEntidad()
+        {
+            ModeloEntidad mEntidad = new ModeloEntidad();
+            if (this.validarValorNumerico(txtBoxCodigoEntidad.Text))
+            {
+                mEntidad.codigo = Convert.ToInt32(txtBoxCodigoEntidad.Text);
+            }
+            else
+            {
+                mEntidad.codigo = 0;
+            }
+
+            mEntidad.cuit = txtBoxCUIT.Text;
+            mEntidad.domicilios = this.cargarDatosEnModeloDomicilio();
+            mEntidad.telefonos = this.cargarDatosEnModeloTelefono();
+            mEntidad.mails = this.cargarDatosEnModeloMail();
+            mEntidad.tipoEntidad = this.getTipoEntidad();
+            mEntidad.observaciones = rchTextBoxObservaciones.Text;
+            return mEntidad;
+        }
         private ModeloPersonas cargarDatosEnModeloPersona()
         {
             ModeloPersonas mPersona = new ModeloPersonas();
@@ -620,11 +842,11 @@ namespace Vista
             mPersona.tipoEntidad = mEntidad.tipoEntidad;
             mPersona.observaciones = mEntidad.observaciones;
 
-            mPersona.tipoPersona = this.getTipoPersona();
+            mPersona.tipoPersona = this.tipoEntidadSeleccionada;
             mPersona.dni = txtBoxDNI.Text;
             mPersona.apellido = txtBoxApellido.Text;
             mPersona.nombre = txtBoxNombre.Text;
-            if (this.getTipoPersona() == TipoPersonaUsuario)
+            if (this.tipoEntidadSeleccionada == TipoPersonaUsuario)
             {
                 mPersona.usuario = txtBoxUsuario.Text;
                 mPersona.contrasenia = txtBoxContrasenia.Text;
@@ -647,27 +869,7 @@ namespace Vista
             mProveedor.razonSocial = txtBoxRazonSocial.Text;
             return mProveedor;
         }
-        private ModeloEntidad cargarDatosEnModeloEntidad()
-        {
-            ModeloEntidad mEntidad = new ModeloEntidad();
-            if (this.validarValorNumerico(txtBoxCodigoEntidad.Text))
-            {
-                mEntidad.codigo = Convert.ToInt32(txtBoxCodigoEntidad.Text);
-            }
-            else
-            {
-                mEntidad.codigo = 0;
-            }
-            
-            mEntidad.cuit = txtBoxCUIT.Text;
-            mEntidad.domicilios = this.cargarDatosEnModeloDomicilio();
-            mEntidad.telefonos = this.cargarDatosEnModeloTelefono();
-            mEntidad.mails = this.cargarDatosEnModeloMail();
-            mEntidad.tipoEntidad = this.getTipoEntidad();
-            mEntidad.observaciones = rchTextBoxObservaciones.Text;
-            return mEntidad;
-        }
-
+        
         private List<ModeloDomicilio> cargarDatosEnModeloDomicilio()
         {
             List<ModeloDomicilio> lModeloDomicilio = new List<ModeloDomicilio>();
@@ -773,66 +975,79 @@ namespace Vista
 
         private void cargarEntidadEnControles(int codigoEntidad, string tipo)
         {
-            this.quitarTextoEnControles(this);
             if (tipo == TipoEntidadProveedor)
             {
-                this.cargarProveedorEnControles(codigoEntidad);
+                ModeloProveedor mProveedor = new ModeloProveedor();
+                mProveedor.codigo = codigoEntidad;
+                this.cargarProveedorEnControles(this.buscarProveedores(mProveedor)[0]);
             }
             else
             {
-                this.cargarPersonaEnControles(codigoEntidad);
+                ModeloPersonas mPersona = new ModeloPersonas();
+                mPersona.codigo = codigoEntidad;
+                this.cargarPersonaEnControles(this.buscarPersonas(mPersona)[0]);
             }
-            this.cargarDatosEnRadioButtonTipoEntidad(tipo);
-
         }
-        private void cargarPersonaEnControles(int codigoEntidad)
+        private void cargarProveedorDeContactoProveedorEnControles(int codigoEntidad)
         {
-            ControladorBusqueda cBusqueda = new ControladorBusqueda();
-            ModeloPersonas mPersona = new ModeloPersonas();
-            mPersona.codigo = codigoEntidad;
-            mPersona = cBusqueda.buscarPersonas(mPersona, "codigoEntidad")[0];
-            this.cargarDatosEnDatosPersonales(mPersona);
-            
-            this.cargarDatosEnDataGridViewDomicilio(mPersona.domicilios);
-            this.cargarDatosEnDataGridViewTelefono(mPersona.telefonos);
-            this.cargarDatosEnDataGridViewMail(mPersona.mails);
-
-            if (mPersona.tipoPersona == TipoPersonaUsuario)
-            {
-                this.cargarDatosEnDatosUsuario(mPersona);
-            }
-            
-        }
-        private void cargarProveedorEnControles(int codigoEntidad)
-        {
-            ControladorBusqueda cBusqueda = new ControladorBusqueda();
             ModeloProveedor mProveedor = new ModeloProveedor();
             mProveedor.codigo = codigoEntidad;
-            mProveedor = cBusqueda.buscarProveedores(mProveedor, "codigoEntidad")[0];
-            this.cargarDatosEnDatosPersonales(mProveedor);
-            
-            this.cargarDatosEnDataGridViewDomicilio(mProveedor.domicilios);
-            this.cargarDatosEnDataGridViewTelefono(mProveedor.telefonos);
-            this.cargarDatosEnDataGridViewMail(mProveedor.mails);
+            this.cargarDatosEnProveedorDeContactoProveedor(this.buscarProveedores(mProveedor)[0]);
         }
+        private void cargarPersonaEnControles(ModeloPersonas pmPersona)
+        {
+            mPersonaSeleccionada = pmPersona;
+            tipoEntidadSeleccionada = mPersonaSeleccionada.tipoPersona;
+
+            this.cargarDatosEnDatosPersonales(mPersonaSeleccionada);
+
+            this.cargarDatosEnDataGridViewDomicilio(mPersonaSeleccionada.domicilios);
+            this.cargarDatosEnDataGridViewTelefono(mPersonaSeleccionada.telefonos);
+            this.cargarDatosEnDataGridViewMail(mPersonaSeleccionada.mails);
+
+            if (mPersonaSeleccionada.tipoPersona == TipoPersonaUsuario)
+            {
+                this.cargarDatosEnDatosUsuario(mPersonaSeleccionada);
+            }
+            if (mPersonaSeleccionada.tipoPersona == TipoPersonaContactoDeProveedor)
+            {
+                //carga de proveedor al que pertenece
+            }
+            
+        }
+        private void cargarProveedorEnControles(ModeloProveedor pmProveedor)
+        {            
+            mProveedorSeleccionado = pmProveedor;
+            tipoEntidadSeleccionada = mProveedorSeleccionado.tipoEntidad;
+
+            this.cargarDatosEnDatosPersonales(mProveedorSeleccionado);
+
+            this.cargarDatosEnDataGridViewDomicilio(mProveedorSeleccionado.domicilios);
+            this.cargarDatosEnDataGridViewTelefono(mProveedorSeleccionado.telefonos);
+            this.cargarDatosEnDataGridViewMail(mProveedorSeleccionado.mails);
+        }
+        
         private void cargarDatosEnDatosPersonales(ModeloPersonas pmPersona)
         {
-            txtBoxCodigoEntidad.Text = pmPersona.codigo.ToString();
-            txtBoxCodigoEntidad.Enabled = false;
+            this.cargarDatosEnDatosPersonalesBase(pmPersona);
+            
             txtBoxDNI.Text = pmPersona.dni != null ? pmPersona.dni : "";
             txtBoxNombre.Text = pmPersona.nombre != null ? pmPersona.nombre : "";
             txtBoxApellido.Text = pmPersona.apellido != null ? pmPersona.apellido : "";
-            txtBoxCUIT.Text = pmPersona.cuit != null ? pmPersona.cuit : "";
-            rchTextBoxObservaciones.Text = pmPersona.observaciones != null ? pmPersona.observaciones : "";
         }
         private void cargarDatosEnDatosPersonales(ModeloProveedor pmProveedor)
         {
-            txtBoxCodigoEntidad.Text = pmProveedor.codigo.ToString();
-            txtBoxCodigoEntidad.Enabled = false;
-            txtBoxCUIT.Text = pmProveedor.cuit != null ? pmProveedor.cuit : "";
+            this.cargarDatosEnDatosPersonalesBase(pmProveedor);
+
             txtBoxRazonSocial.Text = pmProveedor.razonSocial != null ? pmProveedor.razonSocial : "";
-            rchTextBoxObservaciones.Text = pmProveedor.observaciones != null ? pmProveedor.observaciones : "";
         }
+        private void cargarDatosEnDatosPersonalesBase(ModeloEntidad pmEntidad)
+        {
+            txtBoxCodigoEntidad.Text = pmEntidad.codigo.ToString();
+            txtBoxCUIT.Text = pmEntidad.cuit != null ? pmEntidad.cuit : "";
+            rchTextBoxObservaciones.Text = pmEntidad.observaciones != null ? pmEntidad.observaciones : "";
+        }
+        
         private void cargarDatosEnDataGridViewDomicilio(List<ModeloDomicilio> plmDomicilio)
         {
             DataGridViewRow row = (DataGridViewRow)dataGridViewDomicilio.Rows[0].Clone();
@@ -886,30 +1101,16 @@ namespace Vista
                 dataGridViewMail.Rows.Add(row);
             }
         }
-        private void cargarDatosEnRadioButtonTipoEntidad(string tipo)
-        {
-            switch (tipo)
-            {
-                case TipoEntidadProveedor:
-                    radioButtonProveedor.Checked = true;
-                    break;
-                case TipoPersonaCliente:
-                    radioButtonCliente.Checked = true;
-                    break;
-                case TipoPersonaContactoDeProveedor:
-                    radioButtonContactoProveedor.Checked = true;
-                    break;
-                case TipoPersonaUsuario:
-                    radioButtonUsuario.Checked = true;
-                    break;
-            }
-        }
+      
         private void cargarDatosEnDatosUsuario(ModeloPersonas pmUsuario)
         { }
-
-
-
-
+        private void cargarDatosEnProveedorDeContactoProveedor(ModeloProveedor pmProveedor)
+        {
+            //Cambiar nomenclatura de controles en ContactoProveedor
+            this.lblCodigoProveedorDeContactoProveedor.Text =  pmProveedor.codigo.ToString();
+            this.lblCUITProveedorDeContactoProveedor.Text = pmProveedor.cuit;
+            this.lblRazonSocialProveedorDeContactoProveedor.Text = pmProveedor.razonSocial;
+        }
 
         private void cargarDatosEnCmbBoxProvincia(List<ModeloProvincia> pLProvincias)
         {
@@ -922,6 +1123,162 @@ namespace Vista
             this.cmbBoxPais.SelectedItem = null;
         }
 
+        private DataGridView popularDataGridViewResultadoBusqueda(DataGridView pdgv, List<ModeloPersonas> plmPersonas)
+        {
+            DataGridViewRow row = (DataGridViewRow)pdgv.Rows[0].Clone();
+            foreach (ModeloPersonas p in plmPersonas)
+            {
+                row = (DataGridViewRow)pdgv.Rows[0].Clone();
+
+                row.Cells[0].Value = p.tipoPersona;
+                row.Cells[1].Value = p.codigo;
+                row.Cells[2].Value = p.cuit;
+                row.Cells[3].Value = p.dni;
+                row.Cells[4].Value = p.apellido;
+                row.Cells[5].Value = p.nombre;
+                row.Cells[6].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].calle + " " + p.domicilios[0].numero;
+                row.Cells[7].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].ciudad;
+                row.Cells[8].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].provincia.provincia;
+
+                pdgv.Rows.Add(row);
+            }
+            return pdgv;
+        }
+        private DataGridView popularDataGridViewResultadoBusqueda(DataGridView pdgv, List<ModeloProveedor> plmProveedor)
+        {
+            DataGridViewRow row = (DataGridViewRow)pdgv.Rows[0].Clone();
+            foreach (ModeloProveedor p in plmProveedor)
+            {
+                row = (DataGridViewRow)pdgv.Rows[0].Clone();
+
+                row.Cells[0].Value = "PRO";
+                row.Cells[1].Value = p.codigo;
+                row.Cells[2].Value = p.cuit;
+                row.Cells[3].Value = p.razonSocial;
+                row.Cells[4].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].calle + " " + p.domicilios[0].numero;
+                row.Cells[5].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].ciudad;
+                row.Cells[6].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].provincia.provincia;
+
+                pdgv.Rows.Add(row);
+            }
+            return pdgv;
+        }
+        #endregion
+
+        #region Alta Baja y Modificación
+        private bool guardarNuevaEntidad()
+        {
+            ControladorAlta cAlta = new ControladorAlta();
+            
+            string respuesta = "";
+            bool exito = false;
+            if (this.tipoEntidadSeleccionada != null)
+            {
+                switch (this.getTipoEntidad())
+                {
+                    case TipoEntidadPersona:
+                        ModeloPersonas mPersona = this.cargarDatosEnModeloPersona();
+                        exito = cAlta.agregarPersona(mPersona);
+                        break;
+                    case TipoEntidadProveedor:
+                        ModeloProveedor mProveedor = this.cargarDatosEnModeloProveedor();
+                        exito = cAlta.agregarProveedor(mProveedor);
+                        break;
+                    default:
+                        break;
+                }
+                if (exito == true)
+                {
+                    respuesta = "La operación ha sido exitosa";
+                }
+                else
+                {
+                    respuesta = "La operación ha fallado.";
+                }
+            }
+            else
+            {
+                respuesta = "Debe seleccionar un tipo de entidad para realizar la acción";
+            }
+            MessageBox.Show(respuesta);
+            
+            return exito;
+        }
+
+        private bool guardarModificacionesEntidad()
+        {
+            ControladorModificacion cModificacion = new ControladorModificacion();
+            
+            string respuesta = "";
+            bool exito = false;
+            if (tipoEntidadSeleccionada != null)
+            {
+                switch (this.getTipoEntidad())
+                {
+                    case TipoEntidadPersona:
+                        ModeloPersonas mPersona = this.cargarDatosEnModeloPersona();
+                        exito = cModificacion.modificarPersona(mPersona);
+                        break;
+                    case TipoEntidadProveedor:
+                        ModeloProveedor mProveedor = this.cargarDatosEnModeloProveedor();
+                        exito = cModificacion.modificarProveedor(mProveedor);
+                        break;
+                    default:
+                        break;
+                }
+                if (exito == true)
+                {
+                    respuesta = "La operación ha sido exitosa";
+                }
+                else
+                {
+                    respuesta = "La operación ha fallado.";
+                }
+            }
+            else
+            {
+                respuesta = "Debe seleccionar un tipo de entidad para realizar la acción";
+            }
+            MessageBox.Show(respuesta);
+            
+            return exito;
+        }
+
+        private bool eliminarEntidad()
+        {
+            ControladorBaja cBaja = new ControladorBaja();
+
+            string respuesta = "";
+            bool exito = false;
+            if (tipoEntidadSeleccionada != null)
+            {
+                switch (this.getTipoEntidad())
+                {
+                    case TipoEntidadPersona:
+                        exito = cBaja.eliminarPersona(mPersonaSeleccionada);
+                        break;
+                    case TipoEntidadProveedor:
+                        exito = cBaja.eliminarProveedor(mProveedorSeleccionado);
+                        break;
+                    default:
+                        break;
+                }
+                if (exito == true)
+                {
+                    respuesta = "La operación ha sido exitosa";
+                }
+                else
+                {
+                    respuesta = "La operación ha fallado.";
+                }
+            }
+            else
+            {
+                respuesta = "Debe seleccionar un tipo de entidad para realizar la acción";
+            }
+            MessageBox.Show(respuesta);
+            return exito;
+        }
         #endregion
 
         private void quitarTextoEnControles(Control con)
@@ -967,48 +1324,6 @@ namespace Vista
                     quitarTextoEnControles(c);
             }
         }
-        
-        private DataGridView popularDataGridViewResultadoBusqueda(DataGridView pdgv, List<ModeloPersonas> plmPersonas)
-        {
-            DataGridViewRow row = (DataGridViewRow)pdgv.Rows[0].Clone();
-            foreach (ModeloPersonas p in plmPersonas)
-            {
-                row = (DataGridViewRow)pdgv.Rows[0].Clone();
-
-                row.Cells[0].Value = p.tipoPersona;
-                row.Cells[1].Value = p.codigo;
-                row.Cells[2].Value = p.cuit;
-                row.Cells[3].Value = p.dni;
-                row.Cells[4].Value = p.apellido;
-                row.Cells[5].Value = p.nombre;
-                row.Cells[6].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].calle + " " + p.domicilios[0].numero;
-                row.Cells[7].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].ciudad;
-                row.Cells[8].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].provincia.provincia;
-
-                pdgv.Rows.Add(row);
-            }
-            return pdgv;
-        }
-        private DataGridView popularDataGridViewResultadoBusqueda(DataGridView pdgv, List<ModeloProveedor> plmProveedor)
-        {
-            DataGridViewRow row = (DataGridViewRow)pdgv.Rows[0].Clone();
-            foreach (ModeloProveedor p in plmProveedor)
-            {
-                row = (DataGridViewRow)pdgv.Rows[0].Clone();
-
-                row.Cells[0].Value = "PRO";
-                row.Cells[1].Value = p.codigo;
-                row.Cells[2].Value = p.cuit;
-                row.Cells[3].Value = p.razonSocial;
-                row.Cells[4].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].calle + " " + p.domicilios[0].numero;
-                row.Cells[5].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].ciudad;
-                row.Cells[6].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].provincia.provincia;
-
-                pdgv.Rows.Add(row);
-            }
-            return pdgv;
-        }
-        
 
         private RadioButton getRadioButtonTipoEntidad()
         {
@@ -1023,7 +1338,7 @@ namespace Vista
         private string getTipoEntidad()
         {
             string tipoEntidad = null;
-            switch (this.getTipoPersona())
+            switch (this.tipoEntidadSeleccionada)
             {
                 case TipoPersonaCliente:
                 case TipoPersonaContactoDeProveedor:
@@ -1039,48 +1354,12 @@ namespace Vista
             return tipoEntidad;
          
         }
-        /// <summary>
-        /// Retorna tipo persona seleccionada
-        /// </summary>
-        /// <returns>"CLI","CON","USR","PRO" ; null si no esta seleccionada o no se reconoce</returns>
-        private string getTipoPersona()
-        {
-            
-            RadioButton rbTipoEntidad = this.getRadioButtonTipoEntidad();
-            if (rbTipoEntidad != null)
-            {
-                string tipoEntidad = null;
-                switch (rbTipoEntidad.Text)
-                {
-                    case "Cliente":
-                        tipoEntidad = TipoPersonaCliente;
-                        break;
-                    case "Proveedor":
-                        tipoEntidad = TipoEntidadProveedor;
-                        break;
-                    case "Contacto de Proveedor":
-                        tipoEntidad = TipoPersonaContactoDeProveedor;
-                        break;
-                    case "Usuario de Sistema":
-                        tipoEntidad = TipoPersonaUsuario;
-                        break;
-                    default:
-                        break;
-                }
-                return tipoEntidad;
-            }
-            else
-            {
-                return null;
-            }
-            
-        }
-
+       
         private List<ModeloProveedor> buscarProveedores(ModeloProveedor pmProveedor)
         {
             List<ModeloProveedor> lmProveedores = new List<ModeloProveedor>();
             ControladorBusqueda cBusqueda = new ControladorBusqueda();
-            lmProveedores = cBusqueda.buscarProveedores(this.cargarDatosEnModeloProveedor());
+            lmProveedores = cBusqueda.buscarProveedores(pmProveedor);
 
             return lmProveedores;
         }
@@ -1088,18 +1367,34 @@ namespace Vista
         {
             List<ModeloPersonas> lmPersonas = new List<ModeloPersonas>();
             ControladorBusqueda cBusqueda = new ControladorBusqueda();
-            lmPersonas = cBusqueda.buscarPersonas(this.cargarDatosEnModeloPersona());
+            lmPersonas = cBusqueda.buscarPersonas(pmPersona);
 
             return lmPersonas;
         }
 
-        
-
-        private void frmABMEntidad_FormClosing(object sender, FormClosingEventArgs e)
+        private void txtBoxApellido_Leave(object sender, EventArgs e)
         {
-            frmResultadoBusqueda.Close();
+            TextBox TB = (TextBox)sender;
+            int VisibleTime = 1000;  //in milliseconds
+
+            ToolTip tt = new ToolTip();
+            
+            
+            tt.Show("El campo no puede permanecer vacío", TB, 0, -20);
         }
 
-        
+        private void txtBoxNombre_Leave(object sender, EventArgs e)
+        {
+            TextBox TB = (TextBox)sender;
+            int VisibleTime = 4000;  //in milliseconds
+
+            ToolTip tt = new ToolTip();
+            tt.IsBalloon = true;
+            tt.UseAnimation = true;
+            tt.UseFading = true;
+            
+            tt.Show("El campo no puede permanecer vacío", TB, 0, -40,VisibleTime);
+        }
+
     }
 }

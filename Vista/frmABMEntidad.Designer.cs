@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStripABM = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemBuscar = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemLimpiarCampos = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemEliminar = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemNuevo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemGuardar = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemGuardarNuevaEntidad = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemGuardarCambios = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemEliminar = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemLimpiarCampos = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCancelar = new System.Windows.Forms.ToolStripMenuItem();
-            this.tblLayoutPanelDatos = new System.Windows.Forms.TableLayoutPanel();
+            this.tblLayoutPanelForm = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxTipoEntidad = new System.Windows.Forms.GroupBox();
             this.pnlTipoEntidad = new System.Windows.Forms.Panel();
             this.radioButtonContactoProveedor = new System.Windows.Forms.RadioButton();
@@ -118,10 +121,8 @@
             this.dataGridViewMail = new System.Windows.Forms.DataGridView();
             this.codigoMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnMasDatos = new System.Windows.Forms.Button();
             this.grpBoxDatosUsuario = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelDatosUsuario = new System.Windows.Forms.TableLayoutPanel();
-            this.lstViewMail = new System.Windows.Forms.ListView();
             this.pnlUsuarioContrasenia = new System.Windows.Forms.Panel();
             this.chckBoxContrasenia = new System.Windows.Forms.CheckBox();
             this.txtBoxUsuario = new System.Windows.Forms.TextBox();
@@ -129,10 +130,28 @@
             this.lblContrasenia = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.chckdListBoxRol = new System.Windows.Forms.CheckedListBox();
-            this.EntidadToolStripMenuItemGuardarNueva = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemGuardarCambios = new System.Windows.Forms.ToolStripMenuItem();
+            this.grpBoxContactoProveedor = new System.Windows.Forms.GroupBox();
+            this.tblLayoutPanelContactoProveedor = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanelContactoProveedorSeleccionar = new System.Windows.Forms.TableLayoutPanel();
+            this.btnContactoProveedorSeleccionarProveedor = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblCodigoContactoProveedorProveedor = new System.Windows.Forms.Label();
+            this.txtBoxCodigoContactoProveedorProveedor = new System.Windows.Forms.TextBox();
+            this.lblCUITContactoProveedorProveedor = new System.Windows.Forms.Label();
+            this.txtBoxCUITContactoProveedorProveedor = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblRazonSocialContactoProveedorProveedor = new System.Windows.Forms.Label();
+            this.txtBoxRazonSocialContactoProveedorProveedor = new System.Windows.Forms.TextBox();
+            this.grpBoxContactoProveedorProveedorSeleccionado = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado = new System.Windows.Forms.TableLayoutPanel();
+            this.lblRazonSocialProveedorDeContactoProveedor = new System.Windows.Forms.Label();
+            this.lblCUITProveedorDeContactoProveedor = new System.Windows.Forms.Label();
+            this.lblRazonSocialContactoProveedorProveedorSeleccionado = new System.Windows.Forms.Label();
+            this.lblCodigoContactoProveedorProveedorSeleccionado = new System.Windows.Forms.Label();
+            this.lblCUITContactoProveedorProveedorSeleccionado = new System.Windows.Forms.Label();
+            this.lblCodigoProveedorDeContactoProveedor = new System.Windows.Forms.Label();
             this.menuStripABM.SuspendLayout();
-            this.tblLayoutPanelDatos.SuspendLayout();
+            this.tblLayoutPanelForm.SuspendLayout();
             this.grpBoxTipoEntidad.SuspendLayout();
             this.pnlTipoEntidad.SuspendLayout();
             this.grpBoxObservaciones.SuspendLayout();
@@ -157,12 +176,20 @@
             this.grpBoxDatosUsuario.SuspendLayout();
             this.tblLayoutPanelDatosUsuario.SuspendLayout();
             this.pnlUsuarioContrasenia.SuspendLayout();
+            this.grpBoxContactoProveedor.SuspendLayout();
+            this.tblLayoutPanelContactoProveedor.SuspendLayout();
+            this.tableLayoutPanelContactoProveedorSeleccionar.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.grpBoxContactoProveedorProveedorSeleccionado.SuspendLayout();
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStripABM
             // 
             this.menuStripABM.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemBuscar,
+            this.toolStripMenuItemNuevo,
             this.toolStripMenuItemGuardar,
             this.toolStripMenuItemEliminar,
             this.toolStripMenuItemLimpiarCampos,
@@ -180,12 +207,35 @@
             this.toolStripMenuItemBuscar.Text = "Buscar";
             this.toolStripMenuItemBuscar.Click += new System.EventHandler(this.toolStripMenuItemBuscar_Click);
             // 
-            // toolStripMenuItemLimpiarCampos
+            // toolStripMenuItemNuevo
             // 
-            this.toolStripMenuItemLimpiarCampos.Name = "toolStripMenuItemLimpiarCampos";
-            this.toolStripMenuItemLimpiarCampos.Size = new System.Drawing.Size(104, 20);
-            this.toolStripMenuItemLimpiarCampos.Text = "Limpiar campos";
-            this.toolStripMenuItemLimpiarCampos.Click += new System.EventHandler(this.toolStripMenuItemLimpiarCampos_Click);
+            this.toolStripMenuItemNuevo.Name = "toolStripMenuItemNuevo";
+            this.toolStripMenuItemNuevo.Size = new System.Drawing.Size(54, 20);
+            this.toolStripMenuItemNuevo.Text = "Nuevo";
+            this.toolStripMenuItemNuevo.Click += new System.EventHandler(this.toolStripMenuItemNuevo_Click);
+            // 
+            // toolStripMenuItemGuardar
+            // 
+            this.toolStripMenuItemGuardar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemGuardarNuevaEntidad,
+            this.toolStripMenuItemGuardarCambios});
+            this.toolStripMenuItemGuardar.Name = "toolStripMenuItemGuardar";
+            this.toolStripMenuItemGuardar.Size = new System.Drawing.Size(61, 20);
+            this.toolStripMenuItemGuardar.Text = "Guardar";
+            // 
+            // toolStripMenuItemGuardarNuevaEntidad
+            // 
+            this.toolStripMenuItemGuardarNuevaEntidad.Name = "toolStripMenuItemGuardarNuevaEntidad";
+            this.toolStripMenuItemGuardarNuevaEntidad.Size = new System.Drawing.Size(196, 22);
+            this.toolStripMenuItemGuardarNuevaEntidad.Text = "Guardar Nueva Entidad";
+            this.toolStripMenuItemGuardarNuevaEntidad.Click += new System.EventHandler(this.toolStripMenuItemGuardarNuevaEntidad_Click);
+            // 
+            // toolStripMenuItemGuardarCambios
+            // 
+            this.toolStripMenuItemGuardarCambios.Name = "toolStripMenuItemGuardarCambios";
+            this.toolStripMenuItemGuardarCambios.Size = new System.Drawing.Size(196, 22);
+            this.toolStripMenuItemGuardarCambios.Text = "Guardar Cambios";
+            this.toolStripMenuItemGuardarCambios.Click += new System.EventHandler(this.ToolStripMenuItemGuardarCambios_Click);
             // 
             // toolStripMenuItemEliminar
             // 
@@ -194,14 +244,12 @@
             this.toolStripMenuItemEliminar.Text = "Eliminar";
             this.toolStripMenuItemEliminar.Click += new System.EventHandler(this.toolStripMenuItemEliminar_Click);
             // 
-            // toolStripMenuItemGuardar
+            // toolStripMenuItemLimpiarCampos
             // 
-            this.toolStripMenuItemGuardar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.EntidadToolStripMenuItemGuardarNueva,
-            this.ToolStripMenuItemGuardarCambios});
-            this.toolStripMenuItemGuardar.Name = "toolStripMenuItemGuardar";
-            this.toolStripMenuItemGuardar.Size = new System.Drawing.Size(61, 20);
-            this.toolStripMenuItemGuardar.Text = "Guardar";
+            this.toolStripMenuItemLimpiarCampos.Name = "toolStripMenuItemLimpiarCampos";
+            this.toolStripMenuItemLimpiarCampos.Size = new System.Drawing.Size(104, 20);
+            this.toolStripMenuItemLimpiarCampos.Text = "Limpiar campos";
+            this.toolStripMenuItemLimpiarCampos.Click += new System.EventHandler(this.toolStripMenuItemLimpiarCampos_Click);
             // 
             // toolStripMenuItemCancelar
             // 
@@ -210,29 +258,29 @@
             this.toolStripMenuItemCancelar.Text = "Cancelar";
             this.toolStripMenuItemCancelar.Click += new System.EventHandler(this.toolStripMenuItemCancelar_Click);
             // 
-            // tblLayoutPanelDatos
+            // tblLayoutPanelForm
             // 
-            this.tblLayoutPanelDatos.ColumnCount = 1;
-            this.tblLayoutPanelDatos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelDatos.Controls.Add(this.grpBoxTipoEntidad, 0, 0);
-            this.tblLayoutPanelDatos.Controls.Add(this.grpBoxObservaciones, 0, 4);
-            this.tblLayoutPanelDatos.Controls.Add(this.grpBoxDatosPersonales, 0, 1);
-            this.tblLayoutPanelDatos.Controls.Add(this.grpBoxDomicilio, 0, 2);
-            this.tblLayoutPanelDatos.Controls.Add(this.grpBoxContacto, 0, 3);
-            this.tblLayoutPanelDatos.Controls.Add(this.btnMasDatos, 0, 6);
-            this.tblLayoutPanelDatos.Controls.Add(this.grpBoxDatosUsuario, 0, 5);
-            this.tblLayoutPanelDatos.Location = new System.Drawing.Point(12, 27);
-            this.tblLayoutPanelDatos.Name = "tblLayoutPanelDatos";
-            this.tblLayoutPanelDatos.RowCount = 7;
-            this.tblLayoutPanelDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tblLayoutPanelDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tblLayoutPanelDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 210F));
-            this.tblLayoutPanelDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
-            this.tblLayoutPanelDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 122F));
-            this.tblLayoutPanelDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 137F));
-            this.tblLayoutPanelDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 14F));
-            this.tblLayoutPanelDatos.Size = new System.Drawing.Size(701, 826);
-            this.tblLayoutPanelDatos.TabIndex = 4;
+            this.tblLayoutPanelForm.ColumnCount = 1;
+            this.tblLayoutPanelForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelForm.Controls.Add(this.grpBoxTipoEntidad, 0, 0);
+            this.tblLayoutPanelForm.Controls.Add(this.grpBoxObservaciones, 0, 4);
+            this.tblLayoutPanelForm.Controls.Add(this.grpBoxDatosPersonales, 0, 1);
+            this.tblLayoutPanelForm.Controls.Add(this.grpBoxDomicilio, 0, 2);
+            this.tblLayoutPanelForm.Controls.Add(this.grpBoxContacto, 0, 3);
+            this.tblLayoutPanelForm.Controls.Add(this.grpBoxDatosUsuario, 0, 5);
+            this.tblLayoutPanelForm.Controls.Add(this.grpBoxContactoProveedor, 0, 6);
+            this.tblLayoutPanelForm.Location = new System.Drawing.Point(12, 27);
+            this.tblLayoutPanelForm.Name = "tblLayoutPanelForm";
+            this.tblLayoutPanelForm.RowCount = 7;
+            this.tblLayoutPanelForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.tblLayoutPanelForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tblLayoutPanelForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 210F));
+            this.tblLayoutPanelForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
+            this.tblLayoutPanelForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 122F));
+            this.tblLayoutPanelForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tblLayoutPanelForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tblLayoutPanelForm.Size = new System.Drawing.Size(701, 932);
+            this.tblLayoutPanelForm.TabIndex = 4;
             // 
             // grpBoxTipoEntidad
             // 
@@ -269,6 +317,7 @@
             this.radioButtonContactoProveedor.TabStop = true;
             this.radioButtonContactoProveedor.Text = "Contacto de Proveedor";
             this.radioButtonContactoProveedor.UseVisualStyleBackColor = true;
+            this.radioButtonContactoProveedor.CheckedChanged += new System.EventHandler(this.radioButtonContactoProveedor_CheckedChanged);
             // 
             // radioButtonProveedor
             // 
@@ -294,6 +343,7 @@
             this.radioButtonUsuario.TabStop = true;
             this.radioButtonUsuario.Text = "Usuario de Sistema";
             this.radioButtonUsuario.UseVisualStyleBackColor = true;
+            this.radioButtonUsuario.CheckedChanged += new System.EventHandler(this.radioButtonUsuario_CheckedChanged);
             // 
             // radioButtonCliente
             // 
@@ -311,8 +361,9 @@
             // 
             // grpBoxObservaciones
             // 
+            this.grpBoxObservaciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBoxObservaciones.Controls.Add(this.rchTextBoxObservaciones);
-            this.grpBoxObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxObservaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBoxObservaciones.Location = new System.Drawing.Point(3, 538);
             this.grpBoxObservaciones.Name = "grpBoxObservaciones";
@@ -438,6 +489,7 @@
             this.txtBoxApellido.Name = "txtBoxApellido";
             this.txtBoxApellido.Size = new System.Drawing.Size(340, 24);
             this.txtBoxApellido.TabIndex = 8;
+            this.txtBoxApellido.Leave += new System.EventHandler(this.txtBoxApellido_Leave);
             // 
             // lblNombre
             // 
@@ -457,6 +509,7 @@
             this.txtBoxNombre.Name = "txtBoxNombre";
             this.txtBoxNombre.Size = new System.Drawing.Size(340, 24);
             this.txtBoxNombre.TabIndex = 9;
+            this.txtBoxNombre.Leave += new System.EventHandler(this.txtBoxNombre_Leave);
             // 
             // lblRazonSocial
             // 
@@ -721,14 +774,14 @@
             // 
             // dataGridViewDomicilio
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewDomicilio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewDomicilio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewDomicilio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDomicilio.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoDomicilio,
@@ -1159,73 +1212,50 @@
             this.mail.ReadOnly = true;
             this.mail.Width = 300;
             // 
-            // btnMasDatos
-            // 
-            this.btnMasDatos.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnMasDatos.Enabled = false;
-            this.btnMasDatos.Location = new System.Drawing.Point(313, 800);
-            this.btnMasDatos.Name = "btnMasDatos";
-            this.btnMasDatos.Size = new System.Drawing.Size(75, 20);
-            this.btnMasDatos.TabIndex = 7;
-            this.btnMasDatos.Text = "Más Datos";
-            this.btnMasDatos.UseVisualStyleBackColor = true;
-            // 
             // grpBoxDatosUsuario
             // 
             this.grpBoxDatosUsuario.Controls.Add(this.tblLayoutPanelDatosUsuario);
-            this.grpBoxDatosUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxDatosUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBoxDatosUsuario.Location = new System.Drawing.Point(3, 660);
             this.grpBoxDatosUsuario.Name = "grpBoxDatosUsuario";
-            this.grpBoxDatosUsuario.Size = new System.Drawing.Size(695, 131);
+            this.grpBoxDatosUsuario.Size = new System.Drawing.Size(695, 120);
             this.grpBoxDatosUsuario.TabIndex = 8;
             this.grpBoxDatosUsuario.TabStop = false;
             this.grpBoxDatosUsuario.Text = "Datos de Usuario";
             // 
             // tblLayoutPanelDatosUsuario
             // 
-            this.tblLayoutPanelDatosUsuario.ColumnCount = 4;
-            this.tblLayoutPanelDatosUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-            this.tblLayoutPanelDatosUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tblLayoutPanelDatosUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tblLayoutPanelDatosUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tblLayoutPanelDatosUsuario.Controls.Add(this.lstViewMail, 3, 0);
+            this.tblLayoutPanelDatosUsuario.ColumnCount = 2;
+            this.tblLayoutPanelDatosUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelDatosUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelDatosUsuario.Controls.Add(this.pnlUsuarioContrasenia, 0, 0);
             this.tblLayoutPanelDatosUsuario.Controls.Add(this.chckdListBoxRol, 1, 0);
             this.tblLayoutPanelDatosUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelDatosUsuario.Location = new System.Drawing.Point(3, 20);
             this.tblLayoutPanelDatosUsuario.Name = "tblLayoutPanelDatosUsuario";
             this.tblLayoutPanelDatosUsuario.RowCount = 1;
-            this.tblLayoutPanelDatosUsuario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 108F));
-            this.tblLayoutPanelDatosUsuario.Size = new System.Drawing.Size(689, 108);
+            this.tblLayoutPanelDatosUsuario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 97F));
+            this.tblLayoutPanelDatosUsuario.Size = new System.Drawing.Size(689, 97);
             this.tblLayoutPanelDatosUsuario.TabIndex = 0;
-            // 
-            // lstViewMail
-            // 
-            this.lstViewMail.Location = new System.Drawing.Point(427, 3);
-            this.lstViewMail.Name = "lstViewMail";
-            this.lstViewMail.Size = new System.Drawing.Size(259, 51);
-            this.lstViewMail.TabIndex = 12;
-            this.lstViewMail.UseCompatibleStateImageBehavior = false;
             // 
             // pnlUsuarioContrasenia
             // 
+            this.pnlUsuarioContrasenia.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnlUsuarioContrasenia.Controls.Add(this.chckBoxContrasenia);
             this.pnlUsuarioContrasenia.Controls.Add(this.txtBoxUsuario);
             this.pnlUsuarioContrasenia.Controls.Add(this.txtBoxContrasenia);
             this.pnlUsuarioContrasenia.Controls.Add(this.lblContrasenia);
             this.pnlUsuarioContrasenia.Controls.Add(this.lblUsuario);
-            this.pnlUsuarioContrasenia.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlUsuarioContrasenia.Location = new System.Drawing.Point(3, 3);
+            this.pnlUsuarioContrasenia.Location = new System.Drawing.Point(36, 3);
             this.pnlUsuarioContrasenia.Name = "pnlUsuarioContrasenia";
-            this.pnlUsuarioContrasenia.Size = new System.Drawing.Size(244, 102);
+            this.pnlUsuarioContrasenia.Size = new System.Drawing.Size(272, 91);
             this.pnlUsuarioContrasenia.TabIndex = 0;
             // 
             // chckBoxContrasenia
             // 
             this.chckBoxContrasenia.AutoSize = true;
             this.chckBoxContrasenia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chckBoxContrasenia.Location = new System.Drawing.Point(84, 66);
+            this.chckBoxContrasenia.Location = new System.Drawing.Point(86, 64);
             this.chckBoxContrasenia.Name = "chckBoxContrasenia";
             this.chckBoxContrasenia.Size = new System.Drawing.Size(142, 20);
             this.chckBoxContrasenia.TabIndex = 10;
@@ -1235,17 +1265,18 @@
             // txtBoxUsuario
             // 
             this.txtBoxUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxUsuario.Location = new System.Drawing.Point(84, 6);
+            this.txtBoxUsuario.Location = new System.Drawing.Point(85, 6);
             this.txtBoxUsuario.Name = "txtBoxUsuario";
-            this.txtBoxUsuario.Size = new System.Drawing.Size(142, 24);
+            this.txtBoxUsuario.Size = new System.Drawing.Size(170, 24);
             this.txtBoxUsuario.TabIndex = 9;
             // 
             // txtBoxContrasenia
             // 
             this.txtBoxContrasenia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxContrasenia.Location = new System.Drawing.Point(84, 36);
+            this.txtBoxContrasenia.Location = new System.Drawing.Point(85, 36);
             this.txtBoxContrasenia.Name = "txtBoxContrasenia";
-            this.txtBoxContrasenia.Size = new System.Drawing.Size(142, 24);
+            this.txtBoxContrasenia.PasswordChar = '*';
+            this.txtBoxContrasenia.Size = new System.Drawing.Size(170, 24);
             this.txtBoxContrasenia.TabIndex = 8;
             // 
             // lblContrasenia
@@ -1253,7 +1284,7 @@
             this.lblContrasenia.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblContrasenia.AutoSize = true;
             this.lblContrasenia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContrasenia.Location = new System.Drawing.Point(-3, 41);
+            this.lblContrasenia.Location = new System.Drawing.Point(1, 41);
             this.lblContrasenia.Name = "lblContrasenia";
             this.lblContrasenia.Size = new System.Drawing.Size(85, 17);
             this.lblContrasenia.TabIndex = 3;
@@ -1264,7 +1295,7 @@
             this.lblUsuario.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(19, 11);
+            this.lblUsuario.Location = new System.Drawing.Point(25, 11);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(61, 17);
             this.lblUsuario.TabIndex = 2;
@@ -1272,32 +1303,243 @@
             // 
             // chckdListBoxRol
             // 
+            this.chckdListBoxRol.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.chckdListBoxRol.FormattingEnabled = true;
-            this.chckdListBoxRol.Location = new System.Drawing.Point(253, 3);
+            this.chckdListBoxRol.Location = new System.Drawing.Point(411, 3);
             this.chckdListBoxRol.Name = "chckdListBoxRol";
-            this.chckdListBoxRol.Size = new System.Drawing.Size(120, 80);
+            this.chckdListBoxRol.Size = new System.Drawing.Size(210, 80);
             this.chckdListBoxRol.TabIndex = 2;
             // 
-            // EntidadToolStripMenuItemGuardarNueva
+            // grpBoxContactoProveedor
             // 
-            this.EntidadToolStripMenuItemGuardarNueva.Name = "EntidadToolStripMenuItemGuardarNueva";
-            this.EntidadToolStripMenuItemGuardarNueva.Size = new System.Drawing.Size(196, 22);
-            this.EntidadToolStripMenuItemGuardarNueva.Text = "Guardar Nueva Entidad";
-            this.EntidadToolStripMenuItemGuardarNueva.Click += new System.EventHandler(this.EntidadToolStripMenuItemGuardarNueva_Click);
+            this.grpBoxContactoProveedor.Controls.Add(this.tblLayoutPanelContactoProveedor);
+            this.grpBoxContactoProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpBoxContactoProveedor.Location = new System.Drawing.Point(3, 790);
+            this.grpBoxContactoProveedor.Name = "grpBoxContactoProveedor";
+            this.grpBoxContactoProveedor.Size = new System.Drawing.Size(695, 139);
+            this.grpBoxContactoProveedor.TabIndex = 9;
+            this.grpBoxContactoProveedor.TabStop = false;
+            this.grpBoxContactoProveedor.Text = "Contacto de Proveedor";
             // 
-            // ToolStripMenuItemGuardarCambios
+            // tblLayoutPanelContactoProveedor
             // 
-            this.ToolStripMenuItemGuardarCambios.Name = "ToolStripMenuItemGuardarCambios";
-            this.ToolStripMenuItemGuardarCambios.Size = new System.Drawing.Size(196, 22);
-            this.ToolStripMenuItemGuardarCambios.Text = "Guardar Cambios";
-            this.ToolStripMenuItemGuardarCambios.Click += new System.EventHandler(this.ToolStripMenuItemGuardarCambios_Click);
+            this.tblLayoutPanelContactoProveedor.ColumnCount = 2;
+            this.tblLayoutPanelContactoProveedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelContactoProveedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelContactoProveedor.Controls.Add(this.tableLayoutPanelContactoProveedorSeleccionar, 0, 0);
+            this.tblLayoutPanelContactoProveedor.Controls.Add(this.grpBoxContactoProveedorProveedorSeleccionado, 1, 0);
+            this.tblLayoutPanelContactoProveedor.Location = new System.Drawing.Point(3, 20);
+            this.tblLayoutPanelContactoProveedor.Name = "tblLayoutPanelContactoProveedor";
+            this.tblLayoutPanelContactoProveedor.RowCount = 1;
+            this.tblLayoutPanelContactoProveedor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelContactoProveedor.Size = new System.Drawing.Size(689, 119);
+            this.tblLayoutPanelContactoProveedor.TabIndex = 0;
+            // 
+            // tableLayoutPanelContactoProveedorSeleccionar
+            // 
+            this.tableLayoutPanelContactoProveedorSeleccionar.ColumnCount = 1;
+            this.tableLayoutPanelContactoProveedorSeleccionar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelContactoProveedorSeleccionar.Controls.Add(this.btnContactoProveedorSeleccionarProveedor, 0, 2);
+            this.tableLayoutPanelContactoProveedorSeleccionar.Controls.Add(this.flowLayoutPanel1, 0, 0);
+            this.tableLayoutPanelContactoProveedorSeleccionar.Controls.Add(this.flowLayoutPanel2, 0, 1);
+            this.tableLayoutPanelContactoProveedorSeleccionar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelContactoProveedorSeleccionar.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanelContactoProveedorSeleccionar.Name = "tableLayoutPanelContactoProveedorSeleccionar";
+            this.tableLayoutPanelContactoProveedorSeleccionar.RowCount = 3;
+            this.tableLayoutPanelContactoProveedorSeleccionar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanelContactoProveedorSeleccionar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanelContactoProveedorSeleccionar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanelContactoProveedorSeleccionar.Size = new System.Drawing.Size(338, 113);
+            this.tableLayoutPanelContactoProveedorSeleccionar.TabIndex = 0;
+            // 
+            // btnContactoProveedorSeleccionarProveedor
+            // 
+            this.btnContactoProveedorSeleccionarProveedor.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnContactoProveedorSeleccionarProveedor.Location = new System.Drawing.Point(72, 78);
+            this.btnContactoProveedorSeleccionarProveedor.Name = "btnContactoProveedorSeleccionarProveedor";
+            this.btnContactoProveedorSeleccionarProveedor.Size = new System.Drawing.Size(194, 31);
+            this.btnContactoProveedorSeleccionarProveedor.TabIndex = 0;
+            this.btnContactoProveedorSeleccionarProveedor.Text = "Seleccionar o Cambiar";
+            this.btnContactoProveedorSeleccionarProveedor.UseVisualStyleBackColor = true;
+            this.btnContactoProveedorSeleccionarProveedor.Click += new System.EventHandler(this.btnContactoProveedorSeleccionarProveedor_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.lblCodigoContactoProveedorProveedor);
+            this.flowLayoutPanel1.Controls.Add(this.txtBoxCodigoContactoProveedorProveedor);
+            this.flowLayoutPanel1.Controls.Add(this.lblCUITContactoProveedorProveedor);
+            this.flowLayoutPanel1.Controls.Add(this.txtBoxCUITContactoProveedorProveedor);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(332, 31);
+            this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // lblCodigoContactoProveedorProveedor
+            // 
+            this.lblCodigoContactoProveedorProveedor.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblCodigoContactoProveedorProveedor.AutoSize = true;
+            this.lblCodigoContactoProveedorProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigoContactoProveedorProveedor.Location = new System.Drawing.Point(3, 6);
+            this.lblCodigoContactoProveedorProveedor.Name = "lblCodigoContactoProveedorProveedor";
+            this.lblCodigoContactoProveedorProveedor.Size = new System.Drawing.Size(56, 17);
+            this.lblCodigoContactoProveedorProveedor.TabIndex = 1;
+            this.lblCodigoContactoProveedorProveedor.Text = "Código:";
+            // 
+            // txtBoxCodigoContactoProveedorProveedor
+            // 
+            this.txtBoxCodigoContactoProveedorProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxCodigoContactoProveedorProveedor.Location = new System.Drawing.Point(65, 3);
+            this.txtBoxCodigoContactoProveedorProveedor.Name = "txtBoxCodigoContactoProveedorProveedor";
+            this.txtBoxCodigoContactoProveedorProveedor.Size = new System.Drawing.Size(84, 24);
+            this.txtBoxCodigoContactoProveedorProveedor.TabIndex = 6;
+            // 
+            // lblCUITContactoProveedorProveedor
+            // 
+            this.lblCUITContactoProveedorProveedor.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblCUITContactoProveedorProveedor.AutoSize = true;
+            this.lblCUITContactoProveedorProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCUITContactoProveedorProveedor.Location = new System.Drawing.Point(155, 6);
+            this.lblCUITContactoProveedorProveedor.Name = "lblCUITContactoProveedorProveedor";
+            this.lblCUITContactoProveedorProveedor.Size = new System.Drawing.Size(43, 17);
+            this.lblCUITContactoProveedorProveedor.TabIndex = 7;
+            this.lblCUITContactoProveedorProveedor.Text = "CUIT:";
+            // 
+            // txtBoxCUITContactoProveedorProveedor
+            // 
+            this.txtBoxCUITContactoProveedorProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxCUITContactoProveedorProveedor.Location = new System.Drawing.Point(204, 3);
+            this.txtBoxCUITContactoProveedorProveedor.Name = "txtBoxCUITContactoProveedorProveedor";
+            this.txtBoxCUITContactoProveedorProveedor.Size = new System.Drawing.Size(124, 24);
+            this.txtBoxCUITContactoProveedorProveedor.TabIndex = 8;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.lblRazonSocialContactoProveedorProveedor);
+            this.flowLayoutPanel2.Controls.Add(this.txtBoxRazonSocialContactoProveedorProveedor);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 40);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(332, 31);
+            this.flowLayoutPanel2.TabIndex = 2;
+            // 
+            // lblRazonSocialContactoProveedorProveedor
+            // 
+            this.lblRazonSocialContactoProveedorProveedor.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblRazonSocialContactoProveedorProveedor.AutoSize = true;
+            this.lblRazonSocialContactoProveedorProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRazonSocialContactoProveedorProveedor.Location = new System.Drawing.Point(3, 6);
+            this.lblRazonSocialContactoProveedorProveedor.Name = "lblRazonSocialContactoProveedorProveedor";
+            this.lblRazonSocialContactoProveedorProveedor.Size = new System.Drawing.Size(95, 17);
+            this.lblRazonSocialContactoProveedorProveedor.TabIndex = 11;
+            this.lblRazonSocialContactoProveedorProveedor.Text = "Razón Social:";
+            // 
+            // txtBoxRazonSocialContactoProveedorProveedor
+            // 
+            this.txtBoxRazonSocialContactoProveedorProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxRazonSocialContactoProveedorProveedor.Location = new System.Drawing.Point(104, 3);
+            this.txtBoxRazonSocialContactoProveedorProveedor.Name = "txtBoxRazonSocialContactoProveedorProveedor";
+            this.txtBoxRazonSocialContactoProveedorProveedor.Size = new System.Drawing.Size(224, 24);
+            this.txtBoxRazonSocialContactoProveedorProveedor.TabIndex = 12;
+            // 
+            // grpBoxContactoProveedorProveedorSeleccionado
+            // 
+            this.grpBoxContactoProveedorProveedorSeleccionado.Controls.Add(this.tableLayoutPanelContactoProveedorProveedorSeleccionado);
+            this.grpBoxContactoProveedorProveedorSeleccionado.Location = new System.Drawing.Point(347, 3);
+            this.grpBoxContactoProveedorProveedorSeleccionado.Name = "grpBoxContactoProveedorProveedorSeleccionado";
+            this.grpBoxContactoProveedorProveedorSeleccionado.Size = new System.Drawing.Size(336, 109);
+            this.grpBoxContactoProveedorProveedorSeleccionado.TabIndex = 1;
+            this.grpBoxContactoProveedorProveedorSeleccionado.TabStop = false;
+            this.grpBoxContactoProveedorProveedorSeleccionado.Text = "Proveedor Seleccionado";
+            // 
+            // tableLayoutPanelContactoProveedorProveedorSeleccionado
+            // 
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.ColumnCount = 2;
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.17284F));
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.82716F));
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.Controls.Add(this.lblRazonSocialProveedorDeContactoProveedor, 1, 2);
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.Controls.Add(this.lblCUITProveedorDeContactoProveedor, 1, 1);
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.Controls.Add(this.lblRazonSocialContactoProveedorProveedorSeleccionado, 0, 2);
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.Controls.Add(this.lblCodigoContactoProveedorProveedorSeleccionado, 0, 0);
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.Controls.Add(this.lblCUITContactoProveedorProveedorSeleccionado, 0, 1);
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.Controls.Add(this.lblCodigoProveedorDeContactoProveedor, 1, 0);
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.Location = new System.Drawing.Point(6, 23);
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.Name = "tableLayoutPanelContactoProveedorProveedorSeleccionado";
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.RowCount = 3;
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34F));
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.Size = new System.Drawing.Size(324, 80);
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.TabIndex = 0;
+            // 
+            // lblRazonSocialProveedorDeContactoProveedor
+            // 
+            this.lblRazonSocialProveedorDeContactoProveedor.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblRazonSocialProveedorDeContactoProveedor.AutoSize = true;
+            this.lblRazonSocialProveedorDeContactoProveedor.Location = new System.Drawing.Point(104, 57);
+            this.lblRazonSocialProveedorDeContactoProveedor.Name = "lblRazonSocialProveedorDeContactoProveedor";
+            this.lblRazonSocialProveedorDeContactoProveedor.Size = new System.Drawing.Size(0, 18);
+            this.lblRazonSocialProveedorDeContactoProveedor.TabIndex = 15;
+            // 
+            // lblCUITProveedorDeContactoProveedor
+            // 
+            this.lblCUITProveedorDeContactoProveedor.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblCUITProveedorDeContactoProveedor.AutoSize = true;
+            this.lblCUITProveedorDeContactoProveedor.Location = new System.Drawing.Point(104, 30);
+            this.lblCUITProveedorDeContactoProveedor.Name = "lblCUITProveedorDeContactoProveedor";
+            this.lblCUITProveedorDeContactoProveedor.Size = new System.Drawing.Size(0, 18);
+            this.lblCUITProveedorDeContactoProveedor.TabIndex = 14;
+            // 
+            // lblRazonSocialContactoProveedorProveedorSeleccionado
+            // 
+            this.lblRazonSocialContactoProveedorProveedorSeleccionado.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblRazonSocialContactoProveedorProveedorSeleccionado.AutoSize = true;
+            this.lblRazonSocialContactoProveedorProveedorSeleccionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRazonSocialContactoProveedorProveedorSeleccionado.Location = new System.Drawing.Point(3, 57);
+            this.lblRazonSocialContactoProveedorProveedorSeleccionado.Name = "lblRazonSocialContactoProveedorProveedorSeleccionado";
+            this.lblRazonSocialContactoProveedorProveedorSeleccionado.Size = new System.Drawing.Size(95, 17);
+            this.lblRazonSocialContactoProveedorProveedorSeleccionado.TabIndex = 12;
+            this.lblRazonSocialContactoProveedorProveedorSeleccionado.Text = "Razón Social:";
+            // 
+            // lblCodigoContactoProveedorProveedorSeleccionado
+            // 
+            this.lblCodigoContactoProveedorProveedorSeleccionado.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblCodigoContactoProveedorProveedorSeleccionado.AutoSize = true;
+            this.lblCodigoContactoProveedorProveedorSeleccionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigoContactoProveedorProveedorSeleccionado.Location = new System.Drawing.Point(42, 4);
+            this.lblCodigoContactoProveedorProveedorSeleccionado.Name = "lblCodigoContactoProveedorProveedorSeleccionado";
+            this.lblCodigoContactoProveedorProveedorSeleccionado.Size = new System.Drawing.Size(56, 17);
+            this.lblCodigoContactoProveedorProveedorSeleccionado.TabIndex = 2;
+            this.lblCodigoContactoProveedorProveedorSeleccionado.Text = "Código:";
+            // 
+            // lblCUITContactoProveedorProveedorSeleccionado
+            // 
+            this.lblCUITContactoProveedorProveedorSeleccionado.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblCUITContactoProveedorProveedorSeleccionado.AutoSize = true;
+            this.lblCUITContactoProveedorProveedorSeleccionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCUITContactoProveedorProveedorSeleccionado.Location = new System.Drawing.Point(55, 30);
+            this.lblCUITContactoProveedorProveedorSeleccionado.Name = "lblCUITContactoProveedorProveedorSeleccionado";
+            this.lblCUITContactoProveedorProveedorSeleccionado.Size = new System.Drawing.Size(43, 17);
+            this.lblCUITContactoProveedorProveedorSeleccionado.TabIndex = 8;
+            this.lblCUITContactoProveedorProveedorSeleccionado.Text = "CUIT:";
+            // 
+            // lblCodigoProveedorDeContactoProveedor
+            // 
+            this.lblCodigoProveedorDeContactoProveedor.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblCodigoProveedorDeContactoProveedor.AutoSize = true;
+            this.lblCodigoProveedorDeContactoProveedor.Location = new System.Drawing.Point(104, 4);
+            this.lblCodigoProveedorDeContactoProveedor.Name = "lblCodigoProveedorDeContactoProveedor";
+            this.lblCodigoProveedorDeContactoProveedor.Size = new System.Drawing.Size(0, 18);
+            this.lblCodigoProveedorDeContactoProveedor.TabIndex = 13;
             // 
             // frmABMEntidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(803, 881);
-            this.Controls.Add(this.tblLayoutPanelDatos);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(803, 971);
+            this.Controls.Add(this.tblLayoutPanelForm);
             this.Controls.Add(this.menuStripABM);
             this.MainMenuStrip = this.menuStripABM;
             this.Name = "frmABMEntidad";
@@ -1305,7 +1547,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmABMEntidad_FormClosing);
             this.menuStripABM.ResumeLayout(false);
             this.menuStripABM.PerformLayout();
-            this.tblLayoutPanelDatos.ResumeLayout(false);
+            this.tblLayoutPanelForm.ResumeLayout(false);
             this.grpBoxTipoEntidad.ResumeLayout(false);
             this.pnlTipoEntidad.ResumeLayout(false);
             this.pnlTipoEntidad.PerformLayout();
@@ -1336,6 +1578,16 @@
             this.tblLayoutPanelDatosUsuario.ResumeLayout(false);
             this.pnlUsuarioContrasenia.ResumeLayout(false);
             this.pnlUsuarioContrasenia.PerformLayout();
+            this.grpBoxContactoProveedor.ResumeLayout(false);
+            this.tblLayoutPanelContactoProveedor.ResumeLayout(false);
+            this.tableLayoutPanelContactoProveedorSeleccionar.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
+            this.grpBoxContactoProveedorProveedorSeleccionado.ResumeLayout(false);
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.ResumeLayout(false);
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1349,7 +1601,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBuscar;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemGuardar;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCancelar;
-        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDatos;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelForm;
         private System.Windows.Forms.GroupBox grpBoxTipoEntidad;
         private System.Windows.Forms.Panel pnlTipoEntidad;
         private System.Windows.Forms.RadioButton radioButtonContactoProveedor;
@@ -1407,8 +1659,6 @@
         private System.Windows.Forms.Button btnAgregarMail;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelMailLista;
         private System.Windows.Forms.Button btnQuitarMail;
-        private System.Windows.Forms.ListView lstViewMail;
-        private System.Windows.Forms.Button btnMasDatos;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDomicilioGrid;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDomicilioAgregarQuitar;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelMailListaAgregarQuitar;
@@ -1443,7 +1693,28 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoTipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn numeroTelefono;
-        private System.Windows.Forms.ToolStripMenuItem EntidadToolStripMenuItemGuardarNueva;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemGuardarCambios;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemGuardarNuevaEntidad;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemGuardarCambios;
+        private System.Windows.Forms.GroupBox grpBoxContactoProveedor;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelContactoProveedor;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelContactoProveedorSeleccionar;
+        private System.Windows.Forms.Button btnContactoProveedorSeleccionarProveedor;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Label lblCodigoContactoProveedorProveedor;
+        private System.Windows.Forms.TextBox txtBoxCodigoContactoProveedorProveedor;
+        private System.Windows.Forms.Label lblCUITContactoProveedorProveedor;
+        private System.Windows.Forms.TextBox txtBoxCUITContactoProveedorProveedor;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Label lblRazonSocialContactoProveedorProveedor;
+        private System.Windows.Forms.TextBox txtBoxRazonSocialContactoProveedorProveedor;
+        private System.Windows.Forms.GroupBox grpBoxContactoProveedorProveedorSeleccionado;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelContactoProveedorProveedorSeleccionado;
+        private System.Windows.Forms.Label lblRazonSocialContactoProveedorProveedorSeleccionado;
+        private System.Windows.Forms.Label lblCodigoContactoProveedorProveedorSeleccionado;
+        private System.Windows.Forms.Label lblCUITContactoProveedorProveedorSeleccionado;
+        private System.Windows.Forms.Label lblRazonSocialProveedorDeContactoProveedor;
+        private System.Windows.Forms.Label lblCUITProveedorDeContactoProveedor;
+        private System.Windows.Forms.Label lblCodigoProveedorDeContactoProveedor;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemNuevo;
     }
 }
