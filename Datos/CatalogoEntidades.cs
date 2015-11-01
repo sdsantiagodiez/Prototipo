@@ -98,34 +98,21 @@ namespace Datos
             return entidades;
         }
 
-        public ModeloEntidad getValoresEntidad(ModeloPersonas pmPersona)
+        public ModeloEntidad getValoresEntidad(ModeloEntidad pmEntidad)
         {
             ModeloEntidad mEntidad = new ModeloEntidad();
-            mEntidad.codigo = pmPersona.codigo;
-            mEntidad.cuit = pmPersona.cuit;
-            mEntidad.tipoEntidad = pmPersona.tipoEntidad;
-            mEntidad.observaciones = pmPersona.observaciones;
+            mEntidad.codigo = pmEntidad.codigo;
+            mEntidad.cuit = pmEntidad.cuit;
+            mEntidad.tipoEntidad = pmEntidad.tipoEntidad;
+            mEntidad.observaciones = pmEntidad.observaciones;
 
-            mEntidad.mails = pmPersona.mails;
-            mEntidad.telefonos = pmPersona.telefonos;
-            mEntidad.domicilios = pmPersona.domicilios;
+            mEntidad.mails = pmEntidad.mails;
+            mEntidad.telefonos = pmEntidad.telefonos;
+            mEntidad.domicilios = pmEntidad.domicilios;
 
             return mEntidad;
         }
-        public ModeloEntidad getValoresEntidad(ModeloProveedor pmProveedor)
-        {
-            ModeloEntidad mEntidad = new ModeloEntidad();
-            mEntidad.codigo = pmProveedor.codigo;
-            mEntidad.cuit = pmProveedor.cuit;
-            mEntidad.tipoEntidad = pmProveedor.tipoEntidad;
-            mEntidad.observaciones = pmProveedor.observaciones;
-
-            mEntidad.mails = pmProveedor.mails;
-            mEntidad.telefonos = pmProveedor.telefonos;
-            mEntidad.domicilios = pmProveedor.domicilios;
-
-            return mEntidad;
-        }
+       
         #region ALTA/BAJA/MODIFICACIÓN entidades
         /*
          * True si se realizó correctamente
