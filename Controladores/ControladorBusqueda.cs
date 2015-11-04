@@ -263,15 +263,87 @@ namespace Controladores
             //lmProvincia = cp.buscarArticulo(pmProvincia); //seguir
             return lmProvincia;
         }
-       
+
         #endregion
 
         #region Paises
+        /// <summary>
+        /// Retorna todas los paises de la base de datos
+        /// </summary>
+        /// <returns></returns>
         public List<ModeloPais> buscarPaises()
         {
             CatalogoPaises cp = new CatalogoPaises();
             return cp.getAll();
         }
+
+        /// <summary>
+        /// Retorna articulos en base a los valores inicializados en los atributos del modelo
+        /// </summary>
+        /// <param name="pmPais"></param>
+        /// <returns>Lista de Paises</returns>
+        public List<ModeloPais> buscarPaises(ModeloPais pmPais)
+        {
+            CatalogoPaises cp = new CatalogoPaises();
+            List<ModeloPais> lmPaises = new List<ModeloPais>();
+            //lmProvincia = cp.buscarArticulo(pmProvincia); //seguir
+            return lmPaises;
+        }
+
+        #endregion
+
+        #region Domicilios
+        /// <summary>
+        /// Retorna articulos en base a los valores inicializados en los atributos del modelo
+        /// </summary>
+        /// <param name="pmDomicilio"></param>
+        /// <returns>Lista de Paises</returns>
+        public List<ModeloDomicilio> buscarDomicilios(ModeloDomicilio pmDomicilio)
+        {
+            CatalogoDomicilios cd = new CatalogoDomicilios();
+            List<ModeloDomicilio> lmDomicilios = new List<ModeloDomicilio>();
+            
+            lmDomicilios= cd.getDomicilios(pmDomicilio.codigoDomicilio);
+            
+            return lmDomicilios;
+        }
+
+        #endregion
+
+        #region Mails
+        /// <summary>
+        /// Retorna articulos en base a los valores inicializados en los atributos del modelo
+        /// </summary>
+        /// <param name="pmMails"></param>
+        /// <returns>Lista de Mails</returns>
+        public List<ModeloMail> buscarMails(ModeloMail pmMails)
+        {
+            CatalogoMails cm = new CatalogoMails();
+            List<ModeloMail> lmMails = new List<ModeloMail>();
+            
+            lmMails = cm.getMails(pmMails.codigoMail);
+            
+            return lmMails;
+        }
+
+        #endregion
+
+        #region Telefonos
+        /// <summary>
+        /// Retorna articulos en base a los valores inicializados en los atributos del modelo
+        /// </summary>
+        /// <param name="pmTelefonos"></param>
+        /// <returns>Lista de Mails</returns>
+        public List<ModeloTelefono> buscarTelefonos(ModeloTelefono pmTelefonos)
+        {
+            CatalogoTelefonos ct = new CatalogoTelefonos();
+            List<ModeloTelefono> lmTelefonos = new List<ModeloTelefono>();
+
+            lmTelefonos= ct.getTelefonos(pmTelefonos.codigoTelefono);
+
+            return lmTelefonos;
+        }
+
         #endregion
 
        }
