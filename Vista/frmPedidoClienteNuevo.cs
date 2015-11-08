@@ -148,7 +148,6 @@ namespace Vista
                 this.lblTotalVar.Text = ctrlProcVenta.getTotal();
 
                 //rebindeo los articulos seleccionados a la grid
-                this.artVentaActual = ctrlProcVenta.getVentaActual();
                 var bindingList = new BindingList<ModeloLineaPedido>(this.artVentaActual);
                 var source = new BindingSource(bindingList, null);
                 this.dgvDetalleAgregados.DataSource = source;

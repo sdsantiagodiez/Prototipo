@@ -95,7 +95,7 @@
             this.grbxDetalleSelec.Size = new System.Drawing.Size(294, 487);
             this.grbxDetalleSelec.TabIndex = 23;
             this.grbxDetalleSelec.TabStop = false;
-            this.grbxDetalleSelec.Text = "Detalle Articulo Seleccionado";
+            this.grbxDetalleSelec.Text = "Detalle Artículo Seleccionado";
             // 
             // txtCantidad
             // 
@@ -169,7 +169,7 @@
             this.lblProvVar.Name = "lblProvVar";
             this.lblProvVar.Size = new System.Drawing.Size(181, 13);
             this.lblProvVar.TabIndex = 19;
-            this.lblProvVar.Text = "Seleccione Articulo";
+            this.lblProvVar.Text = "Seleccione Artículo";
             // 
             // lblObsVar
             // 
@@ -178,7 +178,7 @@
             this.lblObsVar.Name = "lblObsVar";
             this.lblObsVar.Size = new System.Drawing.Size(181, 82);
             this.lblObsVar.TabIndex = 17;
-            this.lblObsVar.Text = "Seleccione Articulo";
+            this.lblObsVar.Text = "Seleccione Artículo";
             this.lblObsVar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblObs
@@ -199,7 +199,7 @@
             this.lblFechaActualizVar.Name = "lblFechaActualizVar";
             this.lblFechaActualizVar.Size = new System.Drawing.Size(181, 13);
             this.lblFechaActualizVar.TabIndex = 15;
-            this.lblFechaActualizVar.Text = "Seleccione Articulo";
+            this.lblFechaActualizVar.Text = "Seleccione Artículo";
             // 
             // lblCodOrigVar
             // 
@@ -209,7 +209,7 @@
             this.lblCodOrigVar.Name = "lblCodOrigVar";
             this.lblCodOrigVar.Size = new System.Drawing.Size(181, 13);
             this.lblCodOrigVar.TabIndex = 13;
-            this.lblCodOrigVar.Text = "Seleccione Articulo";
+            this.lblCodOrigVar.Text = "Seleccione Artículo";
             // 
             // lblExistenciaVar
             // 
@@ -219,7 +219,7 @@
             this.lblExistenciaVar.Name = "lblExistenciaVar";
             this.lblExistenciaVar.Size = new System.Drawing.Size(181, 13);
             this.lblExistenciaVar.TabIndex = 11;
-            this.lblExistenciaVar.Text = "Seleccione Articulo";
+            this.lblExistenciaVar.Text = "Seleccione Artículo";
             // 
             // lblExistencia
             // 
@@ -239,7 +239,7 @@
             this.lblUbicacionVar.Name = "lblUbicacionVar";
             this.lblUbicacionVar.Size = new System.Drawing.Size(181, 13);
             this.lblUbicacionVar.TabIndex = 9;
-            this.lblUbicacionVar.Text = "Seleccione Articulo";
+            this.lblUbicacionVar.Text = "Seleccione Artículo";
             // 
             // lblUbicacion
             // 
@@ -259,7 +259,7 @@
             this.lblPrecioVar.Name = "lblPrecioVar";
             this.lblPrecioVar.Size = new System.Drawing.Size(181, 13);
             this.lblPrecioVar.TabIndex = 5;
-            this.lblPrecioVar.Text = "Seleccione Articulo";
+            this.lblPrecioVar.Text = "Seleccione Artículo";
             // 
             // lblPrecio
             // 
@@ -278,7 +278,7 @@
             this.lblDescVar.Name = "lblDescVar";
             this.lblDescVar.Size = new System.Drawing.Size(181, 77);
             this.lblDescVar.TabIndex = 3;
-            this.lblDescVar.Text = "Seleccione Articulo";
+            this.lblDescVar.Text = "Seleccione Artículo";
             this.lblDescVar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblDesc
@@ -299,7 +299,7 @@
             this.lblCodProvVar.Name = "lblCodProvVar";
             this.lblCodProvVar.Size = new System.Drawing.Size(181, 13);
             this.lblCodProvVar.TabIndex = 0;
-            this.lblCodProvVar.Text = "Seleccione Articulo";
+            this.lblCodProvVar.Text = "Seleccione Artículo";
             // 
             // lblCodProv
             // 
@@ -381,7 +381,7 @@
             this.grbxDetalleAgregados.Size = new System.Drawing.Size(692, 203);
             this.grbxDetalleAgregados.TabIndex = 21;
             this.grbxDetalleAgregados.TabStop = false;
-            this.grbxDetalleAgregados.Text = "Detalle Articulos Agregados";
+            this.grbxDetalleAgregados.Text = "Detalle Artículos Agregados";
             // 
             // dgvDetalleAgregados
             // 
@@ -461,7 +461,7 @@
             this.grbxArtAgregar.Size = new System.Drawing.Size(692, 332);
             this.grbxArtAgregar.TabIndex = 19;
             this.grbxArtAgregar.TabStop = false;
-            this.grbxArtAgregar.Text = "Articulos a Agregar";
+            this.grbxArtAgregar.Text = "Artículos a Agregar";
             // 
             // lblCategoriaBuscar
             // 

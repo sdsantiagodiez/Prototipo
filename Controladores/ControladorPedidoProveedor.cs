@@ -77,6 +77,36 @@ namespace Controladores
         
         }
 
-    
+
+
+        public bool exists(ModeloArticuloProveedores artSelecBusq)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void addToVenta(ModeloArticuloProveedores artSelecBusq, int p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string getTotal()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ModeloLineaPedido> getVentaActual()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void borrarActual()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void removeFromVenta(ModeloLineaPedido modeloLineaPedido)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

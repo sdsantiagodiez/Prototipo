@@ -22,5 +22,12 @@ namespace Vista
             frmEnConstruccion frmConstruccion = new frmEnConstruccion();
             frmConstruccion.ShowDialog();
         }
+
+        internal void detalleVenta(Controladores.ControladorPedidoProveedor ctrlPedProv)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool emitido { get; set; }
     }
 }
