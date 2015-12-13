@@ -49,7 +49,7 @@
     <Compile Include="ModeloArticuloProveedores.cs" />
     <Compile Include="ModeloLineaPedido.cs" />
     <Compile Include="ModeloMail.cs" />
-    <Compile Include="ModeloPedidoArtProv.cs" />
+    <Compile Include="ModeloPedido.cs" />
     <Compile Include="ModeloPersonas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModeloProveedor.cs" />

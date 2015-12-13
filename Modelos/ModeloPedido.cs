@@ -21,6 +21,35 @@ namespace Modelos
             get { return _lineasPedido; }
             set { this._lineasPedido = value; }
         }
+        
+        float _monto_total;
+        public float monto_total
+        {
+            get { return _monto_total; }
+            set { this._monto_total = value; }
+        }
+
+        string _fecha;
+        public string fecha 
+        {
+            get { return _fecha; }
+            set { this._fecha = value; }
+        }
+
+        string _observaciones;
+        public string observaciones 
+        {
+            get { return _observaciones; }
+            set { this._observaciones = value; }
+        }
+
+        int _codigo_tipo_pedido;
+        public int codigo_tipo_pedido 
+        {
+            get { return _codigo_tipo_pedido; }
+            set { this._codigo_tipo_pedido = value;}
+        }
+        
         #endregion
 
         public ModeloPedido()

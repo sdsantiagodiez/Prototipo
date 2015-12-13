@@ -197,18 +197,16 @@ namespace Datos
 
             SqlDataReader drPersonas = comando.ExecuteReader();
 
-            ModeloPersonas modPer = new ModeloPersonas();
-
             while (drPersonas.Read())
             {
-                modPer = new ModeloPersonas();
-                modPer = this.leerDatosPersonas(drPersonas);
+                pmPersona = new ModeloPersonas();
+                pmPersona = this.leerDatosPersonas(drPersonas);
 
-                modPer.mails = this.getMails(modPer.codigo);
-                modPer.telefonos = this.getTelefonos(modPer.codigo);
-                modPer.domicilios = this.getDomicilios(modPer.codigo);
+                pmPersona.mails = this.getMails(pmPersona.codigo);
+                pmPersona.telefonos = this.getTelefonos(pmPersona.codigo);
+                pmPersona.domicilios = this.getDomicilios(pmPersona.codigo);
 
-                lmPersonas.Add(modPer);
+                lmPersonas.Add(pmPersona);
             }
             drPersonas.Close();
             comando.Connection.Close();
