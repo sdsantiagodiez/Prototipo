@@ -40,7 +40,7 @@ namespace Datos
             return respuesta;
         }
 
-        private ModeloProveedor leerDatosProveedor(SqlDataReader drProveedores)
+        public ModeloProveedor leerDatosProveedor(SqlDataReader drProveedores)
         {
             ModeloProveedor modProv = new ModeloProveedor();
 

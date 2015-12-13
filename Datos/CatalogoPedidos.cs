@@ -68,6 +68,39 @@ namespace Datos
             return listPedidos;
         }
 
+        public ModeloProveedor getProveedorPedido(int codigoPedido)
+        {
+            ModeloProveedor modProv = new ModeloProveedor();
+            CatalogoProveedores catProv = new CatalogoProveedores();
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+            /*VER consulta con parametro
+            comando.CommandText = "SELECT Proveedores.razon_social,Proveedores.codigo_entidad AS codigo, Entidades.cuit, Entidades.observaciones, Entidades.tipo_entidad " +
+                                  "FROM Pedidos INNER JOIN Pedidos_Proveedores ON Pedidos.numero_pedido=Pedidos_Proveedores.numero_pedido"+
+                                  "INNER JOIN Proveedores ON Pedidos_Proveedores.codigo_entidad = Proveedores.codigo_entidad INNER JOIN Entidades ON"+
+                                  "Entidades.codigo = Proveedores.codigo_entidad WHERE numero_pedido = @codigoPedido;
+            */
+            comando.Parameters.Add(new SqlParameter("@codigoPedido", SqlDbType.Int));
+            comando.Parameters["@codigoPedido"].Value = codigoPedido;
+
+            comando.Connection.Open();
+
+            SqlDataReader drProveedor = comando.ExecuteReader();
+
+            while (drProveedor.Read())
+            {
+                modProv = catProv.leerDatosProveedor(drProveedor);
+            }
+            return modProv;
+        }
+
         private ModeloPedido leerDatosPedidos(SqlDataReader drPedidos)
         {
             ModeloPedido modPed = new ModeloPedido();
