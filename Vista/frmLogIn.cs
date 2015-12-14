@@ -30,13 +30,14 @@ namespace Vista
 
             //busco el usuario correspondiente y lo guardo
             ControladorInicioSesion ctrlSesion = new ControladorInicioSesion();
-           /*REVISAR this.setPersona(ctrlSesion.buscarUsuario(usuario, contrasenia));
-            */
+          
+            this.persona=ctrlSesion.buscarUsuario(usuario, contrasenia);
            
-            if (!object.Equals(_persona.dni,  null))
+           
+            if (!object.Equals(this.persona.dni,  null))
             {
                 //busco y guardo los roles del usuario
-                this.setRoles(ctrlSesion.getRoles(_persona));
+                this.Roles=ctrlSesion.getRoles(this.persona);
 
             //cierro login y devuelvo resultado ok o notifico fallo    
                 this.DialogResult = DialogResult.OK;
@@ -48,24 +49,15 @@ namespace Vista
             }
         }
 
-        public ModeloPersonas getUsuario()
+        public ModeloPersonas persona
         {
-            return _persona;
+            get { return _persona; }
+            set { this._persona = value; }
         }
-
-        private void setPersona(ModeloPersonas persona)
+        public List<ModeloRoles> Roles
         {
-            _persona = persona;
-        }
-
-        public List<ModeloRoles> getRoles()
-        {
-            return _roles;
-        }
-
-        private void setRoles(List<ModeloRoles> roles)
-        {
-            _roles = roles;
+            get { return _roles; }
+            set { this._roles = value; }
         }
     }
 }
