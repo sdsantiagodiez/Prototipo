@@ -19,6 +19,7 @@ namespace Vista
         // ver method stubs de controladorpedidoproveedor y fmrpedidoproveedorcierre
 
         private string categBusq;
+        private string provBusq;
         private List<ModeloArticuloProveedores> artEncontrados;
         private List<ModeloLineaPedido> artPedidoActual;
         private ModeloArticuloProveedores artSelecBusq;
@@ -50,6 +51,22 @@ namespace Vista
 
             //Lo hago read only
             this.cmbxCategoriaBuscar.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            //Creo lista de razones sociales y busco las razones sociales de los proveedores
+            var razonesSociales = ctrlPedProv.buscarRazonesProv();
+            //creo y asigno las categorias
+            var dSProv = new List<Categ>();
+            foreach (String razon in razonesSociales)
+            {
+                dSProv.Add(new Categ() { Name = razon, Value = razon });
+            }
+
+            //binding razones
+            this.cmbxRazonSocial.DataSource = dSProv;
+            this.cmbxRazonSocial.DisplayMember = "Name";
+            this.cmbxRazonSocial.ValueMember = "Value";
+            //read only
+            this.cmbxRazonSocial.DropDownStyle = ComboBoxStyle.DropDownList;
 
         }
 
@@ -300,7 +317,7 @@ namespace Vista
 
         private void cmbxRazonSocial_SelectionChangeCommitted(object sender, EventArgs e)
         {
-
+            this.provBusq = (string)this.cmbxRazonSocial.SelectedValue;
         }
 
         private void cleanLbls()

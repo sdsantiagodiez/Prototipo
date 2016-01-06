@@ -108,5 +108,17 @@ namespace Controladores
         {
             throw new NotImplementedException();
         }
+
+        public List<string> buscarRazonesProv()
+        {
+            var ctrlBusq = new ControladorBusqueda();
+            var provs = ctrlBusq.buscarProveedores();
+            var razones = new List<String>();
+            foreach (ModeloProveedor prov in provs)
+            {
+                razones.Add(prov.razonSocial);
+            }
+            return razones;
+        }
     }
 }
