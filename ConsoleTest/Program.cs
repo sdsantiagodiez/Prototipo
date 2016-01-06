@@ -124,14 +124,18 @@ namespace ConsoleTest
                         md.codigoPostal = "2132";
                         if (rnd.Next(1, 11) > 5)
                         {
-                            md.provincia = "Santa Fe";
+                            md.provincia.codigo = "SF";
+                            md.provincia.provincia = "Santa Fe";
+
                         }
                         else
                         {
-                            md.provincia = "Buenos Aires";
+                            md.provincia.codigo = "BA";
+                            md.provincia.provincia = "Buenos Aires";
                         }
-                        
-                        md.pais = "Argentina";
+                        md.provincia.codigoPais = "A";
+                        md.pais.codigo = "A";
+                        md.pais.pais = "Argentina";
                         persona.domicilios.Add(md);
                         seguirDomicilio = rnd.Next(1, 50);
                     }
@@ -378,13 +382,18 @@ namespace ConsoleTest
                         md.codigoPostal = "2132";
                         if (rnd.Next(1, 11) > 5)
                         {
-                            md.provincia = "Santa Fe";
+                            md.provincia.codigo = "SF";
+                            md.provincia.provincia = "Santa Fe";
+
                         }
                         else
                         {
-                            md.provincia = "Buenos Aires";
+                            md.provincia.codigo = "BA";
+                            md.provincia.provincia = "Buenos Aires";
                         }
-                        md.pais = "Argentina";
+                        md.provincia.codigoPais = "A";
+                        md.pais.codigo = "A";
+                        md.pais.pais = "Argentina";
                         proveedor.domicilios.Add(md);
                         seguirDomicilio = rnd.Next(1, 50);
                     }
