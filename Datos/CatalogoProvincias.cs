@@ -85,5 +85,35 @@ namespace Datos
 
             return lmProvincias;
         }
+
+        public ModeloProvincia getOne(String pCodigo)
+        {
+            ModeloProvincia modPro = null;
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.CommandText =
+                "SELECT [provincias].codigo_provincia, [provincias].provincia, [provincias].codigo_pais " +
+                "FROM [provincias] WHERE codigo = @codigo";
+
+            comando.Parameters.Add(instanciarParametro(pCodigo, "@codigo"));
+            comando.Connection.Open();
+
+            SqlDataReader drProvincias = comando.ExecuteReader();
+
+            while (drProvincias.Read())
+            {
+                modPro = new ModeloProvincia();
+                modPro = this.leerDatosProvincia(drProvincias);
+            }
+            drProvincias.Close();
+            comando.Connection.Close();
+
+            return modPro;
+        }
+
     }
 }

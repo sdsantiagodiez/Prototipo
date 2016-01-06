@@ -256,11 +256,12 @@ namespace Controladores
         /// </summary>
         /// <param name="pmProvincia"></param>
         /// <returns>Lista de proveedores</returns>
-        public List<ModeloProvincia> buscarProvincia(ModeloProvincia pmProvincia)
+        public ModeloProvincia buscarProvincia(ModeloProvincia pmProvincia)
         {
             CatalogoProvincias cp = new CatalogoProvincias();
-            List<ModeloProvincia> lmProvincia = new List<ModeloProvincia>();
-            //lmProvincia = cp.buscarArticulo(pmProvincia); //seguir
+            ModeloProvincia lmProvincia = new ModeloProvincia();
+            lmProvincia = cp.getOne(pmProvincia.codigo);
+            //lmProvincia = cp.buscarArticulo(pmProvincia); 
             return lmProvincia;
         }
 
@@ -282,11 +283,12 @@ namespace Controladores
         /// </summary>
         /// <param name="pmPais"></param>
         /// <returns>Lista de Paises</returns>
-        public List<ModeloPais> buscarPaises(ModeloPais pmPais)
+        public ModeloPais buscarPaises(ModeloPais pmPais)
         {
             CatalogoPaises cp = new CatalogoPaises();
-            List<ModeloPais> lmPaises = new List<ModeloPais>();
-            //lmProvincia = cp.buscarArticulo(pmProvincia); //seguir
+            ModeloPais lmPaises = new ModeloPais(); 
+             lmPaises = cp.getOne(pmPais.codigo);
+            //lmProvincia = cp.buscarArticulo(pmProvincia); 
             return lmPaises;
         }
 
