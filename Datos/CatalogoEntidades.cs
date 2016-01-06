@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Modelos;
 using System.Data;
 using System.Data.SqlClient;
+using LibreriaClasesCompartidas;
 
 namespace Datos
 {
@@ -126,7 +127,7 @@ namespace Datos
         virtual public bool agregarNuevaEntidad(ModeloPersonas pmPersona)
         {
             ModeloEntidad mEntidad = this.getValoresEntidad(pmPersona);
-            mEntidad.tipoEntidad = "PER";
+            mEntidad.tipoEntidad = Constantes.TiposEntidad.Persona;
             return (this.agregarNuevaEntidad(mEntidad));
         }
         /// <summary>
@@ -137,7 +138,7 @@ namespace Datos
         virtual public bool agregarNuevaEntidad(ModeloProveedor pmProveedor)
         {
             ModeloEntidad mEntidad = this.getValoresEntidad(pmProveedor);
-            mEntidad.tipoEntidad = "PRO";
+            mEntidad.tipoEntidad = Constantes.TiposEntidad.Proveedor;
             return (this.agregarNuevaEntidad(mEntidad));
         }
         

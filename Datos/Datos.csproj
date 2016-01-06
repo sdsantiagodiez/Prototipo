@@ -105,6 +105,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LibreriaClasesCompartidas\LibreriaClasesCompartidas.csproj">
+      <Project>{0dc2a9ce-ce0f-45b6-b7eb-5a107ec21e2d}</Project>
+      <Name>LibreriaClasesCompartidas</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modelos\Modelos.csproj">
       <Project>{12e759c6-8712-4d18-87be-accdada915d6}</Project>
       <Name>Modelos</Name>

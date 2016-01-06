@@ -55,6 +55,12 @@
     <Compile Include="ModeloProveedor.cs" />
     <Compile Include="ModeloRoles.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibreriaClasesCompartidas\LibreriaClasesCompartidas.csproj">
+      <Project>{0dc2a9ce-ce0f-45b6-b7eb-5a107ec21e2d}</Project>
+      <Name>LibreriaClasesCompartidas</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

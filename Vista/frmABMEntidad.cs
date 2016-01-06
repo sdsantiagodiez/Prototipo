@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using Controladores;
+using LibreriaClasesCompartidas;
 
 
 namespace Vista
@@ -19,12 +20,6 @@ namespace Vista
         ModeloPersonas mPersonaSeleccionada;
         ModeloProveedor mProveedorSeleccionado;
 
-        //REVISAR ver si se puede mejorar esto de tantas constantes
-        private const string TipoEntidadPersona = "PER";
-        private const string TipoEntidadProveedor = "PRO";
-        private const string TipoPersonaCliente = "CLI";
-        private const string TipoPersonaContactoDeProveedor = "CON";
-        private const string TipoPersonaUsuario = "USR";
         private string _tipoEntidadSeleccionada;
         private string tipoEntidadSeleccionada
         {
@@ -34,16 +29,16 @@ namespace Vista
                 _tipoEntidadSeleccionada = value;
                 switch (_tipoEntidadSeleccionada)
                 {
-                    case TipoEntidadProveedor:
+                    case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor:
                         this.inicializarControlesTipoEntidadProveedor();
                         break;
-                    case TipoPersonaCliente:
+                    case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente:
                         this.inicializarControlesTipoEntidadCliente();
                         break;
-                    case TipoPersonaUsuario:
+                    case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario:
                         this.inicializarControlesTipoEntidadUsuario();
                         break;
-                    case TipoPersonaContactoDeProveedor:
+                    case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor:
                         this.inicializarControlesTipoEntidadContactoProveedor();
                         break;
                     default:
@@ -55,10 +50,11 @@ namespace Vista
         private const string ModoFormularioInicio = "Inicia formulario solo con opcion busqueda";
         private const string ModoFormularioNuevaEntidad = "Nueva Entidad";
         private const string ModoFormularioEntidadSeleccionada = "Entidad seleccionada de resultado de busqueda";
-        private string _modoFormulario;        
+
         /// <summary>
         /// Indica el modo. Debe inicializarse antes de realizar cualquier acción. 
         /// </summary>
+        private string _modoFormulario;        
         private string modoFormulario
         {
             get { return _modoFormulario; }
@@ -81,13 +77,9 @@ namespace Vista
                 }
             }
         }
-        //Revisar el uso de esta variable
-        private const string TipoBusquedaProveedorDeContactoDeProveedor = "Proveedor de contacto de proveedor";
-        private const string TipoBusquedaEntidad = "Entidad";
-        private string tipoResultadoBusqueda = TipoBusquedaEntidad;
-
-        private Form frmResultadoBusqueda = new Form();
-        DataGridView dataGridViewResultadoBusqueda = new DataGridView();
+        
+        private frmResultadoBusqueda frmResultadoBusqueda = new frmResultadoBusqueda();
+        
         #endregion
 
         public frmABMEntidad()
@@ -102,14 +94,6 @@ namespace Vista
             modoFormulario = ModoFormularioInicio;
 
             this.inicializarComboBox();
-
-            this.inicializarCheckedListBox();
-
-            this.inicializarFrmResultadoBusqueda();
-           
-            this.tblLayoutPanelForm.Controls.Remove(grpBoxDatosUsuario);
-            this.tblLayoutPanelForm.Controls.Remove(grpBoxContactoProveedor);
-            this.tblLayoutPanelForm.RowCount = this.tblLayoutPanelForm.RowCount - 2;
         }
 
 
@@ -144,8 +128,6 @@ namespace Vista
             grpBoxDomicilio.Enabled = false;
             grpBoxContacto.Enabled = false;
             grpBoxObservaciones.Enabled = false;
-            grpBoxDatosUsuario.Enabled = false;
-            grpBoxContactoProveedor.Enabled = false;
 
             this.quitarTextoEnControles(this);
         }
@@ -166,8 +148,6 @@ namespace Vista
             grpBoxDomicilio.Enabled = true;
             grpBoxContacto.Enabled = true;
             grpBoxObservaciones.Enabled = true;
-            grpBoxDatosUsuario.Enabled = true;
-            grpBoxContactoProveedor.Enabled = true;
 
             this.quitarTextoEnControles(this);
         }
@@ -188,8 +168,6 @@ namespace Vista
             grpBoxDomicilio.Enabled = true;
             grpBoxContacto.Enabled = true;
             grpBoxObservaciones.Enabled = true;
-            grpBoxDatosUsuario.Enabled = true;
-            grpBoxContactoProveedor.Enabled = true;
 
             this.quitarTextoEnControles(this);
         }
@@ -205,16 +183,12 @@ namespace Vista
             radioButtonUsuario.Checked = true;
 
             this.inicializarControlesTipoEntidadPersona();
-
-            this.quitarTextoEnControles(grpBoxDatosUsuario);
         }
         private void inicializarControlesTipoEntidadContactoProveedor()
         {
             radioButtonContactoProveedor.Checked = true;
 
             this.inicializarControlesTipoEntidadPersona();
-
-            this.quitarTextoEnControles(grpBoxContactoProveedor);
         }
         private void inicializarControlesTipoEntidadPersona()
         {
@@ -270,71 +244,7 @@ namespace Vista
             this.cmbBoxTipoTelefono.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
-        private void inicializarCheckedListBox()
-        {
-            //REVISAR FALTAN roles en controladores y catalogo
-            ControladorBusqueda cBusqueda = new ControladorBusqueda();
-            List<ModeloRoles> roles = new List<ModeloRoles>();
-            chckdListBoxRol.DataSource = roles;
-            chckdListBoxRol.DisplayMember = "descripcion";
-            chckdListBoxRol.ValueMember = "codigo";
-        }
-
-        private void inicializarFrmResultadoBusqueda()
-        {
-            frmResultadoBusqueda.Text = "Resultado de búsqueda";
-            frmResultadoBusqueda.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
-            frmResultadoBusqueda.AutoSize = true;
-
-            frmResultadoBusqueda.FormClosing += frmResultadoBusqueda_FormClosing;                
-        }
-
-        private DataGridView inicializarDataGridViewResultadoBusqueda(string tipoEntidad)
-        {
-            DataGridView dgv = new DataGridView();
-            dgv.AutoGenerateColumns = false;
-            dgv.ReadOnly = true;
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.RowHeadersVisible = false;
-            dgv.CellContentDoubleClick += dataGridViewResultadoBusqueda_CellContentDoubleClick;
-
-            dgv.Width = 800;
-
-            if (tipoEntidad == TipoEntidadProveedor || tipoEntidad == TipoEntidadPersona)
-            {
-                dgv.Columns.Add("tipo", "Tipo");
-                dgv.Columns[0].FillWeight = 1;
-                dgv.Columns.Add("codigoEntidad", "Código");
-                dgv.Columns[1].FillWeight = 1;
-                dgv.Columns.Add("cuit", "CUIT");
-                dgv.Columns[2].FillWeight = 1;
-
-                int indiceBase = 0;
-                if (tipoEntidad == TipoEntidadProveedor)
-                {
-                    dgv.Columns.Add("razonSocial", "Razón Social");
-                    dgv.Columns[3].FillWeight = 1;
-                    indiceBase = 4;
-                }
-                else if (tipoEntidad == TipoEntidadPersona)
-                {
-                    dgv.Columns.Add("DNI", "DNI");
-                    dgv.Columns[3].FillWeight = 1;
-                    dgv.Columns.Add("apellido", "Apellido");
-                    dgv.Columns[4].FillWeight = 1;
-                    dgv.Columns.Add("Nombre", "Nombre");
-                    dgv.Columns[5].FillWeight = 1;
-                    indiceBase = 6;
-                }
-                dgv.Columns.Add("direccion", "Domicilio");
-                dgv.Columns[indiceBase].FillWeight = 1;
-                dgv.Columns.Add("ciudad", "Ciudad Domicilio");
-                dgv.Columns[indiceBase + 1].FillWeight = 1;
-                dgv.Columns.Add("provincia", "Provincia Domicilio");
-                dgv.Columns[indiceBase + 2].FillWeight = 1;
-            }
-            return dgv;
-        }
+        
         #endregion
 
         #region Eventos
@@ -344,7 +254,7 @@ namespace Vista
         {
             if (radioButtonCliente.Checked == true)
             {
-                this.tipoEntidadSeleccionada = TipoPersonaCliente;
+                this.tipoEntidadSeleccionada = LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente;
             }
 
         }
@@ -352,39 +262,31 @@ namespace Vista
         {
             if (radioButtonUsuario.Checked == true)
             {
-                tipoEntidadSeleccionada = TipoPersonaUsuario;
+                tipoEntidadSeleccionada = LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario;
 
-                this.tblLayoutPanelForm.RowCount = this.tblLayoutPanelForm.RowCount + 1;
-                this.tblLayoutPanelForm.Controls.Add(this.grpBoxDatosUsuario, 0, this.tblLayoutPanelForm.RowCount - 1);
             }
             else
             {
-                this.tblLayoutPanelForm.RowCount = this.tblLayoutPanelForm.RowCount - 1;
-                this.tblLayoutPanelForm.Controls.Remove(this.grpBoxDatosUsuario);
+                
             }
-            
-            //this.tblLayoutPanelForm.SetRow(this.grpBoxDatosUsuario, this.tblLayoutPanelForm.RowCount - 1);
+
         }
         private void radioButtonProveedor_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonProveedor.Checked == true)
             {
-                this.tipoEntidadSeleccionada = TipoEntidadProveedor;
+                this.tipoEntidadSeleccionada = LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor;
             }
         }
         private void radioButtonContactoProveedor_CheckedChanged(object sender, EventArgs e)
         {    
             if (this.radioButtonContactoProveedor.Checked == true)
             {
-                this.tipoEntidadSeleccionada = TipoPersonaContactoDeProveedor;
-                
-                this.tblLayoutPanelForm.RowCount = this.tblLayoutPanelForm.RowCount + 1;
-                this.tblLayoutPanelForm.Controls.Add(this.grpBoxContactoProveedor, 0, this.tblLayoutPanelForm.RowCount - 1);
+                this.tipoEntidadSeleccionada = LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor;
             }
             else
             {
-                this.tblLayoutPanelForm.RowCount = this.tblLayoutPanelForm.RowCount - 1;
-                this.tblLayoutPanelForm.Controls.Remove(this.grpBoxContactoProveedor);
+
             }
         }
         #endregion
@@ -502,32 +404,7 @@ namespace Vista
             }
         }
 
-        private void btnContactoProveedorSeleccionarProveedor_Click(object sender, EventArgs e)
-        {
-            ModeloProveedor mProveedor = new ModeloProveedor();
-            //VER DE Modificar IF. Ya se usa en cargarDatosEnModeloEntidad()
-            if (this.validarValorNumerico(txtBoxCodigoEntidad.Text))
-            {
-                mProveedor.codigo = Convert.ToInt32(txtBoxCodigoContactoProveedorProveedor.Text);
-            }
-            else
-            {
-                mProveedor.codigo = 0;
-            }
-
-            mProveedor.cuit = txtBoxCUITContactoProveedorProveedor.Text;
-            mProveedor.razonSocial = txtBoxRazonSocialContactoProveedorProveedor.Text;
-            
-            List<ModeloProveedor> lmProveedor = this.buscarProveedores(mProveedor);
-            dataGridViewResultadoBusqueda = this.popularDataGridViewResultadoBusqueda(this.inicializarDataGridViewResultadoBusqueda(TipoEntidadProveedor), lmProveedor);
-
-            tipoResultadoBusqueda = TipoBusquedaProveedorDeContactoDeProveedor;
-
-            frmResultadoBusqueda.Controls.Clear();
-            frmResultadoBusqueda.BringToFront();
-            frmResultadoBusqueda.Controls.Add(dataGridViewResultadoBusqueda);
-            frmResultadoBusqueda.ShowDialog();
-        }
+        
         #endregion
 
         #region toolStripMenuItem
@@ -538,23 +415,28 @@ namespace Vista
             {
                 switch (tipoEntidad)
                 {
-                    case TipoEntidadPersona:
+                    case LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona:
                         ModeloPersonas mPersona = this.cargarDatosEnModeloPersona();
-                        List<ModeloPersonas> lmPersonas = this.buscarPersonas(mPersona);
-                        dataGridViewResultadoBusqueda = this.popularDataGridViewResultadoBusqueda(this.inicializarDataGridViewResultadoBusqueda(TipoEntidadPersona),lmPersonas);
+                        frmResultadoBusqueda.mostrarBusqueda(mPersona);
+                        if (frmResultadoBusqueda.mPersona != null)
+                        {
+                            mPersonaSeleccionada = frmResultadoBusqueda.mPersona;
+                            this.cargarPersonaEnControles(mPersonaSeleccionada);
+                        }
                         break;
-                    case TipoEntidadProveedor:
+                    case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor:
                         ModeloProveedor mProveedor = this.cargarDatosEnModeloProveedor();
-                        List<ModeloProveedor> lmProveedor = this.buscarProveedores(mProveedor);
-                        dataGridViewResultadoBusqueda = this.popularDataGridViewResultadoBusqueda(this.inicializarDataGridViewResultadoBusqueda(TipoEntidadProveedor), lmProveedor);
+                        frmResultadoBusqueda.mostrarBusqueda(mProveedor);
+                        if (frmResultadoBusqueda.mProveedor != null)
+                        {
+                            mProveedorSeleccionado = frmResultadoBusqueda.mProveedor;
+                            this.cargarProveedorEnControles(mProveedorSeleccionado);
+                        }
                         break;
                     default:
                         break;
                 }
-                frmResultadoBusqueda.Controls.Clear();
-                frmResultadoBusqueda.BringToFront();
-                frmResultadoBusqueda.Controls.Add(dataGridViewResultadoBusqueda);
-                frmResultadoBusqueda.ShowDialog();
+                
             }
             else
             {
@@ -671,42 +553,10 @@ namespace Vista
         {
             frmResultadoBusqueda.Close();
         }
-        
-        void frmResultadoBusqueda_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            frmResultadoBusqueda.Hide();
-            e.Cancel = true; // this cancels the close event.
-            //Vuelve el tipo a General en caso de que se haya hecho una búsqueda de proveedor para Contacto de proveedor
-            tipoResultadoBusqueda = TipoBusquedaEntidad;
-        }
-            
-        void dataGridViewResultadoBusqueda_CellContentDoubleClick(object sender, EventArgs e)
-        {
-            string tipo = dataGridViewResultadoBusqueda.SelectedCells[0].Value.ToString();
-            int codigoEntidadSeleccionada = Convert.ToInt32(dataGridViewResultadoBusqueda.SelectedCells[1].Value.ToString());
-            frmResultadoBusqueda.Hide();
-            
-            if (tipoResultadoBusqueda == TipoBusquedaEntidad)
-            {
-                this.inicializarModeloSeleccion();
-                modoFormulario = ModoFormularioEntidadSeleccionada;
-                this.cargarEntidadEnControles(codigoEntidadSeleccionada,tipo);
-            }
-            //REVISAR encontrar mejor manera o extraer lineas de código de "else" a otro método
-            else if (tipoResultadoBusqueda == TipoBusquedaProveedorDeContactoDeProveedor)
-            {
-                this.cargarProveedorDeContactoProveedorEnControles(codigoEntidadSeleccionada);
-            }
-        }
+
         #endregion
 
         #region validar
-
-        private bool validarValorNumerico(string pStringNumero)
-        {
-            int numero;
-            return Int32.TryParse(pStringNumero, out numero);
-        }
         ///// <summary>
         ///// 
         ///// </summary>
@@ -768,13 +618,13 @@ namespace Vista
             {
                 switch (pmPersona.tipoPersona)
                 {
-                    case TipoPersonaCliente:
+                    case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente:
                         validez = this.validarCliente(pmPersona);
                         break;
-                    case TipoPersonaUsuario:
+                    case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario:
                         validez = this.validarUsuario(pmPersona);
                         break;
-                    case TipoPersonaContactoDeProveedor:
+                    case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor:
                         validez = this.validarContactoProveedor(pmPersona);
                         break;
                     default:
@@ -813,7 +663,7 @@ namespace Vista
         private ModeloEntidad cargarDatosEnModeloEntidad()
         {
             ModeloEntidad mEntidad = new ModeloEntidad();
-            if (this.validarValorNumerico(txtBoxCodigoEntidad.Text))
+            if (LibreriaClasesCompartidas.Validar.validarValorNumerico(txtBoxCodigoEntidad.Text))
             {
                 mEntidad.codigo = Convert.ToInt32(txtBoxCodigoEntidad.Text);
             }
@@ -846,10 +696,9 @@ namespace Vista
             mPersona.dni = txtBoxDNI.Text;
             mPersona.apellido = txtBoxApellido.Text;
             mPersona.nombre = txtBoxNombre.Text;
-            if (this.tipoEntidadSeleccionada == TipoPersonaUsuario)
+            if (this.tipoEntidadSeleccionada == LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario)
             {
-                mPersona.usuario = txtBoxUsuario.Text;
-                mPersona.contrasenia = txtBoxContrasenia.Text;
+                //cargar Usuario y Contraseña de DatosADicionales
                 mPersona.roles = this.cargarDatosEnModeloRol();
             }
             return mPersona;
@@ -892,7 +741,7 @@ namespace Vista
                         mDomicilio.provincia.provincia = row.Cells["provincia"].Value.ToString();
                         mDomicilio.pais.pais = row.Cells["pais"].Value.ToString();
 
-                        if (this.validarValorNumerico(row.Cells["codigoDomicilio"].Value.ToString()))
+                        if (LibreriaClasesCompartidas.Validar.validarValorNumerico(row.Cells["codigoDomicilio"].Value.ToString()))
                         {
                             mDomicilio.codigoDomicilio = Convert.ToInt32(row.Cells["codigoDomicilio"].Value.ToString());
                         }
@@ -921,7 +770,7 @@ namespace Vista
                 if (row.Cells["codigoTelefono"].Value != null)
                 {
                     mTelefono = new ModeloTelefono();
-                    if (this.validarValorNumerico(row.Cells["codigoTelefono"].Value.ToString()))
+                    if (LibreriaClasesCompartidas.Validar.validarValorNumerico(row.Cells["codigoTelefono"].Value.ToString()))
                     {
                         mTelefono.codigoTelefono = Convert.ToInt32(row.Cells["codigoTelefono"].Value.ToString());
                     }
@@ -956,16 +805,12 @@ namespace Vista
             }
             return lModeloMail;
         }
+        
         private List<ModeloRoles> cargarDatosEnModeloRol()
         {
             List<ModeloRoles> lModeloRol = new List<ModeloRoles>();
             ModeloRoles mRol = new ModeloRoles();
-            foreach (object itemChecked in chckdListBoxRol.CheckedItems)
-            {
-                DataRowView rol = itemChecked as DataRowView;
-                mRol.codigo = Convert.ToInt32(rol["codigo"].ToString());
-                mRol.descripcion = rol["descripcion"].ToString();
-            }
+            
             return lModeloRol;
         }
        
@@ -973,26 +818,13 @@ namespace Vista
 
         #region Pasar datos de Modelo a controles
 
-        private void cargarEntidadEnControles(int codigoEntidad, string tipo)
+        private void cargarEntidadEnControles(ModeloPersonas pmPersona)
         {
-            if (tipo == TipoEntidadProveedor)
-            {
-                ModeloProveedor mProveedor = new ModeloProveedor();
-                mProveedor.codigo = codigoEntidad;
-                this.cargarProveedorEnControles(this.buscarProveedores(mProveedor)[0]);
-            }
-            else
-            {
-                ModeloPersonas mPersona = new ModeloPersonas();
-                mPersona.codigo = codigoEntidad;
-                this.cargarPersonaEnControles(this.buscarPersonas(mPersona)[0]);
-            }
+            this.cargarPersonaEnControles(pmPersona);
         }
-        private void cargarProveedorDeContactoProveedorEnControles(int codigoEntidad)
+        private void cargarEntidadEnControles(ModeloProveedor pmProveedor)
         {
-            ModeloProveedor mProveedor = new ModeloProveedor();
-            mProveedor.codigo = codigoEntidad;
-            this.cargarDatosEnProveedorDeContactoProveedor(this.buscarProveedores(mProveedor)[0]);
+            this.cargarProveedorEnControles(pmProveedor);
         }
         private void cargarPersonaEnControles(ModeloPersonas pmPersona)
         {
@@ -1005,11 +837,11 @@ namespace Vista
             this.cargarDatosEnDataGridViewTelefono(mPersonaSeleccionada.telefonos);
             this.cargarDatosEnDataGridViewMail(mPersonaSeleccionada.mails);
 
-            if (mPersonaSeleccionada.tipoPersona == TipoPersonaUsuario)
+            if (mPersonaSeleccionada.tipoPersona == LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario)
             {
-                this.cargarDatosEnDatosUsuario(mPersonaSeleccionada);
+                //carga de datos de usuario
             }
-            if (mPersonaSeleccionada.tipoPersona == TipoPersonaContactoDeProveedor)
+            if (mPersonaSeleccionada.tipoPersona == LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor)
             {
                 //carga de proveedor al que pertenece
             }
@@ -1101,16 +933,6 @@ namespace Vista
                 dataGridViewMail.Rows.Add(row);
             }
         }
-      
-        private void cargarDatosEnDatosUsuario(ModeloPersonas pmUsuario)
-        { }
-        private void cargarDatosEnProveedorDeContactoProveedor(ModeloProveedor pmProveedor)
-        {
-            //Cambiar nomenclatura de controles en ContactoProveedor
-            this.lblCodigoProveedorDeContactoProveedor.Text =  pmProveedor.codigo.ToString();
-            this.lblCUITProveedorDeContactoProveedor.Text = pmProveedor.cuit;
-            this.lblRazonSocialProveedorDeContactoProveedor.Text = pmProveedor.razonSocial;
-        }
 
         private void cargarDatosEnCmbBoxProvincia(List<ModeloProvincia> pLProvincias)
         {
@@ -1123,47 +945,7 @@ namespace Vista
             this.cmbBoxPais.SelectedItem = null;
         }
 
-        private DataGridView popularDataGridViewResultadoBusqueda(DataGridView pdgv, List<ModeloPersonas> plmPersonas)
-        {
-            DataGridViewRow row = (DataGridViewRow)pdgv.Rows[0].Clone();
-            foreach (ModeloPersonas p in plmPersonas)
-            {
-                row = (DataGridViewRow)pdgv.Rows[0].Clone();
-
-                row.Cells[0].Value = p.tipoPersona;
-                row.Cells[1].Value = p.codigo;
-                row.Cells[2].Value = p.cuit;
-                row.Cells[3].Value = p.dni;
-                row.Cells[4].Value = p.apellido;
-                row.Cells[5].Value = p.nombre;
-                row.Cells[6].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].calle + " " + p.domicilios[0].numero;
-                row.Cells[7].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].ciudad;
-                row.Cells[8].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].provincia.provincia;
-
-                pdgv.Rows.Add(row);
-            }
-            return pdgv;
-        }
-        private DataGridView popularDataGridViewResultadoBusqueda(DataGridView pdgv, List<ModeloProveedor> plmProveedor)
-        {
-            DataGridViewRow row = (DataGridViewRow)pdgv.Rows[0].Clone();
-            foreach (ModeloProveedor p in plmProveedor)
-            {
-                row = (DataGridViewRow)pdgv.Rows[0].Clone();
-
-                row.Cells[0].Value = "PRO";
-                row.Cells[1].Value = p.codigo;
-                row.Cells[2].Value = p.cuit;
-                row.Cells[3].Value = p.razonSocial;
-                row.Cells[4].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].calle + " " + p.domicilios[0].numero;
-                row.Cells[5].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].ciudad;
-                row.Cells[6].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].provincia.provincia;
-
-                pdgv.Rows.Add(row);
-            }
-            return pdgv;
-        }
-        #endregion
+       #endregion
 
         #region Alta Baja y Modificación
         private bool guardarNuevaEntidad()
@@ -1176,11 +958,11 @@ namespace Vista
             {
                 switch (this.getTipoEntidad())
                 {
-                    case TipoEntidadPersona:
+                    case LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona:
                         ModeloPersonas mPersona = this.cargarDatosEnModeloPersona();
                         exito = cAlta.agregarPersona(mPersona);
                         break;
-                    case TipoEntidadProveedor:
+                    case LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor:
                         ModeloProveedor mProveedor = this.cargarDatosEnModeloProveedor();
                         exito = cAlta.agregarProveedor(mProveedor);
                         break;
@@ -1215,11 +997,11 @@ namespace Vista
             {
                 switch (this.getTipoEntidad())
                 {
-                    case TipoEntidadPersona:
+                    case LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona:
                         ModeloPersonas mPersona = this.cargarDatosEnModeloPersona();
                         exito = cModificacion.modificarPersona(mPersona);
                         break;
-                    case TipoEntidadProveedor:
+                    case LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor:
                         ModeloProveedor mProveedor = this.cargarDatosEnModeloProveedor();
                         exito = cModificacion.modificarProveedor(mProveedor);
                         break;
@@ -1254,10 +1036,10 @@ namespace Vista
             {
                 switch (this.getTipoEntidad())
                 {
-                    case TipoEntidadPersona:
+                    case LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona:
                         exito = cBaja.eliminarPersona(mPersonaSeleccionada);
                         break;
-                    case TipoEntidadProveedor:
+                    case LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor:
                         exito = cBaja.eliminarProveedor(mProveedorSeleccionado);
                         break;
                     default:
@@ -1340,13 +1122,13 @@ namespace Vista
             string tipoEntidad = null;
             switch (this.tipoEntidadSeleccionada)
             {
-                case TipoPersonaCliente:
-                case TipoPersonaContactoDeProveedor:
-                case TipoPersonaUsuario:
-                    tipoEntidad = TipoEntidadPersona;
+                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente:
+                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor:
+                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario:
+                    tipoEntidad = LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona;
                     break;
-                case TipoEntidadProveedor:
-                    tipoEntidad = TipoEntidadProveedor;
+                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor:
+                    tipoEntidad = LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor;
                     break;
                 default:
                     break;
@@ -1355,30 +1137,12 @@ namespace Vista
          
         }
        
-        private List<ModeloProveedor> buscarProveedores(ModeloProveedor pmProveedor)
-        {
-            List<ModeloProveedor> lmProveedores = new List<ModeloProveedor>();
-            ControladorBusqueda cBusqueda = new ControladorBusqueda();
-            lmProveedores = cBusqueda.buscarProveedores(pmProveedor);
-
-            return lmProveedores;
-        }
-        private List<ModeloPersonas> buscarPersonas(ModeloPersonas pmPersona)
-        {
-            List<ModeloPersonas> lmPersonas = new List<ModeloPersonas>();
-            ControladorBusqueda cBusqueda = new ControladorBusqueda();
-            lmPersonas = cBusqueda.buscarPersonas(pmPersona);
-
-            return lmPersonas;
-        }
-
         private void txtBoxApellido_Leave(object sender, EventArgs e)
         {
             TextBox TB = (TextBox)sender;
             int VisibleTime = 1000;  //in milliseconds
 
             ToolTip tt = new ToolTip();
-            
             
             tt.Show("El campo no puede permanecer vacío", TB, 0, -20);
         }
@@ -1394,6 +1158,30 @@ namespace Vista
             tt.UseFading = true;
             
             tt.Show("El campo no puede permanecer vacío", TB, 0, -40,VisibleTime);
+        }
+
+        private void btnDatosAdicionales_Click(object sender, EventArgs e)
+        {
+            switch (this.tipoEntidadSeleccionada)
+            {
+                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor:
+                    frmABMEntidadDatosAdicionalesProveedor frmDatosAdicionalesProveedor = new frmABMEntidadDatosAdicionalesProveedor();
+                    frmDatosAdicionalesProveedor.ShowDialog();
+                    break;
+                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor:
+                    frmABMEntidadDatosADicionalesContactoProveedor frmDatosAdicionalesContactoProveedor = new frmABMEntidadDatosADicionalesContactoProveedor();
+                    frmDatosAdicionalesContactoProveedor.ShowDialog();
+                    break;
+                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario:
+                    frmABMEntidadDatosAdicionalesUsuario frmDatosAdicionalesUsuario = new frmABMEntidadDatosAdicionalesUsuario();
+                    frmDatosAdicionalesUsuario.ShowDialog();
+                    break;
+                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente:
+                    break;
+                default:
+                    break;
+
+            }
         }
 
     }
