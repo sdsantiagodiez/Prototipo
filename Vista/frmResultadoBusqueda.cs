@@ -31,8 +31,6 @@ namespace Vista
         //validar uso
         private void inicializarFrmResultadoBusqueda()
         {
-            dataGridViewResultadoBusqueda = new DataGridView();
-            this.dataGridViewResultadoBusqueda.Dock = DockStyle.Fill;
             this.Width = AnchoVentana;
             this.FormClosing += frmResultadoBusqueda_FormClosing;
         }
@@ -70,6 +68,7 @@ namespace Vista
         private DataGridView inicializarDataGridViewResultadoBusqueda(string tipoEntidad)
         {
             dataGridViewResultadoBusqueda = new DataGridView();
+            this.dataGridViewResultadoBusqueda.Dock = DockStyle.Fill;
             dataGridViewResultadoBusqueda.AutoGenerateColumns = false;
             dataGridViewResultadoBusqueda.ReadOnly = true;
             dataGridViewResultadoBusqueda.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -177,8 +176,8 @@ namespace Vista
              */
             this.Controls.Clear();
             this.BringToFront();
-            this.Controls.Add(dataGridViewResultadoBusqueda);
             this.inicializarDataGridViewResultadoBusqueda(tipo);
+            this.Controls.Add(dataGridViewResultadoBusqueda);
             lmPersonas = null;
             lmProveedores = null;
         }

@@ -78,7 +78,7 @@ namespace Vista
             }
         }
         
-        private frmResultadoBusqueda frmResultadoBusqueda = new frmResultadoBusqueda();
+        private frmResultadoBusqueda frmResultadoBusqueda;
         
         #endregion
 
@@ -413,6 +413,7 @@ namespace Vista
             string tipoEntidad = this.getTipoEntidad();
             if (tipoEntidad != null)
             {
+                frmResultadoBusqueda = new frmResultadoBusqueda();
                 switch (tipoEntidad)
                 {
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona:
@@ -544,14 +545,6 @@ namespace Vista
                 }
             }
             this.cargarDatosEnCmbBoxProvincia(provincias);
-        }
-
-        //
-        //formClosing
-        //
-        private void frmABMEntidad_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            frmResultadoBusqueda.Close();
         }
 
         #endregion
@@ -1169,16 +1162,15 @@ namespace Vista
                     frmDatosAdicionalesProveedor.ShowDialog();
                     break;
                 case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor:
-                    frmABMEntidadDatosADicionalesContactoProveedor frmDatosAdicionalesContactoProveedor = new frmABMEntidadDatosADicionalesContactoProveedor();
+                    frmABMEntidadDatosAdicionalesContactoProveedor frmDatosAdicionalesContactoProveedor = new frmABMEntidadDatosAdicionalesContactoProveedor();
                     frmDatosAdicionalesContactoProveedor.ShowDialog();
                     break;
                 case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario:
                     frmABMEntidadDatosAdicionalesUsuario frmDatosAdicionalesUsuario = new frmABMEntidadDatosAdicionalesUsuario();
                     frmDatosAdicionalesUsuario.ShowDialog();
                     break;
-                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente:
-                    break;
                 default:
+                    MessageBox.Show("No hay datos adicionales para mostrar","Datos Adicionales",MessageBoxButtons.OK);
                     break;
 
             }

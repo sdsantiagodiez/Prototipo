@@ -16,5 +16,9 @@ namespace Vista
         {
             InitializeComponent();
         }
+        public void mostrar()
+        {
+            this.ShowDialog();
+        }
     }
 }
