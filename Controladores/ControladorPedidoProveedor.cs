@@ -13,69 +13,72 @@ namespace Controladores
 
         CatalogoArticuloProveedores cap = new CatalogoArticuloProveedores();
 
-        ModeloPedido pActual = new ModeloPedido();
-        public string agregarArticulo(string ptipoCodigo, string pcodArtProv, int pcantidad)
-        {
-            
-           
-            ModeloArticuloProveedores ap = new ModeloArticuloProveedores();
-
-            ap = cap.buscarArticuloProveedor(ptipoCodigo, pcodArtProv)[0];
-
-            ModeloLineaPedido lp = new ModeloLineaPedido(ap, pcantidad);
-
-            pActual.agregarLinea(lp);
-
-            return "El se ha agregado un articulo al pedido actual";
-        }
-
-        public List<string[]> buscarArticulosProveedor(string ptipoCodigo, string pRazonSocial)
-        {
-            List<ModeloArticuloProveedores> apActuales = new List<ModeloArticuloProveedores>();
-
-            List<string[]> respuesta = new List<string[]>();
-
-            apActuales = cap.buscarArticuloProveedor(ptipoCodigo, pRazonSocial);
-
-            foreach (ModeloArticuloProveedores ModArtProv in apActuales)
-            {
-                string[] artipro = { ModArtProv.codigoOriginal, ModArtProv.codigoArticuloProveedor,ModArtProv.descripcion, ModArtProv.stockActual.ToString(), ModArtProv.stockMinimo.ToString(), Convert.ToDateTime(ModArtProv.fechaActualizacion).ToShortDateString()};
-
-                respuesta.Add(artipro);
-            }
-
-            return respuesta;
-        }
+        private ModeloPedido pActual;
+        private List<ModeloLineaPedido> artPedidoActual;
+       
 
         public void crearPedido()
         {
-            ModeloPedido pActual = new ModeloPedido();            
-        
+            pActual = new ModeloPedido();
+            artPedidoActual = new List<ModeloLineaPedido>();
         }
 
-        public void modificarCantidadArticulo(string pCodArtProv, int pCant)
-        { 
-            if(pCant>0)
-            {
-                ModeloLineaPedido linea = pActual.buscarLinea(pCodArtProv);
+        //public string agregarArticulo(string ptipoCodigo, string pcodArtProv, int pcantidad)
+        //{
+
+
+        //    ModeloArticuloProveedores ap = new ModeloArticuloProveedores();
+
+        //    ap = cap.buscarArticuloProveedor(ptipoCodigo, pcodArtProv)[0];
+
+        //    ModeloLineaPedido lp = new ModeloLineaPedido(ap, pcantidad);
+
+        //    pActual.agregarLinea(lp);
+
+        //    return "El se ha agregado un articulo al pedido actual";
+        //}
+
+        //public List<string[]> buscarArticulosProveedor(string ptipoCodigo, string pRazonSocial)
+        //{
+        //    List<ModeloArticuloProveedores> apActuales = new List<ModeloArticuloProveedores>();
+
+        //    List<string[]> respuesta = new List<string[]>();
+
+        //    apActuales = cap.buscarArticuloProveedor(ptipoCodigo, pRazonSocial);
+
+        //    foreach (ModeloArticuloProveedores ModArtProv in apActuales)
+        //    {
+        //        string[] artipro = { ModArtProv.codigoOriginal, ModArtProv.codigoArticuloProveedor,ModArtProv.descripcion, ModArtProv.stockActual.ToString(), ModArtProv.stockMinimo.ToString(), Convert.ToDateTime(ModArtProv.fechaActualizacion).ToShortDateString()};
+
+        //        respuesta.Add(artipro);
+        //    }
+
+        //    return respuesta;
+        //}
+
+        //public void modificarCantidadArticulo(string pCodArtProv, int pCant)
+        //{ 
+        //    if(pCant>0)
+        //    {
+        //        ModeloLineaPedido linea = pActual.buscarLinea(pCodArtProv);
                 
-                int Cantidad = linea.cantidadArticulos;
+        //        int Cantidad = linea.cantidadArticulos;
 
-                if (pCant >= Cantidad)
-                {
-                    pActual.bajarLinea(linea);
-                }
-                else
-                {
-                    linea.cantidadArticulos = (Cantidad-pCant);
-                    pActual.actualizarLinea(linea);
+        //        if (pCant >= Cantidad)
+        //        {
+        //            pActual.bajarLinea(linea);
+        //        }
+        //        else
+        //        {
+        //            linea.cantidadArticulos = (Cantidad-pCant);
+        //            pActual.actualizarLinea(linea);
                     
-                }
+        //        }
 
 
-            }
+        //    }
         
-        }
+        //}
 
 
 
@@ -84,7 +87,7 @@ namespace Controladores
             throw new NotImplementedException();
         }
 
-        public void addToVenta(ModeloArticuloProveedores artSelecBusq, int p)
+        public void addToPedido(ModeloArticuloProveedores artSelecBusq, int p)
         {
             throw new NotImplementedException();
         }
@@ -94,9 +97,9 @@ namespace Controladores
             throw new NotImplementedException();
         }
 
-        public List<ModeloLineaPedido> getVentaActual()
+        public List<ModeloLineaPedido> getPedidoActual()
         {
-            throw new NotImplementedException();
+            return artPedidoActual;
         }
 
         public void borrarActual()
@@ -104,21 +107,14 @@ namespace Controladores
             throw new NotImplementedException();
         }
 
-        public void removeFromVenta(ModeloLineaPedido modeloLineaPedido)
+        public void removeFromPedido(ModeloLineaPedido modeloLineaPedido)
         {
             throw new NotImplementedException();
         }
 
-        public List<string> buscarRazonesProv()
+        public List<ModeloArticuloProveedores> buscarArticulos(string categBusq, string busqArt)
         {
-            var ctrlBusq = new ControladorBusqueda();
-            var provs = ctrlBusq.buscarProveedores();
-            var razones = new List<String>();
-            foreach (ModeloProveedor prov in provs)
-            {
-                razones.Add(prov.razonSocial);
-            }
-            return razones;
+            throw new NotImplementedException();
         }
     }
 }

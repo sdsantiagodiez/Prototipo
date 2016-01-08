@@ -58,8 +58,6 @@
             this.grbxDetalleAgregado = new System.Windows.Forms.GroupBox();
             this.dgvDetalleAgregados = new System.Windows.Forms.DataGridView();
             this.grbxArtAgregar = new System.Windows.Forms.GroupBox();
-            this.cmbxRazonSocial = new System.Windows.Forms.ComboBox();
-            this.lblRazonSocial = new System.Windows.Forms.Label();
             this.lblCategoriaBuscar = new System.Windows.Forms.Label();
             this.dgvArtAgregar = new System.Windows.Forms.DataGridView();
             this.lblLupa = new System.Windows.Forms.Label();
@@ -394,8 +392,6 @@
             // 
             // grbxArtAgregar
             // 
-            this.grbxArtAgregar.Controls.Add(this.cmbxRazonSocial);
-            this.grbxArtAgregar.Controls.Add(this.lblRazonSocial);
             this.grbxArtAgregar.Controls.Add(this.lblCategoriaBuscar);
             this.grbxArtAgregar.Controls.Add(this.dgvArtAgregar);
             this.grbxArtAgregar.Controls.Add(this.lblLupa);
@@ -409,36 +405,11 @@
             this.grbxArtAgregar.TabStop = false;
             this.grbxArtAgregar.Text = "Articulos a Agregar";
             // 
-            // cmbxRazonSocial
-            // 
-            this.cmbxRazonSocial.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.cmbxRazonSocial.FormattingEnabled = true;
-            this.cmbxRazonSocial.Items.AddRange(new object[] {
-            "San Nicolas Repuestos S.A.",
-            "Todo Renault S.A.",
-            "Bullrich Repuestos S.A."});
-            this.cmbxRazonSocial.Location = new System.Drawing.Point(80, 32);
-            this.cmbxRazonSocial.Name = "cmbxRazonSocial";
-            this.cmbxRazonSocial.Size = new System.Drawing.Size(115, 24);
-            this.cmbxRazonSocial.TabIndex = 6;
-            this.cmbxRazonSocial.Text = "[Seleccionar...]";
-            this.cmbxRazonSocial.SelectionChangeCommitted += new System.EventHandler(this.cmbxRazonSocial_SelectionChangeCommitted);
-            // 
-            // lblRazonSocial
-            // 
-            this.lblRazonSocial.AutoSize = true;
-            this.lblRazonSocial.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRazonSocial.Location = new System.Drawing.Point(8, 36);
-            this.lblRazonSocial.Name = "lblRazonSocial";
-            this.lblRazonSocial.Size = new System.Drawing.Size(75, 16);
-            this.lblRazonSocial.TabIndex = 5;
-            this.lblRazonSocial.Text = "Proveedor:";
-            // 
             // lblCategoriaBuscar
             // 
             this.lblCategoriaBuscar.AutoSize = true;
             this.lblCategoriaBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoriaBuscar.Location = new System.Drawing.Point(199, 36);
+            this.lblCategoriaBuscar.Location = new System.Drawing.Point(8, 33);
             this.lblCategoriaBuscar.Name = "lblCategoriaBuscar";
             this.lblCategoriaBuscar.Size = new System.Drawing.Size(76, 16);
             this.lblCategoriaBuscar.TabIndex = 4;
@@ -465,7 +436,7 @@
             // lblLupa
             // 
             this.lblLupa.Image = ((System.Drawing.Image)(resources.GetObject("lblLupa.Image")));
-            this.lblLupa.Location = new System.Drawing.Point(641, 24);
+            this.lblLupa.Location = new System.Drawing.Point(629, 25);
             this.lblLupa.Name = "lblLupa";
             this.lblLupa.Size = new System.Drawing.Size(32, 32);
             this.lblLupa.TabIndex = 2;
@@ -473,9 +444,9 @@
             // 
             // txtBusqArticulo
             // 
-            this.txtBusqArticulo.Location = new System.Drawing.Point(391, 33);
+            this.txtBusqArticulo.Location = new System.Drawing.Point(237, 30);
             this.txtBusqArticulo.Name = "txtBusqArticulo";
-            this.txtBusqArticulo.Size = new System.Drawing.Size(232, 23);
+            this.txtBusqArticulo.Size = new System.Drawing.Size(386, 23);
             this.txtBusqArticulo.TabIndex = 1;
             this.txtBusqArticulo.Enter += new System.EventHandler(this.txtBusqArticulo_Enter);
             this.txtBusqArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusqArticulo_KeyPress);
@@ -488,9 +459,9 @@
             "Código Original",
             "Código Proveedor",
             "Descripción"});
-            this.cmbxCategoriaBuscar.Location = new System.Drawing.Point(275, 33);
+            this.cmbxCategoriaBuscar.Location = new System.Drawing.Point(90, 30);
             this.cmbxCategoriaBuscar.Name = "cmbxCategoriaBuscar";
-            this.cmbxCategoriaBuscar.Size = new System.Drawing.Size(110, 24);
+            this.cmbxCategoriaBuscar.Size = new System.Drawing.Size(141, 24);
             this.cmbxCategoriaBuscar.TabIndex = 0;
             this.cmbxCategoriaBuscar.Text = "[Seleccionar...]";
             this.cmbxCategoriaBuscar.SelectionChangeCommitted += new System.EventHandler(this.cmbxCategoriaBuscar_SelectionChangeCommitted);
@@ -593,8 +564,6 @@
         internal System.Windows.Forms.ComboBox cmbxCategoriaBuscar;
         internal System.Windows.Forms.Button btnSiguiente;
         internal System.Windows.Forms.Button btnBorrarPedActual;
-        private System.Windows.Forms.Label lblRazonSocial;
-        internal System.Windows.Forms.ComboBox cmbxRazonSocial;
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.Button btnCancelar;

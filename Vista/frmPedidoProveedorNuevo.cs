@@ -19,7 +19,6 @@ namespace Vista
         // ver method stubs de controladorpedidoproveedor y fmrpedidoproveedorcierre
 
         private string categBusq;
-        private string provBusq;
         private List<ModeloArticuloProveedores> artEncontrados;
         private List<ModeloLineaPedido> artPedidoActual;
         private ModeloArticuloProveedores artSelecBusq;
@@ -51,23 +50,6 @@ namespace Vista
 
             //Lo hago read only
             this.cmbxCategoriaBuscar.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            //Creo lista de razones sociales y busco las razones sociales de los proveedores
-            var razonesSociales = ctrlPedProv.buscarRazonesProv();
-            //creo y asigno las categorias
-            var dSProv = new List<Categ>();
-            foreach (String razon in razonesSociales)
-            {
-                dSProv.Add(new Categ() { Name = razon, Value = razon });
-            }
-
-            //binding razones
-            this.cmbxRazonSocial.DataSource = dSProv;
-            this.cmbxRazonSocial.DisplayMember = "Name";
-            this.cmbxRazonSocial.ValueMember = "Value";
-            //read only
-            this.cmbxRazonSocial.DropDownStyle = ComboBoxStyle.DropDownList;
-
         }
 
         #region Botones
@@ -98,51 +80,43 @@ namespace Vista
             //checkeo que haya un articulo seleccionado
             if (!object.Equals(this.artSelecBusq, null))
             {
-                //Verifico la cantidad
+                //TODO -> verificación de nro entero positivo bla bla bla
+                //Verifico la cantidad no se encuentre vacía
                 if (!string.Equals(this.txtCantidad.Text, ""))
                 {
-                    //verifico stock
-                    if (this.artSelecBusq.stockActual >= Int32.Parse(this.txtCantidad.Text))
+                    //verifico que no exista ya en entre las lineas de pedido
+                    if (!ctrlPedProv.exists(artSelecBusq))
                     {
-                        //verifico que no exista ya en entre las lineas de pedido
-                        if (!ctrlPedProv.exists(artSelecBusq))
-                        {
-                            //lo agrego a la venta actual
-                            ctrlPedProv.addToVenta(artSelecBusq, Int32.Parse(this.txtCantidad.Text));
+                        //lo agrego al pedido actual
+                        ctrlPedProv.addToPedido(artSelecBusq, Int32.Parse(this.txtCantidad.Text));
 
 
-                            //Actualizo Total
-                            this.lblTotalVar.Text = ctrlPedProv.getTotal();
+                        //Actualizo Total
+                        this.lblTotalVar.Text = ctrlPedProv.getTotal();
 
-                            //rebindeo lista
-                            this.artPedidoActual = ctrlPedProv.getVentaActual();
-                            var bindingList = new BindingList<ModeloLineaPedido>(this.artPedidoActual);
-                            var source = new BindingSource(bindingList, null);
-                            this.dgvDetalleAgregados.DataSource = source;
+                        //rebindeo lista
+                        this.artPedidoActual = ctrlPedProv.getPedidoActual();
+                        var bindingList = new BindingList<ModeloLineaPedido>(this.artPedidoActual);
+                        var source = new BindingSource(bindingList, null);
+                        this.dgvDetalleAgregados.DataSource = source;
 
-                            //Limpio artselecbusq para manejar el uso del boton en momento equivocado
-                            this.artSelecBusq = null;
-                            //Limpio txtbox cantidad
-                            this.txtCantidad.Text = "";
-                            //Limpio lbls
-                            this.cleanLbls();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Este artículo ya se encuentra en los detalles de la venta actual");
-                            //
-                            //Limpio artselecbusq para manejar el uso del boton en momento equivocado
-                            this.artSelecBusq = null;
-                            //Limpio txtbox cantidad
-                            this.txtCantidad.Text = "";
-                            //Limpio lbls
-                            this.cleanLbls();
-                        }
-
+                        //Limpio artselecbusq para manejar el uso del boton en momento equivocado
+                        this.artSelecBusq = null;
+                        //Limpio txtbox cantidad
+                        this.txtCantidad.Text = "";
+                        //Limpio lbls
+                        this.cleanLbls();
                     }
                     else
                     {
-                        MessageBox.Show("No hay suficientes articulos en inventario actual para cubrir el pedido");
+                        MessageBox.Show("Este artículo ya se encuentra en los detalles del pedido actual");
+                        //
+                        //Limpio artselecbusq para manejar el uso del boton en momento equivocado
+                        this.artSelecBusq = null;
+                        //Limpio txtbox cantidad
+                        this.txtCantidad.Text = "";
+                        //Limpio lbls
+                        this.cleanLbls();
                     }
                 }
                 else
@@ -165,7 +139,7 @@ namespace Vista
             {
                 //borro la venta actual
                 ctrlPedProv.borrarActual();
-                this.artPedidoActual = ctrlPedProv.getVentaActual();
+                this.artPedidoActual = ctrlPedProv.getPedidoActual();
 
                 //rebindeo grilla detalles
                 this.dgvDetalleAgregados.DataSource = null;
@@ -181,8 +155,8 @@ namespace Vista
             if (!object.Equals(this.artSelecDetalle, null))
             {
                 //lo elimino de la lista de articulos ya seleccionados
-                ctrlPedProv.removeFromVenta(this.artSelecDetalle);
-                this.artPedidoActual = ctrlPedProv.getVentaActual();
+                ctrlPedProv.removeFromPedido(this.artSelecDetalle);
+                this.artPedidoActual = ctrlPedProv.getPedidoActual();
 
                 //Actualizo Total
                 this.lblTotalVar.Text = ctrlPedProv.getTotal();
@@ -226,7 +200,7 @@ namespace Vista
             //busco el indice de la fila seleccionada que coincide con la lista que contiene mayor cantidad de información
             int indiceSelecc = dgvArtAgregar.CurrentCell.RowIndex;
 
-            //asigno el articulo a la variable artSelecBusq en caso de que se decida agregarlo a la venta
+            //asigno el articulo a la variable artSelecBusq en caso de que se decida agregarlo al pedido
             this.artSelecBusq = artEncontrados[indiceSelecc];
 
             //actualizo lost lbl para mostrar el articulo seleccionado
@@ -234,9 +208,8 @@ namespace Vista
             this.lblCodProvVar.Text = artEncontrados[indiceSelecc].codigoArticuloProveedor;
             this.lblProvVar.Text = artEncontrados[indiceSelecc].razonSocialProveedor;
             this.lblDescVar.Text = artEncontrados[indiceSelecc].descripcion;
-            //
-            //TODO modificadores de precio segun metodo de pago
-            this.lblPrecioVar.Text = Convert.ToString(artEncontrados[indiceSelecc].valorCompraArticuloProveedor.valorArticulo);
+
+            this.lblPrecioVar.Text = Convert.ToString(artEncontrados[indiceSelecc].valorVenta.valorArticulo);
             this.lblUbicacionVar.Text = artEncontrados[indiceSelecc].ubicacion;
 
             this.lblExistenciaVar.Text = Convert.ToString(artEncontrados[indiceSelecc].stockActual);
@@ -255,7 +228,7 @@ namespace Vista
             //busco el indice de la fila seleccionada
             int indiceSelecc = this.dgvDetalleAgregados.CurrentCell.RowIndex;
 
-            //asigno el articulo a la variable artSelecDetalle en caso de que se decida removerlo de la venta
+            //asigno el articulo a la variable artSelecDetalle en caso de que se decida removerlo del pedido
             this.artSelecDetalle = this.artPedidoActual[indiceSelecc];
         }
         #endregion
@@ -263,37 +236,36 @@ namespace Vista
         #region Labels, txtBod, combos
         private void lblLupa_Click(object sender, EventArgs e)
         {
-            // TODO -> búsqueda debe tener en cuenta el proveedor seleccionado???????
-            ////
-            ////TODO --> VALIDAR EL INPUT
-            ////
+
+            //TODO --> VALIDAR EL INPUT
+            //
 
 
-            ////capturo descripcion parcial
-            //string busqArt = this.txtBusqArticulo.Text;
+            //capturo descripcion parcial
+            string busqArt = this.txtBusqArticulo.Text;
 
-            ////me aseguro que se haya seleccionado una categoria de búsqueda
-            //if (!object.Equals(this.categBusq, null))
-            //{
-            //    //busco el/los articulos correspondientes
-            //    artEncontrados = ctrlProcVenta.buscarArticulos(categBusq, busqArt);
+            //me aseguro que se haya seleccionado una categoria de búsqueda
+            if (!object.Equals(this.categBusq, null))
+            {
+                //busco el/los articulos correspondientes
+                artEncontrados = ctrlPedProv.buscarArticulos(categBusq, busqArt);
 
-            //    //bindeo el datagrid con los articulos encontrados
-            //    if (!object.Equals(artEncontrados, null))
-            //    {
-            //        var bindingList = new BindingList<ModeloArticuloProveedores>(artEncontrados);
-            //        var source = new BindingSource(bindingList, null);
-            //        this.dgvArtAgregar.DataSource = source;
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("No se encontraron coincidencias");
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Por favor seleccione una categoría de búsqueda");
-            //}
+                //bindeo el datagrid con los articulos encontrados
+                if (!object.Equals(artEncontrados, null))
+                {
+                    var bindingList = new BindingList<ModeloArticuloProveedores>(artEncontrados);
+                    var source = new BindingSource(bindingList, null);
+                    this.dgvArtAgregar.DataSource = source;
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron coincidencias");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor seleccione una categoría de búsqueda");
+            }
         }
 
         private void txtBusqArticulo_Enter(object sender, EventArgs e)
@@ -313,11 +285,6 @@ namespace Vista
         private void cmbxCategoriaBuscar_SelectionChangeCommitted(object sender, EventArgs e)
         {
             this.categBusq = (string)this.cmbxCategoriaBuscar.SelectedValue;
-        }
-
-        private void cmbxRazonSocial_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            this.provBusq = (string)this.cmbxRazonSocial.SelectedValue;
         }
 
         private void cleanLbls()
