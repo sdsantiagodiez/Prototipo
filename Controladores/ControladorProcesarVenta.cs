@@ -47,7 +47,7 @@ namespace Controladores
             this.artVentaActual = new List<ModeloLineaPedido>();
         }
 
-        public void borrarActual()
+        public void deleteCurrentDetails()
         {
             this.artVentaActual = new List<ModeloLineaPedido>();
         }

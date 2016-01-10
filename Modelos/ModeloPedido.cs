@@ -63,27 +63,53 @@ namespace Modelos
             /*Quizas este metodo deberia volar, ya que el multiobjeto de lineas de pedido se crea como una variable mas del Pedido*/
         }
         
-        public ModeloLineaPedido buscarLinea(string pCodArtProv)
+        public ModeloLineaPedido findDetail(string p_codigoOriginal, string p_codigoArticuloProveedor)
         {
-            ModeloLineaPedido modlpReturn = null;
-            foreach (ModeloLineaPedido mLP in _lineasPedido)
+            ModeloLineaPedido lcl_mod_orderDetail = null;
+            foreach (ModeloLineaPedido detail in _lineasPedido)
             {
-                if (String.Equals(mLP.codigoArtProveedor, pCodArtProv))
+                if (String.Equals(detail.codigoArtProveedor, p_codigoArticuloProveedor) && String.Equals(detail.codigoOriginalArt,p_codigoOriginal))
                 {
-                    modlpReturn = mLP;
+                    lcl_mod_orderDetail = detail;
                     break;
                 }
             }
-            return modlpReturn;
+            return lcl_mod_orderDetail;
         }
-        private bool existeLineaPedido(ModeloLineaPedido pLineaPedido)
+        public bool existeLineaPedido(ModeloLineaPedido pLineaPedido)
         {
             bool existe = false;
-            if (buscarLinea(pLineaPedido.codigoArtProveedor) != null )
+            if (findDetail(pLineaPedido.codigoOriginalArt, pLineaPedido.codigoArtProveedor) != null )
             {
                 existe = true;
             }
             return existe;
+        }
+
+        public bool existeLineaPedido(ModeloArticuloProveedores p_mod_Article)
+        {
+            bool exists = false;
+            if (findDetail(p_mod_Article.codigoOriginal, p_mod_Article.codigoArticuloProveedor) != null)
+            {
+                exists = true;
+            }
+            return exists;
+        }
+
+        public decimal getCurrentTotal()
+        {
+            decimal lcl_total = 0;
+            foreach (ModeloLineaPedido detail in _lineasPedido)
+            {
+                lcl_total = lcl_total + detail.valorParcial;
+            }
+            return lcl_total;
+        }
+        public bool restartOrderDetails()
+        {
+            bool lcl_answer = true;
+            _lineasPedido = new List<ModeloLineaPedido>();
+            return lcl_answer;
         }
 
         #region Agregar, Bajar y Actualizar lineas de pedido
@@ -91,40 +117,33 @@ namespace Modelos
          * Devuelven true si se pudo realizar la operación
          * false si no fue posible
          */
-        public bool agregarLinea(ModeloLineaPedido pLineaPedido)
+        public bool addDetail(ModeloLineaPedido pLineaPedido)
         {
-            //Si linea ya existe, se suman las cantidades de las dos lineas y permanece la última ingresada
+            ////Si linea ya existe, se suman las cantidades de las dos lineas y permanece la última ingresada
             bool respuesta = true;
-            if (existeLineaPedido(pLineaPedido))
-            {
-                ModeloLineaPedido lpActual = buscarLinea(pLineaPedido.codigoArtProveedor);
-                pLineaPedido.cantidadArticulos = lpActual.cantidadArticulos + pLineaPedido.cantidadArticulos;
-                respuesta = _lineasPedido.Remove(lpActual);
-            }
-            if(respuesta)
-            {
+            //if (existeLineaPedido(pLineaPedido))
+            //{
+            //    ModeloLineaPedido lpActual = findDetail(pLineaPedido.codigoOriginalArt ,pLineaPedido.codigoArtProveedor);
+            //    pLineaPedido.cantidadArticulos = lpActual.cantidadArticulos + pLineaPedido.cantidadArticulos;
+            //    respuesta = _lineasPedido.Remove(lpActual);
+            //}
+            //if(respuesta)
+            //{
                 this._lineasPedido.Add(pLineaPedido);
-            }
+            //}
             return respuesta;
         }
-        public bool bajarLinea(ModeloLineaPedido pLinea)
+        public bool bajarLinea(ModeloLineaPedido p_mod_detail)
         {
-            bool respuesta = false;
-            foreach(ModeloLineaPedido mLP in _lineasPedido)
-            {
-                if (string.Equals(mLP.codigoArtProveedor,pLinea.codigoArtProveedor))
-                {
-                    _lineasPedido.Remove(mLP);
-                    respuesta = true;
-                }
-            }
-            return respuesta;
-        }  
+            bool answer = true;
+            _lineasPedido.Remove(p_mod_detail);
+            return answer;
+        }
         public bool actualizarLinea(ModeloLineaPedido pLinea)
         {
             /*TEMPORAL: puse que se busque la linea en vez de sacarla porque como la linea viene modificada por la actualización quizas no la detecte al no ser igual (no estoy seguro)*/
             bool respuesta = true;
-            ModeloLineaPedido lpActual = buscarLinea(pLinea.codigoArtProveedor);
+            ModeloLineaPedido lpActual = findDetail(pLinea.codigoOriginalArt ,pLinea.codigoArtProveedor);
             respuesta = _lineasPedido.Remove(lpActual);
             if (respuesta)
             {

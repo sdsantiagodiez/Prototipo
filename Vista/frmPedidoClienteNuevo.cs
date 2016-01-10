@@ -169,7 +169,7 @@ namespace Vista
             if (dialogResult == DialogResult.Yes)
             {
                 //borro la venta actual
-                ctrlProcVenta.borrarActual();
+                ctrlProcVenta.deleteCurrentDetails();
                 this.artVentaActual = ctrlProcVenta.getVentaActual();
 
                 //rebindeo grilla detalles

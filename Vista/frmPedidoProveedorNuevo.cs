@@ -18,22 +18,23 @@ namespace Vista
         //TODO -> carga y selección de razon social
         // ver method stubs de controladorpedidoproveedor y fmrpedidoproveedorcierre
 
-        private string categBusq;
-        private List<ModeloArticuloProveedores> artEncontrados;
-        private List<ModeloLineaPedido> artPedidoActual;
-        private ModeloArticuloProveedores artSelecBusq;
-        private ModeloLineaPedido artSelecDetalle;
-        private ControladorPedidoProveedor ctrlPedProv;
+        private string glb_searchCategory;
+        private List<ModeloArticuloProveedores> glb_lst_mod_foundArticles;
+        private List<ModeloLineaPedido> glb_lst_mod_currentOrder;
+        private ModeloArticuloProveedores glb_mod_selectedArticleFromSearch;
+        private ModeloLineaPedido glb_mod_selectedArticleFromDetails;
+        private ControladorPedidoProveedor glb_con_pedidoProveedor;
         
         public frmPedidoProveedorNuevo()
         {
             InitializeComponent();
-            //creo el pedido
-            ctrlPedProv = new ControladorPedidoProveedor();
-            ctrlPedProv.crearPedido();
+
+            //instancio controlador
+            glb_con_pedidoProveedor = new ControladorPedidoProveedor();
+            glb_con_pedidoProveedor.InstanciarPedido();
 
             //seteo columnas de datagridviews
-            this.dgvArtAgregar.AutoGenerateColumns = false;
+            this.dgvArticulosAgregar.AutoGenerateColumns = false;
             this.dgvDetalleAgregados.AutoGenerateColumns = false;
 
             //Creo lista categorias
@@ -57,11 +58,11 @@ namespace Vista
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
             //compruebo que existan articulos para generar venta
-            if (this.artPedidoActual.Count > 0)
+            if (this.glb_lst_mod_currentOrder.Count > 0)
             {
                 //creo el formulario y lo muestro
                 frmPedidoProveedorCierre frmCierre = new frmPedidoProveedorCierre();
-                frmCierre.detalleVenta(ctrlPedProv);
+                frmCierre.detalleVenta(glb_con_pedidoProveedor);
                 frmCierre.ShowDialog();
                 //checkeo si se cerró la venta
                 if (frmCierre.emitido == true)
@@ -78,30 +79,30 @@ namespace Vista
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             //checkeo que haya un articulo seleccionado
-            if (!object.Equals(this.artSelecBusq, null))
+            if (!object.Equals(this.glb_mod_selectedArticleFromSearch, null))
             {
                 //TODO -> verificación de nro entero positivo bla bla bla
                 //Verifico la cantidad no se encuentre vacía
                 if (!string.Equals(this.txtCantidad.Text, ""))
                 {
                     //verifico que no exista ya en entre las lineas de pedido
-                    if (!ctrlPedProv.exists(artSelecBusq))
+                    if (!glb_con_pedidoProveedor.exists(glb_mod_selectedArticleFromSearch))
                     {
                         //lo agrego al pedido actual
-                        ctrlPedProv.addToPedido(artSelecBusq, Int32.Parse(this.txtCantidad.Text));
+                        glb_con_pedidoProveedor.addToOrder(glb_mod_selectedArticleFromSearch, Int32.Parse(this.txtCantidad.Text));
 
 
                         //Actualizo Total
-                        this.lblTotalVar.Text = ctrlPedProv.getTotal();
+                        this.lblTotalVar.Text = glb_con_pedidoProveedor.getTotal();
 
                         //rebindeo lista
-                        this.artPedidoActual = ctrlPedProv.getPedidoActual();
-                        var bindingList = new BindingList<ModeloLineaPedido>(this.artPedidoActual);
+                        this.glb_lst_mod_currentOrder = glb_con_pedidoProveedor.getCurrentDetails();
+                        var bindingList = new BindingList<ModeloLineaPedido>(this.glb_lst_mod_currentOrder);
                         var source = new BindingSource(bindingList, null);
                         this.dgvDetalleAgregados.DataSource = source;
 
                         //Limpio artselecbusq para manejar el uso del boton en momento equivocado
-                        this.artSelecBusq = null;
+                        this.glb_mod_selectedArticleFromSearch = null;
                         //Limpio txtbox cantidad
                         this.txtCantidad.Text = "";
                         //Limpio lbls
@@ -112,7 +113,7 @@ namespace Vista
                         MessageBox.Show("Este artículo ya se encuentra en los detalles del pedido actual");
                         //
                         //Limpio artselecbusq para manejar el uso del boton en momento equivocado
-                        this.artSelecBusq = null;
+                        this.glb_mod_selectedArticleFromSearch = null;
                         //Limpio txtbox cantidad
                         this.txtCantidad.Text = "";
                         //Limpio lbls
@@ -138,8 +139,8 @@ namespace Vista
             if (dialogResult == DialogResult.Yes)
             {
                 //borro la venta actual
-                ctrlPedProv.borrarActual();
-                this.artPedidoActual = ctrlPedProv.getPedidoActual();
+                glb_con_pedidoProveedor.deleteCurrentDetails();
+                this.glb_lst_mod_currentOrder = glb_con_pedidoProveedor.getCurrentDetails();
 
                 //rebindeo grilla detalles
                 this.dgvDetalleAgregados.DataSource = null;
@@ -152,23 +153,23 @@ namespace Vista
         private void btnQuitar_Click(object sender, EventArgs e)
         {
             //checkeo que haya un articulo seleccionado
-            if (!object.Equals(this.artSelecDetalle, null))
+            if (!object.Equals(this.glb_mod_selectedArticleFromDetails, null))
             {
                 //lo elimino de la lista de articulos ya seleccionados
-                ctrlPedProv.removeFromPedido(this.artSelecDetalle);
-                this.artPedidoActual = ctrlPedProv.getPedidoActual();
+                glb_con_pedidoProveedor.removeFromOrder(this.glb_mod_selectedArticleFromDetails);
+                this.glb_lst_mod_currentOrder = glb_con_pedidoProveedor.getCurrentDetails();
 
                 //Actualizo Total
-                this.lblTotalVar.Text = ctrlPedProv.getTotal();
+                this.lblTotalVar.Text = glb_con_pedidoProveedor.getTotal();
 
                 //rebindeo los articulos seleccionados a la grid
-                var bindingList = new BindingList<ModeloLineaPedido>(this.artPedidoActual);
+                var bindingList = new BindingList<ModeloLineaPedido>(this.glb_lst_mod_currentOrder);
                 var source = new BindingSource(bindingList, null);
                 this.dgvDetalleAgregados.DataSource = source;
 
                 //
                 //Limpio artselecdetalle para evitar uso de boton en momento equivocado
-                this.artSelecDetalle = null;
+                this.glb_mod_selectedArticleFromDetails = null;
             }
             else
             {
@@ -192,35 +193,35 @@ namespace Vista
         private void dgvArtAgregar_Enter(object sender, EventArgs e)
         {
             //Limpio artselecdetalle para manejar el uso del boton en momento equivocado
-            this.artSelecDetalle = null;
+            this.glb_mod_selectedArticleFromDetails = null;
         }
 
         private void dgvArtAgregar_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //busco el indice de la fila seleccionada que coincide con la lista que contiene mayor cantidad de información
-            int indiceSelecc = dgvArtAgregar.CurrentCell.RowIndex;
+            int indiceSelecc = dgvArticulosAgregar.CurrentCell.RowIndex;
 
             //asigno el articulo a la variable artSelecBusq en caso de que se decida agregarlo al pedido
-            this.artSelecBusq = artEncontrados[indiceSelecc];
+            this.glb_mod_selectedArticleFromSearch = glb_lst_mod_foundArticles[indiceSelecc];
 
             //actualizo lost lbl para mostrar el articulo seleccionado
-            this.lblCodOrigVar.Text = artEncontrados[indiceSelecc].codigoOriginal;
-            this.lblCodProvVar.Text = artEncontrados[indiceSelecc].codigoArticuloProveedor;
-            this.lblProvVar.Text = artEncontrados[indiceSelecc].razonSocialProveedor;
-            this.lblDescVar.Text = artEncontrados[indiceSelecc].descripcion;
+            this.lblCodOrigVar.Text = glb_lst_mod_foundArticles[indiceSelecc].codigoOriginal;
+            this.lblCodProvVar.Text = glb_lst_mod_foundArticles[indiceSelecc].codigoArticuloProveedor;
+            this.lblProvVar.Text = glb_lst_mod_foundArticles[indiceSelecc].razonSocialProveedor;
+            this.lblDescVar.Text = glb_lst_mod_foundArticles[indiceSelecc].descripcion;
 
-            this.lblPrecioVar.Text = Convert.ToString(artEncontrados[indiceSelecc].valorVenta.valorArticulo);
-            this.lblUbicacionVar.Text = artEncontrados[indiceSelecc].ubicacion;
+            this.lblPrecioVar.Text = Convert.ToString(glb_lst_mod_foundArticles[indiceSelecc].valorVenta.valorArticulo);
+            this.lblUbicacionVar.Text = glb_lst_mod_foundArticles[indiceSelecc].ubicacion;
 
-            this.lblExistenciaVar.Text = Convert.ToString(artEncontrados[indiceSelecc].stockActual);
-            this.lblFechaActualizVar.Text = Convert.ToString(artEncontrados[indiceSelecc].fechaActualizacion);
-            this.lblObsVar.Text = artEncontrados[indiceSelecc].observaciones;
+            this.lblExistenciaVar.Text = Convert.ToString(glb_lst_mod_foundArticles[indiceSelecc].stockActual);
+            this.lblFechaActualizVar.Text = Convert.ToString(glb_lst_mod_foundArticles[indiceSelecc].fechaActualizacion);
+            this.lblObsVar.Text = glb_lst_mod_foundArticles[indiceSelecc].observaciones;
         }
 
         private void dgvDetalleAgregados_Enter(object sender, EventArgs e)
         {
             //Limpio artselecbusq para manejar el uso del boton en momento equivocado
-            this.artSelecBusq = null;
+            this.glb_mod_selectedArticleFromSearch = null;
         }
 
         private void dgvDetalleAgregados_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -229,33 +230,30 @@ namespace Vista
             int indiceSelecc = this.dgvDetalleAgregados.CurrentCell.RowIndex;
 
             //asigno el articulo a la variable artSelecDetalle en caso de que se decida removerlo del pedido
-            this.artSelecDetalle = this.artPedidoActual[indiceSelecc];
+            this.glb_mod_selectedArticleFromDetails = this.glb_lst_mod_currentOrder[indiceSelecc];
         }
         #endregion
 
         #region Labels, txtBod, combos
         private void lblLupa_Click(object sender, EventArgs e)
         {
-
             //TODO --> VALIDAR EL INPUT
             //
-
-
             //capturo descripcion parcial
             string busqArt = this.txtBusqArticulo.Text;
 
             //me aseguro que se haya seleccionado una categoria de búsqueda
-            if (!object.Equals(this.categBusq, null))
+            if (!object.Equals(this.glb_searchCategory, null))
             {
                 //busco el/los articulos correspondientes
-                artEncontrados = ctrlPedProv.buscarArticulos(categBusq, busqArt);
+                glb_lst_mod_foundArticles = glb_con_pedidoProveedor.searchArticles(glb_searchCategory, busqArt);
 
                 //bindeo el datagrid con los articulos encontrados
-                if (!object.Equals(artEncontrados, null))
+                if (!object.Equals(glb_lst_mod_foundArticles, null))
                 {
-                    var bindingList = new BindingList<ModeloArticuloProveedores>(artEncontrados);
+                    var bindingList = new BindingList<ModeloArticuloProveedores>(glb_lst_mod_foundArticles);
                     var source = new BindingSource(bindingList, null);
-                    this.dgvArtAgregar.DataSource = source;
+                    this.dgvArticulosAgregar.DataSource = source;
                 }
                 else
                 {
@@ -284,7 +282,7 @@ namespace Vista
 
         private void cmbxCategoriaBuscar_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            this.categBusq = (string)this.cmbxCategoriaBuscar.SelectedValue;
+            this.glb_searchCategory = (string)this.cmbxCategoriaBuscar.SelectedValue;
         }
 
         private void cleanLbls()

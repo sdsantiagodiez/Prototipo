@@ -59,19 +59,29 @@
             this.dgvDetalleAgregados = new System.Windows.Forms.DataGridView();
             this.grbxArtAgregar = new System.Windows.Forms.GroupBox();
             this.lblCategoriaBuscar = new System.Windows.Forms.Label();
-            this.dgvArtAgregar = new System.Windows.Forms.DataGridView();
+            this.dgvArticulosAgregar = new System.Windows.Forms.DataGridView();
             this.lblLupa = new System.Windows.Forms.Label();
             this.txtBusqArticulo = new System.Windows.Forms.TextBox();
             this.cmbxCategoriaBuscar = new System.Windows.Forms.ComboBox();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.btnBorrarPedActual = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.codOriginal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codigoOriginal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codigoProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valorUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valorParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbxDetalleSelec.SuspendLayout();
             this.tlpDetalles.SuspendLayout();
             this.grbxDetalleAgregado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleAgregados)).BeginInit();
             this.grbxArtAgregar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvArtAgregar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosAgregar)).BeginInit();
             this.SuspendLayout();
             // 
             // grbxDetalleSelec
@@ -380,6 +390,13 @@
             this.dgvDetalleAgregados.AllowUserToDeleteRows = false;
             this.dgvDetalleAgregados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDetalleAgregados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetalleAgregados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codigoOriginal,
+            this.codigoProveedor,
+            this.desc,
+            this.valorUnitario,
+            this.cantidad,
+            this.valorParcial});
             this.dgvDetalleAgregados.Location = new System.Drawing.Point(11, 23);
             this.dgvDetalleAgregados.Name = "dgvDetalleAgregados";
             this.dgvDetalleAgregados.ReadOnly = true;
@@ -393,7 +410,7 @@
             // grbxArtAgregar
             // 
             this.grbxArtAgregar.Controls.Add(this.lblCategoriaBuscar);
-            this.grbxArtAgregar.Controls.Add(this.dgvArtAgregar);
+            this.grbxArtAgregar.Controls.Add(this.dgvArticulosAgregar);
             this.grbxArtAgregar.Controls.Add(this.lblLupa);
             this.grbxArtAgregar.Controls.Add(this.txtBusqArticulo);
             this.grbxArtAgregar.Controls.Add(this.cmbxCategoriaBuscar);
@@ -415,23 +432,28 @@
             this.lblCategoriaBuscar.TabIndex = 4;
             this.lblCategoriaBuscar.Text = "Buscar por:";
             // 
-            // dgvArtAgregar
+            // dgvArticulosAgregar
             // 
-            this.dgvArtAgregar.AllowUserToAddRows = false;
-            this.dgvArtAgregar.AllowUserToDeleteRows = false;
-            this.dgvArtAgregar.AllowUserToOrderColumns = true;
-            this.dgvArtAgregar.AllowUserToResizeRows = false;
-            this.dgvArtAgregar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvArtAgregar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvArtAgregar.Location = new System.Drawing.Point(11, 68);
-            this.dgvArtAgregar.Name = "dgvArtAgregar";
-            this.dgvArtAgregar.ReadOnly = true;
-            this.dgvArtAgregar.RowHeadersVisible = false;
-            this.dgvArtAgregar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArtAgregar.Size = new System.Drawing.Size(675, 258);
-            this.dgvArtAgregar.TabIndex = 3;
-            this.dgvArtAgregar.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArtAgregar_CellClick);
-            this.dgvArtAgregar.Enter += new System.EventHandler(this.dgvArtAgregar_Enter);
+            this.dgvArticulosAgregar.AllowUserToAddRows = false;
+            this.dgvArticulosAgregar.AllowUserToDeleteRows = false;
+            this.dgvArticulosAgregar.AllowUserToOrderColumns = true;
+            this.dgvArticulosAgregar.AllowUserToResizeRows = false;
+            this.dgvArticulosAgregar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvArticulosAgregar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArticulosAgregar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codOriginal,
+            this.codProveedor,
+            this.proveedor,
+            this.descripcion});
+            this.dgvArticulosAgregar.Location = new System.Drawing.Point(11, 68);
+            this.dgvArticulosAgregar.Name = "dgvArticulosAgregar";
+            this.dgvArticulosAgregar.ReadOnly = true;
+            this.dgvArticulosAgregar.RowHeadersVisible = false;
+            this.dgvArticulosAgregar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvArticulosAgregar.Size = new System.Drawing.Size(675, 258);
+            this.dgvArticulosAgregar.TabIndex = 3;
+            this.dgvArticulosAgregar.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArtAgregar_CellClick);
+            this.dgvArticulosAgregar.Enter += new System.EventHandler(this.dgvArtAgregar_Enter);
             // 
             // lblLupa
             // 
@@ -498,6 +520,76 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // codOriginal
+            // 
+            this.codOriginal.DataPropertyName = "codigoOriginal";
+            this.codOriginal.HeaderText = "Código Original";
+            this.codOriginal.Name = "codOriginal";
+            this.codOriginal.ReadOnly = true;
+            // 
+            // codProveedor
+            // 
+            this.codProveedor.DataPropertyName = "codigoArticuloProveedor";
+            this.codProveedor.HeaderText = "Código Proveedor";
+            this.codProveedor.Name = "codProveedor";
+            this.codProveedor.ReadOnly = true;
+            // 
+            // proveedor
+            // 
+            this.proveedor.DataPropertyName = "razonSocialProveedor";
+            this.proveedor.HeaderText = "Proveedor";
+            this.proveedor.Name = "proveedor";
+            this.proveedor.ReadOnly = true;
+            // 
+            // descripcion
+            // 
+            this.descripcion.DataPropertyName = "descripcion";
+            this.descripcion.HeaderText = "Descripción";
+            this.descripcion.Name = "descripcion";
+            this.descripcion.ReadOnly = true;
+            // 
+            // codigoOriginal
+            // 
+            this.codigoOriginal.DataPropertyName = "codigoOriginalArt";
+            this.codigoOriginal.HeaderText = "Códgo Original";
+            this.codigoOriginal.Name = "codigoOriginal";
+            this.codigoOriginal.ReadOnly = true;
+            // 
+            // codigoProveedor
+            // 
+            this.codigoProveedor.DataPropertyName = "codigoArtProveedor";
+            this.codigoProveedor.HeaderText = "Código Proveedor";
+            this.codigoProveedor.Name = "codigoProveedor";
+            this.codigoProveedor.ReadOnly = true;
+            // 
+            // desc
+            // 
+            this.desc.DataPropertyName = "descripcion";
+            this.desc.HeaderText = "Descripción";
+            this.desc.Name = "desc";
+            this.desc.ReadOnly = true;
+            // 
+            // valorUnitario
+            // 
+            this.valorUnitario.DataPropertyName = "valorUnitario";
+            this.valorUnitario.HeaderText = "Valor Unitario";
+            this.valorUnitario.Name = "valorUnitario";
+            this.valorUnitario.ReadOnly = true;
+            // 
+            // cantidad
+            // 
+            this.cantidad.DataPropertyName = "cantidadArticulos";
+            this.cantidad.HeaderText = "Cantidad";
+            this.cantidad.Name = "cantidad";
+            this.cantidad.ReadOnly = true;
+            // 
+            // valorParcial
+            // 
+            this.valorParcial.DataPropertyName = "valorParcial";
+            this.valorParcial.HeaderText = "Valor Parcial";
+            this.valorParcial.Name = "valorParcial";
+            this.valorParcial.ReadOnly = true;
+            // 
             // frmPedidoProveedorNuevo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -522,7 +614,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleAgregados)).EndInit();
             this.grbxArtAgregar.ResumeLayout(false);
             this.grbxArtAgregar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvArtAgregar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosAgregar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -558,7 +650,7 @@
         internal System.Windows.Forms.DataGridView dgvDetalleAgregados;
         private System.Windows.Forms.GroupBox grbxArtAgregar;
         private System.Windows.Forms.Label lblCategoriaBuscar;
-        internal System.Windows.Forms.DataGridView dgvArtAgregar;
+        internal System.Windows.Forms.DataGridView dgvArticulosAgregar;
         internal System.Windows.Forms.Label lblLupa;
         internal System.Windows.Forms.TextBox txtBusqArticulo;
         internal System.Windows.Forms.ComboBox cmbxCategoriaBuscar;
@@ -567,6 +659,16 @@
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codOriginal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codProveedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn proveedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigoOriginal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigoProveedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn desc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valorUnitario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valorParcial;
 
     }
 }

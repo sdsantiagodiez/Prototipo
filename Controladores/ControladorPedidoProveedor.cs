@@ -13,16 +13,15 @@ namespace Controladores
 
         CatalogoArticuloProveedores cap = new CatalogoArticuloProveedores();
 
-        private ModeloPedido pActual;
-        private List<ModeloLineaPedido> artPedidoActual;
+        private ModeloPedido glb_mod_currentOrder;
        
 
-        public void crearPedido()
+        public void InstanciarPedido()
         {
-            pActual = new ModeloPedido();
-            artPedidoActual = new List<ModeloLineaPedido>();
+            glb_mod_currentOrder = new ModeloPedido();
         }
 
+        #region En Deshuso
         //public string agregarArticulo(string ptipoCodigo, string pcodArtProv, int pcantidad)
         //{
 
@@ -77,44 +76,47 @@ namespace Controladores
 
 
         //    }
-        
+
         //}
+        #endregion
 
 
-
-        public bool exists(ModeloArticuloProveedores artSelecBusq)
+        public bool exists(ModeloArticuloProveedores p_article)
         {
-            throw new NotImplementedException();
+            return glb_mod_currentOrder.existeLineaPedido(p_article);
         }
 
-        public void addToPedido(ModeloArticuloProveedores artSelecBusq, int p)
+        public void addToOrder(ModeloArticuloProveedores p_article, int p_quantity)
         {
-            throw new NotImplementedException();
+            ModeloLineaPedido lcl_mod_detail= new ModeloLineaPedido(p_article,p_quantity);
+            glb_mod_currentOrder.addDetail(lcl_mod_detail);
         }
 
         public string getTotal()
         {
-            throw new NotImplementedException();
+            return glb_mod_currentOrder.getCurrentTotal().ToString("0.##");
         }
 
-        public List<ModeloLineaPedido> getPedidoActual()
+        public List<ModeloLineaPedido> getCurrentDetails()
         {
-            return artPedidoActual;
+            return glb_mod_currentOrder.lineasPedido;
         }
 
-        public void borrarActual()
+        public void deleteCurrentDetails()
         {
-            throw new NotImplementedException();
+            glb_mod_currentOrder.restartOrderDetails();
         }
 
-        public void removeFromPedido(ModeloLineaPedido modeloLineaPedido)
+        public void removeFromOrder(ModeloLineaPedido p_mod_orderDetail)
         {
-            throw new NotImplementedException();
+            glb_mod_currentOrder.bajarLinea(p_mod_orderDetail);
         }
 
-        public List<ModeloArticuloProveedores> buscarArticulos(string categBusq, string busqArt)
+        public List<ModeloArticuloProveedores> searchArticles(string p_searchCategory, string p_userInput)
         {
-            throw new NotImplementedException();
+            var lcl_cat_ArticuloProveedores = new CatalogoArticuloProveedores();
+            List<ModeloArticuloProveedores> lcl_lst_mod_articles = lcl_cat_ArticuloProveedores.buscarArticuloProveedor(p_searchCategory, p_userInput);
+            return lcl_lst_mod_articles;
         }
     }
 }
