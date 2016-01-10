@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Modelos;
 using Datos;
+using LibreriaClasesCompartidas;
 
 namespace Controladores
 {
@@ -19,51 +20,48 @@ namespace Controladores
         /// <returns>Lista de personas</returns>
         public List<ModeloPersonas> buscarPersonas()
         {
-            CatalogoPersonas cp = new CatalogoPersonas();
-            
-            return cp.getAll();
+            CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
+
+            return lcl_cat_personas.getAll();
         }
         /// <summary>
         /// Retorna personas en base a los valores inicializados en los atributos del modelo
         /// </summary>
-        /// <param name="pmPersona"></param>
+        /// <param name="p_mod_persona"></param>
         /// <returns>Lista de personas</returns>
-        public List<ModeloPersonas> buscarPersonas(ModeloPersonas pmPersona)
+        public List<ModeloPersonas> buscarPersonas(ModeloPersonas p_mod_persona)
         {
-            CatalogoPersonas cp = new CatalogoPersonas();
-            pmPersona.convertirDatos();
-            List<ModeloPersonas> lmPersonas = new List<ModeloPersonas>();
-            lmPersonas = cp.buscarPersona(pmPersona);            
+            CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
+            p_mod_persona.convertirDatos();
             
-            return lmPersonas;
+            return lcl_cat_personas.buscarPersona(p_mod_persona);            
         }
         /// <summary>
         /// Busca personas que cumplan con un parámetro de búsqueda o retorna todas si se especifica "all"
         /// </summary>
-        /// <param name="pmPersona">Persona con variable a buscar inicializada con algún valor</param>
-        /// <param name="paramentroBusqueda">all o codigoEntidad,cuit,dni,nombre,apellido,usuario,tipoPersona</param>
+        /// <param name="p_mod_persona">Persona con variable a buscar inicializada con algún valor</param>
+        /// <param name="p_paramentroBusqueda">all o codigoEntidad,cuit,dni,nombre,apellido,usuario,tipoPersona</param>
         /// <returns>Lista de personas</returns>
-        public List<ModeloPersonas> buscarPersonas(ModeloPersonas pmPersona, string paramentroBusqueda)
+        public List<ModeloPersonas> buscarPersonas(ModeloPersonas p_mod_persona, string p_paramentroBusqueda)
         {
-            List<ModeloPersonas> lmPersonas = new List<ModeloPersonas>();
-            CatalogoPersonas cp = new CatalogoPersonas();
-            if (paramentroBusqueda == "codigoEntidad")
+            List<ModeloPersonas> lcl_lst_mod_personas = new List<ModeloPersonas>();
+            CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
+            if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.Entidades.Personas.CodigoEntidad)
             {
-                lmPersonas.Add(cp.getOne(pmPersona.codigo));
-                
+                lcl_lst_mod_personas.Add(lcl_cat_personas.getOne(p_mod_persona.codigo));
             }
             else
             {
-                if (paramentroBusqueda == "all")
+                if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.Entidades.Personas.All)
                 {
-                    lmPersonas = cp.getAll();
+                    lcl_lst_mod_personas = lcl_cat_personas.getAll();
                 }
                 else
                 {
-                    lmPersonas = cp.buscarPersona(pmPersona, paramentroBusqueda);    
+                    lcl_lst_mod_personas = lcl_cat_personas.buscarPersona(p_mod_persona, p_paramentroBusqueda);    
                 }
             }
-            return lmPersonas;
+            return lcl_lst_mod_personas;
         }
 
         #endregion
@@ -75,56 +73,52 @@ namespace Controladores
         /// <returns>Lista de personas</returns>
         public List<ModeloProveedor> buscarProveedores()
         {
-            CatalogoProveedores cp = new CatalogoProveedores();
+            CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
 
-            return cp.getAll(); ;
+            return lcl_cat_proveedores.getAll(); ;
         }
         /// <summary>
         /// Retorna proveedores en base a los valores inicializados en los atributos del modelo
         /// </summary>
-        /// <param name="pmProveedor"></param>
+        /// <param name="p_mod_proveedor"></param>
         /// <returns>Lista de proveedores</returns>
-        public List<ModeloProveedor> buscarProveedores(ModeloProveedor pmProveedor)
+        public List<ModeloProveedor> buscarProveedores(ModeloProveedor p_mod_proveedor)
         {
-            CatalogoProveedores cp = new CatalogoProveedores();
-            pmProveedor.convertirDatos();
-            List<ModeloProveedor> lmProveedor = new List<ModeloProveedor>();
-            lmProveedor = cp.buscarProveedor(pmProveedor);
-            
-            return lmProveedor;
+            CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
+            p_mod_proveedor.convertirDatos();
+
+            return lcl_cat_proveedores.buscarProveedor(p_mod_proveedor);
         }
         /// <summary>
         /// Busca proveedores que cumplan con un parámetro de búsqueda o retorna todas si se especifica "all"
         /// </summary>
-        /// <param name="pmProveedor">Proveedor con variable a buscar inicializada con algún valor</param>
-        /// <param name="paramentroBusqueda">all o codigoEntidad,cuit,razonSocial</param>
+        /// <param name="p_mod_proveedor">Proveedor con variable a buscar inicializada con algún valor</param>
+        /// <param name="p_paramentroBusqueda">all o codigoEntidad,cuit,razonSocial</param>
         /// <returns>Lista de proveedores</returns>
-        public List<ModeloProveedor> buscarProveedores(ModeloProveedor pmProveedor, string paramentroBusqueda)
+        public List<ModeloProveedor> buscarProveedores(ModeloProveedor p_mod_proveedor, string p_paramentroBusqueda)
         {
-            List<ModeloProveedor> lmProveedor = new List<ModeloProveedor>();
-            CatalogoProveedores cp = new CatalogoProveedores();
-            if (paramentroBusqueda == "codigoEntidad")
+            List<ModeloProveedor> lcl_lst_mod_proveedor = new List<ModeloProveedor>();
+            CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
+            if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad)
             {
-                lmProveedor.Add(cp.getOne(pmProveedor.codigo));    
+                lcl_lst_mod_proveedor.Add(lcl_cat_proveedores.getOne(p_mod_proveedor.codigo));    
             }
             else
             {
-                if (paramentroBusqueda == "all")
+                if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.Entidades.Proveedores.All)
                 {
-                    lmProveedor = cp.getAll();
+                    lcl_lst_mod_proveedor = lcl_cat_proveedores.getAll();
                 }
                 else
                 {
-                    lmProveedor = cp.buscarProveedor(pmProveedor, paramentroBusqueda);    
+                    lcl_lst_mod_proveedor = lcl_cat_proveedores.buscarProveedor(p_mod_proveedor, p_paramentroBusqueda);    
                 }
             }
-        
-            return lmProveedor;
+
+            return lcl_lst_mod_proveedor;
         }
 
         #endregion
-
-       
 
         #endregion
         
@@ -135,49 +129,48 @@ namespace Controladores
         /// <returns>Lista de Articulos</returns>
         public List<ModeloArticulos> buscarArticulos()
         {
-            CatalogoArticulos ca = new CatalogoArticulos();
+            CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
 
-            return ca.getAll(); 
+            return lcl_cat_articulos.getAll(); 
         }
         /// <summary>
         /// Retorna articulos en base a los valores inicializados en los atributos del modelo
         /// </summary>
         /// <param name="pmArticulo"></param>
         /// <returns>Lista de proveedores</returns>
-        public List<ModeloArticulos> buscarArticulos(ModeloArticulos pmArticulo)
+        public List<ModeloArticulos> buscarArticulos(ModeloArticulos p_mod_articulo)
         {
-            CatalogoArticulos ca = new CatalogoArticulos();
-            List<ModeloArticulos> lmArticulo = new List<ModeloArticulos>();
-            lmArticulo = ca.buscarArticulo(pmArticulo); //Ver como continuar Martin.
-            return lmArticulo;
+            CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
+            
+            return lcl_cat_articulos.buscarArticulo(p_mod_articulo); 
         }
         /// <summary>
         /// Busca proveedores que cumplan con un parámetro de búsqueda o retorna todas si se especifica "all"
         /// </summary>
-        /// <param name="pmArticulo">Proveedor con variable a buscar inicializada con algún valor</param>
-        /// <param name="paramentroBusqueda">string por el que se buscará artículo</param>
+        /// <param name="p_mod_articulo">Proveedor con variable a buscar inicializada con algún valor</param>
+        /// <param name="p_paramentroBusqueda">string por el que se buscará artículo</param>
         /// <returns>Lista de proveedores</returns>
-        public List<ModeloArticulos> buscarArticulos(ModeloArticulos pmArticulo, string paramentroBusqueda)
+        public List<ModeloArticulos> buscarArticulos(ModeloArticulos p_mod_articulo, string p_paramentroBusqueda)
         {
-            List<ModeloArticulos> lmArticulo = new List<ModeloArticulos>();
-            CatalogoArticulos ca = new CatalogoArticulos();
-            if (paramentroBusqueda == "codigooriginal")
+            List<ModeloArticulos> lcl_lst_mod_articulo = new List<ModeloArticulos>();
+            CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
+            if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)
             {
-                lmArticulo.Add(ca.getOne(pmArticulo.codigoOriginal));
+                lcl_lst_mod_articulo.Add(lcl_cat_articulos.getOne(p_mod_articulo.codigoOriginal));
             }
             else
             {
-                if (paramentroBusqueda == "all")
+                if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.Articulos.All)
                 {
-                    lmArticulo = ca.getAll();
+                    lcl_lst_mod_articulo = lcl_cat_articulos.getAll();
                 }
                 else
                 {
-                    lmArticulo = ca.buscarArticulo(pmArticulo.descripcion, paramentroBusqueda);
+                    lcl_lst_mod_articulo = lcl_cat_articulos.buscarArticulo(p_mod_articulo.descripcion, p_paramentroBusqueda);
                 }
             }
 
-            return lmArticulo;
+            return lcl_lst_mod_articulo;
         }
 
         #endregion
@@ -189,51 +182,48 @@ namespace Controladores
         /// <returns>Lista de Articulos</returns>
         public List<ModeloArticuloProveedores> buscarArticuloProveedores()
         {
-            CatalogoArticuloProveedores cap = new CatalogoArticuloProveedores();
+            CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
 
-            return cap.getAll(); ;
+            return lcl_cat_articuloProveedores.getAll(); ;
         }
         /// <summary>
         /// Retorna proveedores en base a los valores inicializados en los atributos del modelo
         /// </summary>
-        /// <param name="pmArticuloProveedores"></param>
+        /// <param name="p_mod_articuloProveedores"></param>
         /// <returns>Lista de proveedores</returns>
-        public List<ModeloArticuloProveedores> buscarArticulosProveedores(ModeloArticuloProveedores pmArticuloProveedores)
+        public List<ModeloArticuloProveedores> buscarArticulosProveedores(ModeloArticuloProveedores p_mod_articuloProveedores)
         {
-            CatalogoArticuloProveedores cap = new CatalogoArticuloProveedores();
-            List<ModeloArticuloProveedores> lmArticuloProveedores = new List<ModeloArticuloProveedores>();
-            lmArticuloProveedores = cap.buscarArticuloProveedor(pmArticuloProveedores); 
+            CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
             
-            return lmArticuloProveedores;
+            return lcl_cat_articuloProveedores.buscarArticuloProveedor(p_mod_articuloProveedores); 
         }
         /// <summary>
         /// Busca proveedores que cumplan con un parámetro de búsqueda o retorna todas si se especifica "all"
         /// </summary>
-        /// <param name="pmArticuloProveedores">Proveedor con variable a buscar inicializada con algún valor</param>
-        /// <param name="paramentroBusqueda">all o codigooriginal,codigoarticuloproveedor,descripcion</param>
+        /// <param name="p_mod_articuloProveedores">Proveedor con variable a buscar inicializada con algún valor</param>
+        /// <param name="p_paramentroBusqueda">all o codigooriginal,codigoarticuloproveedor,descripcion</param>
         /// <returns>Lista de proveedores</returns>
-        public List<ModeloArticuloProveedores> buscarArticuloProveedores(ModeloArticuloProveedores pmArticuloProveedores, string paramentroBusqueda)
+        public List<ModeloArticuloProveedores> buscarArticuloProveedores(ModeloArticuloProveedores p_mod_articuloProveedores, string p_paramentroBusqueda)
         {
-            List<ModeloArticuloProveedores> lmArticuloProveedores = new List<ModeloArticuloProveedores>();
-            CatalogoArticuloProveedores cap = new CatalogoArticuloProveedores();
-            if (paramentroBusqueda == "codigooriginal")
+            List<ModeloArticuloProveedores> lcl_lst_mod_articuloProveedores = new List<ModeloArticuloProveedores>();
+            CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
+            if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoOriginal)
             {
-                lmArticuloProveedores.Add(cap.getOne(pmArticuloProveedores.codigoOriginal,pmArticuloProveedores.codigoArticuloProveedor));
+                lcl_lst_mod_articuloProveedores.Add(lcl_cat_articuloProveedores.getOne(p_mod_articuloProveedores.codigoOriginal,p_mod_articuloProveedores.codigoArticuloProveedor));
             }
             else
             {
-                if (paramentroBusqueda == "all")
+                if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.ArticulosProveedores.All)
                 {
-                    lmArticuloProveedores = cap.getAll();
+                    lcl_lst_mod_articuloProveedores = lcl_cat_articuloProveedores.getAll();
                 }
                 else
-                { 
-                    
-                    //lmArticuloProveedores = cap.buscarArticuloProveedor(pmArticuloProveedores, paramentroBusqueda); Ver como redefinir dicho metodo - parametros
+                {
+                    //lmArticuloProveedores = lcl_cat_articuloProveedores.buscarArticuloProveedor(pmArticuloProveedores, paramentroBusqueda); Ver como redefinir dicho metodo - parametros
                 }
             }
 
-            return lmArticuloProveedores;
+            return lcl_lst_mod_articuloProveedores;
         }
 
         #endregion
@@ -246,23 +236,21 @@ namespace Controladores
         
         public List<ModeloProvincia> buscarProvincias()
         {
-            CatalogoProvincias cp = new CatalogoProvincias();
+            CatalogoProvincias lcl_cat_provincias = new CatalogoProvincias();
 
-            return cp.getAll();
+            return lcl_cat_provincias.getAll();
         }
 
         /// <summary>
         /// Retorna articulos en base a los valores inicializados en los atributos del modelo
         /// </summary>
-        /// <param name="pmProvincia"></param>
+        /// <param name="p_mod_provincia"></param>
         /// <returns>Lista de proveedores</returns>
-        public ModeloProvincia buscarProvincia(ModeloProvincia pmProvincia)
+        public ModeloProvincia buscarProvincia(ModeloProvincia p_mod_provincia)
         {
-            CatalogoProvincias cp = new CatalogoProvincias();
-            ModeloProvincia lmProvincia = new ModeloProvincia();
-            lmProvincia = cp.getOne(pmProvincia.codigo);
-            //lmProvincia = cp.buscarArticulo(pmProvincia); 
-            return lmProvincia;
+            CatalogoProvincias lcl_cat_provincias = new CatalogoProvincias();
+
+            return lcl_cat_provincias.getOne(p_mod_provincia.codigo);
         }
 
         #endregion
@@ -274,22 +262,19 @@ namespace Controladores
         /// <returns></returns>
         public List<ModeloPais> buscarPaises()
         {
-            CatalogoPaises cp = new CatalogoPaises();
-            return cp.getAll();
+            CatalogoPaises lcl_cat_paises = new CatalogoPaises();
+            return lcl_cat_paises.getAll();
         }
 
         /// <summary>
         /// Retorna articulos en base a los valores inicializados en los atributos del modelo
         /// </summary>
-        /// <param name="pmPais"></param>
+        /// <param name="p_mod_pais"></param>
         /// <returns>Lista de Paises</returns>
-        public ModeloPais buscarPaises(ModeloPais pmPais)
+        public ModeloPais buscarPaises(ModeloPais p_mod_pais)
         {
-            CatalogoPaises cp = new CatalogoPaises();
-            ModeloPais lmPaises = new ModeloPais(); 
-             lmPaises = cp.getOne(pmPais.codigo);
-            //lmProvincia = cp.buscarArticulo(pmProvincia); 
-            return lmPaises;
+            CatalogoPaises lcl_cat_paises = new CatalogoPaises();
+            return lcl_cat_paises.getOne(p_mod_pais.codigo);
         }
 
         #endregion
@@ -298,16 +283,13 @@ namespace Controladores
         /// <summary>
         /// Retorna articulos en base a los valores inicializados en los atributos del modelo
         /// </summary>
-        /// <param name="pmDomicilio"></param>
+        /// <param name="p_mod_domicilio"></param>
         /// <returns>Lista de Paises</returns>
-        public List<ModeloDomicilio> buscarDomicilios(ModeloDomicilio pmDomicilio)
+        public List<ModeloDomicilio> buscarDomicilios(ModeloDomicilio p_mod_domicilio)
         {
-            CatalogoDomicilios cd = new CatalogoDomicilios();
-            List<ModeloDomicilio> lmDomicilios = new List<ModeloDomicilio>();
+            CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
             
-            lmDomicilios= cd.getDomicilios(pmDomicilio.codigoDomicilio);
-            
-            return lmDomicilios;
+            return lcl_cat_domicilios.getDomicilios(p_mod_domicilio.codigoDomicilio);            
         }
 
         #endregion
@@ -316,16 +298,13 @@ namespace Controladores
         /// <summary>
         /// Retorna articulos en base a los valores inicializados en los atributos del modelo
         /// </summary>
-        /// <param name="pmMails"></param>
+        /// <param name="p_mod_mails"></param>
         /// <returns>Lista de Mails</returns>
-        public List<ModeloMail> buscarMails(ModeloMail pmMails)
+        public List<ModeloMail> buscarMails(ModeloMail p_mod_mails)
         {
-            CatalogoMails cm = new CatalogoMails();
-            List<ModeloMail> lmMails = new List<ModeloMail>();
+            CatalogoMails lcl_cat_mails = new CatalogoMails();
             
-            lmMails = cm.getMails(pmMails.codigoMail);
-            
-            return lmMails;
+            return lcl_cat_mails.getMails(p_mod_mails.codigoMail);
         }
 
         #endregion
@@ -334,16 +313,13 @@ namespace Controladores
         /// <summary>
         /// Retorna articulos en base a los valores inicializados en los atributos del modelo
         /// </summary>
-        /// <param name="pmTelefonos"></param>
+        /// <param name="p_mod_telefonos"></param>
         /// <returns>Lista de Mails</returns>
-        public List<ModeloTelefono> buscarTelefonos(ModeloTelefono pmTelefonos)
+        public List<ModeloTelefono> buscarTelefonos(ModeloTelefono p_mod_telefonos)
         {
-            CatalogoTelefonos ct = new CatalogoTelefonos();
-            List<ModeloTelefono> lmTelefonos = new List<ModeloTelefono>();
+            CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
 
-            lmTelefonos= ct.getTelefonos(pmTelefonos.codigoTelefono);
-
-            return lmTelefonos;
+            return lcl_cat_telefonos.getTelefonos(p_mod_telefonos.codigoTelefono);
         }
 
         #endregion
