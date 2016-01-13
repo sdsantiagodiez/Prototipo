@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmABMArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmABMArticulos.Designer.cs">
+      <DependentUpon>frmABMArticulos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmABMEntidad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,12 +61,6 @@
     </Compile>
     <Compile Include="frmABMEntidadDatosAdicionalesContactoProveedor.Designer.cs">
       <DependentUpon>frmABMEntidadDatosAdicionalesContactoProveedor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmABMEntidadDatosAdicionalesProveedor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmABMEntidadDatosAdicionalesProveedor.Designer.cs">
-      <DependentUpon>frmABMEntidadDatosAdicionalesProveedor.cs</DependentUpon>
     </Compile>
     <Compile Include="frmABMEntidadDatosAdicionalesUsuario.cs">
       <SubType>Form</SubType>
@@ -136,6 +136,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmABMArticulos.resx">
+      <DependentUpon>frmABMArticulos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmABMEntidad.resx">
       <DependentUpon>frmABMEntidad.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -172,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPedidoProveedorNuevo.resx">
       <DependentUpon>frmPedidoProveedorNuevo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmResultadoBusqueda.resx">
+      <DependentUpon>frmResultadoBusqueda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSeleccion.resx">
       <DependentUpon>frmSeleccion.cs</DependentUpon>

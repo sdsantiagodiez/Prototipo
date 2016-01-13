@@ -17,8 +17,8 @@ namespace Vista
     public partial class frmABMEntidad : Form
     {
         #region Atributos
-        ModeloPersonas mPersonaSeleccionada;
-        ModeloProveedor mProveedorSeleccionado;
+        ModeloPersonas glb_mod_personaSeleccionada;
+        ModeloProveedor glb_mod_proveedorSeleccionado;
 
         private string _tipoEntidadSeleccionada;
         private string tipoEntidadSeleccionada
@@ -78,7 +78,7 @@ namespace Vista
             }
         }
         
-        private frmResultadoBusqueda frmResultadoBusqueda;
+        private frmResultadoBusqueda glb_frm_resultadoBusqueda;
         
         #endregion
 
@@ -101,8 +101,8 @@ namespace Vista
 
         private void inicializarModeloSeleccion()
         {
-            mPersonaSeleccionada = new ModeloPersonas();
-            mProveedorSeleccionado = new ModeloProveedor();
+            glb_mod_personaSeleccionada = new ModeloPersonas();
+            glb_mod_proveedorSeleccionado = new ModeloProveedor();
         }
 
         private void inicializarModoFormularioInicio()
@@ -210,9 +210,9 @@ namespace Vista
         private void inicializarComboBox()
         {
             //Populo combobox de paises
-            ControladorBusqueda cBusqueda = new ControladorBusqueda();
-            List<ModeloPais> paises = cBusqueda.buscarPaises();
-            this.cmbBoxPais.DataSource = paises;
+            ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
+            List<ModeloPais> lcl_lst_mod_paises = lcl_con_busqueda.buscarPaises();
+            this.cmbBoxPais.DataSource = lcl_lst_mod_paises;
             this.cmbBoxPais.DisplayMember = "pais";
             this.cmbBoxPais.ValueMember = "codigo";
             this.cmbBoxPais.SelectedItem = null;
@@ -263,7 +263,6 @@ namespace Vista
             if (radioButtonUsuario.Checked == true)
             {
                 tipoEntidadSeleccionada = LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario;
-
             }
             else
             {
@@ -294,10 +293,10 @@ namespace Vista
         #region Button
         private void btnAgregarMail_Click(object sender, EventArgs e)
         {
-            ModeloMail mMail = new ModeloMail();
-            mMail.mail = txtBoxMail.Text;
+            ModeloMail lcl_mod_mail = new ModeloMail();
+            lcl_mod_mail.mail = txtBoxMail.Text;
             //Agregar validación por si el mail ya esta incluido
-            if (mMail.validarMail() && this.validarMail())
+            if (lcl_mod_mail.validarMail() && this.validarMail())
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridViewMail.Rows[0].Clone();
                 row.Cells[0].Value = 0;
@@ -306,13 +305,13 @@ namespace Vista
             }
             else if (!this.validarMail())
             {
-                frmMensajeCorto mensaje = new frmMensajeCorto("Faltan campos", "El campo número de teléfono esta vacío", "fallo");
-                mensaje.ShowDialog();
+                frmMensajeCorto lcl_frm_mensajeCorto = new frmMensajeCorto("Faltan campos", "El campo número de teléfono esta vacío", "fallo");
+                lcl_frm_mensajeCorto.ShowDialog();
             }
             else
             {
-                frmMensajeCorto mensaje = new frmMensajeCorto("Error", "El formato de mail ingresado no es válido", "fallo");
-                mensaje.ShowDialog();   
+                frmMensajeCorto lcl_frm_mensajeCorto = new frmMensajeCorto("Error", "El formato de mail ingresado no es válido", "fallo");
+                lcl_frm_mensajeCorto.ShowDialog();   
             }
         }
 
@@ -346,8 +345,8 @@ namespace Vista
             }
             else
             {
-                frmMensajeCorto mensaje = new frmMensajeCorto("Faltan campos", "El campo número de teléfono esta vacío", "fallo");
-                mensaje.ShowDialog();
+                frmMensajeCorto lcl_frm_mensajeCorto = new frmMensajeCorto("Faltan campos", "El campo número de teléfono esta vacío", "fallo");
+                lcl_frm_mensajeCorto.ShowDialog();
             }
         }
 
@@ -387,8 +386,8 @@ namespace Vista
             }
             else
             {
-                frmMensajeCorto mensaje = new frmMensajeCorto("Faltan campos", "Debe seleccionar un país y provincia para el domicilio", "fallo");
-                mensaje.ShowDialog();
+                frmMensajeCorto lcl_frm_mensajeCorto = new frmMensajeCorto("Faltan campos", "Debe seleccionar un país y provincia para el domicilio", "fallo");
+                lcl_frm_mensajeCorto.ShowDialog();
                 
             }
         }
@@ -413,25 +412,25 @@ namespace Vista
             string tipoEntidad = this.getTipoEntidad();
             if (tipoEntidad != null)
             {
-                frmResultadoBusqueda = new frmResultadoBusqueda();
+                glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
                 switch (tipoEntidad)
                 {
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona:
-                        ModeloPersonas mPersona = this.cargarDatosEnModeloPersona();
-                        frmResultadoBusqueda.mostrarBusqueda(mPersona);
-                        if (frmResultadoBusqueda.mPersona != null)
+                        ModeloPersonas lcl_mod_persona = this.cargarDatosEnModeloPersona();
+                        glb_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_persona);
+                        if (glb_frm_resultadoBusqueda.mPersona != null)
                         {
-                            mPersonaSeleccionada = frmResultadoBusqueda.mPersona;
-                            this.cargarPersonaEnControles(mPersonaSeleccionada);
+                            glb_mod_personaSeleccionada = glb_frm_resultadoBusqueda.mPersona;
+                            this.cargarPersonaEnControles(glb_mod_personaSeleccionada);
                         }
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor:
-                        ModeloProveedor mProveedor = this.cargarDatosEnModeloProveedor();
-                        frmResultadoBusqueda.mostrarBusqueda(mProveedor);
-                        if (frmResultadoBusqueda.mProveedor != null)
+                        ModeloProveedor lcl_mod_proveedor = this.cargarDatosEnModeloProveedor();
+                        glb_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_proveedor);
+                        if (glb_frm_resultadoBusqueda.mProveedor != null)
                         {
-                            mProveedorSeleccionado = frmResultadoBusqueda.mProveedor;
-                            this.cargarProveedorEnControles(mProveedorSeleccionado);
+                            glb_mod_proveedorSeleccionado = glb_frm_resultadoBusqueda.mProveedor;
+                            this.cargarProveedorEnControles(glb_mod_proveedorSeleccionado);
                         }
                         break;
                     default:
@@ -441,8 +440,8 @@ namespace Vista
             }
             else
             {
-                frmMensajeCorto seleccionarTipoEntidad = new frmMensajeCorto("Tipo Entidad", "Debe seleccionar un tipo de entidad para realizar la acción", "fallo");
-                seleccionarTipoEntidad.ShowDialog();
+                frmMensajeCorto lcl_frm_mensajeCorto = new frmMensajeCorto("Tipo Entidad", "Debe seleccionar un tipo de entidad para realizar la acción", "fallo");
+                lcl_frm_mensajeCorto.ShowDialog();
             }
 
         }
@@ -529,17 +528,17 @@ namespace Vista
         //cmbBox
         private void cmbBoxPais_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            ControladorBusqueda cBusqueda = new ControladorBusqueda();
-            ModeloProvincia mProvinciaBusqueda = new ModeloProvincia();
+            ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
+            ModeloProvincia lcl_mod_provincia = new ModeloProvincia();
             //Inserto codigoPais del país seleccionado en el comboBox
-            mProvinciaBusqueda.codigoPais = this.cmbBoxPais.SelectedValue.ToString();
+            lcl_mod_provincia.codigoPais = this.cmbBoxPais.SelectedValue.ToString();
             //this.cmbBoxProvincia.DataSource = provincias;
             //REVISAR TEMPORAL HASTA QUE ESTE COMPLETO CONTROLADOrBUSQUEDA
-            List<ModeloProvincia> lmProvincias = cBusqueda.buscarProvincias();
+            List<ModeloProvincia> lmProvincias = lcl_con_busqueda.buscarProvincias();
             List<ModeloProvincia> provincias = new List<ModeloProvincia>();
             foreach (ModeloProvincia p in lmProvincias)
             {
-                if (p.codigoPais == mProvinciaBusqueda.codigoPais)
+                if (p.codigoPais == lcl_mod_provincia.codigoPais)
                 {
                     provincias.Add(p);
                 }
@@ -599,26 +598,26 @@ namespace Vista
             }
         }
 
-        private bool validarEntidad(ModeloEntidad pmEntidad)
+        private bool validarEntidad(ModeloEntidad p_mod_entidad)
         {
             return true;
         }
         
-        private bool validarPersona(ModeloPersonas pmPersona)
+        private bool validarPersona(ModeloPersonas p_mod_persona)
         {
             bool validez = false;
-            if(this.validarEntidad(pmPersona) == true)
+            if(this.validarEntidad(p_mod_persona) == true)
             {
-                switch (pmPersona.tipoPersona)
+                switch (p_mod_persona.tipoPersona)
                 {
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente:
-                        validez = this.validarCliente(pmPersona);
+                        validez = this.validarCliente(p_mod_persona);
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario:
-                        validez = this.validarUsuario(pmPersona);
+                        validez = this.validarUsuario(p_mod_persona);
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor:
-                        validez = this.validarContactoProveedor(pmPersona);
+                        validez = this.validarContactoProveedor(p_mod_persona);
                         break;
                     default:
                         validez = false;
@@ -627,22 +626,22 @@ namespace Vista
             }
             return validez;
         }
-        private bool validarCliente(ModeloPersonas pmCliente)
+        private bool validarCliente(ModeloPersonas p_mod_cliente)
         {
             return true;
         }
-        private bool validarUsuario(ModeloPersonas pmUsuario)
+        private bool validarUsuario(ModeloPersonas p_mod_usuario)
         {
             return true;
         }
-        private bool validarContactoProveedor(ModeloPersonas pmContactoProveedor)
+        private bool validarContactoProveedor(ModeloPersonas p_mod_contactoProveedor)
         {
             return true;
         }
-        private bool validarProveedor(ModeloProveedor pmProveedor)
+        private bool validarProveedor(ModeloProveedor p_mod_proveedor)
         {
             bool validez = false;
-            if (this.validarEntidad(pmProveedor) == true)
+            if (this.validarEntidad(p_mod_proveedor) == true)
             {
                 //validar razon social y algo más?
             }
@@ -811,73 +810,73 @@ namespace Vista
 
         #region Pasar datos de Modelo a controles
 
-        private void cargarEntidadEnControles(ModeloPersonas pmPersona)
+        private void cargarEntidadEnControles(ModeloPersonas p_mod_persona)
         {
-            this.cargarPersonaEnControles(pmPersona);
+            this.cargarPersonaEnControles(p_mod_persona);
         }
         private void cargarEntidadEnControles(ModeloProveedor pmProveedor)
         {
             this.cargarProveedorEnControles(pmProveedor);
         }
-        private void cargarPersonaEnControles(ModeloPersonas pmPersona)
+        private void cargarPersonaEnControles(ModeloPersonas p_mod_persona)
         {
-            mPersonaSeleccionada = pmPersona;
-            tipoEntidadSeleccionada = mPersonaSeleccionada.tipoPersona;
+            glb_mod_personaSeleccionada = p_mod_persona;
+            tipoEntidadSeleccionada = glb_mod_personaSeleccionada.tipoPersona;
 
-            this.cargarDatosEnDatosPersonales(mPersonaSeleccionada);
+            this.cargarDatosEnDatosPersonales(glb_mod_personaSeleccionada);
 
-            this.cargarDatosEnDataGridViewDomicilio(mPersonaSeleccionada.domicilios);
-            this.cargarDatosEnDataGridViewTelefono(mPersonaSeleccionada.telefonos);
-            this.cargarDatosEnDataGridViewMail(mPersonaSeleccionada.mails);
+            this.cargarDatosEnDataGridViewDomicilio(glb_mod_personaSeleccionada.domicilios);
+            this.cargarDatosEnDataGridViewTelefono(glb_mod_personaSeleccionada.telefonos);
+            this.cargarDatosEnDataGridViewMail(glb_mod_personaSeleccionada.mails);
 
-            if (mPersonaSeleccionada.tipoPersona == LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario)
+            if (glb_mod_personaSeleccionada.tipoPersona == LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario)
             {
                 //carga de datos de usuario
             }
-            if (mPersonaSeleccionada.tipoPersona == LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor)
+            if (glb_mod_personaSeleccionada.tipoPersona == LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor)
             {
                 //carga de proveedor al que pertenece
             }
             
         }
-        private void cargarProveedorEnControles(ModeloProveedor pmProveedor)
+        private void cargarProveedorEnControles(ModeloProveedor p_mod_proveedor)
         {            
-            mProveedorSeleccionado = pmProveedor;
-            tipoEntidadSeleccionada = mProveedorSeleccionado.tipoEntidad;
+            glb_mod_proveedorSeleccionado = p_mod_proveedor;
+            tipoEntidadSeleccionada = glb_mod_proveedorSeleccionado.tipoEntidad;
 
-            this.cargarDatosEnDatosPersonales(mProveedorSeleccionado);
+            this.cargarDatosEnDatosPersonales(glb_mod_proveedorSeleccionado);
 
-            this.cargarDatosEnDataGridViewDomicilio(mProveedorSeleccionado.domicilios);
-            this.cargarDatosEnDataGridViewTelefono(mProveedorSeleccionado.telefonos);
-            this.cargarDatosEnDataGridViewMail(mProveedorSeleccionado.mails);
+            this.cargarDatosEnDataGridViewDomicilio(glb_mod_proveedorSeleccionado.domicilios);
+            this.cargarDatosEnDataGridViewTelefono(glb_mod_proveedorSeleccionado.telefonos);
+            this.cargarDatosEnDataGridViewMail(glb_mod_proveedorSeleccionado.mails);
+        }
+
+        private void cargarDatosEnDatosPersonales(ModeloPersonas p_mod_persona)
+        {
+            this.cargarDatosEnDatosPersonalesBase(p_mod_persona);
+
+            txtBoxDNI.Text = p_mod_persona.dni != null ? p_mod_persona.dni : "";
+            txtBoxNombre.Text = p_mod_persona.nombre != null ? p_mod_persona.nombre : "";
+            txtBoxApellido.Text = p_mod_persona.apellido != null ? p_mod_persona.apellido : "";
+        }
+        private void cargarDatosEnDatosPersonales(ModeloProveedor p_mod_proveedor)
+        {
+            this.cargarDatosEnDatosPersonalesBase(p_mod_proveedor);
+
+            txtBoxRazonSocial.Text = p_mod_proveedor.razonSocial != null ? p_mod_proveedor.razonSocial : "";
+        }
+        private void cargarDatosEnDatosPersonalesBase(ModeloEntidad p_mod_entidad)
+        {
+            txtBoxCodigoEntidad.Text = p_mod_entidad.codigo.ToString();
+            txtBoxCUIT.Text = p_mod_entidad.cuit != null ? p_mod_entidad.cuit : "";
+            rchTextBoxObservaciones.Text = p_mod_entidad.observaciones != null ? p_mod_entidad.observaciones : "";
         }
         
-        private void cargarDatosEnDatosPersonales(ModeloPersonas pmPersona)
-        {
-            this.cargarDatosEnDatosPersonalesBase(pmPersona);
-            
-            txtBoxDNI.Text = pmPersona.dni != null ? pmPersona.dni : "";
-            txtBoxNombre.Text = pmPersona.nombre != null ? pmPersona.nombre : "";
-            txtBoxApellido.Text = pmPersona.apellido != null ? pmPersona.apellido : "";
-        }
-        private void cargarDatosEnDatosPersonales(ModeloProveedor pmProveedor)
-        {
-            this.cargarDatosEnDatosPersonalesBase(pmProveedor);
-
-            txtBoxRazonSocial.Text = pmProveedor.razonSocial != null ? pmProveedor.razonSocial : "";
-        }
-        private void cargarDatosEnDatosPersonalesBase(ModeloEntidad pmEntidad)
-        {
-            txtBoxCodigoEntidad.Text = pmEntidad.codigo.ToString();
-            txtBoxCUIT.Text = pmEntidad.cuit != null ? pmEntidad.cuit : "";
-            rchTextBoxObservaciones.Text = pmEntidad.observaciones != null ? pmEntidad.observaciones : "";
-        }
-        
-        private void cargarDatosEnDataGridViewDomicilio(List<ModeloDomicilio> plmDomicilio)
+        private void cargarDatosEnDataGridViewDomicilio(List<ModeloDomicilio> p_lst_mod_domicilio)
         {
             DataGridViewRow row = (DataGridViewRow)dataGridViewDomicilio.Rows[0].Clone();
 
-            foreach (ModeloDomicilio mDomicilio in plmDomicilio)
+            foreach (ModeloDomicilio mDomicilio in p_lst_mod_domicilio)
             {
                 row = (DataGridViewRow)dataGridViewDomicilio.Rows[0].Clone();
                 row.Cells[0].Value = mDomicilio.codigoDomicilio;
@@ -895,11 +894,11 @@ namespace Vista
                 dataGridViewDomicilio.Rows.Add(row);
             }
         }
-        private void cargarDatosEnDataGridViewTelefono(List<ModeloTelefono> plmTelefono)
+        private void cargarDatosEnDataGridViewTelefono(List<ModeloTelefono> p_lst_mod_telefono)
         {
             DataGridViewRow row = (DataGridViewRow)dataGridViewTelefono.Rows[0].Clone();
             
-            foreach (ModeloTelefono mTelefono in plmTelefono)
+            foreach (ModeloTelefono mTelefono in p_lst_mod_telefono)
             {
                 row = (DataGridViewRow)dataGridViewTelefono.Rows[0].Clone();
                 //codigoTelefono
@@ -914,10 +913,10 @@ namespace Vista
                 dataGridViewTelefono.Rows.Add(row);
             }
         }
-        private void cargarDatosEnDataGridViewMail(List<ModeloMail> plmMail)
+        private void cargarDatosEnDataGridViewMail(List<ModeloMail> p_lst_mod_mail)
         {
             DataGridViewRow row = (DataGridViewRow)dataGridViewMail.Rows[0].Clone();
-            foreach (ModeloMail mMail in plmMail)
+            foreach (ModeloMail mMail in p_lst_mod_mail)
             {
                 row = (DataGridViewRow)dataGridViewMail.Rows[0].Clone();
                 row.Cells[0].Value = mMail.codigoMail;
@@ -927,14 +926,14 @@ namespace Vista
             }
         }
 
-        private void cargarDatosEnCmbBoxProvincia(List<ModeloProvincia> pLProvincias)
+        private void cargarDatosEnCmbBoxProvincia(List<ModeloProvincia> p_lst_mod_provincias)
         {
-            this.cmbBoxProvincia.DataSource = pLProvincias;
+            this.cmbBoxProvincia.DataSource = p_lst_mod_provincias;
             this.cmbBoxProvincia.SelectedItem = null;
         }
-        private void cargaDatosEnCmbBoxPais(List<ModeloPais> pLPais)
+        private void cargaDatosEnCmbBoxPais(List<ModeloPais> p_lst_mod_paises)
         {
-            this.cmbBoxPais.DataSource = pLPais;
+            this.cmbBoxPais.DataSource = p_lst_mod_paises;
             this.cmbBoxPais.SelectedItem = null;
         }
 
@@ -1030,10 +1029,10 @@ namespace Vista
                 switch (this.getTipoEntidad())
                 {
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona:
-                        exito = cBaja.eliminarPersona(mPersonaSeleccionada);
+                        exito = cBaja.eliminarPersona(glb_mod_personaSeleccionada);
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor:
-                        exito = cBaja.eliminarProveedor(mProveedorSeleccionado);
+                        exito = cBaja.eliminarProveedor(glb_mod_proveedorSeleccionado);
                         break;
                     default:
                         break;
@@ -1056,12 +1055,12 @@ namespace Vista
         }
         #endregion
 
-        private void quitarTextoEnControles(Control con)
+        private void quitarTextoEnControles(Control p_ctr_control)
         {
             //se utiliza para que si el control no esta en ninguno de los if's,
             //entonces se mete en un control que puede contener una colección de controles
             bool bandera;
-            foreach (Control c in con.Controls)
+            foreach (Control c in p_ctr_control.Controls)
             {
                 bandera = true;
                 if (c is TextBox)
@@ -1130,6 +1129,7 @@ namespace Vista
          
         }
        
+        //Eliminar ambos metodos Leave
         private void txtBoxApellido_Leave(object sender, EventArgs e)
         {
             TextBox TB = (TextBox)sender;
@@ -1157,10 +1157,6 @@ namespace Vista
         {
             switch (this.tipoEntidadSeleccionada)
             {
-                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor:
-                    frmABMEntidadDatosAdicionalesProveedor frmDatosAdicionalesProveedor = new frmABMEntidadDatosAdicionalesProveedor();
-                    frmDatosAdicionalesProveedor.ShowDialog();
-                    break;
                 case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor:
                     frmABMEntidadDatosAdicionalesContactoProveedor frmDatosAdicionalesContactoProveedor = new frmABMEntidadDatosAdicionalesContactoProveedor();
                     frmDatosAdicionalesContactoProveedor.ShowDialog();
@@ -1172,7 +1168,6 @@ namespace Vista
                 default:
                     MessageBox.Show("No hay datos adicionales para mostrar","Datos Adicionales",MessageBoxButtons.OK);
                     break;
-
             }
         }
 

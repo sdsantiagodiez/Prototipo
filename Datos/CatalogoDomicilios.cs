@@ -13,29 +13,29 @@ namespace Datos
     {
         //REVISAR VALIDAR EN ALGUN LADO QUE CALLE NO SEA NULL!!!!
 
-        private ModeloDomicilio leerDatosDomicilio(SqlDataReader drDomicilios)
+        private ModeloDomicilio leerDatosDomicilio(SqlDataReader p_drDomicilios)
         {
-            ModeloDomicilio modDomicilio = new ModeloDomicilio();
+            ModeloDomicilio lcl_mod_domicilio = new ModeloDomicilio();
 
-            modDomicilio.codigoDomicilio = (int)drDomicilios["codigo_domicilio"];
+            lcl_mod_domicilio.codigoDomicilio = (int)p_drDomicilios["codigo_domicilio"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
-            modDomicilio.calle = (drDomicilios["calle"] != DBNull.Value) ? (string)drDomicilios["calle"] : null;
-            modDomicilio.numero = (drDomicilios["numero"] != DBNull.Value) ? (string)drDomicilios["numero"] : null;
-            modDomicilio.departamento = (drDomicilios["departamento"] != DBNull.Value) ? (string)drDomicilios["departamento"] : null;
-            modDomicilio.piso = (drDomicilios["piso"] != DBNull.Value) ? (string)drDomicilios["piso"] : null;
-            modDomicilio.ciudad = (drDomicilios["ciudad"] != DBNull.Value) ? (string)drDomicilios["ciudad"] : null;
-            modDomicilio.codigoPostal = (drDomicilios["codigo_postal"] != DBNull.Value) ? (string)drDomicilios["codigo_postal"] : null;
-            modDomicilio.provincia.codigo = (drDomicilios["codigo_provincia"] != DBNull.Value) ? (string)drDomicilios["codigo_provincia"] : null;
-            modDomicilio.provincia.provincia = (drDomicilios["provincia"] != DBNull.Value) ? (string)drDomicilios["provincia"] : null;
-            modDomicilio.pais.codigo = (drDomicilios["codigo_pais"] != DBNull.Value) ? (string)drDomicilios["codigo_pais"] : null;
-            modDomicilio.pais.pais = (drDomicilios["pais"] != DBNull.Value) ? (string)drDomicilios["pais"] : null;
+            lcl_mod_domicilio.calle = (p_drDomicilios["calle"] != DBNull.Value) ? (string)p_drDomicilios["calle"] : null;
+            lcl_mod_domicilio.numero = (p_drDomicilios["numero"] != DBNull.Value) ? (string)p_drDomicilios["numero"] : null;
+            lcl_mod_domicilio.departamento = (p_drDomicilios["departamento"] != DBNull.Value) ? (string)p_drDomicilios["departamento"] : null;
+            lcl_mod_domicilio.piso = (p_drDomicilios["piso"] != DBNull.Value) ? (string)p_drDomicilios["piso"] : null;
+            lcl_mod_domicilio.ciudad = (p_drDomicilios["ciudad"] != DBNull.Value) ? (string)p_drDomicilios["ciudad"] : null;
+            lcl_mod_domicilio.codigoPostal = (p_drDomicilios["codigo_postal"] != DBNull.Value) ? (string)p_drDomicilios["codigo_postal"] : null;
+            lcl_mod_domicilio.provincia.codigo = (p_drDomicilios["codigo_provincia"] != DBNull.Value) ? (string)p_drDomicilios["codigo_provincia"] : null;
+            lcl_mod_domicilio.provincia.provincia = (p_drDomicilios["provincia"] != DBNull.Value) ? (string)p_drDomicilios["provincia"] : null;
+            lcl_mod_domicilio.pais.codigo = (p_drDomicilios["codigo_pais"] != DBNull.Value) ? (string)p_drDomicilios["codigo_pais"] : null;
+            lcl_mod_domicilio.pais.pais = (p_drDomicilios["pais"] != DBNull.Value) ? (string)p_drDomicilios["pais"] : null;
 
-            return modDomicilio;
+            return lcl_mod_domicilio;
         }
         public List<ModeloDomicilio> getDomicilios(int codigoEntidad)
         {
-            List<ModeloDomicilio> domicilios = new List<ModeloDomicilio>();
+            List<ModeloDomicilio> lcl_lst_mod_domicilio = new List<ModeloDomicilio>();
 
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -61,19 +61,19 @@ namespace Datos
 
             SqlDataReader drDomicilios = comando.ExecuteReader();
 
-            ModeloDomicilio modDomicilio = new ModeloDomicilio();
+            ModeloDomicilio lcl_mod_domicilio = new ModeloDomicilio();
 
             while (drDomicilios.Read())
             {
-                modDomicilio = new ModeloDomicilio();
-                modDomicilio = this.leerDatosDomicilio(drDomicilios);
-                domicilios.Add(modDomicilio);
+                lcl_mod_domicilio = new ModeloDomicilio();
+                lcl_mod_domicilio = this.leerDatosDomicilio(drDomicilios);
+                lcl_lst_mod_domicilio.Add(lcl_mod_domicilio);
             }
             drDomicilios.Close();
 
             comando.Connection.Close();
 
-            return domicilios;
+            return lcl_lst_mod_domicilio;
         }
         
         #region ALTA/BAJA/MODIFICACIÓN domicilios
@@ -81,7 +81,7 @@ namespace Datos
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
-        public bool agregarNuevaEntidad(ModeloDomicilio pmDomicilio, int pCodigoEntidad)
+        public bool agregarNuevaEntidad(ModeloDomicilio p_mod_domicilio, int p_codigoEntidad)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -94,14 +94,14 @@ namespace Datos
                 "INSERT INTO [domicilios_entidad] ([codigo_entidad], [calle], [numero], [piso], [departamento], [ciudad], [codigo_postal], [codigo_provincia]) " +
                 "VALUES (@codigo_entidad, @calle, @numero, @piso, @departamento, @ciudad, @codigo_postal, @codigo_provincia)";
             //Indica los parametros
-            comando.Parameters.Add(this.instanciarParametro(pCodigoEntidad, "@codigo_entidad"));
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.calle, "@calle"));
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.numero , "@numero"));
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.piso, "@piso"));
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.departamento, "@departamento"));
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.ciudad, "@ciudad"));
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.codigoPostal, "@codigo_postal"));
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.provincia.codigo, "@codigo_provincia"));
+            comando.Parameters.Add(this.instanciarParametro(p_codigoEntidad, "@codigo_entidad"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.calle, "@calle"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.numero, "@numero"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.piso, "@piso"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.departamento, "@departamento"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.ciudad, "@ciudad"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.codigoPostal, "@codigo_postal"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.provincia.codigo, "@codigo_provincia"));
             
 
             comando.Connection.Open();
@@ -118,7 +118,7 @@ namespace Datos
             }
         }
 
-        public bool actualizarEntidad(ModeloDomicilio pmDomicilio)
+        public bool actualizarEntidad(ModeloDomicilio p_mod_domicilio)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -132,14 +132,14 @@ namespace Datos
                 "[departamento]=@departamento,[ciudad]=@ciudad, [codigo_postal]=@codigo_postal, [codigo_provincia]=@codigo_provincia " +
                 "WHERE [codigo_domicilio]=@codigo_domicilio";
 
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.codigoDomicilio, "@codigo_domicilio"));
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.calle, "@calle"));
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.numero, "@numero"));
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.piso, "@piso"));
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.departamento, "@departamento"));
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.ciudad, "@ciudad"));
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.codigoPostal, "@codigo_postal"));
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.provincia.codigo, "@codigo_provincia"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.codigoDomicilio, "@codigo_domicilio"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.calle, "@calle"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.numero, "@numero"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.piso, "@piso"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.departamento, "@departamento"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.ciudad, "@ciudad"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.codigoPostal, "@codigo_postal"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.provincia.codigo, "@codigo_provincia"));
             
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
@@ -155,7 +155,7 @@ namespace Datos
             }
         }
 
-        public bool bajaEntidad(ModeloDomicilio pmDomicilio)
+        public bool bajaEntidad(ModeloDomicilio p_mod_domicilio)
         {
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -167,7 +167,7 @@ namespace Datos
                 "DELETE FROM [domicilios_entidad] " +
                     "WHERE [domicilios_entidad].codigo_domicilio = @codigo_domicilio ";
 
-            comando.Parameters.Add(this.instanciarParametro(pmDomicilio.codigoDomicilio, "@codigo_domicilio"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.codigoDomicilio, "@codigo_domicilio"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();

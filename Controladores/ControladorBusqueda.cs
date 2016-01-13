@@ -22,7 +22,7 @@ namespace Controladores
         {
             CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
 
-            return lcl_cat_personas.getAll();
+            return lcl_cat_personas.buscarPersona(null, Constantes.ParametrosBusqueda.Entidades.Personas.All);
         }
         /// <summary>
         /// Retorna personas en base a los valores inicializados en los atributos del modelo
@@ -33,35 +33,20 @@ namespace Controladores
         {
             CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
             p_mod_persona.convertirDatos();
-            
-            return lcl_cat_personas.buscarPersona(p_mod_persona);            
+
+            return lcl_cat_personas.buscarPersona(p_mod_persona,Constantes.ParametrosBusqueda.Entidades.Personas.Any);            
         }
         /// <summary>
-        /// Busca personas que cumplan con un parámetro de búsqueda o retorna todas si se especifica "all"
+        /// Busca personas que cumplan con un parámetro de búsqueda.
         /// </summary>
         /// <param name="p_mod_persona">Persona con variable a buscar inicializada con algún valor</param>
-        /// <param name="p_paramentroBusqueda">all o codigoEntidad,cuit,dni,nombre,apellido,usuario,tipoPersona</param>
+        /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda</param>
         /// <returns>Lista de personas</returns>
         public List<ModeloPersonas> buscarPersonas(ModeloPersonas p_mod_persona, string p_paramentroBusqueda)
         {
-            List<ModeloPersonas> lcl_lst_mod_personas = new List<ModeloPersonas>();
             CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
-            if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.Entidades.Personas.CodigoEntidad)
-            {
-                lcl_lst_mod_personas.Add(lcl_cat_personas.getOne(p_mod_persona.codigo));
-            }
-            else
-            {
-                if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.Entidades.Personas.All)
-                {
-                    lcl_lst_mod_personas = lcl_cat_personas.getAll();
-                }
-                else
-                {
-                    lcl_lst_mod_personas = lcl_cat_personas.buscarPersona(p_mod_persona, p_paramentroBusqueda);    
-                }
-            }
-            return lcl_lst_mod_personas;
+
+            return lcl_cat_personas.buscarPersona(p_mod_persona, p_paramentroBusqueda);
         }
 
         #endregion
@@ -74,8 +59,8 @@ namespace Controladores
         public List<ModeloProveedor> buscarProveedores()
         {
             CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
-
-            return lcl_cat_proveedores.getAll(); ;
+            
+            return lcl_cat_proveedores.buscarProveedor(null,Constantes.ParametrosBusqueda.Entidades.Proveedores.All);
         }
         /// <summary>
         /// Retorna proveedores en base a los valores inicializados en los atributos del modelo
@@ -87,35 +72,19 @@ namespace Controladores
             CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
             p_mod_proveedor.convertirDatos();
 
-            return lcl_cat_proveedores.buscarProveedor(p_mod_proveedor);
+            return lcl_cat_proveedores.buscarProveedor(p_mod_proveedor, Constantes.ParametrosBusqueda.Entidades.Proveedores.Any);
         }
         /// <summary>
-        /// Busca proveedores que cumplan con un parámetro de búsqueda o retorna todas si se especifica "all"
+        /// Busca proveedores que cumplan con un parámetro de búsqueda
         /// </summary>
         /// <param name="p_mod_proveedor">Proveedor con variable a buscar inicializada con algún valor</param>
-        /// <param name="p_paramentroBusqueda">all o codigoEntidad,cuit,razonSocial</param>
+        /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda</param>
         /// <returns>Lista de proveedores</returns>
         public List<ModeloProveedor> buscarProveedores(ModeloProveedor p_mod_proveedor, string p_paramentroBusqueda)
         {
-            List<ModeloProveedor> lcl_lst_mod_proveedor = new List<ModeloProveedor>();
             CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
-            if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad)
-            {
-                lcl_lst_mod_proveedor.Add(lcl_cat_proveedores.getOne(p_mod_proveedor.codigo));    
-            }
-            else
-            {
-                if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.Entidades.Proveedores.All)
-                {
-                    lcl_lst_mod_proveedor = lcl_cat_proveedores.getAll();
-                }
-                else
-                {
-                    lcl_lst_mod_proveedor = lcl_cat_proveedores.buscarProveedor(p_mod_proveedor, p_paramentroBusqueda);    
-                }
-            }
 
-            return lcl_lst_mod_proveedor;
+            return  lcl_cat_proveedores.buscarProveedor(p_mod_proveedor, p_paramentroBusqueda);    
         }
 
         #endregion
@@ -145,10 +114,10 @@ namespace Controladores
             return lcl_cat_articulos.buscarArticulo(p_mod_articulo); 
         }
         /// <summary>
-        /// Busca proveedores que cumplan con un parámetro de búsqueda o retorna todas si se especifica "all"
+        /// Busca proveedores que cumplan con un parámetro de búsqueda
         /// </summary>
         /// <param name="p_mod_articulo">Proveedor con variable a buscar inicializada con algún valor</param>
-        /// <param name="p_paramentroBusqueda">string por el que se buscará artículo</param>
+        /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda</param>
         /// <returns>Lista de proveedores</returns>
         public List<ModeloArticulos> buscarArticulos(ModeloArticulos p_mod_articulo, string p_paramentroBusqueda)
         {
@@ -198,10 +167,10 @@ namespace Controladores
             return lcl_cat_articuloProveedores.buscarArticuloProveedor(p_mod_articuloProveedores); 
         }
         /// <summary>
-        /// Busca proveedores que cumplan con un parámetro de búsqueda o retorna todas si se especifica "all"
+        /// Busca proveedores que cumplan con un parámetro de búsqueda
         /// </summary>
         /// <param name="p_mod_articuloProveedores">Proveedor con variable a buscar inicializada con algún valor</param>
-        /// <param name="p_paramentroBusqueda">all o codigooriginal,codigoarticuloproveedor,descripcion</param>
+        /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda</param>
         /// <returns>Lista de proveedores</returns>
         public List<ModeloArticuloProveedores> buscarArticuloProveedores(ModeloArticuloProveedores p_mod_articuloProveedores, string p_paramentroBusqueda)
         {

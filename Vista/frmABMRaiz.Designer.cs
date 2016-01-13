@@ -72,6 +72,7 @@
             this.btnAltaArtic.TabIndex = 8;
             this.btnAltaArtic.Text = "Nuevo Articulo";
             this.btnAltaArtic.UseVisualStyleBackColor = true;
+            this.btnAltaArtic.Click += new System.EventHandler(this.btnAltaArtic_Click);
             // 
             // btnSalir
             // 

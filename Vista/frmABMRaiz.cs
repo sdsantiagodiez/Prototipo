@@ -36,5 +36,11 @@ namespace Vista
             frmABMEntidad frmABMEntidad = new frmABMEntidad();
             frmABMEntidad.ShowDialog();
         }
+
+        private void btnAltaArtic_Click(object sender, EventArgs e)
+        {
+            frmABMArticulos fa = new frmABMArticulos();
+            fa.ShowDialog();
+        }
     }
 }

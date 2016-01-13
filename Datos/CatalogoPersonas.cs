@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Modelos;
 using System.Data;
 using System.Data.SqlClient;
+using LibreriaClasesCompartidas;
 
 
 
@@ -16,132 +17,135 @@ namespace Datos
         /// <summary>
         /// permite inicializar substring para consulta sql donde el valor del atributo 
         /// </summary>
-        /// <param name="nombreParametro">Valor que luego es comparado con una celda de la tabla de datos</param>
-        /// <param name="nombreParametroTabla">nombre de la columna en tabla de datos</param>
+        /// <param name="p_nombreParametro">Valor que luego es comparado con una celda de la tabla de datos</param>
+        /// <param name="p_nombreParametroTabla">nombre de la columna en tabla de datos</param>
         /// <returns></returns>
-        private string parametroBusqueda(string nombreParametro, string nombreParametroTabla,string comparador)
+        private string parametroBusqueda(string p_nombreParametro, string p_nombreParametroTabla,string p_comparador)
         {
             string querySQL =
-                @" (" + nombreParametro + " IS NULL OR " + nombreParametro + " " + comparador + " " + "LOWER(" + nombreParametroTabla + ") ) ";
+                @" (" + p_nombreParametro + " IS NULL OR " + p_nombreParametro + " " + p_comparador + " " + "LOWER(" + p_nombreParametroTabla + ") ) ";
             return querySQL;
         }
 
-        public bool validarDatos(ModeloPersonas persona)
+        public bool validarDatos(ModeloPersonas p_mod_persona)
         {
             // Validar si los datos son correctos?
             return true;
         }
 
-        public bool existeEntidad(int codigoEntidad)
+        public bool existeEntidad(int p_codigoEntidad)
         {
             bool respuesta = false;
-            if (getOne(codigoEntidad) != null)
+            if (getOne(p_codigoEntidad) != null)
             {
                 respuesta = true;
             }
             return respuesta;
         }     
 
-        private ModeloPersonas leerDatosPersonas(SqlDataReader drPersonas)
+        private ModeloPersonas leerDatosPersonas(SqlDataReader p_drPersonas)
         {
-            ModeloPersonas modPer = new ModeloPersonas();
+            ModeloPersonas lcl_mod_persona = new ModeloPersonas();
 
-            modPer.codigo = (int)drPersonas["codigo"];
+            lcl_mod_persona.codigo = (int)p_drPersonas["codigo"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
-            modPer.dni = (drPersonas["dni"] != DBNull.Value) ? (string)drPersonas["dni"] : null;
-            modPer.nombre = (drPersonas["nombre"] != DBNull.Value) ? (string)drPersonas["nombre"] : null;
-            modPer.apellido = (drPersonas["apellido"] != DBNull.Value) ? (string)drPersonas["apellido"] : null;
-            modPer.usuario = (drPersonas["usuario"] != DBNull.Value) ? (string)drPersonas["usuario"] : null;
-            modPer.contrasenia = (drPersonas["contrasenia"] != DBNull.Value) ? (string)drPersonas["contrasenia"] : null;
-            modPer.tipoPersona = (drPersonas["tipo_persona"] != DBNull.Value) ? (string)drPersonas["tipo_persona"] : null;
+            lcl_mod_persona.dni = (p_drPersonas["dni"] != DBNull.Value) ? (string)p_drPersonas["dni"] : null;
+            lcl_mod_persona.nombre = (p_drPersonas["nombre"] != DBNull.Value) ? (string)p_drPersonas["nombre"] : null;
+            lcl_mod_persona.apellido = (p_drPersonas["apellido"] != DBNull.Value) ? (string)p_drPersonas["apellido"] : null;
+            lcl_mod_persona.usuario = (p_drPersonas["usuario"] != DBNull.Value) ? (string)p_drPersonas["usuario"] : null;
+            lcl_mod_persona.contrasenia = (p_drPersonas["contrasenia"] != DBNull.Value) ? (string)p_drPersonas["contrasenia"] : null;
+            lcl_mod_persona.tipoPersona = (p_drPersonas["tipo_persona"] != DBNull.Value) ? (string)p_drPersonas["tipo_persona"] : null;
 
-            modPer.cuit = (drPersonas["cuit"] != DBNull.Value) ? (string)drPersonas["cuit"] : null;
-            modPer.tipoEntidad = (drPersonas["tipo_entidad"] != DBNull.Value) ? (string)drPersonas["tipo_entidad"] : null;
-            modPer.observaciones = (drPersonas["observaciones"] != DBNull.Value) ? (string)drPersonas["observaciones"] : null;
+            lcl_mod_persona.cuit = (p_drPersonas["cuit"] != DBNull.Value) ? (string)p_drPersonas["cuit"] : null;
+            lcl_mod_persona.tipoEntidad = (p_drPersonas["tipo_entidad"] != DBNull.Value) ? (string)p_drPersonas["tipo_entidad"] : null;
+            lcl_mod_persona.observaciones = (p_drPersonas["observaciones"] != DBNull.Value) ? (string)p_drPersonas["observaciones"] : null;
             
-            return modPer;
+            return lcl_mod_persona;
         }
+
         //Si se usa para un login, se debe validar en el logIn que usuario y contraseña no sean Nulls porque sino da valores
+        //Agregar validación de usuario y contraseña para login
         /// <summary>
-        /// Busca persona en base a todas sus variables
+        /// Genera string a insertar en clausula WHERE de sql de acuerdo a los parámetros de búsqueda
         /// </summary>
-        /// <param name="pmPersona"></param>
+        /// <param name="p_mod_persona">modeloPersona con variables posiblemente inicializadas</param>
+        /// <param name="p_parametroBusqueda">constante encontrada en LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Proveedores</param>
+        /// <param name="p_comando">comando sql que será modificado para incluir parámetros</param>
         /// <returns></returns>
-        public List<ModeloPersonas> buscarPersona(ModeloPersonas pmPersona)
+        private string getCondicionBusqueda(ModeloPersonas p_mod_persona, string p_parametroBusqueda, ref SqlCommand p_comando)
         {
-            List<ModeloPersonas> lmPersonas = new List<ModeloPersonas>();
-
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            int? codigoEntidad = pmPersona.codigo == 0? null : (int?)pmPersona.codigo;
-            comando.Parameters.Add(this.instanciarParametro(codigoEntidad, "@codigo_entidad"));
-            string codigoEntidadQuery = @" (@codigo_entidad IS NULL OR @codigo_entidad = codigo_entidad) ";
-            comando.Parameters.Add(this.instanciarParametro(pmPersona.cuit, "@cuit"));
-            string cuitQuery = this.parametroBusqueda("@cuit", "cuit","=");
-            comando.Parameters.Add(this.instanciarParametro(pmPersona.dni, "@dni"));
-            string dniQuery = this.parametroBusqueda("@dni", "dni","=");
-            //No se puede hacer .ToLower a null
-            string nombre = (pmPersona.nombre == null) ? null : pmPersona.nombre.ToLower();
-            comando.Parameters.Add(this.instanciarParametro(nombre, "@nombre"));
-            string nombreQuery = this.parametroBusqueda("@nombre", "nombre","LIKE");
-            //No se puede hacer .ToLower a null
-            string apellido = (pmPersona.apellido == null) ? null : pmPersona.apellido.ToLower();
-            comando.Parameters.Add(this.instanciarParametro(apellido, "@apellido"));
-            string apellidoQuery = this.parametroBusqueda("@apellido", "apellido", "LIKE");
-            comando.Parameters.Add(this.instanciarParametro(pmPersona.usuario, "@usuario"));
-            string usuarioQuery = @" (@usuario IS NULL OR @usuario = usuario) ";
-            comando.Parameters.Add(this.instanciarParametro(pmPersona.contrasenia, "@contrasenia"));
-            string contraseniaQuery = @" (@contrasenia IS NULL OR @contrasenia = contrasenia) ";
-            comando.Parameters.Add(this.instanciarParametro(pmPersona.tipoPersona, "@tipo_persona"));
-            string tipoPersonaQuery = @" (@tipo_persona IS NULL OR @tipo_persona = tipo_persona) "; 
-
-            string querySQL = codigoEntidadQuery +" AND " + cuitQuery + " AND " + dniQuery + " AND " + nombreQuery + " AND " + apellidoQuery + " AND " + usuarioQuery + " AND " + contraseniaQuery + " AND " + tipoPersonaQuery;
-
-            comando.CommandText =
-                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
-                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
-                    "FROM [personas] " +
-                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad " +
-                    "WHERE "+querySQL ;
-
-            comando.Connection.Open();
-
-            SqlDataReader drPersonas = comando.ExecuteReader();
-
-            ModeloPersonas modPer = new ModeloPersonas();
-            
-            while (drPersonas.Read())
+            switch (p_parametroBusqueda)
             {
-                modPer = new ModeloPersonas();
-                modPer = this.leerDatosPersonas(drPersonas);
+                case Constantes.ParametrosBusqueda.Entidades.Personas.CodigoEntidad:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.codigo, "@codigo"));
+                    return " codigo = @codigo ";
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Cuit:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.cuit, "@cuit"));
+                    return " cuit = @cuit ";
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Dni:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.dni, "@dni"));
+                    return " dni = @dni ";
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Nombre:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.nombre, "@nombre"));
+                    return " nombre = @nombre ";
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Apellido:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.apellido, "@apellido"));
+                    return " apellido = @apellido ";
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Usuario:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.usuario, "@usuario"));
+                    return " usuario = @usuario ";
+                case Constantes.ParametrosBusqueda.Entidades.Personas.TipoPersona:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.tipoPersona, "@tipo_persona"));
+                    return " tipo_persona = @tipo_persona ";
+                case Constantes.ParametrosBusqueda.Entidades.Proveedores.Any:
+                    int? codigoEntidad = p_mod_persona.codigo == 0? null : (int?)p_mod_persona.codigo;
+                    p_comando.Parameters.Add(this.instanciarParametro(codigoEntidad, "@codigo_entidad"));
+                    string codigoEntidadQuery = @" (@codigo_entidad IS NULL OR @codigo_entidad = codigo_entidad) ";
+                   
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.cuit, "@cuit"));
+                    string cuitQuery = this.parametroBusqueda("@cuit", "cuit","=");
+                    
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.dni, "@dni"));
+                    string dniQuery = this.parametroBusqueda("@dni", "dni","=");
+                    
+                    string nombre = (p_mod_persona.nombre == null) ? null : p_mod_persona.nombre;
+                    p_comando.Parameters.Add(this.instanciarParametro(nombre, "@nombre"));
+                    string nombreQuery = this.parametroBusqueda("@nombre", "nombre","LIKE");
+                    
+                    string apellido = (p_mod_persona.apellido == null) ? null : p_mod_persona.apellido;
+                    p_comando.Parameters.Add(this.instanciarParametro(apellido, "@apellido"));
+                    string apellidoQuery = this.parametroBusqueda("@apellido", "apellido", "LIKE");
+                    
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.usuario, "@usuario"));
+                    string usuarioQuery = @" (@usuario IS NULL OR @usuario = usuario) ";
+                    
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.contrasenia, "@contrasenia"));
+                    string contraseniaQuery = @" (@contrasenia IS NULL OR @contrasenia = contrasenia) ";
+                    
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.tipoPersona, "@tipo_persona"));
+                    string tipoPersonaQuery = @" (@tipo_persona IS NULL OR @tipo_persona = tipo_persona) "; 
 
-                modPer.mails = this.getMails(modPer.codigo);
-                modPer.telefonos = this.getTelefonos(modPer.codigo);
-                modPer.domicilios = this.getDomicilios(modPer.codigo);
+                    return codigoEntidadQuery +" AND " + cuitQuery + " AND " + dniQuery + " AND " + nombreQuery + " AND " + apellidoQuery + " AND " + usuarioQuery + " AND " + contraseniaQuery + " AND " + tipoPersonaQuery;
 
-                lmPersonas.Add(modPer);
+                case Constantes.ParametrosBusqueda.Entidades.Proveedores.All:
+                    //retorna true y devuelve todas las filas
+                    return " 1 = 1 ";
+                default:
+                    //hace que sql no retorne filas
+                    return " 1 = 2 ";
             }
-            drPersonas.Close();
-            comando.Connection.Close();
-
-            return lmPersonas;
         }
 
         /// <summary>
         /// Busca personas en base al parámetro ingresado
         /// </summary>
-        /// <param name="pmPersona"></param>
-        /// <param name="paramentroBusqueda">cuit,dni,nombre,apellido,usuario,tipoPersona</param>
+        /// <param name="p_mod_persona">modeloPersona con variables posiblemente inicializadas</param>
+        /// <param name="p_paramentroBusqueda">string contenida en LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Personas</param>
         /// <returns></returns>
-        public List<ModeloPersonas> buscarPersona(ModeloPersonas pmPersona, string paramentroBusqueda)
+        public List<ModeloPersonas> buscarPersona(ModeloPersonas p_mod_persona, string p_paramentroBusqueda)
         {
-            List<ModeloPersonas> lmPersonas = new List<ModeloPersonas>();
+            List<ModeloPersonas> lcl_lst_mod_persona = new List<ModeloPersonas>();
 
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -150,41 +154,7 @@ namespace Datos
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
-            string querySQL = "";
-
-            #region switch parametroBusqueda
-            switch (paramentroBusqueda.ToLower())
-            {
-                case "cuit":
-                    comando.Parameters.Add(this.instanciarParametro(pmPersona.cuit, "@cuit"));
-                    querySQL = " cuit = @cuit ";
-                    break;
-                case "dni":
-                    comando.Parameters.Add(this.instanciarParametro(pmPersona.dni, "@dni"));
-                    querySQL = " dni = @dni ";
-                    break;
-                case "nombre":
-                    comando.Parameters.Add(this.instanciarParametro(pmPersona.nombre, "@nombre"));
-                    querySQL = " nombre = @nombre ";
-                    break;
-                case "apellido":
-                    comando.Parameters.Add(this.instanciarParametro(pmPersona.apellido, "@apellido"));
-                    querySQL = " apellido = @apellido ";
-                    break;
-                case "usuario":
-                    comando.Parameters.Add(this.instanciarParametro(pmPersona.usuario, "@usuario"));
-                    querySQL = " usuario = @usuario ";
-                    break;
-                case "tipoPersona":
-                    comando.Parameters.Add(this.instanciarParametro(pmPersona.tipoPersona, "@tipo_persona"));
-                    querySQL = " tipo_persona = @tipo_persona ";
-                    break;
-                default:
-                    //hace que sql no retorne filas
-                    querySQL = "1 = 2";
-                    break;
-            }
-            #endregion
+            string querySQL = this.getCondicionBusqueda(p_mod_persona,p_paramentroBusqueda,ref comando);
             
             comando.CommandText =
                 "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
@@ -199,346 +169,49 @@ namespace Datos
 
             while (drPersonas.Read())
             {
-                pmPersona = new ModeloPersonas();
-                pmPersona = this.leerDatosPersonas(drPersonas);
+                p_mod_persona = new ModeloPersonas();
+                p_mod_persona = this.leerDatosPersonas(drPersonas);
 
-                pmPersona.mails = this.getMails(pmPersona.codigo);
-                pmPersona.telefonos = this.getTelefonos(pmPersona.codigo);
-                pmPersona.domicilios = this.getDomicilios(pmPersona.codigo);
+                p_mod_persona.mails = this.getMails(p_mod_persona.codigo);
+                p_mod_persona.telefonos = this.getTelefonos(p_mod_persona.codigo);
+                p_mod_persona.domicilios = this.getDomicilios(p_mod_persona.codigo);
 
-                lmPersonas.Add(pmPersona);
+                lcl_lst_mod_persona.Add(p_mod_persona);
             }
             drPersonas.Close();
             comando.Connection.Close();
 
-            return lmPersonas;
+            return lcl_lst_mod_persona;
         }
-
-        //eliminarlos y reemplazarlos por los anteriores cuando se puedan probar
-        #region metodos de búsqueda obsoletos
         /// <summary>
-        /// NO USAR!! usar método buscarPersona
+        /// Busca persona de acuerdo a código de entidad
         /// </summary>
-        /// <param name="tipoPersona">"cliente" o "usuario"</param>
-        /// <param name="tipoParametro">"dni", "nombre","apellido","nombreYapellido"(Considera ambos),"usuario"(Solo para tipo usuario)</param>
-        /// <param name="descripcionParametro"></param>
-        /// <returns>lista de personas o lista vacía si no hay coincidencias</returns>
-        public List<ModeloPersonas> buscarPersona(string tipoPersona, string tipoParametro, string descripcionParametro)
+        /// <param name="p_codigoEntidad">codigo entidad de la persona a buscar</param>
+        /// <returns>ModeloPersona si encuentra, null si no encuentra resultado</returns>
+        
+        new public ModeloPersonas getOne(int p_codigoEntidad)
         {
-            //Se sacan espacios en extremos, se pasa a minúscula 
-            //y se separa descripcionParametro de acuerdo a los espacios(' ') 
-            //que hayan sido ingresados.
-            string[] descripcion = descripcionParametro.Trim().ToLower().Split(' ');
-            tipoParametro.Trim().ToLower();
-            tipoPersona.Trim().ToLower();
+            ModeloPersonas lcl_mod_persona = new ModeloPersonas();
+            List<ModeloPersonas> lcl_lst_mod_persona = new List<ModeloPersonas>();
+            lcl_mod_persona.codigo = p_codigoEntidad;
+            lcl_lst_mod_persona = this.buscarPersona(lcl_mod_persona, Constantes.ParametrosBusqueda.Entidades.Personas.CodigoEntidad);
 
-            List<ModeloPersonas> pEncontradas = new List<ModeloPersonas>();
-            ModeloPersonas mp = new ModeloPersonas();
-            switch (tipoParametro)
+            if (lcl_lst_mod_persona.Count > 0)
             {
-                case "dni":
-                    mp = getOnePorDNI(descripcionParametro);
-                    pEncontradas.Add(mp);
-                    break;
-                case "usuario":
-                    if (object.Equals(tipoPersona, "usuario"))
-                    {
-                        mp = getOnePorUsuario(descripcionParametro);
-                        pEncontradas.Add(mp);
-                    };
-                    break;
-                case "nombre":
-                    foreach (string nombre in descripcion)
-                    {
-                        pEncontradas.AddRange(buscarPorNombre(tipoPersona,nombre));
-                    }
-                    break;
-                case "apellido":
-                    foreach(string apellido in descripcion)
-                    {
-                        pEncontradas.AddRange(buscarPorApellido(tipoPersona,apellido));
-                    }
-                    break;
-                case "nombreYapellido":
-                    List<ModeloPersonas> pEncontradasTemp = new List<ModeloPersonas>();
-                    foreach(string nombreOapellido in descripcion)
-                    {
-                        pEncontradasTemp.AddRange(buscarPorNombre(tipoPersona, nombreOapellido));
-                        pEncontradasTemp.AddRange(buscarPorApellido(tipoPersona, nombreOapellido));
-                    }
-                    //remueve duplicados generados por la busqueda anterior (Verificar que funcione correctamente)
-                    pEncontradas = pEncontradasTemp.Distinct().ToList();
-                    break;
+                return lcl_lst_mod_persona[0];
             }
-
-            return pEncontradas;
+            else
+            {
+                return null;
+            }
         }
         /// <summary>
-        /// NO USAR!! usar método buscarPersona
+        /// Busca todas las personas que se encuentren en la base de datos
         /// </summary>
-        /// <param name="tipoPersona"></param>
-        /// <param name="nombre"></param>
         /// <returns></returns>
-        private List<ModeloPersonas> buscarPorNombre(string tipoPersona,string nombre)
-        {
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //devuelve linea de sql que determina si persona es cliente o usuario
-            string tipoPersonaSQL = getStringSQL(tipoPersona);
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
-                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
-                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
-                    "FROM [personas] "+
-                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad" +
-                    "WHERE (nombre LIKE @nombre " + tipoPersonaSQL + ")";
-
-            comando.Parameters.Add(new SqlParameter("@nombre", SqlDbType.VarChar));
-            comando.Parameters["@nombre"].Value = "%" + nombre + "%";
-
-            comando.Connection.Open();
-
-            SqlDataReader drPersonas = comando.ExecuteReader();
-
-            ModeloPersonas modPer = new ModeloPersonas();
-            List<ModeloPersonas> pEncontradas = new List<ModeloPersonas>();
-            while (drPersonas.Read())
-            {
-                modPer = new ModeloPersonas();
-                modPer = this.leerDatosPersonas(drPersonas);
-
-                modPer.mails = this.getMails(modPer.codigo);
-                modPer.telefonos = this.getTelefonos(modPer.codigo);
-                modPer.domicilios = this.getDomicilios(modPer.codigo);
-
-                pEncontradas.Add(modPer);
-            }
-            drPersonas.Close();
-            comando.Connection.Close();
-
-            return pEncontradas;
-        }
-        /// <summary>
-        /// NO USAR!! usar método buscarPersona
-        /// </summary>
-        /// <param name="tipoPersona"></param>
-        /// <param name="apellido"></param>
-        /// <returns></returns>
-        private List<ModeloPersonas> buscarPorApellido(string tipoPersona, string apellido)
-        {
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //devuelve linea de sql que determina si persona es cliente o usuario
-            string tipoPersonaSQL = getStringSQL(tipoPersona);
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
-                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
-                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
-                    "FROM [personas] "+
-                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad" +
-                    "WHERE (apellido LIKE @apellido "+tipoPersonaSQL+")";
-
-            comando.Parameters.Add(new SqlParameter("@apellido", SqlDbType.VarChar));
-            comando.Parameters["@apellido"].Value = "%" + apellido + "%";
-
-            comando.Connection.Open();
-
-            SqlDataReader drPersonas = comando.ExecuteReader();
-
-            ModeloPersonas modPer = new ModeloPersonas();
-            List<ModeloPersonas> pEncontradas = new List<ModeloPersonas>();
-            while (drPersonas.Read())
-            {
-                modPer = new ModeloPersonas();
-                modPer = this.leerDatosPersonas(drPersonas);
-
-                modPer.mails = this.getMails(modPer.codigo);
-                modPer.telefonos = this.getTelefonos(modPer.codigo);
-                modPer.domicilios = this.getDomicilios(modPer.codigo);
-
-                pEncontradas.Add(modPer);
-            }
-            drPersonas.Close();
-            comando.Connection.Close();
-
-            return pEncontradas;
-        }
-        /// <summary>
-        /// NO USAR!! usar método buscarPersona
-        /// </summary>
-        /// <param name="usuario"></param>
-        /// <returns></returns>
-        public ModeloPersonas getOnePorUsuario(string usuario)
-        {
-            ModeloPersonas modPer = null;
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
-                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
-                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
-                    "FROM [personas] " +
-                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad" +
-                    "WHERE ([usuario] = @usuario)";
-
-            comando.Parameters.Add(new SqlParameter("@usuario", SqlDbType.VarChar));
-            comando.Parameters["@usuario"].Value = usuario;
-
-            comando.Connection.Open();
-
-            SqlDataReader drPersonas = comando.ExecuteReader();
-
-            while (drPersonas.Read())
-            {
-                modPer = new ModeloPersonas();
-                modPer = this.leerDatosPersonas(drPersonas);
-
-                modPer.mails = this.getMails(modPer.codigo);
-                modPer.telefonos = this.getTelefonos(modPer.codigo);
-                modPer.domicilios = this.getDomicilios(modPer.codigo);
-            }
-            drPersonas.Close();
-
-            comando.Connection.Close();
-
-            return modPer;
-        }
-        /// <summary>
-        /// NO USAR!! usar método buscarPersona
-        /// </summary>
-        /// <param name="dni"></param>
-        /// <returns></returns>
-        public ModeloPersonas getOnePorDNI(string dni)
-        {
-
-            ModeloPersonas modPer = null;
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
-                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
-                    "FROM [personas] " +
-                    "INNER JOIN [entidades] on [entidades].codigo=[personas].codigo_entidad" +
-                    "WHERE ( dni = @DNI )";
-
-            comando.Parameters.Add(new SqlParameter("@DNI", SqlDbType.VarChar));
-            comando.Parameters["@DNI"].Value = dni;
-
-            comando.Connection.Open();
-
-            SqlDataReader drPersonas = comando.ExecuteReader();
-            
-            while (drPersonas.Read())
-            {
-                modPer = new ModeloPersonas();
-                modPer = this.leerDatosPersonas(drPersonas);
-                
-                modPer.mails = this.getMails(modPer.codigo);
-                modPer.telefonos = this.getTelefonos(modPer.codigo);
-                modPer.domicilios = this.getDomicilios(modPer.codigo);
-            }
-            drPersonas.Close();
-            comando.Connection.Close();
-           
-            return modPer;
-        }
-        #endregion
-
-        new public ModeloPersonas getOne(int codigoEntidad)
-        {
-            ModeloPersonas modPersona = null;
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
-               "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
-                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
-                    "FROM [personas] " +
-                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad " +
-                    "WHERE [entidades].codigo = @codigo";
-            comando.Parameters.Add(new SqlParameter("@codigo", SqlDbType.Int));
-            comando.Parameters["@codigo"].Value = codigoEntidad;
-            comando.Connection.Open();
-
-            SqlDataReader drEntidades = comando.ExecuteReader();
-
-            while (drEntidades.Read())
-            {
-                modPersona = new ModeloPersonas();
-                modPersona = this.leerDatosPersonas(drEntidades);
-                modPersona.mails = this.getMails(modPersona.codigo);
-                modPersona.telefonos = this.getTelefonos(modPersona.codigo);
-                modPersona.domicilios = this.getDomicilios(modPersona.codigo);
-            }
-            drEntidades.Close();
-            comando.Connection.Close();
-
-            return modPersona;
-        }
-
         public new List<ModeloPersonas> getAll()
-        { 
-            List<ModeloPersonas> personas = new List<ModeloPersonas>();
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
-                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
-                    "FROM [personas] " +
-                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad";
-
-            comando.Connection.Open();
-            ModeloPersonas modPer;
-            SqlDataReader drPersonas = comando.ExecuteReader();
-            while (drPersonas.Read())
-            {
-                modPer = new ModeloPersonas();
-                modPer = this.leerDatosPersonas(drPersonas);
-
-                modPer.mails = this.getMails(modPer.codigo);
-                modPer.telefonos = this.getTelefonos(modPer.codigo);
-                modPer.domicilios = this.getDomicilios(modPer.codigo);
-
-                personas.Add(modPer);
-            }
-            drPersonas.Close();
-
-            comando.Connection.Close();
-
-            return personas;
-
+        {
+            return this.buscarPersona(null, Constantes.ParametrosBusqueda.Entidades.Personas.All);
         }
 
         #region Alta/Baja/Modificación
@@ -547,11 +220,11 @@ namespace Datos
          * False si ocurrió algún error
          */
 
-        public override bool agregarNuevaEntidad(ModeloPersonas pModPer)
+        public override bool agregarNuevaEntidad(ModeloPersonas p_mod_persona)
         {
             //Se debería chequear antes para notificar al usuario la razón por la que no se podrá realizar la operación
             //y continua si se creó exitosamente la entidad
-            if (!this.existeEntidad(pModPer.codigo) && base.agregarNuevaEntidad(pModPer))
+            if (!this.existeEntidad(p_mod_persona.codigo) && base.agregarNuevaEntidad(p_mod_persona))
             {
                 
                 //Creo la conexion y la abro
@@ -570,12 +243,12 @@ namespace Datos
                     "VALUES (IDENT_CURRENT('entidades'), @dni, @nombre, @apellido," +
                     "@usuario, @contrasenia,@tipo_persona)";
                 //Indica los parametros
-                comando.Parameters.Add(this.instanciarParametro(pModPer.dni, "@dni"));
-                comando.Parameters.Add(this.instanciarParametro(pModPer.nombre, "@nombre"));
-                comando.Parameters.Add(this.instanciarParametro(pModPer.apellido, "@apellido"));
-                comando.Parameters.Add(this.instanciarParametro(pModPer.usuario, "@usuario"));
-                comando.Parameters.Add(this.instanciarParametro(pModPer.contrasenia, "@contrasenia"));
-                comando.Parameters.Add(this.instanciarParametro(pModPer.tipoPersona, "@tipo_persona"));
+                comando.Parameters.Add(this.instanciarParametro(p_mod_persona.dni, "@dni"));
+                comando.Parameters.Add(this.instanciarParametro(p_mod_persona.nombre, "@nombre"));
+                comando.Parameters.Add(this.instanciarParametro(p_mod_persona.apellido, "@apellido"));
+                comando.Parameters.Add(this.instanciarParametro(p_mod_persona.usuario, "@usuario"));
+                comando.Parameters.Add(this.instanciarParametro(p_mod_persona.contrasenia, "@contrasenia"));
+                comando.Parameters.Add(this.instanciarParametro(p_mod_persona.tipoPersona, "@tipo_persona"));
                 
                 comando.Connection.Open();
                 int rowaffected = comando.ExecuteNonQuery();
@@ -596,10 +269,8 @@ namespace Datos
             }
         }
 
-        /*No va a haber opción de cambiar DNI. Usuario tendrá
-         * que eliminar usuario anterior y crearlo de nuevo
-         */
-        override public bool actualizarEntidad(ModeloPersonas pModPer)
+
+        override public bool actualizarEntidad(ModeloPersonas p_mod_persona)
         { 
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -612,19 +283,19 @@ namespace Datos
                 "[tipo_persona]=@tipo_persona,[usuario]=@usuario, [contrasenia]=@contrasenia " +
                 "WHERE [Personas].codigo_entidad=@codigo_entidad";
 
-            comando.Parameters.Add(this.instanciarParametro(pModPer.codigo, "@codigo_entidad"));
-            comando.Parameters.Add(this.instanciarParametro(pModPer.dni, "@dni"));
-            comando.Parameters.Add(this.instanciarParametro(pModPer.nombre, "@nombre"));
-            comando.Parameters.Add(this.instanciarParametro(pModPer.apellido, "@apellido"));
-            comando.Parameters.Add(this.instanciarParametro(pModPer.usuario, "@usuario"));
-            comando.Parameters.Add(this.instanciarParametro(pModPer.contrasenia, "@contrasenia"));
-            comando.Parameters.Add(this.instanciarParametro(pModPer.tipoPersona, "@tipo_persona"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_persona.codigo, "@codigo_entidad"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_persona.dni, "@dni"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_persona.nombre, "@nombre"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_persona.apellido, "@apellido"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_persona.usuario, "@usuario"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_persona.contrasenia, "@contrasenia"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_persona.tipoPersona, "@tipo_persona"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();           
             comando.Connection.Close();
 
-            if (rowaffected != 0 && base.actualizarEntidad(pModPer))
+            if (rowaffected != 0 && base.actualizarEntidad(p_mod_persona))
             {
                 return true;
             }
@@ -634,38 +305,16 @@ namespace Datos
             }
         }
 
-        public bool bajaEntidad(ModeloPersonas pModPer)
+        public bool bajaEntidad(ModeloPersonas p_mod_persona)
         {
             //INCOMPLETO
-            return base.bajaEntidad(pModPer.codigo);
+            return base.bajaEntidad(p_mod_persona.codigo);
         }
         #endregion
-        
-        /// <summary>
-        /// Devuelve línea de sql de acuerdo a si persona es cliente o usuario
-        /// </summary>
-        /// <param name="tipoPersona"></param>
-        /// <returns></returns>
-        private string getStringSQL(string tipoPersona)
+      
+        public List<ModeloRoles> getRoles(int p_codigoEntidad)
         {
-            string respuesta;
-            tipoPersona.ToLower().Trim();
-
-            if (!object.Equals(tipoPersona, "usuario"))
-            {
-                respuesta = " AND [tipo_persona]<>'USR' ";
-            }
-            else
-            {
-                respuesta = " AND [tipo_persona]='USR' ";
-            }
-            
-            return respuesta;
-        }
-
-        public List<ModeloRoles> getRoles(int codigoEntidad)
-        {
-            List<ModeloRoles> roles = new List<ModeloRoles>();
+            List<ModeloRoles> lcl_lst_mod_roles = new List<ModeloRoles>();
             
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -684,25 +333,25 @@ namespace Datos
                     "WHERE ([roles_persona.codigo_entidad] = @codigo_entidad)";
 
             comando.Parameters.Add(new SqlParameter("@codigo_entidad", SqlDbType.Int));
-            comando.Parameters["@codigo_entidad"].Value = codigoEntidad;
+            comando.Parameters["@codigo_entidad"].Value = p_codigoEntidad;
 
             comando.Connection.Open();
 
             SqlDataReader drRoles = comando.ExecuteReader();
 
-           ModeloRoles modRol = new ModeloRoles();
+           ModeloRoles lcl_mod_rol = new ModeloRoles();
 
             while (drRoles.Read())
             {
-                modRol.codigo =(int)drRoles["codigo"];
-                modRol.descripcion =(string)drRoles["descripcion"];
-                roles.Add(modRol);
+                lcl_mod_rol.codigo =(int)drRoles["codigo"];
+                lcl_mod_rol.descripcion =(string)drRoles["descripcion"];
+                lcl_lst_mod_roles.Add(lcl_mod_rol);
             }
             drRoles.Close();
 
             comando.Connection.Close();
 
-            return roles;
+            return lcl_lst_mod_roles;
         }
         
      }

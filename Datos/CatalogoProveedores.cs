@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 using Modelos;
 using System.Data.SqlClient;
 using System.Data;
+using LibreriaClasesCompartidas;
 
 namespace Datos
 {
     public class CatalogoProveedores : CatalogoEntidades
     {
-        private string parametroBusqueda(string nombreParametro, string nombreParametroTabla, string comparador)
+        private string parametroBusqueda(string p_nombre_parametro, string p_nombre_parametroTabla, string p_comparador)
         {
             string querySQL =
-                @" (" + nombreParametro + " IS NULL OR " + nombreParametro + " " + comparador + " " + "LOWER(" + nombreParametroTabla + ") ) ";
+                @" (" + p_nombre_parametro + " IS NULL OR " + p_nombre_parametro + " " + p_comparador + " " + "LOWER(" + p_nombre_parametroTabla + ") ) ";
             return querySQL;
         }
 
-        public bool validarDatos(ModeloProveedor proveedor)
+        public bool validarDatos(ModeloProveedor p_mod_proveedor)
         {
             //Valida que los parametros sean Validos en el dominio
             return true;
@@ -30,125 +31,97 @@ namespace Datos
         /// <param name="cuit">cuit de proveedor</param>
         /// <param name="razonSocial">razón social de proveedor</param>
         /// <returns>true si existe, false si no existe</returns>
-        public bool existeEntidad(int codigoEntidad)
+        public bool existeEntidad(int p_codigoEntidad)
         {
             bool respuesta = false;
-            if (getOne(codigoEntidad) != null)
+            if (getOne(p_codigoEntidad) != null)
             {
                 respuesta = true;
             }
             return respuesta;
         }
 
-        public ModeloProveedor leerDatosProveedor(SqlDataReader drProveedores)
+        public ModeloProveedor leerDatosProveedor(SqlDataReader p_drProveedores)
         {
-            ModeloProveedor modProv = new ModeloProveedor();
+            ModeloProveedor lcl_mod_proveedor = new ModeloProveedor();
 
-            modProv.codigo = (int)drProveedores["codigo"];
+            lcl_mod_proveedor.codigo = (int)p_drProveedores["codigo"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
-            modProv.razonSocial = (drProveedores["razon_social"] != DBNull.Value) ? (string)drProveedores["razon_social"] : null;
+            lcl_mod_proveedor.razonSocial = (p_drProveedores["razon_social"] != DBNull.Value) ? (string)p_drProveedores["razon_social"] : null;
 
-            modProv.cuit = (drProveedores["cuit"] != DBNull.Value) ? (string)drProveedores["cuit"] : null;
-            modProv.tipoEntidad = (drProveedores["tipo_entidad"] != DBNull.Value) ? (string)drProveedores["tipo_entidad"] : null;
-            modProv.observaciones = (drProveedores["observaciones"] != DBNull.Value) ? (string)drProveedores["observaciones"] : null;
-           
-            return modProv;
+            lcl_mod_proveedor.cuit = (p_drProveedores["cuit"] != DBNull.Value) ? (string)p_drProveedores["cuit"] : null;
+            lcl_mod_proveedor.tipoEntidad = (p_drProveedores["tipo_entidad"] != DBNull.Value) ? (string)p_drProveedores["tipo_entidad"] : null;
+            lcl_mod_proveedor.observaciones = (p_drProveedores["observaciones"] != DBNull.Value) ? (string)p_drProveedores["observaciones"] : null;
+
+            return lcl_mod_proveedor;
         }
+        
         /// <summary>
-        /// Busca proveedor en base a todas sus variables
+        /// Genera string a insertar en clausula WHERE de sql de acuerdo a los parámetros de búsqueda
         /// </summary>
-        /// <param name="pmProveedor"></param>
+        /// <param name="p_mod_proveedor">modeloProveedor con variables posiblemente inicializadas</param>
+        /// <param name="p_parametroBusqueda">constante encontrada en LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Proveedores</param>
+        /// <param name="p_comando">comando sql que será modificado para incluir parámetros</param>
         /// <returns></returns>
-        public List<ModeloProveedor> buscarProveedor(ModeloProveedor pmProveedor)
+        private string getCondicionBusqueda(ModeloProveedor p_mod_proveedor,string p_parametroBusqueda,ref SqlCommand p_comando)
         {
-            List<ModeloProveedor> lmProveedores = new List<ModeloProveedor>();
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-
-            int? codigoEntidad = pmProveedor.codigo == 0 ? null : (int?)pmProveedor.codigo;
-            comando.Parameters.Add(this.instanciarParametro(codigoEntidad, "@codigo_entidad"));
-            string codigoEntidadQuery = @" (@codigo_entidad IS NULL OR @codigo_entidad = codigo_entidad) ";
-            comando.Parameters.Add(this.instanciarParametro(pmProveedor.cuit, "@cuit"));
-            string cuitQuery = this.parametroBusqueda("@cuit", "cuit","=");
-            string razonSocial = pmProveedor.razonSocial == null ? null : pmProveedor.razonSocial.ToLower();
-            comando.Parameters.Add(this.instanciarParametro(razonSocial, "@razon_social"));
-            string razonSocialQuery = this.parametroBusqueda("@razon_social", "razon_social","LIKE");
-
-            string querySQL = codigoEntidadQuery +" AND " + cuitQuery + " AND " + razonSocialQuery;
-
-            comando.CommandText =
-                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[proveedores].razon_social" +
-                "   FROM [proveedores] " +
-                "   INNER JOIN [entidades] on [entidades].codigo = [proveedores].codigo_entidad " +
-                "   WHERE "+querySQL;
-            
-            comando.Connection.Open();
-
-            SqlDataReader drProveedores = comando.ExecuteReader();
-
-            ModeloProveedor mProveedor = new ModeloProveedor();
-            
-            while (drProveedores.Read())
+            switch (p_parametroBusqueda)
             {
-                mProveedor = new ModeloProveedor();
-                mProveedor = this.leerDatosProveedor(drProveedores);
+                case Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.codigo, "@codigo"));
+                    return " codigo = @codigo ";
+                    
+                case Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.cuit, "@cuit"));
+                    return " cuit = @cuit ";
+                    
+                case Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.razonSocial, "@razon_social"));
+                    return " razon_social = @razon_social ";
+                    
+                case Constantes.ParametrosBusqueda.Entidades.Proveedores.Any:
+                    int? codigoEntidad = p_mod_proveedor.codigo == 0 ? null : (int?)p_mod_proveedor.codigo;
+                    p_comando.Parameters.Add(this.instanciarParametro(codigoEntidad, "@codigo_entidad"));
+                    string codigoEntidadQuery = @" (@codigo_entidad IS NULL OR @codigo_entidad = codigo_entidad) ";
 
-                mProveedor.mails = this.getMails(mProveedor.codigo);
-                mProveedor.telefonos = this.getTelefonos(mProveedor.codigo);
-                mProveedor.domicilios = this.getDomicilios(mProveedor.codigo);
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.cuit, "@cuit"));
+                    string cuitQuery = this.parametroBusqueda("@cuit", "cuit", "=");
 
-                lmProveedores.Add(mProveedor);
-            }
-            drProveedores.Close();
+                    string razonSocial = p_mod_proveedor.razonSocial == null ? null : p_mod_proveedor.razonSocial;
+                    p_comando.Parameters.Add(this.instanciarParametro(razonSocial, "@razon_social"));
+                    string razonSocialQuery = this.parametroBusqueda("@razon_social", "razon_social", "LIKE");
 
-            comando.Connection.Close();
-
-            return lmProveedores;
-        }
-
-        /// <summary>
-        /// Busca proveedor en base al parámetro ingresado
-        /// </summary>
-        /// <param name="pmProveedor"></param>
-        /// <param name="paramentroBusqueda">cuit,razonSocial</param>
-        /// <returns></returns>
-        public List<ModeloProveedor> buscarProveedor(ModeloProveedor pmProveedor, string paramentroBusqueda)
-        {
-            List<ModeloProveedor> lmProveedores = new List<ModeloProveedor>();
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-
-            string querySQL = "";
-
-            #region switch parametroBusqueda
-            switch (paramentroBusqueda.ToLower())
-            {
-                case "cuit":
-                    comando.Parameters.Add(this.instanciarParametro(pmProveedor.cuit, "@cuit"));
-                    querySQL = " cuit = @cuit ";
-                    break;
-                case "razonSocial":
-                    comando.Parameters.Add(this.instanciarParametro(pmProveedor.razonSocial, "@razon_social"));
-                    querySQL = " razon_social = @razon_social ";
-                    break;
+                    return codigoEntidadQuery + " AND " + cuitQuery + " AND " + razonSocialQuery;
+                    
+                case Constantes.ParametrosBusqueda.Entidades.Proveedores.All:
+                    //retorna true y devuelve todas las filas
+                    return " 1 = 1 ";
                 default:
                     //hace que sql no retorne filas
-                    querySQL = "1 = 2";
-                    break;
+                    return " 1 = 2 ";
             }
-            #endregion
+        }
 
+        /// <summary>
+        /// Busca proveedor(es) en base al parámetro ingresado
+        /// </summary>
+        /// <param name="p_mod_proveedor">modeloProveedor con variables posiblemente inicializadas</param>
+        /// <param name="p_parametroBusqueda">Constantes obtenidas en LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Proveedores</param>
+        /// <returns></returns>
+        public List<ModeloProveedor> buscarProveedor(ModeloProveedor p_mod_proveedor, string p_parametroBusqueda)
+        {
+            List<ModeloProveedor> lcl_lst_mod_proveedor = new List<ModeloProveedor>();
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+
+            string querySQL = this.getCondicionBusqueda(p_mod_proveedor,p_parametroBusqueda,ref comando);
+            
             comando.CommandText =
                 "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[proveedores].razon_social" +
                 "   FROM [proveedores] " +
@@ -159,230 +132,68 @@ namespace Datos
 
             SqlDataReader drProveedores = comando.ExecuteReader();
 
-            ModeloProveedor mProveedor = new ModeloProveedor();
+            ModeloProveedor lcl_mod_proveedor = new ModeloProveedor();
 
             while (drProveedores.Read())
             {
-                mProveedor = new ModeloProveedor();
-                mProveedor = this.leerDatosProveedor(drProveedores);
+                lcl_mod_proveedor = new ModeloProveedor();
+                lcl_mod_proveedor = this.leerDatosProveedor(drProveedores);
 
-                mProveedor.mails = this.getMails(mProveedor.codigo);
-                mProveedor.telefonos = this.getTelefonos(mProveedor.codigo);
-                mProveedor.domicilios = this.getDomicilios(mProveedor.codigo);
+                lcl_mod_proveedor.mails = this.getMails(lcl_mod_proveedor.codigo);
+                lcl_mod_proveedor.telefonos = this.getTelefonos(lcl_mod_proveedor.codigo);
+                lcl_mod_proveedor.domicilios = this.getDomicilios(lcl_mod_proveedor.codigo);
 
-                lmProveedores.Add(mProveedor);
+                lcl_lst_mod_proveedor.Add(lcl_mod_proveedor);
             }
             drProveedores.Close();
 
             comando.Connection.Close();
 
-            return lmProveedores;
+            return lcl_lst_mod_proveedor;
         }
-
-        #region métodos de búsqueda obsoletos
-        #region BuscarPorX
+        
         /// <summary>
-        /// NO USAR!!! usar buscarProveedor() busca proveedores de acuerdo a descripcionParametro ingresada
+        /// Busca proveedor de acuerdo a codigo de entidad
         /// </summary>
-        /// <param name="tipoParametro">"razonSocial" o "cuit"</param>
-        /// <param name="descripcionParametro">string por el que se buscará proveedores</param>
-        /// <returns>lista de proveedores</returns>
-        public List<ModeloProveedor> buscarProveedores(string tipoParametro, string descripcionParametro)
+        /// <param name="p_codigoEntidad">codigo entidad del proveedor a buscar</param>
+        /// <returns>ModeloProveedor si encuentra, null si no encuentra resultado</returns>
+        new public ModeloProveedor getOne(int p_codigoEntidad)
         {
-            List<ModeloProveedor> listaProveedores = new List<ModeloProveedor>();
-
-            switch(tipoParametro.ToLower())
-            {
-                case "razonsocial":
-                    listaProveedores = buscarPorRazonSocial(descripcionParametro.ToLower());
-                    break;
-                case "cuit":
-                    listaProveedores = buscaPorCuit(descripcionParametro);
-                    break;
-                default:
-                    break;
-            }
-            return listaProveedores;
-        }
-        /// <summary>
-        /// NO USAR!!! usar buscarProveedor() 
-        /// </summary>
-        /// <param name="razonSocial"></param>
-        /// <returns></returns>
-        private List<ModeloProveedor> buscarPorRazonSocial(string razonSocial)
-        {
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
-                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[proveedores].razon_social" +
-                "   FROM [proveedores] " +
-                "   INNER JOIN [entidades] on [entidades].codigo = [proveedores].codigo_entidad " +
-                "   WHERE LOWER([proveedores].razon_social) LIKE @razonSocial";
-            comando.Parameters.Add(new SqlParameter("@razonSocial", SqlDbType.VarChar));
-            comando.Parameters["@razonSocial"].Value = "%" + razonSocial.ToLower() + "%";
-            comando.Connection.Open();
-
-            SqlDataReader drProveedores = comando.ExecuteReader();
-
-            ModeloProveedor modProveedor = new ModeloProveedor();
-            List<ModeloProveedor> listaProveedores = new List<ModeloProveedor>();
-            while (drProveedores.Read())
-            {
-                modProveedor = new ModeloProveedor();
-                modProveedor = this.leerDatosProveedor(drProveedores);
-
-                modProveedor.mails = this.getMails(modProveedor.codigo);
-                modProveedor.telefonos = this.getTelefonos(modProveedor.codigo);
-                modProveedor.domicilios = this.getDomicilios(modProveedor.codigo);
-
-                listaProveedores.Add(modProveedor);
-            }
-            drProveedores.Close();
-
-            comando.Connection.Close();
-
-            return listaProveedores;
-        }
-        /// <summary>
-        /// NO USAR!!! usar buscarProveedor() 
-        /// </summary>
-        /// <param name="cuit"></param>
-        /// <returns></returns>
-        private List<ModeloProveedor> buscaPorCuit(string cuit)
-        {
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
-               "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[proveedores].razon_social " +
-                "   FROM [proveedores] " +
-                "   INNER JOIN [entidades] on [entidades].codigo = [proveedores].codigo_entidad " +
-                "   WHERE [entidades.cuit] LIKE @cuit";
-            comando.Parameters.Add(new SqlParameter("@cuit", SqlDbType.VarChar));
-            comando.Parameters["@cuit"].Value = "%" + cuit + "%";
-            comando.Connection.Open();
-
-
-            ModeloProveedor modProveedor;
-            SqlDataReader drProveedores = comando.ExecuteReader();
-            List<ModeloProveedor> listaProveedores = new List<ModeloProveedor>();
-
-            while (drProveedores.Read())
-            {
-                modProveedor = new ModeloProveedor();
-                modProveedor = this.leerDatosProveedor(drProveedores);
-
-                modProveedor.mails = this.getMails(modProveedor.codigo);
-                modProveedor.telefonos = this.getTelefonos(modProveedor.codigo);
-                modProveedor.domicilios = this.getDomicilios(modProveedor.codigo);
-
-                listaProveedores.Add(modProveedor);
-            }
-
-            drProveedores.Close();
-            comando.Connection.Close();
-
-            return listaProveedores;
-        }
-        #endregion
-        #endregion
-
-        new public ModeloProveedor getOne(int codigoEntidad)
-        {
-            ModeloProveedor modProveedor = null;
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
-               "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[proveedores].razon_social " +
-                    "FROM [proveedores] " +
-                    "INNER JOIN [entidades] on [entidades].codigo = [proveedores].codigo_entidad " +
-                    "WHERE [entidades].codigo = @codigo";
-            comando.Parameters.Add(new SqlParameter("@codigo", SqlDbType.Int));
-            comando.Parameters["@codigo"].Value = codigoEntidad;
-            comando.Connection.Open();
-
-            SqlDataReader drEntidades = comando.ExecuteReader();
-
-            while (drEntidades.Read())
-            {
-                modProveedor = new ModeloProveedor();
-                modProveedor = this.leerDatosProveedor(drEntidades);
-                modProveedor.mails = this.getMails(modProveedor.codigo);
-                modProveedor.telefonos = this.getTelefonos(modProveedor.codigo);
-                modProveedor.domicilios = this.getDomicilios(modProveedor.codigo);
-            }
-            drEntidades.Close();
-            comando.Connection.Close();
-
+            ModeloProveedor lcl_mod_proveedor = new ModeloProveedor();
+            List<ModeloProveedor> lcl_lst_mod_proveedor = new List<ModeloProveedor>();
+            lcl_mod_proveedor.codigo = p_codigoEntidad;
+            lcl_lst_mod_proveedor = this.buscarProveedor(lcl_mod_proveedor, Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad);
             
-
-            return modProveedor;
+            if (lcl_lst_mod_proveedor.Count > 0)
+            {
+                return lcl_lst_mod_proveedor[0];
+            }
+            else
+            {
+                return null;
+            }
         }
        
+        /// <summary>
+        /// Busca todos los proveedores que se encuentren en la base de datos
+        /// </summary>
+        /// <returns></returns>
         public new List<ModeloProveedor> getAll()
         {
-            List<ModeloProveedor> allProvs = new List<ModeloProveedor>();
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[proveedores].razon_social " +
-                "   FROM [proveedores] " +
-                "   INNER JOIN [entidades] on [entidades].codigo = [proveedores].codigo_entidad";
-
-            comando.Connection.Open();
-            ModeloProveedor modProveedor;
-            SqlDataReader drProveedores = comando.ExecuteReader();
-            while (drProveedores.Read())
-            {
-                modProveedor = new ModeloProveedor();
-                modProveedor = this.leerDatosProveedor(drProveedores);
-
-                modProveedor.mails = this.getMails(modProveedor.codigo);
-                modProveedor.telefonos = this.getTelefonos(modProveedor.codigo);
-                modProveedor.domicilios = this.getDomicilios(modProveedor.codigo);
-
-                allProvs.Add(modProveedor);
-            }
-            drProveedores.Close();
-
-            comando.Connection.Close();
-
-            return allProvs;
+            return this.buscarProveedor(null, Constantes.ParametrosBusqueda.Entidades.Proveedores.All);
         }
-
+        
 
         #region Alta/Baja/Modificación
         /*
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
-        override public bool agregarNuevaEntidad(ModeloProveedor pModProv)
+        override public bool agregarNuevaEntidad(ModeloProveedor p_mod_proveedor)
         {
             //*REVISAR (validar existencia a traves de codigo de una entidad que puede no tener código?)
             //y continua si se creó exitosamente la entidad
-            if (!this.existeEntidad(pModProv.codigo) && base.agregarNuevaEntidad(pModProv))
+            if (!this.existeEntidad(p_mod_proveedor.codigo) && base.agregarNuevaEntidad(p_mod_proveedor))
             {
                 //Creo la conexion y la abro
                 SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -398,7 +209,7 @@ namespace Datos
                     "INSERT INTO [Proveedores] ([codigo_entidad], [razon_social]) "+
                     "VALUES (IDENT_CURRENT('entidades'), @razon_social)";
                 //Indica los parametros
-                comando.Parameters.Add(this.instanciarParametro(pModProv.razonSocial, "@razon_social"));
+                comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.razonSocial, "@razon_social"));
                 
                 comando.Connection.Open();
                 int rowaffected = comando.ExecuteNonQuery();
@@ -421,7 +232,7 @@ namespace Datos
         }     
 
         //No se podrá modificar razonSocial
-        override public bool actualizarEntidad(ModeloProveedor pModProv)
+        override public bool actualizarEntidad(ModeloProveedor p_mod_proveedor)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -437,14 +248,14 @@ namespace Datos
                 "UPDATE [proveedores] SET [razon_social] = @razon_social "+
                 "WHERE [proveedores].codigo_entidad=@codigo_entidad";
 
-            comando.Parameters.Add(this.instanciarParametro(pModProv.razonSocial, "@razon_social"));
-            comando.Parameters.Add(this.instanciarParametro(pModProv.codigo, "@codigo_entidad"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.razonSocial, "@razon_social"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.codigo, "@codigo_entidad"));
             
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();           
             comando.Connection.Close();
 
-            if (rowaffected != 0 && base.actualizarEntidad(pModProv))
+            if (rowaffected != 0 && base.actualizarEntidad(p_mod_proveedor))
             {
                 return true;
             }
@@ -454,10 +265,10 @@ namespace Datos
             }
         }
 
-        public bool bajaEntidad(ModeloProveedor pModProv)
+        public bool bajaEntidad(ModeloProveedor p_mod_proveedor)
         {
             //INCOMPLETO
-            return base.bajaEntidad(pModProv.codigo);
+            return base.bajaEntidad(p_mod_proveedor.codigo);
         }
         #endregion
     }
