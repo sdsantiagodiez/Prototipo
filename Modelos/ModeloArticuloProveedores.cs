@@ -6,40 +6,9 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
-    public class ModeloArticuloProveedores
+    public class ModeloArticuloProveedores : ModeloArticulos
     {
         #region Getters/Setters
-
-        #region Variables de Artículo al que pertenece el Artículo Proveedor
-        string _codigoOriginal;
-        public string codigoOriginal 
-        {
-            get {return _codigoOriginal;} 
-            set {this._codigoOriginal = value;} 
-        }
-
-        string _descripcionArticulo;
-        public string descripcionArticulo
-        {
-            get { return _descripcionArticulo; }
-            set { this._descripcionArticulo = value; }
-        }
-
-        string _modelos;
-        public string modelos
-        {
-            get { return _modelos; }
-            set { this._modelos = value; }
-        }
-
-        string _observacionesArticulo;
-        public string observacionesArticulo
-        {
-            get { return _observacionesArticulo; }
-            set { this._observacionesArticulo = value; }
-        }
-
-        #endregion
 
         #region Variables de Proveedor al que pertenece Artículo Proveedor
         int _codigoEntidad;
