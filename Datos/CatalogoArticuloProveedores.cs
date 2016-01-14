@@ -54,7 +54,7 @@ namespace Datos
             var lcl_mod_valorArticuloCompra = new ModeloValorArticulo();
             lcl_mod_valorArticuloCompra.fechaUltimaActualizacion = (DateTime)p_drArticulosProveedor["fecha_valor_compra"];
             lcl_mod_valorArticuloCompra.valorArticulo = (decimal)p_drArticulosProveedor["valor_compra"];
-            lcl_mod_articuloProveedor.valorCompraArticuloProveedor = lcl_mod_valorArticuloCompra;
+            lcl_mod_articuloProveedor.valorCompra = lcl_mod_valorArticuloCompra;
 
             var lcl_mod_valorArticuloVenta = new ModeloValorArticulo();
             lcl_mod_valorArticuloVenta.fechaUltimaActualizacion = (DateTime)p_drArticulosProveedor["fecha_valor_venta"];
@@ -145,7 +145,7 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(codigoEntidad, "@codigo_entidad"));
                     string codigoEntidadQuery = @" (@codigo_entidad IS NULL OR @codigo_entidad = ap.codigo_entidad) ";
 
-                    string razonSocialProveedor = p_mod_articuloProveedor.descripcionArticuloProveedor == "" ? null : p_mod_articuloProveedor.descripcionArticuloProveedor;
+                    string razonSocialProveedor = p_mod_articuloProveedor.razonSocialProveedor == "" ? null : p_mod_articuloProveedor.razonSocialProveedor;
                     p_comando.Parameters.Add(this.instanciarParametro(razonSocialProveedor, "@razon_social"));
                     string razonSocialProveedorQuery = this.parametroBusqueda("@razon_social", "prov.razon_social", "LIKE");
 

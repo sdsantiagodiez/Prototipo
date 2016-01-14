@@ -38,7 +38,7 @@ namespace Vista
             lcl_mod_articuloProveedor.codigoEntidad = txtBoxCodigoEntidadProveedor.Text == "" ? 0 : Convert.ToInt32(txtBoxCodigoEntidadProveedor.Text);
             lcl_mod_articuloProveedor.razonSocialProveedor = txtBoxRazonSocialProveedor.Text;
 
-            //lcl_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_articuloProveedor);
+            lcl_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_articuloProveedor);
         }
     }
 }

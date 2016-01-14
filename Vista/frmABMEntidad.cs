@@ -418,18 +418,18 @@ namespace Vista
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona:
                         ModeloPersonas lcl_mod_persona = this.cargarDatosEnModeloPersona();
                         glb_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_persona);
-                        if (glb_frm_resultadoBusqueda.mPersona != null)
+                        if (glb_frm_resultadoBusqueda.persona != null)
                         {
-                            glb_mod_personaSeleccionada = glb_frm_resultadoBusqueda.mPersona;
+                            glb_mod_personaSeleccionada = glb_frm_resultadoBusqueda.persona;
                             this.cargarPersonaEnControles(glb_mod_personaSeleccionada);
                         }
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor:
                         ModeloProveedor lcl_mod_proveedor = this.cargarDatosEnModeloProveedor();
                         glb_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_proveedor);
-                        if (glb_frm_resultadoBusqueda.mProveedor != null)
+                        if (glb_frm_resultadoBusqueda.proveedor != null)
                         {
-                            glb_mod_proveedorSeleccionado = glb_frm_resultadoBusqueda.mProveedor;
+                            glb_mod_proveedorSeleccionado = glb_frm_resultadoBusqueda.proveedor;
                             this.cargarProveedorEnControles(glb_mod_proveedorSeleccionado);
                         }
                         break;

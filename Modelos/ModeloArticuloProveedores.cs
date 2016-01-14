@@ -53,11 +53,11 @@ namespace Modelos
             set { this._valorVenta = value; }
         }
         
-        ModeloValorArticulo _valorCompraArticuloProveedor;
-        public ModeloValorArticulo valorCompraArticuloProveedor
+        ModeloValorArticulo _valorCompra;
+        public ModeloValorArticulo valorCompra
         {
-            get { return _valorCompraArticuloProveedor; }
-            set { this._valorCompraArticuloProveedor = value; }
+            get { return _valorCompra; }
+            set { this._valorCompra = value; }
         }
         
         //int nullable en caso de que este definido NULL en la base de datos

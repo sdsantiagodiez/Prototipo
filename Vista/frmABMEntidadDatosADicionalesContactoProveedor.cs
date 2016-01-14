@@ -65,9 +65,9 @@ namespace Vista
             ModeloProveedor mProveedorSeleccionado = new ModeloProveedor();
             this.cargarDatosEnModeloProveedor(ref mProveedorSeleccionado);
             fResultadoBusqueda.mostrarBusqueda(mProveedorSeleccionado);
-            if (fResultadoBusqueda.mProveedor != null)
+            if (fResultadoBusqueda.proveedor != null)
             {
-                mProveedor = fResultadoBusqueda.mProveedor;
+                mProveedor = fResultadoBusqueda.proveedor;
                 this.cargarProveedorEnControles();
             }
         }
