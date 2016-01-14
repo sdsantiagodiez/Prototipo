@@ -17,12 +17,6 @@ namespace Vista
             InitializeComponent();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            frmEnConstruccion frmConstruccion = new frmEnConstruccion();
-            frmConstruccion.ShowDialog();
-        }
-
         internal void detalleVenta(Controladores.ControladorPedidoProveedor ctrlPedProv)
         {
             throw new NotImplementedException();

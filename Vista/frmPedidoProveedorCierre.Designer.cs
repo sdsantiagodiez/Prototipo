@@ -28,152 +28,140 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.DataGridView2 = new System.Windows.Forms.DataGridView();
+            this.tlpCierreProveedor = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlBotonera = new System.Windows.Forms.Panel();
+            this.btnEmitirComprobante = new System.Windows.Forms.Button();
+            this.btnVolver = new System.Windows.Forms.Button();
+            this.gbxDetalleArticulos = new System.Windows.Forms.GroupBox();
+            this.dgvDetalleArticulos = new System.Windows.Forms.DataGridView();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.gbxComprobante = new System.Windows.Forms.GroupBox();
+            this.gbxObservacionesComprobante = new System.Windows.Forms.GroupBox();
+            this.rtbObservacionesComprobante = new System.Windows.Forms.RichTextBox();
+            this.lblTotalBruto = new System.Windows.Forms.Label();
+            this.lblTotalNeto = new System.Windows.Forms.Label();
+            this.lblIVANeto = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblIVAPorcentual = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblDescuentoNeto = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView2)).BeginInit();
+            this.lblNumeroComprobante = new System.Windows.Forms.Label();
+            this.lblFecha = new System.Windows.Forms.Label();
+            this.lblDescuentoPorcentual = new System.Windows.Forms.Label();
+            this.lblFormaPago = new System.Windows.Forms.Label();
+            this.lblTipoComprobante = new System.Windows.Forms.Label();
+            this.gbxProveedor = new System.Windows.Forms.GroupBox();
+            this.gbxObservacionesProveedor = new System.Windows.Forms.GroupBox();
+            this.rtbObservacionesProveedor = new System.Windows.Forms.RichTextBox();
+            this.lblTelefono = new System.Windows.Forms.Label();
+            this.lblMail = new System.Windows.Forms.Label();
+            this.lblRazonSocial = new System.Windows.Forms.Label();
+            this.lblCUIT = new System.Windows.Forms.Label();
+            this.lblDireccion = new System.Windows.Forms.Label();
+            this.lblCiudad = new System.Windows.Forms.Label();
+            this.lblProvincia = new System.Windows.Forms.Label();
+            this.lblCP = new System.Windows.Forms.Label();
+            this.tlpCierreProveedor.SuspendLayout();
+            this.pnlBotonera.SuspendLayout();
+            this.gbxDetalleArticulos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleArticulos)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.gbxComprobante.SuspendLayout();
+            this.gbxObservacionesComprobante.SuspendLayout();
+            this.gbxProveedor.SuspendLayout();
+            this.gbxObservacionesProveedor.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tlpCierreProveedor
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.83333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.16667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1008, 621);
-            this.tableLayoutPanel1.TabIndex = 14;
+            this.tlpCierreProveedor.ColumnCount = 1;
+            this.tlpCierreProveedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpCierreProveedor.Controls.Add(this.pnlBotonera, 0, 2);
+            this.tlpCierreProveedor.Controls.Add(this.gbxDetalleArticulos, 0, 1);
+            this.tlpCierreProveedor.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tlpCierreProveedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpCierreProveedor.Location = new System.Drawing.Point(0, 0);
+            this.tlpCierreProveedor.Name = "tlpCierreProveedor";
+            this.tlpCierreProveedor.RowCount = 3;
+            this.tlpCierreProveedor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.83333F));
+            this.tlpCierreProveedor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.16667F));
+            this.tlpCierreProveedor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tlpCierreProveedor.Size = new System.Drawing.Size(1008, 621);
+            this.tlpCierreProveedor.TabIndex = 14;
             // 
-            // panel1
+            // pnlBotonera
             // 
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 563);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1002, 55);
-            this.panel1.TabIndex = 2;
+            this.pnlBotonera.Controls.Add(this.btnEmitirComprobante);
+            this.pnlBotonera.Controls.Add(this.btnVolver);
+            this.pnlBotonera.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBotonera.Location = new System.Drawing.Point(3, 563);
+            this.pnlBotonera.Name = "pnlBotonera";
+            this.pnlBotonera.Size = new System.Drawing.Size(1002, 55);
+            this.pnlBotonera.TabIndex = 2;
             // 
-            // button3
+            // btnEmitirComprobante
             // 
-            this.button3.Location = new System.Drawing.Point(852, 7);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(120, 40);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Emitir Comprobante";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnEmitirComprobante.Location = new System.Drawing.Point(852, 7);
+            this.btnEmitirComprobante.Name = "btnEmitirComprobante";
+            this.btnEmitirComprobante.Size = new System.Drawing.Size(120, 40);
+            this.btnEmitirComprobante.TabIndex = 1;
+            this.btnEmitirComprobante.Text = "Emitir Comprobante";
+            this.btnEmitirComprobante.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnVolver
             // 
-            this.button1.Location = new System.Drawing.Point(27, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 40);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Volver";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnVolver.Location = new System.Drawing.Point(27, 7);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(120, 40);
+            this.btnVolver.TabIndex = 0;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // gbxDetalleArticulos
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gbxDetalleArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.DataGridView2);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(3, 344);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1002, 213);
-            this.groupBox2.TabIndex = 13;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Artículos";
+            this.gbxDetalleArticulos.Controls.Add(this.dgvDetalleArticulos);
+            this.gbxDetalleArticulos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbxDetalleArticulos.Location = new System.Drawing.Point(3, 344);
+            this.gbxDetalleArticulos.Name = "gbxDetalleArticulos";
+            this.gbxDetalleArticulos.Size = new System.Drawing.Size(1002, 213);
+            this.gbxDetalleArticulos.TabIndex = 13;
+            this.gbxDetalleArticulos.TabStop = false;
+            this.gbxDetalleArticulos.Text = "Artículos";
             // 
-            // DataGridView2
+            // dgvDetalleArticulos
             // 
-            this.DataGridView2.AllowUserToAddRows = false;
-            this.DataGridView2.AllowUserToDeleteRows = false;
-            this.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvDetalleArticulos.AllowUserToAddRows = false;
+            this.dgvDetalleArticulos.AllowUserToDeleteRows = false;
+            this.dgvDetalleArticulos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvDetalleArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetalleArticulos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column7,
             this.Descripcion,
             this.DataGridViewTextBoxColumn5,
             this.Total,
             this.Column6});
-            this.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGridView2.Location = new System.Drawing.Point(3, 18);
-            this.DataGridView2.Name = "DataGridView2";
-            this.DataGridView2.ReadOnly = true;
-            this.DataGridView2.RowHeadersVisible = false;
-            this.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView2.Size = new System.Drawing.Size(996, 192);
-            this.DataGridView2.TabIndex = 5;
+            this.dgvDetalleArticulos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDetalleArticulos.Location = new System.Drawing.Point(3, 18);
+            this.dgvDetalleArticulos.Name = "dgvDetalleArticulos";
+            this.dgvDetalleArticulos.ReadOnly = true;
+            this.dgvDetalleArticulos.RowHeadersVisible = false;
+            this.dgvDetalleArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDetalleArticulos.Size = new System.Drawing.Size(996, 192);
+            this.dgvDetalleArticulos.TabIndex = 5;
             // 
             // Column7
             // 
@@ -217,8 +205,8 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.groupBox3, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.gbxComprobante, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.gbxProveedor, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -228,105 +216,80 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1002, 335);
             this.tableLayoutPanel2.TabIndex = 14;
             // 
-            // groupBox1
+            // gbxComprobante
             // 
-            this.groupBox1.Controls.Add(this.groupBox4);
-            this.groupBox1.Controls.Add(this.richTextBox1);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.textBox7);
-            this.groupBox1.Controls.Add(this.textBox8);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(996, 161);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Comprobante";
+            this.gbxComprobante.Controls.Add(this.gbxObservacionesComprobante);
+            this.gbxComprobante.Controls.Add(this.lblTotalBruto);
+            this.gbxComprobante.Controls.Add(this.lblTotalNeto);
+            this.gbxComprobante.Controls.Add(this.lblIVANeto);
+            this.gbxComprobante.Controls.Add(this.label9);
+            this.gbxComprobante.Controls.Add(this.textBox5);
+            this.gbxComprobante.Controls.Add(this.lblIVAPorcentual);
+            this.gbxComprobante.Controls.Add(this.textBox3);
+            this.gbxComprobante.Controls.Add(this.lblDescuentoNeto);
+            this.gbxComprobante.Controls.Add(this.textBox2);
+            this.gbxComprobante.Controls.Add(this.dateTimePicker1);
+            this.gbxComprobante.Controls.Add(this.comboBox2);
+            this.gbxComprobante.Controls.Add(this.textBox1);
+            this.gbxComprobante.Controls.Add(this.comboBox1);
+            this.gbxComprobante.Controls.Add(this.lblNumeroComprobante);
+            this.gbxComprobante.Controls.Add(this.lblFecha);
+            this.gbxComprobante.Controls.Add(this.lblDescuentoPorcentual);
+            this.gbxComprobante.Controls.Add(this.lblFormaPago);
+            this.gbxComprobante.Controls.Add(this.lblTipoComprobante);
+            this.gbxComprobante.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbxComprobante.Location = new System.Drawing.Point(3, 3);
+            this.gbxComprobante.Name = "gbxComprobante";
+            this.gbxComprobante.Size = new System.Drawing.Size(996, 161);
+            this.gbxComprobante.TabIndex = 0;
+            this.gbxComprobante.TabStop = false;
+            this.gbxComprobante.Text = "Comprobante";
             // 
-            // groupBox4
+            // gbxObservacionesComprobante
             // 
-            this.groupBox4.Controls.Add(this.richTextBox2);
-            this.groupBox4.Location = new System.Drawing.Point(633, 30);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(357, 112);
-            this.groupBox4.TabIndex = 25;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Observaciones";
+            this.gbxObservacionesComprobante.Controls.Add(this.rtbObservacionesComprobante);
+            this.gbxObservacionesComprobante.Location = new System.Drawing.Point(633, 30);
+            this.gbxObservacionesComprobante.Name = "gbxObservacionesComprobante";
+            this.gbxObservacionesComprobante.Size = new System.Drawing.Size(357, 112);
+            this.gbxObservacionesComprobante.TabIndex = 25;
+            this.gbxObservacionesComprobante.TabStop = false;
+            this.gbxObservacionesComprobante.Text = "Observaciones";
             // 
-            // richTextBox2
+            // rtbObservacionesComprobante
             // 
-            this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox2.Location = new System.Drawing.Point(3, 16);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(351, 93);
-            this.richTextBox2.TabIndex = 0;
-            this.richTextBox2.Text = "";
+            this.rtbObservacionesComprobante.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbObservacionesComprobante.Location = new System.Drawing.Point(3, 16);
+            this.rtbObservacionesComprobante.Name = "rtbObservacionesComprobante";
+            this.rtbObservacionesComprobante.Size = new System.Drawing.Size(351, 93);
+            this.rtbObservacionesComprobante.TabIndex = 0;
+            this.rtbObservacionesComprobante.Text = "";
             // 
-            // richTextBox1
+            // lblTotalBruto
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(493, 91);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(107, 47);
-            this.richTextBox1.TabIndex = 24;
-            this.richTextBox1.Text = "";
+            this.lblTotalBruto.AutoSize = true;
+            this.lblTotalBruto.Location = new System.Drawing.Point(427, 110);
+            this.lblTotalBruto.Name = "lblTotalBruto";
+            this.lblTotalBruto.Size = new System.Drawing.Size(45, 13);
+            this.lblTotalBruto.TabIndex = 22;
+            this.lblTotalBruto.Text = "TOTAL:";
             // 
-            // label10
+            // lblTotalNeto
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(427, 110);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(45, 13);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "TOTAL:";
+            this.lblTotalNeto.AutoSize = true;
+            this.lblTotalNeto.Location = new System.Drawing.Point(427, 33);
+            this.lblTotalNeto.Name = "lblTotalNeto";
+            this.lblTotalNeto.Size = new System.Drawing.Size(60, 13);
+            this.lblTotalNeto.TabIndex = 19;
+            this.lblTotalNeto.Text = "Total Neto:";
             // 
-            // textBox7
+            // lblIVANeto
             // 
-            this.textBox7.Location = new System.Drawing.Point(493, 61);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(107, 20);
-            this.textBox7.TabIndex = 21;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(493, 31);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(107, 20);
-            this.textBox8.TabIndex = 20;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(427, 33);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(60, 13);
-            this.label11.TabIndex = 19;
-            this.label11.Text = "Total Neto:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(427, 63);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(27, 13);
-            this.label12.TabIndex = 18;
-            this.label12.Text = "IVA:";
+            this.lblIVANeto.AutoSize = true;
+            this.lblIVANeto.Location = new System.Drawing.Point(427, 63);
+            this.lblIVANeto.Name = "lblIVANeto";
+            this.lblIVANeto.Size = new System.Drawing.Size(27, 13);
+            this.lblIVANeto.TabIndex = 18;
+            this.lblIVANeto.Text = "IVA:";
             // 
             // label9
             // 
@@ -344,14 +307,14 @@
             this.textBox5.Size = new System.Drawing.Size(121, 20);
             this.textBox5.TabIndex = 16;
             // 
-            // label7
+            // lblIVAPorcentual
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(236, 96);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(27, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "IVA:";
+            this.lblIVAPorcentual.AutoSize = true;
+            this.lblIVAPorcentual.Location = new System.Drawing.Point(236, 96);
+            this.lblIVAPorcentual.Name = "lblIVAPorcentual";
+            this.lblIVAPorcentual.Size = new System.Drawing.Size(27, 13);
+            this.lblIVAPorcentual.TabIndex = 15;
+            this.lblIVAPorcentual.Text = "IVA:";
             // 
             // textBox3
             // 
@@ -360,14 +323,14 @@
             this.textBox3.Size = new System.Drawing.Size(121, 20);
             this.textBox3.TabIndex = 13;
             // 
-            // label8
+            // lblDescuentoNeto
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 125);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 13);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Descuento ($):";
+            this.lblDescuentoNeto.AutoSize = true;
+            this.lblDescuentoNeto.Location = new System.Drawing.Point(8, 125);
+            this.lblDescuentoNeto.Name = "lblDescuentoNeto";
+            this.lblDescuentoNeto.Size = new System.Drawing.Size(77, 13);
+            this.lblDescuentoNeto.TabIndex = 12;
+            this.lblDescuentoNeto.Text = "Descuento ($):";
             // 
             // textBox2
             // 
@@ -413,312 +376,229 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 6;
             // 
-            // label6
+            // lblNumeroComprobante
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(234, 34);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Número:";
+            this.lblNumeroComprobante.AutoSize = true;
+            this.lblNumeroComprobante.Location = new System.Drawing.Point(234, 34);
+            this.lblNumeroComprobante.Name = "lblNumeroComprobante";
+            this.lblNumeroComprobante.Size = new System.Drawing.Size(47, 13);
+            this.lblNumeroComprobante.TabIndex = 5;
+            this.lblNumeroComprobante.Text = "Número:";
             // 
-            // label5
+            // lblFecha
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(236, 63);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Fecha:";
+            this.lblFecha.AutoSize = true;
+            this.lblFecha.Location = new System.Drawing.Point(236, 63);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(40, 13);
+            this.lblFecha.TabIndex = 4;
+            this.lblFecha.Text = "Fecha:";
             // 
-            // label4
+            // lblDescuentoPorcentual
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 96);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Descuento (%):";
+            this.lblDescuentoPorcentual.AutoSize = true;
+            this.lblDescuentoPorcentual.Location = new System.Drawing.Point(8, 96);
+            this.lblDescuentoPorcentual.Name = "lblDescuentoPorcentual";
+            this.lblDescuentoPorcentual.Size = new System.Drawing.Size(79, 13);
+            this.lblDescuentoPorcentual.TabIndex = 3;
+            this.lblDescuentoPorcentual.Text = "Descuento (%):";
             // 
-            // label2
+            // lblFormaPago
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Forma de Pago:";
+            this.lblFormaPago.AutoSize = true;
+            this.lblFormaPago.Location = new System.Drawing.Point(8, 63);
+            this.lblFormaPago.Name = "lblFormaPago";
+            this.lblFormaPago.Size = new System.Drawing.Size(82, 13);
+            this.lblFormaPago.TabIndex = 1;
+            this.lblFormaPago.Text = "Forma de Pago:";
             // 
-            // label1
+            // lblTipoComprobante
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tipo Comprobante:";
+            this.lblTipoComprobante.AutoSize = true;
+            this.lblTipoComprobante.Location = new System.Drawing.Point(8, 34);
+            this.lblTipoComprobante.Name = "lblTipoComprobante";
+            this.lblTipoComprobante.Size = new System.Drawing.Size(97, 13);
+            this.lblTipoComprobante.TabIndex = 0;
+            this.lblTipoComprobante.Text = "Tipo Comprobante:";
             // 
-            // groupBox3
+            // gbxProveedor
             // 
-            this.groupBox3.Controls.Add(this.textBox17);
-            this.groupBox3.Controls.Add(this.textBox14);
-            this.groupBox3.Controls.Add(this.textBox16);
-            this.groupBox3.Controls.Add(this.textBox15);
-            this.groupBox3.Controls.Add(this.textBox13);
-            this.groupBox3.Controls.Add(this.textBox11);
-            this.groupBox3.Controls.Add(this.textBox10);
-            this.groupBox3.Controls.Add(this.groupBox5);
-            this.groupBox3.Controls.Add(this.textBox6);
-            this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Controls.Add(this.label20);
-            this.groupBox3.Controls.Add(this.label19);
-            this.groupBox3.Controls.Add(this.label17);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.label15);
-            this.groupBox3.Controls.Add(this.label14);
-            this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(3, 170);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(996, 162);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Proveedor";
+            this.gbxProveedor.Controls.Add(this.gbxObservacionesProveedor);
+            this.gbxProveedor.Controls.Add(this.lblTelefono);
+            this.gbxProveedor.Controls.Add(this.lblMail);
+            this.gbxProveedor.Controls.Add(this.lblRazonSocial);
+            this.gbxProveedor.Controls.Add(this.lblCUIT);
+            this.gbxProveedor.Controls.Add(this.lblDireccion);
+            this.gbxProveedor.Controls.Add(this.lblCiudad);
+            this.gbxProveedor.Controls.Add(this.lblProvincia);
+            this.gbxProveedor.Controls.Add(this.lblCP);
+            this.gbxProveedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbxProveedor.Location = new System.Drawing.Point(3, 170);
+            this.gbxProveedor.Name = "gbxProveedor";
+            this.gbxProveedor.Size = new System.Drawing.Size(996, 162);
+            this.gbxProveedor.TabIndex = 1;
+            this.gbxProveedor.TabStop = false;
+            this.gbxProveedor.Text = "Proveedor";
             // 
-            // textBox17
+            // gbxObservacionesProveedor
             // 
-            this.textBox17.Enabled = false;
-            this.textBox17.Location = new System.Drawing.Point(522, 72);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(78, 20);
-            this.textBox17.TabIndex = 38;
+            this.gbxObservacionesProveedor.Controls.Add(this.rtbObservacionesProveedor);
+            this.gbxObservacionesProveedor.Location = new System.Drawing.Point(636, 25);
+            this.gbxObservacionesProveedor.Name = "gbxObservacionesProveedor";
+            this.gbxObservacionesProveedor.Size = new System.Drawing.Size(357, 112);
+            this.gbxObservacionesProveedor.TabIndex = 28;
+            this.gbxObservacionesProveedor.TabStop = false;
+            this.gbxObservacionesProveedor.Text = "Observaciones";
             // 
-            // textBox14
+            // rtbObservacionesProveedor
             // 
-            this.textBox14.Enabled = false;
-            this.textBox14.Location = new System.Drawing.Point(288, 117);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(146, 20);
-            this.textBox14.TabIndex = 37;
+            this.rtbObservacionesProveedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbObservacionesProveedor.Location = new System.Drawing.Point(3, 16);
+            this.rtbObservacionesProveedor.Name = "rtbObservacionesProveedor";
+            this.rtbObservacionesProveedor.Size = new System.Drawing.Size(351, 93);
+            this.rtbObservacionesProveedor.TabIndex = 0;
+            this.rtbObservacionesProveedor.Text = "";
             // 
-            // textBox16
+            // lblTelefono
             // 
-            this.textBox16.Enabled = false;
-            this.textBox16.Location = new System.Drawing.Point(69, 117);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(146, 20);
-            this.textBox16.TabIndex = 36;
+            this.lblTelefono.AutoSize = true;
+            this.lblTelefono.Location = new System.Drawing.Point(441, 75);
+            this.lblTelefono.Name = "lblTelefono";
+            this.lblTelefono.Size = new System.Drawing.Size(52, 13);
+            this.lblTelefono.TabIndex = 14;
+            this.lblTelefono.Text = "Teléfono:";
             // 
-            // textBox15
+            // lblMail
             // 
-            this.textBox15.Enabled = false;
-            this.textBox15.Location = new System.Drawing.Point(392, 25);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(146, 20);
-            this.textBox15.TabIndex = 35;
+            this.lblMail.AutoSize = true;
+            this.lblMail.Location = new System.Drawing.Point(228, 75);
+            this.lblMail.Name = "lblMail";
+            this.lblMail.Size = new System.Drawing.Size(29, 13);
+            this.lblMail.TabIndex = 13;
+            this.lblMail.Text = "Mail:";
             // 
-            // textBox13
+            // lblRazonSocial
             // 
-            this.textBox13.Enabled = false;
-            this.textBox13.Location = new System.Drawing.Point(288, 72);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(146, 20);
-            this.textBox13.TabIndex = 33;
+            this.lblRazonSocial.AutoSize = true;
+            this.lblRazonSocial.Location = new System.Drawing.Point(8, 28);
+            this.lblRazonSocial.Name = "lblRazonSocial";
+            this.lblRazonSocial.Size = new System.Drawing.Size(73, 13);
+            this.lblRazonSocial.TabIndex = 12;
+            this.lblRazonSocial.Text = "Razón Social:";
             // 
-            // textBox11
+            // lblCUIT
             // 
-            this.textBox11.Enabled = false;
-            this.textBox11.Location = new System.Drawing.Point(69, 72);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(146, 20);
-            this.textBox11.TabIndex = 30;
+            this.lblCUIT.AutoSize = true;
+            this.lblCUIT.Location = new System.Drawing.Point(351, 28);
+            this.lblCUIT.Name = "lblCUIT";
+            this.lblCUIT.Size = new System.Drawing.Size(35, 13);
+            this.lblCUIT.TabIndex = 10;
+            this.lblCUIT.Text = "CUIT:";
             // 
-            // textBox10
+            // lblDireccion
             // 
-            this.textBox10.Enabled = false;
-            this.textBox10.Location = new System.Drawing.Point(522, 117);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(78, 20);
-            this.textBox10.TabIndex = 29;
+            this.lblDireccion.AutoSize = true;
+            this.lblDireccion.Location = new System.Drawing.Point(8, 75);
+            this.lblDireccion.Name = "lblDireccion";
+            this.lblDireccion.Size = new System.Drawing.Size(55, 13);
+            this.lblDireccion.TabIndex = 9;
+            this.lblDireccion.Text = "Dirección:";
             // 
-            // groupBox5
+            // lblCiudad
             // 
-            this.groupBox5.Controls.Add(this.richTextBox3);
-            this.groupBox5.Location = new System.Drawing.Point(636, 25);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(357, 112);
-            this.groupBox5.TabIndex = 28;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Observaciones";
+            this.lblCiudad.AutoSize = true;
+            this.lblCiudad.Location = new System.Drawing.Point(8, 121);
+            this.lblCiudad.Name = "lblCiudad";
+            this.lblCiudad.Size = new System.Drawing.Size(43, 13);
+            this.lblCiudad.TabIndex = 8;
+            this.lblCiudad.Text = "Ciudad:";
             // 
-            // richTextBox3
+            // lblProvincia
             // 
-            this.richTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox3.Location = new System.Drawing.Point(3, 16);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(351, 93);
-            this.richTextBox3.TabIndex = 0;
-            this.richTextBox3.Text = "";
+            this.lblProvincia.AutoSize = true;
+            this.lblProvincia.Location = new System.Drawing.Point(228, 120);
+            this.lblProvincia.Name = "lblProvincia";
+            this.lblProvincia.Size = new System.Drawing.Size(54, 13);
+            this.lblProvincia.TabIndex = 7;
+            this.lblProvincia.Text = "Provincia:";
             // 
-            // textBox6
+            // lblCP
             // 
-            this.textBox6.Enabled = false;
-            this.textBox6.Location = new System.Drawing.Point(87, 25);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(243, 20);
-            this.textBox6.TabIndex = 26;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(441, 75);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(52, 13);
-            this.label21.TabIndex = 14;
-            this.label21.Text = "Teléfono:";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(228, 75);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(29, 13);
-            this.label20.TabIndex = 13;
-            this.label20.Text = "Mail:";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(8, 28);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(73, 13);
-            this.label19.TabIndex = 12;
-            this.label19.Text = "Razón Social:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(351, 28);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(35, 13);
-            this.label17.TabIndex = 10;
-            this.label17.Text = "CUIT:";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(8, 75);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(55, 13);
-            this.label16.TabIndex = 9;
-            this.label16.Text = "Dirección:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(8, 121);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(43, 13);
-            this.label15.TabIndex = 8;
-            this.label15.Text = "Ciudad:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(228, 120);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(54, 13);
-            this.label14.TabIndex = 7;
-            this.label14.Text = "Provincia:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(441, 121);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(75, 13);
-            this.label13.TabIndex = 6;
-            this.label13.Text = "Código Postal:";
+            this.lblCP.AutoSize = true;
+            this.lblCP.Location = new System.Drawing.Point(441, 121);
+            this.lblCP.Name = "lblCP";
+            this.lblCP.Size = new System.Drawing.Size(75, 13);
+            this.lblCP.TabIndex = 6;
+            this.lblCP.Text = "Código Postal:";
             // 
             // frmPedidoProveedorCierre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 621);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tlpCierreProveedor);
             this.Name = "frmPedidoProveedorCierre";
             this.Text = "Cierre de Pedido Proveedor (Luis De Paoli)";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView2)).EndInit();
+            this.tlpCierreProveedor.ResumeLayout(false);
+            this.pnlBotonera.ResumeLayout(false);
+            this.gbxDetalleArticulos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleArticulos)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
+            this.gbxComprobante.ResumeLayout(false);
+            this.gbxComprobante.PerformLayout();
+            this.gbxObservacionesComprobante.ResumeLayout(false);
+            this.gbxProveedor.ResumeLayout(false);
+            this.gbxProveedor.PerformLayout();
+            this.gbxObservacionesProveedor.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        internal System.Windows.Forms.DataGridView DataGridView2;
+        private System.Windows.Forms.TableLayoutPanel tlpCierreProveedor;
+        private System.Windows.Forms.Panel pnlBotonera;
+        private System.Windows.Forms.Button btnEmitirComprobante;
+        private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.GroupBox gbxDetalleArticulos;
+        internal System.Windows.Forms.DataGridView dgvDetalleArticulos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.GroupBox gbxComprobante;
+        private System.Windows.Forms.GroupBox gbxObservacionesComprobante;
+        private System.Windows.Forms.RichTextBox rtbObservacionesComprobante;
+        private System.Windows.Forms.Label lblTotalBruto;
+        private System.Windows.Forms.Label lblTotalNeto;
+        private System.Windows.Forms.Label lblIVANeto;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblIVAPorcentual;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblDescuentoNeto;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.RichTextBox richTextBox3;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblNumeroComprobante;
+        private System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.Label lblDescuentoPorcentual;
+        private System.Windows.Forms.Label lblFormaPago;
+        private System.Windows.Forms.Label lblTipoComprobante;
+        private System.Windows.Forms.GroupBox gbxProveedor;
+        private System.Windows.Forms.GroupBox gbxObservacionesProveedor;
+        private System.Windows.Forms.RichTextBox rtbObservacionesProveedor;
+        private System.Windows.Forms.Label lblTelefono;
+        private System.Windows.Forms.Label lblMail;
+        private System.Windows.Forms.Label lblRazonSocial;
+        private System.Windows.Forms.Label lblCUIT;
+        private System.Windows.Forms.Label lblDireccion;
+        private System.Windows.Forms.Label lblCiudad;
+        private System.Windows.Forms.Label lblProvincia;
+        private System.Windows.Forms.Label lblCP;
     }
 }
