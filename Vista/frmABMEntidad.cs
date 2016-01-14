@@ -1128,30 +1128,6 @@ namespace Vista
             return tipoEntidad;
          
         }
-       
-        //Eliminar ambos metodos Leave
-        private void txtBoxApellido_Leave(object sender, EventArgs e)
-        {
-            TextBox TB = (TextBox)sender;
-            int VisibleTime = 1000;  //in milliseconds
-
-            ToolTip tt = new ToolTip();
-            
-            tt.Show("El campo no puede permanecer vacío", TB, 0, -20);
-        }
-
-        private void txtBoxNombre_Leave(object sender, EventArgs e)
-        {
-            TextBox TB = (TextBox)sender;
-            int VisibleTime = 4000;  //in milliseconds
-
-            ToolTip tt = new ToolTip();
-            tt.IsBalloon = true;
-            tt.UseAnimation = true;
-            tt.UseFading = true;
-            
-            tt.Show("El campo no puede permanecer vacío", TB, 0, -40,VisibleTime);
-        }
 
         private void btnDatosAdicionales_Click(object sender, EventArgs e)
         {

@@ -62,99 +62,47 @@ namespace Datos
 
             return modArt;
         }
-
+        //VER DE AGREGAR MODELOS de acuerdo a como se graban los modelos
         /// <summary>
-        /// Busca por codigoOriginal o descripción y devuelve lista de artículos
+        /// Genera string a insertar en clausula WHERE de sql de acuerdo a los parámetros de búsqueda
         /// </summary>
-        /// <param name="tipoParametro">"codigoOriginal" o "descripcion"</param>
-        /// <param name="descripcionParametro">string por el que se buscará artículo</param>
+        /// <param name="p_mod_articulo">modeloArticulo con variables posiblemente inicializadas</param>
+        /// <param name="p_parametroBusqueda">constante encontrada en LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Articulos</param>
+        /// <param name="p_comando">comando sql que será modificado para incluir parámetros</param>
         /// <returns></returns>
-        /// 
-
-        public List<ModeloArticulos> buscarArticulo(ModeloArticulos p_mod_articulo)
+        private string getCondicionBusqueda(ModeloArticulos p_mod_articulo, string p_parametroBusqueda, ref SqlCommand p_comando)
         {
-            List<ModeloArticulos> lmArticulo = new List<ModeloArticulos>();
-
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.codigoOriginal, "@codigo_original"));
-            string codigoEntidadQuery = @" (@codigo_original IS NULL OR @codigo_original = codigo_original) ";
-            comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.descripcion, "@descripcion"));
-            string descripcionQuery = this.parametroBusqueda("@descripcion", "descripcion", "=");
-            comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.modelos, "@modelos"));
-            string modeloQuery = this.parametroBusqueda("@modelos", "modelos", "=");
-            comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.observaciones, "@observaciones"));
-            string observacionesQuery = this.parametroBusqueda("@observaciones", "observaciones", "LIKE");
-            
-            string querySQL = codigoEntidadQuery + " AND " + descripcionQuery + " AND " + modeloQuery + " AND " + observacionesQuery;
-
-            comando.CommandText =
-                "SELECT [Articulos].codigo_original ,[Articulos].descripcion,[Articulos].modelos,[Articulos].observaciones " +
-                    "FROM [Articulos] " +
-                    "WHERE " + querySQL;
-
-            comando.Connection.Open();
-
-            SqlDataReader drArticulos = comando.ExecuteReader();
-
-            ModeloArticulos modArt = new ModeloArticulos();
-
-            while (drArticulos.Read())
-            {
-                modArt = new ModeloArticulos();
-                modArt = this.leerDatosArticulo(drArticulos);
-
-                
-                lmArticulo.Add(modArt);
-            }
-            drArticulos.Close();
-            comando.Connection.Close();
-
-            return lmArticulo;
-        }
-        public List<ModeloArticulos> buscarArticulo(ModeloArticulos p_mod_articulo, string p_parametroBusqueda)
-        {
-            List<ModeloArticulos> lcl_lst_mod_articulos = new List<ModeloArticulos>();
-
-            string querySQL = "";
-
             switch (p_parametroBusqueda)
-            { 
+            {
+                case Constantes.ParametrosBusqueda.Articulos.CodigoOriginal:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.codigoOriginal , "@codigo_original"));
+                    return " codigo_original = @codigo_original ";
+
                 case Constantes.ParametrosBusqueda.Articulos.Descripcion:
-                    querySQL = " descripcion = @descripcion ";
-                    break;
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.descripcion, "@descripcion"));
+                    return " descripcion LIKE @descripcion ";
+                case Constantes.ParametrosBusqueda.Articulos.Any:
+                    
+                    string codigoOriginal = p_mod_articulo.codigoOriginal == "" ? null : p_mod_articulo.codigoOriginal;
+                    p_comando.Parameters.Add(this.instanciarParametro(codigoOriginal, "@codigo_original"));
+                    string codigoOriginalQuery = this.parametroBusqueda("@codigo_original", "codigo_original", "=");
+
+                    string descripcion = p_mod_articulo.descripcion == "" ? null : p_mod_articulo.descripcion;
+                    p_comando.Parameters.Add(this.instanciarParametro(descripcion, "@descripcion"));
+                    string descripcionQuery = this.parametroBusqueda("@descripcion", "descripcion", "LIKE");
+
+                    return codigoOriginalQuery + " AND " + descripcionQuery;
+                case Constantes.ParametrosBusqueda.Articulos.All:
+                    //retorna true y devuelve todas las filas
+                    return " 1 = 1 ";
                 default:
                     //hace que sql no retorne filas
-                    querySQL = " 1 = 2 ";
-                    break;
+                    return " 1 = 2 ";
             }
-
-            return lcl_lst_mod_articulos;
-        }
-        public List<ModeloArticulos> buscarArticulo(string p_tipoParametro, string p_descripcionParametro)
-        {
-            List<ModeloArticulos> lcl_lst_mod_articulos = new List<ModeloArticulos>();
-
-            switch (p_tipoParametro.ToLower())
-            {
-                case "codigooriginal":
-                    lcl_lst_mod_articulos = buscarPorCodigoOriginal(p_descripcionParametro);
-                    break;
-                case "descripcion":
-                    lcl_lst_mod_articulos = buscarPorDescripcion(p_descripcionParametro);
-                    break;
-                default:
-                    break;
-            }
-            return lcl_lst_mod_articulos;
         }
 
-        private List<ModeloArticulos> buscarPorCodigoOriginal(string p_codigoOriginal)
+
+        public List<ModeloArticulos> buscarArticulo(ModeloArticulos p_mod_articulo, string p_parametroBusqueda)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -162,125 +110,55 @@ namespace Datos
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
-            comando.CommandText = 
-                "SELECT [codigo_original],[descripcion],[modelos],[observaciones] FROM [articulos] "+
-                "WHERE codigo_original LIKE @codigo_original";
 
-            comando.Parameters.Add(new SqlParameter("@codigo_original", SqlDbType.VarChar));
-            comando.Parameters["@codigo_original"].Value = "%" + p_codigoOriginal + "%";
+            string querySQL = this.getCondicionBusqueda(p_mod_articulo,p_parametroBusqueda,ref comando);
 
-            comando.Connection.Open();
-
-            SqlDataReader drArticulos = comando.ExecuteReader();
-
-            List<ModeloArticulos> listaArticulos = new List<ModeloArticulos>();
-            ModeloArticulos modArt = new ModeloArticulos();
-
-            while (drArticulos.Read())
-            {
-                modArt = this.leerDatosArticulo(drArticulos);
-                listaArticulos.Add(modArt);
-            }
-
-            drArticulos.Close();
-            comando.Connection.Close();
-
-            return listaArticulos;
-        }
-       
-        private List<ModeloArticulos> buscarPorDescripcion(string p_descripcion)
-        {
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText = 
-                "SELECT [codigo_original],[descripcion],[modelos],[observaciones] FROM [articulos] "+
-                "WHERE descripcion LIKE @descripcion";
-
-            comando.Parameters.Add(new SqlParameter("@descripcion", SqlDbType.VarChar));
-            comando.Parameters["@descripcion"].Value = "%" + p_descripcion + "%";
+            comando.CommandText =
+                "SELECT [codigo_original],[descripcion],[modelos],[observaciones] "+
+                "   FROM [articulos] " +
+                "   WHERE " + querySQL;
 
             comando.Connection.Open();
 
             SqlDataReader drArticulos = comando.ExecuteReader();
 
-            List<ModeloArticulos> listaArticulos = new List<ModeloArticulos>();
-            ModeloArticulos modArt = new ModeloArticulos();
-
-            while (drArticulos.Read())
-            {
-                modArt = this.leerDatosArticulo(drArticulos);
-                listaArticulos.Add(modArt);
-            }
-
-            drArticulos.Close();
-            comando.Connection.Close();
-
-            return listaArticulos;
-        }
-
-        public ModeloArticulos getOne(string p_codigoOriginal)
-        {
-            ModeloArticulos lcl_mod_articulo = null;
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText = 
-                "SELECT [codigo_original],[descripcion],[modelos],[observaciones] FROM [articulos] "+
-                "WHERE codigo_original = @codigo_original";
-
-            comando.Parameters.Add(instanciarParametro(p_codigoOriginal, "@codigo_original"));   
-            comando.Connection.Open();
-
-            SqlDataReader drArticulos = comando.ExecuteReader();
+            List<ModeloArticulos> lcl_lst_mod_articulo = new List<ModeloArticulos>();
+            ModeloArticulos lcl_mod_articulo = new ModeloArticulos();
 
             while (drArticulos.Read())
             {
                 lcl_mod_articulo = new ModeloArticulos();
                 lcl_mod_articulo = this.leerDatosArticulo(drArticulos);
+
+                lcl_lst_mod_articulo.Add(lcl_mod_articulo);
             }
             drArticulos.Close();
             comando.Connection.Close();
 
-            return lcl_mod_articulo;
+            return lcl_lst_mod_articulo;
+        }
+
+
+        public ModeloArticulos getOne(string p_codigoOriginal)
+        {
+            ModeloArticulos lcl_mod_articulo = new ModeloArticulos();
+            List<ModeloArticulos> lcl_lst_mod_articulos = new List<ModeloArticulos>();
+            lcl_mod_articulo.codigoOriginal = p_codigoOriginal;
+            lcl_lst_mod_articulos = this.buscarArticulo(lcl_mod_articulo, Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
+
+            if (lcl_lst_mod_articulos.Count > 0)
+            {
+                return lcl_lst_mod_articulos[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<ModeloArticulos> getAll()
         {
-            List<ModeloArticulos> lcl_lst_mod_articulos = new List<ModeloArticulos>();
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText = 
-                "SELECT [codigo_original],[descripcion],[modelos],[observaciones] FROM [articulos]";
-
-            comando.Connection.Open();
-
-            SqlDataReader drArticulos = comando.ExecuteReader();
-            while (drArticulos.Read())
-            {
-                ModeloArticulos modArt = new ModeloArticulos();
-                modArt = this.leerDatosArticulo(drArticulos);
-                lcl_lst_mod_articulos.Add(modArt);
-            }
-            drArticulos.Close();
-
-            comando.Connection.Close();
-
-            return lcl_lst_mod_articulos;
+            return this.buscarArticulo(null, Constantes.ParametrosBusqueda.Articulos.All);
         }
 
         #region Alta/Baja/Modificación

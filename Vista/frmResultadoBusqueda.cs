@@ -30,14 +30,14 @@ namespace Vista
             this.FormClosing += frmResultadoBusqueda_FormClosing;
         }
 
-        private void inicializarMostrarBusqueda(string tipo)
+        private void inicializarMostrarBusqueda(string p_tipo)
         {
             /*
              Se los nullifica ya que más adelante se utilizará la lista no null para devolver el resultado en método asignarResultado
              */
             this.Controls.Clear();
             this.BringToFront();
-            this.inicializarDataGridViewResultadoBusqueda(tipo);
+            this.inicializarDataGridViewResultadoBusqueda(p_tipo);
             this.Controls.Add(dataGridViewResultadoBusqueda);
             lmPersonas = null;
             lmProveedores = null;
@@ -48,26 +48,26 @@ namespace Vista
             MessageBox.Show("No se han encontrado resultados", "Resultado de búsqueda", MessageBoxButtons.OK);
         }
 
-        private void asignarResultado(int indice)
+        private void asignarResultado(int p_indice)
         {
             mPersona = null;
             mProveedor = null;
 
             if (lmProveedores != null)
             {
-                mProveedor = lmProveedores[indice];
+                mProveedor = lmProveedores[p_indice];
             }
             else
             {
                 if (lmPersonas != null)
                 {
-                    mPersona = lmPersonas[indice];
+                    mPersona = lmPersonas[p_indice];
                 }
             }
         }
 
         //Se podría ampliar para que este método también muestre artículos u otros resultados de búsqueda
-        private DataGridView inicializarDataGridViewResultadoBusqueda(string tipoModelo)
+        private DataGridView inicializarDataGridViewResultadoBusqueda(string p_tipoModelo)
         {
             dataGridViewResultadoBusqueda = new DataGridView();
             this.dataGridViewResultadoBusqueda.Dock = DockStyle.Fill;
@@ -79,7 +79,7 @@ namespace Vista
 
             dataGridViewResultadoBusqueda.Width = AnchoVentana;
 
-            switch (tipoModelo)
+            switch (p_tipoModelo)
             {
                 case LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor:
                     this.inicializarDataGridViewResultadoBusqueda_Entidades();
@@ -291,6 +291,28 @@ namespace Vista
 
         private void inicializarDataGridViewResultadoBusqueda_ArticulosProveedores()
         {
+            dataGridViewResultadoBusqueda.Columns.Add("codigoOriginal", "Código");
+            dataGridViewResultadoBusqueda.Columns[0].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("descripcion", "Descripción");
+            dataGridViewResultadoBusqueda.Columns[1].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("codigoArticuloProveedor", "Código Artículo");
+            dataGridViewResultadoBusqueda.Columns[2].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("codigoEntidad", "Código Proveedor");
+            dataGridViewResultadoBusqueda.Columns[3].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("razonSocialProveedor", "Proveedor");
+            dataGridViewResultadoBusqueda.Columns[4].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("valorVenta", "Valor Venta");
+            dataGridViewResultadoBusqueda.Columns[5].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("valorCompra", "Valor Compra");
+            dataGridViewResultadoBusqueda.Columns[6].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("stockMinimo", "Stock Mínimo");
+            dataGridViewResultadoBusqueda.Columns[7].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("stockActual", "Stock Actual");
+            dataGridViewResultadoBusqueda.Columns[8].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("ubicacion", "Ubicación");
+            dataGridViewResultadoBusqueda.Columns[9].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("fechaActualizacion", "Fecha Última Actualización");
+            dataGridViewResultadoBusqueda.Columns[10].FillWeight = 1;
         }
         #endregion
 

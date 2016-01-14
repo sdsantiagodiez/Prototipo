@@ -55,7 +55,7 @@ namespace Modelos
             this.codigoArtProveedor = pModArtProv.codigoArticuloProveedor;
             this.codigoOriginalArt = pModArtProv.codigoOriginal;
             this.cantidadArticulos = pCantidad;
-            this.descripcion = pModArtProv.descripcion;
+            this.descripcion = pModArtProv.descripcionArticuloProveedor;
             //Sólo considera que la linea sea de venta de artículo y no para una compra a proveedor
             this.valorUnitario = pModArtProv.valorVenta.valorArticulo;
             //Recordar que se pueden aplicar descuentos

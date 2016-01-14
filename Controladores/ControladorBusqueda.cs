@@ -78,7 +78,7 @@ namespace Controladores
         /// Busca proveedores que cumplan con un parámetro de búsqueda
         /// </summary>
         /// <param name="p_mod_proveedor">Proveedor con variable a buscar inicializada con algún valor</param>
-        /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda</param>
+        /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Proveedores</param>
         /// <returns>Lista de proveedores</returns>
         public List<ModeloProveedor> buscarProveedores(ModeloProveedor p_mod_proveedor, string p_paramentroBusqueda)
         {
@@ -100,46 +100,30 @@ namespace Controladores
         {
             CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
 
-            return lcl_cat_articulos.getAll(); 
+            return lcl_cat_articulos.buscarArticulo(null, Constantes.ParametrosBusqueda.Articulos.All);
         }
         /// <summary>
         /// Retorna articulos en base a los valores inicializados en los atributos del modelo
         /// </summary>
         /// <param name="pmArticulo"></param>
-        /// <returns>Lista de proveedores</returns>
+        /// <returns>Lista de articulos</returns>
         public List<ModeloArticulos> buscarArticulos(ModeloArticulos p_mod_articulo)
         {
             CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
             
-            return lcl_cat_articulos.buscarArticulo(p_mod_articulo); 
+            return lcl_cat_articulos.buscarArticulo(p_mod_articulo,Constantes.ParametrosBusqueda.Articulos.Any); 
         }
         /// <summary>
-        /// Busca proveedores que cumplan con un parámetro de búsqueda
+        /// Busca articulos que cumplan con un parámetro de búsqueda
         /// </summary>
-        /// <param name="p_mod_articulo">Proveedor con variable a buscar inicializada con algún valor</param>
-        /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda</param>
+        /// <param name="p_mod_articulo">Articulo con variable a buscar inicializada con algún valor</param>
+        /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Articulos</param>
         /// <returns>Lista de proveedores</returns>
         public List<ModeloArticulos> buscarArticulos(ModeloArticulos p_mod_articulo, string p_paramentroBusqueda)
         {
-            List<ModeloArticulos> lcl_lst_mod_articulo = new List<ModeloArticulos>();
             CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
-            if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)
-            {
-                lcl_lst_mod_articulo.Add(lcl_cat_articulos.getOne(p_mod_articulo.codigoOriginal));
-            }
-            else
-            {
-                if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.Articulos.All)
-                {
-                    lcl_lst_mod_articulo = lcl_cat_articulos.getAll();
-                }
-                else
-                {
-                    lcl_lst_mod_articulo = lcl_cat_articulos.buscarArticulo(p_mod_articulo.descripcion, p_paramentroBusqueda);
-                }
-            }
 
-            return lcl_lst_mod_articulo;
+            return lcl_cat_articulos.buscarArticulo(p_mod_articulo, p_paramentroBusqueda);
         }
 
         #endregion
@@ -149,11 +133,11 @@ namespace Controladores
         /// Retorna todos los ArticulosProveedores de la base de datos
         /// </summary>
         /// <returns>Lista de Articulos</returns>
-        public List<ModeloArticuloProveedores> buscarArticuloProveedores()
+        public List<ModeloArticuloProveedores> buscarArticulosProveedores()
         {
             CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
-
-            return lcl_cat_articuloProveedores.getAll(); ;
+            //Cambiar a buscarArticulo(null,All) cuando deje de ser ambigua la llamada
+            return lcl_cat_articuloProveedores.getAll(); 
         }
         /// <summary>
         /// Retorna proveedores en base a los valores inicializados en los atributos del modelo
@@ -164,7 +148,7 @@ namespace Controladores
         {
             CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
             
-            return lcl_cat_articuloProveedores.buscarArticuloProveedor(p_mod_articuloProveedores); 
+            return lcl_cat_articuloProveedores.buscarArticuloProveedor(p_mod_articuloProveedores,Constantes.ParametrosBusqueda.ArticulosProveedores.Any); 
         }
         /// <summary>
         /// Busca proveedores que cumplan con un parámetro de búsqueda
@@ -172,29 +156,51 @@ namespace Controladores
         /// <param name="p_mod_articuloProveedores">Proveedor con variable a buscar inicializada con algún valor</param>
         /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda</param>
         /// <returns>Lista de proveedores</returns>
-        public List<ModeloArticuloProveedores> buscarArticuloProveedores(ModeloArticuloProveedores p_mod_articuloProveedores, string p_paramentroBusqueda)
+        public List<ModeloArticuloProveedores> buscarArticulosProveedores(ModeloArticuloProveedores p_mod_articuloProveedores, string p_paramentroBusqueda)
         {
-            List<ModeloArticuloProveedores> lcl_lst_mod_articuloProveedores = new List<ModeloArticuloProveedores>();
-            CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
-            if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoOriginal)
+            CatalogoArticuloProveedores lcl_cat_articulosProveedores = new CatalogoArticuloProveedores();
+            switch (p_paramentroBusqueda)
             {
-                lcl_lst_mod_articuloProveedores.Add(lcl_cat_articuloProveedores.getOne(p_mod_articuloProveedores.codigoOriginal,p_mod_articuloProveedores.codigoArticuloProveedor));
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.Descripcion:
+                    return this.buscarArticuloProveedor_descripcionArticulo(p_mod_articuloProveedores);
+                default:
+                    return lcl_cat_articulosProveedores.buscarArticuloProveedor(p_mod_articuloProveedores, p_paramentroBusqueda);
             }
-            else
-            {
-                if (p_paramentroBusqueda == Constantes.ParametrosBusqueda.ArticulosProveedores.All)
-                {
-                    lcl_lst_mod_articuloProveedores = lcl_cat_articuloProveedores.getAll();
-                }
-                else
-                {
-                    //lmArticuloProveedores = lcl_cat_articuloProveedores.buscarArticuloProveedor(pmArticuloProveedores, paramentroBusqueda); Ver como redefinir dicho metodo - parametros
-                }
-            }
-
-            return lcl_lst_mod_articuloProveedores;
         }
 
+        private List<ModeloArticuloProveedores> buscarArticuloProveedor_descripcionArticulo(ModeloArticuloProveedores p_mod_articuloProveedores)
+        {
+            /*
+            * Para buscar articuloProveedor por descripcion de articulo empezamos buscando 
+            * todos los articulos que tengan esa descripcion por métodos de CatalogoArticulos
+            */
+            ModeloArticulos lcl_mod_articulo = new ModeloArticulos();
+            lcl_mod_articulo.descripcion = "";//Falta determinar de donde sacar valor de descripcion   //p_mod_articuloProveedores.;
+            CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
+
+            List<ModeloArticuloProveedores> lcl_lst_mod_articulosProveedores = new List<ModeloArticuloProveedores>();
+            ModeloArticuloProveedores lcl_mod_articuloProveedor = null;
+            /*
+             *Obtenemos codigoOriginal de cada articulo encontrado y 
+             *buscamos articulos de proveedores por métodos de CatalogoArticuloProveedores 
+             */
+            foreach (ModeloArticulos a in this.buscarArticulos(lcl_mod_articulo, Constantes.ParametrosBusqueda.Articulos.Descripcion))
+            {
+                lcl_mod_articuloProveedor.codigoOriginal = a.codigoOriginal;
+                foreach (ModeloArticuloProveedores ap in this.buscarArticulosProveedores(lcl_mod_articuloProveedor, Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoOriginal))
+                {
+                    lcl_lst_mod_articulosProveedores.Add(ap);
+                }
+            }
+            if (lcl_lst_mod_articulosProveedores.Count > 0)
+            {
+                return lcl_lst_mod_articulosProveedores;
+            }
+            {
+                return null;
+            }
+        }
+        
         #endregion
                              
         #region Provincias

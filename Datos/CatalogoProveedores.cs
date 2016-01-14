@@ -78,7 +78,7 @@ namespace Datos
                     
                 case Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.razonSocial, "@razon_social"));
-                    return " razon_social = @razon_social ";
+                    return " razon_social LIKE @razon_social ";
                     
                 case Constantes.ParametrosBusqueda.Entidades.Proveedores.Any:
                     int? codigoEntidad = p_mod_proveedor.codigo == 0 ? null : (int?)p_mod_proveedor.codigo;
@@ -88,7 +88,7 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.cuit, "@cuit"));
                     string cuitQuery = this.parametroBusqueda("@cuit", "cuit", "=");
 
-                    string razonSocial = p_mod_proveedor.razonSocial == null ? null : p_mod_proveedor.razonSocial;
+                    string razonSocial = p_mod_proveedor.razonSocial == "" ? null : p_mod_proveedor.razonSocial;
                     p_comando.Parameters.Add(this.instanciarParametro(razonSocial, "@razon_social"));
                     string razonSocialQuery = this.parametroBusqueda("@razon_social", "razon_social", "LIKE");
 
@@ -111,7 +111,6 @@ namespace Datos
         /// <returns></returns>
         public List<ModeloProveedor> buscarProveedor(ModeloProveedor p_mod_proveedor, string p_parametroBusqueda)
         {
-            List<ModeloProveedor> lcl_lst_mod_proveedor = new List<ModeloProveedor>();
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -132,6 +131,7 @@ namespace Datos
 
             SqlDataReader drProveedores = comando.ExecuteReader();
 
+            List<ModeloProveedor> lcl_lst_mod_proveedor = new List<ModeloProveedor>();
             ModeloProveedor lcl_mod_proveedor = new ModeloProveedor();
 
             while (drProveedores.Read())

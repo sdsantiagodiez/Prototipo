@@ -89,7 +89,9 @@ namespace LibreriaClasesCompartidas
                 public const string CodigoOriginal = Articulos.CodigoOriginal;
                 public const string CodigoArticuloProveedor = "codigoArticuloProveedor";
                 public const string Descripcion = Articulos.Descripcion;
-                public const string Proveedor = "proveedor";
+                public const string DescripcionArticuloProveedor = "descripcionArticuloProveedor";
+                public const string codigoEntidadProveedor = "codigoEntidadProveedor";
+                public const string razonSocialProveedor = "razonSocialProveedor";
             }
 
         }

@@ -9,17 +9,72 @@ namespace Modelos
     public class ModeloArticuloProveedores
     {
         #region Getters/Setters
+
+        #region Variables de Artículo al que pertenece el Artículo Proveedor
         string _codigoOriginal;
         public string codigoOriginal 
         {
             get {return _codigoOriginal;} 
             set {this._codigoOriginal = value;} 
         }
+
+        string _descripcionArticulo;
+        public string descripcionArticulo
+        {
+            get { return _descripcionArticulo; }
+            set { this._descripcionArticulo = value; }
+        }
+
+        string _modelos;
+        public string modelos
+        {
+            get { return _modelos; }
+            set { this._modelos = value; }
+        }
+
+        string _observacionesArticulo;
+        public string observacionesArticulo
+        {
+            get { return _observacionesArticulo; }
+            set { this._observacionesArticulo = value; }
+        }
+
+        #endregion
+
+        #region Variables de Proveedor al que pertenece Artículo Proveedor
+        int _codigoEntidad;
+        public int codigoEntidad
+        {
+            get { return _codigoEntidad; }
+            set { this._codigoEntidad = value; }
+        }
+        string _razonSocialProveedor;
+        public string razonSocialProveedor
+        {
+            get { return _razonSocialProveedor; }
+            set { this._razonSocialProveedor = value; }
+        }
+        #endregion
+
         string _codigoArticuloProveedor;
         public string codigoArticuloProveedor
         {
             get { return _codigoArticuloProveedor; }
             set { this._codigoArticuloProveedor = value; }
+        }
+
+        string _descripcionArticuloProveedor;
+        public string descripcionArticuloProveedor
+        {
+            get { return _descripcionArticuloProveedor; }
+            set { this._descripcionArticuloProveedor = value; }
+        }
+
+        string _observacionesArticuloProveedor;
+        public string observacionesArticuloProveedor
+        {
+            get { return _observacionesArticuloProveedor; }
+            set { this._observacionesArticuloProveedor = value; }
         }
 
         ModeloValorArticulo _valorVenta;
@@ -28,6 +83,7 @@ namespace Modelos
             get { return _valorVenta; }
             set { this._valorVenta = value; }
         }
+        
         ModeloValorArticulo _valorCompraArticuloProveedor;
         public ModeloValorArticulo valorCompraArticuloProveedor
         {
@@ -53,12 +109,7 @@ namespace Modelos
                 this.fechaActualizacion = DateTime.Today;
             }
         }
-        string _observaciones;
-        public string observaciones
-        {
-            get { return _observaciones; }
-            set { this._observaciones = value; }
-        }
+        
         //DateTime nullable en caso de que este definido NULL en la base de datos
         DateTime? _fechaActualizacion;
         public DateTime? fechaActualizacion
@@ -66,31 +117,18 @@ namespace Modelos
             get { return _fechaActualizacion; }
             set { this._fechaActualizacion = value; }
         }
-        int _codigoEntidad;
-        public int codigoEntidad
-        {
-            get { return _codigoEntidad; }
-            set { this._codigoEntidad = value; }
-        }
-        string _razonSocialProveedor;
-        public string razonSocialProveedor
-        {
-            get { return _razonSocialProveedor; }
-            set { this._razonSocialProveedor = value; }
-        }
-        string _descripcion;
-        public string descripcion
-        {
-            get { return _descripcion; }
-            set { this._descripcion = value; }
-        }
+        
+        
         string _ubicacion;
         public string ubicacion
         {
             get { return _ubicacion; }
             set { this._ubicacion = value; }
         }
+        
         #endregion
+
+        #region Validaciones
 
         public bool validar()
         {
@@ -132,5 +170,7 @@ namespace Modelos
         {
             return true;
         }
+
+        #endregion
     }
 }

@@ -217,7 +217,7 @@ namespace Vista
             this.lblCodOrigVar.Text = artEncontrados[indiceSelecc].codigoOriginal;
             this.lblCodProvVar.Text = artEncontrados[indiceSelecc].codigoArticuloProveedor;
             this.lblProvVar.Text =  artEncontrados[indiceSelecc].razonSocialProveedor;
-            this.lblDescVar.Text = artEncontrados[indiceSelecc].descripcion;
+            this.lblDescVar.Text = artEncontrados[indiceSelecc].descripcionArticuloProveedor;
             //
             //TODO modificadores de precio segun metodo de pago
             this.lblPrecioVar.Text = Convert.ToString(artEncontrados[indiceSelecc].valorVenta.valorArticulo);
@@ -225,7 +225,7 @@ namespace Vista
             
             this.lblExistenciaVar.Text = Convert.ToString(artEncontrados[indiceSelecc].stockActual);
             this.lblFechaActualizVar.Text = Convert.ToString(artEncontrados[indiceSelecc].fechaActualizacion);
-            this.lblObsVar.Text = artEncontrados[indiceSelecc].observaciones;
+            this.lblObsVar.Text = artEncontrados[indiceSelecc].observacionesArticuloProveedor;
         }
 
         private void dgvDetalleAgregados_CellClick(object sender, DataGridViewCellEventArgs e)

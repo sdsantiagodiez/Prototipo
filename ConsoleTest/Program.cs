@@ -562,9 +562,9 @@ namespace ConsoleTest
                 int mod = rnd.Next(cantModelos + 1);
                 int obs = rnd.Next(cantObservaciones);
                 map.codigoEntidad = proveedores[prov].codigo;
-                map.descripcion = descripciones[desc];
+                map.descripcionArticuloProveedor = descripciones[desc];
                 //map.modelos = modelos[mod];
-                map.observaciones = observaciones[obs];
+                map.observacionesArticuloProveedor = observaciones[obs];
 
                 cap.agregarNuevaEntidad(map);
             }

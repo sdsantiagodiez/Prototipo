@@ -208,14 +208,14 @@ namespace Vista
             this.lblCodOrigVar.Text = glb_lst_mod_foundArticles[indiceSelecc].codigoOriginal;
             this.lblCodProvVar.Text = glb_lst_mod_foundArticles[indiceSelecc].codigoArticuloProveedor;
             this.lblProvVar.Text = glb_lst_mod_foundArticles[indiceSelecc].razonSocialProveedor;
-            this.lblDescVar.Text = glb_lst_mod_foundArticles[indiceSelecc].descripcion;
+            this.lblDescVar.Text = glb_lst_mod_foundArticles[indiceSelecc].descripcionArticuloProveedor;
 
             this.lblPrecioVar.Text = Convert.ToString(glb_lst_mod_foundArticles[indiceSelecc].valorVenta.valorArticulo);
             this.lblUbicacionVar.Text = glb_lst_mod_foundArticles[indiceSelecc].ubicacion;
 
             this.lblExistenciaVar.Text = Convert.ToString(glb_lst_mod_foundArticles[indiceSelecc].stockActual);
             this.lblFechaActualizVar.Text = Convert.ToString(glb_lst_mod_foundArticles[indiceSelecc].fechaActualizacion);
-            this.lblObsVar.Text = glb_lst_mod_foundArticles[indiceSelecc].observaciones;
+            this.lblObsVar.Text = glb_lst_mod_foundArticles[indiceSelecc].observacionesArticuloProveedor;
         }
 
         private void dgvDetalleAgregados_Enter(object sender, EventArgs e)
