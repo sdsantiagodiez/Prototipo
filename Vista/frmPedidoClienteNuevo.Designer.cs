@@ -29,33 +29,33 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoClienteNuevo));
-            this.grbxDetalleSelec = new System.Windows.Forms.GroupBox();
+            this.gbxDetalleArticuloSeleccionado = new System.Windows.Forms.GroupBox();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.tlpDetalles = new System.Windows.Forms.TableLayoutPanel();
-            this.lblProvVar = new System.Windows.Forms.Label();
-            this.lblObsVar = new System.Windows.Forms.Label();
-            this.lblObs = new System.Windows.Forms.Label();
-            this.lblFechaActualizVar = new System.Windows.Forms.Label();
-            this.lblCodOrigVar = new System.Windows.Forms.Label();
+            this.lblProveedorVar = new System.Windows.Forms.Label();
+            this.lblObservacionesVar = new System.Windows.Forms.Label();
+            this.lblObservaciones = new System.Windows.Forms.Label();
+            this.lblFechaActualizacionVar = new System.Windows.Forms.Label();
+            this.lblCodigoOriginalVar = new System.Windows.Forms.Label();
             this.lblExistenciaVar = new System.Windows.Forms.Label();
             this.lblExistencia = new System.Windows.Forms.Label();
             this.lblUbicacionVar = new System.Windows.Forms.Label();
             this.lblUbicacion = new System.Windows.Forms.Label();
             this.lblPrecioVar = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
-            this.lblDescVar = new System.Windows.Forms.Label();
-            this.lblDesc = new System.Windows.Forms.Label();
-            this.lblCodProvVar = new System.Windows.Forms.Label();
-            this.lblCodProv = new System.Windows.Forms.Label();
-            this.lblCodOrig = new System.Windows.Forms.Label();
-            this.lblFechaActualiz = new System.Windows.Forms.Label();
-            this.lblProv = new System.Windows.Forms.Label();
+            this.lblDescripcionVar = new System.Windows.Forms.Label();
+            this.lblDescripcion = new System.Windows.Forms.Label();
+            this.lblCodigoProveedorVar = new System.Windows.Forms.Label();
+            this.lblCodigoProveedor = new System.Windows.Forms.Label();
+            this.lblCodigoOriginal = new System.Windows.Forms.Label();
+            this.lblFechaActualizacion = new System.Windows.Forms.Label();
+            this.lblProveedor = new System.Windows.Forms.Label();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.lblTotalVar = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
-            this.grbxDetalleAgregados = new System.Windows.Forms.GroupBox();
+            this.gbxDetalleAgregados = new System.Windows.Forms.GroupBox();
             this.dgvDetalleAgregados = new System.Windows.Forms.DataGridView();
             this.codOrig = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codProv = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,7 +63,7 @@
             this.vUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grbxArtAgregar = new System.Windows.Forms.GroupBox();
+            this.gbxArticulosAgregar = new System.Windows.Forms.GroupBox();
             this.lblCategoriaBuscar = new System.Windows.Forms.Label();
             this.dgvArtAgregar = new System.Windows.Forms.DataGridView();
             this.codOriginal = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,31 +71,31 @@
             this.proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblLupa = new System.Windows.Forms.Label();
-            this.txtBusqArticulo = new System.Windows.Forms.TextBox();
-            this.cmbxCategoriaBuscar = new System.Windows.Forms.ComboBox();
+            this.txtDescripcionParcial = new System.Windows.Forms.TextBox();
+            this.cbxCategoriaBusqueda = new System.Windows.Forms.ComboBox();
             this.btnSiguiente = new System.Windows.Forms.Button();
-            this.btnBorrarDetActual = new System.Windows.Forms.Button();
+            this.btnBorrarDetalleActual = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.grbxDetalleSelec.SuspendLayout();
+            this.gbxDetalleArticuloSeleccionado.SuspendLayout();
             this.tlpDetalles.SuspendLayout();
-            this.grbxDetalleAgregados.SuspendLayout();
+            this.gbxDetalleAgregados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleAgregados)).BeginInit();
-            this.grbxArtAgregar.SuspendLayout();
+            this.gbxArticulosAgregar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArtAgregar)).BeginInit();
             this.SuspendLayout();
             // 
-            // grbxDetalleSelec
+            // gbxDetalleArticuloSeleccionado
             // 
-            this.grbxDetalleSelec.Controls.Add(this.txtCantidad);
-            this.grbxDetalleSelec.Controls.Add(this.lblCantidad);
-            this.grbxDetalleSelec.Controls.Add(this.btnAgregar);
-            this.grbxDetalleSelec.Controls.Add(this.tlpDetalles);
-            this.grbxDetalleSelec.Location = new System.Drawing.Point(710, 20);
-            this.grbxDetalleSelec.Name = "grbxDetalleSelec";
-            this.grbxDetalleSelec.Size = new System.Drawing.Size(294, 487);
-            this.grbxDetalleSelec.TabIndex = 23;
-            this.grbxDetalleSelec.TabStop = false;
-            this.grbxDetalleSelec.Text = "Detalle Artículo Seleccionado";
+            this.gbxDetalleArticuloSeleccionado.Controls.Add(this.txtCantidad);
+            this.gbxDetalleArticuloSeleccionado.Controls.Add(this.lblCantidad);
+            this.gbxDetalleArticuloSeleccionado.Controls.Add(this.btnAgregar);
+            this.gbxDetalleArticuloSeleccionado.Controls.Add(this.tlpDetalles);
+            this.gbxDetalleArticuloSeleccionado.Location = new System.Drawing.Point(710, 20);
+            this.gbxDetalleArticuloSeleccionado.Name = "gbxDetalleArticuloSeleccionado";
+            this.gbxDetalleArticuloSeleccionado.Size = new System.Drawing.Size(294, 487);
+            this.gbxDetalleArticuloSeleccionado.TabIndex = 23;
+            this.gbxDetalleArticuloSeleccionado.TabStop = false;
+            this.gbxDetalleArticuloSeleccionado.Text = "Detalle Artículo Seleccionado";
             // 
             // txtCantidad
             // 
@@ -103,6 +103,7 @@
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(44, 20);
             this.txtCantidad.TabIndex = 10;
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
             // lblCantidad
             // 
@@ -128,24 +129,24 @@
             this.tlpDetalles.ColumnCount = 2;
             this.tlpDetalles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
             this.tlpDetalles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpDetalles.Controls.Add(this.lblProvVar, 1, 2);
-            this.tlpDetalles.Controls.Add(this.lblObsVar, 1, 8);
-            this.tlpDetalles.Controls.Add(this.lblObs, 0, 8);
-            this.tlpDetalles.Controls.Add(this.lblFechaActualizVar, 1, 7);
-            this.tlpDetalles.Controls.Add(this.lblCodOrigVar, 1, 0);
+            this.tlpDetalles.Controls.Add(this.lblProveedorVar, 1, 2);
+            this.tlpDetalles.Controls.Add(this.lblObservacionesVar, 1, 8);
+            this.tlpDetalles.Controls.Add(this.lblObservaciones, 0, 8);
+            this.tlpDetalles.Controls.Add(this.lblFechaActualizacionVar, 1, 7);
+            this.tlpDetalles.Controls.Add(this.lblCodigoOriginalVar, 1, 0);
             this.tlpDetalles.Controls.Add(this.lblExistenciaVar, 1, 6);
             this.tlpDetalles.Controls.Add(this.lblExistencia, 0, 6);
             this.tlpDetalles.Controls.Add(this.lblUbicacionVar, 1, 5);
             this.tlpDetalles.Controls.Add(this.lblUbicacion, 0, 5);
             this.tlpDetalles.Controls.Add(this.lblPrecioVar, 1, 4);
             this.tlpDetalles.Controls.Add(this.lblPrecio, 0, 4);
-            this.tlpDetalles.Controls.Add(this.lblDescVar, 1, 3);
-            this.tlpDetalles.Controls.Add(this.lblDesc, 0, 3);
-            this.tlpDetalles.Controls.Add(this.lblCodProvVar, 1, 1);
-            this.tlpDetalles.Controls.Add(this.lblCodProv, 0, 1);
-            this.tlpDetalles.Controls.Add(this.lblCodOrig, 0, 0);
-            this.tlpDetalles.Controls.Add(this.lblFechaActualiz, 0, 7);
-            this.tlpDetalles.Controls.Add(this.lblProv, 0, 2);
+            this.tlpDetalles.Controls.Add(this.lblDescripcionVar, 1, 3);
+            this.tlpDetalles.Controls.Add(this.lblDescripcion, 0, 3);
+            this.tlpDetalles.Controls.Add(this.lblCodigoProveedorVar, 1, 1);
+            this.tlpDetalles.Controls.Add(this.lblCodigoProveedor, 0, 1);
+            this.tlpDetalles.Controls.Add(this.lblCodigoOriginal, 0, 0);
+            this.tlpDetalles.Controls.Add(this.lblFechaActualizacion, 0, 7);
+            this.tlpDetalles.Controls.Add(this.lblProveedor, 0, 2);
             this.tlpDetalles.Location = new System.Drawing.Point(20, 29);
             this.tlpDetalles.Name = "tlpDetalles";
             this.tlpDetalles.RowCount = 9;
@@ -161,55 +162,55 @@
             this.tlpDetalles.Size = new System.Drawing.Size(268, 397);
             this.tlpDetalles.TabIndex = 1;
             // 
-            // lblProvVar
+            // lblProveedorVar
             // 
-            this.lblProvVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblProvVar.AutoSize = true;
-            this.lblProvVar.Location = new System.Drawing.Point(91, 78);
-            this.lblProvVar.Name = "lblProvVar";
-            this.lblProvVar.Size = new System.Drawing.Size(181, 13);
-            this.lblProvVar.TabIndex = 19;
-            this.lblProvVar.Text = "Seleccione Artículo";
+            this.lblProveedorVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblProveedorVar.AutoSize = true;
+            this.lblProveedorVar.Location = new System.Drawing.Point(91, 78);
+            this.lblProveedorVar.Name = "lblProveedorVar";
+            this.lblProveedorVar.Size = new System.Drawing.Size(181, 13);
+            this.lblProveedorVar.TabIndex = 19;
+            this.lblProveedorVar.Text = "Seleccione Artículo";
             // 
-            // lblObsVar
+            // lblObservacionesVar
             // 
-            this.lblObsVar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblObsVar.Location = new System.Drawing.Point(91, 315);
-            this.lblObsVar.Name = "lblObsVar";
-            this.lblObsVar.Size = new System.Drawing.Size(181, 82);
-            this.lblObsVar.TabIndex = 17;
-            this.lblObsVar.Text = "Seleccione Artículo";
-            this.lblObsVar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblObservacionesVar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblObservacionesVar.Location = new System.Drawing.Point(91, 315);
+            this.lblObservacionesVar.Name = "lblObservacionesVar";
+            this.lblObservacionesVar.Size = new System.Drawing.Size(181, 82);
+            this.lblObservacionesVar.TabIndex = 17;
+            this.lblObservacionesVar.Text = "Seleccione Artículo";
+            this.lblObservacionesVar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblObs
+            // lblObservaciones
             // 
-            this.lblObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblObs.AutoSize = true;
-            this.lblObs.Location = new System.Drawing.Point(3, 349);
-            this.lblObs.Name = "lblObs";
-            this.lblObs.Size = new System.Drawing.Size(82, 13);
-            this.lblObs.TabIndex = 16;
-            this.lblObs.Text = "Observaciones:";
+            this.lblObservaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblObservaciones.AutoSize = true;
+            this.lblObservaciones.Location = new System.Drawing.Point(3, 349);
+            this.lblObservaciones.Name = "lblObservaciones";
+            this.lblObservaciones.Size = new System.Drawing.Size(82, 13);
+            this.lblObservaciones.TabIndex = 16;
+            this.lblObservaciones.Text = "Observaciones:";
             // 
-            // lblFechaActualizVar
+            // lblFechaActualizacionVar
             // 
-            this.lblFechaActualizVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblFechaActualizVar.AutoSize = true;
-            this.lblFechaActualizVar.Location = new System.Drawing.Point(91, 291);
-            this.lblFechaActualizVar.Name = "lblFechaActualizVar";
-            this.lblFechaActualizVar.Size = new System.Drawing.Size(181, 13);
-            this.lblFechaActualizVar.TabIndex = 15;
-            this.lblFechaActualizVar.Text = "Seleccione Artículo";
+            this.lblFechaActualizacionVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFechaActualizacionVar.AutoSize = true;
+            this.lblFechaActualizacionVar.Location = new System.Drawing.Point(91, 291);
+            this.lblFechaActualizacionVar.Name = "lblFechaActualizacionVar";
+            this.lblFechaActualizacionVar.Size = new System.Drawing.Size(181, 13);
+            this.lblFechaActualizacionVar.TabIndex = 15;
+            this.lblFechaActualizacionVar.Text = "Seleccione Artículo";
             // 
-            // lblCodOrigVar
+            // lblCodigoOriginalVar
             // 
-            this.lblCodOrigVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCodOrigVar.AutoSize = true;
-            this.lblCodOrigVar.Location = new System.Drawing.Point(91, 10);
-            this.lblCodOrigVar.Name = "lblCodOrigVar";
-            this.lblCodOrigVar.Size = new System.Drawing.Size(181, 13);
-            this.lblCodOrigVar.TabIndex = 13;
-            this.lblCodOrigVar.Text = "Seleccione Artículo";
+            this.lblCodigoOriginalVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCodigoOriginalVar.AutoSize = true;
+            this.lblCodigoOriginalVar.Location = new System.Drawing.Point(91, 10);
+            this.lblCodigoOriginalVar.Name = "lblCodigoOriginalVar";
+            this.lblCodigoOriginalVar.Size = new System.Drawing.Size(181, 13);
+            this.lblCodigoOriginalVar.TabIndex = 13;
+            this.lblCodigoOriginalVar.Text = "Seleccione Artículo";
             // 
             // lblExistenciaVar
             // 
@@ -271,75 +272,75 @@
             this.lblPrecio.TabIndex = 4;
             this.lblPrecio.Text = "Precio:";
             // 
-            // lblDescVar
+            // lblDescripcionVar
             // 
-            this.lblDescVar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDescVar.Location = new System.Drawing.Point(91, 102);
-            this.lblDescVar.Name = "lblDescVar";
-            this.lblDescVar.Size = new System.Drawing.Size(181, 77);
-            this.lblDescVar.TabIndex = 3;
-            this.lblDescVar.Text = "Seleccione Artículo";
-            this.lblDescVar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblDescripcionVar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDescripcionVar.Location = new System.Drawing.Point(91, 102);
+            this.lblDescripcionVar.Name = "lblDescripcionVar";
+            this.lblDescripcionVar.Size = new System.Drawing.Size(181, 77);
+            this.lblDescripcionVar.TabIndex = 3;
+            this.lblDescripcionVar.Text = "Seleccione Artículo";
+            this.lblDescripcionVar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblDesc
+            // lblDescripcion
             // 
-            this.lblDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDesc.AutoSize = true;
-            this.lblDesc.Location = new System.Drawing.Point(3, 134);
-            this.lblDesc.Name = "lblDesc";
-            this.lblDesc.Size = new System.Drawing.Size(82, 13);
-            this.lblDesc.TabIndex = 2;
-            this.lblDesc.Text = "Descripción:";
+            this.lblDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Location = new System.Drawing.Point(3, 134);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(82, 13);
+            this.lblDescripcion.TabIndex = 2;
+            this.lblDescripcion.Text = "Descripción:";
             // 
-            // lblCodProvVar
+            // lblCodigoProveedorVar
             // 
-            this.lblCodProvVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCodProvVar.AutoSize = true;
-            this.lblCodProvVar.Location = new System.Drawing.Point(91, 44);
-            this.lblCodProvVar.Name = "lblCodProvVar";
-            this.lblCodProvVar.Size = new System.Drawing.Size(181, 13);
-            this.lblCodProvVar.TabIndex = 0;
-            this.lblCodProvVar.Text = "Seleccione Artículo";
+            this.lblCodigoProveedorVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCodigoProveedorVar.AutoSize = true;
+            this.lblCodigoProveedorVar.Location = new System.Drawing.Point(91, 44);
+            this.lblCodigoProveedorVar.Name = "lblCodigoProveedorVar";
+            this.lblCodigoProveedorVar.Size = new System.Drawing.Size(181, 13);
+            this.lblCodigoProveedorVar.TabIndex = 0;
+            this.lblCodigoProveedorVar.Text = "Seleccione Artículo";
             // 
-            // lblCodProv
+            // lblCodigoProveedor
             // 
-            this.lblCodProv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCodProv.AutoSize = true;
-            this.lblCodProv.Location = new System.Drawing.Point(3, 38);
-            this.lblCodProv.Name = "lblCodProv";
-            this.lblCodProv.Size = new System.Drawing.Size(82, 26);
-            this.lblCodProv.TabIndex = 1;
-            this.lblCodProv.Text = "Código Proveedor:";
+            this.lblCodigoProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCodigoProveedor.AutoSize = true;
+            this.lblCodigoProveedor.Location = new System.Drawing.Point(3, 38);
+            this.lblCodigoProveedor.Name = "lblCodigoProveedor";
+            this.lblCodigoProveedor.Size = new System.Drawing.Size(82, 26);
+            this.lblCodigoProveedor.TabIndex = 1;
+            this.lblCodigoProveedor.Text = "Código Proveedor:";
             // 
-            // lblCodOrig
+            // lblCodigoOriginal
             // 
-            this.lblCodOrig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCodOrig.AutoSize = true;
-            this.lblCodOrig.Location = new System.Drawing.Point(3, 10);
-            this.lblCodOrig.Name = "lblCodOrig";
-            this.lblCodOrig.Size = new System.Drawing.Size(82, 13);
-            this.lblCodOrig.TabIndex = 12;
-            this.lblCodOrig.Text = "Código Original:";
+            this.lblCodigoOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCodigoOriginal.AutoSize = true;
+            this.lblCodigoOriginal.Location = new System.Drawing.Point(3, 10);
+            this.lblCodigoOriginal.Name = "lblCodigoOriginal";
+            this.lblCodigoOriginal.Size = new System.Drawing.Size(82, 13);
+            this.lblCodigoOriginal.TabIndex = 12;
+            this.lblCodigoOriginal.Text = "Código Original:";
             // 
-            // lblFechaActualiz
+            // lblFechaActualizacion
             // 
-            this.lblFechaActualiz.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblFechaActualiz.AutoSize = true;
-            this.lblFechaActualiz.Location = new System.Drawing.Point(3, 285);
-            this.lblFechaActualiz.Name = "lblFechaActualiz";
-            this.lblFechaActualiz.Size = new System.Drawing.Size(82, 26);
-            this.lblFechaActualiz.TabIndex = 14;
-            this.lblFechaActualiz.Text = "Fecha última actualización:";
+            this.lblFechaActualizacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFechaActualizacion.AutoSize = true;
+            this.lblFechaActualizacion.Location = new System.Drawing.Point(3, 285);
+            this.lblFechaActualizacion.Name = "lblFechaActualizacion";
+            this.lblFechaActualizacion.Size = new System.Drawing.Size(82, 26);
+            this.lblFechaActualizacion.TabIndex = 14;
+            this.lblFechaActualizacion.Text = "Fecha última actualización:";
             // 
-            // lblProv
+            // lblProveedor
             // 
-            this.lblProv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblProv.AutoSize = true;
-            this.lblProv.Location = new System.Drawing.Point(3, 78);
-            this.lblProv.Name = "lblProv";
-            this.lblProv.Size = new System.Drawing.Size(82, 13);
-            this.lblProv.TabIndex = 18;
-            this.lblProv.Text = "Proveedor:";
+            this.lblProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblProveedor.AutoSize = true;
+            this.lblProveedor.Location = new System.Drawing.Point(3, 78);
+            this.lblProveedor.Name = "lblProveedor";
+            this.lblProveedor.Size = new System.Drawing.Size(82, 13);
+            this.lblProveedor.TabIndex = 18;
+            this.lblProveedor.Text = "Proveedor:";
             // 
             // btnQuitar
             // 
@@ -372,16 +373,16 @@
             this.lblTotal.TabIndex = 7;
             this.lblTotal.Text = "Total:";
             // 
-            // grbxDetalleAgregados
+            // gbxDetalleAgregados
             // 
-            this.grbxDetalleAgregados.Controls.Add(this.dgvDetalleAgregados);
-            this.grbxDetalleAgregados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grbxDetalleAgregados.Location = new System.Drawing.Point(5, 354);
-            this.grbxDetalleAgregados.Name = "grbxDetalleAgregados";
-            this.grbxDetalleAgregados.Size = new System.Drawing.Size(692, 203);
-            this.grbxDetalleAgregados.TabIndex = 21;
-            this.grbxDetalleAgregados.TabStop = false;
-            this.grbxDetalleAgregados.Text = "Detalle Artículos Agregados";
+            this.gbxDetalleAgregados.Controls.Add(this.dgvDetalleAgregados);
+            this.gbxDetalleAgregados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbxDetalleAgregados.Location = new System.Drawing.Point(5, 354);
+            this.gbxDetalleAgregados.Name = "gbxDetalleAgregados";
+            this.gbxDetalleAgregados.Size = new System.Drawing.Size(692, 203);
+            this.gbxDetalleAgregados.TabIndex = 21;
+            this.gbxDetalleAgregados.TabStop = false;
+            this.gbxDetalleAgregados.Text = "Detalle Artículos Agregados";
             // 
             // dgvDetalleAgregados
             // 
@@ -448,20 +449,20 @@
             this.vParcial.Name = "vParcial";
             this.vParcial.ReadOnly = true;
             // 
-            // grbxArtAgregar
+            // gbxArticulosAgregar
             // 
-            this.grbxArtAgregar.Controls.Add(this.lblCategoriaBuscar);
-            this.grbxArtAgregar.Controls.Add(this.dgvArtAgregar);
-            this.grbxArtAgregar.Controls.Add(this.lblLupa);
-            this.grbxArtAgregar.Controls.Add(this.txtBusqArticulo);
-            this.grbxArtAgregar.Controls.Add(this.cmbxCategoriaBuscar);
-            this.grbxArtAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grbxArtAgregar.Location = new System.Drawing.Point(5, 16);
-            this.grbxArtAgregar.Name = "grbxArtAgregar";
-            this.grbxArtAgregar.Size = new System.Drawing.Size(692, 332);
-            this.grbxArtAgregar.TabIndex = 19;
-            this.grbxArtAgregar.TabStop = false;
-            this.grbxArtAgregar.Text = "Artículos a Agregar";
+            this.gbxArticulosAgregar.Controls.Add(this.lblCategoriaBuscar);
+            this.gbxArticulosAgregar.Controls.Add(this.dgvArtAgregar);
+            this.gbxArticulosAgregar.Controls.Add(this.lblLupa);
+            this.gbxArticulosAgregar.Controls.Add(this.txtDescripcionParcial);
+            this.gbxArticulosAgregar.Controls.Add(this.cbxCategoriaBusqueda);
+            this.gbxArticulosAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbxArticulosAgregar.Location = new System.Drawing.Point(5, 16);
+            this.gbxArticulosAgregar.Name = "gbxArticulosAgregar";
+            this.gbxArticulosAgregar.Size = new System.Drawing.Size(692, 332);
+            this.gbxArticulosAgregar.TabIndex = 19;
+            this.gbxArticulosAgregar.TabStop = false;
+            this.gbxArticulosAgregar.Text = "Artículos a Agregar";
             // 
             // lblCategoriaBuscar
             // 
@@ -533,29 +534,29 @@
             this.lblLupa.TabIndex = 2;
             this.lblLupa.Click += new System.EventHandler(this.lblLupa_Click);
             // 
-            // txtBusqArticulo
+            // txtDescripcionParcial
             // 
-            this.txtBusqArticulo.Location = new System.Drawing.Point(234, 29);
-            this.txtBusqArticulo.Name = "txtBusqArticulo";
-            this.txtBusqArticulo.Size = new System.Drawing.Size(374, 23);
-            this.txtBusqArticulo.TabIndex = 1;
-            this.txtBusqArticulo.Enter += new System.EventHandler(this.txtBusqArticulo_Enter);
-            this.txtBusqArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusqArticulo_KeyPress);
+            this.txtDescripcionParcial.Location = new System.Drawing.Point(234, 29);
+            this.txtDescripcionParcial.Name = "txtDescripcionParcial";
+            this.txtDescripcionParcial.Size = new System.Drawing.Size(374, 23);
+            this.txtDescripcionParcial.TabIndex = 1;
+            this.txtDescripcionParcial.Enter += new System.EventHandler(this.txtBusqArticulo_Enter);
+            this.txtDescripcionParcial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusqArticulo_KeyPress);
             // 
-            // cmbxCategoriaBuscar
+            // cbxCategoriaBusqueda
             // 
-            this.cmbxCategoriaBuscar.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.cmbxCategoriaBuscar.FormattingEnabled = true;
-            this.cmbxCategoriaBuscar.Items.AddRange(new object[] {
+            this.cbxCategoriaBusqueda.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cbxCategoriaBusqueda.FormattingEnabled = true;
+            this.cbxCategoriaBusqueda.Items.AddRange(new object[] {
             "Código Original",
             "Código Proveedor",
             "Descripción"});
-            this.cmbxCategoriaBuscar.Location = new System.Drawing.Point(90, 28);
-            this.cmbxCategoriaBuscar.Name = "cmbxCategoriaBuscar";
-            this.cmbxCategoriaBuscar.Size = new System.Drawing.Size(138, 24);
-            this.cmbxCategoriaBuscar.TabIndex = 0;
-            this.cmbxCategoriaBuscar.Text = "[Seleccionar...]";
-            this.cmbxCategoriaBuscar.SelectionChangeCommitted += new System.EventHandler(this.cmbxCategoriaBuscar_SelectionChangeCommitted);
+            this.cbxCategoriaBusqueda.Location = new System.Drawing.Point(90, 28);
+            this.cbxCategoriaBusqueda.Name = "cbxCategoriaBusqueda";
+            this.cbxCategoriaBusqueda.Size = new System.Drawing.Size(138, 24);
+            this.cbxCategoriaBusqueda.TabIndex = 0;
+            this.cbxCategoriaBusqueda.Text = "[Seleccionar...]";
+            this.cbxCategoriaBusqueda.SelectionChangeCommitted += new System.EventHandler(this.cmbxCategoriaBuscar_SelectionChangeCommitted);
             // 
             // btnSiguiente
             // 
@@ -568,16 +569,16 @@
             this.btnSiguiente.UseVisualStyleBackColor = true;
             this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
-            // btnBorrarDetActual
+            // btnBorrarDetalleActual
             // 
-            this.btnBorrarDetActual.AutoSize = true;
-            this.btnBorrarDetActual.Location = new System.Drawing.Point(577, 569);
-            this.btnBorrarDetActual.Name = "btnBorrarDetActual";
-            this.btnBorrarDetActual.Size = new System.Drawing.Size(120, 40);
-            this.btnBorrarDetActual.TabIndex = 20;
-            this.btnBorrarDetActual.Text = "Borrar Detalle Actual";
-            this.btnBorrarDetActual.UseVisualStyleBackColor = true;
-            this.btnBorrarDetActual.Click += new System.EventHandler(this.btnBorrarDetActual_Click);
+            this.btnBorrarDetalleActual.AutoSize = true;
+            this.btnBorrarDetalleActual.Location = new System.Drawing.Point(577, 569);
+            this.btnBorrarDetalleActual.Name = "btnBorrarDetalleActual";
+            this.btnBorrarDetalleActual.Size = new System.Drawing.Size(120, 40);
+            this.btnBorrarDetalleActual.TabIndex = 20;
+            this.btnBorrarDetalleActual.Text = "Borrar Detalle Actual";
+            this.btnBorrarDetalleActual.UseVisualStyleBackColor = true;
+            this.btnBorrarDetalleActual.Click += new System.EventHandler(this.btnBorrarDetActual_Click);
             // 
             // btnCancelar
             // 
@@ -595,26 +596,26 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 621);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.grbxDetalleSelec);
-            this.Controls.Add(this.grbxDetalleAgregados);
+            this.Controls.Add(this.gbxDetalleArticuloSeleccionado);
+            this.Controls.Add(this.gbxDetalleAgregados);
             this.Controls.Add(this.btnQuitar);
-            this.Controls.Add(this.grbxArtAgregar);
+            this.Controls.Add(this.gbxArticulosAgregar);
             this.Controls.Add(this.btnSiguiente);
-            this.Controls.Add(this.btnBorrarDetActual);
+            this.Controls.Add(this.btnBorrarDetalleActual);
             this.Controls.Add(this.lblTotalVar);
             this.Controls.Add(this.lblTotal);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmPedidoClienteNuevo";
             this.Text = "Nuevo Pedido Cliente (Leandro Jorge)";
-            this.grbxDetalleSelec.ResumeLayout(false);
-            this.grbxDetalleSelec.PerformLayout();
+            this.gbxDetalleArticuloSeleccionado.ResumeLayout(false);
+            this.gbxDetalleArticuloSeleccionado.PerformLayout();
             this.tlpDetalles.ResumeLayout(false);
             this.tlpDetalles.PerformLayout();
-            this.grbxDetalleAgregados.ResumeLayout(false);
+            this.gbxDetalleAgregados.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleAgregados)).EndInit();
-            this.grbxArtAgregar.ResumeLayout(false);
-            this.grbxArtAgregar.PerformLayout();
+            this.gbxArticulosAgregar.ResumeLayout(false);
+            this.gbxArticulosAgregar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArtAgregar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -623,40 +624,40 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox grbxDetalleSelec;
+        private System.Windows.Forms.GroupBox gbxDetalleArticuloSeleccionado;
         private System.Windows.Forms.Button btnQuitar;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.TableLayoutPanel tlpDetalles;
-        private System.Windows.Forms.Label lblProvVar;
-        private System.Windows.Forms.Label lblObsVar;
-        private System.Windows.Forms.Label lblObs;
-        private System.Windows.Forms.Label lblFechaActualizVar;
-        private System.Windows.Forms.Label lblCodOrigVar;
+        private System.Windows.Forms.Label lblProveedorVar;
+        private System.Windows.Forms.Label lblObservacionesVar;
+        private System.Windows.Forms.Label lblObservaciones;
+        private System.Windows.Forms.Label lblFechaActualizacionVar;
+        private System.Windows.Forms.Label lblCodigoOriginalVar;
         private System.Windows.Forms.Label lblExistenciaVar;
         private System.Windows.Forms.Label lblExistencia;
         private System.Windows.Forms.Label lblUbicacionVar;
         private System.Windows.Forms.Label lblUbicacion;
         private System.Windows.Forms.Label lblPrecioVar;
         private System.Windows.Forms.Label lblPrecio;
-        private System.Windows.Forms.Label lblDescVar;
-        private System.Windows.Forms.Label lblDesc;
-        private System.Windows.Forms.Label lblCodProvVar;
-        private System.Windows.Forms.Label lblCodProv;
-        private System.Windows.Forms.Label lblCodOrig;
-        private System.Windows.Forms.Label lblFechaActualiz;
-        private System.Windows.Forms.Label lblProv;
+        private System.Windows.Forms.Label lblDescripcionVar;
+        private System.Windows.Forms.Label lblDescripcion;
+        private System.Windows.Forms.Label lblCodigoProveedorVar;
+        private System.Windows.Forms.Label lblCodigoProveedor;
+        private System.Windows.Forms.Label lblCodigoOriginal;
+        private System.Windows.Forms.Label lblFechaActualizacion;
+        private System.Windows.Forms.Label lblProveedor;
         internal System.Windows.Forms.Label lblTotalVar;
         internal System.Windows.Forms.Label lblTotal;
-        private System.Windows.Forms.GroupBox grbxDetalleAgregados;
+        private System.Windows.Forms.GroupBox gbxDetalleAgregados;
         internal System.Windows.Forms.DataGridView dgvDetalleAgregados;
-        private System.Windows.Forms.GroupBox grbxArtAgregar;
+        private System.Windows.Forms.GroupBox gbxArticulosAgregar;
         private System.Windows.Forms.Label lblCategoriaBuscar;
         internal System.Windows.Forms.DataGridView dgvArtAgregar;
         internal System.Windows.Forms.Label lblLupa;
-        internal System.Windows.Forms.TextBox txtBusqArticulo;
-        internal System.Windows.Forms.ComboBox cmbxCategoriaBuscar;
+        internal System.Windows.Forms.TextBox txtDescripcionParcial;
+        internal System.Windows.Forms.ComboBox cbxCategoriaBusqueda;
         internal System.Windows.Forms.Button btnSiguiente;
-        internal System.Windows.Forms.Button btnBorrarDetActual;
+        internal System.Windows.Forms.Button btnBorrarDetalleActual;
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn codOrig;

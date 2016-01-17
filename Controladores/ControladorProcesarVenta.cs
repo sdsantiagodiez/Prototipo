@@ -13,93 +13,80 @@ namespace Controladores
         //funciones a programar
         //buscarReserva
 
-        private List<ModeloLineaPedido> artVentaActual;
+        private ModeloPedido glb_mod_PedidoVenta;
+
+        public void crearPedido()
+        {
+            this.glb_mod_PedidoVenta = new ModeloPedido();
+        }
+        
         public List<ModeloLineaPedido> getVentaActual()
         {
-            return artVentaActual;
+            return this.glb_mod_PedidoVenta.lineasPedido;
         }
 
 
         //busqueda de articulos por codigo original o por descripcion
-        public List<ModeloArticuloProveedores> buscarArticulos(string categBusq, string busqArt)
+        public List<ModeloArticuloProveedores> buscarArticulos(string p_categoriaBusquedaSeleccionada, string p_descripcionParcialArticulo)
         {
-            var ctlgArticuloProv = new CatalogoArticuloProveedores();
-            List<ModeloArticuloProveedores> articulos = ctlgArticuloProv.buscarArticuloProveedor(categBusq, busqArt);
+            var lcl_cat_ArticuloProveedor = new CatalogoArticuloProveedores();
+            List<ModeloArticuloProveedores> articulos = lcl_cat_ArticuloProveedor.buscarArticuloProveedor(p_categoriaBusquedaSeleccionada, p_descripcionParcialArticulo);
             return articulos;
         }
 
-        public void cerrarPedido(List<ModeloLineaPedido> ventaActual)
+        public void cerrarPedido(List<ModeloLineaPedido> p_ventaActual)
         {
-            var ctrlModif = new ControladorModificacion();
-            var ctlArtProv = new CatalogoArticuloProveedores();
-            var artProv = new ModeloArticuloProveedores();
+            var lcl_con_modificacion = new ControladorModificacion();
+            var lcl_cat_articulosProveedores = new CatalogoArticuloProveedores();
+            var lcl_mod_articuloProveedores = new ModeloArticuloProveedores();
 
-            foreach (ModeloLineaPedido linea in ventaActual)
+            foreach (ModeloLineaPedido lcl_mod_linea in p_ventaActual)
             {
-                artProv = ctlArtProv.getOne(linea.codigoOriginalArt, linea.codigoArtProveedor);
-                artProv.stockActual = artProv.stockActual - linea.cantidadArticulos;
-                ctrlModif.modificarArticuloProveedor(artProv);
+                lcl_mod_articuloProveedores = lcl_cat_articulosProveedores.getOne(lcl_mod_linea.codigoOriginalArt, lcl_mod_linea.codigoArtProveedor);
+                lcl_mod_articuloProveedores.stockActual = lcl_mod_articuloProveedores.stockActual - lcl_mod_linea.cantidadArticulos;
+                lcl_con_modificacion.modificarArticuloProveedor(lcl_mod_articuloProveedores);
             }
-        }
-
-        public void crearPedido()
-        {
-            this.artVentaActual = new List<ModeloLineaPedido>();
         }
 
         public void deleteCurrentDetails()
         {
-            this.artVentaActual = new List<ModeloLineaPedido>();
+            this.glb_mod_PedidoVenta.restartOrderDetails();
         }
 
-        public void removeFromVenta(ModeloLineaPedido linea)
+        public void eliminarLineaPedido(ModeloLineaPedido p_lineaPedido)
         {
-            this.artVentaActual.Remove(linea);
+            this.glb_mod_PedidoVenta.bajarLinea(p_lineaPedido);
         }
 
         public string getTotal()
         {
-            decimal total = 0;
-            foreach (ModeloLineaPedido linea in artVentaActual)
-            {
-                total = total + linea.valorParcial;
-            }
-            return total.ToString("0.##");
+            return this.glb_mod_PedidoVenta.getCurrentTotal().ToString("0.##");
         }
 
-        public bool exists(ModeloArticuloProveedores articulo)
+        public bool exists(ModeloArticuloProveedores p_articulo)
         {
-            //checkeo existencia de articulo en venta actual
-            bool flag = false;
-            foreach (ModeloLineaPedido linea in artVentaActual)
-            {
-                if (linea.codigoOriginalArt == articulo.codigoOriginal && linea.codigoArtProveedor == articulo.codigoArticuloProveedor)
-                {
-                    flag = true;
-                }
-            }
-            return flag;
+            return this.glb_mod_PedidoVenta.existeLineaPedido(p_articulo);
         }
 
-        public void addToVenta(ModeloArticuloProveedores articulo, Int32 cantidad)
+        public void addToVenta(ModeloArticuloProveedores p_articulo, Int32 p_cantidad)
         {
             //le cambio el formato  y lo agrego a la lista de articulos ya seleccionados
-            ModeloLineaPedido nuevaLinea = new ModeloLineaPedido(articulo, cantidad);
-            this.artVentaActual.Add(nuevaLinea);
+            ModeloLineaPedido lcl_mod_nuevaLinea = new ModeloLineaPedido(p_articulo, p_cantidad);
+            this.glb_mod_PedidoVenta.addDetail(lcl_mod_nuevaLinea);
         }
 
-        public ModeloPersonas getCliente(string dni)
+        public ModeloPersonas getCliente(string p_dni)
         {
-            var contBusq = new ControladorBusqueda();
-            ModeloPersonas mPersona = new ModeloPersonas();
-            mPersona.dni = dni;
-            return contBusq.buscarPersonas(mPersona,"dni")[0];
+            var lcl_con_busqueda = new ControladorBusqueda();
+            ModeloPersonas lcl_mod_persona = new ModeloPersonas();
+            lcl_mod_persona.dni = p_dni;
+            return lcl_con_busqueda.buscarPersonas(lcl_mod_persona,"dni")[0];
         }
 
-        public void addClient(ModeloPersonas newCli)
+        public void addClient(ModeloPersonas p_nuevoCliente)
         {
-            CatalogoPersonas catPer = new CatalogoPersonas();
-            catPer.agregarNuevaEntidad(newCli);
+            CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
+            lcl_cat_personas.agregarNuevaEntidad(p_nuevoCliente);
         }
 
         public List<ModeloPais> getPaises()

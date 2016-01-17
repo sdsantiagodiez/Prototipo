@@ -60,15 +60,19 @@ namespace Vista
             //compruebo que existan articulos para generar venta
             if (this.glb_lst_mod_currentOrder.Count > 0)
             {
-                //creo el formulario y lo muestro
-                frmPedidoProveedorCierre frmCierre = new frmPedidoProveedorCierre();
-                frmCierre.detalleVenta(glb_con_pedidoProveedor);
-                frmCierre.ShowDialog();
-                //checkeo si se cerró la venta
-                if (frmCierre.emitido == true)
-                {
-                    this.Close();
-                }
+                //Se planea eliminar el frmPedidoProveedorCierre y que en este sector se auto impriman pedidos para cada
+                //uno de los proveedores paralos que se ingresaron articulos al detalle
+
+
+                ////creo el formulario y lo muestro
+                //frmPedidoProveedorCierre frmCierre = new frmPedidoProveedorCierre();
+                //frmCierre.detalleVenta(glb_con_pedidoProveedor);
+                //frmCierre.ShowDialog();
+                ////checkeo si se cerró la venta
+                //if (frmCierre.emitido == true)
+                //{
+                //    this.Close();
+                //}
             }
             else
             {
