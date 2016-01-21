@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Datos;
 using Modelos;
+using LibreriaClasesCompartidas;
 
 namespace Controladores
 {
@@ -114,8 +115,20 @@ namespace Controladores
 
         public List<ModeloArticuloProveedores> searchArticles(string p_searchCategory, string p_userInput)
         {
-            var lcl_cat_ArticuloProveedores = new CatalogoArticuloProveedores();
-            List<ModeloArticuloProveedores> lcl_lst_mod_articles = lcl_cat_ArticuloProveedores.buscarArticuloProveedor(p_searchCategory, p_userInput);
+            var lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
+            var lcl_mod_ArticuloProveedor = new ModeloArticuloProveedores();
+            switch (p_searchCategory)
+            {
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoOriginal:
+                    lcl_mod_ArticuloProveedor.codigoOriginal = p_userInput; break;
+
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.DescripcionArticuloProveedor:
+                    lcl_mod_ArticuloProveedor.descripcionArticuloProveedor = p_userInput; break;
+
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor:
+                    lcl_mod_ArticuloProveedor.codigoArticuloProveedor = p_userInput; break;
+            }
+            List<ModeloArticuloProveedores> lcl_lst_mod_articles = lcl_cat_articuloProveedores.buscarArticuloProveedor(lcl_mod_ArticuloProveedor, p_searchCategory);
             return lcl_lst_mod_articles;
         }
     }

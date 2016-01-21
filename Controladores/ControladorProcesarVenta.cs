@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Datos;
 using Modelos;
+using LibreriaClasesCompartidas;
 
 namespace Controladores
 {
@@ -30,8 +31,21 @@ namespace Controladores
         public List<ModeloArticuloProveedores> buscarArticulos(string p_categoriaBusquedaSeleccionada, string p_descripcionParcialArticulo)
         {
             var lcl_cat_ArticuloProveedor = new CatalogoArticuloProveedores();
-            List<ModeloArticuloProveedores> articulos = lcl_cat_ArticuloProveedor.buscarArticuloProveedor(p_categoriaBusquedaSeleccionada, p_descripcionParcialArticulo);
-            return articulos;
+            var lcl_mod_ArticuloProveedor = new ModeloArticuloProveedores();
+            switch (p_categoriaBusquedaSeleccionada)
+            {
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoOriginal:
+                    lcl_mod_ArticuloProveedor.codigoOriginal=p_descripcionParcialArticulo; break;
+
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.DescripcionArticuloProveedor:
+                    lcl_mod_ArticuloProveedor.descripcionArticuloProveedor = p_descripcionParcialArticulo; break;
+
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor:
+                    lcl_mod_ArticuloProveedor.codigoArticuloProveedor = p_descripcionParcialArticulo; break;
+            }
+
+            List<ModeloArticuloProveedores> lcl_lst_mod_articuloProveedores = lcl_cat_ArticuloProveedor.buscarArticuloProveedor(lcl_mod_ArticuloProveedor, p_categoriaBusquedaSeleccionada);
+            return lcl_lst_mod_articuloProveedores;
         }
 
         public void cerrarPedido(List<ModeloLineaPedido> p_ventaActual)
@@ -91,14 +105,14 @@ namespace Controladores
 
         public List<ModeloPais> getPaises()
         {
-            var contBusq = new ControladorBusqueda();
-            return contBusq.buscarPaises();
+            var lcl_con_busqueda = new ControladorBusqueda();
+            return lcl_con_busqueda.buscarPaises();
         }
 
         public List<ModeloProvincia> getProvincias()
         {
-            var contBusq = new ControladorBusqueda();
-            return contBusq.buscarProvincias();
+            var lcl_con_busqueda = new ControladorBusqueda();
+            return lcl_con_busqueda.buscarProvincias();
         }
     }
 }

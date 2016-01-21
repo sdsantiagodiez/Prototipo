@@ -15,11 +15,15 @@ namespace LibreriaClasesCompartidas
             return Int32.TryParse(p_stringNumero, out numero);
         }
 
-        public static bool validarEnteroPositivoSinCero(int p_numero)
+        public static bool validarEnteroPositivoSinCero(string p_numero)
         {
-            if (p_numero > 0)
+            if (Validar.validarValorNumerico(p_numero))
             {
-                return true;
+                if (Int32.Parse(p_numero) > 0)
+                {
+                    return true;
+                }
+                else return false;
             }
             else return false;
         }

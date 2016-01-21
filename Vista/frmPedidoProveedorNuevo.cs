@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Controladores;
 using Modelos;
+using LibreriaClasesCompartidas;
 
 namespace Vista
 {
@@ -40,9 +41,9 @@ namespace Vista
             //Creo lista categorias
             var dataSource = new List<Categ>();
             dataSource.Add(new Categ() { Name = "Seleccione...", Value = null });
-            dataSource.Add(new Categ() { Name = "Codigo Original", Value = "codigooriginal" });
-            dataSource.Add(new Categ() { Name = "Descripción", Value = "descripcion" });
-            dataSource.Add(new Categ() { Name = "Codigo Proveedor", Value = "codigoarticuloproveedor" });
+            dataSource.Add(new Categ() { Name = "Codigo Original", Value = Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoOriginal });
+            dataSource.Add(new Categ() { Name = "Descripción", Value = Constantes.ParametrosBusqueda.ArticulosProveedores.DescripcionArticuloProveedor });
+            dataSource.Add(new Categ() { Name = "Codigo Proveedor", Value = Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor });
 
             //Binding de categorias
             this.cmbxCategoriaBuscar.DataSource = dataSource;
