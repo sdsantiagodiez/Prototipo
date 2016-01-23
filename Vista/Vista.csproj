@@ -74,6 +74,12 @@
     <Compile Include="frmABMRaiz.Designer.cs">
       <DependentUpon>frmABMRaiz.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDevolucion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDevolucion.Designer.cs">
+      <DependentUpon>frmDevolucion.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMensajeCorto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmABMRaiz.resx">
       <DependentUpon>frmABMRaiz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDevolucion.resx">
+      <DependentUpon>frmDevolucion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMensajeCorto.resx">
       <DependentUpon>frmMensajeCorto.cs</DependentUpon>

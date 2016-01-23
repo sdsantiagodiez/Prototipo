@@ -91,8 +91,8 @@ namespace Vista
 
         private void btnDevolucion_Click(object sender, EventArgs e)
         {
-            frmEnConstruccion frmEnConstruccion = new frmEnConstruccion();
-            frmEnConstruccion.ShowDialog();
+            frmDevolucion frmDevolucion = new frmDevolucion();
+            frmDevolucion.ShowDialog();
         }
 
         private void btnAltBajMod_Click(object sender, EventArgs e)
