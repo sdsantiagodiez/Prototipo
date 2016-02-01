@@ -30,7 +30,8 @@ namespace LibreriaClasesCompartidas
 
         public static bool validarAlfanumericoConEspaciosSinCaracteresEspeciales(string p_string)
         {
-            Regex lcl_patron = new Regex(@"^[a-zA-Z0-9\s]*$");
+            //Regex(@"^[\w\s-_/0-9]*$") para incluir algunos caracteres especiales necesarios. Quizas en otro método 
+            Regex lcl_patron = new Regex(@"^[\w\s0-9]*$");
             return lcl_patron.IsMatch(p_string);
         }
 

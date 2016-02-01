@@ -14,19 +14,6 @@ namespace Datos
 {
     public class CatalogoPersonas : CatalogoEntidades
     {
-        /// <summary>
-        /// permite inicializar substring para consulta sql donde el valor del atributo 
-        /// </summary>
-        /// <param name="p_nombreParametro">Valor que luego es comparado con una celda de la tabla de datos</param>
-        /// <param name="p_nombreParametroTabla">nombre de la columna en tabla de datos</param>
-        /// <returns></returns>
-        private string parametroBusqueda(string p_nombreParametro, string p_nombreParametroTabla,string p_comparador)
-        {
-            string querySQL =
-                @" (" + p_nombreParametro + " IS NULL OR " + p_nombreParametro + " " + p_comparador + " " + "LOWER(" + p_nombreParametroTabla + ") ) ";
-            return querySQL;
-        }
-
         public bool validarDatos(ModeloPersonas p_mod_persona)
         {
             // Validar si los datos son correctos?
@@ -87,10 +74,10 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.dni, "@dni"));
                     return " dni = @dni ";
                 case Constantes.ParametrosBusqueda.Entidades.Personas.Nombre:
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.nombre, "@nombre"));
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_persona.nombre), "@nombre"));
                     return " nombre LIKE @nombre ";
                 case Constantes.ParametrosBusqueda.Entidades.Personas.Apellido:
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.apellido, "@apellido"));
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_persona.apellido), "@apellido"));
                     return " apellido LIKE @apellido ";
                 case Constantes.ParametrosBusqueda.Entidades.Personas.Usuario:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.usuario, "@usuario"));
@@ -110,11 +97,11 @@ namespace Datos
                     string dniQuery = this.parametroBusqueda("@dni", "dni","=");
                     
                     string nombre = (p_mod_persona.nombre == "") ? null : p_mod_persona.nombre;
-                    p_comando.Parameters.Add(this.instanciarParametro(nombre, "@nombre"));
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(nombre), "@nombre"));
                     string nombreQuery = this.parametroBusqueda("@nombre", "nombre","LIKE");
                     
                     string apellido = (p_mod_persona.apellido == "") ? null : p_mod_persona.apellido;
-                    p_comando.Parameters.Add(this.instanciarParametro(apellido, "@apellido"));
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(apellido), "@apellido"));
                     string apellidoQuery = this.parametroBusqueda("@apellido", "apellido", "LIKE");
                     
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.usuario, "@usuario"));

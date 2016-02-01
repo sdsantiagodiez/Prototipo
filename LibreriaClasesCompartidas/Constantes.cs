@@ -94,6 +94,25 @@ namespace LibreriaClasesCompartidas
                 public const string razonSocialProveedor = "razonSocialProveedor";
             }
 
+
+            public static class Paises
+            {
+                public const string All = ParametrosBusqueda.All;
+                public const string Any = ParametrosBusqueda.Any;
+
+                public const string Codigo = "codigoPais";
+                public const string Pais = "nombrePais";
+            }
+            public static class Provincias
+            {
+                public const string All = ParametrosBusqueda.All;
+                public const string Any = ParametrosBusqueda.Any;
+
+                public const string CodigoPais = ParametrosBusqueda.Paises.Codigo;
+                public const string CodigoProvincia = "codigoProvincia";
+                public const string Provincia = "nombreProvincia";
+
+            }
         }
         public static class TiposArticulo
         {

@@ -6,113 +6,125 @@ using System.Threading.Tasks;
 using Modelos;
 using System.Data;
 using System.Data.SqlClient;
+using LibreriaClasesCompartidas;
 
 namespace Datos
 {
     public class CatalogoProvincias : Catalogo
     {
-        private ModeloProvincia leerDatosProvincia(SqlDataReader drProvincia)
+        private ModeloProvincia leerDatosProvincia(SqlDataReader p_drProvincia)
         {
-            ModeloProvincia modProv = new ModeloProvincia();
+            ModeloProvincia lcl_mod_provincia = new ModeloProvincia();
 
-            modProv.codigo = (string)drProvincia["codigo_provincia"];
-            modProv.provincia = (string)drProvincia["provincia"];
-            modProv.codigoPais = (string)drProvincia["codigo_pais"];
+            lcl_mod_provincia.codigo = (string)p_drProvincia["codigo_provincia"];
+            lcl_mod_provincia.provincia = (string)p_drProvincia["provincia"];
+            lcl_mod_provincia.codigoPais = (string)p_drProvincia["codigo_pais"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
             
-            return modProv;
+            return lcl_mod_provincia;
+        }
+        /// <summary>
+        /// Genera string a insertar en clausula WHERE de sql de acuerdo a los parámetros de búsqueda
+        /// </summary>
+        /// <param name="p_mod_provincia">modeloProvincia con variables posiblemente inicializadas</param>
+        /// <param name="p_parametroBusqueda">constante encontrada en LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Articulos</param>
+        /// <param name="p_comando">comando sql que será modificado para incluir parámetros</param>
+        /// <returns></returns>
+        private string getCondicionBusqueda(ModeloProvincia p_mod_provincia, string p_parametroBusqueda, ref SqlCommand p_comando)
+        {
+            switch (p_parametroBusqueda)
+            {
+                case Constantes.ParametrosBusqueda.Provincias.CodigoProvincia:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_provincia.codigo, "@codigo_provincia"));
+                    return " codigo_provincia = @codigo_provincia ";
+                case Constantes.ParametrosBusqueda.Provincias.Provincia:
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_provincia.provincia), "@provincia"));
+                    return " provincia LIKE @provincia ";
+                case Constantes.ParametrosBusqueda.Provincias.CodigoPais:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_provincia.codigoPais, "@codigo_pais"));
+                    return " codigo_pais = @codigo_pais ";
+                
+                case Constantes.ParametrosBusqueda.Provincias.Any:
+                    string codigoProvincia = p_mod_provincia.codigo == "" ? null : p_mod_provincia.codigo;
+                    p_comando.Parameters.Add(this.instanciarParametro(codigoProvincia, "@codigo_provincia"));
+                    string codigoProvinciaQuery = this.parametroBusqueda("@codigo_provincia", "codigo_provincia", "=");
+
+                    string provincia = p_mod_provincia.provincia == "" ? null : p_mod_provincia.provincia;
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(provincia), "@provincia"));
+                    string provinciaQuery = this.parametroBusqueda("@provincia", "provincia", "LIKE");
+
+                    string codigoPais = p_mod_provincia.codigoPais == "" ? null : p_mod_provincia.codigoPais;
+                    p_comando.Parameters.Add(this.instanciarParametro(codigoPais, "@codigo_pais"));
+                    string codigoPaisQuery = this.parametroBusqueda("@codigo_pais", "codigo_pais", "=");
+
+                    return codigoProvinciaQuery + " AND " + provinciaQuery + " AND " + codigoPaisQuery;
+                
+                case Constantes.ParametrosBusqueda.Provincias.All:
+                    //retorna true y devuelve todas las filas
+                    return " 1 = 1 ";
+                default:
+                    //hace que sql no retorne filas
+                    return " 1 = 2 ";
+            }
         }
 
-        public string getCodigoProvinciaPorNombre(string nombreProvincia)
+        public List<ModeloProvincia> buscarProvincia(ModeloProvincia p_mod_provincia, string p_parametroBusqueda)
         {
-            string codigoProvincia = "";
-            
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
-
             //crea SQL command
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
+
+            string querySQL = this.getCondicionBusqueda(p_mod_provincia, p_parametroBusqueda, ref comando);
+
             comando.CommandText =
-                "SELECT [codigo_provincia] " +
-                    "FROM [provincias]  " +
-                    "WHERE [provincias].provincia = @nombreProvincia";
-            comando.Parameters.Add(new SqlParameter("@nombreProvincia", SqlDbType.VarChar));
-            comando.Parameters["@nombreProvincia"].Value = nombreProvincia.ToLower();
+                "SELECT [provincias].codigo_provincia, [provincias].provincia, [provincias].codigo_pais " +
+                "   FROM [provincias]  "+
+                "   WHERE " + querySQL;
+
             comando.Connection.Open();
 
-            SqlDataReader drEntidades = comando.ExecuteReader();
+            SqlDataReader drProvincias = comando.ExecuteReader();
 
-            while (drEntidades.Read())
+            List<ModeloProvincia> lcl_lst_mod_articulo = new List<ModeloProvincia>();
+            ModeloProvincia lcl_mod_articulo = new ModeloProvincia();
+
+            while (drProvincias.Read())
             {
-                codigoProvincia = (drEntidades["codigo_provincia"] != DBNull.Value) ? (string)drEntidades["codigo_provincia"] : null;
+                lcl_mod_articulo = new ModeloProvincia();
+                lcl_mod_articulo = this.leerDatosProvincia(drProvincias);
+
+                lcl_lst_mod_articulo.Add(lcl_mod_articulo);
             }
-            drEntidades.Close();
+            drProvincias.Close();
             comando.Connection.Close();
 
-            return codigoProvincia;
+            return lcl_lst_mod_articulo;
         }
-
+        
         public List<ModeloProvincia> getAll()
         {
-            List<ModeloProvincia> lmProvincias = new List<ModeloProvincia>();
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
-                "SELECT [provincias].codigo_provincia, [provincias].provincia, [provincias].codigo_pais " +
-                    "FROM [provincias]  ";
-            
-            comando.Connection.Open();
-
-            SqlDataReader drProvincias = comando.ExecuteReader();
-            ModeloProvincia mProvincia = new ModeloProvincia();
-            while (drProvincias.Read())
-            {
-                mProvincia = new ModeloProvincia();
-                mProvincia = this.leerDatosProvincia(drProvincias);
-                
-                lmProvincias.Add(mProvincia);
-            }
-            drProvincias.Close();
-            comando.Connection.Close();
-
-            return lmProvincias;
+            return this.buscarProvincia(null, Constantes.ParametrosBusqueda.Provincias.All);
         }
 
-        public ModeloProvincia getOne(String pCodigo)
+        public ModeloProvincia getOne(string p_codigoProvincia)
         {
-            ModeloProvincia modPro = null;
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
-                "SELECT [provincias].codigo_provincia, [provincias].provincia, [provincias].codigo_pais " +
-                "FROM [provincias] WHERE codigo = @codigo";
+            ModeloProvincia lcl_mod_provincia = new ModeloProvincia();
+            List<ModeloProvincia> lcl_lst_mod_provincia = new List<ModeloProvincia>();
+            lcl_mod_provincia.codigo = p_codigoProvincia;
+            lcl_lst_mod_provincia = this.buscarProvincia(lcl_mod_provincia, Constantes.ParametrosBusqueda.Provincias.CodigoProvincia);
 
-            comando.Parameters.Add(instanciarParametro(pCodigo, "@codigo"));
-            comando.Connection.Open();
-
-            SqlDataReader drProvincias = comando.ExecuteReader();
-
-            while (drProvincias.Read())
+            if (lcl_lst_mod_provincia.Count > 0)
             {
-                modPro = new ModeloProvincia();
-                modPro = this.leerDatosProvincia(drProvincias);
+                return lcl_lst_mod_provincia[0];
             }
-            drProvincias.Close();
-            comando.Connection.Close();
-
-            return modPro;
+            else
+            {
+                return null;
+            }
         }
 
     }

@@ -91,6 +91,20 @@ namespace Datos
         }
         #endregion
 
+        /// <summary>
+        /// permite inicializar substring para consulta sql 
+        /// </summary>
+        /// <param name="p_nombreParametro">Valor que luego es comparado con una celda de la tabla de datos</param>
+        /// <param name="p_nombreParametroTabla">nombre de la columna en tabla de datos</param>
+        /// <returns></returns>
+        protected string parametroBusqueda(string p_nombreParametro, string p_nombreParametroTabla, string p_comparador)
+        {
+            return @" (" + p_nombreParametro + " IS NULL OR " + p_nombreParametro + " " + p_comparador + " %" + p_nombreParametroTabla + "% ) ";
+        }
 
+        protected string agregarComodinBusquedaLIKE(string p_valorBusqueda)
+        {
+            return "%" + p_valorBusqueda + "%";
+        }
     }
 }

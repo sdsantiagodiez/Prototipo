@@ -14,20 +14,6 @@ namespace Datos
     //revisar y modificar, si corresponde, existeEntidad y buscarArticulo
     public class CatalogoArticulos : Catalogo
     {
-
-        /// <summary>
-        /// permite inicializar substring para consulta sql donde el valor del atributo 
-        /// </summary>
-        /// <param name="p_nombreParametro">Valor que luego es comparado con una celda de la tabla de datos</param>
-        /// <param name="p_nombreParametroTabla">nombre de la columna en tabla de datos</param>
-        /// <returns></returns>
-        private string parametroBusqueda(string p_nombreParametro, string p_nombreParametroTabla, string p_comparador)
-        {
-            string querySQL =
-                @" (" + p_nombreParametro + " IS NULL OR " + p_nombreParametro + " " + p_comparador + " " + "LOWER(" + p_nombreParametroTabla + ") ) ";
-            return querySQL;
-        }
-
         public bool validarDatos(ModeloArticulos p_mod_articulo)
         {
             // Validar si los datos son correctos
@@ -79,7 +65,7 @@ namespace Datos
                     return " codigo_original = @codigo_original ";
 
                 case Constantes.ParametrosBusqueda.Articulos.Descripcion:
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.descripcion, "@descripcion"));
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articulo.descripcion), "@descripcion"));
                     return " descripcion LIKE @descripcion ";
                 case Constantes.ParametrosBusqueda.Articulos.Any:
                     
@@ -88,7 +74,7 @@ namespace Datos
                     string codigoOriginalQuery = this.parametroBusqueda("@codigo_original", "codigo_original", "=");
 
                     string descripcion = p_mod_articulo.descripcion == "" ? null : p_mod_articulo.descripcion;
-                    p_comando.Parameters.Add(this.instanciarParametro(descripcion, "@descripcion"));
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(descripcion), "@descripcion"));
                     string descripcionQuery = this.parametroBusqueda("@descripcion", "descripcion", "LIKE");
 
                     return codigoOriginalQuery + " AND " + descripcionQuery;
@@ -100,7 +86,6 @@ namespace Datos
                     return " 1 = 2 ";
             }
         }
-
 
         public List<ModeloArticulos> buscarArticulo(ModeloArticulos p_mod_articulo, string p_parametroBusqueda)
         {
@@ -137,7 +122,6 @@ namespace Datos
 
             return lcl_lst_mod_articulo;
         }
-
 
         public ModeloArticulos getOne(string p_codigoOriginal)
         {

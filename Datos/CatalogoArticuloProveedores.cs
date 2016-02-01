@@ -12,20 +12,6 @@ namespace Datos
 {
     public class CatalogoArticuloProveedores : Catalogo
     {
-
-        /// <summary>
-        /// permite inicializar substring para consulta sql donde el valor del atributo 
-        /// </summary>
-        /// <param name="p_nombreParametro">Valor que luego es comparado con una celda de la tabla de datos</param>
-        /// <param name="p_nombreParametroTabla">nombre de la columna en tabla de datos</param>
-        /// <returns></returns>
-        private string parametroBusqueda(string p_nombreParametro, string p_nombreParametroTabla, string p_comparador)
-        {
-            string querySQL =
-                @" (" + p_nombreParametro + " IS NULL OR " + p_nombreParametro + " " + p_comparador + " " + "LOWER(" + p_nombreParametroTabla + ") ) ";
-            return querySQL;
-        }
-
         public bool validarDatos(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
             // Validar si los datos son correctos?
@@ -119,13 +105,13 @@ namespace Datos
                     //No devuelve resultados
                     return " 1 = 2 ";
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.DescripcionArticuloProveedor:
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.descripcionArticuloProveedor, "@descripcion_articulo_proveedor"));
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articuloProveedor.descripcionArticuloProveedor), "@descripcion_articulo_proveedor"));
                     return " ap.descripcion LIKE @descripcion_articulo_proveedor ";
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.codigoEntidadProveedor:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoEntidad, "@codigo_entidad"));
                     return " ap.codigo_entidad = @codigo_entidad ";
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.razonSocialProveedor:
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.razonSocialProveedor, "@razon_social"));
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articuloProveedor.razonSocialProveedor), "@razon_social"));
                     return " prov.razon_social LIKE @razon_social ";
 
                 case Constantes.ParametrosBusqueda.Articulos.Any:
@@ -138,7 +124,7 @@ namespace Datos
                     string codigoArticuloProveedorQuery = this.parametroBusqueda("@codigo_articulo_proveedor", "ap.codigo_articulo_proveedor", "=");
 
                     string descripcionArticuloProveedor = p_mod_articuloProveedor.descripcionArticuloProveedor == "" ? null : p_mod_articuloProveedor.descripcionArticuloProveedor;
-                    p_comando.Parameters.Add(this.instanciarParametro(descripcionArticuloProveedor, "@descripcion_articulo_proveedor"));
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(descripcionArticuloProveedor), "@descripcion_articulo_proveedor"));
                     string descripcionArticuloProveedorQuery = this.parametroBusqueda("@descripcion_articulo_proveedor", "ap.descripcion", "LIKE");
 
                     int? codigoEntidad = p_mod_articuloProveedor.codigoEntidad == 0 ? null : (int?)p_mod_articuloProveedor.codigoEntidad;
@@ -146,7 +132,7 @@ namespace Datos
                     string codigoEntidadQuery = @" (@codigo_entidad IS NULL OR @codigo_entidad = ap.codigo_entidad) ";
 
                     string razonSocialProveedor = p_mod_articuloProveedor.razonSocialProveedor == "" ? null : p_mod_articuloProveedor.razonSocialProveedor;
-                    p_comando.Parameters.Add(this.instanciarParametro(razonSocialProveedor, "@razon_social"));
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(razonSocialProveedor), "@razon_social"));
                     string razonSocialProveedorQuery = this.parametroBusqueda("@razon_social", "prov.razon_social", "LIKE");
 
                     return codigoOriginalQuery + " AND " + codigoArticuloProveedorQuery + " AND " + descripcionArticuloProveedorQuery + " AND " + codigoEntidadQuery + " AND " + razonSocialProveedorQuery;
@@ -229,41 +215,6 @@ namespace Datos
             return lcl_lst_mod_articulosProveedores;
         }
 
-        
-        /// <summary>
-        /// busca articulo proveedor de acuerdo a tipoParametro ingresado
-        /// </summary>
-        /// <param name="p_tipoParametro">"codigoOriginal" o "codigoArticuloProveedor" o "descripcion"</param>
-        /// <param name="p_descripcionParametro">string por el que se buscará artículo</param>
-        /// <returns></returns>
-        public List<ModeloArticuloProveedores> buscarArticuloProveedor(string p_tipoParametro, string p_descripcionParametro)
-        {
-            /*
-             retorna null porque hay que eliminar método y usar buscarArticuloProveedor(ModeloArticuloProveedor,string)
-             * Ver referencias
-             */
-            return null;
-            /*
-            List<ModeloArticuloProveedores> lcl_lst_mod_articulosProveedores = new List<ModeloArticuloProveedores>();
-
-            switch(p_tipoParametro.ToLower())
-            {
-                case "codigooriginal":
-                    lcl_lst_mod_articulosProveedores = buscarPorCodigoOriginal(p_descripcionParametro);
-                    break;
-                case "codigoarticuloproveedor":
-                    lcl_lst_mod_articulosProveedores = buscarPorCodigoArticuloProveedor(p_descripcionParametro);
-                    break;
-                case "descripcion":
-                    lcl_lst_mod_articulosProveedores = buscarPorDescripcion(p_descripcionParametro);
-                    break;
-                default:
-                    break;
-            }
-            return lcl_lst_mod_articulosProveedores;
-            */
-        }
-        
         
         public ModeloArticuloProveedores getOne(string p_codigoOriginal, string p_codigoArticuloProveedor)
         {

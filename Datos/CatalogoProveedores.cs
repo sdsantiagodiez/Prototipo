@@ -12,13 +12,6 @@ namespace Datos
 {
     public class CatalogoProveedores : CatalogoEntidades
     {
-        private string parametroBusqueda(string p_nombre_parametro, string p_nombre_parametroTabla, string p_comparador)
-        {
-            string querySQL =
-                @" (" + p_nombre_parametro + " IS NULL OR " + p_nombre_parametro + " " + p_comparador + " " + "LOWER(" + p_nombre_parametroTabla + ") ) ";
-            return querySQL;
-        }
-
         public bool validarDatos(ModeloProveedor p_mod_proveedor)
         {
             //Valida que los parametros sean Validos en el dominio
@@ -77,7 +70,7 @@ namespace Datos
                     return " cuit = @cuit ";
                     
                 case Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial:
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.razonSocial, "@razon_social"));
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_proveedor.razonSocial), "@razon_social"));
                     return " razon_social LIKE @razon_social ";
                     
                 case Constantes.ParametrosBusqueda.Entidades.Proveedores.Any:
@@ -89,7 +82,7 @@ namespace Datos
                     string cuitQuery = this.parametroBusqueda("@cuit", "cuit", "=");
 
                     string razonSocial = p_mod_proveedor.razonSocial == "" ? null : p_mod_proveedor.razonSocial;
-                    p_comando.Parameters.Add(this.instanciarParametro(razonSocial, "@razon_social"));
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(razonSocial), "@razon_social"));
                     string razonSocialQuery = this.parametroBusqueda("@razon_social", "razon_social", "LIKE");
 
                     return codigoEntidadQuery + " AND " + cuitQuery + " AND " + razonSocialQuery;
