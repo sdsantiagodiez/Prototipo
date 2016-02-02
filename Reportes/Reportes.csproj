@@ -71,15 +71,21 @@
     <EmbeddedResource Include="Repo_FacturaA.resx">
       <DependentUpon>Repo_FacturaA.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\Modelos.ModeloArticuloProveedores.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloArticulos.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloDomicilio.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloEntidad.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloLineaPedido.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloMail.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloPais.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloPedido.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloPersonas.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloProveedor.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloProvincia.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloReportePedidoEntreFechas.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloRoles.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloTelefono.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloValorArticulo.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
