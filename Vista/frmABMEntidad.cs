@@ -370,7 +370,7 @@ namespace Vista
             //cell[0] codigoDomicilio
             if (this.validarDomicilio())
             {
-                row.Cells[1].Value = 0;
+                row.Cells[0].Value = 0;
                 row.Cells[1].Value = txtBoxCalle.Text;
                 row.Cells[2].Value = txtBoxNumeroDomicilio.Text;
                 row.Cells[3].Value = txtBoxPiso.Text;
@@ -942,7 +942,7 @@ namespace Vista
         #region Alta Baja y Modificación
         private bool guardarNuevaEntidad()
         {
-            ControladorAlta cAlta = new ControladorAlta();
+            ControladorAlta lcl_con_alta = new ControladorAlta();
             
             string respuesta = "";
             bool exito = false;
@@ -951,12 +951,12 @@ namespace Vista
                 switch (this.getTipoEntidad())
                 {
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona:
-                        ModeloPersonas mPersona = this.cargarDatosEnModeloPersona();
-                        exito = cAlta.agregarPersona(mPersona);
+                        ModeloPersonas lcl_mod_persona = this.cargarDatosEnModeloPersona();
+                        exito = lcl_con_alta.agregar(lcl_mod_persona);
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor:
-                        ModeloProveedor mProveedor = this.cargarDatosEnModeloProveedor();
-                        exito = cAlta.agregarProveedor(mProveedor);
+                        ModeloProveedor lcl_mod_proveedor = this.cargarDatosEnModeloProveedor();
+                        exito = lcl_con_alta.agregar(lcl_mod_proveedor);
                         break;
                     default:
                         break;
