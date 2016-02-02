@@ -6,19 +6,19 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.15684cm</Width>
+              <Width>3.37769cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.17799cm</Width>
+              <Width>6.3451cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>9.36861cm</Width>
+              <Width>3.94138cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.41323cm</Width>
+              <Width>3.36745cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.58505cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -34,7 +34,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Cantidad</Value>
+                              <Value>Cod. Cliente</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -68,7 +68,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Codigo</Value>
+                              <Value>Nombre Cliente</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -95,13 +95,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox18">
+                    <Textbox Name="Textbox23">
+                      <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Descripcion</Value>
+                              <Value>Cant. Pedidos</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -112,7 +113,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox18</rd:DefaultName>
+                      <rd:DefaultName>Textbox23</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -128,14 +129,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox12">
+                    <Textbox Name="Textbox24">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Precio U.</Value>
+                              <Value>Cant. Articulos</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -146,7 +147,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox12</rd:DefaultName>
+                      <rd:DefaultName>Textbox24</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -169,7 +170,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Precio Total</Value>
+                              <Value>Monto</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -208,7 +209,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!cantidadArticulos.Value</Value>
+                              <Value />
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -235,14 +236,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="codigoOriginalArt">
+                    <Textbox Name="Textbox10">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!codigoOriginalArt.Value</Value>
+                              <Value />
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -253,7 +254,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>codigoOriginalArt</rd:DefaultName>
+                      <rd:DefaultName>Textbox10</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -268,14 +269,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="descripcion">
+                    <Textbox Name="Textbox13">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!descripcion.Value</Value>
+                              <Value />
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -286,7 +287,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>descripcion</rd:DefaultName>
+                      <rd:DefaultName>Textbox13</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -301,14 +302,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="valorUnitario">
+                    <Textbox Name="Textbox25">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!valorUnitario.Value</Value>
+                              <Value />
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -319,7 +320,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>valorUnitario</rd:DefaultName>
+                      <rd:DefaultName>Textbox25</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -334,14 +335,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="valorParcial">
+                    <Textbox Name="Textbox22">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!valorParcial.Value</Value>
+                              <Value />
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -352,7 +353,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>valorParcial</rd:DefaultName>
+                      <rd:DefaultName>Textbox22</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -401,49 +402,20 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>4.25222in</Height>
+    <Height>4.26264in</Height>
     <Style>
       <Border>
         <Style>Solid</Style>
       </Border>
     </Style>
   </Body>
-  <Width>8.63752in</Width>
+  <Width>8.28335in</Width>
   <Page>
     <PageHeader>
       <Height>6.45583cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="parametroTitulo">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Parameters!parametroTitulo.Value</Value>
-                  <Style />
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>parametroTitulo</rd:DefaultName>
-          <Top>0.96711cm</Top>
-          <Left>9.49632cm</Left>
-          <Height>0.6cm</Height>
-          <Width>3.08208cm</Width>
-          <ToolTip>=Parameters!parametroTitulo.Value</ToolTip>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
         <Textbox Name="parametroEmpresa">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
@@ -466,75 +438,6 @@
           <Left>3.88437cm</Left>
           <Height>0.49417cm</Height>
           <Width>3.16146cm</Width>
-          <ZIndex>1</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox5">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Número:</Value>
-                  <Style>
-                    <FontFamily>arial</FontFamily>
-                    <FontSize>9pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Right</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>1.6914cm</Top>
-          <Left>15.13602cm</Left>
-          <Height>0.50286cm</Height>
-          <Width>1.60042cm</Width>
-          <ZIndex>2</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="txtFactura">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=First(Fields!nroPedido.Value, "EncabezadoPedido")</Value>
-                  <Style>
-                    <FontSize>9pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                    <Language>es-AR</Language>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Left</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <Top>1.6914cm</Top>
-          <Left>16.91283cm</Left>
-          <Height>0.50286cm</Height>
-          <Width>2.18251cm</Width>
-          <ZIndex>3</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -564,11 +467,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>2.37065cm</Top>
-          <Left>15.13602cm</Left>
+          <Top>1.37392cm</Top>
+          <Left>16.31626cm</Left>
           <Height>0.50286cm</Height>
           <Width>1.60042cm</Width>
-          <ZIndex>4</ZIndex>
+          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -599,11 +502,11 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <Top>2.37065cm</Top>
-          <Left>16.91283cm</Left>
+          <Top>1.37392cm</Top>
+          <Left>18.09307cm</Left>
           <Height>0.50286cm</Height>
           <Width>2.18251cm</Width>
-          <ZIndex>5</ZIndex>
+          <ZIndex>2</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -620,7 +523,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Cliente:</Value>
+                  <Value>Cliente Desde:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
                     <FontSize>9pt</FontSize>
@@ -636,8 +539,8 @@
           <Top>3.92148cm</Top>
           <Left>0.96854cm</Left>
           <Height>0.6cm</Height>
-          <Width>1.5475cm</Width>
-          <ZIndex>6</ZIndex>
+          <Width>2.2795cm</Width>
+          <ZIndex>3</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -654,7 +557,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>CUIT/DNI:</Value>
+                  <Value>Fecha Desde:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
                     <FontSize>9pt</FontSize>
@@ -667,11 +570,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>4.667cm</Top>
+          <Top>4.64054cm</Top>
           <Left>0.96854cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.07667cm</Width>
-          <ZIndex>7</ZIndex>
+          <Width>2.2795cm</Width>
+          <ZIndex>4</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -682,73 +585,7 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
-        <Textbox Name="Textbox4">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Domicilio:</Value>
-                  <Style>
-                    <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Left</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>5.41252cm</Top>
-          <Left>0.96854cm</Left>
-          <Height>0.6cm</Height>
-          <Width>2.07667cm</Width>
-          <ZIndex>8</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="txtDomicilio">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=First(Fields!calle.Value, "ClienteDomicilio")+"-"+First(Fields!ciudad.Value , "ClienteDomicilio")+" - "+First(Fields!provincia.Value, "ClienteDomicilio")</Value>
-                  <Style>
-                    <FontSize>9pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                    <Language>es-AR</Language>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <Top>5.41252cm</Top>
-          <Left>3.24804cm</Left>
-          <Height>0.6cm</Height>
-          <Width>6.3059cm</Width>
-          <ZIndex>9</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="txtIVA">
+        <Textbox Name="txtFechaDesde">
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
@@ -765,11 +602,11 @@
               <Style />
             </Paragraph>
           </Paragraphs>
-          <Top>4.65377cm</Top>
-          <Left>3.24804cm</Left>
+          <Top>4.64054cm</Top>
+          <Left>3.56554cm</Left>
           <Height>0.6cm</Height>
           <Width>2.69718cm</Width>
-          <ZIndex>10</ZIndex>
+          <ZIndex>5</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -780,7 +617,7 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
-        <Textbox Name="txtNombre">
+        <Textbox Name="txtClienteDesde">
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
@@ -797,11 +634,11 @@
               <Style />
             </Paragraph>
           </Paragraphs>
-          <Top>3.89502cm</Top>
-          <Left>3.24804cm</Left>
+          <Top>3.92148cm</Top>
+          <Left>3.42443cm</Left>
           <Height>0.6cm</Height>
-          <Width>6.3059cm</Width>
-          <ZIndex>11</ZIndex>
+          <Width>6.12951cm</Width>
+          <ZIndex>6</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -820,7 +657,7 @@
           <Left>0.62048cm</Left>
           <Height>2.26729cm</Height>
           <Width>3.0875cm</Width>
-          <ZIndex>12</ZIndex>
+          <ZIndex>7</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -831,67 +668,20 @@
           <Top>3.35703cm</Top>
           <Height>0cm</Height>
           <Width>21cm</Width>
-          <ZIndex>13</ZIndex>
+          <ZIndex>8</ZIndex>
           <Style>
             <Border>
               <Style>Solid</Style>
             </Border>
           </Style>
         </Line>
-        <Textbox Name="Textbox10">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>NP</Value>
-                  <Style>
-                    <FontFamily>Arial Black</FontFamily>
-                    <FontSize>12pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.08489cm</Top>
-          <Left>10.6822cm</Left>
-          <Height>0.70583cm</Height>
-          <Width>0.9437cm</Width>
-          <ZIndex>14</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <BottomBorder>
-              <Style>Solid</Style>
-              <Width>1.5pt</Width>
-            </BottomBorder>
-            <LeftBorder>
-              <Style>Solid</Style>
-              <Width>1.5pt</Width>
-            </LeftBorder>
-            <RightBorder>
-              <Style>Solid</Style>
-              <Width>1.5pt</Width>
-            </RightBorder>
-            <VerticalAlign>Middle</VerticalAlign>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
         <Textbox Name="Textbox11">
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Nota de Pedido</Value>
+                  <Value>Informe de Ventas</Value>
                   <Style>
                     <FontFamily>Arial Black</FontFamily>
                     <FontSize>11pt</FontSize>
@@ -904,11 +694,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.50039cm</Top>
-          <Left>15.13602cm</Left>
+          <Top>1.27678cm</Top>
+          <Left>9.27836cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.95932cm</Width>
-          <ZIndex>15</ZIndex>
+          <Width>4.25036cm</Width>
+          <ZIndex>9</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -940,7 +730,7 @@
           <Left>3.84909cm</Left>
           <Height>1.00541cm</Height>
           <Width>3.16146cm</Width>
-          <ZIndex>16</ZIndex>
+          <ZIndex>10</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -971,73 +761,7 @@
           <Left>3.88437cm</Left>
           <Height>0.6cm</Height>
           <Width>3.12618cm</Width>
-          <ZIndex>17</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox2">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Mail:</Value>
-                  <Style>
-                    <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Left</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>3.94794cm</Top>
-          <Left>11.69018cm</Left>
-          <Height>0.6cm</Height>
-          <Width>1.5475cm</Width>
-          <ZIndex>18</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="txtMail">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=First(Fields!mail.Value, "ClienteMail")</Value>
-                  <Style>
-                    <FontSize>9pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                    <Language>es-AR</Language>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <Top>3.92148cm</Top>
-          <Left>13.65218cm</Left>
-          <Height>0.6cm</Height>
-          <Width>6.3059cm</Width>
-          <ZIndex>19</ZIndex>
+          <ZIndex>11</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1054,7 +778,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Telefono:</Value>
+                  <Value>Fecha Hasta:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
                     <FontSize>9pt</FontSize>
@@ -1067,11 +791,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>4.69346cm</Top>
-          <Left>11.69018cm</Left>
+          <Top>4.64054cm</Top>
+          <Left>11.91633cm</Left>
           <Height>0.6cm</Height>
-          <Width>1.5475cm</Width>
-          <ZIndex>20</ZIndex>
+          <Width>2.2795cm</Width>
+          <ZIndex>12</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1082,7 +806,7 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
-        <Textbox Name="txtTelefono">
+        <Textbox Name="txtFechaHasta">
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
@@ -1099,11 +823,77 @@
               <Style />
             </Paragraph>
           </Paragraphs>
-          <Top>4.667cm</Top>
-          <Left>13.65218cm</Left>
+          <Top>4.64054cm</Top>
+          <Left>14.37222cm</Left>
           <Height>0.6cm</Height>
-          <Width>6.3059cm</Width>
-          <ZIndex>21</ZIndex>
+          <Width>3.54446cm</Width>
+          <ZIndex>13</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox2">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Cliente Hasta:</Value>
+                  <Style>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>3.92148cm</Top>
+          <Left>11.91633cm</Left>
+          <Height>0.6cm</Height>
+          <Width>2.2795cm</Width>
+          <ZIndex>14</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="txtClienteHasta">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!apellido.Value, "ClientePedido") + ", " + First(Fields!nombre.Value, "ClientePedido")</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Language>es-AR</Language>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <Top>3.92148cm</Top>
+          <Left>14.37222cm</Left>
+          <Height>0.6cm</Height>
+          <Width>6.12951cm</Width>
+          <ZIndex>15</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1123,7 +913,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>2.9989cm</Height>
+      <Height>2.39036cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1144,7 +934,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Total</rd:DefaultName>
-          <Top>0.49954cm</Top>
+          <Top>1.26683cm</Top>
           <Left>17.22562cm</Left>
           <Height>0.6cm</Height>
           <Width>2.12392cm</Width>
@@ -1164,7 +954,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Total:</Value>
+                  <Value>Total Ventas:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
                   </Style>
@@ -1176,7 +966,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.49954cm</Top>
+          <Top>1.26683cm</Top>
           <Left>14.54923cm</Left>
           <Height>0.6cm</Height>
           <Width>2.5cm</Width>
@@ -1186,107 +976,6 @@
               <Style>None</Style>
             </Border>
             <BackgroundColor>LightGrey</BackgroundColor>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Line Name="Line2">
-          <Top>1.46786cm</Top>
-          <Height>0cm</Height>
-          <Width>21cm</Width>
-          <ZIndex>2</ZIndex>
-          <Style>
-            <Border>
-              <Style>Solid</Style>
-            </Border>
-          </Style>
-        </Line>
-        <Line Name="Line3">
-          <Top>0cm</Top>
-          <Height>1.46786cm</Height>
-          <Width>0cm</Width>
-          <ZIndex>3</ZIndex>
-          <Style>
-            <Border>
-              <Style>Solid</Style>
-            </Border>
-          </Style>
-        </Line>
-        <Line Name="Line4">
-          <Top>0cm</Top>
-          <Left>21cm</Left>
-          <Height>1.46786cm</Height>
-          <Width>0cm</Width>
-          <ZIndex>4</ZIndex>
-          <Style>
-            <Border>
-              <Style>Solid</Style>
-            </Border>
-          </Style>
-        </Line>
-        <Textbox Name="txtFecVto">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Parameters!parametroFecVto.Value</Value>
-                  <Style>
-                    <FontSize>9pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Right</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <Top>2.26189cm</Top>
-          <Left>17.83416cm</Left>
-          <Height>0.47653cm</Height>
-          <Width>2.44142cm</Width>
-          <ZIndex>5</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <VerticalAlign>Top</VerticalAlign>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox19">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>FECHA DE VTO.:</Value>
-                  <Style>
-                    <FontSize>9pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Left</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox14</rd:DefaultName>
-          <Top>2.26189cm</Top>
-          <Left>14.81852cm</Left>
-          <Height>0.47653cm</Height>
-          <Width>2.86571cm</Width>
-          <ZIndex>6</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <VerticalAlign>Middle</VerticalAlign>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
@@ -1310,261 +999,8 @@
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
-  <DataSources>
-    <DataSource Name="Modelos">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>3b50fa94-88f9-41fa-86b6-b43e7d1b20bd</rd:DataSourceID>
-    </DataSource>
-  </DataSources>
-  <DataSets>
-    <DataSet Name="EncabezadoPedido">
-      <Query>
-        <DataSourceName>Modelos</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="codigo_tipo_pedido">
-          <DataField>codigo_tipo_pedido</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="fecha">
-          <DataField>fecha</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="monto_total">
-          <DataField>monto_total</DataField>
-          <rd:TypeName>System.Single</rd:TypeName>
-        </Field>
-        <Field Name="nroPedido">
-          <DataField>nroPedido</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="observaciones">
-          <DataField>observaciones</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloPedido</rd:TableName>
-        <rd:ObjectDataSourceType>Modelos.ModeloPedido, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="DetallePedido">
-      <Query>
-        <DataSourceName>Modelos</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="cantidadArticulos">
-          <DataField>cantidadArticulos</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="codigoArtProveedor">
-          <DataField>codigoArtProveedor</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="codigoOriginalArt">
-          <DataField>codigoOriginalArt</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="descripcion">
-          <DataField>descripcion</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="valorParcial">
-          <DataField>valorParcial</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="valorUnitario">
-          <DataField>valorUnitario</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloPedido</rd:TableName>
-        <rd:ObjectDataSourceSelectMethod>lineasPedido</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceType>Modelos.ModeloPedido, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="ClientePedido">
-      <Query>
-        <DataSourceName>Modelos</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="apellido">
-          <DataField>apellido</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="codigo">
-          <DataField>codigo</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="contrasenia">
-          <DataField>contrasenia</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="cuit">
-          <DataField>cuit</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="dni">
-          <DataField>dni</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="nombre">
-          <DataField>nombre</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="observaciones">
-          <DataField>observaciones</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="tipoEntidad">
-          <DataField>tipoEntidad</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="tipoPersona">
-          <DataField>tipoPersona</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="usuario">
-          <DataField>usuario</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloPersonas</rd:TableName>
-        <rd:ObjectDataSourceType>Modelos.ModeloPersonas, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="ClienteDomicilio">
-      <Query>
-        <DataSourceName>Modelos</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="calle">
-          <DataField>calle</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ciudad">
-          <DataField>ciudad</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="codigoDomicilio">
-          <DataField>codigoDomicilio</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="codigoPostal">
-          <DataField>codigoPostal</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="departamento">
-          <DataField>departamento</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="numero">
-          <DataField>numero</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="pais">
-          <DataField>pais</DataField>
-          <rd:TypeName>Modelos.ModeloPais</rd:TypeName>
-        </Field>
-        <Field Name="piso">
-          <DataField>piso</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="provincia">
-          <DataField>provincia</DataField>
-          <rd:TypeName>Modelos.ModeloProvincia</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloPersonas</rd:TableName>
-        <rd:ObjectDataSourceSelectMethod>domicilios</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceType>Modelos.ModeloPersonas, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="ClienteTelefono">
-      <Query>
-        <DataSourceName>Modelos</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="codigoTelefono">
-          <DataField>codigoTelefono</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="numero">
-          <DataField>numero</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="tipo">
-          <DataField>tipo</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloPersonas</rd:TableName>
-        <rd:ObjectDataSourceSelectMethod>telefonos</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceType>Modelos.ModeloPersonas, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="ClienteMail">
-      <Query>
-        <DataSourceName>Modelos</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="codigoMail">
-          <DataField>codigoMail</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="mail">
-          <DataField>mail</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloPersonas</rd:TableName>
-        <rd:ObjectDataSourceSelectMethod>mails</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceType>Modelos.ModeloPersonas, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportParameters>
-    <ReportParameter Name="parametroTitulo">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
     <ReportParameter Name="parametroEmpresa">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroCai">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroFecVto">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroCuit">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroInicioAct">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>

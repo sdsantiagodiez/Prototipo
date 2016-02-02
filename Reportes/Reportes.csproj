@@ -56,6 +56,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FacturaA.rdlc" />
+    <EmbeddedResource Include="PedidosEntreFechas.rdlc" />
+    <EmbeddedResource Include="VentasEntreFechas.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
