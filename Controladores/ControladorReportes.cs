@@ -10,35 +10,35 @@ namespace Controladores
 {
     public class ControladorReportes
     {
-        public static CatalogoProveedores cp = new CatalogoProveedores();
-        public static CatalogoPedidos cped = new CatalogoPedidos();
-        public static List<ModeloPedido> pedidos = new List<ModeloPedido>();
-        float MaxMontoTotal = 0;
-        float MontoTotalProveedor = 0;
-        int CantidadTotalArticulos = 0;
-        public string crearReporte(String[] razonSocial, DateTime fechaInicio, DateTime fechaFin)
+        public static CatalogoProveedores glb_con_proveedores = new CatalogoProveedores();
+        public static CatalogoPedidos glb_con_pedidos = new CatalogoPedidos();
+        public static List<ModeloPedido> glb_lst_mod_pedidos = new List<ModeloPedido>();
+        float glb_var_MaxMontoTotal = 0;
+        float glb_var_MontoTotalProveedor = 0;
+        int glb_var_CantidadTotalArticulos = 0;
+        public string crearReporte(String[] p_var_razonSocial, DateTime p_date_fechaInicio, DateTime p_date_fechaFin)
         {
-            string respuesta="";
+            string lcl_var_respuesta="";
             
-            if (String.Equals(razonSocial, "") == false && (fechaFin > fechaInicio || fechaFin <= DateTime.Today))
+            if (String.Equals(p_var_razonSocial, "") == false && (p_date_fechaFin > p_date_fechaInicio || p_date_fechaFin <= DateTime.Today))
             {
-                pedidos = cped.getPedidos("Pedido a proveedor");
+                glb_lst_mod_pedidos = glb_con_pedidos.getPedidos("Pedido a proveedor");
                 
-                foreach (string RSocial in razonSocial)
+                foreach (string RSocial in p_var_razonSocial)
                 {
-                    foreach (ModeloPedido pedido in pedidos) 
+                    foreach (ModeloPedido lcl_mod_pedido in glb_lst_mod_pedidos) 
                     {
-                        ModeloProveedor prov = new ModeloProveedor();
-                        prov = cped.getProveedorPedido(pedido.nroPedido);
-                        if (prov.razonSocial == RSocial)
+                        ModeloProveedor lcl_mod_proveedor = new ModeloProveedor();
+                        lcl_mod_proveedor = glb_con_pedidos.getProveedorPedido(lcl_mod_pedido.nroPedido);
+                        if (lcl_mod_proveedor.razonSocial == RSocial)
                         {
-                            if (Convert.ToDateTime(pedido.fecha) >= fechaInicio && Convert.ToDateTime(pedido.fecha) <= fechaFin)
+                            if (Convert.ToDateTime(lcl_mod_pedido.fecha) >= p_date_fechaInicio && Convert.ToDateTime(lcl_mod_pedido.fecha) <= p_date_fechaFin)
                             {
-                                MaxMontoTotal = (pedido.monto_total>MaxMontoTotal)? pedido.monto_total : MaxMontoTotal ;
-                                MontoTotalProveedor = MontoTotalProveedor + pedido.monto_total;
-                                foreach (ModeloLineaPedido lineas in pedido.lineasPedido)
+                                glb_var_MaxMontoTotal = (lcl_mod_pedido.monto_total>glb_var_MaxMontoTotal)? lcl_mod_pedido.monto_total : glb_var_MaxMontoTotal ;
+                                glb_var_MontoTotalProveedor = glb_var_MontoTotalProveedor + lcl_mod_pedido.monto_total;
+                                foreach (ModeloLineaPedido lcl_mod_lineapedido in lcl_mod_pedido.lineasPedido)
                                 {
-                                    CantidadTotalArticulos = CantidadTotalArticulos + lineas.cantidadArticulos;
+                                    glb_var_CantidadTotalArticulos = glb_var_CantidadTotalArticulos + lcl_mod_lineapedido.cantidadArticulos;
                                 }
                             }
 
@@ -48,35 +48,35 @@ namespace Controladores
 
                 }
                 /*Hecho para un solo proveedor*/
-                string detalleProveedores = razonSocial + Convert.ToString(MontoTotalProveedor) + Convert.ToString(MaxMontoTotal) + Convert.ToString(CantidadTotalArticulos);
-                respuesta = "Fecha Inicio:" + Convert.ToString(fechaInicio) + "Fecha Fin:" + Convert.ToString(fechaFin) + detalleProveedores;
+                string detalleProveedores = p_var_razonSocial + Convert.ToString(glb_var_MontoTotalProveedor) + Convert.ToString(glb_var_MaxMontoTotal) + Convert.ToString(glb_var_CantidadTotalArticulos);
+                lcl_var_respuesta = "Fecha Inicio:" + Convert.ToString(p_date_fechaInicio) + "Fecha Fin:" + Convert.ToString(p_date_fechaFin) + detalleProveedores;
             }
             else
             {
-                if (String.Equals(razonSocial, ""))
+                if (String.Equals(p_var_razonSocial, ""))
                 {
-                    respuesta = "Debe seleccionar al menos 1 proveedor";
+                    lcl_var_respuesta = "Debe seleccionar al menos 1 proveedor";
                 }
                 else
                 {
-                    respuesta = "Fechas no válidas";
+                    lcl_var_respuesta = "Fechas no válidas";
                 }
             }
-        return respuesta;
+        return lcl_var_respuesta;
         }
 
         public List<string> iniciarReporte()
         {
-            List<string> respuesta = null;
-            List<ModeloProveedor> p = cp.getAll();
+            List<string> lcl_var_respuesta = null;
+            List<ModeloProveedor> lcl_mod_proveedor = glb_con_proveedores.getAll();
 
-            foreach(ModeloProveedor prov in p)
+            foreach(ModeloProveedor prov in lcl_mod_proveedor)
             {
                 string proveedor = prov.cuit + ", " + prov.razonSocial;
-                respuesta.Add(proveedor);
+                lcl_var_respuesta.Add(proveedor);
             }
 
-            return respuesta;
+            return lcl_var_respuesta;
         }
 
 
