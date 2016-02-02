@@ -99,12 +99,19 @@ namespace Datos
         /// <returns></returns>
         protected string parametroBusqueda(string p_nombreParametro, string p_nombreParametroTabla, string p_comparador)
         {
-            return @" (" + p_nombreParametro + " IS NULL OR " + p_nombreParametro + " " + p_comparador + " %" + p_nombreParametroTabla + "% ) ";
+            return @" (" + p_nombreParametro + " IS NULL OR " + p_nombreParametro + " " + p_comparador + " " + p_nombreParametroTabla + " ) ";
         }
 
         protected string agregarComodinBusquedaLIKE(string p_valorBusqueda)
         {
-            return "%" + p_valorBusqueda + "%";
+            if (p_valorBusqueda == null)
+            {
+                return null;
+            }
+            else
+            {
+                return "%" + p_valorBusqueda + "%";
+            }
         }
     }
 }
