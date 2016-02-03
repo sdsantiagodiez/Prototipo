@@ -102,7 +102,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Cant. Pedidos</Value>
+                              <Value>Cant. Ventas</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -390,7 +390,6 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <RepeatColumnHeaders>true</RepeatColumnHeaders>
-        <DataSetName>DetallePedido</DataSetName>
         <Top>0.64382cm</Top>
         <Left>0.88506cm</Left>
         <Height>1.2cm</Height>
