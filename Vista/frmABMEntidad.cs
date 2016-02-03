@@ -952,11 +952,11 @@ namespace Vista
                 {
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona:
                         ModeloPersonas lcl_mod_persona = this.cargarDatosEnModeloPersona();
-                        exito = lcl_con_alta.agregar(lcl_mod_persona);
+                        exito = lcl_con_alta.agregar(ref lcl_mod_persona);
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor:
                         ModeloProveedor lcl_mod_proveedor = this.cargarDatosEnModeloProveedor();
-                        exito = lcl_con_alta.agregar(lcl_mod_proveedor);
+                        exito = lcl_con_alta.agregar(ref lcl_mod_proveedor);
                         break;
                     default:
                         break;

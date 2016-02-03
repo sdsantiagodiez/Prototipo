@@ -13,8 +13,8 @@ namespace Controladores
         public static CatalogoProveedores glb_con_proveedores = new CatalogoProveedores();
         public static CatalogoPedidos glb_con_pedidos = new CatalogoPedidos();
         public static List<ModeloPedido> glb_lst_mod_pedidos = new List<ModeloPedido>();
-        float glb_var_MaxMontoTotal = 0;
-        float glb_var_MontoTotalProveedor = 0;
+        decimal glb_var_MaxMontoTotal = 0;
+        decimal glb_var_MontoTotalProveedor = 0;
         int glb_var_CantidadTotalArticulos = 0;
         public string crearReporte(String[] p_var_razonSocial, DateTime p_date_fechaInicio, DateTime p_date_fechaFin)
         {

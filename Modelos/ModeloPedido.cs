@@ -22,8 +22,8 @@ namespace Modelos
             set { this._lineasPedido = value; }
         }
         
-        float _monto_total;
-        public float monto_total
+        decimal _monto_total;
+        public decimal monto_total
         {
             get { return _monto_total; }
             set { this._monto_total = value; }
