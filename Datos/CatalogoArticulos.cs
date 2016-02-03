@@ -34,7 +34,7 @@ namespace Datos
             }
             return respuesta;
         }
-        
+
         private ModeloArticulos leerDatosArticulo(SqlDataReader p_drArticulos)
         {
             ModeloArticulos modArt = new ModeloArticulos();

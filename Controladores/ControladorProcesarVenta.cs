@@ -20,7 +20,7 @@ namespace Controladores
         {
             this.glb_mod_PedidoVenta = new ModeloPedido();
         }
-        
+
         public List<ModeloLineaPedido> getVentaActual()
         {
             return this.glb_mod_PedidoVenta.lineasPedido;
@@ -100,7 +100,7 @@ namespace Controladores
         public void addClient(ModeloPersonas p_nuevoCliente)
         {
             CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
-            lcl_cat_personas.agregarNuevaEntidad(p_nuevoCliente);
+            lcl_cat_personas.agregarNuevaEntidad(ref p_nuevoCliente);
         }
 
         public List<ModeloPais> getPaises()

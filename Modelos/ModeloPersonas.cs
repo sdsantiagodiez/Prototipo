@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LibreriaClasesCompartidas;
 
 namespace Modelos
 {
@@ -129,7 +130,7 @@ namespace Modelos
         }
         public bool validarTipoPersona()
         {
-            if(tipoPersona == "CLI" || tipoPersona == "USR" || tipoPersona == "CON")
+            if (tipoPersona == Constantes.TiposEntidad.TiposPersona.Cliente || tipoPersona == Constantes.TiposEntidad.TiposPersona.Usuario || tipoPersona == Constantes.TiposEntidad.TiposPersona.ContactoProveedor)
             {
                 return true;
             }

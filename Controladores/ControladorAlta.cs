@@ -12,64 +12,149 @@ namespace Controladores
 {
     public class ControladorAlta : Controlador
     {
-        #region Entidades
+        public bool agregar(ModeloArticuloProveedores p_mod_articuloProveedor)
+        {
+            CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
+            return false;
+        }
+        public bool agregar(ModeloArticulos p_mod_articulo)
+        {
+            CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
+            return false;
+        }
         /// <summary>
-        /// Genera nombre de usuario (REVISAR si es buena idea)
+        /// Se debería usar este método en vez de lo implementado en la capa Datos CatalogoEntidades
         /// </summary>
-        /// <param name="pCodigoEntidad"></param>
+        /// <param name="p_mod_domicilio"></param>
         /// <returns></returns>
-        public string generarNombreUsuario(string pNombre, string pApellido)
+        private bool agregar(ModeloDomicilio p_mod_domicilio,int p_codigoEntidad)
         {
-            string nombreDeUsuario = null;
-            
-            nombreDeUsuario = "";
-            //se elimina del nombre y apellido todos los caracteres no alfanuméricos
-            Regex rgx = new Regex("[^a-zA-Z0-9 -]");
-            string nombre = rgx.Replace(pNombre, "");
-            string apellido = rgx.Replace(pApellido, "");
-            nombreDeUsuario = (pNombre[0] + pApellido).ToLower();
-
-            //Si nombreDeUsuario existe, se entra en la iteración para agregar un número al final
-            //del usuario hasta que usuario no exista
-            CatalogoPersonas cp = new CatalogoPersonas();
-            ModeloPersonas mPersonaBusqueda = new ModeloPersonas();
-            for (int i = 1; cp.buscarPersona(mPersonaBusqueda,"usuario").Count >=1 ; i++)
+            CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
+            if (p_mod_domicilio.validar())
             {
-                //se vuelve a instanciar para que sólo cambie el número al final
-                nombreDeUsuario = "";
-                nombreDeUsuario = (pNombre[0] + pApellido + i.ToString()).ToLower();
-                mPersonaBusqueda.usuario = nombreDeUsuario;
-            }
-            
-            return nombreDeUsuario;
-        }
-
-        public bool agregarPersona(ModeloPersonas pmPersona)
-        {
-            CatalogoPersonas cp = new CatalogoPersonas();
-            if(pmPersona.validar() == true)
-            {
-                return cp.agregarNuevaEntidad(pmPersona);
+                return lcl_cat_domicilios.agregarNuevaEntidad(p_mod_domicilio, p_codigoEntidad);
             }
             else
             {
                 return false;
             }
         }
-
-        public bool agregarProveedor(ModeloProveedor pmProveedor)
+        private bool agregar(ModeloEntidad p_mod_entidad)
         {
-            CatalogoProveedores cp = new CatalogoProveedores();
-            if (pmProveedor.validar() == true)
+            return false;
+        }
+        /// <summary>
+        /// Agrega lineas de pedido a la capa de datos
+        /// </summary>
+        /// <param name="p_mod_lineaPedido"></param>
+        /// <returns></returns>
+        public bool agregar(ModeloLineaPedido p_mod_lineaPedido)
+        {
+            CatalogoLineasPedidos lcl_cat_lineasPedidos = new CatalogoLineasPedidos();
+            return lcl_cat_lineasPedidos.agregarNuevaEntidad(p_mod_lineaPedido);
+        }
+        /// <summary>
+        /// Se debería usar este método en vez de lo implementado en la capa Datos CatalogoEntidades
+        /// </summary>
+        /// <param name="p_mod_mail"></param>
+        /// <param name="p_codigoEntidad"></param>
+        /// <returns></returns>
+        private bool agregar(ModeloMail p_mod_mail, int p_codigoEntidad)
+        {
+            CatalogoMails lcl_cat_mails = new CatalogoMails();
+            return lcl_cat_mails.agregarNuevaEntidad(p_mod_mail, p_codigoEntidad);
+        }
+        public bool agregar(ModeloPais p_mod_pais)
+        {
+            CatalogoPaises lcl_cat_paises = new CatalogoPaises();
+            return false;
+        }
+        /// <summary>
+        /// Agrega pedido con sus lineas de pedido correspondientes a la capa de datos
+        /// </summary>
+        /// <param name="p_mod_pedido"></param>
+        /// <returns></returns>
+        public bool agregar(ModeloPedido p_mod_pedido)
+        {
+            CatalogoPedidos lcl_cat_pedidos = new CatalogoPedidos();
+            if (p_mod_pedido.validar())
             {
-                return cp.agregarNuevaEntidad(pmProveedor);
+                //Ver que hacer si se agrega el pedido correctamente, pero hay problemas en agregar alguna linea de pedido. Try catch?
+                if (lcl_cat_pedidos.agregarNuevaEntidad(ref p_mod_pedido))
+                {
+                    foreach (ModeloLineaPedido lp in p_mod_pedido.lineasPedido)
+                    {
+                        lp.numeroPedido = p_mod_pedido.nroPedido;
+                        this.agregar(lp);
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+        /// <summary>
+        /// Agrega persona a la capa de datos
+        /// </summary>
+        /// <param name="p_mod_persona"></param>
+        /// <returns></returns>
+        public bool agregar(ref ModeloPersonas p_mod_persona)
+        {
+            CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
+
+            if (p_mod_persona.validar())
+            {
+                return lcl_cat_personas.agregarNuevaEntidad(ref p_mod_persona);
+            }
+            else
+            {
+                return false;
+            }   
+        }
+        /// <summary>
+        /// Agrega proveedor a la capa de datos
+        /// </summary>
+        /// <param name="p_mod_proveedor"></param>
+        /// <returns></returns>
+        public bool agregar(ref ModeloProveedor p_mod_proveedor)
+        {
+            CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
+
+            if (p_mod_proveedor.validar())
+            {
+                return lcl_cat_proveedores.agregarNuevaEntidad(ref p_mod_proveedor);
             }
             else
             {
                 return false;
             }
         }
-
-        #endregion
+        
+        public bool agregar(ModeloProvincia p_mod_provincia)
+        {
+            CatalogoProvincias lcl_cat_provincias = new CatalogoProvincias();
+            return false;
+        }
+        /// <summary>
+        /// Se debería usar este método en vez de lo implementado en la capa Datos CatalogoEntidades.
+        /// </summary>
+        /// <param name="p_mod_telefono"></param>
+        /// <returns></returns>
+        private bool agregar(ModeloTelefono p_mod_telefono, int p_codigoEntidad)
+        {
+            CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
+            return lcl_cat_telefonos.agregarNuevaEntidad(p_mod_telefono, p_codigoEntidad);
+        }
+        private bool agregar(ModeloValorArticulo p_mod_valorArticulo)
+        {
+            return false;
+        }
     }
 }

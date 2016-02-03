@@ -124,22 +124,28 @@ namespace Datos
         /// </summary>
         /// <param name="p_mod_persona"></param>
         /// <returns></returns>
-        virtual public bool agregarNuevaEntidad(ModeloPersonas p_mod_persona)
+        virtual public bool agregarNuevaEntidad(ref ModeloPersonas p_mod_persona)
         {
             ModeloEntidad lcl_mod_entidad = this.getValoresEntidad(p_mod_persona);
             lcl_mod_entidad.tipoEntidad = Constantes.TiposEntidad.Persona;
-            return (this.agregarNuevaEntidad(lcl_mod_entidad));
+            bool respuesta = this.agregarNuevaEntidad(ref lcl_mod_entidad);
+            p_mod_persona.codigo = lcl_mod_entidad.codigo;
+
+            return respuesta;
         }
         /// <summary>
         /// Agrega proveedor a base de datos entidades con sus respectivos atributos
         /// </summary>
         /// <param name="pmProveedor"></param>
         /// <returns></returns>
-        virtual public bool agregarNuevaEntidad(ModeloProveedor p_mod_proveedor)
+        virtual public bool agregarNuevaEntidad(ref ModeloProveedor p_mod_proveedor)
         {
             ModeloEntidad lcl_mod_entidad = this.getValoresEntidad(p_mod_proveedor);
             lcl_mod_entidad.tipoEntidad = Constantes.TiposEntidad.Proveedor;
-            return (this.agregarNuevaEntidad(lcl_mod_entidad));
+            bool respuesta = this.agregarNuevaEntidad(ref lcl_mod_entidad);
+            p_mod_proveedor.codigo = lcl_mod_entidad.codigo;
+
+            return respuesta;
         }
         
         /// <summary>
@@ -147,13 +153,13 @@ namespace Datos
         /// </summary>
         /// <param name="pmEntidad"></param>
         /// <returns></returns>
-        public bool agregarNuevaEntidad(ModeloEntidad p_mod_entidad)
+        public bool agregarNuevaEntidad(ref ModeloEntidad p_mod_entidad)
         {
             //Aseguramos que no se haya ingresado algún codigo a la entidad
             p_mod_entidad.codigo = 0;
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
-
+            
             //crea SQL command
             SqlCommand comando = new SqlCommand();
 
@@ -163,6 +169,7 @@ namespace Datos
 
             comando.CommandText =
                 "INSERT INTO [entidades] ([tipo_entidad],[cuit],[observaciones]) "+
+                "OUTPUT INSERTED.CODIGO "+
                 "VALUES (@tipo_entidad, @cuit, @observaciones)";
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.tipoEntidad, "@tipo_entidad"));
@@ -170,29 +177,29 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.observaciones, "@observaciones"));
 
             comando.Connection.Open();
-            int rowaffected = comando.ExecuteNonQuery();
+            int? nuevoCodigoEntidad = (int?)comando.ExecuteScalar();
+            
             comando.Connection.Close();
 
-            if (rowaffected != 0)
+            if (nuevoCodigoEntidad != null)
             {
-                p_mod_entidad.codigo = this.getUltimoCodigo();
-
+                p_mod_entidad.codigo = Convert.ToInt32(nuevoCodigoEntidad);
                 List<ModeloMail> lcl_lst_mails = p_mod_entidad.mails;
                 foreach (ModeloMail m in lcl_lst_mails)
                 {
-                    this.agregarNuevoMail(m, p_mod_entidad.codigo);
+                    this.agregarNuevoMail(m, Convert.ToInt32(p_mod_entidad.codigo));
                 }
 
                 List<ModeloTelefono> lcl_lst_telefonos = p_mod_entidad.telefonos;
                 foreach(ModeloTelefono t in lcl_lst_telefonos)
                 {
-                    this.agregarNuevoTelefono(t, p_mod_entidad.codigo);
+                    this.agregarNuevoTelefono(t, Convert.ToInt32(p_mod_entidad.codigo));
                 }
 
                 List<ModeloDomicilio> lcl_lst_domicilios = p_mod_entidad.domicilios;
                 foreach(ModeloDomicilio d in lcl_lst_domicilios)
                 {
-                    this.agregarNuevoDomicilio(d, p_mod_entidad.codigo);
+                    this.agregarNuevoDomicilio(d, Convert.ToInt32(p_mod_entidad.codigo));
                 }
                 
                return true;
@@ -329,8 +336,9 @@ namespace Datos
             return true;
         }
         #endregion
+    
         /// <summary>
-        /// Obtiene el último código de entidad generado en la base de datos
+        /// BORRAR????Obtiene el último código de entidad generado en la base de datos
         /// </summary>
         /// <returns>ultimo codigo generado; 0 si hubo algún error</returns>
         public int getUltimoCodigo()

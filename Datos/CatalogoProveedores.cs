@@ -182,11 +182,11 @@ namespace Datos
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
-        override public bool agregarNuevaEntidad(ModeloProveedor p_mod_proveedor)
+        override public bool agregarNuevaEntidad(ref ModeloProveedor p_mod_proveedor)
         {
             //*REVISAR (validar existencia a traves de codigo de una entidad que puede no tener código?)
             //y continua si se creó exitosamente la entidad
-            if (!this.existeEntidad(p_mod_proveedor.codigo) && base.agregarNuevaEntidad(p_mod_proveedor))
+            if (base.agregarNuevaEntidad(ref p_mod_proveedor))
             {
                 //Creo la conexion y la abro
                 SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -200,8 +200,9 @@ namespace Datos
 
                 comando.CommandText =
                     "INSERT INTO [Proveedores] ([codigo_entidad], [razon_social]) "+
-                    "VALUES (IDENT_CURRENT('entidades'), @razon_social)";
+                    "VALUES (@codigo_entidad, @razon_social)";
                 //Indica los parametros
+                comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.codigo, "@codigo_entidad"));
                 comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.razonSocial, "@razon_social"));
                 
                 comando.Connection.Open();

@@ -102,9 +102,10 @@ namespace Datos
             ModeloPedido lcl_mod_pedido = new ModeloPedido();
 
             lcl_mod_pedido.nroPedido = (int)p_drPedidos["numero_pedido"];
+            lcl_mod_pedido.fecha = (DateTime)p_drPedidos["fecha"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
-            lcl_mod_pedido.fecha = (p_drPedidos["fecha"] != DBNull.Value) ? (string)p_drPedidos["fecha"] : null;
+            
             lcl_mod_pedido.monto_total = (p_drPedidos["monto_total"] != DBNull.Value) ? (decimal)p_drPedidos["monto_total"] : 0;
             lcl_mod_pedido.observaciones = (p_drPedidos["observaciones"] != DBNull.Value) ? (string)p_drPedidos["observaciones"] : null;
             lcl_mod_pedido.codigo_tipo_pedido = (p_drPedidos["codigo_tipo_pedido"] != DBNull.Value) ? (int)p_drPedidos["codigo_tipo_pedido"] : 0;
@@ -154,7 +155,7 @@ namespace Datos
                 case Constantes.ParametrosBusqueda.Pedidos.Fecha:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.fecha, "@fecha"));
                     return " fecha = @fecha ";
-                case Constantes.ParametrosBusqueda.Articulos.Any:
+                case Constantes.ParametrosBusqueda.Pedidos.Any:
                     int? numeroPedido = p_mod_pedido.nroPedido == 0 ? null : (int?)p_mod_pedido.nroPedido;
                     p_comando.Parameters.Add(this.instanciarParametro(numeroPedido, "@numero_pedido"));
                     string numeroPedidoQuery = this.parametroBusqueda("@numero_pedido", "numero_pedido", "=");
@@ -167,7 +168,7 @@ namespace Datos
                     string fechaQuery = this.parametroBusqueda("@fecha", "fecha", "=");
 
                     return numeroPedidoQuery + " AND " + codigoTipoPedidoQuery + " AND " + fechaQuery;
-                case Constantes.ParametrosBusqueda.Articulos.All:
+                case Constantes.ParametrosBusqueda.Pedidos.All:
                     //retorna true y devuelve todas las filas
                     return " 1 = 1 ";
                 default:

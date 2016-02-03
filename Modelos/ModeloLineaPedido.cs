@@ -9,17 +9,24 @@ namespace Modelos
     public class ModeloLineaPedido
     {
         #region Getters/Setters
-        string _codigoArtProveedor;
+
+        int _numeroPedido;
+        public int numeroPedido
+        {
+            get { return _numeroPedido; }
+            set { this._numeroPedido = value; }
+        }
+        string _codigoArticuloProveedor;
         public string codigoArtProveedor
         {
-            get { return _codigoArtProveedor; }
-            set { this._codigoArtProveedor = value; }
+            get { return _codigoArticuloProveedor; }
+            set { this._codigoArticuloProveedor = value; }
         }
-        string _codigoOriginalArt;
+        string _codigoOriginalArticulo;
         public string codigoOriginalArt
         {
-            get { return _codigoOriginalArt; }
-            set { this._codigoOriginalArt = value; }
+            get { return _codigoOriginalArticulo; }
+            set { this._codigoOriginalArticulo = value; }
         }
         int _cantidadArticulos;
         public int cantidadArticulos
@@ -50,14 +57,14 @@ namespace Modelos
         public ModeloLineaPedido()
         { }
 
-        public ModeloLineaPedido(ModeloArticuloProveedores pModArtProv, int pCantidad)
+        public ModeloLineaPedido(ModeloArticuloProveedores p_mod_articuloProveedor, int pCantidad)
         {
-            this.codigoArtProveedor = pModArtProv.codigoArticuloProveedor;
-            this.codigoOriginalArt = pModArtProv.codigoOriginal;
+            this.codigoArtProveedor = p_mod_articuloProveedor.codigoArticuloProveedor;
+            this.codigoOriginalArt = p_mod_articuloProveedor.codigoOriginal;
             this.cantidadArticulos = pCantidad;
-            this.descripcion = pModArtProv.descripcionArticuloProveedor;
+            this.descripcion = p_mod_articuloProveedor.descripcionArticuloProveedor;
             //Sólo considera que la linea sea de venta de artículo y no para una compra a proveedor
-            this.valorUnitario = pModArtProv.valorVenta.valorArticulo;
+            this.valorUnitario = p_mod_articuloProveedor.valorVenta.valorArticulo;
             //Recordar que se pueden aplicar descuentos
             this.valorParcial = this.cantidadArticulos * this.valorUnitario;
         }

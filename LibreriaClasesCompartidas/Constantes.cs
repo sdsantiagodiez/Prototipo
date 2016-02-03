@@ -104,6 +104,19 @@ namespace LibreriaClasesCompartidas
                 public const string Tipo = "tipoPedido";
             }
 
+            public static class LineasPedidos
+            {
+                public const string All = ParametrosBusqueda.All;
+                public const string Any = ParametrosBusqueda.Any;
+
+                public const string NumeroPedido = Pedidos.NumeroPedido;
+                public const string CodigoArticuloProveedor = ArticulosProveedores.CodigoArticuloProveedor;
+                public const string CodigoOriginal = ArticulosProveedores.CodigoOriginal;
+                //public const string Cantidad = "cantidad";
+                //public const string ValorUnitario = "valorUnitario";
+                //public const string ValorParcial = "valorParcial";
+            }
+
             public static class Paises
             {
                 public const string All = ParametrosBusqueda.All;

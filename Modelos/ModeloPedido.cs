@@ -29,8 +29,8 @@ namespace Modelos
             set { this._monto_total = value; }
         }
 
-        string _fecha;
-        public string fecha 
+        DateTime _fecha;
+        public DateTime fecha 
         {
             get { return _fecha; }
             set { this._fecha = value; }
@@ -62,6 +62,20 @@ namespace Modelos
             //También hay que asignar numero de pedido
             /*Quizas este metodo deberia volar, ya que el multiobjeto de lineas de pedido se crea como una variable mas del Pedido*/
         }
+
+        public bool validar()
+        {
+            return this.validarCantidadLineasPedido();
+        }
+        /// <summary>
+        /// Valida que la cantidad de líneas de pedido sea mayor a 0
+        /// </summary>
+        /// <returns></returns>
+        private bool validarCantidadLineasPedido()
+        {
+            return Convert.ToBoolean(this.lineasPedido.Count);
+        }
+        
         
         public ModeloLineaPedido findDetail(string p_codigoOriginal, string p_codigoArticuloProveedor)
         {

@@ -207,11 +207,11 @@ namespace Datos
          * False si ocurrió algún error
          */
 
-        public override bool agregarNuevaEntidad(ModeloPersonas p_mod_persona)
+        public override bool agregarNuevaEntidad(ref ModeloPersonas p_mod_persona)
         {
             //Se debería chequear antes para notificar al usuario la razón por la que no se podrá realizar la operación
             //y continua si se creó exitosamente la entidad
-            if (!this.existeEntidad(p_mod_persona.codigo) && base.agregarNuevaEntidad(p_mod_persona))
+            if (!this.existeEntidad(p_mod_persona.codigo) && base.agregarNuevaEntidad(ref p_mod_persona))
             {
                 
                 //Creo la conexion y la abro
