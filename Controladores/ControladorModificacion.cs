@@ -38,7 +38,7 @@ namespace Controladores
             CatalogoPersonas cp = new CatalogoPersonas();
             if (pmPersona.validar() == true)
             {
-                return cp.actualizarEntidad(pmPersona);
+                return cp.update(pmPersona);
             }
             else
             {
@@ -50,7 +50,7 @@ namespace Controladores
             CatalogoProveedores cp = new CatalogoProveedores();
             if (pmProveedor.validar() == true)
             {
-                return cp.actualizarEntidad(pmProveedor);
+                return cp.update(pmProveedor);
             }
             else
             {
@@ -63,7 +63,7 @@ namespace Controladores
             CatalogoArticuloProveedores cp = new CatalogoArticuloProveedores();
             if (pmArtProv.validar() == true)
             {
-                return cp.actualizarEntidad(pmArtProv);
+                return cp.update(pmArtProv);
             }
             else
             {

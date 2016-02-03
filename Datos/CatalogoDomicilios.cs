@@ -81,7 +81,7 @@ namespace Datos
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
-        public bool agregarNuevaEntidad(ModeloDomicilio p_mod_domicilio, int p_codigoEntidad)
+        public bool add(ModeloDomicilio p_mod_domicilio, int p_codigoEntidad)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -118,7 +118,7 @@ namespace Datos
             }
         }
 
-        public bool actualizarEntidad(ModeloDomicilio p_mod_domicilio)
+        public bool update(ModeloDomicilio p_mod_domicilio)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -155,7 +155,7 @@ namespace Datos
             }
         }
 
-        public bool bajaEntidad(ModeloDomicilio p_mod_domicilio)
+        public bool remove(ModeloDomicilio p_mod_domicilio)
         {
             SqlConnection ConexionSQL = Conexion.crearConexion();
 

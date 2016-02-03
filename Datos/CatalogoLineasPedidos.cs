@@ -164,7 +164,7 @@ namespace Datos
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
-        public bool agregarNuevaEntidad(ModeloLineaPedido p_mod_lineaPedido)
+        public bool add(ModeloLineaPedido p_mod_lineaPedido)
         {
             SqlConnection ConexionSQL = Conexion.crearConexion();
             SqlCommand comando = new SqlCommand();
@@ -204,7 +204,7 @@ namespace Datos
 
 
         //AL día 03/02/16 se considera no avanzar en estos métodos ya que no se le encuentra uso práctico
-        //public bool actualizarEntidad(ModeloLineaPedido p_mod_lineaPedido)
+        //public bool update(ModeloLineaPedido p_mod_lineaPedido)
         //{
         //    //Creo la conexion y la abro
         //    SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
@@ -246,7 +246,7 @@ namespace Datos
 
         //}
 
-        //public bool bajaEntidad(ModeloLineaPedido p_mod_lineaPedido)
+        //public bool remove(ModeloLineaPedido p_mod_lineaPedido)
         //{
         //    SqlConnection ConexionSQL = Conexion.crearConexion();
 

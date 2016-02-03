@@ -240,7 +240,7 @@ namespace Datos
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
-        public bool agregarNuevaEntidad(ref ModeloPedido p_mod_pedido)
+        public bool add(ref ModeloPedido p_mod_pedido)
         {
             SqlConnection ConexionSQL = Conexion.crearConexion();
             SqlCommand comando = new SqlCommand();
@@ -274,7 +274,7 @@ namespace Datos
             }
         }
 
-        public bool actualizarEntidad(ModeloPedido p_mod_pedido)
+        public bool update(ModeloPedido p_mod_pedido)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
@@ -310,7 +310,7 @@ namespace Datos
 
         }
 
-        public bool bajaEntidad(ModeloPedido p_mod_pedido)
+        public bool remove(ModeloPedido p_mod_pedido)
         {
             SqlConnection ConexionSQL = Conexion.crearConexion();
 

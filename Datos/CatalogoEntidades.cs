@@ -124,11 +124,11 @@ namespace Datos
         /// </summary>
         /// <param name="p_mod_persona"></param>
         /// <returns></returns>
-        virtual public bool agregarNuevaEntidad(ref ModeloPersonas p_mod_persona)
+        virtual public bool add(ref ModeloPersonas p_mod_persona)
         {
             ModeloEntidad lcl_mod_entidad = this.getValoresEntidad(p_mod_persona);
             lcl_mod_entidad.tipoEntidad = Constantes.TiposEntidad.Persona;
-            bool respuesta = this.agregarNuevaEntidad(ref lcl_mod_entidad);
+            bool respuesta = this.add(ref lcl_mod_entidad);
             p_mod_persona.codigo = lcl_mod_entidad.codigo;
 
             return respuesta;
@@ -138,11 +138,11 @@ namespace Datos
         /// </summary>
         /// <param name="pmProveedor"></param>
         /// <returns></returns>
-        virtual public bool agregarNuevaEntidad(ref ModeloProveedor p_mod_proveedor)
+        virtual public bool add(ref ModeloProveedor p_mod_proveedor)
         {
             ModeloEntidad lcl_mod_entidad = this.getValoresEntidad(p_mod_proveedor);
             lcl_mod_entidad.tipoEntidad = Constantes.TiposEntidad.Proveedor;
-            bool respuesta = this.agregarNuevaEntidad(ref lcl_mod_entidad);
+            bool respuesta = this.add(ref lcl_mod_entidad);
             p_mod_proveedor.codigo = lcl_mod_entidad.codigo;
 
             return respuesta;
@@ -153,7 +153,7 @@ namespace Datos
         /// </summary>
         /// <param name="pmEntidad"></param>
         /// <returns></returns>
-        public bool agregarNuevaEntidad(ref ModeloEntidad p_mod_entidad)
+        public bool add(ref ModeloEntidad p_mod_entidad)
         {
             //Aseguramos que no se haya ingresado algún codigo a la entidad
             p_mod_entidad.codigo = 0;
@@ -215,67 +215,67 @@ namespace Datos
         public bool agregarNuevoMail(ModeloMail p_mod_mail, int p_codigoEntidad)
         {
             CatalogoMails lcl_cat_mails = new CatalogoMails();
-            return lcl_cat_mails.agregarNuevaEntidad(p_mod_mail, p_codigoEntidad);
+            return lcl_cat_mails.add(p_mod_mail, p_codigoEntidad);
         }
         public bool bajaMail(ModeloMail p_mod_mail)
         {
             CatalogoMails lcl_cat_mails = new CatalogoMails();
-            return lcl_cat_mails.bajaEntidad(p_mod_mail);
+            return lcl_cat_mails.remove(p_mod_mail);
         }
         public bool actualizarMail(ModeloMail p_mod_mail)
         {
             CatalogoMails lcl_cat_mails = new CatalogoMails();
-            return lcl_cat_mails.actualizarEntidad(p_mod_mail);
+            return lcl_cat_mails.update(p_mod_mail);
         }
         #endregion
         #region ABM DOMICILIOS
         public bool agregarNuevoDomicilio(ModeloDomicilio p_mod_domicilio, int p_codigoEntidad)
         {
             CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
-            return lcl_cat_domicilios.agregarNuevaEntidad(p_mod_domicilio, p_codigoEntidad);
+            return lcl_cat_domicilios.add(p_mod_domicilio, p_codigoEntidad);
         }
         public bool bajaDomicilio(ModeloDomicilio p_mod_domicilio)
         {
             CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
-            return lcl_cat_domicilios.bajaEntidad(p_mod_domicilio);
+            return lcl_cat_domicilios.remove(p_mod_domicilio);
         }
         public bool actualizarDomicilio(ModeloDomicilio p_mod_domicilio)
         {
             CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
-            return lcl_cat_domicilios.actualizarEntidad(p_mod_domicilio);
+            return lcl_cat_domicilios.update(p_mod_domicilio);
         }
         #endregion
         #region ABM TELEFONOS
         public bool agregarNuevoTelefono(ModeloTelefono p_mod_telefono, int p_codigoEntidad)
         {
             CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
-            return lcl_cat_telefonos.agregarNuevaEntidad(p_mod_telefono, p_codigoEntidad);
+            return lcl_cat_telefonos.add(p_mod_telefono, p_codigoEntidad);
         }
 
         public bool bajaTelefono(ModeloTelefono p_mod_telefono)
         {
             CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
-            return lcl_cat_telefonos.bajaEntidad(p_mod_telefono);
+            return lcl_cat_telefonos.remove(p_mod_telefono);
         }
         public bool actualizarTelefono(ModeloTelefono p_mod_telefono)
         {
             CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
-            return lcl_cat_telefonos.actualizarEntidad(p_mod_telefono);
+            return lcl_cat_telefonos.update(p_mod_telefono);
         }
 
         #endregion
         
         
-        virtual public bool actualizarEntidad(ModeloPersonas p_mod_persona)
+        virtual public bool update(ModeloPersonas p_mod_persona)
         {
-            return actualizarEntidad(this.getValoresEntidad(p_mod_persona));
+            return update(this.getValoresEntidad(p_mod_persona));
         }
-        virtual public bool actualizarEntidad(ModeloProveedor p_mod_proveedor)
+        virtual public bool update(ModeloProveedor p_mod_proveedor)
         {
-            return actualizarEntidad(this.getValoresEntidad(p_mod_proveedor));
+            return update(this.getValoresEntidad(p_mod_proveedor));
         }
 
-        public bool actualizarEntidad(ModeloEntidad p_mod_entidad)
+        public bool update(ModeloEntidad p_mod_entidad)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -330,7 +330,7 @@ namespace Datos
 
         }
         
-        public bool bajaEntidad(int p_codigoEntidad)
+        public bool remove(int p_codigoEntidad)
         {
             //INCOMPLETO
             return true;

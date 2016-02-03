@@ -32,7 +32,7 @@ namespace Controladores
             CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
             if (p_mod_domicilio.validar())
             {
-                return lcl_cat_domicilios.agregarNuevaEntidad(p_mod_domicilio, p_codigoEntidad);
+                return lcl_cat_domicilios.add(p_mod_domicilio, p_codigoEntidad);
             }
             else
             {
@@ -51,7 +51,7 @@ namespace Controladores
         public bool agregar(ModeloLineaPedido p_mod_lineaPedido)
         {
             CatalogoLineasPedidos lcl_cat_lineasPedidos = new CatalogoLineasPedidos();
-            return lcl_cat_lineasPedidos.agregarNuevaEntidad(p_mod_lineaPedido);
+            return lcl_cat_lineasPedidos.add(p_mod_lineaPedido);
         }
         /// <summary>
         /// Se debería usar este método en vez de lo implementado en la capa Datos CatalogoEntidades
@@ -62,7 +62,7 @@ namespace Controladores
         private bool agregar(ModeloMail p_mod_mail, int p_codigoEntidad)
         {
             CatalogoMails lcl_cat_mails = new CatalogoMails();
-            return lcl_cat_mails.agregarNuevaEntidad(p_mod_mail, p_codigoEntidad);
+            return lcl_cat_mails.add(p_mod_mail, p_codigoEntidad);
         }
         public bool agregar(ModeloPais p_mod_pais)
         {
@@ -80,7 +80,7 @@ namespace Controladores
             if (p_mod_pedido.validar())
             {
                 //Ver que hacer si se agrega el pedido correctamente, pero hay problemas en agregar alguna linea de pedido. Try catch?
-                if (lcl_cat_pedidos.agregarNuevaEntidad(ref p_mod_pedido))
+                if (lcl_cat_pedidos.add(ref p_mod_pedido))
                 {
                     foreach (ModeloLineaPedido lp in p_mod_pedido.lineasPedido)
                     {
@@ -111,7 +111,7 @@ namespace Controladores
 
             if (p_mod_persona.validar())
             {
-                return lcl_cat_personas.agregarNuevaEntidad(ref p_mod_persona);
+                return lcl_cat_personas.add(ref p_mod_persona);
             }
             else
             {
@@ -129,7 +129,7 @@ namespace Controladores
 
             if (p_mod_proveedor.validar())
             {
-                return lcl_cat_proveedores.agregarNuevaEntidad(ref p_mod_proveedor);
+                return lcl_cat_proveedores.add(ref p_mod_proveedor);
             }
             else
             {
@@ -150,7 +150,7 @@ namespace Controladores
         private bool agregar(ModeloTelefono p_mod_telefono, int p_codigoEntidad)
         {
             CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
-            return lcl_cat_telefonos.agregarNuevaEntidad(p_mod_telefono, p_codigoEntidad);
+            return lcl_cat_telefonos.add(p_mod_telefono, p_codigoEntidad);
         }
         private bool agregar(ModeloValorArticulo p_mod_valorArticulo)
         {

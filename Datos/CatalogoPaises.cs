@@ -134,7 +134,7 @@ namespace Datos
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
-        public bool agregarNuevaEntidad(ModeloPais p_mod_pais)
+        public bool add(ModeloPais p_mod_pais)
         {
             if (!this.existeEntidad(p_mod_pais.codigo))
             {
@@ -169,7 +169,7 @@ namespace Datos
             }
         }
 
-        public bool actualizarEntidad(ModeloPais p_mod_pais)
+        public bool update(ModeloPais p_mod_pais)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
@@ -203,7 +203,7 @@ namespace Datos
 
         }
 
-        public bool bajaEntidad(ModeloPais p_mod_pais)
+        public bool remove(ModeloPais p_mod_pais)
         {
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
