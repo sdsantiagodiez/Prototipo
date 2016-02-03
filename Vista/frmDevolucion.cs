@@ -15,8 +15,7 @@ namespace Vista
 {
     public partial class frmDevolucion : Form
     {
-
-        ModeloArticuloProveedores glb_mod_articuloDevolucion;
+        ControladorDevolucion glb_con_devolucion;
 
 
         public frmDevolucion()
@@ -28,26 +27,37 @@ namespace Vista
 
         private void btnValidar_Click(object sender, EventArgs e)
         {
-            //[insertar proceso de validación aquí]
+            //VER CODIGO VERIFICACION?
+            //pido el artículo al controlador
+            var lcl_mod_articuloDevolucion=glb_con_devolucion.getArticuloPedido(txtNumeroPedido.Text,txtCodigoOriginal.Text,txtCodigoArticuloProveedor.Text);
 
-            ////lleno las labels con características del artículo
-            //this.lblCodigoOriginalVar.Text = glb_mod_articuloDevolucion.codigoOriginal;
-            //this.lblCodigoProveedorVar.Text = glb_mod_articuloDevolucion.codigoArticuloProveedor;
-            //this.lblProveedorVar.Text = glb_mod_articuloDevolucion.razonSocialProveedor;
-            //this.lblDescripcionVar.Text = glb_mod_articuloDevolucion.descripcionArticuloProveedor;
+            //controlo que haya devuelto un articulo y no vacío
+            if(!object.Equals(lcl_mod_articuloDevolucion,null)){
 
-            //this.lblPrecioVar.Text = Convert.ToString(glb_mod_articuloDevolucion.valorVenta.valorArticulo);
-            //this.lblUbicacionVar.Text = glb_mod_articuloDevolucion.ubicacion;
+                //lleno las labels con características del artículo
+            this.lblCodigoOriginalVar.Text = lcl_mod_articuloDevolucion.codigoOriginal;
+            this.lblCodigoProveedorVar.Text = lcl_mod_articuloDevolucion.codigoArticuloProveedor;
+            this.lblProveedorVar.Text = lcl_mod_articuloDevolucion.razonSocialProveedor;
+            this.lblDescripcionVar.Text = lcl_mod_articuloDevolucion.descripcionArticuloProveedor;
 
-            //this.lblExistenciaVar.Text = Convert.ToString(glb_mod_articuloDevolucion.stockActual);
-            //this.lblFechaActualizacionVar.Text = Convert.ToString(glb_mod_articuloDevolucion.fechaActualizacion);
-            //this.lblObservacionesVar.Text = glb_mod_articuloDevolucion.observacionesArticuloProveedor;
+            this.lblPrecioVar.Text = Convert.ToString(lcl_mod_articuloDevolucion.valorVenta.valorArticulo);
+            this.lblUbicacionVar.Text = lcl_mod_articuloDevolucion.ubicacion;
+
+            this.lblExistenciaVar.Text = Convert.ToString(lcl_mod_articuloDevolucion.stockActual);
+            this.lblFechaActualizacionVar.Text = Convert.ToString(lcl_mod_articuloDevolucion.fechaActualizacion);
+            this.lblObservacionesVar.Text = lcl_mod_articuloDevolucion.observacionesArticuloProveedor;
 
             //doy visibilidad a botones y groupbox para manipulación del usuario
             this.gbxDetalleArticuloSeleccionado.Visible = true;
             this.gbxDatosDevolucion.Visible = true;
             this.btnAceptar.Visible = true;
-        }
+            }
+                //en caso de vacío informo que no existe o los datos se ingresaron mal.
+            else {
+                MessageBox.Show("Al parecer no existe un pedido con ese artículo. Intente ingresar los datos nuevamente");
+            }
+
+                   }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -63,7 +73,7 @@ namespace Vista
         {
             if (this.rbtError.Checked)
             {
-                // tomar cantidad, cod articulo y actualizar inventario
+                glb_con_devolucion.actualizarStock();
             }
 
             //emitir nota de crédito
