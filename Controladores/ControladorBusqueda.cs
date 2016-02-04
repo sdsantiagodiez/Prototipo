@@ -118,7 +118,7 @@ namespace Controladores
         /// </summary>
         /// <param name="p_mod_articulo">Articulo con variable a buscar inicializada con algún valor</param>
         /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Articulos</param>
-        /// <returns>Lista de proveedores</returns>
+        /// <returns>Lista de artículos</returns>
         public List<ModeloArticulos> buscarArticulos(ModeloArticulos p_mod_articulo, string p_paramentroBusqueda)
         {
             CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
@@ -132,7 +132,7 @@ namespace Controladores
         /// <summary>
         /// Retorna todos los ArticulosProveedores de la base de datos
         /// </summary>
-        /// <returns>Lista de Articulos</returns>
+        /// <returns>Lista de Articulos de proveedores</returns>
         public List<ModeloArticuloProveedores> buscarArticulosProveedores()
         {
             CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
@@ -140,10 +140,10 @@ namespace Controladores
             return lcl_cat_articuloProveedores.getAll(); 
         }
         /// <summary>
-        /// Retorna proveedores en base a los valores inicializados en los atributos del modelo
+        /// Retorna artículos de proveedores en base a los valores inicializados en los atributos del modelo
         /// </summary>
         /// <param name="p_mod_articuloProveedores"></param>
-        /// <returns>Lista de proveedores</returns>
+        /// <returns>Lista de Artículos de proveedores</returns>
         public List<ModeloArticuloProveedores> buscarArticulosProveedores(ModeloArticuloProveedores p_mod_articuloProveedores)
         {
             CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
@@ -151,11 +151,11 @@ namespace Controladores
             return lcl_cat_articuloProveedores.buscarArticuloProveedor(p_mod_articuloProveedores,Constantes.ParametrosBusqueda.ArticulosProveedores.Any); 
         }
         /// <summary>
-        /// Busca proveedores que cumplan con un parámetro de búsqueda
+        /// Busca artículos de proveedores que cumplan con un parámetro de búsqueda
         /// </summary>
         /// <param name="p_mod_articuloProveedores">Proveedor con variable a buscar inicializada con algún valor</param>
         /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda</param>
-        /// <returns>Lista de proveedores</returns>
+        /// <returns>Lista de artículos de proveedores</returns>
         public List<ModeloArticuloProveedores> buscarArticulosProveedores(ModeloArticuloProveedores p_mod_articuloProveedores, string p_paramentroBusqueda)
         {
             CatalogoArticuloProveedores lcl_cat_articulosProveedores = new CatalogoArticuloProveedores();
@@ -207,7 +207,7 @@ namespace Controladores
         /// <summary>
         /// Retorna todas las provincias de la base de datos
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Lista de provincias</returns>
         
         public List<ModeloProvincia> buscarProvincias()
         {
@@ -217,10 +217,10 @@ namespace Controladores
         }
 
         /// <summary>
-        /// Retorna articulos en base a los valores inicializados en los atributos del modelo
+        /// Retorna provincias en base a los valores inicializados en los atributos del modelo
         /// </summary>
         /// <param name="p_mod_provincia"></param>
-        /// <returns>Lista de proveedores</returns>
+        /// <returns>Lista de provincias</returns>
         public ModeloProvincia buscarProvincia(ModeloProvincia p_mod_provincia)
         {
             CatalogoProvincias lcl_cat_provincias = new CatalogoProvincias();
@@ -234,7 +234,7 @@ namespace Controladores
         /// <summary>
         /// Retorna todas los paises de la base de datos
         /// </summary>
-        /// <returns></returns>
+        /// <returns>lista de Países</returns>
         public List<ModeloPais> buscarPaises()
         {
             CatalogoPaises lcl_cat_paises = new CatalogoPaises();
@@ -242,10 +242,10 @@ namespace Controladores
         }
 
         /// <summary>
-        /// Retorna articulos en base a los valores inicializados en los atributos del modelo
+        /// Retorna paises en base a los valores inicializados en los atributos del modelo
         /// </summary>
         /// <param name="p_mod_pais"></param>
-        /// <returns>Lista de Paises</returns>
+        /// <returns>Lista de Países</returns>
         public ModeloPais buscarPaises(ModeloPais p_mod_pais)
         {
             CatalogoPaises lcl_cat_paises = new CatalogoPaises();
@@ -256,10 +256,10 @@ namespace Controladores
 
         #region Domicilios
         /// <summary>
-        /// Retorna articulos en base a los valores inicializados en los atributos del modelo
+        /// Retorna domicilios en base a los valores inicializados en los atributos del modelo
         /// </summary>
         /// <param name="p_mod_domicilio"></param>
-        /// <returns>Lista de Paises</returns>
+        /// <returns>Lista de domicilios</returns>
         public List<ModeloDomicilio> buscarDomicilios(ModeloDomicilio p_mod_domicilio)
         {
             CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
@@ -271,7 +271,7 @@ namespace Controladores
 
         #region Mails
         /// <summary>
-        /// Retorna articulos en base a los valores inicializados en los atributos del modelo
+        /// Retorna mails en base a los valores inicializados en los atributos del modelo
         /// </summary>
         /// <param name="p_mod_mails"></param>
         /// <returns>Lista de Mails</returns>
@@ -286,10 +286,10 @@ namespace Controladores
 
         #region Telefonos
         /// <summary>
-        /// Retorna articulos en base a los valores inicializados en los atributos del modelo
+        /// Retorna teléfonos en base a los valores inicializados en los atributos del modelo
         /// </summary>
         /// <param name="p_mod_telefonos"></param>
-        /// <returns>Lista de Mails</returns>
+        /// <returns>Lista de teléfonos</returns>
         public List<ModeloTelefono> buscarTelefonos(ModeloTelefono p_mod_telefonos)
         {
             CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
@@ -299,5 +299,76 @@ namespace Controladores
 
         #endregion
 
-       }
+        #region Pedidos
+        /// <summary>
+        /// Retorna todos los pedidos de la base de datos
+        /// </summary>
+        /// <returns>Lista de Pedidos</returns>
+        public List<ModeloPedido> buscarPedido()
+        {
+            CatalogoPedidos lcl_cat_articulos = new CatalogoPedidos();
+
+            return lcl_cat_articulos.buscarPedido(null, Constantes.ParametrosBusqueda.Pedidos.All);
+        }
+        /// <summary>
+        /// Retorna pedidos en base a los valores inicializados en los atributos del modelo
+        /// </summary>
+        /// <param name="p_mod_pedido"></param>
+        /// <returns>Lista de pedidos</returns>
+        public List<ModeloPedido> buscarPedido(ModeloPedido p_mod_pedido)
+        {
+            CatalogoPedidos lcl_cat_articulos = new CatalogoPedidos();
+
+            return lcl_cat_articulos.buscarPedido(p_mod_pedido, Constantes.ParametrosBusqueda.Pedidos.Any);
+        }
+        /// <summary>
+        /// Busca articulos que cumplan con un parámetro de búsqueda
+        /// </summary>
+        /// <param name="p_mod_pedido">Pedido con variable a buscar inicializada con algún valor</param>
+        /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Pedidos</param>
+        /// <returns>Lista de pedidos</returns>
+        public List<ModeloPedido> buscarPedido(ModeloPedido p_mod_pedido, string p_paramentroBusqueda)
+        {
+            CatalogoPedidos lcl_cat_articulos = new CatalogoPedidos();
+
+            return lcl_cat_articulos.buscarPedido(p_mod_pedido, p_paramentroBusqueda);
+        }
+        #endregion
+
+        #region LineasPedido
+        /// <summary>
+        /// Retorna todos las líneas pedidos de la base de datos
+        /// </summary>
+        /// <returns>Lista de líneas pedidos</returns>
+        public List<ModeloLineaPedido> buscarLineaPedido()
+        {
+            CatalogoLineasPedidos lcl_cat_articulos = new CatalogoLineasPedidos();
+
+            return lcl_cat_articulos.buscarLineasPedido(null, Constantes.ParametrosBusqueda.LineasPedidos.All);
+        }
+        /// <summary>
+        /// Retorna líneas pedidos en base a los valores inicializados en los atributos del modelo
+        /// </summary>
+        /// <param name="p_mod_lineaPedido"></param>
+        /// <returns>Lista de líneas pedidos</returns>
+        public List<ModeloLineaPedido> buscarLineaPedido(ModeloLineaPedido p_mod_lineaPedido)
+        {
+            CatalogoLineasPedidos lcl_cat_articulos = new CatalogoLineasPedidos();
+
+            return lcl_cat_articulos.buscarLineasPedido(p_mod_lineaPedido, Constantes.ParametrosBusqueda.LineasPedidos.Any);
+        }
+        /// <summary>
+        /// Busca líneas pedidos que cumplan con un parámetro de búsqueda
+        /// </summary>
+        /// <param name="p_mod_lineaPedido">Línea pedido con variable a buscar inicializada con algún valor</param>
+        /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.LineasPedidos</param>
+        /// <returns>Lista de líneas pedidos</returns>
+        public List<ModeloLineaPedido> buscarLineaPedido(ModeloLineaPedido p_mod_lineaPedido, string p_paramentroBusqueda)
+        {
+            CatalogoLineasPedidos lcl_cat_articulos = new CatalogoLineasPedidos();
+
+            return lcl_cat_articulos.buscarLineasPedido(p_mod_lineaPedido, p_paramentroBusqueda);
+        }
+        #endregion
+    }
 }

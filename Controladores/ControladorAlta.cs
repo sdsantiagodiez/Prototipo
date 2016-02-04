@@ -74,7 +74,7 @@ namespace Controladores
         /// </summary>
         /// <param name="p_mod_pedido"></param>
         /// <returns></returns>
-        public bool agregar(ModeloPedido p_mod_pedido)
+        public bool agregar(ref ModeloPedido p_mod_pedido)
         {
             CatalogoPedidos lcl_cat_pedidos = new CatalogoPedidos();
             if (p_mod_pedido.validar())

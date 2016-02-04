@@ -16,7 +16,7 @@ namespace Datos
         private ModeloLineaPedido leerDatosLineaPedido(SqlDataReader p_drLineasPedidos)
         {
             ModeloLineaPedido lcl_mod_lineaPedido = new ModeloLineaPedido();
-            //lcl_mod_lineaPedido.nroPedido = (int)p_drLineasPedidos["numero_pedido"];
+            lcl_mod_lineaPedido.numeroPedido = (int)p_drLineasPedidos["numero_pedido"];
             
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
@@ -78,12 +78,12 @@ namespace Datos
                     string numeroPedidoQuery = this.parametroBusqueda("@numero_pedido", "numero_pedido", "=");
 
                     string codigoOriginal = p_mod_lineaPedido.codigoOriginalArt == "" ? null : p_mod_lineaPedido.codigoOriginalArt;
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.codigoOriginalArt, "@codigo_original"));
-                    string codigoOriginalQuery = this.parametroBusqueda("@codigo_original", "ap.codigo_original", "=");
+                    p_comando.Parameters.Add(this.instanciarParametro(codigoOriginal, "@codigo_original"));
+                    string codigoOriginalQuery = this.parametroBusqueda("@codigo_original", "codigo_original", "=");
 
                     string codigoArticuloProveedor = p_mod_lineaPedido.codigoArtProveedor == "" ? null : p_mod_lineaPedido.codigoArtProveedor;
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.codigoArtProveedor, "@codigo_articulo_proveedor"));
-                    string codigoArticuloProveedorQuery = this.parametroBusqueda("@codigo_articulo_proveedor", "ap.codigo_articulo_proveedor", "=");
+                    p_comando.Parameters.Add(this.instanciarParametro(codigoArticuloProveedor, "@codigo_articulo_proveedor"));
+                    string codigoArticuloProveedorQuery = this.parametroBusqueda("@codigo_articulo_proveedor", "codigo_articulo_proveedor", "=");
 
                     return numeroPedidoQuery + " AND " + codigoOriginalQuery + " AND " + codigoArticuloProveedorQuery;
                 case Constantes.ParametrosBusqueda.LineasPedidos.All:

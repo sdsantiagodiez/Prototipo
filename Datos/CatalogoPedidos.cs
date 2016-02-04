@@ -164,7 +164,8 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(codigoTipoPedido, "@codigo_tipo_pedido"));
                     string codigoTipoPedidoQuery = this.parametroBusqueda("@codigo_tipo_pedido", "codigo_tipo_pedido", "=");
 
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.fecha, "@fecha"));
+                    DateTime? fecha = p_mod_pedido.fecha.Year == 1? null : (DateTime?)p_mod_pedido.fecha;
+                    p_comando.Parameters.Add(this.instanciarParametro(fecha, "@fecha"));
                     string fechaQuery = this.parametroBusqueda("@fecha", "fecha", "=");
 
                     return numeroPedidoQuery + " AND " + codigoTipoPedidoQuery + " AND " + fechaQuery;
@@ -200,10 +201,17 @@ namespace Datos
             List<ModeloPedido> lcl_lst_mod_pedido = new List<ModeloPedido>();
             ModeloPedido lcl_mod_pedido = new ModeloPedido();
 
+            CatalogoLineasPedidos lcl_cat_lineasPedidos = new CatalogoLineasPedidos();
+            ModeloLineaPedido lcl_mod_lineaPedido = null;
             while (drPedidos.Read())
             {
+                
                 lcl_mod_pedido = new ModeloPedido();
                 lcl_mod_pedido = this.leerDatosPedido(drPedidos);
+
+                lcl_mod_lineaPedido = new ModeloLineaPedido();
+                lcl_mod_lineaPedido.numeroPedido = lcl_mod_pedido.nroPedido;
+                lcl_mod_pedido.lineasPedido = lcl_cat_lineasPedidos.buscarLineasPedido(lcl_mod_lineaPedido, Constantes.ParametrosBusqueda.LineasPedidos.NumeroPedido);
 
                 lcl_lst_mod_pedido.Add(lcl_mod_pedido);
             }
