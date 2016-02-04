@@ -118,6 +118,7 @@ namespace LibreriaClasesCompartidas
                 public const string NumeroPedido = Pedidos.NumeroPedido;
                 public const string CodigoArticuloProveedor = ArticulosProveedores.CodigoArticuloProveedor;
                 public const string CodigoOriginal = ArticulosProveedores.CodigoOriginal;
+                public const string Descripcion = "descripcion";
                 //public const string Cantidad = "cantidad";
                 //public const string ValorUnitario = "valorUnitario";
                 //public const string ValorParcial = "valorParcial";
