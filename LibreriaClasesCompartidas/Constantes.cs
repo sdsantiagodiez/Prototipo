@@ -27,6 +27,12 @@ namespace LibreriaClasesCompartidas
             }
         }
 
+        public enum CodigosTiposPedidos 
+        {
+            TipoPedidoPersona=1,
+            TipoPedidoProveedor=2
+        }
+
         /// <summary>
         /// Cadenas de caracteres definidas para cada modelo del proyecto que se utilizarán para determinar cómo será realizada la búsqueda en los métodos de búsqueda
         /// </summary>

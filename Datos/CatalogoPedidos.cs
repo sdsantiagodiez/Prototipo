@@ -101,14 +101,14 @@ namespace Datos
         {
             ModeloPedido lcl_mod_pedido = new ModeloPedido();
 
-            lcl_mod_pedido.nroPedido = (int)p_drPedidos["numero_pedido"];
+            lcl_mod_pedido.numeroPedido = (int)p_drPedidos["numero_pedido"];
             lcl_mod_pedido.fecha = (DateTime)p_drPedidos["fecha"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
-            
-            lcl_mod_pedido.monto_total = (p_drPedidos["monto_total"] != DBNull.Value) ? (decimal)p_drPedidos["monto_total"] : 0;
+            lcl_mod_pedido.codigoEntidad = (int)p_drPedidos["codigo_entidad"];
+            lcl_mod_pedido.montoTotal = (p_drPedidos["monto_total"] != DBNull.Value) ? (decimal)p_drPedidos["monto_total"] : 0;
             lcl_mod_pedido.observaciones = (p_drPedidos["observaciones"] != DBNull.Value) ? (string)p_drPedidos["observaciones"] : null;
-            lcl_mod_pedido.codigo_tipo_pedido = (p_drPedidos["codigo_tipo_pedido"] != DBNull.Value) ? (int)p_drPedidos["codigo_tipo_pedido"] : 0;
+            lcl_mod_pedido.codigoTipoPedido = (Constantes.CodigosTiposPedidos)p_drPedidos["codigo_tipo_pedido"];
 
             return lcl_mod_pedido;
         }
@@ -146,21 +146,21 @@ namespace Datos
             switch (p_parametroBusqueda)
             {
                 case Constantes.ParametrosBusqueda.Pedidos.NumeroPedido:
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.nroPedido, "@numero_pedido"));
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numero_pedido"));
                     return " numero_pedido = @numero_pedido ";
 
                 case Constantes.ParametrosBusqueda.Pedidos.Tipo:
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.codigo_tipo_pedido, "@codigo_tipo_pedido"));
+                    p_comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
                     return " codigo_tipo_pedido = @codigo_tipo_pedido ";
                 case Constantes.ParametrosBusqueda.Pedidos.Fecha:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.fecha, "@fecha"));
                     return " fecha = @fecha ";
                 case Constantes.ParametrosBusqueda.Pedidos.Any:
-                    int? numeroPedido = p_mod_pedido.nroPedido == 0 ? null : (int?)p_mod_pedido.nroPedido;
+                    int? numeroPedido = p_mod_pedido.numeroPedido == 0 ? null : (int?)p_mod_pedido.numeroPedido;
                     p_comando.Parameters.Add(this.instanciarParametro(numeroPedido, "@numero_pedido"));
                     string numeroPedidoQuery = this.parametroBusqueda("@numero_pedido", "numero_pedido", "=");
 
-                    int? codigoTipoPedido = p_mod_pedido.codigo_tipo_pedido == 0 ? null : (int?)p_mod_pedido.codigo_tipo_pedido;
+                    int? codigoTipoPedido = p_mod_pedido.codigoTipoPedido == 0 ? null : (int?)p_mod_pedido.codigoTipoPedido;
                     p_comando.Parameters.Add(this.instanciarParametro(codigoTipoPedido, "@codigo_tipo_pedido"));
                     string codigoTipoPedidoQuery = this.parametroBusqueda("@codigo_tipo_pedido", "codigo_tipo_pedido", "=");
 
@@ -190,9 +190,20 @@ namespace Datos
             string querySQL = this.getCondicionBusqueda(p_mod_pedido, p_parametroBusqueda, ref comando);
 
             comando.CommandText =
-                "SELECT [numero_pedido],[fecha],[monto_total],[observaciones],[codigo_tipo_pedido] " +
-                "   FROM [pedidos] " +
-                "   WHERE " + querySQL;
+                "SELECT [numero_pedido],[fecha],[monto_total],[observaciones],[codigo_tipo_pedido], [codigo_entidad] "+
+	            "FROM "+
+	            "( "+
+                "    (SELECT pedidos.[numero_pedido],[fecha],[monto_total],[observaciones],[codigo_tipo_pedido], [codigo_entidad] " +
+		        "       FROM pedidos, Pedidos_Personas "+
+		        "       WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido "+
+		        "    ) "+
+	            "UNION "+
+		        "    (SELECT pedidos.[numero_pedido],[fecha],[monto_total],[observaciones],[codigo_tipo_pedido], [codigo_entidad] "+
+		        "       FROM pedidos, Pedidos_Proveedores "+
+		        "       WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido "+
+                "    ) " +
+	            ") as tbl "+
+                "WHERE " + querySQL ;
 
             comando.Connection.Open();
 
@@ -210,7 +221,7 @@ namespace Datos
                 lcl_mod_pedido = this.leerDatosPedido(drPedidos);
 
                 lcl_mod_lineaPedido = new ModeloLineaPedido();
-                lcl_mod_lineaPedido.numeroPedido = lcl_mod_pedido.nroPedido;
+                lcl_mod_lineaPedido.numeroPedido = lcl_mod_pedido.numeroPedido;
                 lcl_mod_pedido.lineasPedido = lcl_cat_lineasPedidos.buscarLineasPedido(lcl_mod_lineaPedido, Constantes.ParametrosBusqueda.LineasPedidos.NumeroPedido);
 
                 lcl_lst_mod_pedido.Add(lcl_mod_pedido);
@@ -225,7 +236,7 @@ namespace Datos
         {
             ModeloPedido lcl_mod_pedido = new ModeloPedido();
             List<ModeloPedido> lcl_lst_mod_pedidos = new List<ModeloPedido>();
-            lcl_mod_pedido.nroPedido = p_numeroPedido;
+            lcl_mod_pedido.numeroPedido = p_numeroPedido;
             lcl_lst_mod_pedidos = this.buscarPedido(lcl_mod_pedido, Constantes.ParametrosBusqueda.Pedidos.NumeroPedido);
 
             if (lcl_lst_mod_pedidos.Count > 0)
@@ -248,37 +259,91 @@ namespace Datos
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
+        private string getTablaTipoPedido(ModeloPedido p_mod_pedido)
+        {
+            switch (p_mod_pedido.codigoTipoPedido)
+            {
+                case Constantes.CodigosTiposPedidos.TipoPedidoPersona:
+                    return " Pedidos_Personas ";
+                case Constantes.CodigosTiposPedidos.TipoPedidoProveedor:
+                    return " Pedidos_Proveedores ";
+                default:
+                    return "";
+            }
+        }
         public bool add(ref ModeloPedido p_mod_pedido)
         {
             SqlConnection ConexionSQL = Conexion.crearConexion();
             SqlCommand comando = new SqlCommand();
-
             comando.Connection = ConexionSQL;
-
             comando.CommandType = CommandType.Text;
+            SqlTransaction transaccion;
+            ConexionSQL.Open();
 
-            comando.CommandText =
+            transaccion = ConexionSQL.BeginTransaction("InsertarPedido");
+            comando.Transaction = transaccion;
+
+            
+            try
+            {
+                comando.CommandText =
                 "INSERT INTO [pedidos]([fecha],[monto_total],[observaciones],[codigo_tipo_pedido]) " +
                 "OUTPUT INSERTED.NUMERO_PEDIDO " +
                 "VALUES (@fecha, @monto_total, @observaciones,@codigo_tipo_pedido)";
-            //Indica los parametros
-            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.fecha, "@fecha"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.monto_total, "@monto_total"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.observaciones, "@observaciones"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.codigo_tipo_pedido, "@codigo_tipo_pedido"));
 
-            comando.Connection.Open();
-            int? nuevoNumeroPedido = (int?)comando.ExecuteScalar();
-            comando.Connection.Close();
+                //Indica los parametros
+                comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.fecha, "@fecha"));
+                comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.montoTotal, "@monto_total"));
+                comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.observaciones, "@observaciones"));
+                comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
+                comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.codigoEntidad, "@codigo_entidad"));
 
-            if (nuevoNumeroPedido != null)
-            {
-                p_mod_pedido.nroPedido = Convert.ToInt32(nuevoNumeroPedido);
-                return true;
+                int? nuevoNumeroPedido = (int?)comando.ExecuteScalar();
+
+                string tablaTipoPedidoQuery = this.getTablaTipoPedido(p_mod_pedido);
+                
+                comando.CommandText =
+                "INSERT INTO " + tablaTipoPedidoQuery + " (numero_pedido,codigo_entidad) " +
+                "    VALUES( @numeroPedidoActual,@codigo_entidad) ";
+                comando.Parameters.Add(this.instanciarParametro(nuevoNumeroPedido,"@numeroPedidoActual"));
+                int rowsAffected = comando.ExecuteNonQuery();
+
+
+                if (nuevoNumeroPedido != null && rowsAffected == 1)
+                {
+                    p_mod_pedido.numeroPedido = Convert.ToInt32(nuevoNumeroPedido);
+                    transaccion.Commit();
+                    return true;
+                }
+                else
+                {
+                    try
+                    {
+                        transaccion.Rollback();
+                        return false;
+                    }
+                    catch (Exception ex2)
+                    {
+                        return false;
+                    }
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                return false;
+                try
+                {
+                    transaccion.Rollback();
+                    return false;
+                }
+                catch (Exception ex3)
+                {
+                    return false;
+                }
+            }
+            finally
+            {
+                ConexionSQL.Close();
             }
         }
 
@@ -299,9 +364,9 @@ namespace Datos
                 "WHERE [pedidos].numero_pedido=@numero_pedido";
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.fecha, "@fecha"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.monto_total, "@monto_total"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.montoTotal, "@monto_total"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.observaciones, "@observaciones"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.codigo_tipo_pedido, "@codigo_tipo_pedido"));
+            comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
@@ -333,7 +398,7 @@ namespace Datos
                 "DELETE FROM [pedidos] "+
                 "   WHERE [pedidos].numero_pedido=@numero_pedido";
 
-            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.nroPedido, "@numero_pedido"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numero_pedido"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();

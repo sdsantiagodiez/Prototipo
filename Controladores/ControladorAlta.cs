@@ -84,7 +84,7 @@ namespace Controladores
                 {
                     foreach (ModeloLineaPedido lp in p_mod_pedido.lineasPedido)
                     {
-                        lp.numeroPedido = p_mod_pedido.nroPedido;
+                        lp.numeroPedido = p_mod_pedido.numeroPedido;
                         this.agregar(lp);
                     }
                     return true;

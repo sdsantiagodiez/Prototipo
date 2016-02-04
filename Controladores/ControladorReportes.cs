@@ -29,13 +29,13 @@ namespace Controladores
                     foreach (ModeloPedido lcl_mod_pedido in glb_lst_mod_pedidos) 
                     {
                         ModeloProveedor lcl_mod_proveedor = new ModeloProveedor();
-                        lcl_mod_proveedor = glb_con_pedidos.getProveedorPedido(lcl_mod_pedido.nroPedido);
+                        lcl_mod_proveedor = glb_con_pedidos.getProveedorPedido(lcl_mod_pedido.numeroPedido);
                         if (lcl_mod_proveedor.razonSocial == RSocial)
                         {
                             if (Convert.ToDateTime(lcl_mod_pedido.fecha) >= p_date_fechaInicio && Convert.ToDateTime(lcl_mod_pedido.fecha) <= p_date_fechaFin)
                             {
-                                glb_var_MaxMontoTotal = (lcl_mod_pedido.monto_total>glb_var_MaxMontoTotal)? lcl_mod_pedido.monto_total : glb_var_MaxMontoTotal ;
-                                glb_var_MontoTotalProveedor = glb_var_MontoTotalProveedor + lcl_mod_pedido.monto_total;
+                                glb_var_MaxMontoTotal = (lcl_mod_pedido.montoTotal>glb_var_MaxMontoTotal)? lcl_mod_pedido.montoTotal : glb_var_MaxMontoTotal ;
+                                glb_var_MontoTotalProveedor = glb_var_MontoTotalProveedor + lcl_mod_pedido.montoTotal;
                                 foreach (ModeloLineaPedido lcl_mod_lineapedido in lcl_mod_pedido.lineasPedido)
                                 {
                                     glb_var_CantidadTotalArticulos = glb_var_CantidadTotalArticulos + lcl_mod_lineapedido.cantidadArticulos;

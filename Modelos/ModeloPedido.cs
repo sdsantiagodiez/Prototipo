@@ -9,11 +9,18 @@ namespace Modelos
     public class ModeloPedido
     {
         #region Getters/Setters
-        int _nroPedido;
-        public int nroPedido
+        int _codigoEntidad;
+        public int codigoEntidad
         {
-            get { return _nroPedido; }
-            set { this._nroPedido = value; }
+            get { return _codigoEntidad; }
+            set { this._codigoEntidad = value; }
+        }
+        
+        int _numeroPedido;
+        public int numeroPedido
+        {
+            get { return _numeroPedido; }
+            set { this._numeroPedido = value; }
         }
         List<ModeloLineaPedido> _lineasPedido;
         public List<ModeloLineaPedido> lineasPedido
@@ -22,11 +29,11 @@ namespace Modelos
             set { this._lineasPedido = value; }
         }
         
-        decimal _monto_total;
-        public decimal monto_total
+        decimal _montoTotal;
+        public decimal montoTotal
         {
-            get { return _monto_total; }
-            set { this._monto_total = value; }
+            get { return _montoTotal; }
+            set { this._montoTotal = value; }
         }
 
         DateTime _fecha;
@@ -43,11 +50,11 @@ namespace Modelos
             set { this._observaciones = value; }
         }
 
-        int _codigo_tipo_pedido;
-        public int codigo_tipo_pedido 
+        LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos _codigoTipoPedido;
+        public LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos codigoTipoPedido 
         {
-            get { return _codigo_tipo_pedido; }
-            set { this._codigo_tipo_pedido = value;}
+            get { return _codigoTipoPedido; }
+            set { this._codigoTipoPedido = value;}
         }
         
         #endregion
