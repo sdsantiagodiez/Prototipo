@@ -39,6 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBPruebaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBPruebaDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ModeloDomicilio.cs" />
     <Compile Include="ModeloEntidad.cs" />
     <Compile Include="ModeloPais.cs" />
@@ -54,12 +59,30 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModeloProveedor.cs" />
     <Compile Include="ModeloRoles.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LibreriaClasesCompartidas\LibreriaClasesCompartidas.csproj">
       <Project>{0dc2a9ce-ce0f-45b6-b7eb-5a107ec21e2d}</Project>
       <Name>LibreriaClasesCompartidas</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DBPruebaDataSet.xsc">
+      <DependentUpon>DBPruebaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DBPruebaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DBPruebaDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DBPruebaDataSet.xss">
+      <DependentUpon>DBPruebaDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
