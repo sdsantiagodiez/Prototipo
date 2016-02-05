@@ -30,9 +30,9 @@
         {
             this.lblNumeroPedido = new System.Windows.Forms.Label();
             this.txtNumeroPedido = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.txtCodigoArticuloProveedor = new System.Windows.Forms.TextBox();
+            this.rtbObservacionesDevolucion = new System.Windows.Forms.RichTextBox();
+            this.lblCodigoArticuloProveedor = new System.Windows.Forms.Label();
             this.lblMotivoDevolucion = new System.Windows.Forms.Label();
             this.gbxDetalleArticuloSeleccionado = new System.Windows.Forms.GroupBox();
             this.tlpDetalles = new System.Windows.Forms.TableLayoutPanel();
@@ -58,13 +58,15 @@
             this.btnAceptar = new System.Windows.Forms.Button();
             this.lblCantidadDevuelta = new System.Windows.Forms.Label();
             this.gbxDatosDevolucion = new System.Windows.Forms.GroupBox();
+            this.txtMontoNotaCredito = new System.Windows.Forms.TextBox();
+            this.lblMontoNotaCredito = new System.Windows.Forms.Label();
+            this.lblObservacionesDevolucion = new System.Windows.Forms.Label();
+            this.rbtDefectuoso = new System.Windows.Forms.RadioButton();
+            this.rbtError = new System.Windows.Forms.RadioButton();
             this.btnValidar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.rbtError = new System.Windows.Forms.RadioButton();
-            this.rbtDefectuoso = new System.Windows.Forms.RadioButton();
-            this.lblObservacionesDevolucion = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtCodigoOriginal = new System.Windows.Forms.TextBox();
+            this.lblCodigoOriginalValidacion = new System.Windows.Forms.Label();
             this.gbxDetalleArticuloSeleccionado.SuspendLayout();
             this.tlpDetalles.SuspendLayout();
             this.gbxDatosDevolucion.SuspendLayout();
@@ -73,7 +75,7 @@
             // lblNumeroPedido
             // 
             this.lblNumeroPedido.AutoSize = true;
-            this.lblNumeroPedido.Location = new System.Drawing.Point(64, 37);
+            this.lblNumeroPedido.Location = new System.Drawing.Point(64, 12);
             this.lblNumeroPedido.Name = "lblNumeroPedido";
             this.lblNumeroPedido.Size = new System.Drawing.Size(81, 13);
             this.lblNumeroPedido.TabIndex = 0;
@@ -81,34 +83,34 @@
             // 
             // txtNumeroPedido
             // 
-            this.txtNumeroPedido.Location = new System.Drawing.Point(151, 34);
+            this.txtNumeroPedido.Location = new System.Drawing.Point(151, 9);
             this.txtNumeroPedido.Name = "txtNumeroPedido";
             this.txtNumeroPedido.Size = new System.Drawing.Size(162, 20);
             this.txtNumeroPedido.TabIndex = 1;
             // 
-            // textBox1
+            // txtCodigoArticuloProveedor
             // 
-            this.textBox1.Location = new System.Drawing.Point(151, 64);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(162, 20);
-            this.textBox1.TabIndex = 2;
+            this.txtCodigoArticuloProveedor.Location = new System.Drawing.Point(151, 64);
+            this.txtCodigoArticuloProveedor.Name = "txtCodigoArticuloProveedor";
+            this.txtCodigoArticuloProveedor.Size = new System.Drawing.Size(162, 20);
+            this.txtCodigoArticuloProveedor.TabIndex = 2;
             // 
-            // richTextBox1
+            // rtbObservacionesDevolucion
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(6, 69);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(370, 96);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "";
+            this.rtbObservacionesDevolucion.Location = new System.Drawing.Point(6, 69);
+            this.rtbObservacionesDevolucion.Name = "rtbObservacionesDevolucion";
+            this.rtbObservacionesDevolucion.Size = new System.Drawing.Size(370, 96);
+            this.rtbObservacionesDevolucion.TabIndex = 3;
+            this.rtbObservacionesDevolucion.Text = "";
             // 
-            // label1
+            // lblCodigoArticuloProveedor
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 67);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Codigo Articulo Proveedor:";
+            this.lblCodigoArticuloProveedor.AutoSize = true;
+            this.lblCodigoArticuloProveedor.Location = new System.Drawing.Point(12, 67);
+            this.lblCodigoArticuloProveedor.Name = "lblCodigoArticuloProveedor";
+            this.lblCodigoArticuloProveedor.Size = new System.Drawing.Size(133, 13);
+            this.lblCodigoArticuloProveedor.TabIndex = 4;
+            this.lblCodigoArticuloProveedor.Text = "Codigo Articulo Proveedor:";
             // 
             // lblMotivoDevolucion
             // 
@@ -379,13 +381,13 @@
             // 
             // gbxDatosDevolucion
             // 
-            this.gbxDatosDevolucion.Controls.Add(this.textBox2);
-            this.gbxDatosDevolucion.Controls.Add(this.label2);
+            this.gbxDatosDevolucion.Controls.Add(this.txtMontoNotaCredito);
+            this.gbxDatosDevolucion.Controls.Add(this.lblMontoNotaCredito);
             this.gbxDatosDevolucion.Controls.Add(this.lblObservacionesDevolucion);
             this.gbxDatosDevolucion.Controls.Add(this.rbtDefectuoso);
             this.gbxDatosDevolucion.Controls.Add(this.rbtError);
             this.gbxDatosDevolucion.Controls.Add(this.txtCantidadDevuelta);
-            this.gbxDatosDevolucion.Controls.Add(this.richTextBox1);
+            this.gbxDatosDevolucion.Controls.Add(this.rtbObservacionesDevolucion);
             this.gbxDatosDevolucion.Controls.Add(this.lblCantidadDevuelta);
             this.gbxDatosDevolucion.Controls.Add(this.lblMotivoDevolucion);
             this.gbxDatosDevolucion.Location = new System.Drawing.Point(12, 91);
@@ -396,11 +398,59 @@
             this.gbxDatosDevolucion.Text = "Datos Devolución";
             this.gbxDatosDevolucion.Visible = false;
             // 
+            // txtMontoNotaCredito
+            // 
+            this.txtMontoNotaCredito.Location = new System.Drawing.Point(139, 204);
+            this.txtMontoNotaCredito.Name = "txtMontoNotaCredito";
+            this.txtMontoNotaCredito.Size = new System.Drawing.Size(73, 20);
+            this.txtMontoNotaCredito.TabIndex = 15;
+            // 
+            // lblMontoNotaCredito
+            // 
+            this.lblMontoNotaCredito.AutoSize = true;
+            this.lblMontoNotaCredito.Location = new System.Drawing.Point(19, 207);
+            this.lblMontoNotaCredito.Name = "lblMontoNotaCredito";
+            this.lblMontoNotaCredito.Size = new System.Drawing.Size(114, 13);
+            this.lblMontoNotaCredito.TabIndex = 14;
+            this.lblMontoNotaCredito.Text = "Monto nota de crédito:";
+            // 
+            // lblObservacionesDevolucion
+            // 
+            this.lblObservacionesDevolucion.AutoSize = true;
+            this.lblObservacionesDevolucion.Location = new System.Drawing.Point(6, 53);
+            this.lblObservacionesDevolucion.Name = "lblObservacionesDevolucion";
+            this.lblObservacionesDevolucion.Size = new System.Drawing.Size(81, 13);
+            this.lblObservacionesDevolucion.TabIndex = 13;
+            this.lblObservacionesDevolucion.Text = "Observaciones:";
+            // 
+            // rbtDefectuoso
+            // 
+            this.rbtDefectuoso.AutoSize = true;
+            this.rbtDefectuoso.Location = new System.Drawing.Point(179, 19);
+            this.rbtDefectuoso.Name = "rbtDefectuoso";
+            this.rbtDefectuoso.Size = new System.Drawing.Size(80, 17);
+            this.rbtDefectuoso.TabIndex = 12;
+            this.rbtDefectuoso.TabStop = true;
+            this.rbtDefectuoso.Text = "Defectuoso";
+            this.rbtDefectuoso.UseVisualStyleBackColor = true;
+            // 
+            // rbtError
+            // 
+            this.rbtError.AutoSize = true;
+            this.rbtError.Location = new System.Drawing.Point(126, 19);
+            this.rbtError.Name = "rbtError";
+            this.rbtError.Size = new System.Drawing.Size(47, 17);
+            this.rbtError.TabIndex = 11;
+            this.rbtError.TabStop = true;
+            this.rbtError.Text = "Error";
+            this.rbtError.UseVisualStyleBackColor = true;
+            this.rbtError.CheckedChanged += new System.EventHandler(this.rbtError_CheckedChanged);
+            // 
             // btnValidar
             // 
-            this.btnValidar.Location = new System.Drawing.Point(319, 34);
+            this.btnValidar.Location = new System.Drawing.Point(319, 9);
             this.btnValidar.Name = "btnValidar";
-            this.btnValidar.Size = new System.Drawing.Size(75, 51);
+            this.btnValidar.Size = new System.Drawing.Size(75, 76);
             this.btnValidar.TabIndex = 26;
             this.btnValidar.Text = "Validar";
             this.btnValidar.UseVisualStyleBackColor = true;
@@ -416,66 +466,36 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // rbtError
+            // txtCodigoOriginal
             // 
-            this.rbtError.AutoSize = true;
-            this.rbtError.Location = new System.Drawing.Point(126, 19);
-            this.rbtError.Name = "rbtError";
-            this.rbtError.Size = new System.Drawing.Size(47, 17);
-            this.rbtError.TabIndex = 11;
-            this.rbtError.TabStop = true;
-            this.rbtError.Text = "Error";
-            this.rbtError.UseVisualStyleBackColor = true;
-            this.rbtError.CheckedChanged += new System.EventHandler(this.rbtError_CheckedChanged);
+            this.txtCodigoOriginal.Location = new System.Drawing.Point(151, 37);
+            this.txtCodigoOriginal.Name = "txtCodigoOriginal";
+            this.txtCodigoOriginal.Size = new System.Drawing.Size(162, 20);
+            this.txtCodigoOriginal.TabIndex = 28;
             // 
-            // rbtDefectuoso
+            // lblCodigoOriginalValidacion
             // 
-            this.rbtDefectuoso.AutoSize = true;
-            this.rbtDefectuoso.Location = new System.Drawing.Point(179, 19);
-            this.rbtDefectuoso.Name = "rbtDefectuoso";
-            this.rbtDefectuoso.Size = new System.Drawing.Size(80, 17);
-            this.rbtDefectuoso.TabIndex = 12;
-            this.rbtDefectuoso.TabStop = true;
-            this.rbtDefectuoso.Text = "Defectuoso";
-            this.rbtDefectuoso.UseVisualStyleBackColor = true;
-            // 
-            // lblObservacionesDevolucion
-            // 
-            this.lblObservacionesDevolucion.AutoSize = true;
-            this.lblObservacionesDevolucion.Location = new System.Drawing.Point(6, 53);
-            this.lblObservacionesDevolucion.Name = "lblObservacionesDevolucion";
-            this.lblObservacionesDevolucion.Size = new System.Drawing.Size(81, 13);
-            this.lblObservacionesDevolucion.TabIndex = 13;
-            this.lblObservacionesDevolucion.Text = "Observaciones:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 207);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(114, 13);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Monto nota de crédito:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(139, 204);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(73, 20);
-            this.textBox2.TabIndex = 15;
+            this.lblCodigoOriginalValidacion.AutoSize = true;
+            this.lblCodigoOriginalValidacion.Location = new System.Drawing.Point(26, 40);
+            this.lblCodigoOriginalValidacion.Name = "lblCodigoOriginalValidacion";
+            this.lblCodigoOriginalValidacion.Size = new System.Drawing.Size(119, 13);
+            this.lblCodigoOriginalValidacion.TabIndex = 29;
+            this.lblCodigoOriginalValidacion.Text = "Codigo Original Articulo:";
             // 
             // frmDevolucion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 483);
+            this.Controls.Add(this.lblCodigoOriginalValidacion);
+            this.Controls.Add(this.txtCodigoOriginal);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnValidar);
             this.Controls.Add(this.txtNumeroPedido);
             this.Controls.Add(this.lblNumeroPedido);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtCodigoArticuloProveedor);
+            this.Controls.Add(this.lblCodigoArticuloProveedor);
             this.Controls.Add(this.gbxDatosDevolucion);
             this.Controls.Add(this.gbxDetalleArticuloSeleccionado);
             this.Name = "frmDevolucion";
@@ -494,9 +514,9 @@
 
         private System.Windows.Forms.Label lblNumeroPedido;
         private System.Windows.Forms.TextBox txtNumeroPedido;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtCodigoArticuloProveedor;
+        private System.Windows.Forms.RichTextBox rtbObservacionesDevolucion;
+        private System.Windows.Forms.Label lblCodigoArticuloProveedor;
         private System.Windows.Forms.Label lblMotivoDevolucion;
         private System.Windows.Forms.GroupBox gbxDetalleArticuloSeleccionado;
         private System.Windows.Forms.TextBox txtCantidadDevuelta;
@@ -527,7 +547,9 @@
         private System.Windows.Forms.Label lblObservacionesDevolucion;
         private System.Windows.Forms.RadioButton rbtDefectuoso;
         private System.Windows.Forms.RadioButton rbtError;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtMontoNotaCredito;
+        private System.Windows.Forms.Label lblMontoNotaCredito;
+        private System.Windows.Forms.TextBox txtCodigoOriginal;
+        private System.Windows.Forms.Label lblCodigoOriginalValidacion;
     }
 }

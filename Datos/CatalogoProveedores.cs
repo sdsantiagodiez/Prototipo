@@ -182,11 +182,11 @@ namespace Datos
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
-        override public bool agregarNuevaEntidad(ModeloProveedor p_mod_proveedor)
+        override public bool add(ref ModeloProveedor p_mod_proveedor)
         {
             //*REVISAR (validar existencia a traves de codigo de una entidad que puede no tener código?)
             //y continua si se creó exitosamente la entidad
-            if (!this.existeEntidad(p_mod_proveedor.codigo) && base.agregarNuevaEntidad(p_mod_proveedor))
+            if (base.add(ref p_mod_proveedor))
             {
                 //Creo la conexion y la abro
                 SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -200,8 +200,9 @@ namespace Datos
 
                 comando.CommandText =
                     "INSERT INTO [Proveedores] ([codigo_entidad], [razon_social]) "+
-                    "VALUES (IDENT_CURRENT('entidades'), @razon_social)";
+                    "VALUES (@codigo_entidad, @razon_social)";
                 //Indica los parametros
+                comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.codigo, "@codigo_entidad"));
                 comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.razonSocial, "@razon_social"));
                 
                 comando.Connection.Open();
@@ -225,7 +226,7 @@ namespace Datos
         }     
 
         //No se podrá modificar razonSocial
-        override public bool actualizarEntidad(ModeloProveedor p_mod_proveedor)
+        override public bool update(ModeloProveedor p_mod_proveedor)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -248,7 +249,7 @@ namespace Datos
             int rowaffected = comando.ExecuteNonQuery();           
             comando.Connection.Close();
 
-            if (rowaffected != 0 && base.actualizarEntidad(p_mod_proveedor))
+            if (rowaffected != 0 && base.update(p_mod_proveedor))
             {
                 return true;
             }
@@ -258,10 +259,10 @@ namespace Datos
             }
         }
 
-        public bool bajaEntidad(ModeloProveedor p_mod_proveedor)
+        public bool remove(ModeloProveedor p_mod_proveedor)
         {
             //INCOMPLETO
-            return base.bajaEntidad(p_mod_proveedor.codigo);
+            return base.remove(p_mod_proveedor.codigo);
         }
         #endregion
     }

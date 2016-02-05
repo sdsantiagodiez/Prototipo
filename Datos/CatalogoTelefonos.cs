@@ -67,7 +67,7 @@ namespace Datos
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
-        public bool agregarNuevaEntidad(ModeloTelefono pmTelefono, int pCodigoEntidad)
+        public bool add(ModeloTelefono pmTelefono, int pCodigoEntidad)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -102,7 +102,7 @@ namespace Datos
             }
         }
 
-        public bool actualizarEntidad(ModeloTelefono pmTelefono)
+        public bool update(ModeloTelefono pmTelefono)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -132,7 +132,7 @@ namespace Datos
             }
         }
         
-        public bool bajaEntidad(ModeloTelefono pModTelefono)
+        public bool remove(ModeloTelefono pModTelefono)
         {
             SqlConnection ConexionSQL = Conexion.crearConexion();
 

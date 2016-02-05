@@ -207,11 +207,11 @@ namespace Datos
          * False si ocurrió algún error
          */
 
-        public override bool agregarNuevaEntidad(ModeloPersonas p_mod_persona)
+        public override bool add(ref ModeloPersonas p_mod_persona)
         {
             //Se debería chequear antes para notificar al usuario la razón por la que no se podrá realizar la operación
             //y continua si se creó exitosamente la entidad
-            if (!this.existeEntidad(p_mod_persona.codigo) && base.agregarNuevaEntidad(p_mod_persona))
+            if (!this.existeEntidad(p_mod_persona.codigo) && base.add(ref p_mod_persona))
             {
                 
                 //Creo la conexion y la abro
@@ -257,7 +257,7 @@ namespace Datos
         }
 
 
-        override public bool actualizarEntidad(ModeloPersonas p_mod_persona)
+        override public bool update(ModeloPersonas p_mod_persona)
         { 
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -282,7 +282,7 @@ namespace Datos
             int rowaffected = comando.ExecuteNonQuery();           
             comando.Connection.Close();
 
-            if (rowaffected != 0 && base.actualizarEntidad(p_mod_persona))
+            if (rowaffected != 0 && base.update(p_mod_persona))
             {
                 return true;
             }
@@ -292,10 +292,10 @@ namespace Datos
             }
         }
 
-        public bool bajaEntidad(ModeloPersonas p_mod_persona)
+        public bool remove(ModeloPersonas p_mod_persona)
         {
             //INCOMPLETO
-            return base.bajaEntidad(p_mod_persona.codigo);
+            return base.remove(p_mod_persona.codigo);
         }
         #endregion
       

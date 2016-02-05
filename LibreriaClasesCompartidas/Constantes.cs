@@ -27,6 +27,12 @@ namespace LibreriaClasesCompartidas
             }
         }
 
+        public enum CodigosTiposPedidos 
+        {
+            TipoPedidoPersona=1,
+            TipoPedidoProveedor=2
+        }
+
         /// <summary>
         /// Cadenas de caracteres definidas para cada modelo del proyecto que se utilizarán para determinar cómo será realizada la búsqueda en los métodos de búsqueda
         /// </summary>
@@ -94,6 +100,29 @@ namespace LibreriaClasesCompartidas
                 public const string razonSocialProveedor = "razonSocialProveedor";
             }
 
+            public static class Pedidos
+            {
+                public const string All = ParametrosBusqueda.All;
+                public const string Any = ParametrosBusqueda.Any;
+
+                public const string NumeroPedido = "numeroPedido";
+                public const string Fecha = "fecha";
+                public const string Tipo = "tipoPedido";
+            }
+
+            public static class LineasPedidos
+            {
+                public const string All = ParametrosBusqueda.All;
+                public const string Any = ParametrosBusqueda.Any;
+
+                public const string NumeroPedido = Pedidos.NumeroPedido;
+                public const string CodigoArticuloProveedor = ArticulosProveedores.CodigoArticuloProveedor;
+                public const string CodigoOriginal = ArticulosProveedores.CodigoOriginal;
+                public const string Descripcion = "descripcion";
+                //public const string Cantidad = "cantidad";
+                //public const string ValorUnitario = "valorUnitario";
+                //public const string ValorParcial = "valorParcial";
+            }
 
             public static class Paises
             {

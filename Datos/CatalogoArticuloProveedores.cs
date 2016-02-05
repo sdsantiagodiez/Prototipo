@@ -246,7 +246,7 @@ namespace Datos
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
-        public bool agregarNuevaEntidad(ModeloArticuloProveedores p_mod_articuloProveedor)
+        public bool add(ModeloArticuloProveedores p_mod_articuloProveedor)
         { 
             if(!this.existeEntidad(p_mod_articuloProveedor))
             {
@@ -290,7 +290,7 @@ namespace Datos
         
         }
 
-        public bool actualizarEntidad(ModeloArticuloProveedores p_mod_articuloProveedor)
+        public bool update(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
@@ -329,7 +329,7 @@ namespace Datos
             }
         }
 
-        public bool bajaEntidad(ModeloArticuloProveedores p_mod_articuloProveedor)
+        public bool remove(ModeloArticuloProveedores p_mod_articuloProveedor)
         { 
          
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();

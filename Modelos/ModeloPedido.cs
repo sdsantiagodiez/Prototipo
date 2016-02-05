@@ -9,11 +9,18 @@ namespace Modelos
     public class ModeloPedido
     {
         #region Getters/Setters
-        int _nroPedido;
-        public int nroPedido
+        int _codigoEntidad;
+        public int codigoEntidad
         {
-            get { return _nroPedido; }
-            set { this._nroPedido = value; }
+            get { return _codigoEntidad; }
+            set { this._codigoEntidad = value; }
+        }
+        
+        int _numeroPedido;
+        public int numeroPedido
+        {
+            get { return _numeroPedido; }
+            set { this._numeroPedido = value; }
         }
         List<ModeloLineaPedido> _lineasPedido;
         public List<ModeloLineaPedido> lineasPedido
@@ -22,15 +29,15 @@ namespace Modelos
             set { this._lineasPedido = value; }
         }
         
-        float _monto_total;
-        public float monto_total
+        decimal _montoTotal;
+        public decimal montoTotal
         {
-            get { return _monto_total; }
-            set { this._monto_total = value; }
+            get { return _montoTotal; }
+            set { this._montoTotal = value; }
         }
 
-        string _fecha;
-        public string fecha 
+        DateTime _fecha;
+        public DateTime fecha 
         {
             get { return _fecha; }
             set { this._fecha = value; }
@@ -43,11 +50,11 @@ namespace Modelos
             set { this._observaciones = value; }
         }
 
-        int _codigo_tipo_pedido;
-        public int codigo_tipo_pedido 
+        LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos _codigoTipoPedido;
+        public LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos codigoTipoPedido 
         {
-            get { return _codigo_tipo_pedido; }
-            set { this._codigo_tipo_pedido = value;}
+            get { return _codigoTipoPedido; }
+            set { this._codigoTipoPedido = value;}
         }
         
         #endregion
@@ -62,6 +69,20 @@ namespace Modelos
             //También hay que asignar numero de pedido
             /*Quizas este metodo deberia volar, ya que el multiobjeto de lineas de pedido se crea como una variable mas del Pedido*/
         }
+
+        public bool validar()
+        {
+            return this.validarCantidadLineasPedido();
+        }
+        /// <summary>
+        /// Valida que la cantidad de líneas de pedido sea mayor a 0
+        /// </summary>
+        /// <returns></returns>
+        private bool validarCantidadLineasPedido()
+        {
+            return Convert.ToBoolean(this.lineasPedido.Count);
+        }
+        
         
         public ModeloLineaPedido findDetail(string p_codigoOriginal, string p_codigoArticuloProveedor)
         {

@@ -14,13 +14,13 @@ namespace Controladores
         {
             CatalogoPersonas cp = new CatalogoPersonas();
 
-            return cp.bajaEntidad(pmPersona);
+            return cp.remove(pmPersona);
         }
         public bool eliminarProveedor(ModeloProveedor pmProveedor)
         {
             CatalogoProveedores cp = new CatalogoProveedores();
 
-            return cp.bajaEntidad(pmProveedor);
+            return cp.remove(pmProveedor);
         }
     }
 }

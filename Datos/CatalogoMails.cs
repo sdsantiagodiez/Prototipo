@@ -66,7 +66,7 @@ namespace Datos
          * True si se realizó correctamente
          * False si ocurrió algún error
          */
-        public bool agregarNuevaEntidad(ModeloMail pmMail, int pCodigoEntidad)
+        public bool add(ModeloMail pmMail, int pCodigoEntidad)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -96,7 +96,7 @@ namespace Datos
             }
         }
         
-        public bool actualizarEntidad(ModeloMail pmMail)
+        public bool update(ModeloMail pmMail)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -126,7 +126,7 @@ namespace Datos
             }
         }
 
-        public bool bajaEntidad(ModeloMail pModMail)
+        public bool remove(ModeloMail pModMail)
         {
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
