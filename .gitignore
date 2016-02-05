@@ -187,3 +187,14 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+/Modelos/Properties/Settings1.Designer.cs
+/Modelos/Properties/Settings2.Designer.cs
+/Modelos/Properties/Settings4.Designer.cs
+/Modelos/DBPruebaDataSet.Designer.cs
+/Modelos/app.config
+/Modelos/DBPruebaDataSet.xsc
+/Modelos/Properties/Settings3.Designer.cs
+/Modelos/DBPruebaDataSet.xss
+/Modelos/DBPruebaDataSet.xsd
+/Modelos/Properties/Settings.settings
+/Reportes/Repo_FacturaA.resx
