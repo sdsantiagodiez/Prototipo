@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Datos;
 using Modelos;
+using LibreriaClasesCompartidas;
 
 namespace Controladores
 {
@@ -23,7 +24,6 @@ namespace Controladores
         {
             //creo controladors y catalogos pertinentes
             var lcl_con_modificacion = new ControladorModificacion();
-            var lcl_cat_articulosProveedores = new CatalogoArticuloProveedores();
 
             //creo linea y articulo de la línea
             var lcl_mod_lineaCorrespondiente = glb_mod_pedido.findDetail(glb_mod_articuloDevolucion.codigoOriginal, glb_mod_articuloDevolucion.codigoArticuloProveedor);
@@ -37,8 +37,28 @@ namespace Controladores
 
         public ModeloArticuloProveedores getArticuloPedido(string p_numeroPedido, string p_codigoOriginal, string p_codigoArticuloProveedor)
         {
-            //lcl_mod_articuloProveedores = lcl_cat_articulosProveedores.getOne(p_articuloDevolucion.codigoOriginal, p_articuloDevolucion.codigoArticuloProveedor);
-            throw new NotImplementedException();
+            var lcl_mod_pedido = new ModeloPedido();
+            var lcl_con_busqueda = new ControladorBusqueda();
+            lcl_mod_pedido.numeroPedido = int.Parse(p_numeroPedido);
+            glb_mod_pedido = lcl_con_busqueda.buscarPedido(lcl_mod_pedido, Constantes.ParametrosBusqueda.Pedidos.NumeroPedido)[0];
+            if (!object.Equals(glb_mod_pedido, null))
+            {
+                var lcl_mod_lineaPedido = glb_mod_pedido.findDetail(p_codigoOriginal, p_codigoArticuloProveedor);
+                if (!object.Equals(lcl_mod_lineaPedido, null))
+                {
+                    var lcl_cat_articulosProveedores = new CatalogoArticuloProveedores();
+                    glb_mod_articuloDevolucion = lcl_cat_articulosProveedores.getOne(p_codigoOriginal, p_codigoArticuloProveedor);
+                    return glb_mod_articuloDevolucion;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
