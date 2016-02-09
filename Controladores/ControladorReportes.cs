@@ -16,6 +16,10 @@ namespace Controladores
         decimal glb_var_MaxMontoTotal = 0;
         decimal glb_var_MontoTotalProveedor = 0;
         int glb_var_CantidadTotalArticulos = 0;
+        public ModeloReportePedidoEntreFechas glb_mod_pedidoentrefechas = new ModeloReportePedidoEntreFechas();
+        public ModeloReporteVentaEntreFechas glb_mod_ventaentrefechas = new ModeloReporteVentaEntreFechas();
+
+
         public string crearReporte(String[] p_var_razonSocial, DateTime p_date_fechaInicio, DateTime p_date_fechaFin)
         {
             string lcl_var_respuesta="";

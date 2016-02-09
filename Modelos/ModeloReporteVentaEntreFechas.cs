@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
-    class ModeloReporteVentaEntreFechas
+    public class ModeloReporteVentaEntreFechas
     {
         public string codigo_cliente { get; set;}
         public string nombre_cliente { get; set; }
