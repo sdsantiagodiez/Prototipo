@@ -47,15 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repo_FacturaA.cs">
+    <Compile Include="FormReportes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Repo_FacturaA.Designer.cs">
-      <DependentUpon>Repo_FacturaA.cs</DependentUpon>
+    <Compile Include="FormReportes.Designer.cs">
+      <DependentUpon>FormReportes.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FacturaA.rdlc" />
+    <EmbeddedResource Include="FormReportes.resx">
+      <DependentUpon>FormReportes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PedidosEntreFechas.rdlc" />
     <EmbeddedResource Include="VentasEntreFechas.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -68,9 +71,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Pedido.rdlc" />
-    <EmbeddedResource Include="Repo_FacturaA.resx">
-      <DependentUpon>Repo_FacturaA.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\DataSources\Modelos.ModeloArticuloProveedores.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloArticulos.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloDomicilio.datasource" />
