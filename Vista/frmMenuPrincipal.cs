@@ -68,8 +68,8 @@ namespace Vista
 
         private void btnEmitirReporte_Click(object sender, EventArgs e)
         {
-            frmEnConstruccion frmEnConstruccion = new frmEnConstruccion();
-            frmEnConstruccion.ShowDialog();
+            frmReporteSeleccion frmReporteSeleccion = new Vista.frmReporteSeleccion();
+            frmReporteSeleccion.ShowDialog();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
