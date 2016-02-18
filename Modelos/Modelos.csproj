@@ -43,6 +43,7 @@
     <Compile Include="ModeloEntidad.cs" />
     <Compile Include="ModeloPais.cs" />
     <Compile Include="ModeloProvincia.cs" />
+    <Compile Include="ModeloReportePedidoEncabezado.cs" />
     <Compile Include="ModeloReportePedidoEntreFechas.cs" />
     <Compile Include="ModeloReporteVentaEntreFechas.cs" />
     <Compile Include="ModeloTelefono.cs" />
