@@ -300,6 +300,50 @@ namespace Datos
             return lcl_lst_mod_ReportePedidoEntreFechas;
         }
 
+        public List<ModeloReportePedidoEntreFechas> getPedidosEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin)
+        {
+            List<ModeloReportePedidoEntreFechas> lcl_lst_mod_ReportePedidoEntreFechas = new List<ModeloReportePedidoEntreFechas>();
+
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText =
+                "Codigo SQL a analizar";
+
+            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Int));
+            comando.Parameters["@fecha_desde"].Value = p_FechaInicio;
+            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Int));
+            comando.Parameters["@fecha_hasta"].Value = P_FechaFin;
+           
+            comando.Connection.Open();
+
+            SqlDataReader drPedidosEntreFechas = comando.ExecuteReader();
+
+            ModeloReportePedidoEntreFechas lcl_mod_ReportePedidoEntreFechas = new ModeloReportePedidoEntreFechas();
+
+            while (drPedidosEntreFechas.Read())
+            {
+                lcl_mod_ReportePedidoEntreFechas.codProveedor = (string)drPedidosEntreFechas["codigo_proveedor"];
+                lcl_mod_ReportePedidoEntreFechas.razonSocial = (string)drPedidosEntreFechas["razon_social"];
+                lcl_mod_ReportePedidoEntreFechas.CantidadArticulos = (int)drPedidosEntreFechas["cantidad_articulos"];
+                lcl_mod_ReportePedidoEntreFechas.CantidadPedidos = (int)drPedidosEntreFechas["cantidad_pedidos"];
+                lcl_mod_ReportePedidoEntreFechas.MontoTotal = (float)drPedidosEntreFechas["monto_total"];
+                lcl_lst_mod_ReportePedidoEntreFechas.Add(lcl_mod_ReportePedidoEntreFechas);
+            }
+            drPedidosEntreFechas.Close();
+
+            comando.Connection.Close();
+
+            return lcl_lst_mod_ReportePedidoEntreFechas;
+        }
+
         public List<ModeloReporteVentaEntreFechas> getVentasEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin, int p_CodigoCliente)
         {
             List<ModeloReporteVentaEntreFechas> lcl_lst_mod_ReporteVentaEntreFechas = new List<ModeloReporteVentaEntreFechas>();
@@ -324,6 +368,49 @@ namespace Datos
             comando.Parameters.Add(new SqlParameter("@codigo_cliente", SqlDbType.Int));
             comando.Parameters["@codigo_cliente"].Value = p_CodigoCliente;
 
+            comando.Connection.Open();
+
+            SqlDataReader drVentasEntreFechas = comando.ExecuteReader();
+
+            ModeloReporteVentaEntreFechas lcl_mod_ReporteVentaEntreFechas = new ModeloReporteVentaEntreFechas();
+
+            while (drVentasEntreFechas.Read())
+            {
+                lcl_mod_ReporteVentaEntreFechas.codigo_cliente = (string)drVentasEntreFechas["codigo_cliente"];
+                lcl_mod_ReporteVentaEntreFechas.nombre_cliente = (string)drVentasEntreFechas["nombre_cliente"];
+                lcl_mod_ReporteVentaEntreFechas.cantidad_ventas = (int)drVentasEntreFechas["cantidad_ventas"];
+                lcl_mod_ReporteVentaEntreFechas.cantidad_articulos = (int)drVentasEntreFechas["cantidad_articulos"];
+                lcl_mod_ReporteVentaEntreFechas.monto_ventas = (float)drVentasEntreFechas["monto_ventas"];
+                lcl_lst_mod_ReporteVentaEntreFechas.Add(lcl_mod_ReporteVentaEntreFechas);
+            }
+            drVentasEntreFechas.Close();
+
+            comando.Connection.Close();
+
+            return lcl_lst_mod_ReporteVentaEntreFechas;
+        }
+        public List<ModeloReporteVentaEntreFechas> getVentasEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin)
+        {
+            List<ModeloReporteVentaEntreFechas> lcl_lst_mod_ReporteVentaEntreFechas = new List<ModeloReporteVentaEntreFechas>();
+
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText =
+                "Codigo SQL a analizar";
+
+            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Int));
+            comando.Parameters["@fecha_desde"].Value = p_FechaInicio;
+            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Int));
+            comando.Parameters["@fecha_hasta"].Value = P_FechaFin;
+           
             comando.Connection.Open();
 
             SqlDataReader drVentasEntreFechas = comando.ExecuteReader();
