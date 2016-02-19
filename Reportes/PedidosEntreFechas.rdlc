@@ -483,12 +483,13 @@
           </Style>
         </Textbox>
         <Textbox Name="txtFecha">
+          <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value />
+                  <Value>=First(Fields!FechaInforme.Value, "DSInformePedidoEncabezado")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -591,7 +592,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value />
+                  <Value>=First(Fields!FechaDesde.Value, "DSInformePedidoEncabezado")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -618,12 +619,13 @@
           </Style>
         </Textbox>
         <Textbox Name="txtClienteDesde">
+          <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value />
+                  <Value>=First(Fields!PersonaDesde.Value, "DSInformePedidoEncabezado")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -812,7 +814,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value />
+                  <Value>=First(Fields!FechaHasta.Value, "DSInformePedidoEncabezado")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -878,7 +880,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value />
+                  <Value>=First(Fields!PersonaHasta.Value, "DSInformePedidoEncabezado")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -924,7 +926,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value />
+                  <Value>=First(Fields!MontoTotal.Value, "DSInformePedidoEncabezado")</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -1038,8 +1040,46 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloReportePedidoEntreFechas</rd:TableName>
-        <rd:ObjectDataSourceType>Modelos.ModeloReportePedidoEntreFechas, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ModeloReporteEncabezado</rd:TableName>
+        <rd:ObjectDataSourceSelectMethod>detallePedido</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezado, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DSInformePedidoEncabezado">
+      <Query>
+        <DataSourceName>Modelos</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="FechaDesde">
+          <DataField>FechaDesde</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FechaHasta">
+          <DataField>FechaHasta</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FechaInforme">
+          <DataField>FechaInforme</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="MontoTotal">
+          <DataField>MontoTotal</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="PersonaDesde">
+          <DataField>PersonaDesde</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PersonaHasta">
+          <DataField>PersonaHasta</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Modelos</rd:DataSetName>
+        <rd:TableName>ModeloReporteEncabezado</rd:TableName>
+        <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezado, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
