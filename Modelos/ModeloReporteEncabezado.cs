@@ -8,6 +8,12 @@ namespace Modelos
 {
    public class ModeloReporteEncabezado
     {
-
+       public DateTime FechaInforme;
+        DateTime FechaDesde;
+        DateTime FechaHasta;
+        string PersonaDesde;
+        string PersonaHasta;
+        List<ModeloReportePedidoEntreFechas> detallePedido = new List<ModeloReportePedidoEntreFechas>();
+        List<ModeloReporteVentaEntreFechas> detalleVenta = new List<ModeloReporteVentaEntreFechas>();
     }
 }
