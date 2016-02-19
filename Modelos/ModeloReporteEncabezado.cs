@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
-    class ModeloReporteEncabezado
+   public class ModeloReporteEncabezado
     {
+
     }
 }

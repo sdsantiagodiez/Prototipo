@@ -364,7 +364,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -489,7 +488,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!fecha.Value, "EncabezadoPedido")</Value>
+                  <Value />
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -592,7 +591,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!CUIT.Value, "Encabezado")</Value>
+                  <Value />
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -624,7 +623,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!apellido.Value, "ClientePedido")+ ", " + First(Fields!nombre.Value,"ClientePedido")</Value>
+                  <Value />
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -813,7 +812,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!numero.Value, "ClienteTelefono")</Value>
+                  <Value />
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -879,7 +878,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!apellido.Value, "ClientePedido") + ", " + First(Fields!nombre.Value, "ClientePedido")</Value>
+                  <Value />
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -925,7 +924,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!monto_total.Value, "EncabezadoPedido")</Value>
+                  <Value />
                   <Style />
                 </TextRun>
               </TextRuns>

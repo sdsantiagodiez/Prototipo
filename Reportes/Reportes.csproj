@@ -82,7 +82,9 @@
     <None Include="Properties\DataSources\Modelos.ModeloPersonas.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloProveedor.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloProvincia.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloReporteEncabezado.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReportePedidoEntreFechas.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloReporteVentaEntreFechas1.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloRoles.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloTelefono.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloValorArticulo.datasource" />

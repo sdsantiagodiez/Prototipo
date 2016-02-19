@@ -117,7 +117,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!Numero.Value, "Encabezado")</Value>
+                  <Value />
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -185,7 +185,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!FechaFacturacion.Value, "Encabezado")</Value>
+                  <Value />
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -356,7 +356,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!IVA.Value, "Encabezado")</Value>
+                  <Value />
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -388,7 +388,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!Nombre.Value, "Encabezado")</Value>
+                  <Value />
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -420,7 +420,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!CUIT.Value, "Encabezado")</Value>
+                  <Value />
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -452,7 +452,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!Nombre.Value, "Encabezado")</Value>
+                  <Value />
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -797,7 +797,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Sum(Fields!Subtotal.Value, "Encabezado")</Value>
+                  <Value />
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -828,7 +828,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Sum(Fields!Total.Value, "Encabezado")</Value>
+                  <Value />
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -860,7 +860,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Sum(Fields!Iva.Value, "Encabezado")</Value>
+                  <Value />
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -999,6 +999,7 @@
           </Style>
         </Line>
         <Line Name="Line3">
+          <Top>0cm</Top>
           <Height>1.46786cm</Height>
           <Width>0cm</Width>
           <ZIndex>7</ZIndex>
@@ -1009,6 +1010,7 @@
           </Style>
         </Line>
         <Line Name="Line4">
+          <Top>0cm</Top>
           <Left>21cm</Left>
           <Height>1.46786cm</Height>
           <Width>0cm</Width>
