@@ -24,7 +24,7 @@ namespace Reportes
             InitializeComponent();
         }
         
-        public FormReportes(List<ModeloReportePedidoEntreFechas> p_pedidoentrefechas)
+        public FormReportes(ModeloReportePedidoEntreFechas p_pedidoentrefechas)
         {   //este constructor se construye al modelo de pedido entre fechas                    
             this.ReporteBase.LocalReport.ReportEmbeddedResource ="Reportes.PedidosEntreFechas.rdlc";
             this.ReporteBase.LocalReport.Refresh();
@@ -34,7 +34,7 @@ namespace Reportes
             this.ReporteBase.RefreshReport();
         }
 
-        public FormReportes(List<ModeloReporteVentaEntreFechas> p_ventaentrefechas)
+        public FormReportes(ModeloReporteVentaEntreFechas p_ventaentrefechas)
         {   //este constructor se construye al modelo de pedido entre fechas                    
             this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.VentaEntreFechas.rdlc";
             this.ReporteBase.LocalReport.Refresh();

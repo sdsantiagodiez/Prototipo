@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Controladores;
 using Modelos;
-using Reportes;
-
 
 namespace Vista
 {
@@ -36,18 +34,6 @@ namespace Vista
         { 
             this.cmbxPedidosReportes.Items.Add("Reporte de Pedidos Entre Fechas");//Ver como agregamos los Reportes
             this.cmbxVentasReportes.Items.Add("Reporte de Ventas Entre Fechas");
-        }
-
-        private void btnGeneraReporte_Click(object sender, EventArgs e)
-        {
-            FormReportes frmReportes = new FormReportes(glb_lst_mod_PedidoEntreFechas);
-            frmReportes.NombreEmpresa = "Mundo Renault";
-            frmReportes.DireccionEmpresa = "";
-            frmReportes.TelefonoEmpresa = "";
-            frmReportes.fechaVecimiendo = "";
-            frmReportes.ShowDialog();
-            
-            
         }
     
     
