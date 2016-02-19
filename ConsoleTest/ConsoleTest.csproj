@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Properties\DataSources\Modelos.ModeloReporteEncabezado.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Controladores\Controladores.csproj">
