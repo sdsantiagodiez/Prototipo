@@ -149,6 +149,13 @@ namespace LibreriaClasesCompartidas
             public const string ArticuloProveedor = "ART_PROV";
 
         }
+
+        public static class TipoTelefono
+        {
+            public const string Fijo = "TEL";
+            public const string Celular = "CEL";
+            public const string Fax = "FAX";
+        }
     }
     
 }

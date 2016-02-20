@@ -16,6 +16,9 @@ namespace Controladores
 
         private ModeloPedido glb_mod_PedidoVenta;
         private List<ModeloArticuloProveedores> glb_lst_mod_resultadoBusqueda;
+        private List<ModeloPais> glb_lst_mod_paises;
+        private List<ModeloProvincia> glb_lst_mod_provincias;
+        private ModeloPersonas glb_mod_cliente;
 
         public void crearPedido()
         {
@@ -49,18 +52,23 @@ namespace Controladores
             return glb_lst_mod_resultadoBusqueda.Count;
         }
 
-        public void cerrarPedido(List<ModeloLineaPedido> p_ventaActual)
+        public void cerrarPedido()
         {
             var lcl_con_modificacion = new ControladorModificacion();
             var lcl_cat_articulosProveedores = new CatalogoArticuloProveedores();
             var lcl_mod_articuloProveedores = new ModeloArticuloProveedores();
+            var lcl_lst_mod_lineasPedido = glb_mod_PedidoVenta.lineasPedido;
 
-            foreach (ModeloLineaPedido lcl_mod_linea in p_ventaActual)
+            foreach (ModeloLineaPedido lcl_mod_linea in lcl_lst_mod_lineasPedido)
             {
                 lcl_mod_articuloProveedores = lcl_cat_articulosProveedores.getOne(lcl_mod_linea.codigoOriginalArt, lcl_mod_linea.codigoArtProveedor);
                 lcl_mod_articuloProveedores.stockActual = lcl_mod_articuloProveedores.stockActual - lcl_mod_linea.cantidadArticulos;
                 lcl_con_modificacion.modificarArticuloProveedor(lcl_mod_articuloProveedores);
             }
+
+            //calcular lo que falta calcular(como total)
+            //guardar lineas
+            //guardar pedido
         }
 
         public void deleteCurrentDetails()
@@ -90,12 +98,17 @@ namespace Controladores
             this.glb_mod_PedidoVenta.addDetail(lcl_mod_nuevaLinea);
         }
 
-        public ModeloPersonas getCliente(string p_dni)
+        public ModeloPersonas getCliente()
+        {
+            return glb_mod_cliente;
+        }
+
+        public void buscarCliente(string p_dni)
         {
             var lcl_con_busqueda = new ControladorBusqueda();
             ModeloPersonas lcl_mod_persona = new ModeloPersonas();
             lcl_mod_persona.dni = p_dni;
-            return lcl_con_busqueda.buscarPersonas(lcl_mod_persona,"dni")[0];
+            glb_mod_cliente = lcl_con_busqueda.buscarPersonas(lcl_mod_persona, Constantes.ParametrosBusqueda.Entidades.Personas.Dni)[0];
         }
 
         public void addClient(ModeloPersonas p_nuevoCliente)
@@ -106,14 +119,24 @@ namespace Controladores
 
         public List<ModeloPais> getPaises()
         {
+            return glb_lst_mod_paises;
+        }
+
+        public void buscarPaises()
+        {
             var lcl_con_busqueda = new ControladorBusqueda();
-            return lcl_con_busqueda.buscarPaises();
+            glb_lst_mod_paises= lcl_con_busqueda.buscarPaises();
         }
 
         public List<ModeloProvincia> getProvincias()
         {
+            return glb_lst_mod_provincias;
+        }
+
+        public void buscarProvincias()
+        {
             var lcl_con_busqueda = new ControladorBusqueda();
-            return lcl_con_busqueda.buscarProvincias();
+            glb_lst_mod_provincias= lcl_con_busqueda.buscarProvincias();
         }
 
         public List<ModeloArticuloProveedores> getBusqueda()
