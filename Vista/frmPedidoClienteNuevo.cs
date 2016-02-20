@@ -16,8 +16,6 @@ namespace Vista
     public partial class frmPedidoClienteNuevo : Form
     {
         private string glb_categoriaBusquedaSeleccionada;
-        private List<ModeloArticuloProveedores> glb_lst_mod_articulosEncontrados;
-        private List<ModeloLineaPedido> glb_lst_mod_articulosVentaActual;
         private ModeloArticuloProveedores glb_mod_articuloSeleccionadoBusqueda;
         private ModeloLineaPedido glb_mod_articuloSeleccionadoDetalle;
         private ControladorProcesarVenta glb_con_ProcesarVenta;
@@ -54,7 +52,7 @@ namespace Vista
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
             //compruebo que existan articulos para generar venta
-            if (this.glb_lst_mod_articulosVentaActual.Count > 0)
+            if (glb_con_ProcesarVenta.getCantidadVentaActual() > 0)
             {
                 //creo el formulario y lo muestro
                 frmPedidoClienteCierre lcl_frm_Cierre = new frmPedidoClienteCierre();
@@ -95,8 +93,7 @@ namespace Vista
                             this.lblTotalVar.Text = glb_con_ProcesarVenta.getTotal();
 
                             //rebindeo lista
-                            this.glb_lst_mod_articulosVentaActual = glb_con_ProcesarVenta.getVentaActual();
-                            var lcl_bindingList = new BindingList<ModeloLineaPedido>(this.glb_lst_mod_articulosVentaActual);
+                            var lcl_bindingList = new BindingList<ModeloLineaPedido>(glb_con_ProcesarVenta.getVentaActual());
                             var lcl_source = new BindingSource(lcl_bindingList, null);
                             this.dgvDetalleAgregados.DataSource = lcl_source;
                     
@@ -144,13 +141,13 @@ namespace Vista
             {
                 //lo elimino de la lista de articulos ya seleccionados
                 glb_con_ProcesarVenta.eliminarLineaPedido(this.glb_mod_articuloSeleccionadoDetalle);
-                this.glb_lst_mod_articulosVentaActual = glb_con_ProcesarVenta.getVentaActual();
+                
 
                 //Actualizo Total
                 this.lblTotalVar.Text = glb_con_ProcesarVenta.getTotal();
 
                 //rebindeo los articulos seleccionados a la grid
-                var lcl_bindingList = new BindingList<ModeloLineaPedido>(this.glb_lst_mod_articulosVentaActual);
+                var lcl_bindingList = new BindingList<ModeloLineaPedido>(glb_con_ProcesarVenta.getVentaActual());
                 var lcl_source = new BindingSource(lcl_bindingList, null);
                 this.dgvDetalleAgregados.DataSource = lcl_source;
 
@@ -172,7 +169,6 @@ namespace Vista
             {
                 //borro la venta actual
                 glb_con_ProcesarVenta.deleteCurrentDetails();
-                this.glb_lst_mod_articulosVentaActual = glb_con_ProcesarVenta.getVentaActual();
 
                 //rebindeo grilla detalles
                 this.dgvDetalleAgregados.DataSource = null;
@@ -209,34 +205,32 @@ namespace Vista
         private void dgvArtAgregar_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            //busco el indice de la fila seleccionada que coincide con la lista que contiene mayor cantidad de información
-            int lcl_indiceSeleccionado = dgvArtAgregar.CurrentCell.RowIndex;
+            
+            //busco el articulo según el indice seleccionado
+            var lcl_mod_articulo= glb_con_ProcesarVenta.getArticuloBusqueda(dgvArtAgregar.CurrentCell.RowIndex);
 
             //asigno el articulo a la variable articuloSeleccionadoBusqueda en caso de que se decida agregarlo a la venta
-            this.glb_mod_articuloSeleccionadoBusqueda = glb_lst_mod_articulosEncontrados[lcl_indiceSeleccionado];
+            this.glb_mod_articuloSeleccionadoBusqueda = lcl_mod_articulo;
 
             //actualizo lost lbl para mostrar el articulo seleccionado
-            this.lblCodigoOriginalVar.Text = glb_lst_mod_articulosEncontrados[lcl_indiceSeleccionado].codigoOriginal;
-            this.lblCodigoProveedorVar.Text = glb_lst_mod_articulosEncontrados[lcl_indiceSeleccionado].codigoArticuloProveedor;
-            this.lblProveedorVar.Text =  glb_lst_mod_articulosEncontrados[lcl_indiceSeleccionado].razonSocialProveedor;
-            this.lblDescripcionVar.Text = glb_lst_mod_articulosEncontrados[lcl_indiceSeleccionado].descripcionArticuloProveedor;
+            this.lblCodigoOriginalVar.Text = lcl_mod_articulo.codigoOriginal;
+            this.lblCodigoProveedorVar.Text = lcl_mod_articulo.codigoArticuloProveedor;
+            this.lblProveedorVar.Text = lcl_mod_articulo.razonSocialProveedor;
+            this.lblDescripcionVar.Text = lcl_mod_articulo.descripcionArticuloProveedor;
             //
             //TODO modificadores de precio segun metodo de pago
-            this.lblPrecioVar.Text = Convert.ToString(glb_lst_mod_articulosEncontrados[lcl_indiceSeleccionado].valorVenta.valorArticulo);
-            this.lblUbicacionVar.Text = glb_lst_mod_articulosEncontrados[lcl_indiceSeleccionado].ubicacion;
-            
-            this.lblExistenciaVar.Text = Convert.ToString(glb_lst_mod_articulosEncontrados[lcl_indiceSeleccionado].stockActual);
-            this.lblFechaActualizacionVar.Text = Convert.ToString(glb_lst_mod_articulosEncontrados[lcl_indiceSeleccionado].fechaActualizacion);
-            this.lblObservacionesVar.Text = glb_lst_mod_articulosEncontrados[lcl_indiceSeleccionado].observacionesArticuloProveedor;
+            this.lblPrecioVar.Text = Convert.ToString(lcl_mod_articulo.valorVenta.valorArticulo);
+            this.lblUbicacionVar.Text = lcl_mod_articulo.ubicacion;
+
+            this.lblExistenciaVar.Text = Convert.ToString(lcl_mod_articulo.stockActual);
+            this.lblFechaActualizacionVar.Text = Convert.ToString(lcl_mod_articulo.fechaActualizacion);
+            this.lblObservacionesVar.Text = lcl_mod_articulo.observacionesArticuloProveedor;
         }
 
         private void dgvDetalleAgregados_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //busco el indice de la fila seleccionada
-            int lcl_indiceSeleccionado = this.dgvDetalleAgregados.CurrentCell.RowIndex;
-
             //asigno el articulo a la variable articulosSeleccionadosDetalle en caso de que se decida removerlo de la venta
-            this.glb_mod_articuloSeleccionadoDetalle = this.glb_lst_mod_articulosVentaActual[lcl_indiceSeleccionado];
+            this.glb_mod_articuloSeleccionadoDetalle = glb_con_ProcesarVenta.getArticuloVenta(this.dgvDetalleAgregados.CurrentCell.RowIndex);
         }
         #endregion
 
@@ -251,13 +245,12 @@ namespace Vista
                 string lcl_descripcionParcialArticulo = this.txtDescripcionParcial.Text;
                 if (LibreriaClasesCompartidas.Validar.validarAlfanumericoConEspaciosSinCaracteresEspeciales(lcl_descripcionParcialArticulo))
                 {
-                    //busco el/los articulos correspondientes
-                    glb_lst_mod_articulosEncontrados = glb_con_ProcesarVenta.buscarArticulos(glb_categoriaBusquedaSeleccionada, lcl_descripcionParcialArticulo);
-
-                    //bindeo el datagrid con los articulos encontrados
-                    if (!object.Equals(glb_lst_mod_articulosEncontrados, null))
+                    
+                    //busco el/los articulos correspondientes y me fijo que se hayan encontrado artículos
+                    if (glb_con_ProcesarVenta.buscarArticulos(glb_categoriaBusquedaSeleccionada, lcl_descripcionParcialArticulo)>0)
                     {
-                        var lcl_bindingList = new BindingList<ModeloArticuloProveedores>(glb_lst_mod_articulosEncontrados);
+                        //bindeo el datagrid con los articulos encontrados
+                        var lcl_bindingList = new BindingList<ModeloArticuloProveedores>(glb_con_ProcesarVenta.getBusqueda());
                         var lcl_source = new BindingSource(lcl_bindingList, null);
                         this.dgvArtAgregar.DataSource = lcl_source;
                     }

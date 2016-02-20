@@ -15,6 +15,7 @@ namespace Controladores
         //buscarReserva
 
         private ModeloPedido glb_mod_PedidoVenta;
+        private List<ModeloArticuloProveedores> glb_lst_mod_resultadoBusqueda;
 
         public void crearPedido()
         {
@@ -28,7 +29,7 @@ namespace Controladores
 
 
         //busqueda de articulos por codigo original o por descripcion
-        public List<ModeloArticuloProveedores> buscarArticulos(string p_categoriaBusquedaSeleccionada, string p_descripcionParcialArticulo)
+        public int buscarArticulos(string p_categoriaBusquedaSeleccionada, string p_descripcionParcialArticulo)
         {
             var lcl_cat_ArticuloProveedor = new CatalogoArticuloProveedores();
             var lcl_mod_ArticuloProveedor = new ModeloArticuloProveedores();
@@ -44,8 +45,8 @@ namespace Controladores
                     lcl_mod_ArticuloProveedor.codigoArticuloProveedor = p_descripcionParcialArticulo; break;
             }
 
-            List<ModeloArticuloProveedores> lcl_lst_mod_articuloProveedores = lcl_cat_ArticuloProveedor.buscarArticuloProveedor(lcl_mod_ArticuloProveedor, p_categoriaBusquedaSeleccionada);
-            return lcl_lst_mod_articuloProveedores;
+            glb_lst_mod_resultadoBusqueda = lcl_cat_ArticuloProveedor.buscarArticuloProveedor(lcl_mod_ArticuloProveedor, p_categoriaBusquedaSeleccionada);
+            return glb_lst_mod_resultadoBusqueda.Count;
         }
 
         public void cerrarPedido(List<ModeloLineaPedido> p_ventaActual)
@@ -113,6 +114,26 @@ namespace Controladores
         {
             var lcl_con_busqueda = new ControladorBusqueda();
             return lcl_con_busqueda.buscarProvincias();
+        }
+
+        public List<ModeloArticuloProveedores> getBusqueda()
+        {
+            return glb_lst_mod_resultadoBusqueda;
+        }
+
+        public ModeloArticuloProveedores getArticuloBusqueda(int p_indice)
+        {
+            return glb_lst_mod_resultadoBusqueda[p_indice];
+        }
+
+        public ModeloLineaPedido getArticuloVenta(int p_indice)
+        {
+            return glb_mod_PedidoVenta.lineasPedido[p_indice];
+        }
+
+        public int getCantidadVentaActual()
+        {
+            return glb_mod_PedidoVenta.lineasPedido.Count;
         }
     }
 }
