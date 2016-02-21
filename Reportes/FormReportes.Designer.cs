@@ -30,25 +30,37 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.ReporteBase = new Microsoft.Reporting.WinForms.ReportViewer();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.ModeloReportePedidoEntreFechasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ReporteBase = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.ModeloReporteEncabezadoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReportePedidoEntreFechasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteEncabezadoBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ReporteBase
-            // 
-            reportDataSource1.Name = "DSInformePedidos";
-            reportDataSource1.Value = this.ModeloReportePedidoEntreFechasBindingSource;
-            this.ReporteBase.LocalReport.DataSources.Add(reportDataSource1);
-            this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.PedidosEntreFechas.rdlc";
-            this.ReporteBase.Location = new System.Drawing.Point(12, 12);
-            this.ReporteBase.Name = "ReporteBase";
-            this.ReporteBase.Size = new System.Drawing.Size(803, 528);
-            this.ReporteBase.TabIndex = 0;
             // 
             // ModeloReportePedidoEntreFechasBindingSource
             // 
             this.ModeloReportePedidoEntreFechasBindingSource.DataSource = typeof(Modelos.ModeloReportePedidoEntreFechas);
+            // 
+            // ReporteBase
+            // 
+            reportDataSource1.Name = "DSInformeVentas";
+            reportDataSource1.Value = this.ModeloReporteEncabezadoBindingSource;
+            reportDataSource2.Name = "DSInformeVentaEncabezado";
+            reportDataSource2.Value = this.ModeloReporteEncabezadoBindingSource;
+            this.ReporteBase.LocalReport.DataSources.Add(reportDataSource1);
+            this.ReporteBase.LocalReport.DataSources.Add(reportDataSource2);
+            this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.VentasEntreFechas.rdlc";
+            this.ReporteBase.Location = new System.Drawing.Point(12, 12);
+            this.ReporteBase.Name = "ReporteBase";
+            this.ReporteBase.Size = new System.Drawing.Size(803, 528);
+            this.ReporteBase.TabIndex = 0;
+            this.ReporteBase.Load += new System.EventHandler(this.ReporteBase_Load);
+            // 
+            // ModeloReporteEncabezadoBindingSource
+            // 
+            this.ModeloReporteEncabezadoBindingSource.DataMember = "detalleVenta";
+            this.ModeloReporteEncabezadoBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezado);
             // 
             // FormReportes
             // 
@@ -60,6 +72,7 @@
             this.Text = "FormReportes";
             this.Load += new System.EventHandler(this.FormReportes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReportePedidoEntreFechasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteEncabezadoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -68,5 +81,6 @@
 
         private Microsoft.Reporting.WinForms.ReportViewer ReporteBase;
         private System.Windows.Forms.BindingSource ModeloReportePedidoEntreFechasBindingSource;
+        private System.Windows.Forms.BindingSource ModeloReporteEncabezadoBindingSource;
     }
 }

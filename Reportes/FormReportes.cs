@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using Microsoft.Reporting.WinForms;
+using System.IO;
 
 namespace Reportes
 {
@@ -37,13 +38,15 @@ namespace Reportes
                 this.ReporteBase.RefreshReport();
             } else
             {
-                //este constructor se construye al modelo de venta entre fechas                    
-                this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.VentaEntreFechas.rdlc";
+                //este constructor se construye al modelo de venta entre fechas  
+                
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentaEncabezado", p_pedidoentrefechas));
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentas", p_pedidoentrefechas.detalleVenta));
+                this.ReporteBase.LocalReport.ReportEmbeddedResource = "VentaEntreFechas.rdlc";
                 this.ReporteBase.LocalReport.Refresh();
                 this.ReporteBase.RefreshReport();
                 this.ReporteBase.LocalReport.DataSources.Clear();
-                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentaEncabezado", p_pedidoentrefechas));
-                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentas", p_pedidoentrefechas.detalleVenta));
+               
                 this.ReporteBase.RefreshReport();
             }
         }
@@ -82,6 +85,12 @@ namespace Reportes
             parameters[2] = new ReportParameter("parametroDirEmpresa", glb_var_DireccionEmpresa);
             parameters[3] = new ReportParameter("parametroFecVto", glb_var_fechaVecimiendo);
             this.ReporteBase.LocalReport.SetParameters(parameters);
+        }
+
+        private void ReporteBase_Load(object sender, EventArgs e)
+        {
+            //prueba
+            ReporteBase = new ReportViewer();
         }
 
 

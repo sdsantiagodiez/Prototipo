@@ -268,11 +268,19 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "Codigo SQL a analizar";
+                "SELECT Entidades.codigo AS codigo_proveedor, Proveedores.razon_social as razon_social," +
+                "COUNT(pedidos.numero_pedido) as cantidad_pedidos,SUM(cantidad) as cantidad_articulos," +
+                "SUM(Lineas_Pedidos.valor_parcial) as monto_total FROM Pedidos" +
+                "INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido" +
+                "INNER JOIN Pedidos_Proveedores ON Pedidos_Proveedores.numero_pedido= Pedidos.numero_pedido" +
+                "INNER JOIN Entidades ON Entidades.codigo= Pedidos_Proveedores.codigo_entidad" +
+                "INNER JOIN Proveedores ON Proveedores.codigo_entidad= Entidades.codigo" +
+                "WHERE Pedidos.fecha>= @fecha_desde AND Pedidos.fecha<=@fecha_hasta AND Entidades.codigo=@codigo_proveedor " +
+                "GROUP BY Entidades.codigo, Proveedores.razon_social";
 
-            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Int));
+            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Date));
             comando.Parameters["@fecha_desde"].Value = p_FechaInicio;
-            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Int));
+            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Date));
             comando.Parameters["@fecha_hasta"].Value = P_FechaFin;
             comando.Parameters.Add(new SqlParameter("@codigo_proveedor", SqlDbType.Int));
             comando.Parameters["@codigo_proveedor"].Value = p_CodigoProveedor;
@@ -321,11 +329,19 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "Codigo SQL a analizar";
+                "SELECT Entidades.codigo AS codigo_proveedor, Proveedores.razon_social as razon_social,"+
+                "COUNT(pedidos.numero_pedido) as cantidad_pedidos,SUM(cantidad) as cantidad_articulos,"+
+                "SUM(Lineas_Pedidos.valor_parcial) as monto_total FROM Pedidos"+
+                "INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido"+
+                "INNER JOIN Pedidos_Proveedores ON Pedidos_Proveedores.numero_pedido= Pedidos.numero_pedido"+
+                "INNER JOIN Entidades ON Entidades.codigo= Pedidos_Proveedores.codigo_entidad"+
+                "INNER JOIN Proveedores ON Proveedores.codigo_entidad= Entidades.codigo"+
+                "WHERE Pedidos.fecha>= @fecha_desde AND Pedidos.fecha<=@fecha_hasta " +
+                "GROUP BY Entidades.codigo, Proveedores.razon_social";
 
-            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Int));
+            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Date));
             comando.Parameters["@fecha_desde"].Value = p_FechaInicio;
-            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Int));
+            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Date));
             comando.Parameters["@fecha_hasta"].Value = P_FechaFin;
            
             comando.Connection.Open();
@@ -373,11 +389,19 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "Codigo SQL a analizar";
+                "SELECT Entidades.codigo AS codigo_cliente, CONCAT(Personas.apellido, ', ', Personas.nombre) as nombre_cliente,"+
+                "COUNT(pedidos.numero_pedido) as cantidad_ventas,SUM(cantidad) as cantidad_articulos,"+
+                "SUM(Lineas_Pedidos.valor_parcial) as monto_ventas FROM Pedidos"+
+                "INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido"+
+                "INNER JOIN Pedidos_Personas ON Pedidos_Personas.numero_pedido= Pedidos.numero_pedido"+
+                "INNER JOIN Entidades ON Entidades.codigo= Pedidos_Personas.codigo_entidad"+
+                "INNER JOIN Personas ON Personas.codigo_entidad= Entidades.codigo"+
+                "WHERE Pedidos.fecha>= @fecha_desde AND Pedidos.fecha<=@fecha_hasta AND Entidades.Codigo=@codigo_cliente" +
+                "GROUP BY Entidades.codigo, Personas.apellido, personas.nombre";
 
-            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Int));
+            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Date));
             comando.Parameters["@fecha_desde"].Value = p_FechaInicio;
-            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Int));
+            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Date));//No estoy seguro de que pueda hacer bien la comparacion
             comando.Parameters["@fecha_hasta"].Value = P_FechaFin;
             comando.Parameters.Add(new SqlParameter("@codigo_cliente", SqlDbType.Int));
             comando.Parameters["@codigo_cliente"].Value = p_CodigoCliente;
@@ -396,7 +420,7 @@ namespace Datos
             int i = 0;
             while (drVentasEntreFechas.Read())
             {
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].codigo_cliente = (string)drVentasEntreFechas["codigo_cliente"];
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].codigo_cliente = (int)drVentasEntreFechas["codigo_cliente"];
                 lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].nombre_cliente = (string)drVentasEntreFechas["nombre_cliente"];
                 lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].cantidad_ventas = (int)drVentasEntreFechas["cantidad_ventas"];
                 lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].cantidad_articulos = (int)drVentasEntreFechas["cantidad_articulos"];
@@ -424,11 +448,19 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "Codigo SQL a analizar";
+                "SELECT Entidades.codigo AS codigo_cliente, CONCAT(Personas.apellido, ', ', Personas.nombre) as nombre_cliente, " +
+                "COUNT(pedidos.numero_pedido) as cantidad_ventas,SUM(cantidad) as cantidad_articulos, " +
+                "SUM(Lineas_Pedidos.valor_parcial) as monto_ventas FROM Pedidos " +
+                "INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido " +
+                "INNER JOIN Pedidos_Personas ON Pedidos_Personas.numero_pedido= Pedidos.numero_pedido " +
+                "INNER JOIN Entidades ON Entidades.codigo= Pedidos_Personas.codigo_entidad " +
+                "INNER JOIN Personas ON Personas.codigo_entidad= Entidades.codigo " +
+                "WHERE Pedidos.fecha>= @fecha_desde AND Pedidos.fecha<=@fecha_hasta " +
+                "GROUP BY Entidades.codigo, Personas.apellido, personas.nombre ";
 
-            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Int));
+            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Date));
             comando.Parameters["@fecha_desde"].Value = p_FechaInicio;
-            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Int));
+            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Date));
             comando.Parameters["@fecha_hasta"].Value = P_FechaFin;
            
             comando.Connection.Open();
@@ -436,6 +468,7 @@ namespace Datos
             SqlDataReader drVentasEntreFechas = comando.ExecuteReader();
 
             ModeloReporteEncabezado lcl_mod_ReporteEncabezadoVentaEntreFechas = new ModeloReporteEncabezado();
+            lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta = new List<ModeloReporteVentaEntreFechas>();
 
             lcl_mod_ReporteEncabezadoVentaEntreFechas.FechaDesde = p_FechaInicio;
             lcl_mod_ReporteEncabezadoVentaEntreFechas.FechaHasta = P_FechaFin;
@@ -445,7 +478,7 @@ namespace Datos
             int i = 0;
             while (drVentasEntreFechas.Read())
             {
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].codigo_cliente = (string)drVentasEntreFechas["codigo_cliente"];
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].codigo_cliente = (int)drVentasEntreFechas["codigo_cliente"];
                 lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].nombre_cliente = (string)drVentasEntreFechas["nombre_cliente"];
                 lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].cantidad_ventas = (int)drVentasEntreFechas["cantidad_ventas"];
                 lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].cantidad_articulos = (int)drVentasEntreFechas["cantidad_articulos"];
