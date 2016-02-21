@@ -24,27 +24,31 @@ namespace Reportes
             InitializeComponent();
         }
         
-        public FormReportes(ModeloReporteEncabezado p_pedidoentrefechas)
-        {   //este constructor se construye al modelo de pedido entre fechas                    
-            this.ReporteBase.LocalReport.ReportEmbeddedResource ="Reportes.PedidosEntreFechas.rdlc";
-            this.ReporteBase.LocalReport.Refresh();
-            this.ReporteBase.RefreshReport();
-            this.ReporteBase.LocalReport.DataSources.Clear();
-            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformePedidoEncabezado", p_pedidoentrefechas));
-            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformePedidos", p_pedidoentrefechas.detallePedido));
-            this.ReporteBase.RefreshReport();
+        public FormReportes(ModeloReporteEncabezado p_pedidoentrefechas, string p_tipoReporte)
+        {   //este constructor se construye al modelo de pedido entre fechas  
+            if (p_tipoReporte == "PedidoEntreFechas")
+            {
+                this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.PedidosEntreFechas.rdlc";
+                this.ReporteBase.LocalReport.Refresh();
+                this.ReporteBase.RefreshReport();
+                this.ReporteBase.LocalReport.DataSources.Clear();
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformePedidoEncabezado", p_pedidoentrefechas));
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformePedidos", p_pedidoentrefechas.detallePedido));
+                this.ReporteBase.RefreshReport();
+            } else
+            {
+                //este constructor se construye al modelo de venta entre fechas                    
+                this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.VentaEntreFechas.rdlc";
+                this.ReporteBase.LocalReport.Refresh();
+                this.ReporteBase.RefreshReport();
+                this.ReporteBase.LocalReport.DataSources.Clear();
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentaEncabezado", p_pedidoentrefechas));
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentas", p_pedidoentrefechas.detalleVenta));
+                this.ReporteBase.RefreshReport();
+            }
         }
 
-        public FormReportes(ModeloReporteEncabezado p_ventaentrefechas)
-        {   //este constructor se construye al modelo de pedido entre fechas                    
-            this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.VentaEntreFechas.rdlc";
-            this.ReporteBase.LocalReport.Refresh();
-            this.ReporteBase.RefreshReport();
-            this.ReporteBase.LocalReport.DataSources.Clear();
-            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentaEncabezado", p_ventaentrefechas));
-            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentas", p_ventaentrefechas.detalleVenta));
-            this.ReporteBase.RefreshReport();
-        }
+        
         public FormReportes(ModeloPedido p_ModeloPedido, ModeloPersonas p_ModeloPersonas)
         {   //este constructor se construye al modelo de pedido                     
             this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.Pedido.rdlc";

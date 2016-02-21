@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Datos;
 using Modelos;
+using Reportes;
+using System.Windows;
 
 namespace Controladores
 {
@@ -81,6 +83,41 @@ namespace Controladores
             }
 
             return lcl_var_respuesta;
+        }
+
+        public FormReportes ReportePedidoEntreFechas(DateTime p_fechaInicio, DateTime p_fechaFin, int p_codProveedor) 
+        {
+            ModeloReporteEncabezado lcl_mod_ReporteEncabezado = new ModeloReporteEncabezado();
+            if (p_codProveedor == 0)// indica que son todos los proveedores
+            {
+                lcl_mod_ReporteEncabezado = glb_con_pedidos.getPedidosEntreFechas(p_fechaInicio, p_fechaFin);
+            }
+            else
+            {
+                lcl_mod_ReporteEncabezado = glb_con_pedidos.getPedidosEntreFechas(p_fechaInicio, p_fechaFin, p_codProveedor);
+            }
+             FormReportes lcl_frm_reporte = new FormReportes(lcl_mod_ReporteEncabezado,"PedidoEntreFechas");
+                                   
+            return lcl_frm_reporte;
+        
+        }
+        public FormReportes ReporteVentaEntreFechas(DateTime p_fechaInicio, DateTime p_fechaFin, int p_codCliente)
+        {
+            ModeloReporteEncabezado lcl_mod_ReporteEncabezado = new ModeloReporteEncabezado();
+            if (p_codCliente == 0)// indica que son todos los clientes
+            {
+                lcl_mod_ReporteEncabezado = glb_con_pedidos.getVentaEntreFechas(p_fechaInicio, p_fechaFin);
+            }
+            else
+            {
+                lcl_mod_ReporteEncabezado = glb_con_pedidos.getVentaEntreFechas(p_fechaInicio, p_fechaFin, p_codCliente);
+            }
+            FormReportes lcl_frm_reporte = new FormReportes(lcl_mod_ReporteEncabezado, "VentaEntreFechas");
+
+            return lcl_frm_reporte;
+
+
+
         }
 
 

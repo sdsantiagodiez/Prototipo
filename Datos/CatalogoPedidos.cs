@@ -254,10 +254,9 @@ namespace Datos
             return this.buscarPedido(null, Constantes.ParametrosBusqueda.Articulos.All);
         }
 
-        public List<ModeloReportePedidoEntreFechas> getPedidosEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin, int p_CodigoProveedor)
+        public ModeloReporteEncabezado getPedidosEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin, int p_CodigoProveedor)
         {
-            List<ModeloReportePedidoEntreFechas> lcl_lst_mod_ReportePedidoEntreFechas = new List<ModeloReportePedidoEntreFechas>();
-
+          
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -282,28 +281,35 @@ namespace Datos
 
             SqlDataReader drPedidosEntreFechas = comando.ExecuteReader();
 
-            ModeloReportePedidoEntreFechas lcl_mod_ReportePedidoEntreFechas = new ModeloReportePedidoEntreFechas();
-
+            ModeloReporteEncabezado lcl_mod_ReporteEncabezado = new ModeloReporteEncabezado();
+            int i =0;
+            lcl_mod_ReporteEncabezado.FechaDesde = p_FechaInicio;
+            lcl_mod_ReporteEncabezado.FechaHasta = P_FechaFin;
+            lcl_mod_ReporteEncabezado.PersonaDesde = p_CodigoProveedor.ToString();
+            lcl_mod_ReporteEncabezado.PersonaHasta = p_CodigoProveedor.ToString();
+            lcl_mod_ReporteEncabezado.FechaInforme = DateTime.Today;
+            
+                
             while (drPedidosEntreFechas.Read())
             {
-                lcl_mod_ReportePedidoEntreFechas.codProveedor = (string)drPedidosEntreFechas["codigo_proveedor"];
-                lcl_mod_ReportePedidoEntreFechas.razonSocial = (string)drPedidosEntreFechas["razon_social"];
-                lcl_mod_ReportePedidoEntreFechas.CantidadArticulos = (int)drPedidosEntreFechas["cantidad_articulos"];
-                lcl_mod_ReportePedidoEntreFechas.CantidadPedidos = (int)drPedidosEntreFechas["cantidad_pedidos"];
-                lcl_mod_ReportePedidoEntreFechas.MontoTotal = (float)drPedidosEntreFechas["monto_total"];
-                lcl_lst_mod_ReportePedidoEntreFechas.Add(lcl_mod_ReportePedidoEntreFechas);
+                lcl_mod_ReporteEncabezado.detallePedido[i].codProveedor = (string)drPedidosEntreFechas["codigo_proveedor"];
+                lcl_mod_ReporteEncabezado.detallePedido[i].razonSocial = (string)drPedidosEntreFechas["razon_social"];
+                lcl_mod_ReporteEncabezado.detallePedido[i].CantidadArticulos = (int)drPedidosEntreFechas["cantidad_articulos"];
+                lcl_mod_ReporteEncabezado.detallePedido[i].CantidadPedidos = (int)drPedidosEntreFechas["cantidad_pedidos"];
+                lcl_mod_ReporteEncabezado.detallePedido[i].MontoTotal = (float)drPedidosEntreFechas["monto_total"];
+                lcl_mod_ReporteEncabezado.MontoTotal = lcl_mod_ReporteEncabezado.MontoTotal + lcl_mod_ReporteEncabezado.detallePedido[i].MontoTotal;
+                i++;
             }
             drPedidosEntreFechas.Close();
 
             comando.Connection.Close();
 
-            return lcl_lst_mod_ReportePedidoEntreFechas;
+            return lcl_mod_ReporteEncabezado;
         }
 
-        public List<ModeloReportePedidoEntreFechas> getPedidosEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin)
+        public ModeloReporteEncabezado getPedidosEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin)
         {
-            List<ModeloReportePedidoEntreFechas> lcl_lst_mod_ReportePedidoEntreFechas = new List<ModeloReportePedidoEntreFechas>();
-
+            
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -326,28 +332,36 @@ namespace Datos
 
             SqlDataReader drPedidosEntreFechas = comando.ExecuteReader();
 
-            ModeloReportePedidoEntreFechas lcl_mod_ReportePedidoEntreFechas = new ModeloReportePedidoEntreFechas();
+            ModeloReporteEncabezado lcl_mod_ReporteEncabezado = new ModeloReporteEncabezado();
+            int i = 0;
+            lcl_mod_ReporteEncabezado.FechaDesde = p_FechaInicio;
+            lcl_mod_ReporteEncabezado.FechaHasta = P_FechaFin;
+            lcl_mod_ReporteEncabezado.PersonaDesde = "000000000";
+            lcl_mod_ReporteEncabezado.PersonaHasta = "999999999";
+            lcl_mod_ReporteEncabezado.FechaInforme = DateTime.Today;
+            
 
             while (drPedidosEntreFechas.Read())
             {
-                lcl_mod_ReportePedidoEntreFechas.codProveedor = (string)drPedidosEntreFechas["codigo_proveedor"];
-                lcl_mod_ReportePedidoEntreFechas.razonSocial = (string)drPedidosEntreFechas["razon_social"];
-                lcl_mod_ReportePedidoEntreFechas.CantidadArticulos = (int)drPedidosEntreFechas["cantidad_articulos"];
-                lcl_mod_ReportePedidoEntreFechas.CantidadPedidos = (int)drPedidosEntreFechas["cantidad_pedidos"];
-                lcl_mod_ReportePedidoEntreFechas.MontoTotal = (float)drPedidosEntreFechas["monto_total"];
-                lcl_lst_mod_ReportePedidoEntreFechas.Add(lcl_mod_ReportePedidoEntreFechas);
+                lcl_mod_ReporteEncabezado.detallePedido[i].codProveedor = (string)drPedidosEntreFechas["codigo_proveedor"];
+                lcl_mod_ReporteEncabezado.detallePedido[i].razonSocial = (string)drPedidosEntreFechas["razon_social"];
+                lcl_mod_ReporteEncabezado.detallePedido[i].CantidadArticulos = (int)drPedidosEntreFechas["cantidad_articulos"];
+                lcl_mod_ReporteEncabezado.detallePedido[i].CantidadPedidos = (int)drPedidosEntreFechas["cantidad_pedidos"];
+                lcl_mod_ReporteEncabezado.detallePedido[i].MontoTotal = (float)drPedidosEntreFechas["monto_total"];
+                lcl_mod_ReporteEncabezado.MontoTotal = lcl_mod_ReporteEncabezado.MontoTotal + lcl_mod_ReporteEncabezado.detallePedido[i].MontoTotal;
+                i++;
+
             }
             drPedidosEntreFechas.Close();
 
             comando.Connection.Close();
 
-            return lcl_lst_mod_ReportePedidoEntreFechas;
+            return lcl_mod_ReporteEncabezado;
         }
 
-        public List<ModeloReporteVentaEntreFechas> getVentasEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin, int p_CodigoCliente)
+        public ModeloReporteEncabezado getVentaEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin, int p_CodigoCliente)
         {
-            List<ModeloReporteVentaEntreFechas> lcl_lst_mod_ReporteVentaEntreFechas = new List<ModeloReporteVentaEntreFechas>();
-
+            
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -372,27 +386,33 @@ namespace Datos
 
             SqlDataReader drVentasEntreFechas = comando.ExecuteReader();
 
-            ModeloReporteVentaEntreFechas lcl_mod_ReporteVentaEntreFechas = new ModeloReporteVentaEntreFechas();
+            ModeloReporteEncabezado lcl_mod_ReporteEncabezadoVentaEntreFechas = new ModeloReporteEncabezado();
 
+            lcl_mod_ReporteEncabezadoVentaEntreFechas.FechaDesde = p_FechaInicio;
+            lcl_mod_ReporteEncabezadoVentaEntreFechas.FechaHasta = P_FechaFin;
+            lcl_mod_ReporteEncabezadoVentaEntreFechas.PersonaDesde = p_CodigoCliente.ToString();
+            lcl_mod_ReporteEncabezadoVentaEntreFechas.PersonaHasta = p_CodigoCliente.ToString();
+            lcl_mod_ReporteEncabezadoVentaEntreFechas.FechaInforme = DateTime.Today;
+            int i = 0;
             while (drVentasEntreFechas.Read())
             {
-                lcl_mod_ReporteVentaEntreFechas.codigo_cliente = (string)drVentasEntreFechas["codigo_cliente"];
-                lcl_mod_ReporteVentaEntreFechas.nombre_cliente = (string)drVentasEntreFechas["nombre_cliente"];
-                lcl_mod_ReporteVentaEntreFechas.cantidad_ventas = (int)drVentasEntreFechas["cantidad_ventas"];
-                lcl_mod_ReporteVentaEntreFechas.cantidad_articulos = (int)drVentasEntreFechas["cantidad_articulos"];
-                lcl_mod_ReporteVentaEntreFechas.monto_ventas = (float)drVentasEntreFechas["monto_ventas"];
-                lcl_lst_mod_ReporteVentaEntreFechas.Add(lcl_mod_ReporteVentaEntreFechas);
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].codigo_cliente = (string)drVentasEntreFechas["codigo_cliente"];
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].nombre_cliente = (string)drVentasEntreFechas["nombre_cliente"];
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].cantidad_ventas = (int)drVentasEntreFechas["cantidad_ventas"];
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].cantidad_articulos = (int)drVentasEntreFechas["cantidad_articulos"];
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].monto_ventas = (float)drVentasEntreFechas["monto_ventas"];
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.MontoTotal = lcl_mod_ReporteEncabezadoVentaEntreFechas.MontoTotal + lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].monto_ventas;
+                i++;
             }
             drVentasEntreFechas.Close();
 
             comando.Connection.Close();
 
-            return lcl_lst_mod_ReporteVentaEntreFechas;
+            return lcl_mod_ReporteEncabezadoVentaEntreFechas;
         }
-        public List<ModeloReporteVentaEntreFechas> getVentasEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin)
+        public ModeloReporteEncabezado getVentaEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin)
         {
-            List<ModeloReporteVentaEntreFechas> lcl_lst_mod_ReporteVentaEntreFechas = new List<ModeloReporteVentaEntreFechas>();
-
+           
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
 
@@ -415,22 +435,29 @@ namespace Datos
 
             SqlDataReader drVentasEntreFechas = comando.ExecuteReader();
 
-            ModeloReporteVentaEntreFechas lcl_mod_ReporteVentaEntreFechas = new ModeloReporteVentaEntreFechas();
+            ModeloReporteEncabezado lcl_mod_ReporteEncabezadoVentaEntreFechas = new ModeloReporteEncabezado();
 
+            lcl_mod_ReporteEncabezadoVentaEntreFechas.FechaDesde = p_FechaInicio;
+            lcl_mod_ReporteEncabezadoVentaEntreFechas.FechaHasta = P_FechaFin;
+            lcl_mod_ReporteEncabezadoVentaEntreFechas.PersonaDesde = "00000000";
+            lcl_mod_ReporteEncabezadoVentaEntreFechas.PersonaHasta = "99999999";
+            lcl_mod_ReporteEncabezadoVentaEntreFechas.FechaInforme = DateTime.Today;
+            int i = 0;
             while (drVentasEntreFechas.Read())
             {
-                lcl_mod_ReporteVentaEntreFechas.codigo_cliente = (string)drVentasEntreFechas["codigo_cliente"];
-                lcl_mod_ReporteVentaEntreFechas.nombre_cliente = (string)drVentasEntreFechas["nombre_cliente"];
-                lcl_mod_ReporteVentaEntreFechas.cantidad_ventas = (int)drVentasEntreFechas["cantidad_ventas"];
-                lcl_mod_ReporteVentaEntreFechas.cantidad_articulos = (int)drVentasEntreFechas["cantidad_articulos"];
-                lcl_mod_ReporteVentaEntreFechas.monto_ventas = (float)drVentasEntreFechas["monto_ventas"];
-                lcl_lst_mod_ReporteVentaEntreFechas.Add(lcl_mod_ReporteVentaEntreFechas);
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].codigo_cliente = (string)drVentasEntreFechas["codigo_cliente"];
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].nombre_cliente = (string)drVentasEntreFechas["nombre_cliente"];
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].cantidad_ventas = (int)drVentasEntreFechas["cantidad_ventas"];
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].cantidad_articulos = (int)drVentasEntreFechas["cantidad_articulos"];
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].monto_ventas = (float)drVentasEntreFechas["monto_ventas"];
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.MontoTotal = lcl_mod_ReporteEncabezadoVentaEntreFechas.MontoTotal + lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].monto_ventas;
+                i++;
             }
             drVentasEntreFechas.Close();
 
             comando.Connection.Close();
 
-            return lcl_lst_mod_ReporteVentaEntreFechas;
+            return lcl_mod_ReporteEncabezadoVentaEntreFechas;
         }
 
         #region Alta/Baja/Modificación
