@@ -27,6 +27,7 @@ namespace Reportes
         
         public FormReportes(ModeloReporteEncabezado p_pedidoentrefechas, string p_tipoReporte)
         {   //este constructor se construye al modelo de pedido entre fechas  
+            InitializeComponent();
             if (p_tipoReporte == "PedidoEntreFechas")
             {
                 this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.PedidosEntreFechas.rdlc";
@@ -39,10 +40,11 @@ namespace Reportes
             } else
             {
                 //este constructor se construye al modelo de venta entre fechas  
-                
+
                 this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentaEncabezado", p_pedidoentrefechas));
                 this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentas", p_pedidoentrefechas.detalleVenta));
-                this.ReporteBase.LocalReport.ReportEmbeddedResource = "VentaEntreFechas.rdlc";
+                this.ReporteBase.LocalReport.ReportPath = Path.Combine(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Reportes\\VentaEntreFechas.rdlc");
+                
                 this.ReporteBase.LocalReport.Refresh();
                 this.ReporteBase.RefreshReport();
                 this.ReporteBase.LocalReport.DataSources.Clear();
@@ -53,7 +55,8 @@ namespace Reportes
 
         
         public FormReportes(ModeloPedido p_ModeloPedido, ModeloPersonas p_ModeloPersonas)
-        {   //este constructor se construye al modelo de pedido                     
+        {   //este constructor se construye al modelo de pedido 
+            InitializeComponent();        
             this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.Pedido.rdlc";
             this.ReporteBase.LocalReport.Refresh();
             this.ReporteBase.RefreshReport();
