@@ -40,11 +40,18 @@ namespace Reportes
             } else
             {
                 //este constructor se construye al modelo de venta entre fechas  
+                    //limpio los binding source
+                ModeloReporteEncabezadoBindingSource.Clear();
+                ModeloReportePedidoEntreFechasBindingSource.Clear();
 
-                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentaEncabezado", p_pedidoentrefechas));
-                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentas", p_pedidoentrefechas.detalleVenta));
+                ModeloReporteEncabezadoBindingSource.DataSource = p_pedidoentrefechas;
+                ModeloReportePedidoEntreFechasBindingSource.DataSource=p_pedidoentrefechas.detallePedido;
+
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentaEncabezado", ModeloReporteEncabezadoBindingSource));
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentas", ModeloReportePedidoEntreFechasBindingSource));
                 this.ReporteBase.LocalReport.ReportPath = Path.Combine(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Reportes\\VentaEntreFechas.rdlc");
-                
+                SeteoParametrosGeneralesReporte();
+
                 this.ReporteBase.LocalReport.Refresh();
                 this.ReporteBase.RefreshReport();
                 this.ReporteBase.LocalReport.DataSources.Clear();
@@ -75,7 +82,9 @@ namespace Reportes
         private void FormReportes_Load(object sender, EventArgs e)
         {
             //ReporteBase.LocalReport.DataSources.Clear();
-            SeteoParametrosGeneralesReporte();
+            AsignacionParametrosGenerales("Mundo Renault", "123456", "Pellegrini", "10/10/2010");
+            //SeteoParametrosGeneralesReporte();
+                        
 
         }
         //Setea los parametros generales de reporte como ser el nombre de la empresa, direccion telefono. Se podria
@@ -94,6 +103,14 @@ namespace Reportes
         {
             //prueba
             ReporteBase = new ReportViewer();
+        }
+
+        public void AsignacionParametrosGenerales(string p_nombreEmpresa, string p_telefonoEmpresa, string p_direccionEmpresa, string p_fechaVencimiento)
+        { 
+            glb_var_NombreEmpresa = p_nombreEmpresa;
+            glb_var_TelefonoEmpresa = p_telefonoEmpresa;
+            glb_var_DireccionEmpresa = p_direccionEmpresa;
+            glb_var_fechaVecimiendo = p_fechaVencimiento;
         }
 
 
