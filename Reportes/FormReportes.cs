@@ -50,7 +50,7 @@ namespace Reportes
                 this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentaEncabezado", ModeloReporteEncabezadoBindingSource));
                 this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentas", ModeloReportePedidoEntreFechasBindingSource));
                 this.ReporteBase.LocalReport.ReportPath = Path.Combine(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Reportes\\VentaEntreFechas.rdlc");
-                SeteoParametrosGeneralesReporte();
+               // SeteoParametrosGeneralesReporte();
 
                 this.ReporteBase.LocalReport.Refresh();
                 this.ReporteBase.RefreshReport();
@@ -82,7 +82,7 @@ namespace Reportes
         private void FormReportes_Load(object sender, EventArgs e)
         {
             //ReporteBase.LocalReport.DataSources.Clear();
-            AsignacionParametrosGenerales("Mundo Renault", "123456", "Pellegrini", "10/10/2010");
+           // AsignacionParametrosGenerales("Mundo Renault", "123456", "Pellegrini", "10/10/2010");
             //SeteoParametrosGeneralesReporte();
                         
 
