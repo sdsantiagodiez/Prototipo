@@ -926,7 +926,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!monto_ventas.Value, "DSInformeVentas")</Value>
+                  <Value>=First(Fields!MontoTotal.Value, "DSInformeVentaEncabezado")</Value>
                   <Style>
                     <Format>'$'0.00;('$'0.00)</Format>
                   </Style>
@@ -1030,11 +1030,11 @@
         </Field>
         <Field Name="codigo_cliente">
           <DataField>codigo_cliente</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="monto_ventas">
           <DataField>monto_ventas</DataField>
-          <rd:TypeName>System.Single</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="nombre_cliente">
           <DataField>nombre_cliente</DataField>
@@ -1043,9 +1043,8 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloReporteEncabezado</rd:TableName>
-        <rd:ObjectDataSourceSelectMethod>detalleVenta</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezado, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ModeloReporteVentaEntreFechas</rd:TableName>
+        <rd:ObjectDataSourceType>Modelos.ModeloReporteVentaEntreFechas, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
     <DataSet Name="DSInformeVentaEncabezado">
@@ -1068,7 +1067,7 @@
         </Field>
         <Field Name="MontoTotal">
           <DataField>MontoTotal</DataField>
-          <rd:TypeName>System.Single</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="PersonaDesde">
           <DataField>PersonaDesde</DataField>

@@ -46,11 +46,10 @@ namespace Reportes
 
                 ModeloReporteEncabezadoBindingSource.DataSource = p_pedidoentrefechas;
                 ModeloReportePedidoEntreFechasBindingSource.DataSource=p_pedidoentrefechas.detalleVenta;
+                
 
-                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentaEncabezado", ModeloReporteEncabezadoBindingSource));
-                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentas", ModeloReportePedidoEntreFechasBindingSource));
                 this.ReporteBase.LocalReport.ReportPath = Path.Combine(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Reportes\\VentasEntreFechas.rdlc");
-               // SeteoParametrosGeneralesReporte();
+               
 
                 this.ReporteBase.LocalReport.Refresh();
                 this.ReporteBase.RefreshReport();
@@ -110,6 +109,8 @@ namespace Reportes
             glb_var_DireccionEmpresa = p_direccionEmpresa;
             glb_var_fechaVecimiendo = p_fechaVencimiento;
         }
+
+       
 
 
     }
