@@ -12,6 +12,6 @@ namespace Modelos
         public String codProveedor { get; set; }
         public int CantidadPedidos { get; set; }
         public int CantidadArticulos { get; set; }
-        public float MontoTotal { get; set; }
+        public decimal MontoTotal { get; set; }
     }
 }

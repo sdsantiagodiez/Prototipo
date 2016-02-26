@@ -304,7 +304,7 @@ namespace Datos
                 lcl_mod_ReporteEncabezado.detallePedido[i].razonSocial = (string)drPedidosEntreFechas["razon_social"];
                 lcl_mod_ReporteEncabezado.detallePedido[i].CantidadArticulos = (int)drPedidosEntreFechas["cantidad_articulos"];
                 lcl_mod_ReporteEncabezado.detallePedido[i].CantidadPedidos = (int)drPedidosEntreFechas["cantidad_pedidos"];
-                lcl_mod_ReporteEncabezado.detallePedido[i].MontoTotal = (float)drPedidosEntreFechas["monto_total"];
+                lcl_mod_ReporteEncabezado.detallePedido[i].MontoTotal = (decimal)drPedidosEntreFechas["monto_total"];
                 lcl_mod_ReporteEncabezado.MontoTotal = lcl_mod_ReporteEncabezado.MontoTotal + lcl_mod_ReporteEncabezado.detallePedido[i].MontoTotal;
                 i++;
             }
@@ -363,7 +363,7 @@ namespace Datos
                 lcl_mod_ReporteEncabezado.detallePedido[i].razonSocial = (string)drPedidosEntreFechas["razon_social"];
                 lcl_mod_ReporteEncabezado.detallePedido[i].CantidadArticulos = (int)drPedidosEntreFechas["cantidad_articulos"];
                 lcl_mod_ReporteEncabezado.detallePedido[i].CantidadPedidos = (int)drPedidosEntreFechas["cantidad_pedidos"];
-                lcl_mod_ReporteEncabezado.detallePedido[i].MontoTotal = (float)drPedidosEntreFechas["monto_total"];
+                lcl_mod_ReporteEncabezado.detallePedido[i].MontoTotal = (decimal)drPedidosEntreFechas["monto_total"];
                 lcl_mod_ReporteEncabezado.MontoTotal = lcl_mod_ReporteEncabezado.MontoTotal + lcl_mod_ReporteEncabezado.detallePedido[i].MontoTotal;
                 i++;
 
@@ -424,7 +424,7 @@ namespace Datos
                 lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].nombre_cliente = (string)drVentasEntreFechas["nombre_cliente"];
                 lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].cantidad_ventas = (int)drVentasEntreFechas["cantidad_ventas"];
                 lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].cantidad_articulos = (int)drVentasEntreFechas["cantidad_articulos"];
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].monto_ventas = (float)drVentasEntreFechas["monto_ventas"];
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].monto_ventas = (decimal)drVentasEntreFechas["monto_ventas"];
                 lcl_mod_ReporteEncabezadoVentaEntreFechas.MontoTotal = lcl_mod_ReporteEncabezadoVentaEntreFechas.MontoTotal + lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].monto_ventas;
                 i++;
             }
@@ -475,16 +475,18 @@ namespace Datos
             lcl_mod_ReporteEncabezadoVentaEntreFechas.PersonaDesde = "00000000";
             lcl_mod_ReporteEncabezadoVentaEntreFechas.PersonaHasta = "99999999";
             lcl_mod_ReporteEncabezadoVentaEntreFechas.FechaInforme = DateTime.Today;
-            int i = 0;
+           
             while (drVentasEntreFechas.Read())
             {
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].codigo_cliente = (int)drVentasEntreFechas["codigo_cliente"];
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].nombre_cliente = (string)drVentasEntreFechas["nombre_cliente"];
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].cantidad_ventas = (int)drVentasEntreFechas["cantidad_ventas"];
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].cantidad_articulos = (int)drVentasEntreFechas["cantidad_articulos"];
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].monto_ventas = (float)drVentasEntreFechas["monto_ventas"];
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.MontoTotal = lcl_mod_ReporteEncabezadoVentaEntreFechas.MontoTotal + lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].monto_ventas;
-                i++;
+                ModeloReporteVentaEntreFechas lcl_var_modeloEFechas = new ModeloReporteVentaEntreFechas();
+                lcl_var_modeloEFechas.codigo_cliente = (int)drVentasEntreFechas["codigo_cliente"];
+                lcl_var_modeloEFechas.nombre_cliente = (string)drVentasEntreFechas["nombre_cliente"];
+                lcl_var_modeloEFechas.cantidad_ventas = (int)drVentasEntreFechas["cantidad_ventas"];
+                lcl_var_modeloEFechas.cantidad_articulos = (int)drVentasEntreFechas["cantidad_articulos"];
+                lcl_var_modeloEFechas.monto_ventas = (decimal)drVentasEntreFechas["monto_ventas"];
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.MontoTotal = lcl_mod_ReporteEncabezadoVentaEntreFechas.MontoTotal + lcl_var_modeloEFechas.monto_ventas;
+                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta.Add(lcl_var_modeloEFechas);
+   
             }
             drVentasEntreFechas.Close();
 

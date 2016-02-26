@@ -483,7 +483,6 @@
           </Style>
         </Textbox>
         <Textbox Name="txtFecha">
-          <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
@@ -587,7 +586,6 @@
           </Style>
         </Textbox>
         <Textbox Name="txtFechaDesde">
-          <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
@@ -810,13 +808,12 @@
           </Style>
         </Textbox>
         <Textbox Name="txtFechaHasta">
-          <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!PersonaHasta.Value, "DSInformeVentaEncabezado")</Value>
+                  <Value>=First(Fields!FechaHasta.Value, "DSInformeVentaEncabezado")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -877,7 +874,6 @@
           </Style>
         </Textbox>
         <Textbox Name="txtClienteHasta">
-          <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
@@ -923,13 +919,12 @@
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
         <Textbox Name="Total">
-          <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!MontoTotal.Value, "DSInformeVentaEncabezado")</Value>
+                  <Value>=First(Fields!monto_ventas.Value, "DSInformeVentas")</Value>
                   <Style />
                 </TextRun>
               </TextRuns>

@@ -45,18 +45,16 @@ namespace Reportes
                 ModeloReportePedidoEntreFechasBindingSource.Clear();
 
                 ModeloReporteEncabezadoBindingSource.DataSource = p_pedidoentrefechas;
-                ModeloReportePedidoEntreFechasBindingSource.DataSource=p_pedidoentrefechas.detallePedido;
+                ModeloReportePedidoEntreFechasBindingSource.DataSource=p_pedidoentrefechas.detalleVenta;
 
                 this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentaEncabezado", ModeloReporteEncabezadoBindingSource));
                 this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentas", ModeloReportePedidoEntreFechasBindingSource));
-                this.ReporteBase.LocalReport.ReportPath = Path.Combine(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Reportes\\VentaEntreFechas.rdlc");
+                this.ReporteBase.LocalReport.ReportPath = Path.Combine(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Reportes\\VentasEntreFechas.rdlc");
                // SeteoParametrosGeneralesReporte();
 
                 this.ReporteBase.LocalReport.Refresh();
                 this.ReporteBase.RefreshReport();
-                this.ReporteBase.LocalReport.DataSources.Clear();
-               
-                this.ReporteBase.RefreshReport();
+                
             }
         }
 

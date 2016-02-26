@@ -15,6 +15,6 @@ namespace Modelos
        public string PersonaHasta { get; set; }
        public List<ModeloReportePedidoEntreFechas> detallePedido { get; set; }
        public List<ModeloReporteVentaEntreFechas> detalleVenta { get; set; }
-       public float MontoTotal { get; set; }
+       public decimal MontoTotal { get; set; }
     }
 }
