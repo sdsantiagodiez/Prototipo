@@ -60,7 +60,8 @@ namespace Reportes
 
                 ModeloReporteEncabezadoBindingSource.DataSource = p_pedidoentrefechas;
                 ModeloReportePedidoEntreFechasBindingSource.DataSource=p_pedidoentrefechas.detalleVenta;
-               
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentaEncabezado", ModeloReporteEncabezadoBindingSource));
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentas", ModeloReportePedidoEntreFechasBindingSource));
                 
                 this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.VentasEntreFechas.rdlc";
 

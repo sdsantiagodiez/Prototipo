@@ -40,8 +40,7 @@
             // 
             // ModeloReportePedidoEntreFechasBindingSource
             // 
-            this.ModeloReportePedidoEntreFechasBindingSource.DataMember = "detalleVenta";
-            this.ModeloReportePedidoEntreFechasBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezado);
+            this.ModeloReportePedidoEntreFechasBindingSource.DataSource = typeof(Modelos.ModeloReporteVentaEntreFechas);
             // 
             // ModeloReporteEncabezadoBindingSource
             // 
@@ -49,13 +48,12 @@
             // 
             // ReporteBase
             // 
-            reportDataSource1.Name = "DSInformePedidos";
-            reportDataSource1.Value = this.ModeloReporteEncabezadoBindingSource;
-            reportDataSource2.Name = "DSInformePedidoEncabezado";
+            reportDataSource1.Name = "DSInformeVentas";
+            reportDataSource2.Name = "DSInformeVentaEncabezado";
             reportDataSource2.Value = this.ModeloReporteEncabezadoBindingSource;
             this.ReporteBase.LocalReport.DataSources.Add(reportDataSource1);
             this.ReporteBase.LocalReport.DataSources.Add(reportDataSource2);
-            this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.PedidosEntreFechas.rdlc";
+            this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.VentasEntreFechas.rdlc";
             this.ReporteBase.Location = new System.Drawing.Point(12, 12);
             this.ReporteBase.Name = "ReporteBase";
             this.ReporteBase.Size = new System.Drawing.Size(803, 528);
