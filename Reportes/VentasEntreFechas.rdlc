@@ -345,6 +345,7 @@
                               <Value>=Fields!monto_ventas.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>'$'0.00;('$'0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -362,6 +363,7 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -925,7 +927,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>=First(Fields!monto_ventas.Value, "DSInformeVentas")</Value>
-                  <Style />
+                  <Style>
+                    <Format>'$'0.00;('$'0.00)</Format>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -946,6 +950,7 @@
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
             <PaddingBottom>2pt</PaddingBottom>
+            <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
           </Style>
         </Textbox>
         <Textbox Name="Textbox9">
