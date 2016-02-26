@@ -30,26 +30,39 @@ namespace Reportes
             InitializeComponent();
             if (p_tipoReporte == "PedidoEntreFechas")
             {
+                BindingSource ModeloReporteEncabezadoPedidoBindingSource = new BindingSource();
+                BindingSource ModeloReporteDetalleBindingSource = new BindingSource();
+
+                ModeloReporteEncabezadoPedidoBindingSource.DataSource = p_pedidoentrefechas;
+                ModeloReporteDetalleBindingSource.DataSource = p_pedidoentrefechas.detallePedido;
+                ModeloReporteDetalleBindingSource.DataMember = "detallePedido";
+
+                List<ModeloReporteEncabezado> var_auxiliar = new List<ModeloReporteEncabezado>();
+                var_auxiliar.Add(p_pedidoentrefechas);
+
                 this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.PedidosEntreFechas.rdlc";
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformePedidos", p_pedidoentrefechas.detallePedido));
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformePedidoEncabezado", var_auxiliar));
+                //this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformePedidoEncabezado", p_pedidoentrefechas));
+
                 this.ReporteBase.LocalReport.Refresh();
                 this.ReporteBase.RefreshReport();
-                this.ReporteBase.LocalReport.DataSources.Clear();
-                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformePedidoEncabezado", p_pedidoentrefechas));
-                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformePedidos", p_pedidoentrefechas.detallePedido));
-                this.ReporteBase.RefreshReport();
+                          
             } else
             {
                 //este constructor se construye al modelo de venta entre fechas  
+                
+
+
                     //limpio los binding source
                 ModeloReporteEncabezadoBindingSource.Clear();
                 ModeloReportePedidoEntreFechasBindingSource.Clear();
 
                 ModeloReporteEncabezadoBindingSource.DataSource = p_pedidoentrefechas;
                 ModeloReportePedidoEntreFechasBindingSource.DataSource=p_pedidoentrefechas.detalleVenta;
-                
-
-                this.ReporteBase.LocalReport.ReportPath = Path.Combine(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Reportes\\VentasEntreFechas.rdlc");
                
+                
+                this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.VentasEntreFechas.rdlc";
 
                 this.ReporteBase.LocalReport.Refresh();
                 this.ReporteBase.RefreshReport();

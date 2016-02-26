@@ -31,31 +31,31 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.ModeloReporteEncabezadoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ModeloReportePedidoEntreFechasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ModeloReporteEncabezadoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ReporteBase = new Microsoft.Reporting.WinForms.ReportViewer();
-            ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteEncabezadoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReportePedidoEntreFechasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteEncabezadoBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ModeloReporteEncabezadoBindingSource
-            // 
-            this.ModeloReporteEncabezadoBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezado);
             // 
             // ModeloReportePedidoEntreFechasBindingSource
             // 
             this.ModeloReportePedidoEntreFechasBindingSource.DataMember = "detalleVenta";
             this.ModeloReportePedidoEntreFechasBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezado);
             // 
+            // ModeloReporteEncabezadoBindingSource
+            // 
+            this.ModeloReporteEncabezadoBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezado);
+            // 
             // ReporteBase
             // 
-            reportDataSource1.Name = "DSInformeVentas";
-            reportDataSource1.Value = this.ModeloReportePedidoEntreFechasBindingSource;
-            reportDataSource2.Name = "DSInformeVentaEncabezado";
+            reportDataSource1.Name = "DSInformePedidos";
+            reportDataSource1.Value = this.ModeloReporteEncabezadoBindingSource;
+            reportDataSource2.Name = "DSInformePedidoEncabezado";
             reportDataSource2.Value = this.ModeloReporteEncabezadoBindingSource;
             this.ReporteBase.LocalReport.DataSources.Add(reportDataSource1);
             this.ReporteBase.LocalReport.DataSources.Add(reportDataSource2);
-            this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.VentasEntreFechas.rdlc";
+            this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.PedidosEntreFechas.rdlc";
             this.ReporteBase.Location = new System.Drawing.Point(12, 12);
             this.ReporteBase.Name = "ReporteBase";
             this.ReporteBase.Size = new System.Drawing.Size(803, 528);
@@ -71,8 +71,8 @@
             this.Name = "FormReportes";
             this.Text = "FormReportes";
             this.Load += new System.EventHandler(this.FormReportes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteEncabezadoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReportePedidoEntreFechasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteEncabezadoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

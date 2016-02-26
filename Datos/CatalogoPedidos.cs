@@ -329,13 +329,13 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "SELECT Entidades.codigo AS codigo_proveedor, Proveedores.razon_social as razon_social,"+
-                "COUNT(pedidos.numero_pedido) as cantidad_pedidos,SUM(cantidad) as cantidad_articulos,"+
-                "SUM(Lineas_Pedidos.valor_parcial) as monto_total FROM Pedidos"+
-                "INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido"+
-                "INNER JOIN Pedidos_Proveedores ON Pedidos_Proveedores.numero_pedido= Pedidos.numero_pedido"+
-                "INNER JOIN Entidades ON Entidades.codigo= Pedidos_Proveedores.codigo_entidad"+
-                "INNER JOIN Proveedores ON Proveedores.codigo_entidad= Entidades.codigo"+
+                "SELECT Entidades.codigo AS codigo_proveedor, Proveedores.razon_social as razon_social, "+
+                "COUNT(pedidos.numero_pedido) as cantidad_pedidos,SUM(cantidad) as cantidad_articulos, "+
+                "SUM(Lineas_Pedidos.valor_parcial) as monto_total FROM Pedidos "+
+                "INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido "+
+                "INNER JOIN Pedidos_Proveedores ON Pedidos_Proveedores.numero_pedido= Pedidos.numero_pedido "+
+                "INNER JOIN Entidades ON Entidades.codigo= Pedidos_Proveedores.codigo_entidad "+
+                "INNER JOIN Proveedores ON Proveedores.codigo_entidad= Entidades.codigo "+
                 "WHERE Pedidos.fecha>= @fecha_desde AND Pedidos.fecha<=@fecha_hasta " +
                 "GROUP BY Entidades.codigo, Proveedores.razon_social";
 
