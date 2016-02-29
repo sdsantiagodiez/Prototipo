@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Controladores;
 using Modelos;
 using Reportes;
+using System.Globalization;
 
 namespace Vista
 {
@@ -36,6 +37,9 @@ namespace Vista
 
         private void btnGeneraReporteVentas_Click(object sender, EventArgs e)
         {
+            DateTime lcl_var_DateFrom = DateTime.ParseExact(txtFecDesdeVentas.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            DateTime lcl_var_DateTo = DateTime.ParseExact(txtFecHastaVentas.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
             if (txtFecDesdeVentas.Text == "" || txtFecHastaVentas.Text == "" || (txtCliente.Text == "" && chkAllClientes.Checked == false))
             {
                 MessageBox.Show("No puedes dejar el campo vacio", "Campos Vacios", MessageBoxButtons.OK);
@@ -44,11 +48,12 @@ namespace Vista
             {
                 if (chkAllClientes.Checked == true)
                 {
-                    glb_frm_FormReportes = glb_con_Reporte.ReporteVentaEntreFechas(Convert.ToDateTime(txtFecDesdeVentas.Text), Convert.ToDateTime(txtFecHastaVentas.Text), 0);
+                    //glb_frm_FormReportes = glb_con_Reporte.ReporteVentaEntreFechas(Convert.ToDateTime(txtFecDesdeVentas.Text), Convert.ToDateTime(txtFecHastaVentas.Text), 0);
+                    glb_frm_FormReportes = glb_con_Reporte.ReporteVentaEntreFechas(lcl_var_DateFrom, lcl_var_DateTo, 0);
                 }
                 else
                 {
-                    glb_frm_FormReportes = glb_con_Reporte.ReporteVentaEntreFechas(Convert.ToDateTime(txtFecDesdeVentas.Text), Convert.ToDateTime(txtFecHastaVentas.Text), Convert.ToInt32(txtCliente.Text));
+                    glb_frm_FormReportes = glb_con_Reporte.ReporteVentaEntreFechas(lcl_var_DateFrom, lcl_var_DateTo, Convert.ToInt32(txtCliente.Text));
                 }
 
                 glb_frm_FormReportes.ShowDialog();
@@ -57,6 +62,9 @@ namespace Vista
 
         private void btnGeneraReportePedido_Click(object sender, EventArgs e)
         {
+            DateTime lcl_var_DateFrom = DateTime.ParseExact(txtPedidoFechaDesde.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            DateTime lcl_var_DateTo = DateTime.ParseExact(txtPedidoFechaDesde.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
             if (txtPedidoFechaDesde.Text == "" || txtPedidoFechaHasta.Text == "" || (txtProveedor.Text == "" && chkboxAllProv.Checked==false))
             {
                 MessageBox.Show("No puedes dejar el campo vacio", "Campos Vacios", MessageBoxButtons.OK);
@@ -65,11 +73,12 @@ namespace Vista
             {
                 if (chkboxAllProv.Checked == true)
                 {
-                    glb_frm_FormReportes = glb_con_Reporte.ReportePedidoEntreFechas(Convert.ToDateTime(txtPedidoFechaDesde.Text), Convert.ToDateTime(txtPedidoFechaHasta.Text), 0);
+                    
+                    glb_frm_FormReportes = glb_con_Reporte.ReportePedidoEntreFechas(lcl_var_DateFrom, lcl_var_DateTo, 0);
                 }
                 else
                 {
-                    glb_frm_FormReportes = glb_con_Reporte.ReportePedidoEntreFechas(Convert.ToDateTime(txtPedidoFechaDesde.Text), Convert.ToDateTime(txtPedidoFechaHasta.Text), Convert.ToInt32(txtProveedor.Text));
+                    glb_frm_FormReportes = glb_con_Reporte.ReportePedidoEntreFechas(lcl_var_DateFrom, lcl_var_DateTo, Convert.ToInt32(txtProveedor.Text));
                 }
 
                 glb_frm_FormReportes.ShowDialog();
