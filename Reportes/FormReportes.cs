@@ -30,20 +30,17 @@ namespace Reportes
             InitializeComponent();
             if (p_tipoReporte == "PedidoEntreFechas")
             {
-                BindingSource ModeloReporteEncabezadoPedidoBindingSource = new BindingSource();
-                BindingSource ModeloReporteDetalleBindingSource = new BindingSource();
+               
+                ModeloReportePedidoEntreFechasBindingSource.DataSource= typeof(ModeloReportePedidoEntreFechas);
+                ModeloReporteEncabezadoBindingSource.DataSource = p_pedidoentrefechas;
+                ModeloReportePedidoEntreFechasBindingSource.DataSource = p_pedidoentrefechas.detallePedido;
 
-                ModeloReporteEncabezadoPedidoBindingSource.DataSource = p_pedidoentrefechas;
-                ModeloReporteDetalleBindingSource.DataSource = p_pedidoentrefechas.detallePedido;
-                ModeloReporteDetalleBindingSource.DataMember = "detallePedido";
-
-                List<ModeloReporteEncabezado> var_auxiliar = new List<ModeloReporteEncabezado>();
-                var_auxiliar.Add(p_pedidoentrefechas);
+                this.ReporteBase.LocalReport.DataSources.RemoveAt(0);
+                //this.ReporteBase.LocalReport.DataSources.RemoveAt(1);
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformePedidoEncabezado", ModeloReporteEncabezadoBindingSource));
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformePedidos", ModeloReportePedidoEntreFechasBindingSource));
 
                 this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.PedidosEntreFechas.rdlc";
-                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformePedidos", p_pedidoentrefechas.detallePedido));
-                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformePedidoEncabezado", var_auxiliar));
-                //this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformePedidoEncabezado", p_pedidoentrefechas));
 
                 this.ReporteBase.LocalReport.Refresh();
                 this.ReporteBase.RefreshReport();
