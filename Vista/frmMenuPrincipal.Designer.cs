@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.btnPedidoProv = new System.Windows.Forms.Button();
             this.btnVenta = new System.Windows.Forms.Button();
@@ -47,6 +48,7 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblNombreUsuario = new System.Windows.Forms.Label();
+            this.timerFechaHora = new System.Windows.Forms.Timer(this.components);
             this.pnlER.SuspendLayout();
             this.pnlED.SuspendLayout();
             this.pnlEC.SuspendLayout();
@@ -233,6 +235,10 @@
             this.lblNombreUsuario.TabIndex = 15;
             this.lblNombreUsuario.Text = "LEANDRO";
             // 
+            // timerFechaHora
+            // 
+            this.timerFechaHora.Tick += new System.EventHandler(this.timerFechaHora_Tick);
+            // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -283,5 +289,6 @@
         internal System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Panel panel1;
         internal System.Windows.Forms.Label lblNombreUsuario;
+        private System.Windows.Forms.Timer timerFechaHora;
     }
 }

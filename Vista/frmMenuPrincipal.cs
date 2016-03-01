@@ -20,6 +20,7 @@ namespace Vista
             lblNombreUsuario.Text = "Usuario TEST";
             lblFechaLog.Text = DateTime.Today.ToString("dd/MM/yyyy");
             lblHoraLog.Text = DateTime.Now.ToString("HH:mm:ss tt");
+            timerFechaHora.Enabled = true;
         }
 
         public frmMenuPrincipal(List<ModeloRoles> roles, ModeloPersonas usuario)
@@ -99,6 +100,12 @@ namespace Vista
         {
             frmABMRaiz frmABM = new frmABMRaiz();
             frmABM.ShowDialog();
+        }
+
+        private void timerFechaHora_Tick(object sender, EventArgs e)
+        {
+            lblFechaLog.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            lblHoraLog.Text = DateTime.Now.ToString("HH:mm:ss tt");
         }
     }
 }
