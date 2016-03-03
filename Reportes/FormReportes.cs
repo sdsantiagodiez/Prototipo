@@ -86,6 +86,23 @@ namespace Reportes
             this.ReporteBase.RefreshReport();
         }
 
+        public FormReportes(ModeloReporteTop10Articulos p_top10Articulos)
+        {   //este constructor se construye al modelo de pedido entre fechas  
+            InitializeComponent();
+                ModeloReportePedidoEntreFechasBindingSource.DataSource = typeof(ModeloReporteTop10Articulos);
+                 ModeloReportePedidoEntreFechasBindingSource.DataSource = p_top10Articulos;
+
+                this.ReporteBase.LocalReport.DataSources.RemoveAt(0);
+                //this.ReporteBase.LocalReport.DataSources.RemoveAt(1);
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeTop10Articulos", ModeloReportePedidoEntreFechasBindingSource));
+                
+                this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.Top10Articulos.rdlc";
+
+                this.ReporteBase.LocalReport.Refresh();
+                this.ReporteBase.RefreshReport();
+
+                   }
+
 
         private void FormReportes_Load(object sender, EventArgs e)
         {

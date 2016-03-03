@@ -495,6 +495,50 @@ namespace Datos
             return lcl_mod_ReporteEncabezadoVentaEntreFechas;
         }
 
+        public List<ModeloReporteTop10Articulos> getTop10Articulos(DateTime p_FechaInicio, DateTime P_FechaFin)
+        {
+
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText =
+                " SQL A PROGRAMAR";
+
+            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Date));
+            comando.Parameters["@fecha_desde"].Value = p_FechaInicio;
+            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Date));
+            comando.Parameters["@fecha_hasta"].Value = P_FechaFin;
+
+            comando.Connection.Open();
+
+            SqlDataReader drTop10Articulos = comando.ExecuteReader();
+
+            List<ModeloReporteTop10Articulos> lcl_mod_ReporteTop10Articulos = new List<ModeloReporteTop10Articulos>();
+            
+            while (drTop10Articulos.Read())
+            {
+                ModeloReporteTop10Articulos lcl_var_Top10Articulos = new ModeloReporteTop10Articulos();
+                lcl_var_Top10Articulos.cantidadArticulos = (int)drTop10Articulos["cantidad_articulos"];
+                lcl_var_Top10Articulos.cantidadDeVentas= (int)drTop10Articulos["cantidad_ventas"];
+                lcl_var_Top10Articulos.codigoArticulo = (string)drTop10Articulos["codigo_articulo"];
+                lcl_var_Top10Articulos.precioPromedioVenta = (decimal)drTop10Articulos["precio_promedio"];
+
+                lcl_mod_ReporteTop10Articulos.Add(lcl_var_Top10Articulos);
+            }
+            drTop10Articulos.Close();
+
+            comando.Connection.Close();
+
+            return lcl_mod_ReporteTop10Articulos;
+        }
+
         #region Alta/Baja/Modificación
         /*
          * True si se realizó correctamente

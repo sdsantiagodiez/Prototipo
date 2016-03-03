@@ -20,6 +20,7 @@ namespace Controladores
         int glb_var_CantidadTotalArticulos = 0;
         public ModeloReportePedidoEntreFechas glb_mod_pedidoentrefechas = new ModeloReportePedidoEntreFechas();
         public ModeloReporteVentaEntreFechas glb_mod_ventaentrefechas = new ModeloReporteVentaEntreFechas();
+        public ModeloReporteTop10Articulos glb_mod_Top10Articulos = new ModeloReporteTop10Articulos();
 
 
         public string crearReporte(String[] p_var_razonSocial, DateTime p_date_fechaInicio, DateTime p_date_fechaFin)
@@ -120,6 +121,17 @@ namespace Controladores
 
         }
 
+        public FormReportes ReporteTop10Articulos(DateTime p_fechaInicio, DateTime p_fechaFin)
+        {
+            ModeloReporteTop10Articulos lcl_mod_ReporteTop10Articulos = new ModeloReporteTop10Articulos();
+   
+            FormReportes lcl_frm_reporte = new FormReportes(lcl_mod_ReporteTop10Articulos);
+
+            return lcl_frm_reporte;
+
+
+
+        }
 
     }
 }
