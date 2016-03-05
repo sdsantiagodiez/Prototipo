@@ -69,7 +69,10 @@ namespace Reportes
             }
             else
             {
-                InitializeComponent();
+                ModeloReporteEncabezadoBindingSource.Clear();
+                ModeloReportePedidoEntreFechasBindingSource.Clear();
+
+
                 ModeloReportePedidoEntreFechasBindingSource.DataSource = typeof(ModeloReporteTop10Articulos);
                 ModeloReporteEncabezadoBindingSource.DataSource = p_pedidoentrefechas;
                 ModeloReportePedidoEntreFechasBindingSource.DataSource = p_pedidoentrefechas.detalleArticulos;
