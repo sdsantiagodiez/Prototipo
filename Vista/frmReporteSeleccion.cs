@@ -33,31 +33,41 @@ namespace Vista
         { 
             this.cmbxPedidosReportes.Items.Add("Reporte de Pedidos Entre Fechas");//Ver como agregamos los Reportes
             this.cmbxVentasReportes.Items.Add("Reporte de Ventas Entre Fechas");
+            this.cmbxVentasReportes.Items.Add("Listado Top 10 Articulos Vendidos");
         }
 
         private void btnGeneraReporteVentas_Click(object sender, EventArgs e)
         {
-            DateTime lcl_var_DateFrom = DateTime.ParseExact(txtFecDesdeVentas.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            DateTime lcl_var_DateTo = DateTime.ParseExact(txtFecHastaVentas.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+             DateTime lcl_var_DateFrom = DateTime.ParseExact(txtFecDesdeVentas.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+             DateTime lcl_var_DateTo = DateTime.ParseExact(txtFecHastaVentas.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            if (txtFecDesdeVentas.Text == "" || txtFecHastaVentas.Text == "" || (txtCliente.Text == "" && chkAllClientes.Checked == false))
+            if (cmbxVentasReportes.Text == "Reporte de Ventas Entre Fechas")
             {
-                MessageBox.Show("No puedes dejar el campo vacio", "Campos Vacios", MessageBoxButtons.OK);
-            }
-            else
-            {
-                if (chkAllClientes.Checked == true)
+               
+                if (txtFecDesdeVentas.Text == "" || txtFecHastaVentas.Text == "" || (txtCliente.Text == "" && chkAllClientes.Checked == false))
                 {
-                    //glb_frm_FormReportes = glb_con_Reporte.ReporteVentaEntreFechas(Convert.ToDateTime(txtFecDesdeVentas.Text), Convert.ToDateTime(txtFecHastaVentas.Text), 0);
-                    glb_frm_FormReportes = glb_con_Reporte.ReporteVentaEntreFechas(lcl_var_DateFrom, lcl_var_DateTo, 0);
+                    MessageBox.Show("No puedes dejar el campo vacio", "Campos Vacios", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    glb_frm_FormReportes = glb_con_Reporte.ReporteVentaEntreFechas(lcl_var_DateFrom, lcl_var_DateTo, Convert.ToInt32(txtCliente.Text));
-                }
+                    if (chkAllClientes.Checked == true)
+                    {
+                        //glb_frm_FormReportes = glb_con_Reporte.ReporteVentaEntreFechas(Convert.ToDateTime(txtFecDesdeVentas.Text), Convert.ToDateTime(txtFecHastaVentas.Text), 0);
+                        glb_frm_FormReportes = glb_con_Reporte.ReporteVentaEntreFechas(lcl_var_DateFrom, lcl_var_DateTo, 0);
+                    }
+                    else
+                    {
+                        glb_frm_FormReportes = glb_con_Reporte.ReporteVentaEntreFechas(lcl_var_DateFrom, lcl_var_DateTo, Convert.ToInt32(txtCliente.Text));
+                    }
 
-                glb_frm_FormReportes.ShowDialog();
+                   }
             }
+            else
+            {
+                glb_frm_FormReportes = glb_con_Reporte.ReporteTop10Articulos(lcl_var_DateFrom,lcl_var_DateTo);
+
+            }
+            glb_frm_FormReportes.ShowDialog();
         }
 
         private void btnGeneraReportePedido_Click(object sender, EventArgs e)
@@ -84,7 +94,40 @@ namespace Vista
                 glb_frm_FormReportes.ShowDialog();
             }
         }
+
+        
+        
+        private void cmbxVentasReportes_Leave(object sender, EventArgs e)
+        {
+            if (cmbxVentasReportes.SelectedText == "Reporte de Ventas Entre Fechas")
+            {
+                this.txtFecDesdeVentas.Visible = true;
+                this.txtFecHastaVentas.Visible = true;
+                this.chkAllClientes.Visible = true;
+                this.lblNombreCliente.Visible = true;
+                this.txtCliente.Visible = true;
+                this.btnGeneraReporteVentas.Visible = true;
+                this.lblCliente.Visible = true;
+            }
+            else if (cmbxVentasReportes.SelectedText == "Listado Top 10 Articulos Vendidos")
+            {
+                this.txtFecDesdeVentas.Text = "";
+                this.txtFecHastaVentas.Text = "";
+                this.chkAllClientes.Visible = false;
+                this.lblNombreCliente.Visible = false;
+                this.txtCliente.Visible = false;
+                this.btnGeneraReporteVentas.Visible = true; 
+                this.lblCliente.Visible = false;
+            }
+            else
+            {
+                this.btnGeneraReporteVentas.Visible = false;
+            }
+
+        }
+
+        }
     
     
     }
-}
+

@@ -488,7 +488,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Today()</Value>
+                  <Value>=First(Fields!FechaInforme.Value, "DSInformeEncabezado")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -557,7 +557,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!FechaDesde.Value, "DSInformeTop10Articulos")</Value>
+                  <Value>=First(Fields!FechaDesde.Value, "DSInformeEncabezado")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -747,7 +747,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!FechaHasta.Value, "DSInformeTop10Articulos")</Value>
+                  <Value>=First(Fields!FechaHasta.Value, "DSInformeEncabezado")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -793,7 +793,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!MontoTotal.Value, "DSInformeTop10Articulos")</Value>
+                  <Value>=First(Fields!MontoTotal.Value, "DSInformeEncabezado")</Value>
                   <Style>
                     <FontSize>12pt</FontSize>
                     <Format>'$'0.00;('$'0.00)</Format>
@@ -900,14 +900,6 @@
           <DataField>codigoArticulo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="FechaDesde">
-          <DataField>FechaDesde</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="FechaHasta">
-          <DataField>FechaHasta</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
         <Field Name="MontoTotal">
           <DataField>MontoTotal</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -919,8 +911,46 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloReporteTop10Articulos</rd:TableName>
-        <rd:ObjectDataSourceType>Modelos.ModeloReporteTop10Articulos, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ModeloReporteEncabezado</rd:TableName>
+        <rd:ObjectDataSourceSelectMethod>detalleArticulos</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezado, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DSInformeEncabezado">
+      <Query>
+        <DataSourceName>Modelos</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="FechaDesde">
+          <DataField>FechaDesde</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FechaHasta">
+          <DataField>FechaHasta</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FechaInforme">
+          <DataField>FechaInforme</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="MontoTotal">
+          <DataField>MontoTotal</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PersonaDesde">
+          <DataField>PersonaDesde</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PersonaHasta">
+          <DataField>PersonaHasta</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Modelos</rd:DataSetName>
+        <rd:TableName>ModeloReporteEncabezado</rd:TableName>
+        <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezado, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

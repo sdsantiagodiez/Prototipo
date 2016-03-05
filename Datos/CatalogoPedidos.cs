@@ -449,7 +449,7 @@ namespace Datos
 
             comando.CommandText =
                 "SELECT Entidades.codigo AS codigo_cliente, CONCAT(Personas.apellido, ', ', Personas.nombre) as nombre_cliente, " +
-                "COUNT(pedidos.numero_pedido) as cantidad_ventas,SUM(cantidad) as cantidad_articulos, " +
+                "COUNT(DISTINCT pedidos.numero_pedido) as cantidad_ventas,SUM(cantidad) as cantidad_articulos, " +
                 "SUM(Lineas_Pedidos.valor_parcial) as monto_ventas FROM Pedidos " +
                 "INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido " +
                 "INNER JOIN Pedidos_Personas ON Pedidos_Personas.numero_pedido= Pedidos.numero_pedido " +
@@ -495,7 +495,7 @@ namespace Datos
             return lcl_mod_ReporteEncabezadoVentaEntreFechas;
         }
 
-        public List<ModeloReporteTop10Articulos> getTop10Articulos(DateTime p_FechaInicio, DateTime P_FechaFin)
+        public ModeloReporteEncabezado getTop10Articulos(DateTime p_FechaInicio, DateTime P_FechaFin)
         {
 
             //Creo la conexion y la abro
@@ -509,7 +509,13 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                " SQL A PROGRAMAR";
+                " SELECT Articulos.codigo_original AS codigo_articulo,SUM(CANTIDAD) AS cantidad_articulos, "+
+				"AVG(valor_unitario) AS precio_promedio,COUNT(DISTINCT PEDIDOS.numero_pedido) AS cantidad_ventas " +
+				"FROM Pedidos  "+
+                "INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido "+
+                "INNER JOIN Articulos ON Articulos.codigo_original=Lineas_Pedidos.codigo_original "+
+                "WHERE Pedidos.fecha>= @fecha_desde AND Pedidos.fecha<=@fecha_hasta " +
+                "GROUP BY Articulos.codigo_original";
 
             comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Date));
             comando.Parameters["@fecha_desde"].Value = p_FechaInicio;
@@ -519,8 +525,13 @@ namespace Datos
             comando.Connection.Open();
 
             SqlDataReader drTop10Articulos = comando.ExecuteReader();
+            
+            ModeloReporteEncabezado lcl_mod_ReporteEncabezadoTop10Articulos = new ModeloReporteEncabezado();
 
-            List<ModeloReporteTop10Articulos> lcl_mod_ReporteTop10Articulos = new List<ModeloReporteTop10Articulos>();
+            lcl_mod_ReporteEncabezadoTop10Articulos.detalleArticulos = new List<ModeloReporteTop10Articulos>();
+            
+            lcl_mod_ReporteEncabezadoTop10Articulos.FechaDesde = p_FechaInicio;
+            lcl_mod_ReporteEncabezadoTop10Articulos.FechaHasta = P_FechaFin;
             
             while (drTop10Articulos.Read())
             {
@@ -530,13 +541,14 @@ namespace Datos
                 lcl_var_Top10Articulos.codigoArticulo = (string)drTop10Articulos["codigo_articulo"];
                 lcl_var_Top10Articulos.precioPromedioVenta = (decimal)drTop10Articulos["precio_promedio"];
 
-                lcl_mod_ReporteTop10Articulos.Add(lcl_var_Top10Articulos);
+                lcl_mod_ReporteEncabezadoTop10Articulos.MontoTotal = lcl_mod_ReporteEncabezadoTop10Articulos.MontoTotal+(lcl_var_Top10Articulos.cantidadArticulos*lcl_var_Top10Articulos.precioPromedioVenta);
+                lcl_mod_ReporteEncabezadoTop10Articulos.detalleArticulos.Add(lcl_var_Top10Articulos);
             }
             drTop10Articulos.Close();
 
             comando.Connection.Close();
 
-            return lcl_mod_ReporteTop10Articulos;
+            return lcl_mod_ReporteEncabezadoTop10Articulos;
         }
 
         #region Alta/Baja/Modificación

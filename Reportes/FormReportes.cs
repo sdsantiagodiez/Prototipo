@@ -44,27 +44,46 @@ namespace Reportes
 
                 this.ReporteBase.LocalReport.Refresh();
                 this.ReporteBase.RefreshReport();
-                          
-            } else
+
+            }
+            else if (p_tipoReporte == "VentaEntreFechas")
             {
                 //este constructor se construye al modelo de venta entre fechas  
-                
 
 
-                    //limpio los binding source
+
+                //limpio los binding source
                 ModeloReporteEncabezadoBindingSource.Clear();
                 ModeloReportePedidoEntreFechasBindingSource.Clear();
 
                 ModeloReporteEncabezadoBindingSource.DataSource = p_pedidoentrefechas;
-                ModeloReportePedidoEntreFechasBindingSource.DataSource=p_pedidoentrefechas.detalleVenta;
+                ModeloReportePedidoEntreFechasBindingSource.DataSource = p_pedidoentrefechas.detalleVenta;
                 this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentaEncabezado", ModeloReporteEncabezadoBindingSource));
                 this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeVentas", ModeloReportePedidoEntreFechasBindingSource));
-                
+
                 this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.VentasEntreFechas.rdlc";
 
                 this.ReporteBase.LocalReport.Refresh();
                 this.ReporteBase.RefreshReport();
-                
+
+            }
+            else
+            {
+                InitializeComponent();
+                ModeloReportePedidoEntreFechasBindingSource.DataSource = typeof(ModeloReporteTop10Articulos);
+                ModeloReporteEncabezadoBindingSource.DataSource = p_pedidoentrefechas;
+                ModeloReportePedidoEntreFechasBindingSource.DataSource = p_pedidoentrefechas.detalleArticulos;
+
+                this.ReporteBase.LocalReport.DataSources.RemoveAt(0);
+                //this.ReporteBase.LocalReport.DataSources.RemoveAt(1);
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeTop10Articulos", ModeloReportePedidoEntreFechasBindingSource));
+                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeEncabezado", ModeloReporteEncabezadoBindingSource));
+                this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.Top10Articulos.rdlc";
+
+                this.ReporteBase.LocalReport.Refresh();
+                this.ReporteBase.RefreshReport();
+
+            
             }
         }
 
@@ -86,24 +105,7 @@ namespace Reportes
             this.ReporteBase.RefreshReport();
         }
 
-        public FormReportes(ModeloReporteTop10Articulos p_top10Articulos)
-        {   //este constructor se construye al modelo de pedido entre fechas  
-            InitializeComponent();
-                ModeloReportePedidoEntreFechasBindingSource.DataSource = typeof(ModeloReporteTop10Articulos);
-                 ModeloReportePedidoEntreFechasBindingSource.DataSource = p_top10Articulos;
-
-                this.ReporteBase.LocalReport.DataSources.RemoveAt(0);
-                //this.ReporteBase.LocalReport.DataSources.RemoveAt(1);
-                this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInformeTop10Articulos", ModeloReportePedidoEntreFechasBindingSource));
-                
-                this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.Top10Articulos.rdlc";
-
-                this.ReporteBase.LocalReport.Refresh();
-                this.ReporteBase.RefreshReport();
-
-                   }
-
-
+        
         private void FormReportes_Load(object sender, EventArgs e)
         {
             //ReporteBase.LocalReport.DataSources.Clear();

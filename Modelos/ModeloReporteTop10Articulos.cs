@@ -12,8 +12,8 @@ namespace Modelos
         public int cantidadArticulos { get; set; }
         public decimal precioPromedioVenta { get; set; }
         public int cantidadDeVentas { get; set; }
-        public DateTime FechaDesde { get; set; }
-        public DateTime FechaHasta { get; set; }
+        //public DateTime FechaDesde { get; set; }
+        //public DateTime FechaHasta { get; set; }
         public decimal MontoTotal { get; set; }
     }
 }

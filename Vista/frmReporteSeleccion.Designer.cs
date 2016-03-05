@@ -46,13 +46,13 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.cmbxVentasReportes = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lblfechadesdevta = new System.Windows.Forms.Label();
             this.txtFecDesdeVentas = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.lblfechahastavta = new System.Windows.Forms.Label();
             this.txtFecHastaVentas = new System.Windows.Forms.TextBox();
             this.chkAllClientes = new System.Windows.Forms.CheckBox();
             this.btnGeneraReporteVentas = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lblCliente = new System.Windows.Forms.Label();
             this.txtCliente = new System.Windows.Forms.TextBox();
             this.lblNombreCliente = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -276,13 +276,13 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.55556F));
             this.tableLayoutPanel1.Controls.Add(this.cmbxVentasReportes, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label11, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label12, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblfechadesdevta, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtFecDesdeVentas, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label13, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblfechahastavta, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtFecHastaVentas, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.chkAllClientes, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.btnGeneraReporteVentas, 4, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label14, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lblCliente, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.txtCliente, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.lblNombreCliente, 2, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 6);
@@ -305,6 +305,7 @@
             this.cmbxVentasReportes.Name = "cmbxVentasReportes";
             this.cmbxVentasReportes.Size = new System.Drawing.Size(219, 24);
             this.cmbxVentasReportes.TabIndex = 1;
+            this.cmbxVentasReportes.Leave += new System.EventHandler(this.cmbxVentasReportes_Leave);
             // 
             // label11
             // 
@@ -316,15 +317,15 @@
             this.label11.TabIndex = 6;
             this.label11.Text = "Reportes:";
             // 
-            // label12
+            // lblfechadesdevta
             // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(353, 6);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(110, 17);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "Fecha Desde:";
+            this.lblfechadesdevta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblfechadesdevta.AutoSize = true;
+            this.lblfechadesdevta.Location = new System.Drawing.Point(353, 6);
+            this.lblfechadesdevta.Name = "lblfechadesdevta";
+            this.lblfechadesdevta.Size = new System.Drawing.Size(110, 17);
+            this.lblfechadesdevta.TabIndex = 3;
+            this.lblfechadesdevta.Text = "Fecha Desde:";
             // 
             // txtFecDesdeVentas
             // 
@@ -336,15 +337,15 @@
             this.txtFecDesdeVentas.Size = new System.Drawing.Size(161, 23);
             this.txtFecDesdeVentas.TabIndex = 2;
             // 
-            // label13
+            // lblfechahastavta
             // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(353, 36);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(110, 17);
-            this.label13.TabIndex = 4;
-            this.label13.Text = "Fecha Hasta:";
+            this.lblfechahastavta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblfechahastavta.AutoSize = true;
+            this.lblfechahastavta.Location = new System.Drawing.Point(353, 36);
+            this.lblfechahastavta.Name = "lblfechahastavta";
+            this.lblfechahastavta.Size = new System.Drawing.Size(110, 17);
+            this.lblfechahastavta.TabIndex = 4;
+            this.lblfechahastavta.Text = "Fecha Hasta:";
             // 
             // txtFecHastaVentas
             // 
@@ -382,16 +383,16 @@
             this.btnGeneraReporteVentas.UseVisualStyleBackColor = true;
             this.btnGeneraReporteVentas.Click += new System.EventHandler(this.btnGeneraReporteVentas_Click);
             // 
-            // label14
+            // lblCliente
             // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(3, 96);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(119, 17);
-            this.label14.TabIndex = 7;
-            this.label14.Text = "Cliente:";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCliente.AutoSize = true;
+            this.lblCliente.Location = new System.Drawing.Point(3, 96);
+            this.lblCliente.Name = "lblCliente";
+            this.lblCliente.Size = new System.Drawing.Size(119, 17);
+            this.lblCliente.TabIndex = 7;
+            this.lblCliente.Text = "Cliente:";
+            this.lblCliente.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtCliente
             // 
@@ -584,12 +585,12 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ComboBox cmbxVentasReportes;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblfechadesdevta;
         private System.Windows.Forms.TextBox txtFecDesdeVentas;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblfechahastavta;
         private System.Windows.Forms.TextBox txtFecHastaVentas;
         private System.Windows.Forms.CheckBox chkAllClientes;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.Label lblNombreCliente;
         private System.Windows.Forms.TextBox txtCliente;
         private System.Windows.Forms.Button btnGeneraReporteVentas;

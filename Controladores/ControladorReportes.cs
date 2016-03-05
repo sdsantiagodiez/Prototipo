@@ -123,9 +123,11 @@ namespace Controladores
 
         public FormReportes ReporteTop10Articulos(DateTime p_fechaInicio, DateTime p_fechaFin)
         {
-            ModeloReporteTop10Articulos lcl_mod_ReporteTop10Articulos = new ModeloReporteTop10Articulos();
-   
-            FormReportes lcl_frm_reporte = new FormReportes(lcl_mod_ReporteTop10Articulos);
+            ModeloReporteEncabezado lcl_mod_ReporteEncabezadoTop10Articulos = new ModeloReporteEncabezado();
+
+            lcl_mod_ReporteEncabezadoTop10Articulos = glb_con_pedidos.getTop10Articulos(p_fechaInicio, p_fechaFin);
+
+            FormReportes lcl_frm_reporte = new FormReportes(lcl_mod_ReporteEncabezadoTop10Articulos,"Top 10 Articulos");
 
             return lcl_frm_reporte;
 
