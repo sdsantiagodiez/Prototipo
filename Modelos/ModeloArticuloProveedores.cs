@@ -8,6 +8,12 @@ namespace Modelos
 {
     public class ModeloArticuloProveedores : ModeloArticulos
     {
+        public ModeloArticuloProveedores()
+        {
+            this.valorVenta = new ModeloValorArticulo();
+            this.valorCompra = new ModeloValorArticulo();
+        }
+        
         #region Getters/Setters
 
         #region Variables de Proveedor al que pertenece Artículo Proveedor
