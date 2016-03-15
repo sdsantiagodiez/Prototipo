@@ -9,6 +9,12 @@ namespace LibreriaClasesCompartidas
 {
     public class Validar
     {
+        public static bool validarValorDecimal(string p_stringDecimal)
+        {
+            decimal numero;
+            return Decimal.TryParse(p_stringDecimal, out numero);
+        }
+
         public static bool validarValorNumerico(string p_stringNumero)
         {
             int numero;
