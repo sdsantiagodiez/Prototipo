@@ -32,7 +32,7 @@ namespace Controladores
 
             //actualizo artículo
             lcl_mod_articuloDevolucion.stockActual = glb_mod_articuloDevolucion.stockActual + lcl_mod_lineaCorrespondiente.cantidadArticulos;
-            lcl_con_modificacion.modificarArticuloProveedor(lcl_mod_articuloDevolucion);
+            lcl_con_modificacion.modificar(lcl_mod_articuloDevolucion);
         }
 
         public ModeloArticuloProveedores getArticuloPedido(string p_numeroPedido, string p_codigoOriginal, string p_codigoArticuloProveedor)

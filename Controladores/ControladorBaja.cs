@@ -10,17 +10,31 @@ namespace Controladores
 {
     public class ControladorBaja : Controlador
     {
-        public bool eliminarPersona(ModeloPersonas pmPersona)
+        public bool eliminar(ModeloPersonas p_mod_persona)
         {
-            CatalogoPersonas cp = new CatalogoPersonas();
+            CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
 
-            return cp.remove(pmPersona);
+            return lcl_cat_personas.remove(p_mod_persona);
         }
-        public bool eliminarProveedor(ModeloProveedor pmProveedor)
+        public bool eliminar(ModeloProveedor p_mod_proveedor)
         {
-            CatalogoProveedores cp = new CatalogoProveedores();
+            CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
 
-            return cp.remove(pmProveedor);
+            return lcl_cat_proveedores.remove(p_mod_proveedor);
+        }
+
+        public bool eliminar(ModeloArticulos p_mod_articulo)
+        {
+            CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
+
+            return lcl_cat_articulos.remove(p_mod_articulo);
+        }
+
+        public bool eliminar(ModeloArticuloProveedores p_mod_articuloProveedor)
+        {
+            CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
+
+            return lcl_cat_articuloProveedores.remove(p_mod_articuloProveedor);
         }
     }
 }

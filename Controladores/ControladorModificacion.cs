@@ -10,60 +10,44 @@ namespace Controladores
 {
     public class ControladorModificacion : Controlador
     {
-        public string[] getDetalles(string pCuit)
+        public bool modificar(ModeloPersonas p_mod_persona)
         {
-            string[] detallesproveedor = new string[9];
+            CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
+            if (p_mod_persona.validar())
+            {
+                return lcl_cat_personas.update(p_mod_persona);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool modificar(ModeloProveedor p_mod_proveedor)
+        {
+            CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
+            if (p_mod_proveedor.validar())
+            {
+                return lcl_cat_proveedores.update(p_mod_proveedor);
+            }
+            else
+            {
+                return false;
+            }
+        }
 
-            CatalogoProveedores cp = new CatalogoProveedores();
+        public bool modificar(ModeloArticulos p_mod_articulo)
+        {
+            CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
             
-            List<ModeloProveedor> pActuales = new List<ModeloProveedor>();
-            ModeloProveedor mProveedor = new ModeloProveedor();
-            mProveedor.cuit = pCuit;
-            pActuales = cp.buscarProveedor(mProveedor,"cuit");
-            detallesproveedor[0] = pActuales[1].razonSocial;
-            detallesproveedor[1] = pActuales[1].cuit;
-            /*REVISAR
-             * detallesproveedor[2]= pActuales[1].direccion;
-            detallesproveedor[3] = pActuales[1].ciudad;
-            detallesproveedor[4] = pActuales[1].provincia;
-            detallesproveedor[5] = pActuales[1].codigoPostal;
-            */// detallesproveedor[6] = pActuales[1]. faltaria email;
-            // detallesproveedor[7] = pActuales[1]. faltaria telefonos;
-            detallesproveedor[8] = pActuales[1].observaciones;
-            return detallesproveedor;
-        }
+            return lcl_cat_articulos.update(p_mod_articulo);
 
-        public bool modificarPersona(ModeloPersonas pmPersona)
-        {
-            CatalogoPersonas cp = new CatalogoPersonas();
-            if (pmPersona.validar() == true)
-            {
-                return cp.update(pmPersona);
-            }
-            else
-            {
-                return false;
-            }
         }
-        public bool modificarProveedor(ModeloProveedor pmProveedor)
+        public bool modificar(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
-            CatalogoProveedores cp = new CatalogoProveedores();
-            if (pmProveedor.validar() == true)
+            CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
+            if (p_mod_articuloProveedor.validar())
             {
-                return cp.update(pmProveedor);
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public bool modificarArticuloProveedor(ModeloArticuloProveedores pmArtProv)
-        {
-            CatalogoArticuloProveedores cp = new CatalogoArticuloProveedores();
-            if (pmArtProv.validar() == true)
-            {
-                return cp.update(pmArtProv);
+                return lcl_cat_articuloProveedores.update(p_mod_articuloProveedor);
             }
             else
             {

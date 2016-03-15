@@ -63,7 +63,7 @@ namespace Controladores
             {
                 lcl_mod_articuloProveedores = lcl_cat_articulosProveedores.getOne(lcl_mod_linea.codigoOriginalArt, lcl_mod_linea.codigoArtProveedor);
                 lcl_mod_articuloProveedores.stockActual = lcl_mod_articuloProveedores.stockActual - lcl_mod_linea.cantidadArticulos;
-                lcl_con_modificacion.modificarArticuloProveedor(lcl_mod_articuloProveedores);
+                lcl_con_modificacion.modificar(lcl_mod_articuloProveedores);
             }
 
             //calcular lo que falta calcular(como total)
