@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.btnEntidad = new System.Windows.Forms.Button();
-            this.pnlED = new System.Windows.Forms.Panel();
             this.btnAltaArticProv = new System.Windows.Forms.Button();
             this.btnAltaArtic = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.pnlED.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnEntidad
@@ -46,27 +44,19 @@
             this.btnEntidad.UseVisualStyleBackColor = true;
             this.btnEntidad.Click += new System.EventHandler(this.btnEntidades_Click);
             // 
-            // pnlED
-            // 
-            this.pnlED.Controls.Add(this.btnAltaArticProv);
-            this.pnlED.Controls.Add(this.btnAltaArtic);
-            this.pnlED.Location = new System.Drawing.Point(28, 97);
-            this.pnlED.Name = "pnlED";
-            this.pnlED.Size = new System.Drawing.Size(603, 136);
-            this.pnlED.TabIndex = 4;
-            // 
             // btnAltaArticProv
             // 
-            this.btnAltaArticProv.Location = new System.Drawing.Point(199, 79);
+            this.btnAltaArticProv.Location = new System.Drawing.Point(225, 201);
             this.btnAltaArticProv.Name = "btnAltaArticProv";
             this.btnAltaArticProv.Size = new System.Drawing.Size(167, 23);
             this.btnAltaArticProv.TabIndex = 11;
             this.btnAltaArticProv.Text = "Nuevo Articulo de Proveedor";
             this.btnAltaArticProv.UseVisualStyleBackColor = true;
+            this.btnAltaArticProv.Click += new System.EventHandler(this.btnAltaArticProv_Click);
             // 
             // btnAltaArtic
             // 
-            this.btnAltaArtic.Location = new System.Drawing.Point(220, 3);
+            this.btnAltaArtic.Location = new System.Drawing.Point(248, 110);
             this.btnAltaArtic.Name = "btnAltaArtic";
             this.btnAltaArtic.Size = new System.Drawing.Size(107, 23);
             this.btnAltaArtic.TabIndex = 8;
@@ -88,12 +78,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(666, 295);
+            this.Controls.Add(this.btnAltaArticProv);
             this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.pnlED);
+            this.Controls.Add(this.btnAltaArtic);
             this.Controls.Add(this.btnEntidad);
             this.Name = "frmABMRaiz";
             this.Text = "Altas, Bajas, y Modificaciones";
-            this.pnlED.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -101,7 +91,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnEntidad;
-        private System.Windows.Forms.Panel pnlED;
         private System.Windows.Forms.Button btnAltaArticProv;
         private System.Windows.Forms.Button btnAltaArtic;
         private System.Windows.Forms.Button btnSalir;

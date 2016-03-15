@@ -29,15 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.menuStripABM = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItemBuscar = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemNuevo = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemGuardar = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemGuardarNuevaEntidad = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemGuardarCambios = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemEliminar = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemLimpiarCampos = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemCancelar = new System.Windows.Forms.ToolStripMenuItem();
             this.tblLayoutPanelForm = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxTipoEntidad = new System.Windows.Forms.GroupBox();
             this.pnlTipoEntidad = new System.Windows.Forms.Panel();
@@ -122,7 +113,6 @@
             this.codigoMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDatosAdicionales = new System.Windows.Forms.Button();
-            this.menuStripABM.SuspendLayout();
             this.tblLayoutPanelForm.SuspendLayout();
             this.grpBoxTipoEntidad.SuspendLayout();
             this.pnlTipoEntidad.SuspendLayout();
@@ -146,79 +136,6 @@
             this.tblLayoutPanelMailListaAgregarQuitar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMail)).BeginInit();
             this.SuspendLayout();
-            // 
-            // menuStripABM
-            // 
-            this.menuStripABM.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemBuscar,
-            this.toolStripMenuItemNuevo,
-            this.toolStripMenuItemGuardar,
-            this.toolStripMenuItemEliminar,
-            this.toolStripMenuItemLimpiarCampos,
-            this.toolStripMenuItemCancelar});
-            this.menuStripABM.Location = new System.Drawing.Point(0, 0);
-            this.menuStripABM.Name = "menuStripABM";
-            this.menuStripABM.Size = new System.Drawing.Size(730, 24);
-            this.menuStripABM.TabIndex = 0;
-            this.menuStripABM.Text = "menuStrip1";
-            // 
-            // toolStripMenuItemBuscar
-            // 
-            this.toolStripMenuItemBuscar.Name = "toolStripMenuItemBuscar";
-            this.toolStripMenuItemBuscar.Size = new System.Drawing.Size(54, 20);
-            this.toolStripMenuItemBuscar.Text = "Buscar";
-            this.toolStripMenuItemBuscar.Click += new System.EventHandler(this.toolStripMenuItemBuscar_Click);
-            // 
-            // toolStripMenuItemNuevo
-            // 
-            this.toolStripMenuItemNuevo.Name = "toolStripMenuItemNuevo";
-            this.toolStripMenuItemNuevo.Size = new System.Drawing.Size(54, 20);
-            this.toolStripMenuItemNuevo.Text = "Nuevo";
-            this.toolStripMenuItemNuevo.Click += new System.EventHandler(this.toolStripMenuItemNuevo_Click);
-            // 
-            // toolStripMenuItemGuardar
-            // 
-            this.toolStripMenuItemGuardar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemGuardarNuevaEntidad,
-            this.toolStripMenuItemGuardarCambios});
-            this.toolStripMenuItemGuardar.Name = "toolStripMenuItemGuardar";
-            this.toolStripMenuItemGuardar.Size = new System.Drawing.Size(61, 20);
-            this.toolStripMenuItemGuardar.Text = "Guardar";
-            // 
-            // toolStripMenuItemGuardarNuevaEntidad
-            // 
-            this.toolStripMenuItemGuardarNuevaEntidad.Name = "toolStripMenuItemGuardarNuevaEntidad";
-            this.toolStripMenuItemGuardarNuevaEntidad.Size = new System.Drawing.Size(196, 22);
-            this.toolStripMenuItemGuardarNuevaEntidad.Text = "Guardar Nueva Entidad";
-            this.toolStripMenuItemGuardarNuevaEntidad.Click += new System.EventHandler(this.toolStripMenuItemGuardarNuevaEntidad_Click);
-            // 
-            // toolStripMenuItemGuardarCambios
-            // 
-            this.toolStripMenuItemGuardarCambios.Name = "toolStripMenuItemGuardarCambios";
-            this.toolStripMenuItemGuardarCambios.Size = new System.Drawing.Size(196, 22);
-            this.toolStripMenuItemGuardarCambios.Text = "Guardar Cambios";
-            this.toolStripMenuItemGuardarCambios.Click += new System.EventHandler(this.ToolStripMenuItemGuardarCambios_Click);
-            // 
-            // toolStripMenuItemEliminar
-            // 
-            this.toolStripMenuItemEliminar.Name = "toolStripMenuItemEliminar";
-            this.toolStripMenuItemEliminar.Size = new System.Drawing.Size(62, 20);
-            this.toolStripMenuItemEliminar.Text = "Eliminar";
-            this.toolStripMenuItemEliminar.Click += new System.EventHandler(this.toolStripMenuItemEliminar_Click);
-            // 
-            // toolStripMenuItemLimpiarCampos
-            // 
-            this.toolStripMenuItemLimpiarCampos.Name = "toolStripMenuItemLimpiarCampos";
-            this.toolStripMenuItemLimpiarCampos.Size = new System.Drawing.Size(104, 20);
-            this.toolStripMenuItemLimpiarCampos.Text = "Limpiar campos";
-            this.toolStripMenuItemLimpiarCampos.Click += new System.EventHandler(this.toolStripMenuItemLimpiarCampos_Click);
-            // 
-            // toolStripMenuItemCancelar
-            // 
-            this.toolStripMenuItemCancelar.Name = "toolStripMenuItemCancelar";
-            this.toolStripMenuItemCancelar.Size = new System.Drawing.Size(65, 20);
-            this.toolStripMenuItemCancelar.Text = "Cancelar";
-            this.toolStripMenuItemCancelar.Click += new System.EventHandler(this.toolStripMenuItemCancelar_Click);
             // 
             // tblLayoutPanelForm
             // 
@@ -1185,16 +1102,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(730, 741);
             this.Controls.Add(this.tblLayoutPanelForm);
-            this.Controls.Add(this.menuStripABM);
-            this.MainMenuStrip = this.menuStripABM;
             this.Name = "frmABMEntidad";
             this.Text = "ABM Entidades";
-            this.menuStripABM.ResumeLayout(false);
-            this.menuStripABM.PerformLayout();
+            this.Controls.SetChildIndex(this.tblLayoutPanelForm, 0);
             this.tblLayoutPanelForm.ResumeLayout(false);
             this.grpBoxTipoEntidad.ResumeLayout(false);
             this.pnlTipoEntidad.ResumeLayout(false);
@@ -1229,12 +1144,6 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStripABM;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLimpiarCampos;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEliminar;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBuscar;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemGuardar;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCancelar;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelForm;
         private System.Windows.Forms.GroupBox grpBoxTipoEntidad;
         private System.Windows.Forms.Panel pnlTipoEntidad;
@@ -1318,9 +1227,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoTipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn numeroTelefono;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemGuardarNuevaEntidad;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemGuardarCambios;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemNuevo;
         private System.Windows.Forms.Button btnDatosAdicionales;
     }
 }

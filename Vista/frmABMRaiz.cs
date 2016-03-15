@@ -39,8 +39,14 @@ namespace Vista
 
         private void btnAltaArtic_Click(object sender, EventArgs e)
         {
-            frmABMArticulos fa = new frmABMArticulos();
+            frmABMArticulo fa = new frmABMArticulo();
             fa.ShowDialog();
+        }
+
+        private void btnAltaArticProv_Click(object sender, EventArgs e)
+        {
+            frmABMArticuloProveedor lcl_frm_ABMArticuloProveedor = new frmABMArticuloProveedor();
+            lcl_frm_ABMArticuloProveedor.ShowDialog();
         }
     }
 }

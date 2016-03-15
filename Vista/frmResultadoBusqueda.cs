@@ -69,13 +69,13 @@ namespace Vista
                 }
                 else
                 {
-                    if (glb_mod_articulo != null)
+                    if (glb_lst_mod_articulos != null)
                     {
                         glb_mod_articulo = glb_lst_mod_articulos[p_indice];
                     }
                     else
                     {
-                        if (glb_mod_articuloProveedor != null)
+                        if (glb_lst_mod_articuloProveedores != null)
                         {
                             glb_mod_articuloProveedor = glb_lst_mod_articuloProveedores[p_indice];
                         }
@@ -153,7 +153,6 @@ namespace Vista
             get { return glb_mod_persona; }
             set { this.glb_mod_persona = value; }
         }
-
 
         private void inicializarDataGridViewResultadoBusqueda_Personas()
         {

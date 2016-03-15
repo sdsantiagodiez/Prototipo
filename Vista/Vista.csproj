@@ -44,11 +44,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmABMArticulos.cs">
+    <Compile Include="frmABMArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmABMArticulos.Designer.cs">
-      <DependentUpon>frmABMArticulos.cs</DependentUpon>
+    <Compile Include="frmABMArticulo.Designer.cs">
+      <DependentUpon>frmABMArticulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmABMArticuloProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmABMArticuloProveedor.Designer.cs">
+      <DependentUpon>frmABMArticuloProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmABMBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmABMBase.Designer.cs">
+      <DependentUpon>frmABMBase.cs</DependentUpon>
     </Compile>
     <Compile Include="frmABMEntidad.cs">
       <SubType>Form</SubType>
@@ -148,8 +160,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmABMArticulos.resx">
-      <DependentUpon>frmABMArticulos.cs</DependentUpon>
+    <EmbeddedResource Include="frmABMArticulo.resx">
+      <DependentUpon>frmABMArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmABMArticuloProveedor.resx">
+      <DependentUpon>frmABMArticuloProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmABMBase.resx">
+      <DependentUpon>frmABMBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmABMEntidad.resx">
       <DependentUpon>frmABMEntidad.cs</DependentUpon>
