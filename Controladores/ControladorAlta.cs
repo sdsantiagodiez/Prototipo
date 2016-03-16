@@ -15,12 +15,12 @@ namespace Controladores
         public bool agregar(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
             CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
-            return false;
+            return lcl_cat_articuloProveedores.add(p_mod_articuloProveedor);
         }
         public bool agregar(ModeloArticulos p_mod_articulo)
         {
             CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
-            return false;
+            return lcl_cat_articulos.add(p_mod_articulo);
         }
         /// <summary>
         /// Se debería usar este método en vez de lo implementado en la capa Datos CatalogoEntidades

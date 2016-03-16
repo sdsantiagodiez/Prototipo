@@ -61,8 +61,8 @@ namespace Datos
             switch (p_parametroBusqueda)
             {
                 case Constantes.ParametrosBusqueda.Articulos.CodigoOriginal:
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.codigoOriginal , "@codigo_original"));
-                    return " codigo_original = @codigo_original ";
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articulo.codigoOriginal), "@codigo_original"));
+                    return " codigo_original LIKE @codigo_original ";
 
                 case Constantes.ParametrosBusqueda.Articulos.Descripcion:
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articulo.descripcion), "@descripcion"));

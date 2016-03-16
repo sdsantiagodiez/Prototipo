@@ -46,6 +46,10 @@ namespace LibreriaClasesCompartidas
             /// Any: busca de acuerdo a los parámetros que se hayan inicializado. Pueden ser 0, 1, 2 o más
             /// </summary>
             private const string Any = "any";
+            /// <summary>
+            /// Busca por clave primaria
+            /// </summary>
+            private const string One = "one";
             public static class Entidades
             {
                 private const string CodigoEntidad = "codigoEntidad";
@@ -91,6 +95,7 @@ namespace LibreriaClasesCompartidas
             {
                 public const string All = ParametrosBusqueda.All;
                 public const string Any = ParametrosBusqueda.Any;
+                public const string One = ParametrosBusqueda.One;
 
                 public const string CodigoOriginal = Articulos.CodigoOriginal;
                 public const string CodigoArticuloProveedor = "codigoArticuloProveedor";

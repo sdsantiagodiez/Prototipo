@@ -61,6 +61,22 @@ namespace Datos
             return parametro;
         }
 
+        public SqlParameter instanciarParametro(decimal? atributo, string nombreAtributo)
+        {
+            SqlParameter parametro = new SqlParameter();
+
+            if (atributo == null)
+            {
+                parametro = new SqlParameter(nombreAtributo, DBNull.Value);
+            }
+            else
+            {
+                parametro = new SqlParameter(nombreAtributo, SqlDbType.Decimal);
+                parametro.Value = atributo.Value;
+            }
+            return parametro;
+        }
+
         public SqlParameter instanciarParametro(DateTime atributo, string nombreAtributo)
         {
             SqlParameter parametro = new SqlParameter();
@@ -99,7 +115,7 @@ namespace Datos
         /// <returns></returns>
         protected string parametroBusqueda(string p_nombreParametro, string p_nombreParametroTabla, string p_comparador)
         {
-            return @" (" + p_nombreParametro + " IS NULL OR " + p_nombreParametro + " " + p_comparador + " " + p_nombreParametroTabla + " ) ";
+            return @" (" + p_nombreParametro + " IS NULL OR " + p_nombreParametroTabla + " " + p_comparador + " " + p_nombreParametro + " ) ";
         }
 
         protected string agregarComodinBusquedaLIKE(string p_valorBusqueda)
