@@ -209,6 +209,7 @@ namespace Vista
                 if (this.guardarNuevo())
                 {
                     MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
+                    this.inicializarModoFormularioSeleccionado();
                 }
                 else
                 {
@@ -278,8 +279,9 @@ namespace Vista
             {
                 if (this.eliminar())
                 {
-                    this.quitarTextoEnControles(this);
                     MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
+                    this.inicializarModoFormularioInicio();
+                    this.quitarTextoEnControles(this);
                 }
                 else
                 {
@@ -339,16 +341,19 @@ namespace Vista
         /// </summary>
         private void actualizar()
         {
-            if (true)
+            if (this.validarModificacion())
             {
-                MessageBox.Show("Modificación exitosa", "Éxito", MessageBoxButtons.OK);
-            }
-            else
-            {
-                DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
-                if (dialogResult == DialogResult.Retry)
+                if (this.guardarModificaciones())
                 {
-                    this.actualizar();
+                    MessageBox.Show("Modificación exitosa", "Éxito", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
+                    if (dialogResult == DialogResult.Retry)
+                    {
+                        this.actualizar();
+                    }
                 }
             }
         }

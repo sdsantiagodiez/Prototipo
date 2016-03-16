@@ -31,12 +31,22 @@ namespace Vista
         #region Inicialización
         override public void inicializarModoFormularioInicio()
         {
+            glb_mod_articuloActual = new ModeloArticulos();
+            glb_mod_articuloSeleccionado = new ModeloArticulos();
+
             base.inicializarModoFormularioInicio();
+
+            txtBoxCodigoOriginal.Enabled = true;
         }
 
         override public void inicializarModoFormularioNuevo()
         {
+            glb_mod_articuloActual = new ModeloArticulos();
+            glb_mod_articuloSeleccionado = new ModeloArticulos();
+
             base.inicializarModoFormularioNuevo();
+
+            txtBoxCodigoOriginal.Enabled = true;
         }
 
         override public void inicializarModoFormularioSeleccionado()
@@ -58,6 +68,7 @@ namespace Vista
                 if (this.guardarNuevo())
                 {
                     MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
+                    this.inicializarModoFormularioSeleccionado();
                 }
                 else
                 {
@@ -101,8 +112,9 @@ namespace Vista
             {
                 if (this.eliminar())
                 {
-                    this.quitarTextoEnControles(this);
                     MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
+                    this.inicializarModoFormularioInicio();
+                    this.quitarTextoEnControles(this);
                 }
                 else
                 {
@@ -145,16 +157,19 @@ namespace Vista
         /// </summary>
         private void actualizar()
         {
-            if (true)
+            if (this.validarModificacion())
             {
-                MessageBox.Show("Modificación exitosa", "Éxito", MessageBoxButtons.OK);
-            }
-            else
-            {
-                DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
-                if (dialogResult == DialogResult.Retry)
+                if (this.guardarModificaciones())
                 {
-                    this.actualizar();
+                    MessageBox.Show("Modificación exitosa", "Éxito", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
+                    if (dialogResult == DialogResult.Retry)
+                    {
+                        this.actualizar();
+                    }
                 }
             }
         }
@@ -210,11 +225,11 @@ namespace Vista
         {
             glb_mod_articuloActual = this.cargarDatosEnModeloArticulo();
             glb_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_articuloActual);
-            if (glb_frm_resultadoBusqueda.glb_mod_articulo != null)
+            if (glb_frm_resultadoBusqueda.articulo != null)
             {
                 this.modoFormulario = ModoFormularioSeleccionado;
 
-                glb_mod_articuloSeleccionado = glb_frm_resultadoBusqueda.glb_mod_articulo;
+                glb_mod_articuloSeleccionado = glb_frm_resultadoBusqueda.articulo;
                 this.cargarArticuloEnControles(glb_mod_articuloSeleccionado);
             }
         }

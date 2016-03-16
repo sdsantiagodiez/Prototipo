@@ -96,16 +96,42 @@ namespace Vista
             frmDevolucion.ShowDialog();
         }
 
-        private void btnAltBajMod_Click(object sender, EventArgs e)
-        {
-            frmABMRaiz frmABM = new frmABMRaiz();
-            frmABM.ShowDialog();
-        }
-
         private void timerFechaHora_Tick(object sender, EventArgs e)
         {
             lblFechaLog.Text = DateTime.Today.ToString("dd/MM/yyyy");
             lblHoraLog.Text = DateTime.Now.ToString("HH:mm:ss tt");
+        }
+
+        private void btnABM_Click(object sender, EventArgs e)
+        {
+            //Calcula si muestra el menuStrip no tiene lugar hacia abajo, hace que aparezca por sobre el botón
+            Point screenPoint = btnABM.PointToScreen(new Point(btnABM.Left, btnABM.Bottom));
+            if (screenPoint.Y + cntxtMenuStripABM.Size.Height > Screen.PrimaryScreen.WorkingArea.Height)
+            {
+                cntxtMenuStripABM.Show(btnABM, new Point(0, -cntxtMenuStripABM.Size.Height));
+            }
+            else
+            {
+                cntxtMenuStripABM.Show(btnABM, new Point(0, btnABM.Height));
+            }  
+        }
+
+        private void entidadesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmABMEntidad lcl_frm_ABMEntidad = new frmABMEntidad();
+            lcl_frm_ABMEntidad.ShowDialog();
+        }
+
+        private void artículosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmABMArticulo lcl_frm_ABMArticulo = new frmABMArticulo();
+            lcl_frm_ABMArticulo.ShowDialog();
+        }
+
+        private void artículosDeProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmABMArticuloProveedor lcl_frm_ABMArticuloProveedor = new frmABMArticuloProveedor();
+            lcl_frm_ABMArticuloProveedor.ShowDialog();
         }
     }
 }

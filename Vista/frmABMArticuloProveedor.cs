@@ -32,6 +32,9 @@ namespace Vista
         #region Inicialización
         override public void inicializarModoFormularioInicio()
         {
+            glb_mod_articuloProveedorActual = new ModeloArticuloProveedores();
+            glb_mod_articuloProveedorSeleccionado = new ModeloArticuloProveedores();
+
             base.inicializarModoFormularioInicio();
             
             grpBoxArticulo.Enabled = true;
@@ -39,7 +42,7 @@ namespace Vista
             txtBoxCodigoOriginal.Enabled = txtBoxDescripcion.Enabled = true;
 
             grpBoxProveedor.Enabled = true;
-            btnBuscarProveedor.Enabled = btnModificarProveedor.Enabled = false;
+            btnBuscarProveedor.Enabled = btnModificarProveedor.Enabled =  false;
             txtBoxCodigoProveedor.Enabled = txtBoxRazonSocial.Enabled = true;
 
             txtBoxCodigoArticulo.Enabled = true;
@@ -50,6 +53,9 @@ namespace Vista
 
         override public void inicializarModoFormularioNuevo()
         {
+            glb_mod_articuloProveedorActual = new ModeloArticuloProveedores();
+            glb_mod_articuloProveedorSeleccionado = new ModeloArticuloProveedores();
+
             base.inicializarModoFormularioNuevo();
 
             grpBoxArticulo.Enabled = true;
@@ -81,6 +87,39 @@ namespace Vista
 
             grpBoxObservaciones.Enabled = true;
         }
+
+        private void inicializarModoArticuloSeleccionado()
+        {
+            txtBoxCodigoOriginal.Enabled = false;
+            txtBoxDescripcion.Enabled = false;
+            btnBuscarArticulo.Enabled = false;
+            btnModificarArticulo.Enabled = true;
+        }
+
+        private void inicializarModoArticuloModificado()
+        {
+            txtBoxCodigoOriginal.Enabled = true;
+            txtBoxDescripcion.Enabled = true;
+            btnBuscarArticulo.Enabled = true;
+            btnModificarArticulo.Enabled = false;
+        }
+
+        private void inicializarModoProveedorSeleccionado()
+        {
+            txtBoxCodigoProveedor.Enabled = false;
+            txtBoxRazonSocial.Enabled = false;
+            btnBuscarProveedor.Enabled = false;
+            btnModificarProveedor.Enabled = true;
+        }
+
+        private void inicializarModoProveedorModificado()
+        {
+            txtBoxCodigoProveedor.Enabled = true;
+            txtBoxRazonSocial.Enabled = true;
+            btnBuscarProveedor.Enabled = true;
+            btnModificarProveedor.Enabled = false;
+        }
+
         #endregion
 
         #region ABM
@@ -94,6 +133,7 @@ namespace Vista
                 if (this.guardarNuevo())
                 {
                     MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
+                    this.inicializarModoFormularioSeleccionado();
                 }
                 else
                 {
@@ -137,8 +177,9 @@ namespace Vista
             {
                 if (this.eliminar())
                 {
-                    this.quitarTextoEnControles(this);
                     MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
+                    this.inicializarModoFormularioInicio();
+                    this.quitarTextoEnControles(this);
                 }
                 else
                 {
@@ -181,16 +222,19 @@ namespace Vista
         /// </summary>
         private void actualizar()
         {
-            if (true)
+            if (this.validarModificacion())
             {
-                MessageBox.Show("Modificación exitosa", "Éxito", MessageBoxButtons.OK);
-            }
-            else
-            {
-                DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
-                if (dialogResult == DialogResult.Retry)
+                if (this.guardarModificaciones())
                 {
-                    this.actualizar();
+                    MessageBox.Show("Modificación exitosa", "Éxito", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
+                    if (dialogResult == DialogResult.Retry)
+                    {
+                        this.actualizar();
+                    }
                 }
             }
         }
@@ -231,7 +275,7 @@ namespace Vista
             if (this.validarBusqueda())
             {
                 glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
-                this.buscarArticulo();
+                this.buscarArticuloProveedor();
             }
         }
         /// <summary>
@@ -242,7 +286,7 @@ namespace Vista
         {
             return true;
         }
-        private void buscarArticulo()
+        private void buscarArticuloProveedor()
         {
             glb_mod_articuloProveedorActual = this.cargarDatosEnModeloArticuloProveedor();
             glb_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_articuloProveedorActual);
@@ -254,6 +298,47 @@ namespace Vista
                 this.cargarArticuloProveedorEnControles(glb_mod_articuloProveedorSeleccionado);
             }
         }
+        private void buscarArticulo()
+        {
+            glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
+            ModeloArticulos lcl_mod_articulo = new ModeloArticulos();
+            
+            lcl_mod_articulo.codigoOriginal = txtBoxCodigoOriginal.Text;
+            lcl_mod_articulo.descripcion = txtBoxDescripcion.Text;
+            
+            glb_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_articulo);
+            if (glb_frm_resultadoBusqueda.articulo != null)
+            {
+                this.inicializarModoArticuloSeleccionado();
+                txtBoxCodigoOriginal.Text = glb_frm_resultadoBusqueda.articulo.codigoOriginal;
+                txtBoxDescripcion.Text = glb_frm_resultadoBusqueda.articulo.descripcion;
+
+                this.cargarDatosArticuloEnModeloArticuloProveedor(ref glb_mod_articuloProveedorActual);
+            }
+        }
+        private void buscarProveedor()
+        {
+            glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
+            ModeloProveedor lcl_mod_proveedor = new ModeloProveedor();
+            
+            ModeloArticuloProveedores lcl_mod_articuloProveedor = new ModeloArticuloProveedores();
+            this.cargarDatosProveedorEnModeloArticuloProveedor(ref lcl_mod_articuloProveedor);
+            
+            lcl_mod_proveedor.codigo = lcl_mod_articuloProveedor.codigoEntidad;
+            lcl_mod_proveedor.razonSocial = lcl_mod_articuloProveedor.razonSocialProveedor;
+
+            glb_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_proveedor);
+            if (glb_frm_resultadoBusqueda.proveedor != null)
+            {
+                this.inicializarModoProveedorSeleccionado();
+                txtBoxCodigoProveedor.Text = glb_frm_resultadoBusqueda.proveedor.codigo.ToString();
+                txtBoxRazonSocial.Text = glb_frm_resultadoBusqueda.proveedor.razonSocial;
+
+                this.cargarDatosProveedorEnModeloArticuloProveedor(ref glb_mod_articuloProveedorActual);
+            }
+         
+        }
+
         #endregion
 
         private ModeloArticuloProveedores cargarDatosEnModeloArticuloProveedor()
@@ -261,42 +346,58 @@ namespace Vista
             ModeloArticuloProveedores lcl_mod_articuloProveedores = new ModeloArticuloProveedores();
             if (validarContenidoControladores())
             {
-                lcl_mod_articuloProveedores.codigoOriginal = txtBoxCodigoOriginal.Text; ;
-                lcl_mod_articuloProveedores.descripcion = txtBoxDescripcion.Text;
-                if (LibreriaClasesCompartidas.Validar.validarValorNumerico(txtBoxCodigoProveedor.Text))
-                {
-                    lcl_mod_articuloProveedores.codigoEntidad = Convert.ToInt32(txtBoxCodigoProveedor.Text);
-                }
-                else
-                {
-                    lcl_mod_articuloProveedores.codigoEntidad = 0;
-                }
-                //lcl_mod_articuloProveedores.codigoEntidad = Convert.ToInt32(txtBoxCodigoProveedor.Text);
-                lcl_mod_articuloProveedores.razonSocialProveedor = txtBoxRazonSocial.Text;
-                lcl_mod_articuloProveedores.codigoArticuloProveedor = txtBoxCodigoArticulo.Text;
-                lcl_mod_articuloProveedores.ubicacion = txtBoxUbicacion.Text;
-                lcl_mod_articuloProveedores.stockActual = Convert.ToInt32(nmrcUpDownStockActual.Value);
-                lcl_mod_articuloProveedores.stockMinimo = Convert.ToInt32(nmrcUpDownStockMinimo.Value);
-                if (LibreriaClasesCompartidas.Validar.validarValorDecimal(txtBoxPrecioCompra.Text))
-                {
-                    lcl_mod_articuloProveedores.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioCompra.Text);
-                }
-                else
-                {
-                    lcl_mod_articuloProveedores.valorCompra.valorArticulo = 0;
-                }
-                //lcl_mod_articuloProveedores.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioCompra.Text);
-                if (LibreriaClasesCompartidas.Validar.validarValorDecimal(txtBoxPrecioVenta.Text))
-                {
-                    lcl_mod_articuloProveedores.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioVenta.Text);
-                }
-                else
-                {
-                    lcl_mod_articuloProveedores.valorCompra.valorArticulo = 0;
-                }
-                //lcl_mod_articuloProveedores.valorVenta.valorArticulo = Convert.ToDecimal(txtBoxPrecioVenta.Text);
+                this.cargarDatosArticuloEnModeloArticuloProveedor(ref lcl_mod_articuloProveedores);
+                this.cargarDatosProveedorEnModeloArticuloProveedor(ref lcl_mod_articuloProveedores);
+                this.cargarDatosStockEnModeloArticuloProveedor(ref lcl_mod_articuloProveedores);
             }
             return lcl_mod_articuloProveedores;
+        }
+
+        private void cargarDatosArticuloEnModeloArticuloProveedor(ref ModeloArticuloProveedores p_mod_articuloProveedor)
+        {
+            p_mod_articuloProveedor.codigoOriginal = txtBoxCodigoOriginal.Text; ;
+            p_mod_articuloProveedor.descripcion = txtBoxDescripcion.Text;
+        }
+
+        private void cargarDatosProveedorEnModeloArticuloProveedor(ref ModeloArticuloProveedores p_mod_articuloProveedor)
+        {
+            if (LibreriaClasesCompartidas.Validar.validarValorNumerico(txtBoxCodigoProveedor.Text))
+            {
+                p_mod_articuloProveedor.codigoEntidad = Convert.ToInt32(txtBoxCodigoProveedor.Text);
+            }
+            else
+            {
+                p_mod_articuloProveedor.codigoEntidad = 0;
+            }
+            //lcl_mod_articuloProveedores.codigoEntidad = Convert.ToInt32(txtBoxCodigoProveedor.Text);
+            p_mod_articuloProveedor.razonSocialProveedor = txtBoxRazonSocial.Text;
+        }
+
+        private void cargarDatosStockEnModeloArticuloProveedor(ref ModeloArticuloProveedores p_mod_articuloProveedor)
+        {
+            p_mod_articuloProveedor.codigoArticuloProveedor = txtBoxCodigoArticulo.Text;
+            p_mod_articuloProveedor.ubicacion = txtBoxUbicacion.Text;
+            p_mod_articuloProveedor.stockActual = Convert.ToInt32(nmrcUpDownStockActual.Value);
+            p_mod_articuloProveedor.stockMinimo = Convert.ToInt32(nmrcUpDownStockMinimo.Value);
+            if (LibreriaClasesCompartidas.Validar.validarValorDecimal(txtBoxPrecioCompra.Text))
+            {
+                p_mod_articuloProveedor.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioCompra.Text);
+            }
+            else
+            {
+                p_mod_articuloProveedor.valorCompra.valorArticulo = null;
+            }
+            //lcl_mod_articuloProveedores.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioCompra.Text);
+            if (LibreriaClasesCompartidas.Validar.validarValorDecimal(txtBoxPrecioVenta.Text))
+            {
+                p_mod_articuloProveedor.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioVenta.Text);
+            }
+            else
+            {
+                p_mod_articuloProveedor.valorCompra.valorArticulo = null;
+            }
+            //lcl_mod_articuloProveedores.valorVenta.valorArticulo = Convert.ToDecimal(txtBoxPrecioVenta.Text);
+            p_mod_articuloProveedor.observaciones = rchTextBoxObservaciones.Text;
         }
 
         /// <summary>
@@ -372,6 +473,38 @@ namespace Vista
         }
         #endregion
 
+        private void btnBuscarArticulo_Click(object sender, EventArgs e)
+        {
+            if (this.validarBusqueda())
+            {
+                this.buscarArticulo();
+            }
+        }
+        
+        private void btnModificarArticulo_Click(object sender, EventArgs e)
+        {
+            this.inicializarModoArticuloModificado();
+            this.quitarTextoEnControles(grpBoxArticulo);
+            glb_mod_articuloProveedorActual.codigoOriginal = null;
+            glb_mod_articuloProveedorActual.descripcion = null;
+        }
+
+        private void btnBuscarProveedor_Click(object sender, EventArgs e)
+        {
+            if (this.validarBusqueda())
+            {
+                this.buscarProveedor();
+            }
+        }
+       
+
+        private void btnModificarProveedor_Click(object sender, EventArgs e)
+        {
+            this.inicializarModoProveedorModificado();
+            this.quitarTextoEnControles(grpBoxProveedor);
+            glb_mod_articuloProveedorActual.codigoEntidad = 0;
+            glb_mod_articuloProveedorActual.razonSocialProveedor = null;
+        }
         #endregion
     }
 }

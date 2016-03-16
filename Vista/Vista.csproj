@@ -80,12 +80,6 @@
     <Compile Include="frmABMEntidadDatosAdicionalesUsuario.Designer.cs">
       <DependentUpon>frmABMEntidadDatosAdicionalesUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmABMRaiz.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmABMRaiz.Designer.cs">
-      <DependentUpon>frmABMRaiz.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmDevolucion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,9 +172,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmABMEntidadDatosAdicionalesUsuario.resx">
       <DependentUpon>frmABMEntidadDatosAdicionalesUsuario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmABMRaiz.resx">
-      <DependentUpon>frmABMRaiz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDevolucion.resx">
       <DependentUpon>frmDevolucion.cs</DependentUpon>

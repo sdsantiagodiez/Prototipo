@@ -37,7 +37,7 @@
             this.pnlER = new System.Windows.Forms.Panel();
             this.btnEmitirReporte = new System.Windows.Forms.Button();
             this.pnlED = new System.Windows.Forms.Panel();
-            this.btnAltBajMod = new System.Windows.Forms.Button();
+            this.btnABM = new System.Windows.Forms.Button();
             this.pnlEC = new System.Windows.Forms.Panel();
             this.pnlEV = new System.Windows.Forms.Panel();
             this.btnDevolucion = new System.Windows.Forms.Button();
@@ -49,11 +49,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblNombreUsuario = new System.Windows.Forms.Label();
             this.timerFechaHora = new System.Windows.Forms.Timer(this.components);
+            this.cntxtMenuStripABM = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.entidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.artículosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.artículosDeProveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlER.SuspendLayout();
             this.pnlED.SuspendLayout();
             this.pnlEC.SuspendLayout();
             this.pnlEV.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.cntxtMenuStripABM.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPedidoProv
@@ -82,7 +87,7 @@
             this.lblBienvenido.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.lblBienvenido.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBienvenido.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblBienvenido.Location = new System.Drawing.Point(11, 7);
+            this.lblBienvenido.Location = new System.Drawing.Point(22, 7);
             this.lblBienvenido.Name = "lblBienvenido";
             this.lblBienvenido.Size = new System.Drawing.Size(256, 42);
             this.lblBienvenido.TabIndex = 5;
@@ -90,7 +95,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(59, 490);
+            this.btnSalir.Location = new System.Drawing.Point(66, 490);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(162, 40);
             this.btnSalir.TabIndex = 6;
@@ -101,7 +106,7 @@
             // pnlER
             // 
             this.pnlER.Controls.Add(this.btnEmitirReporte);
-            this.pnlER.Location = new System.Drawing.Point(39, 52);
+            this.pnlER.Location = new System.Drawing.Point(45, 52);
             this.pnlER.Name = "pnlER";
             this.pnlER.Size = new System.Drawing.Size(199, 65);
             this.pnlER.TabIndex = 23;
@@ -118,26 +123,26 @@
             // 
             // pnlED
             // 
-            this.pnlED.Controls.Add(this.btnAltBajMod);
-            this.pnlED.Location = new System.Drawing.Point(39, 364);
+            this.pnlED.Controls.Add(this.btnABM);
+            this.pnlED.Location = new System.Drawing.Point(45, 364);
             this.pnlED.Name = "pnlED";
             this.pnlED.Size = new System.Drawing.Size(200, 65);
             this.pnlED.TabIndex = 25;
             // 
-            // btnAltBajMod
+            // btnABM
             // 
-            this.btnAltBajMod.Location = new System.Drawing.Point(20, 13);
-            this.btnAltBajMod.Name = "btnAltBajMod";
-            this.btnAltBajMod.Size = new System.Drawing.Size(162, 40);
-            this.btnAltBajMod.TabIndex = 0;
-            this.btnAltBajMod.Text = "Altas, Bajas, y  Modificaciones";
-            this.btnAltBajMod.UseVisualStyleBackColor = true;
-            this.btnAltBajMod.Click += new System.EventHandler(this.btnAltBajMod_Click);
+            this.btnABM.Location = new System.Drawing.Point(20, 13);
+            this.btnABM.Name = "btnABM";
+            this.btnABM.Size = new System.Drawing.Size(162, 40);
+            this.btnABM.TabIndex = 0;
+            this.btnABM.Text = "Altas, Bajas y Modificaciones";
+            this.btnABM.UseVisualStyleBackColor = true;
+            this.btnABM.Click += new System.EventHandler(this.btnABM_Click);
             // 
             // pnlEC
             // 
             this.pnlEC.Controls.Add(this.btnPedidoProv);
-            this.pnlEC.Location = new System.Drawing.Point(38, 123);
+            this.pnlEC.Location = new System.Drawing.Point(45, 123);
             this.pnlEC.Name = "pnlEC";
             this.pnlEC.Size = new System.Drawing.Size(200, 62);
             this.pnlEC.TabIndex = 26;
@@ -147,9 +152,9 @@
             this.pnlEV.Controls.Add(this.btnDevolucion);
             this.pnlEV.Controls.Add(this.btnReserva);
             this.pnlEV.Controls.Add(this.btnVenta);
-            this.pnlEV.Location = new System.Drawing.Point(39, 192);
+            this.pnlEV.Location = new System.Drawing.Point(45, 191);
             this.pnlEV.Name = "pnlEV";
-            this.pnlEV.Size = new System.Drawing.Size(200, 166);
+            this.pnlEV.Size = new System.Drawing.Size(199, 166);
             this.pnlEV.TabIndex = 27;
             // 
             // btnDevolucion
@@ -220,7 +225,7 @@
             this.panel1.Controls.Add(this.lblNombreUsuario);
             this.panel1.Controls.Add(this.lblFechaLog);
             this.panel1.Controls.Add(this.lblFecha);
-            this.panel1.Location = new System.Drawing.Point(28, 435);
+            this.panel1.Location = new System.Drawing.Point(36, 435);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(225, 49);
             this.panel1.TabIndex = 21;
@@ -238,6 +243,36 @@
             // timerFechaHora
             // 
             this.timerFechaHora.Tick += new System.EventHandler(this.timerFechaHora_Tick);
+            // 
+            // cntxtMenuStripABM
+            // 
+            this.cntxtMenuStripABM.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.entidadesToolStripMenuItem,
+            this.artículosToolStripMenuItem,
+            this.artículosDeProveedoresToolStripMenuItem});
+            this.cntxtMenuStripABM.Name = "cntxtMenuStripABM";
+            this.cntxtMenuStripABM.Size = new System.Drawing.Size(206, 70);
+            // 
+            // entidadesToolStripMenuItem
+            // 
+            this.entidadesToolStripMenuItem.Name = "entidadesToolStripMenuItem";
+            this.entidadesToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.entidadesToolStripMenuItem.Text = "Entidades";
+            this.entidadesToolStripMenuItem.Click += new System.EventHandler(this.entidadesToolStripMenuItem_Click);
+            // 
+            // artículosToolStripMenuItem
+            // 
+            this.artículosToolStripMenuItem.Name = "artículosToolStripMenuItem";
+            this.artículosToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.artículosToolStripMenuItem.Text = "Artículos";
+            this.artículosToolStripMenuItem.Click += new System.EventHandler(this.artículosToolStripMenuItem_Click);
+            // 
+            // artículosDeProveedoresToolStripMenuItem
+            // 
+            this.artículosDeProveedoresToolStripMenuItem.Name = "artículosDeProveedoresToolStripMenuItem";
+            this.artículosDeProveedoresToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.artículosDeProveedoresToolStripMenuItem.Text = "Artículos de Proveedores";
+            this.artículosDeProveedoresToolStripMenuItem.Click += new System.EventHandler(this.artículosDeProveedoresToolStripMenuItem_Click);
             // 
             // frmMenuPrincipal
             // 
@@ -263,6 +298,7 @@
             this.pnlEV.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.cntxtMenuStripABM.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,7 +318,7 @@
         private System.Windows.Forms.Panel pnlEV;
         private System.Windows.Forms.Button btnDevolucion;
         private System.Windows.Forms.Button btnReserva;
-        private System.Windows.Forms.Button btnAltBajMod;
+        private System.Windows.Forms.Button btnABM;
         internal System.Windows.Forms.Label lblFecha;
         internal System.Windows.Forms.Label lblFechaLog;
         internal System.Windows.Forms.Label lblHoraLog;
@@ -290,5 +326,9 @@
         private System.Windows.Forms.Panel panel1;
         internal System.Windows.Forms.Label lblNombreUsuario;
         private System.Windows.Forms.Timer timerFechaHora;
+        private System.Windows.Forms.ContextMenuStrip cntxtMenuStripABM;
+        private System.Windows.Forms.ToolStripMenuItem entidadesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem artículosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem artículosDeProveedoresToolStripMenuItem;
     }
 }

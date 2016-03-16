@@ -55,7 +55,7 @@
             this.tblLayouttPanelForm.RowCount = 2;
             this.tblLayouttPanelForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 104F));
             this.tblLayouttPanelForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayouttPanelForm.Size = new System.Drawing.Size(513, 339);
+            this.tblLayouttPanelForm.Size = new System.Drawing.Size(434, 287);
             this.tblLayouttPanelForm.TabIndex = 2;
             // 
             // grpBoxObservaciones
@@ -65,7 +65,7 @@
             this.grpBoxObservaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBoxObservaciones.Location = new System.Drawing.Point(3, 107);
             this.grpBoxObservaciones.Name = "grpBoxObservaciones";
-            this.grpBoxObservaciones.Size = new System.Drawing.Size(507, 229);
+            this.grpBoxObservaciones.Size = new System.Drawing.Size(428, 177);
             this.grpBoxObservaciones.TabIndex = 7;
             this.grpBoxObservaciones.TabStop = false;
             this.grpBoxObservaciones.Text = "Observaciones";
@@ -75,7 +75,7 @@
             this.rchTextBoxObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rchTextBoxObservaciones.Location = new System.Drawing.Point(3, 20);
             this.rchTextBoxObservaciones.Name = "rchTextBoxObservaciones";
-            this.rchTextBoxObservaciones.Size = new System.Drawing.Size(501, 206);
+            this.rchTextBoxObservaciones.Size = new System.Drawing.Size(422, 154);
             this.rchTextBoxObservaciones.TabIndex = 22;
             this.rchTextBoxObservaciones.Text = "";
             // 
@@ -98,7 +98,7 @@
             this.tblLayoutPanelDatosArticulo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tblLayoutPanelDatosArticulo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tblLayoutPanelDatosArticulo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tblLayoutPanelDatosArticulo.Size = new System.Drawing.Size(507, 98);
+            this.tblLayoutPanelDatosArticulo.Size = new System.Drawing.Size(428, 98);
             this.tblLayoutPanelDatosArticulo.TabIndex = 8;
             // 
             // txtBoxModelo
@@ -106,7 +106,7 @@
             this.txtBoxModelo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxModelo.Location = new System.Drawing.Point(95, 71);
             this.txtBoxModelo.Name = "txtBoxModelo";
-            this.txtBoxModelo.Size = new System.Drawing.Size(409, 20);
+            this.txtBoxModelo.Size = new System.Drawing.Size(330, 20);
             this.txtBoxModelo.TabIndex = 5;
             // 
             // txtBoxDescripcion
@@ -114,7 +114,7 @@
             this.txtBoxDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxDescripcion.Location = new System.Drawing.Point(95, 38);
             this.txtBoxDescripcion.Name = "txtBoxDescripcion";
-            this.txtBoxDescripcion.Size = new System.Drawing.Size(409, 20);
+            this.txtBoxDescripcion.Size = new System.Drawing.Size(330, 20);
             this.txtBoxDescripcion.TabIndex = 4;
             // 
             // lblCodigoOriginal
@@ -155,14 +155,15 @@
             this.txtBoxCodigoOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCodigoOriginal.Location = new System.Drawing.Point(95, 6);
             this.txtBoxCodigoOriginal.Name = "txtBoxCodigoOriginal";
-            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(409, 20);
+            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(330, 20);
             this.txtBoxCodigoOriginal.TabIndex = 3;
             // 
             // frmABMArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(513, 363);
+            this.ClientSize = new System.Drawing.Size(434, 311);
             this.Controls.Add(this.tblLayouttPanelForm);
+            this.MinimumSize = new System.Drawing.Size(450, 230);
             this.Name = "frmABMArticulo";
             this.Controls.SetChildIndex(this.tblLayouttPanelForm, 0);
             this.tblLayouttPanelForm.ResumeLayout(false);
