@@ -64,7 +64,7 @@ namespace Modelos
             this.cantidadArticulos = pCantidad;
             this.descripcion = p_mod_articuloProveedor.descripcionArticuloProveedor;
             //Sólo considera que la linea sea de venta de artículo y no para una compra a proveedor
-            this.valorUnitario = p_mod_articuloProveedor.valorVenta.valorArticulo;
+            this.valorUnitario = Convert.ToDecimal(p_mod_articuloProveedor.valorVenta.valorArticulo);
             //Recordar que se pueden aplicar descuentos
             this.valorParcial = this.cantidadArticulos * this.valorUnitario;
         }
