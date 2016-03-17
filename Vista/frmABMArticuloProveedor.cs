@@ -38,15 +38,23 @@ namespace Vista
             base.inicializarModoFormularioInicio();
             
             grpBoxArticulo.Enabled = true;
-            btnBuscarArticulo.Enabled = btnModificarArticulo.Enabled = false;
-            txtBoxCodigoOriginal.Enabled = txtBoxDescripcion.Enabled = true;
+            
+            btnBuscarArticulo.Enabled = true;
+            btnModificarArticulo.Enabled = false;
+            txtBoxCodigoOriginal.Enabled = true;
+            txtBoxDescripcion.Enabled = true;
 
             grpBoxProveedor.Enabled = true;
-            btnBuscarProveedor.Enabled = btnModificarProveedor.Enabled =  false;
-            txtBoxCodigoProveedor.Enabled = txtBoxRazonSocial.Enabled = true;
+
+            btnBuscarProveedor.Enabled = true;
+            btnModificarProveedor.Enabled = false;
+            txtBoxCodigoProveedor.Enabled = true;
+            txtBoxRazonSocial.Enabled = true;
 
             txtBoxCodigoArticulo.Enabled = true;
             txtBoxPrecioCompra.Enabled = txtBoxPrecioVenta.Enabled = txtBoxUbicacion.Enabled = nmrcUpDownStockActual.Enabled = nmrcUpDownStockMinimo.Enabled = false;
+            nmrcUpDownStockActual.Text = "";
+            nmrcUpDownStockMinimo.Text = "";
 
             grpBoxObservaciones.Enabled = false;
         }
@@ -70,6 +78,8 @@ namespace Vista
 
             txtBoxCodigoArticulo.Enabled = true;
             txtBoxPrecioCompra.Enabled = txtBoxPrecioVenta.Enabled = txtBoxUbicacion.Enabled = nmrcUpDownStockActual.Enabled = nmrcUpDownStockMinimo.Enabled = true;
+            nmrcUpDownStockActual.Text = "0";
+            nmrcUpDownStockMinimo.Text = "0";
 
             grpBoxObservaciones.Enabled = true;
         }
@@ -258,7 +268,7 @@ namespace Vista
             ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
             bool exito = false;
             glb_mod_articuloProveedorActual = this.cargarDatosEnModeloArticuloProveedor();
-            exito = lcl_con_modificacion.modificar(glb_mod_articuloProveedorActual);
+            exito = lcl_con_modificacion.modificar(glb_mod_articuloProveedorSeleccionado, glb_mod_articuloProveedorActual);
             if (exito)
             {
                 glb_mod_articuloProveedorSeleccionado = glb_mod_articuloProveedorActual;
@@ -267,6 +277,7 @@ namespace Vista
         }
         #endregion
 
+        #region Búsqueda
         /// <summary>
         /// Muestra cuadro de resultado de búsqueda de la clase buscada o mensaje de error en caso de que no se haya podido mostrar
         /// </summary>
@@ -318,6 +329,7 @@ namespace Vista
         }
         private void buscarProveedor()
         {
+            //Se podría ver de mostrar solo proveedores que tengan ese articuloOriginal en articuloProveedor
             glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
             ModeloProveedor lcl_mod_proveedor = new ModeloProveedor();
             
@@ -340,7 +352,8 @@ namespace Vista
         }
 
         #endregion
-
+        
+        #region Controles -> Modelo
         private ModeloArticuloProveedores cargarDatosEnModeloArticuloProveedor()
         {
             ModeloArticuloProveedores lcl_mod_articuloProveedores = new ModeloArticuloProveedores();
@@ -390,25 +403,18 @@ namespace Vista
             //lcl_mod_articuloProveedores.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioCompra.Text);
             if (LibreriaClasesCompartidas.Validar.validarValorDecimal(txtBoxPrecioVenta.Text))
             {
-                p_mod_articuloProveedor.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioVenta.Text);
+                p_mod_articuloProveedor.valorVenta.valorArticulo = Convert.ToDecimal(txtBoxPrecioVenta.Text);
             }
             else
             {
-                p_mod_articuloProveedor.valorCompra.valorArticulo = null;
+                p_mod_articuloProveedor.valorVenta.valorArticulo = null;
             }
             //lcl_mod_articuloProveedores.valorVenta.valorArticulo = Convert.ToDecimal(txtBoxPrecioVenta.Text);
-            p_mod_articuloProveedor.observaciones = rchTextBoxObservaciones.Text;
+            p_mod_articuloProveedor.observacionesArticuloProveedor = rchTextBoxObservaciones.Text;
         }
-
-        /// <summary>
-        /// Valida que los controladores que se hayan completados tengan el formato correcto y además que los campos obligatorios hayas sido rellenados
-        /// </summary>
-        /// <returns>true si todos los controladores válidos, false caso contrario</returns>
-        private bool validarContenidoControladores()
-        {
-            return true;
-        }
-
+        #endregion
+        
+        #region Modelo -> Controles
         private void cargarArticuloProveedorEnControles(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
             glb_mod_articuloProveedorSeleccionado = p_mod_articuloProveedor;
@@ -420,14 +426,31 @@ namespace Vista
             txtBoxCodigoArticulo.Text = p_mod_articuloProveedor.codigoArticuloProveedor;
             txtBoxUbicacion.Text = p_mod_articuloProveedor.ubicacion;
             nmrcUpDownStockActual.Value = Convert.ToInt32(p_mod_articuloProveedor.stockActual);
+            nmrcUpDownStockActual.Text = nmrcUpDownStockActual.Value.ToString();
             nmrcUpDownStockMinimo.Value = Convert.ToInt32(p_mod_articuloProveedor.stockMinimo);
+            nmrcUpDownStockMinimo.Text = nmrcUpDownStockMinimo.Value.ToString();
             txtBoxPrecioCompra.Text = p_mod_articuloProveedor.valorCompra.valorArticulo.ToString();
             txtBoxPrecioVenta.Text = p_mod_articuloProveedor.valorVenta.valorArticulo.ToString();
-        }
 
+            rchTextBoxObservaciones.Text = p_mod_articuloProveedor.observacionesArticuloProveedor;
+        }
+        #endregion
+
+        #region Validar Controles
+        /// <summary>
+        /// Valida que los controladores que se hayan completados tengan el formato correcto y además que los campos obligatorios hayas sido rellenados
+        /// </summary>
+        /// <returns>true si todos los controladores válidos, false caso contrario</returns>
+        private bool validarContenidoControladores()
+        {
+            return true;
+        }
+        #endregion
+        #endregion
+       
         #region Eventos
         #region toolStripMenuItem
-        
+
         //override public void toolStripMenuItemCancelar_Click(object sender, EventArgs e)
         //{
             

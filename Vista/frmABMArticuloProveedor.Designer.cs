@@ -378,6 +378,11 @@
             // 
             this.nmrcUpDownStockMinimo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.nmrcUpDownStockMinimo.Location = new System.Drawing.Point(123, 107);
+            this.nmrcUpDownStockMinimo.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.nmrcUpDownStockMinimo.Name = "nmrcUpDownStockMinimo";
             this.nmrcUpDownStockMinimo.Size = new System.Drawing.Size(69, 24);
             this.nmrcUpDownStockMinimo.TabIndex = 12;
@@ -435,6 +440,11 @@
             // 
             this.nmrcUpDownStockActual.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.nmrcUpDownStockActual.Location = new System.Drawing.Point(123, 62);
+            this.nmrcUpDownStockActual.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.nmrcUpDownStockActual.Name = "nmrcUpDownStockActual";
             this.nmrcUpDownStockActual.Size = new System.Drawing.Size(69, 24);
             this.nmrcUpDownStockActual.TabIndex = 11;
