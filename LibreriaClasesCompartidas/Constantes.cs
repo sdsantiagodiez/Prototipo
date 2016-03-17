@@ -8,31 +8,6 @@ namespace LibreriaClasesCompartidas
 {
     public static class Constantes
     {
-        public static class TiposEntidad
-        {
-            public const string Persona = "PER";
-            public const string Proveedor = "PRO";
-
-            public static class TiposPersona
-            {
-                public const string Cliente = "CLI";
-                public const string Usuario = "USR";
-                public const string ContactoProveedor = "CPR";
-            }
-            public static class TiposProveedor
-            {
-                //Se diferenciaría de TiposEntidad.Proveedor en que TiposEntidad.Proveedor es la clasificación que divide a las entidades entre proveedores y personas.
-                //Mientras que TiposProveedor.Proveedor es una subclase de TiposEntidad.Proveedor al nivel de Cliente, Usuario y ContactoProveedor
-                public const string Proveedor = "PRO";
-            }
-        }
-
-        public enum CodigosTiposPedidos 
-        {
-            TipoPedidoPersona=1,
-            TipoPedidoProveedor=2
-        }
-
         /// <summary>
         /// Cadenas de caracteres definidas para cada modelo del proyecto que se utilizarán para determinar cómo será realizada la búsqueda en los métodos de búsqueda
         /// </summary>
@@ -148,6 +123,32 @@ namespace LibreriaClasesCompartidas
 
             }
         }
+        
+        public static class TiposEntidad
+        {
+            public const string Persona = "PER";
+            public const string Proveedor = "PRO";
+
+            public static class TiposPersona
+            {
+                public const string Cliente = "CLI";
+                public const string Usuario = "USR";
+                public const string ContactoProveedor = "CPR";
+            }
+            public static class TiposProveedor
+            {
+                //Se diferenciaría de TiposEntidad.Proveedor en que TiposEntidad.Proveedor es la clasificación que divide a las entidades entre proveedores y personas.
+                //Mientras que TiposProveedor.Proveedor es una subclase de TiposEntidad.Proveedor al nivel de Cliente, Usuario y ContactoProveedor
+                public const string Proveedor = "PRO";
+            }
+        }
+
+        public enum CodigosTiposPedidos 
+        {
+            TipoPedidoPersona=1,
+            TipoPedidoProveedor=2
+        }
+        
         public static class TiposArticulo
         {
             public const string ArticuloBase = "ART";
@@ -161,6 +162,13 @@ namespace LibreriaClasesCompartidas
             public const string Celular = "CEL";
             public const string Fax = "FAX";
         }
+
+        public static class TipoValorArticulo
+        {
+            public const string Compra = "Compra";
+            public const string Venta = "Venta";
+        }
+
     }
     
 }

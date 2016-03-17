@@ -86,8 +86,8 @@ namespace Datos
             }
             else
             {
-                parametro = new SqlParameter(nombreAtributo, SqlDbType.Date);
-                parametro.Value = atributo.Date;
+                parametro = new SqlParameter(nombreAtributo, SqlDbType.DateTime2);
+                parametro.Value = atributo;
             }
             return parametro;
         }
@@ -100,8 +100,8 @@ namespace Datos
             }
             else
             {
-                parametro = new SqlParameter(nombreAtributo, SqlDbType.Date);
-                parametro.Value = atributo.Value;
+                parametro = new SqlParameter(nombreAtributo, SqlDbType.DateTime2);
+                parametro.Value = atributo;
             }
             return parametro;
         }

@@ -37,6 +37,7 @@ namespace ConsoleTest
         static void Main(string[] args)
         {
             TestingCatalogo tc = new TestingCatalogo();
+            ModeloValorArticulo venta = new ModeloValorArticulo();
             //////////////////////////////////
             //tc.generarPersonas(1500,"CLI");
             //tc.generarArticulosProveedores();

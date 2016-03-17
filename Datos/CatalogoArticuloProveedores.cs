@@ -47,6 +47,7 @@ namespace Datos
             lcl_mod_valorArticuloVenta.fechaUltimaActualizacion = (DateTime)p_drArticulosProveedor["fecha_valor_venta"];
             lcl_mod_valorArticuloVenta.valorArticulo = (p_drArticulosProveedor["valor_venta"] != DBNull.Value) ? (decimal?)p_drArticulosProveedor["valor_venta"] : null; ;
             //lcl_mod_articuloProveedor.valorVenta = lcl_mod_valorArticuloVenta;
+            lcl_mod_articuloProveedor.valorVenta = lcl_mod_valorArticuloVenta;
 
             lcl_mod_articuloProveedor.codigoOriginal = (string)p_drArticulosProveedor["codigo_original"];
             lcl_mod_articuloProveedor.codigoArticuloProveedor = (string)p_drArticulosProveedor["codigo_articulo_proveedor"];
@@ -215,7 +216,7 @@ namespace Datos
             }
 
             drArtProveedores.Close();
-            comando.Connection.Close();
+            comando.Connection.Dispose();
 
             return lcl_lst_mod_articulosProveedores;
         }
@@ -261,9 +262,9 @@ namespace Datos
                 comando.CommandType= CommandType.Text;
                 comando.CommandText = 
                     "INSERT INTO [Articulos_Proveedores]([codigo_original],[codigo_articulo_proveedor],[stock_minimo],[stock_actual],"+
-                    "[observaciones],[descripcion],[fecha_actualizacion],[codigo_entidad]) "+
-                    "VALUES (@codigo_original, @codigo_articulo_proveedor, @stock_minimo, @stock_actual, @observaciones, "+
-                    "@descripcion, @fecha_actualizacion, @codigo_entidad ); "+
+                    "[ubicacion],[observaciones],[descripcion],[fecha_actualizacion],[codigo_entidad]) "+
+                    "VALUES (@codigo_original, @codigo_articulo_proveedor, @stock_minimo, @stock_actual, @ubicacion, "+
+                    "@observaciones, @descripcion, @fecha_actualizacion, @codigo_entidad ); " +
                     "INSERT INTO [Valores_Compra]([codigo_articulo_proveedor],[codigo_original],[fecha_valor],[valor]) "+
                     "VALUES (@codigo_articulo_proveedor, @codigo_original, @fecha_actualizacion, @valor_compra ); "+
                     "INSERT INTO [Valores_Venta]([codigo_articulo_proveedor],[codigo_original],[fecha_valor],[valor]) "+
@@ -276,10 +277,11 @@ namespace Datos
                 comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.observacionesArticuloProveedor, "@observaciones"));
                 comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.stockMinimo, "@stock_minimo"));
                 comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.stockActual, "@stock_actual"));
+                comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.ubicacion,"@ubicacion"));
                 comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.valorCompra.valorArticulo, "@valor_compra"));
                 comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.valorVenta.valorArticulo,"@valor_venta"));
-                
-                comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.fechaActualizacion, "@fecha_actualizacion"));
+
+                comando.Parameters.Add(this.instanciarParametro(DateTime.Now, "@fecha_actualizacion"));
 
                 comando.Connection.Open();
                 int rowaffected = comando.ExecuteNonQuery();
@@ -315,7 +317,7 @@ namespace Datos
 
             comando.CommandText = 
                 "UPDATE [Articulos_Proveedores] SET [stock_minimo]=@stock_minimo,[stock_actual]=@stock_actual,[observaciones]=@observaciones,"+
-                "[descripcion]=@descripcion,[fecha_actualizacion]=@fecha_actualizacion  "+
+                "[descripcion]=@descripcion,[fecha_actualizacion]=@fecha_actualizacion, [ubicacion]=@ubicacion  "+
                 "WHERE ([Articulos_Proveedores].codigo_original=@codigo_original AND [Articulos_Proveedores].codigo_articulo_proveedor=@codigo_articulo_proveedor)";
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
@@ -325,6 +327,58 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.stockMinimo, "@stock_minimo"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.stockActual, "@stock_actual"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.fechaActualizacion, "@fecha_actualizacion"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.ubicacion, "@ubicacion"));
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Genera insert en tabla valor_(Compra|Venta) con el nuevo valor
+        /// </summary>
+        /// <param name="p_mod_articuloProveedor"></param>
+        /// <param name="p_tipoValorArticulo"></param>
+        /// <returns></returns>
+        public bool updatePrecio(ModeloArticuloProveedores p_mod_articuloProveedor,string p_tipoValorArticulo)
+        {
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            string tablaValores ="";
+            ModeloValorArticulo lcl_mod_valorArticulo = new ModeloValorArticulo();
+            if (p_tipoValorArticulo == Constantes.TipoValorArticulo.Compra)
+            {
+                tablaValores = "Valores_Compra";
+                lcl_mod_valorArticulo.valorArticulo = p_mod_articuloProveedor.valorCompra.valorArticulo;
+            }
+            else if (p_tipoValorArticulo == Constantes.TipoValorArticulo.Venta)
+            {
+                tablaValores = "Valores_Venta";
+                lcl_mod_valorArticulo.valorArticulo = p_mod_articuloProveedor.valorVenta.valorArticulo;
+            }
+            
+            comando.CommandText =
+                "INSERT INTO [" + tablaValores + "]([codigo_articulo_proveedor],[codigo_original],[fecha_valor],[valor]) " +
+                "VALUES (@codigo_articulo_proveedor, @codigo_original, @fecha_actualizacion, @valor)";
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoOriginal, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(lcl_mod_valorArticulo.valorArticulo, "@valor"));
+            comando.Parameters.Add(this.instanciarParametro(DateTime.Now, "@fecha_actualizacion"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
