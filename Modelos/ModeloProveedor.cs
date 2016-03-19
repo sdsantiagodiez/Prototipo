@@ -8,7 +8,7 @@ namespace Modelos
 {
    public class ModeloProveedor : ModeloEntidad
    {
-       #region Getters/Setters
+        #region Getters/Setters
        string _razonSocial;
         public string razonSocial
         {
@@ -17,6 +17,20 @@ namespace Modelos
         }
        #endregion
 
+        public ModeloProveedor()
+        {
+            this.tipoEntidad = LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor;
+        }
+
+        public ModeloProveedor(ModeloEntidad p_mod_entidad) : base(p_mod_entidad)
+        {
+            this.tipoEntidad = LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor;
+        }
+
+        public ModeloProveedor(ModeloProveedor p_mod_proveedor) : this(p_mod_proveedor as ModeloEntidad)
+        {
+            razonSocial = p_mod_proveedor.razonSocial;
+        }
         new public void convertirDatos()
         {
             base.convertirDatos();
@@ -24,13 +38,13 @@ namespace Modelos
         }
 
         new public bool validar()
-       {
-           return (base.validar() == true && this.validarRazonSocial() == true);
-       }
+        {
+            return (base.validar() == true && this.validarRazonSocial() == true);
+        }
 
-       public bool validarRazonSocial()
-       {
-           return true;
-       }
+        public bool validarRazonSocial()
+        {
+            return true;
+        }
    }
 }

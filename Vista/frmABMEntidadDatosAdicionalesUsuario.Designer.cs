@@ -104,7 +104,7 @@
             this.txtBoxConfirmarContraseña.Name = "txtBoxConfirmarContraseña";
             this.txtBoxConfirmarContraseña.PasswordChar = '*';
             this.txtBoxConfirmarContraseña.Size = new System.Drawing.Size(258, 24);
-            this.txtBoxConfirmarContraseña.TabIndex = 11;
+            this.txtBoxConfirmarContraseña.TabIndex = 3;
             this.txtBoxConfirmarContraseña.UseSystemPasswordChar = true;
             // 
             // lblUsuario
@@ -135,7 +135,7 @@
             this.txtBoxUsuario.Location = new System.Drawing.Point(98, 8);
             this.txtBoxUsuario.Name = "txtBoxUsuario";
             this.txtBoxUsuario.Size = new System.Drawing.Size(258, 24);
-            this.txtBoxUsuario.TabIndex = 9;
+            this.txtBoxUsuario.TabIndex = 1;
             // 
             // txtBoxContraseña
             // 
@@ -144,7 +144,7 @@
             this.txtBoxContraseña.Name = "txtBoxContraseña";
             this.txtBoxContraseña.PasswordChar = '*';
             this.txtBoxContraseña.Size = new System.Drawing.Size(258, 24);
-            this.txtBoxContraseña.TabIndex = 8;
+            this.txtBoxContraseña.TabIndex = 2;
             this.txtBoxContraseña.UseSystemPasswordChar = true;
             // 
             // lblContraseña
@@ -166,7 +166,7 @@
             this.chckdListBoxRol.Location = new System.Drawing.Point(77, 129);
             this.chckdListBoxRol.Name = "chckdListBoxRol";
             this.chckdListBoxRol.Size = new System.Drawing.Size(210, 194);
-            this.chckdListBoxRol.TabIndex = 2;
+            this.chckdListBoxRol.TabIndex = 4;
             // 
             // tableLayoutPanel2
             // 
@@ -190,7 +190,7 @@
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(3, 3, 30, 3);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 30);
-            this.btnAceptar.TabIndex = 0;
+            this.btnAceptar.TabIndex = 5;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
@@ -202,7 +202,7 @@
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 30);
-            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);

@@ -16,7 +16,7 @@ namespace Datos
         public SqlParameter instanciarParametro(string atributo, string nombreAtributo)
         {
             SqlParameter parametro = new SqlParameter();
-            if (atributo == null)
+            if (atributo == null || atributo.Trim()=="")
             {
                 parametro = new SqlParameter(nombreAtributo, DBNull.Value);
             }

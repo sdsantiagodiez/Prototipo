@@ -114,7 +114,8 @@ namespace Controladores
         public void addClient(ModeloPersonas p_nuevoCliente)
         {
             CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
-            lcl_cat_personas.add(ref p_nuevoCliente);
+            //lcl_cat_personas.add(ref p_nuevoCliente);
+            //CAMBIOS
         }
 
         public List<ModeloPais> getPaises()

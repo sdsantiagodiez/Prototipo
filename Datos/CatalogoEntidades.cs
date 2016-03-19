@@ -12,11 +12,16 @@ namespace Datos
 {
     public class CatalogoEntidades : Catalogo
     {
-        private ModeloEntidad leerDatosEntidades(SqlDataReader p_drEntidades)
+        protected bool validarDatos(ModeloEntidad p_mod_entidad)
+        {
+            return true;
+        }
+
+        protected ModeloEntidad leerDatosEntidades(SqlDataReader p_drEntidades)
         {
             ModeloEntidad lcl_mod_entidad = new ModeloEntidad();
 
-            lcl_mod_entidad.codigo = (int)p_drEntidades["codigo"];
+            lcl_mod_entidad.codigo = (int)p_drEntidades["codigo_entidad"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
             lcl_mod_entidad.cuit = (p_drEntidades["cuit"] != DBNull.Value) ? (string)p_drEntidades["cuit"] : null;
@@ -24,6 +29,51 @@ namespace Datos
             lcl_mod_entidad.observaciones = (p_drEntidades["observaciones"] != DBNull.Value) ? (string)p_drEntidades["observaciones"] : null;
             
             return lcl_mod_entidad;
+        }
+
+        #region Búsqueda
+
+        /// <summary>
+        /// Genera string a insertar en clausula WHERE de sql de acuerdo a los parámetros de búsqueda
+        /// </summary>
+        /// <param name="p_mod_entidad">modeloEntidad con variables posiblemente inicializadas</param>
+        /// <param name="p_parametroBusqueda">constante encontrada en LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Proveedores</param>
+        /// <param name="p_comando">comando sql que será modificado para incluir parámetros</param>
+        /// <returns></returns>
+        protected string getCondicionBusqueda(ModeloEntidad p_mod_entidad, string p_parametroBusqueda, ref SqlCommand p_comando)
+        {
+            switch (p_parametroBusqueda)
+            {
+                case Constantes.ParametrosBusqueda.Entidades.CodigoEntidad:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.codigo, "@codigo_entidad"));
+                    return " codigo_entidad = @codigo_entidad ";
+
+                case Constantes.ParametrosBusqueda.Entidades.Cuit:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.cuit, "@cuit"));
+                    return " cuit = @cuit ";
+
+                case Constantes.ParametrosBusqueda.Entidades.Any:
+                    int? codigoEntidad = p_mod_entidad.codigo == 0 ? null : (int?)p_mod_entidad.codigo;
+                    p_comando.Parameters.Add(this.instanciarParametro(codigoEntidad, "@codigo_entidad"));
+                    string codigoEntidadQuery = @" (@codigo_entidad IS NULL OR @codigo_entidad = codigo_entidad) ";
+
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.cuit, "@cuit"));
+                    string cuitQuery = this.parametroBusqueda("@cuit", "cuit", "=");
+
+                    return codigoEntidadQuery + " AND " + cuitQuery;
+
+                case Constantes.ParametrosBusqueda.Entidades.All:
+                    //retorna true y devuelve todas las filas
+                    return " 1 = 1 ";
+                default:
+                    //retorna false y no devuelve filas
+                    return " 1 = 2 ";
+            }
+        }
+
+        public virtual IEnumerable<ModeloEntidad> buscar(ModeloEntidad p_mod_entidad, string p_parametroBusqueda)
+        {
+            return null;
         }
 
         public ModeloEntidad getOne(int p_codigoEntidad)
@@ -99,77 +149,45 @@ namespace Datos
             return lcl_lst_mod_entidades;
         }
 
-        public ModeloEntidad getValoresEntidad(ModeloEntidad p_mod_entidad)
+        public List<ModeloMail> getMails(int p_codigoEntidad)
         {
-            ModeloEntidad lcl_mod_entidad = new ModeloEntidad();
-            lcl_mod_entidad.codigo = p_mod_entidad.codigo;
-            lcl_mod_entidad.cuit = p_mod_entidad.cuit;
-            lcl_mod_entidad.tipoEntidad = p_mod_entidad.tipoEntidad;
-            lcl_mod_entidad.observaciones = p_mod_entidad.observaciones;
-
-            lcl_mod_entidad.mails = p_mod_entidad.mails;
-            lcl_mod_entidad.telefonos = p_mod_entidad.telefonos;
-            lcl_mod_entidad.domicilios = p_mod_entidad.domicilios;
-
-            return lcl_mod_entidad;
+            
+            CatalogoMails lcl_cat_mails = new CatalogoMails();
+            return lcl_cat_mails.getMails(p_codigoEntidad);
         }
-       
-        #region ALTA/BAJA/MODIFICACIÓN entidades
-        /*
-         * True si se realizó correctamente
-         * False si ocurrió algún error
-         */
-        /// <summary>
-        /// Agrega persona a base de datos entidades con sus respectivos atributos
-        /// </summary>
-        /// <param name="p_mod_persona"></param>
-        /// <returns></returns>
-        virtual public bool add(ref ModeloPersonas p_mod_persona)
+
+        public List<ModeloDomicilio> getDomicilios(int p_codigoEntidad)
         {
-            ModeloEntidad lcl_mod_entidad = this.getValoresEntidad(p_mod_persona);
-            lcl_mod_entidad.tipoEntidad = Constantes.TiposEntidad.Persona;
-            bool respuesta = this.add(ref lcl_mod_entidad);
-            p_mod_persona.codigo = lcl_mod_entidad.codigo;
-
-            return respuesta;
+            CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
+            return lcl_cat_domicilios.getDomicilios(p_codigoEntidad);
         }
-        /// <summary>
-        /// Agrega proveedor a base de datos entidades con sus respectivos atributos
-        /// </summary>
-        /// <param name="pmProveedor"></param>
-        /// <returns></returns>
-        virtual public bool add(ref ModeloProveedor p_mod_proveedor)
+
+        public List<ModeloTelefono> getTelefonos(int p_codigoEntidad)
         {
-            ModeloEntidad lcl_mod_entidad = this.getValoresEntidad(p_mod_proveedor);
-            lcl_mod_entidad.tipoEntidad = Constantes.TiposEntidad.Proveedor;
-            bool respuesta = this.add(ref lcl_mod_entidad);
-            p_mod_proveedor.codigo = lcl_mod_entidad.codigo;
-
-            return respuesta;
+            CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
+            return lcl_cat_telefonos.getTelefonos(p_codigoEntidad);
         }
-        
+
+        #endregion
+
+        #region Alta/Baja/Modificación
+
         /// <summary>
         /// Agrega entidad propiamente dicha a base de datos
         /// </summary>
         /// <param name="pmEntidad"></param>
         /// <returns></returns>
-        public bool add(ref ModeloEntidad p_mod_entidad)
+        public virtual bool add(ref ModeloEntidad p_mod_entidad)
         {
             //Aseguramos que no se haya ingresado algún codigo a la entidad
             p_mod_entidad.codigo = 0;
-            //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
-            
-            //crea SQL command
             SqlCommand comando = new SqlCommand();
-
             comando.Connection = ConexionSQL;
-
             comando.CommandType = CommandType.Text;
-
             comando.CommandText =
-                "INSERT INTO [entidades] ([tipo_entidad],[cuit],[observaciones]) "+
-                "OUTPUT INSERTED.CODIGO "+
+                "INSERT INTO [entidades] ([tipo_entidad],[cuit],[observaciones]) " +
+                "OUTPUT INSERTED.CODIGO " +
                 "VALUES (@tipo_entidad, @cuit, @observaciones)";
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.tipoEntidad, "@tipo_entidad"));
@@ -178,7 +196,7 @@ namespace Datos
 
             comando.Connection.Open();
             int? nuevoCodigoEntidad = (int?)comando.ExecuteScalar();
-            
+
             comando.Connection.Close();
 
             if (nuevoCodigoEntidad != null)
@@ -191,25 +209,24 @@ namespace Datos
                 }
 
                 List<ModeloTelefono> lcl_lst_telefonos = p_mod_entidad.telefonos;
-                foreach(ModeloTelefono t in lcl_lst_telefonos)
+                foreach (ModeloTelefono t in lcl_lst_telefonos)
                 {
                     this.agregarNuevoTelefono(t, Convert.ToInt32(p_mod_entidad.codigo));
                 }
 
                 List<ModeloDomicilio> lcl_lst_domicilios = p_mod_entidad.domicilios;
-                foreach(ModeloDomicilio d in lcl_lst_domicilios)
+                foreach (ModeloDomicilio d in lcl_lst_domicilios)
                 {
                     this.agregarNuevoDomicilio(d, Convert.ToInt32(p_mod_entidad.codigo));
                 }
-                
-               return true;
+
+                return true;
             }
             else
             {
                 return false;
             }
         }
-
 
         #region ABM MAILS
         public bool agregarNuevoMail(ModeloMail p_mod_mail, int p_codigoEntidad)
@@ -264,18 +281,8 @@ namespace Datos
         }
 
         #endregion
-        
-        
-        virtual public bool update(ModeloPersonas p_mod_persona)
-        {
-            return update(this.getValoresEntidad(p_mod_persona));
-        }
-        virtual public bool update(ModeloProveedor p_mod_proveedor)
-        {
-            return update(this.getValoresEntidad(p_mod_proveedor));
-        }
 
-        public bool update(ModeloEntidad p_mod_entidad)
+        public virtual bool update(ModeloEntidad p_mod_entidad)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -295,7 +302,7 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.cuit, "@cuit"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.observaciones, "@observaciones"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.tipoEntidad, "@tipo_entidad"));
-            
+
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
             comando.Connection.Close();
@@ -326,59 +333,33 @@ namespace Datos
             {
                 return false;
             }
-
-
         }
-        
-        public bool remove(int p_codigoEntidad)
-        {
-            //INCOMPLETO
-            return true;
-        }
-        #endregion
-    
-        /// <summary>
-        /// BORRAR????Obtiene el último código de entidad generado en la base de datos
-        /// </summary>
-        /// <returns>ultimo codigo generado; 0 si hubo algún error</returns>
-        public int getUltimoCodigo()
+
+        public virtual bool remove(ModeloEntidad p_mod_entidad)
         {
             SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "select IDENT_CURRENT('entidades') as codigo ";
+                "DELETE FROM [entidades] WHERE [entidades].codigo=@codigo_entidad";
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.codigo, "@codigo_entidad"));
+
             comando.Connection.Open();
-
-            int ultimoCodigoGenerado = Convert.ToInt32(comando.ExecuteScalar());
-
-
+            int rowaffected = comando.ExecuteNonQuery();
             comando.Connection.Close();
 
-            return ultimoCodigoGenerado;
+            if (rowaffected != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public List<ModeloMail> getMails(int p_codigoEntidad)
-        {
-            
-            CatalogoMails lcl_cat_mails = new CatalogoMails();
-            return lcl_cat_mails.getMails(p_codigoEntidad);
-        }
-
-        public List<ModeloDomicilio> getDomicilios(int p_codigoEntidad)
-        {
-            CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
-            return lcl_cat_domicilios.getDomicilios(p_codigoEntidad);
-        }
-
-        public List<ModeloTelefono> getTelefonos(int p_codigoEntidad)
-        {
-            CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
-            return lcl_cat_telefonos.getTelefonos(p_codigoEntidad);
-        }
-
+        #endregion
     }
 }

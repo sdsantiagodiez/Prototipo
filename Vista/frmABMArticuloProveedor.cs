@@ -285,7 +285,6 @@ namespace Vista
         {
             if (this.validarBusqueda())
             {
-                glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
                 this.buscarArticuloProveedor();
             }
         }
@@ -299,13 +298,14 @@ namespace Vista
         }
         private void buscarArticuloProveedor()
         {
+            glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
             glb_mod_articuloProveedorActual = this.cargarDatosEnModeloArticuloProveedor();
             glb_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_articuloProveedorActual);
-            if (glb_frm_resultadoBusqueda.glb_mod_articuloProveedor != null)
+            if (glb_frm_resultadoBusqueda.modeloSeleccionado != null)
             {
                 this.modoFormulario = ModoFormularioSeleccionado;
 
-                glb_mod_articuloProveedorSeleccionado = glb_frm_resultadoBusqueda.glb_mod_articuloProveedor;
+                glb_mod_articuloProveedorSeleccionado = glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticuloProveedores;
                 this.cargarArticuloProveedorEnControles(glb_mod_articuloProveedorSeleccionado);
             }
         }
@@ -318,11 +318,11 @@ namespace Vista
             lcl_mod_articulo.descripcion = txtBoxDescripcion.Text;
             
             glb_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_articulo);
-            if (glb_frm_resultadoBusqueda.articulo != null)
+            if (glb_frm_resultadoBusqueda.modeloSeleccionado != null)
             {
                 this.inicializarModoArticuloSeleccionado();
-                txtBoxCodigoOriginal.Text = glb_frm_resultadoBusqueda.articulo.codigoOriginal;
-                txtBoxDescripcion.Text = glb_frm_resultadoBusqueda.articulo.descripcion;
+                txtBoxCodigoOriginal.Text = (glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticulos).codigoOriginal;
+                txtBoxDescripcion.Text = (glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticulos).descripcion;
 
                 this.cargarDatosArticuloEnModeloArticuloProveedor(ref glb_mod_articuloProveedorActual);
             }
@@ -340,11 +340,11 @@ namespace Vista
             lcl_mod_proveedor.razonSocial = lcl_mod_articuloProveedor.razonSocialProveedor;
 
             glb_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_proveedor);
-            if (glb_frm_resultadoBusqueda.proveedor != null)
+            if (glb_frm_resultadoBusqueda.modeloSeleccionado != null)
             {
                 this.inicializarModoProveedorSeleccionado();
-                txtBoxCodigoProveedor.Text = glb_frm_resultadoBusqueda.proveedor.codigo.ToString();
-                txtBoxRazonSocial.Text = glb_frm_resultadoBusqueda.proveedor.razonSocial;
+                txtBoxCodigoProveedor.Text = (glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloProveedor).codigo.ToString();
+                txtBoxRazonSocial.Text = (glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloProveedor).razonSocial;
 
                 this.cargarDatosProveedorEnModeloArticuloProveedor(ref glb_mod_articuloProveedorActual);
             }

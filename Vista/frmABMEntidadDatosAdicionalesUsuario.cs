@@ -14,7 +14,12 @@ namespace Vista
 {
     public partial class frmABMEntidadDatosAdicionalesUsuario : Form
     {
-        public ModeloPersonas usuario;
+        private ModeloUsuario _usuario;
+        public ModeloUsuario usuario
+        {
+            get { return _usuario; }
+            set { _usuario = value; }
+        }
 
         public frmABMEntidadDatosAdicionalesUsuario()
         {
@@ -22,6 +27,16 @@ namespace Vista
             this.inicializarFormulario();
         }
 
+        public frmABMEntidadDatosAdicionalesUsuario(ModeloUsuario p_mod_usuario)
+            : this()
+        {
+            usuario = p_mod_usuario;
+            this.cargarUsuarioEnControles();
+        }
+
+        #region Métodos
+
+        #region Inicialización
         private void inicializarFormulario()
         {
             //no permitir al usuario modificar dimensiones de ventan
@@ -36,35 +51,38 @@ namespace Vista
         private void inicializarCheckedListBox()
         {
             //REVISAR FALTAN roles en controladores y catalogo
-            ControladorBusqueda cBusqueda = new ControladorBusqueda();
-            List<ModeloRoles> roles = new List<ModeloRoles>();
-            ModeloRoles mRol;
+            ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
+            List<ModeloRoles> lcl_lst_mod_roles = new List<ModeloRoles>();
+            ModeloRoles lcl_mod_rol;
             for (int i = 0; i < 10; i++ )
             {
-                mRol = new ModeloRoles();
-                mRol.codigo = i;
-                mRol.descripcion = "Rol " + i.ToString();
-                roles.Add(mRol);
+                lcl_mod_rol = new ModeloRoles();
+                lcl_mod_rol.codigo = i;
+                lcl_mod_rol.descripcion = "Rol " + i.ToString();
+                lcl_lst_mod_roles.Add(lcl_mod_rol);
             }
 
-            chckdListBoxRol.DataSource = roles;
+            chckdListBoxRol.DataSource = lcl_lst_mod_roles;
             chckdListBoxRol.DisplayMember = "descripcion";
             chckdListBoxRol.ValueMember = "codigo";
         }
+        
         private List<ModeloRoles> cargarDatosEnModeloRol()
         {
-            List<ModeloRoles> lModeloRol = new List<ModeloRoles>();
-            ModeloRoles mRol = new ModeloRoles();
+            List<ModeloRoles> lcl_lst_mod_roles = new List<ModeloRoles>();
+            ModeloRoles lcl_mod_rol = new ModeloRoles();
             foreach (object itemChecked in chckdListBoxRol.CheckedItems)
             {
                 DataRowView rol = itemChecked as DataRowView;
-                mRol.codigo = Convert.ToInt32(rol["codigo"].ToString());
-                mRol.descripcion = rol["descripcion"].ToString();
+                lcl_mod_rol.codigo = Convert.ToInt32(rol["codigo"].ToString());
+                lcl_mod_rol.descripcion = rol["descripcion"].ToString();
             }
-            return lModeloRol;
+            return lcl_lst_mod_roles;
         }
-
-        private bool validarIngresoDeDatos()
+        #endregion
+            
+        #region Validación
+        private bool validarDatosIngresados()
         {
             return (this.validarUsuarioYContraseña() == true && this.validarRoles() == true);
         }
@@ -92,24 +110,45 @@ namespace Vista
         {
             return true;
         }
-
-        private void cargarDatosEnModelo()
+        #endregion
+        
+        #region Controles -> Modelo
+        private void cargarControlesEnUsuario()
         {
-            usuario = new ModeloPersonas();
-            this.cargarUsuarioYContraseña();
-            this.cargarRoles();
+            usuario = new ModeloUsuario();
+            this.cargarDatosControlUsuarioContraseña();
+            this.cargarDatosControlRoles();
         }
-        private void cargarUsuarioYContraseña()
+        private void cargarDatosControlUsuarioContraseña()
         { 
         }
-        private void cargarRoles()
+        private void cargarDatosControlRoles()
         { }
+       
+        #endregion
+
+        #region Modelo -> Controles
+        private void cargarUsuarioEnControles()
+        {
+            txtBoxUsuario.Text = usuario.usuario;
+            this.cargarDatosRolesEnControles();
+        }
+
+        private void cargarDatosRolesEnControles()
+        { 
+        }
+        #endregion
+
+
+        #endregion
+        
+        #region Eventos
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             //Si validación falla, el método de validación mostrará los mensajes de error correspondientes
-            if (this.validarIngresoDeDatos() == true)
+            if (this.validarDatosIngresados() == true)
             {
-                this.cargarDatosEnModelo();
+                this.cargarControlesEnUsuario();
                 this.Close();
             }
         }
@@ -119,6 +158,7 @@ namespace Vista
             this.usuario = null;
             this.Close();
         }
+        #endregion
 
     }
 }

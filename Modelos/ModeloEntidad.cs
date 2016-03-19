@@ -16,6 +16,17 @@ namespace Modelos
             this.telefonos = new List<ModeloTelefono>();
         }
 
+        public ModeloEntidad(ModeloEntidad p_mod_entidad) : this()
+        {
+            this.codigo = p_mod_entidad.codigo;
+            this.cuit = p_mod_entidad.cuit;
+            this.domicilios = p_mod_entidad.domicilios;
+            this.mails = p_mod_entidad.mails;
+            this.mails = p_mod_entidad.mails;
+            this.observaciones = p_mod_entidad.observaciones;
+            this.telefonos = p_mod_entidad.telefonos;
+        }
+
         #region Getters/Setters
         int _codigo;
         public int codigo
@@ -114,14 +125,8 @@ namespace Modelos
         }
         public bool validarTipoEntidad()
         {
-            if (tipoEntidad == "PER" || tipoEntidad == "PRO")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (_tipoEntidad == LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona ||
+                _tipoEntidad == LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor);
         }
 
         public bool validarTelefonos()

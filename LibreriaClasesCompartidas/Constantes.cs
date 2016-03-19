@@ -27,13 +27,16 @@ namespace LibreriaClasesCompartidas
             private const string One = "one";
             public static class Entidades
             {
-                private const string CodigoEntidad = "codigoEntidad";
-                private const string Cuit = "cuit";
+                public const string CodigoEntidad = "codigoEntidad";
+                public const string Cuit = "cuit";
+                public const string All = ParametrosBusqueda.All;
+                public const string Any = ParametrosBusqueda.Any;
+
 
                 public static class Personas
                 {
-                    public const string All = ParametrosBusqueda.All;
-                    public const string Any = ParametrosBusqueda.Any;
+                    public const string All = ParametrosBusqueda.Entidades.All;
+                    public const string Any = ParametrosBusqueda.Entidades.Any;
 
                     public const string CodigoEntidad = ParametrosBusqueda.Entidades.CodigoEntidad;
                     public const string Cuit = ParametrosBusqueda.Entidades.Cuit;
@@ -41,15 +44,36 @@ namespace LibreriaClasesCompartidas
                     public const string Nombre = "nombre";
                     public const string Apellido = "apellido";
                     public const string Dni = "dni";
-
-                    public const string Usuario = "usuario";
                     public const string TipoPersona = "tipoPersona";
+
+                    public static class Usuarios
+                    {
+                        public const string All = ParametrosBusqueda.Entidades.Personas.All;
+                        public const string Any = ParametrosBusqueda.Entidades.Personas.Any;
+                        
+                        public const string Usuario = "usuario";
+                        public const string LogIn = "log In";
+                    }
+
+                    public static class ContactoProveedor
+                    {
+                        public const string All = ParametrosBusqueda.Entidades.Personas.All;
+                        public const string Any = ParametrosBusqueda.Entidades.Personas.Any;
+
+                        public const string CodigoEntidad = ParametrosBusqueda.Entidades.Personas.CodigoEntidad;
+                        public const string Cuit = ParametrosBusqueda.Entidades.Personas.Cuit;
+
+                        public const string CodigoEntidad_Proveedor = "codigoEntidad de proveedor";
+                        public const string Cuit_Proveedor = "cuit proveedor";
+                        public const string RazonSocial_Proveedor = "razonSocial proveedor";
+                    }
+                    
                 }
                 public static class Proveedores
                 {
                     public const string All = ParametrosBusqueda.All;
                     public const string Any = ParametrosBusqueda.Any;
-
+                    //Se cambia para que en CatalogoContactoProveedor no haya confusion entre codigoEntidad de contacto y de proveedor
                     public const string CodigoEntidad = ParametrosBusqueda.Entidades.CodigoEntidad;
                     public const string Cuit = ParametrosBusqueda.Entidades.Cuit;
 

@@ -33,8 +33,19 @@ namespace Datos
             }
         }
 
+        public static SqlCommand crearComando()
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = Conexion.crearConexion();
+            comando.CommandType = System.Data.CommandType.Text;
+            return comando;
+        }
 
-
-
+        public static SqlCommand crearComando(string p_query)
+        {
+            SqlCommand comando = Conexion.crearComando();
+            comando.CommandText = p_query;
+            return comando;
+        }
     }
 }

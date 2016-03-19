@@ -15,79 +15,164 @@ namespace Vista
 {
     public partial class frmResultadoBusqueda : Form
     {
-        const int AnchoVentana = 800;
-        private DataGridView dataGridViewResultadoBusqueda;
+        private Object _modeloSeleccionado;
+        public Object modeloSeleccionado
+        {
+            get { return _modeloSeleccionado; }
+            set { _modeloSeleccionado = value;}
+        }
+        List<Object> glb_lst_objectos;
         
+        public DataGridView dataGridViewResultadoBusqueda;
+
+        const int AnchoVentana = 800;
+
         public frmResultadoBusqueda()
         {
             InitializeComponent();
             this.inicializarFormulario();
         }
-        
+        /// <summary>
+        /// Hace búsqueda con el objeto y lanza resultados en atributo dataGridViewResultadoBusqueda de haberse encontrado algo
+        /// </summary>
+        /// <param name="p_objeto"></param>
+        frmResultadoBusqueda(Object p_objeto) : this()
+        {
+            this.hacerBusqueda(p_objeto);
+        }
+
+        #region Inicialización
+
+        #region InicializarDGV
+        private void inicializarDataGridViewResultadoBusqueda_Entidades()
+        {
+            int i = dataGridViewResultadoBusqueda.Columns.Count;
+
+            dataGridViewResultadoBusqueda.Columns.Add("tipo", "Tipo");
+            dataGridViewResultadoBusqueda.Columns[i].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("codigoEntidad", "Código");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("cuit", "CUIT");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+        }
+        private void inicializarDataGridViewResultadoBusqueda_Proveedores()
+        {
+            this.inicializarDataGridViewResultadoBusqueda_Entidades();
+            int i = dataGridViewResultadoBusqueda.Columns.Count;
+
+            dataGridViewResultadoBusqueda.Columns.Add("razonSocial", "Razón Social");
+            dataGridViewResultadoBusqueda.Columns[i].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("direccion", "Domicilio");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("ciudad", "Ciudad Domicilio");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("provincia", "Provincia Domicilio");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+        }
+        private void inicializarDataGridViewResultadoBusqueda_Personas()
+        {
+            this.inicializarDataGridViewResultadoBusqueda_Entidades();
+            int i = dataGridViewResultadoBusqueda.Columns.Count;
+
+            dataGridViewResultadoBusqueda.Columns.Add("dni", "DNI");
+            dataGridViewResultadoBusqueda.Columns[i].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("apellido", "Apellido");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("nombre", "Nombre");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("direccion", "Domicilio");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("ciudad", "Ciudad Domicilio");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("provincia", "Provincia Domicilio");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+        }
+        private void inicializarDataGridViewResultadoBusqueda_Usuario()
+        {
+            this.inicializarDataGridViewResultadoBusqueda_Personas();
+            int i = dataGridViewResultadoBusqueda.Columns.Count;
+
+            dataGridViewResultadoBusqueda.Columns.Add("Usuario", "usuario");
+            dataGridViewResultadoBusqueda.Columns[i].FillWeight = 1;
+        }
+        private void inicializarDataGridViewResultadoBusqueda_ContactoProveedor()
+        {
+            this.inicializarDataGridViewResultadoBusqueda_Personas();
+            int i = dataGridViewResultadoBusqueda.Columns.Count;
+
+            dataGridViewResultadoBusqueda.Columns.Add("razon_social_proveedor", "Proveedor");
+            dataGridViewResultadoBusqueda.Columns[i].FillWeight = 1;
+        }
+        private void inicializarDataGridViewResultadoBusqueda_Cliente()
+        {
+            this.inicializarDataGridViewResultadoBusqueda_Personas();
+        }
+
+        private void inicializarDataGridViewResultadoBusqueda_Articulos()
+        {
+            int i = dataGridViewResultadoBusqueda.Columns.Count;
+
+            dataGridViewResultadoBusqueda.Columns.Add("codigoOriginal", "Código");
+            dataGridViewResultadoBusqueda.Columns[i].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("descripcion", "Descripción");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("modelos", "Modelos");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+        }
+        private void inicializarDataGridViewResultadoBusqueda_ArticulosProveedores()
+        {
+            this.inicializarDataGridViewResultadoBusqueda_Articulos();
+
+            int i = dataGridViewResultadoBusqueda.Columns.Count;
+
+            dataGridViewResultadoBusqueda.Columns.Add("codigoArticuloProveedor", "Código Artículo");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("descripcionArticuloProveedor", "Descripción Articulo");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("codigoEntidad", "Código Proveedor");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("razonSocialProveedor", "Proveedor");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("valorVenta", "Valor Venta");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("valorCompra", "Valor Compra");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("stockMinimo", "Stock Mínimo");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("stockActual", "Stock Actual");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("ubicacion", "Ubicación");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("fechaActualizacion", "Fecha Última Actualización");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns[i++].DefaultCellStyle.Format = "dd/MM/yyyy";
+        }
+
+        #endregion
+
+        #region Inicialización Formulario
         private void inicializarFormulario()
         {
             this.Width = AnchoVentana;
             this.FormClosing += frmResultadoBusqueda_FormClosing;
         }
 
-        private void inicializarMostrarBusqueda(string p_tipo)
+        private void inicializarMostrarBusqueda(object p_objeto)
         {
             /*
              Se los nullifica ya que más adelante se utilizará la lista no null para devolver el resultado en método asignarResultado
              */
             this.Controls.Clear();
             this.BringToFront();
-            this.inicializarDataGridViewResultadoBusqueda(p_tipo);
+            this.inicializarDataGridViewResultadoBusqueda(p_objeto);
             this.Controls.Add(dataGridViewResultadoBusqueda);
-            glb_lst_mod_personas = null;
-            glb_lst_mod_proveedor = null;
-            glb_lst_mod_articulos = null;
-            glb_lst_mod_articuloProveedores = null;
+            modeloSeleccionado = null;
+            glb_lst_objectos = null;
         }
 
-        private void mostrarMensajeResultadoVacio()
-        {
-            MessageBox.Show("No se han encontrado resultados", "Resultado de búsqueda", MessageBoxButtons.OK);
-        }
+        #endregion
 
-        private void asignarResultado(int p_indice)
-        {
-            glb_mod_persona = null;
-            glb_mod_proveedor = null;
-            glb_mod_articulo = null;
-            glb_mod_articuloProveedor = null;
-
-            //glb_lst_mod_x.count > p_indice en caso que usuario haga click en la última fila sin datos del datagrid
-
-            if (glb_lst_mod_proveedor != null && glb_lst_mod_proveedor.Count > p_indice)
-            {
-                glb_mod_proveedor = glb_lst_mod_proveedor[p_indice];
-            }
-            else
-            {
-                if (glb_lst_mod_personas != null && glb_lst_mod_personas.Count > p_indice)
-                {
-                    glb_mod_persona = glb_lst_mod_personas[p_indice];
-                }
-                else
-                {
-                    if (glb_lst_mod_articulos != null && glb_lst_mod_articulos.Count >p_indice)
-                    {
-                        glb_mod_articulo = glb_lst_mod_articulos[p_indice];
-                    }
-                    else
-                    {
-                        if (glb_lst_mod_articuloProveedores != null && glb_lst_mod_articuloProveedores.Count > p_indice)
-                        {
-                            glb_mod_articuloProveedor = glb_lst_mod_articuloProveedores[p_indice];
-                        }
-                    }
-                }
-            }
-        }
-
-        //Se podría ampliar para que este método también muestre artículos u otros resultados de búsqueda
-        private DataGridView inicializarDataGridViewResultadoBusqueda(string p_tipoModelo)
+        private DataGridView inicializarDataGridViewResultadoBusqueda(Object p_objeto)
         {
             dataGridViewResultadoBusqueda = new DataGridView();
             this.dataGridViewResultadoBusqueda.Dock = DockStyle.Fill;
@@ -97,34 +182,50 @@ namespace Vista
             dataGridViewResultadoBusqueda.RowHeadersVisible = false;
             //dataGridViewResultadoBusqueda.CellContentDoubleClick += dataGridViewResultadoBusqueda_CellContentDoubleClick;
             dataGridViewResultadoBusqueda.CellDoubleClick += dataGridViewResultadoBusqueda_CellContentDoubleClick;
-            dataGridViewResultadoBusqueda.Columns.Add("dgbKey","KEY");
+            dataGridViewResultadoBusqueda.Columns.Add("dgbKey", "KEY");
             dataGridViewResultadoBusqueda.Columns[0].FillWeight = 1;
             dataGridViewResultadoBusqueda.Columns[0].Visible = false;
-
+            dataGridViewResultadoBusqueda.AllowUserToAddRows = false;
 
             dataGridViewResultadoBusqueda.Width = AnchoVentana;
 
-            switch (p_tipoModelo)
+            Type T = p_objeto.GetType();
+            if (T == typeof(ModeloArticuloProveedores))
             {
-                case LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor:
-                    this.inicializarDataGridViewResultadoBusqueda_Entidades();
-                    this.inicializarDataGridViewResultadoBusqueda_Proveedores();
-                    break;
-                case LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona:
-                    this.inicializarDataGridViewResultadoBusqueda_Entidades();
-                    this.inicializarDataGridViewResultadoBusqueda_Personas();
-                    break;
-                case LibreriaClasesCompartidas.Constantes.TiposArticulo.ArticuloBase:
-                    this.inicializarDataGridViewResultadoBusqueda_Articulos();
-                    break;
-                case LibreriaClasesCompartidas.Constantes.TiposArticulo.ArticuloProveedor:
-                    this.inicializarDataGridViewResultadoBusqueda_ArticulosProveedores();
-                    break;
-                default:
-                    break;
-            }
+                this.inicializarDataGridViewResultadoBusqueda_ArticulosProveedores();
+            } 
+            else if(T == typeof(ModeloArticulos))
+            {
+                this.inicializarDataGridViewResultadoBusqueda_Articulos();
+            } 
+            else if(T == typeof(ModeloEntidad))
+            {
+                this.inicializarDataGridViewResultadoBusqueda_Entidades();;
+            } 
+            else if(T == typeof(ModeloPersonas))
+            {
+                this.inicializarDataGridViewResultadoBusqueda_Personas();
+            } 
+            else if(T == typeof(ModeloProveedor))
+            {
+                this.inicializarDataGridViewResultadoBusqueda_Proveedores();
+            } 
+            else if(T == typeof(ModeloUsuario))
+            {
+                this.inicializarDataGridViewResultadoBusqueda_Usuario();
+            } 
+            else if(T == typeof(ModeloContactoProveedor))
+            {
+                this.inicializarDataGridViewResultadoBusqueda_ContactoProveedor();
+            } 
+            else if(T == typeof(ModeloCliente))
+            {
+                this.inicializarDataGridViewResultadoBusqueda_Cliente();
+            } 
+
             return dataGridViewResultadoBusqueda;
         }
+        
         private void insertarIndice()
         {
             for (int i = 1; i < dataGridViewResultadoBusqueda.Rows.Count; i++)
@@ -132,6 +233,9 @@ namespace Vista
                 dataGridViewResultadoBusqueda.Rows[i].Cells[0].Value = i;
             }
         }
+        
+        #endregion
+        
         #region Eventos
         void frmResultadoBusqueda_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -139,293 +243,180 @@ namespace Vista
             e.Cancel = true; // this cancels the close event.
         }
         void dataGridViewResultadoBusqueda_CellContentDoubleClick(object sender, EventArgs e)
-        {      
+        {
             //toma el valor de la primera columna que no se muestra en la tabla. La misma funciona como índice y no se ve afectada por ordenamiento de tabla
             int indice = Convert.ToInt32(dataGridViewResultadoBusqueda.CurrentRow.Cells[0].Value);
-            this.asignarResultado(indice);
-            
+            modeloSeleccionado = glb_lst_objectos[indice];
+
             this.Hide();
         }
         #endregion
 
-        #region Modelos utilizados en la búsqueda
+        #region Búsqueda
 
-        #region Entidades
-        private void inicializarDataGridViewResultadoBusqueda_Entidades()
+        public void mostrarBusqueda(Object p_objeto)
         {
-            dataGridViewResultadoBusqueda.Columns.Add("tipo", "Tipo");
-            dataGridViewResultadoBusqueda.Columns[1].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("codigoEntidad", "Código");
-            dataGridViewResultadoBusqueda.Columns[2].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("cuit", "CUIT");
-            dataGridViewResultadoBusqueda.Columns[3].FillWeight = 1;
-        }
-        
-        #region Personas
-        private List<ModeloPersonas> glb_lst_mod_personas;
-        private ModeloPersonas glb_mod_persona;
-        public ModeloPersonas persona
-        {
-            get { return glb_mod_persona; }
-            set { this.glb_mod_persona = value; }
-        }
+            this.hacerBusqueda(p_objeto);
 
-        private void inicializarDataGridViewResultadoBusqueda_Personas()
-        {
-            dataGridViewResultadoBusqueda.Columns.Add("DNI", "DNI");
-            dataGridViewResultadoBusqueda.Columns[4].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("apellido", "Apellido");
-            dataGridViewResultadoBusqueda.Columns[5].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("Nombre", "Nombre");
-            dataGridViewResultadoBusqueda.Columns[6].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("direccion", "Domicilio");
-            dataGridViewResultadoBusqueda.Columns[7].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("ciudad", "Ciudad Domicilio");
-            dataGridViewResultadoBusqueda.Columns[8].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("provincia", "Provincia Domicilio");
-            dataGridViewResultadoBusqueda.Columns[9].FillWeight = 1;
-        }
-        private DataGridView popularDataGridViewResultadoBusqueda(List<ModeloPersonas> p_lst_mod_personas)
-        {
-            DataGridViewRow row = (DataGridViewRow)dataGridViewResultadoBusqueda.Rows[0].Clone();
-            foreach (ModeloPersonas p in p_lst_mod_personas)
+            if (glb_lst_objectos.Count != 0)
             {
-                row = (DataGridViewRow)dataGridViewResultadoBusqueda.Rows[0].Clone();
-
-                row.Cells[1].Value = p.tipoPersona;
-                row.Cells[2].Value = p.codigo;
-                row.Cells[3].Value = p.cuit;
-                row.Cells[4].Value = p.dni;
-                row.Cells[5].Value = p.apellido;
-                row.Cells[6].Value = p.nombre;
-                row.Cells[7].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].calle + " " + p.domicilios[0].numero;
-                row.Cells[8].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].ciudad;
-                row.Cells[9].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].provincia.provincia;
-
-                dataGridViewResultadoBusqueda.Rows.Add(row);
-            }
-            return dataGridViewResultadoBusqueda;
-        }
-        public void mostrarBusqueda(ModeloPersonas p_mod_persona)
-        {
-            this.inicializarMostrarBusqueda(LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona);
-            glb_lst_mod_personas = new List<ModeloPersonas>();
-            ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
-            glb_lst_mod_personas = lcl_con_busqueda.buscarPersonas(p_mod_persona);
-
-            if (glb_lst_mod_personas.Count != 0)
-            {
-                this.popularDataGridViewResultadoBusqueda(glb_lst_mod_personas);
-                this.insertarIndice();
                 this.ShowDialog();
             }
             else
             {
-                this.mostrarMensajeResultadoVacio();
+                MessageBox.Show("No se han encontrado resultados", "Resultado de búsqueda", MessageBoxButtons.OK);
             }
         }
-        #endregion
-        
-        #region Proveedores
-        private List<ModeloProveedor> glb_lst_mod_proveedor;
 
-        private ModeloProveedor glb_mod_proveedor;
-        public ModeloProveedor proveedor
+        private void hacerBusqueda(Object p_objeto)
         {
-            get { return glb_mod_proveedor; }
-            set { this.glb_mod_proveedor = value; }
-        }
-
-        private void inicializarDataGridViewResultadoBusqueda_Proveedores()
-        {
-            dataGridViewResultadoBusqueda.Columns.Add("razonSocial", "Razón Social");
-            dataGridViewResultadoBusqueda.Columns[4].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("direccion", "Domicilio");
-            dataGridViewResultadoBusqueda.Columns[5].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("ciudad", "Ciudad Domicilio");
-            dataGridViewResultadoBusqueda.Columns[6].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("provincia", "Provincia Domicilio");
-            dataGridViewResultadoBusqueda.Columns[7].FillWeight = 1;
-        }
-        private DataGridView popularDataGridViewResultadoBusqueda(List<ModeloProveedor> p_lst_mod_proveedor)
-        {
-            DataGridViewRow row = (DataGridViewRow)dataGridViewResultadoBusqueda.Rows[0].Clone();
-            foreach (ModeloProveedor p in p_lst_mod_proveedor)
-            {
-                row = (DataGridViewRow)dataGridViewResultadoBusqueda.Rows[0].Clone();
-
-                row.Cells[1].Value = Constantes.TiposEntidad.TiposProveedor.Proveedor;
-                row.Cells[2].Value = p.codigo;
-                row.Cells[3].Value = p.cuit;
-                row.Cells[4].Value = p.razonSocial;
-                row.Cells[5].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].calle + " " + p.domicilios[0].numero;
-                row.Cells[6].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].ciudad;
-                row.Cells[7].Value = p.domicilios.Count == 0 ? "Sin datos" : p.domicilios[0].provincia.provincia;
-
-                dataGridViewResultadoBusqueda.Rows.Add(row);
-            }
-            return dataGridViewResultadoBusqueda;
-        }       
-        public void mostrarBusqueda(ModeloProveedor p_mod_proveedor)
-        {
-            this.inicializarMostrarBusqueda(LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor);
-            glb_lst_mod_proveedor = new List<ModeloProveedor>();
+            this.inicializarMostrarBusqueda(p_objeto);
             ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
-            glb_lst_mod_proveedor = lcl_con_busqueda.buscarProveedores(p_mod_proveedor);
+            glb_lst_objectos = lcl_con_busqueda.buscar(p_objeto);
 
-            if (glb_lst_mod_proveedor.Count != 0)
+            if (glb_lst_objectos.Count != 0)
             {
-                this.popularDataGridViewResultadoBusqueda(glb_lst_mod_proveedor);
+                this.popularDataGridViewResultadoBusqueda(glb_lst_objectos);
                 this.insertarIndice();
-                this.ShowDialog();
+            }
+        }
+
+        #region Modelo -> Controles
+        private DataGridView popularDataGridViewResultadoBusqueda(List<object> p_lst_objetos)
+        {
+            Type T = p_lst_objetos[0].GetType();
+            if(T == typeof(ModeloArticulos))
+            {
+                return this.popularDataGridViewResultadoBusqueda(p_lst_objetos.Cast<ModeloArticulos>().ToList());
+            }
+            else if (T == typeof(ModeloArticuloProveedores))
+            {
+                return this.popularDataGridViewResultadoBusqueda(p_lst_objetos.Cast<ModeloArticuloProveedores>().ToList());
             }
             else
             {
-                this.mostrarMensajeResultadoVacio();
+                return this.popularDataGridViewResultadoBusqueda(p_lst_objetos.Cast<ModeloEntidad>().ToList());
             }
         }
-        #endregion
 
-        #endregion
-
-        #region Articulos
-        private List<ModeloArticulos> glb_lst_mod_articulos;
-        private ModeloArticulos glb_mod_articulo;
-        public ModeloArticulos articulo
+        private DataGridView popularDataGridViewResultadoBusqueda(List<ModeloEntidad> p_lst_mod_entidad)
         {
-            get { return this.glb_mod_articulo; }
-            set { this.glb_mod_articulo = value; }
-        }
+            int rowIndex;
+            DataGridViewRow row;
+            foreach (ModeloEntidad lcl_mod_entidad in p_lst_mod_entidad)
+            {
+                rowIndex = this.dataGridViewResultadoBusqueda.Rows.Add();
+                row = this.dataGridViewResultadoBusqueda.Rows[rowIndex];
 
-        private void inicializarDataGridViewResultadoBusqueda_Articulos()
-        {
-            dataGridViewResultadoBusqueda.Columns.Add("codigoOriginal", "Código");
-            dataGridViewResultadoBusqueda.Columns[1].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("descripcion", "Descripción");
-            dataGridViewResultadoBusqueda.Columns[2].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("modelos", "Modelos");
-            dataGridViewResultadoBusqueda.Columns[3].FillWeight = 1;
+                this.cargarDatosEntidadEnRow(lcl_mod_entidad, ref row);
+            }
+            return dataGridViewResultadoBusqueda;
         }
+        private void cargarDatosEntidadEnRow(ModeloEntidad p_mod_entidad, ref DataGridViewRow row)
+        {
+            row.Cells["tipo"].Value = p_mod_entidad.tipoEntidad;
+            row.Cells["codigoEntidad"].Value = p_mod_entidad.codigo;
+            row.Cells["cuit"].Value = p_mod_entidad.cuit;
+            row.Cells["direccion"].Value = p_mod_entidad.domicilios.Count == 0 ? "Sin datos" : p_mod_entidad.domicilios[0].calle + " " + p_mod_entidad.domicilios[0].numero;
+            row.Cells["ciudad"].Value = p_mod_entidad.domicilios.Count == 0 ? "Sin datos" : p_mod_entidad.domicilios[0].ciudad;
+            row.Cells["provincia"].Value = p_mod_entidad.domicilios.Count == 0 ? "Sin datos" : p_mod_entidad.domicilios[0].provincia.provincia;
+
+            if (p_mod_entidad.GetType() == typeof(ModeloProveedor))
+            {
+                this.cargarDatosProveedorEnRow(p_mod_entidad as ModeloProveedor, ref row);
+            }
+            else
+            {
+                this.cargarDatosPersonaEnRow(p_mod_entidad as ModeloPersonas, ref row);
+            }
+
+        }
+        private void cargarDatosProveedorEnRow(ModeloProveedor p_mod_proveedor, ref DataGridViewRow row)
+        {
+            row.Cells["razonSocial"].Value = p_mod_proveedor.razonSocial;
+        }
+        private void cargarDatosPersonaEnRow(ModeloPersonas p_mod_persona, ref DataGridViewRow row)
+        {
+            row.Cells["dni"].Value = p_mod_persona.dni;
+            row.Cells["apellido"].Value = p_mod_persona.apellido;
+            row.Cells["nombre"].Value = p_mod_persona.nombre;
+            if (p_mod_persona.GetType() == typeof(ModeloUsuario))
+            {
+                this.cargarDatosUsuarioEnRow(p_mod_persona as ModeloUsuario, ref row);
+            }
+            else if (p_mod_persona.GetType() == typeof(ModeloContactoProveedor))
+            {
+                this.cargarDatosContactoProveedorEnRow(p_mod_persona as ModeloContactoProveedor, ref row);
+            }
+            else if (p_mod_persona.GetType() == typeof(ModeloCliente))
+            {
+                this.cargarDatosClienteEnRow(p_mod_persona as ModeloCliente, ref row);
+            }
+        }
+        private void cargarDatosContactoProveedorEnRow(ModeloContactoProveedor p_mod_contactoProveedor, ref DataGridViewRow row)
+        {
+            row.Cells["razon_social_proveedor"].Value = p_mod_contactoProveedor.proveedor.razonSocial;
+        }
+        private void cargarDatosUsuarioEnRow(ModeloUsuario p_mod_usuario, ref DataGridViewRow row)
+        {
+            row.Cells["usuario"].Value = p_mod_usuario.usuario;
+        }
+        private void cargarDatosClienteEnRow(ModeloCliente p_mod_cliente, ref DataGridViewRow row)
+        { }
+
         private DataGridView popularDataGridViewResultadoBusqueda(List<ModeloArticulos> p_lst_mod_articulo)
         {
-            DataGridViewRow row = (DataGridViewRow)dataGridViewResultadoBusqueda.Rows[0].Clone();
+            int rowIndex;
+            DataGridViewRow row;
             foreach (ModeloArticulos a in p_lst_mod_articulo)
             {
-                row = (DataGridViewRow)dataGridViewResultadoBusqueda.Rows[0].Clone();
+                rowIndex = this.dataGridViewResultadoBusqueda.Rows.Add();
+                row = this.dataGridViewResultadoBusqueda.Rows[rowIndex];
 
-                row.Cells[1].Value = a.codigoOriginal.ToString();
-                row.Cells[2].Value = a.descripcion;
-                row.Cells[3].Value = a.modelos;
-
-                dataGridViewResultadoBusqueda.Rows.Add(row);
+                this.cargarDatosArticuloEnRow(a,ref row);
             }
             return dataGridViewResultadoBusqueda;
         }
-        public void mostrarBusqueda(ModeloArticulos p_mod_articulo)
+        private void cargarDatosArticuloEnRow(ModeloArticulos p_mod_articulo, ref DataGridViewRow row)
         {
-            this.inicializarMostrarBusqueda(LibreriaClasesCompartidas.Constantes.TiposArticulo.ArticuloBase);
-            glb_lst_mod_articulos = new List<ModeloArticulos>();
-            ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
-            glb_lst_mod_articulos = lcl_con_busqueda.buscarArticulos(p_mod_articulo);
-
-            if (glb_lst_mod_articulos.Count != 0)
-            {
-                this.popularDataGridViewResultadoBusqueda(glb_lst_mod_articulos);
-                this.insertarIndice();
-                this.ShowDialog();
-            }
-            else
-            {
-                this.mostrarMensajeResultadoVacio();
-            }
+            row.Cells["codigoOriginal"].Value = p_mod_articulo.codigoOriginal.ToString();
+            row.Cells["descripcion"].Value = p_mod_articulo.descripcion;
+            row.Cells["modelos"].Value = p_mod_articulo.modelos;
         }
-        #endregion
-
-        #region ArticulosProveedores
-        private List<ModeloArticuloProveedores> glb_lst_mod_articuloProveedores;
-        public ModeloArticuloProveedores glb_mod_articuloProveedor;
-
-        private void inicializarDataGridViewResultadoBusqueda_ArticulosProveedores()
-        {
-            dataGridViewResultadoBusqueda.Columns.Add("codigoOriginal", "Código");
-            dataGridViewResultadoBusqueda.Columns[1].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("descripcion", "Descripción");
-            dataGridViewResultadoBusqueda.Columns[2].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("modelos", "Modelos");
-            dataGridViewResultadoBusqueda.Columns[3].FillWeight = 1;
-            
-            dataGridViewResultadoBusqueda.Columns.Add("codigoArticuloProveedor", "Código Artículo");
-            dataGridViewResultadoBusqueda.Columns[4].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("descripcionArticuloProveedor", "Descripción Articulo");
-            dataGridViewResultadoBusqueda.Columns[5].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("codigoEntidad", "Código Proveedor");
-            dataGridViewResultadoBusqueda.Columns[6].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("razonSocialProveedor", "Proveedor");
-            dataGridViewResultadoBusqueda.Columns[7].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("valorVenta", "Valor Venta");
-            dataGridViewResultadoBusqueda.Columns[8].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("valorCompra", "Valor Compra");
-            dataGridViewResultadoBusqueda.Columns[9].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("stockMinimo", "Stock Mínimo");
-            dataGridViewResultadoBusqueda.Columns[10].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("stockActual", "Stock Actual");
-            dataGridViewResultadoBusqueda.Columns[11].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("ubicacion", "Ubicación");
-            dataGridViewResultadoBusqueda.Columns[12].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("fechaActualizacion", "Fecha Última Actualización");
-            dataGridViewResultadoBusqueda.Columns[13].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns[13].DefaultCellStyle.Format = "dd/MM/yyyy";
-        }
+        
         private DataGridView popularDataGridViewResultadoBusqueda(List<ModeloArticuloProveedores> p_lst_mod_articuloProveedor)
         {
-            DataGridViewRow row = (DataGridViewRow)dataGridViewResultadoBusqueda.Rows[0].Clone();
-           
+            int rowIndex;
+            DataGridViewRow row;
             foreach (ModeloArticuloProveedores ap in p_lst_mod_articuloProveedor)
             {
-                row = (DataGridViewRow)dataGridViewResultadoBusqueda.Rows[0].Clone();
+                rowIndex = this.dataGridViewResultadoBusqueda.Rows.Add();
+                row = this.dataGridViewResultadoBusqueda.Rows[rowIndex];
 
-                row.Cells[1].Value = ap.codigoOriginal.ToString();
-                row.Cells[2].Value = ap.descripcion;
-                row.Cells[3].Value = ap.modelos;
+                this.cargarDatosArticuloEnRow(ap as ModeloArticulos,ref row);
 
-                row.Cells[4].Value = ap.codigoArticuloProveedor;
-                row.Cells[5].Value = ap.descripcionArticuloProveedor;
-                row.Cells[6].Value = ap.codigoEntidad;
-                row.Cells[7].Value = ap.razonSocialProveedor;
-                row.Cells[8].Value = ap.valorVenta.valorArticulo.ToString();
-                row.Cells[9].Value = ap.valorCompra.valorArticulo.ToString();
-                row.Cells[10].Value = ap.stockMinimo.ToString();
-                
-                row.Cells[11].Value = ap.stockActual.ToString();
-                row.Cells[12].Value = ap.ubicacion;
-                row.Cells[13].Value = ap.fechaActualizacion;
-
-                dataGridViewResultadoBusqueda.Rows.Add(row);
+                this.cargarDatosArticuloProveedorEnRow(ap,ref row);
             }
+
             return dataGridViewResultadoBusqueda;
         }
-        public void mostrarBusqueda(ModeloArticuloProveedores p_mod_articuloProveedor)
+        private void cargarDatosArticuloProveedorEnRow(ModeloArticuloProveedores p_mod_articuloProveedor, ref DataGridViewRow row)
         {
-            this.inicializarMostrarBusqueda(LibreriaClasesCompartidas.Constantes.TiposArticulo.ArticuloProveedor);
-            glb_lst_mod_articuloProveedores = new List<ModeloArticuloProveedores>();
-            ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
-            glb_lst_mod_articuloProveedores = lcl_con_busqueda.buscarArticulosProveedores(p_mod_articuloProveedor);
-
-            if (glb_lst_mod_articuloProveedores.Count != 0)
-            {
-                this.popularDataGridViewResultadoBusqueda(glb_lst_mod_articuloProveedores);
-                this.insertarIndice();
-                this.ShowDialog();
-            }
-            else
-            {
-                this.mostrarMensajeResultadoVacio();
-            }
-        }     
-
+            row.Cells["codigoArticuloProveedor"].Value = p_mod_articuloProveedor.codigoArticuloProveedor;
+            row.Cells["descripcionArticuloProveedor"].Value = p_mod_articuloProveedor.descripcionArticuloProveedor;
+            row.Cells["codigoEntidad"].Value = p_mod_articuloProveedor.codigoEntidad;
+            row.Cells["razonSocialProveedor"].Value = p_mod_articuloProveedor.razonSocialProveedor;
+            
+            row.Cells["valorVenta"].Value = p_mod_articuloProveedor.valorVenta.valorArticulo.ToString();
+            row.Cells["valorCompra"].Value = p_mod_articuloProveedor.valorCompra.valorArticulo.ToString();
+            row.Cells["stockMinimo"].Value = p_mod_articuloProveedor.stockMinimo.ToString();
+            row.Cells["stockActual"].Value = p_mod_articuloProveedor.stockActual.ToString();
+            row.Cells["ubicacion"].Value = p_mod_articuloProveedor.ubicacion;
+            row.Cells["fechaActualizacion"].Value = p_mod_articuloProveedor.fechaActualizacion;
+        }
         #endregion
 
+       
         #endregion
-
     }
 }

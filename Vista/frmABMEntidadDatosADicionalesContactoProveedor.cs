@@ -13,12 +13,24 @@ namespace Vista
 {
     public partial class frmABMEntidadDatosAdicionalesContactoProveedor : Form
     {
-        private frmResultadoBusqueda fResultadoBusqueda;
-        public ModeloProveedor mProveedor;
+        private frmResultadoBusqueda glb_frm_resultadoBusqueda;
+        private ModeloContactoProveedor _contactoProveedor;
+        public ModeloContactoProveedor contactoProveedor
+        {
+            get { return _contactoProveedor; }
+            set { _contactoProveedor = value; }
+        }
+       
         public frmABMEntidadDatosAdicionalesContactoProveedor()
         {
             InitializeComponent();
             this.inicializarFormulario();
+            contactoProveedor = new ModeloContactoProveedor();
+        }
+        public frmABMEntidadDatosAdicionalesContactoProveedor(ModeloContactoProveedor p_mod_contactoProveedor) : this()
+        {
+            contactoProveedor = new ModeloContactoProveedor(p_mod_contactoProveedor);
+            this.cargarDatosProveedorEnControles();
         }
 
         private void inicializarFormulario()
@@ -31,44 +43,44 @@ namespace Vista
             this.StartPosition = FormStartPosition.CenterParent;
             txtBoxCodigoSeleccionado.ReadOnly = txtBoxCUITSeleccionado.ReadOnly = txtBoxRazonSocialSeleccionado.ReadOnly = true;
         }
-        private void cargarProveedorEnControles()
+        #region Modelo -> Controles
+        private void cargarDatosProveedorEnControles()
         {
-            txtBoxCodigoSeleccionado.Text = mProveedor.codigo.ToString();
-            txtBoxCUITSeleccionado.Text = mProveedor.cuit;
-            txtBoxRazonSocialSeleccionado.Text = mProveedor.razonSocial;
+            txtBoxCodigoSeleccionado.Text = contactoProveedor.proveedor.codigo.ToString();
+            txtBoxCUITSeleccionado.Text = contactoProveedor.proveedor.cuit;
+            txtBoxRazonSocialSeleccionado.Text = contactoProveedor.proveedor.razonSocial;
         }
-        private void cargarDatosEnModeloProveedor(ref ModeloProveedor pmProveedor)
+        #endregion
+
+        #region Controles -> Modelo
+        private void cargarDatosEnModeloProveedor(ref ModeloProveedor lcl_mod_proveedor)
         {
             if (LibreriaClasesCompartidas.Validar.validarValorNumerico(txtBoxCodigo.Text))
             {
-                pmProveedor.codigo = Convert.ToInt32(txtBoxCodigo.Text);
+                lcl_mod_proveedor.codigo = Convert.ToInt32(txtBoxCodigo.Text);
             }
             else
             {
-                pmProveedor.codigo = 0;
+                lcl_mod_proveedor.codigo = 0;
             }
 
-            pmProveedor.cuit = txtBoxCUIT.Text;
-            pmProveedor.razonSocial = txtBoxRazonSocial.Text;
+            lcl_mod_proveedor.cuit = txtBoxCUIT.Text;
+            lcl_mod_proveedor.razonSocial = txtBoxRazonSocial.Text;
         }
+        #endregion
 
+        #region Eventos
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnSeleccionarProveedor_Click(object sender, EventArgs e)
         {
-            this.mProveedor = null;
-            this.Close();
-        }
-
-        private void btnContactoProveedorSeleccionarProveedor_Click(object sender, EventArgs e)
-        {
-            fResultadoBusqueda = new frmResultadoBusqueda();
-            ModeloProveedor mProveedorSeleccionado = new ModeloProveedor();
-            this.cargarDatosEnModeloProveedor(ref mProveedorSeleccionado);
-            fResultadoBusqueda.mostrarBusqueda(mProveedorSeleccionado);
-            if (fResultadoBusqueda.proveedor != null)
+            glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
+            ModeloProveedor lcl_mod_proveedorSeleccionado = new ModeloProveedor();
+            this.cargarDatosEnModeloProveedor(ref lcl_mod_proveedorSeleccionado);
+            glb_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_proveedorSeleccionado);
+            if (glb_frm_resultadoBusqueda.modeloSeleccionado != null)
             {
-                mProveedor = fResultadoBusqueda.proveedor;
-                this.cargarProveedorEnControles();
+                contactoProveedor.proveedor = glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloProveedor;
+                this.cargarDatosProveedorEnControles();
             }
         }
 
@@ -76,5 +88,14 @@ namespace Vista
         {
             this.Close();
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.contactoProveedor = null;
+            this.Close();
+        }
+        #endregion
+
+       
     }
 }

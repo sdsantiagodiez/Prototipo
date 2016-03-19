@@ -31,22 +31,22 @@ namespace Vista
             //busco el usuario correspondiente y lo guardo
             ControladorInicioSesion ctrlSesion = new ControladorInicioSesion();
           
-            this.persona=ctrlSesion.buscarUsuario(usuario, contrasenia);
+            //this.persona=ctrlSesion.buscarUsuario(usuario, contrasenia);
            
            
-            if (!object.Equals(this.persona.dni,  null))
-            {
-                //busco y guardo los roles del usuario
-                this.Roles=ctrlSesion.getRoles(this.persona);
+            //if (!object.Equals(this.persona.dni,  null))
+            //{
+            //    //busco y guardo los roles del usuario
+            //    this.Roles=ctrlSesion.getRoles(this.persona);
 
-            //cierro login y devuelvo resultado ok o notifico fallo    
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Usuario no encontrado");
-            }
+            ////cierro login y devuelvo resultado ok o notifico fallo    
+            //    this.DialogResult = DialogResult.OK;
+            //    this.Close();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Usuario no encontrado");
+            //}
         }
 
         public ModeloPersonas persona

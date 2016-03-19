@@ -12,6 +12,39 @@ namespace Controladores
 {
     public class ControladorAlta : Controlador
     {
+        public bool agregar(ref ModeloEntidad p_mod_entidad)
+        {
+            Type T = p_mod_entidad.GetType();
+            CatalogoEntidades lcl_catalogo;
+            if (T == typeof(ModeloCliente))
+            {
+                lcl_catalogo = new CatalogoClientes();
+            }
+            else if (T == typeof(ModeloUsuario))
+            {
+                lcl_catalogo = new CatalogoUsuarios();
+            }
+            else if (T == typeof(ModeloContactoProveedor))
+            {
+                lcl_catalogo = new CatalogoContactoProveedores();
+            }
+            else if (T == typeof(ModeloProveedor))
+            {
+                lcl_catalogo = new CatalogoProveedores();
+            }
+            else if (T == typeof(ModeloPersonas))
+            {
+                lcl_catalogo = new CatalogoPersonas();
+            }
+            else
+            {
+                lcl_catalogo = new CatalogoEntidades();
+            }
+
+            return lcl_catalogo.add(ref p_mod_entidad);
+        }
+
+
         public bool agregar(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
             CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
@@ -38,10 +71,6 @@ namespace Controladores
             {
                 return false;
             }
-        }
-        private bool agregar(ModeloEntidad p_mod_entidad)
-        {
-            return false;
         }
         /// <summary>
         /// Agrega lineas de pedido a la capa de datos
@@ -100,42 +129,45 @@ namespace Controladores
             }
             
         }
-        /// <summary>
-        /// Agrega persona a la capa de datos
-        /// </summary>
-        /// <param name="p_mod_persona"></param>
-        /// <returns></returns>
-        public bool agregar(ref ModeloPersonas p_mod_persona)
-        {
-            CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
+      
+        ///// <summary>
+        ///// Agrega persona a la capa de datos
+        ///// </summary>
+        ///// <param name="p_mod_persona"></param>
+        ///// <returns></returns>
+        //public bool agregar(ref ModeloPersonas p_mod_persona)
+        //{
+        //    CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
 
-            if (p_mod_persona.validar())
-            {
-                return lcl_cat_personas.add(ref p_mod_persona);
-            }
-            else
-            {
-                return false;
-            }   
-        }
-        /// <summary>
-        /// Agrega proveedor a la capa de datos
-        /// </summary>
-        /// <param name="p_mod_proveedor"></param>
-        /// <returns></returns>
-        public bool agregar(ref ModeloProveedor p_mod_proveedor)
-        {
-            CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
+        //    if (p_mod_persona.validar())
+        //    {
+        //        return true;// lcl_cat_personas.add(ref p_mod_persona);
+        //        //CAMBIOS
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }   
+        //}
+        ///// <summary>
+        ///// Agrega proveedor a la capa de datos
+        ///// </summary>
+        ///// <param name="p_mod_proveedor"></param>
+        ///// <returns></returns>
+        //public bool agregar(ref ModeloProveedor p_mod_proveedor)
+        //{
+        //    CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
 
-            if (p_mod_proveedor.validar())
-            {
-                return lcl_cat_proveedores.add(ref p_mod_proveedor);
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //    if (p_mod_proveedor.validar())
+        //    {
+        //        return true;// lcl_cat_proveedores.add(ref p_mod_proveedor);
+        //        //CAMBIOS
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
         
         public bool agregar(ModeloProvincia p_mod_provincia)
         {

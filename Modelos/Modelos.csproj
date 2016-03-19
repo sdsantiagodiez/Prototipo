@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModeloCliente.cs" />
+    <Compile Include="ModeloContactoProveedor.cs" />
     <Compile Include="ModeloDomicilio.cs" />
     <Compile Include="ModeloEntidad.cs" />
     <Compile Include="ModeloPais.cs" />
@@ -48,6 +50,7 @@
     <Compile Include="ModeloReporteTop10Articulos.cs" />
     <Compile Include="ModeloReporteVentaEntreFechas.cs" />
     <Compile Include="ModeloTelefono.cs" />
+    <Compile Include="ModeloUsuario.cs" />
     <Compile Include="ModeloValorArticulo.cs" />
     <Compile Include="ModeloArticulos.cs" />
     <Compile Include="ModeloArticuloProveedores.cs" />

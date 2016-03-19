@@ -11,8 +11,86 @@ namespace Controladores
 {
     public class ControladorBusqueda
     {
+        public List<Object> buscar(object p_objeto)
+        {
+            Type T = p_objeto.GetType();
+            IEnumerable<object> lcl_ienum_objeto;
+            if (T == typeof(ModeloArticuloProveedores))
+            {
+                lcl_ienum_objeto = this.buscarArticulosProveedores(p_objeto as ModeloArticuloProveedores);
+                
+            }
+            else if (T == typeof(ModeloArticulos))
+            {
+                lcl_ienum_objeto = this.buscarArticulos(p_objeto as ModeloArticulos);
+            }
+            else 
+            {
+                lcl_ienum_objeto = this.buscar(p_objeto as ModeloEntidad);
+            }
+
+            return lcl_ienum_objeto.ToList();
+        }
+
+
         #region Entidades
-        
+        /// <summary>
+        /// Retorna todas las personas de la base de datos
+        /// </summary>
+        /// <returns>Lista de personas</returns>
+        public List<ModeloEntidad> buscarEntidades()
+        {
+            CatalogoEntidades lcl_cat_entidades = new CatalogoEntidades();
+            return lcl_cat_entidades.buscar(null,Constantes.ParametrosBusqueda.Entidades.All).ToList();
+        }
+        /// <summary>
+        /// Retorna entidades en base a los valores inicializados en los atributos del modelo
+        /// </summary>
+        /// <param name="p_mod_entidad"></param>
+        /// <returns>Lista de entidades</returns>
+        public List<ModeloEntidad> buscar(ModeloEntidad p_mod_entidad)
+        {
+            return this.buscar(p_mod_entidad,Constantes.ParametrosBusqueda.Entidades.Any);
+        }
+        /// <summary>
+        /// Busca personas que cumplan con un parámetro de búsqueda.
+        /// </summary>
+        /// <param name="p_mod_persona">Persona con variable a buscar inicializada con algún valor</param>
+        /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda</param>
+        /// <returns>Lista de personas</returns>
+        public List<ModeloEntidad> buscar(ModeloEntidad p_mod_entidad, string p_paramentroBusqueda)
+        {
+            Type T = p_mod_entidad.GetType();
+            CatalogoEntidades lcl_catalogo;
+            if (T == typeof(ModeloCliente))
+            {
+                lcl_catalogo = new CatalogoClientes();
+            }
+            else if (T == typeof(ModeloUsuario))
+            {
+                lcl_catalogo = new CatalogoUsuarios();
+            }
+            else if (T == typeof(ModeloContactoProveedor))
+            {
+                lcl_catalogo = new CatalogoContactoProveedores();
+            }
+            else if (T == typeof(ModeloProveedor))
+            {
+                lcl_catalogo = new CatalogoProveedores();
+            }
+            else if (T == typeof(ModeloPersonas))
+            {
+                lcl_catalogo = new CatalogoPersonas();
+            }
+            else
+            {
+                lcl_catalogo = new CatalogoEntidades();
+            }
+
+            return lcl_catalogo.buscar(p_mod_entidad, p_paramentroBusqueda).ToList();
+        }
+
+        #region ELIMINAR
         #region Personas
         /// <summary>
         /// Retorna todas las personas de la base de datos
@@ -22,7 +100,7 @@ namespace Controladores
         {
             CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
 
-            return lcl_cat_personas.buscarPersona(null, Constantes.ParametrosBusqueda.Entidades.Personas.All);
+            return lcl_cat_personas.buscarPersonas(null, Constantes.ParametrosBusqueda.Entidades.Personas.All);
         }
         /// <summary>
         /// Retorna personas en base a los valores inicializados en los atributos del modelo
@@ -34,7 +112,7 @@ namespace Controladores
             CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
             p_mod_persona.convertirDatos();
 
-            return lcl_cat_personas.buscarPersona(p_mod_persona,Constantes.ParametrosBusqueda.Entidades.Personas.Any);            
+            return lcl_cat_personas.buscarPersonas(p_mod_persona, Constantes.ParametrosBusqueda.Entidades.Personas.Any);
         }
         /// <summary>
         /// Busca personas que cumplan con un parámetro de búsqueda.
@@ -46,7 +124,7 @@ namespace Controladores
         {
             CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
 
-            return lcl_cat_personas.buscarPersona(p_mod_persona, p_paramentroBusqueda);
+            return lcl_cat_personas.buscarPersonas(p_mod_persona, p_paramentroBusqueda);
         }
 
         #endregion
@@ -59,8 +137,8 @@ namespace Controladores
         public List<ModeloProveedor> buscarProveedores()
         {
             CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
-            
-            return lcl_cat_proveedores.buscarProveedor(null,Constantes.ParametrosBusqueda.Entidades.Proveedores.All);
+
+            return lcl_cat_proveedores.buscarProveedor(null, Constantes.ParametrosBusqueda.Entidades.Proveedores.All);
         }
         /// <summary>
         /// Retorna proveedores en base a los valores inicializados en los atributos del modelo
@@ -84,15 +162,15 @@ namespace Controladores
         {
             CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
 
-            return  lcl_cat_proveedores.buscarProveedor(p_mod_proveedor, p_paramentroBusqueda);    
+            return lcl_cat_proveedores.buscarProveedor(p_mod_proveedor, p_paramentroBusqueda);
         }
 
         #endregion
-
         #endregion
-        
+        #endregion
+
         #region Articulos
-         /// <summary>
+        /// <summary>
         /// Retorna todos los Articulos de la base de datos
         /// </summary>
         /// <returns>Lista de Articulos</returns>

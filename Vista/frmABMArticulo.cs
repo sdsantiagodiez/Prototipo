@@ -201,7 +201,9 @@ namespace Vista
             return exito;
         }
         #endregion
-        
+
+        #region Búsqueda
+
         /// <summary>
         /// Muestra cuadro de resultado de búsqueda de la clase buscada o mensaje de error en caso de que no se haya podido mostrar
         /// </summary>
@@ -209,7 +211,6 @@ namespace Vista
         {
             if (this.validarBusqueda())
             {
-                glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
                 this.buscarArticulo();
             }
         }
@@ -223,18 +224,20 @@ namespace Vista
         }
         private void buscarArticulo()
         {
+            glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
             glb_mod_articuloActual = this.cargarDatosEnModeloArticulo();
             glb_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_articuloActual);
-            if (glb_frm_resultadoBusqueda.articulo != null)
+            if (glb_frm_resultadoBusqueda.modeloSeleccionado != null)
             {
                 this.modoFormulario = ModoFormularioSeleccionado;
 
-                glb_mod_articuloSeleccionado = glb_frm_resultadoBusqueda.articulo;
+                glb_mod_articuloSeleccionado = glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticulos;
                 this.cargarArticuloEnControles(glb_mod_articuloSeleccionado);
             }
         }
         #endregion
-
+        
+        #region Controles -> Modelo
         private ModeloArticulos cargarDatosEnModeloArticulo()
         {
             ModeloArticulos lcl_mod_articulo = new ModeloArticulos();
@@ -244,7 +247,9 @@ namespace Vista
             lcl_mod_articulo.observaciones = rchTextBoxObservaciones.Text;
             return lcl_mod_articulo;
         }
+        #endregion
 
+        #region Modelo -> Controles
         private void cargarArticuloEnControles(ModeloArticulos p_mod_articulo)
         {
             glb_mod_articuloSeleccionado = p_mod_articulo;
@@ -254,6 +259,13 @@ namespace Vista
             txtBoxModelo.Text = glb_mod_articuloSeleccionado.modelos;
             rchTextBoxObservaciones.Text = glb_mod_articuloSeleccionado.observaciones;
         }
+        #endregion
+
+        #region Validar Controles
+
+        #endregion
+
+        #endregion
 
         #region Eventos
 
