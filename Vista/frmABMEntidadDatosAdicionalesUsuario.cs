@@ -20,6 +20,16 @@ namespace Vista
             get { return _usuario; }
             set { _usuario = value; }
         }
+        private bool _modoUsuarioNuevo;
+        private bool modoUsuarioNuevo 
+        {
+            get { return _modoUsuarioNuevo; }
+            set 
+            { 
+                _modoUsuarioNuevo = value;
+                this.inicializarModoUsuarioNuevo(_modoUsuarioNuevo);
+            }
+        }
 
         public frmABMEntidadDatosAdicionalesUsuario()
         {
@@ -30,12 +40,10 @@ namespace Vista
         public frmABMEntidadDatosAdicionalesUsuario(ModeloUsuario p_mod_usuario)
             : this()
         {
-            usuario = p_mod_usuario;
+            _usuario = p_mod_usuario;
             this.cargarUsuarioEnControles();
+            modoUsuarioNuevo = false;
         }
-
-        #region Métodos
-
         #region Inicialización
         private void inicializarFormulario()
         {
@@ -43,30 +51,29 @@ namespace Vista
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-
+            modoUsuarioNuevo = true;
+            
             this.StartPosition = FormStartPosition.CenterParent;
             this.inicializarCheckedListBox();
         }
 
         private void inicializarCheckedListBox()
         {
-            //REVISAR FALTAN roles en controladores y catalogo
             ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
-            List<ModeloRoles> lcl_lst_mod_roles = new List<ModeloRoles>();
-            ModeloRoles lcl_mod_rol;
-            for (int i = 0; i < 10; i++ )
-            {
-                lcl_mod_rol = new ModeloRoles();
-                lcl_mod_rol.codigo = i;
-                lcl_mod_rol.descripcion = "Rol " + i.ToString();
-                lcl_lst_mod_roles.Add(lcl_mod_rol);
-            }
-
-            chckdListBoxRol.DataSource = lcl_lst_mod_roles;
+            ModeloRoles lcl_mod_rol = new ModeloRoles();
+            chckdListBoxRol.DataSource = lcl_con_busqueda.buscar(lcl_mod_rol, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Roles.All);
             chckdListBoxRol.DisplayMember = "descripcion";
             chckdListBoxRol.ValueMember = "codigo";
         }
-        
+        private void inicializarModoUsuarioNuevo(bool value)
+        {
+            txtBoxUsuario.Enabled = value;
+            txtBoxContraseña.Enabled = value;
+            txtBoxConfirmarContraseña.Enabled = value;
+            chckdListBoxRol.Enabled = value;
+
+            btnModificar.Enabled = !value;
+        }
         private List<ModeloRoles> cargarDatosEnModeloRol()
         {
             List<ModeloRoles> lcl_lst_mod_roles = new List<ModeloRoles>();
@@ -80,7 +87,8 @@ namespace Vista
             return lcl_lst_mod_roles;
         }
         #endregion
-            
+
+        #region Métodos
         #region Validación
         private bool validarDatosIngresados()
         {
@@ -115,27 +123,41 @@ namespace Vista
         #region Controles -> Modelo
         private void cargarControlesEnUsuario()
         {
-            usuario = new ModeloUsuario();
+            _usuario = new ModeloUsuario();
             this.cargarDatosControlUsuarioContraseña();
             this.cargarDatosControlRoles();
         }
         private void cargarDatosControlUsuarioContraseña()
-        { 
+        {
+            _usuario.usuario = txtBoxUsuario.Text;
+            _usuario.contrasenia = txtBoxContraseña.Text;
         }
         private void cargarDatosControlRoles()
-        { }
+        {
+            List<ModeloRoles> lcl_lst_mod_roles = this.chckdListBoxRol.CheckedItems.OfType<ModeloRoles>().ToList();
+            _usuario.roles = lcl_lst_mod_roles;
+        }
        
         #endregion
 
         #region Modelo -> Controles
         private void cargarUsuarioEnControles()
         {
-            txtBoxUsuario.Text = usuario.usuario;
+            txtBoxUsuario.Text = _usuario.usuario;
             this.cargarDatosRolesEnControles();
         }
 
         private void cargarDatosRolesEnControles()
-        { 
+        {
+            ModeloRoles m_roles_aux;
+            for (int i = 0; i < chckdListBoxRol.Items.Count; i++)
+            {
+                m_roles_aux = (ModeloRoles)this.chckdListBoxRol.Items[i];
+                if (_usuario.roles.Contains(m_roles_aux))
+                {
+                    chckdListBoxRol.SetItemChecked(i,true);
+                }
+            }
         }
         #endregion
 
@@ -155,10 +177,14 @@ namespace Vista
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.usuario = null;
             this.Close();
         }
         #endregion
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            this.modoUsuarioNuevo = true;
+        }
 
     }
 }

@@ -40,10 +40,8 @@ namespace Controladores
             {
                 lcl_catalogo = new CatalogoEntidades();
             }
-
             return lcl_catalogo.add(ref p_mod_entidad);
         }
-
 
         public bool agregar(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
@@ -128,47 +126,7 @@ namespace Controladores
                 return false;
             }
             
-        }
-      
-        ///// <summary>
-        ///// Agrega persona a la capa de datos
-        ///// </summary>
-        ///// <param name="p_mod_persona"></param>
-        ///// <returns></returns>
-        //public bool agregar(ref ModeloPersonas p_mod_persona)
-        //{
-        //    CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
-
-        //    if (p_mod_persona.validar())
-        //    {
-        //        return true;// lcl_cat_personas.add(ref p_mod_persona);
-        //        //CAMBIOS
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }   
-        //}
-        ///// <summary>
-        ///// Agrega proveedor a la capa de datos
-        ///// </summary>
-        ///// <param name="p_mod_proveedor"></param>
-        ///// <returns></returns>
-        //public bool agregar(ref ModeloProveedor p_mod_proveedor)
-        //{
-        //    CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
-
-        //    if (p_mod_proveedor.validar())
-        //    {
-        //        return true;// lcl_cat_proveedores.add(ref p_mod_proveedor);
-        //        //CAMBIOS
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
-        
+        }     
         public bool agregar(ModeloProvincia p_mod_provincia)
         {
             CatalogoProvincias lcl_cat_provincias = new CatalogoProvincias();

@@ -58,7 +58,6 @@
             this.lblCalle = new System.Windows.Forms.Label();
             this.txtBoxCalle = new System.Windows.Forms.TextBox();
             this.lblNumero = new System.Windows.Forms.Label();
-            this.txtBoxNumeroDomicilio = new System.Windows.Forms.TextBox();
             this.lblPiso = new System.Windows.Forms.Label();
             this.txtBoxPiso = new System.Windows.Forms.TextBox();
             this.lblDepartamento = new System.Windows.Forms.Label();
@@ -113,6 +112,7 @@
             this.codigoMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDatosAdicionales = new System.Windows.Forms.Button();
+            this.txtBoxNumeroDomicilio = new System.Windows.Forms.TextBox();
             this.tblLayoutPanelForm.SuspendLayout();
             this.grpBoxTipoEntidad.SuspendLayout();
             this.pnlTipoEntidad.SuspendLayout();
@@ -455,7 +455,6 @@
             this.tblLayoutPanelDomicilio.Controls.Add(this.lblCalle, 0, 0);
             this.tblLayoutPanelDomicilio.Controls.Add(this.txtBoxCalle, 1, 0);
             this.tblLayoutPanelDomicilio.Controls.Add(this.lblNumero, 2, 0);
-            this.tblLayoutPanelDomicilio.Controls.Add(this.txtBoxNumeroDomicilio, 3, 0);
             this.tblLayoutPanelDomicilio.Controls.Add(this.lblPiso, 4, 0);
             this.tblLayoutPanelDomicilio.Controls.Add(this.txtBoxPiso, 5, 0);
             this.tblLayoutPanelDomicilio.Controls.Add(this.lblDepartamento, 6, 0);
@@ -468,6 +467,7 @@
             this.tblLayoutPanelDomicilio.Controls.Add(this.txtBoxCodigoPostal, 3, 1);
             this.tblLayoutPanelDomicilio.Controls.Add(this.lblPais, 6, 1);
             this.tblLayoutPanelDomicilio.Controls.Add(this.cmbBoxPais, 7, 1);
+            this.tblLayoutPanelDomicilio.Controls.Add(this.txtBoxNumeroDomicilio, 3, 0);
             this.tblLayoutPanelDomicilio.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelDomicilio.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelDomicilio.Name = "tblLayoutPanelDomicilio";
@@ -506,14 +506,6 @@
             this.lblNumero.Size = new System.Drawing.Size(62, 17);
             this.lblNumero.TabIndex = 3;
             this.lblNumero.Text = "Número:";
-            // 
-            // txtBoxNumeroDomicilio
-            // 
-            this.txtBoxNumeroDomicilio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNumeroDomicilio.Location = new System.Drawing.Point(309, 5);
-            this.txtBoxNumeroDomicilio.Name = "txtBoxNumeroDomicilio";
-            this.txtBoxNumeroDomicilio.Size = new System.Drawing.Size(49, 24);
-            this.txtBoxNumeroDomicilio.TabIndex = 9;
             // 
             // lblPiso
             // 
@@ -1098,6 +1090,14 @@
             this.btnDatosAdicionales.UseVisualStyleBackColor = true;
             this.btnDatosAdicionales.Click += new System.EventHandler(this.btnDatosAdicionales_Click);
             // 
+            // txtBoxNumeroDomicilio
+            // 
+            this.txtBoxNumeroDomicilio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxNumeroDomicilio.Location = new System.Drawing.Point(309, 5);
+            this.txtBoxNumeroDomicilio.Name = "txtBoxNumeroDomicilio";
+            this.txtBoxNumeroDomicilio.Size = new System.Drawing.Size(49, 24);
+            this.txtBoxNumeroDomicilio.TabIndex = 16;
+            // 
             // frmABMEntidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1175,7 +1175,6 @@
         private System.Windows.Forms.Label lblCalle;
         private System.Windows.Forms.TextBox txtBoxCalle;
         private System.Windows.Forms.Label lblNumero;
-        private System.Windows.Forms.TextBox txtBoxNumeroDomicilio;
         private System.Windows.Forms.Label lblPiso;
         private System.Windows.Forms.TextBox txtBoxPiso;
         private System.Windows.Forms.Label lblDepartamento;
@@ -1228,5 +1227,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn numeroTelefono;
         private System.Windows.Forms.Button btnDatosAdicionales;
+        private System.Windows.Forms.TextBox txtBoxNumeroDomicilio;
     }
 }

@@ -13,7 +13,6 @@ namespace Vista
 {
     public partial class frmABMEntidadDatosAdicionalesContactoProveedor : Form
     {
-        private frmResultadoBusqueda glb_frm_resultadoBusqueda;
         private ModeloContactoProveedor _contactoProveedor;
         public ModeloContactoProveedor contactoProveedor
         {
@@ -73,7 +72,7 @@ namespace Vista
 
         private void btnSeleccionarProveedor_Click(object sender, EventArgs e)
         {
-            glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
+            frmResultadoBusqueda glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
             ModeloProveedor lcl_mod_proveedorSeleccionado = new ModeloProveedor();
             this.cargarDatosEnModeloProveedor(ref lcl_mod_proveedorSeleccionado);
             glb_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_proveedorSeleccionado);

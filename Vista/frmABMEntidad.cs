@@ -212,18 +212,25 @@ namespace Vista
         {
             if (this.validarAlta())
             {
-                if (this.guardarNuevo())
+                try
                 {
-                    MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
-                    this.inicializarModoFormularioSeleccionado();
-                }
-                else
-                {
-                    DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
-                    if (dialogResult == DialogResult.Retry)
+                    if (this.guardarNuevo())
                     {
-                        this.alta();
+                        MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
+                        this.inicializarModoFormularioSeleccionado();
                     }
+                    else
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
+                        if (dialogResult == DialogResult.Retry)
+                        {
+                            this.alta();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación: "+ ex.ToString(), "Error", MessageBoxButtons.RetryCancel);
                 }
             }
         }
@@ -399,18 +406,7 @@ namespace Vista
             {
                 ModeloPersonas lcl_mod_persona = p_mod_entidad as ModeloPersonas;
                 this.cargarDatosControlEnPersona(ref lcl_mod_persona);
-                if (p_mod_entidad.GetType() == typeof(ModeloUsuario))
-                {
-                    p_mod_entidad = new ModeloUsuario(lcl_mod_persona);
-                }
-                if (p_mod_entidad.GetType() == typeof(ModeloCliente))
-                {
-                    p_mod_entidad = new ModeloCliente(lcl_mod_persona);
-                }
-                if (p_mod_entidad.GetType() == typeof(ModeloContactoProveedor))
-                {
-                    p_mod_entidad = new ModeloContactoProveedor(lcl_mod_persona);
-                }
+                p_mod_entidad = lcl_mod_persona;
             }
         }
         
@@ -920,25 +916,33 @@ namespace Vista
 
         private void btnDatosAdicionales_Click(object sender, EventArgs e)
         {
-
+            Form lcl_frm_datosAdicionales;
             if (glb_mod_entidadActual.GetType() == typeof(ModeloUsuario))
             {
-                frmABMEntidadDatosAdicionalesUsuario lcl_frm_DatosAdicionalesUsuario = new frmABMEntidadDatosAdicionalesUsuario(glb_mod_entidadActual as ModeloUsuario);
-                lcl_frm_DatosAdicionalesUsuario.ShowDialog();
-            }
-            else if (glb_mod_entidadActual.GetType() == typeof(ModeloContactoProveedor))
-            {
-                frmABMEntidadDatosAdicionalesContactoProveedor lcl_frm_DatosAdicionalesContactoProveedor;
                 if (this.modoFormulario == ModoFormularioNuevo)
                 {
-                    lcl_frm_DatosAdicionalesContactoProveedor = new frmABMEntidadDatosAdicionalesContactoProveedor();
+                    lcl_frm_datosAdicionales = new frmABMEntidadDatosAdicionalesUsuario();
                 }
                 else
                 {
-                    lcl_frm_DatosAdicionalesContactoProveedor = new frmABMEntidadDatosAdicionalesContactoProveedor(glb_mod_entidadActual as ModeloContactoProveedor);
+                    lcl_frm_datosAdicionales = new frmABMEntidadDatosAdicionalesUsuario(glb_mod_entidadActual as ModeloUsuario);
+                }
+                lcl_frm_datosAdicionales.ShowDialog();
+                glb_mod_entidadActual = (lcl_frm_datosAdicionales as frmABMEntidadDatosAdicionalesUsuario).usuario;
+            }
+            else if (glb_mod_entidadActual.GetType() == typeof(ModeloContactoProveedor))
+            {
+                if (this.modoFormulario == ModoFormularioNuevo)
+                {
+                    lcl_frm_datosAdicionales = new frmABMEntidadDatosAdicionalesContactoProveedor();
+                }
+                else
+                {
+                    lcl_frm_datosAdicionales = new frmABMEntidadDatosAdicionalesContactoProveedor(glb_mod_entidadActual as ModeloContactoProveedor);
                 }
                 
-                lcl_frm_DatosAdicionalesContactoProveedor.ShowDialog();
+                lcl_frm_datosAdicionales.ShowDialog();
+                glb_mod_entidadActual = (lcl_frm_datosAdicionales as frmABMEntidadDatosAdicionalesContactoProveedor).contactoProveedor;
             }
             else 
             {
@@ -1026,8 +1030,5 @@ namespace Vista
         #endregion
 
         #endregion
-
-        
-
     }
 }
