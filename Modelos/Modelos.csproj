@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modelo.cs" />
     <Compile Include="ModeloCliente.cs" />
     <Compile Include="ModeloContactoProveedor.cs" />
     <Compile Include="ModeloDomicilio.cs" />

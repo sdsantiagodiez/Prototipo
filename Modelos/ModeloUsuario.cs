@@ -53,6 +53,7 @@ namespace Modelos
         }
         #endregion
 
+        #region Validación
         public bool validar()
         {
             return (base.validar() && this.validarUsuario() && this.validarContrasenia() && this.validarRoles());
@@ -84,7 +85,28 @@ namespace Modelos
             {
                 return false;
             }
-           
+
+        }
+        #endregion
+
+        public override bool Equals(object p_objeto)
+        {
+            if (p_objeto is ModeloUsuario == false)
+                return false;
+            return Equals((ModeloUsuario)p_objeto);
+        }
+
+        public override bool Equals(ModeloPersonas p_mod_persona)
+        {
+            return base.Equals(p_mod_persona)
+                && this.Equals(p_mod_persona as ModeloUsuario);
+        }
+
+        public bool Equals(ModeloUsuario p_mod_usuario)
+        {
+            return this.Equals(this.usuario, p_mod_usuario.usuario)
+                && this.Equals(this._contrasenia, p_mod_usuario.contrasenia)
+                && this.Equals(this.roles, p_mod_usuario.roles);
         }
     }
 }

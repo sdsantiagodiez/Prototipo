@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
-   public class ModeloArticulos
+   public class ModeloArticulos : Modelo
    {
        #region Getters/Setters
        string _codigoOriginal;
@@ -34,5 +34,20 @@ namespace Modelos
            set { this._observaciones = value; }
        }
        #endregion
+
+       public override bool Equals(object p_objeto)
+       {
+           if (p_objeto is ModeloArticulos == false)
+               return false;
+           return Equals((ModeloArticulos)p_objeto);
+       }
+
+       public virtual bool Equals(ModeloArticulos p_mod_articulo)
+       {
+           return this.Equals(this.codigoOriginal,p_mod_articulo.codigoOriginal)
+               && this.Equals(this.descripcion,p_mod_articulo.descripcion)
+               && this.Equals(this.modelos,p_mod_articulo.modelos)
+               && this.Equals(this.observaciones,p_mod_articulo.observaciones);
+       }
    }
 }

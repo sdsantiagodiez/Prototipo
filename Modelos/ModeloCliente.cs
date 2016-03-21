@@ -28,5 +28,23 @@ namespace Modelos
         {
             return base.validar();
         }
+
+        public override bool Equals(object p_objeto)
+        {
+            if (p_objeto is ModeloCliente == false)
+                return false;
+            return Equals((ModeloCliente)p_objeto);
+        }
+
+        public override bool Equals(ModeloPersonas p_mod_persona)
+        {
+            return base.Equals(p_mod_persona)
+                && this.Equals(p_mod_persona as ModeloCliente);
+        }
+
+        public bool Equals(ModeloCliente p_mod_cliente)
+        {
+            return true;
+        }
     }
 }

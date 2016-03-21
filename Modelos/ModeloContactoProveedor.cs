@@ -52,5 +52,23 @@ namespace Modelos
         {
             return true;
         }
+
+        public override bool Equals(object p_objeto)
+        {
+            if (p_objeto is ModeloContactoProveedor == false)
+                return false;
+            return Equals((ModeloContactoProveedor)p_objeto);
+        }
+
+        public override bool Equals(ModeloPersonas p_mod_persona)
+        {
+            return base.Equals(p_mod_persona)
+                && this.Equals(p_mod_persona as ModeloContactoProveedor);
+        }
+
+        public bool Equals(ModeloContactoProveedor p_mod_contactoProveedor)
+        {
+            return this.Equals(this.proveedor,p_mod_contactoProveedor.proveedor);
+        }
     }
 }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
-    public class ModeloProvincia
+    public class ModeloProvincia : Modelo
     {
+        #region Getters/Setters
         string _codigo;
         public string codigo
         {
@@ -26,6 +27,8 @@ namespace Modelos
             get { return _codigoPais; }
             set { _codigoPais = value; }
         }
+        #endregion
+        #region Validación
         public bool validar()
         {
             return (this.validarCodigo() == true && this.validarCodigoPais() == true && this.validarProvincia() == true);
@@ -44,7 +47,20 @@ namespace Modelos
             mPais.codigo = codigoPais;
             return mPais.validarCodigo();
         }
+        #endregion
         
+        public override bool Equals(object p_objeto)
+        {
+            if (p_objeto is ModeloProvincia == false)
+                return false;
+            return Equals((ModeloProvincia)p_objeto);
+        }
 
+        public bool Equals(ModeloProvincia p_mod_provincia)
+        {
+            return this.Equals(this.codigo,p_mod_provincia.codigo) 
+                && this.Equals(this.provincia,p_mod_provincia.provincia) 
+                && this.Equals(this.codigoPais,p_mod_provincia.codigoPais);
+        }
     }
 }

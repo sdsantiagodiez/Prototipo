@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
-    public class ModeloTelefono
+    public class ModeloTelefono : Modelo
     {
         #region Getters/Setters
         int _codigoTelefono;
@@ -31,7 +31,7 @@ namespace Modelos
             set { this._tipo = value; }
         }
         #endregion
-
+        #region Validación
         public bool validar()
         {
             return (this.validarCodigo() == true && this.validarTipo() == true && this.validarNumero() == true);
@@ -49,5 +49,20 @@ namespace Modelos
         {
             return true;
         }
+        #endregion
+        public override bool Equals(object p_objeto)
+        {
+            if (p_objeto is ModeloTelefono == false)
+                return false;
+            return Equals((ModeloTelefono)p_objeto);
+        }
+
+        public bool Equals(ModeloTelefono p_mod_telefono)
+        {
+            return this.Equals(this.codigoTelefono,p_mod_telefono.codigoTelefono) 
+                && this.Equals(this.numero,p_mod_telefono.numero) 
+                && this.Equals(this.tipo,p_mod_telefono.tipo);
+        }
+
     }
 }

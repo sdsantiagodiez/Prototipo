@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
-    public class ModeloDomicilio
+    public class ModeloDomicilio : Modelo
     {
         public ModeloDomicilio()
         {
@@ -70,6 +70,7 @@ namespace Modelos
         }
         #endregion
 
+        #region Validación
         public bool validar()
         {
             return (this.validarCodigo() == true && this.validarCalle() == true && this.validarNumero() == true && this.validarPiso() == true &&
@@ -112,6 +113,26 @@ namespace Modelos
         {
             return pais.validar();
         }
+        #endregion
+        
+        public override bool Equals(object p_objeto)
+        {
+            if (p_objeto is ModeloDomicilio == false)
+                return false;
+            return Equals((ModeloDomicilio)p_objeto);
+        }
 
+        public bool Equals(ModeloDomicilio p_mod_domicilio)
+        {
+            return this.Equals(this.calle,p_mod_domicilio.calle) 
+                && this.Equals(this.ciudad,p_mod_domicilio.ciudad) 
+                && this.Equals(this.codigoDomicilio,p_mod_domicilio.codigoDomicilio)
+                && this.Equals(this.codigoPostal, p_mod_domicilio.codigoPostal) 
+                && this.Equals(this.departamento, p_mod_domicilio.departamento) 
+                && this.Equals(this.numero, p_mod_domicilio.numero)
+                && this.Equals(this.pais,p_mod_domicilio.pais) 
+                && this.Equals(this.piso,p_mod_domicilio.piso) 
+                && this.Equals(this.provincia,p_mod_domicilio.provincia);
+        }
     }
 }

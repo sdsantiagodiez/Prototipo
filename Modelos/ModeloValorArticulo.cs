@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
-    public class ModeloValorArticulo
+    public class ModeloValorArticulo : Modelo
     {
         #region Getters/Setters
         DateTime? _fechaUltimaActualizacion;
@@ -27,5 +27,18 @@ namespace Modelos
             }
         }
         #endregion
+
+        public override bool Equals(object p_objeto)
+        {
+            if (p_objeto is ModeloValorArticulo == false)
+                return false;
+            return Equals((ModeloValorArticulo)p_objeto);
+        }
+
+        public virtual bool Equals(ModeloValorArticulo p_mod_valorArticulo)
+        {
+            return this.Equals(this.fechaUltimaActualizacion,p_mod_valorArticulo.fechaUltimaActualizacion)
+                && this.Equals(this.valorArticulo,p_mod_valorArticulo.valorArticulo);
+        }
     }
 }

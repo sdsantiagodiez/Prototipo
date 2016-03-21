@@ -68,6 +68,7 @@ namespace Modelos
             nombre = this.convertirString(nombre);
             apellido = this.convertirString(apellido);
         }
+        #region Validación
         /// <summary>
         /// Valida todos los atributos de la persona
         /// </summary>
@@ -95,6 +96,28 @@ namespace Modelos
             return (tipoPersona == Constantes.TiposEntidad.TiposPersona.Cliente ||
                 tipoPersona == Constantes.TiposEntidad.TiposPersona.Usuario ||
                 tipoPersona == Constantes.TiposEntidad.TiposPersona.ContactoProveedor);   
+        }
+        #endregion
+
+        public override bool Equals(object p_objeto)
+        {
+            if (p_objeto is ModeloPersonas == false)
+                return false;
+            return Equals((ModeloPersonas)p_objeto);
+        }
+
+        public override bool Equals(ModeloEntidad p_mod_entidad)
+        {
+            return base.Equals(p_mod_entidad)
+                && this.Equals(p_mod_entidad as ModeloPersonas);
+        }
+
+        public virtual bool Equals(ModeloPersonas p_mod_persona)
+        {
+            return this.Equals(this.apellido,p_mod_persona.apellido)
+                && this.Equals(this.nombre,p_mod_persona.nombre)
+                && this.Equals(this.dni,p_mod_persona.dni)
+                && this.Equals(this.tipoPersona,p_mod_persona.tipoPersona);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
-    public class ModeloPedido
+    public class ModeloPedido : Modelo
     {
         #region Getters/Setters
         int _codigoEntidad;
@@ -61,7 +61,7 @@ namespace Modelos
 
         public ModeloPedido()
         {
-            _lineasPedido = new List<ModeloLineaPedido>();
+            lineasPedido = new List<ModeloLineaPedido>();
         }
         
         public void inicializar()
@@ -69,7 +69,7 @@ namespace Modelos
             //También hay que asignar numero de pedido
             /*Quizas este metodo deberia volar, ya que el multiobjeto de lineas de pedido se crea como una variable mas del Pedido*/
         }
-
+        #region Validación
         public bool validar()
         {
             return this.validarCantidadLineasPedido();
@@ -82,8 +82,8 @@ namespace Modelos
         {
             return Convert.ToBoolean(this.lineasPedido.Count);
         }
-        
-        
+        #endregion
+
         public ModeloLineaPedido findDetail(string p_codigoOriginal, string p_codigoArticuloProveedor)
         {
             ModeloLineaPedido lcl_mod_orderDetail = null;
@@ -173,6 +173,24 @@ namespace Modelos
             return respuesta;
         }
         #endregion
+
+        public override bool Equals(object p_objeto)
+        {
+            if (p_objeto is ModeloPedido == false)
+                return false;
+            return Equals((ModeloPedido)p_objeto);
+        }
+
+        public virtual bool Equals(ModeloPedido p_mod_pedido)
+        {
+            return this.Equals(this.codigoEntidad,p_mod_pedido.codigoEntidad)
+                && this.Equals(this.codigoTipoPedido,p_mod_pedido.codigoTipoPedido)
+                && this.Equals(this.fecha,p_mod_pedido.fecha)
+                && this.Equals(this.lineasPedido,p_mod_pedido.lineasPedido)
+                && this.Equals(this.montoTotal,p_mod_pedido.montoTotal)
+                && this.Equals(this.numeroPedido,p_mod_pedido.numeroPedido)
+                && this.Equals(this.observaciones,p_mod_pedido.observaciones);
+        }
     }
 }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
-    public class ModeloLineaPedido
+    public class ModeloLineaPedido : Modelo
     {
         #region Getters/Setters
 
@@ -67,6 +67,24 @@ namespace Modelos
             this.valorUnitario = Convert.ToDecimal(p_mod_articuloProveedor.valorVenta.valorArticulo);
             //Recordar que se pueden aplicar descuentos
             this.valorParcial = this.cantidadArticulos * this.valorUnitario;
+        }
+
+        public override bool Equals(object p_objeto)
+        {
+            if (p_objeto is ModeloLineaPedido == false)
+                return false;
+            return Equals((ModeloLineaPedido)p_objeto);
+        }
+
+        public virtual bool Equals(ModeloLineaPedido p_mod_lineaPedido)
+        {
+            return this.Equals(this.cantidadArticulos,p_mod_lineaPedido.cantidadArticulos)
+                && this.Equals(this.codigoArtProveedor, p_mod_lineaPedido.codigoArtProveedor)
+                && this.Equals(this.codigoOriginalArt, p_mod_lineaPedido.codigoOriginalArt)
+                && this.Equals(this.descripcion,p_mod_lineaPedido.descripcion)
+                && this.Equals(this.numeroPedido,p_mod_lineaPedido.numeroPedido)
+                && this.Equals(this.valorParcial,p_mod_lineaPedido.valorParcial)
+                && this.Equals(this.valorUnitario,p_mod_lineaPedido.valorUnitario);
         }
     }
 }
