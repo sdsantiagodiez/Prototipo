@@ -74,6 +74,7 @@
     <Compile Include="CatalogoPedidos.cs" />
     <Compile Include="CatalogoProveedores.cs" />
     <Compile Include="CatalogoProvincias.cs" />
+    <Compile Include="CatalogoRoles.cs" />
     <Compile Include="CatalogoTelefonos.cs" />
     <Compile Include="CatalogoUsuarios.cs" />
     <Compile Include="Conexion.cs" />

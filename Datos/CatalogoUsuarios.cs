@@ -22,14 +22,6 @@ namespace Datos
             return lcl_mod_usuario;
         }
 
-        private ModeloRoles leerDatosRoles(SqlDataReader p_drRoles)
-        {
-            ModeloRoles lcl_mod_rol = new ModeloRoles();
-            lcl_mod_rol.codigo = (int)p_drRoles["codigo"];
-            lcl_mod_rol.descripcion = (string)p_drRoles["descripcion"];
-            return lcl_mod_rol;
-        }
-
         #region Búsqueda
         /// <summary>
         /// Genera string a insertar en clausula WHERE de sql de acuerdo a los parámetros de búsqueda
@@ -82,7 +74,7 @@ namespace Datos
         /// <param name="p_mod_usuario">modeloUsuario con variables posiblemente inicializadas</param>
         /// <param name="p_paramentroBusqueda">string contenida en LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Personas</param>
         /// <returns></returns>
-        public List<ModeloUsuario> buscarUsuario(ModeloUsuario p_mod_usuario, string p_paramentroBusqueda)
+        private List<ModeloUsuario> buscarUsuario(ModeloUsuario p_mod_usuario, string p_paramentroBusqueda)
         {
             List<ModeloUsuario> lcl_lst_mod_usuarios = new List<ModeloUsuario>();
 
@@ -115,7 +107,7 @@ namespace Datos
                 p_mod_usuario.telefonos = this.getTelefonos(p_mod_usuario.codigo);
                 p_mod_usuario.domicilios = this.getDomicilios(p_mod_usuario.codigo);
 
-                p_mod_usuario.roles = this.getRoles(p_mod_usuario);
+                this.getRoles(ref p_mod_usuario);
 
                 lcl_lst_mod_usuarios.Add(p_mod_usuario);
             }
@@ -130,7 +122,7 @@ namespace Datos
         /// </summary>
         /// <param name="p_mod_usuario">Usuario para el que queremos saber los roles</param>
         /// <returns>Lista de roles</returns>
-        public List<ModeloRoles> getRoles(ModeloUsuario p_mod_usuario)
+        public void getRoles(ref ModeloUsuario p_mod_usuario)
         {
             string query =
                 "SELECT [rol].codigo,[rol].descripcion " +
@@ -144,21 +136,20 @@ namespace Datos
             comando.Connection.Open();
             SqlDataReader drRoles = comando.ExecuteReader();
 
-            List<ModeloRoles> lcl_lst_mod_roles = new List<ModeloRoles>();
             ModeloRoles lcl_mod_rol;
 
+            p_mod_usuario.roles = new List<ModeloRoles>();
+            CatalogoRoles lcl_cat_roles = new CatalogoRoles();
             while (drRoles.Read())
             {
                 lcl_mod_rol = new ModeloRoles();
-                lcl_mod_rol = this.leerDatosRoles(drRoles);
+                lcl_mod_rol = lcl_cat_roles.leerDatosRoles(drRoles);
                 
-                lcl_lst_mod_roles.Add(lcl_mod_rol);
+                p_mod_usuario.roles.Add(lcl_mod_rol);
             }
             
             drRoles.Close();
             comando.Connection.Close();
-
-            return lcl_lst_mod_roles;
         }
 
         /// <summary>
@@ -229,37 +220,32 @@ namespace Datos
         {
             if (this.add(p_mod_usuario))
             {
-                foreach (ModeloRoles r in p_mod_usuario.roles)
-                {
-                    if (!this.addRol(p_mod_usuario))
-                    {
-                        return false;
-                    }
-                }
-                return true;
+                return this.addRoles(p_mod_usuario);
             }
             return false;
         }
 
-        public bool addRol(ModeloUsuario p_mod_usuario)
+        public bool addRoles(ModeloUsuario p_mod_usuario)
         {
             string query =
-                "INSERT INTO [Roles_Persona]([codigo_entidad],[codigo_rol]) " +
-                "VALUES (@codigo_entidad, @codigo_rol)";
+                    "INSERT INTO [Roles_Persona]([codigo_entidad],[codigo_rol]) " +
+                    "VALUES (@codigo_entidad, @codigo_rol)";
             SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
-
-            //Indica los parametros
+            
+            int? codigoRol = null;
             comando.Parameters.Add(this.instanciarParametro(p_mod_usuario.codigo, "@codigo_entidad"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_usuario.dni, "@codigo_rol"));
-
+            comando.Parameters.Add(this.instanciarParametro(codigoRol, "@codigo_rol"));
             comando.Connection.Open();
-            int rowaffected = comando.ExecuteNonQuery();
+            foreach (ModeloRoles r in p_mod_usuario.roles)
+            {
+                comando.Parameters["@codigo_rol"].Value =r.codigo;
+                int rowaffected = comando.ExecuteNonQuery();
+                
+                if (rowaffected == 0)
+                { throw new System.InvalidOperationException("No se ha podido crear rol de usuario"); }
+            }
             comando.Connection.Close();
-
-            if (rowaffected != 0)
-            { return true; }
-            else
-            { return false; }
+            return true;
         }
         private bool removeRoles(ModeloUsuario p_mod_usuario)
         {

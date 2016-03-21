@@ -78,12 +78,8 @@ namespace Datos
                     string descripcionQuery = this.parametroBusqueda("@descripcion", "descripcion", "LIKE");
 
                     return codigoOriginalQuery + " AND " + descripcionQuery;
-                case Constantes.ParametrosBusqueda.Articulos.All:
-                    //retorna true y devuelve todas las filas
-                    return " 1 = 1 ";
                 default:
-                    //hace que sql no retorne filas
-                    return " 1 = 2 ";
+                    return base.getCondicionBusqueda(p_parametroBusqueda);
             }
         }
 

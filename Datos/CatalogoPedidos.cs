@@ -169,12 +169,8 @@ namespace Datos
                     string fechaQuery = this.parametroBusqueda("@fecha", "fecha", "=");
 
                     return numeroPedidoQuery + " AND " + codigoTipoPedidoQuery + " AND " + fechaQuery;
-                case Constantes.ParametrosBusqueda.Pedidos.All:
-                    //retorna true y devuelve todas las filas
-                    return " 1 = 1 ";
                 default:
-                    //hace que sql no retorne filas
-                    return " 1 = 2 ";
+                    return base.getCondicionBusqueda(p_parametroBusqueda);
             }
         }
 

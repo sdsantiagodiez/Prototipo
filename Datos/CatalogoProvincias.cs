@@ -59,13 +59,9 @@ namespace Datos
                     string codigoPaisQuery = this.parametroBusqueda("@codigo_pais", "codigo_pais", "=");
 
                     return codigoProvinciaQuery + " AND " + provinciaQuery + " AND " + codigoPaisQuery;
-                
-                case Constantes.ParametrosBusqueda.Provincias.All:
-                    //retorna true y devuelve todas las filas
-                    return " 1 = 1 ";
+
                 default:
-                    //hace que sql no retorne filas
-                    return " 1 = 2 ";
+                    return base.getCondicionBusqueda(p_parametroBusqueda);
             }
         }
 

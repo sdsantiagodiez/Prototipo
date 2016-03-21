@@ -13,7 +13,7 @@ namespace Datos
     {
         #region Instanciar parametro SQL
         //Quizás se podrían concentrar en un sólo método para todos los tipos de datos
-        public SqlParameter instanciarParametro(string atributo, string nombreAtributo)
+        protected SqlParameter instanciarParametro(string atributo, string nombreAtributo)
         {
             SqlParameter parametro = new SqlParameter();
             if (atributo == null || atributo.Trim()=="")
@@ -28,7 +28,7 @@ namespace Datos
             return parametro;
         }
 
-        public SqlParameter instanciarParametro(int atributo, string nombreAtributo)
+        protected SqlParameter instanciarParametro(int atributo, string nombreAtributo)
         {
             SqlParameter parametro = new SqlParameter();
             
@@ -36,7 +36,7 @@ namespace Datos
             parametro.Value = atributo;
             return parametro;
         }
-        public SqlParameter instanciarParametro(int? atributo, string nombreAtributo)
+        protected SqlParameter instanciarParametro(int? atributo, string nombreAtributo)
         {
             SqlParameter parametro = new SqlParameter();
 
@@ -52,7 +52,7 @@ namespace Datos
             return parametro;
         }
 
-        public SqlParameter instanciarParametro(decimal atributo, string nombreAtributo)
+        protected SqlParameter instanciarParametro(decimal atributo, string nombreAtributo)
         {
             SqlParameter parametro = new SqlParameter(); 
             
@@ -61,7 +61,7 @@ namespace Datos
             return parametro;
         }
 
-        public SqlParameter instanciarParametro(decimal? atributo, string nombreAtributo)
+        protected SqlParameter instanciarParametro(decimal? atributo, string nombreAtributo)
         {
             SqlParameter parametro = new SqlParameter();
 
@@ -77,7 +77,7 @@ namespace Datos
             return parametro;
         }
 
-        public SqlParameter instanciarParametro(DateTime atributo, string nombreAtributo)
+        protected SqlParameter instanciarParametro(DateTime atributo, string nombreAtributo)
         {
             SqlParameter parametro = new SqlParameter();
             if (atributo == null)
@@ -91,7 +91,7 @@ namespace Datos
             }
             return parametro;
         }
-        public SqlParameter instanciarParametro(DateTime? atributo, string nombreAtributo)
+        protected SqlParameter instanciarParametro(DateTime? atributo, string nombreAtributo)
         {
             SqlParameter parametro = new SqlParameter();
             if (atributo == null)
@@ -127,6 +127,24 @@ namespace Datos
             else
             {
                 return "%" + p_valorBusqueda + "%";
+            }
+        }
+
+        /// <summary>
+        /// Método base que devuelve todas las filas o ninguna de acuerdo a p_parametroBusqueda
+        /// </summary>
+        /// <param name="p_parametroBusqueda"></param>
+        /// <returns></returns>
+        protected string getCondicionBusqueda(string p_parametroBusqueda)
+        {
+            switch (p_parametroBusqueda)
+            {
+                case LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.All:
+                    //retorna true y devuelve todas las filas
+                    return " 1 = 1 ";
+                default:
+                    //retorna false y no devuelve filas
+                    return " 1 = 2 "; 
             }
         }
     }

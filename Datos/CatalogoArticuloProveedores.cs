@@ -143,12 +143,8 @@ namespace Datos
 
                     return codigoOriginalQuery + " AND " + codigoArticuloProveedorQuery + " AND " + descripcionArticuloProveedorQuery + " AND " + codigoEntidadQuery + " AND " + razonSocialProveedorQuery;
 
-                case Constantes.ParametrosBusqueda.Entidades.Proveedores.All:
-                    //retorna true y devuelve todas las filas
-                    return " 1 = 1 ";
                 default:
-                    //hace que sql no retorne filas
-                    return " 1 = 2 ";
+                    return base.getCondicionBusqueda(p_parametroBusqueda);
             }
         }
 

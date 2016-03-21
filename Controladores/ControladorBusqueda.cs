@@ -28,6 +28,26 @@ namespace Controladores
             {
                 lcl_ienum_objeto = this.buscar(p_objeto as ModeloEntidad);
             }
+            return lcl_ienum_objeto.ToList();
+        }
+
+        public List<Object> buscar(object p_objeto, string p_parametroBusqueda)
+        {
+            Type T = p_objeto.GetType();
+            IEnumerable<object> lcl_ienum_objeto;
+            if (T == typeof(ModeloArticuloProveedores))
+            {
+                lcl_ienum_objeto = this.buscarArticulosProveedores(p_objeto as ModeloArticuloProveedores,p_parametroBusqueda);
+
+            }
+            else if (T == typeof(ModeloArticulos))
+            {
+                lcl_ienum_objeto = this.buscarArticulos(p_objeto as ModeloArticulos, p_parametroBusqueda);
+            }
+            else
+            {
+                lcl_ienum_objeto = this.buscar(p_objeto as ModeloEntidad, p_parametroBusqueda);
+            }
 
             return lcl_ienum_objeto.ToList();
         }
@@ -35,7 +55,7 @@ namespace Controladores
 
         #region Entidades
         /// <summary>
-        /// Retorna todas las personas de la base de datos
+        /// Retorna todas las entidades de la base de datos
         /// </summary>
         /// <returns>Lista de personas</returns>
         public List<ModeloEntidad> buscarEntidades()
@@ -44,20 +64,20 @@ namespace Controladores
             return lcl_cat_entidades.buscar(null,Constantes.ParametrosBusqueda.Entidades.All).ToList();
         }
         /// <summary>
-        /// Retorna entidades en base a los valores inicializados en los atributos del modelo
+        /// Retorna entidades (o alguno de sus derivados) en base a los valores inicializados en los atributos del modelo
         /// </summary>
         /// <param name="p_mod_entidad"></param>
-        /// <returns>Lista de entidades</returns>
+        /// <returns>Lista de entidades (o alguno de sus derivados)</returns>
         public List<ModeloEntidad> buscar(ModeloEntidad p_mod_entidad)
         {
             return this.buscar(p_mod_entidad,Constantes.ParametrosBusqueda.Entidades.Any);
         }
         /// <summary>
-        /// Busca personas que cumplan con un parámetro de búsqueda.
+        /// Busca entidades (o alguno de sus derivados) que cumplan con un parámetro de búsqueda.
         /// </summary>
-        /// <param name="p_mod_persona">Persona con variable a buscar inicializada con algún valor</param>
+        /// <param name="p_mod_entidad">modelo con variable a buscar inicializada con algún valor</param>
         /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda</param>
-        /// <returns>Lista de personas</returns>
+        /// <returns>Lista de modeloEntidad (o alguno de sus derivados)</returns>
         public List<ModeloEntidad> buscar(ModeloEntidad p_mod_entidad, string p_paramentroBusqueda)
         {
             Type T = p_mod_entidad.GetType();
@@ -446,6 +466,37 @@ namespace Controladores
             CatalogoLineasPedidos lcl_cat_articulos = new CatalogoLineasPedidos();
 
             return lcl_cat_articulos.buscarLineasPedido(p_mod_lineaPedido, p_paramentroBusqueda);
+        }
+        #endregion
+
+        #region Roles
+        /// <summary>
+        /// Retorna todas roles de la base de datos
+        /// </summary>
+        /// <returns></returns>
+        public List<ModeloRoles> buscarRoles()
+        {
+            CatalogoRoles lcl_cat_roles = new CatalogoRoles();
+            ModeloRoles lcl_mod_rol = null;
+            return this.buscar(lcl_mod_rol, Constantes.ParametrosBusqueda.All);
+        }
+
+        /// <summary>
+        /// Retorna roles en base a los valores inicializados en los atributos del modelo
+        /// </summary>
+        /// <param name="p_mod_rol"></param>
+        /// <returns>Lista de provincias</returns>
+        public List<ModeloRoles> buscar(ModeloRoles p_mod_rol)
+        {
+            CatalogoRoles lcl_cat_roles = new CatalogoRoles();
+
+            return lcl_cat_roles.buscar(p_mod_rol,Constantes.ParametrosBusqueda.Roles.Any);
+        }
+        public List<ModeloRoles> buscar(ModeloRoles p_mod_rol, string p_parametroBusqueda)
+        {
+            CatalogoRoles lcl_cat_roles = new CatalogoRoles();
+
+            return lcl_cat_roles.buscar(p_mod_rol,p_parametroBusqueda);
         }
         #endregion
     }

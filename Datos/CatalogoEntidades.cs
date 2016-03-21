@@ -62,12 +62,9 @@ namespace Datos
 
                     return codigoEntidadQuery + " AND " + cuitQuery;
 
-                case Constantes.ParametrosBusqueda.Entidades.All:
-                    //retorna true y devuelve todas las filas
-                    return " 1 = 1 ";
                 default:
                     //retorna false y no devuelve filas
-                    return " 1 = 2 ";
+                    return base.getCondicionBusqueda(p_parametroBusqueda);
             }
         }
 

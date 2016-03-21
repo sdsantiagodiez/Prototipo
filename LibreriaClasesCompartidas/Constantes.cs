@@ -16,7 +16,7 @@ namespace LibreriaClasesCompartidas
             /// <summary>
             /// All: no tiene en cuenta los parametros de búsqueda. Retorna todas las filas encontradas en la base de datos
             /// </summary>
-            private const string All = "all";
+            public const string All = "all";
             /// <summary>
             /// Any: busca de acuerdo a los parámetros que se hayan inicializado. Pueden ser 0, 1, 2 o más
             /// </summary>
@@ -81,6 +81,12 @@ namespace LibreriaClasesCompartidas
                 }
             }
 
+            public static class Roles
+            {
+                public const string All = ParametrosBusqueda.All;
+                public const string Any = ParametrosBusqueda.Any;
+                public const string codigoRol = "codigoRol";
+            }
             public static class Articulos
             {
                 public const string All = ParametrosBusqueda.All;
