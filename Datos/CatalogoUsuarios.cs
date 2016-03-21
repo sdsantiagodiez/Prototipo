@@ -187,7 +187,7 @@ namespace Datos
 
         public override bool add(ModeloPersonas p_mod_persona)
         {
-            return this.agregarUsuario(p_mod_persona as ModeloUsuario);
+            return this.addUsuario(p_mod_persona as ModeloUsuario);
         }
 
         public bool add(ModeloUsuario p_mod_usuario)
@@ -216,7 +216,7 @@ namespace Datos
                 { return false; }
         }
 
-        private bool agregarUsuario(ModeloUsuario p_mod_usuario)
+        private bool addUsuario(ModeloUsuario p_mod_usuario)
         {
             if (this.add(p_mod_usuario))
             {
@@ -242,42 +242,39 @@ namespace Datos
                 int rowaffected = comando.ExecuteNonQuery();
                 
                 if (rowaffected == 0)
-                { throw new System.InvalidOperationException("No se ha podido crear rol de usuario"); }
+                { throw new System.InvalidOperationException("No se ha podido crear rol de usuario: "+r.descripcion); }
             }
             comando.Connection.Close();
             return true;
         }
-        private bool removeRoles(ModeloUsuario p_mod_usuario)
-        {
-            string query =
-                 "DELETE FROM [Roles_Persona] " +
-                 "WHERE @codigo_usuario=codigo_entidad";
-            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+        
 
-            //Indica los parametros
-            comando.Parameters.Add(this.instanciarParametro(p_mod_usuario.codigo, "@codigo_usuario"));
-
-            comando.Connection.Open();
-            int rowaffected = comando.ExecuteNonQuery();
-            comando.Connection.Close();
-
-            if (rowaffected != 0)
-            { return true; }
-            else
-            { return false; }
-        }
         public override bool update(ModeloPersonas p_mod_persona)
         {
             return this.update(p_mod_persona as ModeloUsuario);
         }
 
-        public bool update(ModeloUsuario p_mod_usuario)
+        public  bool update(ModeloUsuario p_mod_usuario_nuevo)
         {
-            if (this.updateUsuario(p_mod_usuario))
+            ModeloUsuario lcl_mod_usuario_original = this.buscar(p_mod_usuario_nuevo, Constantes.ParametrosBusqueda.Entidades.Personas.CodigoEntidad).ToList()[0];
+            if (lcl_mod_usuario_original != null)
+                return update(lcl_mod_usuario_original, p_mod_usuario_nuevo);
+            else
+                return false;
+        }
+
+        private bool update(ModeloUsuario p_mod_usuario_original, ModeloUsuario p_mod_usuario_nuevo)
+        {
+            if (!p_mod_usuario_original.Equals(p_mod_usuario_nuevo))
             {
-                return base.update(p_mod_usuario as ModeloPersonas);
+                if(!this.updateUsuario(p_mod_usuario_nuevo) )
+                {
+                    return false;
+                }
             }
-            return false;
+            ModeloPersonas p_mod_persona_nueva = new ModeloPersonas(p_mod_usuario_nuevo as ModeloPersonas);
+            ModeloPersonas p_mod_persona_original = new ModeloPersonas(p_mod_usuario_original as ModeloPersonas);
+            return base.update(p_mod_persona_original, p_mod_persona_nueva);
         }
 
         private bool updateUsuario(ModeloUsuario p_mod_usuario)
@@ -296,12 +293,44 @@ namespace Datos
             int rowaffected = comando.ExecuteNonQuery();
             comando.Connection.Close();
 
-            if (rowaffected != 0 && base.update(p_mod_usuario))
+            if (rowaffected != 0)
                 { return true; }
             else
                 { return false; }
         }
 
+        private bool updateUsuario_Roles(ModeloUsuario p_mod_usuario_original, ModeloUsuario p_mod_usuario_nuevo)
+        {
+            ModeloUsuario lcl_mod_usuarioAuxiliar;
+            lcl_mod_usuarioAuxiliar = p_mod_usuario_original;
+            
+            lcl_mod_usuarioAuxiliar.roles = new List<ModeloRoles>();
+            foreach (ModeloRoles r in p_mod_usuario_original.roles)
+            {
+                if (!p_mod_usuario_nuevo.roles.Contains(r))
+                {
+                    lcl_mod_usuarioAuxiliar.roles.Add(r);
+                }
+            }
+            if (!this.addRoles(lcl_mod_usuarioAuxiliar))
+            {
+                return false;
+            }
+            lcl_mod_usuarioAuxiliar.roles = new List<ModeloRoles>();
+            foreach (ModeloRoles r in p_mod_usuario_nuevo.roles)
+            {
+                if (!p_mod_usuario_original.roles.Contains(r))
+                {
+                    lcl_mod_usuarioAuxiliar.roles.Add(r);
+                }
+            }
+            if (!this.removeRoles(lcl_mod_usuarioAuxiliar))
+            { 
+                return false; 
+            }
+            return true;
+        }
+        
         public override bool remove(ModeloPersonas p_mod_persona)
         {
             return this.remove(p_mod_persona as ModeloUsuario);
@@ -320,8 +349,30 @@ namespace Datos
         {
             return this.removeRoles(p_mod_usuario);
         }
-
         
+        private bool removeRoles(ModeloUsuario p_mod_usuario)
+        {
+            string query =
+                 "DELETE FROM [Roles_Persona] " +
+                 "WHERE codigo_entidad=@codigo_entidad AND codigo_rol=@codigo_rol";
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+
+            int? codigoRol = null;
+            comando.Parameters.Add(this.instanciarParametro(p_mod_usuario.codigo, "@codigo_entidad"));
+            comando.Parameters.Add(this.instanciarParametro(codigoRol, "@codigo_rol"));
+
+            comando.Connection.Open();
+            foreach (ModeloRoles r in p_mod_usuario.roles)
+            {
+                comando.Parameters["@codigo_rol"].Value = r.codigo;
+                int rowaffected = comando.ExecuteNonQuery();
+
+                if (rowaffected == 0)
+                { throw new System.InvalidOperationException("No se ha podido eliminar rol de usuario: " + r.descripcion); }
+            }
+            comando.Connection.Close();
+            return true;
+        }
         #endregion
     }
 }

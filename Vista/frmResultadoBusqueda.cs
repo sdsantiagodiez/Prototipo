@@ -145,7 +145,7 @@ namespace Vista
             dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
             dataGridViewResultadoBusqueda.Columns.Add("fechaActualizacion", "Fecha Última Actualización");
             dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns[i++].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dataGridViewResultadoBusqueda.Columns[i-1].DefaultCellStyle.Format = "dd/MM/yyyy";
         }
 
         #endregion

@@ -192,12 +192,61 @@ namespace Datos
             }
         }
 
-        //No se podrá modificar razonSocial
-        public bool update(ModeloProveedor p_mod_proveedor)
+        public override bool update(ModeloEntidad p_mod_entidad)
         {
-            return base.update(p_mod_proveedor);
+            return this.update(p_mod_entidad as ModeloProveedor);
         }
 
+        public virtual bool update(ModeloProveedor p_mod_proveedor_nuevo)
+        {
+            ModeloProveedor lcl_mod_proveedor_original = this.buscar(p_mod_proveedor_nuevo, Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad).ToList()[0];
+            if (lcl_mod_proveedor_original != null)
+                return update(lcl_mod_proveedor_original, p_mod_proveedor_nuevo);
+            else
+                return false;
+        }
+        protected bool update(ModeloProveedor lcl_mod_proveedor_original, ModeloProveedor p_mod_proveedor_nuevo)
+        {
+            if (!lcl_mod_proveedor_original.Equals(p_mod_proveedor_nuevo))
+            {
+                if (!this.updateProveedor(p_mod_proveedor_nuevo))
+                {
+                    return false;
+                }
+            }
+            ModeloEntidad lcl_mod_entidad_original = new ModeloEntidad(lcl_mod_proveedor_original as ModeloEntidad);
+            ModeloEntidad lcl_mod_entidad_nueva = new ModeloEntidad(p_mod_proveedor_nuevo as ModeloEntidad);
+            return base.update(lcl_mod_entidad_original, lcl_mod_entidad_nueva);
+        }
+
+        private bool updateProveedor(ModeloProveedor p_mod_proveedor)
+        {
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.CommandText =
+                "UPDATE [Proveedores] SET [razon_social]=@razon_social " +
+                "WHERE [Proveedores].codigo_entidad=@codigo_entidad";
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.codigo, "@codigo_entidad"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.razonSocial, "@razon_social"));
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public override bool remove(ModeloEntidad p_mod_entidad)
         {
             return this.remove(p_mod_entidad as ModeloProveedor);

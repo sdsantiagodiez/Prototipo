@@ -218,13 +218,26 @@ namespace Datos
             return this.update(p_mod_entidad as ModeloPersonas);
         }
 
-        public virtual bool update(ModeloPersonas p_mod_persona)
+        public virtual bool update(ModeloPersonas p_mod_persona_nueva)
         {
-            if (this.updatePersona(p_mod_persona))
+            ModeloPersonas lcl_mod_persona_original = this.buscar(p_mod_persona_nueva, Constantes.ParametrosBusqueda.Entidades.Personas.CodigoEntidad).ToList()[0];
+            if (lcl_mod_persona_original != null)
+                return update(lcl_mod_persona_original, p_mod_persona_nueva);
+            else
+                return false;
+        }
+        protected bool update(ModeloPersonas p_mod_persona_original, ModeloPersonas p_mod_persona_nueva)
+        {
+            if (!p_mod_persona_original.Equals(p_mod_persona_nueva))
             {
-                return base.update(p_mod_persona);
+                if(!this.updatePersona(p_mod_persona_nueva))
+                {
+                    return false;
+                }
             }
-            return false;
+            ModeloEntidad lcl_mod_entidad_original = new ModeloEntidad(p_mod_persona_original as ModeloEntidad);
+            ModeloEntidad lcl_mod_entidad_nueva = new ModeloEntidad(p_mod_persona_nueva as ModeloEntidad);
+            return base.update(lcl_mod_entidad_original, lcl_mod_entidad_nueva);
         }
 
         private bool updatePersona(ModeloPersonas p_mod_persona)
@@ -248,7 +261,7 @@ namespace Datos
             int rowaffected = comando.ExecuteNonQuery();           
             comando.Connection.Close();
 
-            if (rowaffected != 0 && base.update(p_mod_persona))
+            if (rowaffected != 0)
             {
                 return true;
             }

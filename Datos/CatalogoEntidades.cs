@@ -279,7 +279,8 @@ namespace Datos
 
         #endregion
 
-        public virtual bool update(ModeloEntidad p_mod_entidad)
+
+        protected bool updateEntidad(ModeloEntidad p_mod_entidad)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -330,6 +331,25 @@ namespace Datos
             {
                 return false;
             }
+        }
+
+        protected bool update(ModeloEntidad p_mod_entidad_original, ModeloEntidad p_mod_entidad_nueva)
+        {
+            if (!p_mod_entidad_original.Equals(p_mod_entidad_nueva))
+            {
+                return this.updateEntidad(p_mod_entidad_nueva);
+            }
+            
+            return true;
+        }
+
+        public virtual bool update(ModeloEntidad p_mod_entidad_nueva)
+        {
+            ModeloEntidad lcl_mod_entidad_original = this.buscar(p_mod_entidad_nueva,Constantes.ParametrosBusqueda.Entidades.CodigoEntidad).ToList()[0];
+            if (lcl_mod_entidad_original != null)
+                return this.update(lcl_mod_entidad_original, p_mod_entidad_nueva);
+            else
+                return false;
         }
 
         public virtual bool remove(ModeloEntidad p_mod_entidad)

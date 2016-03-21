@@ -70,6 +70,7 @@
             this.txtBoxCodigoPostal = new System.Windows.Forms.TextBox();
             this.lblPais = new System.Windows.Forms.Label();
             this.cmbBoxPais = new System.Windows.Forms.ComboBox();
+            this.txtBoxNumeroDomicilio = new System.Windows.Forms.TextBox();
             this.tblLayoutPanelDomicilioGrid = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewDomicilio = new System.Windows.Forms.DataGridView();
             this.codigoDomicilio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -112,7 +113,6 @@
             this.codigoMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDatosAdicionales = new System.Windows.Forms.Button();
-            this.txtBoxNumeroDomicilio = new System.Windows.Forms.TextBox();
             this.tblLayoutPanelForm.SuspendLayout();
             this.grpBoxTipoEntidad.SuspendLayout();
             this.pnlTipoEntidad.SuspendLayout();
@@ -552,7 +552,7 @@
             // 
             this.cmbBoxProvincia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxProvincia.FormattingEnabled = true;
-            this.cmbBoxProvincia.Location = new System.Drawing.Point(440, 39);
+            this.cmbBoxProvincia.Location = new System.Drawing.Point(440, 41);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(89, 26);
             this.cmbBoxProvincia.TabIndex = 14;
@@ -618,11 +618,19 @@
             // 
             this.cmbBoxPais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxPais.FormattingEnabled = true;
-            this.cmbBoxPais.Location = new System.Drawing.Point(588, 39);
+            this.cmbBoxPais.Location = new System.Drawing.Point(588, 41);
             this.cmbBoxPais.Name = "cmbBoxPais";
             this.cmbBoxPais.Size = new System.Drawing.Size(92, 26);
             this.cmbBoxPais.TabIndex = 15;
             this.cmbBoxPais.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxPais_SelectionChangeCommitted);
+            // 
+            // txtBoxNumeroDomicilio
+            // 
+            this.txtBoxNumeroDomicilio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxNumeroDomicilio.Location = new System.Drawing.Point(309, 5);
+            this.txtBoxNumeroDomicilio.Name = "txtBoxNumeroDomicilio";
+            this.txtBoxNumeroDomicilio.Size = new System.Drawing.Size(49, 24);
+            this.txtBoxNumeroDomicilio.TabIndex = 16;
             // 
             // tblLayoutPanelDomicilioGrid
             // 
@@ -956,7 +964,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 10);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 8);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxTipoTelefono.TabIndex = 19;
@@ -1089,14 +1097,6 @@
             this.btnDatosAdicionales.Text = "Datos Adicionales";
             this.btnDatosAdicionales.UseVisualStyleBackColor = true;
             this.btnDatosAdicionales.Click += new System.EventHandler(this.btnDatosAdicionales_Click);
-            // 
-            // txtBoxNumeroDomicilio
-            // 
-            this.txtBoxNumeroDomicilio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNumeroDomicilio.Location = new System.Drawing.Point(309, 5);
-            this.txtBoxNumeroDomicilio.Name = "txtBoxNumeroDomicilio";
-            this.txtBoxNumeroDomicilio.Size = new System.Drawing.Size(49, 24);
-            this.txtBoxNumeroDomicilio.TabIndex = 16;
             // 
             // frmABMEntidad
             // 

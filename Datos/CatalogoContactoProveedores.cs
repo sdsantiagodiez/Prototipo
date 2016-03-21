@@ -172,19 +172,48 @@ namespace Datos
             return this.update(p_mod_persona as ModeloContactoProveedor);
         }
 
-        public bool update(ModeloContactoProveedor p_mod_contactoProveedor)
+        public bool update(ModeloContactoProveedor p_mod_contactoProveedor_nuevo)
         {
-            if (this.updateContactoProveedor(p_mod_contactoProveedor))
-            { 
-                return base.update(p_mod_contactoProveedor as ModeloPersonas);
+            ModeloContactoProveedor lcl_mod_contactoProveedor_original = this.buscar(p_mod_contactoProveedor_nuevo, Constantes.ParametrosBusqueda.Entidades.Personas.CodigoEntidad).ToList()[0];
+            if (lcl_mod_contactoProveedor_original != null)
+                return update(lcl_mod_contactoProveedor_original, p_mod_contactoProveedor_nuevo);
+            else
+                return false;
+        }
+
+        private bool update(ModeloContactoProveedor p_mod_contactoProveedor_original, ModeloContactoProveedor p_mod_contactoProveedor_nuevo)
+        {
+            if (!p_mod_contactoProveedor_original.Equals(p_mod_contactoProveedor_nuevo))
+            {
+                if (!this.updateContactoProveedor(p_mod_contactoProveedor_nuevo))
+                {
+                    return false;
+                }
             }
-            return false;
+            ModeloPersonas p_mod_persona_nueva = new ModeloPersonas(p_mod_contactoProveedor_nuevo as ModeloPersonas);
+            ModeloPersonas p_mod_persona_original = new ModeloPersonas(p_mod_contactoProveedor_original as ModeloPersonas);
+            return base.update(p_mod_persona_original, p_mod_persona_nueva);
         }
 
         private bool updateContactoProveedor(ModeloContactoProveedor p_mod_contactoProveedor)
         {
-            //UPDATE proveedor. se debe traer el proveedor anterior y el actual. Si es que lo permitimos
-            return true;
+            string query =
+                "UPDATE [Contactos_Proveedores] SET " +
+                "[codigo_proveedor]=@codigo_proveedor " +
+                "WHERE codigo_contacto=@codigo_contacto";
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_contactoProveedor.proveedor.codigo, "@codigo_proveedor"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_contactoProveedor.codigo, "@codigo_contacto"));
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected != 0)
+            { return true; }
+            else
+            { return false; }
         }
 
         public override bool remove(ModeloPersonas p_mod_persona)

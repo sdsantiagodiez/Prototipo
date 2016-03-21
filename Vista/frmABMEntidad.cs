@@ -17,10 +17,9 @@ namespace Vista
     public partial class frmABMEntidad : Vista.frmABMBase
     {
         #region Atributos
-        //Seleccionado es el que resulta de un objeto que se encuentra en la base de datos
-        //Actual puede ser un objeto nuevo o resultado de la base de datos con posibles modificaciones
+
         ModeloEntidad glb_mod_entidadActual;
-        ModeloEntidad glb_mod_entidadSeleccionada;
+
 
         private string _tipoEntidadSeleccionada;
         private string tipoEntidadSeleccionada
@@ -33,19 +32,19 @@ namespace Vista
                 {
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor:
                         this.inicializarControlesTipoEntidadProveedor();
-                        glb_mod_entidadActual = glb_mod_entidadSeleccionada = new ModeloProveedor();
+                        glb_mod_entidadActual = new ModeloProveedor();
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente:
                         this.inicializarControlesTipoEntidadCliente();
-                        glb_mod_entidadActual = glb_mod_entidadSeleccionada = new ModeloCliente();
+                        glb_mod_entidadActual = new ModeloCliente();
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario:
                         this.inicializarControlesTipoEntidadUsuario();
-                        glb_mod_entidadActual = glb_mod_entidadSeleccionada = new ModeloUsuario();
+                        glb_mod_entidadActual = new ModeloUsuario();
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor:
                         this.inicializarControlesTipoEntidadContactoProveedor();
-                        glb_mod_entidadActual = glb_mod_entidadSeleccionada = new ModeloContactoProveedor();
+                        glb_mod_entidadActual = new ModeloContactoProveedor();
                         break;
                     default:
                         break;
@@ -75,8 +74,7 @@ namespace Vista
 
         private void inicializarVariablesGlobales()
         {
-            glb_mod_entidadActual = new ModeloEntidad(); ;
-            glb_mod_entidadSeleccionada = new ModeloEntidad();
+            glb_mod_entidadActual = new ModeloEntidad(); 
         }
 
         override public void inicializarModoFormularioInicio()
@@ -253,8 +251,7 @@ namespace Vista
         {
             ControladorAlta lcl_con_alta = new ControladorAlta();
             cargarDatosControlEnEntidadActual(ref glb_mod_entidadActual);
-            glb_mod_entidadSeleccionada = glb_mod_entidadActual;
-            return lcl_con_alta.agregar(ref glb_mod_entidadSeleccionada);
+            return lcl_con_alta.agregar(ref glb_mod_entidadActual);
         }
 
 
@@ -299,7 +296,7 @@ namespace Vista
         private bool eliminar()
         {
             ControladorBaja lcl_con_baja = new ControladorBaja();
-            return lcl_con_baja.eliminar(glb_mod_entidadSeleccionada);
+            return lcl_con_baja.eliminar(glb_mod_entidadActual);
         }
 
         /// <summary>
@@ -342,9 +339,8 @@ namespace Vista
         private bool guardarModificaciones()
         {
             ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
-            this.cargarDatosControlEnEntidadActual(ref glb_mod_entidadSeleccionada);
-            glb_mod_entidadActual = glb_mod_entidadSeleccionada;
-            return lcl_con_modificacion.modificar(glb_mod_entidadSeleccionada);
+            this.cargarDatosControlEnEntidadActual(ref glb_mod_entidadActual);
+            return lcl_con_modificacion.modificar(glb_mod_entidadActual);
         }
         #endregion
 
@@ -384,8 +380,8 @@ namespace Vista
             {
                 this.modoFormulario = ModoFormularioSeleccionado;
                 this.quitarTextoEnControles(this);
-                glb_mod_entidadSeleccionada = glb_mod_entidadActual = glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad;
-                this.cargarEntidadEnControles(glb_mod_entidadSeleccionada);
+                glb_mod_entidadActual = glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad;
+                this.cargarEntidadEnControles(glb_mod_entidadActual);
             }
         }
 
