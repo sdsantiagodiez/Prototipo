@@ -130,10 +130,18 @@ namespace Controladores
             FormReportes lcl_frm_reporte = new FormReportes(lcl_mod_ReporteEncabezadoTop10Articulos,"Top 10 Articulos");
 
             return lcl_frm_reporte;
-
-
+            
 
         }
+        public FormReportes ReporteEmitePedido(ModeloPedido p_modeloPedido, ModeloPersonas p_modeloPersona)
+        {
+            FormReportes lcl_frm_reporte = new FormReportes(p_modeloPedido, p_modeloPersona);
+
+            return lcl_frm_reporte;
+            
+
+        }
+
 
     }
 }

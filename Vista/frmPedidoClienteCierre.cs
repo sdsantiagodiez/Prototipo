@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Modelos;
 using Controladores;
 using LibreriaClasesCompartidas;
+using Reportes;
 
 namespace Vista
 {
@@ -18,6 +19,8 @@ namespace Vista
     {
         public bool glb_emitido = false;
         private ControladorProcesarVenta glb_con_procesarVenta;
+        private FormReportes glb_frm_FormReportes;
+        private ControladorReportes glb_con_Reportes;
         
         
         #region Instanciaciones
@@ -346,6 +349,14 @@ namespace Vista
         //             new Font("Courier New", 10),
         //             new SolidBrush(Color.Black), startX, startY + Offset);
         //}
+
+        private void ImprimirPedido(ModeloPedido p_modeloPedido,ModeloPersonas p_modeloPersona)
+        {
+            glb_frm_FormReportes = glb_con_Reportes.ReporteEmitePedido(p_modeloPedido,p_modeloPersona);
+
+            glb_frm_FormReportes.ShowDialog();
+        }
+        
         #endregion
 
         #region Búsqueda

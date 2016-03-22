@@ -305,6 +305,7 @@
             this.cmbxVentasReportes.Name = "cmbxVentasReportes";
             this.cmbxVentasReportes.Size = new System.Drawing.Size(219, 24);
             this.cmbxVentasReportes.TabIndex = 1;
+            this.cmbxVentasReportes.SelectedValueChanged += new System.EventHandler(this.cmbxVentasReportes_SelectedValueChanged);
             this.cmbxVentasReportes.Leave += new System.EventHandler(this.cmbxVentasReportes_Leave);
             // 
             // label11
@@ -369,6 +370,7 @@
             this.chkAllClientes.TabIndex = 0;
             this.chkAllClientes.Text = "Todos los Clientes";
             this.chkAllClientes.UseVisualStyleBackColor = true;
+            this.chkAllClientes.CheckedChanged += new System.EventHandler(this.chkAllClientes_CheckedChanged);
             // 
             // btnGeneraReporteVentas
             // 

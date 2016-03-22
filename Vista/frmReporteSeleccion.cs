@@ -121,9 +121,54 @@ namespace Vista
             }
             else
             {
-                this.btnGeneraReporteVentas.Visible = false;
+                //this.btnGeneraReporteVentas.Visible = false;
             }
 
+        }
+
+        private void cmbxVentasReportes_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cmbxVentasReportes.SelectedText == "Reporte de Ventas Entre Fechas")
+            {
+                this.txtFecDesdeVentas.Visible = true;
+                this.txtFecHastaVentas.Visible = true;
+                this.chkAllClientes.Visible = true;
+                this.lblNombreCliente.Visible = true;
+                this.txtCliente.Visible = true;
+                this.btnGeneraReporteVentas.Visible = true;
+                this.lblCliente.Visible = true;
+            }
+            else if (cmbxVentasReportes.SelectedText == "Listado Top 10 Articulos Vendidos")
+            {
+                this.txtFecDesdeVentas.Text = "";
+                this.txtFecHastaVentas.Text = "";
+                this.chkAllClientes.Visible = false;
+                this.lblNombreCliente.Visible = false;
+                this.txtCliente.Visible = false;
+                this.btnGeneraReporteVentas.Visible = true;
+                this.lblCliente.Visible = false;
+            }
+            else
+            {
+                //this.btnGeneraReporteVentas.Visible = false;
+            }
+
+        }
+
+        private void chkAllClientes_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkAllClientes.Checked == true)
+            {
+                txtCliente.Visible = false;
+                lblCliente.Visible = false;
+                lblNombreCliente.Visible = false;
+            }
+            else
+            {
+                txtCliente.Visible = true;
+                lblCliente.Visible = true;
+                lblNombreCliente.Visible = true;
+            }
         }
 
         }

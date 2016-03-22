@@ -93,11 +93,19 @@ namespace Reportes
         
         public FormReportes(ModeloPedido p_ModeloPedido, ModeloPersonas p_ModeloPersonas)
         {   //este constructor se construye al modelo de pedido 
-            InitializeComponent();        
-            this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.Pedido.rdlc";
-            this.ReporteBase.LocalReport.Refresh();
-            this.ReporteBase.RefreshReport();
-            this.ReporteBase.LocalReport.DataSources.Clear();
+            InitializeComponent();
+
+            ModeloReporteEncabezadoBindingSource.Clear();
+            ModeloReportePedidoEntreFechasBindingSource.Clear();
+
+            ModeloReportePedidoEntreFechasBindingSource.DataSource = typeof(ModeloPedido);
+            ModeloReportePedidoEntreFechasBindingSource.DataSource = p_ModeloPedido;
+            ModeloReporteEncabezadoBindingSource.DataSource = typeof(ModeloPersonas);
+            ModeloReporteEncabezadoBindingSource.DataSource = p_ModeloPersonas;
+
+            this.ReporteBase.LocalReport.DataSources.RemoveAt(0);
+            this.ReporteBase.LocalReport.DataSources.RemoveAt(1);
+            
             this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("EncabezadoPedido", p_ModeloPedido));
             this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DetallePedido", p_ModeloPedido.lineasPedido));
             this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("ClientePedido", p_ModeloPersonas));
@@ -105,7 +113,11 @@ namespace Reportes
             this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("ClienteMail", p_ModeloPersonas.mails));
             this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("ClienteTelefono", p_ModeloPersonas.telefonos));
 
+            this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.Pedido.rdlc";
+            
+            this.ReporteBase.LocalReport.Refresh();
             this.ReporteBase.RefreshReport();
+
         }
 
         
