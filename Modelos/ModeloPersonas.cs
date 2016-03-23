@@ -37,19 +37,19 @@ namespace Modelos
         public string dni 
         {
             get{return _dni;}
-            set { this._dni = this.convertirString(value); } 
+            set { this._dni = validarDNI(value) ? this.normalizarDNI(value) : null; } 
         }
         string _nombre;
         public string nombre
         {
             get { return _nombre; }
-            set { this._nombre = this.convertirString(value); }
+            set { _nombre = validarNombre(value) ? this.convertirString(value) : null; }
         }
         string _apellido;
         public string apellido
         {
             get { return _apellido; }
-            set { this._apellido = this.convertirString(value); }
+            set { _apellido = validarApellido(value) ? this.convertirString(value) : null; }
         }
         /// <summary>
         /// Ver Constantes.TipoEntidad.TipoPersona
@@ -58,19 +58,7 @@ namespace Modelos
         public string tipoPersona
         {
             get { return _tipoPersona; }
-            set 
-            {
-                if (value == Constantes.TiposEntidad.TiposPersona.Cliente ||
-                    value == Constantes.TiposEntidad.TiposPersona.ContactoProveedor ||
-                    value == Constantes.TiposEntidad.TiposPersona.Usuario)
-                {
-                    this._tipoPersona = value;
-                }
-                else
-                {
-                    this._tipoPersona = null;
-                }
-            }
+            set { _tipoPersona = validarTipoPersona(value) ? value : null; }
         }
 
         #endregion
@@ -80,7 +68,7 @@ namespace Modelos
         /// Valida todos los atributos de la persona
         /// </summary>
         /// <returns>true si todos son válidos. False si al menos uno no es válido</returns>
-        new public virtual bool validar()
+        new public bool validar()
         {
             return base.validar()
                 && validarDNI(this.dni) 
@@ -89,7 +77,7 @@ namespace Modelos
                 && this.validarTipoPersona(this.tipoPersona);
         }
 
-        public static  bool validarDNI(string p_dni)
+        public static bool validarDNI(string p_dni)
         {
             p_dni = Modelo.convertString(p_dni);
             if (p_dni != null && !System.Text.RegularExpressions.Regex.IsMatch(p_dni, @"[^0-9\.]"))
@@ -120,11 +108,25 @@ namespace Modelos
                 p_tipoPersona == Constantes.TiposEntidad.TiposPersona.ContactoProveedor ||
                 p_tipoPersona == Constantes.TiposEntidad.TiposPersona.Usuario)
             {
-                return true; ;
+                return true; 
             }
             return false;   
         }
         #endregion
+
+        private string normalizarDNI(string p_dni)
+        {
+            p_dni = p_dni.Replace(".", string.Empty);
+            int longitud = p_dni.Length;
+            if (longitud > 3)
+            {
+                p_dni = p_dni.Insert(longitud - 3, ".");
+                if (longitud > 6)
+                    p_dni = p_dni.Insert(longitud - 6, ".");
+
+            }
+            return p_dni;
+        }
 
         #region Equals
         public override bool Equals(object p_objeto)

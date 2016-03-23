@@ -13,7 +13,7 @@ namespace Modelos
         public string codigo
         {
             get { return _codigo; }
-            set { this._codigo = value; }
+            set { this._codigo = validarCodigo(value) ? value : null; }
         }
         string _pais;
         public string pais

@@ -39,13 +39,13 @@ namespace Modelos
         public string usuario
         {
             get { return _usuario; }
-            set { this._usuario = value; }
+            set { this._usuario = validarUsuario(value) ? value : null; }
         }
         string _contrasenia;
         public string contrasenia
         {
             get { return _contrasenia; }
-            set { this._contrasenia = value; }
+            set { this._contrasenia = validarContrasenia(value)?this.encriptarContraseña(value):null; }
         }
         List<ModeloRoles> _roles;
         public List<ModeloRoles> roles
@@ -56,7 +56,7 @@ namespace Modelos
         #endregion
 
         #region Validación
-        public bool validar()
+        new public bool validar()
         {
             return base.validar() 
                 && validarUsuario(this.usuario) 
@@ -66,12 +66,20 @@ namespace Modelos
 
         public static bool validarUsuario(string p_usuario)
         {
-            return !System.Text.RegularExpressions.Regex.IsMatch(p_usuario,"[^0-9a-zA-Z_]");
+            if (!string.IsNullOrWhiteSpace(p_usuario))
+            {
+                return !System.Text.RegularExpressions.Regex.IsMatch(p_usuario, "[^0-9a-zA-Z_]");
+            }
+            return false;
             
         }
         public static bool validarContrasenia(string p_contrasenia)
         {
-            return p_contrasenia.Length >= 8;
+            if (!String.IsNullOrWhiteSpace(p_contrasenia))
+            {
+                return p_contrasenia.Length >= 8;
+            }
+            return false;
         }
         public bool validarRoles()
         {
@@ -118,11 +126,11 @@ namespace Modelos
         /// <summary>
         /// Convierte valor contraseña a su correspondiente hash encriptado
         /// </summary>
-        public void encriptarContraseña()
+        public string encriptarContraseña(string p_contrasenia)
         {
             byte[] data = System.Text.Encoding.ASCII.GetBytes(contrasenia);
             data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-            contrasenia = System.Text.Encoding.ASCII.GetString(data);   
+            return System.Text.Encoding.ASCII.GetString(data);   
         }
         #endregion
     }

@@ -27,7 +27,7 @@ namespace Modelos
         public string razonSocialProveedor
         {
             get { return _razonSocialProveedor; }
-            set { this._razonSocialProveedor = value; }
+            set { this._razonSocialProveedor = ModeloProveedor.validarRazonSocial(value) ? value : null; }
         }
         #endregion
 
@@ -42,21 +42,21 @@ namespace Modelos
         public string descripcionArticuloProveedor
         {
             get { return _descripcionArticuloProveedor; }
-            set { this._descripcionArticuloProveedor = value; }
+            set { this._descripcionArticuloProveedor = convertirString(value); }
         }
 
         string _observacionesArticuloProveedor;
         public string observacionesArticuloProveedor
         {
             get { return _observacionesArticuloProveedor; }
-            set { this._observacionesArticuloProveedor = value; }
+            set { this._observacionesArticuloProveedor = !string.IsNullOrWhiteSpace(value) ? value : null; }
         }
 
         ModeloValorArticulo _valorVenta;
         public ModeloValorArticulo valorVenta
         {
             get { return _valorVenta; }
-            set { this._valorVenta = value; }
+            set { this._valorVenta =  value; }
         }
         
         ModeloValorArticulo _valorCompra;
@@ -81,18 +81,8 @@ namespace Modelos
             set 
             { 
                 this._stockActual = value;
-                this.fechaActualizacion = DateTime.Today;
             }
         }
-        
-        //DateTime nullable en caso de que este definido NULL en la base de datos
-        DateTime? _fechaActualizacion;
-        public DateTime? fechaActualizacion
-        {
-            get { return _fechaActualizacion; }
-            set { this._fechaActualizacion = value; }
-        }
-        
         
         string _ubicacion;
         public string ubicacion
@@ -100,15 +90,27 @@ namespace Modelos
             get { return _ubicacion; }
             set { this._ubicacion = value; }
         }
-        
+
+        //DateTime nullable en caso de que este definido NULL en la base de datos
+        DateTime? _fechaActualizacion;
+        public DateTime? fechaActualizacion
+        {
+            get { return _fechaActualizacion; }
+            set { this._fechaActualizacion = value; }
+        }
         #endregion
 
         #region Validaciones
 
         public bool validar()
         {
-            return (this.validarCodOrig() == true && this.validarCodArtProv() == true && this.validarValores() == true && this.validarStocks() == true
-                && this.validarCodEntidad() == true && this.validarRazonSocialProv() == true && this.validarUbicacion() == true);
+            return this.validarCodigoOriginal()
+                && this.validarCodigoArticuloProveedor() 
+                && this.validarValores() 
+                && this.validarStock() 
+                && this.validarCodEntidad()
+                && this.validarRazonSocialProv() 
+                && this.validarUbicacion();
         }
 
         private bool validarUbicacion()
@@ -126,7 +128,7 @@ namespace Modelos
             return true;
         }
 
-        private bool validarStocks()
+        private bool validarStock()
         {
             return true;
         }
@@ -136,18 +138,19 @@ namespace Modelos
             return true;
         }
 
-        private bool validarCodArtProv()
+        private bool validarCodigoArticuloProveedor()
         {
             return true;
         }
 
-        private bool validarCodOrig()
+        private bool validarCodigoOriginal()
         {
             return true;
         }
 
         #endregion
 
+        #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloArticuloProveedores == false)
@@ -175,5 +178,6 @@ namespace Modelos
                 && this.Equals(this.valorCompra,p_mod_articuloProveedor.valorCompra)
                 && this.Equals(this.valorVenta,p_mod_articuloProveedor.valorVenta);
         }
+        #endregion
     }
 }

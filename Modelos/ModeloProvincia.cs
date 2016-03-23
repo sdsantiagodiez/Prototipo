@@ -25,7 +25,7 @@ namespace Modelos
         public string codigoPais
         {
             get { return _codigoPais; }
-            set { _codigoPais = value; }
+            set { _codigoPais = ModeloPais.validarCodigo(value) ? value : null; }
         }
         #endregion
 

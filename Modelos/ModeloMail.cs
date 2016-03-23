@@ -19,15 +19,16 @@ namespace Modelos
         public string mail 
         {
             get { return _mail; }
-            set { this._mail = value; }
+            set { this._mail = validarMail(value) ? value : null; }
         }
         #endregion
-        
 
+        #region Validación
         public bool validar()
         {
             return validarMail(this.mail);
         }
+        
         //Validación básica (xxx@xxx.xxx)
         //No detecta signos como #, ?, etc.
         public static bool validarMail(string p_mail)
@@ -42,7 +43,9 @@ namespace Modelos
                 return false;
             }
         }
+        #endregion
 
+        #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloMail == false)
@@ -55,6 +58,6 @@ namespace Modelos
             return this.Equals(this.codigoMail,p_mod_mail.codigoMail) 
                 && this.Equals(this.mail,p_mod_mail.mail);
         }
-    
+        #endregion
     }
 }

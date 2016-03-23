@@ -13,28 +13,28 @@ namespace Modelos
        public string codigoOriginal 
        {
            get { return _codigoOriginal; }
-           set { this._codigoOriginal = value; }
+           set { this._codigoOriginal = validarCodigoOriginal(value) ? value : null; }
        }
        
        string _descripcion;
        public string descripcion
        {
            get { return _descripcion; }
-           set { this._descripcion = value; }
+           set { this._descripcion = convertirString(value); }
        }
        
        string _modelos;
        public string modelos 
        {
            get { return _modelos; }
-           set { this._modelos = value; }
+           set { this._modelos = convertirString(value); }
        }
        
        string _observaciones;
        public string observaciones
        {
            get { return _observaciones; }
-           set { this._observaciones = value; }
+           set { this._observaciones = !string.IsNullOrWhiteSpace(value) ? value : null; }
        }
        #endregion
 

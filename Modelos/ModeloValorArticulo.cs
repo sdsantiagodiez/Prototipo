@@ -28,6 +28,7 @@ namespace Modelos
         }
         #endregion
 
+        #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloValorArticulo == false)
@@ -40,5 +41,6 @@ namespace Modelos
             return this.Equals(this.fechaUltimaActualizacion,p_mod_valorArticulo.fechaUltimaActualizacion)
                 && this.Equals(this.valorArticulo,p_mod_valorArticulo.valorArticulo);
         }
+        #endregion
     }
 }

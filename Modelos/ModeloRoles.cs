@@ -28,7 +28,8 @@ namespace Modelos
         #region Validación
         public bool validar()
         {
-            return (this.validarCodigo() == true && this.validarDescripcion() == true);
+            return this.validarCodigo() 
+                && this.validarDescripcion();
         }
 
         public bool validarDescripcion()
@@ -41,7 +42,8 @@ namespace Modelos
             return true;
         }
         #endregion
-        
+
+        #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloRoles == false)
@@ -54,6 +56,7 @@ namespace Modelos
             return this.Equals(this.codigo,p_mod_rol.codigo) 
                 && this.Equals(this.descripcion, p_mod_rol.descripcion);
         }
+        #endregion
     }
 }
 

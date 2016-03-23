@@ -70,25 +70,14 @@ namespace Modelos
         public string observaciones
         {
             get { return _observaciones; }
-            set { this._observaciones = value; }
+            set { this._observaciones = !string.IsNullOrWhiteSpace(value) ? value : null; }
         }
 
         string _tipoEntidad;
         public string tipoEntidad
         {
             get { return _tipoEntidad; }
-            set 
-            {
-                if (value == LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona ||
-                    value == LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor)
-                {
-                    this._tipoEntidad = value;
-                }
-                else
-                {
-                    this._tipoEntidad = null;
-                }
-            }
+            set { _tipoEntidad = this.validarTipoEntidad(value) ? value : null; }
         }
         #endregion
         
@@ -101,7 +90,7 @@ namespace Modelos
                 && this.validarTelefonos()
                 && this.validarDomicilios()
                 && this.validarMails()
-                && this.validarTipoEntidad();
+                && this.validarTipoEntidad(tipoEntidad);
         }
 
         public bool validarCodigo()
@@ -124,14 +113,14 @@ namespace Modelos
         {
             return true;
         }
-        public bool validarTipoEntidad()
+        public bool validarTipoEntidad(string p_tipoEntidad)
         {
-            return tipoEntidad != null;
+            return p_tipoEntidad == LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona ||
+                   p_tipoEntidad == LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor;
         }
 
         public bool validarTelefonos()
         {
-
             foreach (ModeloTelefono t in telefonos)
             {
                 if (!t.validar())

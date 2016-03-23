@@ -62,13 +62,13 @@ namespace Modelos
         public ModeloProvincia provincia
         {
             get { return _provincia; }
-            set { this._provincia = value; }
+            set { this._provincia = this.validarProvincia(value) ? value : null; }
         }
         ModeloPais _pais;
         public ModeloPais pais
         {
             get { return _pais; }
-            set { this._pais = value; }
+            set { this._pais = this.validarPais(value) ? value : null; }
         }
         #endregion
 
@@ -82,8 +82,8 @@ namespace Modelos
                 && validarDepartamento(this.departamento)
                 && validarCiudad(this.ciudad)
                 && validarCodigoPostal(this.codigoPostal)
-                && this.validarProvincia()
-                && this.validarPais();
+                && this.validarProvincia(this.provincia)
+                && this.validarPais(this.pais);
         }
         public bool validarCodigo(string p_codigo)
         {
@@ -115,19 +115,19 @@ namespace Modelos
         {
             return true;
         }
-        public bool validarProvincia()
+        public bool validarProvincia(ModeloProvincia p_mod_provincia)
         {
             //Debería estar inicializada por el constructor
-            if (provincia != null)
-                return provincia.validar();
+            if (p_mod_provincia != null)
+                return p_mod_provincia.validar();
             else
                 return false;
         }
-        public bool validarPais()
+        public bool validarPais(ModeloPais p_mod_pais)
         {
             //Debería estar inicializado por el constructor
-            if (pais != null)
-                return pais.validar();
+            if (p_mod_pais != null)
+                return p_mod_pais.validar();
             else
                 return false;
         }

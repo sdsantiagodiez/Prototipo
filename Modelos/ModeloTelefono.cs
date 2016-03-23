@@ -29,19 +29,7 @@ namespace Modelos
         public string tipo
         {
             get { return _tipo; }
-            set 
-            {
-                if (value == Constantes.TipoTelefono.Celular ||
-                    value == Constantes.TipoTelefono.Fijo ||
-                    value == Constantes.TipoTelefono.Fax)
-                {
-                    this._tipo = value; 
-                }
-                else
-                {
-                    this._tipo = null;
-                }
-            }
+            set { _tipo = validarTipo(value) ? value : null; }
         }
         #endregion
         

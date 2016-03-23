@@ -27,7 +27,7 @@ namespace Modelos
         #endregion
 
         #region Validación
-        override public bool validar()
+        new public bool validar()
         {
             return base.validar();
         }
