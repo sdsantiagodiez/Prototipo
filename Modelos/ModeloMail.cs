@@ -26,16 +26,16 @@ namespace Modelos
 
         public bool validar()
         {
-            return (this.validarMail() == true);
+            return validarMail(this.mail);
         }
         //Validación básica (xxx@xxx.xxx)
         //No detecta signos como #, ?, etc.
-        public bool validarMail()
+        public static bool validarMail(string p_mail)
         {
             try
             {
-                var addr = new System.Net.Mail.MailAddress(mail);
-                return addr.Address == mail;
+                var addr = new System.Net.Mail.MailAddress(p_mail);
+                return addr.Address == p_mail;
             }
             catch
             {

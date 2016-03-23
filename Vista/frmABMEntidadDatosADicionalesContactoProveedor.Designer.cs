@@ -118,6 +118,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Location = new System.Drawing.Point(211, 8);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.btnCancelar.Name = "btnCancelar";
@@ -308,8 +309,10 @@
             // 
             // frmABMEntidadDatosAdicionalesContactoProveedor
             // 
+            this.AcceptButton = this.btnAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(374, 371);
             this.Controls.Add(this.grpBoxContactoProveedor);
             this.MinimumSize = new System.Drawing.Size(390, 410);

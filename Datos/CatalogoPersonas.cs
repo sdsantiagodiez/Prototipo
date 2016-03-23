@@ -59,16 +59,20 @@ namespace Datos
                 case Constantes.ParametrosBusqueda.Entidades.Personas.Any:
                     string queryBase = base.getCondicionBusqueda(p_mod_persona, p_parametroBusqueda, ref p_comando);
 
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.dni, "@dni"));
-                    string dniQuery = this.parametroBusqueda("@dni", "dni","=");
+                    string dni = (p_mod_persona.dni == "") ? null : p_mod_persona.nombre;
+                    p_comando.Parameters.Add(this.instanciarParametro(dni, "@dni"));
+                    string dniQuery = " (@dni is null OR dni = @dni) ";
+                    //string dniQuery = this.parametroBusqueda("@dni", "dni","=");
                     
                     string nombre = (p_mod_persona.nombre == "") ? null : p_mod_persona.nombre;
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(nombre), "@nombre"));
-                    string nombreQuery = this.parametroBusqueda("@nombre", "nombre","LIKE");
+                    string nombreQuery = " (@nombre is null OR nombre LIKE @nombre) ";    
+                //string nombreQuery = this.parametroBusqueda("@nombre", "nombre","LIKE");
                     
                     string apellido = (p_mod_persona.apellido == "") ? null : p_mod_persona.apellido;
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(apellido), "@apellido"));
-                    string apellidoQuery = this.parametroBusqueda("@apellido", "apellido", "LIKE");
+                    string apellidoQuery = " (@apellido is null OR apellido LIKE @apellido) ";
+                    //string apellidoQuery = this.parametroBusqueda("@apellido", "apellido", "LIKE");
                     
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.tipoPersona, "@tipo_persona"));
                     string tipoPersonaQuery = @" (@tipo_persona IS NULL OR @tipo_persona = tipo_persona) ";

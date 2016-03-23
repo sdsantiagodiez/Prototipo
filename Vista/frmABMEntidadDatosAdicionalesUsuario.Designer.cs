@@ -39,9 +39,9 @@
             this.lblContraseña = new System.Windows.Forms.Label();
             this.chckdListBoxRol = new System.Windows.Forms.CheckedListBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnAceptar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
             this.grpBoxDatosUsuario.SuspendLayout();
             this.tblLayoutPanelDatosUsuario.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -102,9 +102,10 @@
             // 
             this.txtBoxConfirmarContraseña.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxConfirmarContraseña.Location = new System.Drawing.Point(98, 88);
+            this.txtBoxConfirmarContraseña.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtBoxConfirmarContraseña.Name = "txtBoxConfirmarContraseña";
             this.txtBoxConfirmarContraseña.PasswordChar = '*';
-            this.txtBoxConfirmarContraseña.Size = new System.Drawing.Size(258, 24);
+            this.txtBoxConfirmarContraseña.Size = new System.Drawing.Size(241, 24);
             this.txtBoxConfirmarContraseña.TabIndex = 3;
             this.txtBoxConfirmarContraseña.UseSystemPasswordChar = true;
             // 
@@ -134,17 +135,19 @@
             // 
             this.txtBoxUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxUsuario.Location = new System.Drawing.Point(98, 8);
+            this.txtBoxUsuario.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtBoxUsuario.Name = "txtBoxUsuario";
-            this.txtBoxUsuario.Size = new System.Drawing.Size(258, 24);
+            this.txtBoxUsuario.Size = new System.Drawing.Size(241, 24);
             this.txtBoxUsuario.TabIndex = 1;
             // 
             // txtBoxContraseña
             // 
             this.txtBoxContraseña.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxContraseña.Location = new System.Drawing.Point(98, 48);
+            this.txtBoxContraseña.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtBoxContraseña.Name = "txtBoxContraseña";
             this.txtBoxContraseña.PasswordChar = '*';
-            this.txtBoxContraseña.Size = new System.Drawing.Size(258, 24);
+            this.txtBoxContraseña.Size = new System.Drawing.Size(241, 24);
             this.txtBoxContraseña.TabIndex = 2;
             this.txtBoxContraseña.UseSystemPasswordChar = true;
             // 
@@ -186,16 +189,16 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(359, 45);
             this.tableLayoutPanel2.TabIndex = 13;
             // 
-            // btnAceptar
+            // btnModificar
             // 
-            this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAceptar.Location = new System.Drawing.Point(20, 7);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 30);
-            this.btnAceptar.TabIndex = 5;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            this.btnModificar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnModificar.Location = new System.Drawing.Point(134, 7);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(79, 30);
+            this.btnModificar.TabIndex = 7;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnCancelar
             // 
@@ -208,16 +211,16 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // btnModificar
+            // btnAceptar
             // 
-            this.btnModificar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnModificar.Location = new System.Drawing.Point(134, 7);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(79, 30);
-            this.btnModificar.TabIndex = 7;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAceptar.Location = new System.Drawing.Point(20, 7);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(75, 30);
+            this.btnAceptar.TabIndex = 5;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // frmABMEntidadDatosAdicionalesUsuario
             // 

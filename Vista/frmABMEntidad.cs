@@ -17,9 +17,7 @@ namespace Vista
     public partial class frmABMEntidad : Vista.frmABMBase
     {
         #region Atributos
-
         ModeloEntidad glb_mod_entidadActual;
-
 
         private string _tipoEntidadSeleccionada;
         private string tipoEntidadSeleccionada
@@ -32,50 +30,50 @@ namespace Vista
                 {
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor:
                         this.inicializarControlesTipoEntidadProveedor();
+                        this.inicializarErrorProvider(this.tblLayoutPanelDatosPersonales);
                         glb_mod_entidadActual = new ModeloProveedor();
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente:
                         this.inicializarControlesTipoEntidadCliente();
+                        this.inicializarErrorProvider(this.tblLayoutPanelDatosPersonales);
                         glb_mod_entidadActual = new ModeloCliente();
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario:
                         this.inicializarControlesTipoEntidadUsuario();
+                        this.inicializarErrorProvider(this.tblLayoutPanelDatosPersonales);
                         glb_mod_entidadActual = new ModeloUsuario();
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor:
                         this.inicializarControlesTipoEntidadContactoProveedor();
+                        this.inicializarErrorProvider(this.tblLayoutPanelDatosPersonales);
                         glb_mod_entidadActual = new ModeloContactoProveedor();
                         break;
                     default:
+                        _tipoEntidadSeleccionada = null;
                         break;
                 }
             }
         }
         
         #endregion
-
+        
+        #region Constructores
         public frmABMEntidad()
         {
             InitializeComponent();
             this.Text = "Entidades";
-            btnAgregarMail.Text = char.ConvertFromUtf32(8595);
-            btnQuitarMail.Text = char.ConvertFromUtf32(8593);
-
-            this.inicializarVariablesGlobales();
-
+            //btnAgregarMail.Text = char.ConvertFromUtf32(8595);
+            //btnQuitarMail.Text = char.ConvertFromUtf32(8593);
+            
             modoFormulario = ModoFormularioInicio;
-
+            
             this.inicializarComboBox();
         }
+        #endregion
 
         #region Métodos
 
         #region Inicialización
-
-        private void inicializarVariablesGlobales()
-        {
-            glb_mod_entidadActual = new ModeloEntidad(); 
-        }
 
         override public void inicializarModoFormularioInicio()
         {
@@ -95,13 +93,15 @@ namespace Vista
             grpBoxObservaciones.Enabled = false;
 
             btnDatosAdicionales.Enabled = false;
-
+            
             base.quitarTextoEnControles(this);
+
+            this.tipoEntidadSeleccionada = Constantes.TiposEntidad.TiposPersona.Cliente;
         }
         override public void inicializarModoFormularioNuevo()
         {
             base.inicializarModoFormularioNuevo();
-
+            
             grpBoxTipoEntidad.Enabled = true;
             txtBoxCodigoEntidad.Enabled = false;
 
@@ -112,6 +112,8 @@ namespace Vista
             btnDatosAdicionales.Enabled = true;
 
             base.quitarTextoEnControles(this);
+
+            this.tipoEntidadSeleccionada = Constantes.TiposEntidad.TiposPersona.Cliente;
         }
         override public void inicializarModoFormularioSeleccionado()
         {
@@ -187,9 +189,9 @@ namespace Vista
 
             //Creo lista Tipos de teléfono
             var dataSource = new List<Tel>();
-            dataSource.Add(new Tel() { Name = "TEL", Value = "TEL" });
-            dataSource.Add(new Tel() { Name = "CEL", Value = "CEL" });
-            dataSource.Add(new Tel() { Name = "FAX", Value = "FAX" });
+            dataSource.Add(new Tel() { Name = Constantes.TipoTelefono.Fijo, Value = "TEL" });
+            dataSource.Add(new Tel() { Name = Constantes.TipoTelefono.Celular, Value = "CEL" });
+            dataSource.Add(new Tel() { Name = Constantes.TipoTelefono.Fax, Value = "FAX" });
 
             //Binding de telefonos
             this.cmbBoxTipoTelefono.DataSource = dataSource;
@@ -199,7 +201,6 @@ namespace Vista
             //Lo hago read only
             this.cmbBoxTipoTelefono.DropDownStyle = ComboBoxStyle.DropDownList;
         }
-
         #endregion
 
         #region ABM
@@ -228,8 +229,12 @@ namespace Vista
                 }
                 catch (Exception ex)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación: "+ ex.ToString(), "Error", MessageBoxButtons.RetryCancel);
+                    DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación: " + ex.ToString(), "Error", MessageBoxButtons.RetryCancel);
                 }
+            }
+            else
+            {
+                MessageBox.Show(errorActual,"Error",MessageBoxButtons.OK);
             }
         }
 
@@ -239,8 +244,7 @@ namespace Vista
         /// <returns>true si todos los campos son válidos, false caso contrario</returns>
         private bool validarAlta()
         {
-            //Retornar bool y mostrar mensaje por la primera validación fallida encontrada. Si no se encuentra error, no se muestra mensaje y se devuelve true
-            return true;
+            return this.validarEntidad(glb_mod_entidadActual);
         }
 
         /// <summary>
@@ -253,7 +257,6 @@ namespace Vista
             cargarDatosControlEnEntidadActual(ref glb_mod_entidadActual);
             return lcl_con_alta.agregar(ref glb_mod_entidadActual);
         }
-
 
         /// <summary>
         /// Inicia proceso de baja y muestra mensaje de acuerdo si la operación ha sido exitosa o fallida
@@ -327,9 +330,7 @@ namespace Vista
         /// <returns>true si todos los campos son válidos, false caso contrario</returns>
         private bool validarModificacion()
         {
-            //Retornar bool y mostrar mensaje por la primera validación fallida encontrada. Si no se encuentra error, no se muestra mensaje y se devuelve true
-            //utilizar modelo global actual y seleccionado para ver si se cambio algo
-            return true;
+            return this.validarEntidad(glb_mod_entidadActual);
         }
 
         /// <summary>
@@ -362,10 +363,9 @@ namespace Vista
         /// <returns>true si todos los parámetros son válidos, false caso contrario</returns>
         private bool validarBusqueda()
         {
-            if (this.getTipoEntidad() == null)
+            if (this.tipoEntidadSeleccionada == null)
             {
-                frmMensajeCorto lcl_frm_mensajeCorto = new frmMensajeCorto("Tipo Entidad", "Debe seleccionar un tipo de entidad para realizar la acción", "fallo");
-                lcl_frm_mensajeCorto.ShowDialog();
+                MessageBox.Show("Debe seleccionar un tipo de entidad para realizar la acción", "Error", MessageBoxButtons.OK); 
                 return false;
             }
             return true;
@@ -373,14 +373,14 @@ namespace Vista
 
         private void buscarEntidad()
         {
-            glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
+            frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
             this.cargarDatosControlEnEntidadActual(ref glb_mod_entidadActual);
-            glb_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_entidadActual);
-            if (glb_frm_resultadoBusqueda.modeloSeleccionado != null)
+            lcl_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_entidadActual);
+            if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
             {
                 this.modoFormulario = ModoFormularioSeleccionado;
                 this.quitarTextoEnControles(this);
-                glb_mod_entidadActual = glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad;
+                glb_mod_entidadActual = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad;
                 this.cargarEntidadEnControles(glb_mod_entidadActual);
             }
         }
@@ -521,7 +521,53 @@ namespace Vista
             }
             return lcl_lst_mod_mails;
         }
-        
+
+        private ModeloEntidad getDatosAdicionales(ModeloUsuario p_mod_usuario)
+        {
+            Form lcl_frm_datosAdicionales;
+            if (p_mod_usuario.usuario == null)
+            {
+                lcl_frm_datosAdicionales = new frmABMEntidadDatosAdicionalesUsuario();
+            }
+            else
+            {
+                lcl_frm_datosAdicionales = new frmABMEntidadDatosAdicionalesUsuario(p_mod_usuario as ModeloUsuario);
+            }
+            lcl_frm_datosAdicionales.ShowDialog();
+            return (lcl_frm_datosAdicionales as frmABMEntidadDatosAdicionalesUsuario).usuario;
+        }
+
+        private ModeloEntidad getDatosAdicionales(ModeloContactoProveedor p_mod_contactoProveedor)
+        {
+            Form lcl_frm_datosAdicionales;
+            if (p_mod_contactoProveedor.proveedor == null)
+            {
+                lcl_frm_datosAdicionales = new frmABMEntidadDatosAdicionalesContactoProveedor();
+            }
+            else
+            {
+                lcl_frm_datosAdicionales = new frmABMEntidadDatosAdicionalesContactoProveedor(p_mod_contactoProveedor as ModeloContactoProveedor);
+            }
+
+            lcl_frm_datosAdicionales.ShowDialog();
+            return (lcl_frm_datosAdicionales as frmABMEntidadDatosAdicionalesContactoProveedor).contactoProveedor;
+        }
+        private ModeloEntidad getDatosAdicionales(ModeloProveedor p_mod_proveedor)
+        {
+            
+            ModeloContactoProveedor lcl_mod_contactoProveedor = new ModeloContactoProveedor();
+            lcl_mod_contactoProveedor.proveedor = p_mod_proveedor;
+            frmResultadoBusqueda lcl_frm = new frmResultadoBusqueda(lcl_mod_contactoProveedor, "Contactos de Proveedor de proveedor: " + p_mod_proveedor.razonSocial);
+            lcl_frm.mostrarBusqueda();
+            if (lcl_frm.modeloSeleccionado != null)
+            {
+                this.quitarTextoEnControles(this);
+                this.tipoEntidadSeleccionada = LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor;
+                this.cargarEntidadEnControles(lcl_frm.modeloSeleccionado as ModeloContactoProveedor);
+                return lcl_frm.modeloSeleccionado as ModeloContactoProveedor;
+            }
+            return null;
+        }
         #endregion
 
         #region Modelo -> Controles
@@ -616,6 +662,7 @@ namespace Vista
             }
         }
         #endregion
+        
         #region ComboBox
         private void cargarDatosProvinciasEnCmbBoxProvincia(List<ModeloProvincia> p_lst_mod_provincias)
         {
@@ -631,73 +678,133 @@ namespace Vista
         
         #endregion
 
-        #region Validar Controles
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="valorEnControl"></param>
-        ///// <returns>Entero o 0 si no es posible convertir a valor numerico</returns>
-        //private int getNumeroFromControl(string textoEnControl)
-        //{
-        //    int numero;
-        //    Int32.TryParse(textoEnControl, out numero);
-
-        //    return numero;
-        //}
-
-        //private string getStringFromControl(string textoEnControl)
-        //{
-        //    return textoEnControl.Trim();
-        //}
-
-        //private void setStringEnControl()
-
+        #region Validación
         private bool validarDomicilio()
         {
-            return !(cmbBoxProvincia.SelectedValue == null || cmbBoxProvincia.SelectedValue == null);
+            if(cmbBoxPais.SelectedValue == null)
+            {
+                errorActual = "Debe seleccionar un País.";
+                return false;
+            } else if (cmbBoxProvincia.SelectedValue == null)
+            {
+                errorActual = "Debe seleccionar una Provincia.";
+                return false;
+            } else if (!ModeloDomicilio.validarCalle(txtBoxCalle.Text))
+            {
+                errorActual = "Por favor, revise el campo calle.";
+                return false;
+            }
+            return true;
+            
         }
         private bool validarTelefono()
         {
             //False si el capo esta vacio. Completar
-            return !(txtBoxTelefono.Text.Trim() == "") && cmbBoxTipoTelefono.SelectedValue != null;
+            if(!ModeloTelefono.validarNumero(txtBoxTelefono.Text))
+            {
+                errorActual = "El número de teléfono ingresado no es válido";
+                return false;
+            } else if(cmbBoxTipoTelefono.SelectedValue == null)
+            {
+                errorActual = "Debe seleccionar un tipo de teléfono para el número indicado";
+                return false;
+            }
+            return true;
         }
         private bool validarMail()
         {
-            return !(txtBoxMail.Text.Trim() == "");
+            if (!ModeloMail.validarMail(txtBoxMail.Text))
+            {
+                errorActual = "La dirección de correo electrónico ingresada no es válida.";
+                return false;
+            }
+            return true;
         }
 
-        private bool validarTipoEntidadSeleccionado()
+        private bool validarCUIT()
         {
-            //si no hay ningún botón cliqueado, ver default null?
-            return (this.getRadioButtonTipoEntidad() != null);
+            if (!string.IsNullOrWhiteSpace(txtBoxCUIT.Text) && !ModeloEntidad.CUIT.ValidarCuit(txtBoxCUIT.Text))
+            {
+                errorProviderActual.SetError(txtBoxCUIT, "CUIT no válido.");
+                return false;
+            }
+            errorProviderActual.SetError(txtBoxCUIT, "");
+            return true;
+        }
+        private bool validarNombre()
+        {
+            if (!ModeloPersonas.validarNombre(txtBoxNombre.Text))
+            {
+                errorProviderActual.SetError(txtBoxNombre, "Este campo es obligatorio. No puede permanecer vacío.");
+                return false;
+            }
+            errorProviderActual.SetError(txtBoxNombre,"");
+            return true;
+        }
+        private bool validarApellido()
+        {
+            if (!ModeloPersonas.validarApellido(txtBoxApellido.Text))
+            {
+                errorProviderActual.SetError(txtBoxApellido, "Este campo es obligatorio. No puede permanecer vacío.");
+                return false;
+            }
+            errorProviderActual.SetError(txtBoxApellido,"");
+            return true;
+        }
+        private bool validarDNI()
+        {
+            if (!ModeloPersonas.validarDNI(txtBoxDNI.Text))
+            {
+                errorProviderActual.SetError(txtBoxDNI, "Este campo es obligatorio. No puede permanecer vacío o contener caracteres no numéricos.");
+                return false;
+            }
+            errorProviderActual.SetError(txtBoxDNI,"");
+            return true;
         }
         private bool validarEntidad(ModeloEntidad p_mod_entidad)
         {
-            return true;
+            bool validez = true;
+            if (!this.validarCUIT())
+            {
+                validez = false;
+                errorActual = "Ha surgido un error. Por favor, revise los valores ingresados.";
+            }
+
+            if (p_mod_entidad.GetType() == typeof(ModeloProveedor))
+            {
+                return this.validarProveedor(p_mod_entidad as ModeloProveedor) && validez;
+            }
+
+            return this.validarPersona(p_mod_entidad as ModeloPersonas) && validez;
         }
 
         private bool validarPersona(ModeloPersonas p_mod_persona)
         {
-            bool validez = false;
-            if (this.validarEntidad(p_mod_persona) == true)
+            //Se hace por separado para que se etiqueten todos los errores del tipo errorProvider en el formulario
+            bool validez = true;
+            if (!this.validarNombre())
+                validez = false;
+            if (!this.validarApellido())
+                validez = false;
+            if (!this.validarDNI())
+                validez = false;
+            
+            if (validez)
             {
                 switch (p_mod_persona.tipoPersona)
                 {
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente:
-                        validez = this.validarCliente(p_mod_persona);
-                        break;
+                        return this.validarCliente(p_mod_persona);
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario:
-                        validez = this.validarUsuario(p_mod_persona);
-                        break;
+                        return this.validarUsuario(p_mod_persona);
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor:
-                        validez = this.validarContactoProveedor(p_mod_persona);
-                        break;
+                        return this.validarContactoProveedor(p_mod_persona);
                     default:
-                        validez = false;
-                        break;
+                        return false;
                 }
             }
-            return validez;
+            errorActual = "Ha surgido un error. Por favor, revise los valores ingresados.";
+            return false;
         }
         private bool validarCliente(ModeloPersonas p_mod_cliente)
         {
@@ -705,53 +812,44 @@ namespace Vista
         }
         private bool validarUsuario(ModeloPersonas p_mod_usuario)
         {
+            if ((p_mod_usuario as ModeloUsuario).usuario == null)
+            {
+                errorActual = "Seleccione 'Datos Adicionales' para asignar un nombre de usuario y contraseña para el Usuario actual.";
+                return false;
+            }
             return true;
         }
         private bool validarContactoProveedor(ModeloPersonas p_mod_contactoProveedor)
         {
+            if ((p_mod_contactoProveedor as ModeloContactoProveedor).proveedor == null)
+            {
+                errorActual = "Seleccione 'Datos Adicionales' para asignar un Proveedor al Contacto de Proveedor actual.";
+                return false;
+            }
+            return true;
+        }
+
+        private bool validarRazonSocial()
+        {
+            if (!ModeloProveedor.validarRazonSocial(txtBoxRazonSocial.Text))
+            {
+                errorProviderActual.SetError(txtBoxRazonSocial, "Este campo es obligatorio. No puede permanecer vacío.");
+                return false;
+            }
+            errorProviderActual.SetError(txtBoxRazonSocial, "");
             return true;
         }
         private bool validarProveedor(ModeloProveedor p_mod_proveedor)
         {
-            bool validez = false;
-            if (this.validarEntidad(p_mod_proveedor) == true)
+            if (!this.validarRazonSocial())
             {
-                //validar razon social y algo más?
+                errorActual = "Ha surgido un error. Por favor, revise los valores ingresados.";
+                return false;
             }
-            return validez;
+            return true;
         }
 
         #endregion
-
-        private RadioButton getRadioButtonTipoEntidad()
-        {
-            RadioButton checkedButton = pnlTipoEntidad.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
-            return checkedButton;
-        }
-
-        /// <summary>
-        /// Retorna tipo entidad seleccionada 
-        /// </summary>
-        /// <returns>"PRO","PER" ; null si no esta seleccionada o no se reconoce</returns>
-        private string getTipoEntidad()
-        {
-            string tipoEntidad = null;
-            switch (this.tipoEntidadSeleccionada)
-            {
-                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente:
-                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor:
-                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario:
-                    tipoEntidad = LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona;
-                    break;
-                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor:
-                    tipoEntidad = LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor;
-                    break;
-                default:
-                    break;
-            }
-            return tipoEntidad;
-
-        }
         #endregion
 
         #region Eventos
@@ -800,28 +898,21 @@ namespace Vista
         #region Button
         private void btnAgregarMail_Click(object sender, EventArgs e)
         {
-            ModeloMail lcl_mod_mail = new ModeloMail();
-            lcl_mod_mail.mail = txtBoxMail.Text;
             //Agregar validación por si el mail ya esta incluido
-            if (lcl_mod_mail.validarMail() && this.validarMail())
+            if (this.validarMail())
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridViewMail.Rows[0].Clone();
                 row.Cells[0].Value = 0;
                 row.Cells[1].Value = txtBoxMail.Text;
                 dataGridViewMail.Rows.Add(row);
+
+                this.quitarTextoEnControles(tblLayoutPanelMail);
             }
-            else if (!this.validarMail())
+            else 
             {
-                frmMensajeCorto lcl_frm_mensajeCorto = new frmMensajeCorto("Faltan campos", "El campo mail esta vacío", "fallo");
-                lcl_frm_mensajeCorto.ShowDialog();
-            }
-            else
-            {
-                frmMensajeCorto lcl_frm_mensajeCorto = new frmMensajeCorto("Error", "El formato de mail ingresado no es válido", "fallo");
-                lcl_frm_mensajeCorto.ShowDialog();   
+                MessageBox.Show(this.errorActual, "Error", MessageBoxButtons.OK);
             }
         }
-
         private void btnQuitarMail_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow item in this.dataGridViewMail.SelectedRows)
@@ -835,7 +926,7 @@ namespace Vista
 
         private void btnAgregarNumeroTelefono_Click(object sender, EventArgs e)
         {
-            //Validar numero
+            //Agregar validación por si ya existe
             if (this.validarTelefono())
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridViewTelefono.Rows[0].Clone();
@@ -849,14 +940,14 @@ namespace Vista
                 row.Cells[3].Value = txtBoxTelefono.Text;
 
                 dataGridViewTelefono.Rows.Add(row);
+
+                this.quitarTextoEnControles(tblLayoutPanelTelefono);
             }
             else
             {
-                frmMensajeCorto lcl_frm_mensajeCorto = new frmMensajeCorto("Faltan campos", "El campo mail esta vacío", "fallo");
-                lcl_frm_mensajeCorto.ShowDialog();
+                MessageBox.Show(this.errorActual, "Error",MessageBoxButtons.OK);
             }
         }
-
         private void btnQuitarNumeroTelefono_Click(object sender, EventArgs e)
         {
             
@@ -872,11 +963,11 @@ namespace Vista
 
         private void btnAgregarDomicilio_Click(object sender, EventArgs e)
         {
-            //Validar datos
-            DataGridViewRow row = (DataGridViewRow)dataGridViewDomicilio.Rows[0].Clone();
-            //cell[0] codigoDomicilio
+            //Agregar validación por si ya existe
             if (this.validarDomicilio())
             {
+                DataGridViewRow row = (DataGridViewRow)dataGridViewDomicilio.Rows[0].Clone();
+                //cell[0] codigoDomicilio
                 row.Cells[0].Value = 0;
                 row.Cells[1].Value = txtBoxCalle.Text;
                 row.Cells[2].Value = txtBoxNumeroDomicilio.Text;
@@ -890,15 +981,14 @@ namespace Vista
                 row.Cells[10].Value = cmbBoxPais.Text;
 
                 dataGridViewDomicilio.Rows.Add(row);
+
+                this.quitarTextoEnControles(tblLayoutPanelDomicilio);
             }
             else
             {
-                frmMensajeCorto lcl_frm_mensajeCorto = new frmMensajeCorto("Faltan campos", "Debe seleccionar un país y provincia para el domicilio", "fallo");
-                lcl_frm_mensajeCorto.ShowDialog();
-                
+                MessageBox.Show(errorActual,"Error",MessageBoxButtons.OK);
             }
         }
-
         private void btnQuitarDomicilio_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow item in this.dataGridViewDomicilio.SelectedRows)
@@ -912,37 +1002,27 @@ namespace Vista
 
         private void btnDatosAdicionales_Click(object sender, EventArgs e)
         {
-            Form lcl_frm_datosAdicionales;
+            ModeloEntidad lcl_mod_entidad = null;
+            //Se podría cambiar a un switch (glb_mod_entidadActual as ModeloPersona).tipoPersona
             if (glb_mod_entidadActual.GetType() == typeof(ModeloUsuario))
             {
-                if (this.modoFormulario == ModoFormularioNuevo)
-                {
-                    lcl_frm_datosAdicionales = new frmABMEntidadDatosAdicionalesUsuario();
-                }
-                else
-                {
-                    lcl_frm_datosAdicionales = new frmABMEntidadDatosAdicionalesUsuario(glb_mod_entidadActual as ModeloUsuario);
-                }
-                lcl_frm_datosAdicionales.ShowDialog();
-                glb_mod_entidadActual = (lcl_frm_datosAdicionales as frmABMEntidadDatosAdicionalesUsuario).usuario;
+                lcl_mod_entidad = this.getDatosAdicionales(glb_mod_entidadActual as ModeloUsuario);
             }
             else if (glb_mod_entidadActual.GetType() == typeof(ModeloContactoProveedor))
             {
-                if (this.modoFormulario == ModoFormularioNuevo)
-                {
-                    lcl_frm_datosAdicionales = new frmABMEntidadDatosAdicionalesContactoProveedor();
-                }
-                else
-                {
-                    lcl_frm_datosAdicionales = new frmABMEntidadDatosAdicionalesContactoProveedor(glb_mod_entidadActual as ModeloContactoProveedor);
-                }
-                
-                lcl_frm_datosAdicionales.ShowDialog();
-                glb_mod_entidadActual = (lcl_frm_datosAdicionales as frmABMEntidadDatosAdicionalesContactoProveedor).contactoProveedor;
+                lcl_mod_entidad = this.getDatosAdicionales(glb_mod_entidadActual as ModeloContactoProveedor);
+            }
+            else if (glb_mod_entidadActual.GetType() == typeof(ModeloProveedor))
+            {
+                lcl_mod_entidad = this.getDatosAdicionales(glb_mod_entidadActual as ModeloProveedor);
             }
             else 
             {
                 MessageBox.Show("No hay datos adicionales para mostrar", "Datos Adicionales", MessageBoxButtons.OK);
+            }
+            if (lcl_mod_entidad != null)
+            {
+                glb_mod_entidadActual = lcl_mod_entidad;
             }
         }
 
@@ -961,10 +1041,8 @@ namespace Vista
 
         override public void toolStripMenuItemLimpiarCampos_Click(object sender, EventArgs e)
         {
-            tipoEntidadSeleccionada = null;
-            this.inicializarVariablesGlobales();
-            this.modoFormulario = ModoFormularioInicio;
             base.quitarTextoEnControles(this);
+            this.modoFormulario = ModoFormularioInicio;
         }
 
         override public void toolStripMenuItemEliminar_Click(object sender, EventArgs e)
@@ -993,8 +1071,6 @@ namespace Vista
         override public void toolStripMenuItemNuevo_Click(object sender, EventArgs e)
         {
             modoFormulario = ModoFormularioNuevo;
-
-            tipoEntidadSeleccionada = null;
         }
 
         override public void toolStripMenuItemBuscar_Click(object sender, EventArgs e)

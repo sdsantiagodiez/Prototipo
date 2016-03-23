@@ -13,8 +13,17 @@ using LibreriaClasesCompartidas;
 
 namespace Vista
 {
+    /// <summary>
+    /// Hay dos formas de usar el formulario.
+    /// 1) Mostrar Form conteniendo datagridview de resultado de búsqueda
+    /// 2) Obtener datagridview de resultado de búsqueda
+    /// 
+    /// Para el caso 1, se utiliza constructor sin parámetros y luego método mostrarResultados(objeto)
+    /// Para el caso 2, se utiliza constructor con 1 o dos parámetros y luego métodos mostrarResultados() sin parámetros
+    /// </summary>
     public partial class frmResultadoBusqueda : Form
     {
+        #region Atributos
         private Object _modeloSeleccionado;
         public Object modeloSeleccionado
         {
@@ -26,7 +35,9 @@ namespace Vista
         public DataGridView dataGridViewResultadoBusqueda;
 
         const int AnchoVentana = 800;
+        #endregion
 
+        #region Constructores
         public frmResultadoBusqueda()
         {
             InitializeComponent();
@@ -36,11 +47,23 @@ namespace Vista
         /// Hace búsqueda con el objeto y lanza resultados en atributo dataGridViewResultadoBusqueda de haberse encontrado algo
         /// </summary>
         /// <param name="p_objeto"></param>
-        frmResultadoBusqueda(Object p_objeto) : this()
+        public frmResultadoBusqueda(Object p_objeto) : this()
         {
             this.hacerBusqueda(p_objeto);
         }
+        /// <summary>
+        /// Asigna título a formulario
+        /// </summary>
+        /// <param name="p_objeto"></param>
+        /// <param name="p_titulo"></param>
+        public frmResultadoBusqueda(Object p_objeto, string p_titulo)
+            : this(p_objeto)
+        {
+            this.Text = p_titulo;
+        }
+        #endregion
 
+        #region Métodos
         #region Inicialización
 
         #region InicializarDGV
@@ -188,6 +211,7 @@ namespace Vista
             dataGridViewResultadoBusqueda.AllowUserToAddRows = false;
 
             dataGridViewResultadoBusqueda.Width = AnchoVentana;
+            this.Text = "Resultado de Búsqueda de ";
 
             Type T = p_objeto.GetType();
             if (T == typeof(ModeloArticuloProveedores))
@@ -222,6 +246,11 @@ namespace Vista
             {
                 this.inicializarDataGridViewResultadoBusqueda_Cliente();
             } 
+            
+            if(this.Text == "")
+            {
+                this.asignarTitulo(T);
+            }
 
             return dataGridViewResultadoBusqueda;
         }
@@ -233,59 +262,53 @@ namespace Vista
                 dataGridViewResultadoBusqueda.Rows[i].Cells[0].Value = i;
             }
         }
+
+        private void asignarTitulo(Type T)
+        {
+            
+            if (T == typeof(ModeloArticuloProveedores))
+            {
+                
+            }
+            else if (T == typeof(ModeloArticulos))
+            {
+                this.Text += "Artículos";
+            }
+            else if (T == typeof(ModeloEntidad))
+            {
+                this.Text += "Entidades";
+            }
+            else if (T == typeof(ModeloPersonas))
+            {
+                this.Text += "Personas";
+            }
+            else if (T == typeof(ModeloProveedor))
+            {
+                this.Text += "Proveedores";
+            }
+            else if (T == typeof(ModeloUsuario))
+            {
+                this.Text += "Usuarios";
+            }
+            else if (T == typeof(ModeloContactoProveedor))
+            {
+                this.Text += "Contactos de Proveedores";
+            }
+            else if (T == typeof(ModeloCliente))
+            {
+                this.Text += "Clientes";
+            } 
+        }
+
         
+
         #endregion
         
-        #region Eventos
-        void frmResultadoBusqueda_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            this.Hide();
-            e.Cancel = true; // this cancels the close event.
-        }
-        void dataGridViewResultadoBusqueda_CellContentDoubleClick(object sender, EventArgs e)
-        {
-            //toma el valor de la primera columna que no se muestra en la tabla. La misma funciona como índice y no se ve afectada por ordenamiento de tabla
-            int indice = Convert.ToInt32(dataGridViewResultadoBusqueda.CurrentRow.Cells[0].Value);
-            modeloSeleccionado = glb_lst_objectos[indice];
-
-            this.Hide();
-        }
-        #endregion
-
-        #region Búsqueda
-
-        public void mostrarBusqueda(Object p_objeto)
-        {
-            this.hacerBusqueda(p_objeto);
-
-            if (glb_lst_objectos.Count != 0)
-            {
-                this.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("No se han encontrado resultados", "Resultado de búsqueda", MessageBoxButtons.OK);
-            }
-        }
-
-        private void hacerBusqueda(Object p_objeto)
-        {
-            this.inicializarMostrarBusqueda(p_objeto);
-            ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
-            glb_lst_objectos = lcl_con_busqueda.buscar(p_objeto);
-
-            if (glb_lst_objectos.Count != 0)
-            {
-                this.popularDataGridViewResultadoBusqueda(glb_lst_objectos);
-                this.insertarIndice();
-            }
-        }
-
         #region Modelo -> Controles
         private DataGridView popularDataGridViewResultadoBusqueda(List<object> p_lst_objetos)
         {
             Type T = p_lst_objetos[0].GetType();
-            if(T == typeof(ModeloArticulos))
+            if (T == typeof(ModeloArticulos))
             {
                 return this.popularDataGridViewResultadoBusqueda(p_lst_objetos.Cast<ModeloArticulos>().ToList());
             }
@@ -355,14 +378,20 @@ namespace Vista
         }
         private void cargarDatosContactoProveedorEnRow(ModeloContactoProveedor p_mod_contactoProveedor, ref DataGridViewRow row)
         {
+            row.Cells["tipo"].Value = p_mod_contactoProveedor.tipoPersona;
+
             row.Cells["razon_social_proveedor"].Value = p_mod_contactoProveedor.proveedor.razonSocial;
         }
         private void cargarDatosUsuarioEnRow(ModeloUsuario p_mod_usuario, ref DataGridViewRow row)
         {
+            row.Cells["tipo"].Value = p_mod_usuario.tipoPersona;
+
             row.Cells["usuario"].Value = p_mod_usuario.usuario;
         }
         private void cargarDatosClienteEnRow(ModeloCliente p_mod_cliente, ref DataGridViewRow row)
-        { }
+        {
+            row.Cells["tipo"].Value = p_mod_cliente.tipoPersona;
+        }
 
         private DataGridView popularDataGridViewResultadoBusqueda(List<ModeloArticulos> p_lst_mod_articulo)
         {
@@ -373,7 +402,7 @@ namespace Vista
                 rowIndex = this.dataGridViewResultadoBusqueda.Rows.Add();
                 row = this.dataGridViewResultadoBusqueda.Rows[rowIndex];
 
-                this.cargarDatosArticuloEnRow(a,ref row);
+                this.cargarDatosArticuloEnRow(a, ref row);
             }
             return dataGridViewResultadoBusqueda;
         }
@@ -383,7 +412,7 @@ namespace Vista
             row.Cells["descripcion"].Value = p_mod_articulo.descripcion;
             row.Cells["modelos"].Value = p_mod_articulo.modelos;
         }
-        
+
         private DataGridView popularDataGridViewResultadoBusqueda(List<ModeloArticuloProveedores> p_lst_mod_articuloProveedor)
         {
             int rowIndex;
@@ -393,9 +422,9 @@ namespace Vista
                 rowIndex = this.dataGridViewResultadoBusqueda.Rows.Add();
                 row = this.dataGridViewResultadoBusqueda.Rows[rowIndex];
 
-                this.cargarDatosArticuloEnRow(ap as ModeloArticulos,ref row);
+                this.cargarDatosArticuloEnRow(ap as ModeloArticulos, ref row);
 
-                this.cargarDatosArticuloProveedorEnRow(ap,ref row);
+                this.cargarDatosArticuloProveedorEnRow(ap, ref row);
             }
 
             return dataGridViewResultadoBusqueda;
@@ -406,7 +435,7 @@ namespace Vista
             row.Cells["descripcionArticuloProveedor"].Value = p_mod_articuloProveedor.descripcionArticuloProveedor;
             row.Cells["codigoEntidad"].Value = p_mod_articuloProveedor.codigoEntidad;
             row.Cells["razonSocialProveedor"].Value = p_mod_articuloProveedor.razonSocialProveedor;
-            
+
             row.Cells["valorVenta"].Value = p_mod_articuloProveedor.valorVenta.valorArticulo.ToString();
             row.Cells["valorCompra"].Value = p_mod_articuloProveedor.valorCompra.valorArticulo.ToString();
             row.Cells["stockMinimo"].Value = p_mod_articuloProveedor.stockMinimo.ToString();
@@ -415,8 +444,67 @@ namespace Vista
             row.Cells["fechaActualizacion"].Value = p_mod_articuloProveedor.fechaActualizacion;
         }
         #endregion
+        
+        #region Búsqueda
+        /// <summary>
+        /// muestra búsqueda cuando se ha utilizado constructor constructor(object p_objeto)
+        /// </summary>
+        public void mostrarBusqueda()
+        {
+            int cantidadResultados = glb_lst_objectos.Count;
+            if (cantidadResultados > 0)
+            {
+                string s = "";
+                if(cantidadResultados > 1)
+                    s = "s";
+                this.Text += " ("+cantidadResultados.ToString()+" resultado"+s+" encontrado"+s+")";
+                this.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No se han encontrado resultados", "Resultado de búsqueda", MessageBoxButtons.OK);
+            }
+        }
 
-       
+        public void mostrarBusqueda(Object p_objeto)
+        {
+            this.hacerBusqueda(p_objeto);
+
+            this.mostrarBusqueda();
+        }
+
+        private void hacerBusqueda(Object p_objeto)
+        {
+            this.inicializarMostrarBusqueda(p_objeto);
+            ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
+            glb_lst_objectos = lcl_con_busqueda.buscar(p_objeto);
+
+            if (glb_lst_objectos.Count != 0)
+            {
+                this.popularDataGridViewResultadoBusqueda(glb_lst_objectos);
+                this.insertarIndice();
+            }
+        }
+
+        
+      
+        #endregion
+        #endregion
+
+        #region Eventos
+        void frmResultadoBusqueda_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            e.Cancel = true; // this cancels the close event.
+        }
+        void dataGridViewResultadoBusqueda_CellContentDoubleClick(object sender, EventArgs e)
+        {
+            //toma el valor de la primera columna que no se muestra en la tabla. La misma funciona como índice y no se ve afectada por ordenamiento de tabla
+            int indice = Convert.ToInt32(dataGridViewResultadoBusqueda.CurrentRow.Cells[0].Value);
+            modeloSeleccionado = glb_lst_objectos[indice];
+
+            this.Hide();
+        }
         #endregion
     }
 }

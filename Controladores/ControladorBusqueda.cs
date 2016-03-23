@@ -130,7 +130,6 @@ namespace Controladores
         public List<ModeloPersonas> buscarPersonas(ModeloPersonas p_mod_persona)
         {
             CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
-            p_mod_persona.convertirDatos();
 
             return lcl_cat_personas.buscarPersonas(p_mod_persona, Constantes.ParametrosBusqueda.Entidades.Personas.Any);
         }
@@ -168,7 +167,6 @@ namespace Controladores
         public List<ModeloProveedor> buscarProveedores(ModeloProveedor p_mod_proveedor)
         {
             CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
-            p_mod_proveedor.convertirDatos();
 
             return lcl_cat_proveedores.buscarProveedor(p_mod_proveedor, Constantes.ParametrosBusqueda.Entidades.Proveedores.Any);
         }
@@ -235,7 +233,7 @@ namespace Controladores
         {
             CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
             //Cambiar a buscarArticulo(null,All) cuando deje de ser ambigua la llamada
-            return lcl_cat_articuloProveedores.getAll(); 
+            return lcl_cat_articuloProveedores.buscar(null,Constantes.ParametrosBusqueda.ArticulosProveedores.All);
         }
         /// <summary>
         /// Retorna artículos de proveedores en base a los valores inicializados en los atributos del modelo
@@ -246,7 +244,7 @@ namespace Controladores
         {
             CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
             
-            return lcl_cat_articuloProveedores.buscarArticuloProveedor(p_mod_articuloProveedores,Constantes.ParametrosBusqueda.ArticulosProveedores.Any); 
+            return lcl_cat_articuloProveedores.buscar(p_mod_articuloProveedores,Constantes.ParametrosBusqueda.ArticulosProveedores.Any); 
         }
         /// <summary>
         /// Busca artículos de proveedores que cumplan con un parámetro de búsqueda
@@ -262,7 +260,7 @@ namespace Controladores
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.Descripcion:
                     return this.buscarArticuloProveedor_descripcionArticulo(p_mod_articuloProveedores);
                 default:
-                    return lcl_cat_articulosProveedores.buscarArticuloProveedor(p_mod_articuloProveedores, p_paramentroBusqueda);
+                    return lcl_cat_articulosProveedores.buscar(p_mod_articuloProveedores, p_paramentroBusqueda);
             }
         }
 

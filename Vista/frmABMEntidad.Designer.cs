@@ -40,18 +40,18 @@
             this.rchTextBoxObservaciones = new System.Windows.Forms.RichTextBox();
             this.grpBoxDatosPersonales = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelDatosPersonales = new System.Windows.Forms.TableLayoutPanel();
-            this.lblCodigo = new System.Windows.Forms.Label();
             this.lblDNI = new System.Windows.Forms.Label();
-            this.lblCUIT = new System.Windows.Forms.Label();
-            this.txtBoxCodigoEntidad = new System.Windows.Forms.TextBox();
             this.txtBoxDNI = new System.Windows.Forms.TextBox();
-            this.lblApellido = new System.Windows.Forms.Label();
-            this.txtBoxApellido = new System.Windows.Forms.TextBox();
+            this.lblCodigo = new System.Windows.Forms.Label();
+            this.txtBoxCodigoEntidad = new System.Windows.Forms.TextBox();
+            this.txtBoxCUIT = new System.Windows.Forms.TextBox();
+            this.lblCUIT = new System.Windows.Forms.Label();
+            this.lblRazonSocial = new System.Windows.Forms.Label();
+            this.txtBoxRazonSocial = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtBoxNombre = new System.Windows.Forms.TextBox();
-            this.lblRazonSocial = new System.Windows.Forms.Label();
-            this.txtBoxCUIT = new System.Windows.Forms.TextBox();
-            this.txtBoxRazonSocial = new System.Windows.Forms.TextBox();
+            this.txtBoxApellido = new System.Windows.Forms.TextBox();
+            this.lblApellido = new System.Windows.Forms.Label();
             this.grpBoxDomicilio = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelDomicilio = new System.Windows.Forms.TableLayoutPanel();
@@ -274,21 +274,21 @@
             // 
             this.tblLayoutPanelDatosPersonales.ColumnCount = 4;
             this.tblLayoutPanelDatosPersonales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.143686F));
-            this.tblLayoutPanelDatosPersonales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.93179F));
-            this.tblLayoutPanelDatosPersonales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.70682F));
+            this.tblLayoutPanelDatosPersonales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.54427F));
+            this.tblLayoutPanelDatosPersonales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.09434F));
             this.tblLayoutPanelDatosPersonales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblDNI, 0, 2);
+            this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxDNI, 0, 2);
             this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblCodigo, 0, 0);
-            this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblDNI, 0, 1);
-            this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblCUIT, 0, 2);
             this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxCodigoEntidad, 1, 0);
-            this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxDNI, 1, 1);
-            this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblApellido, 2, 0);
-            this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxApellido, 3, 0);
-            this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblNombre, 2, 1);
-            this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxNombre, 3, 1);
-            this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblRazonSocial, 2, 2);
-            this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxCUIT, 1, 2);
-            this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxRazonSocial, 3, 2);
+            this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxCUIT, 1, 1);
+            this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblCUIT, 0, 1);
+            this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblRazonSocial, 2, 0);
+            this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxRazonSocial, 3, 0);
+            this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblNombre, 2, 2);
+            this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxNombre, 3, 2);
+            this.tblLayoutPanelDatosPersonales.Controls.Add(this.txtBoxApellido, 3, 1);
+            this.tblLayoutPanelDatosPersonales.Controls.Add(this.lblApellido, 2, 1);
             this.tblLayoutPanelDatosPersonales.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelDatosPersonales.Location = new System.Drawing.Point(3, 20);
             this.tblLayoutPanelDatosPersonales.Name = "tblLayoutPanelDatosPersonales";
@@ -298,6 +298,26 @@
             this.tblLayoutPanelDatosPersonales.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34F));
             this.tblLayoutPanelDatosPersonales.Size = new System.Drawing.Size(689, 91);
             this.tblLayoutPanelDatosPersonales.TabIndex = 0;
+            // 
+            // lblDNI
+            // 
+            this.lblDNI.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblDNI.AutoSize = true;
+            this.lblDNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDNI.Location = new System.Drawing.Point(25, 66);
+            this.lblDNI.Name = "lblDNI";
+            this.lblDNI.Size = new System.Drawing.Size(35, 17);
+            this.lblDNI.TabIndex = 12;
+            this.lblDNI.Text = "DNI:";
+            // 
+            // txtBoxDNI
+            // 
+            this.txtBoxDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxDNI.Location = new System.Drawing.Point(66, 63);
+            this.txtBoxDNI.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtBoxDNI.Name = "txtBoxDNI";
+            this.txtBoxDNI.Size = new System.Drawing.Size(153, 24);
+            this.txtBoxDNI.TabIndex = 13;
             // 
             // lblCodigo
             // 
@@ -310,69 +330,62 @@
             this.lblCodigo.TabIndex = 0;
             this.lblCodigo.Text = "Código:";
             // 
-            // lblDNI
+            // txtBoxCodigoEntidad
             // 
-            this.lblDNI.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblDNI.AutoSize = true;
-            this.lblDNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDNI.Location = new System.Drawing.Point(25, 35);
-            this.lblDNI.Name = "lblDNI";
-            this.lblDNI.Size = new System.Drawing.Size(35, 17);
-            this.lblDNI.TabIndex = 1;
-            this.lblDNI.Text = "DNI:";
+            this.txtBoxCodigoEntidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxCodigoEntidad.Location = new System.Drawing.Point(66, 3);
+            this.txtBoxCodigoEntidad.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtBoxCodigoEntidad.Name = "txtBoxCodigoEntidad";
+            this.txtBoxCodigoEntidad.Size = new System.Drawing.Size(153, 24);
+            this.txtBoxCodigoEntidad.TabIndex = 5;
+            // 
+            // txtBoxCUIT
+            // 
+            this.txtBoxCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxCUIT.Location = new System.Drawing.Point(66, 32);
+            this.txtBoxCUIT.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtBoxCUIT.Name = "txtBoxCUIT";
+            this.txtBoxCUIT.Size = new System.Drawing.Size(153, 24);
+            this.txtBoxCUIT.TabIndex = 7;
             // 
             // lblCUIT
             // 
             this.lblCUIT.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCUIT.AutoSize = true;
             this.lblCUIT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCUIT.Location = new System.Drawing.Point(17, 66);
+            this.lblCUIT.Location = new System.Drawing.Point(17, 35);
             this.lblCUIT.Name = "lblCUIT";
             this.lblCUIT.Size = new System.Drawing.Size(43, 17);
             this.lblCUIT.TabIndex = 4;
             this.lblCUIT.Text = "CUIT:";
             // 
-            // txtBoxCodigoEntidad
+            // lblRazonSocial
             // 
-            this.txtBoxCodigoEntidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCodigoEntidad.Location = new System.Drawing.Point(66, 3);
-            this.txtBoxCodigoEntidad.Name = "txtBoxCodigoEntidad";
-            this.txtBoxCodigoEntidad.Size = new System.Drawing.Size(152, 24);
-            this.txtBoxCodigoEntidad.TabIndex = 5;
+            this.lblRazonSocial.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblRazonSocial.AutoSize = true;
+            this.lblRazonSocial.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRazonSocial.Location = new System.Drawing.Point(245, 6);
+            this.lblRazonSocial.Name = "lblRazonSocial";
+            this.lblRazonSocial.Size = new System.Drawing.Size(95, 17);
+            this.lblRazonSocial.TabIndex = 10;
+            this.lblRazonSocial.Text = "Razón Social:";
             // 
-            // txtBoxDNI
+            // txtBoxRazonSocial
             // 
-            this.txtBoxDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxDNI.Location = new System.Drawing.Point(66, 32);
-            this.txtBoxDNI.Name = "txtBoxDNI";
-            this.txtBoxDNI.Size = new System.Drawing.Size(152, 24);
-            this.txtBoxDNI.TabIndex = 6;
-            // 
-            // lblApellido
-            // 
-            this.lblApellido.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblApellido.AutoSize = true;
-            this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellido.Location = new System.Drawing.Point(278, 6);
-            this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(62, 17);
-            this.lblApellido.TabIndex = 2;
-            this.lblApellido.Text = "Apellido:";
-            // 
-            // txtBoxApellido
-            // 
-            this.txtBoxApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxApellido.Location = new System.Drawing.Point(346, 3);
-            this.txtBoxApellido.Name = "txtBoxApellido";
-            this.txtBoxApellido.Size = new System.Drawing.Size(340, 24);
-            this.txtBoxApellido.TabIndex = 8;
+            this.txtBoxRazonSocial.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtBoxRazonSocial.Enabled = false;
+            this.txtBoxRazonSocial.Location = new System.Drawing.Point(346, 3);
+            this.txtBoxRazonSocial.Margin = new System.Windows.Forms.Padding(3, 3, 20, 30);
+            this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
+            this.txtBoxRazonSocial.Size = new System.Drawing.Size(323, 24);
+            this.txtBoxRazonSocial.TabIndex = 11;
             // 
             // lblNombre
             // 
             this.lblNombre.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(278, 35);
+            this.lblNombre.Location = new System.Drawing.Point(278, 66);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(62, 17);
             this.lblNombre.TabIndex = 3;
@@ -380,39 +393,32 @@
             // 
             // txtBoxNombre
             // 
-            this.txtBoxNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNombre.Location = new System.Drawing.Point(346, 32);
+            this.txtBoxNombre.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtBoxNombre.Location = new System.Drawing.Point(346, 63);
+            this.txtBoxNombre.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtBoxNombre.Name = "txtBoxNombre";
-            this.txtBoxNombre.Size = new System.Drawing.Size(340, 24);
+            this.txtBoxNombre.Size = new System.Drawing.Size(323, 24);
             this.txtBoxNombre.TabIndex = 9;
             // 
-            // lblRazonSocial
+            // txtBoxApellido
             // 
-            this.lblRazonSocial.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblRazonSocial.AutoSize = true;
-            this.lblRazonSocial.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRazonSocial.Location = new System.Drawing.Point(245, 66);
-            this.lblRazonSocial.Name = "lblRazonSocial";
-            this.lblRazonSocial.Size = new System.Drawing.Size(95, 17);
-            this.lblRazonSocial.TabIndex = 10;
-            this.lblRazonSocial.Text = "Razón Social:";
+            this.txtBoxApellido.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtBoxApellido.Location = new System.Drawing.Point(346, 32);
+            this.txtBoxApellido.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtBoxApellido.Name = "txtBoxApellido";
+            this.txtBoxApellido.Size = new System.Drawing.Size(323, 24);
+            this.txtBoxApellido.TabIndex = 8;
             // 
-            // txtBoxCUIT
+            // lblApellido
             // 
-            this.txtBoxCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCUIT.Location = new System.Drawing.Point(66, 63);
-            this.txtBoxCUIT.Name = "txtBoxCUIT";
-            this.txtBoxCUIT.Size = new System.Drawing.Size(152, 24);
-            this.txtBoxCUIT.TabIndex = 7;
-            // 
-            // txtBoxRazonSocial
-            // 
-            this.txtBoxRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxRazonSocial.Enabled = false;
-            this.txtBoxRazonSocial.Location = new System.Drawing.Point(346, 63);
-            this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
-            this.txtBoxRazonSocial.Size = new System.Drawing.Size(340, 24);
-            this.txtBoxRazonSocial.TabIndex = 11;
+            this.lblApellido.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblApellido.AutoSize = true;
+            this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApellido.Location = new System.Drawing.Point(278, 35);
+            this.lblApellido.Name = "lblApellido";
+            this.lblApellido.Size = new System.Drawing.Size(62, 17);
+            this.lblApellido.TabIndex = 2;
+            this.lblApellido.Text = "Apellido:";
             // 
             // grpBoxDomicilio
             // 
@@ -552,7 +558,7 @@
             // 
             this.cmbBoxProvincia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxProvincia.FormattingEnabled = true;
-            this.cmbBoxProvincia.Location = new System.Drawing.Point(440, 41);
+            this.cmbBoxProvincia.Location = new System.Drawing.Point(440, 39);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(89, 26);
             this.cmbBoxProvincia.TabIndex = 14;
@@ -618,7 +624,7 @@
             // 
             this.cmbBoxPais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxPais.FormattingEnabled = true;
-            this.cmbBoxPais.Location = new System.Drawing.Point(588, 41);
+            this.cmbBoxPais.Location = new System.Drawing.Point(588, 39);
             this.cmbBoxPais.Name = "cmbBoxPais";
             this.cmbBoxPais.Size = new System.Drawing.Size(92, 26);
             this.cmbBoxPais.TabIndex = 15;
@@ -964,7 +970,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 8);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 10);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxTipoTelefono.TabIndex = 19;
@@ -1156,10 +1162,8 @@
         private System.Windows.Forms.GroupBox grpBoxDatosPersonales;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDatosPersonales;
         private System.Windows.Forms.Label lblCodigo;
-        private System.Windows.Forms.Label lblDNI;
         private System.Windows.Forms.Label lblCUIT;
         private System.Windows.Forms.TextBox txtBoxCodigoEntidad;
-        private System.Windows.Forms.TextBox txtBoxDNI;
         private System.Windows.Forms.Label lblApellido;
         private System.Windows.Forms.TextBox txtBoxApellido;
         private System.Windows.Forms.Label lblNombre;
@@ -1228,5 +1232,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn numeroTelefono;
         private System.Windows.Forms.Button btnDatosAdicionales;
         private System.Windows.Forms.TextBox txtBoxNumeroDomicilio;
+        private System.Windows.Forms.Label lblDNI;
+        private System.Windows.Forms.TextBox txtBoxDNI;
     }
 }

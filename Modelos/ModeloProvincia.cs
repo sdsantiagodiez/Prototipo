@@ -19,7 +19,7 @@ namespace Modelos
         public string provincia
         {
             get { return _provincia; }
-            set { this._provincia = value; }
+            set { this._provincia = this.convertirString(value); }
         }
         string _codigoPais;
         public string codigoPais
@@ -28,27 +28,25 @@ namespace Modelos
             set { _codigoPais = value; }
         }
         #endregion
+
         #region Validación
         public bool validar()
         {
-            return (this.validarCodigo() == true && this.validarCodigoPais() == true && this.validarProvincia() == true);
+            return this.validarCodigo()
+                && ModeloPais.validarCodigo(this.codigoPais)
+                && validarProvincia(this.provincia);
         }
         public bool validarCodigo()
         {
-            return true;
+            return !string.IsNullOrWhiteSpace(this.codigoPais);
         }
-        public bool validarProvincia()
+        public static bool validarProvincia(string p_provincia)
         {
-            return true;
-        }
-        public bool validarCodigoPais()
-        {
-            ModeloPais mPais = new ModeloPais();
-            mPais.codigo = codigoPais;
-            return mPais.validarCodigo();
+            return !string.IsNullOrWhiteSpace(p_provincia);
         }
         #endregion
-        
+
+        #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloProvincia == false)
@@ -62,5 +60,6 @@ namespace Modelos
                 && this.Equals(this.provincia,p_mod_provincia.provincia) 
                 && this.Equals(this.codigoPais,p_mod_provincia.codigoPais);
         }
+        #endregion
     }
 }

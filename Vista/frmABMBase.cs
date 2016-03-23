@@ -13,13 +13,9 @@ namespace Vista
     public partial class frmABMBase : Form
     {
         #region Atributos
-        private frmResultadoBusqueda _glb_frm_resultadoBusqueda;
-        public frmResultadoBusqueda glb_frm_resultadoBusqueda
-        {
-            get { return _glb_frm_resultadoBusqueda; }
-            set { _glb_frm_resultadoBusqueda = value; }
-        }
+        protected string errorActual;
 
+        protected ErrorProvider errorProviderActual;
 
         protected const string ModoFormularioInicio = "Inicia formulario solo con opcion busqueda";
         protected const string ModoFormularioNuevo = "Nueva clase";
@@ -50,13 +46,15 @@ namespace Vista
         }
 
         #endregion
-
+        #region Constructores
         public frmABMBase()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            errorProviderActual = new ErrorProvider();
             //this.inicializarModoFormularioInicio();
         }
+        #endregion
 
         #region Métodos
         /// <summary>
@@ -141,6 +139,18 @@ namespace Vista
             toolStripMenuItemEliminar.Enabled = true;
             toolStripMenuItemLimpiarCampos.Enabled = true;
             toolStripMenuItemCancelar.Enabled = true;
+        }
+
+        /// <summary>
+        /// Elimina icono de error al lado del control
+        /// </summary>
+        /// <param name="c">Control que contiene los textboxes con errorProviders asignados</param>
+        protected void inicializarErrorProvider(Control c)
+        {
+            foreach (TextBox t in c.Controls.OfType<TextBox>())
+            {
+                errorProviderActual.SetError(t, "");
+            }
         }
 
         #endregion

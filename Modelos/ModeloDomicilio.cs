@@ -8,11 +8,13 @@ namespace Modelos
 {
     public class ModeloDomicilio : Modelo
     {
+        #region Constructores
         public ModeloDomicilio()
         {
             provincia = new ModeloProvincia();
             pais = new ModeloPais();
         }
+        #endregion
 
         #region Getters/Setters
         int _codigoDomicilio;
@@ -25,36 +27,36 @@ namespace Modelos
         public string calle
         {
             get { return _calle; }
-            set { this._calle = value; }
+            set { this._calle = this.convertirString(value); }
         }
         string _numero;
         public string numero
         {
             get { return _numero; }
-            set { this._numero = value; }
+            set { this._numero = this.convertirString(value); }
         }string _piso;
         public string piso
         {
             get { return _piso; }
-            set { this._piso = value; }
+            set { this._piso = this.convertirString(value); }
         }
         string _departamento;
         public string departamento
         {
             get { return _departamento; }
-            set { this._departamento = value; }
+            set { this._departamento = this.convertirString(value); }
         }
         string _ciudad;
         public string ciudad
         {
             get { return _ciudad; }
-            set { this._ciudad = value; }
+            set { this._ciudad = this.convertirString(value); }
         }
         string _codigoPostal;
         public string codigoPostal
         {
             get { return _codigoPostal; }
-            set { this._codigoPostal = value; }
+            set { this._codigoPostal = this.convertirString(value); }
         }
         ModeloProvincia _provincia;
         public ModeloProvincia provincia
@@ -73,48 +75,65 @@ namespace Modelos
         #region Validación
         public bool validar()
         {
-            return (this.validarCodigo() == true && this.validarCalle() == true && this.validarNumero() == true && this.validarPiso() == true &&
-                    this.validarDepartamento() == true && this.validarCiudad() == true && this.validarCodigoPostal() == true &&
-                    this.validarProvincia() == true && this.validarPais() == true);
+            return validarCodigo(this.codigoDomicilio.ToString())
+                && validarCalle(this.calle)
+                && validarNumero(this.numero)
+                && validarPiso(this.piso)
+                && validarDepartamento(this.departamento)
+                && validarCiudad(this.ciudad)
+                && validarCodigoPostal(this.codigoPostal)
+                && this.validarProvincia()
+                && this.validarPais();
         }
-        public bool validarCodigo()
+        public bool validarCodigo(string p_codigo)
+        {
+            int aux;
+            return int.TryParse(p_codigo,out aux);
+        }
+        public static bool validarCalle(string p_calle)
+        {
+            return !string.IsNullOrWhiteSpace(p_calle);
+        }
+        public static bool validarNumero(string p_numero)
+        {
+            //se permite vacío para calles sin número (S/N)
+            return true;
+        }
+        public static bool validarPiso(string p_piso)
         {
             return true;
         }
-        public bool validarCalle()
+        public static bool validarDepartamento(string p_departamento)
         {
             return true;
         }
-        public bool validarNumero()
+        public static bool validarCiudad(string p_ciudad)
         {
             return true;
         }
-        public bool validarPiso()
-        {
-            return true;
-        }
-        public bool validarDepartamento()
-        {
-            return true;
-        }
-        public bool validarCiudad()
-        {
-            return true;
-        }
-        public bool validarCodigoPostal()
+        public static bool validarCodigoPostal(string p_codigoPostal)
         {
             return true;
         }
         public bool validarProvincia()
         {
-            return provincia.validar();
+            //Debería estar inicializada por el constructor
+            if (provincia != null)
+                return provincia.validar();
+            else
+                return false;
         }
         public bool validarPais()
         {
-            return pais.validar();
+            //Debería estar inicializado por el constructor
+            if (pais != null)
+                return pais.validar();
+            else
+                return false;
         }
         #endregion
-        
+
+        #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloDomicilio == false)
@@ -134,5 +153,6 @@ namespace Modelos
                 && this.Equals(this.piso,p_mod_domicilio.piso) 
                 && this.Equals(this.provincia,p_mod_domicilio.provincia);
         }
+        #endregion
     }
 }

@@ -3,11 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Modelos
 {
     public class Modelo
     {
+        /// <summary>
+        /// Quita espacios
+        /// </summary>
+        /// <param name="p_string"></param>
+        /// <returns></returns>
+        public string convertirString(string p_string)
+        {
+            if (p_string != null)
+            {
+                string string_convertida = LibreriaClasesCompartidas.Transformar.limpiarString(p_string);
+                if (string_convertida.Length > 0)
+                    return string_convertida;
+            }
+            return null;
+        }
+
+        public static string convertString(string p_string)
+        {
+            if (p_string != null)
+            {
+                string string_convertida = LibreriaClasesCompartidas.Transformar.limpiarString(p_string);
+                if (string_convertida.Length > 0)
+                    return string_convertida;
+            }
+            return null;
+        }
+
         private bool Equals_Lists(IEnumerable<object> p_lista_original, IEnumerable<object> p_lista_nueva)
         {
             int count_original = 0;
@@ -43,7 +71,7 @@ namespace Modelos
 
         }
 
-        protected bool Equals(object o_original, object o_nuevo)
+        protected new bool Equals(object o_original, object o_nuevo)
         {
             //ambos no nulos
             if (o_original != null && o_nuevo != null)

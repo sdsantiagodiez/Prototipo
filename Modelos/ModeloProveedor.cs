@@ -8,46 +8,50 @@ namespace Modelos
 {
    public class ModeloProveedor : ModeloEntidad
    {
-        #region Getters/Setters
-       string _razonSocial;
-        public string razonSocial
-        {
-            get { return _razonSocial; }
-            set { this._razonSocial = value; }
-        }
-       #endregion
-
-        public ModeloProveedor()
+       #region Constructores
+       public ModeloProveedor()
         {
             this.tipoEntidad = LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor;
         }
 
-        public ModeloProveedor(ModeloEntidad p_mod_entidad) : base(p_mod_entidad)
+       public ModeloProveedor(ModeloEntidad p_mod_entidad) : base(p_mod_entidad)
         {
             this.tipoEntidad = LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor;
         }
 
-        public ModeloProveedor(ModeloProveedor p_mod_proveedor) : this(p_mod_proveedor as ModeloEntidad)
+       public ModeloProveedor(ModeloProveedor p_mod_proveedor) : this(p_mod_proveedor as ModeloEntidad)
         {
             razonSocial = p_mod_proveedor.razonSocial;
         }
-        new public void convertirDatos()
-        {
-            base.convertirDatos();
-            razonSocial = this.convertirString(razonSocial);
-        }
-        #region Validación
-        new public bool validar()
-        {
-            return (base.validar() == true && this.validarRazonSocial() == true);
-        }
+       #endregion
 
-        public bool validarRazonSocial()
+       #region Getters/Setters
+        string _razonSocial;
+        public string razonSocial
         {
-            return true;
+            get { return _razonSocial; }
+            set { this._razonSocial = this.convertirString(value); }
         }
         #endregion
+       
+       #region Validación
+        new public bool validar()
+        {
+            return base.validar() 
+                && validarRazonSocial(this.razonSocial);
+        }
 
+        public static bool validarRazonSocial(string p_razonSocial)
+        {
+            if (Modelo.convertString(p_razonSocial) != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        #endregion
+        
+       #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloProveedor == false)
@@ -65,5 +69,6 @@ namespace Modelos
         {
             return this.Equals(this.razonSocial,p_mod_proveedor.razonSocial);
         }
+        #endregion
    }
 }

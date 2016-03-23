@@ -9,6 +9,7 @@ namespace Modelos
 {
     public class ModeloUsuario : ModeloPersonas
     {
+        #region Constructores
         public ModeloUsuario()
         {
             roles = new List<ModeloRoles>();
@@ -31,6 +32,7 @@ namespace Modelos
             usuario = p_mod_usuario.usuario;
             contrasenia = p_mod_usuario.contrasenia;
         }
+        #endregion
 
         #region Getters/Setters
         string _usuario;
@@ -56,16 +58,20 @@ namespace Modelos
         #region Validación
         public bool validar()
         {
-            return (base.validar() && this.validarUsuario() && this.validarContrasenia() && this.validarRoles());
+            return base.validar() 
+                && validarUsuario(this.usuario) 
+                && validarContrasenia(this.contrasenia) 
+                && this.validarRoles();
         }
 
-        public bool validarUsuario()
+        public static bool validarUsuario(string p_usuario)
         {
-            return true;
+            return !System.Text.RegularExpressions.Regex.IsMatch(p_usuario,"[^0-9a-zA-Z_]");
+            
         }
-        public bool validarContrasenia()
+        public static bool validarContrasenia(string p_contrasenia)
         {
-            return true;
+            return p_contrasenia.Length >= 8;
         }
         public bool validarRoles()
         {
@@ -73,7 +79,7 @@ namespace Modelos
             {
                 foreach (ModeloRoles rol in _roles)
                 {
-                    if (rol.validar() == false)
+                    if (!rol.validar())
                     {
                         return false;
                     }
@@ -81,14 +87,12 @@ namespace Modelos
                 return true;
             }
             //Usuario debe tener por lo menos 1 rol asignado
-            else
-            {
-                return false;
-            }
+            return false;
 
         }
         #endregion
 
+        #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloUsuario == false)
@@ -108,5 +112,18 @@ namespace Modelos
                 && this.Equals(this._contrasenia, p_mod_usuario.contrasenia)
                 && this.Equals(this.roles, p_mod_usuario.roles);
         }
+        #endregion
+
+        #region Encripción
+        /// <summary>
+        /// Convierte valor contraseña a su correspondiente hash encriptado
+        /// </summary>
+        public void encriptarContraseña()
+        {
+            byte[] data = System.Text.Encoding.ASCII.GetBytes(contrasenia);
+            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+            contrasenia = System.Text.Encoding.ASCII.GetString(data);   
+        }
+        #endregion
     }
 }

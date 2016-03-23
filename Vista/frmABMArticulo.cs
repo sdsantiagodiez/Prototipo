@@ -13,26 +13,24 @@ namespace Vista
     public partial class frmABMArticulo : Vista.frmABMBase
     {
         #region Atributos
-        //Seleccionado es el que resulta de un objeto que se encuentra en la base de datos
-        //Actual puede ser un objeto nuevo o resultado de la base de datos con posibles modificaciones
-        ModeloArticulos glb_mod_articuloActual;
-        ModeloArticulos glb_mod_articuloSeleccionado;
+        ModeloArticulos glb_mod_articulo;
         #endregion
 
+        #region Constructores
         public  frmABMArticulo()
         {
             InitializeComponent();
             this.inicializarModoFormularioInicio();
             this.Text = "Artículo";
         }
+        #endregion
 
         #region Métodos
-       
+
         #region Inicialización
         override public void inicializarModoFormularioInicio()
         {
-            glb_mod_articuloActual = new ModeloArticulos();
-            glb_mod_articuloSeleccionado = new ModeloArticulos();
+            glb_mod_articulo = new ModeloArticulos();
 
             base.inicializarModoFormularioInicio();
 
@@ -41,8 +39,7 @@ namespace Vista
 
         override public void inicializarModoFormularioNuevo()
         {
-            glb_mod_articuloActual = new ModeloArticulos();
-            glb_mod_articuloSeleccionado = new ModeloArticulos();
+            glb_mod_articulo = new ModeloArticulos();
 
             base.inicializarModoFormularioNuevo();
 
@@ -63,21 +60,27 @@ namespace Vista
         /// </summary>
         private void alta()
         {
-            if (this.validarAlta())
+            try
             {
-                if (this.guardarNuevo())
+                if (this.validarAlta())
                 {
-                    MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
-                    this.inicializarModoFormularioSeleccionado();
-                }
-                else
-                {
-                    DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
-                    if (dialogResult == DialogResult.Retry)
+                    if (this.guardarNuevo())
                     {
-                        this.alta();
+                        MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
+                        this.inicializarModoFormularioSeleccionado();
+                    }
+                    else
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
+                        if (dialogResult == DialogResult.Retry)
+                        {
+                            this.alta();
+                        }
                     }
                 }
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Error");
             }
         }
 
@@ -87,8 +90,7 @@ namespace Vista
         /// <returns>true si todos los campos son válidos, false caso contrario</returns>
         private bool validarAlta()
         {
-            //Retornar bool y mostrar mensaje por la primera validación fallida encontrada. Si no se encuentra error, no se muestra mensaje y se devuelve true
-            return true;
+            return this.validar();
         }
 
         /// <summary>
@@ -98,9 +100,9 @@ namespace Vista
         private bool guardarNuevo()
         {
             ControladorAlta lcl_con_alta = new ControladorAlta();
-            glb_mod_articuloActual = glb_mod_articuloSeleccionado = this.cargarDatosEnModeloArticulo();
+            glb_mod_articulo = this.cargarDatosEnModeloArticulo();
 
-            return lcl_con_alta.agregar(glb_mod_articuloActual);   
+            return lcl_con_alta.agregar(glb_mod_articulo);   
         }
 
         /// <summary>
@@ -144,12 +146,7 @@ namespace Vista
         private bool eliminar()
         {
             ControladorBaja lcl_con_baja = new ControladorBaja();
-            bool exito = lcl_con_baja.eliminar(glb_mod_articuloSeleccionado);
-            if (exito)
-            {
-                glb_mod_articuloSeleccionado = glb_mod_articuloActual = null;
-            }
-            return exito;
+            return  lcl_con_baja.eliminar(glb_mod_articulo);
         }
 
         /// <summary>
@@ -191,14 +188,8 @@ namespace Vista
         private bool guardarModificaciones()
         {
             ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
-            bool exito = false;
-            glb_mod_articuloActual = this.cargarDatosEnModeloArticulo();
-            exito = lcl_con_modificacion.modificar(glb_mod_articuloActual);
-            if (exito)
-            {
-                glb_mod_articuloSeleccionado = glb_mod_articuloActual;
-            }
-            return exito;
+            glb_mod_articulo = this.cargarDatosEnModeloArticulo();
+            return lcl_con_modificacion.modificar(glb_mod_articulo);
         }
         #endregion
 
@@ -209,30 +200,19 @@ namespace Vista
         /// </summary>
         private void buscar()
         {
-            if (this.validarBusqueda())
-            {
-                this.buscarArticulo();
-            }
-        }
-        /// <summary>
-        /// Valida parámetros de búsqueda. Muestra mensaje de error en caso de parámetro no válido
-        /// </summary>
-        /// <returns>true si todos los parámetros son válidos, false caso contrario</returns>
-        private bool validarBusqueda()
-        {
-            return true;
+            this.buscarArticulo();
         }
         private void buscarArticulo()
         {
-            glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
-            glb_mod_articuloActual = this.cargarDatosEnModeloArticulo();
-            glb_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_articuloActual);
-            if (glb_frm_resultadoBusqueda.modeloSeleccionado != null)
+            frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
+            glb_mod_articulo = this.cargarDatosEnModeloArticulo();
+            lcl_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_articulo);
+            if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
             {
                 this.modoFormulario = ModoFormularioSeleccionado;
 
-                glb_mod_articuloSeleccionado = glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticulos;
-                this.cargarArticuloEnControles(glb_mod_articuloSeleccionado);
+                glb_mod_articulo = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticulos;
+                this.cargarArticuloEnControles(glb_mod_articulo);
             }
         }
         #endregion
@@ -252,19 +232,30 @@ namespace Vista
         #region Modelo -> Controles
         private void cargarArticuloEnControles(ModeloArticulos p_mod_articulo)
         {
-            glb_mod_articuloSeleccionado = p_mod_articulo;
-            
-            txtBoxCodigoOriginal.Text = glb_mod_articuloSeleccionado.codigoOriginal;
-            txtBoxDescripcion.Text = glb_mod_articuloSeleccionado.descripcion;
-            txtBoxModelo.Text = glb_mod_articuloSeleccionado.modelos;
-            rchTextBoxObservaciones.Text = glb_mod_articuloSeleccionado.observaciones;
+            txtBoxCodigoOriginal.Text = p_mod_articulo.codigoOriginal;
+            txtBoxDescripcion.Text = p_mod_articulo.descripcion;
+            txtBoxModelo.Text = p_mod_articulo.modelos;
+            rchTextBoxObservaciones.Text = p_mod_articulo.observaciones;
         }
         #endregion
 
-        #region Validar Controles
+        #region Validación
+        private bool validar()
+        {
+            return this.validarCodigoOriginal();
+        }
 
+        private bool validarCodigoOriginal()
+        {
+            if (!ModeloArticulos.validarCodigoOriginal(txtBoxCodigoOriginal.Text))
+            {
+                errorProviderActual.SetError(txtBoxCodigoOriginal,"Este campo es obligatorio. No puede permanecer vacío.");
+                return false;
+            }
+            errorProviderActual.SetError(txtBoxCodigoOriginal, "");
+            return true;
+        }
         #endregion
-
         #endregion
 
         #region Eventos

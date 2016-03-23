@@ -38,6 +38,7 @@
             this.lblModelo = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.txtBoxCodigoOriginal = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
             this.tblLayouttPanelForm.SuspendLayout();
             this.grpBoxObservaciones.SuspendLayout();
             this.tblLayoutPanelDatosArticulo.SuspendLayout();
@@ -105,16 +106,18 @@
             // 
             this.txtBoxModelo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxModelo.Location = new System.Drawing.Point(95, 71);
+            this.txtBoxModelo.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtBoxModelo.Name = "txtBoxModelo";
-            this.txtBoxModelo.Size = new System.Drawing.Size(330, 20);
+            this.txtBoxModelo.Size = new System.Drawing.Size(313, 20);
             this.txtBoxModelo.TabIndex = 5;
             // 
             // txtBoxDescripcion
             // 
             this.txtBoxDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxDescripcion.Location = new System.Drawing.Point(95, 38);
+            this.txtBoxDescripcion.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtBoxDescripcion.Name = "txtBoxDescripcion";
-            this.txtBoxDescripcion.Size = new System.Drawing.Size(330, 20);
+            this.txtBoxDescripcion.Size = new System.Drawing.Size(313, 20);
             this.txtBoxDescripcion.TabIndex = 4;
             // 
             // lblCodigoOriginal
@@ -154,8 +157,9 @@
             // 
             this.txtBoxCodigoOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCodigoOriginal.Location = new System.Drawing.Point(95, 6);
+            this.txtBoxCodigoOriginal.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtBoxCodigoOriginal.Name = "txtBoxCodigoOriginal";
-            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(330, 20);
+            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(313, 20);
             this.txtBoxCodigoOriginal.TabIndex = 3;
             // 
             // frmABMArticulo
@@ -166,6 +170,7 @@
             this.MinimumSize = new System.Drawing.Size(450, 230);
             this.Name = "frmABMArticulo";
             this.Controls.SetChildIndex(this.tblLayouttPanelForm, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).EndInit();
             this.tblLayouttPanelForm.ResumeLayout(false);
             this.grpBoxObservaciones.ResumeLayout(false);
             this.tblLayoutPanelDatosArticulo.ResumeLayout(false);

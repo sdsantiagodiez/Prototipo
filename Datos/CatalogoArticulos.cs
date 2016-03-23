@@ -157,32 +157,26 @@ namespace Datos
 
                 comando.CommandType = CommandType.Text;
 
-                comando.CommandText = 
-                    "INSERT INTO [articulos]([codigo_original],[descripcion],[modelos],[observaciones]) "+
+                comando.CommandText =
+                    "INSERT INTO [articulos]([codigo_original],[descripcion],[modelos],[observaciones]) " +
                     "VALUES (@codigo_original, @descripcion, @modelos, @observaciones)";
                 //Indica los parametros
                 comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.codigoOriginal, "@codigo_original"));
                 comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.descripcion, "@descripcion"));
                 comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.modelos, "@modelos"));
                 comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.observaciones, "@observaciones"));
-                
+
                 comando.Connection.Open();
                 int rowaffected = comando.ExecuteNonQuery();
                 comando.Connection.Close();
 
                 if (rowaffected != 0)
-                {
-                    return true;
-                }
+                { return true; }
                 else
-                {
-                    return false;
-                }
+                { return false; }
             }
             else
-            {
-                return false;
-            }
+            { return false; }
         }
 
         public bool update(ModeloArticulos p_mod_articulo)

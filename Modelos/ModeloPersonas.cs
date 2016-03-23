@@ -12,6 +12,7 @@ namespace Modelos
     /// </summary>
     public class ModeloPersonas : ModeloEntidad
     {
+        #region Constructores
         public ModeloPersonas()
         {
             this.tipoEntidad = Constantes.TiposEntidad.Persona;
@@ -29,25 +30,26 @@ namespace Modelos
             apellido = p_mod_persona.apellido;
             tipoPersona = p_mod_persona.tipoPersona;
         }
+        #endregion
 
         #region Getters/Setters
         string _dni;
         public string dni 
         {
             get{return _dni;}
-            set{this._dni = value;} 
+            set { this._dni = this.convertirString(value); } 
         }
         string _nombre;
         public string nombre
         {
             get { return _nombre; }
-            set { this._nombre = value; }
+            set { this._nombre = this.convertirString(value); }
         }
         string _apellido;
         public string apellido
         {
             get { return _apellido; }
-            set { this._apellido = value; }
+            set { this._apellido = this.convertirString(value); }
         }
         /// <summary>
         /// Ver Constantes.TipoEntidad.TipoPersona
@@ -56,18 +58,23 @@ namespace Modelos
         public string tipoPersona
         {
             get { return _tipoPersona; }
-            set { this._tipoPersona = value; }
+            set 
+            {
+                if (value == Constantes.TiposEntidad.TiposPersona.Cliente ||
+                    value == Constantes.TiposEntidad.TiposPersona.ContactoProveedor ||
+                    value == Constantes.TiposEntidad.TiposPersona.Usuario)
+                {
+                    this._tipoPersona = value;
+                }
+                else
+                {
+                    this._tipoPersona = null;
+                }
+            }
         }
 
         #endregion
 
-        new public void convertirDatos()
-        {
-            base.convertirDatos();
-            dni = this.convertirString(dni);
-            nombre = this.convertirString(nombre);
-            apellido = this.convertirString(apellido);
-        }
         #region Validación
         /// <summary>
         /// Valida todos los atributos de la persona
@@ -75,30 +82,51 @@ namespace Modelos
         /// <returns>true si todos son válidos. False si al menos uno no es válido</returns>
         new public virtual bool validar()
         {
-            return (base.validar() && this.validarDNI() && this.validarNombre() 
-                && this.validarApellido() && this.validarTipoPersona() );
+            return base.validar()
+                && validarDNI(this.dni) 
+                && validarNombre(this.nombre) 
+                && validarApellido(this.apellido) 
+                && this.validarTipoPersona(this.tipoPersona);
         }
 
-        public bool validarDNI()
+        public static  bool validarDNI(string p_dni)
         {
-            return true;
+            p_dni = Modelo.convertString(p_dni);
+            if (p_dni != null && !System.Text.RegularExpressions.Regex.IsMatch(p_dni, @"[^0-9\.]"))
+            {
+                return true;
+            }
+            return false;
         }
-        public bool validarApellido()
+        public static bool validarApellido(string p_apellido)
         {
-            return true;
+            if (Modelo.convertString(p_apellido) != null)
+            {
+                return true;
+            }
+            return false;
         }
-        public bool validarNombre()
+        public static bool validarNombre(string p_nombre)
         {
-            return true;
+            if (Modelo.convertString(p_nombre) != null)
+            {
+                return true;
+            }
+            return false;
         } 
-        public bool validarTipoPersona()
+        public bool validarTipoPersona(string p_tipoPersona)
         {
-            return (tipoPersona == Constantes.TiposEntidad.TiposPersona.Cliente ||
-                tipoPersona == Constantes.TiposEntidad.TiposPersona.Usuario ||
-                tipoPersona == Constantes.TiposEntidad.TiposPersona.ContactoProveedor);   
+            if (p_tipoPersona == Constantes.TiposEntidad.TiposPersona.Cliente ||
+                p_tipoPersona == Constantes.TiposEntidad.TiposPersona.ContactoProveedor ||
+                p_tipoPersona == Constantes.TiposEntidad.TiposPersona.Usuario)
+            {
+                return true; ;
+            }
+            return false;   
         }
         #endregion
 
+        #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloPersonas == false)
@@ -119,5 +147,6 @@ namespace Modelos
                 && this.Equals(this.dni,p_mod_persona.dni)
                 && this.Equals(this.tipoPersona,p_mod_persona.tipoPersona);
         }
+        #endregion
     }
 }

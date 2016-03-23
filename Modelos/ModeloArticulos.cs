@@ -15,18 +15,21 @@ namespace Modelos
            get { return _codigoOriginal; }
            set { this._codigoOriginal = value; }
        }
+       
        string _descripcion;
        public string descripcion
        {
            get { return _descripcion; }
            set { this._descripcion = value; }
        }
+       
        string _modelos;
        public string modelos 
        {
            get { return _modelos; }
            set { this._modelos = value; }
        }
+       
        string _observaciones;
        public string observaciones
        {
@@ -35,6 +38,21 @@ namespace Modelos
        }
        #endregion
 
+       #region Validación
+
+       public bool validar()
+       {
+           return validarCodigoOriginal(this.codigoOriginal);
+       }
+
+       public static bool validarCodigoOriginal(string p_codigoOriginal)
+       {
+           return !string.IsNullOrWhiteSpace(p_codigoOriginal);
+       }
+
+       #endregion
+
+       #region Equals
        public override bool Equals(object p_objeto)
        {
            if (p_objeto is ModeloArticulos == false)
@@ -49,5 +67,6 @@ namespace Modelos
                && this.Equals(this.modelos,p_mod_articulo.modelos)
                && this.Equals(this.observaciones,p_mod_articulo.observaciones);
        }
+       #endregion
    }
 }

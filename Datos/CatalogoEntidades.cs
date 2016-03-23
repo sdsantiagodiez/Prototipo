@@ -57,8 +57,9 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(codigoEntidad, "@codigo_entidad"));
                     string codigoEntidadQuery = @" (@codigo_entidad IS NULL OR @codigo_entidad = codigo_entidad) ";
 
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.cuit, "@cuit"));
-                    string cuitQuery = this.parametroBusqueda("@cuit", "cuit", "=");
+                    string cuit = (p_mod_entidad.cuit == "") ? null : p_mod_entidad.cuit;
+                    p_comando.Parameters.Add(this.instanciarParametro(cuit, "@cuit"));
+                    string cuitQuery = " (@cuit is null OR cuit=@cuit) ";
 
                     return codigoEntidadQuery + " AND " + cuitQuery;
 
@@ -147,8 +148,7 @@ namespace Datos
         }
 
         public List<ModeloMail> getMails(int p_codigoEntidad)
-        {
-            
+        {     
             CatalogoMails lcl_cat_mails = new CatalogoMails();
             return lcl_cat_mails.getMails(p_codigoEntidad);
         }
@@ -278,7 +278,6 @@ namespace Datos
         }
 
         #endregion
-
 
         protected bool updateEntidad(ModeloEntidad p_mod_entidad)
         {

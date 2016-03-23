@@ -9,6 +9,7 @@ namespace Modelos
 {
     public class ModeloContactoProveedor : ModeloPersonas
     {
+        #region Constructores
         public ModeloContactoProveedor()
         {
             this.tipoPersona = Constantes.TiposEntidad.TiposPersona.ContactoProveedor;
@@ -33,7 +34,8 @@ namespace Modelos
         {
             this.proveedor = p_mod_proveedor;
         }
-
+        #endregion
+        
         #region Getters/Setters
         private ModeloProveedor _proveedor;
         public ModeloProveedor proveedor
@@ -43,16 +45,20 @@ namespace Modelos
         }
         #endregion
 
+        #region Validación
         public bool validar()
         {
-            return (base.validar() && this.validarProveedor());
+            return base.validar() 
+                && this.validarProveedor();
         }
 
         public bool validarProveedor()
         {
-            return true;
+            return proveedor.validar();
         }
+        #endregion
 
+        #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloContactoProveedor == false)
@@ -70,5 +76,6 @@ namespace Modelos
         {
             return this.Equals(this.proveedor,p_mod_contactoProveedor.proveedor);
         }
+        #endregion
     }
 }

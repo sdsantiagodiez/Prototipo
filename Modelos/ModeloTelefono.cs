@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using LibreriaClasesCompartidas;
 namespace Modelos
 {
     public class ModeloTelefono : Modelo
@@ -19,37 +19,58 @@ namespace Modelos
         public string numero
         {
             get { return _numero; }
-            set { this._numero = value; }
+            set { this._numero = this.convertirString(value); }
         }
-        /// <summary>
-        /// TEL: teléfono fijo; CEL: celular; FAX: fax
-        /// </summary>
+       
         string _tipo;
+        /// <summary>
+        /// Constantes.TipoTelefono
+        /// </summary>
         public string tipo
         {
             get { return _tipo; }
-            set { this._tipo = value; }
+            set 
+            {
+                if (value == Constantes.TipoTelefono.Celular ||
+                    value == Constantes.TipoTelefono.Fijo ||
+                    value == Constantes.TipoTelefono.Fax)
+                {
+                    this._tipo = value; 
+                }
+                else
+                {
+                    this._tipo = null;
+                }
+            }
         }
         #endregion
+        
         #region Validación
         public bool validar()
         {
-            return (this.validarCodigo() == true && this.validarTipo() == true && this.validarNumero() == true);
+            return validarCodigo(this.codigoTelefono.ToString())
+                && validarNumero(this.numero)
+                && validarTipo(this.tipo);
         }
 
-        public bool validarCodigo()
+        public bool validarCodigo(string p_codigo)
         {
-            return true;
+            int aux;
+            return int.TryParse(p_codigo, out aux);
         }
-        public bool validarTipo()
+        public static bool validarNumero(string p_numero)
         {
-            return true;
+            return !string.IsNullOrWhiteSpace(p_numero);
         }
-        public bool validarNumero()
+        public static bool validarTipo(string p_tipo)
         {
-            return true;
+            return p_tipo == Constantes.TipoTelefono.Celular ||
+                   p_tipo == Constantes.TipoTelefono.Fijo ||
+                   p_tipo == Constantes.TipoTelefono.Fax;
         }
         #endregion
+
+        #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloTelefono == false)
@@ -63,6 +84,7 @@ namespace Modelos
                 && this.Equals(this.numero,p_mod_telefono.numero) 
                 && this.Equals(this.tipo,p_mod_telefono.tipo);
         }
+        #endregion
 
     }
 }

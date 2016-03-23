@@ -14,6 +14,7 @@ namespace Vista
 {
     public partial class frmABMEntidadDatosAdicionalesUsuario : Form
     {
+        ErrorProvider errorProviderTxtBox;
         private ModeloUsuario _usuario;
         public ModeloUsuario usuario
         {
@@ -35,12 +36,13 @@ namespace Vista
         {
             InitializeComponent();
             this.inicializarFormulario();
+            errorProviderTxtBox = new ErrorProvider();
         }
 
         public frmABMEntidadDatosAdicionalesUsuario(ModeloUsuario p_mod_usuario)
             : this()
         {
-            _usuario = p_mod_usuario;
+            usuario = p_mod_usuario;
             this.cargarUsuarioEnControles();
             modoUsuarioNuevo = false;
         }
@@ -74,48 +76,57 @@ namespace Vista
 
             btnModificar.Enabled = !value;
         }
-        private List<ModeloRoles> cargarDatosEnModeloRol()
-        {
-            List<ModeloRoles> lcl_lst_mod_roles = new List<ModeloRoles>();
-            ModeloRoles lcl_mod_rol = new ModeloRoles();
-            foreach (object itemChecked in chckdListBoxRol.CheckedItems)
-            {
-                DataRowView rol = itemChecked as DataRowView;
-                lcl_mod_rol.codigo = Convert.ToInt32(rol["codigo"].ToString());
-                lcl_mod_rol.descripcion = rol["descripcion"].ToString();
-            }
-            return lcl_lst_mod_roles;
-        }
+        
         #endregion
 
         #region Métodos
         #region Validación
         private bool validarDatosIngresados()
         {
-            return (this.validarUsuarioYContraseña() == true && this.validarRoles() == true);
+            //Se separa para permitir que primero se muestren ErrorProviders, y luego error en roles
+            bool validez = this.validarUsuario();
+            validez = this.validarContraseña() && validez;
+            return validez && this.validarRoles();
         }
-        private bool validarUsuarioYContraseña()
-        {
-            return (this.validarUsuario() == true && this.validarContraseña() == true);   
-        }
+    
         private bool validarUsuario()
         {
-            //formato ingresado, caracteres permitidos y cantidad
+            if (string.IsNullOrWhiteSpace(txtBoxUsuario.Text))
+            {
+                errorProviderTxtBox.SetError(txtBoxUsuario, "Este campo es obligatorio. No puede permanecer vacío.");
+                return false;
+            } else if (!ModeloUsuario.validarUsuario(txtBoxUsuario.Text))
+            {
+                errorProviderTxtBox.SetError(txtBoxUsuario, "Ha ingresado caracteres no válidos. No se permiten caracteres especiales o espacios, a excepción de '_'");
+                return false;
+            }
+            errorProviderTxtBox.SetError(txtBoxUsuario, "");
             return true;
         }
         private bool validarContraseña()
         {
-            //formato ingresado, caracteres permitidos y cantidad
-            //luego si son iguales los dos campos de contraseña
-            if (txtBoxContraseña.Text != txtBoxConfirmarContraseña.Text)
+            errorProviderTxtBox.SetError(txtBoxContraseña, "");
+            errorProviderTxtBox.SetError(txtBoxConfirmarContraseña, "");
+            if (!ModeloUsuario.validarContrasenia(txtBoxContraseña.Text))
             {
-                MessageBox.Show("Las contraseñas no coinciden", "Error", MessageBoxButtons.OK);
+                errorProviderTxtBox.SetError(txtBoxContraseña, "La contraseña ingresada no es válida. Debe tener por lo mínimo 8 caracteres.");
+                return false;
+            } else if (txtBoxContraseña.Text != txtBoxConfirmarContraseña.Text)
+            {
+                errorProviderTxtBox.SetError(txtBoxConfirmarContraseña, "Las contraseñas no coinciden.");
                 return false;
             }
+            
             return true;
         }
         private bool validarRoles()
         {
+            this.cargarDatosControlRoles();
+            if (this.cargarDatosControlRoles().Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar por lo menos un rol para el Usuario actual", "Error", MessageBoxButtons.OK);
+                return false;
+            }
             return true;
         }
         #endregion
@@ -123,19 +134,19 @@ namespace Vista
         #region Controles -> Modelo
         private void cargarControlesEnUsuario()
         {
-            _usuario = new ModeloUsuario();
+            usuario = new ModeloUsuario();
             this.cargarDatosControlUsuarioContraseña();
-            this.cargarDatosControlRoles();
+            usuario.roles = this.cargarDatosControlRoles();
         }
         private void cargarDatosControlUsuarioContraseña()
         {
-            _usuario.usuario = txtBoxUsuario.Text;
-            _usuario.contrasenia = txtBoxContraseña.Text;
+            usuario.usuario = txtBoxUsuario.Text;
+            usuario.contrasenia = txtBoxContraseña.Text;
         }
-        private void cargarDatosControlRoles()
+        private List<ModeloRoles> cargarDatosControlRoles()
         {
             List<ModeloRoles> lcl_lst_mod_roles = this.chckdListBoxRol.CheckedItems.OfType<ModeloRoles>().ToList();
-            _usuario.roles = lcl_lst_mod_roles;
+            return lcl_lst_mod_roles;
         }
        
         #endregion
@@ -143,7 +154,7 @@ namespace Vista
         #region Modelo -> Controles
         private void cargarUsuarioEnControles()
         {
-            txtBoxUsuario.Text = _usuario.usuario;
+            txtBoxUsuario.Text = usuario.usuario;
             this.cargarDatosRolesEnControles();
         }
 
@@ -153,7 +164,7 @@ namespace Vista
             for (int i = 0; i < chckdListBoxRol.Items.Count; i++)
             {
                 m_roles_aux = (ModeloRoles)this.chckdListBoxRol.Items[i];
-                if (_usuario.roles.Contains(m_roles_aux))
+                if (usuario.roles.Contains(m_roles_aux))
                 {
                     chckdListBoxRol.SetItemChecked(i,true);
                 }

@@ -9,6 +9,7 @@ namespace Modelos
 {
     public class ModeloCliente: ModeloPersonas
     {
+        #region Constructores
         public ModeloCliente()
         {
             this.tipoPersona = Constantes.TiposEntidad.TiposPersona.Cliente;
@@ -23,12 +24,16 @@ namespace Modelos
         {
             this.tipoPersona = Constantes.TiposEntidad.TiposPersona.Cliente;
         }
+        #endregion
 
+        #region Validación
         override public bool validar()
         {
             return base.validar();
         }
+        #endregion
 
+        #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloCliente == false)
@@ -46,5 +51,6 @@ namespace Modelos
         {
             return true;
         }
+        #endregion
     }
 }

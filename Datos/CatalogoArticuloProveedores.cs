@@ -148,18 +148,12 @@ namespace Datos
             }
         }
 
-        public List<ModeloArticuloProveedores> buscarArticuloProveedor(ModeloArticuloProveedores p_mod_articuloProveedor, string p_parametroBusqueda)
+        public List<ModeloArticuloProveedores> buscar(ModeloArticuloProveedores p_mod_articuloProveedor, string p_parametroBusqueda)
         {
-            //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
             SqlCommand comando = new SqlCommand();
-
             comando.Connection = ConexionSQL;
-
             comando.CommandType = CommandType.Text;
-
             string querySQL = this.getCondicionBusqueda(p_mod_articuloProveedor, p_parametroBusqueda, ref comando);
 
             comando.CommandText =
@@ -217,13 +211,19 @@ namespace Datos
             return lcl_lst_mod_articulosProveedores;
         }
         
+        /// <summary>
+        /// utilizar buscar(ArticuloProveedor, Parametros...ArticuloProveedor.One)
+        /// </summary>
+        /// <param name="p_codigoOriginal"></param>
+        /// <param name="p_codigoArticuloProveedor"></param>
+        /// <returns></returns>
         public ModeloArticuloProveedores getOne(string p_codigoOriginal, string p_codigoArticuloProveedor)
         {
             ModeloArticuloProveedores lcl_mod_articuloProveedor = new ModeloArticuloProveedores();
             List<ModeloArticuloProveedores> lcl_lst_mod_articuloProveedor = new List<ModeloArticuloProveedores>();
             lcl_mod_articuloProveedor.codigoOriginal = p_codigoOriginal;
             lcl_mod_articuloProveedor.codigoArticuloProveedor = p_codigoArticuloProveedor;
-            lcl_lst_mod_articuloProveedor = this.buscarArticuloProveedor(lcl_mod_articuloProveedor, Constantes.ParametrosBusqueda.ArticulosProveedores.One);
+            lcl_lst_mod_articuloProveedor = this.buscar(lcl_mod_articuloProveedor, Constantes.ParametrosBusqueda.ArticulosProveedores.One);
 
             if (lcl_lst_mod_articuloProveedor.Count > 0)
             {
@@ -235,18 +235,14 @@ namespace Datos
             }
         }
 
-        public List<ModeloArticuloProveedores> getAll()
-        {
-            //Reemplazar parametro lcl_mod_articuloProveedor por null cuando se haya eliminado buscarArticuloProveedor(string,string) que devuelve ambiguedad
-            ModeloArticuloProveedores lcl_mod_articuloProveedor = null;
-            return this.buscarArticuloProveedor(lcl_mod_articuloProveedor, Constantes.ParametrosBusqueda.ArticulosProveedores.All);
-        }
+        //public List<ModeloArticuloProveedores> getAll()
+        //{
+        //    //Reemplazar parametro lcl_mod_articuloProveedor por null cuando se haya eliminado buscarArticuloProveedor(string,string) que devuelve ambiguedad
+        //    ModeloArticuloProveedores lcl_mod_articuloProveedor = null;
+        //    return this.buscar(lcl_mod_articuloProveedor, Constantes.ParametrosBusqueda.ArticulosProveedores.All);
+        //}
 
         #region Alta/Baja/Modificación
-        /*
-         * True si se realizó correctamente
-         * False si ocurrió algún error
-         */
         public bool add(ModeloArticuloProveedores p_mod_articuloProveedor)
         { 
             if(!this.existeEntidad(p_mod_articuloProveedor))
@@ -299,18 +295,53 @@ namespace Datos
         
         }
 
-        public bool update(ModeloArticuloProveedores p_mod_articuloProveedor)
+        public bool update(ModeloArticuloProveedores p_mod_articuloProveedor_nuevo)
         {
-            //Creo la conexion y la abro
+            ModeloArticuloProveedores p_mod_articuloProveedor_original = this.buscar(p_mod_articuloProveedor_nuevo, Constantes.ParametrosBusqueda.ArticulosProveedores.One).ToList()[0];
+            if (p_mod_articuloProveedor_original != null)
+                return update(p_mod_articuloProveedor_original, p_mod_articuloProveedor_nuevo);
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p_mod_articuloProveedor_original"></param>
+        /// <param name="p_mod_articuloProveedor_nuevo"></param>
+        /// <returns>true si no se ha realizado modificación o no hubo fallos</returns>
+        private bool update(ModeloArticuloProveedores p_mod_articuloProveedor_original, ModeloArticuloProveedores p_mod_articuloProveedor_nuevo)
+        {
+            if (!p_mod_articuloProveedor_original.Equals(p_mod_articuloProveedor_nuevo))
+            {
+                if (!this.updateArticuloProveedor(p_mod_articuloProveedor_nuevo))
+                {
+                    return false;
+                }
+                if (!p_mod_articuloProveedor_original.valorCompra.Equals(p_mod_articuloProveedor_nuevo.valorCompra))
+                {
+                    if (!this.updateValor(p_mod_articuloProveedor_nuevo, Constantes.TipoValorArticulo.Compra))
+                    {
+                        return false;
+                    }
+                }
+                if (!p_mod_articuloProveedor_original.valorVenta.Equals(p_mod_articuloProveedor_nuevo.valorVenta))
+                {
+                    if (!this.updateValor(p_mod_articuloProveedor_nuevo, Constantes.TipoValorArticulo.Venta))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        private bool updateArticuloProveedor(ModeloArticuloProveedores p_mod_articuloProveedor)
+        {
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
-
-            //crea SQL command
             SqlCommand comando = new SqlCommand();
-
             comando.Connection = ConexionSQL;
-
             comando.CommandType = CommandType.Text;
-
             comando.CommandText = 
                 "UPDATE [Articulos_Proveedores] SET [stock_minimo]=@stock_minimo,[stock_actual]=@stock_actual,[observaciones]=@observaciones,"+
                 "[descripcion]=@descripcion,[fecha_actualizacion]=@fecha_actualizacion, [ubicacion]=@ubicacion  "+
@@ -330,13 +361,9 @@ namespace Datos
             comando.Connection.Close();
 
             if (rowaffected != 0)
-            {
-                return true;
-            }
+            {return true;}
             else
-            {
-                return false;
-            }
+            {return false;}
         }
 
         /// <summary>
@@ -345,15 +372,12 @@ namespace Datos
         /// <param name="p_mod_articuloProveedor"></param>
         /// <param name="p_tipoValorArticulo"></param>
         /// <returns></returns>
-        public bool updatePrecio(ModeloArticuloProveedores p_mod_articuloProveedor,string p_tipoValorArticulo)
+        public bool updateValor(ModeloArticuloProveedores p_mod_articuloProveedor,string p_tipoValorArticulo)
         {
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
             SqlCommand comando = new SqlCommand();
-
             comando.Connection = ConexionSQL;
-
             comando.CommandType = CommandType.Text;
-
             string tablaValores ="";
             ModeloValorArticulo lcl_mod_valorArticulo = new ModeloValorArticulo();
             if (p_tipoValorArticulo == Constantes.TipoValorArticulo.Compra)
@@ -381,27 +405,17 @@ namespace Datos
             comando.Connection.Close();
 
             if (rowaffected != 0)
-            {
-                return true;
-            }
+            {return true;}
             else
-            {
-                return false;
-            }
+            {return false;}
         }
 
         public bool remove(ModeloArticuloProveedores p_mod_articuloProveedor)
         { 
-         
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
-
-            //crea SQL command
             SqlCommand comando = new SqlCommand();
-
             comando.Connection = ConexionSQL;
-
             comando.CommandType = CommandType.Text;
-
             comando.CommandText = 
                 "DELETE FROM [Articulos_Proveedores] WHERE ([Articulos_Proveedores].codigo_articulo_proveedor=@codigo_articulo_proveedor "+
                 "AND [Articulos_Proveedores].codigo_original=@codigo_original )";
@@ -414,13 +428,9 @@ namespace Datos
             comando.Connection.Close();
 
             if (rowaffected != 0)
-            {
-                return true;
-            }
+            {return true;}
             else
-            {
-                return false;
-            }
+            {return false;}
         }
         #endregion
     }

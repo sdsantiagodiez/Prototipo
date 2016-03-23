@@ -61,6 +61,7 @@
             this.nmrcUpDownStockActual = new System.Windows.Forms.NumericUpDown();
             this.grpBoxObservaciones = new System.Windows.Forms.GroupBox();
             this.rchTextBoxObservaciones = new System.Windows.Forms.RichTextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.grpBoxArticulo.SuspendLayout();
             this.tblLayoutPanelArticulo.SuspendLayout();
@@ -330,13 +331,15 @@
             this.txtBoxPrecioVenta.Name = "txtBoxPrecioVenta";
             this.txtBoxPrecioVenta.Size = new System.Drawing.Size(82, 24);
             this.txtBoxPrecioVenta.TabIndex = 16;
+            this.txtBoxPrecioVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtBoxCodigoArticulo
             // 
             this.txtBoxCodigoArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCodigoArticulo.Location = new System.Drawing.Point(123, 15);
+            this.txtBoxCodigoArticulo.Margin = new System.Windows.Forms.Padding(3, 3, 25, 3);
             this.txtBoxCodigoArticulo.Name = "txtBoxCodigoArticulo";
-            this.txtBoxCodigoArticulo.Size = new System.Drawing.Size(91, 24);
+            this.txtBoxCodigoArticulo.Size = new System.Drawing.Size(69, 24);
             this.txtBoxCodigoArticulo.TabIndex = 6;
             // 
             // lblCodigoArticulo
@@ -435,6 +438,7 @@
             this.txtBoxPrecioCompra.Name = "txtBoxPrecioCompra";
             this.txtBoxPrecioCompra.Size = new System.Drawing.Size(82, 24);
             this.txtBoxPrecioCompra.TabIndex = 15;
+            this.txtBoxPrecioCompra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nmrcUpDownStockActual
             // 
@@ -480,6 +484,7 @@
             this.Name = "frmABMArticuloProveedor";
             this.Text = "frmABMArticuloProveedor";
             this.Controls.SetChildIndex(this.tableLayoutPanel1, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.grpBoxArticulo.ResumeLayout(false);
             this.tblLayoutPanelArticulo.ResumeLayout(false);

@@ -19,23 +19,28 @@ namespace Modelos
         public string pais
         {
             get { return _pais; }
-            set { this._pais = value; }
+            set { _pais = this.convertirString(value);
+            }
         }
         #endregion
+
         #region Validación
         public bool validar()
         {
-            return (this.validarCodigo() == true && this.validarPais() == true);
+            return validarCodigo(this.codigo) 
+                && validarPais(this.pais);
         }
-        public bool validarCodigo()
+        public static bool validarCodigo(string p_codigo)
         {
-            return true;
+            return !string.IsNullOrWhiteSpace(p_codigo);
         }
-        public bool validarPais()
+        public static bool validarPais(string p_pais)
         {
-            return true;
+            return !string.IsNullOrWhiteSpace(p_pais);
         }
         #endregion
+
+        #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloPais == false)
@@ -48,5 +53,6 @@ namespace Modelos
             return this.Equals(this.codigo,p_mod_pais.codigo) 
                 && this.Equals(this.pais,p_mod_pais.pais);
         }
+        #endregion
     }
 }

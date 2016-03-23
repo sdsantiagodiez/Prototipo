@@ -102,6 +102,8 @@
             // 
             // toolStripMenuItemLimpiarCampos
             // 
+            this.toolStripMenuItemLimpiarCampos.Checked = true;
+            this.toolStripMenuItemLimpiarCampos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripMenuItemLimpiarCampos.Name = "toolStripMenuItemLimpiarCampos";
             this.toolStripMenuItemLimpiarCampos.Size = new System.Drawing.Size(106, 20);
             this.toolStripMenuItemLimpiarCampos.Text = "Limpiar Campos";

@@ -15,25 +15,27 @@ namespace Vista
     public partial class frmABMArticuloProveedor : Vista.frmABMBase
     {
         #region Atributos
-        //Seleccionado es el que resulta de un objeto que se encuentra en la base de datos
-        //Actual puede ser un objeto nuevo o resultado de la base de datos con posibles modificaciones
-        ModeloArticuloProveedores glb_mod_articuloProveedorActual;
-        ModeloArticuloProveedores glb_mod_articuloProveedorSeleccionado;
+        ModeloArticuloProveedores glb_mod_articuloProveedor;
         #endregion
+
+        #region Constructores
         public frmABMArticuloProveedor()
         {
             InitializeComponent();
             this.inicializarModoFormularioInicio();
             this.Text = "Artículo Proveedor";
-        }
 
+            txtBoxPrecioCompra.KeyPress += this.valorDecimal;
+            txtBoxPrecioVenta.KeyPress += this.valorDecimal;
+        }
+        #endregion
+        
         #region Métodos
 
         #region Inicialización
         override public void inicializarModoFormularioInicio()
         {
-            glb_mod_articuloProveedorActual = new ModeloArticuloProveedores();
-            glb_mod_articuloProveedorSeleccionado = new ModeloArticuloProveedores();
+            glb_mod_articuloProveedor = new ModeloArticuloProveedores();
 
             base.inicializarModoFormularioInicio();
             
@@ -61,8 +63,7 @@ namespace Vista
 
         override public void inicializarModoFormularioNuevo()
         {
-            glb_mod_articuloProveedorActual = new ModeloArticuloProveedores();
-            glb_mod_articuloProveedorSeleccionado = new ModeloArticuloProveedores();
+            glb_mod_articuloProveedor = new ModeloArticuloProveedores();
 
             base.inicializarModoFormularioNuevo();
 
@@ -154,6 +155,10 @@ namespace Vista
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show(errorActual,"Error",MessageBoxButtons.OK);
+            }
         }
 
         /// <summary>
@@ -162,8 +167,7 @@ namespace Vista
         /// <returns>true si todos los campos son válidos, false caso contrario</returns>
         private bool validarAlta()
         {
-            //Retornar bool y mostrar mensaje por la primera validación fallida encontrada. Si no se encuentra error, no se muestra mensaje y se devuelve true
-            return true;
+            return this.validar();
         }
 
         /// <summary>
@@ -173,9 +177,9 @@ namespace Vista
         private bool guardarNuevo()
         {
             ControladorAlta lcl_con_alta = new ControladorAlta();
-            glb_mod_articuloProveedorActual = glb_mod_articuloProveedorSeleccionado = this.cargarDatosEnModeloArticuloProveedor();
+            glb_mod_articuloProveedor = this.cargarDatosEnModeloArticuloProveedor();
 
-            return lcl_con_alta.agregar(glb_mod_articuloProveedorActual);
+            return lcl_con_alta.agregar(glb_mod_articuloProveedor);
         }
 
         /// <summary>
@@ -219,12 +223,7 @@ namespace Vista
         private bool eliminar()
         {
             ControladorBaja lcl_con_baja = new ControladorBaja();
-            bool exito = lcl_con_baja.eliminar(glb_mod_articuloProveedorSeleccionado);
-            if (exito)
-            {
-                glb_mod_articuloProveedorSeleccionado = glb_mod_articuloProveedorActual = null;
-            }
-            return exito;
+            return  lcl_con_baja.eliminar(glb_mod_articuloProveedor);
         }
 
         /// <summary>
@@ -247,6 +246,10 @@ namespace Vista
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show(errorActual, "Error", MessageBoxButtons.OK);
+            }
         }
 
         /// <summary>
@@ -255,8 +258,7 @@ namespace Vista
         /// <returns>true si todos los campos son válidos, false caso contrario</returns>
         private bool validarModificacion()
         {
-            //Retornar bool y mostrar mensaje por la primera validación fallida encontrada. Si no se encuentra error, no se muestra mensaje y se devuelve true
-            return true;
+            return this.validar();
         }
 
         /// <summary>
@@ -266,14 +268,8 @@ namespace Vista
         private bool guardarModificaciones()
         {
             ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
-            bool exito = false;
-            glb_mod_articuloProveedorActual = this.cargarDatosEnModeloArticuloProveedor();
-            exito = lcl_con_modificacion.modificar(glb_mod_articuloProveedorSeleccionado, glb_mod_articuloProveedorActual);
-            if (exito)
-            {
-                glb_mod_articuloProveedorSeleccionado = glb_mod_articuloProveedorActual;
-            }
-            return exito;
+            glb_mod_articuloProveedor = this.cargarDatosEnModeloArticuloProveedor();
+            return lcl_con_modificacion.modificar(glb_mod_articuloProveedor);
         }
         #endregion
 
@@ -283,54 +279,43 @@ namespace Vista
         /// </summary>
         private void buscar()
         {
-            if (this.validarBusqueda())
-            {
-                this.buscarArticuloProveedor();
-            }
-        }
-        /// <summary>
-        /// Valida parámetros de búsqueda. Muestra mensaje de error en caso de parámetro no válido
-        /// </summary>
-        /// <returns>true si todos los parámetros son válidos, false caso contrario</returns>
-        private bool validarBusqueda()
-        {
-            return true;
+            this.buscarArticuloProveedor();
         }
         private void buscarArticuloProveedor()
         {
-            glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
-            glb_mod_articuloProveedorActual = this.cargarDatosEnModeloArticuloProveedor();
-            glb_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_articuloProveedorActual);
-            if (glb_frm_resultadoBusqueda.modeloSeleccionado != null)
+            frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
+            glb_mod_articuloProveedor = this.cargarDatosEnModeloArticuloProveedor();
+            lcl_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_articuloProveedor);
+            if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
             {
                 this.modoFormulario = ModoFormularioSeleccionado;
 
-                glb_mod_articuloProveedorSeleccionado = glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticuloProveedores;
-                this.cargarArticuloProveedorEnControles(glb_mod_articuloProveedorSeleccionado);
+                glb_mod_articuloProveedor = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticuloProveedores;
+                this.cargarArticuloProveedorEnControles(glb_mod_articuloProveedor);
             }
         }
         private void buscarArticulo()
         {
-            glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
+            frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
             ModeloArticulos lcl_mod_articulo = new ModeloArticulos();
             
             lcl_mod_articulo.codigoOriginal = txtBoxCodigoOriginal.Text;
             lcl_mod_articulo.descripcion = txtBoxDescripcion.Text;
             
-            glb_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_articulo);
-            if (glb_frm_resultadoBusqueda.modeloSeleccionado != null)
+            lcl_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_articulo);
+            if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
             {
                 this.inicializarModoArticuloSeleccionado();
-                txtBoxCodigoOriginal.Text = (glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticulos).codigoOriginal;
-                txtBoxDescripcion.Text = (glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticulos).descripcion;
+                txtBoxCodigoOriginal.Text = (lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticulos).codigoOriginal;
+                txtBoxDescripcion.Text = (lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticulos).descripcion;
 
-                this.cargarDatosArticuloEnModeloArticuloProveedor(ref glb_mod_articuloProveedorActual);
+                this.cargarDatosArticuloEnModeloArticuloProveedor(ref glb_mod_articuloProveedor);
             }
         }
         private void buscarProveedor()
         {
             //Se podría ver de mostrar solo proveedores que tengan ese articuloOriginal en articuloProveedor
-            glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
+            frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
             ModeloProveedor lcl_mod_proveedor = new ModeloProveedor();
             
             ModeloArticuloProveedores lcl_mod_articuloProveedor = new ModeloArticuloProveedores();
@@ -339,30 +324,27 @@ namespace Vista
             lcl_mod_proveedor.codigo = lcl_mod_articuloProveedor.codigoEntidad;
             lcl_mod_proveedor.razonSocial = lcl_mod_articuloProveedor.razonSocialProveedor;
 
-            glb_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_proveedor);
-            if (glb_frm_resultadoBusqueda.modeloSeleccionado != null)
+            lcl_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_proveedor);
+            if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
             {
                 this.inicializarModoProveedorSeleccionado();
-                txtBoxCodigoProveedor.Text = (glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloProveedor).codigo.ToString();
-                txtBoxRazonSocial.Text = (glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloProveedor).razonSocial;
+                txtBoxCodigoProveedor.Text = (lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloProveedor).codigo.ToString();
+                txtBoxRazonSocial.Text = (lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloProveedor).razonSocial;
 
-                this.cargarDatosProveedorEnModeloArticuloProveedor(ref glb_mod_articuloProveedorActual);
+                this.cargarDatosProveedorEnModeloArticuloProveedor(ref glb_mod_articuloProveedor);
             }
-         
         }
-
         #endregion
         
         #region Controles -> Modelo
         private ModeloArticuloProveedores cargarDatosEnModeloArticuloProveedor()
         {
             ModeloArticuloProveedores lcl_mod_articuloProveedores = new ModeloArticuloProveedores();
-            if (validarContenidoControladores())
-            {
-                this.cargarDatosArticuloEnModeloArticuloProveedor(ref lcl_mod_articuloProveedores);
-                this.cargarDatosProveedorEnModeloArticuloProveedor(ref lcl_mod_articuloProveedores);
-                this.cargarDatosStockEnModeloArticuloProveedor(ref lcl_mod_articuloProveedores);
-            }
+
+            this.cargarDatosArticuloEnModeloArticuloProveedor(ref lcl_mod_articuloProveedores);
+            this.cargarDatosProveedorEnModeloArticuloProveedor(ref lcl_mod_articuloProveedores);
+            this.cargarDatosStockEnModeloArticuloProveedor(ref lcl_mod_articuloProveedores);
+
             return lcl_mod_articuloProveedores;
         }
 
@@ -417,7 +399,7 @@ namespace Vista
         #region Modelo -> Controles
         private void cargarArticuloProveedorEnControles(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
-            glb_mod_articuloProveedorSeleccionado = p_mod_articuloProveedor;
+            glb_mod_articuloProveedor = p_mod_articuloProveedor;
 
             txtBoxCodigoOriginal.Text = p_mod_articuloProveedor.codigoOriginal;
             txtBoxDescripcion.Text = p_mod_articuloProveedor.descripcion;
@@ -430,21 +412,55 @@ namespace Vista
             nmrcUpDownStockMinimo.Value = Convert.ToInt32(p_mod_articuloProveedor.stockMinimo);
             nmrcUpDownStockMinimo.Text = nmrcUpDownStockMinimo.Value.ToString();
             txtBoxPrecioCompra.Text = p_mod_articuloProveedor.valorCompra.valorArticulo.ToString();
-            txtBoxPrecioVenta.Text = p_mod_articuloProveedor.valorVenta.valorArticulo.ToString();
+            txtBoxPrecioVenta.Text =  p_mod_articuloProveedor.valorVenta.valorArticulo.ToString();
 
             rchTextBoxObservaciones.Text = p_mod_articuloProveedor.observacionesArticuloProveedor;
         }
         #endregion
 
-        #region Validar Controles
+        #region Validación
         /// <summary>
         /// Valida que los controladores que se hayan completados tengan el formato correcto y además que los campos obligatorios hayas sido rellenados
         /// </summary>
         /// <returns>true si todos los controladores válidos, false caso contrario</returns>
-        private bool validarContenidoControladores()
+        private bool validar()
         {
+            if (this.validarCodigoArticulo())
+            {
+                return this.validarArticulo() && this.validarProveedor();
+            }
+            errorActual = "Ha surgido un error. Por favor, revise los valores ingresados.";
+            return false;
+        }
+        private bool validarProveedor()
+        {
+            if (glb_mod_articuloProveedor.codigoEntidad == 0)
+            {
+                errorActual = "Debe seleccionar un proveedor.";
+                return false;
+            }
             return true;
         }
+        private bool validarArticulo()
+        {
+            if (glb_mod_articuloProveedor.codigoOriginal == null)
+            {
+                errorActual = "Debe seleccionar un Artículo.";
+                return false;
+            }
+            return true;
+        }
+        private bool validarCodigoArticulo()
+        {
+            if (string.IsNullOrWhiteSpace(txtBoxCodigoArticulo.Text))
+            {
+                this.errorProviderActual.SetError(txtBoxCodigoArticulo, "Este campo es obligatorio. No puede permanecer vacío.");
+                return false;
+            }
+            this.errorProviderActual.SetError(txtBoxCodigoArticulo, "");
+            return true;
+        }
+
         #endregion
         #endregion
        
@@ -496,38 +512,51 @@ namespace Vista
         }
         #endregion
 
+        #region Buttons
         private void btnBuscarArticulo_Click(object sender, EventArgs e)
         {
-            if (this.validarBusqueda())
-            {
-                this.buscarArticulo();
-            }
+            this.buscarArticulo();
         }
-        
         private void btnModificarArticulo_Click(object sender, EventArgs e)
         {
             this.inicializarModoArticuloModificado();
             this.quitarTextoEnControles(grpBoxArticulo);
-            glb_mod_articuloProveedorActual.codigoOriginal = null;
-            glb_mod_articuloProveedorActual.descripcion = null;
+            glb_mod_articuloProveedor.codigoOriginal = null;
+            glb_mod_articuloProveedor.descripcion = null;
         }
 
         private void btnBuscarProveedor_Click(object sender, EventArgs e)
         {
-            if (this.validarBusqueda())
-            {
-                this.buscarProveedor();
-            }
+            this.buscarProveedor();
         }
-       
-
         private void btnModificarProveedor_Click(object sender, EventArgs e)
         {
             this.inicializarModoProveedorModificado();
             this.quitarTextoEnControles(grpBoxProveedor);
-            glb_mod_articuloProveedorActual.codigoEntidad = 0;
-            glb_mod_articuloProveedorActual.razonSocialProveedor = null;
+            glb_mod_articuloProveedor.codigoEntidad = 0;
+            glb_mod_articuloProveedor.razonSocialProveedor = null;
         }
         #endregion
+
+        private void valorDecimal(object sender, KeyPressEventArgs e)
+        {
+            // solo 0-9, borrar y ',' para decimales
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != ','))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // asegurar que la ',' aparece solo una vez
+            if (e.KeyChar == ',')
+            {
+                if ((sender as TextBox).Text.IndexOf(e.KeyChar) != -1)
+                    e.Handled = true;
+            }
+        }
+
+        #endregion
+
+
     }
 }

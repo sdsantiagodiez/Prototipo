@@ -67,7 +67,6 @@ namespace Datos
             return this.buscarUsuario(p_mod_usuario, p_parametroBusqueda);
         }
 
-
         /// <summary>
         /// Busca personas en base al parámetro ingresado
         /// </summary>
@@ -248,7 +247,6 @@ namespace Datos
             return true;
         }
         
-
         public override bool update(ModeloPersonas p_mod_persona)
         {
             return this.update(p_mod_persona as ModeloUsuario);
@@ -267,7 +265,7 @@ namespace Datos
         {
             if (!p_mod_usuario_original.Equals(p_mod_usuario_nuevo))
             {
-                if(!this.updateUsuario(p_mod_usuario_nuevo) )
+                if(!this.updateUsuario(p_mod_usuario_nuevo) || !this.updateUsuario_Roles(p_mod_usuario_original,p_mod_usuario_nuevo))
                 {
                     return false;
                 }
@@ -301,8 +299,8 @@ namespace Datos
 
         private bool updateUsuario_Roles(ModeloUsuario p_mod_usuario_original, ModeloUsuario p_mod_usuario_nuevo)
         {
-            ModeloUsuario lcl_mod_usuarioAuxiliar;
-            lcl_mod_usuarioAuxiliar = p_mod_usuario_original;
+            ModeloUsuario lcl_mod_usuarioAuxiliar; 
+            lcl_mod_usuarioAuxiliar = new ModeloUsuario(p_mod_usuario_original);
             
             lcl_mod_usuarioAuxiliar.roles = new List<ModeloRoles>();
             foreach (ModeloRoles r in p_mod_usuario_original.roles)
@@ -312,7 +310,7 @@ namespace Datos
                     lcl_mod_usuarioAuxiliar.roles.Add(r);
                 }
             }
-            if (!this.addRoles(lcl_mod_usuarioAuxiliar))
+            if (!this.removeRoles(lcl_mod_usuarioAuxiliar))
             {
                 return false;
             }
@@ -324,7 +322,7 @@ namespace Datos
                     lcl_mod_usuarioAuxiliar.roles.Add(r);
                 }
             }
-            if (!this.removeRoles(lcl_mod_usuarioAuxiliar))
+            if (!this.addRoles(lcl_mod_usuarioAuxiliar))
             { 
                 return false; 
             }

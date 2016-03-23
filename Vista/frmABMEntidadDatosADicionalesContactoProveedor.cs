@@ -13,13 +13,17 @@ namespace Vista
 {
     public partial class frmABMEntidadDatosAdicionalesContactoProveedor : Form
     {
+        #region Atributos
         private ModeloContactoProveedor _contactoProveedor;
         public ModeloContactoProveedor contactoProveedor
+        
         {
             get { return _contactoProveedor; }
             set { _contactoProveedor = value; }
         }
-       
+        #endregion
+
+        #region Constructores
         public frmABMEntidadDatosAdicionalesContactoProveedor()
         {
             InitializeComponent();
@@ -31,7 +35,10 @@ namespace Vista
             contactoProveedor = new ModeloContactoProveedor(p_mod_contactoProveedor);
             this.cargarDatosProveedorEnControles();
         }
+        #endregion
 
+        #region Métodos
+        #region Inicialización
         private void inicializarFormulario()
         {
             //no permitir al usuario modificar dimensiones de ventan
@@ -42,6 +49,19 @@ namespace Vista
             this.StartPosition = FormStartPosition.CenterParent;
             txtBoxCodigoSeleccionado.ReadOnly = txtBoxCUITSeleccionado.ReadOnly = txtBoxRazonSocialSeleccionado.ReadOnly = true;
         }
+        #endregion
+
+        #region Validación
+        private bool validar()
+        {
+            if (contactoProveedor.proveedor != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        #endregion
+
         #region Modelo -> Controles
         private void cargarDatosProveedorEnControles()
         {
@@ -67,6 +87,7 @@ namespace Vista
             lcl_mod_proveedor.razonSocial = txtBoxRazonSocial.Text;
         }
         #endregion
+        #endregion
 
         #region Eventos
 
@@ -85,7 +106,15 @@ namespace Vista
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (this.validar())
+            {
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un Proveedor para el Contacto de Proveedor actual.","Error",MessageBoxButtons.OK);
+            }
+            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

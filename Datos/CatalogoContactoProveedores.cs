@@ -56,6 +56,25 @@ namespace Datos
                 case Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.Cuit:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_contactoProveedor.proveedor.cuit, "@cuit_prooveedor"));
                     return " cuit_proveedor = @cuit_proveedor ";
+                case Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.Any:
+                    string queryBase = base.getCondicionBusqueda(p_mod_contactoProveedor, p_parametroBusqueda, ref p_comando);
+                    if (p_mod_contactoProveedor.proveedor != null)
+                    { 
+                    string razonSocial = (p_mod_contactoProveedor.proveedor.razonSocial == "") ? null : p_mod_contactoProveedor.proveedor.razonSocial;
+                    p_comando.Parameters.Add(this.instanciarParametro(razonSocial, "@razon_social"));
+                    string razonSocialQuery = " (@razon_social is null or razon_social_proveedor LIKE @razon_social) ";
+
+                    int? codigoProveedor = (p_mod_contactoProveedor.proveedor.codigo == 0) ? null : (int?)p_mod_contactoProveedor.proveedor.codigo;
+                    p_comando.Parameters.Add(this.instanciarParametro(codigoProveedor, "@codigo_proveedor"));
+                    string codigoProveedorQuery =" (@codigo_proveedor is null or codigo_proveedor=@codigo_proveedor) ";
+
+                    string cuit = (p_mod_contactoProveedor.proveedor.cuit == "") ? null : p_mod_contactoProveedor.proveedor.cuit;
+                    p_comando.Parameters.Add(this.instanciarParametro(cuit, "@cuit_proveedor"));
+                    string cuitProveedorQuery = " (@cuit_proveedor is null OR cuit_proveedor=@cuit_proveedor) ";
+
+                    return queryBase + " AND " +razonSocialQuery + " AND " +codigoProveedorQuery+ " AND "+cuitProveedorQuery;
+                    }
+                    return queryBase;
                 default:
                     //Prueba condiciones de atributos propios de modeloPersona
                     return base.getCondicionBusqueda(p_mod_contactoProveedor, p_parametroBusqueda, ref p_comando);

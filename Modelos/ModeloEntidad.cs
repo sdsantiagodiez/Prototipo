@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Text.RegularExpressions;
+
 
 namespace Modelos
 {
     public class ModeloEntidad : Modelo
     {
+        #region Constructores
         public ModeloEntidad()
         {
             this.mails = new List<ModeloMail>();
             this.domicilios = new List<ModeloDomicilio>();
             this.telefonos = new List<ModeloTelefono>();
+            _cuit = new CUIT();
         }
 
         public ModeloEntidad(ModeloEntidad p_mod_entidad) : this()
@@ -24,8 +26,9 @@ namespace Modelos
             this.mails = p_mod_entidad.mails;
             this.mails = p_mod_entidad.mails;
             this.observaciones = p_mod_entidad.observaciones;
-            this.telefonos = p_mod_entidad.telefonos;
+            this.telefonos = p_mod_entidad.telefonos; 
         }
+        #endregion
 
         #region Getters/Setters
         int _codigo;
@@ -34,89 +37,87 @@ namespace Modelos
             get { return _codigo; }
             set { this._codigo = value; }
         }
-        string _cuit;
+        
+        private CUIT _cuit;
         public string cuit
         {
-            get { return _cuit; }
-            set { this._cuit = value; }
+            get { return _cuit.numeroCUIT; }
+            set { this._cuit.numeroCUIT = value; }
         }
+        
         List<ModeloDomicilio> _domicilios;
         public List<ModeloDomicilio> domicilios
         {
             get { return _domicilios; }
             set { this._domicilios = value;}
         }
+        
         List<ModeloTelefono> _telefonos;
         public List<ModeloTelefono> telefonos
         {
             get { return _telefonos; }
             set { this._telefonos = value; }
         }
+        
         List<ModeloMail> _mails;
         public List<ModeloMail> mails
         {
             get { return _mails; }
             set { this._mails = value; }
         }
+        
         string _observaciones;
         public string observaciones
         {
             get { return _observaciones; }
             set { this._observaciones = value; }
         }
-        /// <summary>
-        /// PER: CLIENTE;
-        /// PRO: PROVEEDOR;
-        /// </summary>
+
         string _tipoEntidad;
         public string tipoEntidad
         {
             get { return _tipoEntidad; }
-            set { this._tipoEntidad = value; }
-        }
-        #endregion
-
-        public void convertirDatos()
-        {
-            cuit = this.convertirString(cuit);
-        }
-
-        /// <summary>
-        /// Quita espacios
-        /// </summary>
-        /// <param name="pString"></param>
-        /// <returns></returns>
-        public string convertirString(string pString)
-        {
-            string stringConvertida = null;
-            if (pString != null)
+            set 
             {
-                stringConvertida = pString.Trim();
-                //Se remueven espacios dobles entre palabras
-                RegexOptions options = RegexOptions.None;
-                Regex regex = new Regex(@"[ ]{2,}", options);
-                stringConvertida = regex.Replace(stringConvertida, @" ");
-                if (stringConvertida == "")
+                if (value == LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona ||
+                    value == LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor)
                 {
-                    stringConvertida = null;
+                    this._tipoEntidad = value;
+                }
+                else
+                {
+                    this._tipoEntidad = null;
                 }
             }
-            return stringConvertida;
         }
-
+        #endregion
+        
+        #region Validación
         public bool validar()
         {
-            return (this.validarCodigo() == true && this.validarCUIT() == true && this.validarObservaciones() == true &&
-                    this.validarTelefonos() == true && this.validarDomicilios() == true && this.validarMails() == true &&
-                    this.validarTipoEntidad() == true);
+            return this.validarCodigo() 
+                && this.validarCUIT() 
+                && this.validarObservaciones() 
+                && this.validarTelefonos()
+                && this.validarDomicilios()
+                && this.validarMails()
+                && this.validarTipoEntidad();
         }
 
         public bool validarCodigo()
         {
             return true;
         }
+        /// <summary>
+        /// Permite null. Pero si no es null, debe apegarse al formato de CUIT
+        /// </summary>
+        /// <returns></returns>
         public bool validarCUIT()
         {
+            if (cuit != null)
+            {
+                return CUIT.ValidarCuit(cuit);
+            }
             return true;
         }
         public bool validarObservaciones()
@@ -125,65 +126,48 @@ namespace Modelos
         }
         public bool validarTipoEntidad()
         {
-            return (_tipoEntidad == LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona ||
-                _tipoEntidad == LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor);
+            return tipoEntidad != null;
         }
 
         public bool validarTelefonos()
         {
-            if (telefonos.Count > 0)
+
+            foreach (ModeloTelefono t in telefonos)
             {
-                foreach(ModeloTelefono t in telefonos)
+                if (!t.validar())
                 {
-                    if(t.validar() == false)
-                    {
-                        return false;
-                    }
+                    return false;
                 }
-                return true;
             }
-            else
-            {
-                return true;
-            }
+            return true;
+
         }
         public bool validarDomicilios()
         {
-            if (domicilios.Count > 0)
+            foreach(ModeloDomicilio d in domicilios)
             {
-                foreach(ModeloDomicilio d in domicilios)
+                if(!d.validar())
                 {
-                    if(d.validar() == false)
-                    {
-                        return false;
-                    }
+                    return false;
                 }
-                return true;
             }
-            else
-            { 
-                return true;
-            }
+
+            return true;
         }
         public bool validarMails()
         {
-            if (mails.Count > 0)
+            foreach(ModeloMail m in mails)
             {
-                foreach(ModeloMail m in mails)
+                if(!m.validar())
                 {
-                    if(m.validar() == false)
-                    {
-                        return false;
-                    }
+                    return false;
                 }
-                return true;
             }
-            else
-            {
-                return true;
-            }
+            return true;
         }
+        #endregion
 
+        #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloEntidad == false)
@@ -201,7 +185,73 @@ namespace Modelos
                 && this.Equals(this.telefonos, p_mod_entidad.telefonos)
                 && this.Equals(this.domicilios, p_mod_entidad.domicilios);
         }
+        #endregion
 
-        
+        public class CUIT
+        {
+            #region Getters/Setters
+            string _numeroCUIT;
+            public string numeroCUIT
+            {
+                get { return _numeroCUIT; }
+                set { _numeroCUIT = this.normalizarCUIT(value); }
+            }
+            #endregion
+            
+            private string normalizarCUIT(string p_cuit)
+            {
+                if (ValidarCuit(numeroCUIT))
+                {
+                    string cuitNormalizado = p_cuit.Replace(" ", string.Empty).Replace("-", string.Empty);
+                    cuitNormalizado = cuitNormalizado.Insert(2, "-");
+                    cuitNormalizado = cuitNormalizado.Insert(cuitNormalizado.Length - 1, "-");
+                    return cuitNormalizado;
+                }
+                return null;
+            }
+
+            /// <summary>
+            /// Calcula el dígito verificador dado un CUIT completo o sin él.
+            /// </summary>
+            /// <param name="cuit">El CUIT como String sin guiones</param>
+            /// <returns>El valor del dígito verificador calculado.</returns>
+            public static int CalcularDigitoCuit(string cuit)
+            {
+                int[] mult = new[] { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
+                char[] nums = cuit.ToCharArray();
+                int total = 0;
+                for (int i = 0; i < mult.Length; i++)
+                {
+                    total += int.Parse(nums[i].ToString()) * mult[i];
+                }
+                var resto = total % 11;
+                return resto == 0 ? 0 : resto == 1 ? 9 : 11 - resto;
+            }
+
+            /// <summary>
+            /// Valida el CUIT ingresado.
+            /// </summary>
+            /// <param name="cuit" />Número de CUIT como string con o sin guiones
+            /// <returns>True si el CUIT es válido y False si no.</returns>
+            public static bool ValidarCuit(string cuit)
+            {
+                if (cuit != null && !System.Text.RegularExpressions.Regex.IsMatch(cuit, "[^0-9 -]"))
+                {
+                    //Quito los guiones, el cuit resultante debe tener 11 caracteres.
+                    cuit = cuit.Replace("-", string.Empty);
+                    if (cuit.Length != 11)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        int calculado = CalcularDigitoCuit(cuit);
+                        int digito = int.Parse(cuit.Substring(10));
+                        return calculado == digito;
+                    }
+                }
+                return false;
+            }
+        }
     }
 }
