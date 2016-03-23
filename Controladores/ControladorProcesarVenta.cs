@@ -48,7 +48,7 @@ namespace Controladores
                     lcl_mod_ArticuloProveedor.codigoArticuloProveedor = p_descripcionParcialArticulo; break;
             }
 
-            glb_lst_mod_resultadoBusqueda = lcl_cat_ArticuloProveedor.buscarArticuloProveedor(lcl_mod_ArticuloProveedor, p_categoriaBusquedaSeleccionada);
+            glb_lst_mod_resultadoBusqueda = lcl_cat_ArticuloProveedor.buscar(lcl_mod_ArticuloProveedor, p_categoriaBusquedaSeleccionada);
             return glb_lst_mod_resultadoBusqueda.Count;
         }
 

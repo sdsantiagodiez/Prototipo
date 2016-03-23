@@ -128,7 +128,7 @@ namespace Controladores
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor:
                     lcl_mod_ArticuloProveedor.codigoArticuloProveedor = p_userInput; break;
             }
-            List<ModeloArticuloProveedores> lcl_lst_mod_articles = lcl_cat_articuloProveedores.buscarArticuloProveedor(lcl_mod_ArticuloProveedor, p_searchCategory);
+            List<ModeloArticuloProveedores> lcl_lst_mod_articles = lcl_cat_articuloProveedores.buscar(lcl_mod_ArticuloProveedor, p_searchCategory);
             return lcl_lst_mod_articles;
         }
     }
