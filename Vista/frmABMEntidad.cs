@@ -65,7 +65,7 @@ namespace Vista
             //btnAgregarMail.Text = char.ConvertFromUtf32(8595);
             //btnQuitarMail.Text = char.ConvertFromUtf32(8593);
             txtBoxCUIT.KeyPress += this.valorCUIT;
-            txtBoxCUIT.MaxLength = 13;
+            txtBoxCUIT.MaxLength = ModeloEntidad.CUIT.longitud;
             txtBoxDNI.KeyPress += this.valorDNI;
             txtBoxDNI.MaxLength = 10;
             modoFormulario = ModoFormularioInicio;
@@ -1107,20 +1107,32 @@ namespace Vista
         #region TextBox
         private void valorCUIT(object sender, KeyPressEventArgs e)
         {
-            
-            // solo 0-9, borrar y ',' para decimales
-            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != '-'))
+            // solo 0-9 y borrar 
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8))
             {
                 e.Handled = true;
+                return;
+            }
+            //inserta guión luego del caracter 2 y 11
+            if ((sender as TextBox).Text.Length == 2 || (sender as TextBox).Text.Length == 11)
+            {
+                if (e.KeyChar != 8)
+                {
+                    (sender as TextBox).Text += "-" + e.KeyChar;
+                    e.Handled = true;
+                    (sender as TextBox).SelectionStart = (sender as TextBox).Text.Length;
+                }
+
             }
         }
 
         private void valorDNI(object sender, KeyPressEventArgs e)
         {
-            // solo 0-9, borrar y ',' para decimales
+            // solo 0-9, borrar y '.' para cada mil
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != '.'))
             {
                 e.Handled = true;
+                return;
             }
         }
         #endregion

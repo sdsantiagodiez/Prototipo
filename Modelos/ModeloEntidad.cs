@@ -185,6 +185,11 @@ namespace Modelos
                 get { return _numeroCUIT; }
                 set { _numeroCUIT = this.normalizarCUIT(value); }
             }
+
+            static public int longitud
+            {
+                get { return 13; }
+            }
             #endregion
             
             private string normalizarCUIT(string p_cuit)

@@ -230,9 +230,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Controladores\Controladores.csproj">
       <Project>{92aca64e-00ee-448f-988f-f1041ac5f3cf}</Project>
       <Name>Controladores</Name>

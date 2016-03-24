@@ -37,7 +37,7 @@ namespace Modelos
         public string dni 
         {
             get{return _dni;}
-            set { this._dni = validarDNI(value) ? this.normalizarDNI(value) : null; } 
+            set { this._dni = validarDNI(value) ? normalizarDNI(value) : null; } 
         }
         string _nombre;
         public string nombre
@@ -114,7 +114,7 @@ namespace Modelos
         }
         #endregion
 
-        private string normalizarDNI(string p_dni)
+        static public string normalizarDNI(string p_dni)
         {
             p_dni = p_dni.Replace(".", string.Empty);
             int longitud = p_dni.Length;

@@ -113,6 +113,7 @@
             this.codigoMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDatosAdicionales = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
             this.tblLayoutPanelForm.SuspendLayout();
             this.grpBoxTipoEntidad.SuspendLayout();
             this.pnlTipoEntidad.SuspendLayout();
@@ -255,7 +256,7 @@
             this.rchTextBoxObservaciones.Location = new System.Drawing.Point(3, 20);
             this.rchTextBoxObservaciones.Name = "rchTextBoxObservaciones";
             this.rchTextBoxObservaciones.Size = new System.Drawing.Size(689, 93);
-            this.rchTextBoxObservaciones.TabIndex = 22;
+            this.rchTextBoxObservaciones.TabIndex = 25;
             this.rchTextBoxObservaciones.Text = "";
             // 
             // grpBoxDatosPersonales
@@ -317,7 +318,7 @@
             this.txtBoxDNI.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtBoxDNI.Name = "txtBoxDNI";
             this.txtBoxDNI.Size = new System.Drawing.Size(153, 24);
-            this.txtBoxDNI.TabIndex = 13;
+            this.txtBoxDNI.TabIndex = 7;
             // 
             // lblCodigo
             // 
@@ -346,7 +347,7 @@
             this.txtBoxCUIT.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtBoxCUIT.Name = "txtBoxCUIT";
             this.txtBoxCUIT.Size = new System.Drawing.Size(153, 24);
-            this.txtBoxCUIT.TabIndex = 7;
+            this.txtBoxCUIT.TabIndex = 6;
             // 
             // lblCUIT
             // 
@@ -378,7 +379,7 @@
             this.txtBoxRazonSocial.Margin = new System.Windows.Forms.Padding(3, 3, 20, 30);
             this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
             this.txtBoxRazonSocial.Size = new System.Drawing.Size(323, 24);
-            this.txtBoxRazonSocial.TabIndex = 11;
+            this.txtBoxRazonSocial.TabIndex = 8;
             // 
             // lblNombre
             // 
@@ -398,7 +399,7 @@
             this.txtBoxNombre.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtBoxNombre.Name = "txtBoxNombre";
             this.txtBoxNombre.Size = new System.Drawing.Size(323, 24);
-            this.txtBoxNombre.TabIndex = 9;
+            this.txtBoxNombre.TabIndex = 10;
             // 
             // txtBoxApellido
             // 
@@ -407,7 +408,7 @@
             this.txtBoxApellido.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtBoxApellido.Name = "txtBoxApellido";
             this.txtBoxApellido.Size = new System.Drawing.Size(323, 24);
-            this.txtBoxApellido.TabIndex = 8;
+            this.txtBoxApellido.TabIndex = 9;
             // 
             // lblApellido
             // 
@@ -500,7 +501,7 @@
             this.txtBoxCalle.Location = new System.Drawing.Point(65, 5);
             this.txtBoxCalle.Name = "txtBoxCalle";
             this.txtBoxCalle.Size = new System.Drawing.Size(132, 24);
-            this.txtBoxCalle.TabIndex = 8;
+            this.txtBoxCalle.TabIndex = 11;
             // 
             // lblNumero
             // 
@@ -530,7 +531,7 @@
             this.txtBoxPiso.Location = new System.Drawing.Point(440, 5);
             this.txtBoxPiso.Name = "txtBoxPiso";
             this.txtBoxPiso.Size = new System.Drawing.Size(89, 24);
-            this.txtBoxPiso.TabIndex = 10;
+            this.txtBoxPiso.TabIndex = 13;
             // 
             // lblDepartamento
             // 
@@ -558,10 +559,10 @@
             // 
             this.cmbBoxProvincia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxProvincia.FormattingEnabled = true;
-            this.cmbBoxProvincia.Location = new System.Drawing.Point(440, 39);
+            this.cmbBoxProvincia.Location = new System.Drawing.Point(440, 41);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(89, 26);
-            this.cmbBoxProvincia.TabIndex = 14;
+            this.cmbBoxProvincia.TabIndex = 18;
             // 
             // txtBoxDepartamento
             // 
@@ -569,7 +570,7 @@
             this.txtBoxDepartamento.Location = new System.Drawing.Point(588, 5);
             this.txtBoxDepartamento.Name = "txtBoxDepartamento";
             this.txtBoxDepartamento.Size = new System.Drawing.Size(92, 24);
-            this.txtBoxDepartamento.TabIndex = 11;
+            this.txtBoxDepartamento.TabIndex = 14;
             // 
             // lblCiudad
             // 
@@ -588,7 +589,7 @@
             this.txtBoxCiudad.Location = new System.Drawing.Point(65, 40);
             this.txtBoxCiudad.Name = "txtBoxCiudad";
             this.txtBoxCiudad.Size = new System.Drawing.Size(132, 24);
-            this.txtBoxCiudad.TabIndex = 12;
+            this.txtBoxCiudad.TabIndex = 15;
             // 
             // lblCodigoPostal
             // 
@@ -607,7 +608,7 @@
             this.txtBoxCodigoPostal.Location = new System.Drawing.Point(309, 40);
             this.txtBoxCodigoPostal.Name = "txtBoxCodigoPostal";
             this.txtBoxCodigoPostal.Size = new System.Drawing.Size(49, 24);
-            this.txtBoxCodigoPostal.TabIndex = 13;
+            this.txtBoxCodigoPostal.TabIndex = 16;
             // 
             // lblPais
             // 
@@ -624,10 +625,10 @@
             // 
             this.cmbBoxPais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxPais.FormattingEnabled = true;
-            this.cmbBoxPais.Location = new System.Drawing.Point(588, 39);
+            this.cmbBoxPais.Location = new System.Drawing.Point(588, 41);
             this.cmbBoxPais.Name = "cmbBoxPais";
             this.cmbBoxPais.Size = new System.Drawing.Size(92, 26);
-            this.cmbBoxPais.TabIndex = 15;
+            this.cmbBoxPais.TabIndex = 17;
             this.cmbBoxPais.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxPais_SelectionChangeCommitted);
             // 
             // txtBoxNumeroDomicilio
@@ -636,7 +637,7 @@
             this.txtBoxNumeroDomicilio.Location = new System.Drawing.Point(309, 5);
             this.txtBoxNumeroDomicilio.Name = "txtBoxNumeroDomicilio";
             this.txtBoxNumeroDomicilio.Size = new System.Drawing.Size(49, 24);
-            this.txtBoxNumeroDomicilio.TabIndex = 16;
+            this.txtBoxNumeroDomicilio.TabIndex = 12;
             // 
             // tblLayoutPanelDomicilioGrid
             // 
@@ -781,7 +782,7 @@
             this.btnAgregarDomicilio.Location = new System.Drawing.Point(5, 12);
             this.btnAgregarDomicilio.Name = "btnAgregarDomicilio";
             this.btnAgregarDomicilio.Size = new System.Drawing.Size(22, 22);
-            this.btnAgregarDomicilio.TabIndex = 16;
+            this.btnAgregarDomicilio.TabIndex = 19;
             this.btnAgregarDomicilio.UseVisualStyleBackColor = true;
             this.btnAgregarDomicilio.Click += new System.EventHandler(this.btnAgregarDomicilio_Click);
             // 
@@ -863,7 +864,7 @@
             this.btnAgregarTelefono.Location = new System.Drawing.Point(3, 3);
             this.btnAgregarTelefono.Name = "btnAgregarTelefono";
             this.btnAgregarTelefono.Size = new System.Drawing.Size(21, 19);
-            this.btnAgregarTelefono.TabIndex = 21;
+            this.btnAgregarTelefono.TabIndex = 24;
             this.btnAgregarTelefono.UseVisualStyleBackColor = true;
             this.btnAgregarTelefono.Click += new System.EventHandler(this.btnAgregarNumeroTelefono_Click);
             // 
@@ -949,7 +950,7 @@
             this.txtBoxTelefono.Location = new System.Drawing.Point(141, 9);
             this.txtBoxTelefono.Name = "txtBoxTelefono";
             this.txtBoxTelefono.Size = new System.Drawing.Size(164, 24);
-            this.txtBoxTelefono.TabIndex = 20;
+            this.txtBoxTelefono.TabIndex = 22;
             // 
             // lblTelefono
             // 
@@ -970,10 +971,10 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 10);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 8);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(54, 26);
-            this.cmbBoxTipoTelefono.TabIndex = 19;
+            this.cmbBoxTipoTelefono.TabIndex = 23;
             // 
             // tblLayoutPanelMail
             // 
@@ -1007,7 +1008,7 @@
             this.txtBoxMail.Location = new System.Drawing.Point(108, 9);
             this.txtBoxMail.Name = "txtBoxMail";
             this.txtBoxMail.Size = new System.Drawing.Size(258, 24);
-            this.txtBoxMail.TabIndex = 17;
+            this.txtBoxMail.TabIndex = 20;
             // 
             // tblLayoutPanelMailLista
             // 
@@ -1045,7 +1046,7 @@
             this.btnQuitarMail.Location = new System.Drawing.Point(3, 28);
             this.btnQuitarMail.Name = "btnQuitarMail";
             this.btnQuitarMail.Size = new System.Drawing.Size(21, 20);
-            this.btnQuitarMail.TabIndex = 11;
+            this.btnQuitarMail.TabIndex = 0;
             this.btnQuitarMail.TabStop = false;
             this.btnQuitarMail.UseVisualStyleBackColor = true;
             this.btnQuitarMail.Click += new System.EventHandler(this.btnQuitarMail_Click);
@@ -1057,7 +1058,7 @@
             this.btnAgregarMail.Location = new System.Drawing.Point(3, 3);
             this.btnAgregarMail.Name = "btnAgregarMail";
             this.btnAgregarMail.Size = new System.Drawing.Size(21, 19);
-            this.btnAgregarMail.TabIndex = 18;
+            this.btnAgregarMail.TabIndex = 21;
             this.btnAgregarMail.UseVisualStyleBackColor = true;
             this.btnAgregarMail.Click += new System.EventHandler(this.btnAgregarMail_Click);
             // 
@@ -1099,7 +1100,7 @@
             this.btnDatosAdicionales.Location = new System.Drawing.Point(292, 670);
             this.btnDatosAdicionales.Name = "btnDatosAdicionales";
             this.btnDatosAdicionales.Size = new System.Drawing.Size(116, 23);
-            this.btnDatosAdicionales.TabIndex = 7;
+            this.btnDatosAdicionales.TabIndex = 26;
             this.btnDatosAdicionales.Text = "Datos Adicionales";
             this.btnDatosAdicionales.UseVisualStyleBackColor = true;
             this.btnDatosAdicionales.Click += new System.EventHandler(this.btnDatosAdicionales_Click);
@@ -1116,6 +1117,7 @@
             this.Name = "frmABMEntidad";
             this.Text = "ABM Entidades";
             this.Controls.SetChildIndex(this.tblLayoutPanelForm, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).EndInit();
             this.tblLayoutPanelForm.ResumeLayout(false);
             this.grpBoxTipoEntidad.ResumeLayout(false);
             this.pnlTipoEntidad.ResumeLayout(false);

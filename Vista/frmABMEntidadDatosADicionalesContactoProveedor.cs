@@ -29,6 +29,9 @@ namespace Vista
             InitializeComponent();
             this.inicializarFormulario();
             contactoProveedor = new ModeloContactoProveedor();
+
+            txtBoxCUIT.KeyPress += this.valorCUIT;
+            txtBoxCUIT.MaxLength = ModeloEntidad.CUIT.longitud;
         }
         public frmABMEntidadDatosAdicionalesContactoProveedor(ModeloContactoProveedor p_mod_contactoProveedor) : this()
         {
@@ -122,6 +125,33 @@ namespace Vista
             this.contactoProveedor = null;
             this.Close();
         }
+        /// <summary>
+        /// Diferente al valorCUIT de frmABMEntidad. No permite ingreso de guión, pero los ingresa el sistema automaticamente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void valorCUIT(object sender, KeyPressEventArgs e)
+        {
+            // solo 0-9 y borrar 
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 ))
+            {
+                e.Handled = true;
+                return;
+            }
+            
+            if ((sender as TextBox).Text.Length == 2 || (sender as TextBox).Text.Length == 11)
+            {
+                if (e.KeyChar != 8)
+                {
+                    (sender as TextBox).Text +=  "-"+e.KeyChar;
+                    e.Handled = true;
+                    (sender as TextBox).SelectionStart = (sender as TextBox).Text.Length;
+                }
+                
+            }
+            
+        }
+
         #endregion
 
        

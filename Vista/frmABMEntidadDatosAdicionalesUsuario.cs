@@ -14,7 +14,8 @@ namespace Vista
 {
     public partial class frmABMEntidadDatosAdicionalesUsuario : Form
     {
-        ErrorProvider errorProviderTxtBox;
+        #region Atributos
+        ErrorProvider errorProviderActual;
         private ModeloUsuario _usuario;
         public ModeloUsuario usuario
         {
@@ -31,12 +32,16 @@ namespace Vista
                 this.inicializarModoUsuarioNuevo(_modoUsuarioNuevo);
             }
         }
+        #endregion
 
+        #region Constructores
         public frmABMEntidadDatosAdicionalesUsuario()
         {
             InitializeComponent();
             this.inicializarFormulario();
-            errorProviderTxtBox = new ErrorProvider();
+            errorProviderActual = new ErrorProvider();
+
+            txtBoxUsuario.KeyPress += this.valorUsername;
         }
 
         public frmABMEntidadDatosAdicionalesUsuario(ModeloUsuario p_mod_usuario)
@@ -46,6 +51,9 @@ namespace Vista
             this.cargarUsuarioEnControles();
             modoUsuarioNuevo = false;
         }
+        #endregion     
+
+        #region Métodos
         #region Inicialización
         private void inicializarFormulario()
         {
@@ -54,7 +62,7 @@ namespace Vista
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             modoUsuarioNuevo = true;
-            
+
             this.StartPosition = FormStartPosition.CenterParent;
             this.inicializarCheckedListBox();
         }
@@ -76,10 +84,9 @@ namespace Vista
 
             btnModificar.Enabled = !value;
         }
-        
+
         #endregion
 
-        #region Métodos
         #region Validación
         private bool validarDatosIngresados()
         {
@@ -93,27 +100,27 @@ namespace Vista
         {
             if (string.IsNullOrWhiteSpace(txtBoxUsuario.Text))
             {
-                errorProviderTxtBox.SetError(txtBoxUsuario, "Este campo es obligatorio. No puede permanecer vacío.");
+                errorProviderActual.SetError(txtBoxUsuario, "Este campo es obligatorio. No puede permanecer vacío.");
                 return false;
             } else if (!ModeloUsuario.validarUsuario(txtBoxUsuario.Text))
             {
-                errorProviderTxtBox.SetError(txtBoxUsuario, "Ha ingresado caracteres no válidos. No se permiten caracteres especiales o espacios, a excepción de '_'");
+                errorProviderActual.SetError(txtBoxUsuario, "Ha ingresado caracteres no válidos. No se permiten caracteres especiales o espacios, a excepción de '_'");
                 return false;
             }
-            errorProviderTxtBox.SetError(txtBoxUsuario, "");
+            errorProviderActual.SetError(txtBoxUsuario, "");
             return true;
         }
         private bool validarContraseña()
         {
-            errorProviderTxtBox.SetError(txtBoxContraseña, "");
-            errorProviderTxtBox.SetError(txtBoxConfirmarContraseña, "");
+            errorProviderActual.SetError(txtBoxContraseña, "");
+            errorProviderActual.SetError(txtBoxConfirmarContraseña, "");
             if (!ModeloUsuario.validarContrasenia(txtBoxContraseña.Text))
             {
-                errorProviderTxtBox.SetError(txtBoxContraseña, "La contraseña ingresada no es válida. Debe tener por lo mínimo 8 caracteres.");
+                errorProviderActual.SetError(txtBoxContraseña, "La contraseña ingresada no es válida. Debe tener por lo mínimo 8 caracteres.");
                 return false;
             } else if (txtBoxContraseña.Text != txtBoxConfirmarContraseña.Text)
             {
-                errorProviderTxtBox.SetError(txtBoxConfirmarContraseña, "Las contraseñas no coinciden.");
+                errorProviderActual.SetError(txtBoxConfirmarContraseña, "Las contraseñas no coinciden.");
                 return false;
             }
             
@@ -172,14 +179,13 @@ namespace Vista
         }
         #endregion
 
-
         #endregion
         
         #region Eventos
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             //Si validación falla, el método de validación mostrará los mensajes de error correspondientes
-            if (this.validarDatosIngresados() == true)
+            if (this.validarDatosIngresados())
             {
                 this.cargarControlesEnUsuario();
                 this.Close();
@@ -190,12 +196,32 @@ namespace Vista
         {
             this.Close();
         }
-        #endregion
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
             this.modoUsuarioNuevo = true;
         }
 
+        private void valorUsername(object sender, KeyPressEventArgs e)
+        {
+
+            if (!ModeloUsuario.validarUsuario(e.KeyChar.ToString()) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+                errorProviderActual.SetError((sender as TextBox), "Caracter no válido. Solo se permite letras, números y '_'.");
+                return;
+            }
+            if (ModeloUsuario.validarUsuario((sender as TextBox).Text))
+            {
+                errorProviderActual.SetError((sender as TextBox), "");
+            }
+        }
+
+        private void chckBoxMostrarContraseña_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBoxConfirmarContraseña.UseSystemPasswordChar = txtBoxContraseña.UseSystemPasswordChar = !(sender as CheckBox).Checked;
+        }
+        #endregion
+        
     }
 }
