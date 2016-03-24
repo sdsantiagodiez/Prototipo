@@ -31,8 +31,8 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblContrasenia = new System.Windows.Forms.Label();
             this.btnLogIn = new System.Windows.Forms.Button();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.txtContrasenia = new System.Windows.Forms.TextBox();
+            this.txtBoxUsuario = new System.Windows.Forms.TextBox();
+            this.txtBoxContrasenia = new System.Windows.Forms.TextBox();
             this.lblBienvenido = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -64,19 +64,19 @@
             this.btnLogIn.UseVisualStyleBackColor = true;
             this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
-            // txtUsuario
+            // txtBoxUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(110, 93);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(134, 20);
-            this.txtUsuario.TabIndex = 3;
+            this.txtBoxUsuario.Location = new System.Drawing.Point(110, 93);
+            this.txtBoxUsuario.Name = "txtBoxUsuario";
+            this.txtBoxUsuario.Size = new System.Drawing.Size(134, 20);
+            this.txtBoxUsuario.TabIndex = 3;
             // 
-            // txtContrasenia
+            // txtBoxContrasenia
             // 
-            this.txtContrasenia.Location = new System.Drawing.Point(110, 129);
-            this.txtContrasenia.Name = "txtContrasenia";
-            this.txtContrasenia.Size = new System.Drawing.Size(134, 20);
-            this.txtContrasenia.TabIndex = 4;
+            this.txtBoxContrasenia.Location = new System.Drawing.Point(110, 129);
+            this.txtBoxContrasenia.Name = "txtBoxContrasenia";
+            this.txtBoxContrasenia.Size = new System.Drawing.Size(134, 20);
+            this.txtBoxContrasenia.TabIndex = 4;
             // 
             // lblBienvenido
             // 
@@ -90,12 +90,13 @@
             // 
             // frmLogIn
             // 
+            this.AcceptButton = this.btnLogIn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.lblBienvenido);
-            this.Controls.Add(this.txtContrasenia);
-            this.Controls.Add(this.txtUsuario);
+            this.Controls.Add(this.txtBoxContrasenia);
+            this.Controls.Add(this.txtBoxUsuario);
             this.Controls.Add(this.btnLogIn);
             this.Controls.Add(this.lblContrasenia);
             this.Controls.Add(this.lblUsuario);
@@ -111,8 +112,8 @@
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblContrasenia;
         private System.Windows.Forms.Button btnLogIn;
-        private System.Windows.Forms.TextBox txtUsuario;
-        private System.Windows.Forms.TextBox txtContrasenia;
+        private System.Windows.Forms.TextBox txtBoxUsuario;
+        private System.Windows.Forms.TextBox txtBoxContrasenia;
         private System.Windows.Forms.Label lblBienvenido;
     }
 }

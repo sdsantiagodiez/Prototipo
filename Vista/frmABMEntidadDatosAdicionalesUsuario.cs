@@ -204,7 +204,6 @@ namespace Vista
 
         private void valorUsername(object sender, KeyPressEventArgs e)
         {
-
             if (!ModeloUsuario.validarUsuario(e.KeyChar.ToString()) && e.KeyChar != '\b')
             {
                 e.Handled = true;

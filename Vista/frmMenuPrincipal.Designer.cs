@@ -34,12 +34,12 @@
             this.btnVenta = new System.Windows.Forms.Button();
             this.lblBienvenido = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.pnlER = new System.Windows.Forms.Panel();
+            this.pnlReportes = new System.Windows.Forms.Panel();
             this.btnEmitirReporte = new System.Windows.Forms.Button();
-            this.pnlED = new System.Windows.Forms.Panel();
+            this.pnlABM = new System.Windows.Forms.Panel();
             this.btnABM = new System.Windows.Forms.Button();
-            this.pnlEC = new System.Windows.Forms.Panel();
-            this.pnlEV = new System.Windows.Forms.Panel();
+            this.pnlCompras = new System.Windows.Forms.Panel();
+            this.pnlVentas = new System.Windows.Forms.Panel();
             this.btnDevolucion = new System.Windows.Forms.Button();
             this.btnReserva = new System.Windows.Forms.Button();
             this.lblFecha = new System.Windows.Forms.Label();
@@ -53,10 +53,10 @@
             this.entidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.artículosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.artículosDeProveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pnlER.SuspendLayout();
-            this.pnlED.SuspendLayout();
-            this.pnlEC.SuspendLayout();
-            this.pnlEV.SuspendLayout();
+            this.pnlReportes.SuspendLayout();
+            this.pnlABM.SuspendLayout();
+            this.pnlCompras.SuspendLayout();
+            this.pnlVentas.SuspendLayout();
             this.panel1.SuspendLayout();
             this.cntxtMenuStripABM.SuspendLayout();
             this.SuspendLayout();
@@ -103,13 +103,13 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // pnlER
+            // pnlReportes
             // 
-            this.pnlER.Controls.Add(this.btnEmitirReporte);
-            this.pnlER.Location = new System.Drawing.Point(45, 52);
-            this.pnlER.Name = "pnlER";
-            this.pnlER.Size = new System.Drawing.Size(199, 65);
-            this.pnlER.TabIndex = 23;
+            this.pnlReportes.Controls.Add(this.btnEmitirReporte);
+            this.pnlReportes.Location = new System.Drawing.Point(45, 52);
+            this.pnlReportes.Name = "pnlReportes";
+            this.pnlReportes.Size = new System.Drawing.Size(199, 65);
+            this.pnlReportes.TabIndex = 23;
             // 
             // btnEmitirReporte
             // 
@@ -121,13 +121,13 @@
             this.btnEmitirReporte.UseVisualStyleBackColor = true;
             this.btnEmitirReporte.Click += new System.EventHandler(this.btnEmitirReporte_Click);
             // 
-            // pnlED
+            // pnlABM
             // 
-            this.pnlED.Controls.Add(this.btnABM);
-            this.pnlED.Location = new System.Drawing.Point(45, 364);
-            this.pnlED.Name = "pnlED";
-            this.pnlED.Size = new System.Drawing.Size(200, 65);
-            this.pnlED.TabIndex = 25;
+            this.pnlABM.Controls.Add(this.btnABM);
+            this.pnlABM.Location = new System.Drawing.Point(45, 364);
+            this.pnlABM.Name = "pnlABM";
+            this.pnlABM.Size = new System.Drawing.Size(200, 65);
+            this.pnlABM.TabIndex = 25;
             // 
             // btnABM
             // 
@@ -139,23 +139,23 @@
             this.btnABM.UseVisualStyleBackColor = true;
             this.btnABM.Click += new System.EventHandler(this.btnABM_Click);
             // 
-            // pnlEC
+            // pnlCompras
             // 
-            this.pnlEC.Controls.Add(this.btnPedidoProv);
-            this.pnlEC.Location = new System.Drawing.Point(45, 123);
-            this.pnlEC.Name = "pnlEC";
-            this.pnlEC.Size = new System.Drawing.Size(200, 62);
-            this.pnlEC.TabIndex = 26;
+            this.pnlCompras.Controls.Add(this.btnPedidoProv);
+            this.pnlCompras.Location = new System.Drawing.Point(45, 123);
+            this.pnlCompras.Name = "pnlCompras";
+            this.pnlCompras.Size = new System.Drawing.Size(200, 62);
+            this.pnlCompras.TabIndex = 26;
             // 
-            // pnlEV
+            // pnlVentas
             // 
-            this.pnlEV.Controls.Add(this.btnDevolucion);
-            this.pnlEV.Controls.Add(this.btnReserva);
-            this.pnlEV.Controls.Add(this.btnVenta);
-            this.pnlEV.Location = new System.Drawing.Point(45, 191);
-            this.pnlEV.Name = "pnlEV";
-            this.pnlEV.Size = new System.Drawing.Size(199, 166);
-            this.pnlEV.TabIndex = 27;
+            this.pnlVentas.Controls.Add(this.btnDevolucion);
+            this.pnlVentas.Controls.Add(this.btnReserva);
+            this.pnlVentas.Controls.Add(this.btnVenta);
+            this.pnlVentas.Location = new System.Drawing.Point(45, 191);
+            this.pnlVentas.Name = "pnlVentas";
+            this.pnlVentas.Size = new System.Drawing.Size(199, 166);
+            this.pnlVentas.TabIndex = 27;
             // 
             // btnDevolucion
             // 
@@ -279,10 +279,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(303, 540);
-            this.Controls.Add(this.pnlEV);
-            this.Controls.Add(this.pnlEC);
-            this.Controls.Add(this.pnlED);
-            this.Controls.Add(this.pnlER);
+            this.Controls.Add(this.pnlVentas);
+            this.Controls.Add(this.pnlCompras);
+            this.Controls.Add(this.pnlABM);
+            this.Controls.Add(this.pnlReportes);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.lblBienvenido);
@@ -292,10 +292,10 @@
             this.MinimizeBox = false;
             this.Name = "frmMenuPrincipal";
             this.Text = "Programa Principal - Version Prototype";
-            this.pnlER.ResumeLayout(false);
-            this.pnlED.ResumeLayout(false);
-            this.pnlEC.ResumeLayout(false);
-            this.pnlEV.ResumeLayout(false);
+            this.pnlReportes.ResumeLayout(false);
+            this.pnlABM.ResumeLayout(false);
+            this.pnlCompras.ResumeLayout(false);
+            this.pnlVentas.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.cntxtMenuStripABM.ResumeLayout(false);
@@ -311,11 +311,11 @@
         private System.Windows.Forms.Button btnVenta;
         private System.Windows.Forms.Label lblBienvenido;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.Panel pnlER;
+        private System.Windows.Forms.Panel pnlReportes;
         private System.Windows.Forms.Button btnEmitirReporte;
-        private System.Windows.Forms.Panel pnlED;
-        private System.Windows.Forms.Panel pnlEC;
-        private System.Windows.Forms.Panel pnlEV;
+        private System.Windows.Forms.Panel pnlABM;
+        private System.Windows.Forms.Panel pnlCompras;
+        private System.Windows.Forms.Panel pnlVentas;
         private System.Windows.Forms.Button btnDevolucion;
         private System.Windows.Forms.Button btnReserva;
         private System.Windows.Forms.Button btnABM;

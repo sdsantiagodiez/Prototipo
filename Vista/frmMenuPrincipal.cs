@@ -8,59 +8,106 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
+using LibreriaClasesCompartidas;
 
 namespace Vista
 {
     public partial class frmMenuPrincipal : Form
     {
+        #region Constructores
         public frmMenuPrincipal()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            lblNombreUsuario.Text = "Usuario TEST";
-            lblFechaLog.Text = DateTime.Today.ToString("dd/MM/yyyy");
-            lblHoraLog.Text = DateTime.Now.ToString("HH:mm:ss tt");
-            timerFechaHora.Enabled = true;
         }
 
-        public frmMenuPrincipal(List<ModeloRoles> roles, ModeloPersonas usuario)
+        public frmMenuPrincipal(ModeloUsuario usuarioActual) : this()
         {
-            InitializeComponent();
-            
-            /*Procedimientos a seguir de acuerdo al rol
-            //muestro los paneles correspondientes
-            //se toman los codigos como siguien:
-            //1: Encargado de Reportes
-            //2: Encargado de Compras
-            //3: Encargado de Ventas
-            //4: Encargado de Datos
-            // se supone que cada usuario puede tener mas de un rol
-            foreach (ModeloRoles rol in roles)
+            if (this.inicializarModoFormulario(usuarioActual))
             {
-                int nroRol = rol.codigo;
-                switch (nroRol)
+                lblNombreUsuario.Text = usuarioActual.usuario ;
+            }
+            else 
+            {
+                MessageBox.Show("El usuario actual no posee roles asignados. Contacte al administrador.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region Métodos
+
+        #region Inicialización
+        private bool inicializarModoFormulario(ModeloUsuario p_mod_usuario)
+        {
+            this.inicializarModoAdmin(false);
+
+            if(p_mod_usuario.roles.Count == 0)
+            { return false; }
+            
+            foreach (ModeloRoles r in p_mod_usuario.roles)
+            {
+                switch (r.descripcion)
                 {
-                    case 1: pnlER.Visible = true; break;
-                    case 2: pnlEC.Visible = true; break;
-                    case 3: pnlEV.Visible = true; break;
-                    case 4: pnlED.Visible = true; break;
+                    case Constantes.TipoRoles.Admin:
+                        this.inicializarModoAdmin(true);
+                        return true;
+                    case Constantes.TipoRoles.Compras:
+                        this.inicializarModoCompras(true);
+                        break;
+                    case Constantes.TipoRoles.Ventas:
+                        this.inicializarModoVentas(true);
+                        break;
+                    case Constantes.TipoRoles.Datos_Reportes:
+                        this.inicializarModoReportes(true);
+                        break;
+                    case Constantes.TipoRoles.Datos_ABM:
+                        this.inicializarModoABM(true);
+                        break;
                     default:
                         break;
                 }
             }
-            *///Procedimientos a seguir de acuerdo al rol. Por ahora sin considerar rol
-            
-            
-            //pnlEC.Visible = true; 
-            //        case 3: pnlEV.Visible = true; break;
-            //        case 4: pnlED.Visible = true; break;
-
-            //cargo los datos correspondiente al usuario, identificandolo
-            lblFechaLog.Text = DateTime.Today.ToString("dd/MM/yyyy");
-            lblHoraLog.Text = DateTime.Now.ToString("HH:mm:ss tt");
+            return true;
         }
 
+        private void inicializarModoAdmin(bool inicializar)
+        {
+            this.inicializarModoABM(inicializar);
+            this.inicializarModoCompras(inicializar);
+            this.inicializarModoVentas(inicializar);
+            this.inicializarModoReportes(inicializar);
+        }
+        private void inicializarModoCompras(bool inicializar)
+        {
+            this.inicializarControles(inicializar, pnlCompras);
+        }
+        private void inicializarModoVentas(bool inicializar)
+        {
+            this.inicializarControles(inicializar, pnlVentas);
+        }
+        private void inicializarModoReportes(bool inicializar)
+        {
+            this.inicializarControles(inicializar, pnlReportes);
+        }
+        private void inicializarModoABM(bool inicializar)
+        {
+            this.inicializarControles(inicializar, pnlABM);
+        }
+        
+        private void inicializarControles(bool inicializar, Control controlContenedor)
+        {
+            foreach (Control c in controlContenedor.Controls)
+            {
+                c.Enabled = inicializar;
+            }
+        }
+        #endregion
+        
+        #endregion
 
+        #region Eventos
+
+        #region Button
         private void btnPedidoProv_Click(object sender, EventArgs e)
         {
             frmPedidoProveedorNuevo frmPedidoProv = new frmPedidoProveedorNuevo();
@@ -96,12 +143,6 @@ namespace Vista
             frmDevolucion.ShowDialog();
         }
 
-        private void timerFechaHora_Tick(object sender, EventArgs e)
-        {
-            lblFechaLog.Text = DateTime.Today.ToString("dd/MM/yyyy");
-            lblHoraLog.Text = DateTime.Now.ToString("HH:mm:ss tt");
-        }
-
         private void btnABM_Click(object sender, EventArgs e)
         {
             //Calcula si muestra el menuStrip no tiene lugar hacia abajo, hace que aparezca por sobre el botón
@@ -113,9 +154,19 @@ namespace Vista
             else
             {
                 cntxtMenuStripABM.Show(btnABM, new Point(0, btnABM.Height));
-            }  
+            }
         }
+        #endregion
 
+        #region Timer
+        private void timerFechaHora_Tick(object sender, EventArgs e)
+        {
+            lblFechaLog.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            lblHoraLog.Text = DateTime.Now.ToString("HH:mm:ss tt");
+        }
+        #endregion
+
+        #region ToolStripMenuItem
         private void entidadesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmABMEntidad lcl_frm_ABMEntidad = new frmABMEntidad();
@@ -133,5 +184,8 @@ namespace Vista
             frmABMArticuloProveedor lcl_frm_ABMArticuloProveedor = new frmABMArticuloProveedor();
             lcl_frm_ABMArticuloProveedor.ShowDialog();
         }
+        #endregion
+        
+        #endregion
     }
 }

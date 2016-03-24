@@ -31,18 +31,18 @@
             this.grpBoxDatosUsuario = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelDatosUsuario = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtBoxConfirmarContraseña = new System.Windows.Forms.TextBox();
             this.lblUsuario = new System.Windows.Forms.Label();
-            this.lblConfirmarContraseña = new System.Windows.Forms.Label();
             this.txtBoxUsuario = new System.Windows.Forms.TextBox();
             this.txtBoxContraseña = new System.Windows.Forms.TextBox();
             this.lblContraseña = new System.Windows.Forms.Label();
-            this.chckdListBoxRol = new System.Windows.Forms.CheckedListBox();
-            this.btnAceptar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblConfirmarContraseña = new System.Windows.Forms.Label();
+            this.txtBoxConfirmarContraseña = new System.Windows.Forms.TextBox();
             this.chckBoxMostrarContraseña = new System.Windows.Forms.CheckBox();
+            this.chckdListBoxRol = new System.Windows.Forms.CheckedListBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
             this.grpBoxDatosUsuario.SuspendLayout();
             this.tblLayoutPanelDatosUsuario.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -101,16 +101,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(359, 160);
             this.tableLayoutPanel1.TabIndex = 12;
             // 
-            // txtBoxConfirmarContraseña
-            // 
-            this.txtBoxConfirmarContraseña.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxConfirmarContraseña.Location = new System.Drawing.Point(99, 88);
-            this.txtBoxConfirmarContraseña.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtBoxConfirmarContraseña.Name = "txtBoxConfirmarContraseña";
-            this.txtBoxConfirmarContraseña.Size = new System.Drawing.Size(240, 24);
-            this.txtBoxConfirmarContraseña.TabIndex = 3;
-            this.txtBoxConfirmarContraseña.UseSystemPasswordChar = true;
-            // 
             // lblUsuario
             // 
             this.lblUsuario.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -121,17 +111,6 @@
             this.lblUsuario.Size = new System.Drawing.Size(61, 17);
             this.lblUsuario.TabIndex = 2;
             this.lblUsuario.Text = "Usuario:";
-            // 
-            // lblConfirmarContraseña
-            // 
-            this.lblConfirmarContraseña.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblConfirmarContraseña.AutoSize = true;
-            this.lblConfirmarContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConfirmarContraseña.Location = new System.Drawing.Point(8, 83);
-            this.lblConfirmarContraseña.Name = "lblConfirmarContraseña";
-            this.lblConfirmarContraseña.Size = new System.Drawing.Size(85, 34);
-            this.lblConfirmarContraseña.TabIndex = 10;
-            this.lblConfirmarContraseña.Text = "Confirmar Contraseña:";
             // 
             // txtBoxUsuario
             // 
@@ -163,6 +142,38 @@
             this.lblContraseña.TabIndex = 3;
             this.lblContraseña.Text = "Contraseña:";
             // 
+            // lblConfirmarContraseña
+            // 
+            this.lblConfirmarContraseña.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblConfirmarContraseña.AutoSize = true;
+            this.lblConfirmarContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConfirmarContraseña.Location = new System.Drawing.Point(8, 83);
+            this.lblConfirmarContraseña.Name = "lblConfirmarContraseña";
+            this.lblConfirmarContraseña.Size = new System.Drawing.Size(85, 34);
+            this.lblConfirmarContraseña.TabIndex = 10;
+            this.lblConfirmarContraseña.Text = "Confirmar Contraseña:";
+            // 
+            // txtBoxConfirmarContraseña
+            // 
+            this.txtBoxConfirmarContraseña.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxConfirmarContraseña.Location = new System.Drawing.Point(99, 88);
+            this.txtBoxConfirmarContraseña.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtBoxConfirmarContraseña.Name = "txtBoxConfirmarContraseña";
+            this.txtBoxConfirmarContraseña.Size = new System.Drawing.Size(240, 24);
+            this.txtBoxConfirmarContraseña.TabIndex = 3;
+            this.txtBoxConfirmarContraseña.UseSystemPasswordChar = true;
+            // 
+            // chckBoxMostrarContraseña
+            // 
+            this.chckBoxMostrarContraseña.AutoSize = true;
+            this.chckBoxMostrarContraseña.Location = new System.Drawing.Point(99, 123);
+            this.chckBoxMostrarContraseña.Name = "chckBoxMostrarContraseña";
+            this.chckBoxMostrarContraseña.Size = new System.Drawing.Size(160, 22);
+            this.chckBoxMostrarContraseña.TabIndex = 12;
+            this.chckBoxMostrarContraseña.Text = "Mostrar Contraseña";
+            this.chckBoxMostrarContraseña.UseVisualStyleBackColor = true;
+            this.chckBoxMostrarContraseña.CheckedChanged += new System.EventHandler(this.chckBoxMostrarContraseña_CheckedChanged);
+            // 
             // chckdListBoxRol
             // 
             this.chckdListBoxRol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -172,39 +183,6 @@
             this.chckdListBoxRol.Name = "chckdListBoxRol";
             this.chckdListBoxRol.Size = new System.Drawing.Size(292, 156);
             this.chckdListBoxRol.TabIndex = 4;
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAceptar.Location = new System.Drawing.Point(20, 7);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 30);
-            this.btnAceptar.TabIndex = 5;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCancelar.Location = new System.Drawing.Point(258, 7);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 30);
-            this.btnCancelar.TabIndex = 6;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnModificar.Location = new System.Drawing.Point(134, 7);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(79, 30);
-            this.btnModificar.TabIndex = 7;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -223,16 +201,39 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(359, 45);
             this.tableLayoutPanel2.TabIndex = 13;
             // 
-            // chckBoxMostrarContraseña
+            // btnModificar
             // 
-            this.chckBoxMostrarContraseña.AutoSize = true;
-            this.chckBoxMostrarContraseña.Location = new System.Drawing.Point(99, 123);
-            this.chckBoxMostrarContraseña.Name = "chckBoxMostrarContraseña";
-            this.chckBoxMostrarContraseña.Size = new System.Drawing.Size(160, 22);
-            this.chckBoxMostrarContraseña.TabIndex = 12;
-            this.chckBoxMostrarContraseña.Text = "Mostrar Contraseña";
-            this.chckBoxMostrarContraseña.UseVisualStyleBackColor = true;
-            this.chckBoxMostrarContraseña.CheckedChanged += new System.EventHandler(this.chckBoxMostrarContraseña_CheckedChanged);
+            this.btnModificar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnModificar.Location = new System.Drawing.Point(134, 7);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(79, 30);
+            this.btnModificar.TabIndex = 7;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(258, 7);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 30);
+            this.btnCancelar.TabIndex = 6;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAceptar.Location = new System.Drawing.Point(20, 7);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(75, 30);
+            this.btnAceptar.TabIndex = 5;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // frmABMEntidadDatosAdicionalesUsuario
             // 

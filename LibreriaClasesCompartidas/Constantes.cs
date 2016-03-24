@@ -199,6 +199,15 @@ namespace LibreriaClasesCompartidas
             public const string Venta = "Venta";
         }
 
+        public static class TipoRoles
+        {
+            public const string Compras = "Encargado de Compras";
+            public const string Ventas = "Encargado de Ventas";
+            public const string Datos_ABM = "Encargado de Altas, Bajas y Modificación de datos";
+            public const string Datos_Reportes = "Encargado de Reportes";
+            public const string Admin = "Admin";
+        }
+
     }
     
 }

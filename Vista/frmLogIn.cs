@@ -14,50 +14,56 @@ namespace Vista
 {
     public partial class frmLogIn : Form
     {
-        private List<ModeloRoles> _roles;
-        private ModeloPersonas _persona;
-    
+        ErrorProvider errorProviderActual;
+        public ModeloUsuario usuarioActual;
+
         public frmLogIn()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            txtBoxUsuario.KeyPress += this.valorUsername;
+            errorProviderActual = new ErrorProvider();
         }
 
+        #region Eventos
+        
+        #region Button
         private void btnLogIn_Click(object sender, EventArgs e)
         {
-            //capturo los datos ingresados al formulario
-            string usuario = txtUsuario.Text;
-            string contrasenia = txtContrasenia.Text;
+            ModeloUsuario lcl_mod_usuario = new ModeloUsuario();
+            lcl_mod_usuario.usuario = txtBoxUsuario.Text;
+            lcl_mod_usuario.contrasenia = txtBoxContrasenia.Text;
 
-            //busco el usuario correspondiente y lo guardo
-            ControladorInicioSesion ctrlSesion = new ControladorInicioSesion();
+            if (ControladorSesion.LogIn(lcl_mod_usuario))
+            {
+                usuarioActual = ControladorSesion.getUsuario(lcl_mod_usuario);
+                MessageBox.Show("Bienvenido " + usuarioActual.nombre + " " + usuarioActual.apellido,"¡Bienvenido!");
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show("El usuario o contraseña es incorrecto. Vuelva a intentarlo.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
           
-            //this.persona=ctrlSesion.buscarUsuario(usuario, contrasenia);
-           
-           
-            //if (!object.Equals(this.persona.dni,  null))
-            //{
-            //    //busco y guardo los roles del usuario
-            //    this.Roles=ctrlSesion.getRoles(this.persona);
-
-            ////cierro login y devuelvo resultado ok o notifico fallo    
-            //    this.DialogResult = DialogResult.OK;
-            //    this.Close();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Usuario no encontrado");
-            //}
         }
-
-        public ModeloPersonas persona
+        #endregion
+        
+        #region TextBox
+        private void valorUsername(object sender, KeyPressEventArgs e)
         {
-            get { return _persona; }
-            set { this._persona = value; }
+            if (!ModeloUsuario.validarUsuario(e.KeyChar.ToString()) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+                errorProviderActual.SetError((sender as TextBox), "Caracter no válido. Solo se permite letras, números y '_'.");
+                return;
+            }
+            if (ModeloUsuario.validarUsuario((sender as TextBox).Text))
+            {
+                errorProviderActual.SetError((sender as TextBox), "");
+            }
         }
-        public List<ModeloRoles> Roles
-        {
-            get { return _roles; }
-            set { this._roles = value; }
-        }
+        #endregion
+        
+        #endregion
     }
 }
