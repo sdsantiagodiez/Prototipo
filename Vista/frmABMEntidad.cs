@@ -64,7 +64,10 @@ namespace Vista
             this.Text = "Entidades";
             //btnAgregarMail.Text = char.ConvertFromUtf32(8595);
             //btnQuitarMail.Text = char.ConvertFromUtf32(8593);
-            
+            txtBoxCUIT.KeyPress += this.valorCUIT;
+            txtBoxCUIT.MaxLength = 13;
+            txtBoxDNI.KeyPress += this.valorDNI;
+            txtBoxDNI.MaxLength = 10;
             modoFormulario = ModoFormularioInicio;
             
             this.inicializarComboBox();
@@ -1098,6 +1101,27 @@ namespace Vista
                 }
             }
             this.cargarDatosProvinciasEnCmbBoxProvincia(provincias);
+        }
+        #endregion
+
+        #region TextBox
+        private void valorCUIT(object sender, KeyPressEventArgs e)
+        {
+            
+            // solo 0-9, borrar y ',' para decimales
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != '-'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void valorDNI(object sender, KeyPressEventArgs e)
+        {
+            // solo 0-9, borrar y ',' para decimales
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
         }
         #endregion
 
