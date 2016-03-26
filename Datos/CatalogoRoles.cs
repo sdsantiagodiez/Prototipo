@@ -33,7 +33,7 @@ namespace Datos
             switch (p_parametroBusqueda)
             {
                 case Constantes.ParametrosBusqueda.Roles.codigoRol:
-                case Constantes.ParametrosBusqueda.Roles.Any:
+                case Constantes.ParametrosBusqueda.Any:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_roles.codigo, "@codigo_rol"));
                     return " codigo = @codigo_rol ";
                 

@@ -26,7 +26,8 @@ namespace Datos
         public bool existeEntidad(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
             bool respuesta = false;
-            if(getOne(p_mod_articuloProveedor.codigoOriginal, p_mod_articuloProveedor.codigoArticuloProveedor) != null)
+            
+            if(getOne(p_mod_articuloProveedor) != null)
             {
                 respuesta = true;
             }
@@ -84,7 +85,8 @@ namespace Datos
 
             return lcl_mod_articuloProveedor;
         }
-
+        
+        #region Búsqueda
         /// <summary>
         /// Genera string a insertar en clausula WHERE de sql de acuerdo a los parámetros de búsqueda
         /// </summary>
@@ -99,28 +101,34 @@ namespace Datos
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoOriginal:
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articuloProveedor.codigoOriginal), "@codigo_original"));
                     return " ap.codigo_original LIKE @codigo_original ";
+
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor:
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articuloProveedor.codigoArticuloProveedor), "@codigo_articulo_proveedor"));
                     return " ap.codigo_articulo_proveedor LIKE @codigo_articulo_proveedor ";
+
                 //Ver cuando haya que hacer con Articulo como parent
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.Descripcion:
                     //No devuelve resultados
                     return " 1 = 2 ";
+
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.DescripcionArticuloProveedor:
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articuloProveedor.descripcionArticuloProveedor), "@descripcion_articulo_proveedor"));
                     return " ap.descripcion LIKE @descripcion_articulo_proveedor ";
+
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.codigoEntidadProveedor:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoEntidad, "@codigo_entidad"));
                     return " ap.codigo_entidad = @codigo_entidad ";
+
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.razonSocialProveedor:
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articuloProveedor.razonSocialProveedor), "@razon_social"));
                     return " prov.razon_social LIKE @razon_social ";
                 
-                case Constantes.ParametrosBusqueda.ArticulosProveedores.One:
+                case Constantes.ParametrosBusqueda.One:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoOriginal, "@codigo_original"));
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
-                    return " (@codigo_original = ap.codigo_original) AND (@codigo_articulo_proveedor) = ap.codigo_articulo_proveedor " ;
-                case Constantes.ParametrosBusqueda.ArticulosProveedores.Any:
+                    return " (@codigo_original = ap.codigo_original) AND (@codigo_articulo_proveedor = ap.codigo_articulo_proveedor) ";
+
+                case Constantes.ParametrosBusqueda.Any:
                     string codigoOriginal = p_mod_articuloProveedor.codigoOriginal == "" ? null : p_mod_articuloProveedor.codigoOriginal;
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articuloProveedor.codigoOriginal), "@codigo_original"));
                     string codigoOriginalQuery = this.parametroBusqueda("@codigo_original", "ap.codigo_original", "LIKE");
@@ -210,20 +218,12 @@ namespace Datos
 
             return lcl_lst_mod_articulosProveedores;
         }
-        
-        /// <summary>
-        /// utilizar buscar(ArticuloProveedor, Parametros...ArticuloProveedor.One)
-        /// </summary>
-        /// <param name="p_codigoOriginal"></param>
-        /// <param name="p_codigoArticuloProveedor"></param>
-        /// <returns></returns>
-        public ModeloArticuloProveedores getOne(string p_codigoOriginal, string p_codigoArticuloProveedor)
+
+        public ModeloArticuloProveedores getOne(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
-            ModeloArticuloProveedores lcl_mod_articuloProveedor = new ModeloArticuloProveedores();
             List<ModeloArticuloProveedores> lcl_lst_mod_articuloProveedor = new List<ModeloArticuloProveedores>();
-            lcl_mod_articuloProveedor.codigoOriginal = p_codigoOriginal;
-            lcl_mod_articuloProveedor.codigoArticuloProveedor = p_codigoArticuloProveedor;
-            lcl_lst_mod_articuloProveedor = this.buscar(lcl_mod_articuloProveedor, Constantes.ParametrosBusqueda.ArticulosProveedores.One);
+
+            lcl_lst_mod_articuloProveedor = this.buscar(p_mod_articuloProveedor, Constantes.ParametrosBusqueda.One);
 
             if (lcl_lst_mod_articuloProveedor.Count > 0)
             {
@@ -235,69 +235,75 @@ namespace Datos
             }
         }
 
-        //public List<ModeloArticuloProveedores> getAll()
-        //{
-        //    //Reemplazar parametro lcl_mod_articuloProveedor por null cuando se haya eliminado buscarArticuloProveedor(string,string) que devuelve ambiguedad
-        //    ModeloArticuloProveedores lcl_mod_articuloProveedor = null;
-        //    return this.buscar(lcl_mod_articuloProveedor, Constantes.ParametrosBusqueda.ArticulosProveedores.All);
-        //}
+        public ModeloArticuloProveedores getOne(string p_codigoOriginal, string p_codigoArticuloProveedor)
+        {
+            ModeloArticuloProveedores lcl_mod_articuloProveedor = new ModeloArticuloProveedores();
+            List<ModeloArticuloProveedores> lcl_lst_mod_articuloProveedor = new List<ModeloArticuloProveedores>();
+            lcl_mod_articuloProveedor.codigoOriginal = p_codigoOriginal;
+            lcl_mod_articuloProveedor.codigoArticuloProveedor = p_codigoArticuloProveedor;
+            lcl_lst_mod_articuloProveedor = this.buscar(lcl_mod_articuloProveedor, Constantes.ParametrosBusqueda.One);
+
+            if (lcl_lst_mod_articuloProveedor.Count > 0)
+            {
+                return lcl_lst_mod_articuloProveedor[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        #endregion
 
         #region Alta/Baja/Modificación
         public bool add(ModeloArticuloProveedores p_mod_articuloProveedor)
         { 
-            if(!this.existeEntidad(p_mod_articuloProveedor))
+            if(this.existeEntidad(p_mod_articuloProveedor))
+            { throw new Exception("El Artículo de Proveedor ya existe."); }
+
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType= CommandType.Text;
+            comando.CommandText = 
+                "INSERT INTO [Articulos_Proveedores]([codigo_original],[codigo_articulo_proveedor],[stock_minimo],[stock_actual],"+
+                "   [ubicacion],[observaciones],[descripcion],[fecha_actualizacion],[codigo_entidad]) "+
+                "   VALUES (@codigo_original, @codigo_articulo_proveedor, @stock_minimo, @stock_actual, @ubicacion, "+
+                "   @observaciones, @descripcion, @fecha_actualizacion, @codigo_entidad ); " +
+                
+                "INSERT INTO [Valores_Compra]([codigo_articulo_proveedor],[codigo_original],[fecha_valor],[valor]) "+
+                "   VALUES (@codigo_articulo_proveedor, @codigo_original, @fecha_actualizacion, @valor_compra ); "+
+                
+                "INSERT INTO [Valores_Venta]([codigo_articulo_proveedor],[codigo_original],[fecha_valor],[valor]) "+
+                "   VALUES (@codigo_articulo_proveedor, @codigo_original, @fecha_actualizacion, @valor_venta ); ";
+            
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoArticuloProveedor,"@codigo_articulo_proveedor"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoOriginal, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoEntidad , "@codigo_entidad"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.descripcionArticuloProveedor, "@descripcion"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.observacionesArticuloProveedor, "@observaciones"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.stockMinimo, "@stock_minimo"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.stockActual, "@stock_actual"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.ubicacion,"@ubicacion"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.valorCompra.valorArticulo, "@valor_compra"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.valorVenta.valorArticulo,"@valor_venta"));
+
+            comando.Parameters.Add(this.instanciarParametro(DateTime.Now, "@fecha_actualizacion"));
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+            //Al ser <3 es porque no se ha insertado en todas las tablas
+            if (rowaffected < 3)
             {
-                SqlConnection ConexionSQL = Conexion.crearConexion();
-                SqlCommand comando = new SqlCommand();
-
-                comando.Connection = ConexionSQL;
-                comando.CommandType= CommandType.Text;
-                comando.CommandText = 
-                    "INSERT INTO [Articulos_Proveedores]([codigo_original],[codigo_articulo_proveedor],[stock_minimo],[stock_actual],"+
-                    "[ubicacion],[observaciones],[descripcion],[fecha_actualizacion],[codigo_entidad]) "+
-                    "VALUES (@codigo_original, @codigo_articulo_proveedor, @stock_minimo, @stock_actual, @ubicacion, "+
-                    "@observaciones, @descripcion, @fecha_actualizacion, @codigo_entidad ); " +
-                    "INSERT INTO [Valores_Compra]([codigo_articulo_proveedor],[codigo_original],[fecha_valor],[valor]) "+
-                    "VALUES (@codigo_articulo_proveedor, @codigo_original, @fecha_actualizacion, @valor_compra ); "+
-                    "INSERT INTO [Valores_Venta]([codigo_articulo_proveedor],[codigo_original],[fecha_valor],[valor]) "+
-                    "VALUES (@codigo_articulo_proveedor, @codigo_original, @fecha_actualizacion, @valor_venta ); ";
-                //Indica los parametros
-                comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoArticuloProveedor,"@codigo_articulo_proveedor"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoOriginal, "@codigo_original"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoEntidad , "@codigo_entidad"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.descripcionArticuloProveedor, "@descripcion"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.observacionesArticuloProveedor, "@observaciones"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.stockMinimo, "@stock_minimo"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.stockActual, "@stock_actual"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.ubicacion,"@ubicacion"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.valorCompra.valorArticulo, "@valor_compra"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.valorVenta.valorArticulo,"@valor_venta"));
-
-                comando.Parameters.Add(this.instanciarParametro(DateTime.Now, "@fecha_actualizacion"));
-
-                comando.Connection.Open();
-                int rowaffected = comando.ExecuteNonQuery();
-                comando.Connection.Close();
-
-                if (rowaffected != 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar Artículo de Proveedor.");
             }
-            else
-            {
-                return false;
-            }
-        
+
+            return true;
         }
 
         public bool update(ModeloArticuloProveedores p_mod_articuloProveedor_nuevo)
         {
-            ModeloArticuloProveedores p_mod_articuloProveedor_original = this.buscar(p_mod_articuloProveedor_nuevo, Constantes.ParametrosBusqueda.ArticulosProveedores.One).ToList()[0];
+            ModeloArticuloProveedores p_mod_articuloProveedor_original = this.buscar(p_mod_articuloProveedor_nuevo, Constantes.ParametrosBusqueda.One).ToList()[0];
             if (p_mod_articuloProveedor_original != null)
                 return update(p_mod_articuloProveedor_original, p_mod_articuloProveedor_nuevo);
             else
@@ -417,8 +423,8 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText = 
-                "DELETE FROM [Articulos_Proveedores] WHERE ([Articulos_Proveedores].codigo_articulo_proveedor=@codigo_articulo_proveedor "+
-                "AND [Articulos_Proveedores].codigo_original=@codigo_original )";
+                "DELETE FROM [Articulos_Proveedores] "+
+                "   WHERE (codigo_articulo_proveedor=@codigo_articulo_proveedor AND codigo_original=@codigo_original ) ";
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoOriginal, "@codigo_original"));
@@ -430,7 +436,7 @@ namespace Datos
             if (rowaffected != 0)
             {return true;}
             else
-            {return false;}
+            { return false; }
         }
         #endregion
     }

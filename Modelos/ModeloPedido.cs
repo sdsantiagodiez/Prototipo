@@ -20,7 +20,11 @@ namespace Modelos
         public int numeroPedido
         {
             get { return _numeroPedido; }
-            set { this._numeroPedido = value; }
+            set 
+            { 
+                this._numeroPedido = value;
+                this.insertarNumeroPedidoEnLineas(value);
+            }
         }
         List<ModeloLineaPedido> _lineasPedido;
         public List<ModeloLineaPedido> lineasPedido
@@ -83,6 +87,14 @@ namespace Modelos
             return Convert.ToBoolean(this.lineasPedido.Count);
         }
         #endregion
+
+        private void insertarNumeroPedidoEnLineas(int p_numeroPedido)
+        {
+            foreach (ModeloLineaPedido lp in this.lineasPedido)
+            {
+                lp.numeroPedido = p_numeroPedido;
+            }
+        }
 
         public ModeloLineaPedido findDetail(string p_codigoOriginal, string p_codigoArticuloProveedor)
         {
@@ -174,6 +186,7 @@ namespace Modelos
         }
         #endregion
 
+        #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloPedido == false)
@@ -191,6 +204,7 @@ namespace Modelos
                 && this.Equals(this.numeroPedido,p_mod_pedido.numeroPedido)
                 && this.Equals(this.observaciones,p_mod_pedido.observaciones);
         }
+        #endregion
     }
 }
 

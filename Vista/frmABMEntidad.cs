@@ -11,7 +11,6 @@ using Modelos;
 using Controladores;
 using LibreriaClasesCompartidas;
 
-
 namespace Vista
 {
     public partial class frmABMEntidad : Vista.frmABMBase
@@ -172,7 +171,7 @@ namespace Vista
         {
             //Populo combobox de paises
             ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
-            List<ModeloPais> lcl_lst_mod_paises = lcl_con_busqueda.buscarPaises();
+            List<ModeloPais> lcl_lst_mod_paises = lcl_con_busqueda.getPaises();
             this.cmbBoxPais.DataSource = lcl_lst_mod_paises;
             this.cmbBoxPais.DisplayMember = "pais";
             this.cmbBoxPais.ValueMember = "codigo";
@@ -212,53 +211,27 @@ namespace Vista
         /// </summary>
         private void alta()
         {
-            if (this.validarAlta())
+            if (!this.validarEntidad(glb_mod_entidadActual))
             {
-                try
-                {
-                    if (this.guardarNuevo())
-                    {
-                        MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
-                        this.inicializarModoFormularioSeleccionado();
-                    }
-                    else
-                    {
-                        DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
-                        if (dialogResult == DialogResult.Retry)
-                        {
-                            this.alta();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación: " + ex.ToString(), "Error", MessageBoxButtons.RetryCancel);
-                }
+                MessageBox.Show(errorActual,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
+
+            ControladorAlta lcl_con_alta = new ControladorAlta();
+            cargarDatosControlEnEntidadActual(ref glb_mod_entidadActual);
+            if (lcl_con_alta.agregar(ref glb_mod_entidadActual))
+            {
+                MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
+                this.inicializarModoFormularioSeleccionado();
             }
             else
             {
-                MessageBox.Show(errorActual,"Error",MessageBoxButtons.OK);
+                DialogResult dialogResult = MessageBox.Show(lcl_con_alta.errorActual, "Error", MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
+                if (dialogResult == DialogResult.Retry)
+                { 
+                    this.alta();
+                }
             }
-        }
-
-        /// <summary>
-        /// Valida datos para el alta. En caso de algún campo no válido, muestra mensaje explicando 
-        /// </summary>
-        /// <returns>true si todos los campos son válidos, false caso contrario</returns>
-        private bool validarAlta()
-        {
-            return this.validarEntidad(glb_mod_entidadActual);
-        }
-
-        /// <summary>
-        /// Se comunica con controlador para realizar alta
-        /// </summary>
-        /// <returns>true si se ha registrado en la base de datos, false caso contrario</returns>
-        private bool guardarNuevo()
-        {
-            ControladorAlta lcl_con_alta = new ControladorAlta();
-            cargarDatosControlEnEntidadActual(ref glb_mod_entidadActual);
-            return lcl_con_alta.agregar(ref glb_mod_entidadActual);
         }
 
         /// <summary>
@@ -266,43 +239,21 @@ namespace Vista
         /// </summary>
         private void baja()
         {
-            if (this.validarBaja())
+            ControladorBaja lcl_con_baja = new ControladorBaja();
+            if(lcl_con_baja.eliminar(glb_mod_entidadActual))
             {
-                if (this.eliminar())
+                MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
+                this.inicializarModoFormularioInicio();
+                this.quitarTextoEnControles(this);
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show(lcl_con_baja.errorActual, "Error", MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
+                if (dialogResult == DialogResult.Retry)
                 {
-                    MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
-                    this.inicializarModoFormularioInicio();
-                    this.quitarTextoEnControles(this);
-                }
-                else
-                {
-                    DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
-                    if (dialogResult == DialogResult.Retry)
-                    {
-                        this.baja();
-                    }
+                    this.baja();
                 }
             }
-        }
-
-        /// <summary>
-        /// Valida datos para la baja. En caso de algún campo no válido, muestra mensaje explicando 
-        /// </summary>
-        /// <returns>true si todos los campos son válidos, false caso contrario</returns>
-        private bool validarBaja()
-        {
-            //Retornar bool y mostrar mensaje por la primera validación fallida encontrada. Si no se encuentra error, no se muestra mensaje y se devuelve true
-            return true;
-        }
-
-        /// <summary>
-        /// Se comunica con controlador para realizar baja
-        /// </summary>
-        /// <returns>true si se ha eliminado de la base de datos, falso caso contrario</returns>
-        private bool eliminar()
-        {
-            ControladorBaja lcl_con_baja = new ControladorBaja();
-            return lcl_con_baja.eliminar(glb_mod_entidadActual);
         }
 
         /// <summary>
@@ -310,42 +261,29 @@ namespace Vista
         /// </summary>
         private void actualizar()
         {
-            if (this.validarModificacion())
+            if (!this.validarEntidad(glb_mod_entidadActual))
             {
-                if (this.guardarModificaciones())
-                {
-                    MessageBox.Show("Modificación exitosa", "Éxito", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
-                    if (dialogResult == DialogResult.Retry)
-                    {
-                        this.actualizar();
-                    }
-                }
+                MessageBox.Show(errorActual, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                return;
             }
-        }
 
-        /// <summary>
-        /// Valida datos para la modificación. En caso de algún campo no válido, muestra mensaje explicando
-        /// </summary>
-        /// <returns>true si todos los campos son válidos, false caso contrario</returns>
-        private bool validarModificacion()
-        {
-            return this.validarEntidad(glb_mod_entidadActual);
-        }
-
-        /// <summary>
-        /// Se comunica con controlador para realizar modificación
-        /// </summary>
-        /// <returns>true si se ha registrado modificación, false caso contrario</returns>
-        private bool guardarModificaciones()
-        {
             ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
             this.cargarDatosControlEnEntidadActual(ref glb_mod_entidadActual);
-            return lcl_con_modificacion.modificar(glb_mod_entidadActual);
+            if(lcl_con_modificacion.modificar(glb_mod_entidadActual))
+            {
+                MessageBox.Show("Modificación exitosa", "Éxito", MessageBoxButtons.OK);
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show(lcl_con_modificacion.errorActual, "Error", MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
+                if (dialogResult == DialogResult.Retry)
+                {
+                    this.actualizar();
+                }
+            }
+            
         }
+
         #endregion
 
         #region Búsqueda
@@ -1091,9 +1029,9 @@ namespace Vista
             lcl_mod_provincia.codigoPais = this.cmbBoxPais.SelectedValue.ToString();
             //this.cmbBoxProvincia.DataSource = provincias;
             //REVISAR TEMPORAL HASTA QUE ESTE COMPLETO CONTROLADOrBUSQUEDA
-            List<ModeloProvincia> lmProvincias = lcl_con_busqueda.buscarProvincias();
+            List<ModeloProvincia> lcl_lst_mod_provincias = lcl_con_busqueda.getProvincias();
             List<ModeloProvincia> provincias = new List<ModeloProvincia>();
-            foreach (ModeloProvincia p in lmProvincias)
+            foreach (ModeloProvincia p in lcl_lst_mod_provincias)
             {
                 if (p.codigoPais == lcl_mod_provincia.codigoPais)
                 {

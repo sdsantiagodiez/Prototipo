@@ -43,7 +43,7 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_usuario.usuario, "@usuario"));
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_usuario.contrasenia, "@contrasenia"));
                     return " usuario = @usuario AND contrasenia = @contrasenia";
-                case Constantes.ParametrosBusqueda.Entidades.Personas.Any:
+                case Constantes.ParametrosBusqueda.Any:
                     string baseQuery = base.getCondicionBusqueda(p_mod_usuario, p_parametroBusqueda, ref p_comando);
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_usuario.usuario, "@usuario"));
                     string usuarioQuery = @" (@usuario IS NULL OR @usuario = usuario) ";
@@ -76,11 +76,7 @@ namespace Datos
         private List<ModeloUsuario> buscarUsuario(ModeloUsuario p_mod_usuario, string p_paramentroBusqueda)
         {
             List<ModeloUsuario> lcl_lst_mod_usuarios = new List<ModeloUsuario>();
-
-            //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
@@ -88,10 +84,10 @@ namespace Datos
 
             comando.CommandText =
                 "SELECT [personas].codigo_entidad,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
-                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
-                    "FROM [personas] " +
-                    "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad " +
-                    "WHERE [personas].tipo_persona = '"+ Constantes.TiposEntidad.TiposPersona.Usuario +"' AND " + querySQL;
+                "   [personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
+                "   FROM [personas] " +
+                "   INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad " +
+                "   WHERE [personas].tipo_persona = '"+ Constantes.TiposEntidad.TiposPersona.Usuario +"' AND " + querySQL;
 
             comando.Connection.Open();
 
@@ -178,7 +174,7 @@ namespace Datos
         /// <returns></returns>
         public new List<ModeloUsuario> getAll()
         {
-            return this.buscarUsuario(null, Constantes.ParametrosBusqueda.Entidades.Personas.All);
+            return this.buscarUsuario(null, Constantes.ParametrosBusqueda.All);
         }
         #endregion
 
@@ -210,18 +206,18 @@ namespace Datos
             comando.Connection.Close();
 
             if (rowaffected != 0)
-                { return true; }
+            { return true; }
             else
-                { return false; }
+            { return false; }
         }
 
         private bool addUsuario(ModeloUsuario p_mod_usuario)
         {
-            if (this.add(p_mod_usuario))
+            if (this.add(p_mod_usuario) && this.addRoles(p_mod_usuario))
             {
-                return this.addRoles(p_mod_usuario);
+                return true;
             }
-            return false;
+            throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar usuario.");
         }
 
         public bool addRoles(ModeloUsuario p_mod_usuario)
@@ -241,7 +237,7 @@ namespace Datos
                 int rowaffected = comando.ExecuteNonQuery();
                 
                 if (rowaffected == 0)
-                { throw new System.InvalidOperationException("No se ha podido crear rol de usuario: "+r.descripcion); }
+                { return false; }
             }
             comando.Connection.Close();
             return true;

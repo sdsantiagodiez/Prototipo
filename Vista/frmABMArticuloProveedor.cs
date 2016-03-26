@@ -139,47 +139,28 @@ namespace Vista
         /// </summary>
         private void alta()
         {
-            if (this.validarAlta())
-            {
-                if (this.guardarNuevo())
-                {
-                    MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
-                    this.inicializarModoFormularioSeleccionado();
-                }
-                else
-                {
-                    DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
-                    if (dialogResult == DialogResult.Retry)
-                    {
-                        this.alta();
-                    }
-                }
-            }
-            else
+            if (!this.validar())
             {
                 MessageBox.Show(errorActual,"Error",MessageBoxButtons.OK);
+                return;
             }
-        }
 
-        /// <summary>
-        /// Valida datos para el alta. En caso de algún campo no válido, muestra mensaje explicando 
-        /// </summary>
-        /// <returns>true si todos los campos son válidos, false caso contrario</returns>
-        private bool validarAlta()
-        {
-            return this.validar();
-        }
-
-        /// <summary>
-        /// Se comunica con controlador para realizar alta
-        /// </summary>
-        /// <returns>true si se ha registrado en la base de datos, false caso contrario</returns>
-        private bool guardarNuevo()
-        {
             ControladorAlta lcl_con_alta = new ControladorAlta();
             glb_mod_articuloProveedor = this.cargarDatosEnModeloArticuloProveedor();
 
-            return lcl_con_alta.agregar(glb_mod_articuloProveedor);
+            if(lcl_con_alta.agregar(glb_mod_articuloProveedor))
+            {
+                MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
+                this.inicializarModoFormularioSeleccionado();
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show(lcl_con_alta.errorActual, "Error", MessageBoxButtons.RetryCancel);
+                if (dialogResult == DialogResult.Retry)
+                {
+                    this.alta();
+                }
+            }
         }
 
         /// <summary>
@@ -187,43 +168,21 @@ namespace Vista
         /// </summary>
         private void baja()
         {
-            if (this.validarBaja())
+            ControladorBaja lcl_con_baja = new ControladorBaja();
+            if (lcl_con_baja.eliminar(glb_mod_articuloProveedor))
             {
-                if (this.eliminar())
+                MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
+                this.inicializarModoFormularioInicio();
+                this.quitarTextoEnControles(this);
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show(lcl_con_baja.errorActual, "Error", MessageBoxButtons.RetryCancel);
+                if (dialogResult == DialogResult.Retry)
                 {
-                    MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
-                    this.inicializarModoFormularioInicio();
-                    this.quitarTextoEnControles(this);
-                }
-                else
-                {
-                    DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
-                    if (dialogResult == DialogResult.Retry)
-                    {
-                        this.baja();
-                    }
+                    this.baja();
                 }
             }
-        }
-
-        /// <summary>
-        /// Valida datos para la baja. En caso de algún campo no válido, muestra mensaje explicando 
-        /// </summary>
-        /// <returns>true si todos los campos son válidos, false caso contrario</returns>
-        private bool validarBaja()
-        {
-            //Retornar bool y mostrar mensaje por la primera validación fallida encontrada. Si no se encuentra error, no se muestra mensaje y se devuelve true
-            return true;
-        }
-
-        /// <summary>
-        /// Se comunica con controlador para realizar baja
-        /// </summary>
-        /// <returns>true si se ha eliminado de la base de datos, falso caso contrario</returns>
-        private bool eliminar()
-        {
-            ControladorBaja lcl_con_baja = new ControladorBaja();
-            return  lcl_con_baja.eliminar(glb_mod_articuloProveedor);
         }
 
         /// <summary>
@@ -231,45 +190,28 @@ namespace Vista
         /// </summary>
         private void actualizar()
         {
-            if (this.validarModificacion())
+            if (!this.validar())
             {
-                if (this.guardarModificaciones())
-                {
-                    MessageBox.Show("Modificación exitosa", "Éxito", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    DialogResult dialogResult = MessageBox.Show("Ha ocurrido un error durante la operación", "Error", MessageBoxButtons.RetryCancel);
-                    if (dialogResult == DialogResult.Retry)
-                    {
-                        this.actualizar();
-                    }
-                }
+                MessageBox.Show(errorActual, "Error", MessageBoxButtons.OK);
+                return;
+            }
+
+            ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
+            glb_mod_articuloProveedor = this.cargarDatosEnModeloArticuloProveedor();
+
+            if (lcl_con_modificacion.modificar(glb_mod_articuloProveedor))
+            {
+                MessageBox.Show("Modificación exitosa", "Éxito", MessageBoxButtons.OK);
+                this.inicializarModoFormularioSeleccionado();
             }
             else
             {
-                MessageBox.Show(errorActual, "Error", MessageBoxButtons.OK);
+                DialogResult dialogResult = MessageBox.Show(lcl_con_modificacion.errorActual, "Error", MessageBoxButtons.RetryCancel);
+                if (dialogResult == DialogResult.Retry)
+                {
+                    this.actualizar();
+                }
             }
-        }
-
-        /// <summary>
-        /// Valida datos para la modificación. En caso de algún campo no válido, muestra mensaje explicando
-        /// </summary>
-        /// <returns>true si todos los campos son válidos, false caso contrario</returns>
-        private bool validarModificacion()
-        {
-            return this.validar();
-        }
-
-        /// <summary>
-        /// Se comunica con controlador para realizar modificación
-        /// </summary>
-        /// <returns>true si se ha registrado modificación, false caso contrario</returns>
-        private bool guardarModificaciones()
-        {
-            ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
-            glb_mod_articuloProveedor = this.cargarDatosEnModeloArticuloProveedor();
-            return lcl_con_modificacion.modificar(glb_mod_articuloProveedor);
         }
         #endregion
 

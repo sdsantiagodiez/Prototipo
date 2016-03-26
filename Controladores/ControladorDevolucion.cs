@@ -40,7 +40,7 @@ namespace Controladores
             var lcl_mod_pedido = new ModeloPedido();
             var lcl_con_busqueda = new ControladorBusqueda();
             lcl_mod_pedido.numeroPedido = int.Parse(p_numeroPedido);
-            glb_mod_pedido = lcl_con_busqueda.buscarPedido(lcl_mod_pedido, Constantes.ParametrosBusqueda.Pedidos.NumeroPedido)[0];
+            glb_mod_pedido = lcl_con_busqueda.buscar(lcl_mod_pedido, Constantes.ParametrosBusqueda.Pedidos.NumeroPedido)[0];
             if (!object.Equals(glb_mod_pedido, null))
             {
                 var lcl_mod_lineaPedido = glb_mod_pedido.findDetail(p_codigoOriginal, p_codigoArticuloProveedor);

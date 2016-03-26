@@ -44,7 +44,7 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_proveedor.razonSocial), "@razon_social"));
                     return " razon_social LIKE @razon_social ";
                     
-                case Constantes.ParametrosBusqueda.Entidades.Proveedores.Any:
+                case Constantes.ParametrosBusqueda.Any:
                     string queryBase = base.getCondicionBusqueda(p_mod_proveedor,p_parametroBusqueda,ref p_comando);
 
                     string razonSocial = p_mod_proveedor.razonSocial == "" ? null : p_mod_proveedor.razonSocial;
@@ -148,7 +148,7 @@ namespace Datos
         /// <returns></returns>
         public new List<ModeloProveedor> getAll()
         {
-            return this.buscarProveedor(null, Constantes.ParametrosBusqueda.Entidades.Proveedores.All);
+            return this.buscarProveedor(null, Constantes.ParametrosBusqueda.All);
         }
 
         #endregion
@@ -157,11 +157,11 @@ namespace Datos
 
         public override bool add(ref ModeloEntidad p_mod_entidad)
         {
-            if (!base.add(ref p_mod_entidad))
+            if (base.add(ref p_mod_entidad) && this.add(p_mod_entidad as ModeloProveedor))
             {
-                return false;
+                return true;
             }
-            return this.add(p_mod_entidad as ModeloProveedor);
+            throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar proveedor.");
         }
 
         private bool add(ModeloProveedor p_mod_proveedor)
@@ -183,13 +183,9 @@ namespace Datos
             comando.Connection.Close();
 
             if (rowaffected != 0)
-            {
-                return true;
-            }
+            { return true; }
             else
-            {
-                return false;
-            }
+            { return false; }
         }
 
         public override bool update(ModeloEntidad p_mod_entidad)
@@ -244,7 +240,7 @@ namespace Datos
             }
             else
             {
-                return false;
+                return false;;
             }
         }
         public override bool remove(ModeloEntidad p_mod_entidad)

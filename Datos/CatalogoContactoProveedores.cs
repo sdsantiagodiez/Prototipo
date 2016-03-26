@@ -56,7 +56,7 @@ namespace Datos
                 case Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.Cuit:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_contactoProveedor.proveedor.cuit, "@cuit_prooveedor"));
                     return " cuit_proveedor = @cuit_proveedor ";
-                case Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.Any:
+                case Constantes.ParametrosBusqueda.Any:
                     string queryBase = base.getCondicionBusqueda(p_mod_contactoProveedor, p_parametroBusqueda, ref p_comando);
                     if (p_mod_contactoProveedor.proveedor != null)
                     { 
@@ -158,11 +158,11 @@ namespace Datos
         
         public bool add(ModeloContactoProveedor p_mod_contactoProveedor)
         {
-            if (base.add(p_mod_contactoProveedor as ModeloPersonas))
+            if (base.add(p_mod_contactoProveedor as ModeloPersonas) && this.addContactoProveedor(p_mod_contactoProveedor))
             {
-                return this.addContactoProveedor(p_mod_contactoProveedor);
+                return true;
             }
-            return false;
+            throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar Contacto de Proveedor.");
         }
 
         private bool addContactoProveedor(ModeloContactoProveedor p_mod_contactoProveedor)
@@ -253,7 +253,7 @@ namespace Datos
         {
             string query =
                  "DELETE FROM [Contactos_Proveedores] " +
-                 "WHERE @codigo_proveedor=codigo_proveedor AND @codigo_contacto=codigo_contacto";
+                 "  WHERE @codigo_proveedor=codigo_proveedor AND @codigo_contacto=codigo_contacto";
             SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
 
             //Indica los parametros

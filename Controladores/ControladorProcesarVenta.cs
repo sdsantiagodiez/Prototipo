@@ -108,7 +108,7 @@ namespace Controladores
             var lcl_con_busqueda = new ControladorBusqueda();
             ModeloPersonas lcl_mod_persona = new ModeloPersonas();
             lcl_mod_persona.dni = p_dni;
-            glb_mod_cliente = lcl_con_busqueda.buscarPersonas(lcl_mod_persona, Constantes.ParametrosBusqueda.Entidades.Personas.Dni)[0];
+            glb_mod_cliente = lcl_con_busqueda.buscar(lcl_mod_persona, Constantes.ParametrosBusqueda.Entidades.Personas.Dni)[0];
         }
 
         public void addClient(ModeloPersonas p_nuevoCliente)
@@ -126,7 +126,7 @@ namespace Controladores
         public void buscarPaises()
         {
             var lcl_con_busqueda = new ControladorBusqueda();
-            glb_lst_mod_paises= lcl_con_busqueda.buscarPaises();
+            glb_lst_mod_paises= lcl_con_busqueda.getPaises();
         }
 
         public List<ModeloProvincia> getProvincias()
@@ -137,7 +137,7 @@ namespace Controladores
         public void buscarProvincias()
         {
             var lcl_con_busqueda = new ControladorBusqueda();
-            glb_lst_mod_provincias= lcl_con_busqueda.buscarProvincias();
+            glb_lst_mod_provincias= lcl_con_busqueda.getProvincias();
         }
 
         public List<ModeloArticuloProveedores> getBusqueda()

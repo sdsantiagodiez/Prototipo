@@ -20,24 +20,18 @@ namespace LibreriaClasesCompartidas
             /// <summary>
             /// Any: busca de acuerdo a los parámetros que se hayan inicializado. Pueden ser 0, 1, 2 o más
             /// </summary>
-            private const string Any = "any";
+            public const string Any = "any";
             /// <summary>
             /// Busca por clave primaria
             /// </summary>
-            private const string One = "one";
+            public const string One = "one";
             public static class Entidades
             {
                 public const string CodigoEntidad = "codigoEntidad";
                 public const string Cuit = "cuit";
-                public const string All = ParametrosBusqueda.All;
-                public const string Any = ParametrosBusqueda.Any;
-
 
                 public static class Personas
                 {
-                    public const string All = ParametrosBusqueda.Entidades.All;
-                    public const string Any = ParametrosBusqueda.Entidades.Any;
-
                     public const string CodigoEntidad = ParametrosBusqueda.Entidades.CodigoEntidad;
                     public const string Cuit = ParametrosBusqueda.Entidades.Cuit;
 
@@ -47,19 +41,13 @@ namespace LibreriaClasesCompartidas
                     public const string TipoPersona = "tipoPersona";
 
                     public static class Usuarios
-                    {
-                        public const string All = ParametrosBusqueda.Entidades.Personas.All;
-                        public const string Any = ParametrosBusqueda.Entidades.Personas.Any;
-                        
+                    {                        
                         public const string Usuario = "usuario";
                         public const string LogIn = "log In";
                     }
 
                     public static class ContactoProveedor
                     {
-                        public const string All = ParametrosBusqueda.Entidades.Personas.All;
-                        public const string Any = ParametrosBusqueda.Entidades.Personas.Any;
-
                         public const string CodigoEntidad = ParametrosBusqueda.Entidades.Personas.CodigoEntidad;
                         public const string Cuit = ParametrosBusqueda.Entidades.Personas.Cuit;
 
@@ -71,8 +59,6 @@ namespace LibreriaClasesCompartidas
                 }
                 public static class Proveedores
                 {
-                    public const string All = ParametrosBusqueda.All;
-                    public const string Any = ParametrosBusqueda.Any;
                     //Se cambia para que en CatalogoContactoProveedor no haya confusion entre codigoEntidad de contacto y de proveedor
                     public const string CodigoEntidad = ParametrosBusqueda.Entidades.CodigoEntidad;
                     public const string Cuit = ParametrosBusqueda.Entidades.Cuit;
@@ -83,25 +69,16 @@ namespace LibreriaClasesCompartidas
 
             public static class Roles
             {
-                public const string All = ParametrosBusqueda.All;
-                public const string Any = ParametrosBusqueda.Any;
                 public const string codigoRol = "codigoRol";
             }
             public static class Articulos
             {
-                public const string All = ParametrosBusqueda.All;
-                public const string Any = ParametrosBusqueda.Any;
-
                 public const string CodigoOriginal = "codigoOriginal";
                 public const string Descripcion = "descripcion";
             }
 
             public static class ArticulosProveedores
             {
-                public const string All = ParametrosBusqueda.All;
-                public const string Any = ParametrosBusqueda.Any;
-                public const string One = ParametrosBusqueda.One;
-
                 public const string CodigoOriginal = Articulos.CodigoOriginal;
                 public const string CodigoArticuloProveedor = "codigoArticuloProveedor";
                 public const string Descripcion = Articulos.Descripcion;
@@ -112,9 +89,6 @@ namespace LibreriaClasesCompartidas
 
             public static class Pedidos
             {
-                public const string All = ParametrosBusqueda.All;
-                public const string Any = ParametrosBusqueda.Any;
-
                 public const string NumeroPedido = "numeroPedido";
                 public const string Fecha = "fecha";
                 public const string Tipo = "tipoPedido";
@@ -122,9 +96,6 @@ namespace LibreriaClasesCompartidas
 
             public static class LineasPedidos
             {
-                public const string All = ParametrosBusqueda.All;
-                public const string Any = ParametrosBusqueda.Any;
-
                 public const string NumeroPedido = Pedidos.NumeroPedido;
                 public const string CodigoArticuloProveedor = ArticulosProveedores.CodigoArticuloProveedor;
                 public const string CodigoOriginal = ArticulosProveedores.CodigoOriginal;
@@ -136,17 +107,11 @@ namespace LibreriaClasesCompartidas
 
             public static class Paises
             {
-                public const string All = ParametrosBusqueda.All;
-                public const string Any = ParametrosBusqueda.Any;
-
                 public const string Codigo = "codigoPais";
                 public const string Pais = "nombrePais";
             }
             public static class Provincias
             {
-                public const string All = ParametrosBusqueda.All;
-                public const string Any = ParametrosBusqueda.Any;
-
                 public const string CodigoPais = ParametrosBusqueda.Paises.Codigo;
                 public const string CodigoProvincia = "codigoProvincia";
                 public const string Provincia = "nombreProvincia";

@@ -18,21 +18,16 @@ namespace Datos
 
             lcl_mod_pais.codigo = (string)p_drPais["codigo"];
             lcl_mod_pais.pais = (string)p_drPais["pais"];
-            //Si algún valor esta null en Base de datos, se asigna null en el objeto
-            //Caso contrario hay una string, y se asigna string
 
             return lcl_mod_pais;
         }
 
-        public bool existeEntidad(string p_codigo)
+        private bool existeEntidad(string p_codigo)
         {
-            bool respuesta = false;
-            if (getOne(p_codigo) != null)
-            {
-                respuesta = true;
-            }
-            return respuesta;
+            return (getOne(p_codigo) != null);
         }
+        
+        #region Búsqueda
         /// <summary>
         /// Genera string a insertar en clausula WHERE de sql de acuerdo a los parámetros de búsqueda
         /// </summary>
@@ -51,7 +46,7 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_pais.pais), "@pais"));
                     return " pais LIKE @pais ";
 
-                case Constantes.ParametrosBusqueda.Provincias.Any:
+                case Constantes.ParametrosBusqueda.Any:
                     string codigoPais = p_mod_pais.codigo == "" ? null : p_mod_pais.codigo;
                     p_comando.Parameters.Add(this.instanciarParametro(codigoPais, "@codigo_pais"));
                     string codigoPaisQuery = this.parametroBusqueda("@codigo_pais", "codigo", "=");
@@ -69,9 +64,7 @@ namespace Datos
 
         public List<ModeloPais> buscarPais(ModeloPais p_mod_pais, string p_parametroBusqueda)
         {
-            //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
-            //crea SQL command
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
@@ -105,7 +98,7 @@ namespace Datos
 
         public List<ModeloPais> getAll()
         {
-            return this.buscarPais(null, Constantes.ParametrosBusqueda.Paises.All);
+            return this.buscarPais(null, Constantes.ParametrosBusqueda.All);
         }
 
         public ModeloPais getOne(string p_codigoPais)
@@ -124,6 +117,7 @@ namespace Datos
                 return null;
             }
         }
+        #endregion
 
         #region Alta/Baja/Modificación
         /*
@@ -132,55 +126,36 @@ namespace Datos
          */
         public bool add(ModeloPais p_mod_pais)
         {
-            if (!this.existeEntidad(p_mod_pais.codigo))
-            {
-                SqlConnection ConexionSQL = Conexion.crearConexion();
-                SqlCommand comando = new SqlCommand();
-                comando.Connection = ConexionSQL;
-                comando.CommandType = CommandType.Text;
+            if(this.existeEntidad(p_mod_pais.codigo))
+            { return false; }
 
-                comando.CommandText =
-                    "INSERT INTO [pais]([codigo],[pais]) " +
-                    "VALUES (@codigo, @pais)";
-                //Indica los parametros
-                comando.Parameters.Add(this.instanciarParametro(p_mod_pais.codigo, "@codigo"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_pais.pais, "@pais"));
+            string query =
+                "INSERT INTO [pais]([codigo],[pais]) " +
+                "   VALUES (@codigo, @pais)";
+
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pais.codigo, "@codigo"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pais.pais, "@pais"));
                 
-                comando.Connection.Open();
-                int rowaffected = comando.ExecuteNonQuery();
-                comando.Connection.Close();
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
 
-                if (rowaffected != 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
+            if (rowaffected != 0)
+            { return true; }
             else
-            {
-                return false;
-            }
+            { return false; }
         }
 
         public bool update(ModeloPais p_mod_pais)
         {
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
+            string query =
                 "UPDATE [pais] SET [pais]=@pais" +
-                "WHERE [pais].codigo=@codigo";
+                "   WHERE [pais].codigo=@codigo";
 
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+                
             comando.Parameters.Add(this.instanciarParametro(p_mod_pais.codigo, "@codigo"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pais.pais, "@pais"));
             
@@ -189,29 +164,18 @@ namespace Datos
             comando.Connection.Close();
 
             if (rowaffected != 0)
-            {
-                return true;
-            }
+            { return true; }
             else
-            {
-                return false;
-            }
-
+            { return false; }
         }
 
         public bool remove(ModeloPais p_mod_pais)
         {
-            SqlConnection ConexionSQL = Conexion.crearConexion();
+            string query =
+                "DELETE FROM [pais] "+
+                "   WHERE [pais].codigo=@codigo";
 
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                "DELETE FROM [pais] WHERE [pais].codigo=@codigo";
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());         
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_pais.codigo, "@codigo"));
 
@@ -220,13 +184,9 @@ namespace Datos
             comando.Connection.Close();
 
             if (rowaffected != 0)
-            {
-                return true;
-            }
+            { return true; }
             else
-            {
-                return false;
-            }
+            { return false; }
         }
         #endregion
 

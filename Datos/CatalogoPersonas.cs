@@ -56,7 +56,7 @@ namespace Datos
                 case Constantes.ParametrosBusqueda.Entidades.Personas.TipoPersona:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_persona.tipoPersona, "@tipo_persona"));
                     return " tipo_persona = @tipo_persona ";
-                case Constantes.ParametrosBusqueda.Entidades.Personas.Any:
+                case Constantes.ParametrosBusqueda.Any:
                     string queryBase = base.getCondicionBusqueda(p_mod_persona, p_parametroBusqueda, ref p_comando);
 
                     string dni = (p_mod_persona.dni == "") ? null : p_mod_persona.nombre;
@@ -172,7 +172,7 @@ namespace Datos
         /// <returns></returns>
         public new List<ModeloPersonas> getAll()
         {
-            return this.buscarPersonas(null, Constantes.ParametrosBusqueda.Entidades.Personas.All);
+            return this.buscarPersonas(null, Constantes.ParametrosBusqueda.All);
         }
         #endregion
 
@@ -180,11 +180,11 @@ namespace Datos
 
         public override bool add(ref ModeloEntidad p_mod_entidad)
         {
-            if (!base.add(ref p_mod_entidad))
+            if (base.add(ref p_mod_entidad) && this.add(p_mod_entidad as ModeloPersonas))
             {
-                return false;
+                return true;
             }
-            return this.add(p_mod_entidad as ModeloPersonas);
+            throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar persona.");
         }
 
         public virtual bool add(ModeloPersonas p_mod_persona)
@@ -271,7 +271,7 @@ namespace Datos
             }
             else
             {
-                return false;
+                throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar persona.");
             }
         }
 

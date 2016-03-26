@@ -62,13 +62,13 @@ namespace Modelos
         public ModeloProvincia provincia
         {
             get { return _provincia; }
-            set { this._provincia = this.validarProvincia(value) ? value : null; }
+            set { this._provincia = value; }
         }
         ModeloPais _pais;
         public ModeloPais pais
         {
             get { return _pais; }
-            set { this._pais = this.validarPais(value) ? value : null; }
+            set { this._pais = value; }
         }
         #endregion
 

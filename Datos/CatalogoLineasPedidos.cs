@@ -76,7 +76,7 @@ namespace Datos
                 case Constantes.ParametrosBusqueda.LineasPedidos.Descripcion:
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_lineaPedido.descripcion), "@descripcion"));
                     return " descripcion LIKE @descripcion ";
-                case Constantes.ParametrosBusqueda.LineasPedidos.Any:
+                case Constantes.ParametrosBusqueda.Any:
                     
                     int? numeroPedido = p_mod_lineaPedido.numeroPedido == 0 ? null : (int?)p_mod_lineaPedido.numeroPedido;
                     p_comando.Parameters.Add(this.instanciarParametro(numeroPedido, "@numero_pedido"));
@@ -161,7 +161,7 @@ namespace Datos
 
         public List<ModeloLineaPedido> getAll()
         {
-            return this.buscarLineasPedido(null, Constantes.ParametrosBusqueda.LineasPedidos.All);
+            return this.buscarLineasPedido(null, Constantes.ParametrosBusqueda.All);
         }
 
         #region Alta/Baja/Modificación

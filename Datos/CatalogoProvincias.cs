@@ -19,11 +19,11 @@ namespace Datos
             lcl_mod_provincia.codigo = (string)p_drProvincia["codigo_provincia"];
             lcl_mod_provincia.provincia = (string)p_drProvincia["provincia"];
             lcl_mod_provincia.codigoPais = (string)p_drProvincia["codigo_pais"];
-            //Si algún valor esta null en Base de datos, se asigna null en el objeto
-            //Caso contrario hay una string, y se asigna string
             
             return lcl_mod_provincia;
         }
+        
+        #region Búsqueda
         /// <summary>
         /// Genera string a insertar en clausula WHERE de sql de acuerdo a los parámetros de búsqueda
         /// </summary>
@@ -45,7 +45,7 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_provincia.codigoPais, "@codigo_pais"));
                     return " codigo_pais = @codigo_pais ";
                 
-                case Constantes.ParametrosBusqueda.Provincias.Any:
+                case Constantes.ParametrosBusqueda.Any:
                     string codigoProvincia = p_mod_provincia.codigo == "" ? null : p_mod_provincia.codigo;
                     p_comando.Parameters.Add(this.instanciarParametro(codigoProvincia, "@codigo_provincia"));
                     string codigoProvinciaQuery = this.parametroBusqueda("@codigo_provincia", "codigo_provincia", "=");
@@ -103,7 +103,7 @@ namespace Datos
         
         public List<ModeloProvincia> getAll()
         {
-            return this.buscarProvincia(null, Constantes.ParametrosBusqueda.Provincias.All);
+            return this.buscarProvincia(null, Constantes.ParametrosBusqueda.All);
         }
 
         public ModeloProvincia getOne(string p_codigoProvincia)
@@ -122,6 +122,7 @@ namespace Datos
                 return null;
             }
         }
+        #endregion
 
     }
 }

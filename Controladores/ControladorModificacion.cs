@@ -5,11 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Datos;
 using Modelos;
+using System.Transactions;
 
 namespace Controladores
 {
     public class ControladorModificacion : Controlador
     {
+        public string errorActual;
+
         public bool modificar(ModeloEntidad p_mod_entidad)
         {
             Type T = p_mod_entidad.GetType();
@@ -38,53 +41,96 @@ namespace Controladores
             {
                 lcl_catalogo = new CatalogoEntidades();
             }
-            return lcl_catalogo.update(p_mod_entidad);
+            bool respuesta = false;
+            errorActual = "No se ha podido realizar la modificación.";
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    respuesta = lcl_catalogo.update(p_mod_entidad);
+                    scope.Complete();
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                errorActual = "TransactionAbortedException Message: " + ex.Message;
+            }
+            catch (ApplicationException ex)
+            {
+                errorActual = "ApplicationException Message: " + ex.Message;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                errorActual = "SQLexception Message: " + ex.Message;
+            }
+            catch (Exception ex)
+            {
+                errorActual = ex.Message;
+            }
+            return respuesta; 
         }
-
-
-        //public bool modificar(ModeloPersonas p_mod_persona)
-        //{
-        //    CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
-        //    if (p_mod_persona.validar())
-        //    {
-        //        return lcl_cat_personas.update(p_mod_persona);
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
-        //public bool modificar(ModeloProveedor p_mod_proveedor)
-        //{
-        //    CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
-        //    if (p_mod_proveedor.validar())
-        //    {
-        //        return lcl_cat_proveedores.update(p_mod_proveedor);
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
 
         public bool modificar(ModeloArticulos p_mod_articulo)
         {
             CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
-            
-            return lcl_cat_articulos.update(p_mod_articulo);
-
+            bool respuesta = false;
+            errorActual = "No se ha podido realizar la modificación.";
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    respuesta = lcl_cat_articulos.update(p_mod_articulo);
+                    scope.Complete();
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                errorActual = "TransactionAbortedException Message: " + ex.Message;
+            }
+            catch (ApplicationException ex)
+            {
+                errorActual = "ApplicationException Message: " + ex.Message;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                errorActual = "SQLexception Message: " + ex.Message;
+            }
+            catch (Exception ex)
+            {
+                errorActual = ex.Message;
+            }
+            return respuesta;  
         }
         public bool modificar(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
             CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
-            if (p_mod_articuloProveedor.validar())
+            bool respuesta = false;
+            errorActual = "No se ha podido realizar la modificación.";
+            try
             {
-                return lcl_cat_articuloProveedores.update(p_mod_articuloProveedor);
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    respuesta = lcl_cat_articuloProveedores.update(p_mod_articuloProveedor);
+                    scope.Complete();
+                }
             }
-            else
+            catch (TransactionAbortedException ex)
             {
-                return false;
+                errorActual = "TransactionAbortedException Message: " + ex.Message;
             }
+            catch (ApplicationException ex)
+            {
+                errorActual = "ApplicationException Message: " + ex.Message;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                errorActual = "SQLexception Message: " + ex.Message;
+            }
+            catch (Exception ex)
+            {
+                errorActual = ex.Message;
+            }
+            return respuesta;  
         }
     }
 }

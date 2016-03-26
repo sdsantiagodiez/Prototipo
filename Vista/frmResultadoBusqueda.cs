@@ -486,8 +486,6 @@ namespace Vista
             }
         }
 
-        
-      
         #endregion
         #endregion
 

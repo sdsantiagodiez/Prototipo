@@ -69,6 +69,7 @@ namespace Modelos
             this.valorParcial = this.cantidadArticulos * this.valorUnitario;
         }
 
+        #region Equals
         public override bool Equals(object p_objeto)
         {
             if (p_objeto is ModeloLineaPedido == false)
@@ -86,5 +87,6 @@ namespace Modelos
                 && this.Equals(this.valorParcial,p_mod_lineaPedido.valorParcial)
                 && this.Equals(this.valorUnitario,p_mod_lineaPedido.valorUnitario);
         }
+        #endregion
     }
 }

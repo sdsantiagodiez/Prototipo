@@ -5,11 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Modelos;
 using Datos;
+using System.Transactions;
 
 namespace Controladores
 {
     public class ControladorBaja : Controlador
     {
+        public string errorActual;
+
         public bool eliminar(ModeloEntidad p_mod_entidad)
         {
             Type T = p_mod_entidad.GetType();
@@ -38,22 +41,97 @@ namespace Controladores
             {
                 lcl_catalogo = new CatalogoEntidades();
             }
-
-            return lcl_catalogo.remove(p_mod_entidad);
+            bool respuesta = false;
+            errorActual = "No se ha podido realizar la eliminación.";
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    respuesta = lcl_catalogo.remove(p_mod_entidad);
+                    scope.Complete();
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                errorActual = "TransactionAbortedException Message: " + ex.Message;
+            }
+            catch (ApplicationException ex)
+            {
+                errorActual = "ApplicationException Message: " + ex.Message;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                errorActual = "SQLexception Message: " + ex.Message;
+            }
+            catch (Exception ex)
+            {
+                errorActual = ex.Message;
+            }
+            return respuesta;
         }
 
         public bool eliminar(ModeloArticulos p_mod_articulo)
         {
             CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
-
-            return lcl_cat_articulos.remove(p_mod_articulo);
+            bool respuesta = false;
+            errorActual = "No se ha podido realizar la eliminación.";
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    respuesta = lcl_cat_articulos.remove(p_mod_articulo);
+                    scope.Complete();
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                errorActual = "TransactionAbortedException Message: " + ex.Message;
+            }
+            catch (ApplicationException ex)
+            {
+                errorActual = "ApplicationException Message: " + ex.Message;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                errorActual = "SQLexception Message: " + ex.Message;
+            }
+            catch (Exception ex)
+            {
+                errorActual = ex.Message;
+            }
+            return respuesta;
         }
 
         public bool eliminar(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
             CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
-
-            return lcl_cat_articuloProveedores.remove(p_mod_articuloProveedor);
+            bool respuesta = false;
+            errorActual = "No se ha podido realizar la eliminación.";
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    respuesta = lcl_cat_articuloProveedores.remove(p_mod_articuloProveedor);
+                    scope.Complete();
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                errorActual = "TransactionAbortedException Message: " + ex.Message;
+            }
+            catch (ApplicationException ex)
+            {
+                errorActual = "ApplicationException Message: " + ex.Message;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                errorActual = "SQLexception Message: " + ex.Message;
+            }
+            catch (Exception ex)
+            {
+                errorActual = ex.Message;
+            }
+            return respuesta;
         }
     }
 }

@@ -12,6 +12,23 @@ namespace Datos
 {
     public class CatalogoPedidos : Catalogo
     {
+        private ModeloPedido leerDatosPedido(SqlDataReader p_drPedidos)
+        {
+            ModeloPedido lcl_mod_pedido = new ModeloPedido();
+
+            lcl_mod_pedido.numeroPedido = (int)p_drPedidos["numero_pedido"];
+            lcl_mod_pedido.fecha = (DateTime)p_drPedidos["fecha"];
+            //Si algún valor esta null en Base de datos, se asigna null en el objeto
+            //Caso contrario hay una string, y se asigna string
+            lcl_mod_pedido.codigoEntidad = (int)p_drPedidos["codigo_entidad"];
+            lcl_mod_pedido.montoTotal = (p_drPedidos["monto_total"] != DBNull.Value) ? (decimal)p_drPedidos["monto_total"] : 0;
+            lcl_mod_pedido.observaciones = (p_drPedidos["observaciones"] != DBNull.Value) ? (string)p_drPedidos["observaciones"] : null;
+            lcl_mod_pedido.codigoTipoPedido = (Constantes.CodigosTiposPedidos)p_drPedidos["codigo_tipo_pedido"];
+
+            return lcl_mod_pedido;
+        }
+
+
         /// <summary>
         /// NO USAR. Usar método buscarPedido(ModeloPedido,Constantes...TipoPedido) (BORRAR)
         /// </summary>
@@ -93,25 +110,7 @@ namespace Datos
             //return modProv;
         }
 
-
-
-
-
-        private ModeloPedido leerDatosPedido(SqlDataReader p_drPedidos)
-        {
-            ModeloPedido lcl_mod_pedido = new ModeloPedido();
-
-            lcl_mod_pedido.numeroPedido = (int)p_drPedidos["numero_pedido"];
-            lcl_mod_pedido.fecha = (DateTime)p_drPedidos["fecha"];
-            //Si algún valor esta null en Base de datos, se asigna null en el objeto
-            //Caso contrario hay una string, y se asigna string
-            lcl_mod_pedido.codigoEntidad = (int)p_drPedidos["codigo_entidad"];
-            lcl_mod_pedido.montoTotal = (p_drPedidos["monto_total"] != DBNull.Value) ? (decimal)p_drPedidos["monto_total"] : 0;
-            lcl_mod_pedido.observaciones = (p_drPedidos["observaciones"] != DBNull.Value) ? (string)p_drPedidos["observaciones"] : null;
-            lcl_mod_pedido.codigoTipoPedido = (Constantes.CodigosTiposPedidos)p_drPedidos["codigo_tipo_pedido"];
-
-            return lcl_mod_pedido;
-        }
+        
 
         public bool validarDatos(ModeloPedido p_mod_pedido)
         {
@@ -155,7 +154,7 @@ namespace Datos
                 case Constantes.ParametrosBusqueda.Pedidos.Fecha:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.fecha, "@fecha"));
                     return " fecha = @fecha ";
-                case Constantes.ParametrosBusqueda.Pedidos.Any:
+                case Constantes.ParametrosBusqueda.Any:
                     int? numeroPedido = p_mod_pedido.numeroPedido == 0 ? null : (int?)p_mod_pedido.numeroPedido;
                     p_comando.Parameters.Add(this.instanciarParametro(numeroPedido, "@numero_pedido"));
                     string numeroPedidoQuery = this.parametroBusqueda("@numero_pedido", "numero_pedido", "=");
@@ -247,7 +246,7 @@ namespace Datos
 
         public List<ModeloPedido> getAll()
         {
-            return this.buscarPedido(null, Constantes.ParametrosBusqueda.Articulos.All);
+            return this.buscarPedido(null, Constantes.ParametrosBusqueda.All);
         }
 
         public ModeloReporteEncabezado getPedidosEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin, int p_CodigoProveedor)
@@ -570,74 +569,38 @@ namespace Datos
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
-            SqlTransaction transaccion;
-            ConexionSQL.Open();
 
-            transaccion = ConexionSQL.BeginTransaction("InsertarPedido");
-            comando.Transaction = transaccion;
+            comando.CommandText =
+            "INSERT INTO [pedidos]([fecha],[monto_total],[observaciones],[codigo_tipo_pedido]) " +
+            "OUTPUT INSERTED.NUMERO_PEDIDO " +
+            "VALUES (@fecha, @monto_total, @observaciones,@codigo_tipo_pedido)";
 
-            
-            try
-            {
-                comando.CommandText =
-                "INSERT INTO [pedidos]([fecha],[monto_total],[observaciones],[codigo_tipo_pedido]) " +
-                "OUTPUT INSERTED.NUMERO_PEDIDO " +
-                "VALUES (@fecha, @monto_total, @observaciones,@codigo_tipo_pedido)";
+            //Indica los parametros
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.fecha, "@fecha"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.montoTotal, "@monto_total"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.observaciones, "@observaciones"));
+            comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.codigoEntidad, "@codigo_entidad"));
 
-                //Indica los parametros
-                comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.fecha, "@fecha"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.montoTotal, "@monto_total"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.observaciones, "@observaciones"));
-                comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.codigoEntidad, "@codigo_entidad"));
+            comando.Connection.Open();
 
-                int? nuevoNumeroPedido = (int?)comando.ExecuteScalar();
+            int? nuevoNumeroPedido = (int?)comando.ExecuteScalar();
 
-                string tablaTipoPedidoQuery = this.getTablaTipoPedido(p_mod_pedido);
+            string tablaTipoPedidoQuery = this.getTablaTipoPedido(p_mod_pedido);
                 
-                comando.CommandText =
-                "INSERT INTO " + tablaTipoPedidoQuery + " (numero_pedido,codigo_entidad) " +
-                "    VALUES( @numeroPedidoActual,@codigo_entidad) ";
-                comando.Parameters.Add(this.instanciarParametro(nuevoNumeroPedido,"@numeroPedidoActual"));
-                int rowsAffected = comando.ExecuteNonQuery();
-
-
-                if (nuevoNumeroPedido != null && rowsAffected == 1)
-                {
-                    p_mod_pedido.numeroPedido = Convert.ToInt32(nuevoNumeroPedido);
-                    transaccion.Commit();
-                    return true;
-                }
-                else
-                {
-                    try
-                    {
-                        transaccion.Rollback();
-                        return false;
-                    }
-                    catch (Exception ex2)
-                    {
-                        return false;
-                    }
-                }
-
-            }
-            catch (Exception ex)
+            comando.CommandText =
+            "INSERT INTO " + tablaTipoPedidoQuery + " (numero_pedido,codigo_entidad) " +
+            "    VALUES( @numeroPedidoActual,@codigo_entidad) ";
+            comando.Parameters.Add(this.instanciarParametro(nuevoNumeroPedido,"@numeroPedidoActual"));
+            
+            int rowsAffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+            if (nuevoNumeroPedido != null && rowsAffected == 1)
             {
-                try
-                {
-                    transaccion.Rollback();
-                    return false;
-                }
-                catch (Exception ex3)
-                {
-                    return false;
-                }
+                p_mod_pedido.numeroPedido = Convert.ToInt32(nuevoNumeroPedido);
+                return true;
             }
-            finally
-            {
-                ConexionSQL.Close();
-            }
+            throw new Exception("Ha ocurrido un error al intentar registrar el Pedido actual.");
         }
 
         public bool update(ModeloPedido p_mod_pedido)

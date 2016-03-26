@@ -52,7 +52,7 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.cuit, "@cuit"));
                     return " cuit = @cuit ";
 
-                case Constantes.ParametrosBusqueda.Entidades.Any:
+                case Constantes.ParametrosBusqueda.Any:
                     int? codigoEntidad = p_mod_entidad.codigo == 0 ? null : (int?)p_mod_entidad.codigo;
                     p_comando.Parameters.Add(this.instanciarParametro(codigoEntidad, "@codigo_entidad"));
                     string codigoEntidadQuery = @" (@codigo_entidad IS NULL OR @codigo_entidad = codigo_entidad) ";
@@ -172,7 +172,7 @@ namespace Datos
         /// <summary>
         /// Agrega entidad propiamente dicha a base de datos
         /// </summary>
-        /// <param name="pmEntidad"></param>
+        /// <param name="p_mod_entidad"></param>
         /// <returns></returns>
         public virtual bool add(ref ModeloEntidad p_mod_entidad)
         {
@@ -197,7 +197,7 @@ namespace Datos
             comando.Connection.Close();
 
             if (nuevoCodigoEntidad != null)
-            {
+            { 
                 p_mod_entidad.codigo = Convert.ToInt32(nuevoCodigoEntidad);
                 List<ModeloMail> lcl_lst_mails = p_mod_entidad.mails;
                 foreach (ModeloMail m in lcl_lst_mails)
@@ -221,15 +221,20 @@ namespace Datos
             }
             else
             {
-                return false;
+                throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar entidad.");
             }
         }
 
-        #region ABM MAILS
+        #region ABM Mails
         public bool agregarNuevoMail(ModeloMail p_mod_mail, int p_codigoEntidad)
         {
             CatalogoMails lcl_cat_mails = new CatalogoMails();
-            return lcl_cat_mails.add(p_mod_mail, p_codigoEntidad);
+            if (lcl_cat_mails.add(p_mod_mail, p_codigoEntidad))
+            {
+                return true;
+            }
+            throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar entidad. Inconveniente con mail.");
+            
         }
         public bool bajaMail(ModeloMail p_mod_mail)
         {
@@ -242,11 +247,15 @@ namespace Datos
             return lcl_cat_mails.update(p_mod_mail);
         }
         #endregion
-        #region ABM DOMICILIOS
+        #region ABM Domicilios
         public bool agregarNuevoDomicilio(ModeloDomicilio p_mod_domicilio, int p_codigoEntidad)
         {
             CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
-            return lcl_cat_domicilios.add(p_mod_domicilio, p_codigoEntidad);
+            if(lcl_cat_domicilios.add(p_mod_domicilio, p_codigoEntidad));
+            {
+                return true;
+            }
+            throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar entidad. Inconveniente con domicilio.");
         }
         public bool bajaDomicilio(ModeloDomicilio p_mod_domicilio)
         {
@@ -259,11 +268,15 @@ namespace Datos
             return lcl_cat_domicilios.update(p_mod_domicilio);
         }
         #endregion
-        #region ABM TELEFONOS
+        #region ABM Teléfonos
         public bool agregarNuevoTelefono(ModeloTelefono p_mod_telefono, int p_codigoEntidad)
         {
             CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
-            return lcl_cat_telefonos.add(p_mod_telefono, p_codigoEntidad);
+            if(lcl_cat_telefonos.add(p_mod_telefono, p_codigoEntidad))
+            {
+                return true;
+            }
+            throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar entidad. Inconveniente con telefono.");
         }
 
         public bool bajaTelefono(ModeloTelefono p_mod_telefono)
@@ -358,7 +371,8 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "DELETE FROM [entidades] WHERE [entidades].codigo=@codigo_entidad";
+                "DELETE FROM [entidades] "+
+                "   WHERE [entidades].codigo=@codigo_entidad";
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.codigo, "@codigo_entidad"));
 

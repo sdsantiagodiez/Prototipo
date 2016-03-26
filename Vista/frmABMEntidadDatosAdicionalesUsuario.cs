@@ -70,8 +70,7 @@ namespace Vista
         private void inicializarCheckedListBox()
         {
             ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
-            ModeloRoles lcl_mod_rol = new ModeloRoles();
-            chckdListBoxRol.DataSource = lcl_con_busqueda.buscar(lcl_mod_rol, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Roles.All);
+            chckdListBoxRol.DataSource = lcl_con_busqueda.getRoles();
             chckdListBoxRol.DisplayMember = "descripcion";
             chckdListBoxRol.ValueMember = "codigo";
         }

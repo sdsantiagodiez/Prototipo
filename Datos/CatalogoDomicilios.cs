@@ -36,11 +36,7 @@ namespace Datos
         public List<ModeloDomicilio> getDomicilios(int codigoEntidad)
         {
             List<ModeloDomicilio> lcl_lst_mod_domicilio = new List<ModeloDomicilio>();
-
-            //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
@@ -49,18 +45,14 @@ namespace Datos
                 "[domicilios_entidad].codigo_domicilio,[domicilios_entidad].calle,[domicilios_entidad].numero,[domicilios_entidad].piso, "+
                 "[domicilios_entidad].departamento, [domicilios_entidad].ciudad,[domicilios_entidad].codigo_postal, "+
                 "[provincias].provincia, [provincias].codigo_provincia,[paises].pais, [paises].codigo as codigo_pais " +
-                    "FROM [domicilios_entidad] " +
-                    "INNER JOIN [provincias] on [provincias].codigo_provincia = [domicilios_entidad].codigo_provincia " +
-                    "INNER JOIN [paises] on [paises].codigo = [provincias].codigo_pais " +
-                    "WHERE ([domicilios_entidad].codigo_entidad = @codigo_entidad)";
+                "   FROM [domicilios_entidad] " +
+                "   INNER JOIN [provincias] on [provincias].codigo_provincia = [domicilios_entidad].codigo_provincia " +
+                "   INNER JOIN [paises] on [paises].codigo = [provincias].codigo_pais " +
+                "   WHERE ([domicilios_entidad].codigo_entidad = @codigo_entidad)";
 
-            comando.Parameters.Add(new SqlParameter("@codigo_entidad", SqlDbType.Int));
-            comando.Parameters["@codigo_entidad"].Value = codigoEntidad;
-
+            comando.Parameters.Add(this.instanciarParametro(codigoEntidad,"@codigo_entidad"));
             comando.Connection.Open();
-
             SqlDataReader drDomicilios = comando.ExecuteReader();
-
             ModeloDomicilio lcl_mod_domicilio = new ModeloDomicilio();
 
             while (drDomicilios.Read())
@@ -70,29 +62,20 @@ namespace Datos
                 lcl_lst_mod_domicilio.Add(lcl_mod_domicilio);
             }
             drDomicilios.Close();
-
             comando.Connection.Close();
 
             return lcl_lst_mod_domicilio;
         }
         
-        #region ALTA/BAJA/MODIFICACIÓN domicilios
-        /*
-         * True si se realizó correctamente
-         * False si ocurrió algún error
-         */
+        #region Alta/Baja/Modificación
         public bool add(ModeloDomicilio p_mod_domicilio, int p_codigoEntidad)
         {
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
+            string query =
+               "INSERT INTO [domicilios_entidad] ([codigo_entidad], [calle], [numero], [piso], [departamento], [ciudad], [codigo_postal], [codigo_provincia]) " +
+               "    VALUES (@codigo_entidad, @calle, @numero, @piso, @departamento, @ciudad, @codigo_postal, @codigo_provincia)";
 
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
-                "INSERT INTO [domicilios_entidad] ([codigo_entidad], [calle], [numero], [piso], [departamento], [ciudad], [codigo_postal], [codigo_provincia]) " +
-                "VALUES (@codigo_entidad, @calle, @numero, @piso, @departamento, @ciudad, @codigo_postal, @codigo_provincia)";
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+                
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro(p_codigoEntidad, "@codigo_entidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.calle, "@calle"));
@@ -103,34 +86,24 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.codigoPostal, "@codigo_postal"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.provincia.codigo, "@codigo_provincia"));
             
-
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
             comando.Connection.Close();
 
             if (rowaffected != 0)
-            {
-                return true;
-            }
+            {return true;}
             else
-            {
-                return false;
-            }
+            {return false;}
         }
 
         public bool update(ModeloDomicilio p_mod_domicilio)
         {
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
+            string query =
+               "UPDATE [domicilios_entidad] SET [calle]=@calle,[numero]=@numero, [piso]=@piso," +
+               "    [departamento]=@departamento,[ciudad]=@ciudad, [codigo_postal]=@codigo_postal, [codigo_provincia]=@codigo_provincia " +
+               "    WHERE [codigo_domicilio]=@codigo_domicilio";
 
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
-                "UPDATE [domicilios_entidad] SET [calle]=@calle,[numero]=@numero, [piso]=@piso," +
-                "[departamento]=@departamento,[ciudad]=@ciudad, [codigo_postal]=@codigo_postal, [codigo_provincia]=@codigo_provincia " +
-                "WHERE [codigo_domicilio]=@codigo_domicilio";
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.codigoDomicilio, "@codigo_domicilio"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.calle, "@calle"));
@@ -146,27 +119,19 @@ namespace Datos
             comando.Connection.Close();
 
             if (rowaffected != 0)
-            {
-                return true;
-            }
+            { return true;}
             else
-            {
-                return false;
-            }
+            {return false;}
         }
 
         public bool remove(ModeloDomicilio p_mod_domicilio)
         {
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
+            string query =
                 "DELETE FROM [domicilios_entidad] " +
-                    "WHERE [domicilios_entidad].codigo_domicilio = @codigo_domicilio ";
-
+                "   WHERE [domicilios_entidad].codigo_domicilio = @codigo_domicilio ";
+            
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+    
             comando.Parameters.Add(this.instanciarParametro(p_mod_domicilio.codigoDomicilio, "@codigo_domicilio"));
 
             comando.Connection.Open();
@@ -174,13 +139,9 @@ namespace Datos
             comando.Connection.Close();
 
             if (rowaffected != 0)
-            {
-                return true;
-            }
+            {return true;}
             else
-            {
-                return false;
-            }
+            {return false;}
         }
             
         #endregion

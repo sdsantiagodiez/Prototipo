@@ -14,155 +14,112 @@ namespace Datos
     {
         private ModeloTelefono leerDatosTelefono(SqlDataReader drTelefonos)
         {
-            ModeloTelefono modTelefono = new ModeloTelefono();
+            ModeloTelefono lcl_mod_telefono = new ModeloTelefono();
 
-            modTelefono.codigoTelefono = (int)drTelefonos["codigo_telefono"];
+            lcl_mod_telefono.codigoTelefono = (int)drTelefonos["codigo_telefono"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
-            modTelefono.numero = (drTelefonos["numero"] != DBNull.Value) ? (string)drTelefonos["numero"] : null;
-            modTelefono.tipo = (drTelefonos["tipo"] != DBNull.Value) ? (string)drTelefonos["tipo"] : null;
+            lcl_mod_telefono.numero = (drTelefonos["numero"] != DBNull.Value) ? (string)drTelefonos["numero"] : null;
+            lcl_mod_telefono.tipo = (drTelefonos["tipo"] != DBNull.Value) ? (string)drTelefonos["tipo"] : null;
 
-            return modTelefono;
+            return lcl_mod_telefono;
         }
         public List<ModeloTelefono> getTelefonos(int codigoEntidad)
         {
-            List<ModeloTelefono> telefonos = new List<ModeloTelefono>();
-
-            //Creo la conexion y la abro
+            List<ModeloTelefono> lcl_lst_mod_telefonos = new List<ModeloTelefono>();
             SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
+            
             comando.CommandText =
                 "SELECT [telefonos_entidad].codigo_telefono,[telefonos_entidad].tipo,[telefonos_entidad].numero " +
-                    "FROM [telefonos_entidad] " +
-                    "WHERE ([telefonos_entidad].codigo_entidad = @codigo_entidad)";
+                "   FROM [telefonos_entidad] " +
+                "   WHERE ([telefonos_entidad].codigo_entidad = @codigo_entidad)";
 
-            comando.Parameters.Add(new SqlParameter("@codigo_entidad", SqlDbType.Int));
-            comando.Parameters["@codigo_entidad"].Value = codigoEntidad;
+            comando.Parameters.Add(this.instanciarParametro(codigoEntidad,"@codigo_entidad"));
 
             comando.Connection.Open();
-
             SqlDataReader drTelefonos = comando.ExecuteReader();
-
-            ModeloTelefono modTelefono = new ModeloTelefono();
-
+            ModeloTelefono lcl_mod_telefono = new ModeloTelefono();
             while (drTelefonos.Read())
             {
-                modTelefono = new ModeloTelefono();
-                modTelefono = this.leerDatosTelefono(drTelefonos);
+                lcl_mod_telefono = new ModeloTelefono();
+                lcl_mod_telefono = this.leerDatosTelefono(drTelefonos);
 
-                telefonos.Add(modTelefono);
+                lcl_lst_mod_telefonos.Add(lcl_mod_telefono);
             }
             drTelefonos.Close();
-
             comando.Connection.Close();
-
-            return telefonos;
-        }
-        #region ALTA/BAJA/MODIFICACIÓN telefonos
-        /*
-         * True si se realizó correctamente
-         * False si ocurrió algún error
-         */
-        public bool add(ModeloTelefono pmTelefono, int pCodigoEntidad)
-        {
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                "INSERT INTO [telefonos_entidad] ([codigo_entidad],[numero],[tipo]) " +
-                "VALUES (@codigo_entidad, @numero, @tipo)";
-            //Indica los parametros
-            comando.Parameters.Add(this.instanciarParametro(pCodigoEntidad, "@codigo_entidad"));
-            comando.Parameters.Add(this.instanciarParametro(pmTelefono.numero, "@numero"));
-            comando.Parameters.Add(this.instanciarParametro(pmTelefono.tipo, "@tipo"));
-
-
-            comando.Connection.Open();
-            int rowaffected = comando.ExecuteNonQuery();
-            comando.Connection.Close();
-
-            if (rowaffected != 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public bool update(ModeloTelefono pmTelefono)
-        {
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
-                "UPDATE [telefonos_entidad] SET [tipo]=@tipo,[numero]=@numero " +
-                "WHERE [telefonos_entidad].codigo_telefono=@codigo_telefono";
-
-            comando.Parameters.Add(this.instanciarParametro(pmTelefono.numero, "@numero"));
-            comando.Parameters.Add(this.instanciarParametro(pmTelefono.tipo, "@tipo"));
-
-            comando.Connection.Open();
-            int rowaffected = comando.ExecuteNonQuery();
-            comando.Connection.Close();
-
-            if (rowaffected != 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            
+            return lcl_lst_mod_telefonos;
         }
         
-        public bool remove(ModeloTelefono pModTelefono)
+        #region Alta/Baja/Modificación
+        public bool add(ModeloTelefono p_mod_telefono, int p_codigoEntidad)
         {
-            SqlConnection ConexionSQL = Conexion.crearConexion();
+            string query =
+                "INSERT INTO [telefonos_entidad] ([codigo_entidad],[numero],[tipo]) " +
+                "   VALUES (@codigo_entidad, @numero, @tipo)";
 
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                "DELETE FROM [telefonos_entidad] " +
-                    "WHERE [telefonos_entidad].codigo_telefono=@codigo_telefono";
-
-            comando.Parameters.Add(this.instanciarParametro(pModTelefono.codigoTelefono, "@codigo_telefono"));
-            comando.Parameters.Add(this.instanciarParametro(pModTelefono.tipo , "@tipo"));
-            comando.Parameters.Add(this.instanciarParametro(pModTelefono.numero , "@numero"));
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+                
+            //Indica los parametros
+            comando.Parameters.Add(this.instanciarParametro(p_codigoEntidad, "@codigo_entidad"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_telefono.numero, "@numero"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_telefono.tipo, "@tipo"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
             comando.Connection.Close();
 
             if (rowaffected != 0)
-            {
-                return true;
-            }
+            { return true; }
             else
-            {
-                return false;
-            }
+            { return false; }
+        }
+
+        public bool update(ModeloTelefono p_mod_telefono)
+        {
+            string query =
+                "UPDATE [telefonos_entidad] SET [tipo]=@tipo,[numero]=@numero " +
+                "   WHERE [telefonos_entidad].codigo_telefono=@codigo_telefono";
+
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_telefono.numero, "@numero"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_telefono.tipo, "@tipo"));
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected != 0)
+            { return true; }
+            else
+            { return false; }
+        }
+
+        public bool remove(ModeloTelefono p_mod_telefono)
+        {
+            string query =
+                "DELETE FROM [telefonos_entidad] " +
+                "   WHERE [telefonos_entidad].codigo_telefono=@codigo_telefono";
+
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_telefono.codigoTelefono, "@codigo_telefono"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_telefono.tipo, "@tipo"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_telefono.numero, "@numero"));
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected != 0)
+            { return true; }
+            else
+            { return false; }
         }
         #endregion
     }

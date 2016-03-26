@@ -34,21 +34,22 @@ namespace Datos
             }
             return respuesta;
         }
-
+        
+        #region Búsqueda
         private ModeloArticulos leerDatosArticulo(SqlDataReader p_drArticulos)
         {
-            ModeloArticulos modArt = new ModeloArticulos();
+            ModeloArticulos lcl_mod_articulo = new ModeloArticulos();
 
-            modArt.codigoOriginal = (string)p_drArticulos["codigo_original"];
+            lcl_mod_articulo.codigoOriginal = (string)p_drArticulos["codigo_original"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
-            modArt.descripcion = (p_drArticulos["descripcion"] != DBNull.Value) ? (string)p_drArticulos["descripcion"] : null;
-            modArt.modelos= (p_drArticulos["modelos"] != DBNull.Value) ? (string)p_drArticulos["modelos"] : null;
-            modArt.observaciones = (p_drArticulos["observaciones"] != DBNull.Value) ? (string)p_drArticulos["observaciones"] : null;
+            lcl_mod_articulo.descripcion = (p_drArticulos["descripcion"] != DBNull.Value) ? (string)p_drArticulos["descripcion"] : null;
+            lcl_mod_articulo.modelos= (p_drArticulos["modelos"] != DBNull.Value) ? (string)p_drArticulos["modelos"] : null;
+            lcl_mod_articulo.observaciones = (p_drArticulos["observaciones"] != DBNull.Value) ? (string)p_drArticulos["observaciones"] : null;
 
-            return modArt;
+            return lcl_mod_articulo;
         }
-        //VER DE AGREGAR MODELOS de acuerdo a como se graban los modelos
+        
         /// <summary>
         /// Genera string a insertar en clausula WHERE de sql de acuerdo a los parámetros de búsqueda
         /// </summary>
@@ -60,6 +61,9 @@ namespace Datos
         {
             switch (p_parametroBusqueda)
             {
+                case Constantes.ParametrosBusqueda.One:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.codigoOriginal, "@codigo_original"));
+                    return " codigo_original = @codigo_original ";
                 case Constantes.ParametrosBusqueda.Articulos.CodigoOriginal:
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articulo.codigoOriginal), "@codigo_original"));
                     return " codigo_original LIKE @codigo_original ";
@@ -67,7 +71,7 @@ namespace Datos
                 case Constantes.ParametrosBusqueda.Articulos.Descripcion:
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articulo.descripcion), "@descripcion"));
                     return " descripcion LIKE @descripcion ";
-                case Constantes.ParametrosBusqueda.Articulos.Any:
+                case Constantes.ParametrosBusqueda.Any:
                     
                     string codigoOriginal = p_mod_articulo.codigoOriginal == "" ? null : p_mod_articulo.codigoOriginal;
                     p_comando.Parameters.Add(this.instanciarParametro(codigoOriginal, "@codigo_original"));
@@ -83,7 +87,7 @@ namespace Datos
             }
         }
 
-        public List<ModeloArticulos> buscarArticulo(ModeloArticulos p_mod_articulo, string p_parametroBusqueda)
+        public List<ModeloArticulos> buscar(ModeloArticulos p_mod_articulo, string p_parametroBusqueda)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -124,7 +128,7 @@ namespace Datos
             ModeloArticulos lcl_mod_articulo = new ModeloArticulos();
             List<ModeloArticulos> lcl_lst_mod_articulos = new List<ModeloArticulos>();
             lcl_mod_articulo.codigoOriginal = p_codigoOriginal;
-            lcl_lst_mod_articulos = this.buscarArticulo(lcl_mod_articulo, Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
+            lcl_lst_mod_articulos = this.buscar(lcl_mod_articulo, Constantes.ParametrosBusqueda.One);
 
             if (lcl_lst_mod_articulos.Count > 0)
             {
@@ -136,64 +140,46 @@ namespace Datos
             }
         }
 
-        public List<ModeloArticulos> getAll()
-        {
-            return this.buscarArticulo(null, Constantes.ParametrosBusqueda.Articulos.All);
-        }
+        #endregion
 
         #region Alta/Baja/Modificación
-        /*
-         * True si se realizó correctamente
-         * False si ocurrió algún error
-         */
         public bool add(ModeloArticulos p_mod_articulo)
         {
-            if (!this.existeEntidad(p_mod_articulo.codigoOriginal))
-            {
-                SqlConnection ConexionSQL = Conexion.crearConexion();
-                SqlCommand comando = new SqlCommand();
+            if (this.existeEntidad(p_mod_articulo.codigoOriginal))
+            { throw new Exception("El Artículo ya existe."); }
 
-                comando.Connection = ConexionSQL;
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.CommandText =
+                "INSERT INTO [articulos]([codigo_original],[descripcion],[modelos],[observaciones]) " +
+                "   VALUES (@codigo_original, @descripcion, @modelos, @observaciones)";
+                
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.codigoOriginal, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.descripcion, "@descripcion"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.modelos, "@modelos"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.observaciones, "@observaciones"));
 
-                comando.CommandType = CommandType.Text;
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
 
-                comando.CommandText =
-                    "INSERT INTO [articulos]([codigo_original],[descripcion],[modelos],[observaciones]) " +
-                    "VALUES (@codigo_original, @descripcion, @modelos, @observaciones)";
-                //Indica los parametros
-                comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.codigoOriginal, "@codigo_original"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.descripcion, "@descripcion"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.modelos, "@modelos"));
-                comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.observaciones, "@observaciones"));
-
-                comando.Connection.Open();
-                int rowaffected = comando.ExecuteNonQuery();
-                comando.Connection.Close();
-
-                if (rowaffected != 0)
-                { return true; }
-                else
-                { return false; }
-            }
+            if (rowaffected != 0)
+            { return true; }
             else
-            { return false; }
+            { throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar Artículo."); }
         }
 
         public bool update(ModeloArticulos p_mod_articulo)
         {
-            //Creo la conexion y la abro
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
-
-            //crea SQL command
             SqlCommand comando = new SqlCommand();
-
             comando.Connection = ConexionSQL;
-
             comando.CommandType = CommandType.Text;
-
             comando.CommandText = 
                 "UPDATE [articulos] SET [descripcion]=@descripcion,[modelos]=@modelos,[observaciones]=@observaciones "+
-                "WHERE [articulos].codigo_original=@codigo_original";
+                "   WHERE [articulos].codigo_original=@codigo_original";
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.codigoOriginal, "@codigo_original"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.descripcion, "@descripcion"));
@@ -205,29 +191,21 @@ namespace Datos
             comando.Connection.Close();
 
             if (rowaffected != 0)
-            {
-                return true;
-            }
+            { return true; }
             else
-            {
-                return false;
-            }
+            { return false; }
 
         }
 
         public bool remove(ModeloArticulos p_mod_articulo)
         {
             SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
             SqlCommand comando = new SqlCommand();
-
             comando.Connection = ConexionSQL;
-
             comando.CommandType = CommandType.Text;
-
             comando.CommandText = 
-                "DELETE FROM [articulos] WHERE [articulos].codigo_original=@codigo_original";
+                "DELETE FROM [articulos] "+
+                "   WHERE [articulos].codigo_original=@codigo_original ";
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.codigoOriginal, "@codigo_original"));
 
@@ -236,13 +214,9 @@ namespace Datos
             comando.Connection.Close();
 
             if (rowaffected != 0)
-            {
-                return true;
-            }
+            { return true; }
             else
-            {
-                return false;
-            }
+            { return false; }
         }
         #endregion
     }
