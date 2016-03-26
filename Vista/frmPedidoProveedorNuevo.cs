@@ -84,57 +84,50 @@ namespace Vista
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             //checkeo que haya un articulo seleccionado
-            if (!object.Equals(this.glb_mod_selectedArticleFromSearch, null))
-            {
-                //TODO -> verificación de nro entero positivo bla bla bla
-                //Verifico la cantidad no se encuentre vacía
-                if (!string.Equals(this.txtCantidad.Text, ""))
-                {
-                    //verifico que no exista ya en entre las lineas de pedido
-                    if (!glb_con_pedidoProveedor.exists(glb_mod_selectedArticleFromSearch))
-                    {
-                        //lo agrego al pedido actual
-                        glb_con_pedidoProveedor.addToOrder(glb_mod_selectedArticleFromSearch, Int32.Parse(this.txtCantidad.Text));
-
-
-                        //Actualizo Total
-                        this.lblTotalVar.Text = glb_con_pedidoProveedor.getTotal();
-
-                        //rebindeo lista
-                        this.glb_lst_mod_currentOrder = glb_con_pedidoProveedor.getCurrentDetails();
-                        var bindingList = new BindingList<ModeloLineaPedido>(this.glb_lst_mod_currentOrder);
-                        var source = new BindingSource(bindingList, null);
-                        this.dgvDetalleAgregados.DataSource = source;
-
-                        //Limpio artselecbusq para manejar el uso del boton en momento equivocado
-                        this.glb_mod_selectedArticleFromSearch = null;
-                        //Limpio txtbox cantidad
-                        this.txtCantidad.Text = "";
-                        //Limpio lbls
-                        this.cleanLbls();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Este artículo ya se encuentra en los detalles del pedido actual");
-                        //
-                        //Limpio artselecbusq para manejar el uso del boton en momento equivocado
-                        this.glb_mod_selectedArticleFromSearch = null;
-                        //Limpio txtbox cantidad
-                        this.txtCantidad.Text = "";
-                        //Limpio lbls
-                        this.cleanLbls();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Por favor ingrese cantidad de artículo");
-                }
-
-            }
-            else
+            if (object.Equals(this.glb_mod_selectedArticleFromSearch, null))
             {
                 MessageBox.Show("Por favor seleccione un articulo a agregar de la grilla de busqueda");
+                return;
             }
+            //TODO -> verificación de nro entero positivo bla bla bla
+            //Verifico la cantidad no se encuentre vacía
+            if (string.Equals(this.txtCantidad.Text, ""))
+            {
+                 MessageBox.Show("Por favor ingrese cantidad de artículo");
+                return ;
+            }
+            //verifico que no exista ya en entre las lineas de pedido
+            if (glb_con_pedidoProveedor.exists(glb_mod_selectedArticleFromSearch))
+            {
+                MessageBox.Show("Este artículo ya se encuentra en los detalles del pedido actual");
+                //
+                //Limpio artselecbusq para manejar el uso del boton en momento equivocado
+                this.glb_mod_selectedArticleFromSearch = null;
+                //Limpio txtbox cantidad
+                this.txtCantidad.Text = "";
+                //Limpio lbls
+                this.cleanLbls();
+                return;
+            }
+
+            //lo agrego al pedido actual
+            glb_con_pedidoProveedor.addToOrder(glb_mod_selectedArticleFromSearch, Int32.Parse(this.txtCantidad.Text));
+
+            //Actualizo Total
+            this.lblTotalVar.Text = glb_con_pedidoProveedor.getTotal();
+
+            //rebindeo lista
+            this.glb_lst_mod_currentOrder = glb_con_pedidoProveedor.getCurrentDetails();
+            var bindingList = new BindingList<ModeloLineaPedido>(this.glb_lst_mod_currentOrder);
+            var source = new BindingSource(bindingList, null);
+            this.dgvDetalleAgregados.DataSource = source;
+
+            //Limpio artselecbusq para manejar el uso del boton en momento equivocado
+            this.glb_mod_selectedArticleFromSearch = null;
+            //Limpio txtbox cantidad
+            this.txtCantidad.Text = "";
+            //Limpio lbls
+            this.cleanLbls();
         }
 
         private void btnBorrarPedActual_Click(object sender, EventArgs e)

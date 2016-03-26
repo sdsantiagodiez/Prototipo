@@ -73,65 +73,58 @@ namespace Vista
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             //checkeo que haya un articulo seleccionado
-            if (!object.Equals(this.glb_mod_articuloSeleccionadoBusqueda, null))
-            {
-                //Verifico la cantidad
-                if (!string.Equals(this.txtCantidad.Text, "")  
-                    && LibreriaClasesCompartidas.Validar.validarEnteroPositivoSinCero(this.txtCantidad.Text))
-                {
-                    //verifico stock
-                    if (this.glb_mod_articuloSeleccionadoBusqueda.stockActual >= Int32.Parse(this.txtCantidad.Text))
-                    {                        
-                        //verifico que no exista ya en entre las lineas de pedido
-                        if (!glb_con_ProcesarVenta.exists(glb_mod_articuloSeleccionadoBusqueda))
-                        {
-                            //lo agrego a la venta actual
-                            glb_con_ProcesarVenta.addToVenta(glb_mod_articuloSeleccionadoBusqueda, Int32.Parse(this.txtCantidad.Text));
-                            
-
-                            //Actualizo Total
-                            this.lblTotalVar.Text = glb_con_ProcesarVenta.getTotal();
-
-                            //rebindeo lista
-                            var lcl_bindingList = new BindingList<ModeloLineaPedido>(glb_con_ProcesarVenta.getVentaActual());
-                            var lcl_source = new BindingSource(lcl_bindingList, null);
-                            this.dgvDetalleAgregados.DataSource = lcl_source;
-                    
-                            //Limpio artselecbusq para manejar el uso del boton en momento equivocado
-                            this.glb_mod_articuloSeleccionadoBusqueda = null;
-                            //Limpio txtbox cantidad
-                            this.txtCantidad.Text = "";
-                            //Limpio lbls
-                            this.cleanLbls();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Este artículo ya se encuentra en los detalles de la venta actual");
-                            //
-                            //Limpio artselecbusq para manejar el uso del boton en momento equivocado
-                            this.glb_mod_articuloSeleccionadoBusqueda = null;
-                            //Limpio txtbox cantidad
-                            this.txtCantidad.Text = "";
-                            //Limpio lbls
-                            this.cleanLbls();
-                        }
-                        
-                    }
-                    else
-                    {
-                        MessageBox.Show("No hay suficientes articulos en inventario actual para cubrir el pedido");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("La cantidad de articulos debe ser un número mayor a cero.");
-                }
-                
-            }
-            else
+            if (object.Equals(this.glb_mod_articuloSeleccionadoBusqueda, null))
             {
                 MessageBox.Show("Por favor seleccione un articulo a agregar de la grilla de busqueda");
+                return;
             }
+
+            //Verifico la cantidad
+            if (string.Equals(this.txtCantidad.Text, "")  
+                || !LibreriaClasesCompartidas.Validar.validarEnteroPositivoSinCero(this.txtCantidad.Text))
+            {
+                MessageBox.Show("La cantidad de articulos debe ser un número mayor a cero.");
+                return;
+            }
+
+            //verifico stock
+            if (this.glb_mod_articuloSeleccionadoBusqueda.stockActual < Int32.Parse(this.txtCantidad.Text))
+            {
+                MessageBox.Show("No hay suficientes articulos en inventario actual para cubrir el pedido");
+                return;
+            }  
+
+            //verifico que no exista ya en entre las lineas de pedido
+            if (glb_con_ProcesarVenta.exists(glb_mod_articuloSeleccionadoBusqueda))
+            {
+                MessageBox.Show("Este artículo ya se encuentra en los detalles de la venta actual");
+                //
+                //Limpio artselecbusq para manejar el uso del boton en momento equivocado
+                this.glb_mod_articuloSeleccionadoBusqueda = null;
+                //Limpio txtbox cantidad
+                this.txtCantidad.Text = "";
+                //Limpio lbls
+                this.cleanLbls();
+                return;
+            }
+            
+            //lo agrego a la venta actual
+            glb_con_ProcesarVenta.addToVenta(glb_mod_articuloSeleccionadoBusqueda, Int32.Parse(this.txtCantidad.Text));
+                            
+            //Actualizo Total
+            this.lblTotalVar.Text = glb_con_ProcesarVenta.getTotal();
+
+            //rebindeo lista
+            var lcl_bindingList = new BindingList<ModeloLineaPedido>(glb_con_ProcesarVenta.getVentaActual());
+            var lcl_source = new BindingSource(lcl_bindingList, null);
+            this.dgvDetalleAgregados.DataSource = lcl_source;
+                    
+            //Limpio artselecbusq para manejar el uso del boton en momento equivocado
+            this.glb_mod_articuloSeleccionadoBusqueda = null;
+            //Limpio txtbox cantidad
+            this.txtCantidad.Text = "";
+            //Limpio lbls
+            this.cleanLbls();
         }
 
         private void btnQuitar_Click(object sender, EventArgs e)
@@ -237,36 +230,31 @@ namespace Vista
         #region Labels, txtBox y Combos
         private void lblLupa_Click(object sender, EventArgs e)
         {
-            
             //me aseguro que se haya seleccionado una categoria de búsqueda
-            if (!object.Equals(this.glb_categoriaBusquedaSeleccionada, null))
+            if (object.Equals(this.glb_categoriaBusquedaSeleccionada, null))
             {
-                //capturo descripcion parcial y me aseguro que sea una entrada válda
-                string lcl_descripcionParcialArticulo = this.txtDescripcionParcial.Text;
-                if (LibreriaClasesCompartidas.Validar.validarAlfanumericoConEspaciosSinCaracteresEspeciales(lcl_descripcionParcialArticulo))
-                {
-                    
-                    //busco el/los articulos correspondientes y me fijo que se hayan encontrado artículos
-                    if (glb_con_ProcesarVenta.buscarArticulos(glb_categoriaBusquedaSeleccionada, lcl_descripcionParcialArticulo)>0)
-                    {
-                        //bindeo el datagrid con los articulos encontrados
-                        var lcl_bindingList = new BindingList<ModeloArticuloProveedores>(glb_con_ProcesarVenta.getBusqueda());
-                        var lcl_source = new BindingSource(lcl_bindingList, null);
-                        this.dgvArtAgregar.DataSource = lcl_source;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontraron coincidencias");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("No se permiten caracteres especiales en la descripción. Por favor ingrésela correctamente");
-                }
+                 MessageBox.Show("Por favor seleccione una categoría de búsqueda");
+                return;
+            }
+            //capturo descripcion parcial y me aseguro que sea una entrada válda
+            string lcl_descripcionParcialArticulo = this.txtDescripcionParcial.Text;
+            if (!LibreriaClasesCompartidas.Validar.validarAlfanumericoConEspaciosSinCaracteresEspeciales(lcl_descripcionParcialArticulo))
+            {
+                MessageBox.Show("No se permiten caracteres especiales en la descripción. Por favor ingrésela correctamente");
+                return;
+            }
+            
+            //busco el/los articulos correspondientes y me fijo que se hayan encontrado artículos
+            if (glb_con_ProcesarVenta.buscarArticulos(glb_categoriaBusquedaSeleccionada, lcl_descripcionParcialArticulo)>0)
+            {
+                //bindeo el datagrid con los articulos encontrados
+                var lcl_bindingList = new BindingList<ModeloArticuloProveedores>(glb_con_ProcesarVenta.getBusqueda());
+                var lcl_source = new BindingSource(lcl_bindingList, null);
+                this.dgvArtAgregar.DataSource = lcl_source;
             }
             else
             {
-                MessageBox.Show("Por favor seleccione una categoría de búsqueda");
+                MessageBox.Show("No se encontraron coincidencias");
             }
         }
 
@@ -292,15 +280,20 @@ namespace Vista
 
         private void cleanLbls()
         {
-            this.lblCodigoOriginalVar.Text = "Seleccione Articulo";
-            this.lblCodigoProveedorVar.Text = "Seleccione Articulo";
-            this.lblProveedorVar.Text = "Seleccione Articulo";
-            this.lblDescripcionVar.Text = "Seleccione Articulo";
-            this.lblPrecioVar.Text = "Seleccione Articulo";
-            this.lblExistenciaVar.Text = "Seleccione Articulo";
-            this.lblFechaActualizacionVar.Text = "Seleccione Articulo";
-            this.lblObservacionesVar.Text = "Seleccione Articulo";
-            this.lblUbicacionVar.Text = "Seleccione Articulo";
+            this.lblCodigoOriginalVar.Text = this.lblCodigoProveedorVar.Text = this.lblProveedorVar.Text = 
+            this.lblDescripcionVar.Text = this.lblPrecioVar.Text = this.lblExistenciaVar.Text = 
+            this.lblFechaActualizacionVar.Text = this.lblObservacionesVar.Text = 
+            this.lblUbicacionVar.Text = "Seleccione Artículo";
+
+            //this.lblCodigoOriginalVar.Text = "Seleccione Articulo";
+            //this.lblCodigoProveedorVar.Text = "Seleccione Articulo";
+            //this.lblProveedorVar.Text = "Seleccione Articulo";
+            //this.lblDescripcionVar.Text = "Seleccione Articulo";
+            //this.lblPrecioVar.Text = "Seleccione Articulo";
+            //this.lblExistenciaVar.Text = "Seleccione Articulo";
+            //this.lblFechaActualizacionVar.Text = "Seleccione Articulo";
+            //this.lblObservacionesVar.Text = "Seleccione Articulo";
+            //this.lblUbicacionVar.Text = "Seleccione Articulo";
         }
 
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)

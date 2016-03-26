@@ -86,12 +86,6 @@
     <Compile Include="frmDevolucion.Designer.cs">
       <DependentUpon>frmDevolucion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMensajeCorto.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMensajeCorto.Designer.cs">
-      <DependentUpon>frmMensajeCorto.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmLogIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +115,12 @@
     </Compile>
     <Compile Include="frmMenuPrincipal.Designer.cs">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPedidoNuevo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPedidoNuevo.Designer.cs">
+      <DependentUpon>frmPedidoNuevo.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPedidoProveedorCierre.cs">
       <SubType>Form</SubType>
@@ -176,9 +176,6 @@
     <EmbeddedResource Include="frmDevolucion.resx">
       <DependentUpon>frmDevolucion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMensajeCorto.resx">
-      <DependentUpon>frmMensajeCorto.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmLogIn.resx">
       <DependentUpon>frmLogIn.cs</DependentUpon>
     </EmbeddedResource>
@@ -193,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPedidoNuevo.resx">
+      <DependentUpon>frmPedidoNuevo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPedidoProveedorCierre.resx">
       <DependentUpon>frmPedidoProveedorCierre.cs</DependentUpon>
