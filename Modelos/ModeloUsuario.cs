@@ -45,8 +45,8 @@ namespace Modelos
         public string contrasenia
         {
             get { return _contrasenia; }
-            set { this._contrasenia = validarContrasenia(value)?value:null; }
-            //set { this._contrasenia = validarContrasenia(value)?this.encriptarContraseña(value):null; }
+            //set { this._contrasenia = validarContrasenia(value)?value:null; }
+            set { this._contrasenia = validarContrasenia(value)?this.encriptarContraseña(value):null; }
         }
         List<ModeloRoles> _roles;
         public List<ModeloRoles> roles
