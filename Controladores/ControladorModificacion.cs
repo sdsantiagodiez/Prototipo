@@ -45,9 +45,10 @@ namespace Controladores
             errorActual = "No se ha podido realizar la modificación.";
             try
             {
+                ModeloEntidad lcl_m = lcl_catalogo.getOne(p_mod_entidad.codigo);
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    respuesta = lcl_catalogo.update(p_mod_entidad);
+                    respuesta = lcl_catalogo.update(lcl_m,p_mod_entidad);
                     scope.Complete();
                 }
             }

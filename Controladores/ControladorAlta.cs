@@ -50,6 +50,7 @@ namespace Controladores
             }
 
             bool respuesta = false;
+            //errorActual = "No se ha podido realizar al operación.";
             try
             {
                 using (TransactionScope scope = new TransactionScope())
