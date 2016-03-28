@@ -102,11 +102,7 @@ namespace Datos
         public List<ModeloContactoProveedor> buscarContactoProveedor(ModeloContactoProveedor p_mod_contactoProveedor, string p_paramentroBusqueda)
         {
             List<ModeloContactoProveedor> lcl_lst_mod_contactoProveedor = new List<ModeloContactoProveedor>();
-
-            //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
@@ -133,11 +129,6 @@ namespace Datos
             {
                 p_mod_contactoProveedor = new ModeloContactoProveedor();
                 p_mod_contactoProveedor = this.leerDatosContactoProveedor(drContactoProveedor);
-
-                
-                p_mod_contactoProveedor.mails = this.getMails(p_mod_contactoProveedor.codigo);
-                p_mod_contactoProveedor.telefonos = this.getTelefonos(p_mod_contactoProveedor.codigo);
-                p_mod_contactoProveedor.domicilios = this.getDomicilios(p_mod_contactoProveedor.codigo);
 
                 lcl_lst_mod_contactoProveedor.Add(p_mod_contactoProveedor);
             }
@@ -186,32 +177,16 @@ namespace Datos
             { return false; }
         }
 
-        public override bool update(ModeloPersonas p_mod_persona)
+        public override bool update(ModeloEntidad p_mod_entidad_original, ModeloEntidad p_mod_entidad_nueva)
         {
-            return this.update(p_mod_persona as ModeloContactoProveedor);
-        }
-
-        public bool update(ModeloContactoProveedor p_mod_contactoProveedor_nuevo)
-        {
-            ModeloContactoProveedor lcl_mod_contactoProveedor_original = this.buscar(p_mod_contactoProveedor_nuevo, Constantes.ParametrosBusqueda.Entidades.Personas.CodigoEntidad).ToList()[0];
-            if (lcl_mod_contactoProveedor_original != null)
-                return update(lcl_mod_contactoProveedor_original, p_mod_contactoProveedor_nuevo);
-            else
-                return false;
-        }
-
-        private bool update(ModeloContactoProveedor p_mod_contactoProveedor_original, ModeloContactoProveedor p_mod_contactoProveedor_nuevo)
-        {
-            if (!p_mod_contactoProveedor_original.Equals(p_mod_contactoProveedor_nuevo))
+            if (!p_mod_entidad_original.Equals(p_mod_entidad_nueva))
             {
-                if (!this.updateContactoProveedor(p_mod_contactoProveedor_nuevo))
+                if (!this.updateContactoProveedor(p_mod_entidad_nueva as ModeloContactoProveedor))
                 {
                     return false;
                 }
             }
-            ModeloPersonas p_mod_persona_nueva = new ModeloPersonas(p_mod_contactoProveedor_nuevo as ModeloPersonas);
-            ModeloPersonas p_mod_persona_original = new ModeloPersonas(p_mod_contactoProveedor_original as ModeloPersonas);
-            return base.update(p_mod_persona_original, p_mod_persona_nueva);
+            return base.update(p_mod_entidad_original, p_mod_entidad_nueva);
         }
 
         private bool updateContactoProveedor(ModeloContactoProveedor p_mod_contactoProveedor)

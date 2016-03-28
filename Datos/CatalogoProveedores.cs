@@ -107,10 +107,6 @@ namespace Datos
                 lcl_mod_proveedor = new ModeloProveedor();
                 lcl_mod_proveedor = this.leerDatosProveedor(drProveedores);
 
-                lcl_mod_proveedor.mails = this.getMails(lcl_mod_proveedor.codigo);
-                lcl_mod_proveedor.telefonos = this.getTelefonos(lcl_mod_proveedor.codigo);
-                lcl_mod_proveedor.domicilios = this.getDomicilios(lcl_mod_proveedor.codigo);
-
                 lcl_lst_mod_proveedor.Add(lcl_mod_proveedor);
             }
             drProveedores.Close();

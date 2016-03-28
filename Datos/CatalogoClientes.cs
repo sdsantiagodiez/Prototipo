@@ -83,10 +83,6 @@ namespace Datos
                 p_mod_cliente = new ModeloCliente();
                 p_mod_cliente = this.leerDatosPersonas(drUsuarios);
 
-                p_mod_cliente.mails = this.getMails(p_mod_cliente.codigo);
-                p_mod_cliente.telefonos = this.getTelefonos(p_mod_cliente.codigo);
-                p_mod_cliente.domicilios = this.getDomicilios(p_mod_cliente.codigo);
-
                 lcl_lst_mod_clientes.Add(p_mod_cliente);
             }
             drUsuarios.Close();

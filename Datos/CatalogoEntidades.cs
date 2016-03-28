@@ -27,7 +27,11 @@ namespace Datos
             lcl_mod_entidad.cuit = (p_drEntidades["cuit"] != DBNull.Value) ? (string)p_drEntidades["cuit"] : null;
             lcl_mod_entidad.tipoEntidad = (p_drEntidades["tipo_entidad"] != DBNull.Value) ? (string)p_drEntidades["tipo_entidad"] : null;
             lcl_mod_entidad.observaciones = (p_drEntidades["observaciones"] != DBNull.Value) ? (string)p_drEntidades["observaciones"] : null;
-            
+
+            lcl_mod_entidad.mails = this.getMails(lcl_mod_entidad.codigo);
+            lcl_mod_entidad.telefonos = this.getTelefonos(lcl_mod_entidad.codigo);
+            lcl_mod_entidad.domicilios = this.getDomicilios(lcl_mod_entidad.codigo);
+
             return lcl_mod_entidad;
         }
 
@@ -74,7 +78,7 @@ namespace Datos
             return null;
         }
 
-        public ModeloEntidad getOne(int p_codigoEntidad)
+        public virtual ModeloEntidad getOne(int p_codigoEntidad)
         {
             ModeloEntidad lcl_mod_entidad = null;
             //Creo la conexion y la abro
@@ -85,7 +89,7 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "SELECT [codigo],[tipo_entidad],[cuit],[observaciones] " +
+                "SELECT [codigo] as codigo_entidad,[tipo_entidad],[cuit],[observaciones] " +
                     "FROM [entidades]  " +
                     "WHERE [entidades].codigo = @codigo";
             comando.Parameters.Add(new SqlParameter("@codigo", SqlDbType.Int));
@@ -101,10 +105,6 @@ namespace Datos
             }
             drEntidades.Close();
             comando.Connection.Close();
-
-            lcl_mod_entidad.mails = this.getMails(p_codigoEntidad);
-            lcl_mod_entidad.telefonos = this.getTelefonos(p_codigoEntidad);
-            lcl_mod_entidad.domicilios = this.getDomicilios(p_codigoEntidad);
 
             return lcl_mod_entidad;
         }
@@ -251,7 +251,7 @@ namespace Datos
         public bool agregarNuevoDomicilio(ModeloDomicilio p_mod_domicilio, int p_codigoEntidad)
         {
             CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
-            if(lcl_cat_domicilios.add(p_mod_domicilio, p_codigoEntidad));
+            if(lcl_cat_domicilios.add(p_mod_domicilio, p_codigoEntidad))
             {
                 return true;
             }
@@ -345,7 +345,7 @@ namespace Datos
             }
         }
 
-        protected bool update(ModeloEntidad p_mod_entidad_original, ModeloEntidad p_mod_entidad_nueva)
+        public virtual bool update(ModeloEntidad p_mod_entidad_original, ModeloEntidad p_mod_entidad_nueva)
         {
             if (!p_mod_entidad_original.Equals(p_mod_entidad_nueva))
             {

@@ -73,7 +73,7 @@ namespace Datos
         /// <param name="p_mod_usuario">modeloUsuario con variables posiblemente inicializadas</param>
         /// <param name="p_paramentroBusqueda">string contenida en LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Personas</param>
         /// <returns></returns>
-        private List<ModeloUsuario> buscarUsuario(ModeloUsuario p_mod_usuario, string p_paramentroBusqueda)
+        public List<ModeloUsuario> buscarUsuario(ModeloUsuario p_mod_usuario, string p_paramentroBusqueda)
         {
             List<ModeloUsuario> lcl_lst_mod_usuarios = new List<ModeloUsuario>();
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -97,10 +97,6 @@ namespace Datos
             {
                 p_mod_usuario = new ModeloUsuario();
                 p_mod_usuario = this.leerDatosPersonas(drUsuarios);
-
-                p_mod_usuario.mails = this.getMails(p_mod_usuario.codigo);
-                p_mod_usuario.telefonos = this.getTelefonos(p_mod_usuario.codigo);
-                p_mod_usuario.domicilios = this.getDomicilios(p_mod_usuario.codigo);
 
                 this.getRoles(ref p_mod_usuario);
 
@@ -152,7 +148,7 @@ namespace Datos
         /// </summary>
         /// <param name="p_codigoEntidad">codigo entidad del usuario a buscar</param>
         /// <returns>ModeloUsuario si encuentra, null si no encuentra resultado</returns>
-        new public ModeloPersonas getOne(int p_codigoEntidad)
+        public override ModeloEntidad getOne(int p_codigoEntidad)
         {
             ModeloUsuario lcl_mod_usuario = new ModeloUsuario();
             List<ModeloUsuario> lcl_lst_mod_usuario = new List<ModeloUsuario>();
@@ -187,6 +183,15 @@ namespace Datos
 
         public bool add(ModeloUsuario p_mod_usuario)
         {
+            if (this.add(p_mod_usuario) && this.addRoles(p_mod_usuario))
+            {
+                return true;
+            }
+            throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar usuario.");
+        }
+
+        private bool addUsuario(ModeloUsuario p_mod_usuario)
+        {
             string query =
                 "INSERT INTO [Personas]([codigo_entidad],[dni],[nombre],[apellido],[usuario],[contrasenia],[tipo_persona]) " +
                 "VALUES (@codigo_entidad, @dni, @nombre, @apellido,@usuario,@contrasenia, @tipo_persona)";
@@ -211,15 +216,6 @@ namespace Datos
             { return false; }
         }
 
-        private bool addUsuario(ModeloUsuario p_mod_usuario)
-        {
-            if (this.add(p_mod_usuario) && this.addRoles(p_mod_usuario))
-            {
-                return true;
-            }
-            throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar usuario.");
-        }
-
         public bool addRoles(ModeloUsuario p_mod_usuario)
         {
             string query =
@@ -242,33 +238,17 @@ namespace Datos
             comando.Connection.Close();
             return true;
         }
-        
-        public override bool update(ModeloPersonas p_mod_persona)
-        {
-            return this.update(p_mod_persona as ModeloUsuario);
-        }
 
-        public  bool update(ModeloUsuario p_mod_usuario_nuevo)
+        public override bool update(ModeloEntidad p_mod_entidad_original, ModeloEntidad p_mod_entidad_nueva)
         {
-            ModeloUsuario lcl_mod_usuario_original = this.buscar(p_mod_usuario_nuevo, Constantes.ParametrosBusqueda.Entidades.Personas.CodigoEntidad).ToList()[0];
-            if (lcl_mod_usuario_original != null)
-                return update(lcl_mod_usuario_original, p_mod_usuario_nuevo);
-            else
-                return false;
-        }
-
-        private bool update(ModeloUsuario p_mod_usuario_original, ModeloUsuario p_mod_usuario_nuevo)
-        {
-            if (!p_mod_usuario_original.Equals(p_mod_usuario_nuevo))
+            if (!p_mod_entidad_original.Equals(p_mod_entidad_nueva))
             {
-                if(!this.updateUsuario(p_mod_usuario_nuevo) || !this.updateUsuario_Roles(p_mod_usuario_original,p_mod_usuario_nuevo))
+                if (!this.updateUsuario(p_mod_entidad_nueva as ModeloUsuario) || !this.updateUsuario_Roles(p_mod_entidad_original as ModeloUsuario, p_mod_entidad_nueva as ModeloUsuario))
                 {
                     return false;
                 }
             }
-            ModeloPersonas p_mod_persona_nueva = new ModeloPersonas(p_mod_usuario_nuevo as ModeloPersonas);
-            ModeloPersonas p_mod_persona_original = new ModeloPersonas(p_mod_usuario_original as ModeloPersonas);
-            return base.update(p_mod_persona_original, p_mod_persona_nueva);
+            return base.update(p_mod_entidad_original, p_mod_entidad_nueva);
         }
 
         private bool updateUsuario(ModeloUsuario p_mod_usuario)
@@ -281,7 +261,7 @@ namespace Datos
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_usuario.codigo, "@codigo_entidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_usuario.usuario, "@usuario"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_usuario.contrasenia, "@contrasenia"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_usuario.contrasenia, @"@contrasenia"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();

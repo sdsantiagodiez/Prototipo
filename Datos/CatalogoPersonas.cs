@@ -59,7 +59,7 @@ namespace Datos
                 case Constantes.ParametrosBusqueda.Any:
                     string queryBase = base.getCondicionBusqueda(p_mod_persona, p_parametroBusqueda, ref p_comando);
 
-                    string dni = (p_mod_persona.dni == "") ? null : p_mod_persona.nombre;
+                    string dni = (p_mod_persona.dni == "") ? null : p_mod_persona.dni;
                     p_comando.Parameters.Add(this.instanciarParametro(dni, "@dni"));
                     string dniQuery = " (@dni is null OR dni = @dni) ";
                     //string dniQuery = this.parametroBusqueda("@dni", "dni","=");
@@ -133,10 +133,6 @@ namespace Datos
                 p_mod_persona = new ModeloPersonas();
                 p_mod_persona = this.leerDatosPersonas(drPersonas);
 
-                p_mod_persona.mails = this.getMails(p_mod_persona.codigo);
-                p_mod_persona.telefonos = this.getTelefonos(p_mod_persona.codigo);
-                p_mod_persona.domicilios = this.getDomicilios(p_mod_persona.codigo);
-
                 lcl_lst_mod_persona.Add(p_mod_persona);
             }
             drPersonas.Close();
@@ -150,7 +146,7 @@ namespace Datos
         /// </summary>
         /// <param name="p_codigoEntidad">codigo entidad de la persona a buscar</param>
         /// <returns>ModeloPersona si encuentra, null si no encuentra resultado</returns>
-        new public ModeloPersonas getOne(int p_codigoEntidad)
+        public override ModeloEntidad getOne(int p_codigoEntidad)
         {
             ModeloPersonas lcl_mod_persona = new ModeloPersonas();
             List<ModeloPersonas> lcl_lst_mod_persona = new List<ModeloPersonas>();
@@ -189,6 +185,11 @@ namespace Datos
 
         public virtual bool add(ModeloPersonas p_mod_persona)
         {
+            return this.addPersona(p_mod_persona);
+        }
+
+        private bool addPersona(ModeloPersonas p_mod_persona)
+        {
             SqlConnection ConexionSQL = Conexion.crearConexion();
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
@@ -208,40 +209,21 @@ namespace Datos
             comando.Connection.Close();
 
             if (rowaffected != 0)
-            {
-                return true;
-            }
+            { return true; }
             else
-            {
-                return false;
-            }
+            { return false; }
         }
 
-        public override bool update(ModeloEntidad p_mod_entidad)
+        public override bool update(ModeloEntidad p_mod_entidad_original, ModeloEntidad p_mod_entidad_nueva)
         {
-            return this.update(p_mod_entidad as ModeloPersonas);
-        }
-
-        public virtual bool update(ModeloPersonas p_mod_persona_nueva)
-        {
-            ModeloPersonas lcl_mod_persona_original = this.buscar(p_mod_persona_nueva, Constantes.ParametrosBusqueda.Entidades.Personas.CodigoEntidad).ToList()[0];
-            if (lcl_mod_persona_original != null)
-                return update(lcl_mod_persona_original, p_mod_persona_nueva);
-            else
-                return false;
-        }
-        protected bool update(ModeloPersonas p_mod_persona_original, ModeloPersonas p_mod_persona_nueva)
-        {
-            if (!p_mod_persona_original.Equals(p_mod_persona_nueva))
+            if (!p_mod_entidad_original.Equals(p_mod_entidad_nueva))
             {
-                if(!this.updatePersona(p_mod_persona_nueva))
+                if (!this.updatePersona(p_mod_entidad_nueva as ModeloPersonas))
                 {
                     return false;
                 }
             }
-            ModeloEntidad lcl_mod_entidad_original = new ModeloEntidad(p_mod_persona_original as ModeloEntidad);
-            ModeloEntidad lcl_mod_entidad_nueva = new ModeloEntidad(p_mod_persona_nueva as ModeloEntidad);
-            return base.update(lcl_mod_entidad_original, lcl_mod_entidad_nueva);
+            return base.update(p_mod_entidad_original, p_mod_entidad_nueva);
         }
 
         private bool updatePersona(ModeloPersonas p_mod_persona)
