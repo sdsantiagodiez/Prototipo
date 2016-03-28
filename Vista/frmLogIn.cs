@@ -32,11 +32,11 @@ namespace Vista
         {
             ModeloUsuario lcl_mod_usuario = new ModeloUsuario();
             lcl_mod_usuario.usuario = txtBoxUsuario.Text;
-            lcl_mod_usuario.contrasenia = txtBoxContrasenia.Text;
-
-            if (ControladorSesion.LogIn(lcl_mod_usuario))
+            lcl_mod_usuario.asignarContraseña(txtBoxContrasenia.Text);
+            
+            usuarioActual = ControladorSesion.LogIn(lcl_mod_usuario);
+            if (usuarioActual != null)
             {
-                usuarioActual = ControladorSesion.getUsuario(lcl_mod_usuario);
                 MessageBox.Show("Bienvenido " + usuarioActual.nombre + " " + usuarioActual.apellido,"¡Bienvenido!");
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }

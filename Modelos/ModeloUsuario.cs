@@ -46,7 +46,7 @@ namespace Modelos
         {
             get { return _contrasenia; }
             //set { this._contrasenia = validarContrasenia(value)?value:null; }
-            set { this._contrasenia = validarContrasenia(value)?this.encriptarContraseña(value):null; }
+            set { this._contrasenia = validarContrasenia(value)?value:null; }
         }
         List<ModeloRoles> _roles;
         public List<ModeloRoles> roles
@@ -127,11 +127,15 @@ namespace Modelos
         /// <summary>
         /// Convierte valor contraseña a su correspondiente hash encriptado
         /// </summary>
-        public string encriptarContraseña(string p_contrasenia)
+        public void asignarContraseña(string p_contrasenia)
         {
-            byte[] data = System.Text.Encoding.ASCII.GetBytes(p_contrasenia);
-            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-            return System.Text.Encoding.ASCII.GetString(data);   
+            if (ModeloUsuario.validarContrasenia(p_contrasenia))
+            {
+                byte[] data = System.Text.Encoding.ASCII.GetBytes(p_contrasenia);
+                data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+                this.contrasenia = System.Text.Encoding.ASCII.GetString(data);
+            }
+
         }
         #endregion
     }

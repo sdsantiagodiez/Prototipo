@@ -476,8 +476,7 @@ namespace Vista
         private void hacerBusqueda(Object p_objeto)
         {
             this.inicializarMostrarBusqueda(p_objeto);
-            ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
-            glb_lst_objectos = lcl_con_busqueda.buscar(p_objeto);
+            glb_lst_objectos = ControladorBusqueda.buscar(p_objeto);
 
             if (glb_lst_objectos.Count != 0)
             {

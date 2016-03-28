@@ -170,8 +170,7 @@ namespace Vista
         private void inicializarComboBox()
         {
             //Populo combobox de paises
-            ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
-            List<ModeloPais> lcl_lst_mod_paises = lcl_con_busqueda.getPaises();
+            List<ModeloPais> lcl_lst_mod_paises = ControladorBusqueda.getPaises();
             this.cmbBoxPais.DataSource = lcl_lst_mod_paises;
             this.cmbBoxPais.DisplayMember = "pais";
             this.cmbBoxPais.ValueMember = "codigo";
@@ -1023,13 +1022,11 @@ namespace Vista
         #region ComboBox
         private void cmbBoxPais_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
             ModeloProvincia lcl_mod_provincia = new ModeloProvincia();
             //Inserto codigoPais del país seleccionado en el comboBox
             lcl_mod_provincia.codigoPais = this.cmbBoxPais.SelectedValue.ToString();
             //this.cmbBoxProvincia.DataSource = provincias;
-            //REVISAR TEMPORAL HASTA QUE ESTE COMPLETO CONTROLADOrBUSQUEDA
-            List<ModeloProvincia> lcl_lst_mod_provincias = lcl_con_busqueda.getProvincias();
+            List<ModeloProvincia> lcl_lst_mod_provincias = ControladorBusqueda.getProvincias();
             List<ModeloProvincia> provincias = new List<ModeloProvincia>();
             foreach (ModeloProvincia p in lcl_lst_mod_provincias)
             {

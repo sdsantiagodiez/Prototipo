@@ -69,16 +69,15 @@ namespace Vista
 
         private void inicializarCheckedListBox()
         {
-            ControladorBusqueda lcl_con_busqueda = new ControladorBusqueda();
-            chckdListBoxRol.DataSource = lcl_con_busqueda.getRoles();
+            chckdListBoxRol.DataSource = ControladorBusqueda.getRoles();
             chckdListBoxRol.DisplayMember = "descripcion";
             chckdListBoxRol.ValueMember = "codigo";
         }
         private void inicializarModoUsuarioNuevo(bool value)
         {
-            txtBoxUsuario.Enabled = value;
-            txtBoxContraseña.Enabled = value;
-            txtBoxConfirmarContraseña.Enabled = value;
+            txtBoxUsuario.Enabled = 
+            txtBoxContraseña.Enabled= 
+            txtBoxConfirmarContraseña.Enabled =
             chckdListBoxRol.Enabled = value;
 
             btnModificar.Enabled = !value;
@@ -147,7 +146,7 @@ namespace Vista
         private void cargarDatosControlUsuarioContraseña()
         {
             usuario.usuario = txtBoxUsuario.Text;
-            usuario.contrasenia = txtBoxContraseña.Text;
+            usuario.asignarContraseña(txtBoxContraseña.Text);
         }
         private List<ModeloRoles> cargarDatosControlRoles()
         {

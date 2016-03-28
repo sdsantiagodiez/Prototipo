@@ -16,56 +16,67 @@ namespace Controladores
         /// Retorna todas las entidades de la base de datos
         /// </summary>
         /// <returns>Lista de personas</returns>
-        public List<ModeloEntidad> getEntidades()
+        public static List<ModeloEntidad> getEntidades()
         {
-            CatalogoEntidades lcl_cat_entidades = new CatalogoEntidades();
-            return lcl_cat_entidades.buscar(null, Constantes.ParametrosBusqueda.All).ToList();
+            ModeloEntidad lcl_mod_entidad = null;
+            return ControladorBusqueda.buscar(lcl_mod_entidad, Constantes.ParametrosBusqueda.All);
         }
         /// <summary>
         /// Retorna todas las personas de la base de datos
         /// </summary>
         /// <returns>Lista de personas</returns>
-        public List<ModeloPersonas> getPersonas()
+        public static List<ModeloPersonas> getPersonas()
         {
-            CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
-
-            return lcl_cat_personas.buscarPersonas(null, Constantes.ParametrosBusqueda.All);
+            ModeloPersonas lcl_mod_persona = new ModeloPersonas();
+            return ControladorBusqueda.buscar(lcl_mod_persona, Constantes.ParametrosBusqueda.All);
         }
         /// <summary>
         /// Retorna todos los proveedores de la base de datos
         /// </summary>
         /// <returns>Lista de personas</returns>
-        public List<ModeloProveedor> getProveedores()
+        public static  List<ModeloProveedor> getProveedores()
         {
-            CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
-
-            return lcl_cat_proveedores.buscarProveedor(null, Constantes.ParametrosBusqueda.All);
+            ModeloProveedor lcl_mod_proveedor = new ModeloProveedor();
+            return ControladorBusqueda.buscar(lcl_mod_proveedor, Constantes.ParametrosBusqueda.All);
+        }
+        public static List<ModeloCliente> getClientes()
+        {
+            ModeloCliente lcl_mod_cliente = new ModeloCliente();
+            return ControladorBusqueda.buscar(lcl_mod_cliente as object, Constantes.ParametrosBusqueda.All).Cast<ModeloCliente>().ToList();
+        }
+        public static List<ModeloUsuario> getUsuarios()
+        {
+            ModeloUsuario lcl_mod_usuario = new ModeloUsuario();
+            return ControladorBusqueda.buscar(lcl_mod_usuario as object, Constantes.ParametrosBusqueda.All).Cast<ModeloUsuario>().ToList();
+        }
+        public static List<ModeloContactoProveedor> getContactosProveedores()
+        {
+            ModeloContactoProveedor lcl_mod_contactoProveedor = new ModeloContactoProveedor();
+            return ControladorBusqueda.buscar(lcl_mod_contactoProveedor as object, Constantes.ParametrosBusqueda.All).Cast<ModeloContactoProveedor>().ToList();
         }
         /// <summary>
         /// Retorna todos los Articulos de la base de datos
         /// </summary>
         /// <returns>Lista de Articulos</returns>
-        public List<ModeloArticulos> getArticulos()
+        public static List<ModeloArticulos> getArticulos()
         {
-            CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
-
-            return lcl_cat_articulos.buscar(null, Constantes.ParametrosBusqueda.All);
+            ModeloArticulos lcl_mod_articulo = new ModeloArticulos();
+            return ControladorBusqueda.buscar(lcl_mod_articulo, Constantes.ParametrosBusqueda.All);
         }
         /// <summary>
         /// Retorna todos los ArticulosProveedores de la base de datos
         /// </summary>
         /// <returns>Lista de Articulos de proveedores</returns>
-        public List<ModeloArticuloProveedores> getArticulosProveedores()
+        public static List<ModeloArticuloProveedores> getArticulosProveedores()
         {
-            CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
-            //Cambiar a buscarArticulo(null,All) cuando deje de ser ambigua la llamada
-            return lcl_cat_articuloProveedores.buscar(null, Constantes.ParametrosBusqueda.All);
+            ModeloArticuloProveedores lcl_mod_articuloProveedor = new ModeloArticuloProveedores();
+            return ControladorBusqueda.buscar(lcl_mod_articuloProveedor, Constantes.ParametrosBusqueda.All);
         }
         /// <summary>
         /// Retorna todas las provincias de la base de datos
         /// </summary>
         /// <returns>Lista de provincias</returns>
-        public List<ModeloProvincia> getProvincias()
+        public static List<ModeloProvincia> getProvincias()
         {
             CatalogoProvincias lcl_cat_provincias = new CatalogoProvincias();
 
@@ -75,7 +86,7 @@ namespace Controladores
         /// Retorna todas los paises de la base de datos
         /// </summary>
         /// <returns>lista de Países</returns>
-        public List<ModeloPais> getPaises()
+        public static List<ModeloPais> getPaises()
         {
             CatalogoPaises lcl_cat_paises = new CatalogoPaises();
             return lcl_cat_paises.getAll();
@@ -84,31 +95,30 @@ namespace Controladores
         /// Retorna todas roles de la base de datos
         /// </summary>
         /// <returns></returns>
-        public List<ModeloRoles> getRoles()
+        public static List<ModeloRoles> getRoles()
         {
-            CatalogoRoles lcl_cat_roles = new CatalogoRoles();
-            ModeloRoles lcl_mod_rol = null;
-            return this.buscar(lcl_mod_rol, Constantes.ParametrosBusqueda.All);
+            ModeloRoles lcl_mod_rol = new ModeloRoles();
+            return ControladorBusqueda.buscar(lcl_mod_rol, Constantes.ParametrosBusqueda.All);
         }
         #endregion
 
         #region buscar(object)
-        public List<Object> buscar(object p_objeto)
+        public static List<Object> buscar(object p_objeto)
         {
             Type T = p_objeto.GetType();
             IEnumerable<object> lcl_ienum_objeto;
             if (T == typeof(ModeloArticuloProveedores))
             {
-                lcl_ienum_objeto = this.buscar(p_objeto as ModeloArticuloProveedores);
+                lcl_ienum_objeto = ControladorBusqueda.buscar(p_objeto as ModeloArticuloProveedores);
 
             }
             else if (T == typeof(ModeloArticulos))
             {
-                lcl_ienum_objeto = this.buscar(p_objeto as ModeloArticulos);
+                lcl_ienum_objeto = ControladorBusqueda.buscar(p_objeto as ModeloArticulos);
             }
             else
             {
-                lcl_ienum_objeto = this.buscar(p_objeto as ModeloEntidad);
+                lcl_ienum_objeto = ControladorBusqueda.buscar(p_objeto as ModeloEntidad);
             }
             return lcl_ienum_objeto.ToList();
         }
@@ -117,38 +127,38 @@ namespace Controladores
         /// </summary>
         /// <param name="p_mod_entidad"></param>
         /// <returns>Lista de entidades (o alguno de sus derivados)</returns>
-        public List<ModeloEntidad> buscar(ModeloEntidad p_mod_entidad)
+        public static List<ModeloEntidad> buscar(ModeloEntidad p_mod_entidad)
         {
-            return this.buscar(p_mod_entidad, Constantes.ParametrosBusqueda.Any);
+            return ControladorBusqueda.buscar(p_mod_entidad, Constantes.ParametrosBusqueda.Any);
         }
-        /// <summary>
-        /// Retorna personas en base a los valores inicializados en los atributos del modelo
-        /// </summary>
-        /// <param name="p_mod_persona"></param>
-        /// <returns>Lista de personas</returns>
-        public List<ModeloPersonas> buscar(ModeloPersonas p_mod_persona)
-        {
-            CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
+        ///// <summary>
+        ///// Retorna personas en base a los valores inicializados en los atributos del modelo
+        ///// </summary>
+        ///// <param name="p_mod_persona"></param>
+        ///// <returns>Lista de personas</returns>
+        //public List<ModeloPersonas> buscar(ModeloPersonas p_mod_persona)
+        //{
+        //    CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
 
-            return lcl_cat_personas.buscarPersonas(p_mod_persona, Constantes.ParametrosBusqueda.Any);
-        }
-        /// <summary>
-        /// Retorna proveedores en base a los valores inicializados en los atributos del modelo
-        /// </summary>
-        /// <param name="p_mod_proveedor"></param>
-        /// <returns>Lista de proveedores</returns>
-        public List<ModeloProveedor> buscar(ModeloProveedor p_mod_proveedor)
-        {
-            CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
+        //    return lcl_cat_personas.buscarPersonas(p_mod_persona, Constantes.ParametrosBusqueda.Any);
+        //}
+        ///// <summary>
+        ///// Retorna proveedores en base a los valores inicializados en los atributos del modelo
+        ///// </summary>
+        ///// <param name="p_mod_proveedor"></param>
+        ///// <returns>Lista de proveedores</returns>
+        //public List<ModeloProveedor> buscar(ModeloProveedor p_mod_proveedor)
+        //{
+        //    CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
 
-            return lcl_cat_proveedores.buscarProveedor(p_mod_proveedor, Constantes.ParametrosBusqueda.Any);
-        }
+        //    return lcl_cat_proveedores.buscarProveedor(p_mod_proveedor, Constantes.ParametrosBusqueda.Any);
+        //}
         /// <summary>
         /// Retorna articulos en base a los valores inicializados en los atributos del modelo
         /// </summary>
         /// <param name="pmArticulo"></param>
         /// <returns>Lista de articulos</returns>
-        public List<ModeloArticulos> buscar(ModeloArticulos p_mod_articulo)
+        public static List<ModeloArticulos> buscar(ModeloArticulos p_mod_articulo)
         {
             CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
 
@@ -159,7 +169,7 @@ namespace Controladores
         /// </summary>
         /// <param name="p_mod_articuloProveedores"></param>
         /// <returns>Lista de Artículos de proveedores</returns>
-        public List<ModeloArticuloProveedores> buscar(ModeloArticuloProveedores p_mod_articuloProveedores)
+        public static List<ModeloArticuloProveedores> buscar(ModeloArticuloProveedores p_mod_articuloProveedores)
         {
             CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
             return lcl_cat_articuloProveedores.buscar(p_mod_articuloProveedores, Constantes.ParametrosBusqueda.Any);
@@ -169,7 +179,7 @@ namespace Controladores
         /// </summary>
         /// <param name="p_mod_pedido"></param>
         /// <returns>Lista de pedidos</returns>
-        public List<ModeloPedido> buscar(ModeloPedido p_mod_pedido)
+        public static List<ModeloPedido> buscar(ModeloPedido p_mod_pedido)
         {
             CatalogoPedidos lcl_cat_articulos = new CatalogoPedidos();
 
@@ -180,7 +190,7 @@ namespace Controladores
         /// </summary>
         /// <param name="p_mod_lineaPedido"></param>
         /// <returns>Lista de líneas pedidos</returns>
-        public List<ModeloLineaPedido> buscar(ModeloLineaPedido p_mod_lineaPedido)
+        public static List<ModeloLineaPedido> buscar(ModeloLineaPedido p_mod_lineaPedido)
         {
             CatalogoLineasPedidos lcl_cat_articulos = new CatalogoLineasPedidos();
 
@@ -189,21 +199,21 @@ namespace Controladores
         #endregion
 
         #region buscar(object,parametroBusqueda)
-        public List<Object> buscar(object p_objeto, string p_parametroBusqueda)
+        public static IEnumerable<Object> buscar(object p_objeto, string p_parametroBusqueda)
         {
             Type T = p_objeto.GetType();
             IEnumerable<object> lcl_ienum_objeto;
             if (T == typeof(ModeloArticuloProveedores))
             {
-                lcl_ienum_objeto = this.buscar(p_objeto as ModeloArticuloProveedores,p_parametroBusqueda);
+                lcl_ienum_objeto = ControladorBusqueda.buscar(p_objeto as ModeloArticuloProveedores, p_parametroBusqueda);
             }
             else if (T == typeof(ModeloArticulos))
             {
-                lcl_ienum_objeto = this.buscar(p_objeto as ModeloArticulos, p_parametroBusqueda);
+                lcl_ienum_objeto = ControladorBusqueda.buscar(p_objeto as ModeloArticulos, p_parametroBusqueda);
             }
             else
             {
-                lcl_ienum_objeto = this.buscar(p_objeto as ModeloEntidad, p_parametroBusqueda);
+                lcl_ienum_objeto = ControladorBusqueda.buscar(p_objeto as ModeloEntidad, p_parametroBusqueda);
             }
 
             return lcl_ienum_objeto.ToList();
@@ -214,7 +224,7 @@ namespace Controladores
         /// <param name="p_mod_entidad">modelo con variable a buscar inicializada con algún valor</param>
         /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda</param>
         /// <returns>Lista de modeloEntidad (o alguno de sus derivados)</returns>
-        public List<ModeloEntidad> buscar(ModeloEntidad p_mod_entidad, string p_paramentroBusqueda)
+        public static List<ModeloEntidad> buscar(ModeloEntidad p_mod_entidad, string p_paramentroBusqueda)
         {
             Type T = p_mod_entidad.GetType();
             CatalogoEntidades lcl_catalogo;
@@ -251,11 +261,26 @@ namespace Controladores
         /// <param name="p_mod_persona">Persona con variable a buscar inicializada con algún valor</param>
         /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda</param>
         /// <returns>Lista de personas</returns>
-        public List<ModeloPersonas> buscar(ModeloPersonas p_mod_persona, string p_paramentroBusqueda)
+        public static List<ModeloPersonas> buscar(ModeloPersonas p_mod_persona, string p_paramentroBusqueda)
         {
             CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
 
             return lcl_cat_personas.buscarPersonas(p_mod_persona, p_paramentroBusqueda);
+        }
+        public static List<ModeloCliente> buscar(ModeloCliente p_mod_cliente, string p_paramentroBusqueda)
+        {
+            CatalogoClientes lcl_cat_clientes = new CatalogoClientes();
+            return lcl_cat_clientes.buscarCliente(p_mod_cliente,p_paramentroBusqueda);
+        }
+        public static List<ModeloUsuario> buscar(ModeloUsuario p_mod_usuario, string p_paramentroBusqueda)
+        {
+            CatalogoUsuarios lcl_cat_usuarios = new CatalogoUsuarios();
+            return lcl_cat_usuarios.buscarUsuario(p_mod_usuario, p_paramentroBusqueda);
+        }
+        public static List<ModeloContactoProveedor> buscar(ModeloContactoProveedor p_mod_contactoProveedor, string p_paramentroBusqueda)
+        {
+            CatalogoContactoProveedores lcl_cat_contactosProveedores = new CatalogoContactoProveedores();
+            return lcl_cat_contactosProveedores.buscarContactoProveedor(p_mod_contactoProveedor, p_paramentroBusqueda);
         }
         /// <summary>
         /// Busca proveedores que cumplan con un parámetro de búsqueda
@@ -263,7 +288,7 @@ namespace Controladores
         /// <param name="p_mod_proveedor">Proveedor con variable a buscar inicializada con algún valor</param>
         /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Proveedores</param>
         /// <returns>Lista de proveedores</returns>
-        public List<ModeloProveedor> buscar(ModeloProveedor p_mod_proveedor, string p_paramentroBusqueda)
+        public static List<ModeloProveedor> buscar(ModeloProveedor p_mod_proveedor, string p_paramentroBusqueda)
         {
             CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
 
@@ -275,7 +300,7 @@ namespace Controladores
         /// <param name="p_mod_articulo">Articulo con variable a buscar inicializada con algún valor</param>
         /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Articulos</param>
         /// <returns>Lista de artículos</returns>
-        public List<ModeloArticulos> buscar(ModeloArticulos p_mod_articulo, string p_paramentroBusqueda)
+        public static List<ModeloArticulos> buscar(ModeloArticulos p_mod_articulo, string p_paramentroBusqueda)
         {
             CatalogoArticulos lcl_cat_articulos = new CatalogoArticulos();
 
@@ -287,13 +312,13 @@ namespace Controladores
         /// <param name="p_mod_articuloProveedores">Proveedor con variable a buscar inicializada con algún valor</param>
         /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda</param>
         /// <returns>Lista de artículos de proveedores</returns>
-        public List<ModeloArticuloProveedores> buscar(ModeloArticuloProveedores p_mod_articuloProveedores, string p_paramentroBusqueda)
+        public static List<ModeloArticuloProveedores> buscar(ModeloArticuloProveedores p_mod_articuloProveedores, string p_paramentroBusqueda)
         {
             CatalogoArticuloProveedores lcl_cat_articulosProveedores = new CatalogoArticuloProveedores();
             switch (p_paramentroBusqueda)
             {
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.Descripcion:
-                    return this.buscarArticuloProveedor_descripcionArticulo(p_mod_articuloProveedores);
+                    return ControladorBusqueda.buscarArticuloProveedor_descripcionArticulo(p_mod_articuloProveedores);
                 default:
                     return lcl_cat_articulosProveedores.buscar(p_mod_articuloProveedores, p_paramentroBusqueda);
             }
@@ -303,7 +328,7 @@ namespace Controladores
         /// </summary>
         /// <param name="p_mod_articuloProveedores"></param>
         /// <returns></returns>
-        private List<ModeloArticuloProveedores> buscarArticuloProveedor_descripcionArticulo(ModeloArticuloProveedores p_mod_articuloProveedores)
+        private static List<ModeloArticuloProveedores> buscarArticuloProveedor_descripcionArticulo(ModeloArticuloProveedores p_mod_articuloProveedores)
         {
             /*
             * Para buscar articuloProveedor por descripcion de articulo empezamos buscando 
@@ -319,10 +344,10 @@ namespace Controladores
              *Obtenemos codigoOriginal de cada articulo encontrado y 
              *buscamos articulos de proveedores por métodos de CatalogoArticuloProveedores 
              */
-            foreach (ModeloArticulos a in this.buscar(lcl_mod_articulo, Constantes.ParametrosBusqueda.Articulos.Descripcion))
+            foreach (ModeloArticulos a in ControladorBusqueda.buscar(lcl_mod_articulo, Constantes.ParametrosBusqueda.Articulos.Descripcion))
             {
                 lcl_mod_articuloProveedor.codigoOriginal = a.codigoOriginal;
-                foreach (ModeloArticuloProveedores ap in this.buscar(lcl_mod_articuloProveedor, Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoOriginal))
+                foreach (ModeloArticuloProveedores ap in ControladorBusqueda.buscar(lcl_mod_articuloProveedor, Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoOriginal))
                 {
                     lcl_lst_mod_articulosProveedores.Add(ap);
                 }
@@ -341,7 +366,7 @@ namespace Controladores
         /// <param name="p_mod_pedido">Pedido con variable a buscar inicializada con algún valor</param>
         /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Pedidos</param>
         /// <returns>Lista de pedidos</returns>
-        public List<ModeloPedido> buscar(ModeloPedido p_mod_pedido, string p_paramentroBusqueda)
+        public static List<ModeloPedido> buscar(ModeloPedido p_mod_pedido, string p_paramentroBusqueda)
         {
             CatalogoPedidos lcl_cat_articulos = new CatalogoPedidos();
 
@@ -353,13 +378,13 @@ namespace Controladores
         /// <param name="p_mod_lineaPedido">Línea pedido con variable a buscar inicializada con algún valor</param>
         /// <param name="p_paramentroBusqueda">Constante dentro de LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.LineasPedidos</param>
         /// <returns>Lista de líneas pedidos</returns>
-        public List<ModeloLineaPedido> buscar(ModeloLineaPedido p_mod_lineaPedido, string p_paramentroBusqueda)
+        public static List<ModeloLineaPedido> buscar(ModeloLineaPedido p_mod_lineaPedido, string p_paramentroBusqueda)
         {
             CatalogoLineasPedidos lcl_cat_articulos = new CatalogoLineasPedidos();
 
             return lcl_cat_articulos.buscarLineasPedido(p_mod_lineaPedido, p_paramentroBusqueda);
         }
-        public List<ModeloRoles> buscar(ModeloRoles p_mod_rol, string p_parametroBusqueda)
+        public static List<ModeloRoles> buscar(ModeloRoles p_mod_rol, string p_parametroBusqueda)
         {
             CatalogoRoles lcl_cat_roles = new CatalogoRoles();
 
