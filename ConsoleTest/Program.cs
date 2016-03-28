@@ -144,7 +144,8 @@ namespace ConsoleTest
                 persona.tipoPersona = tipoPersona;
                 persona.observaciones = observaciones[obs];
 
-                cp.agregarNuevaEntidad(persona);
+                //cp.agregarNuevaEntidad(persona);
+                cp.add(persona);
 
             }
         }
@@ -312,7 +313,8 @@ namespace ConsoleTest
             List<ModeloPersonas> personas = cp.getAll();
             foreach(ModeloPersonas p in personas)
             {
-                cp.bajaEntidad(p);
+                //cp.bajaEntidad(p);
+                cp.remove(p);
             }
         }
 
@@ -324,7 +326,8 @@ namespace ConsoleTest
             CatalogoPersonas cp = new CatalogoPersonas();
             mp = cp.getOne(codigoEntidad);
             mp.nombre = "Santiago";
-            cp.actualizarEntidad(mp);
+            //cp.actualizarEntidad(mp);
+            cp.update(mp);
         }
         #endregion
         #endregion
@@ -436,7 +439,8 @@ namespace ConsoleTest
             provs = cp.getAll();
             foreach(ModeloProveedor p in provs)
             {
-                cp.bajaEntidad(p);
+                //cp.bajaEntidad(p);
+                cp.remove(p);
             }
         }
         private void actualizarProveedores()
@@ -447,7 +451,8 @@ namespace ConsoleTest
             foreach (ModeloProveedor p in provs)
             {
                 p.observaciones = "sin";
-                cp.actualizarEntidad(p);
+                //cp.actualizarEntidad(p);
+                cp.update(p);
             }
         }
         #endregion
@@ -480,7 +485,8 @@ namespace ConsoleTest
                 ma.modelos = modelos[mod];
                 ma.observaciones = observaciones[obs];
                 
-                ca.agregarNuevaEntidad(ma);
+                //ca.agregarNuevaEntidad(ma);
+                ca.add(ma);
             }
         }
         private List<string> getCodigosOriginales(int cantidad)
@@ -567,7 +573,8 @@ namespace ConsoleTest
                 //map.modelos = modelos[mod];
                 map.observacionesArticuloProveedor = observaciones[obs];
 
-                cap.agregarNuevaEntidad(map);
+                //cap.agregarNuevaEntidad(map);
+                cap.add(map);
             }
         }
         private string getCodigosArticulosProveedores(int prov, string art, int sufijo)
