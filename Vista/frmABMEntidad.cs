@@ -112,10 +112,10 @@ namespace Vista
             grpBoxObservaciones.Enabled = true;
 
             btnDatosAdicionales.Enabled = true;
-
+            string lcl_tipoEntidad = this.tipoEntidadSeleccionada;
             base.quitarTextoEnControles(this);
-
-            this.tipoEntidadSeleccionada = Constantes.TiposEntidad.TiposPersona.Cliente;
+            this.tipoEntidadSeleccionada = lcl_tipoEntidad;
+            
         }
         override public void inicializarModoFormularioSeleccionado()
         {
@@ -129,7 +129,6 @@ namespace Vista
             grpBoxObservaciones.Enabled = true;
 
             btnDatosAdicionales.Enabled = true;
-
         }
 
         private void inicializarControlesTipoEntidadCliente()
