@@ -54,5 +54,10 @@ namespace Modelos
                 && this.Equals(this.pais,p_mod_pais.pais);
         }
         #endregion
+
+        public override string ToString()
+        {
+            return this.pais;
+        }
     }
 }

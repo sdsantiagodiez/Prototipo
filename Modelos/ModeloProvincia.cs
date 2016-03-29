@@ -61,5 +61,10 @@ namespace Modelos
                 && this.Equals(this.codigoPais,p_mod_provincia.codigoPais);
         }
         #endregion
+
+        public override string ToString()
+        {
+            return this.provincia;
+        }
     }
 }

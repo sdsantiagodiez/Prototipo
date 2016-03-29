@@ -171,7 +171,8 @@ namespace Vista
         {
             //Populo combobox de paises
             List<ModeloPais> lcl_lst_mod_paises = ControladorBusqueda.getPaises();
-            this.cmbBoxPais.DataSource = lcl_lst_mod_paises;
+            this.cmbBoxPais.DataSource = lcl_lst_mod_paises.OrderBy(i => i.pais).ToList();
+            this.cmbBoxPais.DropDownWidth = this.getDropDownWidth(this.cmbBoxPais);
             this.cmbBoxPais.DisplayMember = "pais";
             this.cmbBoxPais.ValueMember = "codigo";
             this.cmbBoxPais.SelectedItem = null;
@@ -201,6 +202,20 @@ namespace Vista
 
             //Lo hago read only
             this.cmbBoxTipoTelefono.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        int getDropDownWidth(ComboBox p_comboBox)
+        {
+            int maxWidth = 0, temp = 0;
+            foreach (var obj in p_comboBox.Items)
+            {
+                temp = TextRenderer.MeasureText(obj.ToString(), p_comboBox.Font).Width;
+                if (temp > maxWidth)
+                {
+                    maxWidth = temp;
+                }
+            }
+            return maxWidth;
         }
         #endregion
 
@@ -606,7 +621,8 @@ namespace Vista
         #region ComboBox
         private void cargarDatosProvinciasEnCmbBoxProvincia(List<ModeloProvincia> p_lst_mod_provincias)
         {
-            this.cmbBoxProvincia.DataSource = p_lst_mod_provincias;
+            this.cmbBoxProvincia.DataSource = p_lst_mod_provincias.OrderBy(i => i.provincia).ToList();
+            this.cmbBoxProvincia.DropDownWidth = this.getDropDownWidth(this.cmbBoxProvincia);
             this.cmbBoxProvincia.SelectedItem = null;
         }
         private void cargaDatosPaisesEnCmbBoxPais(List<ModeloPais> p_lst_mod_paises)
