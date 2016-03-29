@@ -40,7 +40,7 @@ namespace Vista
             InitializeComponent();
             this.inicializarFormulario();
             errorProviderActual = new ErrorProvider();
-
+            usuario = new ModeloUsuario();
             txtBoxUsuario.KeyPress += this.valorUsername;
         }
 
@@ -112,6 +112,14 @@ namespace Vista
         {
             errorProviderActual.SetError(txtBoxContraseña, "");
             errorProviderActual.SetError(txtBoxConfirmarContraseña, "");
+            
+            if (string.IsNullOrWhiteSpace(txtBoxContraseña.Text) && usuario.contrasenia != null)
+            {
+                //Sucede en caso de modificación, donde se habilita el campo contraseña para ser modificado, pero puede no ser modificado.
+                //De esta forma, no aparecen errores y se puede cerrar la ventana con Aceptar en caso de que se haya cambiado algo
+                return true;
+            }
+
             if (!ModeloUsuario.validarContrasenia(txtBoxContraseña.Text))
             {
                 errorProviderActual.SetError(txtBoxContraseña, "La contraseña ingresada no es válida. Debe tener por lo mínimo 8 caracteres.");
@@ -139,14 +147,18 @@ namespace Vista
         #region Controles -> Modelo
         private void cargarControlesEnUsuario()
         {
-            usuario = new ModeloUsuario();
+            
             this.cargarDatosControlUsuarioContraseña();
             usuario.roles = this.cargarDatosControlRoles();
         }
         private void cargarDatosControlUsuarioContraseña()
         {
             usuario.usuario = txtBoxUsuario.Text;
-            usuario.asignarContraseña(txtBoxContraseña.Text);
+            //Sólo se asigna si es usuario nuevo o se modifica contraseña de usuario ya creado
+            if (usuario.contrasenia == null && !string.IsNullOrWhiteSpace(txtBoxContraseña.Text))
+            { 
+                usuario.asignarContraseña(txtBoxContraseña.Text); 
+            }
         }
         private List<ModeloRoles> cargarDatosControlRoles()
         {
