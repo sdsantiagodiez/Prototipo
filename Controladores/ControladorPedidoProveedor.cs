@@ -15,104 +15,38 @@ namespace Controladores
         CatalogoArticuloProveedores cap = new CatalogoArticuloProveedores();
 
         private ModeloPedido glb_mod_currentOrder;
-       
-
-        public void InstanciarPedido()
-        {
-            glb_mod_currentOrder = new ModeloPedido();
-        }
-
-        #region En Deshuso
-        //public string agregarArticulo(string ptipoCodigo, string pcodArtProv, int pcantidad)
-        //{
-
-
-        //    ModeloArticuloProveedores ap = new ModeloArticuloProveedores();
-
-        //    ap = cap.buscarArticuloProveedor(ptipoCodigo, pcodArtProv)[0];
-
-        //    ModeloLineaPedido lp = new ModeloLineaPedido(ap, pcantidad);
-
-        //    pActual.agregarLinea(lp);
-
-        //    return "El se ha agregado un articulo al pedido actual";
-        //}
-
-        //public List<string[]> buscarArticulosProveedor(string ptipoCodigo, string pRazonSocial)
-        //{
-        //    List<ModeloArticuloProveedores> apActuales = new List<ModeloArticuloProveedores>();
-
-        //    List<string[]> respuesta = new List<string[]>();
-
-        //    apActuales = cap.buscarArticuloProveedor(ptipoCodigo, pRazonSocial);
-
-        //    foreach (ModeloArticuloProveedores ModArtProv in apActuales)
-        //    {
-        //        string[] artipro = { ModArtProv.codigoOriginal, ModArtProv.codigoArticuloProveedor,ModArtProv.descripcion, ModArtProv.stockActual.ToString(), ModArtProv.stockMinimo.ToString(), Convert.ToDateTime(ModArtProv.fechaActualizacion).ToShortDateString()};
-
-        //        respuesta.Add(artipro);
-        //    }
-
-        //    return respuesta;
-        //}
-
-        //public void modificarCantidadArticulo(string pCodArtProv, int pCant)
-        //{ 
-        //    if(pCant>0)
-        //    {
-        //        ModeloLineaPedido linea = pActual.buscarLinea(pCodArtProv);
-                
-        //        int Cantidad = linea.cantidadArticulos;
-
-        //        if (pCant >= Cantidad)
-        //        {
-        //            pActual.bajarLinea(linea);
-        //        }
-        //        else
-        //        {
-        //            linea.cantidadArticulos = (Cantidad-pCant);
-        //            pActual.actualizarLinea(linea);
-                    
-        //        }
-
-
-        //    }
-
-        //}
-        #endregion
-
-
+        //-
         public bool exists(ModeloArticuloProveedores p_article)
         {
             return glb_mod_currentOrder.existeLineaPedido(p_article);
         }
-
+        //-
         public void addToOrder(ModeloArticuloProveedores p_article, int p_quantity)
         {
             ModeloLineaPedido lcl_mod_detail= new ModeloLineaPedido(p_article,p_quantity);
             glb_mod_currentOrder.addDetail(lcl_mod_detail);
         }
-
+        //-
         public string getTotal()
         {
             return glb_mod_currentOrder.getCurrentTotal().ToString("0.##");
         }
-
+        //-
         public List<ModeloLineaPedido> getCurrentDetails()
         {
             return glb_mod_currentOrder.lineasPedido;
         }
-
+        //-
         public void deleteCurrentDetails()
         {
             glb_mod_currentOrder.restartOrderDetails();
         }
-
+        //-
         public void removeFromOrder(ModeloLineaPedido p_mod_orderDetail)
         {
             glb_mod_currentOrder.bajarLinea(p_mod_orderDetail);
         }
-
+        //-buscarArticulo
         public List<ModeloArticuloProveedores> searchArticles(string p_searchCategory, string p_userInput)
         {
             var lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();

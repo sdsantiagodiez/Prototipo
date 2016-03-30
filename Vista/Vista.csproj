@@ -104,11 +104,11 @@
     <Compile Include="frmEnConstruccion.Designer.cs">
       <DependentUpon>frmEnConstruccion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPedidoClienteNuevo.cs">
+    <Compile Include="frmPedidoNuevo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPedidoClienteNuevo.Designer.cs">
-      <DependentUpon>frmPedidoClienteNuevo.cs</DependentUpon>
+    <Compile Include="frmPedidoNuevo.Designer.cs">
+      <DependentUpon>frmPedidoNuevo.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMenuPrincipal.cs">
       <SubType>Form</SubType>
@@ -116,23 +116,11 @@
     <Compile Include="frmMenuPrincipal.Designer.cs">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPedidoNuevo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmPedidoNuevo.Designer.cs">
-      <DependentUpon>frmPedidoNuevo.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmPedidoProveedorCierre.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmPedidoProveedorCierre.Designer.cs">
       <DependentUpon>frmPedidoProveedorCierre.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmPedidoProveedorNuevo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmPedidoProveedorNuevo.Designer.cs">
-      <DependentUpon>frmPedidoProveedorNuevo.cs</DependentUpon>
     </Compile>
     <Compile Include="frmReporteSeleccion.cs">
       <SubType>Form</SubType>
@@ -185,20 +173,14 @@
     <EmbeddedResource Include="frmEnConstruccion.resx">
       <DependentUpon>frmEnConstruccion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPedidoClienteNuevo.resx">
-      <DependentUpon>frmPedidoClienteNuevo.cs</DependentUpon>
+    <EmbeddedResource Include="frmPedidoNuevo.resx">
+      <DependentUpon>frmPedidoNuevo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPedidoNuevo.resx">
-      <DependentUpon>frmPedidoNuevo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmPedidoProveedorCierre.resx">
       <DependentUpon>frmPedidoProveedorCierre.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmPedidoProveedorNuevo.resx">
-      <DependentUpon>frmPedidoProveedorNuevo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReporteSeleccion.resx">
       <DependentUpon>frmReporteSeleccion.cs</DependentUpon>

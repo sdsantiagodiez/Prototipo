@@ -42,6 +42,8 @@
             this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlpComprobCli = new System.Windows.Forms.TableLayoutPanel();
             this.gbxComprobante = new System.Windows.Forms.GroupBox();
+            this.lblMontoDescontadoVar = new System.Windows.Forms.Label();
+            this.lblMontoDescontado = new System.Windows.Forms.Label();
             this.btnCalcular = new System.Windows.Forms.Button();
             this.lblTotalVar = new System.Windows.Forms.Label();
             this.lblIvaNetoVar = new System.Windows.Forms.Label();
@@ -72,7 +74,7 @@
             this.btnSelTel = new System.Windows.Forms.Button();
             this.btnSelMail = new System.Windows.Forms.Button();
             this.btnSelDom = new System.Windows.Forms.Button();
-            this.cbxTipoTel = new System.Windows.Forms.ComboBox();
+            this.cbxTipoTelefono = new System.Windows.Forms.ComboBox();
             this.lblTipoTel = new System.Windows.Forms.Label();
             this.gbxDomicilio = new System.Windows.Forms.GroupBox();
             this.cbxProvincia = new System.Windows.Forms.ComboBox();
@@ -106,8 +108,6 @@
             this.lblMail = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblDni = new System.Windows.Forms.Label();
-            this.lblMontoDescontado = new System.Windows.Forms.Label();
-            this.lblMontoDescontadoVar = new System.Windows.Forms.Label();
             this.tlpCierrePedido.SuspendLayout();
             this.pnlLowerButtons.SuspendLayout();
             this.gbxArticulos.SuspendLayout();
@@ -296,6 +296,24 @@
             this.gbxComprobante.TabIndex = 0;
             this.gbxComprobante.TabStop = false;
             this.gbxComprobante.Text = "Comprobante";
+            // 
+            // lblMontoDescontadoVar
+            // 
+            this.lblMontoDescontadoVar.AutoSize = true;
+            this.lblMontoDescontadoVar.Location = new System.Drawing.Point(519, 96);
+            this.lblMontoDescontadoVar.Name = "lblMontoDescontadoVar";
+            this.lblMontoDescontadoVar.Size = new System.Drawing.Size(13, 13);
+            this.lblMontoDescontadoVar.TabIndex = 31;
+            this.lblMontoDescontadoVar.Text = "0";
+            // 
+            // lblMontoDescontado
+            // 
+            this.lblMontoDescontado.AutoSize = true;
+            this.lblMontoDescontado.Location = new System.Drawing.Point(418, 96);
+            this.lblMontoDescontado.Name = "lblMontoDescontado";
+            this.lblMontoDescontado.Size = new System.Drawing.Size(68, 13);
+            this.lblMontoDescontado.TabIndex = 30;
+            this.lblMontoDescontado.Text = "Descontado:";
             // 
             // btnCalcular
             // 
@@ -533,7 +551,7 @@
             // gbxCliente
             // 
             this.gbxCliente.Controls.Add(this.pnlSelectButtons);
-            this.gbxCliente.Controls.Add(this.cbxTipoTel);
+            this.gbxCliente.Controls.Add(this.cbxTipoTelefono);
             this.gbxCliente.Controls.Add(this.lblTipoTel);
             this.gbxCliente.Controls.Add(this.gbxDomicilio);
             this.gbxCliente.Controls.Add(this.ckbxRegistrar);
@@ -599,13 +617,13 @@
             this.btnSelDom.UseVisualStyleBackColor = true;
             this.btnSelDom.Click += new System.EventHandler(this.btnSelDom_Click);
             // 
-            // cbxTipoTel
+            // cbxTipoTelefono
             // 
-            this.cbxTipoTel.FormattingEnabled = true;
-            this.cbxTipoTel.Location = new System.Drawing.Point(258, 153);
-            this.cbxTipoTel.Name = "cbxTipoTel";
-            this.cbxTipoTel.Size = new System.Drawing.Size(121, 21);
-            this.cbxTipoTel.TabIndex = 48;
+            this.cbxTipoTelefono.FormattingEnabled = true;
+            this.cbxTipoTelefono.Location = new System.Drawing.Point(258, 153);
+            this.cbxTipoTelefono.Name = "cbxTipoTelefono";
+            this.cbxTipoTelefono.Size = new System.Drawing.Size(121, 21);
+            this.cbxTipoTelefono.TabIndex = 48;
             // 
             // lblTipoTel
             // 
@@ -897,24 +915,6 @@
             this.lblDni.TabIndex = 11;
             this.lblDni.Text = "DNI:";
             // 
-            // lblMontoDescontado
-            // 
-            this.lblMontoDescontado.AutoSize = true;
-            this.lblMontoDescontado.Location = new System.Drawing.Point(418, 96);
-            this.lblMontoDescontado.Name = "lblMontoDescontado";
-            this.lblMontoDescontado.Size = new System.Drawing.Size(68, 13);
-            this.lblMontoDescontado.TabIndex = 30;
-            this.lblMontoDescontado.Text = "Descontado:";
-            // 
-            // lblMontoDescontadoVar
-            // 
-            this.lblMontoDescontadoVar.AutoSize = true;
-            this.lblMontoDescontadoVar.Location = new System.Drawing.Point(519, 96);
-            this.lblMontoDescontadoVar.Name = "lblMontoDescontadoVar";
-            this.lblMontoDescontadoVar.Size = new System.Drawing.Size(13, 13);
-            this.lblMontoDescontadoVar.TabIndex = 31;
-            this.lblMontoDescontadoVar.Text = "0";
-            // 
             // frmPedidoClienteCierre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1018,7 +1018,7 @@
         private System.Windows.Forms.Button btnSelDom;
         private System.Windows.Forms.Button btnSelMail;
         private System.Windows.Forms.Button btnSelTel;
-        private System.Windows.Forms.ComboBox cbxTipoTel;
+        private System.Windows.Forms.ComboBox cbxTipoTelefono;
         private System.Windows.Forms.Label lblTipoTel;
         private System.Windows.Forms.ComboBox cbxProvincia;
         private System.Windows.Forms.ComboBox cbxPais;

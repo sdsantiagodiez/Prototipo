@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.btnPedidoProv = new System.Windows.Forms.Button();
+            this.btnPedidoProveedor = new System.Windows.Forms.Button();
             this.btnVenta = new System.Windows.Forms.Button();
             this.lblBienvenido = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -61,15 +61,15 @@
             this.cntxtMenuStripABM.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnPedidoProv
+            // btnPedidoProveedor
             // 
-            this.btnPedidoProv.Location = new System.Drawing.Point(21, 12);
-            this.btnPedidoProv.Name = "btnPedidoProv";
-            this.btnPedidoProv.Size = new System.Drawing.Size(162, 40);
-            this.btnPedidoProv.TabIndex = 2;
-            this.btnPedidoProv.Text = "Nuevo Pedido a Proveedor";
-            this.btnPedidoProv.UseVisualStyleBackColor = true;
-            this.btnPedidoProv.Click += new System.EventHandler(this.btnPedidoProv_Click);
+            this.btnPedidoProveedor.Location = new System.Drawing.Point(21, 12);
+            this.btnPedidoProveedor.Name = "btnPedidoProveedor";
+            this.btnPedidoProveedor.Size = new System.Drawing.Size(162, 40);
+            this.btnPedidoProveedor.TabIndex = 2;
+            this.btnPedidoProveedor.Text = "Nuevo Pedido a Proveedor";
+            this.btnPedidoProveedor.UseVisualStyleBackColor = true;
+            this.btnPedidoProveedor.Click += new System.EventHandler(this.btnPedidoProveedor_Click);
             // 
             // btnVenta
             // 
@@ -141,7 +141,7 @@
             // 
             // pnlCompras
             // 
-            this.pnlCompras.Controls.Add(this.btnPedidoProv);
+            this.pnlCompras.Controls.Add(this.btnPedidoProveedor);
             this.pnlCompras.Location = new System.Drawing.Point(45, 123);
             this.pnlCompras.Name = "pnlCompras";
             this.pnlCompras.Size = new System.Drawing.Size(200, 62);
@@ -307,7 +307,7 @@
         #endregion
 
         private System.Windows.Forms.FontDialog fontDialog1;
-        private System.Windows.Forms.Button btnPedidoProv;
+        private System.Windows.Forms.Button btnPedidoProveedor;
         private System.Windows.Forms.Button btnVenta;
         private System.Windows.Forms.Label lblBienvenido;
         private System.Windows.Forms.Button btnSalir;

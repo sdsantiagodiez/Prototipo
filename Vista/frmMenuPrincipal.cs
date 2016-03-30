@@ -108,26 +108,21 @@ namespace Vista
         #region Eventos
 
         #region Button
-        private void btnPedidoProv_Click(object sender, EventArgs e)
-        {
-            frmPedidoProveedorNuevo frmPedidoProv = new frmPedidoProveedorNuevo();
-            frmPedidoProv.ShowDialog();
-        }
-
         private void btnEmitirReporte_Click(object sender, EventArgs e)
         {
             frmReporteSeleccion frmReporteSeleccion = new Vista.frmReporteSeleccion();
             frmReporteSeleccion.ShowDialog();
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
+        private void btnPedidoProveedor_Click(object sender, EventArgs e)
         {
-            this.Close();
+            frmPedidoNuevo frmPedidoProv = new frmPedidoNuevo(Constantes.CodigosTiposPedidos.TipoPedidoProveedor);
+            frmPedidoProv.ShowDialog();
         }
 
         private void btnVenta_Click(object sender, EventArgs e)
         {
-            frmPedidoClienteNuevo frmNuevaVenta = new frmPedidoClienteNuevo();
+            frmPedidoNuevo frmNuevaVenta = new frmPedidoNuevo(Constantes.CodigosTiposPedidos.TipoPedidoPersona);
             frmNuevaVenta.ShowDialog();
         }
 
@@ -155,6 +150,11 @@ namespace Vista
             {
                 cntxtMenuStripABM.Show(btnABM, new Point(0, btnABM.Height));
             }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
         #endregion
 
@@ -185,6 +185,8 @@ namespace Vista
             lcl_frm_ABMArticuloProveedor.ShowDialog();
         }
         #endregion
+
+        
         
         #endregion
     }

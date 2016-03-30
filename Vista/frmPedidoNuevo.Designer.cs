@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class frmPedidoClienteNuevo
+    partial class frmPedidoNuevo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoClienteNuevo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoNuevo));
             this.gbxDetalleArticuloSeleccionado = new System.Windows.Forms.GroupBox();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
@@ -556,7 +556,6 @@
             this.cbxCategoriaBusqueda.Size = new System.Drawing.Size(138, 24);
             this.cbxCategoriaBusqueda.TabIndex = 0;
             this.cbxCategoriaBusqueda.Text = "[Seleccionar...]";
-            this.cbxCategoriaBusqueda.SelectionChangeCommitted += new System.EventHandler(this.cmbxCategoriaBuscar_SelectionChangeCommitted);
             // 
             // btnSiguiente
             // 
@@ -590,7 +589,7 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // frmPedidoClienteNuevo
+            // frmPedidoNuevo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -606,7 +605,8 @@
             this.Controls.Add(this.lblTotal);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmPedidoClienteNuevo";
+            this.Name = "frmPedidoNuevo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuevo Pedido Cliente (Leandro Jorge)";
             this.gbxDetalleArticuloSeleccionado.ResumeLayout(false);
             this.gbxDetalleArticuloSeleccionado.PerformLayout();
