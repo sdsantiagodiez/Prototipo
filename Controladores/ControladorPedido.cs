@@ -10,12 +10,17 @@ namespace Controladores
 {
     public class ControladorPedido : Controlador
     {
+        #region Atributos
         //funciones a programar
         //buscarReserva
 
         //Por ahora vive
         public List<ModeloArticuloProveedores> resultadoBusqueda;
-
+        private Constantes.CodigosTiposPedidos _tipoPedido;
+        public Constantes.CodigosTiposPedidos tipoPedido
+        {
+            get { return _tipoPedido; }
+        }
         //Por ahora no se sabe
         
         private ModeloPedido _pedidoActual;
@@ -31,6 +36,7 @@ namespace Controladores
             get { return _entidadActual; }
             set { _entidadActual = value; }
         }
+        #endregion
 
         #region Constructores
         public ControladorPedido()
@@ -40,7 +46,8 @@ namespace Controladores
 
         public ControladorPedido(Constantes.CodigosTiposPedidos p_codigo) : this()
         {
-            switch (p_codigo)
+            _tipoPedido = p_codigo;
+            switch (this.tipoPedido)
             {
                 case Constantes.CodigosTiposPedidos.TipoPedidoPersona:
                     entidadActual = new ModeloCliente();
@@ -51,6 +58,8 @@ namespace Controladores
             }
         }
         #endregion
+
+        #region Métodos
         public void addArticulo(ModeloArticuloProveedores p_articulo, Int32 p_cantidad)
         {
             //le cambio el formato  y lo agrego a la lista de articulos ya seleccionados
@@ -128,7 +137,7 @@ namespace Controladores
             return pedidoActual.lineasPedido[p_indice];
         }
 
-        public int getCantidadVentaActual()
+        public int getCantidadLineas()
         {
             return pedidoActual.lineasPedido.Count;
         }
@@ -140,5 +149,6 @@ namespace Controladores
         {
             this.pedidoActual.bajarLinea(p_lineaPedido);
         }
+        #endregion
     }
 }

@@ -48,8 +48,6 @@
     <Compile Include="ControladorDevolucion.cs" />
     <Compile Include="ControladorModificacion.cs" />
     <Compile Include="ControladorPedido.cs" />
-    <Compile Include="ControladorPedidoProveedor.cs" />
-    <Compile Include="ControladorProcesarVenta.cs" />
     <Compile Include="ControladorReportes.cs" />
     <Compile Include="ControladorSesion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

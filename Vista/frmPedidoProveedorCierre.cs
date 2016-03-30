@@ -17,7 +17,7 @@ namespace Vista
             InitializeComponent();
         }
 
-        internal void detalleVenta(Controladores.ControladorPedidoProveedor ctrlPedProv)
+        internal void detalleVenta(Controladores.ControladorPedido ctrlPedProv)
         {
             throw new NotImplementedException();
         }

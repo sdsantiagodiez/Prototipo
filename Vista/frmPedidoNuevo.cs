@@ -18,8 +18,7 @@ namespace Vista
         #region Atributos
         private ModeloArticuloProveedores glb_mod_articuloSeleccionadoBusqueda;
         private ModeloLineaPedido glb_mod_articuloSeleccionadoDetalle;
-        private ControladorPedido glb_con_ProcesarPedido;
-        private Constantes.CodigosTiposPedidos tipoPedido;
+        private ControladorPedido glb_con_pedido;
         #endregion
 
         #region Constructores
@@ -30,8 +29,7 @@ namespace Vista
         }
         public frmPedidoNuevo(Constantes.CodigosTiposPedidos p_codigoTipoPedido) : this()
         {
-            tipoPedido = p_codigoTipoPedido;
-            glb_con_ProcesarPedido = new ControladorPedido(p_codigoTipoPedido);
+            glb_con_pedido = new ControladorPedido(p_codigoTipoPedido);
         }
         #endregion
        
@@ -78,7 +76,7 @@ namespace Vista
             }
 
             //verifico stock    //proveedor no valida stock
-            if (tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona
+            if (glb_con_pedido.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona
                 && this.glb_mod_articuloSeleccionadoBusqueda.stockActual < Int32.Parse(this.txtCantidad.Text))
             {
                 MessageBox.Show("No hay suficientes articulos en inventario actual para cubrir el pedido");
@@ -86,7 +84,7 @@ namespace Vista
             }
 
             //verifico que no exista ya en entre las lineas de pedido
-            if (glb_con_ProcesarPedido.exists(glb_mod_articuloSeleccionadoBusqueda))
+            if (glb_con_pedido.exists(glb_mod_articuloSeleccionadoBusqueda))
             {
                 MessageBox.Show("Este artículo ya se encuentra en los detalles del pedido actual");
                 //Limpio artselecbusq para manejar el uso del boton en momento equivocado
@@ -132,15 +130,15 @@ namespace Vista
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
             //compruebo que existan articulos para generar pedido
-            if (glb_con_ProcesarPedido.getCantidadVentaActual() > 0)
+            if (glb_con_pedido.getCantidadLineas() > 0)
             {
                 //creo el formulario y lo muestro
                 Form lcl_frm_cierre;
-                if(tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+                if (glb_con_pedido.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
                 {
-                    lcl_frm_cierre = new frmPedidoClienteCierre(glb_con_ProcesarPedido);
+                    lcl_frm_cierre = new frmPedidoClienteCierre(glb_con_pedido);
                 }
-                else if (tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
+                else if (glb_con_pedido.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
                 {
                     lcl_frm_cierre = new frmPedidoProveedorCierre();
                 }
@@ -167,13 +165,13 @@ namespace Vista
             if (this.validarAgregarArticulo())
             {
                 //lo agrego al pedido actual
-                glb_con_ProcesarPedido.addArticulo(glb_mod_articuloSeleccionadoBusqueda, Int32.Parse(this.txtCantidad.Text));
+                glb_con_pedido.addArticulo(glb_mod_articuloSeleccionadoBusqueda, Int32.Parse(this.txtCantidad.Text));
 
                 //Actualizo Total
-                this.lblTotalVar.Text = glb_con_ProcesarPedido.getTotal();
+                this.lblTotalVar.Text = glb_con_pedido.getTotal();
 
                 //rebindeo lista
-                var lcl_bindingList = new BindingList<ModeloLineaPedido>(glb_con_ProcesarPedido.pedidoActual.lineasPedido);
+                var lcl_bindingList = new BindingList<ModeloLineaPedido>(glb_con_pedido.pedidoActual.lineasPedido);
                 var lcl_source = new BindingSource(lcl_bindingList, null);
                 this.dgvDetalleAgregados.DataSource = lcl_source;
 
@@ -192,13 +190,13 @@ namespace Vista
             if (!object.Equals(this.glb_mod_articuloSeleccionadoDetalle, null))
             {
                 //lo elimino de la lista de articulos ya seleccionados
-                glb_con_ProcesarPedido.removeLineaPedido(this.glb_mod_articuloSeleccionadoDetalle);
+                glb_con_pedido.removeLineaPedido(this.glb_mod_articuloSeleccionadoDetalle);
 
                 //Actualizo Total
-                this.lblTotalVar.Text = glb_con_ProcesarPedido.getTotal();
+                this.lblTotalVar.Text = glb_con_pedido.getTotal();
 
                 //rebindeo los articulos seleccionados a la grid
-                var lcl_bindingList = new BindingList<ModeloLineaPedido>(glb_con_ProcesarPedido.pedidoActual.lineasPedido);
+                var lcl_bindingList = new BindingList<ModeloLineaPedido>(glb_con_pedido.pedidoActual.lineasPedido);
                 var lcl_source = new BindingSource(lcl_bindingList, null);
                 this.dgvDetalleAgregados.DataSource = lcl_source;
 
@@ -218,7 +216,7 @@ namespace Vista
             if (lcl_dialogResult == DialogResult.Yes)
             {
                 //borro la venta actual
-                glb_con_ProcesarPedido.deleteCurrentDetails();
+                glb_con_pedido.deleteCurrentDetails();
 
                 //rebindeo grilla detalles
                 this.dgvDetalleAgregados.DataSource = null;
@@ -255,7 +253,7 @@ namespace Vista
         private void dgvArtAgregar_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //busco el articulo según el indice seleccionado
-            var lcl_mod_articulo = glb_con_ProcesarPedido.getArticuloBusqueda(dgvArtAgregar.CurrentCell.RowIndex);
+            var lcl_mod_articulo = glb_con_pedido.getArticuloBusqueda(dgvArtAgregar.CurrentCell.RowIndex);
 
             //asigno el articulo a la variable articuloSeleccionadoBusqueda en caso de que se decida agregarlo al pedido
             this.glb_mod_articuloSeleccionadoBusqueda = lcl_mod_articulo;
@@ -267,11 +265,11 @@ namespace Vista
             this.lblDescripcionVar.Text = lcl_mod_articulo.descripcionArticuloProveedor;
             //
             //TODO modificadores de precio segun metodo de pago
-            if (tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            if (glb_con_pedido.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
             {
                 this.lblPrecioVar.Text = Convert.ToString(lcl_mod_articulo.valorVenta.valorArticulo);
             }
-            else if (tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
+            else if (glb_con_pedido.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
             {
                 this.lblPrecioVar.Text = Convert.ToString(lcl_mod_articulo.valorCompra.valorArticulo);
             }
@@ -285,7 +283,7 @@ namespace Vista
         private void dgvDetalleAgregados_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //asigno el articulo a la variable articulosSeleccionadosDetalle en caso de que se decida removerlo del pedido
-            this.glb_mod_articuloSeleccionadoDetalle = glb_con_ProcesarPedido.getArticulo(this.dgvDetalleAgregados.CurrentCell.RowIndex);
+            this.glb_mod_articuloSeleccionadoDetalle = glb_con_pedido.getArticulo(this.dgvDetalleAgregados.CurrentCell.RowIndex);
         }
         #endregion
 
@@ -298,10 +296,10 @@ namespace Vista
             }
             
             //busco el/los articulos correspondientes y me fijo que se hayan encontrado artículos
-            if (glb_con_ProcesarPedido.buscarArticulos((string)this.cbxCategoriaBusqueda.SelectedValue, this.txtDescripcionParcial.Text) > 0)
+            if (glb_con_pedido.buscarArticulos((string)this.cbxCategoriaBusqueda.SelectedValue, this.txtDescripcionParcial.Text) > 0)
             {
                 //bindeo el datagrid con los articulos encontrados
-                var lcl_bindingList = new BindingList<ModeloArticuloProveedores>(glb_con_ProcesarPedido.resultadoBusqueda);
+                var lcl_bindingList = new BindingList<ModeloArticuloProveedores>(glb_con_pedido.resultadoBusqueda);
                 var lcl_source = new BindingSource(lcl_bindingList, null);
                 this.dgvArtAgregar.DataSource = lcl_source;
             }
