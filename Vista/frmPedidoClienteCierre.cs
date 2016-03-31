@@ -17,11 +17,12 @@ namespace Vista
 {
     public partial class frmPedidoClienteCierre : Form
     {
+        #region Atributos
         public bool glb_emitido = false;
         private ControladorPedido glb_con_procesarPedido;
         private FormReportes glb_frm_FormReportes;
         private ControladorReportes glb_con_Reportes;
-
+        #endregion
 
         #region Constructores
         public frmPedidoClienteCierre()
@@ -34,11 +35,16 @@ namespace Vista
         {
             //Guardo el controlador de venta
             this.glb_con_procesarPedido = p_controladorProcesarPedido;
-
-            //busco la venta actual y la bindeo a dgv
-            var lcl_bindingList = new BindingList<ModeloLineaPedido>(glb_con_procesarPedido.pedidoActual.lineasPedido);
-            var lcl_source = new BindingSource(lcl_bindingList, null);
-            this.dgvArticulosVenta.DataSource = lcl_source;   
+            this.inicializarDataGridView();
+            
+            if (p_controladorProcesarPedido.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
+            {
+                this.inicializarPedidoProveedor();
+            }
+            else if (p_controladorProcesarPedido.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            {
+                this.inicializarPedidoCliente();
+            }
         }
         #endregion
 
@@ -53,12 +59,13 @@ namespace Vista
             this.cbxPais.DropDownWidth = this.getDropDownWidth(this.cbxPais);
             this.cbxPais.DisplayMember = "pais";
             this.cbxPais.ValueMember = "codigo";
-            this.cbxPais.SelectedItem = null;
+            this.cbxPais.SelectedValue  = "AR";
 
             //Lo hago read only
             this.cbxPais.DropDownStyle = ComboBoxStyle.DropDownList;
 
             //Populo combobox de provincias
+            this.asignarProvincias();
             this.cbxProvincia.DisplayMember = "provincia";
             this.cbxProvincia.ValueMember = "codigo";
             this.cbxProvincia.SelectedItem = null;
@@ -80,6 +87,19 @@ namespace Vista
 
             //Lo hago read only
             this.cbxTipoTelefono.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            this.cbxFormaPago.DataSource = Enum.GetValues(typeof(Constantes.FormaDePago));
+        }
+        private void inicializarPedidoProveedor()
+        {
+            //muy básico
+            this.cbxTipoComprobante.DataSource = Enum.GetValues(typeof(Constantes.TipoComprobanteCompra));
+        }
+        private void inicializarPedidoCliente()
+        {
+            //muy básico
+            this.cbxTipoComprobante.DataSource = Enum.GetValues(typeof(Constantes.TipoComprobanteVenta));
+            
         }
         int getDropDownWidth(ComboBox p_comboBox)
         {
@@ -94,7 +114,30 @@ namespace Vista
             }
             return maxWidth;
         }
-
+        private void inicializarDataGridView()
+        {
+            //busco la venta actual y la bindeo a dgv
+            var lcl_bindingList = new BindingList<ModeloLineaPedido>(glb_con_procesarPedido.pedidoActual.lineasPedido);
+            var lcl_source = new BindingSource(lcl_bindingList, null);
+            this.dgvArticulosVenta.DataSource = lcl_source;   
+        }
+        private void asignarProvincias()
+        {
+            ModeloProvincia lcl_mod_provincia = new ModeloProvincia();
+            //Inserto codigoPais del país seleccionado en el comboBox
+            lcl_mod_provincia.codigoPais = this.cbxPais.SelectedValue.ToString();
+            //this.cmbBoxProvincia.DataSource = provincias;
+            List<ModeloProvincia> lcl_lst_mod_provincias = ControladorBusqueda.getProvincias();
+            List<ModeloProvincia> provincias = new List<ModeloProvincia>();
+            foreach (ModeloProvincia p in lcl_lst_mod_provincias)
+            {
+                if (p.codigoPais == lcl_mod_provincia.codigoPais)
+                {
+                    provincias.Add(p);
+                }
+            }
+            this.cargarDatosProvinciasEnCmbBoxProvincia(provincias);
+        }
         #endregion
 
         #region Búsqueda
@@ -159,20 +202,10 @@ namespace Vista
                         this.btnSelMail.Visible = false;
                     }
 
-                    lcl_latest = (lcl_mod_entidad as ModeloCliente).domicilios.Count;
-                    var lcl_lst_mod_paises = ControladorBusqueda.getPaises();
-                    var lcl_lst_mod_provincias = ControladorBusqueda.getProvincias();
-                    if (lcl_latest > 0)
+                    if (lcl_mod_entidad.domicilios.Count > 0)
                     {
                         lcl_latest--;
-                        this.cbxPais.SelectedIndex = lcl_lst_mod_paises.FindIndex(a => a.codigo == (lcl_mod_entidad as ModeloCliente).domicilios[lcl_latest].pais.codigo);
-                        this.cbxProvincia.SelectedIndex = lcl_lst_mod_provincias.FindIndex(a => a.codigo == (lcl_mod_entidad as ModeloCliente).domicilios[lcl_latest].provincia.codigo);
-                        this.txtCiudad.Text = (lcl_mod_entidad as ModeloCliente).domicilios[lcl_latest].ciudad;
-                        this.txtCalle.Text = (lcl_mod_entidad as ModeloCliente).domicilios[lcl_latest].calle;
-                        this.txtNro.Text = (lcl_mod_entidad as ModeloCliente).domicilios[lcl_latest].numero;
-                        this.txtPiso.Text = (lcl_mod_entidad as ModeloCliente).domicilios[lcl_latest].piso;
-                        this.txtDepto.Text = (lcl_mod_entidad as ModeloCliente).domicilios[lcl_latest].departamento;
-                        this.txtCp.Text = (lcl_mod_entidad as ModeloCliente).domicilios[lcl_latest].codigoPostal;
+                        this.cargarDomicilioEnControles(lcl_mod_entidad.domicilios[0]);
                     }
                     else
                     {
@@ -191,6 +224,91 @@ namespace Vista
         }
         #endregion
 
+        #region Controles -> Modelo
+        private ModeloDomicilio cargarControlesEnDomicilio()
+        {
+            ModeloDomicilio lcl_mod_nuevoDomicilio = new ModeloDomicilio();
+            
+            ModeloPais lcl_mod_pais = new ModeloPais();
+            lcl_mod_pais.codigo = (string)this.cbxPais.SelectedValue;
+            lcl_mod_pais.pais = this.cbxPais.SelectedText;
+            lcl_mod_nuevoDomicilio.pais = lcl_mod_pais;
+
+            ModeloProvincia lcl_mod_provincia = new ModeloProvincia();
+            lcl_mod_provincia.codigo = (string)this.cbxProvincia.SelectedValue;
+            lcl_mod_provincia.provincia = this.cbxProvincia.SelectedText;
+            lcl_mod_nuevoDomicilio.provincia = lcl_mod_provincia;
+            
+            lcl_mod_nuevoDomicilio.ciudad = this.txtCiudad.Text;
+            lcl_mod_nuevoDomicilio.calle = this.txtCalle.Text;
+            lcl_mod_nuevoDomicilio.numero = this.txtNro.Text;
+            lcl_mod_nuevoDomicilio.piso = this.txtPiso.Text;
+            lcl_mod_nuevoDomicilio.departamento = this.txtDepto.Text;
+            lcl_mod_nuevoDomicilio.codigoPostal = this.txtCp.Text;
+
+            return lcl_mod_nuevoDomicilio;
+        }
+        private ModeloMail cargarControlesEnMail()
+        {
+            ModeloMail lcl_mod_nuevoMail = new ModeloMail();
+            lcl_mod_nuevoMail.mail = this.txtMail.Text;
+            return lcl_mod_nuevoMail;
+        }
+        private ModeloTelefono cargarControlesEnTelefono()
+        {
+            ModeloTelefono lcl_mod_nuevoTelefono = new ModeloTelefono();
+            lcl_mod_nuevoTelefono.numero = this.txtNro.Text;
+            lcl_mod_nuevoTelefono.tipo = (string)this.cbxTipoTelefono.SelectedValue;
+            return lcl_mod_nuevoTelefono;
+        }
+        private Constantes.FormaDePago getFormaDePago()
+        {
+            Constantes.FormaDePago lcl_formaPago;
+            Enum.TryParse<Constantes.FormaDePago>(cbxFormaPago.SelectedValue.ToString(), out lcl_formaPago);
+            return lcl_formaPago;
+        }
+        private Constantes.TipoComprobanteVenta getTipoComprobante()
+        {
+            Constantes.TipoComprobanteVenta lcl_tipoComprobante;
+            Enum.TryParse<Constantes.TipoComprobanteVenta>(cbxFormaPago.SelectedValue.ToString(), out lcl_tipoComprobante);
+            return lcl_tipoComprobante;
+        }
+        #endregion
+        #region Modelo -> Controles
+        private void cargarDomicilioEnControles(ModeloDomicilio p_mod_domicilio)
+        {
+            this.cbxPais.SelectedValue = p_mod_domicilio.pais.codigo;
+            this.cbxProvincia.SelectedValue = p_mod_domicilio.provincia.codigo;
+
+            this.txtCiudad.Text = p_mod_domicilio.ciudad;
+            this.txtCalle.Text = p_mod_domicilio.calle;
+            this.txtNro.Text = p_mod_domicilio.numero;
+            this.txtPiso.Text = p_mod_domicilio.piso;
+            this.txtDepto.Text = p_mod_domicilio.departamento;
+            this.txtCp.Text = p_mod_domicilio.codigoPostal;
+        }
+        private void cargarDatosProvinciasEnCmbBoxProvincia(List<ModeloProvincia> p_lst_mod_provincias)
+        {
+            this.cbxProvincia.DataSource = p_lst_mod_provincias.OrderBy(i => i.provincia).ToList();
+            this.cbxProvincia.DropDownWidth = this.getDropDownWidth(this.cbxProvincia);
+            this.cbxProvincia.SelectedItem = null;
+        }
+        private void cargarMailEnControles(ModeloMail p_mod_mail)
+        {
+            this.txtMail.Text = p_mod_mail.mail;
+        }
+        private void cargarTelefonoEnControles(ModeloTelefono p_mod_telefono)
+        {
+            this.txtTelefono.Text = p_mod_telefono.numero;
+            switch (p_mod_telefono.tipo)
+            {
+                case Constantes.TipoTelefono.Fijo: this.cbxTipoTelefono.SelectedIndex = 0; break;
+                case Constantes.TipoTelefono.Celular: this.cbxTipoTelefono.SelectedIndex = 1; break;
+                case Constantes.TipoTelefono.Fax: this.cbxTipoTelefono.SelectedIndex = 2; break;
+                default: break;
+            }
+        }
+        #endregion
         #endregion
 
         #region Eventos
@@ -220,32 +338,11 @@ namespace Vista
                     lcl_mod_nuevoCliente.dni = txtDni.Text;
                     lcl_mod_nuevoCliente.observaciones = rtbObsCliente.Text;
 
-                    ModeloTelefono lcl_mod_nuevoTelefono = new ModeloTelefono();
-                    lcl_mod_nuevoTelefono.numero = this.txtNro.Text;
-                    lcl_mod_nuevoTelefono.tipo = (string)this.cbxTipoTelefono.SelectedValue;
-                    lcl_mod_nuevoCliente.telefonos.Add(lcl_mod_nuevoTelefono);
+                    lcl_mod_nuevoCliente.telefonos.Add(this.cargarControlesEnTelefono());
+                    
+                    lcl_mod_nuevoCliente.mails.Add(this.cargarControlesEnMail());
 
-                    ModeloMail lcl_mod_nuevoMail = new ModeloMail();
-                    lcl_mod_nuevoMail.mail = this.txtMail.Text;
-                    lcl_mod_nuevoCliente.mails.Add(lcl_mod_nuevoMail);
-
-                    ModeloDomicilio lcl_mod_nuevoDomicilio = new ModeloDomicilio();
-                    ModeloPais lcl_mod_nuevoPais = new ModeloPais();
-                    lcl_mod_nuevoPais.codigo = (string)this.cbxPais.SelectedValue;
-                    lcl_mod_nuevoPais.pais = this.cbxPais.SelectedText;
-                    lcl_mod_nuevoDomicilio.pais = lcl_mod_nuevoPais;
-
-                    ModeloProvincia lcl_mod_nuevaProvincia = new ModeloProvincia();
-                    lcl_mod_nuevaProvincia.codigo = (string)this.cbxProvincia.SelectedValue;
-                    lcl_mod_nuevaProvincia.provincia = this.cbxProvincia.SelectedText;
-                    lcl_mod_nuevoDomicilio.provincia = lcl_mod_nuevaProvincia;
-                    lcl_mod_nuevoDomicilio.ciudad = this.txtCiudad.Text;
-                    lcl_mod_nuevoDomicilio.calle = this.txtCalle.Text;
-                    lcl_mod_nuevoDomicilio.numero = this.txtNro.Text;
-                    lcl_mod_nuevoDomicilio.piso = this.txtPiso.Text;
-                    lcl_mod_nuevoDomicilio.departamento = this.txtDepto.Text;
-                    lcl_mod_nuevoDomicilio.codigoPostal = this.txtCp.Text;
-                    lcl_mod_nuevoCliente.domicilios.Add(lcl_mod_nuevoDomicilio);
+                    lcl_mod_nuevoCliente.domicilios.Add(this.cargarControlesEnDomicilio());
 
                    //glb_con_procesarPedido.addClient(lcl_mod_nuevoCliente);
                 }
@@ -256,7 +353,6 @@ namespace Vista
                 glb_emitido = true;
                 this.Close();
             }
-
         }
 
         private void btnCalcular_Click(object sender, EventArgs e)
@@ -290,14 +386,8 @@ namespace Vista
 
             lcl_frm_Seleccion.bindList(lcl_mod_cliente.telefonos);
             lcl_frm_Seleccion.Show();
-            this.txtTelefono.Text = lcl_mod_cliente.telefonos[lcl_frm_Seleccion.selectedIndex].numero;
-            switch (lcl_mod_cliente.telefonos[lcl_frm_Seleccion.selectedIndex].tipo)
-            {
-                case Constantes.TipoTelefono.Fijo: this.cbxTipoTelefono.SelectedIndex = 0; break;
-                case Constantes.TipoTelefono.Celular: this.cbxTipoTelefono.SelectedIndex = 1; break;
-                case Constantes.TipoTelefono.Fax: this.cbxTipoTelefono.SelectedIndex = 2; break;
-                default: break;
-            }
+            
+            this.cargarTelefonoEnControles(lcl_mod_cliente.telefonos[lcl_frm_Seleccion.selectedIndex]);
         }
 
         private void btnSelMail_Click(object sender, EventArgs e)
@@ -307,31 +397,30 @@ namespace Vista
 
             lcl_frm_Seleccion.bindList(lcl_mod_cliente.mails);
             lcl_frm_Seleccion.Show();
-            this.txtMail.Text = lcl_mod_cliente.mails[lcl_frm_Seleccion.selectedIndex].mail;
+
+            this.cargarMailEnControles(lcl_mod_cliente.mails[lcl_frm_Seleccion.selectedIndex]);
         }
 
         private void btnSelDom_Click(object sender, EventArgs e)
         {
             frmSeleccion lcl_frm_Seleccion = new frmSeleccion();
             var lcl_mod_cliente = glb_con_procesarPedido.entidadActual;
-            var lcl_lst_mod_paises = ControladorBusqueda.getPaises();
-            var lcl_lst_mod_provincias = ControladorBusqueda.getProvincias();
 
             lcl_frm_Seleccion.bindList(lcl_mod_cliente.domicilios);
             lcl_frm_Seleccion.Show();
 
-            this.cbxPais.SelectedIndex = lcl_lst_mod_paises.FindIndex(a => a.codigo == lcl_mod_cliente.domicilios[lcl_frm_Seleccion.selectedIndex].pais.codigo);
-            this.cbxProvincia.SelectedIndex = lcl_lst_mod_provincias.FindIndex(a => a.codigo == lcl_mod_cliente.domicilios[lcl_frm_Seleccion.selectedIndex].provincia.codigo);
-            this.txtCiudad.Text = lcl_mod_cliente.domicilios[lcl_frm_Seleccion.selectedIndex].ciudad;
-            this.txtCalle.Text = lcl_mod_cliente.domicilios[lcl_frm_Seleccion.selectedIndex].calle;
-            this.txtNro.Text = lcl_mod_cliente.domicilios[lcl_frm_Seleccion.selectedIndex].numero;
-            this.txtPiso.Text = lcl_mod_cliente.domicilios[lcl_frm_Seleccion.selectedIndex].piso;
-            this.txtDepto.Text = lcl_mod_cliente.domicilios[lcl_frm_Seleccion.selectedIndex].departamento;
-            this.txtCp.Text = lcl_mod_cliente.domicilios[lcl_frm_Seleccion.selectedIndex].codigoPostal;
+            this.cargarDomicilioEnControles(lcl_mod_cliente.domicilios[lcl_frm_Seleccion.selectedIndex]);
+        }
+        #endregion
+
+        #region ComboBox
+        private void cbxPais_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            this.asignarProvincias();
         }
         #endregion
         #endregion
-       
+
         #region Impresión (a ser reemplazada por formularios)
         //private void print()
         //{
@@ -472,7 +561,7 @@ namespace Vista
             glb_frm_FormReportes.ShowDialog();
         }
         
-        #endregion
+        #endregion        
     }
    
     //clase para llenar combo box categoria a buscar

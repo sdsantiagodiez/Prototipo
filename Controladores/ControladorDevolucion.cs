@@ -26,7 +26,7 @@ namespace Controladores
             var lcl_con_modificacion = new ControladorModificacion();
 
             //creo linea y articulo de la línea
-            var lcl_mod_lineaCorrespondiente = glb_mod_pedido.findDetail(glb_mod_articuloDevolucion.codigoOriginal, glb_mod_articuloDevolucion.codigoArticuloProveedor);
+            var lcl_mod_lineaCorrespondiente = glb_mod_pedido.getLineaPedido(glb_mod_articuloDevolucion);
             //utilizo un articulo devolucion local para no crear cambios en el global, de esta forma puedo utilizar el global original en otras funciones
             var lcl_mod_articuloDevolucion = glb_mod_articuloDevolucion;
 
@@ -37,12 +37,15 @@ namespace Controladores
 
         public ModeloArticuloProveedores getArticuloPedido(string p_numeroPedido, string p_codigoOriginal, string p_codigoArticuloProveedor)
         {
+            ModeloArticuloProveedores lcl_mod_articuloProveedor = new ModeloArticuloProveedores();
+            lcl_mod_articuloProveedor.codigoOriginal = p_codigoOriginal;
+            lcl_mod_articuloProveedor.codigoArticuloProveedor = p_codigoArticuloProveedor;
             var lcl_mod_pedido = new ModeloPedido();
             lcl_mod_pedido.numeroPedido = int.Parse(p_numeroPedido);
             glb_mod_pedido = ControladorBusqueda.buscar(lcl_mod_pedido, Constantes.ParametrosBusqueda.Pedidos.NumeroPedido)[0];
             if (!object.Equals(glb_mod_pedido, null))
             {
-                var lcl_mod_lineaPedido = glb_mod_pedido.findDetail(p_codigoOriginal, p_codigoArticuloProveedor);
+                var lcl_mod_lineaPedido = glb_mod_pedido.getLineaPedido(lcl_mod_articuloProveedor);
                 if (!object.Equals(lcl_mod_lineaPedido, null))
                 {
                     var lcl_cat_articulosProveedores = new CatalogoArticuloProveedores();

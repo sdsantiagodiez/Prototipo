@@ -166,18 +166,24 @@ namespace Modelos
 
         public bool Equals(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
-            return this.Equals(this.codigoArticuloProveedor,p_mod_articuloProveedor.codigoArticuloProveedor)
-                && this.Equals(this.codigoEntidad,p_mod_articuloProveedor.codigoEntidad)
-                && this.Equals(this.descripcionArticuloProveedor,p_mod_articuloProveedor.descripcionArticuloProveedor)
-                && this.Equals(this.fechaActualizacion,p_mod_articuloProveedor.fechaActualizacion)
-                && this.Equals(this.observacionesArticuloProveedor,p_mod_articuloProveedor.observacionesArticuloProveedor)
-                && this.Equals(this.razonSocialProveedor,p_mod_articuloProveedor.razonSocialProveedor)
-                && this.Equals(this.stockActual,p_mod_articuloProveedor.stockActual)
-                && this.Equals(this.stockMinimo,p_mod_articuloProveedor.stockMinimo)
-                && this.Equals(this.ubicacion,p_mod_articuloProveedor.ubicacion)
-                && this.Equals(this.valorCompra,p_mod_articuloProveedor.valorCompra)
-                && this.Equals(this.valorVenta,p_mod_articuloProveedor.valorVenta);
+            return this.Equals(this.codigoArticuloProveedor, p_mod_articuloProveedor.codigoArticuloProveedor)
+                && this.Equals(this.codigoEntidad, p_mod_articuloProveedor.codigoEntidad);
         }
+
+        //public bool Equals(ModeloArticuloProveedores p_mod_articuloProveedor)
+        //{
+        //    return this.Equals(this.codigoArticuloProveedor,p_mod_articuloProveedor.codigoArticuloProveedor)
+        //        && this.Equals(this.codigoEntidad,p_mod_articuloProveedor.codigoEntidad)
+        //        && this.Equals(this.descripcionArticuloProveedor,p_mod_articuloProveedor.descripcionArticuloProveedor)
+        //        && this.Equals(this.fechaActualizacion,p_mod_articuloProveedor.fechaActualizacion)
+        //        && this.Equals(this.observacionesArticuloProveedor,p_mod_articuloProveedor.observacionesArticuloProveedor)
+        //        && this.Equals(this.razonSocialProveedor,p_mod_articuloProveedor.razonSocialProveedor)
+        //        && this.Equals(this.stockActual,p_mod_articuloProveedor.stockActual)
+        //        && this.Equals(this.stockMinimo,p_mod_articuloProveedor.stockMinimo)
+        //        && this.Equals(this.ubicacion,p_mod_articuloProveedor.ubicacion)
+        //        && this.Equals(this.valorCompra,p_mod_articuloProveedor.valorCompra)
+        //        && this.Equals(this.valorVenta,p_mod_articuloProveedor.valorVenta);
+        //}
         #endregion
     }
 }

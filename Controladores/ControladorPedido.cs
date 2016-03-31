@@ -16,10 +16,9 @@ namespace Controladores
 
         //Por ahora vive
         public List<ModeloArticuloProveedores> resultadoBusqueda;
-        private Constantes.CodigosTiposPedidos _tipoPedido;
         public Constantes.CodigosTiposPedidos tipoPedido
         {
-            get { return _tipoPedido; }
+            get { return pedidoActual.codigoTipoPedido; }
         }
         //Por ahora no se sabe
         
@@ -46,7 +45,6 @@ namespace Controladores
 
         public ControladorPedido(Constantes.CodigosTiposPedidos p_codigo) : this()
         {
-            _tipoPedido = p_codigo;
             switch (this.tipoPedido)
             {
                 case Constantes.CodigosTiposPedidos.TipoPedidoPersona:
@@ -56,6 +54,8 @@ namespace Controladores
                     entidadActual = new ModeloProveedor();
                     break;
             }
+            this.pedidoActual.codigoTipoPedido = p_codigo;
+            this.pedidoActual.entidad = entidadActual;
         }
         #endregion
 
@@ -64,7 +64,7 @@ namespace Controladores
         {
             //le cambio el formato  y lo agrego a la lista de articulos ya seleccionados
             ModeloLineaPedido lcl_mod_nuevaLinea = new ModeloLineaPedido(p_articulo, p_cantidad);
-            this.pedidoActual.addDetail(lcl_mod_nuevaLinea);
+            this.pedidoActual.addLineaPedido(lcl_mod_nuevaLinea);
         }
         public void addCliente(ModeloPersonas p_nuevoCliente)
         {
@@ -107,8 +107,8 @@ namespace Controladores
 
             foreach (ModeloLineaPedido lcl_mod_linea in pedidoActual.lineasPedido)
             {
-                lcl_mod_articuloProveedores.codigoOriginal = lcl_mod_linea.codigoOriginalArt;
-                lcl_mod_articuloProveedores.codigoArticuloProveedor = lcl_mod_linea.codigoArtProveedor;
+                lcl_mod_articuloProveedores.codigoOriginal = lcl_mod_linea.articulo.codigoOriginal;
+                lcl_mod_articuloProveedores.codigoArticuloProveedor = lcl_mod_linea.articulo.codigoArticuloProveedor;
 
                 lcl_mod_articuloProveedores = ControladorBusqueda.buscar(lcl_mod_articuloProveedores, Constantes.ParametrosBusqueda.One)[0]; 
                 lcl_mod_articuloProveedores.stockActual = lcl_mod_articuloProveedores.stockActual - lcl_mod_linea.cantidadArticulos;
@@ -147,7 +147,7 @@ namespace Controladores
         }
         public void removeLineaPedido(ModeloLineaPedido p_lineaPedido)
         {
-            this.pedidoActual.bajarLinea(p_lineaPedido);
+            this.pedidoActual.removeLineaPedido(p_lineaPedido);
         }
         #endregion
     }

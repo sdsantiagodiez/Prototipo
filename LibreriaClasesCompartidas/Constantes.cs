@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace LibreriaClasesCompartidas
 {
@@ -143,7 +144,35 @@ namespace LibreriaClasesCompartidas
             TipoPedidoPersona=1,
             TipoPedidoProveedor=2
         }
-        
+
+        public enum FormaDePago
+        {
+            Contado =1,
+            Credito=2,
+            Debito=3,
+            Cheque=4,
+            Otro=5
+        }
+
+        public enum TipoComprobanteVenta
+        {
+            Presupuesto =1,
+            Ticket=2,
+            [EnumMember(Value = "Factura A")] 
+            Factura_A = 3,
+            [EnumMember(Value = "Factura B")] 
+            Factura_B=4,
+            [EnumMember(Value = "Factura X")] 
+            Factura_X=5,
+            Reserva=6,
+            Devolución=7
+        }
+        public enum TipoComprobanteCompra
+        {
+            [EnumMember(Value = "Pedido a Proveedor")]
+            Pedido_Proveedor = 1
+        }
+
         public static class TiposArticulo
         {
             public const string ArticuloBase = "ART";

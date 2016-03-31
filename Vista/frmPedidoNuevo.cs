@@ -329,6 +329,13 @@ namespace Vista
             {
                 this.btnAgregar_Click(sender, e);
             }
+
+            // solo 0-9 y borrar 
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8))
+            {
+                e.Handled = true;
+                return;
+            }
         }
         #endregion 
         #endregion           

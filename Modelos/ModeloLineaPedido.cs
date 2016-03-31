@@ -16,29 +16,19 @@ namespace Modelos
             get { return _numeroPedido; }
             set { this._numeroPedido = value; }
         }
-        string _codigoArticuloProveedor;
-        public string codigoArtProveedor
+
+        ModeloArticuloProveedores _articulo;
+        public ModeloArticuloProveedores articulo
         {
-            get { return _codigoArticuloProveedor; }
-            set { this._codigoArticuloProveedor = value; }
+            get { return _articulo; }
+            set { _articulo = value; }
         }
-        string _codigoOriginalArticulo;
-        public string codigoOriginalArt
-        {
-            get { return _codigoOriginalArticulo; }
-            set { this._codigoOriginalArticulo = value; }
-        }
+
         int _cantidadArticulos;
         public int cantidadArticulos
         {
             get { return _cantidadArticulos; }
             set { this._cantidadArticulos = value; }
-        }
-        decimal _valorParcial;
-        public decimal valorParcial
-        {
-            get { return _valorParcial; }
-            set { this._valorParcial = value; }
         }
         decimal _valorUnitario;
         public decimal valorUnitario
@@ -46,11 +36,11 @@ namespace Modelos
             get { return _valorUnitario; }
             set { this._valorUnitario = value; }
         }
-        string _descripcion;
-        public string descripcion
+        decimal _valorParcial;
+        public decimal valorParcial
         {
-            get { return _descripcion; }
-            set { this._descripcion = value; }
+            get { return _valorParcial; }
+            set { this._valorParcial = value; }
         }
         #endregion
 
@@ -59,10 +49,8 @@ namespace Modelos
 
         public ModeloLineaPedido(ModeloArticuloProveedores p_mod_articuloProveedor, int pCantidad)
         {
-            this.codigoArtProveedor = p_mod_articuloProveedor.codigoArticuloProveedor;
-            this.codigoOriginalArt = p_mod_articuloProveedor.codigoOriginal;
+            this.articulo = p_mod_articuloProveedor;
             this.cantidadArticulos = pCantidad;
-            this.descripcion = p_mod_articuloProveedor.descripcionArticuloProveedor;
             //Sólo considera que la linea sea de venta de artículo y no para una compra a proveedor
             this.valorUnitario = Convert.ToDecimal(p_mod_articuloProveedor.valorVenta.valorArticulo);
             //Recordar que se pueden aplicar descuentos
@@ -79,14 +67,23 @@ namespace Modelos
 
         public virtual bool Equals(ModeloLineaPedido p_mod_lineaPedido)
         {
-            return this.Equals(this.cantidadArticulos,p_mod_lineaPedido.cantidadArticulos)
-                && this.Equals(this.codigoArtProveedor, p_mod_lineaPedido.codigoArtProveedor)
-                && this.Equals(this.codigoOriginalArt, p_mod_lineaPedido.codigoOriginalArt)
-                && this.Equals(this.descripcion,p_mod_lineaPedido.descripcion)
-                && this.Equals(this.numeroPedido,p_mod_lineaPedido.numeroPedido)
-                && this.Equals(this.valorParcial,p_mod_lineaPedido.valorParcial)
-                && this.Equals(this.valorUnitario,p_mod_lineaPedido.valorUnitario);
+            return this.articulo.Equals(p_mod_lineaPedido.articulo)
+                && this.Equals(this.cantidadArticulos, p_mod_lineaPedido.cantidadArticulos)
+                && this.Equals(this.numeroPedido, p_mod_lineaPedido.numeroPedido)
+                && this.Equals(this.valorParcial, p_mod_lineaPedido.valorParcial)
+                && this.Equals(this.valorUnitario, p_mod_lineaPedido.valorUnitario);
         }
+
+        //public virtual bool Equals(ModeloLineaPedido p_mod_lineaPedido)
+        //{
+        //    return this.Equals(this.cantidadArticulos,p_mod_lineaPedido.cantidadArticulos)
+        //        && this.Equals(this.articulo.codigoArticuloProveedor, p_mod_lineaPedido.articulo.codigoArticuloProveedor)
+        //        && this.Equals(this.articulo.codigoOriginal, p_mod_lineaPedido.articulo.codigoOriginal)
+        //        && this.Equals(this.articulo.descripcionArticuloProveedor,p_mod_lineaPedido.articulo.descripcionArticuloProveedor)
+        //        && this.Equals(this.numeroPedido,p_mod_lineaPedido.numeroPedido)
+        //        && this.Equals(this.valorParcial,p_mod_lineaPedido.valorParcial)
+        //        && this.Equals(this.valorUnitario,p_mod_lineaPedido.valorUnitario);
+        //}
         #endregion
     }
 }

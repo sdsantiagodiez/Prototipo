@@ -62,7 +62,7 @@
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.cbxFormaPago = new System.Windows.Forms.ComboBox();
             this.txtNroComp = new System.Windows.Forms.TextBox();
-            this.cbxTipoComp = new System.Windows.Forms.ComboBox();
+            this.cbxTipoComprobante = new System.Windows.Forms.ComboBox();
             this.lblNumeroComp = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblDescuentoPorc = new System.Windows.Forms.Label();
@@ -282,7 +282,7 @@
             this.gbxComprobante.Controls.Add(this.dtpFecha);
             this.gbxComprobante.Controls.Add(this.cbxFormaPago);
             this.gbxComprobante.Controls.Add(this.txtNroComp);
-            this.gbxComprobante.Controls.Add(this.cbxTipoComp);
+            this.gbxComprobante.Controls.Add(this.cbxTipoComprobante);
             this.gbxComprobante.Controls.Add(this.lblNumeroComp);
             this.gbxComprobante.Controls.Add(this.lblFecha);
             this.gbxComprobante.Controls.Add(this.lblDescuentoPorc);
@@ -479,20 +479,20 @@
             this.txtNroComp.TabIndex = 7;
             this.txtNroComp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cbxTipoComp
+            // cbxTipoComprobante
             // 
-            this.cbxTipoComp.FormattingEnabled = true;
-            this.cbxTipoComp.Items.AddRange(new object[] {
+            this.cbxTipoComprobante.FormattingEnabled = true;
+            this.cbxTipoComprobante.Items.AddRange(new object[] {
             "Presupuesto",
             "Ticket",
             "Factura-A",
             "Factura-B",
             "Reserva",
             "Devolución"});
-            this.cbxTipoComp.Location = new System.Drawing.Point(107, 30);
-            this.cbxTipoComp.Name = "cbxTipoComp";
-            this.cbxTipoComp.Size = new System.Drawing.Size(121, 21);
-            this.cbxTipoComp.TabIndex = 6;
+            this.cbxTipoComprobante.Location = new System.Drawing.Point(107, 30);
+            this.cbxTipoComprobante.Name = "cbxTipoComprobante";
+            this.cbxTipoComprobante.Size = new System.Drawing.Size(121, 21);
+            this.cbxTipoComprobante.TabIndex = 6;
             // 
             // lblNumeroComp
             // 
@@ -674,6 +674,7 @@
             this.cbxPais.Name = "cbxPais";
             this.cbxPais.Size = new System.Drawing.Size(188, 21);
             this.cbxPais.TabIndex = 39;
+            this.cbxPais.SelectionChangeCommitted += new System.EventHandler(this.cbxPais_SelectionChangeCommitted);
             // 
             // lblPais
             // 
@@ -957,7 +958,7 @@
         private System.Windows.Forms.DateTimePicker dtpFecha;
         private System.Windows.Forms.ComboBox cbxFormaPago;
         private System.Windows.Forms.TextBox txtNroComp;
-        private System.Windows.Forms.ComboBox cbxTipoComp;
+        private System.Windows.Forms.ComboBox cbxTipoComprobante;
         private System.Windows.Forms.Label lblNumeroComp;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Label lblDescuentoPorc;

@@ -20,14 +20,14 @@ namespace Datos
             
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
-            lcl_mod_lineaPedido.codigoOriginalArt= (string)p_drLineasPedidos["codigo_original"];
-            lcl_mod_lineaPedido.codigoArtProveedor = (string)p_drLineasPedidos["codigo_articulo_proveedor"];
+            lcl_mod_lineaPedido.articulo.codigoOriginal= (string)p_drLineasPedidos["codigo_original"];
+            lcl_mod_lineaPedido.articulo.codigoArticuloProveedor= (string)p_drLineasPedidos["codigo_articulo_proveedor"];
 
             lcl_mod_lineaPedido.cantidadArticulos = (int)p_drLineasPedidos["cantidad"];
             lcl_mod_lineaPedido.valorParcial = (decimal)p_drLineasPedidos["valor_parcial"];
             lcl_mod_lineaPedido.valorUnitario = (decimal)p_drLineasPedidos["valor_unitario"];
 
-            lcl_mod_lineaPedido.descripcion = (p_drLineasPedidos["descripcion"] != DBNull.Value) ? (string)p_drLineasPedidos["descripcion"] : null;
+            lcl_mod_lineaPedido.articulo.descripcionArticuloProveedor= (p_drLineasPedidos["descripcion"] != DBNull.Value) ? (string)p_drLineasPedidos["descripcion"] : null;
                 
             return lcl_mod_lineaPedido;
         }
@@ -68,13 +68,13 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.numeroPedido, "@numero_pedido"));
                     return " numero_pedido = @numero_pedido ";
                 case Constantes.ParametrosBusqueda.LineasPedidos.CodigoArticuloProveedor:
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.codigoArtProveedor, "@codigo_articulo_proveedor"));
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.articulo.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
                     return " codigo_articulo_proveedor = @codigo_articulo_proveedor ";
                 case Constantes.ParametrosBusqueda.LineasPedidos.CodigoOriginal:
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.codigoOriginalArt, "@codigo_original"));
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.articulo.codigoOriginal, "@codigo_original"));
                     return " codigo_original = @codigo_original ";
                 case Constantes.ParametrosBusqueda.LineasPedidos.Descripcion:
-                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_lineaPedido.descripcion), "@descripcion"));
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_lineaPedido.articulo.descripcionArticuloProveedor), "@descripcion"));
                     return " descripcion LIKE @descripcion ";
                 case Constantes.ParametrosBusqueda.Any:
                     
@@ -82,15 +82,15 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(numeroPedido, "@numero_pedido"));
                     string numeroPedidoQuery = this.parametroBusqueda("@numero_pedido", "numero_pedido", "=");
 
-                    string codigoOriginal = p_mod_lineaPedido.codigoOriginalArt == "" ? null : p_mod_lineaPedido.codigoOriginalArt;
+                    string codigoOriginal = p_mod_lineaPedido.articulo.codigoOriginal== "" ? null : p_mod_lineaPedido.articulo.codigoOriginal;
                     p_comando.Parameters.Add(this.instanciarParametro(codigoOriginal, "@codigo_original"));
                     string codigoOriginalQuery = this.parametroBusqueda("@codigo_original", "codigo_original", "=");
 
-                    string codigoArticuloProveedor = p_mod_lineaPedido.codigoArtProveedor == "" ? null : p_mod_lineaPedido.codigoArtProveedor;
+                    string codigoArticuloProveedor = p_mod_lineaPedido.articulo.codigoArticuloProveedor== "" ? null : p_mod_lineaPedido.articulo.codigoArticuloProveedor;
                     p_comando.Parameters.Add(this.instanciarParametro(codigoArticuloProveedor, "@codigo_articulo_proveedor"));
                     string codigoArticuloProveedorQuery = this.parametroBusqueda("@codigo_articulo_proveedor", "codigo_articulo_proveedor", "=");
 
-                    string descripcion = p_mod_lineaPedido.descripcion == "" ? null : p_mod_lineaPedido.descripcion;
+                    string descripcion = p_mod_lineaPedido.articulo.descripcionArticuloProveedor== "" ? null : p_mod_lineaPedido.articulo.descripcionArticuloProveedor;
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(descripcion), "@descripcion"));
                     string descripcionQuery = this.parametroBusqueda("@descripcion", "descripcion", "LIKE");
 
@@ -184,9 +184,9 @@ namespace Datos
                 "VALUES (@numero_pedido, @codigo_original, @codigo_articulo_proveedor,@descripcion,@cantidad,@valor_parcial,@valor_unitario)";
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.numeroPedido, "@numero_pedido"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.codigoOriginalArt, "@codigo_original"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.codigoArtProveedor, "@codigo_articulo_proveedor"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.descripcion, "@descripcion"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.articulo.codigoOriginal, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.articulo.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.articulo.descripcionArticuloProveedor, "@descripcion"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.cantidadArticulos, "@cantidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.valorParcial, "@valor_parcial"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.valorUnitario, "@valor_unitario"));

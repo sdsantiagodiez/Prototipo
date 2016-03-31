@@ -20,7 +20,7 @@ namespace Datos
             lcl_mod_pedido.fecha = (DateTime)p_drPedidos["fecha"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
-            lcl_mod_pedido.codigoEntidad = (int)p_drPedidos["codigo_entidad"];
+            lcl_mod_pedido.entidad.codigo = (int)p_drPedidos["codigo_entidad"];
             lcl_mod_pedido.montoTotal = (p_drPedidos["monto_total"] != DBNull.Value) ? (decimal)p_drPedidos["monto_total"] : 0;
             lcl_mod_pedido.observaciones = (p_drPedidos["observaciones"] != DBNull.Value) ? (string)p_drPedidos["observaciones"] : null;
             lcl_mod_pedido.codigoTipoPedido = (Constantes.CodigosTiposPedidos)p_drPedidos["codigo_tipo_pedido"];
@@ -217,7 +217,7 @@ namespace Datos
 
                 lcl_mod_lineaPedido = new ModeloLineaPedido();
                 lcl_mod_lineaPedido.numeroPedido = lcl_mod_pedido.numeroPedido;
-                lcl_mod_pedido.lineasPedido = lcl_cat_lineasPedidos.buscarLineasPedido(lcl_mod_lineaPedido, Constantes.ParametrosBusqueda.LineasPedidos.NumeroPedido);
+                lcl_mod_pedido.addLineaPedidoList(lcl_cat_lineasPedidos.buscarLineasPedido(lcl_mod_lineaPedido, Constantes.ParametrosBusqueda.LineasPedidos.NumeroPedido));
 
                 lcl_lst_mod_pedido.Add(lcl_mod_pedido);
             }
@@ -580,7 +580,7 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.montoTotal, "@monto_total"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.observaciones, "@observaciones"));
             comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.codigoEntidad, "@codigo_entidad"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.entidad.codigo, "@codigo_entidad"));
 
             comando.Connection.Open();
 

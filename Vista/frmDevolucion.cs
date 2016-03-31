@@ -31,7 +31,8 @@ namespace Vista
             //pido el artículo al controlador 
             if (LibreriaClasesCompartidas.Validar.validarEnteroPositivoSinCero(txtNumeroPedido.Text))
             {
-                ModeloArticuloProveedores lcl_mod_articuloDevolucion= null;
+                ModeloArticuloProveedores lcl_mod_articuloDevolucion= new ModeloArticuloProveedores();
+                
                 lcl_mod_articuloDevolucion=glb_con_devolucion.getArticuloPedido(txtNumeroPedido.Text,txtCodigoOriginal.Text,txtCodigoArticuloProveedor.Text);
 
                 //controlo que haya devuelto un articulo y no vacío

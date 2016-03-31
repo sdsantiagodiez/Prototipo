@@ -9,42 +9,76 @@ namespace Modelos
     public class ModeloPedido : Modelo
     {
         #region Getters/Setters
-        int _codigoEntidad;
-        public int codigoEntidad
-        {
-            get { return _codigoEntidad; }
-            set { this._codigoEntidad = value; }
-        }
-        
         int _numeroPedido;
         public int numeroPedido
         {
             get { return _numeroPedido; }
-            set 
-            { 
+            set
+            {
                 this._numeroPedido = value;
                 this.insertarNumeroPedidoEnLineas(value);
             }
         }
+
+        DateTime _fecha;
+        public DateTime fecha
+        {
+            get { return _fecha; }
+            set { this._fecha = value; }
+        }
+
         List<ModeloLineaPedido> _lineasPedido;
         public List<ModeloLineaPedido> lineasPedido
         {
             get { return _lineasPedido; }
-            set { this._lineasPedido = value; }
+            private set { this._lineasPedido = value; }
         }
-        
+
         decimal _montoTotal;
         public decimal montoTotal
         {
             get { return _montoTotal; }
             set { this._montoTotal = value; }
         }
-
-        DateTime _fecha;
-        public DateTime fecha 
+        decimal _descuento;
+        public decimal descuento
         {
-            get { return _fecha; }
-            set { this._fecha = value; }
+            get { return _descuento; }
+            set { _descuento = value; }
+        }
+        decimal _senia;
+        public decimal senia
+        {
+            get { return _senia; }
+            set { _senia = value; }
+        }
+        //Puede ser un proveedor o un cliente persona
+        ModeloEntidad _entidad;
+        public ModeloEntidad entidad
+        {
+            get { return _entidad; }
+            set { _entidad = value; }
+        }
+
+        ModeloDomicilio _domicilioDeFacturacion;
+        public ModeloDomicilio domicilioDeFacturacion
+        {
+            get { return _domicilioDeFacturacion; }
+            set { _domicilioDeFacturacion = value; }
+        }
+
+        ModeloTelefono _telefonoContacto;
+        public ModeloTelefono telefonoContacto
+        {
+            get { return _telefonoContacto; }
+            set { _telefonoContacto = value; }
+        }
+
+        ModeloMail _mailContacto;
+        public ModeloMail mailContacto
+        {
+            get { return _mailContacto; }
+            set { _mailContacto = value; }
         }
 
         string _observaciones;
@@ -60,7 +94,15 @@ namespace Modelos
             get { return _codigoTipoPedido; }
             set { this._codigoTipoPedido = value;}
         }
-        
+
+        //Se podría pagar una parte en tarjeta y otra en efectivo
+        List<FormaPago> _formasDePago;
+        public List<FormaPago> formasDePago
+        {
+            get { return _formasDePago; }
+            set { _formasDePago = value; }
+        }
+
         #endregion
 
         public ModeloPedido()
@@ -68,11 +110,6 @@ namespace Modelos
             lineasPedido = new List<ModeloLineaPedido>();
         }
         
-        public void inicializar()
-        {
-            //También hay que asignar numero de pedido
-            /*Quizas este metodo deberia volar, ya que el multiobjeto de lineas de pedido se crea como una variable mas del Pedido*/
-        }
         #region Validación
         public bool validar()
         {
@@ -96,61 +133,59 @@ namespace Modelos
             }
         }
 
-        public ModeloLineaPedido findDetail(string p_codigoOriginal, string p_codigoArticuloProveedor)
+        public ModeloLineaPedido getLineaPedido(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
-            ModeloLineaPedido lcl_mod_orderDetail = null;
-            foreach (ModeloLineaPedido detail in _lineasPedido)
+            foreach (ModeloLineaPedido detail in lineasPedido)
             {
-                if (String.Equals(detail.codigoArtProveedor, p_codigoArticuloProveedor) && String.Equals(detail.codigoOriginalArt,p_codigoOriginal))
+                if (detail.articulo.Equals(p_mod_articuloProveedor))
                 {
-                    lcl_mod_orderDetail = detail;
-                    break;
+                    return detail;
                 }
             }
-            return lcl_mod_orderDetail;
+            return null;
         }
         public bool existeLineaPedido(ModeloLineaPedido pLineaPedido)
         {
-            bool existe = false;
-            if (findDetail(pLineaPedido.codigoOriginalArt, pLineaPedido.codigoArtProveedor) != null )
-            {
-                existe = true;
-            }
-            return existe;
+            return getLineaPedido(pLineaPedido.articulo) != null;
         }
 
-        public bool existeLineaPedido(ModeloArticuloProveedores p_mod_Article)
+        public bool existeLineaPedido(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
-            bool exists = false;
-            if (findDetail(p_mod_Article.codigoOriginal, p_mod_Article.codigoArticuloProveedor) != null)
-            {
-                exists = true;
-            }
-            return exists;
+            return (getLineaPedido(p_mod_articuloProveedor) != null);
         }
 
         public decimal getCurrentTotal()
         {
             decimal lcl_total = 0;
-            foreach (ModeloLineaPedido detail in _lineasPedido)
+            foreach (ModeloLineaPedido detail in lineasPedido)
             {
                 lcl_total = lcl_total + detail.valorParcial;
             }
+            //lcl_total - descuento?
             return lcl_total;
         }
         public bool restartOrderDetails()
         {
             bool lcl_answer = true;
-            _lineasPedido = new List<ModeloLineaPedido>();
+            lineasPedido = new List<ModeloLineaPedido>();
             return lcl_answer;
         }
 
         #region Agregar, Bajar y Actualizar lineas de pedido
-        /*
-         * Devuelven true si se pudo realizar la operación
-         * false si no fue posible
-         */
-        public bool addDetail(ModeloLineaPedido pLineaPedido)
+        /// <summary>
+        /// Agrega lista de lineasPedido al pedido
+        /// Ver si vale la pena. Se usa para dejar readonly a las lineas de pedido, para que no se pueda hacer pedido.lineas.add() desde afuera del objeto
+        /// </summary>
+        /// <param name="p_lst_lineasPedido"></param>
+        public void addLineaPedidoList(List<ModeloLineaPedido> p_lst_lineasPedido)
+        {
+            //Podria cambiar de void a bool si hay alguna validación en las lineas
+            foreach (ModeloLineaPedido lp in p_lst_lineasPedido)
+            {
+                lineasPedido.Add(lp);
+            }
+        }
+        public bool addLineaPedido(ModeloLineaPedido p_lineaPedido)
         {
             ////Si linea ya existe, se suman las cantidades de las dos lineas y permanece la última ingresada
             bool respuesta = true;
@@ -162,25 +197,25 @@ namespace Modelos
             //}
             //if(respuesta)
             //{
-                this._lineasPedido.Add(pLineaPedido);
+                this._lineasPedido.Add(p_lineaPedido);
             //}
             return respuesta;
         }
-        public bool bajarLinea(ModeloLineaPedido p_mod_detail)
+        public bool removeLineaPedido(ModeloLineaPedido p_lineaPedido)
         {
             bool answer = true;
-            _lineasPedido.Remove(p_mod_detail);
+            lineasPedido.Remove(p_lineaPedido);
             return answer;
         }
-        public bool actualizarLinea(ModeloLineaPedido pLinea)
+        public bool updateLineaPedido(ModeloLineaPedido p_lineaPedido)
         {
             /*TEMPORAL: puse que se busque la linea en vez de sacarla porque como la linea viene modificada por la actualización quizas no la detecte al no ser igual (no estoy seguro)*/
             bool respuesta = true;
-            ModeloLineaPedido lpActual = findDetail(pLinea.codigoOriginalArt ,pLinea.codigoArtProveedor);
-            respuesta = _lineasPedido.Remove(lpActual);
+            ModeloLineaPedido lpActual = getLineaPedido(p_lineaPedido.articulo);
+            respuesta = lineasPedido.Remove(lpActual);
             if (respuesta)
             {
-                _lineasPedido.Add(pLinea);
+                lineasPedido.Add(p_lineaPedido);
             }
             return respuesta;
         }
@@ -196,7 +231,7 @@ namespace Modelos
 
         public virtual bool Equals(ModeloPedido p_mod_pedido)
         {
-            return this.Equals(this.codigoEntidad,p_mod_pedido.codigoEntidad)
+            return this.Equals(this.entidad,p_mod_pedido.entidad)
                 && this.Equals(this.codigoTipoPedido,p_mod_pedido.codigoTipoPedido)
                 && this.Equals(this.fecha,p_mod_pedido.fecha)
                 && this.Equals(this.lineasPedido,p_mod_pedido.lineasPedido)
@@ -205,6 +240,23 @@ namespace Modelos
                 && this.Equals(this.observaciones,p_mod_pedido.observaciones);
         }
         #endregion
+    }
+
+    public class FormaPago
+    {
+        LibreriaClasesCompartidas.Constantes.FormaDePago _forma;
+        public LibreriaClasesCompartidas.Constantes.FormaDePago forma
+        {
+            get { return _forma; }
+            set { _forma = value; }
+        }
+
+        decimal _monto;
+        public decimal monto
+        {
+            get { return _monto; }
+            set { _monto = value; }
+        }
     }
 }
 
