@@ -102,16 +102,34 @@ namespace Reportes
             ModeloReportePedidoEntreFechasBindingSource.DataSource = p_ModeloPedido;
             ModeloReporteEncabezadoBindingSource.DataSource = typeof(ModeloPersonas);
             ModeloReporteEncabezadoBindingSource.DataSource = p_ModeloPersonas;
-
-            this.ReporteBase.LocalReport.DataSources.RemoveAt(0);
-            this.ReporteBase.LocalReport.DataSources.RemoveAt(1);
             
-            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("EncabezadoPedido", p_ModeloPedido));
-            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DetallePedido", p_ModeloPedido.lineasPedido));
-            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("ClientePedido", p_ModeloPersonas));
-            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("ClienteDomicilio", p_ModeloPersonas.domicilios));
-            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("ClienteMail", p_ModeloPersonas.mails));
-            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("ClienteTelefono", p_ModeloPersonas.telefonos));
+            BindingSource ModeloReporteDetallePedido = new BindingSource();
+            ModeloReporteDetallePedido.DataSource = typeof(ModeloLineaPedido);
+            ModeloReporteDetallePedido.DataSource = p_ModeloPedido.lineasPedido;
+
+          /*  //BindingSource ModeloReporteClienteDomicilio = new BindingSource();
+            ModeloReporteClienteDomicilio.DataSource = typeof(ModeloDomicilio);
+            ModeloReporteClienteDomicilio.DataSource = p_ModeloPersonas.domicilios[0];
+
+            //BindingSource ModeloReporteClienteMail = new BindingSource();
+            ModeloReporteClienteMail.DataSource = typeof(ModeloMail);
+            ModeloReporteClienteMail.DataSource = p_ModeloPersonas.mails[0];
+
+            //BindingSource ModeloReporteClienteTelefono = new BindingSource();
+            ModeloReporteClienteTelefono.DataSource = typeof(ModeloTelefono);
+            ModeloReporteClienteTelefono.DataSource = p_ModeloPersonas.telefonos[0];
+            */
+            
+            this.ReporteBase.LocalReport.DataSources.RemoveAt(0);
+           // this.ReporteBase.LocalReport.DataSources.RemoveAt(1);
+            
+            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("EncabezadoPedido", ModeloReportePedidoEntreFechasBindingSource));
+            //this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DetallePedido", p_ModeloPedido.lineasPedido));
+            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DetallePedido", ModeloReporteDetallePedido));
+            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("ClientePedido", ModeloReporteEncabezadoBindingSource));
+            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("ClienteDomicilio", ModeloReporteClienteDomicilio));
+            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("ClienteMail", ModeloReporteClienteMail));
+            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("ClienteTelefono", ModeloReporteClienteTelefono));
 
             this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.Pedido.rdlc";
             

@@ -415,35 +415,6 @@
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="parametroTitulo">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Parameters!parametroTitulo.Value</Value>
-                  <Style />
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>parametroTitulo</rd:DefaultName>
-          <Top>0.96711cm</Top>
-          <Left>9.49632cm</Left>
-          <Height>0.6cm</Height>
-          <Width>3.08208cm</Width>
-          <ToolTip>=Parameters!parametroTitulo.Value</ToolTip>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
         <Textbox Name="parametroEmpresa">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
@@ -451,7 +422,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Parameters!parametroEmpresa.Value</Value>
+                  <Value>Mundo Renault</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -466,7 +437,6 @@
           <Left>3.88437cm</Left>
           <Height>0.49417cm</Height>
           <Width>3.16146cm</Width>
-          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -500,7 +470,7 @@
           <Left>15.13602cm</Left>
           <Height>0.50286cm</Height>
           <Width>1.60042cm</Width>
-          <ZIndex>2</ZIndex>
+          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -534,7 +504,7 @@
           <Left>16.91283cm</Left>
           <Height>0.50286cm</Height>
           <Width>2.18251cm</Width>
-          <ZIndex>3</ZIndex>
+          <ZIndex>2</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -568,7 +538,7 @@
           <Left>15.13602cm</Left>
           <Height>0.50286cm</Height>
           <Width>1.60042cm</Width>
-          <ZIndex>4</ZIndex>
+          <ZIndex>3</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -603,7 +573,7 @@
           <Left>16.91283cm</Left>
           <Height>0.50286cm</Height>
           <Width>2.18251cm</Width>
-          <ZIndex>5</ZIndex>
+          <ZIndex>4</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -637,7 +607,7 @@
           <Left>0.96854cm</Left>
           <Height>0.6cm</Height>
           <Width>1.5475cm</Width>
-          <ZIndex>6</ZIndex>
+          <ZIndex>5</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -671,7 +641,7 @@
           <Left>0.96854cm</Left>
           <Height>0.6cm</Height>
           <Width>2.07667cm</Width>
-          <ZIndex>7</ZIndex>
+          <ZIndex>6</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -705,7 +675,7 @@
           <Left>0.96854cm</Left>
           <Height>0.6cm</Height>
           <Width>2.07667cm</Width>
-          <ZIndex>8</ZIndex>
+          <ZIndex>7</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -737,7 +707,7 @@
           <Left>3.24804cm</Left>
           <Height>0.6cm</Height>
           <Width>6.3059cm</Width>
-          <ZIndex>9</ZIndex>
+          <ZIndex>8</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -769,7 +739,7 @@
           <Left>3.24804cm</Left>
           <Height>0.6cm</Height>
           <Width>6.3059cm</Width>
-          <ZIndex>10</ZIndex>
+          <ZIndex>9</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -788,7 +758,7 @@
           <Left>0.62048cm</Left>
           <Height>2.26729cm</Height>
           <Width>3.0875cm</Width>
-          <ZIndex>11</ZIndex>
+          <ZIndex>10</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -799,7 +769,7 @@
           <Top>3.35703cm</Top>
           <Height>0cm</Height>
           <Width>21cm</Width>
-          <ZIndex>12</ZIndex>
+          <ZIndex>11</ZIndex>
           <Style>
             <Border>
               <Style>Solid</Style>
@@ -829,7 +799,7 @@
           <Left>10.6822cm</Left>
           <Height>0.70583cm</Height>
           <Width>0.9437cm</Width>
-          <ZIndex>13</ZIndex>
+          <ZIndex>12</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -876,7 +846,7 @@
           <Left>15.13602cm</Left>
           <Height>0.6cm</Height>
           <Width>3.95932cm</Width>
-          <ZIndex>14</ZIndex>
+          <ZIndex>13</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -893,7 +863,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Parameters!parametroDirEmpresa.Value</Value>
+                  <Value>Av. Pellegrini 3151 - Rosario, Santa Fe</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -908,7 +878,7 @@
           <Left>3.84909cm</Left>
           <Height>1.00541cm</Height>
           <Width>3.16146cm</Width>
-          <ZIndex>15</ZIndex>
+          <ZIndex>14</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -925,7 +895,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Parameters!parametroTelEmpresa.Value</Value>
+                  <Value>Tel. 0341-4353535</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -939,7 +909,7 @@
           <Left>3.88437cm</Left>
           <Height>0.6cm</Height>
           <Width>3.12618cm</Width>
-          <ZIndex>16</ZIndex>
+          <ZIndex>15</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -973,7 +943,7 @@
           <Left>11.69018cm</Left>
           <Height>0.6cm</Height>
           <Width>1.5475cm</Width>
-          <ZIndex>17</ZIndex>
+          <ZIndex>16</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1005,7 +975,7 @@
           <Left>13.65218cm</Left>
           <Height>0.6cm</Height>
           <Width>6.3059cm</Width>
-          <ZIndex>18</ZIndex>
+          <ZIndex>17</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1039,7 +1009,7 @@
           <Left>11.69018cm</Left>
           <Height>0.6cm</Height>
           <Width>1.5475cm</Width>
-          <ZIndex>19</ZIndex>
+          <ZIndex>18</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1071,7 +1041,7 @@
           <Left>13.65218cm</Left>
           <Height>0.6cm</Height>
           <Width>6.3059cm</Width>
-          <ZIndex>20</ZIndex>
+          <ZIndex>19</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1102,6 +1072,10 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Value>=Fields!monto_total.Value</Value>
+                  <Style />
+                </TextRun>
+                <TextRun>
                   <Value>=First(Fields!monto_total.Value, "EncabezadoPedido")</Value>
                   <Style />
                 </TextRun>
@@ -1116,6 +1090,7 @@
           <Left>17.22562cm</Left>
           <Height>0.6cm</Height>
           <Width>2.12392cm</Width>
+          <ToolTip>=Sum(Fields!valorParcial.Value, "DetallePedido")</ToolTip>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1198,7 +1173,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Parameters!parametroFecVto.Value</Value>
+                  <Value>01/01/2018</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                   </Style>
@@ -1509,40 +1484,6 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
-  <ReportParameters>
-    <ReportParameter Name="parametroTitulo">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroEmpresa">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroCai">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroFecVto">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroCuit">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroInicioAct">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroDirEmpresa">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroTelEmpresa">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-  </ReportParameters>
   <EmbeddedImages>
     <EmbeddedImage Name="mundo_renault">
       <MIMEType>image/jpeg</MIMEType>

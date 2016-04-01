@@ -488,7 +488,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!FechaInforme.Value, "DSInformeEncabezado")</Value>
+                  <Value>=Now()</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>

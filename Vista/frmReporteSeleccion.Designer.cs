@@ -242,6 +242,7 @@
             this.txtProveedor.Name = "txtProveedor";
             this.txtProveedor.Size = new System.Drawing.Size(219, 23);
             this.txtProveedor.TabIndex = 9;
+            this.txtProveedor.Leave += new System.EventHandler(this.txtProveedor_Leave);
             // 
             // tabVentas
             // 
@@ -405,6 +406,7 @@
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Size = new System.Drawing.Size(219, 23);
             this.txtCliente.TabIndex = 9;
+            this.txtCliente.Leave += new System.EventHandler(this.txtCliente_Leave);
             // 
             // lblNombreCliente
             // 

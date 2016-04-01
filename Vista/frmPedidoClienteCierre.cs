@@ -326,13 +326,14 @@ namespace Vista
             {
                 //cierro el pedido
                 glb_con_procesarPedido.cerrarPedido();
+                ModeloPersonas lcl_mod_nuevoCliente = new ModeloPersonas();
 
                 //checkeo registro de cliente nuevo si es necesario
                 if (ckbxRegistrar.Checked)
                 {
                     //creo el nuevo cliente
                     //TODO -> Verificación de cadenas
-                    ModeloPersonas lcl_mod_nuevoCliente = new ModeloPersonas();
+                    //ModeloPersonas lcl_mod_nuevoCliente = new ModeloPersonas();
                     lcl_mod_nuevoCliente.nombre = txtNombre.Text;
                     lcl_mod_nuevoCliente.apellido = txtApellido.Text;
                     lcl_mod_nuevoCliente.dni = txtDni.Text;
@@ -350,6 +351,9 @@ namespace Vista
                 //imprimo recibo (usar formularios)
                 //this.print();
                 //seteo emitido para terminar transacción y cierro
+                Reportes.FormReportes ReportePedido = new FormReportes(this.glb_con_procesarPedido.pedidoActual,lcl_mod_nuevoCliente);
+                ReportePedido.ShowDialog();
+
                 glb_emitido = true;
                 this.Close();
             }

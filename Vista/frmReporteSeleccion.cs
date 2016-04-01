@@ -18,6 +18,7 @@ namespace Vista
     {
         private ControladorReportes glb_con_Reporte = new ControladorReportes();
         private FormReportes glb_frm_FormReportes;
+        private ControladorBusqueda glb_con_busqueda = new ControladorBusqueda();
 
         public frmReporteSeleccion()
         {
@@ -73,7 +74,7 @@ namespace Vista
         private void btnGeneraReportePedido_Click(object sender, EventArgs e)
         {
             DateTime lcl_var_DateFrom = DateTime.ParseExact(txtPedidoFechaDesde.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            DateTime lcl_var_DateTo = DateTime.ParseExact(txtPedidoFechaDesde.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            DateTime lcl_var_DateTo = DateTime.ParseExact(txtPedidoFechaHasta.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             if (txtPedidoFechaDesde.Text == "" || txtPedidoFechaHasta.Text == "" || (txtProveedor.Text == "" && chkboxAllProv.Checked==false))
             {
@@ -169,6 +170,18 @@ namespace Vista
                 lblCliente.Visible = true;
                 lblNombreCliente.Visible = true;
             }
+        }
+
+        private void txtProveedor_Leave(object sender, EventArgs e)
+        {
+            //buscar el proveedor a partir del nombre/codigo que ingresa
+            //this.lblNombreProveedor.Text = glb_con_busqueda.buscar()[0].cuit;
+        }
+
+        private void txtCliente_Leave(object sender, EventArgs e)
+        {
+            //buscar el cliente a partir del nombre/codigo que ingresa
+            //this.lblNombreCliente.Text = glb_con_busqueda.buscar(ModeloCliente)[0].cuit;
         }
 
         }
