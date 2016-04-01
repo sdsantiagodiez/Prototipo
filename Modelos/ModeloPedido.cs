@@ -40,12 +40,14 @@ namespace Modelos
             get { return _montoTotal; }
             set { this._montoTotal = value; }
         }
-        decimal _descuento;
-        public decimal descuento
+        
+        decimal _montoSubTotal;
+        public decimal montoSubTotal
         {
-            get { return _descuento; }
-            set { _descuento = value; }
+            get { return _montoSubTotal; }
+            set { this._montoSubTotal = value; }
         }
+        
         decimal _senia;
         public decimal senia
         {
@@ -92,7 +94,19 @@ namespace Modelos
         public LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos codigoTipoPedido 
         {
             get { return _codigoTipoPedido; }
-            set { this._codigoTipoPedido = value;}
+            set 
+            {
+                switch (value)
+                {
+                    case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona:
+                        this.entidad = new ModeloCliente();
+                        break;
+                    case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor:
+                        this.entidad = new ModeloProveedor();
+                        break;
+                }
+                this._codigoTipoPedido = value;
+            }
         }
 
         //Se podría pagar una parte en tarjeta y otra en efectivo
@@ -103,6 +117,12 @@ namespace Modelos
             set { _formasDePago = value; }
         }
 
+        double _iva;
+        public double iva
+        {
+            get{return _iva;}
+            set{_iva = value;}
+        }
         #endregion
 
         public ModeloPedido()
@@ -135,11 +155,11 @@ namespace Modelos
 
         public ModeloLineaPedido getLineaPedido(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
-            foreach (ModeloLineaPedido detail in lineasPedido)
+            foreach (ModeloLineaPedido lp in lineasPedido)
             {
-                if (detail.articulo.Equals(p_mod_articuloProveedor))
+                if (lp.articulo.Equals(p_mod_articuloProveedor))
                 {
-                    return detail;
+                    return lp;
                 }
             }
             return null;
@@ -154,21 +174,38 @@ namespace Modelos
             return (getLineaPedido(p_mod_articuloProveedor) != null);
         }
 
-        public decimal getCurrentTotal()
+        public void addDescuentoGlobal(ModeloDescuento p_mod_descuento)
+        {
+            foreach(ModeloLineaPedido lp in lineasPedido)
+            {
+                lp.addDescuento(p_mod_descuento);
+            }
+        }
+
+        public void removeDescuentoGlobal(ModeloDescuento p_mod_descuento)
+        {
+            foreach (ModeloLineaPedido lp in lineasPedido)
+            {
+                lp.removeDescuento(p_mod_descuento);
+            }
+        }
+
+        public decimal getTotal()
         {
             decimal lcl_total = 0;
             foreach (ModeloLineaPedido detail in lineasPedido)
             {
                 lcl_total = lcl_total + detail.valorParcial;
             }
-            //lcl_total - descuento?
             return lcl_total;
         }
-        public bool restartOrderDetails()
-        {
-            bool lcl_answer = true;
-            lineasPedido = new List<ModeloLineaPedido>();
-            return lcl_answer;
+
+        public decimal getSubTotal()
+        { 
+            decimal divisorIVA = 1 + Convert.ToDecimal(this.iva);
+            decimal total = this.getTotal();
+
+            return Decimal.Divide(total, divisorIVA);
         }
 
         #region Agregar, Bajar y Actualizar lineas de pedido
@@ -201,12 +238,6 @@ namespace Modelos
             //}
             return respuesta;
         }
-        public bool removeLineaPedido(ModeloLineaPedido p_lineaPedido)
-        {
-            bool answer = true;
-            lineasPedido.Remove(p_lineaPedido);
-            return answer;
-        }
         public bool updateLineaPedido(ModeloLineaPedido p_lineaPedido)
         {
             /*TEMPORAL: puse que se busque la linea en vez de sacarla porque como la linea viene modificada por la actualización quizas no la detecte al no ser igual (no estoy seguro)*/
@@ -219,6 +250,17 @@ namespace Modelos
             }
             return respuesta;
         }
+        public bool removeLineaPedido(ModeloLineaPedido p_lineaPedido)
+        {
+            bool answer = true;
+            lineasPedido.Remove(p_lineaPedido);
+            return answer;
+        }
+        public void removeAllLineaPedido()
+        {
+            lineasPedido = new List<ModeloLineaPedido>();
+        }
+        
         #endregion
 
         #region Equals

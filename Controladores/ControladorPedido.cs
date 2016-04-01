@@ -14,13 +14,11 @@ namespace Controladores
         //funciones a programar
         //buscarReserva
 
-        //Por ahora vive
         public List<ModeloArticuloProveedores> resultadoBusqueda;
         public Constantes.CodigosTiposPedidos tipoPedido
         {
             get { return pedidoActual.codigoTipoPedido; }
         }
-        //Por ahora no se sabe
         
         private ModeloPedido _pedidoActual;
         public ModeloPedido pedidoActual
@@ -29,11 +27,10 @@ namespace Controladores
             set { _pedidoActual = value; }
         }
 
-        ModeloEntidad _entidadActual;
         public ModeloEntidad entidadActual
         {
-            get { return _entidadActual; }
-            set { _entidadActual = value; }
+            get { return this.pedidoActual.entidad; }
+            set { this.pedidoActual.entidad = value; }
         }
         #endregion
 
@@ -45,34 +42,12 @@ namespace Controladores
 
         public ControladorPedido(Constantes.CodigosTiposPedidos p_codigo) : this()
         {
-            switch (this.tipoPedido)
-            {
-                case Constantes.CodigosTiposPedidos.TipoPedidoPersona:
-                    entidadActual = new ModeloCliente();
-                    break;
-                case Constantes.CodigosTiposPedidos.TipoPedidoProveedor:
-                    entidadActual = new ModeloProveedor();
-                    break;
-            }
             this.pedidoActual.codigoTipoPedido = p_codigo;
-            this.pedidoActual.entidad = entidadActual;
         }
         #endregion
 
         #region Métodos
-        public void addArticulo(ModeloArticuloProveedores p_articulo, Int32 p_cantidad)
-        {
-            //le cambio el formato  y lo agrego a la lista de articulos ya seleccionados
-            ModeloLineaPedido lcl_mod_nuevaLinea = new ModeloLineaPedido(p_articulo, p_cantidad);
-            this.pedidoActual.addLineaPedido(lcl_mod_nuevaLinea);
-        }
-        public void addCliente(ModeloPersonas p_nuevoCliente)
-        {
-            //CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
-            //lcl_cat_personas.add(ref p_nuevoCliente);
-            //CAMBIOS
-        }
-        //busqueda de articulos por codigo original o por descripcion
+        #region Búsqueda
         public int buscarArticulos(string p_categoriaBusquedaSeleccionada, string p_descripcionParcialArticulo)
         {
             var lcl_mod_ArticuloProveedor = new ModeloArticuloProveedores();
@@ -100,6 +75,30 @@ namespace Controladores
             entidadActual = ControladorBusqueda.buscar(lcl_mod_cliente, Constantes.ParametrosBusqueda.Entidades.Personas.Dni)[0];
         }
 
+        public ModeloArticuloProveedores getArticuloBusqueda(int p_indice)
+        {
+            return resultadoBusqueda[p_indice];
+        }
+
+        public ModeloLineaPedido getArticulo(int p_indice)
+        {
+            return pedidoActual.lineasPedido[p_indice];
+        }
+        #endregion
+
+        public void addArticulo(ModeloArticuloProveedores p_articulo, Int32 p_cantidad)
+        {
+            //le cambio el formato  y lo agrego a la lista de articulos ya seleccionados
+            ModeloLineaPedido lcl_mod_nuevaLinea = new ModeloLineaPedido(p_articulo, p_cantidad,this.tipoPedido);
+            this.pedidoActual.addLineaPedido(lcl_mod_nuevaLinea);
+        }
+        public void addCliente(ModeloPersonas p_nuevoCliente)
+        {
+            //CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
+            //lcl_cat_personas.add(ref p_nuevoCliente);
+            //CAMBIOS
+        }
+
         public void cerrarPedido()
         {
             ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
@@ -121,21 +120,13 @@ namespace Controladores
         }
         public void deleteCurrentDetails()
         {
-            this.pedidoActual.restartOrderDetails();
+            this.pedidoActual.removeAllLineaPedido();
         }
         public bool exists(ModeloArticuloProveedores p_articulo)
         {
             return this.pedidoActual.existeLineaPedido(p_articulo);
         }
-        public ModeloArticuloProveedores getArticuloBusqueda(int p_indice)
-        {
-            return resultadoBusqueda[p_indice];
-        }
-
-        public ModeloLineaPedido getArticulo(int p_indice)
-        {
-            return pedidoActual.lineasPedido[p_indice];
-        }
+       
 
         public int getCantidadLineas()
         {
@@ -143,12 +134,31 @@ namespace Controladores
         }
         public string getTotal()
         {
-            return this.pedidoActual.getCurrentTotal().ToString("0.##");
+            return this.pedidoActual.getTotal().ToString("0.##");
         }
         public void removeLineaPedido(ModeloLineaPedido p_lineaPedido)
         {
             this.pedidoActual.removeLineaPedido(p_lineaPedido);
         }
         #endregion
+    }
+
+    public class ControladorPedidoProveedor : ControladorPedido
+    {
+        public ControladorPedidoProveedor() : base(Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
+        {
+            //separar pedido en múltiples pedidos
+            //de tener una sola entidadActual pasamos a tener múltiples Proveedores
+            //Cada pedido se identifica por el proveedor
+        }
+ 
+    }
+    public class ControladorPedidoCliente : ControladorPedido
+    {
+        public ControladorPedidoCliente() : base(Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+        {
+ 
+        }
+ 
     }
 }

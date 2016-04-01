@@ -1072,7 +1072,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Fields!monto_total.Value</Value>
+                  <Value>=First(Fields!monto_total.Value, "EncabezadoPedido")</Value>
                   <Style />
                 </TextRun>
                 <TextRun>

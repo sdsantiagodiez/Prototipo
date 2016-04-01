@@ -42,19 +42,127 @@ namespace Modelos
             get { return _valorParcial; }
             set { this._valorParcial = value; }
         }
+
+        List<ModeloDescuento> _descuentos;
+        public List<ModeloDescuento> descuentos
+        {
+            get { return _descuentos; }
+            set 
+            {
+                _descuentos = value;
+                this.getValorParcial();
+            }
+        }
+
+        #endregion
+        
+        #region Constructores
+        public ModeloLineaPedido()
+        {
+            descuentos = new List<ModeloDescuento>();
+            articulo = new ModeloArticuloProveedores();
+        }
+
+        public ModeloLineaPedido(ModeloArticuloProveedores p_mod_articuloProveedor, int p_cantidad, LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos p_tipoPedido) : this()
+        {
+            this.addArticulo(p_mod_articuloProveedor, p_cantidad, p_tipoPedido);   
+            this.getValorParcial();
+        }
         #endregion
 
-        public ModeloLineaPedido()
-        { }
+        #region Métodos
 
-        public ModeloLineaPedido(ModeloArticuloProveedores p_mod_articuloProveedor, int pCantidad)
+        /// <summary>
+        /// Asigna y devuelve valor parcial sin tener en cuenta descuentos
+        /// </summary>
+        /// <returns></returns>
+        public decimal getValorParcialSinDescuentos()
+        {
+            this.valorParcial = this.valorUnitario * this.cantidadArticulos;
+            return this.valorParcial;
+        }
+        /// <summary>
+        /// Asigna y devuelve valor parcial teniendo en cuenta descuentos
+        /// </summary>
+        /// <returns>0 si los descuentos superan el valor de la linea</returns>
+        public decimal getValorParcial()
+        {
+            decimal vParcial = this.getValorParcialSinDescuentos();
+            //AplicarDescuentos
+            vParcial =  vParcial - this.getDescuento(vParcial);
+            if (vParcial < 0)
+            {
+                this.valorParcial = 0;
+            }
+            else
+            {
+                this.valorParcial = vParcial;
+            }
+            return this.valorParcial;
+        }
+        /// <summary>
+        /// Devuelve el descuento total que se aplicaría a la linea
+        /// </summary>
+        /// <param name="p_valorParcial"></param>
+        /// <returns></returns>
+        public decimal getDescuento(decimal p_valorParcial)
+        {
+            decimal vParcial = p_valorParcial;
+            foreach (ModeloDescuento d in descuentos)
+            {
+                vParcial = vParcial - (p_valorParcial - d.getDescuento(p_valorParcial));
+            }
+            return p_valorParcial - vParcial;
+        }
+        /// <summary>
+        /// Agrega descuento a linea
+        /// </summary>
+        /// <param name="p_descuento"></param>
+        /// <returns></returns>
+        public void addDescuento(ModeloDescuento p_descuento)
+        {
+            //Se quita toda la validación en caso de que sea un descuento global de mismas características que uno local de la linea
+            //ModeloDescuento descuentoToAdd = this.descuentos.SingleOrDefault(d => d.descuento == p_descuento.descuento);
+            //if (descuentoToAdd != null)
+            //{
+            //    //El descuento ya existe
+            //    return false;
+            //}
+
+            this.descuentos.Add(p_descuento);
+            //return true;
+        }       
+        /// <summary>
+        /// Remueve descuento de la linea
+        /// </summary>
+        /// <param name="p_descuento"></param>
+        /// <returns>falso si el descuento no se encuentra en la linea</returns>
+        public bool removeDescuento(ModeloDescuento p_descuento)
+        {
+            ModeloDescuento descuentoToRemove = this.descuentos.SingleOrDefault(d => d.descuento == p_descuento.descuento);
+            if (descuentoToRemove == null)
+            {
+                return false;                
+            }
+
+            this.descuentos.Remove(descuentoToRemove);
+            return true;
+        }
+
+        public void addArticulo(ModeloArticuloProveedores p_mod_articuloProveedor, int p_cantidad, LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos p_tipoPedido)
         {
             this.articulo = p_mod_articuloProveedor;
-            this.cantidadArticulos = pCantidad;
+            this.cantidadArticulos = p_cantidad;
             //Sólo considera que la linea sea de venta de artículo y no para una compra a proveedor
-            this.valorUnitario = Convert.ToDecimal(p_mod_articuloProveedor.valorVenta.valorArticulo);
-            //Recordar que se pueden aplicar descuentos
-            this.valorParcial = this.cantidadArticulos * this.valorUnitario;
+            switch (p_tipoPedido)
+            {
+                case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona:
+                    this.valorUnitario = Convert.ToDecimal(p_mod_articuloProveedor.valorVenta.valorArticulo);
+                    break;
+                case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor:
+                    this.valorUnitario = Convert.ToDecimal(p_mod_articuloProveedor.valorCompra.valorArticulo);
+                    break;
+            }
         }
 
         #region Equals
@@ -85,5 +193,76 @@ namespace Modelos
         //        && this.Equals(this.valorUnitario,p_mod_lineaPedido.valorUnitario);
         //}
         #endregion
+        #endregion
+    }
+
+
+    public class ModeloDescuento
+    {
+        string _descripcion;
+        public string descripcion
+        {
+            get { return _descripcion; }
+            set { _descripcion = value; }
+        }
+        //Entre 0 y 1 para porcentual
+        //mayor a 0 para neto
+        decimal _descuento;
+        public decimal descuento
+        {
+            get { return _descuento; }
+            set { _descuento = this.validarDescuento(value)?value:0; }
+        }
+
+        public virtual bool validarDescuento(decimal p_descuento)
+        {
+            return true;
+        }
+
+        public virtual void asignarDescripcion()
+        {
+            if (string.IsNullOrWhiteSpace(this.descripcion))
+            {
+                this.descripcion = "Descuento de ";
+            }
+        }
+
+        public virtual decimal getDescuento(decimal p_valorParcial)
+        {
+            return 0;
+        }
+    }
+    
+    public class ModeloDescuentoPorcentual : ModeloDescuento
+    {
+        public override bool validarDescuento(decimal p_descuento)
+        {
+            return p_descuento > 0 && p_descuento <= 1;
+        }
+        public override void asignarDescripcion()
+        {
+            base.asignarDescripcion();
+            this.descripcion += (this.descuento*100).ToString()+"%";
+        }
+        public override decimal getDescuento(decimal p_valorParcial)
+        {
+            return p_valorParcial * (1 - this.descuento);
+        }
+    }
+    public class ModeloDescuentoNeto : ModeloDescuento
+    {
+        public override bool validarDescuento(decimal p_descuento)
+        {
+            return p_descuento > 0;
+        }
+        public override void asignarDescripcion()
+        {
+            base.asignarDescripcion();
+            this.descripcion += "$"+this.descuento.ToString();
+        }
+        public override decimal getDescuento(decimal p_valorParcial)
+        {
+            return p_valorParcial - descuento;
+        }
     }
 }
