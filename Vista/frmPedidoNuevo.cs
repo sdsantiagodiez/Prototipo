@@ -42,11 +42,11 @@ namespace Vista
             this.dgvDetalleAgregados.AutoGenerateColumns = false;
 
             //Creo lista categorias
-            var dataSource = new List<Categ>();
-            dataSource.Add(new Categ() { Name = "Seleccione...", Value = null });
-            dataSource.Add(new Categ() { Name = "Codigo Original", Value = Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoOriginal });
-            dataSource.Add(new Categ() { Name = "Descripción", Value = Constantes.ParametrosBusqueda.ArticulosProveedores.DescripcionArticuloProveedor });
-            dataSource.Add(new Categ() { Name = "Codigo Proveedor", Value = Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor });
+            var dataSource = new List<ComboBoxItem>();
+            dataSource.Add(new ComboBoxItem() { Name = "Seleccione...", Value = null });
+            dataSource.Add(new ComboBoxItem() { Name = "Codigo Original", Value = Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoOriginal });
+            dataSource.Add(new ComboBoxItem() { Name = "Descripción", Value = Constantes.ParametrosBusqueda.ArticulosProveedores.DescripcionArticuloProveedor });
+            dataSource.Add(new ComboBoxItem() { Name = "Codigo Proveedor", Value = Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor });
 
             //Binding de categorias
             this.cbxCategoriaBusqueda.DataSource = dataSource;
@@ -136,11 +136,11 @@ namespace Vista
                 Form lcl_frm_cierre;
                 if (glb_con_pedido.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
                 {
-                    lcl_frm_cierre = new frmPedidoClienteCierre(glb_con_pedido);
+                    lcl_frm_cierre = new frmPedidoCierre(glb_con_pedido.pedidoActual);
                 }
                 else if (glb_con_pedido.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
                 {
-                    lcl_frm_cierre = new frmPedidoProveedorCierre();
+                    lcl_frm_cierre = new frmPedidoCierre(glb_con_pedido.pedidoActual);
                 }
                 else
                 {
@@ -339,12 +339,5 @@ namespace Vista
         }
         #endregion 
         #endregion           
-    }
-
-    //clase para llenar combo box categoria a buscar
-    class Categ
-    {
-        public string Name { get; set; }
-        public string Value { get; set; }
     }
 }

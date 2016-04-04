@@ -123,11 +123,47 @@ namespace Modelos
             get{return _iva;}
             set{_iva = value;}
         }
+
+        ModeloDescuentoNeto _descuentoNeto;
+        public ModeloDescuentoNeto descuentoNeto
+        {
+            get { return _descuentoNeto; }
+            set { _descuentoNeto = value; }
+        }
+
+        ModeloDescuentoPorcentual _descuentoPorcentual;
+        public ModeloDescuentoPorcentual descuentoPorcentual
+        {
+            get { return _descuentoPorcentual; }
+            set { _descuentoPorcentual = value; }
+        }
+
         #endregion
 
         public ModeloPedido()
         {
             lineasPedido = new List<ModeloLineaPedido>();
+            this.iva = 21;
+            this.fecha = DateTime.Today;
+            this.descuentoPorcentual = new ModeloDescuentoPorcentual();
+            this.descuentoNeto = new ModeloDescuentoNeto();
+        }
+
+        public ModeloPedido(ModeloEntidad p_mod_entidad) : this()
+        {
+            if(p_mod_entidad.GetType() == typeof(ModeloProveedor))
+            {
+                this.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor;
+            }
+            else if (p_mod_entidad.GetType() == typeof(ModeloCliente))
+            {
+                this.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona;
+            }
+            this.entidad = p_mod_entidad;
+
+            this.domicilioDeFacturacion = p_mod_entidad.domicilios.Count > 0 ? p_mod_entidad.domicilios[0] : null;
+            this.telefonoContacto = p_mod_entidad.telefonos.Count > 0 ? p_mod_entidad.telefonos[0] : null;
+            this.mailContacto = p_mod_entidad.mails.Count > 0 ? p_mod_entidad.mails[0] : null;
         }
         
         #region Validación
@@ -190,6 +226,21 @@ namespace Modelos
             }
         }
 
+        public decimal getDescuentoLineas()
+        {
+            decimal descuento = 0;
+            foreach (ModeloLineaPedido linea in this.lineasPedido)
+            {
+                descuento += linea.getDescuento();
+            }
+            return descuento;
+        }
+
+        public decimal getDescuentoTotal()
+        {
+            //revisar
+            return this.getDescuentoLineas() + this.descuentoNeto.descuento + this.descuentoPorcentual.getDescuento(this.getTotal());
+        }
         public decimal getTotal()
         {
             decimal lcl_total = 0;
@@ -201,11 +252,17 @@ namespace Modelos
         }
 
         public decimal getSubTotal()
-        { 
-            decimal divisorIVA = 1 + Convert.ToDecimal(this.iva);
+        {
+            decimal divisorIVA = 1 + (Convert.ToDecimal(this.iva) / 100);
             decimal total = this.getTotal();
 
             return Decimal.Divide(total, divisorIVA);
+        }
+       
+        public decimal getIVAMonto()
+        {
+            
+            return this.getTotal() - this.getSubTotal();
         }
 
         #region Agregar, Bajar y Actualizar lineas de pedido

@@ -92,11 +92,11 @@
     <Compile Include="frmLogIn.Designer.cs">
       <DependentUpon>frmLogIn.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPedidoClienteCierre.cs">
+    <Compile Include="frmPedidoCierre.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPedidoClienteCierre.Designer.cs">
-      <DependentUpon>frmPedidoClienteCierre.cs</DependentUpon>
+    <Compile Include="frmPedidoCierre.Designer.cs">
+      <DependentUpon>frmPedidoCierre.cs</DependentUpon>
     </Compile>
     <Compile Include="frmEnConstruccion.cs">
       <SubType>Form</SubType>
@@ -115,12 +115,6 @@
     </Compile>
     <Compile Include="frmMenuPrincipal.Designer.cs">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmPedidoProveedorCierre.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmPedidoProveedorCierre.Designer.cs">
-      <DependentUpon>frmPedidoProveedorCierre.cs</DependentUpon>
     </Compile>
     <Compile Include="frmReporteSeleccion.cs">
       <SubType>Form</SubType>
@@ -167,8 +161,8 @@
     <EmbeddedResource Include="frmLogIn.resx">
       <DependentUpon>frmLogIn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPedidoClienteCierre.resx">
-      <DependentUpon>frmPedidoClienteCierre.cs</DependentUpon>
+    <EmbeddedResource Include="frmPedidoCierre.resx">
+      <DependentUpon>frmPedidoCierre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEnConstruccion.resx">
       <DependentUpon>frmEnConstruccion.cs</DependentUpon>
@@ -178,9 +172,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmPedidoProveedorCierre.resx">
-      <DependentUpon>frmPedidoProveedorCierre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReporteSeleccion.resx">
       <DependentUpon>frmReporteSeleccion.cs</DependentUpon>
@@ -228,6 +219,9 @@
       <Project>{0b3ba28c-f763-48fb-b4ed-a322be87a4a8}</Project>
       <Name>Reportes</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

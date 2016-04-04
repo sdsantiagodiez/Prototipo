@@ -145,11 +145,56 @@ namespace Controladores
 
     public class ControladorPedidoProveedor : ControladorPedido
     {
+        List<ModeloPedido> _pedidosProveedores;
+        public List<ModeloPedido> pedidosProveedores
+        {
+            get { return _pedidosProveedores; }
+            set { this._pedidosProveedores = value; }
+        }
+
         public ControladorPedidoProveedor() : base(Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
         {
-            //separar pedido en múltiples pedidos
-            //de tener una sola entidadActual pasamos a tener múltiples Proveedores
             //Cada pedido se identifica por el proveedor
+        }
+        
+        /// <summary>
+        /// Retorna multiples pedidos (e inicializa propiedad pedidosProveedores) de acuerdo al proveedor de cada articulo en las lineas de pedido
+        /// </summary>
+        /// <param name="p_mod_pedido"></param>
+        /// <returns></returns>
+        public List<ModeloPedido> getPedidosProveedores(ModeloPedido p_mod_pedido)
+        {
+            List<ModeloPedido> p_lst_mod_pedidos = new List<ModeloPedido>();
+
+            bool lineaAgregada= false;
+            foreach (ModeloLineaPedido linea in p_mod_pedido.lineasPedido)
+            {
+                lineaAgregada = false;
+                foreach(ModeloPedido pedido in p_lst_mod_pedidos)
+                {
+                    if (linea.articulo.codigoEntidad == pedido.entidad.codigo)
+                    {
+                        //Se agrega linea al pedido que tenga como entidad al proveedor del articulo proveedor y se marca la bandera
+                        pedido.lineasPedido.Add(linea);
+                        lineaAgregada = true;   
+                        break;
+                    }
+                }
+
+                if (!lineaAgregada)
+                {
+                    ModeloEntidad p_mod_entidadAuxiliar = new ModeloProveedor();
+                    p_mod_entidadAuxiliar.codigo = linea.articulo.codigoEntidad;
+                    //Se crea pedido con proveedor como entidad del pedido 
+                    ModeloPedido p_mod_pedidoAuxiliar = new ModeloPedido(ControladorBusqueda.buscar(p_mod_entidadAuxiliar, Constantes.ParametrosBusqueda.One)[0]);
+                    p_mod_pedidoAuxiliar.lineasPedido.Add(linea);
+                    
+                    p_lst_mod_pedidos.Add(p_mod_pedidoAuxiliar);
+                }
+            }
+
+            this.pedidosProveedores = p_lst_mod_pedidos;
+            return p_lst_mod_pedidos;
         }
  
     }

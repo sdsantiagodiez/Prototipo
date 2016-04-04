@@ -189,10 +189,10 @@ namespace Vista
             this.cmbBoxProvincia.DropDownStyle = ComboBoxStyle.DropDownList;
 
             //Creo lista Tipos de teléfono
-            var dataSource = new List<Tel>();
-            dataSource.Add(new Tel() { Name = Constantes.TipoTelefono.Fijo, Value = "TEL" });
-            dataSource.Add(new Tel() { Name = Constantes.TipoTelefono.Celular, Value = "CEL" });
-            dataSource.Add(new Tel() { Name = Constantes.TipoTelefono.Fax, Value = "FAX" });
+            var dataSource = new List<ComboBoxItem>();
+            dataSource.Add(new ComboBoxItem() { Name = Constantes.TipoTelefono.Fijo, Value = "TEL" });
+            dataSource.Add(new ComboBoxItem() { Name = Constantes.TipoTelefono.Celular, Value = "CEL" });
+            dataSource.Add(new ComboBoxItem() { Name = Constantes.TipoTelefono.Fax, Value = "FAX" });
 
             //Binding de telefonos
             this.cmbBoxTipoTelefono.DataSource = dataSource;

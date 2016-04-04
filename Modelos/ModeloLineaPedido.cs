@@ -105,14 +105,19 @@ namespace Modelos
         /// </summary>
         /// <param name="p_valorParcial"></param>
         /// <returns></returns>
-        public decimal getDescuento(decimal p_valorParcial)
+        private decimal getDescuento(decimal p_valorParcial)
         {
             decimal vParcial = p_valorParcial;
             foreach (ModeloDescuento d in descuentos)
             {
-                vParcial = vParcial - (p_valorParcial - d.getDescuento(p_valorParcial));
+                vParcial = vParcial - d.getDescuento(p_valorParcial);
             }
             return p_valorParcial - vParcial;
+        }
+
+        public decimal getDescuento()
+        {
+            return this.getDescuento(this.getValorParcialSinDescuentos());
         }
         /// <summary>
         /// Agrega descuento a linea
@@ -246,7 +251,7 @@ namespace Modelos
         }
         public override decimal getDescuento(decimal p_valorParcial)
         {
-            return p_valorParcial * (1 - this.descuento);
+            return p_valorParcial * this.descuento;
         }
     }
     public class ModeloDescuentoNeto : ModeloDescuento

@@ -48,6 +48,7 @@ namespace Datos
         {
             switch (p_parametroBusqueda)
             {
+                case Constantes.ParametrosBusqueda.One:
                 case Constantes.ParametrosBusqueda.Entidades.CodigoEntidad:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.codigo, "@codigo_entidad"));
                     return " codigo_entidad = @codigo_entidad ";
