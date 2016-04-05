@@ -61,8 +61,9 @@ namespace Vista
         
         private void inicializarTextBoxes()
         {
-            txtBoxDescuento1Monto.Enabled =
-            txtBoxDescuento2Porcentaje.Enabled =
+            //txtBoxDescuento1Monto.Enabled =
+            //txtBoxDescuento2Porcentaje.Enabled =
+            txtBoxIVAPorcentaje.Enabled =
             txtBoxDescuentoLineas.Enabled =
             txtBoxDescuentoTotal.Enabled =
             txtBoxIVAMonto.Enabled =
@@ -152,7 +153,9 @@ namespace Vista
         #endregion
         #region Modelo -> Controles
         private void cargarPedidoEnControles(ModeloPedido p_mod_pedido)
-        {            
+        {
+            this.controlador.pedidoActual = p_mod_pedido;
+
             this.cargarDatosPedidoEnControles(p_mod_pedido);
             this.cargarLineasEnControles(p_mod_pedido);
             this.cargarEntidadEnControles(p_mod_pedido.entidad);
@@ -178,18 +181,19 @@ namespace Vista
         private void cargarDatosMonetariosEnControles(ModeloPedido p_mod_pedido)
         {
             this.txtBoxSenia.Text = p_mod_pedido.senia.ToString();
-            this.txtBoxDescuento1Monto.Text = string.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.descuento_1.descuento.ToString());
-            this.txtBoxDescuento1Porcentaje.Text = (p_mod_pedido.descuento_1.porcentajeSobreTotal* 100).ToString();
-            this.txtBoxDescuento2Monto.Text = string.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.descuento_2.descuento.ToString());
+
+            this.txtBoxDescuento1Porcentaje.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"),"{0:P1}", (p_mod_pedido.descuento_1.porcentajeSobreTotal));
+            //this.txtBoxDescuento1Porcentaje.Text = (p_mod_pedido.descuento_1.porcentajeSobreTotal * 100).ToString();
+            this.txtBoxDescuento1Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.descuento_1.descuento);
             this.txtBoxDescuento2Porcentaje.Text = (p_mod_pedido.descuento_2.porcentajeSobreTotal * 100).ToString();
+            this.txtBoxDescuento2Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.descuento_2.descuento);
+            this.txtBoxDescuentoLineas.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getDescuentoLineas());
+            this.txtBoxDescuentoTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getDescuentoTotal());
+            
+            this.txtBoxSubtotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getSubTotal());
+            this.txtBoxTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getTotal());
 
-            this.txtBoxDescuento2Monto.Text = string.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.descuento_2.descuento); 
-            this.txtBoxDescuentoLineas.Text = string.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getDescuentoLineas());
-            this.txtBoxDescuentoTotal.Text = string.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getDescuentoTotal());
-            this.txtBoxSubtotal.Text = string.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getSubTotal());
-            this.txtBoxTotal.Text = string.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getTotal());
-
-            this.txtBoxIVAMonto.Text = string.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getIVAMonto()); 
+            this.txtBoxIVAMonto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getIVAMonto()); 
         }
         private void cargarEntidadEnControles(ModeloEntidad p_mod_entidad)
         {
@@ -395,6 +399,96 @@ namespace Vista
         {
             var pedido = (ModeloPedido)cmbBoxPedidosProveedores.SelectedValue;
             this.cargarPedidoEnControles(pedido);
+        }
+
+        private void txtBoxDescuento1Porcentaje_Leave(object sender, EventArgs e)
+        {
+            double porcentaje;
+            if (!double.TryParse(this.txtBoxDescuento1Porcentaje.Text.Replace("%", "").Replace(".", ","), out porcentaje))
+            {
+                return;
+            }
+            porcentaje = porcentaje /100;
+            if ( porcentaje == controlador.pedidoActual.descuento_1.porcentajeSobreTotal)
+            {
+                return;
+            }
+
+            ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
+            lcl_mod_descuento.porcentajeSobreTotal = porcentaje;
+            controlador.pedidoActual.descuento_1 = lcl_mod_descuento;
+            this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
+        }
+
+        private void txtBoxDescuento1Monto_Leave(object sender, EventArgs e)
+        {
+            decimal descuento;
+            if (!decimal.TryParse(this.txtBoxDescuento1Monto.Text, out descuento))
+            {
+                return;
+            }
+            if (descuento == controlador.pedidoActual.descuento_1.descuento)
+            {
+                return;
+            }
+
+            ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
+            lcl_mod_descuento.descuento = descuento;
+            controlador.pedidoActual.descuento_1 = lcl_mod_descuento;
+            this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
+        }
+
+        private void txtBoxDescuento2Porcentaje_Leave(object sender, EventArgs e)
+        {
+            double porcentaje;
+            if (!double.TryParse(this.txtBoxDescuento2Porcentaje.Text.Replace("%", "").Replace(".",","), out porcentaje))
+            {
+                return;
+            }
+            porcentaje = porcentaje / 100;
+            if (porcentaje == controlador.pedidoActual.descuento_2.porcentajeSobreTotal)
+            {
+                return;
+            }
+
+            ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
+            lcl_mod_descuento.porcentajeSobreTotal = porcentaje;
+            controlador.pedidoActual.descuento_2 = lcl_mod_descuento;
+            this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
+        }
+
+        private void txtBoxDescuento2Monto_Leave(object sender, EventArgs e)
+        {
+            decimal descuento;
+            if(!decimal.TryParse(this.txtBoxDescuento2Monto.Text,out descuento))
+            {
+                return;
+            }
+            if (descuento == controlador.pedidoActual.descuento_2.descuento)
+            {
+                return ;
+            }
+            
+            ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
+            lcl_mod_descuento.descuento = descuento;
+            controlador.pedidoActual.descuento_2 = lcl_mod_descuento;
+            this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
+        }
+
+        private void txtBoxSenia_Leave(object sender, EventArgs e)
+        {
+            decimal senia;
+            if (!decimal.TryParse(this.txtBoxSenia.Text, out senia))
+            {
+                return;
+            }
+            if (senia == controlador.pedidoActual.senia)
+            {
+                return;
+            }
+
+            controlador.pedidoActual.senia = senia;
+            this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
         }
     }
 }

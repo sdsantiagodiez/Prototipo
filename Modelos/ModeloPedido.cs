@@ -38,14 +38,14 @@ namespace Modelos
         public decimal montoTotal
         {
             get { return _montoTotal; }
-            set { this._montoTotal = value; }
+            set { this._montoTotal = value>0?value:0; }
         }
         
         decimal _montoSubTotal;
         public decimal montoSubTotal
         {
             get { return _montoSubTotal; }
-            set { this._montoSubTotal = value; }
+            set { this._montoSubTotal = value>0?value:0; }
         }
         
         decimal _senia;
@@ -128,14 +128,14 @@ namespace Modelos
         public ModeloDescuento descuento_1
         {
             get { return _descuento_1; }
-            set { _descuento_1 = value; }
+            set { _descuento_1 = new ModeloDescuento(value, this.getTotalSinDescuento()); }
         }
 
         ModeloDescuento _descuento_2;
         public ModeloDescuento descuento_2
         {
             get { return _descuento_2; }
-            set { _descuento_2 = value; }
+            set { _descuento_2 = new ModeloDescuento(value, this.getTotalSinDescuento()); }
         }
 
         #endregion
@@ -210,22 +210,6 @@ namespace Modelos
             return (getLineaPedido(p_mod_articuloProveedor) != null);
         }
 
-        public void addDescuentoGlobal(ModeloDescuento p_mod_descuento)
-        {
-            foreach(ModeloLineaPedido lp in lineasPedido)
-            {
-                lp.addDescuento(p_mod_descuento);
-            }
-        }
-
-        public void removeDescuentoGlobal(ModeloDescuento p_mod_descuento)
-        {
-            foreach (ModeloLineaPedido lp in lineasPedido)
-            {
-                lp.removeDescuento(p_mod_descuento);
-            }
-        }
-
         public decimal getDescuentoLineas()
         {
             decimal descuento = 0;
@@ -238,16 +222,32 @@ namespace Modelos
 
         public decimal getDescuentoTotal()
         {
-            return this.getDescuentoLineas() + this.descuento_1.getDescuento(this.getTotal()) + this.descuento_2.getDescuento(this.getTotal());
+            return 
+                this.getDescuentoLineas() + 
+                this.descuento_1.getDescuento(this.getTotalSinDescuento()) + 
+                this.descuento_2.getDescuento(this.getTotalSinDescuento()) +
+                this.senia;
+        }
+        public decimal getTotalSinDescuento()
+        {
+            decimal lcl_total = 0;
+            foreach (ModeloLineaPedido linea in lineasPedido)
+            {
+                lcl_total += linea.getValorParcialSinDescuentos();
+            }
+            return lcl_total;
         }
         public decimal getTotal()
         {
-            decimal lcl_total = 0;
-            foreach (ModeloLineaPedido detail in lineasPedido)
-            {
-                lcl_total = lcl_total + detail.valorParcial;
-            }
-            return lcl_total;
+            this.montoTotal = this.getTotalSinDescuento() - this.getDescuentoTotal();
+            
+            //decimal lcl_total = 0;
+            //foreach (ModeloLineaPedido linea in lineasPedido)
+            //{
+            //    lcl_total += linea.getValorParcial();
+            //}
+            //this.montoTotal =  lcl_total - descuento_1.descuento - descuento_2.descuento;
+            return this.montoTotal;
         }
 
         public decimal getSubTotal()
@@ -255,7 +255,8 @@ namespace Modelos
             decimal divisorIVA = 1 + (Convert.ToDecimal(this.iva) / 100);
             decimal total = this.getTotal();
 
-            return Decimal.Divide(total, divisorIVA);
+            this.montoSubTotal = Decimal.Divide(total, divisorIVA);
+            return this.montoSubTotal;
         }
        
         public decimal getIVAMonto()

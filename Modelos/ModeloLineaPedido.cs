@@ -203,6 +203,17 @@ namespace Modelos
 
     public class ModeloDescuento
     {
+        public ModeloDescuento()
+        { 
+        }
+        public ModeloDescuento(ModeloDescuento descuento,decimal valorParcial)
+        {
+            this.descripcion = descuento.descripcion;
+            this.descuento = descuento.descuento;
+            this.porcentajeSobreTotal = descuento.porcentajeSobreTotal;
+            this.getDescuento(valorParcial);
+        }
+
         string _descripcion;
         public string descripcion
         {
@@ -223,7 +234,27 @@ namespace Modelos
         public double porcentajeSobreTotal
         {
             get { return _porcentajeSobreTotal; }
-            set { _porcentajeSobreTotal = value > 0 && value <= 1? value:0; }
+            set 
+            {
+                if (value > 1)
+                {
+                    _porcentajeSobreTotal = 1;
+                }
+                else if (value < 0)
+                {
+                    _porcentajeSobreTotal = 0;
+                }
+                else if (_porcentajeSobreTotal == 0)
+                {
+                    _porcentajeSobreTotal = value;
+                }
+                //quiere decir que estamos actualizando el porcentaje y se necesita inicializar .descuento
+                else if (_porcentajeSobreTotal != value)
+                {
+                    _porcentajeSobreTotal = value;
+                    this.descuento = 0;
+                }
+            }
         }
 
         public virtual void asignarDescripcion()
@@ -234,8 +265,9 @@ namespace Modelos
             }
         }
 
-        public virtual decimal getDescuento(decimal p_valorParcial)
+        public decimal getDescuento(decimal p_valorParcial)
         {               
+            //si es mayor a 0 fue inicializada
             if (this.descuento > 0)
             {
                 if (this.descuento > p_valorParcial)
