@@ -86,6 +86,12 @@
     <Compile Include="frmDevolucion.Designer.cs">
       <DependentUpon>frmDevolucion.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPedidoCierre_EditarLineaPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPedidoCierre_EditarLineaPedido.Designer.cs">
+      <DependentUpon>frmPedidoCierre_EditarLineaPedido.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDevolucion.resx">
       <DependentUpon>frmDevolucion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPedidoCierre_EditarLineaPedido.resx">
+      <DependentUpon>frmPedidoCierre_EditarLineaPedido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogIn.resx">
       <DependentUpon>frmLogIn.cs</DependentUpon>

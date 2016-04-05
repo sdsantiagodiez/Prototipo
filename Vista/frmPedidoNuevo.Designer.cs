@@ -76,16 +76,19 @@
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.btnBorrarDetalleActual = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.nmrcUpDownCantidad = new System.Windows.Forms.NumericUpDown();
             this.gbxDetalleArticuloSeleccionado.SuspendLayout();
             this.tlpDetalles.SuspendLayout();
             this.gbxDetalleAgregados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleAgregados)).BeginInit();
             this.gbxArticulosAgregar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArtAgregar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownCantidad)).BeginInit();
             this.SuspendLayout();
             // 
             // gbxDetalleArticuloSeleccionado
             // 
+            this.gbxDetalleArticuloSeleccionado.Controls.Add(this.nmrcUpDownCantidad);
             this.gbxDetalleArticuloSeleccionado.Controls.Add(this.txtCantidad);
             this.gbxDetalleArticuloSeleccionado.Controls.Add(this.lblCantidad);
             this.gbxDetalleArticuloSeleccionado.Controls.Add(this.btnAgregar);
@@ -589,6 +592,13 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // nmrcUpDownCantidad
+            // 
+            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(60, 429);
+            this.nmrcUpDownCantidad.Name = "nmrcUpDownCantidad";
+            this.nmrcUpDownCantidad.Size = new System.Drawing.Size(45, 20);
+            this.nmrcUpDownCantidad.TabIndex = 11;
+            // 
             // frmPedidoNuevo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -617,6 +627,7 @@
             this.gbxArticulosAgregar.ResumeLayout(false);
             this.gbxArticulosAgregar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArtAgregar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownCantidad)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -671,6 +682,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn proveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.NumericUpDown nmrcUpDownCantidad;
 
     }
 }

@@ -21,9 +21,8 @@ namespace Vista
         public frmPedidoCierre()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.inicializarTextBoxes();
-            //?this.dgvArticulosVenta.AutoGenerateColumns = false;
-            this.dgvArticulosVenta.AutoGenerateColumns = false;
         }
 
         public frmPedidoCierre(ModeloPedido p_mod_pedido) : this()
@@ -45,6 +44,7 @@ namespace Vista
         #region Inicialización
         private void inicializarCierrePedidoCliente(ModeloPedido p_mod_pedido)
         {
+            this.Text = "Cierre Pedido de Cliente";
             this.cmbBoxPedidosProveedores.Visible = false;
             this.controlador = new ControladorPedidoCliente();
             this.cargarPedidoEnControles(p_mod_pedido);
@@ -52,6 +52,7 @@ namespace Vista
 
         private void inicializarCierrePedidosProveedores(ModeloPedido p_mod_pedido)
         {
+            this.Text = "Cierre Pedido a Proveedores";
             this.cmbBoxPedidosProveedores.Visible = true;
             this.controlador = new ControladorPedidoProveedor();
             List<ModeloPedido> lcl_lst_mod_pedidos = (controlador as ControladorPedidoProveedor).getPedidosProveedores(p_mod_pedido);
@@ -61,14 +62,18 @@ namespace Vista
         
         private void inicializarTextBoxes()
         {
-            //txtBoxDescuento1Monto.Enabled =
-            //txtBoxDescuento2Porcentaje.Enabled =
             txtBoxIVAPorcentaje.Enabled =
             txtBoxDescuentoLineas.Enabled =
             txtBoxDescuentoTotal.Enabled =
             txtBoxIVAMonto.Enabled =
             txtBoxTotal.Enabled =
             txtBoxSubtotal.Enabled = false;
+
+            this.txtBoxDescuento1Monto.MouseUp += this.selectText;
+            this.txtBoxDescuento1Porcentaje.MouseUp += this.selectText;
+            this.txtBoxDescuento2Monto.MouseUp += this.selectText;
+            this.txtBoxDescuento2Porcentaje.MouseUp += this.selectText;
+            this.txtBoxSenia.MouseUp += this.selectText;
         }
         private void inicializarComboBox()
         {
@@ -180,20 +185,20 @@ namespace Vista
         }
         private void cargarDatosMonetariosEnControles(ModeloPedido p_mod_pedido)
         {
-            this.txtBoxSenia.Text = p_mod_pedido.senia.ToString();
+            this.txtBoxSenia.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.senia);
 
             this.txtBoxDescuento1Porcentaje.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"),"{0:P1}", (p_mod_pedido.descuento_1.porcentajeSobreTotal));
-            //this.txtBoxDescuento1Porcentaje.Text = (p_mod_pedido.descuento_1.porcentajeSobreTotal * 100).ToString();
-            this.txtBoxDescuento1Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.descuento_1.descuento);
-            this.txtBoxDescuento2Porcentaje.Text = (p_mod_pedido.descuento_2.porcentajeSobreTotal * 100).ToString();
-            this.txtBoxDescuento2Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.descuento_2.descuento);
-            this.txtBoxDescuentoLineas.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getDescuentoLineas());
-            this.txtBoxDescuentoTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getDescuentoTotal());
-            
-            this.txtBoxSubtotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getSubTotal());
-            this.txtBoxTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getTotal());
+            this.txtBoxDescuento1Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.descuento_1.descuento);
+            this.txtBoxDescuento2Porcentaje.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:P1}", (p_mod_pedido.descuento_2.porcentajeSobreTotal));
+            this.txtBoxDescuento2Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.descuento_2.descuento);
+            this.txtBoxDescuentoLineas.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getDescuentoLineas());
+            this.txtBoxDescuentoTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getDescuentoTotal());
 
-            this.txtBoxIVAMonto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getIVAMonto()); 
+            this.txtBoxSubtotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getSubTotal());
+            //this.txtBoxTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getTotal());
+            this.txtBoxTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getTotal());
+
+            this.txtBoxIVAMonto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getIVAMonto()); 
         }
         private void cargarEntidadEnControles(ModeloEntidad p_mod_entidad)
         {
@@ -305,25 +310,30 @@ namespace Vista
         private void cargarLineasEnControles(ModeloPedido p_mod_pedido)
         {
             DataTable lineas = new DataTable();
+            lineas.Columns.Add("indice");
             lineas.Columns.Add("codigoOriginal");
             lineas.Columns.Add("codigoArticuloProveedor");
             lineas.Columns.Add("descripcion");
             lineas.Columns.Add("cantidad");
             lineas.Columns.Add("valorUnitario");
             lineas.Columns.Add("descuento");
-            lineas.Columns.Add("valorParcial");
-
+            lineas.Columns.Add("valorParcialSinDescuento");
+            lineas.Columns.Add("valorParcialConDescuento");
+            int i = 0;
             foreach (ModeloLineaPedido l in p_mod_pedido.lineasPedido)
             {
                 var row = lineas.NewRow();
+                row["indice"] = i.ToString();
+                i++;
                 row["codigoOriginal"] = l.articulo.codigoOriginal;
                 row["codigoArticuloProveedor"] = l.articulo.codigoArticuloProveedor;
                 row["descripcion"] = l.articulo.descripcion;
                 row["cantidad"] = l.cantidadArticulos;
-                row["valorUnitario"] = l.valorUnitario;
-                row["descuento"] = l.getDescuento();
-                row["valorParcial"] = l.getValorParcial();
-          
+                row["valorUnitario"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.valorUnitario);
+                row["descuento"] =  String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getDescuento());
+                row["valorParcialSinDescuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getValorParcialSinDescuentos());
+                row["valorParcialConDescuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getValorParcial());
+                
                 lineas.Rows.Add(row);
             }
 
@@ -343,6 +353,7 @@ namespace Vista
             //this.cmbBoxProvincia.SelectedItem = null;
         }
         #endregion
+        
         #region Controles -> Modelo
         private ModeloPedido cargarControlEnPedido()
         {
@@ -380,6 +391,7 @@ namespace Vista
             return lcl_mod_mail;
         }
         #endregion
+        
         int getDropDownWidth(ComboBox p_comboBox)
         {
             int maxWidth = 0, temp = 0;
@@ -394,25 +406,22 @@ namespace Vista
             return maxWidth;
         }
         #endregion
-
-        private void cmbBoxPedidosProveedores_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            var pedido = (ModeloPedido)cmbBoxPedidosProveedores.SelectedValue;
-            this.cargarPedidoEnControles(pedido);
-        }
-
+      
+        #region Eventos
+        
+        #region TextBox
         private void txtBoxDescuento1Porcentaje_Leave(object sender, EventArgs e)
         {
+            //para evento MouseUp
+            alreadyFocused = false;
+            //
             double porcentaje;
-            if (!double.TryParse(this.txtBoxDescuento1Porcentaje.Text.Replace("%", "").Replace(".", ","), out porcentaje))
+            if (!Double.TryParse(this.txtBoxDescuento1Porcentaje.Text.Replace("%", "").Replace(".", ","), out porcentaje) || (porcentaje / 100)==controlador.pedidoActual.descuento_1.porcentajeSobreTotal)
             {
+                this.txtBoxDescuento1Porcentaje.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:P1}", (controlador.pedidoActual.descuento_1.porcentajeSobreTotal));
                 return;
             }
-            porcentaje = porcentaje /100;
-            if ( porcentaje == controlador.pedidoActual.descuento_1.porcentajeSobreTotal)
-            {
-                return;
-            }
+            porcentaje = porcentaje / 100;
 
             ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
             lcl_mod_descuento.porcentajeSobreTotal = porcentaje;
@@ -422,13 +431,13 @@ namespace Vista
 
         private void txtBoxDescuento1Monto_Leave(object sender, EventArgs e)
         {
+            //para evento MouseUp
+            alreadyFocused = false;
+            //
             decimal descuento;
-            if (!decimal.TryParse(this.txtBoxDescuento1Monto.Text, out descuento))
+            if (!Decimal.TryParse(this.txtBoxDescuento1Monto.Text, out descuento) || descuento == controlador.pedidoActual.descuento_1.descuento)
             {
-                return;
-            }
-            if (descuento == controlador.pedidoActual.descuento_1.descuento)
-            {
+                this.txtBoxDescuento1Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", controlador.pedidoActual.descuento_1.descuento);
                 return;
             }
 
@@ -440,16 +449,16 @@ namespace Vista
 
         private void txtBoxDescuento2Porcentaje_Leave(object sender, EventArgs e)
         {
+            //para evento MouseUp
+            alreadyFocused = false;
+            //
             double porcentaje;
-            if (!double.TryParse(this.txtBoxDescuento2Porcentaje.Text.Replace("%", "").Replace(".",","), out porcentaje))
+            if (!Double.TryParse(this.txtBoxDescuento2Porcentaje.Text.Replace("%", "").Replace(".", ","), out porcentaje) || (porcentaje / 100)== controlador.pedidoActual.descuento_2.porcentajeSobreTotal )
             {
+                this.txtBoxDescuento2Porcentaje.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:P1}", (controlador.pedidoActual.descuento_2.porcentajeSobreTotal));
                 return;
             }
             porcentaje = porcentaje / 100;
-            if (porcentaje == controlador.pedidoActual.descuento_2.porcentajeSobreTotal)
-            {
-                return;
-            }
 
             ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
             lcl_mod_descuento.porcentajeSobreTotal = porcentaje;
@@ -459,14 +468,14 @@ namespace Vista
 
         private void txtBoxDescuento2Monto_Leave(object sender, EventArgs e)
         {
+            //para evento MouseUp
+            alreadyFocused = false;
+            //
             decimal descuento;
-            if(!decimal.TryParse(this.txtBoxDescuento2Monto.Text,out descuento))
+            if (!Decimal.TryParse(this.txtBoxDescuento2Monto.Text.Replace("$", ""), out descuento) || descuento == controlador.pedidoActual.descuento_2.descuento)
             {
+                this.txtBoxDescuento2Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", controlador.pedidoActual.descuento_2.descuento);
                 return;
-            }
-            if (descuento == controlador.pedidoActual.descuento_2.descuento)
-            {
-                return ;
             }
             
             ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
@@ -477,18 +486,69 @@ namespace Vista
 
         private void txtBoxSenia_Leave(object sender, EventArgs e)
         {
+            //para evento MouseUp
+            alreadyFocused = false;
+            //
             decimal senia;
-            if (!decimal.TryParse(this.txtBoxSenia.Text, out senia))
+            if (!Decimal.TryParse(this.txtBoxSenia.Text.Replace("$", ""), out senia) || senia == controlador.pedidoActual.senia)
             {
-                return;
-            }
-            if (senia == controlador.pedidoActual.senia)
-            {
+                this.txtBoxSenia.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", controlador.pedidoActual.senia);
                 return;
             }
 
             controlador.pedidoActual.senia = senia;
             this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
         }
+
+        private bool alreadyFocused;
+        private void selectText(object sender, MouseEventArgs e)
+        {
+            if (!alreadyFocused && (sender as TextBox).SelectionLength == 0)
+            {
+                alreadyFocused = true;
+                (sender as TextBox).SelectAll();
+            }
+        }
+        #endregion
+        
+        #region ComboBox
+        private void cmbBoxPedidosProveedores_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var pedido = (ModeloPedido)cmbBoxPedidosProveedores.SelectedValue;
+            this.cargarPedidoEnControles(pedido);
+        }
+        private void cmbBoxDomicilios_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var domicilio = (ModeloDomicilio)cmbBoxDomicilios.SelectedValue;
+            this.cargarDomicilioEnControles(domicilio);
+        }
+        private void cmbBoxMails_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var mail = (ModeloMail)cmbBoxMails.SelectedValue;
+            this.cargarMailEnControles(mail);
+        }
+        private void cmbBoxTelefonos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var telefono = (ModeloTelefono)cmbBoxTelefonos.SelectedValue;
+            this.cargarTelefonoEnControles(telefono);
+        }
+        #endregion
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            int i = Convert.ToInt32(this.dgvArticulosVenta.CurrentRow.Cells["indice"].Value);
+            frmPedidoCierre_EditarLineaPedido lcl_frm_editarLineaPedido = new frmPedidoCierre_EditarLineaPedido(controlador.pedidoActual.lineasPedido[i],controlador.pedidoActual.codigoTipoPedido);
+            lcl_frm_editarLineaPedido.ShowDialog();
+            if (lcl_frm_editarLineaPedido.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                controlador.pedidoActual.lineasPedido[i] = lcl_frm_editarLineaPedido.getLineaPedido();
+                this.cargarPedidoEnControles(controlador.pedidoActual);
+            }
+        }
+
+       
+        #endregion    
+
+
     }
 }

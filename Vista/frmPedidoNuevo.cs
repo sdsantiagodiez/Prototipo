@@ -278,6 +278,8 @@ namespace Vista
             this.lblExistenciaVar.Text = Convert.ToString(lcl_mod_articulo.stockActual);
             this.lblFechaActualizacionVar.Text = Convert.ToString(lcl_mod_articulo.fechaActualizacion);
             this.lblObservacionesVar.Text = lcl_mod_articulo.observacionesArticuloProveedor;
+            
+            this.nmrcUpDownCantidad.Maximum = lcl_mod_articulo.stockActual.Value;
         }
 
         private void dgvDetalleAgregados_CellClick(object sender, DataGridViewCellEventArgs e)

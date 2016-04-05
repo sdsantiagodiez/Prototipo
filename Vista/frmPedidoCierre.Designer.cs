@@ -32,13 +32,15 @@
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.gbxArticulos = new System.Windows.Forms.GroupBox();
             this.dgvArticulosVenta = new System.Windows.Forms.DataGridView();
+            this.indice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codOriginal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valorParcialSinDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valorParcialConDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblLayoutPanelValoresPedido = new System.Windows.Forms.TableLayoutPanel();
             this.lblIVA = new System.Windows.Forms.Label();
             this.txtBoxSubtotal = new System.Windows.Forms.TextBox();
@@ -187,16 +189,19 @@
             // 
             this.dgvArticulosVenta.AllowUserToAddRows = false;
             this.dgvArticulosVenta.AllowUserToDeleteRows = false;
+            this.dgvArticulosVenta.AllowUserToResizeRows = false;
             this.dgvArticulosVenta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvArticulosVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulosVenta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.indice,
             this.codOriginal,
             this.codProveedor,
             this.descripcion,
             this.cantidad,
             this.vUnitario,
             this.descuento,
-            this.vParcial});
+            this.valorParcialSinDescuento,
+            this.valorParcialConDescuento});
             this.dgvArticulosVenta.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvArticulosVenta.Location = new System.Drawing.Point(3, 18);
             this.dgvArticulosVenta.Name = "dgvArticulosVenta";
@@ -205,6 +210,14 @@
             this.dgvArticulosVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticulosVenta.Size = new System.Drawing.Size(687, 138);
             this.dgvArticulosVenta.TabIndex = 5;
+            // 
+            // indice
+            // 
+            this.indice.DataPropertyName = "indice";
+            this.indice.HeaderText = "indice";
+            this.indice.Name = "indice";
+            this.indice.ReadOnly = true;
+            this.indice.Visible = false;
             // 
             // codOriginal
             // 
@@ -248,12 +261,19 @@
             this.descuento.Name = "descuento";
             this.descuento.ReadOnly = true;
             // 
-            // vParcial
+            // valorParcialSinDescuento
             // 
-            this.vParcial.DataPropertyName = "valorParcial";
-            this.vParcial.HeaderText = "Valor Parcial";
-            this.vParcial.Name = "vParcial";
-            this.vParcial.ReadOnly = true;
+            this.valorParcialSinDescuento.DataPropertyName = "valorParcialSinDescuento";
+            this.valorParcialSinDescuento.HeaderText = "Valor Sin Descuento";
+            this.valorParcialSinDescuento.Name = "valorParcialSinDescuento";
+            this.valorParcialSinDescuento.ReadOnly = true;
+            // 
+            // valorParcialConDescuento
+            // 
+            this.valorParcialConDescuento.DataPropertyName = "valorParcialConDescuento";
+            this.valorParcialConDescuento.HeaderText = "Valor Final";
+            this.valorParcialConDescuento.Name = "valorParcialConDescuento";
+            this.valorParcialConDescuento.ReadOnly = true;
             // 
             // tblLayoutPanelValoresPedido
             // 
@@ -525,6 +545,7 @@
             this.btnEditar.TabIndex = 4;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnAgregar
             // 
@@ -905,7 +926,7 @@
             this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
             this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
-            this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 124F));
+            this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
             this.tblLayoutPanelDomicilio.Controls.Add(this.lblCalle, 0, 0);
             this.tblLayoutPanelDomicilio.Controls.Add(this.txtBoxCalle, 1, 0);
             this.tblLayoutPanelDomicilio.Controls.Add(this.lblNumero, 2, 0);
@@ -947,7 +968,7 @@
             this.txtBoxCalle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCalle.Location = new System.Drawing.Point(53, 10);
             this.txtBoxCalle.Name = "txtBoxCalle";
-            this.txtBoxCalle.Size = new System.Drawing.Size(107, 20);
+            this.txtBoxCalle.Size = new System.Drawing.Size(105, 20);
             this.txtBoxCalle.TabIndex = 11;
             // 
             // lblNumero
@@ -955,7 +976,7 @@
             this.lblNumero.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNumero.AutoSize = true;
             this.lblNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblNumero.Location = new System.Drawing.Point(219, 14);
+            this.lblNumero.Location = new System.Drawing.Point(217, 14);
             this.lblNumero.Name = "lblNumero";
             this.lblNumero.Size = new System.Drawing.Size(47, 13);
             this.lblNumero.TabIndex = 3;
@@ -966,7 +987,7 @@
             this.lblPiso.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPiso.AutoSize = true;
             this.lblPiso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblPiso.Location = new System.Drawing.Point(367, 14);
+            this.lblPiso.Location = new System.Drawing.Point(365, 14);
             this.lblPiso.Name = "lblPiso";
             this.lblPiso.Size = new System.Drawing.Size(30, 13);
             this.lblPiso.TabIndex = 2;
@@ -975,7 +996,7 @@
             // txtBoxPiso
             // 
             this.txtBoxPiso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxPiso.Location = new System.Drawing.Point(403, 10);
+            this.txtBoxPiso.Location = new System.Drawing.Point(401, 10);
             this.txtBoxPiso.Name = "txtBoxPiso";
             this.txtBoxPiso.Size = new System.Drawing.Size(89, 20);
             this.txtBoxPiso.TabIndex = 13;
@@ -985,7 +1006,7 @@
             this.lblDepartamento.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDepartamento.AutoSize = true;
             this.lblDepartamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblDepartamento.Location = new System.Drawing.Point(512, 14);
+            this.lblDepartamento.Location = new System.Drawing.Point(510, 14);
             this.lblDepartamento.Name = "lblDepartamento";
             this.lblDepartamento.Size = new System.Drawing.Size(33, 13);
             this.lblDepartamento.TabIndex = 7;
@@ -996,7 +1017,7 @@
             this.lblProvincia.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblProvincia.AutoSize = true;
             this.lblProvincia.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblProvincia.Location = new System.Drawing.Point(343, 55);
+            this.lblProvincia.Location = new System.Drawing.Point(341, 55);
             this.lblProvincia.Name = "lblProvincia";
             this.lblProvincia.Size = new System.Drawing.Size(54, 13);
             this.lblProvincia.TabIndex = 6;
@@ -1006,7 +1027,7 @@
             // 
             this.cmbBoxProvincia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxProvincia.FormattingEnabled = true;
-            this.cmbBoxProvincia.Location = new System.Drawing.Point(403, 51);
+            this.cmbBoxProvincia.Location = new System.Drawing.Point(401, 51);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(89, 21);
             this.cmbBoxProvincia.TabIndex = 18;
@@ -1014,9 +1035,9 @@
             // txtBoxDepartamento
             // 
             this.txtBoxDepartamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxDepartamento.Location = new System.Drawing.Point(551, 10);
+            this.txtBoxDepartamento.Location = new System.Drawing.Point(549, 10);
             this.txtBoxDepartamento.Name = "txtBoxDepartamento";
-            this.txtBoxDepartamento.Size = new System.Drawing.Size(119, 20);
+            this.txtBoxDepartamento.Size = new System.Drawing.Size(121, 20);
             this.txtBoxDepartamento.TabIndex = 14;
             // 
             // lblCiudad
@@ -1035,7 +1056,7 @@
             this.txtBoxCiudad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCiudad.Location = new System.Drawing.Point(53, 51);
             this.txtBoxCiudad.Name = "txtBoxCiudad";
-            this.txtBoxCiudad.Size = new System.Drawing.Size(107, 20);
+            this.txtBoxCiudad.Size = new System.Drawing.Size(105, 20);
             this.txtBoxCiudad.TabIndex = 15;
             // 
             // lblCodigoPostal
@@ -1043,7 +1064,7 @@
             this.lblCodigoPostal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCodigoPostal.AutoSize = true;
             this.lblCodigoPostal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblCodigoPostal.Location = new System.Drawing.Point(191, 55);
+            this.lblCodigoPostal.Location = new System.Drawing.Point(189, 55);
             this.lblCodigoPostal.Name = "lblCodigoPostal";
             this.lblCodigoPostal.Size = new System.Drawing.Size(75, 13);
             this.lblCodigoPostal.TabIndex = 4;
@@ -1052,7 +1073,7 @@
             // txtBoxCodigoPostal
             // 
             this.txtBoxCodigoPostal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCodigoPostal.Location = new System.Drawing.Point(272, 51);
+            this.txtBoxCodigoPostal.Location = new System.Drawing.Point(270, 51);
             this.txtBoxCodigoPostal.Name = "txtBoxCodigoPostal";
             this.txtBoxCodigoPostal.Size = new System.Drawing.Size(49, 20);
             this.txtBoxCodigoPostal.TabIndex = 16;
@@ -1062,7 +1083,7 @@
             this.lblPais.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPais.AutoSize = true;
             this.lblPais.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblPais.Location = new System.Drawing.Point(513, 55);
+            this.lblPais.Location = new System.Drawing.Point(511, 55);
             this.lblPais.Name = "lblPais";
             this.lblPais.Size = new System.Drawing.Size(32, 13);
             this.lblPais.TabIndex = 15;
@@ -1072,15 +1093,15 @@
             // 
             this.cmbBoxPais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxPais.FormattingEnabled = true;
-            this.cmbBoxPais.Location = new System.Drawing.Point(551, 51);
+            this.cmbBoxPais.Location = new System.Drawing.Point(549, 51);
             this.cmbBoxPais.Name = "cmbBoxPais";
-            this.cmbBoxPais.Size = new System.Drawing.Size(119, 21);
+            this.cmbBoxPais.Size = new System.Drawing.Size(121, 21);
             this.cmbBoxPais.TabIndex = 17;
             // 
             // txtBoxNumeroDomicilio
             // 
             this.txtBoxNumeroDomicilio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNumeroDomicilio.Location = new System.Drawing.Point(272, 10);
+            this.txtBoxNumeroDomicilio.Location = new System.Drawing.Point(270, 10);
             this.txtBoxNumeroDomicilio.Name = "txtBoxNumeroDomicilio";
             this.txtBoxNumeroDomicilio.Size = new System.Drawing.Size(49, 20);
             this.txtBoxNumeroDomicilio.TabIndex = 12;
@@ -1093,6 +1114,7 @@
             this.cmbBoxDomicilios.Name = "cmbBoxDomicilios";
             this.cmbBoxDomicilios.Size = new System.Drawing.Size(121, 21);
             this.cmbBoxDomicilios.TabIndex = 2;
+            this.cmbBoxDomicilios.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxDomicilios_SelectionChangeCommitted);
             // 
             // tbPageDatosContacto
             // 
@@ -1131,6 +1153,7 @@
             this.cmbBoxTelefonos.Name = "cmbBoxTelefonos";
             this.cmbBoxTelefonos.Size = new System.Drawing.Size(121, 21);
             this.cmbBoxTelefonos.TabIndex = 5;
+            this.cmbBoxTelefonos.SelectedIndexChanged += new System.EventHandler(this.cmbBoxTelefonos_SelectedIndexChanged);
             // 
             // tblLayoutPanelMail
             // 
@@ -1235,6 +1258,7 @@
             this.cmbBoxMails.Name = "cmbBoxMails";
             this.cmbBoxMails.Size = new System.Drawing.Size(121, 21);
             this.cmbBoxMails.TabIndex = 4;
+            this.cmbBoxMails.SelectedIndexChanged += new System.EventHandler(this.cmbBoxMails_SelectedIndexChanged);
             // 
             // tabPageObservaciones
             // 
@@ -1392,15 +1416,17 @@
         private System.Windows.Forms.TextBox txtBoxRazonSocial;
         private System.Windows.Forms.ComboBox cmbBoxPedidosProveedores;
         private System.Windows.Forms.BindingSource modeloLineaPedidoBindingSource;
+        private System.Windows.Forms.ComboBox cmbBoxDomicilios;
+        private System.Windows.Forms.ComboBox cmbBoxTelefonos;
+        private System.Windows.Forms.ComboBox cmbBoxMails;
+        private System.Windows.Forms.DataGridViewTextBoxColumn indice;
         private System.Windows.Forms.DataGridViewTextBoxColumn codOriginal;
         private System.Windows.Forms.DataGridViewTextBoxColumn codProveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn vUnitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn descuento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vParcial;
-        private System.Windows.Forms.ComboBox cmbBoxDomicilios;
-        private System.Windows.Forms.ComboBox cmbBoxTelefonos;
-        private System.Windows.Forms.ComboBox cmbBoxMails;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valorParcialSinDescuento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valorParcialConDescuento;
     }
 }
