@@ -107,12 +107,12 @@ namespace Modelos
         /// <returns></returns>
         private decimal getDescuento(decimal p_valorParcial)
         {
-            decimal vParcial = p_valorParcial;
+            decimal descuento = 0;
             foreach (ModeloDescuento d in descuentos)
             {
-                vParcial = vParcial - d.getDescuento(p_valorParcial);
+                descuento += d.getDescuento(p_valorParcial);
             }
-            return p_valorParcial - vParcial;
+            return descuento;
         }
 
         public decimal getDescuento()
@@ -201,7 +201,6 @@ namespace Modelos
         #endregion
     }
 
-
     public class ModeloDescuento
     {
         string _descripcion;
@@ -210,18 +209,21 @@ namespace Modelos
             get { return _descripcion; }
             set { _descripcion = value; }
         }
-        //Entre 0 y 1 para porcentual
         //mayor a 0 para neto
         decimal _descuento;
         public decimal descuento
         {
             get { return _descuento; }
-            set { _descuento = this.validarDescuento(value)?value:0; }
+            set { _descuento = value>0?value:0; }
         }
-
-        public virtual bool validarDescuento(decimal p_descuento)
+        double _porcentajeSobreTotal;
+        /// <summary>
+        /// el valor debe estar entre 0 y 1
+        /// </summary>
+        public double porcentajeSobreTotal
         {
-            return true;
+            get { return _porcentajeSobreTotal; }
+            set { _porcentajeSobreTotal = value > 0 && value <= 1? value:0; }
         }
 
         public virtual void asignarDescripcion()
@@ -233,41 +235,25 @@ namespace Modelos
         }
 
         public virtual decimal getDescuento(decimal p_valorParcial)
-        {
+        {               
+            if (this.descuento > 0)
+            {
+                if (this.descuento > p_valorParcial)
+                {
+                    this.porcentajeSobreTotal = 1;
+                    return p_valorParcial;
+                }
+
+                this.porcentajeSobreTotal = Convert.ToDouble(Decimal.Divide(this.descuento,p_valorParcial));
+                return this.descuento;
+            }
+            else if(this.porcentajeSobreTotal > 0)
+            {
+                this.descuento = p_valorParcial * Convert.ToDecimal(this.porcentajeSobreTotal);
+                return this.descuento;
+            }
             return 0;
         }
     }
     
-    public class ModeloDescuentoPorcentual : ModeloDescuento
-    {
-        public override bool validarDescuento(decimal p_descuento)
-        {
-            return p_descuento > 0 && p_descuento <= 1;
-        }
-        public override void asignarDescripcion()
-        {
-            base.asignarDescripcion();
-            this.descripcion += (this.descuento*100).ToString()+"%";
-        }
-        public override decimal getDescuento(decimal p_valorParcial)
-        {
-            return p_valorParcial * this.descuento;
-        }
-    }
-    public class ModeloDescuentoNeto : ModeloDescuento
-    {
-        public override bool validarDescuento(decimal p_descuento)
-        {
-            return p_descuento > 0;
-        }
-        public override void asignarDescripcion()
-        {
-            base.asignarDescripcion();
-            this.descripcion += "$"+this.descuento.ToString();
-        }
-        public override decimal getDescuento(decimal p_valorParcial)
-        {
-            return p_valorParcial - descuento;
-        }
-    }
 }

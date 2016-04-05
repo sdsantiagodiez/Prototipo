@@ -124,18 +124,18 @@ namespace Modelos
             set{_iva = value;}
         }
 
-        ModeloDescuentoNeto _descuentoNeto;
-        public ModeloDescuentoNeto descuentoNeto
+        ModeloDescuento _descuento_1;
+        public ModeloDescuento descuento_1
         {
-            get { return _descuentoNeto; }
-            set { _descuentoNeto = value; }
+            get { return _descuento_1; }
+            set { _descuento_1 = value; }
         }
 
-        ModeloDescuentoPorcentual _descuentoPorcentual;
-        public ModeloDescuentoPorcentual descuentoPorcentual
+        ModeloDescuento _descuento_2;
+        public ModeloDescuento descuento_2
         {
-            get { return _descuentoPorcentual; }
-            set { _descuentoPorcentual = value; }
+            get { return _descuento_2; }
+            set { _descuento_2 = value; }
         }
 
         #endregion
@@ -145,8 +145,8 @@ namespace Modelos
             lineasPedido = new List<ModeloLineaPedido>();
             this.iva = 21;
             this.fecha = DateTime.Today;
-            this.descuentoPorcentual = new ModeloDescuentoPorcentual();
-            this.descuentoNeto = new ModeloDescuentoNeto();
+            this.descuento_1 = new ModeloDescuento();
+            this.descuento_2 = new ModeloDescuento();
         }
 
         public ModeloPedido(ModeloEntidad p_mod_entidad) : this()
@@ -238,8 +238,7 @@ namespace Modelos
 
         public decimal getDescuentoTotal()
         {
-            //revisar
-            return this.getDescuentoLineas() + this.descuentoNeto.descuento + this.descuentoPorcentual.getDescuento(this.getTotal());
+            return this.getDescuentoLineas() + this.descuento_1.getDescuento(this.getTotal()) + this.descuento_2.getDescuento(this.getTotal());
         }
         public decimal getTotal()
         {
@@ -261,7 +260,6 @@ namespace Modelos
        
         public decimal getIVAMonto()
         {
-            
             return this.getTotal() - this.getSubTotal();
         }
 

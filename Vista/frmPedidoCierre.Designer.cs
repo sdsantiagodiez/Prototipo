@@ -49,16 +49,16 @@
             this.lblDescuentoLineas = new System.Windows.Forms.Label();
             this.txtBoxDescuentoTotal = new System.Windows.Forms.TextBox();
             this.lblDescuentoTotal = new System.Windows.Forms.Label();
-            this.txtBoxDescuentoPorcentualMonto = new System.Windows.Forms.TextBox();
+            this.txtBoxDescuento1Monto = new System.Windows.Forms.TextBox();
             this.lblDescuentoPorcentual = new System.Windows.Forms.Label();
-            this.txtBoxDescuentoNetoMonto = new System.Windows.Forms.TextBox();
+            this.txtBoxDescuento2Monto = new System.Windows.Forms.TextBox();
             this.lblDescuentoNeto = new System.Windows.Forms.Label();
             this.txtBoxIVAMonto = new System.Windows.Forms.TextBox();
             this.txtBoxSenia = new System.Windows.Forms.TextBox();
             this.txtBoxIVAPorcentaje = new System.Windows.Forms.TextBox();
             this.lblSenia = new System.Windows.Forms.Label();
-            this.txtBoxDescuentoPorcentualPorcentaje = new System.Windows.Forms.TextBox();
-            this.txtBoxDescuentoNetoPorcentaje = new System.Windows.Forms.TextBox();
+            this.txtBoxDescuento1Porcentaje = new System.Windows.Forms.TextBox();
+            this.txtBoxDescuento2Porcentaje = new System.Windows.Forms.TextBox();
             this.tblLayoutPanelBotones = new System.Windows.Forms.TableLayoutPanel();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -84,14 +84,14 @@
             this.dtpFechaPedido = new System.Windows.Forms.DateTimePicker();
             this.cmbBoxFormaPago = new System.Windows.Forms.ComboBox();
             this.tblLayoutPanelEntidadDatos = new System.Windows.Forms.TableLayoutPanel();
-            this.txtBoxNombre = new System.Windows.Forms.TextBox();
+            this.lblApellido = new System.Windows.Forms.Label();
+            this.lblCUIT = new System.Windows.Forms.Label();
+            this.txtBoxApellido = new System.Windows.Forms.TextBox();
+            this.txtBoxCUIT = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblDNI = new System.Windows.Forms.Label();
+            this.txtBoxNombre = new System.Windows.Forms.TextBox();
             this.txtBoxDNI = new System.Windows.Forms.TextBox();
-            this.txtBoxApellido = new System.Windows.Forms.TextBox();
-            this.lblCUIT = new System.Windows.Forms.Label();
-            this.txtBoxCUIT = new System.Windows.Forms.TextBox();
-            this.lblApellido = new System.Windows.Forms.Label();
             this.tbPageDomicilioFacturacion = new System.Windows.Forms.TabPage();
             this.tblLayoutPanelDomicilioFacturacion = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelDomicilio = new System.Windows.Forms.TableLayoutPanel();
@@ -279,16 +279,16 @@
             this.tblLayoutPanelValoresPedido.Controls.Add(this.lblDescuentoLineas, 6, 0);
             this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxDescuentoTotal, 7, 1);
             this.tblLayoutPanelValoresPedido.Controls.Add(this.lblDescuentoTotal, 6, 1);
-            this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxDescuentoPorcentualMonto, 5, 0);
+            this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxDescuento1Monto, 5, 0);
             this.tblLayoutPanelValoresPedido.Controls.Add(this.lblDescuentoPorcentual, 3, 0);
-            this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxDescuentoNetoMonto, 5, 1);
+            this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxDescuento2Monto, 5, 1);
             this.tblLayoutPanelValoresPedido.Controls.Add(this.lblDescuentoNeto, 3, 1);
             this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxIVAMonto, 2, 0);
             this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxSenia, 2, 1);
             this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxIVAPorcentaje, 1, 0);
             this.tblLayoutPanelValoresPedido.Controls.Add(this.lblSenia, 1, 1);
-            this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxDescuentoPorcentualPorcentaje, 4, 0);
-            this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxDescuentoNetoPorcentaje, 4, 1);
+            this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxDescuento1Porcentaje, 4, 0);
+            this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxDescuento2Porcentaje, 4, 1);
             this.tblLayoutPanelValoresPedido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelValoresPedido.Location = new System.Drawing.Point(3, 348);
             this.tblLayoutPanelValoresPedido.Name = "tblLayoutPanelValoresPedido";
@@ -378,43 +378,43 @@
             this.lblDescuentoTotal.Name = "lblDescuentoTotal";
             this.lblDescuentoTotal.Size = new System.Drawing.Size(62, 26);
             this.lblDescuentoTotal.TabIndex = 5;
-            this.lblDescuentoTotal.Text = "Total Descuento:";
+            this.lblDescuentoTotal.Text = "Descuento Total:";
             // 
-            // txtBoxDescuentoPorcentualMonto
+            // txtBoxDescuento1Monto
             // 
-            this.txtBoxDescuentoPorcentualMonto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxDescuentoPorcentualMonto.Location = new System.Drawing.Point(298, 8);
-            this.txtBoxDescuentoPorcentualMonto.Name = "txtBoxDescuentoPorcentualMonto";
-            this.txtBoxDescuentoPorcentualMonto.Size = new System.Drawing.Size(88, 20);
-            this.txtBoxDescuentoPorcentualMonto.TabIndex = 9;
+            this.txtBoxDescuento1Monto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxDescuento1Monto.Location = new System.Drawing.Point(298, 8);
+            this.txtBoxDescuento1Monto.Name = "txtBoxDescuento1Monto";
+            this.txtBoxDescuento1Monto.Size = new System.Drawing.Size(88, 20);
+            this.txtBoxDescuento1Monto.TabIndex = 9;
             // 
             // lblDescuentoPorcentual
             // 
             this.lblDescuentoPorcentual.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDescuentoPorcentual.AutoSize = true;
-            this.lblDescuentoPorcentual.Location = new System.Drawing.Point(182, 11);
+            this.lblDescuentoPorcentual.Location = new System.Drawing.Point(190, 11);
             this.lblDescuentoPorcentual.Name = "lblDescuentoPorcentual";
-            this.lblDescuentoPorcentual.Size = new System.Drawing.Size(79, 13);
+            this.lblDescuentoPorcentual.Size = new System.Drawing.Size(71, 13);
             this.lblDescuentoPorcentual.TabIndex = 2;
-            this.lblDescuentoPorcentual.Text = "Descuento (%):";
+            this.lblDescuentoPorcentual.Text = "Descuento 1:";
             // 
-            // txtBoxDescuentoNetoMonto
+            // txtBoxDescuento2Monto
             // 
-            this.txtBoxDescuentoNetoMonto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxDescuentoNetoMonto.Location = new System.Drawing.Point(298, 44);
-            this.txtBoxDescuentoNetoMonto.Name = "txtBoxDescuentoNetoMonto";
-            this.txtBoxDescuentoNetoMonto.Size = new System.Drawing.Size(88, 20);
-            this.txtBoxDescuentoNetoMonto.TabIndex = 13;
+            this.txtBoxDescuento2Monto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxDescuento2Monto.Location = new System.Drawing.Point(298, 44);
+            this.txtBoxDescuento2Monto.Name = "txtBoxDescuento2Monto";
+            this.txtBoxDescuento2Monto.Size = new System.Drawing.Size(88, 20);
+            this.txtBoxDescuento2Monto.TabIndex = 13;
             // 
             // lblDescuentoNeto
             // 
             this.lblDescuentoNeto.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDescuentoNeto.AutoSize = true;
-            this.lblDescuentoNeto.Location = new System.Drawing.Point(199, 48);
+            this.lblDescuentoNeto.Location = new System.Drawing.Point(190, 48);
             this.lblDescuentoNeto.Name = "lblDescuentoNeto";
-            this.lblDescuentoNeto.Size = new System.Drawing.Size(62, 13);
+            this.lblDescuentoNeto.Size = new System.Drawing.Size(71, 13);
             this.lblDescuentoNeto.TabIndex = 3;
-            this.lblDescuentoNeto.Text = "Descuento:";
+            this.lblDescuentoNeto.Text = "Descuento 2:";
             // 
             // txtBoxIVAMonto
             // 
@@ -451,21 +451,21 @@
             this.lblSenia.TabIndex = 1;
             this.lblSenia.Text = "Seña: ";
             // 
-            // txtBoxDescuentoPorcentualPorcentaje
+            // txtBoxDescuento1Porcentaje
             // 
-            this.txtBoxDescuentoPorcentualPorcentaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxDescuentoPorcentualPorcentaje.Location = new System.Drawing.Point(267, 8);
-            this.txtBoxDescuentoPorcentualPorcentaje.Name = "txtBoxDescuentoPorcentualPorcentaje";
-            this.txtBoxDescuentoPorcentualPorcentaje.Size = new System.Drawing.Size(25, 20);
-            this.txtBoxDescuentoPorcentualPorcentaje.TabIndex = 17;
+            this.txtBoxDescuento1Porcentaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxDescuento1Porcentaje.Location = new System.Drawing.Point(267, 8);
+            this.txtBoxDescuento1Porcentaje.Name = "txtBoxDescuento1Porcentaje";
+            this.txtBoxDescuento1Porcentaje.Size = new System.Drawing.Size(25, 20);
+            this.txtBoxDescuento1Porcentaje.TabIndex = 17;
             // 
-            // txtBoxDescuentoNetoPorcentaje
+            // txtBoxDescuento2Porcentaje
             // 
-            this.txtBoxDescuentoNetoPorcentaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxDescuentoNetoPorcentaje.Location = new System.Drawing.Point(267, 44);
-            this.txtBoxDescuentoNetoPorcentaje.Name = "txtBoxDescuentoNetoPorcentaje";
-            this.txtBoxDescuentoNetoPorcentaje.Size = new System.Drawing.Size(25, 20);
-            this.txtBoxDescuentoNetoPorcentaje.TabIndex = 18;
+            this.txtBoxDescuento2Porcentaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxDescuento2Porcentaje.Location = new System.Drawing.Point(267, 44);
+            this.txtBoxDescuento2Porcentaje.Name = "txtBoxDescuento2Porcentaje";
+            this.txtBoxDescuento2Porcentaje.Size = new System.Drawing.Size(25, 20);
+            this.txtBoxDescuento2Porcentaje.TabIndex = 18;
             // 
             // tblLayoutPanelBotones
             // 
@@ -779,14 +779,47 @@
             this.tblLayoutPanelEntidadDatos.Size = new System.Drawing.Size(174, 136);
             this.tblLayoutPanelEntidadDatos.TabIndex = 1;
             // 
-            // txtBoxNombre
+            // lblApellido
             // 
-            this.txtBoxNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNombre.Location = new System.Drawing.Point(59, 107);
-            this.txtBoxNombre.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
-            this.txtBoxNombre.Name = "txtBoxNombre";
-            this.txtBoxNombre.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxNombre.TabIndex = 18;
+            this.lblApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblApellido.AutoSize = true;
+            this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.lblApellido.Location = new System.Drawing.Point(3, 76);
+            this.lblApellido.Name = "lblApellido";
+            this.lblApellido.Size = new System.Drawing.Size(50, 13);
+            this.lblApellido.TabIndex = 19;
+            this.lblApellido.Text = "Apellido:";
+            this.lblApellido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblCUIT
+            // 
+            this.lblCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCUIT.AutoSize = true;
+            this.lblCUIT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.lblCUIT.Location = new System.Drawing.Point(3, 10);
+            this.lblCUIT.Name = "lblCUIT";
+            this.lblCUIT.Size = new System.Drawing.Size(50, 13);
+            this.lblCUIT.TabIndex = 13;
+            this.lblCUIT.Text = "CUIT:";
+            this.lblCUIT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtBoxApellido
+            // 
+            this.txtBoxApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxApellido.Location = new System.Drawing.Point(59, 72);
+            this.txtBoxApellido.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
+            this.txtBoxApellido.Name = "txtBoxApellido";
+            this.txtBoxApellido.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxApellido.TabIndex = 20;
+            // 
+            // txtBoxCUIT
+            // 
+            this.txtBoxCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxCUIT.Location = new System.Drawing.Point(59, 6);
+            this.txtBoxCUIT.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
+            this.txtBoxCUIT.Name = "txtBoxCUIT";
+            this.txtBoxCUIT.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxCUIT.TabIndex = 14;
             // 
             // lblNombre
             // 
@@ -812,6 +845,15 @@
             this.lblDNI.Text = "DNI:";
             this.lblDNI.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // txtBoxNombre
+            // 
+            this.txtBoxNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxNombre.Location = new System.Drawing.Point(59, 107);
+            this.txtBoxNombre.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
+            this.txtBoxNombre.Name = "txtBoxNombre";
+            this.txtBoxNombre.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxNombre.TabIndex = 18;
+            // 
             // txtBoxDNI
             // 
             this.txtBoxDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -820,48 +862,6 @@
             this.txtBoxDNI.Name = "txtBoxDNI";
             this.txtBoxDNI.Size = new System.Drawing.Size(100, 20);
             this.txtBoxDNI.TabIndex = 16;
-            // 
-            // txtBoxApellido
-            // 
-            this.txtBoxApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxApellido.Location = new System.Drawing.Point(59, 72);
-            this.txtBoxApellido.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
-            this.txtBoxApellido.Name = "txtBoxApellido";
-            this.txtBoxApellido.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxApellido.TabIndex = 20;
-            // 
-            // lblCUIT
-            // 
-            this.lblCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCUIT.AutoSize = true;
-            this.lblCUIT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblCUIT.Location = new System.Drawing.Point(3, 10);
-            this.lblCUIT.Name = "lblCUIT";
-            this.lblCUIT.Size = new System.Drawing.Size(50, 13);
-            this.lblCUIT.TabIndex = 13;
-            this.lblCUIT.Text = "CUIT:";
-            this.lblCUIT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtBoxCUIT
-            // 
-            this.txtBoxCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCUIT.Location = new System.Drawing.Point(59, 6);
-            this.txtBoxCUIT.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
-            this.txtBoxCUIT.Name = "txtBoxCUIT";
-            this.txtBoxCUIT.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxCUIT.TabIndex = 14;
-            // 
-            // lblApellido
-            // 
-            this.lblApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblApellido.AutoSize = true;
-            this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblApellido.Location = new System.Drawing.Point(3, 76);
-            this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(50, 13);
-            this.lblApellido.TabIndex = 19;
-            this.lblApellido.Text = "Apellido:";
-            this.lblApellido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tbPageDomicilioFacturacion
             // 
@@ -899,7 +899,7 @@
             this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
             this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
-            this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
+            this.tblLayoutPanelDomicilio.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
             this.tblLayoutPanelDomicilio.Controls.Add(this.lblCalle, 0, 0);
             this.tblLayoutPanelDomicilio.Controls.Add(this.txtBoxCalle, 1, 0);
             this.tblLayoutPanelDomicilio.Controls.Add(this.lblNumero, 2, 0);
@@ -930,7 +930,7 @@
             this.lblCalle.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCalle.AutoSize = true;
             this.lblCalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblCalle.Location = new System.Drawing.Point(18, 14);
+            this.lblCalle.Location = new System.Drawing.Point(17, 14);
             this.lblCalle.Name = "lblCalle";
             this.lblCalle.Size = new System.Drawing.Size(33, 13);
             this.lblCalle.TabIndex = 1;
@@ -939,9 +939,9 @@
             // txtBoxCalle
             // 
             this.txtBoxCalle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCalle.Location = new System.Drawing.Point(57, 10);
+            this.txtBoxCalle.Location = new System.Drawing.Point(56, 10);
             this.txtBoxCalle.Name = "txtBoxCalle";
-            this.txtBoxCalle.Size = new System.Drawing.Size(116, 20);
+            this.txtBoxCalle.Size = new System.Drawing.Size(112, 20);
             this.txtBoxCalle.TabIndex = 11;
             // 
             // lblNumero
@@ -949,7 +949,7 @@
             this.lblNumero.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNumero.AutoSize = true;
             this.lblNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblNumero.Location = new System.Drawing.Point(232, 14);
+            this.lblNumero.Location = new System.Drawing.Point(227, 14);
             this.lblNumero.Name = "lblNumero";
             this.lblNumero.Size = new System.Drawing.Size(47, 13);
             this.lblNumero.TabIndex = 3;
@@ -960,7 +960,7 @@
             this.lblPiso.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPiso.AutoSize = true;
             this.lblPiso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblPiso.Location = new System.Drawing.Point(380, 14);
+            this.lblPiso.Location = new System.Drawing.Point(375, 14);
             this.lblPiso.Name = "lblPiso";
             this.lblPiso.Size = new System.Drawing.Size(30, 13);
             this.lblPiso.TabIndex = 2;
@@ -969,7 +969,7 @@
             // txtBoxPiso
             // 
             this.txtBoxPiso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxPiso.Location = new System.Drawing.Point(416, 10);
+            this.txtBoxPiso.Location = new System.Drawing.Point(411, 10);
             this.txtBoxPiso.Name = "txtBoxPiso";
             this.txtBoxPiso.Size = new System.Drawing.Size(89, 20);
             this.txtBoxPiso.TabIndex = 13;
@@ -979,7 +979,7 @@
             this.lblDepartamento.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDepartamento.AutoSize = true;
             this.lblDepartamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblDepartamento.Location = new System.Drawing.Point(525, 14);
+            this.lblDepartamento.Location = new System.Drawing.Point(520, 14);
             this.lblDepartamento.Name = "lblDepartamento";
             this.lblDepartamento.Size = new System.Drawing.Size(33, 13);
             this.lblDepartamento.TabIndex = 7;
@@ -990,7 +990,7 @@
             this.lblProvincia.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblProvincia.AutoSize = true;
             this.lblProvincia.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblProvincia.Location = new System.Drawing.Point(356, 55);
+            this.lblProvincia.Location = new System.Drawing.Point(351, 55);
             this.lblProvincia.Name = "lblProvincia";
             this.lblProvincia.Size = new System.Drawing.Size(54, 13);
             this.lblProvincia.TabIndex = 6;
@@ -1000,7 +1000,7 @@
             // 
             this.cmbBoxProvincia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxProvincia.FormattingEnabled = true;
-            this.cmbBoxProvincia.Location = new System.Drawing.Point(416, 51);
+            this.cmbBoxProvincia.Location = new System.Drawing.Point(411, 51);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(89, 21);
             this.cmbBoxProvincia.TabIndex = 18;
@@ -1008,9 +1008,9 @@
             // txtBoxDepartamento
             // 
             this.txtBoxDepartamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxDepartamento.Location = new System.Drawing.Point(564, 10);
+            this.txtBoxDepartamento.Location = new System.Drawing.Point(559, 10);
             this.txtBoxDepartamento.Name = "txtBoxDepartamento";
-            this.txtBoxDepartamento.Size = new System.Drawing.Size(106, 20);
+            this.txtBoxDepartamento.Size = new System.Drawing.Size(111, 20);
             this.txtBoxDepartamento.TabIndex = 14;
             // 
             // lblCiudad
@@ -1018,7 +1018,7 @@
             this.lblCiudad.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCiudad.AutoSize = true;
             this.lblCiudad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblCiudad.Location = new System.Drawing.Point(8, 55);
+            this.lblCiudad.Location = new System.Drawing.Point(7, 55);
             this.lblCiudad.Name = "lblCiudad";
             this.lblCiudad.Size = new System.Drawing.Size(43, 13);
             this.lblCiudad.TabIndex = 5;
@@ -1027,9 +1027,9 @@
             // txtBoxCiudad
             // 
             this.txtBoxCiudad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCiudad.Location = new System.Drawing.Point(57, 51);
+            this.txtBoxCiudad.Location = new System.Drawing.Point(56, 51);
             this.txtBoxCiudad.Name = "txtBoxCiudad";
-            this.txtBoxCiudad.Size = new System.Drawing.Size(116, 20);
+            this.txtBoxCiudad.Size = new System.Drawing.Size(112, 20);
             this.txtBoxCiudad.TabIndex = 15;
             // 
             // lblCodigoPostal
@@ -1037,7 +1037,7 @@
             this.lblCodigoPostal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCodigoPostal.AutoSize = true;
             this.lblCodigoPostal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblCodigoPostal.Location = new System.Drawing.Point(204, 55);
+            this.lblCodigoPostal.Location = new System.Drawing.Point(199, 55);
             this.lblCodigoPostal.Name = "lblCodigoPostal";
             this.lblCodigoPostal.Size = new System.Drawing.Size(75, 13);
             this.lblCodigoPostal.TabIndex = 4;
@@ -1046,7 +1046,7 @@
             // txtBoxCodigoPostal
             // 
             this.txtBoxCodigoPostal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCodigoPostal.Location = new System.Drawing.Point(285, 51);
+            this.txtBoxCodigoPostal.Location = new System.Drawing.Point(280, 51);
             this.txtBoxCodigoPostal.Name = "txtBoxCodigoPostal";
             this.txtBoxCodigoPostal.Size = new System.Drawing.Size(49, 20);
             this.txtBoxCodigoPostal.TabIndex = 16;
@@ -1056,7 +1056,7 @@
             this.lblPais.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPais.AutoSize = true;
             this.lblPais.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblPais.Location = new System.Drawing.Point(526, 55);
+            this.lblPais.Location = new System.Drawing.Point(521, 55);
             this.lblPais.Name = "lblPais";
             this.lblPais.Size = new System.Drawing.Size(32, 13);
             this.lblPais.TabIndex = 15;
@@ -1066,15 +1066,15 @@
             // 
             this.cmbBoxPais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxPais.FormattingEnabled = true;
-            this.cmbBoxPais.Location = new System.Drawing.Point(564, 51);
+            this.cmbBoxPais.Location = new System.Drawing.Point(559, 51);
             this.cmbBoxPais.Name = "cmbBoxPais";
-            this.cmbBoxPais.Size = new System.Drawing.Size(106, 21);
+            this.cmbBoxPais.Size = new System.Drawing.Size(111, 21);
             this.cmbBoxPais.TabIndex = 17;
             // 
             // txtBoxNumeroDomicilio
             // 
             this.txtBoxNumeroDomicilio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNumeroDomicilio.Location = new System.Drawing.Point(285, 10);
+            this.txtBoxNumeroDomicilio.Location = new System.Drawing.Point(280, 10);
             this.txtBoxNumeroDomicilio.Name = "txtBoxNumeroDomicilio";
             this.txtBoxNumeroDomicilio.Size = new System.Drawing.Size(49, 20);
             this.txtBoxNumeroDomicilio.TabIndex = 12;
@@ -1315,16 +1315,16 @@
         private System.Windows.Forms.Label lblDescuentoLineas;
         private System.Windows.Forms.TextBox txtBoxDescuentoTotal;
         private System.Windows.Forms.Label lblDescuentoTotal;
-        private System.Windows.Forms.TextBox txtBoxDescuentoPorcentualMonto;
+        private System.Windows.Forms.TextBox txtBoxDescuento1Monto;
         private System.Windows.Forms.Label lblDescuentoPorcentual;
-        private System.Windows.Forms.TextBox txtBoxDescuentoNetoMonto;
+        private System.Windows.Forms.TextBox txtBoxDescuento2Monto;
         private System.Windows.Forms.Label lblDescuentoNeto;
         private System.Windows.Forms.TextBox txtBoxIVAMonto;
         private System.Windows.Forms.TextBox txtBoxSenia;
         private System.Windows.Forms.TextBox txtBoxIVAPorcentaje;
         private System.Windows.Forms.Label lblSenia;
-        private System.Windows.Forms.TextBox txtBoxDescuentoPorcentualPorcentaje;
-        private System.Windows.Forms.TextBox txtBoxDescuentoNetoPorcentaje;
+        private System.Windows.Forms.TextBox txtBoxDescuento1Porcentaje;
+        private System.Windows.Forms.TextBox txtBoxDescuento2Porcentaje;
         private System.Windows.Forms.TabPage tbPageDomicilioFacturacion;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelPedido;
         private System.Windows.Forms.Label lblNumeroPedido;
