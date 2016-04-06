@@ -72,22 +72,22 @@ namespace Modelos
         }
         #endregion
 
-        public static string getValorNormalizado(ModeloDomicilio p_mod_domicilio)
+        public override string ToString()
         {
-            string normalizado = p_mod_domicilio.calle+" "+p_mod_domicilio.numero;
-            if (!string.IsNullOrWhiteSpace(p_mod_domicilio.piso))
+            string normalizado = this.calle + " " + this.numero;
+            if (!string.IsNullOrWhiteSpace(this.piso))
             {
-                normalizado += ", " + p_mod_domicilio.piso;
+                normalizado += ", " + this.piso;
             }
-            if (!string.IsNullOrWhiteSpace(p_mod_domicilio.departamento))
+            if (!string.IsNullOrWhiteSpace(this.departamento))
             {
-                normalizado += ", " + p_mod_domicilio.departamento;
+                normalizado += ", " + this.departamento;
             }
-            normalizado += ", "+ p_mod_domicilio.ciudad + ", "+ p_mod_domicilio.provincia.provincia + ", " + p_mod_domicilio.pais.pais;
+            normalizado += ", " + this.ciudad + ", " + this.provincia.provincia + ", " + this.pais.pais;
 
             return normalizado;
         }
-
+        
         #region Validación
         public bool validar()
         {

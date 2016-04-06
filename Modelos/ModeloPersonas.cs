@@ -128,6 +128,20 @@ namespace Modelos
             return p_dni;
         }
 
+        public override string ToString()
+        {
+            string normalizado = "";
+
+            normalizado += this.apellido;
+            if (this.apellido != null)
+            {
+                normalizado += ", ";
+            }
+            normalizado += this.nombre;
+
+            return normalizado;
+        }
+
         #region Equals
         public override bool Equals(object p_objeto)
         {

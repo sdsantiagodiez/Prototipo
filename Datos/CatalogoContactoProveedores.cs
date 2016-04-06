@@ -48,11 +48,11 @@ namespace Datos
             {
                 //Con estas condiciones se obtienen todos los contactos de proveedor de un proveedor
                 case Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.CodigoEntidad_Proveedor:
-                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_contactoProveedor.proveedor.razonSocial), "@razon_social"));
-                    return " razon_social_proveedor LIKE @razon_social ";
-                case Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.RazonSocial_Proveedor:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_contactoProveedor.proveedor.codigo, "@codigo_proveedor"));
                     return " codigo_proveedor = @codigo_proveedor ";
+                case Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.RazonSocial_Proveedor:
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_contactoProveedor.proveedor.razonSocial), "@razon_social"));
+                    return " razon_social_proveedor LIKE @razon_social ";
                 case Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.Cuit:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_contactoProveedor.proveedor.cuit, "@cuit_prooveedor"));
                     return " cuit_proveedor = @cuit_proveedor ";

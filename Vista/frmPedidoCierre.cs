@@ -16,7 +16,7 @@ namespace Vista
     public partial class frmPedidoCierre : Form
     {
         ControladorPedido controlador;
-
+        CheckBox chckBoxClienteGenerico;
         #region Constructores
         public frmPedidoCierre()
         {
@@ -47,6 +47,7 @@ namespace Vista
             this.Text = "Cierre Pedido de Cliente";
             this.cmbBoxPedidosProveedores.Visible = false;
             this.controlador = new ControladorPedidoCliente();
+            this.inicializarControlesCliente();
             this.cargarPedidoEnControles(p_mod_pedido);
         }
 
@@ -58,6 +59,7 @@ namespace Vista
             List<ModeloPedido> lcl_lst_mod_pedidos = (controlador as ControladorPedidoProveedor).getPedidosProveedores(p_mod_pedido);
             this.inicializarComboBoxPedidosProveedores(lcl_lst_mod_pedidos);
             this.cargarPedidoEnControles(lcl_lst_mod_pedidos[0]);
+            this.inicializarControlesProveedor(lcl_lst_mod_pedidos[0].entidad as ModeloProveedor);
         }
         
         private void inicializarTextBoxes()
@@ -119,6 +121,21 @@ namespace Vista
                 this.cmbBoxTelefonos.DropDownStyle = 
                 this.cmbBoxMails.DropDownStyle = ComboBoxStyle.DropDownList;
         }
+        private void inicializarControlesCliente()
+        {
+            chckBoxClienteGenerico = new CheckBox();
+            chckBoxClienteGenerico.Anchor = AnchorStyles.Left;
+            chckBoxClienteGenerico.Text = "Cliente Genérico";
+            chckBoxClienteGenerico.CheckedChanged += clienteGenerico_CheckedChanged;
+            this.tblLayoutPanelEntidadDatos.Controls.Add(chckBoxClienteGenerico, 1, 4);
+        }
+        private void inicializarControlesProveedor(ModeloProveedor p_mod_proveedor)
+        {
+            this.lblContactoProveedor.Visible = true;
+            this.cmbBoxContactoProveedor.Visible = true;
+            this.cmbBoxContactoProveedor.DropDownStyle = ComboBoxStyle.DropDownList;
+            
+        }
         private void inicializarComboBoxPedidosProveedores(List<ModeloPedido> p_mod_pedidos)
         {
             var dataSource = new List<ComboBoxItem>();
@@ -138,6 +155,7 @@ namespace Vista
             this.cmbBoxPedidosProveedores.ValueMember = "Value";
             this.cmbBoxPedidosProveedores.DropDownStyle = ComboBoxStyle.DropDownList;
         }
+        
         private void asignarProvincias()
         {
             ModeloProvincia lcl_mod_provincia = new ModeloProvincia();
@@ -153,7 +171,7 @@ namespace Vista
                     provincias.Add(p);
                 }
             }
-            this.cargarDatosProvinciasEnCmbBoxProvincia(provincias);
+            this.cargarProvinciasEnControles(provincias);
         }
         #endregion
         #region Modelo -> Controles
@@ -219,7 +237,7 @@ namespace Vista
             //dataSource = new List<ComboBoxItem>();
             foreach(ModeloDomicilio domicilio in p_mod_entidad.domicilios)
             {
-                dataSource.Add(new ComboBoxItem() { Name = ModeloDomicilio.getValorNormalizado(domicilio), Value = domicilio});
+                dataSource.Add(new ComboBoxItem() { Name = domicilio.ToString(), Value = domicilio});
             }
             
             dataSource.Add(new ComboBoxItem() { Name = "Otro", Value = null });
@@ -244,7 +262,7 @@ namespace Vista
             dataSource = new List<ComboBoxItem>();
             foreach (ModeloTelefono telefono in p_mod_entidad.telefonos)
             {
-                dataSource.Add(new ComboBoxItem() { Name = ModeloTelefono.getValorNormalizado(telefono), Value = telefono});
+                dataSource.Add(new ComboBoxItem() { Name = telefono.ToString(), Value = telefono});
             }
             dataSource.Add(new ComboBoxItem() { Name = "Otro", Value = null });
             this.cmbBoxTelefonos.DataSource = dataSource;
@@ -261,6 +279,28 @@ namespace Vista
         private void cargarProveedorEnControles(ModeloProveedor p_mod_proveedor)
         {
             this.txtBoxRazonSocial.Text = p_mod_proveedor.razonSocial;
+            
+            this.cargarContactosProveedorEnControles(
+                ControladorBusqueda.buscar(new ModeloContactoProveedor(){proveedor = p_mod_proveedor},Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.CodigoEntidad_Proveedor)
+                );
+        }
+        private void cargarContactosProveedorEnControles(List<ModeloContactoProveedor> p_lst_mod_contactoProveedores)
+        {
+            var dataSource = new List<ComboBoxItem>();
+            if (p_lst_mod_contactoProveedores.Count == 0)
+            {
+                dataSource.Add(new ComboBoxItem() { Name = "Sin Contactos", Value = null });
+            }
+            else
+            {
+                foreach (ModeloContactoProveedor contacto in p_lst_mod_contactoProveedores)
+                {
+                    dataSource.Add(new ComboBoxItem() { Name = contacto.ToString(), Value = contacto });
+                }
+                dataSource.Add(new ComboBoxItem() { Name = "No asignar", Value = null });
+            }
+            this.cmbBoxContactoProveedor.DataSource = dataSource;
+            this.cmbBoxContactoProveedor.DropDownWidth= this.getDropDownWidth(this.cmbBoxContactoProveedor);
         }
         private void cargarDomicilioEnControles(ModeloDomicilio p_mod_domicilio)
         {
@@ -340,7 +380,7 @@ namespace Vista
             this.dgvArticulosVenta.DataSource = lineas;
         }
 
-        private void cargarDatosProvinciasEnCmbBoxProvincia(List<ModeloProvincia> p_lst_mod_provincias)
+        private void cargarProvinciasEnControles(List<ModeloProvincia> p_lst_mod_provincias)
         {
             var dataSource = new List<ComboBoxItem>();
             List<ModeloProvincia> provincias = p_lst_mod_provincias.OrderBy(i => i.provincia).ToList();
@@ -534,9 +574,17 @@ namespace Vista
         }
         #endregion
 
+        #region Button
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            int i = Convert.ToInt32(this.dgvArticulosVenta.CurrentRow.Cells["indice"].Value);
+            if(this.dgvArticulosVenta.CurrentRow == null)
+            {
+                MessageBox.Show("No hay línea de pedido seleccionada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int i = Convert.ToInt32(this.dgvArticulosVenta.CurrentRow.Cells["indice"].Value);            
+            
             frmPedidoCierre_EditarLineaPedido lcl_frm_editarLineaPedido = new frmPedidoCierre_EditarLineaPedido(controlador.pedidoActual.lineasPedido[i],controlador.pedidoActual.codigoTipoPedido);
             lcl_frm_editarLineaPedido.ShowDialog();
             if (lcl_frm_editarLineaPedido.DialogResult == System.Windows.Forms.DialogResult.OK)
@@ -546,9 +594,52 @@ namespace Vista
             }
         }
 
-       
-        #endregion    
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (this.dgvArticulosVenta.CurrentRow == null)
+            {
+                MessageBox.Show("No hay línea de pedido seleccionada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            int i = Convert.ToInt32(this.dgvArticulosVenta.CurrentRow.Cells["indice"].Value);
+            DialogResult dialogResult = MessageBox.Show("¿Esta seguro que desea eliminar la línea correspondiente al artículo " +
+                controlador.pedidoActual.lineasPedido[i].articulo.codigoArticuloProveedor + "?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+            {
+                controlador.pedidoActual.removeLineaPedido(controlador.pedidoActual.lineasPedido[i]);
+                this.cargarPedidoEnControles(controlador.pedidoActual);
+            }
+        }
 
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            if (controlador.pedidoActual.lineasPedido.Count == 0)
+            {
+                MessageBox.Show("No existen líneas en el pedido actual para imprimir", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DialogResult dialogResult = MessageBox.Show("Además de imprimir, ¿desea también guardar el pedido?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+            {
+                //guardar
+            }
+
+            //imprimir
+        }
+
+        #endregion
+
+        #region CheckedBox
+        private void clienteGenerico_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as CheckBox).Checked)
+            {
+                //hacer pertinente a cliente genérico
+            }
+        }
+        #endregion
+        #endregion
     }
 }

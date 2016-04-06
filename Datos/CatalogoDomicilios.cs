@@ -30,6 +30,7 @@ namespace Datos
             lcl_mod_domicilio.provincia.provincia = (p_drDomicilios["provincia"] != DBNull.Value) ? (string)p_drDomicilios["provincia"] : null;
             lcl_mod_domicilio.pais.codigo = (p_drDomicilios["codigo_pais"] != DBNull.Value) ? (string)p_drDomicilios["codigo_pais"] : null;
             lcl_mod_domicilio.pais.pais = (p_drDomicilios["pais"] != DBNull.Value) ? (string)p_drDomicilios["pais"] : null;
+            lcl_mod_domicilio.provincia.codigoPais = lcl_mod_domicilio.pais.codigo;
 
             return lcl_mod_domicilio;
         }

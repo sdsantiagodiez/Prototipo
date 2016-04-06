@@ -57,9 +57,10 @@ namespace Modelos
                    p_tipo == Constantes.TipoTelefono.Fax;
         }
         #endregion
-        public static string getValorNormalizado(ModeloTelefono p_mod_telefono)
+       
+        public override string ToString()
         {
-            return p_mod_telefono.tipo.ToString() + ", " + p_mod_telefono.numero.ToString();
+            return this.tipo.ToString() + ", " + this.numero.ToString();
         }
 
         #region Equals
