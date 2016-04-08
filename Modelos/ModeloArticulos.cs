@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
+    [Serializable]
    public class ModeloArticulos : Modelo
    {
        #region Getters/Setters

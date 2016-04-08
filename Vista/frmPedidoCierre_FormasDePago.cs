@@ -15,23 +15,25 @@ namespace Vista
     public partial class frmPedidoCierre_FormasDePago : Form
     {
         private ModeloPedido pedidoActual;
-
+        #region Constructores
         public frmPedidoCierre_FormasDePago()
         {
             InitializeComponent();
             this.inicializarDataGridView();
             this.inicializarComboBox();
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.Text = "Selección de Formas de Pago";
+            
+            this.pedidoActual = new ModeloPedido();
         }
         public frmPedidoCierre_FormasDePago(ModeloPedido p_mod_pedido) : this()
         {
-            this.pedidoActual = new ModeloPedido();
             this.pedidoActual = p_mod_pedido;
             this.cargarPedidoEnControles(this.pedidoActual);
-            this.cargarComboBox(this.pedidoActual);
         }
+        #endregion
         #region Métodos
-        
+
         #region Inicialización
         private void inicializarComboBox()
         {
@@ -69,7 +71,6 @@ namespace Vista
             DataGridViewRow row;
             int rowIndex;
 
-            FormaPago lcl_formaPagoRestante;
             foreach (FormaPago fp in p_mod_pedido.formasDePago)
             {
                 rowIndex = dgvFormasPago.Rows.Add();
@@ -78,6 +79,7 @@ namespace Vista
                 if (fp.restante)
                 {
                     this.cmbBoxFormaPagoRestante.SelectedItem = fp.forma;
+                    this.cargarComboBox(p_mod_pedido);
                 }
 
                 row.Cells["formaPago"].Value = Constantes.GetDescription<Constantes.FormaDePago>(fp.forma);
@@ -103,7 +105,6 @@ namespace Vista
         }
         #endregion
 
-
         public List<FormaPago> getFormasDePago()
         {
             return pedidoActual.formasDePago;
@@ -111,6 +112,8 @@ namespace Vista
         #endregion
         
         #region Eventos
+      
+        #region Button
         private void btnAgrearFormaPago_Click(object sender, EventArgs e)
         {
             FormaPago lcl_formaPago = new FormaPago();
@@ -146,7 +149,9 @@ namespace Vista
         {
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
-
+        #endregion
+       
+        #region ComboBox
         private void cmbBoxFormaPagoRestante_SelectionChangeCommitted(object sender, EventArgs e)
         {
             FormaPago lcl_formaPago = new FormaPago();
@@ -154,10 +159,8 @@ namespace Vista
             lcl_formaPago.restante = true;
             pedidoActual.addFormaPago(lcl_formaPago);
             this.cargarPedidoEnControles(pedidoActual);
-            this.cargarComboBox(this.pedidoActual);
         }
         #endregion
-
-       
+        #endregion
     }
 }

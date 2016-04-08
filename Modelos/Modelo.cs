@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace Modelos
 {
+    [Serializable]
     public class Modelo
     {
         /// <summary>

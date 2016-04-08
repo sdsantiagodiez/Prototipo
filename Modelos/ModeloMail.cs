@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
+    [Serializable]
     public class ModeloMail : Modelo
     {
         #region Getters/Setters

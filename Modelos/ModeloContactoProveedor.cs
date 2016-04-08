@@ -7,6 +7,7 @@ using LibreriaClasesCompartidas;
 
 namespace Modelos
 {
+    [Serializable]
     public class ModeloContactoProveedor : ModeloPersonas
     {
         #region Constructores

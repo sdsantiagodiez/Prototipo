@@ -97,6 +97,7 @@ namespace Vista
             this.cmbBoxTipoTelefono.DataSource = dataSource;
 
             this.cmbBoxFormaPago.DataSource = Enum.GetValues(typeof(Constantes.FormaDePago));
+            this.cmbBoxFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cmbBoxFormaPago.FormattingEnabled = true;
             this.cmbBoxFormaPago.Format += delegate(object sender, ListControlConvertEventArgs e)
             {
@@ -642,9 +643,9 @@ namespace Vista
                 return;
             }
 
-            int i = Convert.ToInt32(this.dgvArticulosVenta.CurrentRow.Cells["indice"].Value);            
-            
-            frmPedidoCierre_EditarLineaPedido lcl_frm_editarLineaPedido = new frmPedidoCierre_EditarLineaPedido(controlador.pedidoActual.lineasPedido[i],controlador.pedidoActual.codigoTipoPedido);
+            int i = Convert.ToInt32(this.dgvArticulosVenta.CurrentRow.Cells["indice"].Value);
+            ModeloLineaPedido lcl_mod_lineaPedido = ObjectCopier.Clone<ModeloLineaPedido>(controlador.pedidoActual.lineasPedido[i]);
+            frmPedidoCierre_EditarLineaPedido lcl_frm_editarLineaPedido = new frmPedidoCierre_EditarLineaPedido(lcl_mod_lineaPedido, controlador.pedidoActual.codigoTipoPedido);
             lcl_frm_editarLineaPedido.ShowDialog();
             if (lcl_frm_editarLineaPedido.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
@@ -706,11 +707,10 @@ namespace Vista
             
             if (lcl_formaDePago == Constantes.FormaDePago.Multiple)
             {
-                object pedido = new ModeloPedido();
-                pedido = controlador.pedidoActual as ModeloPedido;
+                ModeloPedido lcl_mod_pedido = ObjectCopier.Clone<ModeloPedido>(this.controlador.pedidoActual);
                 
                 //lcl_mod_pedido = new 
-                frmPedidoCierre_FormasDePago lcl_frm_formasDePago = new frmPedidoCierre_FormasDePago(pedido as ModeloPedido);
+                frmPedidoCierre_FormasDePago lcl_frm_formasDePago = new frmPedidoCierre_FormasDePago(lcl_mod_pedido);
                 lcl_frm_formasDePago.ShowDialog();
                 if (lcl_frm_formasDePago.DialogResult != System.Windows.Forms.DialogResult.OK)
                 {

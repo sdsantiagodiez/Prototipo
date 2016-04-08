@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Modelos
-{
+{       
+    [Serializable]
     public class ModeloPedido : Modelo
     {
         #region Getters/Setters
@@ -411,8 +412,8 @@ namespace Modelos
             this.formasDePago.Remove(formaPagoToRemove);
 
             
-            if (!this.actualizarMontoFormaPagoRestante())
-            {//Quiere decir que se removio formaPago con restante=true
+            if (!this.actualizarMontoFormaPagoRestante() && !p_formaPago.restante)
+            {//Quiere decir que se removio formaPago con restante=true y que no se esta reemplazando por otro restante
                 if (this.formasDePago.Count == 0)
                 {//Se agrega una forma de pago en caso de que no haya ninguna
                     this.formasDePago.Add(new FormaPago() { forma = LibreriaClasesCompartidas.Constantes.FormaDePago.Contado, restante = true});
@@ -448,7 +449,7 @@ namespace Modelos
         }
         #endregion
     }
-
+    [Serializable]
     public class FormaPago
     {
         LibreriaClasesCompartidas.Constantes.FormaDePago _forma;

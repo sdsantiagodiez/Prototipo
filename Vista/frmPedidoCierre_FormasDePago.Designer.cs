@@ -44,8 +44,8 @@
             this.btnAgrearFormaPago = new System.Windows.Forms.Button();
             this.btnQuitarFormaPago = new System.Windows.Forms.Button();
             this.tblLayoutPanelFormaPagoRestante = new System.Windows.Forms.TableLayoutPanel();
-            this.cmbBoxFormaPagoRestante = new System.Windows.Forms.ComboBox();
             this.lblFormaPagoRestante = new System.Windows.Forms.Label();
+            this.cmbBoxFormaPagoRestante = new System.Windows.Forms.ComboBox();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
             this.grpBoxFormaPago.SuspendLayout();
@@ -263,15 +263,6 @@
             this.tblLayoutPanelFormaPagoRestante.Size = new System.Drawing.Size(437, 107);
             this.tblLayoutPanelFormaPagoRestante.TabIndex = 4;
             // 
-            // cmbBoxFormaPagoRestante
-            // 
-            this.cmbBoxFormaPagoRestante.FormattingEnabled = true;
-            this.cmbBoxFormaPagoRestante.Location = new System.Drawing.Point(3, 56);
-            this.cmbBoxFormaPagoRestante.Name = "cmbBoxFormaPagoRestante";
-            this.cmbBoxFormaPagoRestante.Size = new System.Drawing.Size(121, 21);
-            this.cmbBoxFormaPagoRestante.TabIndex = 7;
-            this.cmbBoxFormaPagoRestante.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxFormaPagoRestante_SelectionChangeCommitted);
-            // 
             // lblFormaPagoRestante
             // 
             this.lblFormaPagoRestante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -281,6 +272,15 @@
             this.lblFormaPagoRestante.Size = new System.Drawing.Size(127, 13);
             this.lblFormaPagoRestante.TabIndex = 4;
             this.lblFormaPagoRestante.Text = "Forma De Pago Principal:";
+            // 
+            // cmbBoxFormaPagoRestante
+            // 
+            this.cmbBoxFormaPagoRestante.FormattingEnabled = true;
+            this.cmbBoxFormaPagoRestante.Location = new System.Drawing.Point(3, 56);
+            this.cmbBoxFormaPagoRestante.Name = "cmbBoxFormaPagoRestante";
+            this.cmbBoxFormaPagoRestante.Size = new System.Drawing.Size(121, 21);
+            this.cmbBoxFormaPagoRestante.TabIndex = 7;
+            this.cmbBoxFormaPagoRestante.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxFormaPagoRestante_SelectionChangeCommitted);
             // 
             // frmPedidoCierre_FormasDePago
             // 

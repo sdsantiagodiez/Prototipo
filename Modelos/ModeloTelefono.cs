@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using LibreriaClasesCompartidas;
 namespace Modelos
 {
+    [Serializable]
     public class ModeloTelefono : Modelo
     {
         #region Getters/Setters

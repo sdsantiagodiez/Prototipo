@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
+    [Serializable]
     public class ModeloLineaPedido : Modelo
     {
         #region Getters/Setters
@@ -207,7 +208,7 @@ namespace Modelos
         #endregion
         #endregion
     }
-
+    [Serializable]
     public class ModeloDescuento
     {
         public ModeloDescuento()

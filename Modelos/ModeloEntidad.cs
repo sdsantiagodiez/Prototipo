@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
+    [Serializable]
     public class ModeloEntidad : Modelo
     {
         #region Constructores
@@ -175,7 +176,7 @@ namespace Modelos
                 && this.Equals(this.domicilios, p_mod_entidad.domicilios);
         }
         #endregion
-
+        [Serializable]
         public class CUIT
         {
             #region Getters/Setters

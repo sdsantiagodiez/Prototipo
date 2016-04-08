@@ -7,6 +7,7 @@ using LibreriaClasesCompartidas;
 
 namespace Modelos
 {
+    [Serializable]
     /// <summary>
     /// Una persona puede ser un cliente, contacto de proveedor o usuario de sistema
     /// </summary>
