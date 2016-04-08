@@ -18,8 +18,7 @@ namespace Controladores
         /// <returns>Lista de personas</returns>
         public static List<ModeloEntidad> getEntidades()
         {
-            ModeloEntidad lcl_mod_entidad = null;
-            return ControladorBusqueda.buscar(lcl_mod_entidad, Constantes.ParametrosBusqueda.All);
+            return ControladorBusqueda.buscar(new ModeloEntidad(), Constantes.ParametrosBusqueda.All);
         }
         /// <summary>
         /// Retorna todas las personas de la base de datos
@@ -27,8 +26,7 @@ namespace Controladores
         /// <returns>Lista de personas</returns>
         public static List<ModeloPersonas> getPersonas()
         {
-            ModeloPersonas lcl_mod_persona = new ModeloPersonas();
-            return ControladorBusqueda.buscar(lcl_mod_persona, Constantes.ParametrosBusqueda.All);
+            return ControladorBusqueda.buscar(new ModeloPersonas(), Constantes.ParametrosBusqueda.All);
         }
         /// <summary>
         /// Retorna todos los proveedores de la base de datos
@@ -36,8 +34,7 @@ namespace Controladores
         /// <returns>Lista de personas</returns>
         public static  List<ModeloProveedor> getProveedores()
         {
-            ModeloProveedor lcl_mod_proveedor = new ModeloProveedor();
-            return ControladorBusqueda.buscar(lcl_mod_proveedor, Constantes.ParametrosBusqueda.All);
+            return ControladorBusqueda.buscar(new ModeloProveedor(), Constantes.ParametrosBusqueda.All);
         }
         public static List<ModeloCliente> getClientes()
         {
@@ -60,8 +57,7 @@ namespace Controladores
         /// <returns>Lista de Articulos</returns>
         public static List<ModeloArticulos> getArticulos()
         {
-            ModeloArticulos lcl_mod_articulo = new ModeloArticulos();
-            return ControladorBusqueda.buscar(lcl_mod_articulo, Constantes.ParametrosBusqueda.All);
+            return ControladorBusqueda.buscar(new ModeloArticulos(), Constantes.ParametrosBusqueda.All);
         }
         /// <summary>
         /// Retorna todos los ArticulosProveedores de la base de datos

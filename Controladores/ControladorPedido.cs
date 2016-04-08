@@ -70,9 +70,7 @@ namespace Controladores
         }
         public void buscarCliente(string p_dni)
         {
-            ModeloCliente lcl_mod_cliente = new ModeloCliente();
-            lcl_mod_cliente.dni = p_dni;
-            entidadActual = ControladorBusqueda.buscar(lcl_mod_cliente, Constantes.ParametrosBusqueda.Entidades.Personas.Dni)[0];
+            entidadActual = ControladorBusqueda.buscar(new ModeloCliente(){dni=p_dni}, Constantes.ParametrosBusqueda.Entidades.Personas.Dni)[0];
         }
 
         public ModeloArticuloProveedores getArticuloBusqueda(int p_indice)
@@ -99,7 +97,34 @@ namespace Controladores
             //CAMBIOS
         }
 
-        public void cerrarPedido()
+        public bool cerrarPedido()
+        {
+
+            return true;
+        }
+        private bool validarFormaDePago()
+        {
+            if (this.pedidoActual.formasDePago.Count == 1)
+            {
+                this.pedidoActual.formasDePago[0].monto = this.pedidoActual.getTotal();
+                return true;
+            }
+
+            decimal total = new decimal();
+            foreach (FormaPago fp in this.pedidoActual.formasDePago)
+            {
+                total += fp.monto;
+            }
+            if (total != this.pedidoActual.getTotal())
+            {
+                return false;
+                //mensaje de error que debe revisar las formas de pago
+            }
+            return true;
+
+        }
+
+        public void guardarPedido()
         {
             ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
             ModeloArticuloProveedores lcl_mod_articuloProveedores = new ModeloArticuloProveedores();

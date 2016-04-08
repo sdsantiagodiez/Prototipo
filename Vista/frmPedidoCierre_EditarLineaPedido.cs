@@ -24,7 +24,6 @@ namespace Vista
             this.txtBoxCodigoOriginal.Enabled =
                 this.txtBoxCodigoArticuloProveedor.Enabled =
                 this.txtBoxDescripcion.Enabled =
-                //this.txtBoxValorUnitario.Enabled =
                 this.txtBoxValorParcialSinDescuento.Enabled =
                 this.txtBoxValorParcialConDescuento.Enabled = false;
         }

@@ -97,6 +97,11 @@ namespace Vista
             this.cmbBoxTipoTelefono.DataSource = dataSource;
 
             this.cmbBoxFormaPago.DataSource = Enum.GetValues(typeof(Constantes.FormaDePago));
+            this.cmbBoxFormaPago.FormattingEnabled = true;
+            this.cmbBoxFormaPago.Format += delegate(object sender, ListControlConvertEventArgs e)
+            {
+                e.Value = Constantes.GetDescription<Constantes.FormaDePago>((Constantes.FormaDePago)e.Value);
+            };
 
             //Populo combobox de provincias
             this.asignarProvincias();
@@ -128,13 +133,28 @@ namespace Vista
             chckBoxClienteGenerico.Text = "Cliente Genérico";
             chckBoxClienteGenerico.CheckedChanged += clienteGenerico_CheckedChanged;
             this.tblLayoutPanelEntidadDatos.Controls.Add(chckBoxClienteGenerico, 1, 4);
+
+            this.cmbBoxTipoComprobante.FormattingEnabled = true;
+            this.cmbBoxTipoComprobante.Format += delegate(object sender, ListControlConvertEventArgs e)
+            {
+                e.Value = Constantes.GetDescription<Constantes.TipoComprobanteVenta>((Constantes.TipoComprobanteVenta)e.Value);
+            };
+
+            this.cmbBoxTipoComprobante.DataSource = Enum.GetValues(typeof(Constantes.TipoComprobanteVenta));
         }
         private void inicializarControlesProveedor(ModeloProveedor p_mod_proveedor)
         {
             this.lblContactoProveedor.Visible = true;
             this.cmbBoxContactoProveedor.Visible = true;
             this.cmbBoxContactoProveedor.DropDownStyle = ComboBoxStyle.DropDownList;
-            
+
+            this.cmbBoxTipoComprobante.FormattingEnabled = true;
+            this.cmbBoxTipoComprobante.Format += delegate(object sender, ListControlConvertEventArgs e)
+                {
+                    e.Value = Constantes.GetDescription<Constantes.TipoComprobanteCompra>((Constantes.TipoComprobanteCompra)e.Value);
+                };
+
+            this.cmbBoxTipoComprobante.DataSource = Enum.GetValues(typeof(Constantes.TipoComprobanteCompra));
         }
         private void inicializarComboBoxPedidosProveedores(List<ModeloPedido> p_mod_pedidos)
         {
@@ -178,11 +198,12 @@ namespace Vista
         private void cargarPedidoEnControles(ModeloPedido p_mod_pedido)
         {
             this.controlador.pedidoActual = p_mod_pedido;
-
+            
             this.cargarDatosPedidoEnControles(p_mod_pedido);
             this.cargarLineasEnControles(p_mod_pedido);
             this.cargarEntidadEnControles(p_mod_pedido.entidad);
-            
+            this.cargarFormaPagoEnControles(p_mod_pedido.formasDePago);
+
             this.cargarDomicilioEnControles(p_mod_pedido.domicilioDeFacturacion);
             this.cargarTelefonoEnControles(p_mod_pedido.telefonoContacto);
             this.cargarMailEnControles(p_mod_pedido.mailContacto);
@@ -191,9 +212,6 @@ namespace Vista
         private void cargarDatosPedidoEnControles(ModeloPedido p_mod_pedido)
         {
             this.txtBoxNumeroPedido.Text = p_mod_pedido.numeroPedido != 0 ? p_mod_pedido.numeroPedido.ToString() : "";
-            //Puede haber más de 1 forma de pago. 40% en contado y 60% en tarjeta, por ejemplo
-            //this.cmbBoxFormaPago.SelectedValue = p_mod_pedido.formasDePago!= null? p_mod_pedido.formasDePago[0]: Constantes.FormaDePago.Contado;
-            //this.cmbBoxTipoComprobante.SelectedValue = 
             this.dtpFechaPedido.Value = p_mod_pedido.fecha;
             
             this.txtBoxIVAPorcentaje.Text = p_mod_pedido.iva.ToString();
@@ -379,7 +397,25 @@ namespace Vista
 
             this.dgvArticulosVenta.DataSource = lineas;
         }
-
+        private void cargarFormaPagoEnControles(List<FormaPago> p_formaPago)
+        {
+            int cantidadFormasPago = p_formaPago.Count;
+            switch (cantidadFormasPago)
+            {
+                case 0:
+                    //ver como se podría llevar el case 0 al modelo.
+                    this.controlador.pedidoActual.formasDePago.Clear();
+                    this.controlador.pedidoActual.addFormaPago(new FormaPago() { forma = Constantes.FormaDePago.Contado, restante = true});
+                    this.cmbBoxFormaPago.SelectedItem = this.controlador.pedidoActual.formasDePago[0].forma;
+                    break;
+                case 1:
+                    this.cmbBoxFormaPago.SelectedItem = this.controlador.pedidoActual.formasDePago[0].forma;
+                    break;
+                default :
+                    this.cmbBoxFormaPago.SelectedItem = Constantes.FormaDePago.Multiple;
+                    break;
+            }
+        }
         private void cargarProvinciasEnControles(List<ModeloProvincia> p_lst_mod_provincias)
         {
             var dataSource = new List<ComboBoxItem>();
@@ -397,13 +433,24 @@ namespace Vista
         #region Controles -> Modelo
         private ModeloPedido cargarControlEnPedido()
         {
+            //incluido todo lo monetario en controlador.pedidoActual, entidad si es pedido a proveedor,
+            //y forma(s) de pago
             ModeloPedido lcl_mod_pedido = controlador.pedidoActual;
             if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
             {
                 lcl_mod_pedido.entidad = this.cargarControlEnCliente();
                 //el proveedor ya esta en el pedido
             }
-            
+            if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
+            {
+                
+            }
+
+            lcl_mod_pedido.domicilioDeFacturacion = this.cargarControlEnDomicilio();
+            lcl_mod_pedido.mailContacto = this.cargarControlEnMail();
+            lcl_mod_pedido.telefonoContacto = this.cargarControlEnTelefono();
+            lcl_mod_pedido.observaciones = this.rchTextBoxObservacionesPedido.Text;
+
             return lcl_mod_pedido;
         }
         private ModeloEntidad cargarControlEnCliente()
@@ -412,22 +459,34 @@ namespace Vista
 
             return lcl_mod_entidad;
         }
+        private ModeloContactoProveedor cargarControlEnContactoProveedor()
+        {
+            return (ModeloContactoProveedor)this.cmbBoxContactoProveedor.SelectedValue;
+        }
         private ModeloDomicilio cargarControlEnDomicilio()
         {
             ModeloDomicilio lcl_mod_domicilio = new ModeloDomicilio();
-
+            lcl_mod_domicilio.calle = this.txtBoxCalle.Text;
+            lcl_mod_domicilio.numero = this.txtBoxNumeroDomicilio.Text; 
+            lcl_mod_domicilio.piso = this.txtBoxPiso.Text;
+            lcl_mod_domicilio.departamento = this.txtBoxDepartamento.Text;
+            lcl_mod_domicilio.ciudad = this.txtBoxCiudad.Text;
+            lcl_mod_domicilio.codigoPostal = this.txtBoxCodigoPostal.Text; 
+            lcl_mod_domicilio.provincia = (ModeloProvincia)this.cmbBoxProvincia.SelectedValue;
+            lcl_mod_domicilio.pais = (ModeloPais)this.cmbBoxPais.SelectedValue;
             return lcl_mod_domicilio;
         }
         private ModeloTelefono cargarControlEnTelefono()
         {
             ModeloTelefono lcl_mod_telefono = new ModeloTelefono();
-
+            lcl_mod_telefono.numero = this.txtBoxTelefono.Text; ;
+            lcl_mod_telefono.tipo = this.cmbBoxTipoTelefono.SelectedValue.ToString();
             return lcl_mod_telefono;
         }
         private ModeloMail cargarControlEnMail()
         {
             ModeloMail lcl_mod_mail = new ModeloMail();
-
+            lcl_mod_mail.mail = this.txtBoxMail.Text;
             return lcl_mod_mail;
         }
         #endregion
@@ -640,6 +699,40 @@ namespace Vista
             }
         }
         #endregion
+
+        private void cmbBoxFormaPago_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            LibreriaClasesCompartidas.Constantes.FormaDePago lcl_formaDePago = (LibreriaClasesCompartidas.Constantes.FormaDePago)this.cmbBoxFormaPago.SelectedValue;
+            
+            if (lcl_formaDePago == Constantes.FormaDePago.Multiple)
+            {
+                object pedido = new ModeloPedido();
+                pedido = controlador.pedidoActual as ModeloPedido;
+                
+                //lcl_mod_pedido = new 
+                frmPedidoCierre_FormasDePago lcl_frm_formasDePago = new frmPedidoCierre_FormasDePago(pedido as ModeloPedido);
+                lcl_frm_formasDePago.ShowDialog();
+                if (lcl_frm_formasDePago.DialogResult != System.Windows.Forms.DialogResult.OK)
+                {
+                    return;
+                }
+                //se agrega .ToList() porque si no, no corre y no se usa directamente en el foreach porque esta linkeada con 
+                //controlador.pedidoActual.formasDePago, entonces despues del Clear() da  count 0
+                List<FormaPago> lcl_lst_formasPago = lcl_frm_formasDePago.getFormasDePago().ToList();
+                controlador.pedidoActual.formasDePago.Clear();
+
+                foreach (FormaPago fp in lcl_lst_formasPago)
+                {
+                    controlador.pedidoActual.addFormaPago(fp);
+                }
+            }
+            else
+            {
+                controlador.pedidoActual.formasDePago.Clear();
+                controlador.pedidoActual.addFormaPago(new FormaPago() { forma = lcl_formaDePago, restante = true});
+            }
+            this.cargarPedidoEnControles(this.controlador.pedidoActual);
+        }
         #endregion
     }
 }

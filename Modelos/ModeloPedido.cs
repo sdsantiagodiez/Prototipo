@@ -147,6 +147,7 @@ namespace Modelos
             this.fecha = DateTime.Today;
             this.descuento_1 = new ModeloDescuento();
             this.descuento_2 = new ModeloDescuento();
+            this.formasDePago = new List<FormaPago>();
         }
 
         public ModeloPedido(ModeloEntidad p_mod_entidad) : this()
@@ -316,7 +317,115 @@ namespace Modelos
         {
             lineasPedido = new List<ModeloLineaPedido>();
         }
-        
+
+        private bool actualizarMontoFormaPagoRestante()
+        {
+            decimal valor = this.getMontoFormaPagoRestante();
+            if (valor < 0)
+            {
+                // no se puede porque se ha asignado más monto del que se debe pagar
+                return false;
+            }
+
+            foreach (FormaPago fp in this.formasDePago)
+            {
+                if (fp.restante)
+                {
+                    //se asigna valor
+                    fp.monto = valor;
+                    return true;
+                }
+
+            }
+            //no hay formaDePago designada como restante
+            return false;
+        }
+        private decimal getMontoFormaPagoRestante()
+        {
+            decimal valor = new decimal();
+            foreach (FormaPago fp in this.formasDePago)
+            {
+                if (!fp.restante)
+                {
+                    valor += fp.monto;
+                }
+            }
+            return this.getTotal() - valor;
+        }
+
+        public bool addFormaPago(FormaPago p_formaPago)
+        {
+            if (!p_formaPago.restante)
+            {
+                if ((this.getMontoFormaPagoRestante() - p_formaPago.monto) < 0)
+                    //el monto distribuido en los distintos pagos es mayor al que hay que pagar
+                    return false;
+            }
+
+            //Eliminamos la forma de pago seteado como restante, si la nueva a agregar es restante
+            if(p_formaPago.restante)
+            {
+                //se agrega .ToList() porque si no, no corre
+                foreach (FormaPago fp in this.formasDePago.ToList())
+                {
+                    if (fp.restante)
+                    {
+                        this.removeFormaPago(fp);
+                    }
+                }
+            }
+
+            bool modificado = false;
+            foreach(FormaPago fp in this.formasDePago)
+            {
+                //si la forma de pago ya existe, se suman los montos
+                if (fp.forma == p_formaPago.forma)
+                {
+                    fp.monto += p_formaPago.monto;
+                    fp.restante = p_formaPago.restante;
+                    modificado = true;
+                    break;
+                }
+            }
+            if (!modificado)
+            {
+                this.formasDePago.Add(p_formaPago);
+            }
+
+            return this.actualizarMontoFormaPagoRestante();
+
+        }
+        public bool removeFormaPago(FormaPago p_formaPago)
+        {
+            if (p_formaPago.restante)
+            {
+                //no se puede eliminar restante. Sólo se puede reemplazar
+                //return false;
+            }
+            FormaPago formaPagoToRemove = this.formasDePago.FirstOrDefault(fp => fp.forma == p_formaPago.forma);
+            if (formaPagoToRemove == null)
+            {
+                return false;
+            }
+
+            this.formasDePago.Remove(formaPagoToRemove);
+
+            
+            if (!this.actualizarMontoFormaPagoRestante())
+            {//Quiere decir que se removio formaPago con restante=true
+                if (this.formasDePago.Count == 0)
+                {//Se agrega una forma de pago en caso de que no haya ninguna
+                    this.formasDePago.Add(new FormaPago() { forma = LibreriaClasesCompartidas.Constantes.FormaDePago.Contado, restante = true});
+                }
+                else
+                {//Se establece la primer formaPago en la lista como restante=true
+                    this.formasDePago[0].restante = true;
+                }
+                this.actualizarMontoFormaPagoRestante();
+            }
+            return true;
+        }
+
         #endregion
 
         #region Equals
@@ -354,6 +463,13 @@ namespace Modelos
         {
             get { return _monto; }
             set { _monto = value; }
+        }
+
+        bool _restante;
+        public bool restante
+        {
+            get { return _restante; }
+            set { _restante = value; }
         }
     }
 }

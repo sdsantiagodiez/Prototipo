@@ -110,6 +110,12 @@
     <Compile Include="frmEnConstruccion.Designer.cs">
       <DependentUpon>frmEnConstruccion.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPedidoCierre_FormasDePago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPedidoCierre_FormasDePago.Designer.cs">
+      <DependentUpon>frmPedidoCierre_FormasDePago.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPedidoNuevo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEnConstruccion.resx">
       <DependentUpon>frmEnConstruccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPedidoCierre_FormasDePago.resx">
+      <DependentUpon>frmPedidoCierre_FormasDePago.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPedidoNuevo.resx">
       <DependentUpon>frmPedidoNuevo.cs</DependentUpon>

@@ -148,29 +148,65 @@ namespace LibreriaClasesCompartidas
         public enum FormaDePago
         {
             Contado =1,
+            [System.ComponentModel.Description("Crédito")]
             Credito=2,
+            [System.ComponentModel.Description("Débito")]
             Debito=3,
             Cheque=4,
-            Otro=5
+            Otro=5,
+            [System.ComponentModel.Description("Múltiple")]
+            Multiple=6
         }
 
         public enum TipoComprobanteVenta
         {
             Presupuesto =1,
             Ticket=2,
-            [EnumMember(Value = "Factura A")] 
+            [System.ComponentModel.Description("Factura A")]
             Factura_A = 3,
-            [EnumMember(Value = "Factura B")] 
+            [System.ComponentModel.Description("Factura B")]
             Factura_B=4,
-            [EnumMember(Value = "Factura X")] 
+            [System.ComponentModel.Description("Factura X")]
             Factura_X=5,
             Reserva=6,
-            Devolución=7
+            [System.ComponentModel.Description("Devolución")]
+            Devolucion=7,
+            
+            Otro = 0
         }
+      
         public enum TipoComprobanteCompra
         {
-            [EnumMember(Value = "Pedido a Proveedor")]
-            Pedido_Proveedor = 1
+            [System.ComponentModel.Description("Pedido a Proveedor")]
+            Pedido_Proveedor = 1,
+            
+            Otro = 0
+        }
+        
+        public static string GetDescription<T>(this T enumerationValue)
+             where T : struct
+        {
+            Type type = enumerationValue.GetType();
+            if (!type.IsEnum)
+            {
+                throw new ArgumentException("EnumerationValue must be of Enum type", "enumerationValue");
+            }
+
+            //Intenta encontrar si el enum tiene descripción
+            System.Reflection.MemberInfo[] memberInfo = type.GetMember(enumerationValue.ToString());
+            if (memberInfo != null && memberInfo.Length > 0)
+            {
+                object[] attrs = memberInfo[0].GetCustomAttributes(typeof(System.ComponentModel.DescriptionAttribute), false);
+
+                if (attrs != null && attrs.Length > 0)
+                {
+                    //retorna descripción del enum
+                    return ((System.ComponentModel.DescriptionAttribute)attrs[0]).Description;
+                }
+            }
+            //Si no hay descripción, devuelve ToString()
+            return enumerationValue.ToString();
+
         }
 
         public static class TiposArticulo
@@ -201,7 +237,6 @@ namespace LibreriaClasesCompartidas
             public const string Datos_Reportes = "Encargado de Reportes";
             public const string Admin = "Admin";
         }
-
     }
     
 }

@@ -50,7 +50,7 @@
             this.lblCodigoArticuloProveedor = new System.Windows.Forms.Label();
             this.grpBoxDescuentos = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelDescuentos = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tblLayoutPanelDescuentosDatos = new System.Windows.Forms.TableLayoutPanel();
             this.txtBoxDescuentoPorcentaje = new System.Windows.Forms.TextBox();
             this.lblPorcentajeDescuento = new System.Windows.Forms.Label();
             this.txtBoxDescuentoNeto = new System.Windows.Forms.TextBox();
@@ -61,7 +61,7 @@
             this.tblLayoutPanelDescuentosBotones = new System.Windows.Forms.TableLayoutPanel();
             this.btnAgrearDescuento = new System.Windows.Forms.Button();
             this.btnQuitarDescuento = new System.Windows.Forms.Button();
-            this.tblLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tblLayoutPanelBotones = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.tbleLayoutPanelPrincipal.SuspendLayout();
@@ -73,10 +73,10 @@
             this.tblLayoutPanelCodigos.SuspendLayout();
             this.grpBoxDescuentos.SuspendLayout();
             this.tblLayoutPanelDescuentos.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tblLayoutPanelDescuentosDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDescuentos)).BeginInit();
             this.tblLayoutPanelDescuentosBotones.SuspendLayout();
-            this.tblLayoutPanel1.SuspendLayout();
+            this.tblLayoutPanelBotones.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbleLayoutPanelPrincipal
@@ -85,7 +85,7 @@
             this.tbleLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tbleLayoutPanelPrincipal.Controls.Add(this.grpBoxArticulo, 0, 0);
             this.tbleLayoutPanelPrincipal.Controls.Add(this.grpBoxDescuentos, 0, 1);
-            this.tbleLayoutPanelPrincipal.Controls.Add(this.tblLayoutPanel1, 0, 2);
+            this.tbleLayoutPanelPrincipal.Controls.Add(this.tblLayoutPanelBotones, 0, 2);
             this.tbleLayoutPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbleLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 0);
             this.tbleLayoutPanelPrincipal.Name = "tbleLayoutPanelPrincipal";
@@ -227,8 +227,8 @@
             // tblLayoutPanelDescripcion
             // 
             this.tblLayoutPanelDescripcion.ColumnCount = 2;
-            this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.76471F));
+            this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.23529F));
             this.tblLayoutPanelDescripcion.Controls.Add(this.lblDescripcion, 0, 0);
             this.tblLayoutPanelDescripcion.Controls.Add(this.txtBoxDescripcion, 1, 0);
             this.tblLayoutPanelDescripcion.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -243,7 +243,7 @@
             // 
             this.lblDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(19, 12);
+            this.lblDescripcion.Location = new System.Drawing.Point(34, 12);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(63, 13);
             this.lblDescripcion.TabIndex = 1;
@@ -252,18 +252,18 @@
             // txtBoxDescripcion
             // 
             this.txtBoxDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxDescripcion.Location = new System.Drawing.Point(88, 9);
+            this.txtBoxDescripcion.Location = new System.Drawing.Point(103, 9);
             this.txtBoxDescripcion.Name = "txtBoxDescripcion";
-            this.txtBoxDescripcion.Size = new System.Drawing.Size(334, 20);
+            this.txtBoxDescripcion.Size = new System.Drawing.Size(319, 20);
             this.txtBoxDescripcion.TabIndex = 4;
             // 
             // tblLayoutPanelCodigos
             // 
             this.tblLayoutPanelCodigos.ColumnCount = 4;
-            this.tblLayoutPanelCodigos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.79105F));
-            this.tblLayoutPanelCodigos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.20895F));
+            this.tblLayoutPanelCodigos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.25381F));
+            this.tblLayoutPanelCodigos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.74619F));
             this.tblLayoutPanelCodigos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
-            this.tblLayoutPanelCodigos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
+            this.tblLayoutPanelCodigos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
             this.tblLayoutPanelCodigos.Controls.Add(this.txtBoxCodigoArticuloProveedor, 3, 0);
             this.tblLayoutPanelCodigos.Controls.Add(this.lblCodigoOriginal, 0, 0);
             this.tblLayoutPanelCodigos.Controls.Add(this.txtBoxCodigoOriginal, 1, 0);
@@ -279,34 +279,34 @@
             // txtBoxCodigoArticuloProveedor
             // 
             this.txtBoxCodigoArticuloProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCodigoArticuloProveedor.Location = new System.Drawing.Point(299, 9);
+            this.txtBoxCodigoArticuloProveedor.Location = new System.Drawing.Point(298, 9);
             this.txtBoxCodigoArticuloProveedor.Name = "txtBoxCodigoArticuloProveedor";
-            this.txtBoxCodigoArticuloProveedor.Size = new System.Drawing.Size(123, 20);
+            this.txtBoxCodigoArticuloProveedor.Size = new System.Drawing.Size(124, 20);
             this.txtBoxCodigoArticuloProveedor.TabIndex = 3;
             // 
             // lblCodigoOriginal
             // 
             this.lblCodigoOriginal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCodigoOriginal.AutoSize = true;
-            this.lblCodigoOriginal.Location = new System.Drawing.Point(37, 6);
+            this.lblCodigoOriginal.Location = new System.Drawing.Point(18, 12);
             this.lblCodigoOriginal.Name = "lblCodigoOriginal";
-            this.lblCodigoOriginal.Size = new System.Drawing.Size(43, 26);
+            this.lblCodigoOriginal.Size = new System.Drawing.Size(78, 13);
             this.lblCodigoOriginal.TabIndex = 0;
             this.lblCodigoOriginal.Text = "Código Original";
             // 
             // txtBoxCodigoOriginal
             // 
             this.txtBoxCodigoOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCodigoOriginal.Location = new System.Drawing.Point(86, 9);
+            this.txtBoxCodigoOriginal.Location = new System.Drawing.Point(102, 9);
             this.txtBoxCodigoOriginal.Name = "txtBoxCodigoOriginal";
-            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(109, 20);
+            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(92, 20);
             this.txtBoxCodigoOriginal.TabIndex = 2;
             // 
             // lblCodigoArticuloProveedor
             // 
             this.lblCodigoArticuloProveedor.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCodigoArticuloProveedor.AutoSize = true;
-            this.lblCodigoArticuloProveedor.Location = new System.Drawing.Point(212, 6);
+            this.lblCodigoArticuloProveedor.Location = new System.Drawing.Point(211, 6);
             this.lblCodigoArticuloProveedor.Name = "lblCodigoArticuloProveedor";
             this.lblCodigoArticuloProveedor.Size = new System.Drawing.Size(81, 26);
             this.lblCodigoArticuloProveedor.TabIndex = 1;
@@ -329,7 +329,7 @@
             this.tblLayoutPanelDescuentos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tblLayoutPanelDescuentos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tblLayoutPanelDescuentos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tblLayoutPanelDescuentos.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tblLayoutPanelDescuentos.Controls.Add(this.tblLayoutPanelDescuentosDatos, 0, 0);
             this.tblLayoutPanelDescuentos.Controls.Add(this.dgvDescuentos, 2, 0);
             this.tblLayoutPanelDescuentos.Controls.Add(this.tblLayoutPanelDescuentosBotones, 1, 0);
             this.tblLayoutPanelDescuentos.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -340,28 +340,28 @@
             this.tblLayoutPanelDescuentos.Size = new System.Drawing.Size(431, 168);
             this.tblLayoutPanelDescuentos.TabIndex = 1;
             // 
-            // tableLayoutPanel2
+            // tblLayoutPanelDescuentosDatos
             // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.txtBoxDescuentoPorcentaje, 0, 5);
-            this.tableLayoutPanel2.Controls.Add(this.lblPorcentajeDescuento, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.txtBoxDescuentoNeto, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.lblDescuentoNeto, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.lblDescuentoDescripcion, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.txtBoxDescuentoDescripcion, 0, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 6;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(134, 162);
-            this.tableLayoutPanel2.TabIndex = 4;
+            this.tblLayoutPanelDescuentosDatos.ColumnCount = 1;
+            this.tblLayoutPanelDescuentosDatos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelDescuentosDatos.Controls.Add(this.txtBoxDescuentoPorcentaje, 0, 5);
+            this.tblLayoutPanelDescuentosDatos.Controls.Add(this.lblPorcentajeDescuento, 0, 4);
+            this.tblLayoutPanelDescuentosDatos.Controls.Add(this.txtBoxDescuentoNeto, 0, 3);
+            this.tblLayoutPanelDescuentosDatos.Controls.Add(this.lblDescuentoNeto, 0, 2);
+            this.tblLayoutPanelDescuentosDatos.Controls.Add(this.lblDescuentoDescripcion, 0, 0);
+            this.tblLayoutPanelDescuentosDatos.Controls.Add(this.txtBoxDescuentoDescripcion, 0, 1);
+            this.tblLayoutPanelDescuentosDatos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblLayoutPanelDescuentosDatos.Location = new System.Drawing.Point(3, 3);
+            this.tblLayoutPanelDescuentosDatos.Name = "tblLayoutPanelDescuentosDatos";
+            this.tblLayoutPanelDescuentosDatos.RowCount = 6;
+            this.tblLayoutPanelDescuentosDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tblLayoutPanelDescuentosDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tblLayoutPanelDescuentosDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tblLayoutPanelDescuentosDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tblLayoutPanelDescuentosDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tblLayoutPanelDescuentosDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tblLayoutPanelDescuentosDatos.Size = new System.Drawing.Size(134, 162);
+            this.tblLayoutPanelDescuentosDatos.TabIndex = 4;
             // 
             // txtBoxDescuentoPorcentaje
             // 
@@ -468,25 +468,26 @@
             this.btnQuitarDescuento.UseVisualStyleBackColor = true;
             this.btnQuitarDescuento.Click += new System.EventHandler(this.btnQuitarDescuento_Click);
             // 
-            // tblLayoutPanel1
+            // tblLayoutPanelBotones
             // 
-            this.tblLayoutPanel1.ColumnCount = 2;
-            this.tblLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanel1.Controls.Add(this.btnCancelar, 1, 0);
-            this.tblLayoutPanel1.Controls.Add(this.btnGuardar, 0, 0);
-            this.tblLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanel1.Location = new System.Drawing.Point(3, 389);
-            this.tblLayoutPanel1.Name = "tblLayoutPanel1";
-            this.tblLayoutPanel1.RowCount = 1;
-            this.tblLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblLayoutPanel1.Size = new System.Drawing.Size(437, 43);
-            this.tblLayoutPanel1.TabIndex = 2;
+            this.tblLayoutPanelBotones.ColumnCount = 2;
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelBotones.Controls.Add(this.btnCancelar, 1, 0);
+            this.tblLayoutPanelBotones.Controls.Add(this.btnGuardar, 0, 0);
+            this.tblLayoutPanelBotones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblLayoutPanelBotones.Location = new System.Drawing.Point(3, 389);
+            this.tblLayoutPanelBotones.Name = "tblLayoutPanelBotones";
+            this.tblLayoutPanelBotones.RowCount = 1;
+            this.tblLayoutPanelBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblLayoutPanelBotones.Size = new System.Drawing.Size(437, 43);
+            this.tblLayoutPanelBotones.TabIndex = 2;
             // 
             // btnCancelar
             // 
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Location = new System.Drawing.Point(290, 10);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
@@ -506,7 +507,7 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // frmEditarLineaPedido
+            // frmPedidoCierre_EditarLineaPedido
             // 
             this.AcceptButton = this.btnGuardar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -514,7 +515,7 @@
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(443, 435);
             this.Controls.Add(this.tbleLayoutPanelPrincipal);
-            this.Name = "frmEditarLineaPedido";
+            this.Name = "frmPedidoCierre_EditarLineaPedido";
             this.Text = "frmEditarLineaPedido";
             this.tbleLayoutPanelPrincipal.ResumeLayout(false);
             this.grpBoxArticulo.ResumeLayout(false);
@@ -528,11 +529,11 @@
             this.tblLayoutPanelCodigos.PerformLayout();
             this.grpBoxDescuentos.ResumeLayout(false);
             this.tblLayoutPanelDescuentos.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.tblLayoutPanelDescuentosDatos.ResumeLayout(false);
+            this.tblLayoutPanelDescuentosDatos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDescuentos)).EndInit();
             this.tblLayoutPanelDescuentosBotones.ResumeLayout(false);
-            this.tblLayoutPanel1.ResumeLayout(false);
+            this.tblLayoutPanelBotones.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -554,7 +555,7 @@
         private System.Windows.Forms.Label lblCodigoArticuloProveedor;
         private System.Windows.Forms.Button btnAgrearDescuento;
         private System.Windows.Forms.Button btnQuitarDescuento;
-        private System.Windows.Forms.TableLayoutPanel tblLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelBotones;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -563,7 +564,7 @@
         private System.Windows.Forms.TextBox txtBoxValorUnitario;
         private System.Windows.Forms.NumericUpDown nmrcUpDownCantidad;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDescuentosBotones;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDescuentosDatos;
         private System.Windows.Forms.Label lblPorcentajeDescuento;
         private System.Windows.Forms.TextBox txtBoxDescuentoNeto;
         private System.Windows.Forms.TextBox txtBoxDescuentoPorcentaje;
