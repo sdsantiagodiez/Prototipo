@@ -195,7 +195,7 @@ namespace Modelos
             
             private string normalizarCUIT(string p_cuit)
             {
-                if (ValidarCuit(numeroCUIT))
+                if (ValidarCuit(p_cuit))
                 {
                     string cuitNormalizado = p_cuit.Replace(" ", string.Empty).Replace("-", string.Empty);
                     cuitNormalizado = cuitNormalizado.Insert(2, "-");

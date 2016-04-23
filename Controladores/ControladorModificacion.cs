@@ -41,6 +41,11 @@ namespace Controladores
             {
                 lcl_catalogo = new CatalogoEntidades();
             }
+
+            if (!this.validarExistencia(p_mod_entidad))
+            {
+                return false;
+            }
             bool respuesta = false;
             errorActual = "No se ha podido realizar la modificación.";
             try
@@ -69,6 +74,66 @@ namespace Controladores
                 errorActual = ex.Message;
             }
             return respuesta; 
+        }
+
+        private bool validarExistencia(ModeloEntidad p_mod_entidad)
+        {
+            //Revisa que no exista CUIT
+            if (!string.IsNullOrEmpty(p_mod_entidad.cuit))
+            {
+                List<ModeloEntidad> lcl_lst_mod_entidades = ControladorBusqueda.buscar(p_mod_entidad, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Cuit);
+                foreach (ModeloEntidad e in lcl_lst_mod_entidades)
+                {
+                    if (e.codigo != p_mod_entidad.codigo)
+                    {
+                        errorActual = "El CUIT indicado ya existe";
+                        return false;
+                    }
+                }
+                
+            }
+            //Revisa que no exista DNI
+            if (p_mod_entidad.GetType() != typeof(ModeloProveedor))
+            {
+                List<ModeloPersonas> lcl_lst_mod_personas = ControladorBusqueda.buscar(p_mod_entidad as ModeloPersonas, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
+                foreach(ModeloPersonas p in lcl_lst_mod_personas)
+                {
+                    if (p.codigo != p_mod_entidad.codigo)
+                    {
+                        errorActual = "El DNI indicado ya existe";
+                        return false;
+                    }
+                }
+            }
+            //Revisa que no exista Razón Social
+            if (p_mod_entidad.GetType() == typeof(ModeloProveedor))
+            {
+                //Se hace una búsqueda con el resultado porque la busqueda por razón social retorna proveedores con razon social parecida, no unicamente igual
+                List<ModeloProveedor> lcl_lst_mod_proveedores = ControladorBusqueda.buscar(p_mod_entidad as ModeloProveedor, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
+                foreach (ModeloProveedor p in lcl_lst_mod_proveedores)
+                {
+                    if (p.razonSocial == (p_mod_entidad as ModeloProveedor).razonSocial && p.codigo != p_mod_entidad.codigo)
+                    {
+                        errorActual = "La Razón Social indicada ya existe";
+                        return false;
+                    }
+                }
+            }
+            //Revisa que no exista Usuario
+            if (p_mod_entidad.GetType() == typeof(ModeloUsuario))
+            {
+                List<ModeloUsuario> lcl_lst_mod_usuarios = ControladorBusqueda.buscar(p_mod_entidad as ModeloUsuario, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario);
+                foreach(ModeloUsuario u in lcl_lst_mod_usuarios)
+                {
+                    if (u.codigo != p_mod_entidad.codigo)
+                    {
+                        errorActual = "El usuario indicado ya existe";
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         public bool modificar(ModeloArticulos p_mod_articulo)

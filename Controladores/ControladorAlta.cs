@@ -48,7 +48,10 @@ namespace Controladores
             {
                 lcl_catalogo = new CatalogoEntidades();
             }
-
+            if (!this.validarExistencia(p_mod_entidad))
+            {
+                return false;
+            }
             bool respuesta = false;
             //errorActual = "No se ha podido realizar al operación.";
             try
@@ -77,7 +80,54 @@ namespace Controladores
             }
             return respuesta;
         }
-        
+
+        private bool validarExistencia(ModeloEntidad p_mod_entidad)
+        {
+            //Revisa que no exista CUIT
+            if (!string.IsNullOrEmpty(p_mod_entidad.cuit))
+            {
+                if (ControladorBusqueda.buscar(p_mod_entidad, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Cuit).Count > 0)
+                {
+                    errorActual = "El CUIT indicado ya existe";
+                    return false;
+                }
+            }
+            //Revisa que no exista DNI
+            if (p_mod_entidad.GetType() != typeof(ModeloProveedor))
+            {
+                if (ControladorBusqueda.buscar(p_mod_entidad as ModeloPersonas, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Personas.Dni).Count > 0)
+                {
+                    errorActual = "El DNI indicado ya existe";
+                    return false;
+                }
+            }
+            //Revisa que no exista Razón Social
+            if (p_mod_entidad.GetType() == typeof(ModeloProveedor))
+            {
+                //Se hace una búsqueda con el resultado porque la busqueda por razón social retorna proveedores con razon social parecida, no unicamente igual
+                List<ModeloProveedor> lcl_lst_mod_proveedores = ControladorBusqueda.buscar(p_mod_entidad as ModeloProveedor, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
+                foreach(ModeloProveedor p in lcl_lst_mod_proveedores)
+                {
+                    if (p.razonSocial == (p_mod_entidad as ModeloProveedor).razonSocial)
+                    {
+                        errorActual = "La Razón Social indicada ya existe";
+                    return false;
+                    }
+                }
+            }
+            //Revisa que no exista Usuario
+            if (p_mod_entidad.GetType() == typeof(ModeloUsuario))
+            {
+                if (ControladorBusqueda.buscar(p_mod_entidad as ModeloUsuario, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario).Count > 0)
+                {
+                    errorActual = "El usuario indicado ya existe";
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// Se comunica con la capa de datos para realizar INSERT en la base de datos.
         /// </summary>

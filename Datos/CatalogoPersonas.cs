@@ -118,7 +118,7 @@ namespace Datos
             string querySQL = this.getCondicionBusqueda(p_mod_persona,p_paramentroBusqueda,ref comando);
             
             comando.CommandText =
-                "SELECT [entidades].codigo,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
+                "SELECT [entidades].codigo as codigo_entidad,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
                 "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia " +
                     "FROM [personas] " +
                     "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad " +
