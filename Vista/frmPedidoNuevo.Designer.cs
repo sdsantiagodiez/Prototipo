@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoNuevo));
             this.gbxDetalleArticuloSeleccionado = new System.Windows.Forms.GroupBox();
+            this.nmrcUpDownCantidad = new System.Windows.Forms.NumericUpDown();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -76,14 +77,14 @@
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.btnBorrarDetalleActual = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.nmrcUpDownCantidad = new System.Windows.Forms.NumericUpDown();
+            this.chckBoxPermitirStockNegativo = new System.Windows.Forms.CheckBox();
             this.gbxDetalleArticuloSeleccionado.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownCantidad)).BeginInit();
             this.tlpDetalles.SuspendLayout();
             this.gbxDetalleAgregados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleAgregados)).BeginInit();
             this.gbxArticulosAgregar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArtAgregar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownCantidad)).BeginInit();
             this.SuspendLayout();
             // 
             // gbxDetalleArticuloSeleccionado
@@ -99,6 +100,13 @@
             this.gbxDetalleArticuloSeleccionado.TabIndex = 23;
             this.gbxDetalleArticuloSeleccionado.TabStop = false;
             this.gbxDetalleArticuloSeleccionado.Text = "Detalle Artículo Seleccionado";
+            // 
+            // nmrcUpDownCantidad
+            // 
+            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(60, 429);
+            this.nmrcUpDownCantidad.Name = "nmrcUpDownCantidad";
+            this.nmrcUpDownCantidad.Size = new System.Drawing.Size(45, 20);
+            this.nmrcUpDownCantidad.TabIndex = 11;
             // 
             // txtCantidad
             // 
@@ -592,18 +600,22 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // nmrcUpDownCantidad
+            // chckBoxPermitirStockNegativo
             // 
-            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(60, 429);
-            this.nmrcUpDownCantidad.Name = "nmrcUpDownCantidad";
-            this.nmrcUpDownCantidad.Size = new System.Drawing.Size(45, 20);
-            this.nmrcUpDownCantidad.TabIndex = 11;
+            this.chckBoxPermitirStockNegativo.AutoSize = true;
+            this.chckBoxPermitirStockNegativo.Location = new System.Drawing.Point(782, 523);
+            this.chckBoxPermitirStockNegativo.Name = "chckBoxPermitirStockNegativo";
+            this.chckBoxPermitirStockNegativo.Size = new System.Drawing.Size(137, 17);
+            this.chckBoxPermitirStockNegativo.TabIndex = 25;
+            this.chckBoxPermitirStockNegativo.Text = "Permitir Stock Negativo";
+            this.chckBoxPermitirStockNegativo.UseVisualStyleBackColor = true;
             // 
             // frmPedidoNuevo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 621);
+            this.Controls.Add(this.chckBoxPermitirStockNegativo);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.gbxDetalleArticuloSeleccionado);
             this.Controls.Add(this.gbxDetalleAgregados);
@@ -620,6 +632,7 @@
             this.Text = "Nuevo Pedido Cliente (Leandro Jorge)";
             this.gbxDetalleArticuloSeleccionado.ResumeLayout(false);
             this.gbxDetalleArticuloSeleccionado.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownCantidad)).EndInit();
             this.tlpDetalles.ResumeLayout(false);
             this.tlpDetalles.PerformLayout();
             this.gbxDetalleAgregados.ResumeLayout(false);
@@ -627,7 +640,6 @@
             this.gbxArticulosAgregar.ResumeLayout(false);
             this.gbxArticulosAgregar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArtAgregar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownCantidad)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -683,6 +695,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.NumericUpDown nmrcUpDownCantidad;
+        private System.Windows.Forms.CheckBox chckBoxPermitirStockNegativo;
 
     }
 }

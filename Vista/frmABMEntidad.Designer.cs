@@ -559,7 +559,7 @@
             // 
             this.cmbBoxProvincia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxProvincia.FormattingEnabled = true;
-            this.cmbBoxProvincia.Location = new System.Drawing.Point(440, 39);
+            this.cmbBoxProvincia.Location = new System.Drawing.Point(440, 41);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(89, 26);
             this.cmbBoxProvincia.TabIndex = 18;
@@ -625,7 +625,7 @@
             // 
             this.cmbBoxPais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxPais.FormattingEnabled = true;
-            this.cmbBoxPais.Location = new System.Drawing.Point(588, 39);
+            this.cmbBoxPais.Location = new System.Drawing.Point(588, 41);
             this.cmbBoxPais.Name = "cmbBoxPais";
             this.cmbBoxPais.Size = new System.Drawing.Size(92, 26);
             this.cmbBoxPais.TabIndex = 17;
@@ -656,6 +656,7 @@
             // 
             // dataGridViewDomicilio
             // 
+            this.dataGridViewDomicilio.AllowUserToAddRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -882,6 +883,7 @@
             // 
             // dataGridViewTelefono
             // 
+            this.dataGridViewTelefono.AllowUserToAddRows = false;
             this.dataGridViewTelefono.AllowUserToDeleteRows = false;
             this.dataGridViewTelefono.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTelefono.ColumnHeadersVisible = false;
@@ -971,7 +973,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 10);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 8);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxTipoTelefono.TabIndex = 23;
@@ -1064,6 +1066,7 @@
             // 
             // dataGridViewMail
             // 
+            this.dataGridViewMail.AllowUserToAddRows = false;
             this.dataGridViewMail.AllowUserToDeleteRows = false;
             this.dataGridViewMail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewMail.ColumnHeadersVisible = false;

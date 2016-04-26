@@ -57,7 +57,7 @@ namespace Modelos
         public bool Equals(ModeloMail p_mod_mail)
         {
             return this.Equals(this.codigoMail,p_mod_mail.codigoMail) 
-                && this.Equals(this.mail,p_mod_mail.mail);
+                && this.mail.ToLower().Equals(p_mod_mail.mail.ToLower());
         }
         #endregion
     }
