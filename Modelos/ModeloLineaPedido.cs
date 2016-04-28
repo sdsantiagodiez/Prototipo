@@ -87,8 +87,8 @@ namespace Modelos
         /// <returns></returns>
         public decimal getValorParcialSinDescuentos()
         {
-            this.valorParcial = this.valorUnitario * this.cantidadArticulos;
-            return this.valorParcial;
+            return this.valorUnitario * this.cantidadArticulos;
+            //return this.valorParcial;
         }
         /// <summary>
         /// Asigna y devuelve valor parcial teniendo en cuenta descuentos
@@ -137,6 +137,7 @@ namespace Modelos
         {
             ModeloDescuento descuento = new ModeloDescuento(p_descuento, this.getValorParcialSinDescuentos());
             this.descuentos.Add(descuento);
+            this.getValorParcial();
         }       
         /// <summary>
         /// Remueve descuento de la linea
@@ -152,6 +153,7 @@ namespace Modelos
             }
 
             this.descuentos.Remove(descuentoToRemove);
+            this.getValorParcial();
             return true;
         }
         public void updateDescuentos()
@@ -161,6 +163,7 @@ namespace Modelos
             {
                 this.descuentos[i] = new ModeloDescuento(this.descuentos[i], valorParcialSinDescuentos);
             }
+            this.getValorParcial();
         }
         public void addArticulo(ModeloArticuloProveedores p_mod_articuloProveedor, int p_cantidad, LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos p_tipoPedido)
         {

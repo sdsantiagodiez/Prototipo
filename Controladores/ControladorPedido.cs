@@ -106,7 +106,7 @@ namespace Controladores
         {
             if (this.pedidoActual.formasDePago.Count == 1)
             {
-                this.pedidoActual.formasDePago[0].monto = this.pedidoActual.getTotal();
+                this.pedidoActual.formasDePago[0].monto = this.pedidoActual.montoTotal;
                 return true;
             }
 
@@ -115,7 +115,7 @@ namespace Controladores
             {
                 total += fp.monto;
             }
-            if (total != this.pedidoActual.getTotal())
+            if (total != this.pedidoActual.montoTotal)
             {
                 return false;
                 //mensaje de error que debe revisar las formas de pago
@@ -159,7 +159,7 @@ namespace Controladores
         }
         public string getTotal()
         {
-            return this.pedidoActual.getTotal().ToString("0.##");
+            return this.pedidoActual.montoTotal.ToString("0.##");
         }
         public void removeLineaPedido(ModeloLineaPedido p_lineaPedido)
         {

@@ -21,6 +21,26 @@ namespace Modelos
             }
         }
 
+        string _CAE;
+        public string CAE
+        {
+            get { return _CAE; }
+            set { _CAE = value; }
+        }
+        int _tipoComprobante;
+        public int tipoComprobante
+        {
+            get { return _tipoComprobante; }
+            set { _tipoComprobante = value; }
+        }
+
+        Documento _documentoComprador;
+        public Documento documentoComprador
+        {
+            get { return _documentoComprador; }
+            set { _documentoComprador = value; }
+        }
+
         DateTime _fecha;
         public DateTime fecha
         {
@@ -118,11 +138,11 @@ namespace Modelos
             set { _formasDePago = value; }
         }
 
-        double _iva;
-        public double iva
+        Alicuota _alicuota;
+        public Alicuota alicuota
         {
-            get{return _iva;}
-            set{_iva = value;}
+            get { return _alicuota; }
+            set { _alicuota = value; }
         }
 
         ModeloDescuento _descuento_1;
@@ -144,7 +164,14 @@ namespace Modelos
         public ModeloPedido()
         {
             lineasPedido = new List<ModeloLineaPedido>();
-            this.iva = 21;
+            this.alicuota = new Alicuota();
+            this.documentoComprador = new Documento();
+            //AFIP BASE que se debe modificar
+            this.tipoComprobante = 1; //FACTURA A
+            this.documentoComprador.tipo.codigo = 80; 
+            this.documentoComprador.tipo.descripcion = "CUIT";
+            this.documentoComprador.numero = "20111111112";
+            //-AFIP
             this.fecha = DateTime.Today;
             this.descuento_1 = new ModeloDescuento();
             this.descuento_2 = new ModeloDescuento();
@@ -239,10 +266,10 @@ namespace Modelos
             }
             return lcl_total;
         }
-        public decimal getTotal()
+        private decimal getTotal()
         {
             this.montoTotal = this.getTotalSinDescuento() - this.getDescuentoTotal();
-            
+            this.montoTotal = Math.Round(this.montoTotal, 2);
             //decimal lcl_total = 0;
             //foreach (ModeloLineaPedido linea in lineasPedido)
             //{
@@ -252,20 +279,28 @@ namespace Modelos
             return this.montoTotal;
         }
 
-        public decimal getSubTotal()
+        private decimal getSubTotal()
         {
-            decimal divisorIVA = 1 + (Convert.ToDecimal(this.iva) / 100);
+            decimal divisorIVA = 1 + (Convert.ToDecimal(this.alicuota.iva.porcentaje) / 100);
             decimal total = this.getTotal();
 
             this.montoSubTotal = Decimal.Divide(total, divisorIVA);
+            this.montoSubTotal = Math.Round(this.montoSubTotal, 2);
             return this.montoSubTotal;
         }
        
-        public decimal getIVAMonto()
+        private decimal getIVAMonto()
         {
-            return this.getTotal() - this.getSubTotal();
+            this.alicuota.monto = this.getTotal() - this.getSubTotal();
+            this.alicuota.monto = Math.Round(this.alicuota.monto, 2);
+            return this.alicuota.monto;
         }
-
+        private void actualizarMontos()
+        {
+            this.getTotal();
+            this.getSubTotal();
+            this.getIVAMonto();
+        }
         #region Agregar, Bajar y Actualizar lineas de pedido
         /// <summary>
         /// Agrega lista de lineasPedido al pedido
@@ -279,6 +314,7 @@ namespace Modelos
             {
                 lineasPedido.Add(lp);
             }
+            this.actualizarMontos();
         }
         public bool addLineaPedido(ModeloLineaPedido p_lineaPedido)
         {
@@ -294,6 +330,7 @@ namespace Modelos
             //{
                 this._lineasPedido.Add(p_lineaPedido);
             //}
+            this.actualizarMontos();
             return respuesta;
         }
         public bool updateLineaPedido(ModeloLineaPedido p_lineaPedido)
@@ -306,18 +343,22 @@ namespace Modelos
             {
                 lineasPedido.Add(p_lineaPedido);
             }
+            this.actualizarMontos();
             return respuesta;
         }
         public bool removeLineaPedido(ModeloLineaPedido p_lineaPedido)
         {
             bool answer = true;
             lineasPedido.Remove(p_lineaPedido);
+            this.actualizarMontos();
             return answer;
         }
         public void removeAllLineaPedido()
         {
             lineasPedido = new List<ModeloLineaPedido>();
+            this.actualizarMontos();
         }
+        #endregion
 
         private bool actualizarMontoFormaPagoRestante()
         {
@@ -427,8 +468,6 @@ namespace Modelos
             return true;
         }
 
-        #endregion
-
         #region Equals
         public override bool Equals(object p_objeto)
         {
@@ -471,6 +510,80 @@ namespace Modelos
         {
             get { return _restante; }
             set { _restante = value; }
+        }
+    }
+    [Serializable]
+    public class IVA
+    {
+        int _codigo;
+        public int codigo
+        {
+            get { return _codigo; }
+            set { _codigo = value; }
+        }
+        double _porcentaje;
+        public double porcentaje
+        {
+            get { return _porcentaje; }
+            set { _porcentaje = value; }
+        }
+    }
+    [Serializable]
+    public class Alicuota
+    {
+        IVA _iva;
+        public IVA iva
+        {
+            get { return _iva; }
+            set { _iva = value; }
+        }
+        decimal _monto;
+        public decimal monto
+        {
+            get { return _monto; }
+            set { _monto = value; }
+        }
+        public Alicuota()
+        {
+            this.iva = new IVA();
+            this.iva.codigo = 5;//código AFIP
+            this.iva.porcentaje = 21;
+        }
+    }
+    [Serializable]
+    public class TipoDocumento
+    {
+        int _codigo;
+        public int codigo
+        {
+            get { return _codigo; }
+            set { _codigo = value; }
+        }
+        string _descripcion;
+        public string descripcion
+        {
+            get { return _descripcion; }
+            set { _descripcion = value; }
+        }
+    }
+    [Serializable]
+    public class Documento
+    {
+        TipoDocumento _tipo;
+        public TipoDocumento tipo
+        {
+            get { return _tipo; }
+            set { _tipo = value; }
+        }
+        string _numero;
+        public string numero
+        {
+            get { return _numero; }
+            set { _numero = value; }
+        }
+        public Documento()
+        {
+            tipo = new TipoDocumento();
         }
     }
 }

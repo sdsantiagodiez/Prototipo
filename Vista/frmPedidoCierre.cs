@@ -215,7 +215,7 @@ namespace Vista
             this.txtBoxNumeroPedido.Text = p_mod_pedido.numeroPedido != 0 ? p_mod_pedido.numeroPedido.ToString() : "";
             this.dtpFechaPedido.Value = p_mod_pedido.fecha;
             
-            this.txtBoxIVAPorcentaje.Text = p_mod_pedido.iva.ToString();
+            this.txtBoxIVAPorcentaje.Text = p_mod_pedido.alicuota.iva.porcentaje.ToString();
             this.cargarDatosMonetariosEnControles(p_mod_pedido);
 
             this.rchTextBoxObservacionesPedido.Text = p_mod_pedido.observaciones;
@@ -231,11 +231,11 @@ namespace Vista
             this.txtBoxDescuentoLineas.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getDescuentoLineas());
             this.txtBoxDescuentoTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getDescuentoTotal());
 
-            this.txtBoxSubtotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getSubTotal());
+            this.txtBoxSubtotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.montoSubTotal);
             //this.txtBoxTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getTotal());
-            this.txtBoxTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getTotal());
+            this.txtBoxTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.montoTotal);
 
-            this.txtBoxIVAMonto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getIVAMonto()); 
+            this.txtBoxIVAMonto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.alicuota.monto); 
         }
         private void cargarEntidadEnControles(ModeloEntidad p_mod_entidad)
         {
