@@ -160,17 +160,16 @@ namespace LibreriaClasesCompartidas
 
         public enum TipoComprobanteVenta
         {
-            Presupuesto =1,
-            Ticket=2,
-            [System.ComponentModel.Description("Factura A")]
-            Factura_A = 3,
-            [System.ComponentModel.Description("Factura B")]
-            Factura_B=4,
-            [System.ComponentModel.Description("Factura X")]
-            Factura_X=5,
-            Reserva=6,
-            [System.ComponentModel.Description("Devolución")]
-            Devolucion=7,
+            Factura = 1,
+            [System.ComponentModel.Description("Nota de Crédito")]
+            NotaCredito = 2,
+            [System.ComponentModel.Description("Nota de Débito")]
+            NotaDebito = 3,
+            Recibo =4,
+            [System.ComponentModel.Description("Nota de Venta al Contado")]
+            NotaVentaAlContado = 5,
+            Presupuesto = 6,
+            Reserva=7,
             
             Otro = 0
         }

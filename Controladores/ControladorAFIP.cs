@@ -131,7 +131,7 @@ namespace Controladores
                     ControladorAFIP.agregarDetallesPedido(fe, p_mod_pedido);
                     try
                     {
-                        int ultimoAutorizado = fe.F1CompUltimoAutorizado(fe.F1CabeceraPtoVta, fe.F1CabeceraCbteTipo);
+                    int ultimoAutorizado = fe.F1CompUltimoAutorizado(fe.F1CabeceraPtoVta, fe.F1CabeceraCbteTipo);
                     
                     fe.F1DetalleCbteDesde = ultimoAutorizado + 1;
                     fe.F1DetalleCbteHasta = ultimoAutorizado + 1;
@@ -164,9 +164,10 @@ namespace Controladores
                     if (fe.F1RespuestaCantidadReg > 0)
                     {
                         fe.f1Indice = 0;
-                        respuesta += "|" + "resultado detallado comprobante: " + fe.F1RespuestaDetalleResultado;
-                        respuesta += "|" + "cae comprobante: " + fe.F1RespuestaDetalleCae;
-                        respuesta += "|" + "número comprobante:" + fe.F1RespuestaDetalleCbteDesdeS;
+                        ControladorAFIP.cargarRespuestaEnPedido(fe, p_mod_pedido);
+                        respuesta += "|" + "resultado detallado comprobante: " + p_mod_pedido.aprobadoAFIP;
+                        respuesta += "|" + "cae comprobante: " + p_mod_pedido.CAE;
+                        respuesta += "|" + "número comprobante:" + p_mod_pedido.numeroComprobante;
                         respuesta += "|" + "error detallado comprobante: " + fe.F1RespuestaDetalleObservacionMsg1;
                     }
                 }
@@ -205,7 +206,11 @@ namespace Controladores
             //    p_facturaElectronica.F1DetalleIvaImporte = Math.Round(Math.Round(Convert.ToDouble(p_mod_pedido.lineasPedido[i].valorParcial),2) - p_facturaElectronica.F1DetalleIvaBaseImp,2);
             //}
         }
-
+        /// <summary>
+        /// Inserta datos del pedido para ser enviados a web service de AFIP
+        /// </summary>
+        /// <param name="p_facturaElectronica"></param>
+        /// <param name="p_mod_pedido"></param>
         private static void agregarDetallesPedido(WSAFIPFE.Factura p_facturaElectronica, ModeloPedido p_mod_pedido)
         {
             p_facturaElectronica.F1CabeceraCbteTipo = p_mod_pedido.tipoComprobante;
@@ -234,6 +239,16 @@ namespace Controladores
             p_facturaElectronica.F1DetalleMonId = "PES";//Moneda en PESOS ARGENTINOS
             p_facturaElectronica.F1DetalleMonCotiz = 1;//1 debido a que es pesos
         }
-        
+        /// <summary>
+        /// Carga respuesta de AFIP (CAE, aprobación y número de comprobante) en pedido
+        /// </summary>
+        /// <param name="p_facturaElectronica"></param>
+        /// <param name="p_mod_pedido"></param>
+        private static void cargarRespuestaEnPedido(WSAFIPFE.Factura p_facturaElectronica, ModeloPedido p_mod_pedido)
+        {
+            p_mod_pedido.aprobadoAFIP = p_facturaElectronica.F1RespuestaDetalleResultado;
+            p_mod_pedido.CAE = p_facturaElectronica.F1RespuestaDetalleCae;
+            p_mod_pedido.numeroComprobante = p_facturaElectronica.F1RespuestaDetalleCbteDesdeS;
+        }
     }
 }

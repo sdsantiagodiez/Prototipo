@@ -21,12 +21,27 @@ namespace Modelos
             }
         }
 
+        string _numeroComprobante;
+        public string numeroComprobante
+        {
+            get { return _numeroComprobante; }
+            set { _numeroComprobante = value; }
+        }
+
         string _CAE;
         public string CAE
         {
             get { return _CAE; }
             set { _CAE = value; }
         }
+
+        string _aprobadoAFIP;
+        public string aprobadoAFIP
+        {
+            get { return _aprobadoAFIP; }
+            set { _aprobadoAFIP = value; }
+        }
+
         int _tipoComprobante;
         public int tipoComprobante
         {
@@ -69,12 +84,6 @@ namespace Modelos
             set { this._montoSubTotal = value>0?value:0; }
         }
         
-        decimal _senia;
-        public decimal senia
-        {
-            get { return _senia; }
-            set { _senia = value; }
-        }
         //Puede ser un proveedor o un cliente persona
         ModeloEntidad _entidad;
         public ModeloEntidad entidad
@@ -82,7 +91,8 @@ namespace Modelos
             get { return _entidad; }
             set { _entidad = value; }
         }
-
+       
+        #region Contacto (Domicilio, Mail y Teléfono)
         ModeloDomicilio _domicilioDeFacturacion;
         public ModeloDomicilio domicilioDeFacturacion
         {
@@ -103,7 +113,8 @@ namespace Modelos
             get { return _mailContacto; }
             set { _mailContacto = value; }
         }
-
+        #endregion
+        
         string _observaciones;
         public string observaciones 
         {
@@ -159,6 +170,12 @@ namespace Modelos
             set { _descuento_2 = new ModeloDescuento(value, this.getTotalSinDescuento()); }
         }
 
+        decimal _senia;
+        public decimal senia
+        {
+            get { return _senia; }
+            set { _senia = value; }
+        }
         #endregion
 
         public ModeloPedido()
