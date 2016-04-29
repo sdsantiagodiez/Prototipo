@@ -1,0 +1,1 @@
+Copiar carpeta SC a algun lado, o dejar ahí, y agregar referencia en Controladores (Browse...) para el archivo WSAFIPFE.dll
