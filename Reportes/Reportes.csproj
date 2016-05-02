@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FacturaB.rdlc" />
     <EmbeddedResource Include="FacturaA.rdlc" />
     <EmbeddedResource Include="FormReportes.resx">
       <DependentUpon>FormReportes.cs</DependentUpon>
@@ -83,7 +84,9 @@
     <None Include="Properties\DataSources\Modelos.ModeloPersonas.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloProveedor.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloProvincia.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloReporteDetalleFactura.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteEncabezado.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloReporteEncabezadoFactura.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReportePedidoEntreFechas.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteTop10Articulos.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteVentaEntreFechas1.datasource" />
