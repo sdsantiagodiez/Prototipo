@@ -776,7 +776,7 @@ namespace Vista
         #region Button
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if(this.dgvArticulosVenta.CurrentRow == null)
+             if(this.dgvArticulosVenta.CurrentRow == null)
             {
                 MessageBox.Show("No hay línea de pedido seleccionada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

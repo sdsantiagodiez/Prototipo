@@ -277,7 +277,8 @@ namespace Controladores
 
         public bool verificarConexionAFIP()
         {
-            return ControladorAFIP.validarConexion();
+            ControladorAFIP lcl_con_AFIP = new ControladorAFIP();
+            return lcl_con_AFIP.validarConexion();
         }
         /// <summary>
         /// Hace facturación electrónica. Si Comprobante no corresponde a facturación, devuelve true
