@@ -183,12 +183,7 @@ namespace Modelos
             lineasPedido = new List<ModeloLineaPedido>();
             this.alicuota = new Alicuota();
             this.documentoComprador = new Documento();
-            //AFIP BASE que se debe modificar
-            this.tipoComprobante = 1; //FACTURA A
-            this.documentoComprador.tipo.codigo = 80; 
-            this.documentoComprador.tipo.descripcion = "CUIT";
-            this.documentoComprador.numero = "20111111112";
-            //-AFIP
+           
             this.fecha = DateTime.Today;
             this.descuento_1 = new ModeloDescuento();
             this.descuento_2 = new ModeloDescuento();

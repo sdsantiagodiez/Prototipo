@@ -64,6 +64,7 @@
             this.tblLayoutPanelBotones = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.checkBoxStockNegativo = new System.Windows.Forms.CheckBox();
             this.tbleLayoutPanelPrincipal.SuspendLayout();
             this.grpBoxArticulo.SuspendLayout();
             this.tblLayoutPanelArticulo.SuspendLayout();
@@ -93,7 +94,7 @@
             this.tbleLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tbleLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tbleLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
-            this.tbleLayoutPanelPrincipal.Size = new System.Drawing.Size(443, 435);
+            this.tbleLayoutPanelPrincipal.Size = new System.Drawing.Size(460, 435);
             this.tbleLayoutPanelPrincipal.TabIndex = 0;
             // 
             // grpBoxArticulo
@@ -102,7 +103,7 @@
             this.grpBoxArticulo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxArticulo.Location = new System.Drawing.Point(3, 3);
             this.grpBoxArticulo.Name = "grpBoxArticulo";
-            this.grpBoxArticulo.Size = new System.Drawing.Size(437, 187);
+            this.grpBoxArticulo.Size = new System.Drawing.Size(454, 187);
             this.grpBoxArticulo.TabIndex = 0;
             this.grpBoxArticulo.TabStop = false;
             this.grpBoxArticulo.Text = "Articulo";
@@ -121,7 +122,7 @@
             this.tblLayoutPanelArticulo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelArticulo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelArticulo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tblLayoutPanelArticulo.Size = new System.Drawing.Size(431, 168);
+            this.tblLayoutPanelArticulo.Size = new System.Drawing.Size(448, 168);
             this.tblLayoutPanelArticulo.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -145,15 +146,15 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(425, 74);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(442, 74);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
             // txtBoxValorParcialConDescuento
             // 
             this.txtBoxValorParcialConDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxValorParcialConDescuento.Location = new System.Drawing.Point(315, 44);
+            this.txtBoxValorParcialConDescuento.Location = new System.Drawing.Point(324, 44);
             this.txtBoxValorParcialConDescuento.Name = "txtBoxValorParcialConDescuento";
-            this.txtBoxValorParcialConDescuento.Size = new System.Drawing.Size(107, 20);
+            this.txtBoxValorParcialConDescuento.Size = new System.Drawing.Size(115, 20);
             this.txtBoxValorParcialConDescuento.TabIndex = 9;
             // 
             // lblPrecioUnitario
@@ -170,7 +171,7 @@
             // 
             this.lblCantidad.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(260, 11);
+            this.lblCantidad.Location = new System.Drawing.Point(269, 11);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(49, 13);
             this.lblCantidad.TabIndex = 1;
@@ -181,14 +182,14 @@
             this.txtBoxValorUnitario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxValorUnitario.Location = new System.Drawing.Point(103, 7);
             this.txtBoxValorUnitario.Name = "txtBoxValorUnitario";
-            this.txtBoxValorUnitario.Size = new System.Drawing.Size(106, 20);
+            this.txtBoxValorUnitario.Size = new System.Drawing.Size(115, 20);
             this.txtBoxValorUnitario.TabIndex = 4;
             this.txtBoxValorUnitario.Leave += new System.EventHandler(this.txtBoxValorUnitario_Leave);
             // 
             // nmrcUpDownCantidad
             // 
             this.nmrcUpDownCantidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(315, 7);
+            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(324, 7);
             this.nmrcUpDownCantidad.Name = "nmrcUpDownCantidad";
             this.nmrcUpDownCantidad.Size = new System.Drawing.Size(107, 20);
             this.nmrcUpDownCantidad.TabIndex = 5;
@@ -209,7 +210,7 @@
             // 
             this.lblValorParcialConDescuento.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblValorParcialConDescuento.AutoSize = true;
-            this.lblValorParcialConDescuento.Location = new System.Drawing.Point(221, 41);
+            this.lblValorParcialConDescuento.Location = new System.Drawing.Point(230, 41);
             this.lblValorParcialConDescuento.Name = "lblValorParcialConDescuento";
             this.lblValorParcialConDescuento.Size = new System.Drawing.Size(88, 26);
             this.lblValorParcialConDescuento.TabIndex = 7;
@@ -221,29 +222,31 @@
             this.txtBoxValorParcialSinDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxValorParcialSinDescuento.Location = new System.Drawing.Point(103, 44);
             this.txtBoxValorParcialSinDescuento.Name = "txtBoxValorParcialSinDescuento";
-            this.txtBoxValorParcialSinDescuento.Size = new System.Drawing.Size(106, 20);
+            this.txtBoxValorParcialSinDescuento.Size = new System.Drawing.Size(115, 20);
             this.txtBoxValorParcialSinDescuento.TabIndex = 8;
             // 
             // tblLayoutPanelDescripcion
             // 
-            this.tblLayoutPanelDescripcion.ColumnCount = 2;
-            this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.76471F));
-            this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.23529F));
+            this.tblLayoutPanelDescripcion.ColumnCount = 3;
+            this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.14569F));
+            this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.8543F));
+            this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
             this.tblLayoutPanelDescripcion.Controls.Add(this.lblDescripcion, 0, 0);
             this.tblLayoutPanelDescripcion.Controls.Add(this.txtBoxDescripcion, 1, 0);
+            this.tblLayoutPanelDescripcion.Controls.Add(this.checkBoxStockNegativo, 2, 0);
             this.tblLayoutPanelDescripcion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelDescripcion.Location = new System.Drawing.Point(3, 47);
             this.tblLayoutPanelDescripcion.Name = "tblLayoutPanelDescripcion";
             this.tblLayoutPanelDescripcion.RowCount = 1;
             this.tblLayoutPanelDescripcion.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelDescripcion.Size = new System.Drawing.Size(425, 38);
+            this.tblLayoutPanelDescripcion.Size = new System.Drawing.Size(442, 38);
             this.tblLayoutPanelDescripcion.TabIndex = 3;
             // 
             // lblDescripcion
             // 
             this.lblDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(34, 12);
+            this.lblDescripcion.Location = new System.Drawing.Point(19, 12);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(63, 13);
             this.lblDescripcion.TabIndex = 1;
@@ -252,18 +255,18 @@
             // txtBoxDescripcion
             // 
             this.txtBoxDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxDescripcion.Location = new System.Drawing.Point(103, 9);
+            this.txtBoxDescripcion.Location = new System.Drawing.Point(88, 9);
             this.txtBoxDescripcion.Name = "txtBoxDescripcion";
-            this.txtBoxDescripcion.Size = new System.Drawing.Size(319, 20);
+            this.txtBoxDescripcion.Size = new System.Drawing.Size(211, 20);
             this.txtBoxDescripcion.TabIndex = 4;
             // 
             // tblLayoutPanelCodigos
             // 
             this.tblLayoutPanelCodigos.ColumnCount = 4;
-            this.tblLayoutPanelCodigos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.25381F));
-            this.tblLayoutPanelCodigos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.74619F));
-            this.tblLayoutPanelCodigos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
-            this.tblLayoutPanelCodigos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
+            this.tblLayoutPanelCodigos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.19249F));
+            this.tblLayoutPanelCodigos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.80751F));
+            this.tblLayoutPanelCodigos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
+            this.tblLayoutPanelCodigos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140F));
             this.tblLayoutPanelCodigos.Controls.Add(this.txtBoxCodigoArticuloProveedor, 3, 0);
             this.tblLayoutPanelCodigos.Controls.Add(this.lblCodigoOriginal, 0, 0);
             this.tblLayoutPanelCodigos.Controls.Add(this.txtBoxCodigoOriginal, 1, 0);
@@ -273,22 +276,22 @@
             this.tblLayoutPanelCodigos.Name = "tblLayoutPanelCodigos";
             this.tblLayoutPanelCodigos.RowCount = 1;
             this.tblLayoutPanelCodigos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelCodigos.Size = new System.Drawing.Size(425, 38);
+            this.tblLayoutPanelCodigos.Size = new System.Drawing.Size(442, 38);
             this.tblLayoutPanelCodigos.TabIndex = 4;
             // 
             // txtBoxCodigoArticuloProveedor
             // 
             this.txtBoxCodigoArticuloProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCodigoArticuloProveedor.Location = new System.Drawing.Point(298, 9);
+            this.txtBoxCodigoArticuloProveedor.Location = new System.Drawing.Point(304, 9);
             this.txtBoxCodigoArticuloProveedor.Name = "txtBoxCodigoArticuloProveedor";
-            this.txtBoxCodigoArticuloProveedor.Size = new System.Drawing.Size(124, 20);
+            this.txtBoxCodigoArticuloProveedor.Size = new System.Drawing.Size(135, 20);
             this.txtBoxCodigoArticuloProveedor.TabIndex = 3;
             // 
             // lblCodigoOriginal
             // 
             this.lblCodigoOriginal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCodigoOriginal.AutoSize = true;
-            this.lblCodigoOriginal.Location = new System.Drawing.Point(18, 12);
+            this.lblCodigoOriginal.Location = new System.Drawing.Point(4, 12);
             this.lblCodigoOriginal.Name = "lblCodigoOriginal";
             this.lblCodigoOriginal.Size = new System.Drawing.Size(78, 13);
             this.lblCodigoOriginal.TabIndex = 0;
@@ -297,16 +300,16 @@
             // txtBoxCodigoOriginal
             // 
             this.txtBoxCodigoOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCodigoOriginal.Location = new System.Drawing.Point(102, 9);
+            this.txtBoxCodigoOriginal.Location = new System.Drawing.Point(88, 9);
             this.txtBoxCodigoOriginal.Name = "txtBoxCodigoOriginal";
-            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(92, 20);
+            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(107, 20);
             this.txtBoxCodigoOriginal.TabIndex = 2;
             // 
             // lblCodigoArticuloProveedor
             // 
             this.lblCodigoArticuloProveedor.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCodigoArticuloProveedor.AutoSize = true;
-            this.lblCodigoArticuloProveedor.Location = new System.Drawing.Point(211, 6);
+            this.lblCodigoArticuloProveedor.Location = new System.Drawing.Point(217, 6);
             this.lblCodigoArticuloProveedor.Name = "lblCodigoArticuloProveedor";
             this.lblCodigoArticuloProveedor.Size = new System.Drawing.Size(81, 26);
             this.lblCodigoArticuloProveedor.TabIndex = 1;
@@ -318,7 +321,7 @@
             this.grpBoxDescuentos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxDescuentos.Location = new System.Drawing.Point(3, 196);
             this.grpBoxDescuentos.Name = "grpBoxDescuentos";
-            this.grpBoxDescuentos.Size = new System.Drawing.Size(437, 187);
+            this.grpBoxDescuentos.Size = new System.Drawing.Size(454, 187);
             this.grpBoxDescuentos.TabIndex = 1;
             this.grpBoxDescuentos.TabStop = false;
             this.grpBoxDescuentos.Text = "Descuentos";
@@ -337,7 +340,7 @@
             this.tblLayoutPanelDescuentos.Name = "tblLayoutPanelDescuentos";
             this.tblLayoutPanelDescuentos.RowCount = 1;
             this.tblLayoutPanelDescuentos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelDescuentos.Size = new System.Drawing.Size(431, 168);
+            this.tblLayoutPanelDescuentos.Size = new System.Drawing.Size(448, 168);
             this.tblLayoutPanelDescuentos.TabIndex = 1;
             // 
             // tblLayoutPanelDescuentosDatos
@@ -360,7 +363,7 @@
             this.tblLayoutPanelDescuentosDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tblLayoutPanelDescuentosDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tblLayoutPanelDescuentosDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tblLayoutPanelDescuentosDatos.Size = new System.Drawing.Size(134, 162);
+            this.tblLayoutPanelDescuentosDatos.Size = new System.Drawing.Size(141, 162);
             this.tblLayoutPanelDescuentosDatos.TabIndex = 4;
             // 
             // txtBoxDescuentoPorcentaje
@@ -421,12 +424,12 @@
             this.dgvDescuentos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDescuentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDescuentos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDescuentos.Location = new System.Drawing.Point(223, 3);
+            this.dgvDescuentos.Location = new System.Drawing.Point(230, 3);
             this.dgvDescuentos.Name = "dgvDescuentos";
             this.dgvDescuentos.ReadOnly = true;
             this.dgvDescuentos.RowHeadersVisible = false;
             this.dgvDescuentos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDescuentos.Size = new System.Drawing.Size(205, 162);
+            this.dgvDescuentos.Size = new System.Drawing.Size(215, 162);
             this.dgvDescuentos.TabIndex = 5;
             // 
             // tblLayoutPanelDescuentosBotones
@@ -436,7 +439,7 @@
             this.tblLayoutPanelDescuentosBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelDescuentosBotones.Controls.Add(this.btnAgrearDescuento, 0, 0);
             this.tblLayoutPanelDescuentosBotones.Controls.Add(this.btnQuitarDescuento, 0, 1);
-            this.tblLayoutPanelDescuentosBotones.Location = new System.Drawing.Point(143, 3);
+            this.tblLayoutPanelDescuentosBotones.Location = new System.Drawing.Point(150, 3);
             this.tblLayoutPanelDescuentosBotones.Name = "tblLayoutPanelDescuentosBotones";
             this.tblLayoutPanelDescuentosBotones.RowCount = 2;
             this.tblLayoutPanelDescuentosBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -481,14 +484,14 @@
             this.tblLayoutPanelBotones.RowCount = 1;
             this.tblLayoutPanelBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblLayoutPanelBotones.Size = new System.Drawing.Size(437, 43);
+            this.tblLayoutPanelBotones.Size = new System.Drawing.Size(454, 43);
             this.tblLayoutPanelBotones.TabIndex = 2;
             // 
             // btnCancelar
             // 
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(290, 10);
+            this.btnCancelar.Location = new System.Drawing.Point(303, 10);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 1;
@@ -499,7 +502,7 @@
             // btnGuardar
             // 
             this.btnGuardar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnGuardar.Location = new System.Drawing.Point(71, 10);
+            this.btnGuardar.Location = new System.Drawing.Point(76, 10);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 0;
@@ -507,13 +510,26 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // checkBoxStockNegativo
+            // 
+            this.checkBoxStockNegativo.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.checkBoxStockNegativo.AutoSize = true;
+            this.checkBoxStockNegativo.Location = new System.Drawing.Point(305, 10);
+            this.checkBoxStockNegativo.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.checkBoxStockNegativo.Name = "checkBoxStockNegativo";
+            this.checkBoxStockNegativo.Size = new System.Drawing.Size(137, 17);
+            this.checkBoxStockNegativo.TabIndex = 5;
+            this.checkBoxStockNegativo.Text = "Permitir Stock Negativo";
+            this.checkBoxStockNegativo.UseVisualStyleBackColor = true;
+            this.checkBoxStockNegativo.CheckedChanged += new System.EventHandler(this.checkBoxStockNegativo_CheckedChanged);
+            // 
             // frmPedidoCierre_EditarLineaPedido
             // 
             this.AcceptButton = this.btnGuardar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(443, 435);
+            this.ClientSize = new System.Drawing.Size(460, 435);
             this.Controls.Add(this.tbleLayoutPanelPrincipal);
             this.Name = "frmPedidoCierre_EditarLineaPedido";
             this.Text = "frmEditarLineaPedido";
@@ -576,5 +592,6 @@
         private System.Windows.Forms.Label lblValorParcialSinDescuento;
         private System.Windows.Forms.Label lblValorParcialConDescuento;
         private System.Windows.Forms.TextBox txtBoxValorParcialSinDescuento;
+        private System.Windows.Forms.CheckBox checkBoxStockNegativo;
     }
 }

@@ -168,7 +168,9 @@ namespace Modelos
         public bool Equals(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
             return this.Equals(this.codigoArticuloProveedor, p_mod_articuloProveedor.codigoArticuloProveedor)
-                && this.Equals(this.codigoEntidad, p_mod_articuloProveedor.codigoEntidad);
+                && this.Equals(this.codigoEntidad, p_mod_articuloProveedor.codigoEntidad)
+                && this.Equals(this.stockActual,p_mod_articuloProveedor.stockActual)
+                && this.Equals(this.stockMinimo,p_mod_articuloProveedor.stockMinimo);
         }
 
         //public bool Equals(ModeloArticuloProveedores p_mod_articuloProveedor)

@@ -88,14 +88,14 @@
             this.tblLayoutPanelEntidadDatos = new System.Windows.Forms.TableLayoutPanel();
             this.cmbBoxContactoProveedor = new System.Windows.Forms.ComboBox();
             this.lblContactoProveedor = new System.Windows.Forms.Label();
+            this.lblTipoDocumento = new System.Windows.Forms.Label();
             this.lblApellido = new System.Windows.Forms.Label();
-            this.lblCUIT = new System.Windows.Forms.Label();
             this.txtBoxApellido = new System.Windows.Forms.TextBox();
-            this.txtBoxCUIT = new System.Windows.Forms.TextBox();
+            this.lblNumeroDocumento = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.lblDNI = new System.Windows.Forms.Label();
+            this.txtBoxNumeroDocumento = new System.Windows.Forms.TextBox();
             this.txtBoxNombre = new System.Windows.Forms.TextBox();
-            this.txtBoxDNI = new System.Windows.Forms.TextBox();
+            this.cmbBoxTipoDocumento = new System.Windows.Forms.ComboBox();
             this.tbPageDomicilioFacturacion = new System.Windows.Forms.TabPage();
             this.tblLayoutPanelDomicilioFacturacion = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelDomicilio = new System.Windows.Forms.TableLayoutPanel();
@@ -788,13 +788,13 @@
             this.tblLayoutPanelEntidadDatos.Controls.Add(this.cmbBoxContactoProveedor, 1, 4);
             this.tblLayoutPanelEntidadDatos.Controls.Add(this.lblContactoProveedor, 0, 4);
             this.tblLayoutPanelEntidadDatos.Controls.Add(this.lblApellido, 0, 2);
-            this.tblLayoutPanelEntidadDatos.Controls.Add(this.lblCUIT, 0, 0);
+            this.tblLayoutPanelEntidadDatos.Controls.Add(this.lblTipoDocumento, 0, 0);
             this.tblLayoutPanelEntidadDatos.Controls.Add(this.txtBoxApellido, 1, 2);
-            this.tblLayoutPanelEntidadDatos.Controls.Add(this.txtBoxCUIT, 1, 0);
+            this.tblLayoutPanelEntidadDatos.Controls.Add(this.cmbBoxTipoDocumento, 1, 0);
             this.tblLayoutPanelEntidadDatos.Controls.Add(this.lblNombre, 0, 3);
-            this.tblLayoutPanelEntidadDatos.Controls.Add(this.lblDNI, 0, 1);
+            this.tblLayoutPanelEntidadDatos.Controls.Add(this.lblNumeroDocumento, 0, 1);
             this.tblLayoutPanelEntidadDatos.Controls.Add(this.txtBoxNombre, 1, 3);
-            this.tblLayoutPanelEntidadDatos.Controls.Add(this.txtBoxDNI, 1, 1);
+            this.tblLayoutPanelEntidadDatos.Controls.Add(this.txtBoxNumeroDocumento, 1, 1);
             this.tblLayoutPanelEntidadDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelEntidadDatos.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelEntidadDatos.Name = "tblLayoutPanelEntidadDatos";
@@ -831,6 +831,18 @@
             this.lblContactoProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblContactoProveedor.Visible = false;
             // 
+            // lblTipoDocumento
+            // 
+            this.lblTipoDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTipoDocumento.AutoSize = true;
+            this.lblTipoDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.lblTipoDocumento.Location = new System.Drawing.Point(3, 0);
+            this.lblTipoDocumento.Name = "lblTipoDocumento";
+            this.lblTipoDocumento.Size = new System.Drawing.Size(53, 29);
+            this.lblTipoDocumento.TabIndex = 13;
+            this.lblTipoDocumento.Text = "Tipo Documento:";
+            this.lblTipoDocumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // lblApellido
             // 
             this.lblApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -843,18 +855,6 @@
             this.lblApellido.Text = "Apellido:";
             this.lblApellido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lblCUIT
-            // 
-            this.lblCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCUIT.AutoSize = true;
-            this.lblCUIT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblCUIT.Location = new System.Drawing.Point(3, 8);
-            this.lblCUIT.Name = "lblCUIT";
-            this.lblCUIT.Size = new System.Drawing.Size(53, 13);
-            this.lblCUIT.TabIndex = 13;
-            this.lblCUIT.Text = "CUIT:";
-            this.lblCUIT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // txtBoxApellido
             // 
             this.txtBoxApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -864,14 +864,17 @@
             this.txtBoxApellido.Size = new System.Drawing.Size(97, 20);
             this.txtBoxApellido.TabIndex = 20;
             // 
-            // txtBoxCUIT
+            // lblNumeroDocumento
             // 
-            this.txtBoxCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCUIT.Location = new System.Drawing.Point(62, 4);
-            this.txtBoxCUIT.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
-            this.txtBoxCUIT.Name = "txtBoxCUIT";
-            this.txtBoxCUIT.Size = new System.Drawing.Size(97, 20);
-            this.txtBoxCUIT.TabIndex = 14;
+            this.lblNumeroDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNumeroDocumento.AutoSize = true;
+            this.lblNumeroDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.lblNumeroDocumento.Location = new System.Drawing.Point(3, 29);
+            this.lblNumeroDocumento.Name = "lblNumeroDocumento";
+            this.lblNumeroDocumento.Size = new System.Drawing.Size(53, 29);
+            this.lblNumeroDocumento.TabIndex = 15;
+            this.lblNumeroDocumento.Text = "Número Documento:";
+            this.lblNumeroDocumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblNombre
             // 
@@ -885,17 +888,14 @@
             this.lblNombre.Text = "Nombre:";
             this.lblNombre.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lblDNI
+            // txtBoxNumeroDocumento
             // 
-            this.lblDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDNI.AutoSize = true;
-            this.lblDNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblDNI.Location = new System.Drawing.Point(3, 37);
-            this.lblDNI.Name = "lblDNI";
-            this.lblDNI.Size = new System.Drawing.Size(53, 13);
-            this.lblDNI.TabIndex = 15;
-            this.lblDNI.Text = "DNI:";
-            this.lblDNI.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.txtBoxNumeroDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxNumeroDocumento.Location = new System.Drawing.Point(62, 33);
+            this.txtBoxNumeroDocumento.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
+            this.txtBoxNumeroDocumento.Name = "txtBoxNumeroDocumento";
+            this.txtBoxNumeroDocumento.Size = new System.Drawing.Size(97, 20);
+            this.txtBoxNumeroDocumento.TabIndex = 16;
             // 
             // txtBoxNombre
             // 
@@ -906,14 +906,14 @@
             this.txtBoxNombre.Size = new System.Drawing.Size(97, 20);
             this.txtBoxNombre.TabIndex = 18;
             // 
-            // txtBoxDNI
+            // cmbBoxTipoDocumento
             // 
-            this.txtBoxDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxDNI.Location = new System.Drawing.Point(62, 33);
-            this.txtBoxDNI.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
-            this.txtBoxDNI.Name = "txtBoxDNI";
-            this.txtBoxDNI.Size = new System.Drawing.Size(97, 20);
-            this.txtBoxDNI.TabIndex = 16;
+            this.cmbBoxTipoDocumento.FormattingEnabled = true;
+            this.cmbBoxTipoDocumento.Location = new System.Drawing.Point(62, 3);
+            this.cmbBoxTipoDocumento.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
+            this.cmbBoxTipoDocumento.Name = "cmbBoxTipoDocumento";
+            this.cmbBoxTipoDocumento.Size = new System.Drawing.Size(97, 21);
+            this.cmbBoxTipoDocumento.TabIndex = 23;
             // 
             // tbPageDomicilioFacturacion
             // 
@@ -1429,11 +1429,10 @@
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelEntidadDatos;
         private System.Windows.Forms.TextBox txtBoxNombre;
         private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.Label lblDNI;
-        private System.Windows.Forms.TextBox txtBoxDNI;
+        private System.Windows.Forms.Label lblNumeroDocumento;
+        private System.Windows.Forms.TextBox txtBoxNumeroDocumento;
         private System.Windows.Forms.TextBox txtBoxApellido;
-        private System.Windows.Forms.Label lblCUIT;
-        private System.Windows.Forms.TextBox txtBoxCUIT;
+        private System.Windows.Forms.Label lblTipoDocumento;
         private System.Windows.Forms.Label lblApellido;
         private System.Windows.Forms.Panel pnlEntidadDatos;
         private System.Windows.Forms.GroupBox grpBoxObservaciones;
@@ -1456,5 +1455,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn valorParcialConDescuento;
         private System.Windows.Forms.ComboBox cmbBoxContactoProveedor;
         private System.Windows.Forms.Label lblContactoProveedor;
+        private System.Windows.Forms.ComboBox cmbBoxTipoDocumento;
     }
 }

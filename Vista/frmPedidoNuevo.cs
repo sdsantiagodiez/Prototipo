@@ -216,7 +216,7 @@ namespace Vista
             if (lcl_dialogResult == DialogResult.Yes)
             {
                 //borro la venta actual
-                glb_con_pedido.deleteCurrentDetails();
+                glb_con_pedido.removeLineasPedidos();
 
                 //rebindeo grilla detalles
                 this.dgvDetalleAgregados.DataSource = null;

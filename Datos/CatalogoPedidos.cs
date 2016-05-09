@@ -572,8 +572,8 @@ namespace Datos
 
             comando.CommandText =
             "INSERT INTO [pedidos]([fecha],[monto_total],[observaciones],[codigo_tipo_pedido]) " +
-            "OUTPUT INSERTED.NUMERO_PEDIDO " +
-            "VALUES (@fecha, @monto_total, @observaciones,@codigo_tipo_pedido)";
+            "   OUTPUT INSERTED.NUMERO_PEDIDO " +
+            "   VALUES (@fecha, @monto_total, @observaciones,@codigo_tipo_pedido)";
 
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.fecha, "@fecha"));

@@ -64,6 +64,7 @@ namespace Vista
         
         private void inicializarTextBoxes()
         {
+            txtBoxNumeroPedido.Enabled =
             txtBoxIVAPorcentaje.Enabled =
             txtBoxDescuentoLineas.Enabled =
             txtBoxDescuentoTotal.Enabled =
@@ -81,11 +82,14 @@ namespace Vista
         {
             //Populo combobox de paises
             List<ModeloPais> lcl_lst_mod_paises = ControladorBusqueda.getPaises();
-            this.cmbBoxPais.DataSource = lcl_lst_mod_paises.OrderBy(i => i.pais).ToList();
-            this.cmbBoxPais.DropDownWidth = this.getDropDownWidth(this.cmbBoxPais);
-            this.cmbBoxPais.DisplayMember = "pais";
-            this.cmbBoxPais.ValueMember = "codigo";
-            this.cmbBoxPais.SelectedValue = "AR";
+            this.cargarPaisesEnControles(lcl_lst_mod_paises);
+            
+            this.cmbBoxPais.SelectedItem = new ModeloPais() { codigo = "AR", pais = "Argentina" };
+            
+            //Populo combobox de tiposDocumentos
+            List<TipoDocumento> lcl_lst_tiposDocumentos = ControladorBusqueda.getTiposDocumentos();
+            this.cargarTiposDocumentosEnControles(lcl_lst_tiposDocumentos);
+            
 
             //Creo lista Tipos de teléfono
             var dataSource = new List<ComboBoxItem>();
@@ -104,28 +108,34 @@ namespace Vista
                 e.Value = Constantes.GetDescription<Constantes.FormaDePago>((Constantes.FormaDePago)e.Value);
             };
 
-            //Populo combobox de provincias
-            this.asignarProvincias();
-            //this.cmbBoxProvincia.SelectedItem = null;
-
+            
+            this.cmbBoxTipoDocumento.DisplayMember=
+            this.cmbBoxPais.DisplayMember =
             this.cmbBoxProvincia.DisplayMember =
                 this.cmbBoxTipoTelefono.DisplayMember =
                 this.cmbBoxDomicilios.DisplayMember = 
                 this.cmbBoxTelefonos.DisplayMember = 
                 this.cmbBoxMails.DisplayMember = "Name";
             
+            this.cmbBoxTipoDocumento.ValueMember =
+            this.cmbBoxPais.ValueMember=
             this.cmbBoxProvincia.ValueMember = 
                 this.cmbBoxTipoTelefono.ValueMember = 
                 this.cmbBoxDomicilios.ValueMember = 
                 this.cmbBoxTelefonos.ValueMember = 
                 this.cmbBoxMails.ValueMember = "Value";
             //Lo hago read only
+            this.cmbBoxTipoDocumento.DropDownStyle =
             this.cmbBoxProvincia.DropDownStyle = 
                 this.cmbBoxPais.DropDownStyle = 
                 this.cmbBoxTipoTelefono.DropDownStyle = 
                 this.cmbBoxDomicilios.DropDownStyle = 
                 this.cmbBoxTelefonos.DropDownStyle = 
                 this.cmbBoxMails.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            //Populo combobox de provincias
+            this.asignarProvincias();
+            //this.cmbBoxProvincia.SelectedItem = null;
         }
         private void inicializarControlesCliente()
         {
@@ -140,8 +150,10 @@ namespace Vista
             {
                 e.Value = Constantes.GetDescription<Constantes.TipoComprobanteVenta>((Constantes.TipoComprobanteVenta)e.Value);
             };
-
+            
             this.cmbBoxTipoComprobante.DataSource = Enum.GetValues(typeof(Constantes.TipoComprobanteVenta));
+            this.cmbBoxTipoComprobante.DropDownWidth = this.getDropDownWidth(this.cmbBoxTipoComprobante)+25;
+            this.cmbBoxTipoComprobante.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         private void inicializarControlesProveedor(ModeloProveedor p_mod_proveedor)
         {
@@ -181,7 +193,7 @@ namespace Vista
         {
             ModeloProvincia lcl_mod_provincia = new ModeloProvincia();
             //Inserto codigoPais del país seleccionado en el comboBox
-            lcl_mod_provincia.codigoPais = this.cmbBoxPais.SelectedValue.ToString();
+            lcl_mod_provincia.codigoPais = (this.cmbBoxPais.SelectedValue as ModeloPais).codigo;
             //this.cmbBoxProvincia.DataSource = provincias;
             List<ModeloProvincia> lcl_lst_mod_provincias = ControladorBusqueda.getProvincias();
             List<ModeloProvincia> provincias = new List<ModeloProvincia>();
@@ -195,6 +207,7 @@ namespace Vista
             this.cargarProvinciasEnControles(provincias);
         }
         #endregion
+       
         #region Modelo -> Controles
         private void cargarPedidoEnControles(ModeloPedido p_mod_pedido)
         {
@@ -239,7 +252,6 @@ namespace Vista
         }
         private void cargarEntidadEnControles(ModeloEntidad p_mod_entidad)
         {
-            this.txtBoxCUIT.Text = p_mod_entidad.cuit;
             if(p_mod_entidad.GetType() == typeof(ModeloProveedor))
             {
                 this.cargarProveedorEnControles(p_mod_entidad as ModeloProveedor);
@@ -293,7 +305,7 @@ namespace Vista
         {
             this.txtBoxApellido.Text = p_mod_cliente.apellido;
             this.txtBoxNombre.Text = p_mod_cliente.nombre;
-            this.txtBoxDNI.Text = p_mod_cliente.dni;
+            this.txtBoxNumeroDocumento.Text = p_mod_cliente.dni;
         }
         private void cargarProveedorEnControles(ModeloProveedor p_mod_proveedor)
         {
@@ -417,6 +429,29 @@ namespace Vista
                     break;
             }
         }
+        private void cargarTiposDocumentosEnControles(List<TipoDocumento> p_lst_tiposDocumentos)
+        {
+            var dataSource = new List<ComboBoxItem>();
+            List<TipoDocumento> tiposDocumentos = p_lst_tiposDocumentos.OrderBy(i => i.descripcion).ToList();
+            for (int i = 0; i < tiposDocumentos.Count; i++)
+            {
+                dataSource.Add(new ComboBoxItem() { Name = tiposDocumentos[i].descripcion, Value = tiposDocumentos[i] });
+            }
+            this.cmbBoxTipoDocumento.DataSource = dataSource;
+            this.cmbBoxTipoDocumento.DropDownWidth = this.getDropDownWidth(this.cmbBoxTipoDocumento);
+        }
+        private void cargarPaisesEnControles(List<ModeloPais> p_lst_mod_paises)
+        {
+            var dataSource = new List<ComboBoxItem>();
+            List<ModeloPais> paises = p_lst_mod_paises.OrderBy(i => i.pais).ToList();
+            for (int i = 0; i < paises.Count; i++)
+            {
+                dataSource.Add(new ComboBoxItem() { Name = paises[i].pais, Value = paises[i] });
+            }
+            this.cmbBoxPais.DataSource = dataSource;
+            this.cmbBoxPais.DropDownWidth = this.getDropDownWidth(this.cmbBoxPais);
+            
+        }
         private void cargarProvinciasEnControles(List<ModeloProvincia> p_lst_mod_provincias)
         {
             var dataSource = new List<ComboBoxItem>();
@@ -440,13 +475,15 @@ namespace Vista
             if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
             {
                 lcl_mod_pedido.entidad = this.cargarControlEnCliente();
-                //el proveedor ya esta en el pedido
+                
+                lcl_mod_pedido.tipoComprobante = ControladorPedidoCliente.getCodigoComprobante((Constantes.TipoComprobanteVenta)this.cmbBoxTipoComprobante.SelectedValue,1);
+                lcl_mod_pedido.documentoComprador = this.cargarControlEnDocumento();
             }
             if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
             {
-                
+                //el proveedor ya esta en el pedido
             }
-
+            
             lcl_mod_pedido.domicilioDeFacturacion = this.cargarControlEnDomicilio();
             lcl_mod_pedido.mailContacto = this.cargarControlEnMail();
             lcl_mod_pedido.telefonoContacto = this.cargarControlEnTelefono();
@@ -457,8 +494,21 @@ namespace Vista
         private ModeloEntidad cargarControlEnCliente()
         {
             ModeloEntidad lcl_mod_entidad = new ModeloCliente();
-
+            if(chckBoxClienteGenerico.Checked)
+            {
+                lcl_mod_entidad = controlador.pedidoActual.entidad;
+                (lcl_mod_entidad as ModeloCliente).nombre = this.txtBoxNombre.Text;
+                (lcl_mod_entidad as ModeloCliente).apellido = this.txtBoxApellido.Text;
+            }
             return lcl_mod_entidad;
+        }
+        private Documento cargarControlEnDocumento()
+        {
+            Documento lcl_documento = new Documento();
+            lcl_documento.tipo = this.cmbBoxTipoDocumento.SelectedValue as TipoDocumento;
+            lcl_documento.numero = this.txtBoxNumeroDocumento.Text;
+            //"20111111112"
+            return lcl_documento;
         }
         private ModeloContactoProveedor cargarControlEnContactoProveedor()
         {
@@ -491,7 +541,11 @@ namespace Vista
             return lcl_mod_mail;
         }
         #endregion
-        
+
+        #region Validaciones
+        //Validaciones de datos que se toman de textboxes
+        #endregion
+
         int getDropDownWidth(ComboBox p_comboBox)
         {
             int maxWidth = 0, temp = 0;
@@ -504,6 +558,92 @@ namespace Vista
                 }
             }
             return maxWidth;
+        }
+
+        private void imprimirPedido()
+        {
+            if (controlador.pedidoActual.lineasPedido.Count == 0)
+            {
+                MessageBox.Show("No existen líneas en el pedido actual para imprimir", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            this.facturarAFIP();
+
+            DialogResult dialogResult = MessageBox.Show("Además de imprimir, ¿desea también guardar el pedido?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (!this.guardarPedido())
+                {
+                    return;
+                }
+            }
+            
+            //imprimir
+            MessageBox.Show("Operación exitosa", "Éxito", MessageBoxButtons.OK);
+        }
+
+        private bool guardarPedido()
+        {
+            DialogResult dialogResult = new DialogResult();  
+            do
+            {
+                if (!controlador.guardarPedido())
+                {
+                    dialogResult = MessageBox.Show(controlador.errorActual, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    if (dialogResult == System.Windows.Forms.DialogResult.Cancel)
+                    {
+                        return false;
+                    }
+                }
+            } while (dialogResult == System.Windows.Forms.DialogResult.Retry);
+            this.txtBoxNumeroPedido.Text = controlador.pedidoActual.numeroPedido.ToString();
+            return true;
+        }
+
+        private bool facturarAFIP()
+        {
+            if (controlador.pedidoActual.tipoComprobante == 0)
+            {
+                //no factura si comprobante no lo requiere (presupuesto, reserva, otro)
+                return true;
+            }
+            bool respuesta = false;
+            BackgroundWorker bw = new BackgroundWorker();
+            frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Realizando facturación electrónica AFIP.");
+            
+            bool exito = false;
+            bw.DoWork += (s, e) =>
+            { 
+                exito = (controlador as ControladorPedidoCliente).facturarAFIP();
+            };
+            bw.RunWorkerCompleted += (s, e) => {
+                lcl_frm_loading.Hide();
+                if (exito)
+                {
+                    MessageBox.Show("Facturación electrónica realizada", "Éxito", MessageBoxButtons.OK);
+                    respuesta = true;
+                }
+                else
+                {
+                    DialogResult dialogResul = MessageBox.Show(controlador.errorActual, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    if (dialogResul == System.Windows.Forms.DialogResult.Retry)
+                    {
+                        respuesta = this.facturarAFIP();
+                    }
+                    respuesta = false;
+                }
+            };
+
+            bw.RunWorkerAsync();
+            lcl_frm_loading.ShowDialog();
+
+            return respuesta;
+        }
+
+        private void backGroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            this.facturarAFIP();
         }
         #endregion
       
@@ -674,19 +814,9 @@ namespace Vista
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            if (controlador.pedidoActual.lineasPedido.Count == 0)
-            {
-                MessageBox.Show("No existen líneas en el pedido actual para imprimir", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            DialogResult dialogResult = MessageBox.Show("Además de imprimir, ¿desea también guardar el pedido?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
-            {
-                //guardar
-            }
-
-            //imprimir
+            //this.controlador.pedidoActual =
+                this.cargarControlEnPedido();
+            this.imprimirPedido();
         }
 
         #endregion
@@ -696,7 +826,7 @@ namespace Vista
         {
             if ((sender as CheckBox).Checked)
             {
-                //hacer pertinente a cliente genérico
+                (controlador as ControladorPedidoCliente).asignarClienteGenerico();
             }
         }
         #endregion

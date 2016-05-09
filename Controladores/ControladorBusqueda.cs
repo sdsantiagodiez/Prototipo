@@ -96,6 +96,12 @@ namespace Controladores
             ModeloRoles lcl_mod_rol = new ModeloRoles();
             return ControladorBusqueda.buscar(lcl_mod_rol, Constantes.ParametrosBusqueda.All);
         }
+
+        public static List<TipoDocumento> getTiposDocumentos()
+        {
+            CatalogoEntidades lcl_cat_entidades = new CatalogoEntidades();
+            return lcl_cat_entidades.getTiposDocumentos();
+        }
         #endregion
 
         #region buscar(object)

@@ -13,8 +13,6 @@ namespace Controladores
 {
     public class ControladorAlta : Controlador
     {
-        public string errorActual;
-
         /// <summary>
         /// Se comunica con la capa de datos para realizar INSERT en la base de datos. Acepta modeloEntidad o cualquiera de sus descendientes.
         /// </summary>
@@ -221,7 +219,24 @@ namespace Controladores
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    respuesta = lcl_cat_pedidos.add(ref p_mod_pedido) && this.agregar(p_mod_pedido.lineasPedido);
+                    switch (p_mod_pedido.codigoTipoPedido)
+                    {
+                        case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona:
+                            respuesta = lcl_cat_pedidos.add(ref p_mod_pedido) && this.agregarLineasPedidoCliente(p_mod_pedido.lineasPedido);
+                            break;
+                        case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor:
+                            respuesta = lcl_cat_pedidos.add(ref p_mod_pedido) && this.agregarLineasPedidoProveedor(p_mod_pedido.lineasPedido);
+                            break;
+                        default :
+                            errorActual = "Tipo de pedido no ha sido definido.";
+                            respuesta = false;
+                            break;
+                    }
+                    if (!respuesta)
+                    {
+                        throw new Exception(errorActual);
+                    }
+
                     scope.Complete();
                 }
             }
@@ -246,18 +261,58 @@ namespace Controladores
         }
 
         /// <summary>
-        /// Se comunica con la capa de datos para realizar INSERT en la base de datos.
+        /// Se comunica con la capa de datos agregar lineas de pedido cliente y modificar stock de artículos incluidos
         /// </summary>
         /// <param name="p_lst_mod_lineaPedido"></param>
         /// <returns>true si se ha insertado, false y excepción si ha habido fallo</returns>
-        private bool agregar(List<ModeloLineaPedido> p_lst_mod_lineaPedido)
+        private bool agregarLineasPedidoCliente(List<ModeloLineaPedido> p_lst_mod_lineaPedido)
         {
             CatalogoLineasPedidos lcl_cat_lineasPedidos = new CatalogoLineasPedidos();
+            ModeloArticuloProveedores lcl_mod_articuloProveedores;
+            ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
+
+            foreach (ModeloLineaPedido lp in p_lst_mod_lineaPedido)
+            {
+                lcl_mod_articuloProveedores = new ModeloArticuloProveedores();
+
+                lcl_mod_articuloProveedores.codigoOriginal = lp.articulo.codigoOriginal;
+                lcl_mod_articuloProveedores.codigoArticuloProveedor = lp.articulo.codigoArticuloProveedor;
+
+                lcl_mod_articuloProveedores = ControladorBusqueda.buscar(lcl_mod_articuloProveedores, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.One)[0];
+                //Si no se encuentra artículo tira excepción de índice
+                lcl_mod_articuloProveedores.stockActual = lcl_mod_articuloProveedores.stockActual - lp.cantidadArticulos;
+                //Excepcion si stock negativo y no esta permitido
+                if (lcl_mod_articuloProveedores.stockActual < 0 && !lp.permitirStockNegativo)
+                {
+                    errorActual = "La cantidad solicitada es mayor al stock actual para el artículo "+lcl_mod_articuloProveedores.descripcionArticuloProveedor;
+                    return false;
+                }
+                //Si hay error al modificar la base de datos agregando linea o modificando stock
+                if ((lcl_mod_articuloProveedores.stockActual < 0 && !lp.permitirStockNegativo)
+                    || (!lcl_con_modificacion.modificar(lcl_mod_articuloProveedores) || !lcl_cat_lineasPedidos.add(lp)))
+                {
+                    errorActual = "Error al modificar stock en la base de datos de artículo "+lcl_mod_articuloProveedores.descripcionArticuloProveedor;
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Se comunica con la capa de datos agregar lineas de pedido proveedor
+        /// </summary>
+        /// <param name="p_lst_mod_lineaPedido"></param>
+        /// <returns>true si se ha insertado, false y excepción si ha habido fallo</returns>
+        private bool agregarLineasPedidoProveedor(List<ModeloLineaPedido> p_lst_mod_lineaPedido)
+        {
+            CatalogoLineasPedidos lcl_cat_lineasPedidos = new CatalogoLineasPedidos();
+            ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
+
             foreach (ModeloLineaPedido lp in p_lst_mod_lineaPedido)
             {
                 if (!lcl_cat_lineasPedidos.add(lp))
                 {
-                    return false;
+                    throw new Exception();
                 }
             }
             return true;

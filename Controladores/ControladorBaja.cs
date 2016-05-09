@@ -11,8 +11,6 @@ namespace Controladores
 {
     public class ControladorBaja : Controlador
     {
-        public string errorActual;
-
         public bool eliminar(ModeloEntidad p_mod_entidad)
         {
             Type T = p_mod_entidad.GetType();

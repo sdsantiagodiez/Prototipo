@@ -11,8 +11,6 @@ namespace Controladores
 {
     public class ControladorModificacion : Controlador
     {
-        public string errorActual;
-
         public bool modificar(ModeloEntidad p_mod_entidad)
         {
             Type T = p_mod_entidad.GetType();

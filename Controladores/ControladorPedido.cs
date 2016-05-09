@@ -84,24 +84,6 @@ namespace Controladores
         }
         #endregion
 
-        public void addArticulo(ModeloArticuloProveedores p_articulo, Int32 p_cantidad)
-        {
-            //le cambio el formato  y lo agrego a la lista de articulos ya seleccionados
-            ModeloLineaPedido lcl_mod_nuevaLinea = new ModeloLineaPedido(p_articulo, p_cantidad,this.tipoPedido);
-            this.pedidoActual.addLineaPedido(lcl_mod_nuevaLinea);
-        }
-        public void addCliente(ModeloPersonas p_nuevoCliente)
-        {
-            //CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
-            //lcl_cat_personas.add(ref p_nuevoCliente);
-            //CAMBIOS
-        }
-
-        public bool cerrarPedido()
-        {
-
-            return true;
-        }
         private bool validarFormaDePago()
         {
             if (this.pedidoActual.formasDePago.Count == 1)
@@ -121,50 +103,60 @@ namespace Controladores
                 //mensaje de error que debe revisar las formas de pago
             }
             return true;
-
         }
 
-        public void guardarPedido()
+        //public bool cerrarPedido()
+        //{
+            
+        //    return true;
+        //}
+        public bool guardarPedido()
         {
-            ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
-            ModeloArticuloProveedores lcl_mod_articuloProveedores = new ModeloArticuloProveedores();
-
-            foreach (ModeloLineaPedido lcl_mod_linea in pedidoActual.lineasPedido)
+            ControladorAlta lcl_con_alta = new ControladorAlta();
+            
+            if (!lcl_con_alta.agregar(ref _pedidoActual))
             {
-                lcl_mod_articuloProveedores.codigoOriginal = lcl_mod_linea.articulo.codigoOriginal;
-                lcl_mod_articuloProveedores.codigoArticuloProveedor = lcl_mod_linea.articulo.codigoArticuloProveedor;
-
-                lcl_mod_articuloProveedores = ControladorBusqueda.buscar(lcl_mod_articuloProveedores, Constantes.ParametrosBusqueda.One)[0]; 
-                lcl_mod_articuloProveedores.stockActual = lcl_mod_articuloProveedores.stockActual - lcl_mod_linea.cantidadArticulos;
-                lcl_con_modificacion.modificar(lcl_mod_articuloProveedores);
+                errorActual = lcl_con_alta.errorActual;
+                return false;
             }
 
-            //calcular lo que falta calcular(como total)
-            //guardar lineas
-            //guardar pedido
-        }
-        public void deleteCurrentDetails()
-        {
-            this.pedidoActual.removeAllLineaPedido();
-        }
-        public bool exists(ModeloArticuloProveedores p_articulo)
-        {
-            return this.pedidoActual.existeLineaPedido(p_articulo);
-        }
-       
-
-        public int getCantidadLineas()
-        {
-            return pedidoActual.lineasPedido.Count;
+            return true;
         }
         public string getTotal()
         {
             return this.pedidoActual.montoTotal.ToString("0.##");
         }
+
+        public void addArticulo(ModeloArticuloProveedores p_articulo, Int32 p_cantidad)
+        {
+            //le cambio el formato  y lo agrego a la lista de articulos ya seleccionados
+            ModeloLineaPedido lcl_mod_nuevaLinea = new ModeloLineaPedido(p_articulo, p_cantidad, this.tipoPedido);
+            this.pedidoActual.addLineaPedido(lcl_mod_nuevaLinea);
+        }
+        public bool exists(ModeloArticuloProveedores p_articulo)
+        {
+            return this.pedidoActual.existeLineaPedido(p_articulo);
+        }
+
+        public int getCantidadLineas()
+        {
+            return pedidoActual.lineasPedido.Count;
+        }
+        /// <summary>
+        /// Remueve la seleccionada
+        /// </summary>
+        /// <param name="p_lineaPedido"></param>
         public void removeLineaPedido(ModeloLineaPedido p_lineaPedido)
         {
             this.pedidoActual.removeLineaPedido(p_lineaPedido);
         }
+        /// <summary>
+        /// Remueve todas
+        /// </summary>
+        public void removeLineasPedidos()
+        {
+            this.pedidoActual.removeAllLineaPedido();
+        }        
         #endregion
     }
 
@@ -221,7 +213,7 @@ namespace Controladores
             this.pedidosProveedores = p_lst_mod_pedidos;
             return p_lst_mod_pedidos;
         }
- 
+
     }
     public class ControladorPedidoCliente : ControladorPedido
     {
@@ -229,6 +221,10 @@ namespace Controladores
         {
  
         }
+
+        #region Métodos
+        
+        #region Facturación AFIP
         /// <summary>
         /// Devuelvo codigoTipoComprobante de AFIP de acuerdo a los parámetros. Considera que Vendedor es Responsable Inscripto
         /// </summary>
@@ -278,5 +274,53 @@ namespace Controladores
             }
             return codigoTipoComprobante;
         }
+
+        public bool verificarConexionAFIP()
+        {
+            return ControladorAFIP.validarConexion();
+        }
+        /// <summary>
+        /// Hace facturación electrónica. Si Comprobante no corresponde a facturación, devuelve true
+        /// </summary>
+        /// <returns></returns>
+        public bool facturarAFIP()
+        {
+            if (pedidoActual.tipoComprobante != 0)
+            {
+                try
+                {
+                    ControladorAFIP lcl_con_AFIP = new ControladorAFIP();
+                    if (!lcl_con_AFIP.facturar(pedidoActual))
+                    {
+                        errorActual = lcl_con_AFIP.errorActual;
+                        return false;
+                    }
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    errorActual = ex.Message;
+                    return false;
+                }
+            }
+            return false;
+        }
+        #endregion
+
+        public void addCliente(ModeloCliente p_nuevoCliente)
+        {
+            //CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
+            //lcl_cat_personas.add(ref p_nuevoCliente);
+            //CAMBIOS
+        }
+        public void asignarClienteGenerico()
+        {
+            //codigo cliente genérico actual 106242
+            //cuando se haga de nuevo la base, cambiar a algo más representativo como el 100000 o algo
+            ModeloCliente lcl_mod_cliente = new ModeloCliente();
+            lcl_mod_cliente.codigo = 106242;
+            pedidoActual.entidad = lcl_mod_cliente;
+        }
+        #endregion
     }
 }

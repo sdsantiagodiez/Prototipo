@@ -10,6 +10,6 @@ namespace Controladores
 {
     public class Controlador
     {
-
+        public string errorActual;
     }
 }

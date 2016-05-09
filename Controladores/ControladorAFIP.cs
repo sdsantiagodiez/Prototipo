@@ -8,7 +8,7 @@ using Modelos;
 
 namespace Controladores
 {
-    public class ControladorAFIP
+    public class ControladorAFIP : Controlador
     {
         public static string facturarTEST()
         {
@@ -109,7 +109,7 @@ namespace Controladores
             return respuesta;
         }
 
-        public static string facturar(ModeloPedido p_mod_pedido)
+        public bool facturar(ModeloPedido p_mod_pedido)
         {
             #region variables del certificado
             string afipFolderPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\AFIP";
@@ -131,14 +131,14 @@ namespace Controladores
                     ControladorAFIP.agregarDetallesPedido(fe, p_mod_pedido);
                     try
                     {
-                    int ultimoAutorizado = fe.F1CompUltimoAutorizado(fe.F1CabeceraPtoVta, fe.F1CabeceraCbteTipo);
+                        int ultimoAutorizado = fe.F1CompUltimoAutorizado(fe.F1CabeceraPtoVta, fe.F1CabeceraCbteTipo);
                     
-                    fe.F1DetalleCbteDesde = ultimoAutorizado + 1;
-                    fe.F1DetalleCbteHasta = ultimoAutorizado + 1;
+                        fe.F1DetalleCbteDesde = ultimoAutorizado + 1;
+                        fe.F1DetalleCbteHasta = ultimoAutorizado + 1;
                     }
                     catch (System.Net.WebException ex)
                     {
-                        return "Error: " + ex.Message;
+                        errorActual = "Error: " + ex.Message;
                     }
                     ControladorAFIP.agregarItems(fe, p_mod_pedido);
 
@@ -169,6 +169,7 @@ namespace Controladores
                         respuesta += "|" + "cae comprobante: " + p_mod_pedido.CAE;
                         respuesta += "|" + "número comprobante:" + p_mod_pedido.numeroComprobante;
                         respuesta += "|" + "error detallado comprobante: " + fe.F1RespuestaDetalleObservacionMsg1;
+                        return true;
                     }
                 }
                 else
@@ -180,7 +181,8 @@ namespace Controladores
             {
                 respuesta = "error inicio " + fe.UltimoMensajeError;
             }
-            return respuesta;
+            errorActual = respuesta;
+            return false;
         }
         /// <summary>
         /// Agrega valores de items a factura electrónica. Se podría mejorar la parte de obtener iva
@@ -249,6 +251,33 @@ namespace Controladores
             p_mod_pedido.aprobadoAFIP = p_facturaElectronica.F1RespuestaDetalleResultado;
             p_mod_pedido.CAE = p_facturaElectronica.F1RespuestaDetalleCae;
             p_mod_pedido.numeroComprobante = p_facturaElectronica.F1RespuestaDetalleCbteDesdeS;
+        }
+
+        public static bool validarConexion()
+        {
+            #region variables del certificado
+            string afipFolderPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\AFIP";
+            string certificadoPath = afipFolderPath + @"\certificado.pfx";
+            string passwordCertificado = "prueba123";
+            string cuitEmisor = "20356445393"; //Debe ser el mismo cuit que el que está en el certificado
+            #endregion
+
+            WSAFIPFE.Factura fe = new WSAFIPFE.Factura();
+            bool bResultado = fe.iniciar(0, cuitEmisor, certificadoPath, ""); //0 modo homologación, 1 en producción. Sólo usar 0
+            if (bResultado)
+            {
+                fe.ArchivoCertificadoPassword = passwordCertificado;
+                bResultado = fe.f1ObtenerTicketAcceso();
+                if (!bResultado)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

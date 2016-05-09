@@ -40,6 +40,8 @@ namespace Vista
             else if (p_tipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
             {
                 this.grpBoxDescuentos.Enabled = false;
+                this.checkBoxStockNegativo.Visible = false;
+                this.checkBoxStockNegativo.Checked = true;
             }
         }
         #endregion
@@ -83,6 +85,7 @@ namespace Vista
             this.txtBoxCodigoOriginal.Text = p_mod_lineaPedido.articulo.codigoOriginal;
             this.txtBoxCodigoArticuloProveedor.Text = p_mod_lineaPedido.articulo.codigoArticuloProveedor;
             this.txtBoxDescripcion.Text = p_mod_lineaPedido.articulo.descripcion;
+            this.checkBoxStockNegativo.Checked = p_mod_lineaPedido.permitirStockNegativo;
 
             this.txtBoxValorUnitario.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_lineaPedido.valorUnitario);
             this.nmrcUpDownCantidad.Value = p_mod_lineaPedido.cantidadArticulos;
@@ -176,6 +179,18 @@ namespace Vista
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void checkBoxStockNegativo_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as CheckBox).Checked)
+            {
+                glb_mod_lineaActual.permitirStockNegativo = true;
+            }
+            else
+            {
+                glb_mod_lineaActual.permitirStockNegativo = false;
+            }
         }
 
       

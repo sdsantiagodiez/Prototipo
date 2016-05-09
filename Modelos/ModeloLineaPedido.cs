@@ -25,6 +25,12 @@ namespace Modelos
             set { _articulo = value; }
         }
 
+        bool _permitirStockNegativo;
+        public bool permitirStockNegativo
+        {
+            get { return _permitirStockNegativo; }
+            set { _permitirStockNegativo = value; }
+        }
         int _cantidadArticulos;
         public int cantidadArticulos
         {

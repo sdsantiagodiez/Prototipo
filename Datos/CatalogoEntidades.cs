@@ -110,44 +110,6 @@ namespace Datos
             return lcl_mod_entidad;
         }
 
-        public List<ModeloEntidad> getAll()
-        {
-            List<ModeloEntidad> lcl_lst_mod_entidades = new List<ModeloEntidad>();
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                   "SELECT [codigo],[tipo_entidad],[cuit],[observaciones] " +
-                       "FROM [entidades]  ";
-
-            comando.Connection.Open();
-            ModeloEntidad lcl_mod_entidad;
-            SqlDataReader drPersonas = comando.ExecuteReader();
-            while (drPersonas.Read())
-            {
-                lcl_mod_entidad = new ModeloEntidad();
-                lcl_mod_entidad = this.leerDatosEntidades(drPersonas);
-
-                lcl_mod_entidad.mails = this.getMails(lcl_mod_entidad.codigo);
-                lcl_mod_entidad.telefonos = this.getTelefonos(lcl_mod_entidad.codigo);
-                lcl_mod_entidad.domicilios = this.getDomicilios(lcl_mod_entidad.codigo);
-
-                lcl_lst_mod_entidades.Add(lcl_mod_entidad);
-            }
-            drPersonas.Close();
-
-            comando.Connection.Close();
-
-            return lcl_lst_mod_entidades;
-        }
-
         public List<ModeloMail> getMails(int p_codigoEntidad)
         {     
             CatalogoMails lcl_cat_mails = new CatalogoMails();
@@ -166,6 +128,37 @@ namespace Datos
             return lcl_cat_telefonos.getTelefonos(p_codigoEntidad);
         }
 
+        public List<TipoDocumento> getTiposDocumentos()
+        {
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText =
+                "SELECT [Tipos_Documentos].codigo,[Tipos_Documentos].descripcion " +
+                "   FROM [Tipos_Documentos] ";
+
+            comando.Connection.Open();
+
+            SqlDataReader drTiposDocumentos = comando.ExecuteReader();
+
+            List<TipoDocumento> lcl_lst_tiposDocumentos = new List<TipoDocumento>();
+            TipoDocumento lcl_tipoDocumento = new TipoDocumento();
+
+            while (drTiposDocumentos.Read())
+            {
+                lcl_tipoDocumento = new TipoDocumento();
+                lcl_tipoDocumento.codigo = (int)drTiposDocumentos["codigo"];
+                lcl_tipoDocumento.descripcion = (string)drTiposDocumentos["descripcion"];
+
+                lcl_lst_tiposDocumentos.Add(lcl_tipoDocumento);
+            }
+            drTiposDocumentos.Close();
+            comando.Connection.Close();
+
+            return lcl_lst_tiposDocumentos;
+        }
         #endregion
 
         #region Alta/Baja/Modificación
