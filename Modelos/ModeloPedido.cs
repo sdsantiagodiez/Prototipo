@@ -183,7 +183,6 @@ namespace Modelos
             lineasPedido = new List<ModeloLineaPedido>();
             this.alicuota = new Alicuota();
             this.documentoComprador = new Documento();
-           
             this.fecha = DateTime.Today;
             this.descuento_1 = new ModeloDescuento();
             this.descuento_2 = new ModeloDescuento();

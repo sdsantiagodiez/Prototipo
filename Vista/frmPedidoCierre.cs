@@ -568,12 +568,10 @@ namespace Vista
                 return;
             }
 
-            this.facturarAFIP();
-
             DialogResult dialogResult = MessageBox.Show("Además de imprimir, ¿desea también guardar el pedido?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == System.Windows.Forms.DialogResult.Yes)
             {
-                if (!this.guardarPedido())
+                if (!this.facturarAFIP() || !this.guardarPedido())
                 {
                     return;
                 }
@@ -600,7 +598,11 @@ namespace Vista
             this.txtBoxNumeroPedido.Text = controlador.pedidoActual.numeroPedido.ToString();
             return true;
         }
-
+       
+        /// <summary>
+        /// Muestra mensaje de espera mientras realiza facturación electrónica con web service de AFIP
+        /// </summary>
+        /// <returns></returns>
         private bool facturarAFIP()
         {
             if (controlador.pedidoActual.tipoComprobante == 0)
@@ -608,6 +610,7 @@ namespace Vista
                 //no factura si comprobante no lo requiere (presupuesto, reserva, otro)
                 return true;
             }
+
             bool respuesta = false;
             BackgroundWorker bw = new BackgroundWorker();
             frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Realizando facturación electrónica AFIP.");
@@ -617,7 +620,8 @@ namespace Vista
             { 
                 exito = (controlador as ControladorPedidoCliente).facturarAFIP();
             };
-            bw.RunWorkerCompleted += (s, e) => {
+            bw.RunWorkerCompleted += (s, e) => 
+            {
                 lcl_frm_loading.Hide();
                 if (exito)
                 {
@@ -639,11 +643,6 @@ namespace Vista
             lcl_frm_loading.ShowDialog();
 
             return respuesta;
-        }
-
-        private void backGroundWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            this.facturarAFIP();
         }
         #endregion
       
