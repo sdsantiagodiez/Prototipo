@@ -217,7 +217,6 @@ namespace Controladores
     }
     public class ControladorPedidoCliente : ControladorPedido
     {
-        const int codigoClienteGenerico = 106242;
         public ControladorPedidoCliente() : base(Constantes.CodigosTiposPedidos.TipoPedidoPersona)
         {
  
@@ -270,7 +269,7 @@ namespace Controladores
                     codigoTipoComprobante = p_codigoTipoResponsable == 1 ? 5 : 10; //5=A,10=B
                     break;
                 default :
-                    codigoTipoComprobante = 0;//No se asigna. No hay código para tal
+                    codigoTipoComprobante = 0;//No se asigna. No hay código para tal (presupuesto, reserva, otro)
                     break;
             }
             return codigoTipoComprobante;
@@ -287,6 +286,11 @@ namespace Controladores
         /// <returns></returns>
         public bool facturarAFIP()
         {
+            if (pedidoActual.aprobadoAFIP == "A")
+            {
+                errorActual = "El pedido ya esta aprobado por AFIP";
+                return false;
+            }
             if (pedidoActual.tipoComprobante != 0)
             {
                 try
@@ -308,13 +312,9 @@ namespace Controladores
             return false;
         }
         #endregion
-
-        public void addCliente(ModeloCliente p_nuevoCliente)
-        {
-            //CatalogoPersonas lcl_cat_personas = new CatalogoPersonas();
-            //lcl_cat_personas.add(ref p_nuevoCliente);
-            //CAMBIOS
-        }
+       
+        #region Cliente Genérico
+        const int codigoClienteGenerico = 106242;
         public void asignarClienteGenerico()
         {
             //codigo cliente genérico actual 106242
@@ -338,6 +338,8 @@ namespace Controladores
             return p_mod_cliente.codigo == codigoClienteGenerico ||
                 p_mod_cliente.codigo == 0;
         }
+        #endregion
+        
         #endregion
     }
 }

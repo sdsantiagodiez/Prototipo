@@ -18,12 +18,15 @@ namespace Vista
         List<TipoDocumento> glb_lst_tiposDocumentos;
         ControladorPedido controlador;
         CheckBox chckBoxClienteGenerico;
+        ContextMenu cntxMenuLineasPedido;
         #region Constructores
         public frmPedidoCierre()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.inicializarTextBoxes();
+            this.inicializarContextMenuStrip();
+            this.inicializarBotones();
         }
 
         public frmPedidoCierre(ModeloPedido p_mod_pedido) : this()
@@ -62,7 +65,25 @@ namespace Vista
             this.cargarPedidoEnControles(lcl_lst_mod_pedidos[0]);
             this.inicializarControlesProveedor(lcl_lst_mod_pedidos[0].entidad as ModeloProveedor);
         }
-        
+
+        private void inicializarBotones()
+        {
+            this.btnEliminar.Click += evento_eliminarLinea;
+            this.btnEditar.Click += evento_editarLinea;
+            this.btnAgregar.Click += evento_agregarLinea;
+        }
+        private void inicializarContextMenuStrip()
+        {
+            cntxMenuLineasPedido = new ContextMenu();
+            cntxMenuLineasPedido.MenuItems.Add("Ver detalles artículo");
+            cntxMenuLineasPedido.MenuItems[0].Click += evento_verDetalleArticulo;
+            cntxMenuLineasPedido.MenuItems.Add("Agregar línea");
+            cntxMenuLineasPedido.MenuItems[1].Click += evento_agregarLinea;
+            cntxMenuLineasPedido.MenuItems.Add("Editar línea");
+            cntxMenuLineasPedido.MenuItems[2].Click += evento_editarLinea;
+            cntxMenuLineasPedido.MenuItems.Add("Eliminar línea");
+            cntxMenuLineasPedido.MenuItems[3].Click += evento_eliminarLinea;
+        }
         private void inicializarTextBoxes()
         {
             txtBoxNumeroPedido.Enabled =
@@ -141,6 +162,7 @@ namespace Vista
             chckBoxClienteGenerico = new CheckBox();
             chckBoxClienteGenerico.Anchor = AnchorStyles.Left;
             chckBoxClienteGenerico.Text = "Cliente Genérico";
+
             chckBoxClienteGenerico.CheckedChanged += clienteGenerico_CheckedChanged;
             this.tblLayoutPanelEntidadDatos.Controls.Add(chckBoxClienteGenerico, 1, 4);
 
@@ -187,7 +209,24 @@ namespace Vista
             this.cmbBoxPedidosProveedores.ValueMember = "Value";
             this.cmbBoxPedidosProveedores.DropDownStyle = ComboBoxStyle.DropDownList;
         }
-        
+        private void actualizarContextMenuStrip()
+        {
+            if (dgvArticulosVenta.SelectedRows.Count > 1)
+            {
+                cntxMenuLineasPedido.MenuItems[0].Visible = false;
+                cntxMenuLineasPedido.MenuItems[1].Visible = false;
+                cntxMenuLineasPedido.MenuItems[2].Text = "Editar lineas";
+                cntxMenuLineasPedido.MenuItems[3].Text = "Eliminar lineas";
+            }
+            else
+            {
+                cntxMenuLineasPedido.MenuItems[0].Visible = true;
+                cntxMenuLineasPedido.MenuItems[1].Visible = true;
+                cntxMenuLineasPedido.MenuItems[2].Text = "Editar linea";
+                cntxMenuLineasPedido.MenuItems[3].Text = "Eliminar linea";
+            }
+        }
+
         private void asignarProvincias()
         {
             ModeloProvincia lcl_mod_provincia = new ModeloProvincia();
@@ -833,42 +872,7 @@ namespace Vista
         #endregion
 
         #region Button
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-             if(this.dgvArticulosVenta.CurrentRow == null)
-            {
-                MessageBox.Show("No hay línea de pedido seleccionada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            int i = Convert.ToInt32(this.dgvArticulosVenta.CurrentRow.Cells["indice"].Value);
-            ModeloLineaPedido lcl_mod_lineaPedido = ObjectCopier.Clone<ModeloLineaPedido>(controlador.pedidoActual.lineasPedido[i]);
-            frmPedidoCierre_EditarLineaPedido lcl_frm_editarLineaPedido = new frmPedidoCierre_EditarLineaPedido(lcl_mod_lineaPedido, controlador.pedidoActual.codigoTipoPedido);
-            lcl_frm_editarLineaPedido.ShowDialog();
-            if (lcl_frm_editarLineaPedido.DialogResult == System.Windows.Forms.DialogResult.OK)
-            {
-                controlador.pedidoActual.lineasPedido[i] = lcl_frm_editarLineaPedido.getLineaPedido();
-                this.cargarPedidoEnControles(controlador.pedidoActual);
-            }
-        }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (this.dgvArticulosVenta.CurrentRow == null)
-            {
-                MessageBox.Show("No hay línea de pedido seleccionada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            int i = Convert.ToInt32(this.dgvArticulosVenta.CurrentRow.Cells["indice"].Value);
-            DialogResult dialogResult = MessageBox.Show("¿Esta seguro que desea eliminar la línea correspondiente al artículo " +
-                controlador.pedidoActual.lineasPedido[i].articulo.codigoArticuloProveedor + "?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
-            {
-                controlador.pedidoActual.removeLineaPedido(controlador.pedidoActual.lineasPedido[i]);
-                this.cargarPedidoEnControles(controlador.pedidoActual);
-            }
-        }
+       
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
@@ -902,6 +906,100 @@ namespace Vista
         }
         #endregion
 
+        #region DataGridView
+        private void dgvArticulosVenta_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                int currentMouseOverRow = this.dgvArticulosVenta.HitTest(e.X, e.Y).RowIndex;
+                if (currentMouseOverRow >= 0)
+                {
+                    if ((ModifierKeys & Keys.Control) != Keys.Control
+                        && this.dgvArticulosVenta.Rows[currentMouseOverRow].Selected != true)
+                    {//si selected == true significa que puede haber más elementos seleccionados anteriormente y no hay que perder selección
+                        this.dgvArticulosVenta.ClearSelection();
+                    }
+                    this.dgvArticulosVenta.Rows[currentMouseOverRow].Selected = true;
+                    this.actualizarContextMenuStrip();
+                    cntxMenuLineasPedido.Show(dgvArticulosVenta, new Point(e.X, e.Y));
+                }
+            }
+        }
+        #endregion
+        
+        /// <summary>
+        /// Edita 1 o más líneas del pedido actual
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void evento_editarLinea(object sender, EventArgs e)
+        {
+            if (this.dgvArticulosVenta.CurrentRow == null)
+            {
+                MessageBox.Show("No hay línea de pedido seleccionada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int i = Convert.ToInt32(this.dgvArticulosVenta.CurrentRow.Cells["indice"].Value);
+            ModeloLineaPedido lcl_mod_lineaPedido = ObjectCopier.Clone<ModeloLineaPedido>(controlador.pedidoActual.lineasPedido[i]);
+            frmPedidoCierre_EditarLineaPedido lcl_frm_editarLineaPedido = new frmPedidoCierre_EditarLineaPedido(lcl_mod_lineaPedido, controlador.pedidoActual.codigoTipoPedido);
+            lcl_frm_editarLineaPedido.ShowDialog();
+            if (lcl_frm_editarLineaPedido.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                controlador.pedidoActual.lineasPedido[i] = lcl_frm_editarLineaPedido.getLineaPedido();
+                this.cargarPedidoEnControles(controlador.pedidoActual);
+            }
+        }
+
+        /// <summary>
+        /// Elimina 1 o más líneas del pedido actual
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void evento_eliminarLinea(object sender, EventArgs e)
+        {
+            List<ModeloLineaPedido> lcl_lst_lineasPedidosEliminar = new List<ModeloLineaPedido>();
+            int i = Convert.ToInt32(this.dgvArticulosVenta.CurrentRow.Cells["indice"].Value);
+            string detallesArticulos = "";
+            foreach (DataGridViewRow row in dgvArticulosVenta.SelectedRows)
+            {
+                i = Convert.ToInt32(row.Cells["indice"].Value);
+                lcl_lst_lineasPedidosEliminar.Add(controlador.pedidoActual.lineasPedido[i]);
+
+                i = lcl_lst_lineasPedidosEliminar.Count - 1;
+                detallesArticulos += Environment.NewLine + "- " + lcl_lst_lineasPedidosEliminar[i].articulo.descripcionArticuloProveedor + " (" + lcl_lst_lineasPedidosEliminar[i].articulo.codigoArticuloProveedor + ")";
+            }
+
+            if (lcl_lst_lineasPedidosEliminar.Count < 1)
+            {
+                MessageBox.Show("No hay línea de pedido seleccionada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string mensaje = lcl_lst_lineasPedidosEliminar.Count > 1 ?
+                    "¿Está seguro que desea eliminar las líneas correspondientes a los artículos: " :
+                    "¿Está seguro que desea eliminar la línea correspondiente al artículo: ";
+
+            DialogResult dialogResult = MessageBox.Show(mensaje +
+                detallesArticulos + " ?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+            {
+                foreach (ModeloLineaPedido lp in lcl_lst_lineasPedidosEliminar)
+                {
+                    controlador.pedidoActual.removeLineaPedido(lp);
+                }
+                this.cargarPedidoEnControles(controlador.pedidoActual);
+            }
+        }
+
+        private void evento_agregarLinea(object sender, EventArgs e)
+        {
+            MessageBox.Show("sin hacer");
+        }
+        private void evento_verDetalleArticulo(object sender, EventArgs e)
+        {
+            MessageBox.Show("sin hacer");
+        }
         #endregion
 
     

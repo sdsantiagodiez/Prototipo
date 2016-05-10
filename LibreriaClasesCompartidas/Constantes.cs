@@ -171,7 +171,7 @@ namespace LibreriaClasesCompartidas
             Presupuesto = 6,
             Reserva=7,
             
-            Otro = 0
+            Otro = 30
         }
       
         public enum TipoComprobanteCompra
@@ -179,7 +179,7 @@ namespace LibreriaClasesCompartidas
             [System.ComponentModel.Description("Pedido a Proveedor")]
             Pedido_Proveedor = 1,
             
-            Otro = 0
+            Otro = 30
         }
         
         public static string GetDescription<T>(this T enumerationValue)

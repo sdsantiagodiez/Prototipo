@@ -272,13 +272,15 @@ namespace Controladores
                     //Excepcion si stock negativo y no esta permitido
                     if (lcl_mod_articuloProveedores.stockActual < 0 && !lp.permitirStockNegativo)
                     {
-                        errorActual = "La cantidad solicitada es mayor al stock actual para el artículo " + lcl_mod_articuloProveedores.descripcionArticuloProveedor;
+                        errorActual = "La cantidad solicitada es mayor al stock actual para el artículo " + lcl_mod_articuloProveedores.descripcionArticuloProveedor+", "+
+                                        lcl_mod_articuloProveedores.codigoArticuloProveedor;
                         return false;
                     }
                     //Si hay error al modificar la base de datos agregando linea o modificando stock
                     if (!lcl_con_modificacion.modificar(lcl_mod_articuloProveedores))
                     {
-                        errorActual = "Error al modificar stock en la base de datos de artículo " + lcl_mod_articuloProveedores.descripcionArticuloProveedor;
+                        errorActual = "Error al modificar stock en la base de datos de artículo " + lcl_mod_articuloProveedores.descripcionArticuloProveedor + ", " +
+                                        lcl_mod_articuloProveedores.codigoArticuloProveedor;
                         return false;
                     }
                 }

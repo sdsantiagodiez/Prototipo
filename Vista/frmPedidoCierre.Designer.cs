@@ -215,6 +215,7 @@
             this.dgvArticulosVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticulosVenta.Size = new System.Drawing.Size(687, 128);
             this.dgvArticulosVenta.TabIndex = 5;
+            this.dgvArticulosVenta.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvArticulosVenta_MouseDown);
             // 
             // indice
             // 
@@ -541,7 +542,6 @@
             this.btnEliminar.TabIndex = 1;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnEditar
             // 
@@ -552,7 +552,6 @@
             this.btnEditar.TabIndex = 4;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnAgregar
             // 
@@ -613,7 +612,7 @@
             // tblLayoutPanelDatosGenerales
             // 
             this.tblLayoutPanelDatosGenerales.ColumnCount = 3;
-            this.tblLayoutPanelDatosGenerales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.tblLayoutPanelDatosGenerales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 199F));
             this.tblLayoutPanelDatosGenerales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelDatosGenerales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
             this.tblLayoutPanelDatosGenerales.Controls.Add(this.pnlEntidadDatos, 1, 0);
@@ -634,9 +633,9 @@
             this.pnlEntidadDatos.Controls.Add(this.lblRazonSocial);
             this.pnlEntidadDatos.Controls.Add(this.txtBoxRazonSocial);
             this.pnlEntidadDatos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlEntidadDatos.Location = new System.Drawing.Point(183, 3);
+            this.pnlEntidadDatos.Location = new System.Drawing.Point(202, 3);
             this.pnlEntidadDatos.Name = "pnlEntidadDatos";
-            this.pnlEntidadDatos.Size = new System.Drawing.Size(273, 146);
+            this.pnlEntidadDatos.Size = new System.Drawing.Size(254, 146);
             this.pnlEntidadDatos.TabIndex = 2;
             // 
             // grpBoxObservaciones
@@ -646,7 +645,7 @@
             this.grpBoxObservaciones.Controls.Add(this.rchTextBoxObservaciones);
             this.grpBoxObservaciones.Location = new System.Drawing.Point(3, 26);
             this.grpBoxObservaciones.Name = "grpBoxObservaciones";
-            this.grpBoxObservaciones.Size = new System.Drawing.Size(267, 116);
+            this.grpBoxObservaciones.Size = new System.Drawing.Size(248, 116);
             this.grpBoxObservaciones.TabIndex = 13;
             this.grpBoxObservaciones.TabStop = false;
             this.grpBoxObservaciones.Text = "Observaciones";
@@ -656,7 +655,7 @@
             this.rchTextBoxObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rchTextBoxObservaciones.Location = new System.Drawing.Point(3, 16);
             this.rchTextBoxObservaciones.Name = "rchTextBoxObservaciones";
-            this.rchTextBoxObservaciones.Size = new System.Drawing.Size(261, 97);
+            this.rchTextBoxObservaciones.Size = new System.Drawing.Size(242, 97);
             this.rchTextBoxObservaciones.TabIndex = 26;
             this.rchTextBoxObservaciones.Text = "";
             // 
@@ -677,14 +676,14 @@
             this.txtBoxRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxRazonSocial.Location = new System.Drawing.Point(76, 0);
             this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
-            this.txtBoxRazonSocial.Size = new System.Drawing.Size(194, 20);
+            this.txtBoxRazonSocial.Size = new System.Drawing.Size(175, 20);
             this.txtBoxRazonSocial.TabIndex = 12;
             // 
             // tblLayoutPanelEntidadDatos
             // 
             this.tblLayoutPanelEntidadDatos.ColumnCount = 2;
-            this.tblLayoutPanelEntidadDatos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.8046F));
-            this.tblLayoutPanelEntidadDatos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.1954F));
+            this.tblLayoutPanelEntidadDatos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.8601F));
+            this.tblLayoutPanelEntidadDatos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.1399F));
             this.tblLayoutPanelEntidadDatos.Controls.Add(this.cmbBoxContactoProveedor, 1, 4);
             this.tblLayoutPanelEntidadDatos.Controls.Add(this.lblContactoProveedor, 0, 4);
             this.tblLayoutPanelEntidadDatos.Controls.Add(this.lblApellido, 0, 2);
@@ -704,28 +703,29 @@
             this.tblLayoutPanelEntidadDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tblLayoutPanelEntidadDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tblLayoutPanelEntidadDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tblLayoutPanelEntidadDatos.Size = new System.Drawing.Size(174, 146);
+            this.tblLayoutPanelEntidadDatos.Size = new System.Drawing.Size(193, 146);
             this.tblLayoutPanelEntidadDatos.TabIndex = 1;
             // 
             // cmbBoxContactoProveedor
             // 
-            this.cmbBoxContactoProveedor.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cmbBoxContactoProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxContactoProveedor.FormattingEnabled = true;
-            this.cmbBoxContactoProveedor.Location = new System.Drawing.Point(73, 120);
+            this.cmbBoxContactoProveedor.Location = new System.Drawing.Point(77, 120);
+            this.cmbBoxContactoProveedor.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.cmbBoxContactoProveedor.MinimumSize = new System.Drawing.Size(97, 0);
             this.cmbBoxContactoProveedor.Name = "cmbBoxContactoProveedor";
-            this.cmbBoxContactoProveedor.Size = new System.Drawing.Size(97, 21);
+            this.cmbBoxContactoProveedor.Size = new System.Drawing.Size(101, 21);
             this.cmbBoxContactoProveedor.TabIndex = 22;
             this.cmbBoxContactoProveedor.Visible = false;
             // 
             // lblContactoProveedor
             // 
-            this.lblContactoProveedor.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblContactoProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblContactoProveedor.AutoSize = true;
             this.lblContactoProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblContactoProveedor.Location = new System.Drawing.Point(14, 124);
+            this.lblContactoProveedor.Location = new System.Drawing.Point(3, 124);
             this.lblContactoProveedor.Name = "lblContactoProveedor";
-            this.lblContactoProveedor.Size = new System.Drawing.Size(53, 13);
+            this.lblContactoProveedor.Size = new System.Drawing.Size(68, 13);
             this.lblContactoProveedor.TabIndex = 21;
             this.lblContactoProveedor.Text = "Contacto:";
             this.lblContactoProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -738,7 +738,7 @@
             this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.lblApellido.Location = new System.Drawing.Point(3, 66);
             this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(64, 13);
+            this.lblApellido.Size = new System.Drawing.Size(68, 13);
             this.lblApellido.TabIndex = 19;
             this.lblApellido.Text = "Apellido:";
             this.lblApellido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -748,9 +748,9 @@
             this.lblTipoDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTipoDocumento.AutoSize = true;
             this.lblTipoDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblTipoDocumento.Location = new System.Drawing.Point(3, 0);
+            this.lblTipoDocumento.Location = new System.Drawing.Point(3, 1);
             this.lblTipoDocumento.Name = "lblTipoDocumento";
-            this.lblTipoDocumento.Size = new System.Drawing.Size(64, 29);
+            this.lblTipoDocumento.Size = new System.Drawing.Size(68, 26);
             this.lblTipoDocumento.TabIndex = 13;
             this.lblTipoDocumento.Text = "Tipo Documento:";
             this.lblTipoDocumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -758,19 +758,20 @@
             // txtBoxApellido
             // 
             this.txtBoxApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxApellido.Location = new System.Drawing.Point(73, 62);
+            this.txtBoxApellido.Location = new System.Drawing.Point(77, 62);
             this.txtBoxApellido.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.txtBoxApellido.Name = "txtBoxApellido";
-            this.txtBoxApellido.Size = new System.Drawing.Size(86, 20);
+            this.txtBoxApellido.Size = new System.Drawing.Size(101, 20);
             this.txtBoxApellido.TabIndex = 20;
             // 
             // cmbBoxTipoDocumento
             // 
+            this.cmbBoxTipoDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxTipoDocumento.FormattingEnabled = true;
-            this.cmbBoxTipoDocumento.Location = new System.Drawing.Point(73, 3);
+            this.cmbBoxTipoDocumento.Location = new System.Drawing.Point(77, 4);
             this.cmbBoxTipoDocumento.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.cmbBoxTipoDocumento.Name = "cmbBoxTipoDocumento";
-            this.cmbBoxTipoDocumento.Size = new System.Drawing.Size(86, 21);
+            this.cmbBoxTipoDocumento.Size = new System.Drawing.Size(101, 21);
             this.cmbBoxTipoDocumento.TabIndex = 23;
             // 
             // lblNombre
@@ -780,7 +781,7 @@
             this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.lblNombre.Location = new System.Drawing.Point(3, 95);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(64, 13);
+            this.lblNombre.Size = new System.Drawing.Size(68, 13);
             this.lblNombre.TabIndex = 17;
             this.lblNombre.Text = "Nombre:";
             this.lblNombre.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -790,9 +791,9 @@
             this.lblNumeroDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNumeroDocumento.AutoSize = true;
             this.lblNumeroDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblNumeroDocumento.Location = new System.Drawing.Point(3, 29);
+            this.lblNumeroDocumento.Location = new System.Drawing.Point(3, 30);
             this.lblNumeroDocumento.Name = "lblNumeroDocumento";
-            this.lblNumeroDocumento.Size = new System.Drawing.Size(64, 29);
+            this.lblNumeroDocumento.Size = new System.Drawing.Size(68, 26);
             this.lblNumeroDocumento.TabIndex = 15;
             this.lblNumeroDocumento.Text = "Número Documento:";
             this.lblNumeroDocumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -800,19 +801,19 @@
             // txtBoxNombre
             // 
             this.txtBoxNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNombre.Location = new System.Drawing.Point(73, 91);
+            this.txtBoxNombre.Location = new System.Drawing.Point(77, 91);
             this.txtBoxNombre.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.txtBoxNombre.Name = "txtBoxNombre";
-            this.txtBoxNombre.Size = new System.Drawing.Size(86, 20);
+            this.txtBoxNombre.Size = new System.Drawing.Size(101, 20);
             this.txtBoxNombre.TabIndex = 18;
             // 
             // txtBoxNumeroDocumento
             // 
             this.txtBoxNumeroDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNumeroDocumento.Location = new System.Drawing.Point(73, 33);
+            this.txtBoxNumeroDocumento.Location = new System.Drawing.Point(77, 33);
             this.txtBoxNumeroDocumento.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.txtBoxNumeroDocumento.Name = "txtBoxNumeroDocumento";
-            this.txtBoxNumeroDocumento.Size = new System.Drawing.Size(86, 20);
+            this.txtBoxNumeroDocumento.Size = new System.Drawing.Size(101, 20);
             this.txtBoxNumeroDocumento.TabIndex = 16;
             // 
             // tblLayoutPanelContenedorPedido
