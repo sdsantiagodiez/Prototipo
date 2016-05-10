@@ -17,10 +17,11 @@ namespace Vista
 
         protected ErrorProvider errorProviderActual;
 
-        protected const string ModoFormularioInicio = "Inicia formulario solo con opcion busqueda";
-        protected const string ModoFormularioNuevo = "Nueva clase";
-        protected const string ModoFormularioSeleccionado = "Clase seleccionada de resultado de busqueda";
-        protected const string ModoFormularioBusqueda = "Búsqueda de entidad";
+        public const string ModoFormularioInicio = "Inicia formulario solo con opcion busqueda";
+        public const string ModoFormularioNuevo = "Nueva clase";
+        public const string ModoFormularioSeleccionado = "Clase seleccionada de resultado de busqueda";
+        public const string ModoFormularioBusqueda = "Búsqueda de entidad";
+        public const string ModoFormularioVisualizarEntidad = "Ver detalles de entidad ReadOnly";
 
         private string _modoFormulario;
         public string modoFormulario
@@ -42,6 +43,9 @@ namespace Vista
                         break;
                     case ModoFormularioBusqueda:
                         this.inicializarModoFormularioBusqueda();
+                        break;
+                    case ModoFormularioVisualizarEntidad:
+                        this.inicializarModoFormularioVisualizarEntidad();
                         break;
                     default:
                         break;
@@ -163,6 +167,19 @@ namespace Vista
                 this.toolStripMenuItemLimpiarCampos.Enabled =
                 this.toolStripMenuItemCancelar.Enabled = 
                 true;
+        }
+
+        virtual public void inicializarModoFormularioVisualizarEntidad()
+        {
+            this.toolStripMenuItemEliminar.Enabled =
+                this.toolStripMenuItemGuardar.Enabled =
+                this.toolStripMenuItemGuardarCambios.Enabled =
+                this.toolStripMenuItemNuevo.Enabled =
+                false;
+            this.toolStripMenuItemBuscar.Enabled =
+                this.toolStripMenuItemLimpiarCampos.Enabled =
+                this.toolStripMenuItemCancelar.Enabled =
+                false;
         }
 
         /// <summary>

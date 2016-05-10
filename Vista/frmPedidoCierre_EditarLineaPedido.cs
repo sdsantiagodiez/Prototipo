@@ -33,7 +33,6 @@ namespace Vista
             this.cargarLineaEnControl(p_mod_lineaPedido);
             if (p_tipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona)
             {
-                this.nmrcUpDownCantidad.Maximum = p_mod_lineaPedido.articulo.stockActual.Value;
                 this.inicializarDataGridView();
                 this.cargarDescuentosEnControl(p_mod_lineaPedido.descuentos);
             }
@@ -186,10 +185,12 @@ namespace Vista
             if ((sender as CheckBox).Checked)
             {
                 glb_mod_lineaActual.permitirStockNegativo = true;
+                this.nmrcUpDownCantidad.Maximum = 999999;  
             }
             else
             {
                 glb_mod_lineaActual.permitirStockNegativo = false;
+                this.nmrcUpDownCantidad.Maximum = glb_mod_lineaActual.articulo.stockActual.Value;
             }
         }
 

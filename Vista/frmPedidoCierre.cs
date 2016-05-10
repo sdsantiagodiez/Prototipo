@@ -159,6 +159,9 @@ namespace Vista
         }
         private void inicializarControlesCliente()
         {
+            this.lblCAE.Visible = 
+                this.txtBoxCAE.Visible = true;
+
             chckBoxClienteGenerico = new CheckBox();
             chckBoxClienteGenerico.Anchor = AnchorStyles.Left;
             chckBoxClienteGenerico.Text = "Cliente Genérico";
@@ -265,7 +268,8 @@ namespace Vista
         {
             this.txtBoxNumeroPedido.Text = p_mod_pedido.numeroPedido != 0 ? p_mod_pedido.numeroPedido.ToString() : "";
             this.dtpFechaPedido.Value = p_mod_pedido.fecha;
-            
+            this.txtBoxCAE.Text = !string.IsNullOrWhiteSpace(p_mod_pedido.CAE) ? p_mod_pedido.CAE: "";
+
             this.txtBoxIVAPorcentaje.Text = p_mod_pedido.alicuota.iva.porcentaje.ToString();
             this.cargarDatosMonetariosEnControles(p_mod_pedido);
 
@@ -606,7 +610,7 @@ namespace Vista
         private ModeloCliente buscarCliente()
         {
             ModeloCliente lcl_mod_cliente = new ModeloCliente();
-            frmABMEntidad lcl_frm_entidad = new frmABMEntidad(controlador.pedidoActual.entidad);
+            frmABMEntidad lcl_frm_entidad = new frmABMEntidad(controlador.pedidoActual.entidad,frmABMEntidad.ModoFormularioBusqueda);
             lcl_frm_entidad.ShowDialog();
             return lcl_frm_entidad.glb_mod_entidadActual as ModeloCliente;
         }
@@ -660,7 +664,8 @@ namespace Vista
                     }
                 }
             } while (dialogResult == System.Windows.Forms.DialogResult.Retry);
-            this.txtBoxNumeroPedido.Text = controlador.pedidoActual.numeroPedido.ToString();
+            //this.txtBoxNumeroPedido.Text = controlador.pedidoActual.numeroPedido.ToString();
+            this.cargarDatosPedidoEnControles(controlador.pedidoActual);
             return true;
         }
        
@@ -904,6 +909,20 @@ namespace Vista
                 }
             }
         }
+
+        private void chckBoxResponsableInscripto_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as CheckBox).Checked)
+            {
+                //Si es responsable inscripto, sólo se puede usar CUIT para facturación electrónica
+                this.cmbBoxTipoDocumento.SelectedValue = glb_lst_tiposDocumentos.SingleOrDefault(x => x.codigo == 80);
+                this.cmbBoxTipoDocumento.Enabled = false;
+            }
+            else
+            {
+                this.cmbBoxTipoDocumento.Enabled = true;
+            }
+        }
         #endregion
 
         #region DataGridView
@@ -959,7 +978,7 @@ namespace Vista
         private void evento_eliminarLinea(object sender, EventArgs e)
         {
             List<ModeloLineaPedido> lcl_lst_lineasPedidosEliminar = new List<ModeloLineaPedido>();
-            int i = Convert.ToInt32(this.dgvArticulosVenta.CurrentRow.Cells["indice"].Value);
+            int i;
             string detallesArticulos = "";
             foreach (DataGridViewRow row in dgvArticulosVenta.SelectedRows)
             {
@@ -992,15 +1011,36 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// Muestra ventana para agregar artículos al pedido actual
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void evento_agregarLinea(object sender, EventArgs e)
         {
             MessageBox.Show("sin hacer");
         }
+       
+        /// <summary>
+        /// Muestra ventana con todos los detalles del artículo proveedor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void evento_verDetalleArticulo(object sender, EventArgs e)
         {
-            MessageBox.Show("sin hacer");
+             if (this.dgvArticulosVenta.CurrentRow == null)
+            {
+                MessageBox.Show("No hay línea de pedido seleccionada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int i = Convert.ToInt32(this.dgvArticulosVenta.CurrentRow.Cells["indice"].Value);
+            
+            frmABMArticuloProveedor lcl_frm_articuloProveedor = new frmABMArticuloProveedor(controlador.pedidoActual.lineasPedido[i].articulo,frmABMArticuloProveedor.ModoFormularioVisualizarEntidad);
+            lcl_frm_articuloProveedor.ShowDialog();
         }
         #endregion
+
 
     
     }

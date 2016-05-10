@@ -58,25 +58,30 @@ namespace Controladores
                     bResultado = fe.F1CAESolicitar();
                     if (bResultado)
                     {
-                        respuesta = "resultado verdadero ";
+                        respuesta = "Resultado verdadero ";
+                        if(fe.F1RespuestaResultado == "A")
+                        {
+                            ControladorAFIP.cargarRespuestaEnPedido(fe, p_mod_pedido);
+                            return true;
+                        }
                     }
                     else
                     {
-                        respuesta = "resultado falso ";
+                        respuesta = "Resultado falso ";
                     }
-                    respuesta += " | " + "resultado global AFIP: " + fe.F1RespuestaResultado;
-                    respuesta += " | " + "es reproceso? " + fe.F1RespuestaReProceso;
-                    respuesta += " | " + "registros procesados por AFIP: " + fe.F1RespuestaCantidadReg.ToString();
-                    respuesta += " | " + "error genérico global:" + fe.f1ErrorMsg1;
+                    respuesta += Environment.NewLine + "Resultado global AFIP: " + fe.F1RespuestaResultado;
+                    respuesta += Environment.NewLine + "Es reproceso? " + fe.F1RespuestaReProceso;
+                    respuesta += Environment.NewLine + "Registros procesados por AFIP: " + fe.F1RespuestaCantidadReg.ToString();
+                    respuesta += Environment.NewLine + "Error genérico global:" + fe.f1ErrorMsg1;
                     if (fe.F1RespuestaCantidadReg > 0)
                     {
                         fe.f1Indice = 0;
                         ControladorAFIP.cargarRespuestaEnPedido(fe, p_mod_pedido);
-                        respuesta += "|" + "resultado detallado comprobante: " + p_mod_pedido.aprobadoAFIP;
-                        respuesta += "|" + "cae comprobante: " + p_mod_pedido.CAE;
-                        respuesta += "|" + "número comprobante:" + p_mod_pedido.numeroComprobante;
-                        respuesta += "|" + "error detallado comprobante: " + fe.F1RespuestaDetalleObservacionMsg1;
-                        return true;
+                        respuesta += Environment.NewLine + "Resultado detallado comprobante: " + p_mod_pedido.aprobadoAFIP;
+                        respuesta += Environment.NewLine + "CAE comprobante: " + p_mod_pedido.CAE;
+                        respuesta += Environment.NewLine + "Número comprobante:" + p_mod_pedido.numeroComprobante;
+                        respuesta += Environment.NewLine + "Error detallado comprobante: " + fe.F1RespuestaDetalleObservacionMsg1;
+                        errorActual = fe.F1RespuestaDetalleObservacionMsg1;
                     }
                 }
                 else

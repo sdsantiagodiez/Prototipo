@@ -28,6 +28,11 @@ namespace Vista
             txtBoxPrecioCompra.KeyPress += this.valorDecimal;
             txtBoxPrecioVenta.KeyPress += this.valorDecimal;
         }
+        public frmABMArticuloProveedor(ModeloArticuloProveedores p_mod_articuloProveedor,string p_modoFormulario): this()
+        {
+            glb_mod_articuloProveedor = p_mod_articuloProveedor;
+            this.modoFormulario = p_modoFormulario;
+        }
         #endregion
         
         #region Métodos
@@ -97,6 +102,17 @@ namespace Vista
             txtBoxPrecioCompra.Enabled = txtBoxPrecioVenta.Enabled = txtBoxUbicacion.Enabled = nmrcUpDownStockActual.Enabled = nmrcUpDownStockMinimo.Enabled = true;
 
             grpBoxObservaciones.Enabled = true;
+        }
+
+        public override void inicializarModoFormularioVisualizarEntidad()
+        {
+            base.inicializarModoFormularioVisualizarEntidad();
+
+            foreach (Control c in this.Controls)
+            {
+                c.Enabled = false;
+            }
+            this.cargarArticuloProveedorEnControles(glb_mod_articuloProveedor);
         }
 
         private void inicializarModoArticuloSeleccionado()

@@ -74,6 +74,7 @@
             this.pnlEntidadDatos = new System.Windows.Forms.Panel();
             this.grpBoxObservaciones = new System.Windows.Forms.GroupBox();
             this.rchTextBoxObservaciones = new System.Windows.Forms.RichTextBox();
+            this.chckBoxResponsableInscripto = new System.Windows.Forms.CheckBox();
             this.lblRazonSocial = new System.Windows.Forms.Label();
             this.txtBoxRazonSocial = new System.Windows.Forms.TextBox();
             this.tblLayoutPanelEntidadDatos = new System.Windows.Forms.TableLayoutPanel();
@@ -87,17 +88,17 @@
             this.lblNumeroDocumento = new System.Windows.Forms.Label();
             this.txtBoxNombre = new System.Windows.Forms.TextBox();
             this.txtBoxNumeroDocumento = new System.Windows.Forms.TextBox();
-            this.tblLayoutPanelContenedorPedido = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelPedido = new System.Windows.Forms.TableLayoutPanel();
-            this.cmbBoxTipoComprobante = new System.Windows.Forms.ComboBox();
+            this.txtBoxCAE = new System.Windows.Forms.TextBox();
+            this.lblCAE = new System.Windows.Forms.Label();
             this.lblNumeroPedido = new System.Windows.Forms.Label();
-            this.lblTipoComprobante = new System.Windows.Forms.Label();
             this.txtBoxNumeroPedido = new System.Windows.Forms.TextBox();
-            this.lblFecha = new System.Windows.Forms.Label();
+            this.lblTipoComprobante = new System.Windows.Forms.Label();
+            this.cmbBoxTipoComprobante = new System.Windows.Forms.ComboBox();
             this.lblFormaPago = new System.Windows.Forms.Label();
-            this.dtpFechaPedido = new System.Windows.Forms.DateTimePicker();
             this.cmbBoxFormaPago = new System.Windows.Forms.ComboBox();
-            this.chckBoxResponsableInscripto = new System.Windows.Forms.CheckBox();
+            this.lblFecha = new System.Windows.Forms.Label();
+            this.dtpFechaPedido = new System.Windows.Forms.DateTimePicker();
             this.tbPageDomicilioFacturacion = new System.Windows.Forms.TabPage();
             this.tblLayoutPanelDomicilioFacturacion = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelDomicilio = new System.Windows.Forms.TableLayoutPanel();
@@ -144,7 +145,6 @@
             this.pnlEntidadDatos.SuspendLayout();
             this.grpBoxObservaciones.SuspendLayout();
             this.tblLayoutPanelEntidadDatos.SuspendLayout();
-            this.tblLayoutPanelContenedorPedido.SuspendLayout();
             this.tblLayoutPanelPedido.SuspendLayout();
             this.tbPageDomicilioFacturacion.SuspendLayout();
             this.tblLayoutPanelDomicilioFacturacion.SuspendLayout();
@@ -617,7 +617,7 @@
             this.tblLayoutPanelDatosGenerales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
             this.tblLayoutPanelDatosGenerales.Controls.Add(this.pnlEntidadDatos, 1, 0);
             this.tblLayoutPanelDatosGenerales.Controls.Add(this.tblLayoutPanelEntidadDatos, 0, 0);
-            this.tblLayoutPanelDatosGenerales.Controls.Add(this.tblLayoutPanelContenedorPedido, 2, 0);
+            this.tblLayoutPanelDatosGenerales.Controls.Add(this.tblLayoutPanelPedido, 2, 0);
             this.tblLayoutPanelDatosGenerales.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelDatosGenerales.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelDatosGenerales.Name = "tblLayoutPanelDatosGenerales";
@@ -630,6 +630,7 @@
             // pnlEntidadDatos
             // 
             this.pnlEntidadDatos.Controls.Add(this.grpBoxObservaciones);
+            this.pnlEntidadDatos.Controls.Add(this.chckBoxResponsableInscripto);
             this.pnlEntidadDatos.Controls.Add(this.lblRazonSocial);
             this.pnlEntidadDatos.Controls.Add(this.txtBoxRazonSocial);
             this.pnlEntidadDatos.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -645,7 +646,7 @@
             this.grpBoxObservaciones.Controls.Add(this.rchTextBoxObservaciones);
             this.grpBoxObservaciones.Location = new System.Drawing.Point(3, 26);
             this.grpBoxObservaciones.Name = "grpBoxObservaciones";
-            this.grpBoxObservaciones.Size = new System.Drawing.Size(248, 116);
+            this.grpBoxObservaciones.Size = new System.Drawing.Size(248, 91);
             this.grpBoxObservaciones.TabIndex = 13;
             this.grpBoxObservaciones.TabStop = false;
             this.grpBoxObservaciones.Text = "Observaciones";
@@ -655,16 +656,28 @@
             this.rchTextBoxObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rchTextBoxObservaciones.Location = new System.Drawing.Point(3, 16);
             this.rchTextBoxObservaciones.Name = "rchTextBoxObservaciones";
-            this.rchTextBoxObservaciones.Size = new System.Drawing.Size(242, 97);
+            this.rchTextBoxObservaciones.Size = new System.Drawing.Size(242, 72);
             this.rchTextBoxObservaciones.TabIndex = 26;
             this.rchTextBoxObservaciones.Text = "";
+            // 
+            // chckBoxResponsableInscripto
+            // 
+            this.chckBoxResponsableInscripto.AutoSize = true;
+            this.chckBoxResponsableInscripto.Location = new System.Drawing.Point(51, 123);
+            this.chckBoxResponsableInscripto.Name = "chckBoxResponsableInscripto";
+            this.chckBoxResponsableInscripto.Size = new System.Drawing.Size(131, 17);
+            this.chckBoxResponsableInscripto.TabIndex = 13;
+            this.chckBoxResponsableInscripto.Text = "Responsable Inscripto";
+            this.chckBoxResponsableInscripto.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chckBoxResponsableInscripto.UseVisualStyleBackColor = true;
+            this.chckBoxResponsableInscripto.CheckedChanged += new System.EventHandler(this.chckBoxResponsableInscripto_CheckedChanged);
             // 
             // lblRazonSocial
             // 
             this.lblRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRazonSocial.AutoSize = true;
             this.lblRazonSocial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblRazonSocial.Location = new System.Drawing.Point(0, 4);
+            this.lblRazonSocial.Location = new System.Drawing.Point(0, 7);
             this.lblRazonSocial.Name = "lblRazonSocial";
             this.lblRazonSocial.Size = new System.Drawing.Size(73, 13);
             this.lblRazonSocial.TabIndex = 11;
@@ -674,7 +687,7 @@
             // txtBoxRazonSocial
             // 
             this.txtBoxRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxRazonSocial.Location = new System.Drawing.Point(76, 0);
+            this.txtBoxRazonSocial.Location = new System.Drawing.Point(76, 5);
             this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
             this.txtBoxRazonSocial.Size = new System.Drawing.Size(175, 20);
             this.txtBoxRazonSocial.TabIndex = 12;
@@ -816,110 +829,101 @@
             this.txtBoxNumeroDocumento.Size = new System.Drawing.Size(101, 20);
             this.txtBoxNumeroDocumento.TabIndex = 16;
             // 
-            // tblLayoutPanelContenedorPedido
-            // 
-            this.tblLayoutPanelContenedorPedido.ColumnCount = 1;
-            this.tblLayoutPanelContenedorPedido.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelContenedorPedido.Controls.Add(this.tblLayoutPanelPedido, 0, 0);
-            this.tblLayoutPanelContenedorPedido.Controls.Add(this.chckBoxResponsableInscripto, 0, 1);
-            this.tblLayoutPanelContenedorPedido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelContenedorPedido.Location = new System.Drawing.Point(462, 3);
-            this.tblLayoutPanelContenedorPedido.Name = "tblLayoutPanelContenedorPedido";
-            this.tblLayoutPanelContenedorPedido.RowCount = 2;
-            this.tblLayoutPanelContenedorPedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.87671F));
-            this.tblLayoutPanelContenedorPedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.12329F));
-            this.tblLayoutPanelContenedorPedido.Size = new System.Drawing.Size(214, 146);
-            this.tblLayoutPanelContenedorPedido.TabIndex = 3;
-            // 
             // tblLayoutPanelPedido
             // 
             this.tblLayoutPanelPedido.ColumnCount = 2;
             this.tblLayoutPanelPedido.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.07116F));
             this.tblLayoutPanelPedido.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.92884F));
-            this.tblLayoutPanelPedido.Controls.Add(this.cmbBoxTipoComprobante, 1, 1);
+            this.tblLayoutPanelPedido.Controls.Add(this.txtBoxCAE, 1, 4);
+            this.tblLayoutPanelPedido.Controls.Add(this.lblCAE, 0, 4);
             this.tblLayoutPanelPedido.Controls.Add(this.lblNumeroPedido, 0, 0);
-            this.tblLayoutPanelPedido.Controls.Add(this.lblTipoComprobante, 0, 1);
             this.tblLayoutPanelPedido.Controls.Add(this.txtBoxNumeroPedido, 1, 0);
-            this.tblLayoutPanelPedido.Controls.Add(this.lblFecha, 0, 2);
-            this.tblLayoutPanelPedido.Controls.Add(this.lblFormaPago, 0, 3);
-            this.tblLayoutPanelPedido.Controls.Add(this.dtpFechaPedido, 1, 2);
-            this.tblLayoutPanelPedido.Controls.Add(this.cmbBoxFormaPago, 1, 3);
+            this.tblLayoutPanelPedido.Controls.Add(this.lblTipoComprobante, 0, 1);
+            this.tblLayoutPanelPedido.Controls.Add(this.cmbBoxTipoComprobante, 1, 1);
+            this.tblLayoutPanelPedido.Controls.Add(this.lblFormaPago, 0, 2);
+            this.tblLayoutPanelPedido.Controls.Add(this.cmbBoxFormaPago, 1, 2);
+            this.tblLayoutPanelPedido.Controls.Add(this.lblFecha, 0, 3);
+            this.tblLayoutPanelPedido.Controls.Add(this.dtpFechaPedido, 1, 3);
             this.tblLayoutPanelPedido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelPedido.Location = new System.Drawing.Point(3, 3);
+            this.tblLayoutPanelPedido.Location = new System.Drawing.Point(462, 3);
             this.tblLayoutPanelPedido.Name = "tblLayoutPanelPedido";
-            this.tblLayoutPanelPedido.RowCount = 4;
+            this.tblLayoutPanelPedido.RowCount = 5;
             this.tblLayoutPanelPedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tblLayoutPanelPedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tblLayoutPanelPedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tblLayoutPanelPedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tblLayoutPanelPedido.Size = new System.Drawing.Size(208, 114);
-            this.tblLayoutPanelPedido.TabIndex = 1;
+            this.tblLayoutPanelPedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tblLayoutPanelPedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblLayoutPanelPedido.Size = new System.Drawing.Size(214, 146);
+            this.tblLayoutPanelPedido.TabIndex = 3;
             // 
-            // cmbBoxTipoComprobante
+            // txtBoxCAE
             // 
-            this.cmbBoxTipoComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbBoxTipoComprobante.FormattingEnabled = true;
-            this.cmbBoxTipoComprobante.Location = new System.Drawing.Point(92, 31);
-            this.cmbBoxTipoComprobante.Name = "cmbBoxTipoComprobante";
-            this.cmbBoxTipoComprobante.Size = new System.Drawing.Size(113, 21);
-            this.cmbBoxTipoComprobante.TabIndex = 10;
+            this.txtBoxCAE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxCAE.Enabled = false;
+            this.txtBoxCAE.Location = new System.Drawing.Point(95, 121);
+            this.txtBoxCAE.Name = "txtBoxCAE";
+            this.txtBoxCAE.Size = new System.Drawing.Size(116, 20);
+            this.txtBoxCAE.TabIndex = 13;
+            this.txtBoxCAE.Visible = false;
+            // 
+            // lblCAE
+            // 
+            this.lblCAE.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblCAE.AutoSize = true;
+            this.lblCAE.Location = new System.Drawing.Point(58, 124);
+            this.lblCAE.Name = "lblCAE";
+            this.lblCAE.Size = new System.Drawing.Size(31, 13);
+            this.lblCAE.TabIndex = 12;
+            this.lblCAE.Text = "CAE:";
+            this.lblCAE.Visible = false;
             // 
             // lblNumeroPedido
             // 
             this.lblNumeroPedido.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNumeroPedido.AutoSize = true;
-            this.lblNumeroPedido.Location = new System.Drawing.Point(39, 7);
+            this.lblNumeroPedido.Location = new System.Drawing.Point(42, 8);
             this.lblNumeroPedido.Name = "lblNumeroPedido";
             this.lblNumeroPedido.Size = new System.Drawing.Size(47, 13);
             this.lblNumeroPedido.TabIndex = 0;
             this.lblNumeroPedido.Text = "Número:";
             // 
+            // txtBoxNumeroPedido
+            // 
+            this.txtBoxNumeroPedido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxNumeroPedido.Location = new System.Drawing.Point(95, 4);
+            this.txtBoxNumeroPedido.Name = "txtBoxNumeroPedido";
+            this.txtBoxNumeroPedido.Size = new System.Drawing.Size(116, 20);
+            this.txtBoxNumeroPedido.TabIndex = 4;
+            // 
             // lblTipoComprobante
             // 
             this.lblTipoComprobante.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblTipoComprobante.AutoSize = true;
-            this.lblTipoComprobante.Location = new System.Drawing.Point(55, 35);
+            this.lblTipoComprobante.Location = new System.Drawing.Point(58, 37);
             this.lblTipoComprobante.Name = "lblTipoComprobante";
             this.lblTipoComprobante.Size = new System.Drawing.Size(31, 13);
             this.lblTipoComprobante.TabIndex = 1;
             this.lblTipoComprobante.Text = "Tipo:";
             // 
-            // txtBoxNumeroPedido
+            // cmbBoxTipoComprobante
             // 
-            this.txtBoxNumeroPedido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNumeroPedido.Location = new System.Drawing.Point(92, 4);
-            this.txtBoxNumeroPedido.Name = "txtBoxNumeroPedido";
-            this.txtBoxNumeroPedido.Size = new System.Drawing.Size(113, 20);
-            this.txtBoxNumeroPedido.TabIndex = 4;
-            // 
-            // lblFecha
-            // 
-            this.lblFecha.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(46, 63);
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(40, 13);
-            this.lblFecha.TabIndex = 3;
-            this.lblFecha.Text = "Fecha:";
+            this.cmbBoxTipoComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbBoxTipoComprobante.FormattingEnabled = true;
+            this.cmbBoxTipoComprobante.Location = new System.Drawing.Point(95, 33);
+            this.cmbBoxTipoComprobante.Name = "cmbBoxTipoComprobante";
+            this.cmbBoxTipoComprobante.Size = new System.Drawing.Size(116, 21);
+            this.cmbBoxTipoComprobante.TabIndex = 10;
             // 
             // lblFormaPago
             // 
             this.lblFormaPago.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblFormaPago.AutoSize = true;
-            this.lblFormaPago.Location = new System.Drawing.Point(4, 92);
+            this.lblFormaPago.Location = new System.Drawing.Point(7, 66);
             this.lblFormaPago.Name = "lblFormaPago";
             this.lblFormaPago.Size = new System.Drawing.Size(82, 13);
             this.lblFormaPago.TabIndex = 2;
             this.lblFormaPago.Text = "Forma de Pago:";
-            // 
-            // dtpFechaPedido
-            // 
-            this.dtpFechaPedido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpFechaPedido.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaPedido.Location = new System.Drawing.Point(92, 60);
-            this.dtpFechaPedido.Name = "dtpFechaPedido";
-            this.dtpFechaPedido.Size = new System.Drawing.Size(113, 20);
-            this.dtpFechaPedido.TabIndex = 11;
             // 
             // cmbBoxFormaPago
             // 
@@ -928,22 +932,29 @@
             this.cmbBoxFormaPago.Items.AddRange(new object[] {
             "Contado",
             "Tarjeta"});
-            this.cmbBoxFormaPago.Location = new System.Drawing.Point(92, 88);
+            this.cmbBoxFormaPago.Location = new System.Drawing.Point(95, 62);
             this.cmbBoxFormaPago.Name = "cmbBoxFormaPago";
             this.cmbBoxFormaPago.Size = new System.Drawing.Size(113, 21);
             this.cmbBoxFormaPago.TabIndex = 9;
             // 
-            // chckBoxResponsableInscripto
+            // lblFecha
             // 
-            this.chckBoxResponsableInscripto.AutoSize = true;
-            this.chckBoxResponsableInscripto.Dock = System.Windows.Forms.DockStyle.Right;
-            this.chckBoxResponsableInscripto.Location = new System.Drawing.Point(80, 123);
-            this.chckBoxResponsableInscripto.Name = "chckBoxResponsableInscripto";
-            this.chckBoxResponsableInscripto.Size = new System.Drawing.Size(131, 20);
-            this.chckBoxResponsableInscripto.TabIndex = 13;
-            this.chckBoxResponsableInscripto.Text = "Responsable Inscripto";
-            this.chckBoxResponsableInscripto.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chckBoxResponsableInscripto.UseVisualStyleBackColor = true;
+            this.lblFecha.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblFecha.AutoSize = true;
+            this.lblFecha.Location = new System.Drawing.Point(49, 95);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(40, 13);
+            this.lblFecha.TabIndex = 3;
+            this.lblFecha.Text = "Fecha:";
+            // 
+            // dtpFechaPedido
+            // 
+            this.dtpFechaPedido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpFechaPedido.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaPedido.Location = new System.Drawing.Point(95, 91);
+            this.dtpFechaPedido.Name = "dtpFechaPedido";
+            this.dtpFechaPedido.Size = new System.Drawing.Size(116, 20);
+            this.dtpFechaPedido.TabIndex = 11;
             // 
             // tbPageDomicilioFacturacion
             // 
@@ -1364,8 +1375,6 @@
             this.grpBoxObservaciones.ResumeLayout(false);
             this.tblLayoutPanelEntidadDatos.ResumeLayout(false);
             this.tblLayoutPanelEntidadDatos.PerformLayout();
-            this.tblLayoutPanelContenedorPedido.ResumeLayout(false);
-            this.tblLayoutPanelContenedorPedido.PerformLayout();
             this.tblLayoutPanelPedido.ResumeLayout(false);
             this.tblLayoutPanelPedido.PerformLayout();
             this.tbPageDomicilioFacturacion.ResumeLayout(false);
@@ -1479,16 +1488,17 @@
         private System.Windows.Forms.ComboBox cmbBoxContactoProveedor;
         private System.Windows.Forms.Label lblContactoProveedor;
         private System.Windows.Forms.ComboBox cmbBoxTipoDocumento;
-        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelContenedorPedido;
-        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelPedido;
-        private System.Windows.Forms.ComboBox cmbBoxTipoComprobante;
-        private System.Windows.Forms.Label lblNumeroPedido;
-        private System.Windows.Forms.Label lblTipoComprobante;
-        private System.Windows.Forms.TextBox txtBoxNumeroPedido;
-        private System.Windows.Forms.Label lblFecha;
-        private System.Windows.Forms.Label lblFormaPago;
-        private System.Windows.Forms.DateTimePicker dtpFechaPedido;
-        private System.Windows.Forms.ComboBox cmbBoxFormaPago;
         private System.Windows.Forms.CheckBox chckBoxResponsableInscripto;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelPedido;
+        private System.Windows.Forms.TextBox txtBoxCAE;
+        private System.Windows.Forms.Label lblCAE;
+        private System.Windows.Forms.Label lblNumeroPedido;
+        private System.Windows.Forms.TextBox txtBoxNumeroPedido;
+        private System.Windows.Forms.Label lblTipoComprobante;
+        private System.Windows.Forms.ComboBox cmbBoxTipoComprobante;
+        private System.Windows.Forms.Label lblFormaPago;
+        private System.Windows.Forms.ComboBox cmbBoxFormaPago;
+        private System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.DateTimePicker dtpFechaPedido;
     }
 }

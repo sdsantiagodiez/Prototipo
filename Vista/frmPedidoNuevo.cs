@@ -17,8 +17,7 @@ namespace Vista
     {
         #region Atributos
         private ModeloArticuloProveedores glb_mod_articuloSeleccionadoBusqueda;
-        private ModeloLineaPedido glb_mod_articuloSeleccionadoDetalle;
-        private ControladorPedido glb_con_pedido;
+        private ControladorPedido controlador;
         #endregion
 
         #region Constructores
@@ -29,7 +28,7 @@ namespace Vista
         }
         public frmPedidoNuevo(Constantes.CodigosTiposPedidos p_codigoTipoPedido) : this()
         {
-            glb_con_pedido = new ControladorPedido(p_codigoTipoPedido);
+            controlador = new ControladorPedido(p_codigoTipoPedido);
         }
         #endregion
        
@@ -38,8 +37,8 @@ namespace Vista
         public void inicializarControles()
         {
             //seteo columnas de datagridviews
-            this.dgvArtAgregar.AutoGenerateColumns = false;
-            this.dgvDetalleAgregados.AutoGenerateColumns = false;
+            this.dgvArticulosResultadoBusqueda.AutoGenerateColumns = false;
+            this.dgvArticulosEnPedido.AutoGenerateColumns = false;
 
             //Creo lista categorias
             var dataSource = new List<ComboBoxItem>();
@@ -55,6 +54,10 @@ namespace Vista
 
             //Lo hago read only
             this.cbxCategoriaBusqueda.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            this.btnQuitar.Click += evento_eliminarArticuloProveedorDePedido;
+            this.btnAgregar.Click += evento_agregarArticuloProveedorEnPedido;
+            this.btnBorrarDetalleActual.Click += evento_eliminarArticuloProveedorDePedidoTodos;
         }
         #endregion
         #region Validación
@@ -68,32 +71,36 @@ namespace Vista
             }
 
             //Verifico la cantidad
-            if (string.Equals(this.txtCantidad.Text, "")
-                || !LibreriaClasesCompartidas.Validar.validarEnteroPositivoSinCero(this.txtCantidad.Text))
+            if (!LibreriaClasesCompartidas.Validar.validarEnteroPositivoSinCero(this.nmrcUpDownCantidad.Value.ToString()))
             {
                 MessageBox.Show("La cantidad de articulos debe ser un número mayor a cero.");
                 return false;
             }
 
             //verifico stock    //proveedor no valida stock
-            if (glb_con_pedido.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona
-                && this.glb_mod_articuloSeleccionadoBusqueda.stockActual < Int32.Parse(this.txtCantidad.Text))
+            if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona
+                && this.glb_mod_articuloSeleccionadoBusqueda.stockActual < Convert.ToInt32(this.nmrcUpDownCantidad.Value)
+                && !this.chckBoxPermitirStockNegativo.Checked)
             {
                 MessageBox.Show("No hay suficientes articulos en inventario actual para cubrir el pedido");
                 return false;
             }
 
             //verifico que no exista ya en entre las lineas de pedido
-            if (glb_con_pedido.exists(glb_mod_articuloSeleccionadoBusqueda))
+            if (controlador.exists(glb_mod_articuloSeleccionadoBusqueda))
             {
-                MessageBox.Show("Este artículo ya se encuentra en los detalles del pedido actual");
-                //Limpio artselecbusq para manejar el uso del boton en momento equivocado
-                this.glb_mod_articuloSeleccionadoBusqueda = null;
-                //Limpio txtbox cantidad
-                this.txtCantidad.Text = "";
-                //Limpio lbls
-                this.cleanLbls();
-                return false;
+                ModeloLineaPedido lpExistente = controlador.pedidoActual.lineasPedido.SingleOrDefault
+                                                                    (x => x.articulo.codigoOriginal == glb_mod_articuloSeleccionadoBusqueda.codigoOriginal
+                                                                        && x.articulo.codigoArticuloProveedor == glb_mod_articuloSeleccionadoBusqueda.codigoArticuloProveedor);
+                if (!this.chckBoxPermitirStockNegativo.Checked)
+                {
+                    int cantidadTotal = lpExistente.cantidadArticulos + Convert.ToInt32(this.nmrcUpDownCantidad.Value);
+                    if (cantidadTotal > glb_mod_articuloSeleccionadoBusqueda.stockActual)
+                    {
+                        MessageBox.Show("No hay suficientes articulos en inventario actual para cubrir el pedido");
+                        return false;
+                    }
+                }
             }
             
             return true;
@@ -116,6 +123,80 @@ namespace Vista
             return true;
         }
         #endregion
+
+        #region Modelo -> Controles
+        /// <summary>
+        /// Carga lista de artículos proveedores en datagridview de resultados
+        /// </summary>
+        /// <param name="p_lst_mod_articulosProveedores"></param>
+        private void cargarArticulosProveedoresEncontradosEnControles(List<ModeloArticuloProveedores> p_lst_mod_articulosProveedores)
+        {
+            DataTable articulosProveedores = new DataTable();
+            articulosProveedores.Columns.Add("indice");
+            articulosProveedores.Columns.Add("codigoOriginal");
+            articulosProveedores.Columns.Add("codigoArticuloProveedor");
+            articulosProveedores.Columns.Add("razonSocialProveedor");
+            articulosProveedores.Columns.Add("descripcion");
+            int i = 0;
+            foreach (ModeloArticuloProveedores ap in p_lst_mod_articulosProveedores)
+            {
+                var row = articulosProveedores.NewRow();
+                row["indice"] = i.ToString();
+                i++;
+                row["codigoOriginal"] = ap.codigoOriginal;
+                row["codigoArticuloProveedor"] = ap.codigoArticuloProveedor;
+                row["razonSocialProveedor"] = ap.razonSocialProveedor;
+                row["descripcion"] = ap.descripcionArticuloProveedor;
+
+                articulosProveedores.Rows.Add(row);
+            }
+
+            this.dgvArticulosResultadoBusqueda.DataSource = articulosProveedores;
+        }
+        /// <summary>
+        /// Carga artículo proveedor en labels que muestran vista previa del artículo
+        /// </summary>
+        /// <param name="p_mod_articuloProveedor"></param>
+        private void cargarArticuloProveedorDetallesEnControles(ModeloArticuloProveedores p_mod_articuloProveedor)
+        {
+            //actualizo lost lbl para mostrar el articulo seleccionado
+            this.lblCodigoOriginalVar.Text = p_mod_articuloProveedor.codigoOriginal;
+            this.lblCodigoProveedorVar.Text = p_mod_articuloProveedor.codigoArticuloProveedor;
+            this.lblProveedorVar.Text = p_mod_articuloProveedor.razonSocialProveedor;
+            this.lblDescripcionVar.Text = p_mod_articuloProveedor.descripcionArticuloProveedor;
+            //
+            //TODO modificadores de precio segun metodo de pago
+            if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            {
+                this.lblPrecioVar.Text = Convert.ToString(p_mod_articuloProveedor.valorVenta.valorArticulo);
+            }
+            else if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
+            {
+                this.lblPrecioVar.Text = Convert.ToString(p_mod_articuloProveedor.valorCompra.valorArticulo);
+            }
+            this.lblUbicacionVar.Text = p_mod_articuloProveedor.ubicacion;
+
+            this.lblExistenciaVar.Text = Convert.ToString(p_mod_articuloProveedor.stockActual);
+            this.lblFechaActualizacionVar.Text = Convert.ToString(p_mod_articuloProveedor.fechaActualizacion);
+            this.lblObservacionesVar.Text = p_mod_articuloProveedor.observacionesArticuloProveedor;
+        }
+        /// <summary>
+        /// Carga artículo proveedor en datagrid de pedido actual
+        /// </summary>
+        /// <param name="p_mod_articuloProveedor"></param>
+        private void cargarLineasPedidosEnControles()
+        {
+            this.lblTotalVar.Text = controlador.getTotal();
+
+            this.dgvArticulosEnPedido.DataSource = null;
+            this.dgvArticulosEnPedido.DataSource = controlador.pedidoActual.lineasPedido;
+
+            this.nmrcUpDownCantidad.Value = 0;
+            this.cleanLbls();
+        }
+        #endregion
+     
+
         private void cleanLbls()
         {
             this.lblCodigoOriginalVar.Text = this.lblCodigoProveedorVar.Text = this.lblProveedorVar.Text =
@@ -123,24 +204,147 @@ namespace Vista
             this.lblFechaActualizacionVar.Text = this.lblObservacionesVar.Text =
             this.lblUbicacionVar.Text = "Seleccione Artículo";
         }
+       
+        /// <summary>
+        /// Busca artículos proveedores y retorna resultados
+        /// </summary>
+        /// <returns>null si parámetros de búsqueda inválidos</returns>
+        private List<ModeloArticuloProveedores> buscarArticuloProveedor()
+        {
+            if (!this.validarBusqueda())
+            {
+                return null;
+            }
+
+            BackgroundWorker bw = new BackgroundWorker();
+            frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Realizando búsqueda.");
+            List<ModeloArticuloProveedores> lcl_lst_articulosProveedores = new List<ModeloArticuloProveedores>();
+
+            string categoriaBusqueda = (string)this.cbxCategoriaBusqueda.SelectedValue;
+            string descripcionBusqueda = this.txtDescripcionParcial.Text;
+
+            bw.DoWork += (s, e) =>
+            {
+                if (controlador.buscarArticulos(categoriaBusqueda, descripcionBusqueda) < 1)
+                {
+                    lcl_lst_articulosProveedores = new List<ModeloArticuloProveedores>();
+                }
+                else
+                {
+                    lcl_lst_articulosProveedores = controlador.resultadoBusquedaArticulosProveedores;
+                }
+            };
+            bw.RunWorkerCompleted += (s, e) =>
+            {
+                lcl_frm_loading.Hide();
+            };
+
+            bw.RunWorkerAsync();
+            lcl_frm_loading.ShowDialog();
+
+            return lcl_lst_articulosProveedores;
+        }
         #endregion
 
         #region Eventos
+        /// <summary>
+        /// Agrega línea de pedido al pedido
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void evento_agregarArticuloProveedorEnPedido(object sender, EventArgs e)
+        {
+            if (this.validarAgregarArticulo())
+            {
+                //verifico que no exista ya en entre las lineas de pedido
+                if (controlador.exists(glb_mod_articuloSeleccionadoBusqueda))
+                {
+                    ModeloLineaPedido lpExistente = controlador.pedidoActual.lineasPedido.SingleOrDefault
+                                                                        (x => x.articulo.codigoOriginal == glb_mod_articuloSeleccionadoBusqueda.codigoOriginal
+                                                                            && x.articulo.codigoArticuloProveedor == glb_mod_articuloSeleccionadoBusqueda.codigoArticuloProveedor);
+                   
+                    lpExistente.cantidadArticulos += Convert.ToInt32(this.nmrcUpDownCantidad.Value);
+                }
+                else
+                { 
+                //Agrego línea y especifico si permite stock negativo
+                controlador.addArticulo(glb_mod_articuloSeleccionadoBusqueda, Convert.ToInt32(this.nmrcUpDownCantidad.Value));
+                controlador.pedidoActual.lineasPedido[controlador.pedidoActual.lineasPedido.Count - 1].permitirStockNegativo = this.chckBoxPermitirStockNegativo.Checked;
+                }
+                this.cargarLineasPedidosEnControles();
+            }
+        }
+        /// <summary>
+        /// Elimina las líneas seleccionadas del pedido
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void evento_eliminarArticuloProveedorDePedido(object sender, EventArgs e)
+        {
+            List<ModeloLineaPedido> lcl_lst_lineasPedidosEliminar = new List<ModeloLineaPedido>();
+            int i;
+            string detallesArticulos = "";
+            foreach (DataGridViewRow row in dgvArticulosEnPedido.SelectedRows)
+            {
+                //i = Convert.ToInt32(row.Index);
+                lcl_lst_lineasPedidosEliminar.Add(controlador.pedidoActual.lineasPedido[row.Index]);
+
+                i = lcl_lst_lineasPedidosEliminar.Count - 1;
+                detallesArticulos += Environment.NewLine + "- " + lcl_lst_lineasPedidosEliminar[i].articulo.descripcionArticuloProveedor + " (" + lcl_lst_lineasPedidosEliminar[i].articulo.codigoArticuloProveedor + ")";
+            }
+
+            if (lcl_lst_lineasPedidosEliminar.Count < 1)
+            {
+                MessageBox.Show("No hay artículo seleccionado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string mensaje = lcl_lst_lineasPedidosEliminar.Count > 1 ?
+                    "¿Está seguro que desea eliminar los artículos: " :
+                    "¿Está seguro que desea eliminar el artículo: ";
+
+            DialogResult dialogResult = MessageBox.Show(mensaje +
+                detallesArticulos + " ?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+            {
+                foreach (ModeloLineaPedido lp in lcl_lst_lineasPedidosEliminar)
+                {
+                    controlador.pedidoActual.removeLineaPedido(lp);
+                }
+                this.cargarLineasPedidosEnControles();
+            }
+        }
+        /// <summary>
+        /// Elimina todas las líneas del pedido
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void evento_eliminarArticuloProveedorDePedidoTodos(object sender, EventArgs e)
+        {
+            DialogResult lcl_dialogResult = MessageBox.Show("¿Realmente desea borrar el detalle actual?", "Confirmación", MessageBoxButtons.YesNo);
+            if (lcl_dialogResult == DialogResult.Yes)
+            {
+                controlador.removeLineasPedidos();
+                this.dgvArticulosEnPedido.DataSource = null;
+                cleanLbls();
+            }
+        }
+       
         #region Botones
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
             //compruebo que existan articulos para generar pedido
-            if (glb_con_pedido.getCantidadLineas() > 0)
+            if (controlador.getCantidadLineas() > 0)
             {
                 //creo el formulario y lo muestro
                 Form lcl_frm_cierre;
-                if (glb_con_pedido.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+                if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
                 {
-                    lcl_frm_cierre = new frmPedidoCierre(glb_con_pedido.pedidoActual);
+                    lcl_frm_cierre = new frmPedidoCierre(controlador.pedidoActual);
                 }
-                else if (glb_con_pedido.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
+                else if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
                 {
-                    lcl_frm_cierre = new frmPedidoCierre(glb_con_pedido.pedidoActual);
+                    lcl_frm_cierre = new frmPedidoCierre(controlador.pedidoActual);
                 }
                 else
                 {
@@ -148,84 +352,12 @@ namespace Vista
                 }
 
                 lcl_frm_cierre.ShowDialog();
-                //checkeo si se cerró el pedido
-                //if (lcl_frm_cierre.glb_emitido)
-                //{
-                //    this.Close();
-                //}
             }
             else
             {
                 MessageBox.Show("No se han seleccionado artículos para el pedido actual");
             }
         }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            if (this.validarAgregarArticulo())
-            {
-                //lo agrego al pedido actual
-                glb_con_pedido.addArticulo(glb_mod_articuloSeleccionadoBusqueda, Int32.Parse(this.txtCantidad.Text));
-
-                //Actualizo Total
-                this.lblTotalVar.Text = glb_con_pedido.getTotal();
-
-                //rebindeo lista
-                var lcl_bindingList = new BindingList<ModeloLineaPedido>(glb_con_pedido.pedidoActual.lineasPedido);
-                var lcl_source = new BindingSource(lcl_bindingList, null);
-                this.dgvDetalleAgregados.DataSource = lcl_source;
-
-                //Limpio artselecbusq para manejar el uso del boton en momento equivocado
-                this.glb_mod_articuloSeleccionadoBusqueda = null;
-                //Limpio txtbox cantidad
-                this.txtCantidad.Text = "";
-                //Limpio lbls
-                this.cleanLbls();
-            }
-        }
-
-        private void btnQuitar_Click(object sender, EventArgs e)
-        {
-            //checkeo que haya un articulo seleccionado
-            if (!object.Equals(this.glb_mod_articuloSeleccionadoDetalle, null))
-            {
-                //lo elimino de la lista de articulos ya seleccionados
-                glb_con_pedido.removeLineaPedido(this.glb_mod_articuloSeleccionadoDetalle);
-
-                //Actualizo Total
-                this.lblTotalVar.Text = glb_con_pedido.getTotal();
-
-                //rebindeo los articulos seleccionados a la grid
-                var lcl_bindingList = new BindingList<ModeloLineaPedido>(glb_con_pedido.pedidoActual.lineasPedido);
-                var lcl_source = new BindingSource(lcl_bindingList, null);
-                this.dgvDetalleAgregados.DataSource = lcl_source;
-
-                //Limpio artselecdetalle para evitar uso de boton en momento equivocado
-                this.glb_mod_articuloSeleccionadoDetalle = null;
-            }
-            else
-            {
-                MessageBox.Show("Por favor seleccione un articulo a eliminar de la grilla de detalles");
-            }
-        }
-
-        private void btnBorrarDetActual_Click(object sender, EventArgs e)
-        {
-            //solicito confirmación
-            DialogResult lcl_dialogResult = MessageBox.Show("¿Realmente desea borrar el detalle actual?", "Confirmación", MessageBoxButtons.YesNo);
-            if (lcl_dialogResult == DialogResult.Yes)
-            {
-                //borro la venta actual
-                glb_con_pedido.removeLineasPedidos();
-
-                //rebindeo grilla detalles
-                this.dgvDetalleAgregados.DataSource = null;
-
-                //se limpian las lbls
-                cleanLbls();
-            }
-        }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             //solicito confirmación
@@ -238,80 +370,47 @@ namespace Vista
         #endregion
 
         #region DataGridViews
-        private void dgvArtAgregar_Enter(object sender, EventArgs e)
-        {
-            //Limpio artselecdetalle para manejar el uso del boton en momento equivocado
-            this.glb_mod_articuloSeleccionadoDetalle = null;
-        }
 
-        private void dgvDetalleAgregados_Enter(object sender, EventArgs e)
+        #region Resultados de búsqueda
+        private void dgvArticulosResultadoBusqueda_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Limpio artselecbusq para manejar el uso del boton en momento equivocado
-            this.glb_mod_articuloSeleccionadoBusqueda = null;
-        }
-
-        private void dgvArtAgregar_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //busco el articulo según el indice seleccionado
-            var lcl_mod_articulo = glb_con_pedido.getArticuloBusqueda(dgvArtAgregar.CurrentCell.RowIndex);
+            if (e.RowIndex < 0)
+            {
+                //No hay fila seleccionada
+                return;
+            }
+            int i = Convert.ToInt32(this.dgvArticulosResultadoBusqueda.Rows[e.RowIndex].Cells["indice"].Value);
+            var lcl_mod_articulo = controlador.getArticuloBusqueda(i);
 
             //asigno el articulo a la variable articuloSeleccionadoBusqueda en caso de que se decida agregarlo al pedido
             this.glb_mod_articuloSeleccionadoBusqueda = lcl_mod_articulo;
 
-            //actualizo lost lbl para mostrar el articulo seleccionado
-            this.lblCodigoOriginalVar.Text = lcl_mod_articulo.codigoOriginal;
-            this.lblCodigoProveedorVar.Text = lcl_mod_articulo.codigoArticuloProveedor;
-            this.lblProveedorVar.Text = lcl_mod_articulo.razonSocialProveedor;
-            this.lblDescripcionVar.Text = lcl_mod_articulo.descripcionArticuloProveedor;
-            //
-            //TODO modificadores de precio segun metodo de pago
-            if (glb_con_pedido.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
-            {
-                this.lblPrecioVar.Text = Convert.ToString(lcl_mod_articulo.valorVenta.valorArticulo);
-            }
-            else if (glb_con_pedido.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
-            {
-                this.lblPrecioVar.Text = Convert.ToString(lcl_mod_articulo.valorCompra.valorArticulo);
-            }
-            this.lblUbicacionVar.Text = lcl_mod_articulo.ubicacion;
-
-            this.lblExistenciaVar.Text = Convert.ToString(lcl_mod_articulo.stockActual);
-            this.lblFechaActualizacionVar.Text = Convert.ToString(lcl_mod_articulo.fechaActualizacion);
-            this.lblObservacionesVar.Text = lcl_mod_articulo.observacionesArticuloProveedor;
-            
-            this.nmrcUpDownCantidad.Maximum = lcl_mod_articulo.stockActual.Value;
-        }
-
-        private void dgvDetalleAgregados_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //asigno el articulo a la variable articulosSeleccionadosDetalle en caso de que se decida removerlo del pedido
-            this.glb_mod_articuloSeleccionadoDetalle = glb_con_pedido.getArticulo(this.dgvDetalleAgregados.CurrentCell.RowIndex);
+            cargarArticuloProveedorDetallesEnControles(lcl_mod_articulo);
         }
         #endregion
+        #region Artículos agregados a pedido
+        #endregion
 
-        #region Labels, txtBox y Combos
+        #endregion
+
+        #region Labels, txtBox y numericUpDown
         private void lblLupa_Click(object sender, EventArgs e)
         {
-            if (!this.validarBusqueda())
+            List<ModeloArticuloProveedores> lcl_lst_articulosProveedoresEncontrados = this.buscarArticuloProveedor();
+            if (lcl_lst_articulosProveedoresEncontrados != null)
             {
-                return ;
-            }
-            
-            //busco el/los articulos correspondientes y me fijo que se hayan encontrado artículos
-            if (glb_con_pedido.buscarArticulos((string)this.cbxCategoriaBusqueda.SelectedValue, this.txtDescripcionParcial.Text) > 0)
-            {
-                //bindeo el datagrid con los articulos encontrados
-                var lcl_bindingList = new BindingList<ModeloArticuloProveedores>(glb_con_pedido.resultadoBusqueda);
-                var lcl_source = new BindingSource(lcl_bindingList, null);
-                this.dgvArtAgregar.DataSource = lcl_source;
-            }
-            else
-            {
-                MessageBox.Show("No se encontraron coincidencias");
+                if (lcl_lst_articulosProveedoresEncontrados.Count > 0)
+                {
+                    this.cargarArticulosProveedoresEncontradosEnControles(lcl_lst_articulosProveedoresEncontrados);
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron coincidencias");
+                }
             }
         }
 
-        private void txtBusqArticulo_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtDescripcionParcial_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
@@ -319,17 +418,17 @@ namespace Vista
             }
         }
 
-        private void txtBusqArticulo_Enter(object sender, EventArgs e)
+        private void txtDescripcionParcial_Enter(object sender, EventArgs e)
         {
             //se limpian los lbls para no generar errores ya que no hay ninguno seleccionado
             cleanLbls();
         }
-
-        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        
+        private void nmrcUpDownCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                this.btnAgregar_Click(sender, e);
+                this.evento_agregarArticuloProveedorEnPedido(sender, e);
             }
 
             // solo 0-9 y borrar 
@@ -340,6 +439,9 @@ namespace Vista
             }
         }
         #endregion 
+
+    
+
         #endregion           
     }
 }

@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoNuevo));
             this.gbxDetalleArticuloSeleccionado = new System.Windows.Forms.GroupBox();
             this.nmrcUpDownCantidad = new System.Windows.Forms.NumericUpDown();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.tlpDetalles = new System.Windows.Forms.TableLayoutPanel();
@@ -57,7 +56,7 @@
             this.lblTotalVar = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.gbxDetalleAgregados = new System.Windows.Forms.GroupBox();
-            this.dgvDetalleAgregados = new System.Windows.Forms.DataGridView();
+            this.dgvArticulosEnPedido = new System.Windows.Forms.DataGridView();
             this.codOrig = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codProv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.daaDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,7 +65,8 @@
             this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbxArticulosAgregar = new System.Windows.Forms.GroupBox();
             this.lblCategoriaBuscar = new System.Windows.Forms.Label();
-            this.dgvArtAgregar = new System.Windows.Forms.DataGridView();
+            this.dgvArticulosResultadoBusqueda = new System.Windows.Forms.DataGridView();
+            this.indice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codOriginal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,15 +82,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownCantidad)).BeginInit();
             this.tlpDetalles.SuspendLayout();
             this.gbxDetalleAgregados.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleAgregados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosEnPedido)).BeginInit();
             this.gbxArticulosAgregar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvArtAgregar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosResultadoBusqueda)).BeginInit();
             this.SuspendLayout();
             // 
             // gbxDetalleArticuloSeleccionado
             // 
             this.gbxDetalleArticuloSeleccionado.Controls.Add(this.nmrcUpDownCantidad);
-            this.gbxDetalleArticuloSeleccionado.Controls.Add(this.txtCantidad);
             this.gbxDetalleArticuloSeleccionado.Controls.Add(this.lblCantidad);
             this.gbxDetalleArticuloSeleccionado.Controls.Add(this.btnAgregar);
             this.gbxDetalleArticuloSeleccionado.Controls.Add(this.tlpDetalles);
@@ -103,18 +102,16 @@
             // 
             // nmrcUpDownCantidad
             // 
-            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(60, 429);
+            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(81, 450);
+            this.nmrcUpDownCantidad.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
             this.nmrcUpDownCantidad.Name = "nmrcUpDownCantidad";
             this.nmrcUpDownCantidad.Size = new System.Drawing.Size(45, 20);
             this.nmrcUpDownCantidad.TabIndex = 11;
-            // 
-            // txtCantidad
-            // 
-            this.txtCantidad.Location = new System.Drawing.Point(81, 449);
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(44, 20);
-            this.txtCantidad.TabIndex = 10;
-            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
+            this.nmrcUpDownCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nmrcUpDownCantidad_KeyPress);
             // 
             // lblCantidad
             // 
@@ -133,7 +130,6 @@
             this.btnAgregar.TabIndex = 2;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // tlpDetalles
             // 
@@ -361,7 +357,6 @@
             this.btnQuitar.TabIndex = 4;
             this.btnQuitar.Text = "Quitar";
             this.btnQuitar.UseVisualStyleBackColor = true;
-            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
             // lblTotalVar
             // 
@@ -386,7 +381,7 @@
             // 
             // gbxDetalleAgregados
             // 
-            this.gbxDetalleAgregados.Controls.Add(this.dgvDetalleAgregados);
+            this.gbxDetalleAgregados.Controls.Add(this.dgvArticulosEnPedido);
             this.gbxDetalleAgregados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbxDetalleAgregados.Location = new System.Drawing.Point(5, 354);
             this.gbxDetalleAgregados.Name = "gbxDetalleAgregados";
@@ -395,39 +390,37 @@
             this.gbxDetalleAgregados.TabStop = false;
             this.gbxDetalleAgregados.Text = "Detalle Artículos Agregados";
             // 
-            // dgvDetalleAgregados
+            // dgvArticulosEnPedido
             // 
-            this.dgvDetalleAgregados.AllowUserToAddRows = false;
-            this.dgvDetalleAgregados.AllowUserToDeleteRows = false;
-            this.dgvDetalleAgregados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvDetalleAgregados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetalleAgregados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvArticulosEnPedido.AllowUserToAddRows = false;
+            this.dgvArticulosEnPedido.AllowUserToDeleteRows = false;
+            this.dgvArticulosEnPedido.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvArticulosEnPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArticulosEnPedido.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codOrig,
             this.codProv,
             this.daaDescripcion,
             this.vUnitario,
             this.cantidad,
             this.vParcial});
-            this.dgvDetalleAgregados.Location = new System.Drawing.Point(11, 23);
-            this.dgvDetalleAgregados.Name = "dgvDetalleAgregados";
-            this.dgvDetalleAgregados.ReadOnly = true;
-            this.dgvDetalleAgregados.RowHeadersVisible = false;
-            this.dgvDetalleAgregados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleAgregados.Size = new System.Drawing.Size(675, 174);
-            this.dgvDetalleAgregados.TabIndex = 5;
-            this.dgvDetalleAgregados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleAgregados_CellClick);
-            this.dgvDetalleAgregados.Enter += new System.EventHandler(this.dgvDetalleAgregados_Enter);
+            this.dgvArticulosEnPedido.Location = new System.Drawing.Point(11, 23);
+            this.dgvArticulosEnPedido.Name = "dgvArticulosEnPedido";
+            this.dgvArticulosEnPedido.ReadOnly = true;
+            this.dgvArticulosEnPedido.RowHeadersVisible = false;
+            this.dgvArticulosEnPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvArticulosEnPedido.Size = new System.Drawing.Size(675, 174);
+            this.dgvArticulosEnPedido.TabIndex = 5;
             // 
             // codOrig
             // 
-            this.codOrig.DataPropertyName = "codigoOriginalArt";
+            this.codOrig.DataPropertyName = "codigoOriginal";
             this.codOrig.HeaderText = "Código Original";
             this.codOrig.Name = "codOrig";
             this.codOrig.ReadOnly = true;
             // 
             // codProv
             // 
-            this.codProv.DataPropertyName = "codigoArtProveedor";
+            this.codProv.DataPropertyName = "codigoArticuloProveedor";
             this.codProv.HeaderText = "Código Proveedor";
             this.codProv.Name = "codProv";
             this.codProv.ReadOnly = true;
@@ -463,7 +456,7 @@
             // gbxArticulosAgregar
             // 
             this.gbxArticulosAgregar.Controls.Add(this.lblCategoriaBuscar);
-            this.gbxArticulosAgregar.Controls.Add(this.dgvArtAgregar);
+            this.gbxArticulosAgregar.Controls.Add(this.dgvArticulosResultadoBusqueda);
             this.gbxArticulosAgregar.Controls.Add(this.lblLupa);
             this.gbxArticulosAgregar.Controls.Add(this.txtDescripcionParcial);
             this.gbxArticulosAgregar.Controls.Add(this.cbxCategoriaBusqueda);
@@ -485,28 +478,36 @@
             this.lblCategoriaBuscar.TabIndex = 4;
             this.lblCategoriaBuscar.Text = "Buscar por:";
             // 
-            // dgvArtAgregar
+            // dgvArticulosResultadoBusqueda
             // 
-            this.dgvArtAgregar.AllowUserToAddRows = false;
-            this.dgvArtAgregar.AllowUserToDeleteRows = false;
-            this.dgvArtAgregar.AllowUserToOrderColumns = true;
-            this.dgvArtAgregar.AllowUserToResizeRows = false;
-            this.dgvArtAgregar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvArtAgregar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvArtAgregar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvArticulosResultadoBusqueda.AllowUserToAddRows = false;
+            this.dgvArticulosResultadoBusqueda.AllowUserToDeleteRows = false;
+            this.dgvArticulosResultadoBusqueda.AllowUserToOrderColumns = true;
+            this.dgvArticulosResultadoBusqueda.AllowUserToResizeRows = false;
+            this.dgvArticulosResultadoBusqueda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvArticulosResultadoBusqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArticulosResultadoBusqueda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.indice,
             this.codOriginal,
             this.codProveedor,
             this.proveedor,
             this.descripcion});
-            this.dgvArtAgregar.Location = new System.Drawing.Point(11, 68);
-            this.dgvArtAgregar.Name = "dgvArtAgregar";
-            this.dgvArtAgregar.ReadOnly = true;
-            this.dgvArtAgregar.RowHeadersVisible = false;
-            this.dgvArtAgregar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArtAgregar.Size = new System.Drawing.Size(675, 258);
-            this.dgvArtAgregar.TabIndex = 3;
-            this.dgvArtAgregar.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArtAgregar_CellClick);
-            this.dgvArtAgregar.Enter += new System.EventHandler(this.dgvArtAgregar_Enter);
+            this.dgvArticulosResultadoBusqueda.Location = new System.Drawing.Point(11, 68);
+            this.dgvArticulosResultadoBusqueda.Name = "dgvArticulosResultadoBusqueda";
+            this.dgvArticulosResultadoBusqueda.ReadOnly = true;
+            this.dgvArticulosResultadoBusqueda.RowHeadersVisible = false;
+            this.dgvArticulosResultadoBusqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvArticulosResultadoBusqueda.Size = new System.Drawing.Size(675, 258);
+            this.dgvArticulosResultadoBusqueda.TabIndex = 3;
+            this.dgvArticulosResultadoBusqueda.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulosResultadoBusqueda_CellClick);
+            // 
+            // indice
+            // 
+            this.indice.DataPropertyName = "indice";
+            this.indice.HeaderText = "indice";
+            this.indice.Name = "indice";
+            this.indice.ReadOnly = true;
+            this.indice.Visible = false;
             // 
             // codOriginal
             // 
@@ -551,8 +552,8 @@
             this.txtDescripcionParcial.Name = "txtDescripcionParcial";
             this.txtDescripcionParcial.Size = new System.Drawing.Size(374, 23);
             this.txtDescripcionParcial.TabIndex = 1;
-            this.txtDescripcionParcial.Enter += new System.EventHandler(this.txtBusqArticulo_Enter);
-            this.txtDescripcionParcial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusqArticulo_KeyPress);
+            this.txtDescripcionParcial.Enter += new System.EventHandler(this.txtDescripcionParcial_Enter);
+            this.txtDescripcionParcial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescripcionParcial_KeyPress);
             // 
             // cbxCategoriaBusqueda
             // 
@@ -588,7 +589,6 @@
             this.btnBorrarDetalleActual.TabIndex = 20;
             this.btnBorrarDetalleActual.Text = "Borrar Detalle Actual";
             this.btnBorrarDetalleActual.UseVisualStyleBackColor = true;
-            this.btnBorrarDetalleActual.Click += new System.EventHandler(this.btnBorrarDetActual_Click);
             // 
             // btnCancelar
             // 
@@ -636,10 +636,10 @@
             this.tlpDetalles.ResumeLayout(false);
             this.tlpDetalles.PerformLayout();
             this.gbxDetalleAgregados.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleAgregados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosEnPedido)).EndInit();
             this.gbxArticulosAgregar.ResumeLayout(false);
             this.gbxArticulosAgregar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvArtAgregar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosResultadoBusqueda)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -672,30 +672,30 @@
         internal System.Windows.Forms.Label lblTotalVar;
         internal System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.GroupBox gbxDetalleAgregados;
-        internal System.Windows.Forms.DataGridView dgvDetalleAgregados;
+        internal System.Windows.Forms.DataGridView dgvArticulosEnPedido;
         private System.Windows.Forms.GroupBox gbxArticulosAgregar;
         private System.Windows.Forms.Label lblCategoriaBuscar;
-        internal System.Windows.Forms.DataGridView dgvArtAgregar;
+        internal System.Windows.Forms.DataGridView dgvArticulosResultadoBusqueda;
         internal System.Windows.Forms.Label lblLupa;
         internal System.Windows.Forms.TextBox txtDescripcionParcial;
         internal System.Windows.Forms.ComboBox cbxCategoriaBusqueda;
         internal System.Windows.Forms.Button btnSiguiente;
         internal System.Windows.Forms.Button btnBorrarDetalleActual;
-        private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label lblCantidad;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.NumericUpDown nmrcUpDownCantidad;
+        private System.Windows.Forms.CheckBox chckBoxPermitirStockNegativo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn indice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codOriginal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codProveedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn proveedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn codOrig;
         private System.Windows.Forms.DataGridViewTextBoxColumn codProv;
         private System.Windows.Forms.DataGridViewTextBoxColumn daaDescripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn vUnitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn vParcial;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codOriginal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codProveedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn proveedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.NumericUpDown nmrcUpDownCantidad;
-        private System.Windows.Forms.CheckBox chckBoxPermitirStockNegativo;
 
     }
 }

@@ -71,9 +71,9 @@ namespace Vista
             
             this.inicializarComboBox();
         }
-        public frmABMEntidad(ModeloEntidad p_mod_entidad):this()
+        public frmABMEntidad(ModeloEntidad p_mod_entidad, string p_modoFormulario):this()
         {
-            modoFormulario = ModoFormularioBusqueda;
+            modoFormulario = p_modoFormulario;
             Type T = p_mod_entidad.GetType();
             if (T == typeof(ModeloCliente))
             {

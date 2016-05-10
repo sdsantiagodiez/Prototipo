@@ -14,7 +14,7 @@ namespace Controladores
         //funciones a programar
         //buscarReserva
 
-        public List<ModeloArticuloProveedores> resultadoBusqueda;
+        public List<ModeloArticuloProveedores> resultadoBusquedaArticulosProveedores;
         public Constantes.CodigosTiposPedidos tipoPedido
         {
             get { return pedidoActual.codigoTipoPedido; }
@@ -48,6 +48,12 @@ namespace Controladores
 
         #region Métodos
         #region Búsqueda
+        /// <summary>
+        /// Busca artículos proveedores y retorna cantidad encontrada
+        /// </summary>
+        /// <param name="p_categoriaBusquedaSeleccionada"></param>
+        /// <param name="p_descripcionParcialArticulo"></param>
+        /// <returns></returns>
         public int buscarArticulos(string p_categoriaBusquedaSeleccionada, string p_descripcionParcialArticulo)
         {
             var lcl_mod_ArticuloProveedor = new ModeloArticuloProveedores();
@@ -65,8 +71,8 @@ namespace Controladores
                     return 0;
             }
 
-            resultadoBusqueda = ControladorBusqueda.buscar(lcl_mod_ArticuloProveedor, p_categoriaBusquedaSeleccionada);
-            return resultadoBusqueda.Count;
+            resultadoBusquedaArticulosProveedores = ControladorBusqueda.buscar(lcl_mod_ArticuloProveedor, p_categoriaBusquedaSeleccionada);
+            return resultadoBusquedaArticulosProveedores.Count;
         }
         public void buscarCliente(string p_dni)
         {
@@ -75,7 +81,7 @@ namespace Controladores
 
         public ModeloArticuloProveedores getArticuloBusqueda(int p_indice)
         {
-            return resultadoBusqueda[p_indice];
+            return resultadoBusquedaArticulosProveedores[p_indice];
         }
 
         public ModeloLineaPedido getArticulo(int p_indice)
