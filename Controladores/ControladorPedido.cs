@@ -217,6 +217,7 @@ namespace Controladores
     }
     public class ControladorPedidoCliente : ControladorPedido
     {
+        const int codigoClienteGenerico = 106242;
         public ControladorPedidoCliente() : base(Constantes.CodigosTiposPedidos.TipoPedidoPersona)
         {
  
@@ -319,8 +320,23 @@ namespace Controladores
             //codigo cliente genérico actual 106242
             //cuando se haga de nuevo la base, cambiar a algo más representativo como el 100000 o algo
             ModeloCliente lcl_mod_cliente = new ModeloCliente();
-            lcl_mod_cliente.codigo = 106242;
+            lcl_mod_cliente.codigo = codigoClienteGenerico;
             pedidoActual.entidad = lcl_mod_cliente;
+        }
+        public bool esClienteGenerico()
+        {
+            return this.pedidoActual.entidad.codigo == codigoClienteGenerico ||
+                this.pedidoActual.entidad.codigo == 0;
+
+        }
+        public static bool esClienteGenerico(ModeloCliente p_mod_cliente)
+        {
+            if (p_mod_cliente == null)
+            {
+                return true;
+            }
+            return p_mod_cliente.codigo == codigoClienteGenerico ||
+                p_mod_cliente.codigo == 0;
         }
         #endregion
     }

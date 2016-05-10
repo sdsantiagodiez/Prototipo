@@ -20,6 +20,7 @@ namespace Vista
         protected const string ModoFormularioInicio = "Inicia formulario solo con opcion busqueda";
         protected const string ModoFormularioNuevo = "Nueva clase";
         protected const string ModoFormularioSeleccionado = "Clase seleccionada de resultado de busqueda";
+        protected const string ModoFormularioBusqueda = "Búsqueda de entidad";
 
         private string _modoFormulario;
         public string modoFormulario
@@ -38,6 +39,9 @@ namespace Vista
                         break;
                     case ModoFormularioSeleccionado:
                         this.inicializarModoFormularioSeleccionado();
+                        break;
+                    case ModoFormularioBusqueda:
+                        this.inicializarModoFormularioBusqueda();
                         break;
                     default:
                         break;
@@ -107,38 +111,58 @@ namespace Vista
 
         virtual public void inicializarModoFormularioInicio()
         {
-            toolStripMenuItemBuscar.Enabled = true;
-            toolStripMenuItemNuevo.Enabled = true;
-            toolStripMenuItemGuardar.Enabled = false;
-            toolStripMenuItemGuardarCambios.Enabled = false;
-            toolStripMenuItemGuardarNuevo.Enabled = false;
-            toolStripMenuItemEliminar.Enabled = false;
-            toolStripMenuItemLimpiarCampos.Enabled = true;
-            toolStripMenuItemCancelar.Enabled = true;
+            toolStripMenuItemBuscar.Enabled = 
+                toolStripMenuItemNuevo.Enabled = 
+                toolStripMenuItemLimpiarCampos.Enabled = 
+                toolStripMenuItemCancelar.Enabled = 
+                true;
+            toolStripMenuItemGuardar.Enabled = 
+                toolStripMenuItemGuardarCambios.Enabled = 
+                toolStripMenuItemGuardarNuevo.Enabled = 
+                toolStripMenuItemEliminar.Enabled = 
+                false;
+            
         }
 
         virtual public void inicializarModoFormularioNuevo()
         {
-            toolStripMenuItemBuscar.Enabled = false;
-            toolStripMenuItemNuevo.Enabled = false;
-            toolStripMenuItemGuardar.Enabled = true;
-            toolStripMenuItemGuardarCambios.Enabled = false;
-            toolStripMenuItemGuardarNuevo.Enabled = true;
-            toolStripMenuItemEliminar.Enabled = false;
-            toolStripMenuItemLimpiarCampos.Enabled = true;
-            toolStripMenuItemCancelar.Enabled = true;
+            toolStripMenuItemBuscar.Enabled = 
+                toolStripMenuItemNuevo.Enabled = 
+                toolStripMenuItemGuardarCambios.Enabled = 
+                toolStripMenuItemEliminar.Enabled = 
+                false;
+            toolStripMenuItemGuardar.Enabled = 
+                toolStripMenuItemGuardarNuevo.Enabled = 
+                toolStripMenuItemLimpiarCampos.Enabled = 
+                toolStripMenuItemCancelar.Enabled = 
+                true;
         }
 
         virtual public void inicializarModoFormularioSeleccionado()
         {
-            toolStripMenuItemBuscar.Enabled = false;
-            toolStripMenuItemNuevo.Enabled = false;
-            toolStripMenuItemGuardar.Enabled = true;
-            toolStripMenuItemGuardarCambios.Enabled = true;
-            toolStripMenuItemGuardarNuevo.Enabled = false;
-            toolStripMenuItemEliminar.Enabled = true;
-            toolStripMenuItemLimpiarCampos.Enabled = true;
-            toolStripMenuItemCancelar.Enabled = true;
+            toolStripMenuItemBuscar.Enabled = 
+                toolStripMenuItemNuevo.Enabled =
+                toolStripMenuItemGuardarNuevo.Enabled = 
+                false;
+            toolStripMenuItemGuardar.Enabled = 
+                toolStripMenuItemGuardarCambios.Enabled = 
+                toolStripMenuItemEliminar.Enabled = 
+                toolStripMenuItemLimpiarCampos.Enabled = 
+                toolStripMenuItemCancelar.Enabled = 
+                true;
+        }
+
+        virtual public void inicializarModoFormularioBusqueda()
+        {
+            this.toolStripMenuItemEliminar.Enabled =
+                this.toolStripMenuItemGuardar.Enabled =
+                this.toolStripMenuItemGuardarCambios.Enabled = 
+                this.toolStripMenuItemNuevo.Enabled =
+                false;
+            this.toolStripMenuItemBuscar.Enabled =
+                this.toolStripMenuItemLimpiarCampos.Enabled =
+                this.toolStripMenuItemCancelar.Enabled = 
+                true;
         }
 
         /// <summary>

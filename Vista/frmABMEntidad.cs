@@ -16,7 +16,7 @@ namespace Vista
     public partial class frmABMEntidad : Vista.frmABMBase
     {
         #region Atributos
-        ModeloEntidad glb_mod_entidadActual;
+        public ModeloEntidad glb_mod_entidadActual;
 
         private string _tipoEntidadSeleccionada;
         private string tipoEntidadSeleccionada
@@ -70,6 +70,28 @@ namespace Vista
             modoFormulario = ModoFormularioInicio;
             
             this.inicializarComboBox();
+        }
+        public frmABMEntidad(ModeloEntidad p_mod_entidad):this()
+        {
+            modoFormulario = ModoFormularioBusqueda;
+            Type T = p_mod_entidad.GetType();
+            if (T == typeof(ModeloCliente))
+            {
+                this.inicializarControlesTipoEntidadCliente();
+            }
+            else if (T == typeof(ModeloUsuario))
+            {
+                this.inicializarControlesTipoEntidadUsuario();
+            }
+            else if (T == typeof(ModeloContactoProveedor))
+            {
+                this.inicializarControlesTipoEntidadContactoProveedor();
+            }
+            else if (T == typeof(ModeloProveedor))
+            {
+                this.inicializarControlesTipoEntidadProveedor();
+            }
+            this.pnlTipoEntidad.Enabled = false;
         }
         #endregion
 
@@ -129,6 +151,10 @@ namespace Vista
             grpBoxObservaciones.Enabled = true;
 
             btnDatosAdicionales.Enabled = true;
+        }
+        public override void inicializarModoFormularioBusqueda()
+        {
+            base.inicializarModoFormularioBusqueda();
         }
 
         private void inicializarControlesTipoEntidadCliente()
@@ -327,10 +353,18 @@ namespace Vista
             lcl_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_entidadActual);
             if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
             {
-                this.modoFormulario = ModoFormularioSeleccionado;
-                this.quitarTextoEnControles(this);
-                glb_mod_entidadActual = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad;
-                this.cargarEntidadEnControles(glb_mod_entidadActual);
+                if (this.modoFormulario != ModoFormularioBusqueda)
+                {
+                    this.modoFormulario = ModoFormularioSeleccionado;
+                    this.quitarTextoEnControles(this);
+                    glb_mod_entidadActual = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad;
+                    this.cargarEntidadEnControles(glb_mod_entidadActual);
+                }
+                else
+                {
+                    glb_mod_entidadActual = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad;
+                    this.Hide();
+                }
             }
         }
 

@@ -15,6 +15,7 @@ namespace Vista
 {
     public partial class frmPedidoCierre : Form
     {
+        List<TipoDocumento> glb_lst_tiposDocumentos;
         ControladorPedido controlador;
         CheckBox chckBoxClienteGenerico;
         #region Constructores
@@ -108,25 +109,24 @@ namespace Vista
                 e.Value = Constantes.GetDescription<Constantes.FormaDePago>((Constantes.FormaDePago)e.Value);
             };
 
-            
             this.cmbBoxTipoDocumento.DisplayMember=
-            this.cmbBoxPais.DisplayMember =
-            this.cmbBoxProvincia.DisplayMember =
+                this.cmbBoxPais.DisplayMember =
+                this.cmbBoxProvincia.DisplayMember =
                 this.cmbBoxTipoTelefono.DisplayMember =
                 this.cmbBoxDomicilios.DisplayMember = 
                 this.cmbBoxTelefonos.DisplayMember = 
                 this.cmbBoxMails.DisplayMember = "Name";
             
             this.cmbBoxTipoDocumento.ValueMember =
-            this.cmbBoxPais.ValueMember=
-            this.cmbBoxProvincia.ValueMember = 
+                this.cmbBoxPais.ValueMember=
+                this.cmbBoxProvincia.ValueMember = 
                 this.cmbBoxTipoTelefono.ValueMember = 
                 this.cmbBoxDomicilios.ValueMember = 
                 this.cmbBoxTelefonos.ValueMember = 
                 this.cmbBoxMails.ValueMember = "Value";
             //Lo hago read only
             this.cmbBoxTipoDocumento.DropDownStyle =
-            this.cmbBoxProvincia.DropDownStyle = 
+                this.cmbBoxProvincia.DropDownStyle = 
                 this.cmbBoxPais.DropDownStyle = 
                 this.cmbBoxTipoTelefono.DropDownStyle = 
                 this.cmbBoxDomicilios.DropDownStyle = 
@@ -135,7 +135,6 @@ namespace Vista
 
             //Populo combobox de provincias
             this.asignarProvincias();
-            //this.cmbBoxProvincia.SelectedItem = null;
         }
         private void inicializarControlesCliente()
         {
@@ -252,7 +251,15 @@ namespace Vista
         }
         private void cargarEntidadEnControles(ModeloEntidad p_mod_entidad)
         {
-            if(p_mod_entidad.GetType() == typeof(ModeloProveedor))
+            #region Documento
+            if (!string.IsNullOrWhiteSpace(p_mod_entidad.cuit))
+            {
+                this.cmbBoxTipoDocumento.SelectedValue = this.glb_lst_tiposDocumentos.SingleOrDefault(x => x.codigo == 80);
+                this.txtBoxNumeroDocumento.Text = p_mod_entidad.cuit;
+            }
+            #endregion
+
+            if (p_mod_entidad.GetType() == typeof(ModeloProveedor))
             {
                 this.cargarProveedorEnControles(p_mod_entidad as ModeloProveedor);
             }
@@ -274,6 +281,8 @@ namespace Vista
             dataSource.Add(new ComboBoxItem() { Name = "Otro", Value = null });
             this.cmbBoxDomicilios.DataSource = dataSource;
             this.cmbBoxDomicilios.DropDownWidth = this.getDropDownWidth(this.cmbBoxDomicilios);
+            this.cmbBoxDomicilios.SelectedIndex = 0;
+            this.cargarDomicilioEnControles(cmbBoxDomicilios.SelectedValue as ModeloDomicilio);
             #endregion
 
             #region Mails
@@ -286,6 +295,8 @@ namespace Vista
             dataSource.Add(new ComboBoxItem() { Name = "Otro", Value = null });
             this.cmbBoxMails.DataSource = dataSource;
             this.cmbBoxMails.DropDownWidth = this.getDropDownWidth(this.cmbBoxMails);
+            this.cmbBoxMails.SelectedIndex = 0;
+            this.cargarMailEnControles(cmbBoxMails.SelectedValue as ModeloMail);
             #endregion
 
             #region Teléfonos
@@ -298,14 +309,20 @@ namespace Vista
             dataSource.Add(new ComboBoxItem() { Name = "Otro", Value = null });
             this.cmbBoxTelefonos.DataSource = dataSource;
             this.cmbBoxTelefonos.DropDownWidth = this.getDropDownWidth(this.cmbBoxTelefonos);
-
+            this.cmbBoxTelefonos.SelectedIndex = 0;
+            this.cargarTelefonoEnControles(this.cmbBoxTelefonos.SelectedValue as ModeloTelefono);
             #endregion
         }
         private void cargarClienteEnControles(ModeloCliente p_mod_cliente)
         {
+            this.chckBoxClienteGenerico.Checked = (controlador as ControladorPedidoCliente).esClienteGenerico();
             this.txtBoxApellido.Text = p_mod_cliente.apellido;
             this.txtBoxNombre.Text = p_mod_cliente.nombre;
-            this.txtBoxNumeroDocumento.Text = p_mod_cliente.dni;
+            if(string.IsNullOrWhiteSpace(p_mod_cliente.cuit) && !string.IsNullOrWhiteSpace(p_mod_cliente.dni))
+            {
+                this.cmbBoxTipoDocumento.SelectedValue = this.glb_lst_tiposDocumentos.SingleOrDefault(x => x.codigo == 96);
+                this.txtBoxNumeroDocumento.Text = p_mod_cliente.dni;
+            }
         }
         private void cargarProveedorEnControles(ModeloProveedor p_mod_proveedor)
         {
@@ -352,7 +369,7 @@ namespace Vista
             this.txtBoxDepartamento.Text = p_mod_domicilio.departamento;
             this.txtBoxCiudad.Text = p_mod_domicilio.ciudad;
             this.txtBoxCodigoPostal.Text = p_mod_domicilio.codigoPostal;
-            this.cmbBoxPais.SelectedValue = p_mod_domicilio.pais.codigo;
+            this.cmbBoxPais.SelectedValue = p_mod_domicilio.pais;
 
             this.cmbBoxProvincia.SelectedValue = p_mod_domicilio.provincia;
         }
@@ -433,6 +450,7 @@ namespace Vista
         {
             var dataSource = new List<ComboBoxItem>();
             List<TipoDocumento> tiposDocumentos = p_lst_tiposDocumentos.OrderBy(i => i.descripcion).ToList();
+            glb_lst_tiposDocumentos = tiposDocumentos;
             for (int i = 0; i < tiposDocumentos.Count; i++)
             {
                 dataSource.Add(new ComboBoxItem() { Name = tiposDocumentos[i].descripcion, Value = tiposDocumentos[i] });
@@ -462,7 +480,6 @@ namespace Vista
             }
             this.cmbBoxProvincia.DataSource = dataSource;
             this.cmbBoxProvincia.DropDownWidth = this.getDropDownWidth(this.cmbBoxProvincia);
-            //this.cmbBoxProvincia.SelectedItem = null;
         }
         #endregion
         
@@ -476,12 +493,14 @@ namespace Vista
             {
                 lcl_mod_pedido.entidad = this.cargarControlEnCliente();
                 
-                lcl_mod_pedido.tipoComprobante = ControladorPedidoCliente.getCodigoComprobante((Constantes.TipoComprobanteVenta)this.cmbBoxTipoComprobante.SelectedValue,1);
+                lcl_mod_pedido.tipoComprobante = ControladorPedidoCliente.getCodigoComprobante((Constantes.TipoComprobanteVenta)this.cmbBoxTipoComprobante.SelectedValue,
+                                                                                                Convert.ToInt16(chckBoxResponsableInscripto.Checked));
                 lcl_mod_pedido.documentoComprador = this.cargarControlEnDocumento();
             }
             if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
             {
                 //el proveedor ya esta en el pedido
+                lcl_mod_pedido.tipoComprobante = 0;
             }
             
             lcl_mod_pedido.domicilioDeFacturacion = this.cargarControlEnDomicilio();
@@ -494,9 +513,9 @@ namespace Vista
         private ModeloEntidad cargarControlEnCliente()
         {
             ModeloEntidad lcl_mod_entidad = new ModeloCliente();
+            lcl_mod_entidad = controlador.pedidoActual.entidad;
             if(chckBoxClienteGenerico.Checked)
             {
-                lcl_mod_entidad = controlador.pedidoActual.entidad;
                 (lcl_mod_entidad as ModeloCliente).nombre = this.txtBoxNombre.Text;
                 (lcl_mod_entidad as ModeloCliente).apellido = this.txtBoxApellido.Text;
             }
@@ -506,8 +525,7 @@ namespace Vista
         {
             Documento lcl_documento = new Documento();
             lcl_documento.tipo = this.cmbBoxTipoDocumento.SelectedValue as TipoDocumento;
-            lcl_documento.numero = this.txtBoxNumeroDocumento.Text;
-            //"20111111112"
+            lcl_documento.numero = this.txtBoxNumeroDocumento.Text; //"20111111112" ejemplo
             return lcl_documento;
         }
         private ModeloContactoProveedor cargarControlEnContactoProveedor()
@@ -545,6 +563,14 @@ namespace Vista
         #region Validaciones
         //Validaciones de datos que se toman de textboxes
         #endregion
+
+        private ModeloCliente buscarCliente()
+        {
+            ModeloCliente lcl_mod_cliente = new ModeloCliente();
+            frmABMEntidad lcl_frm_entidad = new frmABMEntidad(controlador.pedidoActual.entidad);
+            lcl_frm_entidad.ShowDialog();
+            return lcl_frm_entidad.glb_mod_entidadActual as ModeloCliente;
+        }
 
         int getDropDownWidth(ComboBox p_comboBox)
         {
@@ -760,6 +786,7 @@ namespace Vista
         {
             var domicilio = (ModeloDomicilio)cmbBoxDomicilios.SelectedValue;
             this.cargarDomicilioEnControles(domicilio);
+            
         }
         private void cmbBoxMails_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -770,6 +797,38 @@ namespace Vista
         {
             var telefono = (ModeloTelefono)cmbBoxTelefonos.SelectedValue;
             this.cargarTelefonoEnControles(telefono);
+        }
+        private void cmbBoxFormaPago_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            LibreriaClasesCompartidas.Constantes.FormaDePago lcl_formaDePago = (LibreriaClasesCompartidas.Constantes.FormaDePago)this.cmbBoxFormaPago.SelectedValue;
+
+            if (lcl_formaDePago == Constantes.FormaDePago.Multiple)
+            {
+                ModeloPedido lcl_mod_pedido = ObjectCopier.Clone<ModeloPedido>(this.controlador.pedidoActual);
+
+                //lcl_mod_pedido = new 
+                frmPedidoCierre_FormasDePago lcl_frm_formasDePago = new frmPedidoCierre_FormasDePago(lcl_mod_pedido);
+                lcl_frm_formasDePago.ShowDialog();
+                if (lcl_frm_formasDePago.DialogResult != System.Windows.Forms.DialogResult.OK)
+                {
+                    return;
+                }
+                //se agrega .ToList() porque si no, no corre y no se usa directamente en el foreach porque esta linkeada con 
+                //controlador.pedidoActual.formasDePago, entonces despues del Clear() da  count 0
+                List<FormaPago> lcl_lst_formasPago = lcl_frm_formasDePago.getFormasDePago().ToList();
+                controlador.pedidoActual.formasDePago.Clear();
+
+                foreach (FormaPago fp in lcl_lst_formasPago)
+                {
+                    controlador.pedidoActual.addFormaPago(fp);
+                }
+            }
+            else
+            {
+                controlador.pedidoActual.formasDePago.Clear();
+                controlador.pedidoActual.addFormaPago(new FormaPago() { forma = lcl_formaDePago, restante = true });
+            }
+            this.cargarPedidoEnControles(this.controlador.pedidoActual);
         }
         #endregion
 
@@ -827,41 +886,24 @@ namespace Vista
             {
                 (controlador as ControladorPedidoCliente).asignarClienteGenerico();
             }
-        }
-        #endregion
-
-        private void cmbBoxFormaPago_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            LibreriaClasesCompartidas.Constantes.FormaDePago lcl_formaDePago = (LibreriaClasesCompartidas.Constantes.FormaDePago)this.cmbBoxFormaPago.SelectedValue;
-            
-            if (lcl_formaDePago == Constantes.FormaDePago.Multiple)
-            {
-                ModeloPedido lcl_mod_pedido = ObjectCopier.Clone<ModeloPedido>(this.controlador.pedidoActual);
-                
-                //lcl_mod_pedido = new 
-                frmPedidoCierre_FormasDePago lcl_frm_formasDePago = new frmPedidoCierre_FormasDePago(lcl_mod_pedido);
-                lcl_frm_formasDePago.ShowDialog();
-                if (lcl_frm_formasDePago.DialogResult != System.Windows.Forms.DialogResult.OK)
-                {
-                    return;
-                }
-                //se agrega .ToList() porque si no, no corre y no se usa directamente en el foreach porque esta linkeada con 
-                //controlador.pedidoActual.formasDePago, entonces despues del Clear() da  count 0
-                List<FormaPago> lcl_lst_formasPago = lcl_frm_formasDePago.getFormasDePago().ToList();
-                controlador.pedidoActual.formasDePago.Clear();
-
-                foreach (FormaPago fp in lcl_lst_formasPago)
-                {
-                    controlador.pedidoActual.addFormaPago(fp);
-                }
-            }
             else
             {
-                controlador.pedidoActual.formasDePago.Clear();
-                controlador.pedidoActual.addFormaPago(new FormaPago() { forma = lcl_formaDePago, restante = true});
+                ModeloCliente lcl_mod_cliente = this.buscarCliente();
+                if (ControladorPedidoCliente.esClienteGenerico(lcl_mod_cliente))
+                {
+                    this.chckBoxClienteGenerico.Checked = true;
+                }
+                else
+                {
+                    controlador.pedidoActual.entidad = lcl_mod_cliente;
+                    this.cargarEntidadEnControles(controlador.pedidoActual.entidad as ModeloCliente);
+                }
             }
-            this.cargarPedidoEnControles(this.controlador.pedidoActual);
         }
         #endregion
+
+        #endregion
+
+    
     }
 }
