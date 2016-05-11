@@ -110,7 +110,7 @@
             0});
             this.nmrcUpDownCantidad.Name = "nmrcUpDownCantidad";
             this.nmrcUpDownCantidad.Size = new System.Drawing.Size(45, 20);
-            this.nmrcUpDownCantidad.TabIndex = 11;
+            this.nmrcUpDownCantidad.TabIndex = 2;
             this.nmrcUpDownCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nmrcUpDownCantidad_KeyPress);
             // 
             // lblCantidad
@@ -127,7 +127,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(168, 441);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(80, 35);
-            this.btnAgregar.TabIndex = 2;
+            this.btnAgregar.TabIndex = 4;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             // 
@@ -354,7 +354,7 @@
             this.btnQuitar.Location = new System.Drawing.Point(491, 569);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(80, 40);
-            this.btnQuitar.TabIndex = 4;
+            this.btnQuitar.TabIndex = 7;
             this.btnQuitar.Text = "Quitar";
             this.btnQuitar.UseVisualStyleBackColor = true;
             // 
@@ -363,7 +363,7 @@
             this.lblTotalVar.AutoSize = true;
             this.lblTotalVar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalVar.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblTotalVar.Location = new System.Drawing.Point(421, 581);
+            this.lblTotalVar.Location = new System.Drawing.Point(415, 581);
             this.lblTotalVar.Name = "lblTotalVar";
             this.lblTotalVar.Size = new System.Drawing.Size(16, 16);
             this.lblTotalVar.TabIndex = 8;
@@ -500,6 +500,7 @@
             this.dgvArticulosResultadoBusqueda.Size = new System.Drawing.Size(675, 258);
             this.dgvArticulosResultadoBusqueda.TabIndex = 3;
             this.dgvArticulosResultadoBusqueda.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulosResultadoBusqueda_CellClick);
+            this.dgvArticulosResultadoBusqueda.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvArticulosResultadoBusqueda_MouseDown);
             // 
             // indice
             // 
@@ -552,7 +553,6 @@
             this.txtDescripcionParcial.Name = "txtDescripcionParcial";
             this.txtDescripcionParcial.Size = new System.Drawing.Size(374, 23);
             this.txtDescripcionParcial.TabIndex = 1;
-            this.txtDescripcionParcial.Enter += new System.EventHandler(this.txtDescripcionParcial_Enter);
             this.txtDescripcionParcial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescripcionParcial_KeyPress);
             // 
             // cbxCategoriaBusqueda
@@ -575,7 +575,7 @@
             this.btnSiguiente.Location = new System.Drawing.Point(876, 569);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(120, 40);
-            this.btnSiguiente.TabIndex = 22;
+            this.btnSiguiente.TabIndex = 5;
             this.btnSiguiente.Text = "Siguiente >";
             this.btnSiguiente.UseVisualStyleBackColor = true;
             this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
@@ -586,7 +586,7 @@
             this.btnBorrarDetalleActual.Location = new System.Drawing.Point(577, 569);
             this.btnBorrarDetalleActual.Name = "btnBorrarDetalleActual";
             this.btnBorrarDetalleActual.Size = new System.Drawing.Size(120, 40);
-            this.btnBorrarDetalleActual.TabIndex = 20;
+            this.btnBorrarDetalleActual.TabIndex = 8;
             this.btnBorrarDetalleActual.Text = "Borrar Detalle Actual";
             this.btnBorrarDetalleActual.UseVisualStyleBackColor = true;
             // 
@@ -595,7 +595,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(5, 569);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(120, 40);
-            this.btnCancelar.TabIndex = 24;
+            this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -606,7 +606,7 @@
             this.chckBoxPermitirStockNegativo.Location = new System.Drawing.Point(782, 523);
             this.chckBoxPermitirStockNegativo.Name = "chckBoxPermitirStockNegativo";
             this.chckBoxPermitirStockNegativo.Size = new System.Drawing.Size(137, 17);
-            this.chckBoxPermitirStockNegativo.TabIndex = 25;
+            this.chckBoxPermitirStockNegativo.TabIndex = 3;
             this.chckBoxPermitirStockNegativo.Text = "Permitir Stock Negativo";
             this.chckBoxPermitirStockNegativo.UseVisualStyleBackColor = true;
             // 
