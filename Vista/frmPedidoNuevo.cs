@@ -470,7 +470,6 @@ namespace Vista
                 }
             }
         }
-
         private void txtDescripcionParcial_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -478,7 +477,6 @@ namespace Vista
                 this.lblLupa_Click(sender, e);
             }
         }
-        
         private void nmrcUpDownCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
