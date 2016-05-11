@@ -118,12 +118,22 @@ namespace Vista
         {
             frmPedidoNuevo frmPedidoProv = new frmPedidoNuevo(Constantes.CodigosTiposPedidos.TipoPedidoProveedor);
             frmPedidoProv.ShowDialog();
+            if (frmPedidoProv.DialogResult != System.Windows.Forms.DialogResult.Ignore)
+            {
+                frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmPedidoProv.controlador.pedidoActual);
+                lcl_frm_cierre.ShowDialog();
+            }
         }
 
         private void btnVenta_Click(object sender, EventArgs e)
         {
             frmPedidoNuevo frmNuevaVenta = new frmPedidoNuevo(Constantes.CodigosTiposPedidos.TipoPedidoPersona);
             frmNuevaVenta.ShowDialog();
+            if (frmNuevaVenta.DialogResult != System.Windows.Forms.DialogResult.Ignore)
+            {
+                frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmNuevaVenta.controlador.pedidoActual);
+                lcl_frm_cierre.ShowDialog();
+            }
         }
 
         private void btnReserva_Click(object sender, EventArgs e)

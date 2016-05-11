@@ -134,6 +134,12 @@
     <Compile Include="frmMenuPrincipal.Designer.cs">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPedidoNuevo_editarCantidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPedidoNuevo_editarCantidad.Designer.cs">
+      <DependentUpon>frmPedidoNuevo_editarCantidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReporteSeleccion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPedidoNuevo_editarCantidad.resx">
+      <DependentUpon>frmPedidoNuevo_editarCantidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReporteSeleccion.resx">
       <DependentUpon>frmReporteSeleccion.cs</DependentUpon>

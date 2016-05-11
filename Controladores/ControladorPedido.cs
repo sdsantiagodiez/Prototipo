@@ -130,6 +130,7 @@ namespace Controladores
         }
         public string getTotal()
         {
+            this.pedidoActual.getTotal();
             return this.pedidoActual.montoTotal.ToString("0.##");
         }
 

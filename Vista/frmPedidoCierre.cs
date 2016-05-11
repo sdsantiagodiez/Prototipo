@@ -288,9 +288,9 @@ namespace Vista
 
             this.txtBoxSubtotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.montoSubTotal);
             //this.txtBoxTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getTotal());
-            this.txtBoxTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.montoTotal);
+            this.txtBoxTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getTotal());
 
-            this.txtBoxIVAMonto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.alicuota.monto); 
+            this.txtBoxIVAMonto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getIVAMonto()); 
         }
         private void cargarEntidadEnControles(ModeloEntidad p_mod_entidad)
         {
@@ -1018,7 +1018,9 @@ namespace Vista
         /// <param name="e"></param>
         private void evento_agregarLinea(object sender, EventArgs e)
         {
-            MessageBox.Show("sin hacer");
+            frmPedidoNuevo frm_pedidoNuevo = new frmPedidoNuevo(controlador.pedidoActual);
+            frm_pedidoNuevo.ShowDialog();
+            this.cargarPedidoEnControles(controlador.pedidoActual);
         }
        
         /// <summary>

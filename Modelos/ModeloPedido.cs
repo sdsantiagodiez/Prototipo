@@ -277,7 +277,7 @@ namespace Modelos
             }
             return lcl_total;
         }
-        private decimal getTotal()
+        public decimal getTotal()
         {
             this.montoTotal = this.getTotalSinDescuento() - this.getDescuentoTotal();
             this.montoTotal = Math.Round(this.montoTotal, 2);
@@ -300,7 +300,7 @@ namespace Modelos
             return this.montoSubTotal;
         }
        
-        private decimal getIVAMonto()
+        public decimal getIVAMonto()
         {
             this.alicuota.monto = this.getTotal() - this.getSubTotal();
             this.alicuota.monto = Math.Round(this.alicuota.monto, 2);

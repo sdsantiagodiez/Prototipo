@@ -17,20 +17,30 @@ namespace Vista
     {
         #region Atributos
         ModeloArticuloProveedores glb_mod_articuloSeleccionadoBusqueda;
-        ControladorPedido controlador;
+        public ControladorPedido controlador;
         ContextMenu cntxMenuResultadoBusqueda;
         ContextMenu cntxMenuLineasPedidos;
+        //se usa para evitar mostrar mensaje de confirmación cuando se cierra la ventana y se selecciona continuar
+        bool continuarPedido;
         #endregion
 
         #region Constructores
         public frmPedidoNuevo()
         {
             InitializeComponent();
+            //this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.inicializarControles();
         }
         public frmPedidoNuevo(Constantes.CodigosTiposPedidos p_codigoTipoPedido) : this()
         {
             controlador = new ControladorPedido(p_codigoTipoPedido);
+            this.chckBoxPermitirStockNegativo.Visible = controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona;
+        }
+        public frmPedidoNuevo(ModeloPedido p_mod_pedido) : this(p_mod_pedido.codigoTipoPedido)
+        {
+            controlador.pedidoActual = p_mod_pedido;
+            //controlador.resultadoBusquedaArticulosProveedores = p_mod_pedido.lineasPedido;
+            this.cargarLineasPedidosEnControles();
         }
         #endregion
        
@@ -38,11 +48,13 @@ namespace Vista
         #region Inicialización
         public void inicializarControles()
         {
+            #region DataGridViews
             this.dgvArticulosResultadoBusqueda.MultiSelect = false;
             //seteo columnas de datagridviews
             this.dgvArticulosResultadoBusqueda.AutoGenerateColumns = false;
             this.dgvArticulosEnPedido.AutoGenerateColumns = false;
-            
+            #endregion
+
             #region ComboBoxCategoriaBusqueda
             //Creo lista categorias de búsqueda
             var dataSource = new List<ComboBoxItem>();
@@ -61,26 +73,41 @@ namespace Vista
             cntxMenuResultadoBusqueda = new ContextMenu();
             cntxMenuResultadoBusqueda.MenuItems.Add("Agregar 1");
             cntxMenuResultadoBusqueda.MenuItems[0].Click += (s,e)=>
-            {
-                this.agregarLineaPedidoAPedido(glb_mod_articuloSeleccionadoBusqueda,1, this.chckBoxPermitirStockNegativo.Checked);
-            };
+                {
+                    this.agregarLineaPedidoAPedido(glb_mod_articuloSeleccionadoBusqueda,1, this.chckBoxPermitirStockNegativo.Checked);
+                };
             cntxMenuResultadoBusqueda.MenuItems.Add("Agregar 2");
             cntxMenuResultadoBusqueda.MenuItems[1].Click += (s,e)=>
-            {
-                this.agregarLineaPedidoAPedido(glb_mod_articuloSeleccionadoBusqueda,2, this.chckBoxPermitirStockNegativo.Checked);
-            };
+                {
+                    this.agregarLineaPedidoAPedido(glb_mod_articuloSeleccionadoBusqueda,2, this.chckBoxPermitirStockNegativo.Checked);
+                };
             cntxMenuResultadoBusqueda.MenuItems.Add("Agregar 5");
             cntxMenuResultadoBusqueda.MenuItems[2].Click += (s,e)=>
-            {
-                this.agregarLineaPedidoAPedido(glb_mod_articuloSeleccionadoBusqueda,5, this.chckBoxPermitirStockNegativo.Checked);
-            };
+                {
+                    this.agregarLineaPedidoAPedido(glb_mod_articuloSeleccionadoBusqueda,5, this.chckBoxPermitirStockNegativo.Checked);
+                };
             cntxMenuResultadoBusqueda.MenuItems.Add("Agregar 10");
             cntxMenuResultadoBusqueda.MenuItems[3].Click += (s, e) =>
-            {
-                this.agregarLineaPedidoAPedido(glb_mod_articuloSeleccionadoBusqueda, 10, this.chckBoxPermitirStockNegativo.Checked);
-            };
-            cntxMenuLineasPedidos = new ContextMenu();
+                {
+                    this.agregarLineaPedidoAPedido(glb_mod_articuloSeleccionadoBusqueda, 10, this.chckBoxPermitirStockNegativo.Checked);
+                };
             
+            cntxMenuLineasPedidos = new ContextMenu();
+            cntxMenuLineasPedidos.MenuItems.Add("Editar Cantidad");
+            cntxMenuLineasPedidos.MenuItems[0].Click += (s, e) =>
+            {
+                this.editarCantidadArticulosEnLineaPedido();
+            };
+            cntxMenuLineasPedidos.MenuItems.Add("Quitar seleccionado");
+            cntxMenuLineasPedidos.MenuItems[1].Click += (s, e) =>
+                {
+                    this.evento_eliminarArticuloProveedorDePedido(s,e);
+                };
+            cntxMenuLineasPedidos.MenuItems.Add("Quitar todos"); 
+            cntxMenuLineasPedidos.MenuItems[2].Click += (s, e) =>
+                {
+                    this.evento_eliminarArticuloProveedorDePedidoTodos(s, e);
+                };
             #endregion
 
             #region Eventos
@@ -90,6 +117,7 @@ namespace Vista
             #endregion
         }
         #endregion
+      
         #region Validación
         /// <summary>
         /// Informa de acuerdo a los parámetros del pedido si el artículo puede ser agregado
@@ -217,7 +245,7 @@ namespace Vista
         /// <param name="p_mod_articuloProveedor"></param>
         private void cargarLineasPedidosEnControles()
         {
-            this.lblTotalVar.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", controlador.pedidoActual.montoTotal);
+            this.lblTotalVar.Text = "$ "+String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", controlador.getTotal());
 
             this.dgvArticulosEnPedido.DataSource = null;
             this.dgvArticulosEnPedido.DataSource = controlador.pedidoActual.lineasPedido;
@@ -259,6 +287,7 @@ namespace Vista
             }
         }
 
+
         /// <summary>
         /// Busca artículos proveedores y retorna resultados
         /// </summary>
@@ -297,6 +326,15 @@ namespace Vista
             lcl_frm_loading.ShowDialog();
 
             return lcl_lst_articulosProveedores;
+        }
+
+        private void editarCantidadArticulosEnLineaPedido()
+        {
+            int i = this.dgvArticulosEnPedido.SelectedRows[0].Index;
+            frmPedidoNuevo_editarCantidad lcl_frm_editarCantidad = new frmPedidoNuevo_editarCantidad(controlador.pedidoActual.lineasPedido[i],controlador.pedidoActual.codigoTipoPedido);
+            lcl_frm_editarCantidad.ShowDialog();
+            
+            this.cargarLineasPedidosEnControles();
         }
         #endregion
 
@@ -372,35 +410,12 @@ namespace Vista
             //compruebo que existan articulos para generar pedido
             if (controlador.getCantidadLineas() > 0)
             {
-                //creo el formulario y lo muestro
-                Form lcl_frm_cierre;
-                if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
-                {
-                    lcl_frm_cierre = new frmPedidoCierre(controlador.pedidoActual);
-                }
-                else if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
-                {
-                    lcl_frm_cierre = new frmPedidoCierre(controlador.pedidoActual);
-                }
-                else
-                {
-                    lcl_frm_cierre = new Form();
-                }
-
-                lcl_frm_cierre.ShowDialog();
+                this.continuarPedido = true;
+                this.Hide();
             }
             else
             {
                 MessageBox.Show("No se han seleccionado artículos para el pedido actual");
-            }
-        }
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            //solicito confirmación
-            DialogResult lcl_dialogResult = MessageBox.Show("¿Realmente desea cancelar el pedido?", "Confirmación", MessageBoxButtons.YesNo);
-            if (lcl_dialogResult == DialogResult.Yes)
-            {
-                this.Close();
             }
         }
         #endregion
@@ -450,6 +465,31 @@ namespace Vista
         }
         #endregion
         #region Artículos agregados a pedido
+        private void dgvArticulosEnPedido_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                int currentMouseOverRow = this.dgvArticulosEnPedido.HitTest(e.X, e.Y).RowIndex;
+                if (currentMouseOverRow >= 0)
+                {
+                    if ((ModifierKeys & Keys.Control) != Keys.Control
+                        && this.dgvArticulosEnPedido.Rows[currentMouseOverRow].Selected != true)
+                    {//si selected == true significa que puede haber más elementos seleccionados anteriormente y no hay que perder selección
+                        this.dgvArticulosEnPedido.ClearSelection();
+                    }
+                    this.dgvArticulosEnPedido.Rows[currentMouseOverRow].Selected = true;
+                    //int i = Convert.ToInt32(this.dgvArticulosEnPedido.Rows[currentMouseOverRow].Cells["indice"].Value);
+                    //asigno el articulo a la variable articuloSeleccionadoBusqueda en caso de que se decida agregarlo al pedido
+                    int i = this.dgvArticulosEnPedido.SelectedRows[0].Index;
+                    this.glb_mod_articuloSeleccionadoBusqueda = controlador.pedidoActual.lineasPedido[i].articulo;
+                    
+                    cargarArticuloProveedorDetallesEnControles(this.glb_mod_articuloSeleccionadoBusqueda);
+                    //this.actualizarContextMenuStrip();
+                    this.cntxMenuLineasPedidos.Show(dgvArticulosEnPedido, new Point(e.X, e.Y));
+                }
+            }
+        }
         #endregion
 
         #endregion
@@ -493,6 +533,27 @@ namespace Vista
         }
         #endregion 
 
+        private void frmPedidoNuevo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (continuarPedido)
+            {
+                e.Cancel = false;
+                return;
+            }
+            DialogResult lcl_dialogResult = MessageBox.Show("¿Desea cerrar la ventana actual?", "Confirmación", MessageBoxButtons.YesNo);
+            if (lcl_dialogResult == DialogResult.Yes)
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.Ignore;
+                e.Cancel = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
         #endregion           
+
+        
     }
 }
