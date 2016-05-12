@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Datos;
 using Modelos;
 using Reportes;
+using Vista;
 using System.Windows;
 
 namespace Controladores
@@ -142,6 +143,12 @@ namespace Controladores
 
         }
 
-
+        public frmImpresionFactura ImpresionFacturas(ModeloReporteEncabezadoFactura p_modEncabezado, string tipoComprobante)
+        {
+            frmImpresionFactura lcl_frm_factura = new frmImpresionFactura(p_modEncabezado, tipoComprobante);
+            return lcl_frm_factura;
+        }
+         
+        
     }
 }

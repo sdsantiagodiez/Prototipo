@@ -97,8 +97,8 @@ namespace Vista
             }
         }
 
-        
-        
+        #region EventosControles
+
         private void cmbxVentasReportes_Leave(object sender, EventArgs e)
         {
             if (cmbxVentasReportes.SelectedText == "Reporte de Ventas Entre Fechas")
@@ -195,8 +195,8 @@ namespace Vista
             this.lblNombreProveedor.Text = lcl_modelo_entCliente.cuit;
 
         }
-
-        }
+        #endregion
+    }
     
     
     }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using Controladores;
+using Reportes;
 using LibreriaClasesCompartidas;
 
 namespace Vista
@@ -646,6 +647,8 @@ namespace Vista
             }
             
             //imprimir
+            //this.controlador.pedidoActual.
+
             return true;
         }
 

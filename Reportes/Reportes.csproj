@@ -53,12 +53,21 @@
     <Compile Include="FormReportes.Designer.cs">
       <DependentUpon>FormReportes.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmImpresionFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpresionFactura.Designer.cs">
+      <DependentUpon>frmImpresionFactura.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FacturaB.rdlc" />
     <EmbeddedResource Include="FacturaA.rdlc" />
     <EmbeddedResource Include="FormReportes.resx">
       <DependentUpon>FormReportes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImpresionFactura.resx">
+      <DependentUpon>frmImpresionFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PedidosEntreFechas.rdlc" />
     <EmbeddedResource Include="Top10Articulos.rdlc" />
