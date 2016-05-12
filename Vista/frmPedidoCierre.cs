@@ -605,6 +605,15 @@ namespace Vista
 
         #region Validaciones
         //Validaciones de datos que se toman de textboxes
+        private bool validarPedido()
+        {
+            if (controlador.pedidoActual.lineasPedido.Count == 0)
+            {
+                MessageBox.Show("No existen líneas en el pedido actual para imprimir", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
         #endregion
 
         private ModeloCliente buscarCliente()
@@ -629,25 +638,15 @@ namespace Vista
             return maxWidth;
         }
 
-        private void imprimirPedido()
+        private bool imprimirPedido()
         {
-            if (controlador.pedidoActual.lineasPedido.Count == 0)
+            if (!this.validarPedido())
             {
-                MessageBox.Show("No existen líneas en el pedido actual para imprimir", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            DialogResult dialogResult = MessageBox.Show("Además de imprimir, ¿desea también guardar el pedido?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
-            {
-                if (!this.facturarAFIP() || !this.guardarPedido())
-                {
-                    return;
-                }
+                return false;
             }
             
             //imprimir
-            MessageBox.Show("Operación exitosa", "Éxito", MessageBoxButtons.OK);
+            return true;
         }
 
         private bool guardarPedido()
@@ -666,6 +665,7 @@ namespace Vista
             } while (dialogResult == System.Windows.Forms.DialogResult.Retry);
             //this.txtBoxNumeroPedido.Text = controlador.pedidoActual.numeroPedido.ToString();
             this.cargarDatosPedidoEnControles(controlador.pedidoActual);
+            MessageBox.Show("Pedido guardado en base de datos", "Éxito", MessageBoxButtons.OK);
             return true;
         }
        
@@ -877,13 +877,31 @@ namespace Vista
         #endregion
 
         #region Button
-       
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            //this.controlador.pedidoActual =
-                this.cargarControlEnPedido();
-            this.imprimirPedido();
+            this.cargarControlEnPedido();
+            if (!this.validarPedido())
+            {
+                return;
+            }
+            if (this.imprimirPedido())
+            {
+                MessageBox.Show("Operación exitosa", "Éxito", MessageBoxButtons.OK);
+            }
+        }
+
+        private void btnGuardarYFacturar_Click(object sender, EventArgs e)
+        {
+            this.cargarControlEnPedido();
+            if(!this.validarPedido())
+            {
+                return;
+            }
+            if (this.facturarAFIP() && !this.guardarPedido())
+            {
+                MessageBox.Show("Operación exitosa", "Éxito", MessageBoxButtons.OK);
+            }
         }
 
         #endregion
@@ -1047,6 +1065,8 @@ namespace Vista
             lcl_frm_articuloProveedor.ShowDialog();
         }
         #endregion
+
+      
 
 
     

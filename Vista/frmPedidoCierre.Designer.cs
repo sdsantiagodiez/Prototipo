@@ -134,6 +134,7 @@
             this.tabPageObservaciones = new System.Windows.Forms.TabPage();
             this.rchTextBoxObservacionesPedido = new System.Windows.Forms.RichTextBox();
             this.modeloLineaPedidoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnGuardarYFacturar = new System.Windows.Forms.Button();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.gbxArticulos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosVenta)).BeginInit();
@@ -501,19 +502,21 @@
             // 
             // tblLayoutPanelBotones
             // 
-            this.tblLayoutPanelBotones.ColumnCount = 6;
+            this.tblLayoutPanelBotones.ColumnCount = 7;
             this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.81492F));
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
             this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.14017F));
             this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.01299F));
             this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.013F));
             this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.01892F));
-            this.tblLayoutPanelBotones.Controls.Add(this.btnImprimir, 1, 0);
-            this.tblLayoutPanelBotones.Controls.Add(this.btnEliminar, 4, 0);
-            this.tblLayoutPanelBotones.Controls.Add(this.btnEditar, 3, 0);
-            this.tblLayoutPanelBotones.Controls.Add(this.btnAgregar, 2, 0);
-            this.tblLayoutPanelBotones.Controls.Add(this.btnSalir, 5, 0);
+            this.tblLayoutPanelBotones.Controls.Add(this.btnEliminar, 5, 0);
+            this.tblLayoutPanelBotones.Controls.Add(this.btnEditar, 4, 0);
+            this.tblLayoutPanelBotones.Controls.Add(this.btnAgregar, 3, 0);
+            this.tblLayoutPanelBotones.Controls.Add(this.btnSalir, 6, 0);
             this.tblLayoutPanelBotones.Controls.Add(this.cmbBoxPedidosProveedores, 0, 0);
+            this.tblLayoutPanelBotones.Controls.Add(this.btnImprimir, 1, 0);
+            this.tblLayoutPanelBotones.Controls.Add(this.btnGuardarYFacturar, 2, 0);
             this.tblLayoutPanelBotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelBotones.Location = new System.Drawing.Point(3, 427);
             this.tblLayoutPanelBotones.Name = "tblLayoutPanelBotones";
@@ -525,7 +528,7 @@
             // btnImprimir
             // 
             this.btnImprimir.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnImprimir.Location = new System.Drawing.Point(184, 14);
+            this.btnImprimir.Location = new System.Drawing.Point(149, 14);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(75, 23);
             this.btnImprimir.TabIndex = 2;
@@ -536,7 +539,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnEliminar.Location = new System.Drawing.Point(477, 14);
+            this.btnEliminar.Location = new System.Drawing.Point(509, 14);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 1;
@@ -546,7 +549,7 @@
             // btnEditar
             // 
             this.btnEditar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnEditar.Location = new System.Drawing.Point(391, 14);
+            this.btnEditar.Location = new System.Drawing.Point(423, 14);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 4;
@@ -556,7 +559,7 @@
             // btnAgregar
             // 
             this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAgregar.Location = new System.Drawing.Point(306, 14);
+            this.btnAgregar.Location = new System.Drawing.Point(338, 14);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 3;
@@ -567,7 +570,7 @@
             // 
             this.btnSalir.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(600, 14);
+            this.btnSalir.Location = new System.Drawing.Point(608, 14);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 0;
@@ -1351,6 +1354,17 @@
             // 
             this.modeloLineaPedidoBindingSource.DataSource = typeof(Modelos.ModeloLineaPedido);
             // 
+            // btnGuardarYFacturar
+            // 
+            this.btnGuardarYFacturar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnGuardarYFacturar.Location = new System.Drawing.Point(240, 14);
+            this.btnGuardarYFacturar.Name = "btnGuardarYFacturar";
+            this.btnGuardarYFacturar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardarYFacturar.TabIndex = 6;
+            this.btnGuardarYFacturar.Text = "Guardar";
+            this.btnGuardarYFacturar.UseVisualStyleBackColor = true;
+            this.btnGuardarYFacturar.Click += new System.EventHandler(this.btnGuardarYFacturar_Click);
+            // 
             // frmPedidoCierre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1500,5 +1514,6 @@
         private System.Windows.Forms.ComboBox cmbBoxFormaPago;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.DateTimePicker dtpFechaPedido;
+        private System.Windows.Forms.Button btnGuardarYFacturar;
     }
 }
