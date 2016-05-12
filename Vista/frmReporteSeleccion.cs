@@ -11,6 +11,7 @@ using Controladores;
 using Modelos;
 using Reportes;
 using System.Globalization;
+using LibreriaClasesCompartidas;
 
 namespace Vista
 {
@@ -174,14 +175,25 @@ namespace Vista
 
         private void txtProveedor_Leave(object sender, EventArgs e)
         {
-            //buscar el proveedor a partir del nombre/codigo que ingresa
-            //this.lblNombreProveedor.Text = glb_con_busqueda.buscar()[0].cuit;
+           
+            List<ModeloProveedor> lst_mod_Proveedor = new List<ModeloProveedor>();
+            ModeloEntidad lcl_modelo_entidad  = new ModeloEntidad();
+            lcl_modelo_entidad.codigo= Convert.ToInt32(this.txtProveedor.Text);
+            lst_mod_Proveedor = ControladorBusqueda.buscar(lcl_modelo_entidad as ModeloProveedor,Constantes.ParametrosBusqueda.One) ;
+            lcl_modelo_entidad = lst_mod_Proveedor[0];
+            this.lblNombreProveedor.Text = lcl_modelo_entidad.cuit;
         }
 
         private void txtCliente_Leave(object sender, EventArgs e)
         {
-            //buscar el cliente a partir del nombre/codigo que ingresa
-            //this.lblNombreCliente.Text = glb_con_busqueda.buscar(ModeloCliente)[0].cuit;
+          
+            List<ModeloCliente> lst_mod_cliente = new List<ModeloCliente>();
+            ModeloEntidad lcl_modelo_entCliente = new ModeloEntidad();
+            lcl_modelo_entCliente.codigo = Convert.ToInt32(this.txtCliente.Text);
+            lst_mod_cliente = ControladorBusqueda.buscar(lcl_modelo_entCliente as ModeloCliente, Constantes.ParametrosBusqueda.One);
+            lcl_modelo_entCliente = lst_mod_cliente[0];
+            this.lblNombreProveedor.Text = lcl_modelo_entCliente.cuit;
+
         }
 
         }
