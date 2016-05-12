@@ -1018,9 +1018,14 @@ namespace Vista
         /// <param name="e"></param>
         private void evento_agregarLinea(object sender, EventArgs e)
         {
-            frmPedidoNuevo frm_pedidoNuevo = new frmPedidoNuevo(controlador.pedidoActual);
+            ModeloPedido lcl_mod_pedido = ObjectCopier.Clone(controlador.pedidoActual);
+            frmPedidoNuevo frm_pedidoNuevo = new frmPedidoNuevo(lcl_mod_pedido);
             frm_pedidoNuevo.ShowDialog();
-            this.cargarPedidoEnControles(controlador.pedidoActual);
+            if (frm_pedidoNuevo.DialogResult != System.Windows.Forms.DialogResult.Ignore)
+            {
+                controlador.pedidoActual = lcl_mod_pedido;
+                this.cargarPedidoEnControles(controlador.pedidoActual);
+            }
         }
        
         /// <summary>

@@ -36,10 +36,15 @@ namespace Vista
             controlador = new ControladorPedido(p_codigoTipoPedido);
             this.chckBoxPermitirStockNegativo.Visible = controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona;
         }
+        /// <summary>
+        /// Se agrega pedido para ser modificado
+        /// </summary>
+        /// <param name="p_mod_pedido"></param>
         public frmPedidoNuevo(ModeloPedido p_mod_pedido) : this(p_mod_pedido.codigoTipoPedido)
         {
             controlador.pedidoActual = p_mod_pedido;
-            //controlador.resultadoBusquedaArticulosProveedores = p_mod_pedido.lineasPedido;
+            this.btnSiguiente.Text = "Guardar Cambios";
+
             this.cargarLineasPedidosEnControles();
         }
         #endregion
