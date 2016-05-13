@@ -22,6 +22,7 @@ namespace Vista
         public const string ModoFormularioSeleccionado = "Clase seleccionada de resultado de busqueda";
         public const string ModoFormularioBusqueda = "Búsqueda de entidad";
         public const string ModoFormularioVisualizarEntidad = "Ver detalles de entidad ReadOnly";
+        public const string ModoFormularioClientePedido = "Búsqueda y alta de clientes para pedido actual";
 
         private string _modoFormulario;
         public string modoFormulario
@@ -46,6 +47,9 @@ namespace Vista
                         break;
                     case ModoFormularioVisualizarEntidad:
                         this.inicializarModoFormularioVisualizarEntidad();
+                        break;
+                    case ModoFormularioClientePedido:
+                        this.inicializarModoFormularioClientePedido();
                         break;
                     default:
                         break;
@@ -168,7 +172,7 @@ namespace Vista
                 this.toolStripMenuItemCancelar.Enabled = 
                 true;
         }
-
+        
         virtual public void inicializarModoFormularioVisualizarEntidad()
         {
             this.toolStripMenuItemEliminar.Enabled =
@@ -180,6 +184,21 @@ namespace Vista
                 this.toolStripMenuItemLimpiarCampos.Enabled =
                 this.toolStripMenuItemCancelar.Enabled =
                 false;
+        }
+
+        virtual public void inicializarModoFormularioClientePedido()
+        {
+            this.toolStripMenuItemEliminar.Enabled =
+                this.toolStripMenuItemGuardarCambios.Enabled =
+                
+                false;
+            this.toolStripMenuItemBuscar.Enabled =
+                this.toolStripMenuItemLimpiarCampos.Enabled =
+                this.toolStripMenuItemCancelar.Enabled =
+                this.toolStripMenuItemNuevo.Enabled =
+                this.toolStripMenuItemGuardar.Enabled =
+                this.toolStripMenuItemGuardarNuevo.Enabled =
+                true;
         }
 
         /// <summary>

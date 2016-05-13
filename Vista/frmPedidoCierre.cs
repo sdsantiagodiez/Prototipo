@@ -756,7 +756,7 @@ namespace Vista
         private ModeloCliente buscarCliente()
         {
             ModeloCliente lcl_mod_cliente = new ModeloCliente();
-            frmABMEntidad lcl_frm_entidad = new frmABMEntidad(controlador.pedidoActual.entidad,frmABMEntidad.ModoFormularioBusqueda);
+            frmABMEntidad lcl_frm_entidad = new frmABMEntidad(controlador.pedidoActual.entidad,frmABMEntidad.ModoFormularioClientePedido);
             lcl_frm_entidad.ShowDialog();
             return lcl_frm_entidad.glb_mod_entidadActual as ModeloCliente;
         }

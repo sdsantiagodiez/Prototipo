@@ -137,7 +137,6 @@ namespace Vista
             string lcl_tipoEntidad = this.tipoEntidadSeleccionada;
             base.quitarTextoEnControles(this);
             this.tipoEntidadSeleccionada = lcl_tipoEntidad;
-            
         }
         override public void inicializarModoFormularioSeleccionado()
         {
@@ -156,7 +155,10 @@ namespace Vista
         {
             base.inicializarModoFormularioBusqueda();
         }
-
+        public override void inicializarModoFormularioClientePedido()
+        {
+            base.inicializarModoFormularioClientePedido();
+        }
         private void inicializarControlesTipoEntidadCliente()
         {
             radioButtonCliente.Checked = true;
@@ -256,7 +258,15 @@ namespace Vista
             if (lcl_con_alta.agregar(ref glb_mod_entidadActual))
             {
                 MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
-                this.inicializarModoFormularioSeleccionado();
+                if (this.modoFormulario != ModoFormularioClientePedido)
+                {
+                    this.inicializarModoFormularioSeleccionado();    
+                }
+                else
+                {
+                    MessageBox.Show("El Cliente creado se utilizará en el pedido actual.", "Nuevo Cliente", MessageBoxButtons.OK);
+                    this.Hide();
+                }
             }
             else
             {
@@ -1161,7 +1171,15 @@ namespace Vista
 
         override public void toolStripMenuItemNuevo_Click(object sender, EventArgs e)
         {
-            modoFormulario = ModoFormularioNuevo;
+            if (modoFormulario == ModoFormularioClientePedido)
+            {
+                modoFormulario = ModoFormularioNuevo;
+                modoFormulario = ModoFormularioClientePedido;
+            }
+            else
+            {
+                modoFormulario = ModoFormularioNuevo;
+            }
         }
 
         override public void toolStripMenuItemBuscar_Click(object sender, EventArgs e)
