@@ -247,6 +247,19 @@ namespace Modelos
                 }
                 return false;
             }
+            /// <summary>
+            /// elimina caracteres no numéricos de cuit.EJ 20-37594224-1 -> 20375942241
+            /// </summary>
+            /// <param name="cuit"></param>
+            /// <returns></returns>
+            public static string GetCuitNumerico(string cuit)
+            {
+                if(!ValidarCuit(cuit))
+                {
+                    return null;
+                }
+                return cuit.Replace(" ", string.Empty).Replace("-", string.Empty);
+            }
         }
     }
 }

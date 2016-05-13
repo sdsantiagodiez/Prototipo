@@ -290,7 +290,7 @@ namespace Modelos
             return this.montoTotal;
         }
 
-        private decimal getSubTotal()
+        public decimal getSubTotal()
         {
             decimal divisorIVA = 1 + (Convert.ToDecimal(this.alicuota.iva.porcentaje) / 100);
             decimal total = this.getTotal();

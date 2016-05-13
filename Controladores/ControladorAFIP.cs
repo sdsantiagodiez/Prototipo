@@ -81,7 +81,8 @@ namespace Controladores
                         respuesta += Environment.NewLine + "CAE comprobante: " + p_mod_pedido.CAE;
                         respuesta += Environment.NewLine + "Número comprobante:" + p_mod_pedido.numeroComprobante;
                         respuesta += Environment.NewLine + "Error detallado comprobante: " + fe.F1RespuestaDetalleObservacionMsg1;
-                        errorActual = fe.F1RespuestaDetalleObservacionMsg1;
+
+                        respuesta = this.getError(fe);
                     }
                 }
                 else
@@ -93,6 +94,7 @@ namespace Controladores
             {
                 respuesta = "error inicio " + fe.UltimoMensajeError;
             }
+
             errorActual = respuesta;
             return false;
         }
@@ -176,11 +178,13 @@ namespace Controladores
             {
                 if (!this.getTicketAcceso(fe))
                 {
+                    this.errorActual = "No se ha podido conseguir ticket de acceso AFIP. Verifique su conexión a internet.";
                     return false;
                 }
             }
             else
             {
+                this.errorActual = "No se ha podido iniciar módulo de facturación electrónica";
                 return false;
             }
             return true;
@@ -226,6 +230,41 @@ namespace Controladores
                 this.guardarTicketAcceso(p_facturaElectronica);
             }
             return bResultado;
+        }
+
+        private string getError(WSAFIPFE.Factura p_facturaElectronica)
+        {
+            int codigoError;
+            string mensajeError;
+            if (p_facturaElectronica.f1ErrorCode != 0)
+            { 
+                codigoError = p_facturaElectronica.f1ErrorCode;
+                mensajeError = p_facturaElectronica.f1ErrorMsg;
+            }
+            else 
+            {
+                codigoError = p_facturaElectronica.F1RespuestaDetalleObservacionCode;
+                mensajeError = p_facturaElectronica.F1RespuestaDetalleObservacionMsg;
+            }
+            if (codigoError == 0)
+            {
+                return "";
+            }
+
+            switch (codigoError)
+            {
+                case 10015:
+                    mensajeError = "Número de documento no se encuentra en padrones de AFIP.";
+                    break;
+                case 10016:
+                    mensajeError = "La fecha indicada no es válida:";
+                    mensajeError += Environment.NewLine + "-La fecha debe ser mayor o igual a la fecha del último comprobante de este tipo emitido.";
+                    mensajeError += Environment.NewLine + "-La fecha debe ser comprendida en encontrarse dentro de los 5 días previos y posteriores al día de emisión.";
+                    break;
+                default:
+                    break;
+            }
+            return "Código Error: "+ codigoError.ToString() + Environment.NewLine + mensajeError;
         }
     }
 }

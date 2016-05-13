@@ -63,8 +63,9 @@ namespace Vista
             this.controlador = new ControladorPedidoProveedor();
             List<ModeloPedido> lcl_lst_mod_pedidos = (controlador as ControladorPedidoProveedor).getPedidosProveedores(p_mod_pedido);
             this.inicializarComboBoxPedidosProveedores(lcl_lst_mod_pedidos);
+            this.inicializarControlesProveedor(lcl_lst_mod_pedidos[0].entidad as ModeloProveedor); 
             this.cargarPedidoEnControles(lcl_lst_mod_pedidos[0]);
-            this.inicializarControlesProveedor(lcl_lst_mod_pedidos[0].entidad as ModeloProveedor);
+            
         }
 
         private void inicializarBotones()
@@ -100,6 +101,7 @@ namespace Vista
             this.txtBoxDescuento2Monto.MouseUp += this.selectText;
             this.txtBoxDescuento2Porcentaje.MouseUp += this.selectText;
             this.txtBoxSenia.MouseUp += this.selectText;
+            this.txtBoxNumeroDocumento.KeyPress += this.valorNumeroDocumento;
         }
         private void inicializarComboBox()
         {
@@ -286,10 +288,9 @@ namespace Vista
             this.txtBoxDescuento2Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.descuento_2.descuento);
             this.txtBoxDescuentoLineas.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getDescuentoLineas());
             this.txtBoxDescuentoTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getDescuentoTotal());
-
-            this.txtBoxSubtotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.montoSubTotal);
-            //this.txtBoxTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:#,##0.00}", p_mod_pedido.getTotal());
+            
             this.txtBoxTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getTotal());
+            this.txtBoxSubtotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getSubTotal());
 
             this.txtBoxIVAMonto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getIVAMonto()); 
         }
@@ -530,6 +531,10 @@ namespace Vista
         #region Controles -> Modelo
         private ModeloPedido cargarControlEnPedido()
         {
+            if (!this.validarPedido())
+            {
+                return null;
+            }
             //incluido todo lo monetario en controlador.pedidoActual, entidad si es pedido a proveedor,
             //y forma(s) de pago
             ModeloPedido lcl_mod_pedido = controlador.pedidoActual;
@@ -539,6 +544,7 @@ namespace Vista
                 
                 lcl_mod_pedido.tipoComprobante = ControladorPedidoCliente.getCodigoComprobante((Constantes.TipoComprobanteVenta)this.cmbBoxTipoComprobante.SelectedValue,
                                                                                                 Convert.ToInt16(chckBoxResponsableInscripto.Checked));
+                
                 lcl_mod_pedido.documentoComprador = this.cargarControlEnDocumento();
             }
             if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
@@ -546,7 +552,7 @@ namespace Vista
                 //el proveedor ya esta en el pedido
                 lcl_mod_pedido.tipoComprobante = 0;
             }
-            
+            lcl_mod_pedido.fecha = this.dtpFechaPedido.Value;
             lcl_mod_pedido.domicilioDeFacturacion = this.cargarControlEnDomicilio();
             lcl_mod_pedido.mailContacto = this.cargarControlEnMail();
             lcl_mod_pedido.telefonoContacto = this.cargarControlEnTelefono();
@@ -578,6 +584,10 @@ namespace Vista
         }
         private ModeloDomicilio cargarControlEnDomicilio()
         {
+            if (this.vacioDomicilio())
+            {
+                return null;
+            }
             ModeloDomicilio lcl_mod_domicilio = new ModeloDomicilio();
             lcl_mod_domicilio.calle = this.txtBoxCalle.Text;
             lcl_mod_domicilio.numero = this.txtBoxNumeroDomicilio.Text; 
@@ -591,6 +601,10 @@ namespace Vista
         }
         private ModeloTelefono cargarControlEnTelefono()
         {
+            if (this.vacioTelefono())
+            {
+                return null;
+            }
             ModeloTelefono lcl_mod_telefono = new ModeloTelefono();
             lcl_mod_telefono.numero = this.txtBoxTelefono.Text; ;
             lcl_mod_telefono.tipo = this.cmbBoxTipoTelefono.SelectedValue.ToString();
@@ -598,6 +612,10 @@ namespace Vista
         }
         private ModeloMail cargarControlEnMail()
         {
+            if (this.vacioMail())
+            {
+                return null;
+            }
             ModeloMail lcl_mod_mail = new ModeloMail();
             lcl_mod_mail.mail = this.txtBoxMail.Text;
             return lcl_mod_mail;
@@ -610,11 +628,64 @@ namespace Vista
         {
             if (controlador.pedidoActual.lineasPedido.Count == 0)
             {
-                MessageBox.Show("No existen líneas en el pedido actual para imprimir", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No existen líneas en el pedido actual", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+            return this.validarDocumento() && this.validarTelefono() && this.validarDomicilio() && this.validarMail();
+        }
+
+        private bool validarMail()
+        {
+            return true;
+        }
+        private bool validarDomicilio()
+        {
+            return true;
+        }
+        private bool validarTelefono()
+        {
+            return true;
+        }
+        private bool vacioMail()
+        {
+            if (String.IsNullOrWhiteSpace(this.txtBoxMail.Text))
+                return true;
+            else
+                return false;
+        }
+        private bool vacioDomicilio()
+        {
+            if (String.IsNullOrWhiteSpace(this.txtBoxCalle.Text)
+                && String.IsNullOrWhiteSpace(this.txtBoxNumeroDomicilio.Text)
+                && String.IsNullOrWhiteSpace(this.txtBoxPiso.Text)
+                && String.IsNullOrWhiteSpace(this.txtBoxDepartamento.Text)
+                && String.IsNullOrWhiteSpace(this.txtBoxCiudad.Text)
+                && String.IsNullOrWhiteSpace(this.txtBoxCodigoPostal.Text))
+                return true;
+            else
+                return false;
+        }
+        private bool vacioTelefono()
+        {
+            if (String.IsNullOrWhiteSpace(this.txtBoxTelefono.Text))
+                return true;
+            else
+                return false;
+        }
+        private bool validarDocumento()
+        {
+            if(this.cmbBoxTipoDocumento.SelectedValue == this.glb_lst_tiposDocumentos.SingleOrDefault(x => x.codigo == 80))
+            {
+                //Validamos CUIT en caso de seleccionado como opción de documento
+                if(!ModeloEntidad.CUIT.ValidarCuit(this.txtBoxNumeroDocumento.Text))
+                {
+                    MessageBox.Show("CUIT no válido");
+                    return false;
+                }
             }
             return true;
         }
+        
         #endregion
 
         private ModeloCliente buscarCliente()
@@ -640,12 +711,7 @@ namespace Vista
         }
 
         private bool imprimirPedido()
-        {
-            if (!this.validarPedido())
-            {
-                return false;
-            }
-            
+        {            
             //imprimir
             //this.controlador.pedidoActual.
             ModeloReporteEncabezadoFactura lcl_mod_ReporteFactura = new ModeloReporteEncabezadoFactura();
@@ -843,6 +909,16 @@ namespace Vista
             this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
         }
 
+        private void valorNumeroDocumento(object sender, KeyPressEventArgs e)
+        {
+            // solo 0-9 y borrar 
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8))
+            {
+                e.Handled = true;
+                return;
+            }
+        }
+
         private bool alreadyFocused;
         private void selectText(object sender, MouseEventArgs e)
         {
@@ -914,11 +990,11 @@ namespace Vista
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            this.cargarControlEnPedido();
-            if (!this.validarPedido())
+            if (this.cargarControlEnPedido() == null)
             {
                 return;
             }
+
             if (this.imprimirPedido())
             {
                 MessageBox.Show("Operación exitosa", "Éxito", MessageBoxButtons.OK);
@@ -927,8 +1003,7 @@ namespace Vista
 
         private void btnGuardarYFacturar_Click(object sender, EventArgs e)
         {
-            this.cargarControlEnPedido();
-            if(!this.validarPedido())
+            if (this.cargarControlEnPedido() == null)
             {
                 return;
             }
@@ -1100,9 +1175,5 @@ namespace Vista
         }
         #endregion
 
-      
-
-
-    
     }
 }

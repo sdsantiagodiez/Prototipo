@@ -133,6 +133,11 @@ namespace Controladores
             this.pedidoActual.getTotal();
             return this.pedidoActual.montoTotal.ToString("0.##");
         }
+        public string getSubTotal()
+        {
+            this.pedidoActual.getSubTotal();
+            return this.pedidoActual.montoSubTotal.ToString("0.##");
+        }
 
         public void addArticulo(ModeloArticuloProveedores p_articulo, Int32 p_cantidad)
         {
@@ -295,7 +300,7 @@ namespace Controladores
         {
             if (pedidoActual.aprobadoAFIP == "A")
             {
-                errorActual = "El pedido ya esta aprobado por AFIP";
+                errorActual = "El pedido ya esta aprobado por AFIP.";
                 return false;
             }
             if (pedidoActual.tipoComprobante != 0)
@@ -303,6 +308,11 @@ namespace Controladores
                 try
                 {
                     ControladorAFIP lcl_con_AFIP = new ControladorAFIP();
+                    if (!lcl_con_AFIP.validarConexion())
+                    {
+                        this.errorActual = lcl_con_AFIP.errorActual;
+                        return false;
+                    } 
                     if (!lcl_con_AFIP.facturar(pedidoActual))
                     {
                         errorActual = lcl_con_AFIP.errorActual;
