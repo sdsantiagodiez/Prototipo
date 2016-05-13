@@ -36,8 +36,14 @@ namespace Vista
             this.contenedorFactura.LocalReport.DataSources.Add(new ReportDataSource("DSFactura", ModeloReporteEncabezadoFacturaBindingSource));
             this.contenedorFactura.LocalReport.DataSources.Add(new ReportDataSource("DSDetalleFactura", modeloReporteDetalleFacturaBindingSource));
 
-            this.contenedorFactura.LocalReport.ReportEmbeddedResource = "Reportes.VentasEntreFechas.rdlc";
-
+            if (String.Equals(tipoComprobante,'1'))
+            {
+                this.contenedorFactura.LocalReport.ReportEmbeddedResource = "Reportes.FacturaA.rdlc";
+            }
+            else if (String.Equals(tipoComprobante, '4'))
+            {
+                this.contenedorFactura.LocalReport.ReportEmbeddedResource = "Reportes.FacturaB.rdlc";
+            }
             this.contenedorFactura.LocalReport.Refresh();
             this.contenedorFactura.RefreshReport();
         }

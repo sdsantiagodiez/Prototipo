@@ -648,8 +648,39 @@ namespace Vista
             
             //imprimir
             //this.controlador.pedidoActual.
+            ModeloReporteEncabezadoFactura lcl_mod_ReporteFactura = new ModeloReporteEncabezadoFactura();
+            lcl_mod_ReporteFactura= CompletaEntidadFactura();
+
+            Controladores.ControladorReportes lcl_con_reporte = new ControladorReportes();
+            lcl_con_reporte.ImpresionFacturas(lcl_mod_ReporteFactura,this.controlador.pedidoActual.tipoComprobante.ToString()).ShowDialog();
+            
+            
 
             return true;
+        }
+
+        private ModeloReporteEncabezadoFactura CompletaEntidadFactura()
+        {
+            // Carga en modelo Reportepedido
+            ModeloReporteEncabezadoFactura lcl_mod_Factura = new ModeloReporteEncabezadoFactura();
+            lcl_mod_Factura.CAINumero = this.controlador.pedidoActual.CAE;
+            lcl_mod_Factura.Alicuota = Convert.ToDecimal(this.controlador.pedidoActual.alicuota.iva.porcentaje);
+            lcl_mod_Factura.CentroEmisor = "0001";//this.controlador.pedidoActual.numeroComprobante;
+            lcl_mod_Factura.NumeroComprobante = this.controlador.pedidoActual.numeroComprobante;
+            lcl_mod_Factura.Comprador_Cuit = this.controlador.pedidoActual.documentoComprador.numero;
+            lcl_mod_Factura.Comprador_IVAResponsableI = this.controlador.pedidoActual.documentoComprador.tipo.descripcion;
+            lcl_mod_Factura.Comprador_Domicilio = this.controlador.pedidoActual.domicilioDeFacturacion.calle + " " + controlador.pedidoActual.domicilioDeFacturacion.numero + ", " + controlador.pedidoActual.domicilioDeFacturacion.ciudad + ", " + controlador.pedidoActual.domicilioDeFacturacion.provincia;
+            //lcl_mod_Factura.Comprador_RazonSocial = this.controlador.pedidoActual.entidad
+            //lcl_mod_Factura.ConceptosNoGravados = this.controlador.pedidoActual.
+            //lcl_mod_Factura.CondicionVenta = this.controlador.pedidoActual.formasDePago[0].forma; ver forma de pago
+            //lcl_mod_Factura.detalleFactura = this.controlador.pedidoActual.lineasPedido; //hacer linea por linea "for"
+            lcl_mod_Factura.FechaComprobante = this.controlador.pedidoActual.fecha;
+            //lcl_mod_Factura.FechaVencimiento = this.controlador.pedidoActual.//tiene fecha Vto?
+            lcl_mod_Factura.IVAComprobante = this.controlador.pedidoActual.alicuota.monto;
+            lcl_mod_Factura.Remito = this.controlador.pedidoActual.numeroPedido.ToString();
+            lcl_mod_Factura.SubtotalComprobante = this.controlador.pedidoActual.montoSubTotal;
+            lcl_mod_Factura.TotalComprobante = this.controlador.pedidoActual.montoTotal;
+                        return lcl_mod_Factura;
         }
 
         private bool guardarPedido()
