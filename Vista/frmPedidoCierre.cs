@@ -67,7 +67,43 @@ namespace Vista
             this.cargarPedidoEnControles(lcl_lst_mod_pedidos[0]);
             
         }
+        private void inicializarPedidoAbierto()
+        {
+            this.habilitarControles(this);
+        }
+        private void inicializarPedidoCerrado()
+        {
+            this.desHabilitarControles(this);
+            this.habilitarControl(this.btnImprimir);
+            this.habilitarControl(this.btnSalir);
+            this.habilitarControl(this.tbControlPrincipal);
+            this.habilitarControl(this.cmbBoxPedidosProveedores);
+        }
 
+        private void habilitarControl(Control p_control)
+        {
+            if (p_control != null)
+            {
+                p_control.Enabled = true;
+                habilitarControl(p_control.Parent);
+            }
+        }
+        private void habilitarControles(Control p_control)
+        {
+            foreach (Control c in p_control.Controls)
+            {
+                habilitarControles(c);
+            }
+            p_control.Enabled = true;
+        }
+        private void desHabilitarControles(Control p_control)
+        {
+            foreach (Control c in p_control.Controls)
+            {
+                desHabilitarControles(c);
+            }
+            p_control.Enabled = false;
+        }
         private void inicializarBotones()
         {
             this.btnEliminar.Click += evento_eliminarLinea;
@@ -636,14 +672,43 @@ namespace Vista
 
         private bool validarMail()
         {
+            if (!this.vacioMail())
+            {
+                if (!ModeloMail.validarMail(this.txtBoxMail.Text))
+                {
+                    MessageBox.Show("La dirección de mail ingresada no es válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
             return true;
         }
         private bool validarDomicilio()
         {
+            if (!this.vacioDomicilio())
+            {
+                if (!ModeloDomicilio.validarCalle(txtBoxCalle.Text))
+                {
+                    MessageBox.Show("Revise el campo calle del domicilio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
             return true;
         }
         private bool validarTelefono()
         {
+            if (!this.vacioTelefono())
+            {
+                if (!ModeloTelefono.validarNumero(this.txtBoxTelefono.Text))
+                {
+                    MessageBox.Show("El número de teléfono ingresado no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                else if (!ModeloTelefono.validarTipo(this.cmbBoxTipoTelefono.SelectedValue.ToString()))
+                {
+                    MessageBox.Show("Debe seleccionar un tipo de teléfono.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
             return true;
         }
         private bool vacioMail()
@@ -934,6 +999,14 @@ namespace Vista
         private void cmbBoxPedidosProveedores_SelectionChangeCommitted(object sender, EventArgs e)
         {
             var pedido = (ModeloPedido)cmbBoxPedidosProveedores.SelectedValue;
+            if (pedido.numeroPedido != 0)
+            {
+                this.inicializarPedidoCerrado();
+            }
+            else
+            {
+                this.inicializarPedidoAbierto();
+            }
             this.cargarPedidoEnControles(pedido);
         }
         private void cmbBoxDomicilios_SelectionChangeCommitted(object sender, EventArgs e)
@@ -1007,9 +1080,10 @@ namespace Vista
             {
                 return;
             }
-            if (this.facturarAFIP() && !this.guardarPedido())
+            if (this.facturarAFIP() && this.guardarPedido())
             {
-                MessageBox.Show("Operación exitosa", "Éxito", MessageBoxButtons.OK);
+                //MessageBox.Show("Operación exitosa", "Éxito", MessageBoxButtons.OK);
+                this.inicializarPedidoCerrado();
             }
         }
 
