@@ -42,6 +42,7 @@ namespace Vista
         {
             InitializeComponent();
             this.inicializarFormulario();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         /// <summary>
         /// Hace búsqueda con el objeto y lanza resultados en atributo dataGridViewResultadoBusqueda de haberse encontrado algo

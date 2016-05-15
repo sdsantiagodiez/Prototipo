@@ -350,7 +350,7 @@ namespace Modelos
             bool respuesta = true;
             ModeloLineaPedido lpActual = getLineaPedido(p_lineaPedido.articulo);
             respuesta = lineasPedido.Remove(lpActual);
-            if (respuesta)
+            if (respuesta && p_lineaPedido.cantidadArticulos != 0)
             {
                 lineasPedido.Add(p_lineaPedido);
             }

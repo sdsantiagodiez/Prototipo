@@ -272,7 +272,7 @@
             this.tblLayoutPanelDetalleArticuloBotones.ColumnCount = 3;
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.40659F));
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.59341F));
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 99F));
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.nmrcUpDownCantidad, 1, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnAgregar, 2, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.lblCantidad, 0, 0);
@@ -289,13 +289,18 @@
             this.nmrcUpDownCantidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.nmrcUpDownCantidad.Location = new System.Drawing.Point(73, 12);
             this.nmrcUpDownCantidad.Maximum = new decimal(new int[] {
-            100000000,
+            99999999,
             0,
             0,
             0});
             this.nmrcUpDownCantidad.Name = "nmrcUpDownCantidad";
             this.nmrcUpDownCantidad.Size = new System.Drawing.Size(45, 20);
             this.nmrcUpDownCantidad.TabIndex = 2;
+            this.nmrcUpDownCantidad.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // btnAgregar
             // 

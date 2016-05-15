@@ -13,11 +13,16 @@ namespace Vista
 {
     public partial class frmPedidoNuevo_editarCantidad : Form
     {
+        #region Atributos
         ModeloLineaPedido lineaPedidoActual;
+        #endregion
+
+        #region Constructores
         public frmPedidoNuevo_editarCantidad()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.nmrcUpDownCantidad.KeyPress += valorNumeroCantidad;
         }
         public frmPedidoNuevo_editarCantidad(ModeloLineaPedido p_mod_lineaPedido, LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos p_tipoPedido) : this()
         {
@@ -29,6 +34,9 @@ namespace Vista
                 this.chckBoxPermitirStockNegativo.Checked = true;
             }
         }
+        #endregion
+
+        #region Métodos
         #region Modelo -> Controles
         private void cargarLineaPedidoEnControles(ModeloLineaPedido p_mod_lineaPedido)
         {
@@ -66,7 +74,9 @@ namespace Vista
             return true;
         }
         #endregion
-
+        #endregion
+       
+        #region Eventos
         private void btnEditar_Click(object sender, EventArgs e)
         {
             if (this.cargarControlesEnLineaPedido() != null)
@@ -75,7 +85,17 @@ namespace Vista
                 this.Hide();
             }
         }
-
+        
+        private void valorNumeroCantidad(object sender, KeyPressEventArgs e)
+        {
+            // solo 0-9 y borrar 
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8))
+            {
+                e.Handled = true;
+                return;
+            }
+        }
+        #endregion
 
     }
 }

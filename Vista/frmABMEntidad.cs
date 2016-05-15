@@ -358,24 +358,38 @@ namespace Vista
 
         private void buscarEntidad()
         {
+            BackgroundWorker bw = new BackgroundWorker();
+            frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Realizando búsqueda.");
             frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
-            this.cargarDatosControlEnEntidadActual(ref glb_mod_entidadActual);
-            lcl_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_entidadActual);
-            if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
+            bw.DoWork += (s, e) =>
             {
-                if (this.modoFormulario != ModoFormularioBusqueda)
+                lcl_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_entidadActual);    
+            };
+            bw.RunWorkerCompleted += (s, e) =>
+            {
+                lcl_frm_loading.Hide();
+                if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
                 {
-                    this.modoFormulario = ModoFormularioSeleccionado;
-                    this.quitarTextoEnControles(this);
-                    glb_mod_entidadActual = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad;
-                    this.cargarEntidadEnControles(glb_mod_entidadActual);
+                    if (this.modoFormulario != ModoFormularioClientePedido)
+                    {
+                        this.modoFormulario = ModoFormularioSeleccionado;
+                        this.quitarTextoEnControles(this);
+                        glb_mod_entidadActual = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad;
+                        this.cargarEntidadEnControles(glb_mod_entidadActual);
+                    }
+                    else
+                    {
+                        glb_mod_entidadActual = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad;
+                        this.Hide();
+                    }
                 }
-                else
-                {
-                    glb_mod_entidadActual = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad;
-                    this.Hide();
-                }
-            }
+            };
+            
+            
+            this.cargarDatosControlEnEntidadActual(ref glb_mod_entidadActual);
+
+            bw.RunWorkerAsync();
+            lcl_frm_loading.ShowDialog(); 
         }
 
         #endregion

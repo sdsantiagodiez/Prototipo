@@ -156,9 +156,7 @@ namespace Vista
             //verifico que no exista ya en entre las lineas de pedido
             if (controlador.exists(glb_mod_articuloSeleccionadoBusqueda))
             {
-                ModeloLineaPedido lpExistente = controlador.pedidoActual.lineasPedido.SingleOrDefault
-                                                                    (x => x.articulo.codigoOriginal == glb_mod_articuloSeleccionadoBusqueda.codigoOriginal
-                                                                        && x.articulo.codigoArticuloProveedor == glb_mod_articuloSeleccionadoBusqueda.codigoArticuloProveedor);
+                ModeloLineaPedido lpExistente = controlador.pedidoActual.getLineaPedido(glb_mod_articuloSeleccionadoBusqueda);
                 if (!this.chckBoxPermitirStockNegativo.Checked)
                 {
                     int cantidadTotal = lpExistente.cantidadArticulos + Convert.ToInt32(this.nmrcUpDownCantidad.Value);
@@ -276,11 +274,9 @@ namespace Vista
                 //verifico que no exista ya en entre las lineas de pedido
                 if (controlador.exists(p_mod_articuloProveedor))
                 {
-                    ModeloLineaPedido lpExistente = controlador.pedidoActual.lineasPedido.SingleOrDefault
-                                                                        (x => x.articulo.codigoOriginal == p_mod_articuloProveedor.codigoOriginal
-                                                                            && x.articulo.codigoArticuloProveedor == p_mod_articuloProveedor.codigoArticuloProveedor);
-
+                    ModeloLineaPedido lpExistente = controlador.pedidoActual.getLineaPedido(p_mod_articuloProveedor);
                     lpExistente.cantidadArticulos += p_cantidad;
+                    this.controlador.pedidoActual.updateLineaPedido(lpExistente);
                 }
                 else
                 {
@@ -291,7 +287,6 @@ namespace Vista
                 this.cargarLineasPedidosEnControles();
             }
         }
-
 
         /// <summary>
         /// Busca artículos proveedores y retorna resultados
@@ -338,7 +333,7 @@ namespace Vista
             int i = this.dgvArticulosEnPedido.SelectedRows[0].Index;
             frmPedidoNuevo_editarCantidad lcl_frm_editarCantidad = new frmPedidoNuevo_editarCantidad(controlador.pedidoActual.lineasPedido[i],controlador.pedidoActual.codigoTipoPedido);
             lcl_frm_editarCantidad.ShowDialog();
-            
+            controlador.pedidoActual.updateLineaPedido(controlador.pedidoActual.lineasPedido[i]);
             this.cargarLineasPedidosEnControles();
         }
         #endregion

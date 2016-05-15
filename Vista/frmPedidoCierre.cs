@@ -1167,6 +1167,7 @@ namespace Vista
             if (lcl_frm_editarLineaPedido.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 controlador.pedidoActual.lineasPedido[i] = lcl_frm_editarLineaPedido.getLineaPedido();
+                this.controlador.pedidoActual.updateLineaPedido(controlador.pedidoActual.lineasPedido[i]);
                 this.cargarPedidoEnControles(controlador.pedidoActual);
             }
         }
