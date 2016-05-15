@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.gbxArticulos = new System.Windows.Forms.GroupBox();
+            this.tblLayoutPanelLineasPedidos = new System.Windows.Forms.TableLayoutPanel();
             this.dgvArticulosVenta = new System.Windows.Forms.DataGridView();
             this.indice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codOriginal = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,6 +42,10 @@
             this.descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorParcialSinDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorParcialConDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblLayoutPanelLineasPedidosBotones = new System.Windows.Forms.TableLayoutPanel();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
             this.tblLayoutPanelValoresPedido = new System.Windows.Forms.TableLayoutPanel();
             this.lblIVA = new System.Windows.Forms.Label();
             this.txtBoxSubtotal = new System.Windows.Forms.TextBox();
@@ -62,12 +67,11 @@
             this.txtBoxDescuento1Porcentaje = new System.Windows.Forms.TextBox();
             this.txtBoxDescuento2Porcentaje = new System.Windows.Forms.TextBox();
             this.tblLayoutPanelBotones = new System.Windows.Forms.TableLayoutPanel();
-            this.btnImprimir = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnFacturaElectronica = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.cmbBoxPedidosProveedores = new System.Windows.Forms.ComboBox();
+            this.btnImprimir = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.tbControlPrincipal = new System.Windows.Forms.TabControl();
             this.tbPageDatosGenerales = new System.Windows.Forms.TabPage();
             this.tblLayoutPanelDatosGenerales = new System.Windows.Forms.TableLayoutPanel();
@@ -134,10 +138,11 @@
             this.tabPageObservaciones = new System.Windows.Forms.TabPage();
             this.rchTextBoxObservacionesPedido = new System.Windows.Forms.RichTextBox();
             this.modeloLineaPedidoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnGuardarYFacturar = new System.Windows.Forms.Button();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.gbxArticulos.SuspendLayout();
+            this.tblLayoutPanelLineasPedidos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosVenta)).BeginInit();
+            this.tblLayoutPanelLineasPedidosBotones.SuspendLayout();
             this.tblLayoutPanelValoresPedido.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
             this.tbControlPrincipal.SuspendLayout();
@@ -174,7 +179,7 @@
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 79F));
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
-            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(699, 481);
+            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(699, 502);
             this.tblLayoutPanelPrincipal.TabIndex = 0;
             // 
             // gbxArticulos
@@ -182,14 +187,29 @@
             this.gbxArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbxArticulos.Controls.Add(this.dgvArticulosVenta);
+            this.gbxArticulos.Controls.Add(this.tblLayoutPanelLineasPedidos);
             this.gbxArticulos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbxArticulos.Location = new System.Drawing.Point(3, 193);
             this.gbxArticulos.Name = "gbxArticulos";
-            this.gbxArticulos.Size = new System.Drawing.Size(693, 149);
+            this.gbxArticulos.Size = new System.Drawing.Size(693, 170);
             this.gbxArticulos.TabIndex = 14;
             this.gbxArticulos.TabStop = false;
             this.gbxArticulos.Text = "Artículos";
+            // 
+            // tblLayoutPanelLineasPedidos
+            // 
+            this.tblLayoutPanelLineasPedidos.ColumnCount = 1;
+            this.tblLayoutPanelLineasPedidos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelLineasPedidos.Controls.Add(this.dgvArticulosVenta, 0, 0);
+            this.tblLayoutPanelLineasPedidos.Controls.Add(this.tblLayoutPanelLineasPedidosBotones, 0, 1);
+            this.tblLayoutPanelLineasPedidos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblLayoutPanelLineasPedidos.Location = new System.Drawing.Point(3, 18);
+            this.tblLayoutPanelLineasPedidos.Name = "tblLayoutPanelLineasPedidos";
+            this.tblLayoutPanelLineasPedidos.RowCount = 2;
+            this.tblLayoutPanelLineasPedidos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelLineasPedidos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tblLayoutPanelLineasPedidos.Size = new System.Drawing.Size(687, 149);
+            this.tblLayoutPanelLineasPedidos.TabIndex = 6;
             // 
             // dgvArticulosVenta
             // 
@@ -209,12 +229,12 @@
             this.valorParcialSinDescuento,
             this.valorParcialConDescuento});
             this.dgvArticulosVenta.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvArticulosVenta.Location = new System.Drawing.Point(3, 18);
+            this.dgvArticulosVenta.Location = new System.Drawing.Point(3, 3);
             this.dgvArticulosVenta.Name = "dgvArticulosVenta";
             this.dgvArticulosVenta.ReadOnly = true;
             this.dgvArticulosVenta.RowHeadersVisible = false;
             this.dgvArticulosVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulosVenta.Size = new System.Drawing.Size(687, 128);
+            this.dgvArticulosVenta.Size = new System.Drawing.Size(681, 104);
             this.dgvArticulosVenta.TabIndex = 5;
             this.dgvArticulosVenta.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvArticulosVenta_MouseDown);
             // 
@@ -282,6 +302,53 @@
             this.valorParcialConDescuento.Name = "valorParcialConDescuento";
             this.valorParcialConDescuento.ReadOnly = true;
             // 
+            // tblLayoutPanelLineasPedidosBotones
+            // 
+            this.tblLayoutPanelLineasPedidosBotones.ColumnCount = 3;
+            this.tblLayoutPanelLineasPedidosBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelLineasPedidosBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tblLayoutPanelLineasPedidosBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelLineasPedidosBotones.Controls.Add(this.btnEliminar, 2, 0);
+            this.tblLayoutPanelLineasPedidosBotones.Controls.Add(this.btnEditar, 1, 0);
+            this.tblLayoutPanelLineasPedidosBotones.Controls.Add(this.btnAgregar, 0, 0);
+            this.tblLayoutPanelLineasPedidosBotones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblLayoutPanelLineasPedidosBotones.Location = new System.Drawing.Point(3, 113);
+            this.tblLayoutPanelLineasPedidosBotones.Name = "tblLayoutPanelLineasPedidosBotones";
+            this.tblLayoutPanelLineasPedidosBotones.RowCount = 1;
+            this.tblLayoutPanelLineasPedidosBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelLineasPedidosBotones.Size = new System.Drawing.Size(681, 33);
+            this.tblLayoutPanelLineasPedidosBotones.TabIndex = 6;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnEliminar.Location = new System.Drawing.Point(403, 4);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(75, 25);
+            this.btnEliminar.TabIndex = 1;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEditar.Location = new System.Drawing.Point(302, 4);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(75, 25);
+            this.btnEditar.TabIndex = 4;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnAgregar.Location = new System.Drawing.Point(202, 4);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(75, 25);
+            this.btnAgregar.TabIndex = 3;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            // 
             // tblLayoutPanelValoresPedido
             // 
             this.tblLayoutPanelValoresPedido.AutoSize = true;
@@ -317,7 +384,7 @@
             this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxDescuento1Porcentaje, 4, 0);
             this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxDescuento2Porcentaje, 4, 1);
             this.tblLayoutPanelValoresPedido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelValoresPedido.Location = new System.Drawing.Point(3, 348);
+            this.tblLayoutPanelValoresPedido.Location = new System.Drawing.Point(3, 369);
             this.tblLayoutPanelValoresPedido.Name = "tblLayoutPanelValoresPedido";
             this.tblLayoutPanelValoresPedido.RowCount = 2;
             this.tblLayoutPanelValoresPedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -502,77 +569,44 @@
             // 
             // tblLayoutPanelBotones
             // 
-            this.tblLayoutPanelBotones.ColumnCount = 7;
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.81492F));
+            this.tblLayoutPanelBotones.ColumnCount = 6;
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.92601F));
             this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.14017F));
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.01299F));
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.12567F));
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.97054F));
             this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.013F));
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.01892F));
-            this.tblLayoutPanelBotones.Controls.Add(this.btnEliminar, 5, 0);
-            this.tblLayoutPanelBotones.Controls.Add(this.btnEditar, 4, 0);
-            this.tblLayoutPanelBotones.Controls.Add(this.btnAgregar, 3, 0);
-            this.tblLayoutPanelBotones.Controls.Add(this.btnSalir, 6, 0);
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.97778F));
+            this.tblLayoutPanelBotones.Controls.Add(this.btnFacturaElectronica, 3, 0);
+            this.tblLayoutPanelBotones.Controls.Add(this.btnSalir, 5, 0);
             this.tblLayoutPanelBotones.Controls.Add(this.cmbBoxPedidosProveedores, 0, 0);
             this.tblLayoutPanelBotones.Controls.Add(this.btnImprimir, 1, 0);
-            this.tblLayoutPanelBotones.Controls.Add(this.btnGuardarYFacturar, 2, 0);
+            this.tblLayoutPanelBotones.Controls.Add(this.btnGuardar, 2, 0);
             this.tblLayoutPanelBotones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelBotones.Location = new System.Drawing.Point(3, 427);
+            this.tblLayoutPanelBotones.Location = new System.Drawing.Point(3, 448);
             this.tblLayoutPanelBotones.Name = "tblLayoutPanelBotones";
             this.tblLayoutPanelBotones.RowCount = 1;
             this.tblLayoutPanelBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelBotones.Size = new System.Drawing.Size(693, 51);
             this.tblLayoutPanelBotones.TabIndex = 16;
             // 
-            // btnImprimir
+            // btnFacturaElectronica
             // 
-            this.btnImprimir.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnImprimir.Location = new System.Drawing.Point(149, 14);
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(75, 23);
-            this.btnImprimir.TabIndex = 2;
-            this.btnImprimir.Text = "Imprimir";
-            this.btnImprimir.UseVisualStyleBackColor = true;
-            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnEliminar.Location = new System.Drawing.Point(509, 14);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminar.TabIndex = 1;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnEditar.Location = new System.Drawing.Point(423, 14);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 23);
-            this.btnEditar.TabIndex = 4;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAgregar.Location = new System.Drawing.Point(338, 14);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregar.TabIndex = 3;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnFacturaElectronica.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnFacturaElectronica.Location = new System.Drawing.Point(394, 13);
+            this.btnFacturaElectronica.Name = "btnFacturaElectronica";
+            this.btnFacturaElectronica.Size = new System.Drawing.Size(75, 25);
+            this.btnFacturaElectronica.TabIndex = 7;
+            this.btnFacturaElectronica.Text = "Facturar";
+            this.btnFacturaElectronica.UseVisualStyleBackColor = true;
+            this.btnFacturaElectronica.Click += new System.EventHandler(this.btnFacturaElectronica_Click);
             // 
             // btnSalir
             // 
             this.btnSalir.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(608, 14);
+            this.btnSalir.Location = new System.Drawing.Point(598, 13);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.Size = new System.Drawing.Size(75, 25);
             this.btnSalir.TabIndex = 0;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -587,6 +621,28 @@
             this.cmbBoxPedidosProveedores.Size = new System.Drawing.Size(121, 21);
             this.cmbBoxPedidosProveedores.TabIndex = 5;
             this.cmbBoxPedidosProveedores.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxPedidosProveedores_SelectionChangeCommitted);
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnImprimir.Location = new System.Drawing.Point(181, 13);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(75, 25);
+            this.btnImprimir.TabIndex = 2;
+            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnGuardar.Location = new System.Drawing.Point(282, 13);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 25);
+            this.btnGuardar.TabIndex = 6;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // tbControlPrincipal
             // 
@@ -917,6 +973,7 @@
             this.cmbBoxTipoComprobante.Name = "cmbBoxTipoComprobante";
             this.cmbBoxTipoComprobante.Size = new System.Drawing.Size(116, 21);
             this.cmbBoxTipoComprobante.TabIndex = 10;
+            this.cmbBoxTipoComprobante.SelectedIndexChanged += new System.EventHandler(this.cmbBoxTipoComprobante_SelectedIndexChanged);
             // 
             // lblFormaPago
             // 
@@ -930,14 +987,14 @@
             // 
             // cmbBoxFormaPago
             // 
-            this.cmbBoxFormaPago.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cmbBoxFormaPago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxFormaPago.FormattingEnabled = true;
             this.cmbBoxFormaPago.Items.AddRange(new object[] {
             "Contado",
             "Tarjeta"});
             this.cmbBoxFormaPago.Location = new System.Drawing.Point(95, 62);
             this.cmbBoxFormaPago.Name = "cmbBoxFormaPago";
-            this.cmbBoxFormaPago.Size = new System.Drawing.Size(113, 21);
+            this.cmbBoxFormaPago.Size = new System.Drawing.Size(116, 21);
             this.cmbBoxFormaPago.TabIndex = 9;
             // 
             // lblFecha
@@ -1354,30 +1411,22 @@
             // 
             this.modeloLineaPedidoBindingSource.DataSource = typeof(Modelos.ModeloLineaPedido);
             // 
-            // btnGuardarYFacturar
-            // 
-            this.btnGuardarYFacturar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnGuardarYFacturar.Location = new System.Drawing.Point(240, 14);
-            this.btnGuardarYFacturar.Name = "btnGuardarYFacturar";
-            this.btnGuardarYFacturar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardarYFacturar.TabIndex = 6;
-            this.btnGuardarYFacturar.Text = "Guardar";
-            this.btnGuardarYFacturar.UseVisualStyleBackColor = true;
-            this.btnGuardarYFacturar.Click += new System.EventHandler(this.btnGuardarYFacturar_Click);
-            // 
             // frmPedidoCierre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnSalir;
-            this.ClientSize = new System.Drawing.Size(699, 481);
+            this.ClientSize = new System.Drawing.Size(699, 502);
             this.Controls.Add(this.tblLayoutPanelPrincipal);
+            this.MinimumSize = new System.Drawing.Size(16, 500);
             this.Name = "frmPedidoCierre";
             this.Text = "frmPedidoCierre";
             this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.tblLayoutPanelPrincipal.PerformLayout();
             this.gbxArticulos.ResumeLayout(false);
+            this.tblLayoutPanelLineasPedidos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosVenta)).EndInit();
+            this.tblLayoutPanelLineasPedidosBotones.ResumeLayout(false);
             this.tblLayoutPanelValoresPedido.ResumeLayout(false);
             this.tblLayoutPanelValoresPedido.PerformLayout();
             this.tblLayoutPanelBotones.ResumeLayout(false);
@@ -1514,6 +1563,9 @@
         private System.Windows.Forms.ComboBox cmbBoxFormaPago;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.DateTimePicker dtpFechaPedido;
-        private System.Windows.Forms.Button btnGuardarYFacturar;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelLineasPedidos;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelLineasPedidosBotones;
+        private System.Windows.Forms.Button btnFacturaElectronica;
     }
 }

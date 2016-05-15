@@ -16,10 +16,13 @@ namespace Vista
 {
     public partial class frmPedidoCierre : Form
     {
+        #region Atributos
         List<TipoDocumento> glb_lst_tiposDocumentos;
         ControladorPedido controlador;
         CheckBox chckBoxClienteGenerico;
         ContextMenu cntxMenuLineasPedido;
+        #endregion
+
         #region Constructores
         public frmPedidoCierre()
         {
@@ -60,17 +63,18 @@ namespace Vista
         {
             this.Text = "Cierre Pedido a Proveedores";
             this.cmbBoxPedidosProveedores.Visible = true;
+            this.btnFacturaElectronica.Visible = false;
             this.controlador = new ControladorPedidoProveedor();
             List<ModeloPedido> lcl_lst_mod_pedidos = (controlador as ControladorPedidoProveedor).getPedidosProveedores(p_mod_pedido);
             this.inicializarComboBoxPedidosProveedores(lcl_lst_mod_pedidos);
             this.inicializarControlesProveedor(lcl_lst_mod_pedidos[0].entidad as ModeloProveedor); 
             this.cargarPedidoEnControles(lcl_lst_mod_pedidos[0]);
-            
         }
         private void inicializarPedidoAbierto()
         {
             this.habilitarControles(this);
         }
+
         private void inicializarPedidoCerrado()
         {
             this.desHabilitarControles(this);
@@ -78,6 +82,13 @@ namespace Vista
             this.habilitarControl(this.btnSalir);
             this.habilitarControl(this.tbControlPrincipal);
             this.habilitarControl(this.cmbBoxPedidosProveedores);
+            this.dgvArticulosVenta.ClearSelection();
+        }
+
+        private void inicializarPedidoFacturado()
+        {
+            this.inicializarPedidoCerrado();
+            this.habilitarControl(this.btnGuardar);
         }
 
         private void habilitarControl(Control p_control)
@@ -999,14 +1010,7 @@ namespace Vista
         private void cmbBoxPedidosProveedores_SelectionChangeCommitted(object sender, EventArgs e)
         {
             var pedido = (ModeloPedido)cmbBoxPedidosProveedores.SelectedValue;
-            if (pedido.numeroPedido != 0)
-            {
-                this.inicializarPedidoCerrado();
-            }
-            else
-            {
-                this.inicializarPedidoAbierto();
-            }
+            
             this.cargarPedidoEnControles(pedido);
         }
         private void cmbBoxDomicilios_SelectionChangeCommitted(object sender, EventArgs e)
@@ -1074,19 +1078,33 @@ namespace Vista
             }
         }
 
-        private void btnGuardarYFacturar_Click(object sender, EventArgs e)
+        private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (this.cargarControlEnPedido() == null)
             {
                 return;
             }
-            if (this.facturarAFIP() && this.guardarPedido())
-            {
-                //MessageBox.Show("Operación exitosa", "Éxito", MessageBoxButtons.OK);
-                this.inicializarPedidoCerrado();
-            }
+            this.guardarPedido();
         }
-
+        private void btnFacturaElectronica_Click(object sender, EventArgs e)
+        {
+            if (this.cargarControlEnPedido() == null)
+            {
+                return;
+            }
+            if (this.facturarAFIP())
+            {
+                if (this.guardarPedido())
+                {
+                    this.inicializarPedidoCerrado();
+                }
+                else
+                {
+                    this.inicializarPedidoFacturado();
+                }
+            }
+            
+        }
         #endregion
 
         #region CheckedBox
@@ -1250,5 +1268,18 @@ namespace Vista
         }
         #endregion
 
+        private void cmbBoxTipoComprobante_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int tipoComprobante = ControladorPedidoCliente.getCodigoComprobante((Constantes.TipoComprobanteVenta)this.cmbBoxTipoComprobante.SelectedValue,
+                                                                                                Convert.ToInt16(chckBoxResponsableInscripto.Checked));
+            if (tipoComprobante != 0)
+            {
+                this.btnFacturaElectronica.Enabled = true;
+            }
+            else
+            {
+                this.btnFacturaElectronica.Enabled = false;
+            }
+        }
     }
 }
