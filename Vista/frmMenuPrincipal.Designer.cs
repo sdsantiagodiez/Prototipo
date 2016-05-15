@@ -41,7 +41,6 @@
             this.pnlCompras = new System.Windows.Forms.Panel();
             this.pnlVentas = new System.Windows.Forms.Panel();
             this.btnDevolucion = new System.Windows.Forms.Button();
-            this.btnReserva = new System.Windows.Forms.Button();
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblFechaLog = new System.Windows.Forms.Label();
             this.lblHoraLog = new System.Windows.Forms.Label();
@@ -150,7 +149,6 @@
             // pnlVentas
             // 
             this.pnlVentas.Controls.Add(this.btnDevolucion);
-            this.pnlVentas.Controls.Add(this.btnReserva);
             this.pnlVentas.Controls.Add(this.btnVenta);
             this.pnlVentas.Location = new System.Drawing.Point(45, 191);
             this.pnlVentas.Name = "pnlVentas";
@@ -166,16 +164,6 @@
             this.btnDevolucion.Text = "Procesar Devolución";
             this.btnDevolucion.UseVisualStyleBackColor = true;
             this.btnDevolucion.Click += new System.EventHandler(this.btnDevolucion_Click);
-            // 
-            // btnReserva
-            // 
-            this.btnReserva.Location = new System.Drawing.Point(20, 62);
-            this.btnReserva.Name = "btnReserva";
-            this.btnReserva.Size = new System.Drawing.Size(162, 40);
-            this.btnReserva.TabIndex = 4;
-            this.btnReserva.Text = "Nueva Reserva";
-            this.btnReserva.UseVisualStyleBackColor = true;
-            this.btnReserva.Click += new System.EventHandler(this.btnReserva_Click);
             // 
             // lblFecha
             // 
@@ -317,7 +305,6 @@
         private System.Windows.Forms.Panel pnlCompras;
         private System.Windows.Forms.Panel pnlVentas;
         private System.Windows.Forms.Button btnDevolucion;
-        private System.Windows.Forms.Button btnReserva;
         private System.Windows.Forms.Button btnABM;
         internal System.Windows.Forms.Label lblFecha;
         internal System.Windows.Forms.Label lblFechaLog;

@@ -136,12 +136,6 @@ namespace Vista
             }
         }
 
-        private void btnReserva_Click(object sender, EventArgs e)
-        {
-            frmEnConstruccion frmEnConstruccion = new frmEnConstruccion();
-            frmEnConstruccion.ShowDialog();
-        }
-
         private void btnDevolucion_Click(object sender, EventArgs e)
         {
             frmDevolucion frmDevolucion = new frmDevolucion();
