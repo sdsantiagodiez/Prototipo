@@ -144,7 +144,7 @@ namespace Vista
             frmDevolucion.ShowDialog();
             if (frmDevolucion.DialogResult != System.Windows.Forms.DialogResult.Ignore)
             {
-                frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmDevolucion.controlador.pedidoActual);
+                frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmDevolucion.controlador.pedidoActual, frmDevolucion.glb_mod_pedidoOriginal);
                 lcl_frm_cierre.ShowDialog();
             }
         }

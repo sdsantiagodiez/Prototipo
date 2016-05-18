@@ -206,6 +206,19 @@ namespace Modelos
             this.telefonoContacto = p_mod_entidad.telefonos.Count > 0 ? p_mod_entidad.telefonos[0] : null;
             this.mailContacto = p_mod_entidad.mails.Count > 0 ? p_mod_entidad.mails[0] : null;
         }
+        /// <summary>
+        /// Inicializa datos básico. No considera datos particulares a un pedido en especial (generados al momento de facturar, guardar pedido en base de datos, lineas, señas, observaciones, etc)
+        /// </summary>
+        /// <param name="p_mod_pedido"></param>
+        public ModeloPedido(ModeloPedido p_mod_pedido) : this()
+        {
+            this.codigoTipoPedido = p_mod_pedido.codigoTipoPedido;
+            this.documentoComprador = p_mod_pedido.documentoComprador;
+            this.domicilioDeFacturacion = p_mod_pedido.domicilioDeFacturacion;
+            this.mailContacto = p_mod_pedido.mailContacto;
+            this.telefonoContacto = p_mod_pedido.telefonoContacto;
+            this.entidad = p_mod_pedido.entidad;
+        }
         
         #region Validación
         public bool validar()

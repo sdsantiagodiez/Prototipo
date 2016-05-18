@@ -16,7 +16,7 @@ namespace Vista
     public partial class frmPedidoDevolucion : Form
     {
         #region Atributos
-        ModeloPedido glb_mod_pedidoOriginal;
+        public ModeloPedido glb_mod_pedidoOriginal;
         ModeloLineaPedido glb_mod_lineaPedidoActual;
         public ControladorPedido controlador;
         ContextMenu cntxMenuResultadoBusqueda;
@@ -42,8 +42,7 @@ namespace Vista
         /// <param name="p_mod_pedido"></param>
         public frmPedidoDevolucion(ModeloPedido p_mod_pedido) :this()
         {
-            glb_mod_pedidoOriginal = p_mod_pedido;
-            this.cargarPedidoEnControles(p_mod_pedido);
+            this.inicializarPedidoOriginal(p_mod_pedido);
         }
         /// <summary>
         /// Inicializa pedido del que se extraerán artículos a devolución y pedido con artículos a devolver
@@ -54,6 +53,8 @@ namespace Vista
         {
             controlador.pedidoActual = p_mod_pedidoDevolucion;
             this.cargarPedidoDevolucionEnControles(controlador.pedidoActual);
+            this.tblLayoutPanelCuadroBusqueda.Enabled = false;
+            this.btnSiguiente.Text = "Guardar Cambios";
         }
         #endregion
         
@@ -222,6 +223,12 @@ namespace Vista
                 this.cntxMenuLineasPedidos.MenuItems[1].Visible = true;
                 this.cntxMenuLineasPedidos.MenuItems[1].Text = "Quitar seleccionado";
             }
+        }
+        private void inicializarPedidoOriginal(ModeloPedido p_mod_pedido)
+        {
+            glb_mod_pedidoOriginal = p_mod_pedido;
+            this.controlador.pedidoActual = new ModeloPedido(p_mod_pedido);
+            this.cargarPedidoEnControles(p_mod_pedido);
         }
         #endregion
         
@@ -496,8 +503,7 @@ namespace Vista
             
             if (lcl_lst_modeloPedido.Count > 0)
             {
-                 glb_mod_pedidoOriginal = lcl_lst_modeloPedido[0];
-                this.cargarPedidoEnControles(glb_mod_pedidoOriginal);
+                this.inicializarPedidoOriginal(lcl_lst_modeloPedido[0]);
             }
             else
             {
@@ -539,8 +545,6 @@ namespace Vista
             
             inicializarLineaPedidoSeleccionada(glb_mod_pedidoOriginal.lineasPedido[i]);
         }
-        #endregion
-
         private void dgvArticulosPedido_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -585,6 +589,17 @@ namespace Vista
                 }
             }
         }
+        private void dgvArticulosDevolucion_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                //No hay fila seleccionada
+                return;
+            }
+            int i = Convert.ToInt32(this.dgvArticulosDevolucion.Rows[e.RowIndex].Cells["indice_dgvDevolucion"].Value);
+
+            inicializarLineaPedidoSeleccionada(controlador.pedidoActual.lineasPedido[i]);
+        }
 
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
@@ -618,5 +633,6 @@ namespace Vista
                 e.Cancel = true;
             }
         }
+        #endregion   
     }
 }

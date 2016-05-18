@@ -17,7 +17,7 @@ namespace Vista
     public partial class frmPedidoCierre : Form
     {
         #region Atributos
-       
+        ModeloPedido glb_mod_pedidoOriginalDevolucion;
         List<TipoDocumento> glb_lst_tiposDocumentos;
         ControladorPedido controlador;
         CheckBox chckBoxClienteGenerico;
@@ -93,7 +93,7 @@ namespace Vista
         /// <param name="p_modoFormulario"></param>
         public frmPedidoCierre(ModeloPedido p_mod_pedido, string p_modoFormulario) : this()
         {
-            this.modoFormulario = p_modoFormulario;
+            //this.modoFormulario = p_modoFormulario;
             switch (p_modoFormulario)
             {
                 case ModoFormularioPedidoCliente:
@@ -113,6 +113,15 @@ namespace Vista
                     this.Close();
                     break;
             }
+        }
+        /// <summary>
+        /// Para realizar devoluciones
+        /// </summary>
+        /// <param name="p_mod_pedidoDevolucion"></param>
+        /// <param name="p_mod_pedidoOriginal"></param>
+        public frmPedidoCierre(ModeloPedido p_mod_pedidoDevolucion, ModeloPedido p_mod_pedidoOriginal) : this(p_mod_pedidoDevolucion, ModoFormularioDevolucionCliente)
+        {
+            glb_mod_pedidoOriginalDevolucion = p_mod_pedidoOriginal;
         }
         #endregion
 
@@ -402,6 +411,7 @@ namespace Vista
             
             this.cargarDatosPedidoEnControles(p_mod_pedido);
             this.cargarLineasEnControles(p_mod_pedido);
+            this.cargarDocumentoEnControles(p_mod_pedido);
             this.cargarEntidadEnControles(p_mod_pedido.entidad);
             this.cargarFormaPagoEnControles(p_mod_pedido.formasDePago);
 
@@ -439,14 +449,6 @@ namespace Vista
         }
         private void cargarEntidadEnControles(ModeloEntidad p_mod_entidad)
         {
-            #region Documento
-            if (!string.IsNullOrWhiteSpace(p_mod_entidad.cuit))
-            {
-                this.cmbBoxTipoDocumento.SelectedValue = this.glb_lst_tiposDocumentos.SingleOrDefault(x => x.codigo == 80);
-                this.txtBoxNumeroDocumento.Text = p_mod_entidad.cuit;
-            }
-            #endregion
-
             if (p_mod_entidad.GetType() == typeof(ModeloProveedor))
             {
                 this.cargarProveedorEnControles(p_mod_entidad as ModeloProveedor);
@@ -506,11 +508,6 @@ namespace Vista
             this.chckBoxClienteGenerico.Checked = (controlador as ControladorPedidoCliente).esClienteGenerico();
             this.txtBoxApellido.Text = p_mod_cliente.apellido;
             this.txtBoxNombre.Text = p_mod_cliente.nombre;
-            if(string.IsNullOrWhiteSpace(p_mod_cliente.cuit) && !string.IsNullOrWhiteSpace(p_mod_cliente.dni))
-            {
-                this.cmbBoxTipoDocumento.SelectedValue = this.glb_lst_tiposDocumentos.SingleOrDefault(x => x.codigo == 96);
-                this.txtBoxNumeroDocumento.Text = p_mod_cliente.dni;
-            }
         }
         private void cargarProveedorEnControles(ModeloProveedor p_mod_proveedor)
         {
@@ -537,6 +534,31 @@ namespace Vista
             }
             this.cmbBoxContactoProveedor.DataSource = dataSource;
             this.cmbBoxContactoProveedor.DropDownWidth= this.getDropDownWidth(this.cmbBoxContactoProveedor);
+        }
+        private void cargarDocumentoEnControles(ModeloPedido p_mod_pedido)
+        {
+            if (p_mod_pedido.entidad.GetType() == typeof(ModeloCliente))
+            {
+                if(!String.IsNullOrWhiteSpace(p_mod_pedido.documentoComprador.numero))
+                {
+                    this.cmbBoxTipoDocumento.SelectedValue = this.glb_lst_tiposDocumentos.SingleOrDefault(x => x.codigo == p_mod_pedido.documentoComprador.tipo.codigo);
+                    this.txtBoxNumeroDocumento.Text = p_mod_pedido.documentoComprador.numero;
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(p_mod_pedido.entidad.cuit) && !string.IsNullOrWhiteSpace((p_mod_pedido.entidad as ModeloCliente).dni))
+                {
+                    this.cmbBoxTipoDocumento.SelectedValue = this.glb_lst_tiposDocumentos.SingleOrDefault(x => x.codigo == 96);
+                    this.txtBoxNumeroDocumento.Text = (p_mod_pedido.entidad as ModeloCliente).dni;
+                    return;
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(p_mod_pedido.entidad.cuit))
+            {
+                this.cmbBoxTipoDocumento.SelectedValue = this.glb_lst_tiposDocumentos.SingleOrDefault(x => x.codigo == 80);
+                this.txtBoxNumeroDocumento.Text = p_mod_pedido.entidad.cuit;
+                return;
+            }
         }
         private void cargarDomicilioEnControles(ModeloDomicilio p_mod_domicilio)
         {
@@ -1271,11 +1293,20 @@ namespace Vista
 
             int i = Convert.ToInt32(this.dgvArticulosVenta.CurrentRow.Cells["indice"].Value);
             ModeloLineaPedido lcl_mod_lineaPedido = ObjectCopier.Clone<ModeloLineaPedido>(controlador.pedidoActual.lineasPedido[i]);
-            frmPedidoCierre_EditarLineaPedido lcl_frm_editarLineaPedido = new frmPedidoCierre_EditarLineaPedido(lcl_mod_lineaPedido, controlador.pedidoActual.codigoTipoPedido);
-            lcl_frm_editarLineaPedido.ShowDialog();
-            if (lcl_frm_editarLineaPedido.DialogResult == System.Windows.Forms.DialogResult.OK)
+            Form lcl_frm_editarLinea;
+            if (modoFormulario == ModoFormularioDevolucionCliente)
             {
-                controlador.pedidoActual.lineasPedido[i] = lcl_frm_editarLineaPedido.getLineaPedido();
+                ModeloLineaPedido lcl_mod_lineaPedidoOriginal = glb_mod_pedidoOriginalDevolucion.getLineaPedido(lcl_mod_lineaPedido.articulo);
+                lcl_frm_editarLinea = new frmPedidoCierre_EditarLineaPedido(lcl_mod_lineaPedido, lcl_mod_lineaPedidoOriginal);
+            }
+            else
+            {
+                lcl_frm_editarLinea = new frmPedidoCierre_EditarLineaPedido(lcl_mod_lineaPedido, controlador.pedidoActual.codigoTipoPedido);
+            }
+            lcl_frm_editarLinea.ShowDialog();
+            if (lcl_frm_editarLinea.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                controlador.pedidoActual.lineasPedido[i] = (lcl_frm_editarLinea as frmPedidoCierre_EditarLineaPedido).getLineaPedido();
                 this.controlador.pedidoActual.updateLineaPedido(controlador.pedidoActual.lineasPedido[i]);
                 this.cargarPedidoEnControles(controlador.pedidoActual);
             }
@@ -1330,12 +1361,24 @@ namespace Vista
         private void evento_agregarLinea(object sender, EventArgs e)
         {
             ModeloPedido lcl_mod_pedido = ObjectCopier.Clone(controlador.pedidoActual);
-            frmPedidoNuevo frm_pedidoNuevo = new frmPedidoNuevo(lcl_mod_pedido);
-            frm_pedidoNuevo.ShowDialog();
-            if (frm_pedidoNuevo.DialogResult != System.Windows.Forms.DialogResult.Ignore)
+            Form lcl_frm_agregarArticulos;
+            if (modoFormulario == ModoFormularioDevolucionCliente)
             {
-                controlador.pedidoActual = lcl_mod_pedido;
-                this.cargarPedidoEnControles(controlador.pedidoActual);
+                lcl_frm_agregarArticulos = new frmPedidoDevolucion(glb_mod_pedidoOriginalDevolucion, lcl_mod_pedido);
+            }
+            else
+            {
+                lcl_frm_agregarArticulos = new frmPedidoNuevo(lcl_mod_pedido);
+            }
+            //frmPedidoNuevo frm_pedidoNuevo = new frmPedidoNuevo(lcl_mod_pedido);
+            lcl_frm_agregarArticulos.ShowDialog();
+            if (lcl_frm_agregarArticulos.DialogResult != System.Windows.Forms.DialogResult.Ignore)
+            {
+                controlador.pedidoActual.removeAllLineaPedido();
+                controlador.pedidoActual.addLineaPedidoList(lcl_mod_pedido.lineasPedido);
+                //controlador.pedidoActual.lineasPedido = lcl_mod_pedido.lineasPedido;
+                this.cargarDatosPedidoEnControles(controlador.pedidoActual);
+                this.cargarLineasEnControles(controlador.pedidoActual);
             }
         }
        

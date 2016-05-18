@@ -83,6 +83,7 @@
             this.txtCAE = new System.Windows.Forms.TextBox();
             this.gbxArticulosDevolucion = new System.Windows.Forms.GroupBox();
             this.dgvArticulosDevolucion = new System.Windows.Forms.DataGridView();
+            this.indice_dgvDevolucion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codOrig = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codProv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.daaDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -272,7 +273,7 @@
             this.tblLayoutPanelDetalleArticuloBotones.ColumnCount = 3;
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.40659F));
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.59341F));
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.nmrcUpDownCantidad, 1, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnAgregar, 2, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.lblCantidad, 0, 0);
@@ -287,7 +288,7 @@
             // nmrcUpDownCantidad
             // 
             this.nmrcUpDownCantidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(71, 25);
+            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(70, 25);
             this.nmrcUpDownCantidad.Maximum = new decimal(new int[] {
             99999999,
             0,
@@ -317,7 +318,7 @@
             // 
             this.lblCantidad.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(13, 29);
+            this.lblCantidad.Location = new System.Drawing.Point(12, 29);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(52, 13);
             this.lblCantidad.TabIndex = 9;
@@ -744,6 +745,7 @@
             this.dgvArticulosDevolucion.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvArticulosDevolucion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulosDevolucion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.indice_dgvDevolucion,
             this.codOrig,
             this.codProv,
             this.daaDescripcion,
@@ -758,7 +760,16 @@
             this.dgvArticulosDevolucion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticulosDevolucion.Size = new System.Drawing.Size(590, 224);
             this.dgvArticulosDevolucion.TabIndex = 5;
+            this.dgvArticulosDevolucion.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulosDevolucion_CellClick);
             this.dgvArticulosDevolucion.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvArticulosDevolucion_MouseDown);
+            // 
+            // indice_dgvDevolucion
+            // 
+            this.indice_dgvDevolucion.DataPropertyName = "indice";
+            this.indice_dgvDevolucion.HeaderText = "indice";
+            this.indice_dgvDevolucion.Name = "indice_dgvDevolucion";
+            this.indice_dgvDevolucion.ReadOnly = true;
+            this.indice_dgvDevolucion.Visible = false;
             // 
             // codOrig
             // 
@@ -892,6 +903,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn descuento;
         private System.Windows.Forms.DataGridViewTextBoxColumn valorParcialSinDescuento;
         private System.Windows.Forms.DataGridViewTextBoxColumn valorParcialConDescuento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn indice_dgvDevolucion;
         private System.Windows.Forms.DataGridViewTextBoxColumn codOrig;
         private System.Windows.Forms.DataGridViewTextBoxColumn codProv;
         private System.Windows.Forms.DataGridViewTextBoxColumn daaDescripcion;

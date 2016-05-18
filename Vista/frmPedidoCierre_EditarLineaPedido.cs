@@ -43,6 +43,16 @@ namespace Vista
                 this.checkBoxStockNegativo.Checked = true;
             }
         }
+        /// <summary>
+        /// Exlusivo para editar lineas de pedidos en devoluciones
+        /// </summary>
+        /// <param name="p_mod_lineaPedidoActual"></param>
+        /// <param name="p_mod_lineaPedidoOriginal"></param>
+        public frmPedidoCierre_EditarLineaPedido(Modelos.ModeloLineaPedido p_mod_lineaPedidoActual,Modelos.ModeloLineaPedido p_mod_lineaPedidoOriginal) : this(p_mod_lineaPedidoActual,LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+        {
+            this.nmrcUpDownCantidad.Maximum = p_mod_lineaPedidoOriginal.cantidadArticulos;
+            this.checkBoxStockNegativo.Visible = false;
+        }
         #endregion
         
         #region Métodos

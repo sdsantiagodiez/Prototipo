@@ -497,6 +497,21 @@ namespace Vista
         }
         #endregion
         #region Artículos agregados a pedido
+        private void dgvArticulosEnPedido_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                //No hay fila seleccionada
+                return;
+            }
+            int i = e.RowIndex ;
+            //asigno el articulo a la variable articuloSeleccionadoBusqueda en caso de que se decida agregarlo al pedido
+            this.glb_mod_articuloSeleccionadoBusqueda = controlador.pedidoActual.lineasPedido[i].articulo;
+
+            cargarArticuloProveedorDetallesEnControles(this.glb_mod_articuloSeleccionadoBusqueda);
+            this.nmrcUpDownCantidad.Focus();
+            this.nmrcUpDownCantidad.Select(0, this.nmrcUpDownCantidad.Text.Length);
+        }
         private void dgvArticulosEnPedido_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -584,6 +599,8 @@ namespace Vista
         }
 
         #endregion           
+
+        
 
         
     }
