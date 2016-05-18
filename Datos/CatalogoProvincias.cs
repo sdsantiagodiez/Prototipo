@@ -46,15 +46,15 @@ namespace Datos
                     return " codigo_pais = @codigo_pais ";
                 
                 case Constantes.ParametrosBusqueda.Any:
-                    string codigoProvincia = p_mod_provincia.codigo == "" ? null : p_mod_provincia.codigo;
+                    string codigoProvincia = String.IsNullOrWhiteSpace(p_mod_provincia.codigo ) ? null : p_mod_provincia.codigo;
                     p_comando.Parameters.Add(this.instanciarParametro(codigoProvincia, "@codigo_provincia"));
                     string codigoProvinciaQuery = this.parametroBusqueda("@codigo_provincia", "codigo_provincia", "=");
 
-                    string provincia = p_mod_provincia.provincia == "" ? null : p_mod_provincia.provincia;
+                    string provincia = String.IsNullOrWhiteSpace(p_mod_provincia.provincia)? null : p_mod_provincia.provincia;
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(provincia), "@provincia"));
                     string provinciaQuery = this.parametroBusqueda("@provincia", "provincia", "LIKE");
 
-                    string codigoPais = p_mod_provincia.codigoPais == "" ? null : p_mod_provincia.codigoPais;
+                    string codigoPais = String.IsNullOrWhiteSpace(p_mod_provincia.codigoPais) ? null : p_mod_provincia.codigoPais;
                     p_comando.Parameters.Add(this.instanciarParametro(codigoPais, "@codigo_pais"));
                     string codigoPaisQuery = this.parametroBusqueda("@codigo_pais", "codigo_pais", "=");
 

@@ -51,7 +51,7 @@ namespace Vista
        
         #region Métodos
         #region Inicialización
-        public void inicializarControles()
+        private void inicializarControles()
         {
             #region DataGridViews
             this.dgvArticulosResultadoBusqueda.MultiSelect = false;
@@ -79,22 +79,22 @@ namespace Vista
             cntxMenuResultadoBusqueda.MenuItems.Add("Agregar 1");
             cntxMenuResultadoBusqueda.MenuItems[0].Click += (s,e)=>
                 {
-                    this.agregarLineaPedidoAPedido(glb_mod_articuloSeleccionadoBusqueda,1, this.chckBoxPermitirStockNegativo.Checked);
+                    this.agregarArticuloProveedorAPedido(glb_mod_articuloSeleccionadoBusqueda,1, this.chckBoxPermitirStockNegativo.Checked);
                 };
             cntxMenuResultadoBusqueda.MenuItems.Add("Agregar 2");
             cntxMenuResultadoBusqueda.MenuItems[1].Click += (s,e)=>
                 {
-                    this.agregarLineaPedidoAPedido(glb_mod_articuloSeleccionadoBusqueda,2, this.chckBoxPermitirStockNegativo.Checked);
+                    this.agregarArticuloProveedorAPedido(glb_mod_articuloSeleccionadoBusqueda,2, this.chckBoxPermitirStockNegativo.Checked);
                 };
             cntxMenuResultadoBusqueda.MenuItems.Add("Agregar 5");
             cntxMenuResultadoBusqueda.MenuItems[2].Click += (s,e)=>
                 {
-                    this.agregarLineaPedidoAPedido(glb_mod_articuloSeleccionadoBusqueda,5, this.chckBoxPermitirStockNegativo.Checked);
+                    this.agregarArticuloProveedorAPedido(glb_mod_articuloSeleccionadoBusqueda,5, this.chckBoxPermitirStockNegativo.Checked);
                 };
             cntxMenuResultadoBusqueda.MenuItems.Add("Agregar 10");
             cntxMenuResultadoBusqueda.MenuItems[3].Click += (s, e) =>
                 {
-                    this.agregarLineaPedidoAPedido(glb_mod_articuloSeleccionadoBusqueda, 10, this.chckBoxPermitirStockNegativo.Checked);
+                    this.agregarArticuloProveedorAPedido(glb_mod_articuloSeleccionadoBusqueda, 10, this.chckBoxPermitirStockNegativo.Checked);
                 };
             
             cntxMenuLineasPedidos = new ContextMenu();
@@ -106,20 +106,55 @@ namespace Vista
             cntxMenuLineasPedidos.MenuItems.Add("Quitar seleccionado");
             cntxMenuLineasPedidos.MenuItems[1].Click += (s, e) =>
                 {
-                    this.evento_eliminarArticuloProveedorDePedido(s,e);
+                    this.eliminarArticuloProveedorDePedido();
                 };
             cntxMenuLineasPedidos.MenuItems.Add("Quitar todos"); 
             cntxMenuLineasPedidos.MenuItems[2].Click += (s, e) =>
                 {
-                    this.evento_eliminarArticuloProveedorDePedidoTodos(s, e);
+                    this.eliminarArticuloProveedorDePedidoTodos();
                 };
             #endregion
 
-            #region Eventos
-            this.btnQuitar.Click += evento_eliminarArticuloProveedorDePedido;
-            this.btnAgregar.Click += evento_agregarArticuloProveedorEnPedido;
-            this.btnBorrarDetalleActual.Click += evento_eliminarArticuloProveedorDePedidoTodos;
+            #region Button
+            this.btnAgregar.Click += (s, e) =>
+                {
+                    this.agregarArticuloProveedorAPedido();
+                };
+            this.btnQuitar.Click += (s, e) =>
+                {
+                    this.eliminarArticuloProveedorDePedido();  
+                };
+            this.btnBorrarDetalleActual.Click += (s, e) =>
+                {
+                    this.eliminarArticuloProveedorDePedidoTodos();
+                };
             #endregion
+        }
+        private void inicializarContextMenuResultadoBusqueda()
+        { 
+
+        }
+        private void inicializarContextMenuLineasPedido()
+        {
+            if (this.dgvArticulosEnPedido.SelectedRows.Count > 1)
+            {
+                this.cntxMenuLineasPedidos.MenuItems[0].Visible = false;
+                this.cntxMenuLineasPedidos.MenuItems[1].Text = "Quitar seleccionados";
+                if (this.dgvArticulosEnPedido.SelectedRows.Count == this.controlador.pedidoActual.lineasPedido.Count)
+                {
+                    this.cntxMenuLineasPedidos.MenuItems[1].Visible = false;
+                }
+                else
+                {
+                    this.cntxMenuLineasPedidos.MenuItems[1].Visible = true;
+                }
+            }
+            else
+            {
+                this.cntxMenuLineasPedidos.MenuItems[0].Visible = true;
+                this.cntxMenuLineasPedidos.MenuItems[1].Visible = true;
+                this.cntxMenuLineasPedidos.MenuItems[1].Text = "Quitar seleccionado";
+            }
         }
         #endregion
       
@@ -130,31 +165,31 @@ namespace Vista
         /// <returns></returns>
         private bool validarAgregarArticulo()
         {
+            bool respuesta = true;
+            string mensajeError = "";
+
             //checkeo que haya un articulo seleccionado
             if (object.Equals(this.glb_mod_articuloSeleccionadoBusqueda, null))
             {
-                MessageBox.Show("Por favor seleccione un articulo a agregar de la grilla de busqueda");
-                return false;
-            }
-
+                mensajeError = "Por favor seleccione un articulo a agregar de la grilla de busqueda";
+                respuesta = false;
+            } 
             //Verifico la cantidad
-            if (!LibreriaClasesCompartidas.Validar.validarEnteroPositivoSinCero(this.nmrcUpDownCantidad.Value.ToString()))
+            else if (!LibreriaClasesCompartidas.Validar.validarEnteroPositivoSinCero(this.nmrcUpDownCantidad.Value.ToString()))
             {
-                MessageBox.Show("La cantidad de articulos debe ser un número mayor a cero.");
-                return false;
+                mensajeError = "La cantidad de articulos debe ser un número mayor a cero.";
+                respuesta = false;
             }
-
             //verifico stock    //proveedor no valida stock
-            if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona
+            else if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona
                 && this.glb_mod_articuloSeleccionadoBusqueda.stockActual < Convert.ToInt32(this.nmrcUpDownCantidad.Value)
                 && !this.chckBoxPermitirStockNegativo.Checked)
             {
-                MessageBox.Show("No hay suficientes articulos en inventario actual para cubrir el pedido");
-                return false;
+                mensajeError = "No hay suficientes articulos en inventario actual para cubrir el pedido";
+                respuesta = false;
             }
-
             //verifico que no exista ya en entre las lineas de pedido
-            if (controlador.exists(glb_mod_articuloSeleccionadoBusqueda))
+            else if (controlador.exists(glb_mod_articuloSeleccionadoBusqueda))
             {
                 ModeloLineaPedido lpExistente = controlador.pedidoActual.getLineaPedido(glb_mod_articuloSeleccionadoBusqueda);
                 if (!this.chckBoxPermitirStockNegativo.Checked)
@@ -162,13 +197,18 @@ namespace Vista
                     int cantidadTotal = lpExistente.cantidadArticulos + Convert.ToInt32(this.nmrcUpDownCantidad.Value);
                     if (cantidadTotal > glb_mod_articuloSeleccionadoBusqueda.stockActual)
                     {
-                        MessageBox.Show("No hay suficientes articulos en inventario actual para cubrir el pedido");
-                        return false;
+                        mensajeError = "No hay suficientes articulos en inventario actual para cubrir el pedido";
+                        respuesta = false;
                     }
                 }
             }
-            
-            return true;
+
+            if (!respuesta)
+            {
+                MessageBox.Show(mensajeError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return respuesta;
         }
 
         private bool validarBusqueda()
@@ -252,9 +292,6 @@ namespace Vista
 
             this.dgvArticulosEnPedido.DataSource = null;
             this.dgvArticulosEnPedido.DataSource = controlador.pedidoActual.lineasPedido;
-
-            //this.nmrcUpDownCantidad.Value = 0;
-            //this.cleanLbls();
         }
         #endregion
 
@@ -265,26 +302,84 @@ namespace Vista
             this.lblFechaActualizacionVar.Text = this.lblObservacionesVar.Text =
             this.lblUbicacionVar.Text = "Seleccione Artículo";
         }
-
-        private void agregarLineaPedidoAPedido(ModeloArticuloProveedores p_mod_articuloProveedor, int p_cantidad, bool p_permitirStockNegativo)
+        /// <summary>
+        /// Agrega artículo(s) proveedor al pedido actual
+        /// </summary>
+        private void agregarArticuloProveedorAPedido()
+        {
+            this.agregarArticuloProveedorAPedido(glb_mod_articuloSeleccionadoBusqueda, Convert.ToInt32(this.nmrcUpDownCantidad.Value), this.chckBoxPermitirStockNegativo.Checked);
+        }
+        /// <summary>
+        /// Agrega artículo(s) proveedor al pedido actual
+        /// </summary>
+        /// <param name="p_mod_articuloProveedor"></param>
+        /// <param name="p_cantidad"></param>
+        /// <param name="p_permitirStockNegativo"></param>
+        private void agregarArticuloProveedorAPedido(ModeloArticuloProveedores p_mod_articuloProveedor, int p_cantidad, bool p_permitirStockNegativo)
         {
             this.nmrcUpDownCantidad.Value = p_cantidad;
             if (this.validarAgregarArticulo())
             {
-                //verifico que no exista ya en entre las lineas de pedido
-                if (controlador.exists(p_mod_articuloProveedor))
+                //Agrego línea y especifico si permite stock negativo
+                controlador.addArticulo(p_mod_articuloProveedor, p_cantidad);
+                controlador.pedidoActual.lineasPedido[controlador.pedidoActual.lineasPedido.Count - 1].permitirStockNegativo = p_permitirStockNegativo;
+                this.cargarLineasPedidosEnControles();
+            }
+        }
+        /// <summary>
+        /// Elimina artículos seleccionados en datagridview del pedido actual
+        /// </summary>
+        private void eliminarArticuloProveedorDePedido()
+        {
+            List<ModeloLineaPedido> lcl_lst_lineasPedidosEliminar = new List<ModeloLineaPedido>();
+            int i;
+            string detallesArticulos = "";
+            foreach (DataGridViewRow row in dgvArticulosEnPedido.SelectedRows)
+            {
+                //i = Convert.ToInt32(row.Index);
+                lcl_lst_lineasPedidosEliminar.Add(controlador.pedidoActual.lineasPedido[row.Index]);
+
+                i = lcl_lst_lineasPedidosEliminar.Count - 1;
+                detallesArticulos += Environment.NewLine + "- " + lcl_lst_lineasPedidosEliminar[i].articulo.descripcionArticuloProveedor + " (" + lcl_lst_lineasPedidosEliminar[i].articulo.codigoArticuloProveedor + ")";
+            }
+
+            if (lcl_lst_lineasPedidosEliminar.Count < 1)
+            {
+                MessageBox.Show("No hay artículo seleccionado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (lcl_lst_lineasPedidosEliminar.Count == this.dgvArticulosEnPedido.RowCount)
+            {
+                this.eliminarArticuloProveedorDePedidoTodos();
+                return;
+            }
+
+            string mensaje = lcl_lst_lineasPedidosEliminar.Count > 1 ?
+                    "¿Está seguro que desea eliminar los artículos: " :
+                    "¿Está seguro que desea eliminar el artículo: ";
+
+            DialogResult dialogResult = MessageBox.Show(mensaje +
+                detallesArticulos + " ?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+            {
+                foreach (ModeloLineaPedido lp in lcl_lst_lineasPedidosEliminar)
                 {
-                    ModeloLineaPedido lpExistente = controlador.pedidoActual.getLineaPedido(p_mod_articuloProveedor);
-                    lpExistente.cantidadArticulos += p_cantidad;
-                    this.controlador.pedidoActual.updateLineaPedido(lpExistente);
-                }
-                else
-                {
-                    //Agrego línea y especifico si permite stock negativo
-                    controlador.addArticulo(p_mod_articuloProveedor, p_cantidad);
-                    controlador.pedidoActual.lineasPedido[controlador.pedidoActual.lineasPedido.Count - 1].permitirStockNegativo = p_permitirStockNegativo;
+                    controlador.pedidoActual.removeLineaPedido(lp);
                 }
                 this.cargarLineasPedidosEnControles();
+            }
+        }
+        /// <summary>
+        /// Elimina todos los artículos ingresados al pedido actual
+        /// </summary>
+        private void eliminarArticuloProveedorDePedidoTodos()
+        {
+            DialogResult lcl_dialogResult = MessageBox.Show("¿Realmente desea borrar el detalle actual?", "Confirmación", MessageBoxButtons.YesNo);
+            if (lcl_dialogResult == DialogResult.Yes)
+            {
+                controlador.removeLineasPedidos();
+                this.dgvArticulosEnPedido.DataSource = null;
+                //cleanLbls();
             }
         }
 
@@ -327,7 +422,9 @@ namespace Vista
 
             return lcl_lst_articulosProveedores;
         }
-
+        /// <summary>
+        /// Muestra ventana para editar cantidad ingresada de un artículo seleccionado en datagridview del pedido actual
+        /// </summary>
         private void editarCantidadArticulosEnLineaPedido()
         {
             int i = this.dgvArticulosEnPedido.SelectedRows[0].Index;
@@ -338,72 +435,7 @@ namespace Vista
         }
         #endregion
 
-        #region Eventos
-        /// <summary>
-        /// Agrega línea de pedido al pedido
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void evento_agregarArticuloProveedorEnPedido(object sender, EventArgs e)
-        {
-            this.agregarLineaPedidoAPedido(glb_mod_articuloSeleccionadoBusqueda, Convert.ToInt32(this.nmrcUpDownCantidad.Value), this.chckBoxPermitirStockNegativo.Checked);
-        }
-        /// <summary>
-        /// Elimina las líneas seleccionadas del pedido
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void evento_eliminarArticuloProveedorDePedido(object sender, EventArgs e)
-        {
-            List<ModeloLineaPedido> lcl_lst_lineasPedidosEliminar = new List<ModeloLineaPedido>();
-            int i;
-            string detallesArticulos = "";
-            foreach (DataGridViewRow row in dgvArticulosEnPedido.SelectedRows)
-            {
-                //i = Convert.ToInt32(row.Index);
-                lcl_lst_lineasPedidosEliminar.Add(controlador.pedidoActual.lineasPedido[row.Index]);
-
-                i = lcl_lst_lineasPedidosEliminar.Count - 1;
-                detallesArticulos += Environment.NewLine + "- " + lcl_lst_lineasPedidosEliminar[i].articulo.descripcionArticuloProveedor + " (" + lcl_lst_lineasPedidosEliminar[i].articulo.codigoArticuloProveedor + ")";
-            }
-
-            if (lcl_lst_lineasPedidosEliminar.Count < 1)
-            {
-                MessageBox.Show("No hay artículo seleccionado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string mensaje = lcl_lst_lineasPedidosEliminar.Count > 1 ?
-                    "¿Está seguro que desea eliminar los artículos: " :
-                    "¿Está seguro que desea eliminar el artículo: ";
-
-            DialogResult dialogResult = MessageBox.Show(mensaje +
-                detallesArticulos + " ?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
-            {
-                foreach (ModeloLineaPedido lp in lcl_lst_lineasPedidosEliminar)
-                {
-                    controlador.pedidoActual.removeLineaPedido(lp);
-                }
-                this.cargarLineasPedidosEnControles();
-            }
-        }
-        /// <summary>
-        /// Elimina todas las líneas del pedido
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void evento_eliminarArticuloProveedorDePedidoTodos(object sender, EventArgs e)
-        {
-            DialogResult lcl_dialogResult = MessageBox.Show("¿Realmente desea borrar el detalle actual?", "Confirmación", MessageBoxButtons.YesNo);
-            if (lcl_dialogResult == DialogResult.Yes)
-            {
-                controlador.removeLineasPedidos();
-                this.dgvArticulosEnPedido.DataSource = null;
-                //cleanLbls();
-            }
-        }
-       
+        #region Eventos       
         #region Botones
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
@@ -458,7 +490,7 @@ namespace Vista
                     this.glb_mod_articuloSeleccionadoBusqueda = controlador.getArticuloBusqueda(i);
 
                     cargarArticuloProveedorDetallesEnControles(this.glb_mod_articuloSeleccionadoBusqueda);
-                    //this.actualizarContextMenuStrip();
+                    this.inicializarContextMenuResultadoBusqueda();
                     this.cntxMenuResultadoBusqueda.Show(dgvArticulosResultadoBusqueda, new Point(e.X, e.Y));
                 }
             }
@@ -467,7 +499,6 @@ namespace Vista
         #region Artículos agregados a pedido
         private void dgvArticulosEnPedido_MouseDown(object sender, MouseEventArgs e)
         {
-
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 int currentMouseOverRow = this.dgvArticulosEnPedido.HitTest(e.X, e.Y).RowIndex;
@@ -485,7 +516,7 @@ namespace Vista
                     this.glb_mod_articuloSeleccionadoBusqueda = controlador.pedidoActual.lineasPedido[i].articulo;
                     
                     cargarArticuloProveedorDetallesEnControles(this.glb_mod_articuloSeleccionadoBusqueda);
-                    //this.actualizarContextMenuStrip();
+                    this.inicializarContextMenuLineasPedido();
                     this.cntxMenuLineasPedidos.Show(dgvArticulosEnPedido, new Point(e.X, e.Y));
                 }
             }
@@ -506,7 +537,7 @@ namespace Vista
                 }
                 else
                 {
-                    MessageBox.Show("No se encontraron coincidencias");
+                    MessageBox.Show("No se encontraron coincidencias.", "Resultado Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
             }
         }
@@ -521,7 +552,7 @@ namespace Vista
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                this.evento_agregarArticuloProveedorEnPedido(sender, e);
+                this.agregarArticuloProveedorAPedido();
             }
 
             // solo 0-9 y borrar 

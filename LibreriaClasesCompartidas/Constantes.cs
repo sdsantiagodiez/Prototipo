@@ -90,6 +90,7 @@ namespace LibreriaClasesCompartidas
 
             public static class Pedidos
             {
+                public const string CAE = "CAE";
                 public const string NumeroPedido = "numeroPedido";
                 public const string Fecha = "fecha";
                 public const string Tipo = "tipoPedido";
@@ -161,19 +162,22 @@ namespace LibreriaClasesCompartidas
         public enum TipoComprobanteVenta
         {
             Factura = 1,
-            [System.ComponentModel.Description("Nota de Crédito")]
-            NotaCredito = 2,
-            [System.ComponentModel.Description("Nota de Débito")]
-            NotaDebito = 3,
-            Recibo =4,
+            Recibo =2,
             [System.ComponentModel.Description("Nota de Venta al Contado")]
-            NotaVentaAlContado = 5,
-            Presupuesto = 6,
-            Reserva=7,
+            NotaVentaAlContado = 3,
+            Presupuesto = 4,
+            Reserva=5,
             
             Otro = 30
         }
-      
+
+        public enum TipoComprobanteDevolucion
+        {
+            [System.ComponentModel.Description("Nota de Crédito")]
+            NotaCredito = 1
+            //[System.ComponentModel.Description("Nota de Débito")]
+            //NotaDebito = 3,
+        }
         public enum TipoComprobanteCompra
         {
             [System.ComponentModel.Description("Pedido a Proveedor")]

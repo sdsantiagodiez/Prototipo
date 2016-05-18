@@ -138,8 +138,15 @@ namespace Vista
 
         private void btnDevolucion_Click(object sender, EventArgs e)
         {
-            frmDevolucion frmDevolucion = new frmDevolucion();
+            frmPedidoDevolucion frmDevolucion = new frmPedidoDevolucion(Controladores.ControladorBusqueda.buscar(new ModeloPedido() { numeroPedido = 141 }, Constantes.ParametrosBusqueda.Pedidos.NumeroPedido)[0]);
+            //frmPedidoDevolucion frmDevolucion = new frmPedidoDevolucion();
+            
             frmDevolucion.ShowDialog();
+            if (frmDevolucion.DialogResult != System.Windows.Forms.DialogResult.Ignore)
+            {
+                frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmDevolucion.controlador.pedidoActual);
+                lcl_frm_cierre.ShowDialog();
+            }
         }
 
         private void btnABM_Click(object sender, EventArgs e)

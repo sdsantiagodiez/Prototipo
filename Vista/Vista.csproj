@@ -83,12 +83,6 @@
     <Compile Include="frmABMEntidadDatosAdicionalesUsuario.Designer.cs">
       <DependentUpon>frmABMEntidadDatosAdicionalesUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDevolucion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmDevolucion.Designer.cs">
-      <DependentUpon>frmDevolucion.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmLoading.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +118,12 @@
     </Compile>
     <Compile Include="frmPedidoCierre_FormasDePago.Designer.cs">
       <DependentUpon>frmPedidoCierre_FormasDePago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPedidoDevolucion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPedidoDevolucion.Designer.cs">
+      <DependentUpon>frmPedidoDevolucion.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPedidoNuevo.cs">
       <SubType>Form</SubType>
@@ -182,9 +182,6 @@
     <EmbeddedResource Include="frmABMEntidadDatosAdicionalesUsuario.resx">
       <DependentUpon>frmABMEntidadDatosAdicionalesUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDevolucion.resx">
-      <DependentUpon>frmDevolucion.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmLoading.resx">
       <DependentUpon>frmLoading.cs</DependentUpon>
     </EmbeddedResource>
@@ -202,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPedidoCierre_FormasDePago.resx">
       <DependentUpon>frmPedidoCierre_FormasDePago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPedidoDevolucion.resx">
+      <DependentUpon>frmPedidoDevolucion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPedidoNuevo.resx">
       <DependentUpon>frmPedidoNuevo.cs</DependentUpon>

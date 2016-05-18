@@ -180,13 +180,14 @@ namespace Modelos
 
         public ModeloPedido()
         {
-            lineasPedido = new List<ModeloLineaPedido>();
+            this.lineasPedido = new List<ModeloLineaPedido>();
             this.alicuota = new Alicuota();
             this.documentoComprador = new Documento();
             this.fecha = DateTime.Today;
             this.descuento_1 = new ModeloDescuento();
             this.descuento_2 = new ModeloDescuento();
             this.formasDePago = new List<FormaPago>();
+            this.entidad = new ModeloEntidad();
         }
 
         public ModeloPedido(ModeloEntidad p_mod_entidad) : this()
@@ -327,23 +328,37 @@ namespace Modelos
             }
             this.actualizarMontos();
         }
+        /// <summary>
+        /// Agrega línea o suma cantidades si ya existe
+        /// </summary>
+        /// <param name="p_lineaPedido"></param>
+        /// <returns></returns>
         public bool addLineaPedido(ModeloLineaPedido p_lineaPedido)
         {
             ////Si linea ya existe, se suman las cantidades de las dos lineas y permanece la última ingresada
             bool respuesta = true;
-            //if (existeLineaPedido(pLineaPedido))
-            //{
-            //    ModeloLineaPedido lpActual = findDetail(pLineaPedido.codigoOriginalArt ,pLineaPedido.codigoArtProveedor);
-            //    pLineaPedido.cantidadArticulos = lpActual.cantidadArticulos + pLineaPedido.cantidadArticulos;
-            //    respuesta = _lineasPedido.Remove(lpActual);
-            //}
-            //if(respuesta)
-            //{
+
+            ModeloLineaPedido lcl_mod_lineaPedido = this.getLineaPedido(p_lineaPedido.articulo);
+            if (lcl_mod_lineaPedido != null)
+            {
+                //la linea de pedido ya existe. Se suman las cantidades y se mantiene lcl_mod_lineaPedido en la lista
+                lcl_mod_lineaPedido.cantidadArticulos += p_lineaPedido.cantidadArticulos;
+                p_lineaPedido.cantidadArticulos = lcl_mod_lineaPedido.cantidadArticulos;
+                lcl_mod_lineaPedido = p_lineaPedido;
+            }
+            else
+            {
                 this._lineasPedido.Add(p_lineaPedido);
-            //}
+            }
+
             this.actualizarMontos();
             return respuesta;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p_lineaPedido"></param>
+        /// <returns></returns>
         public bool updateLineaPedido(ModeloLineaPedido p_lineaPedido)
         {
             /*TEMPORAL: puse que se busque la linea en vez de sacarla porque como la linea viene modificada por la actualización quizas no la detecte al no ser igual (no estoy seguro)*/

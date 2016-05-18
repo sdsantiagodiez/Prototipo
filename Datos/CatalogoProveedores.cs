@@ -47,7 +47,7 @@ namespace Datos
                 case Constantes.ParametrosBusqueda.Any:
                     string queryBase = base.getCondicionBusqueda(p_mod_proveedor,p_parametroBusqueda,ref p_comando);
 
-                    string razonSocial = p_mod_proveedor.razonSocial == "" ? null : p_mod_proveedor.razonSocial;
+                    string razonSocial = String.IsNullOrWhiteSpace(p_mod_proveedor.razonSocial)? null : p_mod_proveedor.razonSocial;
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(razonSocial), "@razon_social"));
                     string razonSocialQuery = this.parametroBusqueda("@razon_social", "razon_social", "LIKE");
 

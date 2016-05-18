@@ -21,13 +21,28 @@ namespace Datos
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
             lcl_mod_pedido.entidad.codigo = (int)p_drPedidos["codigo_entidad"];
+            lcl_mod_pedido.codigoTipoPedido = (Constantes.CodigosTiposPedidos)p_drPedidos["codigo_tipo_pedido"];
+            lcl_mod_pedido.alicuota.monto = (p_drPedidos["alicuota"] != DBNull.Value) ? (decimal)p_drPedidos["alicuota"] : 0;
+            lcl_mod_pedido.montoSubTotal = (p_drPedidos["monto_subtotal"] != DBNull.Value) ? (decimal)p_drPedidos["monto_subtotal"] : 0;
             lcl_mod_pedido.montoTotal = (p_drPedidos["monto_total"] != DBNull.Value) ? (decimal)p_drPedidos["monto_total"] : 0;
             lcl_mod_pedido.observaciones = (p_drPedidos["observaciones"] != DBNull.Value) ? (string)p_drPedidos["observaciones"] : null;
-            lcl_mod_pedido.codigoTipoPedido = (Constantes.CodigosTiposPedidos)p_drPedidos["codigo_tipo_pedido"];
+
+            #region Datos Pedidos_Personas
+            if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            {
+            lcl_mod_pedido.numeroComprobante = (p_drPedidos["numero_comprobante"] != DBNull.Value) ? (string)p_drPedidos["numero_comprobante"] : null; ;
+            lcl_mod_pedido.CAE = (p_drPedidos["cae"] != DBNull.Value) ? (string)p_drPedidos["cae"] : null; ;
+            lcl_mod_pedido.aprobadoAFIP = (p_drPedidos["aprobado_afip"] != DBNull.Value) ? (string)p_drPedidos["aprobado_afip"] : null; ;
+            (lcl_mod_pedido.entidad as ModeloCliente).nombre = (p_drPedidos["nombre_entidad"] != DBNull.Value) ? (string)p_drPedidos["nombre_entidad"] : null; ;
+            (lcl_mod_pedido.entidad as ModeloCliente).apellido = (p_drPedidos["apellido_entidad"] != DBNull.Value) ? (string)p_drPedidos["apellido_entidad"] : null; ;
+            lcl_mod_pedido.documentoComprador.tipo.codigo = (p_drPedidos["codigo_documento"] != DBNull.Value) ? (int)p_drPedidos["codigo_documento"] : 0; ;
+            lcl_mod_pedido.documentoComprador.numero = (p_drPedidos["numero_documento_entidad"] != DBNull.Value) ? (string)p_drPedidos["numero_documento_entidad"] : null; ;
+            lcl_mod_pedido.tipoComprobante = (p_drPedidos["codigo_comprobante"] != DBNull.Value) ? (int)p_drPedidos["codigo_comprobante"] : 0; ;
+            }
+            #endregion
 
             return lcl_mod_pedido;
         }
-
 
         /// <summary>
         /// NO USAR. Usar método buscarPedido(ModeloPedido,Constantes...TipoPedido) (BORRAR)
@@ -108,9 +123,7 @@ namespace Datos
             //    modProv = catProv.leerDatosProveedor(drProveedor);
             //}
             //return modProv;
-        }
-
-        
+        }        
 
         public bool validarDatos(ModeloPedido p_mod_pedido)
         {
@@ -133,6 +146,8 @@ namespace Datos
             return respuesta;
         }
 
+        #region Búsqueda
+
         /// <summary>
         /// Genera string a insertar en clausula WHERE de sql de acuerdo a los parámetros de búsqueda
         /// </summary>
@@ -147,7 +162,9 @@ namespace Datos
                 case Constantes.ParametrosBusqueda.Pedidos.NumeroPedido:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numero_pedido"));
                     return " numero_pedido = @numero_pedido ";
-
+                case Constantes.ParametrosBusqueda.Pedidos.CAE:
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.CAE, "@cae"));
+                    return " cae = @cae ";
                 case Constantes.ParametrosBusqueda.Pedidos.Tipo:
                     p_comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
                     return " codigo_tipo_pedido = @codigo_tipo_pedido ";
@@ -167,6 +184,10 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(fecha, "@fecha"));
                     string fechaQuery = this.parametroBusqueda("@fecha", "fecha", "=");
 
+                    string cae = String.IsNullOrWhiteSpace(p_mod_pedido.CAE)  ? null : p_mod_pedido.CAE;
+                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.CAE, "@cae"));
+                    string caeQuery = this.parametroBusqueda("@cae", "cae", "=");
+
                     return numeroPedidoQuery + " AND " + codigoTipoPedidoQuery + " AND " + fechaQuery;
                 default:
                     return base.getCondicionBusqueda(p_parametroBusqueda);
@@ -185,20 +206,28 @@ namespace Datos
             string querySQL = this.getCondicionBusqueda(p_mod_pedido, p_parametroBusqueda, ref comando);
 
             comando.CommandText =
-                "SELECT [numero_pedido],[fecha],[monto_total],[observaciones],[codigo_tipo_pedido], [codigo_entidad] "+
-	            "FROM "+
-	            "( "+
-                "    (SELECT pedidos.[numero_pedido],[fecha],[monto_total],[observaciones],[codigo_tipo_pedido], [codigo_entidad] " +
-		        "       FROM pedidos, Pedidos_Personas "+
-		        "       WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido "+
-		        "    ) "+
-	            "UNION "+
-		        "    (SELECT pedidos.[numero_pedido],[fecha],[monto_total],[observaciones],[codigo_tipo_pedido], [codigo_entidad] "+
-		        "       FROM pedidos, Pedidos_Proveedores "+
-		        "       WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido "+
-                "    ) " +
-	            ") as tbl "+
-                "WHERE " + querySQL ;
+                "SELECT  [numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
+                "        [codigo_entidad], "+
+                "        [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante]  "+
+                "    FROM  "+
+                "    (  "+
+                "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
+                "                Pedidos_Personas.[codigo_entidad], "+
+	            "                [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], "+
+	            "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante] "+
+                "            FROM pedidos, Pedidos_Personas  "+
+                "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido  "+
+                "        )  "+
+                "    UNION  "+
+                "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
+                "                Pedidos_Proveedores.[codigo_entidad], "+
+	            "                NULL as [numero_comprobante],NULL as [cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], "+
+	            "                NULL as [codigo_documento],NULL as [numero_documento_entidad],NULL as [codigo_comprobante] "+
+                "            FROM pedidos, Pedidos_Proveedores  "+
+                "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  "+
+                "        )  "+
+                "    ) as tbl " +
+                "   WHERE " + querySQL ;
 
             comando.Connection.Open();
 
@@ -248,7 +277,10 @@ namespace Datos
         {
             return this.buscarPedido(null, Constantes.ParametrosBusqueda.All);
         }
+        
+        #endregion
 
+        #region Reportes
         public ModeloReporteEncabezado getPedidosEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin, int p_CodigoProveedor)
         {
           
@@ -545,6 +577,7 @@ namespace Datos
 
             return lcl_mod_ReporteEncabezadoTop10Articulos;
         }
+        #endregion
 
         #region Alta/Baja/Modificación
         /*
@@ -571,36 +604,89 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-            "INSERT INTO [pedidos]([fecha],[monto_total],[observaciones],[codigo_tipo_pedido]) " +
+            "INSERT INTO [pedidos]([codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones]) " +
             "   OUTPUT INSERTED.NUMERO_PEDIDO " +
-            "   VALUES (@fecha, @monto_total, @observaciones,@codigo_tipo_pedido)";
+            "   VALUES (@codigo_tipo_pedido,@fecha, @alicuota,@monto_subtotal,@monto_total, @observaciones)";
 
             //Indica los parametros
+            comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.fecha, "@fecha"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.alicuota.monto, "@alicuota"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.montoSubTotal, "@monto_subtotal"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.montoTotal, "@monto_total"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.observaciones, "@observaciones"));
-            comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.entidad.codigo, "@codigo_entidad"));
 
             comando.Connection.Open();
-
+            //falta agregar domicilio, mail y telefono de facturacion
             int? nuevoNumeroPedido = (int?)comando.ExecuteScalar();
 
-            string tablaTipoPedidoQuery = this.getTablaTipoPedido(p_mod_pedido);
-                
-            comando.CommandText =
-            "INSERT INTO " + tablaTipoPedidoQuery + " (numero_pedido,codigo_entidad) " +
-            "    VALUES( @numeroPedidoActual,@codigo_entidad) ";
-            comando.Parameters.Add(this.instanciarParametro(nuevoNumeroPedido,"@numeroPedidoActual"));
-            
-            int rowsAffected = comando.ExecuteNonQuery();
-            comando.Connection.Close();
-            if (nuevoNumeroPedido != null && rowsAffected == 1)
+            if (nuevoNumeroPedido == null)
             {
-                p_mod_pedido.numeroPedido = Convert.ToInt32(nuevoNumeroPedido);
+                //return false?
+                throw new Exception("Ha ocurrido un error al intentar registrar el Pedido actual.");
+            }
+
+            p_mod_pedido.numeroPedido = Convert.ToInt32(nuevoNumeroPedido);
+            int rowsAffected;
+
+            if (p_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            {
+                rowsAffected = this.addPedidoCliente(comando,p_mod_pedido);
+            }
+            else if (p_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
+            {
+                rowsAffected = this.addPedidoProveedor(comando, p_mod_pedido);
+            }
+            else
+            {
+                //return false?
+                throw new Exception("Ha ocurrido un error al intentar registrar el Pedido actual. No se ha detectado el tipo de pedido.");
+            }
+
+            comando.Connection.Close();
+            if (rowsAffected == 1)
+            {
                 return true;
             }
-            throw new Exception("Ha ocurrido un error al intentar registrar el Pedido actual.");
+            else
+            {
+                //return false?
+                throw new Exception("Ha ocurrido un error al intentar registrar el Pedido actual.");
+            }
+            
+        }
+
+        private int addPedidoCliente(SqlCommand p_comando,ModeloPedido p_mod_pedido)
+        {
+            p_comando.CommandText =
+           "INSERT INTO  Pedidos_Personas  (numero_pedido,numero_comprobante,cae,aprobado_afip,codigo_entidad,nombre_entidad,apellido_entidad,codigo_documento,"+
+           "    numero_documento_entidad,codigo_comprobante) " +
+           "    VALUES( @numeroPedidoActual,@numero_comprobante,@cae,@aprobado_afip,@codigo_entidad,@nombre_entidad,@apellido_entidad,@codigo_documento,"+
+           "        @numero_documento_entidad,@codigo_comprobante) ";
+            
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numeroPedidoActual"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroComprobante, "@numero_comprobante"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.CAE, "@cae"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.aprobadoAFIP, "@aprobado_afip"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.entidad.codigo, "@codigo_entidad"));
+            p_comando.Parameters.Add(this.instanciarParametro((p_mod_pedido.entidad as ModeloCliente).nombre, "@nombre_entidad"));
+            p_comando.Parameters.Add(this.instanciarParametro((p_mod_pedido.entidad as ModeloCliente).apellido, "@apellido_entidad"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.documentoComprador.tipo.codigo, "@codigo_documento"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.documentoComprador.numero, "@numero_documento_entidad"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.tipoComprobante, "@codigo_comprobante"));
+            
+
+            return p_comando.ExecuteNonQuery();
+        }
+
+        private int addPedidoProveedor(SqlCommand p_comando, ModeloPedido p_mod_pedido)
+        {
+            p_comando.CommandText =
+            "INSERT INTO  Pedidos_Proveedores  (numero_pedido,codigo_entidad) " +
+            "    VALUES( @numeroPedidoActual,@codigo_entidad) ";
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numeroPedidoActual"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.entidad.codigo, "@codigo_entidad"));
+            return p_comando.ExecuteNonQuery();
         }
 
         public bool update(ModeloPedido p_mod_pedido)

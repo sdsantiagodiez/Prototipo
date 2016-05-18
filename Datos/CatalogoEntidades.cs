@@ -62,7 +62,7 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(codigoEntidad, "@codigo_entidad"));
                     string codigoEntidadQuery = @" (@codigo_entidad IS NULL OR @codigo_entidad = codigo_entidad) ";
 
-                    string cuit = (p_mod_entidad.cuit == "") ? null : p_mod_entidad.cuit;
+                    string cuit = String.IsNullOrWhiteSpace(p_mod_entidad.cuit ) ? null : p_mod_entidad.cuit;
                     p_comando.Parameters.Add(this.instanciarParametro(cuit, "@cuit"));
                     string cuitQuery = " (@cuit is null OR cuit=@cuit) ";
 

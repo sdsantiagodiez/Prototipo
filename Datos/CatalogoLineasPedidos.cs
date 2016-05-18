@@ -82,15 +82,15 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(numeroPedido, "@numero_pedido"));
                     string numeroPedidoQuery = this.parametroBusqueda("@numero_pedido", "numero_pedido", "=");
 
-                    string codigoOriginal = p_mod_lineaPedido.articulo.codigoOriginal== "" ? null : p_mod_lineaPedido.articulo.codigoOriginal;
+                    string codigoOriginal = String.IsNullOrWhiteSpace(p_mod_lineaPedido.articulo.codigoOriginal)? null : p_mod_lineaPedido.articulo.codigoOriginal;
                     p_comando.Parameters.Add(this.instanciarParametro(codigoOriginal, "@codigo_original"));
                     string codigoOriginalQuery = this.parametroBusqueda("@codigo_original", "codigo_original", "=");
 
-                    string codigoArticuloProveedor = p_mod_lineaPedido.articulo.codigoArticuloProveedor== "" ? null : p_mod_lineaPedido.articulo.codigoArticuloProveedor;
+                    string codigoArticuloProveedor = String.IsNullOrWhiteSpace(p_mod_lineaPedido.articulo.codigoArticuloProveedor) ? null : p_mod_lineaPedido.articulo.codigoArticuloProveedor;
                     p_comando.Parameters.Add(this.instanciarParametro(codigoArticuloProveedor, "@codigo_articulo_proveedor"));
                     string codigoArticuloProveedorQuery = this.parametroBusqueda("@codigo_articulo_proveedor", "codigo_articulo_proveedor", "=");
 
-                    string descripcion = p_mod_lineaPedido.articulo.descripcionArticuloProveedor== "" ? null : p_mod_lineaPedido.articulo.descripcionArticuloProveedor;
+                    string descripcion = String.IsNullOrWhiteSpace(p_mod_lineaPedido.articulo.descripcionArticuloProveedor) ? null : p_mod_lineaPedido.articulo.descripcionArticuloProveedor;
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(descripcion), "@descripcion"));
                     string descripcionQuery = this.parametroBusqueda("@descripcion", "descripcion", "LIKE");
 
@@ -128,12 +128,12 @@ namespace Datos
 
             List<ModeloLineaPedido> lcl_lst_mod_lineasPedido = new List<ModeloLineaPedido>();
             ModeloLineaPedido lcl_mod_lineaPedido = new ModeloLineaPedido();
-
+            CatalogoArticuloProveedores lcl_cat_articulosProveedores = new CatalogoArticuloProveedores();
             while (drLineasPedidos.Read())
             {
                 lcl_mod_lineaPedido = new ModeloLineaPedido();
                 lcl_mod_lineaPedido = this.leerDatosLineaPedido(drLineasPedidos);
-
+                lcl_mod_lineaPedido.articulo = lcl_cat_articulosProveedores.buscar(lcl_mod_lineaPedido.articulo, Constantes.ParametrosBusqueda.One)[0];
                 lcl_lst_mod_lineasPedido.Add(lcl_mod_lineaPedido);
             }
             drLineasPedidos.Close();

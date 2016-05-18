@@ -17,64 +17,135 @@ namespace Vista
     public partial class frmPedidoCierre : Form
     {
         #region Atributos
+       
         List<TipoDocumento> glb_lst_tiposDocumentos;
         ControladorPedido controlador;
         CheckBox chckBoxClienteGenerico;
         ContextMenu cntxMenuLineasPedido;
+        #region ModoFormulario
+        public const string ModoFormularioPedidoCliente = "Pedido Cliente";
+        public const string ModoFormularioPedidoProveedor = "Pedido a Proveedor(es)";
+        public const string ModoFormularioDevolucionCliente = "Devolución Cliente";
+        private string _modoFormulario;
+        public string modoFormulario
+        {
+            get { return _modoFormulario; }
+            set
+            {
+                _modoFormulario = value;
+                switch(_modoFormulario)
+                {
+                    case ModoFormularioPedidoCliente:
+                        this.inicializarControlesCliente();
+                        this.Text = "Cierre Pedido de Cliente";
+                        break;
+                    case ModoFormularioDevolucionCliente:
+                        this.inicializarControlesCliente();
+                        this.Text = "Devolución de Artículos Cliente";
+                        break;
+                    case ModoFormularioPedidoProveedor:
+                        this.inicializarControlesProveedor();
+                        this.Text = "Cierre Pedido a Proveedores";
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        #endregion
+        
         #endregion
 
         #region Constructores
-        public frmPedidoCierre()
+        /// <summary>
+        /// Inicializa formulario con controles compartidos por todos los modos de formulario
+        /// </summary>
+        private frmPedidoCierre()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.inicializarTextBoxes();
-            this.inicializarContextMenuStrip();
-            this.inicializarBotones();
+            this.inicializarControles();
         }
-
+        /// <summary>
+        /// Inicializa formulario de acuerdo al codigoTipoPedido asignado al pedido
+        /// </summary>
+        /// <param name="p_mod_pedido"></param>
         public frmPedidoCierre(ModeloPedido p_mod_pedido) : this()
         {
-            this.inicializarComboBox();
             switch (p_mod_pedido.codigoTipoPedido)
             {
                 case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona:
                     this.inicializarCierrePedidoCliente(p_mod_pedido);
                     break;
-                case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor:
+                case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor: 
                     this.inicializarCierrePedidosProveedores(p_mod_pedido);
+                    break;
+                default:
+                    MessageBox.Show("Error al iniciar ventana.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                    break;
+            }
+        }
+        /// <summary>
+        /// Inicializa formulario de acuerdo al modoFormulario indicado como parámetro
+        /// </summary>
+        /// <param name="p_mod_pedido"></param>
+        /// <param name="p_modoFormulario"></param>
+        public frmPedidoCierre(ModeloPedido p_mod_pedido, string p_modoFormulario) : this()
+        {
+            this.modoFormulario = p_modoFormulario;
+            switch (p_modoFormulario)
+            {
+                case ModoFormularioPedidoCliente:
+                    p_mod_pedido.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona;
+                    this.inicializarCierrePedidoCliente(p_mod_pedido);
+                    break;
+                case ModoFormularioDevolucionCliente:
+                    p_mod_pedido.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona;
+                    this.inicializarDevolucionPedidoCliente(p_mod_pedido);
+                    break;
+                case ModoFormularioPedidoProveedor:
+                    p_mod_pedido.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor;
+                    this.inicializarCierrePedidosProveedores(p_mod_pedido);
+                    break;
+                default :
+                    MessageBox.Show("Error al iniciar ventana.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
                     break;
             }
         }
         #endregion
 
         #region Métodos
+        
         #region Inicialización
         private void inicializarCierrePedidoCliente(ModeloPedido p_mod_pedido)
         {
-            this.Text = "Cierre Pedido de Cliente";
-            this.cmbBoxPedidosProveedores.Visible = false;
+            modoFormulario = ModoFormularioPedidoCliente;
+            
             this.controlador = new ControladorPedidoCliente();
-            this.inicializarControlesCliente();
             this.cargarPedidoEnControles(p_mod_pedido);
         }
-
         private void inicializarCierrePedidosProveedores(ModeloPedido p_mod_pedido)
         {
-            this.Text = "Cierre Pedido a Proveedores";
-            this.cmbBoxPedidosProveedores.Visible = true;
-            this.btnFacturaElectronica.Visible = false;
+            modoFormulario = ModoFormularioPedidoProveedor;
             this.controlador = new ControladorPedidoProveedor();
             List<ModeloPedido> lcl_lst_mod_pedidos = (controlador as ControladorPedidoProveedor).getPedidosProveedores(p_mod_pedido);
             this.inicializarComboBoxPedidosProveedores(lcl_lst_mod_pedidos);
-            this.inicializarControlesProveedor(lcl_lst_mod_pedidos[0].entidad as ModeloProveedor); 
+            
             this.cargarPedidoEnControles(lcl_lst_mod_pedidos[0]);
+        }
+        private void inicializarDevolucionPedidoCliente(ModeloPedido p_mod_pedido)
+        {
+            this.modoFormulario = ModoFormularioDevolucionCliente;
+            
+            this.controlador = new ControladorPedidoCliente();
+            this.cargarPedidoEnControles(p_mod_pedido);
         }
         private void inicializarPedidoAbierto()
         {
             this.habilitarControles(this);
         }
-
         private void inicializarPedidoCerrado()
         {
             this.desHabilitarControles(this);
@@ -84,36 +155,18 @@ namespace Vista
             this.habilitarControl(this.cmbBoxPedidosProveedores);
             this.dgvArticulosVenta.ClearSelection();
         }
-
         private void inicializarPedidoFacturado()
         {
             this.inicializarPedidoCerrado();
             this.habilitarControl(this.btnGuardar);
         }
-
-        private void habilitarControl(Control p_control)
+ 
+        private void inicializarControles()
         {
-            if (p_control != null)
-            {
-                p_control.Enabled = true;
-                habilitarControl(p_control.Parent);
-            }
-        }
-        private void habilitarControles(Control p_control)
-        {
-            foreach (Control c in p_control.Controls)
-            {
-                habilitarControles(c);
-            }
-            p_control.Enabled = true;
-        }
-        private void desHabilitarControles(Control p_control)
-        {
-            foreach (Control c in p_control.Controls)
-            {
-                desHabilitarControles(c);
-            }
-            p_control.Enabled = false;
+            this.inicializarTextBoxes();
+            this.inicializarContextMenuStrip();
+            this.inicializarBotones();
+            this.inicializarComboBox();
         }
         private void inicializarBotones()
         {
@@ -209,6 +262,8 @@ namespace Vista
         }
         private void inicializarControlesCliente()
         {
+            this.cmbBoxPedidosProveedores.Visible = false;
+
             this.lblCAE.Visible = 
                 this.txtBoxCAE.Visible = true;
 
@@ -220,17 +275,32 @@ namespace Vista
             this.tblLayoutPanelEntidadDatos.Controls.Add(chckBoxClienteGenerico, 1, 4);
 
             this.cmbBoxTipoComprobante.FormattingEnabled = true;
-            this.cmbBoxTipoComprobante.Format += delegate(object sender, ListControlConvertEventArgs e)
+            if (modoFormulario == ModoFormularioDevolucionCliente)
             {
-                e.Value = Constantes.GetDescription<Constantes.TipoComprobanteVenta>((Constantes.TipoComprobanteVenta)e.Value);
-            };
-            
-            this.cmbBoxTipoComprobante.DataSource = Enum.GetValues(typeof(Constantes.TipoComprobanteVenta));
+                this.cmbBoxTipoComprobante.Format += delegate(object sender, ListControlConvertEventArgs e)
+                {
+                    e.Value = Constantes.GetDescription<Constantes.TipoComprobanteDevolucion>((Constantes.TipoComprobanteDevolucion)e.Value);
+                };
+
+                this.cmbBoxTipoComprobante.DataSource = Enum.GetValues(typeof(Constantes.TipoComprobanteDevolucion));
+            }
+            else
+            {
+                this.cmbBoxTipoComprobante.Format += delegate(object sender, ListControlConvertEventArgs e)
+                {
+                    e.Value = Constantes.GetDescription<Constantes.TipoComprobanteVenta>((Constantes.TipoComprobanteVenta)e.Value);
+                };
+
+                this.cmbBoxTipoComprobante.DataSource = Enum.GetValues(typeof(Constantes.TipoComprobanteVenta));
+            }
             this.cmbBoxTipoComprobante.DropDownWidth = this.getDropDownWidth(this.cmbBoxTipoComprobante)+25;
             this.cmbBoxTipoComprobante.DropDownStyle = ComboBoxStyle.DropDownList;
         }
-        private void inicializarControlesProveedor(ModeloProveedor p_mod_proveedor)
+        private void inicializarControlesProveedor()
         {
+            this.cmbBoxPedidosProveedores.Visible = true;
+            this.btnFacturaElectronica.Visible = false;
+
             this.lblContactoProveedor.Visible = true;
             this.cmbBoxContactoProveedor.Visible = true;
             this.cmbBoxContactoProveedor.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -262,6 +332,7 @@ namespace Vista
             this.cmbBoxPedidosProveedores.ValueMember = "Value";
             this.cmbBoxPedidosProveedores.DropDownStyle = ComboBoxStyle.DropDownList;
         }
+        
         private void actualizarContextMenuStrip()
         {
             if (dgvArticulosVenta.SelectedRows.Count > 1)
@@ -297,6 +368,31 @@ namespace Vista
             }
             this.cargarProvinciasEnControles(provincias);
         }
+
+        private void habilitarControl(Control p_control)
+        {
+            if (p_control != null)
+            {
+                p_control.Enabled = true;
+                habilitarControl(p_control.Parent);
+            }
+        }
+        private void habilitarControles(Control p_control)
+        {
+            foreach (Control c in p_control.Controls)
+            {
+                habilitarControles(c);
+            }
+            p_control.Enabled = true;
+        }
+        private void desHabilitarControles(Control p_control)
+        {
+            foreach (Control c in p_control.Controls)
+            {
+                desHabilitarControles(c);
+            }
+            p_control.Enabled = false;
+        } 
         #endregion
        
         #region Modelo -> Controles
@@ -588,22 +684,15 @@ namespace Vista
             if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
             {
                 lcl_mod_pedido.entidad = this.cargarControlEnCliente();
-                
-                lcl_mod_pedido.tipoComprobante = ControladorPedidoCliente.getCodigoComprobante((Constantes.TipoComprobanteVenta)this.cmbBoxTipoComprobante.SelectedValue,
-                                                                                                Convert.ToInt16(chckBoxResponsableInscripto.Checked));
-                
                 lcl_mod_pedido.documentoComprador = this.cargarControlEnDocumento();
             }
-            if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
-            {
-                //el proveedor ya esta en el pedido
-                lcl_mod_pedido.tipoComprobante = 0;
-            }
-            lcl_mod_pedido.fecha = this.dtpFechaPedido.Value;
+
+            lcl_mod_pedido.tipoComprobante = this.getCodigoTipoComprobante();
             lcl_mod_pedido.domicilioDeFacturacion = this.cargarControlEnDomicilio();
             lcl_mod_pedido.mailContacto = this.cargarControlEnMail();
             lcl_mod_pedido.telefonoContacto = this.cargarControlEnTelefono();
             lcl_mod_pedido.observaciones = this.rchTextBoxObservacionesPedido.Text;
+            lcl_mod_pedido.fecha = this.dtpFechaPedido.Value;
 
             return lcl_mod_pedido;
         }
@@ -667,10 +756,28 @@ namespace Vista
             lcl_mod_mail.mail = this.txtBoxMail.Text;
             return lcl_mod_mail;
         }
+        private int getCodigoTipoComprobante()
+        {
+            int tipoComprobante = 0;
+            if (modoFormulario == ModoFormularioDevolucionCliente)
+            {
+                tipoComprobante = ControladorPedidoCliente.getCodigoComprobante((Constantes.TipoComprobanteDevolucion)this.cmbBoxTipoComprobante.SelectedValue,
+                                                                                                Convert.ToInt16(chckBoxResponsableInscripto.Checked));
+            }
+            else if (modoFormulario == ModoFormularioPedidoCliente)
+            {
+                tipoComprobante = ControladorPedidoCliente.getCodigoComprobante((Constantes.TipoComprobanteVenta)this.cmbBoxTipoComprobante.SelectedValue,
+                                                                                                Convert.ToInt16(chckBoxResponsableInscripto.Checked));
+            }
+            else if (modoFormulario == ModoFormularioPedidoProveedor)
+            {
+                tipoComprobante = 0;
+            }
+            return tipoComprobante;
+        }
         #endregion
 
         #region Validaciones
-        //Validaciones de datos que se toman de textboxes
         private bool validarPedido()
         {
             if (controlador.pedidoActual.lineasPedido.Count == 0)
@@ -764,6 +871,7 @@ namespace Vista
         
         #endregion
 
+        #region Otros
         private ModeloCliente buscarCliente()
         {
             ModeloCliente lcl_mod_cliente = new ModeloCliente();
@@ -788,41 +896,10 @@ namespace Vista
 
         private bool imprimirPedido()
         {            
-            //imprimir
-            //this.controlador.pedidoActual.
-            ModeloReporteEncabezadoFactura lcl_mod_ReporteFactura = new ModeloReporteEncabezadoFactura();
-            lcl_mod_ReporteFactura= CompletaEntidadFactura();
-
             Controladores.ControladorReportes lcl_con_reporte = new ControladorReportes();
-            lcl_con_reporte.ImpresionFacturas(lcl_mod_ReporteFactura,this.controlador.pedidoActual.tipoComprobante.ToString()).ShowDialog();
+            lcl_con_reporte.ImpresionFacturas(controlador.pedidoActual).ShowDialog();
             
-            
-
             return true;
-        }
-
-        private ModeloReporteEncabezadoFactura CompletaEntidadFactura()
-        {
-            // Carga en modelo Reportepedido
-            ModeloReporteEncabezadoFactura lcl_mod_Factura = new ModeloReporteEncabezadoFactura();
-            lcl_mod_Factura.CAINumero = this.controlador.pedidoActual.CAE;
-            lcl_mod_Factura.Alicuota = Convert.ToDecimal(this.controlador.pedidoActual.alicuota.iva.porcentaje);
-            lcl_mod_Factura.CentroEmisor = "0001";//this.controlador.pedidoActual.numeroComprobante;
-            lcl_mod_Factura.NumeroComprobante = this.controlador.pedidoActual.numeroComprobante;
-            lcl_mod_Factura.Comprador_Cuit = this.controlador.pedidoActual.documentoComprador.numero;
-            lcl_mod_Factura.Comprador_IVAResponsableI = this.controlador.pedidoActual.documentoComprador.tipo.descripcion;
-            lcl_mod_Factura.Comprador_Domicilio = this.controlador.pedidoActual.domicilioDeFacturacion.calle + " " + controlador.pedidoActual.domicilioDeFacturacion.numero + ", " + controlador.pedidoActual.domicilioDeFacturacion.ciudad + ", " + controlador.pedidoActual.domicilioDeFacturacion.provincia;
-            //lcl_mod_Factura.Comprador_RazonSocial = this.controlador.pedidoActual.entidad
-            //lcl_mod_Factura.ConceptosNoGravados = this.controlador.pedidoActual.
-            //lcl_mod_Factura.CondicionVenta = this.controlador.pedidoActual.formasDePago[0].forma; ver forma de pago
-            //lcl_mod_Factura.detalleFactura = this.controlador.pedidoActual.lineasPedido; //hacer linea por linea "for"
-            lcl_mod_Factura.FechaComprobante = this.controlador.pedidoActual.fecha;
-            //lcl_mod_Factura.FechaVencimiento = this.controlador.pedidoActual.//tiene fecha Vto?
-            lcl_mod_Factura.IVAComprobante = this.controlador.pedidoActual.alicuota.monto;
-            lcl_mod_Factura.Remito = this.controlador.pedidoActual.numeroPedido.ToString();
-            lcl_mod_Factura.SubtotalComprobante = this.controlador.pedidoActual.montoSubTotal;
-            lcl_mod_Factura.TotalComprobante = this.controlador.pedidoActual.montoTotal;
-                        return lcl_mod_Factura;
         }
 
         private bool guardarPedido()
@@ -891,9 +968,11 @@ namespace Vista
             return respuesta;
         }
         #endregion
-      
+
+        #endregion
+
         #region Eventos
-        
+
         #region TextBox
         private void txtBoxDescuento1Porcentaje_Leave(object sender, EventArgs e)
         {
@@ -1061,6 +1140,17 @@ namespace Vista
             }
             this.cargarPedidoEnControles(this.controlador.pedidoActual);
         }
+        private void cmbBoxTipoComprobante_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.getCodigoTipoComprobante() != 0)
+            {
+                this.btnFacturaElectronica.Enabled = true;
+            }
+            else
+            {
+                this.btnFacturaElectronica.Enabled = false;
+            }
+        }
         #endregion
 
         #region Button
@@ -1164,7 +1254,8 @@ namespace Vista
             }
         }
         #endregion
-        
+
+        #region Múltiples Controles
         /// <summary>
         /// Edita 1 o más líneas del pedido actual
         /// </summary>
@@ -1268,18 +1359,6 @@ namespace Vista
         }
         #endregion
 
-        private void cmbBoxTipoComprobante_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int tipoComprobante = ControladorPedidoCliente.getCodigoComprobante((Constantes.TipoComprobanteVenta)this.cmbBoxTipoComprobante.SelectedValue,
-                                                                                                Convert.ToInt16(chckBoxResponsableInscripto.Checked));
-            if (tipoComprobante != 0)
-            {
-                this.btnFacturaElectronica.Enabled = true;
-            }
-            else
-            {
-                this.btnFacturaElectronica.Enabled = false;
-            }
-        }
+        #endregion
     }
 }

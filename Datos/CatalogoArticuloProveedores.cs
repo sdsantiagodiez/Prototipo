@@ -133,11 +133,11 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articuloProveedor.codigoOriginal), "@codigo_original"));
                     string codigoOriginalQuery = this.parametroBusqueda("@codigo_original", "ap.codigo_original", "LIKE");
 
-                    string codigoArticuloProveedor = p_mod_articuloProveedor.codigoArticuloProveedor == "" ? null : p_mod_articuloProveedor.codigoArticuloProveedor;
+                    string codigoArticuloProveedor = String.IsNullOrWhiteSpace(p_mod_articuloProveedor.codigoArticuloProveedor) ? null : p_mod_articuloProveedor.codigoArticuloProveedor;
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articuloProveedor.codigoArticuloProveedor), "@codigo_articulo_proveedor"));
                     string codigoArticuloProveedorQuery = this.parametroBusqueda("@codigo_articulo_proveedor", "ap.codigo_articulo_proveedor", "LIKE");
 
-                    string descripcionArticuloProveedor = p_mod_articuloProveedor.descripcionArticuloProveedor == "" ? null : p_mod_articuloProveedor.descripcionArticuloProveedor;
+                    string descripcionArticuloProveedor = String.IsNullOrWhiteSpace(p_mod_articuloProveedor.descripcionArticuloProveedor) ? null : p_mod_articuloProveedor.descripcionArticuloProveedor;
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(descripcionArticuloProveedor), "@descripcion_articulo_proveedor"));
                     string descripcionArticuloProveedorQuery = this.parametroBusqueda("@descripcion_articulo_proveedor", "ap.descripcion", "LIKE");
 
@@ -145,7 +145,7 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(codigoEntidad, "@codigo_entidad"));
                     string codigoEntidadQuery = @" (@codigo_entidad IS NULL OR @codigo_entidad = ap.codigo_entidad) ";
 
-                    string razonSocialProveedor = p_mod_articuloProveedor.razonSocialProveedor == "" ? null : p_mod_articuloProveedor.razonSocialProveedor;
+                    string razonSocialProveedor = String.IsNullOrWhiteSpace(p_mod_articuloProveedor.razonSocialProveedor) ? null : p_mod_articuloProveedor.razonSocialProveedor;
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(razonSocialProveedor), "@razon_social"));
                     string razonSocialProveedorQuery = this.parametroBusqueda("@razon_social", "prov.razon_social", "LIKE");
 

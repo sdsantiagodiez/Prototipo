@@ -47,11 +47,11 @@ namespace Datos
                     return " pais LIKE @pais ";
 
                 case Constantes.ParametrosBusqueda.Any:
-                    string codigoPais = p_mod_pais.codigo == "" ? null : p_mod_pais.codigo;
+                    string codigoPais = String.IsNullOrWhiteSpace(p_mod_pais.codigo )? null : p_mod_pais.codigo;
                     p_comando.Parameters.Add(this.instanciarParametro(codigoPais, "@codigo_pais"));
                     string codigoPaisQuery = this.parametroBusqueda("@codigo_pais", "codigo", "=");
 
-                    string pais = p_mod_pais.pais == "" ? null : p_mod_pais.pais;
+                    string pais = String.IsNullOrWhiteSpace(p_mod_pais.pais )? null : p_mod_pais.pais;
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(pais), "@pais"));
                     string paisQuery = this.parametroBusqueda("@pais", "pais", "LIKE");
 

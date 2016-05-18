@@ -136,6 +136,7 @@ namespace Controladores
         }
         public FormReportes ReporteEmitePedido(ModeloPedido p_modeloPedido, ModeloPersonas p_modeloPersona)
         {
+
             FormReportes lcl_frm_reporte = new FormReportes(p_modeloPedido, p_modeloPersona);
 
             return lcl_frm_reporte;
@@ -143,12 +144,39 @@ namespace Controladores
 
         }
 
-        public frmImpresionFactura ImpresionFacturas(ModeloReporteEncabezadoFactura p_modEncabezado, string tipoComprobante)
+        public frmImpresionFactura ImpresionFacturas(ModeloPedido p_mod_pedido)
         {
-            frmImpresionFactura lcl_frm_factura = new frmImpresionFactura(p_modEncabezado, tipoComprobante);
+            frmImpresionFactura lcl_frm_factura = new frmImpresionFactura(this.CompletaEntidadFactura(p_mod_pedido), p_mod_pedido.tipoComprobante.ToString());
             return lcl_frm_factura;
         }
-         
+
+        private ModeloReporteEncabezadoFactura CompletaEntidadFactura(ModeloPedido p_mod_pedido)
+        {
+            // Carga en modelo Reportepedido
+            ModeloReporteEncabezadoFactura lcl_mod_Factura = new ModeloReporteEncabezadoFactura();
+            lcl_mod_Factura.CAINumero = p_mod_pedido.CAE;
+            lcl_mod_Factura.Alicuota = Convert.ToDecimal(p_mod_pedido.alicuota.iva.porcentaje);
+            lcl_mod_Factura.CentroEmisor = "0001";//p_mod_pedido.numeroComprobante;
+            lcl_mod_Factura.NumeroComprobante = p_mod_pedido.numeroComprobante;
+            lcl_mod_Factura.Comprador_Cuit = p_mod_pedido.documentoComprador.numero;
+            lcl_mod_Factura.Comprador_IVAResponsableI = p_mod_pedido.documentoComprador.tipo.descripcion;
+            lcl_mod_Factura.Comprador_Domicilio = p_mod_pedido.domicilioDeFacturacion.calle + " " + 
+                p_mod_pedido.domicilioDeFacturacion.numero + ", " + 
+                p_mod_pedido.domicilioDeFacturacion.ciudad + ", " + 
+                p_mod_pedido.domicilioDeFacturacion.provincia;
+            //lcl_mod_Factura.Comprador_RazonSocial = p_mod_pedido.entidad
+            //lcl_mod_Factura.ConceptosNoGravados = p_mod_pedido.
+            //lcl_mod_Factura.CondicionVenta = p_mod_pedido.formasDePago[0].forma; ver forma de pago
+            //lcl_mod_Factura.detalleFactura = p_mod_pedido.lineasPedido; //hacer linea por linea "for"
+            lcl_mod_Factura.FechaComprobante = p_mod_pedido.fecha;
+            //lcl_mod_Factura.FechaVencimiento = p_mod_pedido.//tiene fecha Vto?
+            lcl_mod_Factura.IVAComprobante = p_mod_pedido.alicuota.monto;
+            lcl_mod_Factura.Remito = p_mod_pedido.numeroPedido.ToString();
+            lcl_mod_Factura.SubtotalComprobante = p_mod_pedido.montoSubTotal;
+            lcl_mod_Factura.TotalComprobante = p_mod_pedido.montoTotal;
+            
+            return lcl_mod_Factura;
+        }
         
     }
 }

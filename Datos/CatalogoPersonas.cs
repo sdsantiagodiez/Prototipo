@@ -59,17 +59,17 @@ namespace Datos
                 case Constantes.ParametrosBusqueda.Any:
                     string queryBase = base.getCondicionBusqueda(p_mod_persona, p_parametroBusqueda, ref p_comando);
 
-                    string dni = (p_mod_persona.dni == "") ? null : p_mod_persona.dni;
+                    string dni = String.IsNullOrWhiteSpace(p_mod_persona.dni) ? null : p_mod_persona.dni;
                     p_comando.Parameters.Add(this.instanciarParametro(dni, "@dni"));
                     string dniQuery = " (@dni is null OR dni = @dni) ";
                     //string dniQuery = this.parametroBusqueda("@dni", "dni","=");
                     
-                    string nombre = (p_mod_persona.nombre == "") ? null : p_mod_persona.nombre;
+                    string nombre =  String.IsNullOrWhiteSpace(p_mod_persona.nombre) ? null : p_mod_persona.nombre;
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(nombre), "@nombre"));
                     string nombreQuery = " (@nombre is null OR nombre LIKE @nombre) ";    
                 //string nombreQuery = this.parametroBusqueda("@nombre", "nombre","LIKE");
-                    
-                    string apellido = (p_mod_persona.apellido == "") ? null : p_mod_persona.apellido;
+
+                    string apellido = String.IsNullOrWhiteSpace(p_mod_persona.apellido) ? null : p_mod_persona.apellido;
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(apellido), "@apellido"));
                     string apellidoQuery = " (@apellido is null OR apellido LIKE @apellido) ";
                     //string apellidoQuery = this.parametroBusqueda("@apellido", "apellido", "LIKE");

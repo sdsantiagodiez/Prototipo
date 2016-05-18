@@ -238,7 +238,7 @@ namespace Controladores
         
         #region Facturación AFIP
         /// <summary>
-        /// Devuelvo codigoTipoComprobante de AFIP de acuerdo a los parámetros. Considera que Vendedor es Responsable Inscripto
+        /// Devuelvo codigoTipoComprobante de AFIP de acuerdo a los parámetros
         /// </summary>
         /// <param name="p_tipoComprobante"></param>
         /// <param name="p_codigoTipoResponsable"></param>
@@ -268,12 +268,12 @@ namespace Controladores
                 case Constantes.TipoComprobanteVenta.Factura:
                     codigoTipoComprobante = p_codigoTipoResponsable == 1 ? 1 : 6; //1=A,6=B
                     break;
-                case Constantes.TipoComprobanteVenta.NotaDebito:
-                    codigoTipoComprobante = p_codigoTipoResponsable == 1 ? 2 : 7; //2=A,7=B
-                    break;
-                case Constantes.TipoComprobanteVenta.NotaCredito:
-                    codigoTipoComprobante = p_codigoTipoResponsable == 1 ? 3 : 8; //3=A,8=B
-                    break;
+                //case Constantes.TipoComprobanteVenta.NotaDebito:
+                //    codigoTipoComprobante = p_codigoTipoResponsable == 1 ? 2 : 7; //2=A,7=B
+                //    break;
+                //case Constantes.TipoComprobanteVenta.NotaCredito:
+                //    codigoTipoComprobante = p_codigoTipoResponsable == 1 ? 3 : 8; //3=A,8=B
+                //    break;
                 case Constantes.TipoComprobanteVenta.Recibo:
                     codigoTipoComprobante = p_codigoTipoResponsable == 1 ? 4 : 9; //4=A,9=B
                     break;
@@ -286,7 +286,46 @@ namespace Controladores
             }
             return codigoTipoComprobante;
         }
+        /// <summary>
+        /// Devuelvo codigoTipoComprobante de AFIP de acuerdo a los parámetros
+        /// </summary>
+        /// <param name="p_tipoComprobante"></param>
+        /// <param name="p_codigoTipoResponsable"></param>
+        /// <returns></returns>
+        public static int getCodigoComprobante(Constantes.TipoComprobanteDevolucion p_tipoComprobante, int p_codigoTipoResponsable)
+        {
+            #region codigos tipo responsable
+            ///1	IVA Responsable Inscripto
+            ///2	IVA Responsable no Inscripto
+            ///3	IVA no Responsable
+            ///4	IVA Sujeto Exento
+            ///5	Consumidor Final
+            ///6	Responsable Monotributo
+            ///7	Sujeto no Categorizado
+            ///8	Proveedor del Exterior
+            ///9	Cliente del Exterior
+            //10    IVA Liberado – Ley Nº 19.640
+            //11    IVA Responsable Inscripto – Agente de Percepción
+            //12    Pequeño Contribuyente Eventual
+            //13	Monotributista Social
+            //14	Pequeño Contribuyente Eventual Social
+            #endregion
 
+            int codigoTipoComprobante;
+            switch (p_tipoComprobante)
+            {
+                //case Constantes.TipoComprobanteDevolucion.NotaDebito:
+                //    codigoTipoComprobante = p_codigoTipoResponsable == 1 ? 2 : 7; //2=A,7=B
+                //    break;
+                case Constantes.TipoComprobanteDevolucion.NotaCredito:
+                    codigoTipoComprobante = p_codigoTipoResponsable == 1 ? 3 : 8; //3=A,8=B
+                    break;
+                default:
+                    codigoTipoComprobante = 0;//No se asigna. No hay código para tal (presupuesto, reserva, otro)
+                    break;
+            }
+            return codigoTipoComprobante;
+        }
         public bool verificarConexionAFIP()
         {
             ControladorAFIP lcl_con_AFIP = new ControladorAFIP();
