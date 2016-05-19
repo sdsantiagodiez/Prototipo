@@ -36,7 +36,7 @@
             this.lblMensaje.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMensaje.Location = new System.Drawing.Point(0, 0);
             this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(276, 145);
+            this.lblMensaje.Size = new System.Drawing.Size(276, 96);
             this.lblMensaje.TabIndex = 0;
             this.lblMensaje.Text = "Procesando operación.";
             this.lblMensaje.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -45,7 +45,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(276, 145);
+            this.ClientSize = new System.Drawing.Size(276, 96);
             this.Controls.Add(this.lblMensaje);
             this.Name = "frmLoading";
             this.Text = "Procesando";

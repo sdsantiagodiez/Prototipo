@@ -24,7 +24,10 @@ namespace Vista
             }
         }
         #endregion
-        
+
+        string titulo ="Procesando";
+        string mensaje = "Espere por favor.";
+
         //lblMensaje para centrar => AutoSize=false, Dock=Fill, TextAlign=MiddleCenter
 
         public frmLoading()
@@ -35,12 +38,14 @@ namespace Vista
         public frmLoading(string p_mensaje) : this()
         {
             this.lblMensaje.Text = p_mensaje;
+            this.mensaje = p_mensaje;
         }
         public frmLoading(string p_mensaje, string p_titulo):this()
         {
             this.Text = p_titulo;
             this.lblMensaje.Text = p_mensaje;
+            this.titulo = p_titulo;
+            this.mensaje = p_mensaje;
         }
-
     }
 }
