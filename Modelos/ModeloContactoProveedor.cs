@@ -14,6 +14,7 @@ namespace Modelos
         public ModeloContactoProveedor()
         {
             this.tipoPersona = Constantes.TiposEntidad.TiposPersona.ContactoProveedor;
+            this.proveedor = new ModeloProveedor();
         }
 
         public ModeloContactoProveedor(ModeloEntidad p_mod_entidad) : base(p_mod_entidad)

@@ -16,8 +16,6 @@ namespace Vista
     public partial class frmABMEntidad : Vista.frmABMBase
     {
         #region Atributos
-        public ModeloEntidad glb_mod_entidadActual;
-
         private string _tipoEntidadSeleccionada;
         private string tipoEntidadSeleccionada
         {
@@ -54,22 +52,18 @@ namespace Vista
             }
         }
         
+        public ModeloEntidad glb_mod_entidadActual;
+
+        ContextMenu cntxtMenuDataGridViews;
         #endregion
         
         #region Constructores
         public frmABMEntidad()
         {
             InitializeComponent();
-            this.Text = "Entidades";
-            //btnAgregarMail.Text = char.ConvertFromUtf32(8595);
-            //btnQuitarMail.Text = char.ConvertFromUtf32(8593);
-            txtBoxCUIT.KeyPress += this.valorCUIT;
-            txtBoxCUIT.MaxLength = ModeloEntidad.CUIT.longitud;
-            txtBoxDNI.KeyPress += this.valorDNI;
-            txtBoxDNI.MaxLength = 10;
-            modoFormulario = ModoFormularioInicio;
             
-            this.inicializarComboBox();
+            this.inicializarControles();
+            modoFormulario = ModoFormularioInicio;
         }
         public frmABMEntidad(ModeloEntidad p_mod_entidad, string p_modoFormulario):this()
         {
@@ -99,7 +93,7 @@ namespace Vista
 
         #region Inicialización
 
-        override public void inicializarModoFormularioInicio()
+        public override void inicializarModoFormularioInicio()
         {
             base.inicializarModoFormularioInicio();
 
@@ -122,7 +116,7 @@ namespace Vista
 
             this.tipoEntidadSeleccionada = Constantes.TiposEntidad.TiposPersona.Cliente;
         }
-        override public void inicializarModoFormularioNuevo()
+        public override void inicializarModoFormularioNuevo()
         {
             base.inicializarModoFormularioNuevo();
             
@@ -138,7 +132,7 @@ namespace Vista
             base.quitarTextoEnControles(this);
             this.tipoEntidadSeleccionada = lcl_tipoEntidad;
         }
-        override public void inicializarModoFormularioSeleccionado()
+        public override void inicializarModoFormularioSeleccionado()
         {
             base.inicializarModoFormularioSeleccionado();
 
@@ -158,6 +152,17 @@ namespace Vista
         public override void inicializarModoFormularioClientePedido()
         {
             base.inicializarModoFormularioClientePedido();
+        }
+
+        private void inicializarControles()
+        {
+            this.Text = "Entidades";
+           
+            this.inicializarTextBoxes();
+            this.inicializarComboBox();
+            this.inicializarContextMenu();
+            this.inicializarBotones();
+            this.inicializarDataGridViews();
         }
         private void inicializarControlesTipoEntidadCliente()
         {
@@ -224,6 +229,78 @@ namespace Vista
             this.cmbBoxPais.DropDownStyle =
                 this.cmbBoxProvincia.DropDownStyle = 
                 this.cmbBoxTipoTelefono.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+        private void inicializarContextMenu()
+        {
+            cntxtMenuDataGridViews = new ContextMenu();
+            cntxtMenuDataGridViews.MenuItems.Add("Quitar seleccionado");
+            cntxtMenuDataGridViews.MenuItems[0].Click += (s, e) =>
+                {
+                    this.quitarObjetoDataGridViewSeleccionado(((s as MenuItem).Parent as ContextMenu).SourceControl as DataGridView);
+                };
+            cntxtMenuDataGridViews.MenuItems.Add("Quitar todos");
+            cntxtMenuDataGridViews.MenuItems[1].Click += (s, e) =>
+                {
+                    this.quitarObjetoDataGridViewTodos(((s as MenuItem).Parent as ContextMenu).SourceControl as DataGridView);
+                };
+        }
+        private void inicializarBotones()
+        {
+            #region btnAgregar
+            this.btnAgregarDomicilio.Click += (s, e) =>
+                {
+                    this.agregarDomicilioEntidad();
+                };
+            this.btnAgregarMail.Click += (s, e) =>
+            {
+                this.agregarMailEntidad();
+            };
+            this.btnAgregarTelefono.Click += (s, e) =>
+            {
+                this.agregarTelefonoEntidad();
+            };
+            #endregion
+
+            #region btnQuitar
+            this.btnQuitarDomicilio.Click += (s, e) =>
+                {
+                    this.quitarObjetoDataGridViewSeleccionado(this.dataGridViewDomicilio);
+                };
+            this.btnQuitarMail.Click += (s, e) =>
+                {
+                    this.quitarObjetoDataGridViewSeleccionado(this.dataGridViewMail);
+                };
+            this.btnQuitarTelefono.Click += (s, e) =>
+                {
+                    this.quitarObjetoDataGridViewSeleccionado(this.dataGridViewTelefono);
+                };
+            #endregion
+        }
+        private void inicializarDataGridViews()
+        {
+            this.dataGridViewDomicilio.MouseDown += this.dataGridView_MouseDown;
+            this.dataGridViewMail.MouseDown += this.dataGridView_MouseDown;
+            this.dataGridViewTelefono.MouseDown += this.dataGridView_MouseDown;
+        }
+        private void inicializarTextBoxes()
+        {
+            txtBoxCUIT.KeyPress += this.valorCUIT;
+            txtBoxCUIT.MaxLength = ModeloEntidad.CUIT.longitud;
+            txtBoxDNI.KeyPress += this.valorDNI;
+            txtBoxDNI.MaxLength = 10;
+        }
+
+        private void actualizarContextMenu(DataGridView p_dgvActual)
+        {
+            int cantidadSeleccionada = p_dgvActual.SelectedRows.Count;
+            if (cantidadSeleccionada > 1)
+            {
+                this.cntxtMenuDataGridViews.MenuItems[0].Text = "Quitar seleccionados";
+            }
+            else if (cantidadSeleccionada == 1)
+            {
+                this.cntxtMenuDataGridViews.MenuItems[0].Text = "Quitar seleccionado";
+            }
         }
 
         int getDropDownWidth(ComboBox p_comboBox)
@@ -599,9 +676,13 @@ namespace Vista
             lcl_frm_datosAdicionales.ShowDialog();
             return (lcl_frm_datosAdicionales as frmABMEntidadDatosAdicionalesContactoProveedor).contactoProveedor;
         }
+        /// <summary>
+        /// ERROR a corregir: lcl_mod_contactoProveedor.proveedor no se asigna, queda en null y la busqueda retorna resultados cuando el proveedor es nuevo
+        /// </summary>
+        /// <param name="p_mod_proveedor"></param>
+        /// <returns></returns>
         private ModeloEntidad getDatosAdicionales(ModeloProveedor p_mod_proveedor)
         {
-            
             ModeloContactoProveedor lcl_mod_contactoProveedor = new ModeloContactoProveedor();
             lcl_mod_contactoProveedor.proveedor = p_mod_proveedor;
             frmResultadoBusqueda lcl_frm = new frmResultadoBusqueda(lcl_mod_contactoProveedor, "Contactos de Proveedor de proveedor: " + p_mod_proveedor.razonSocial);
@@ -792,15 +873,18 @@ namespace Vista
         {
             List<ModeloDomicilio> lcl_lst_mod_domiciliosActuales = this.cargarDatosControlEnListDomicilio();
             ModeloDomicilio lcl_mod_domicilioActual = this.cargarDatosControlEnDomicilio();
-            foreach (ModeloDomicilio d in lcl_lst_mod_domiciliosActuales)
+            if (lcl_mod_domicilioActual != null)
             {
-                //se igualan los codigos en caso que el objeto de la lista tenga codigo (traido de base de datos), 
-                //y de true usando Equals en caso de que el resto de las variables sean iguales
-                lcl_mod_domicilioActual.codigoDomicilio = d.codigoDomicilio;
-                if (lcl_mod_domicilioActual.Equals(d))
+                foreach (ModeloDomicilio d in lcl_lst_mod_domiciliosActuales)
                 {
-                    errorActual = "El domicilio ya está ingresado.";
-                    return false;
+                    //se igualan los codigos en caso que el objeto de la lista tenga codigo (traido de base de datos), 
+                    //y de true usando Equals en caso de que el resto de las variables sean iguales
+                    lcl_mod_domicilioActual.codigoDomicilio = d.codigoDomicilio;
+                    if (lcl_mod_domicilioActual.Equals(d))
+                    {
+                        errorActual = "El domicilio ya está ingresado.";
+                        return false;
+                    }
                 }
             }
             return true;
@@ -823,15 +907,18 @@ namespace Vista
         {
             List<ModeloTelefono> lcl_lst_mod_telefonosActuales = this.cargarDatosControlEnListTelefono();
             ModeloTelefono lcl_mod_telefonoActual = this.cargarDatosControlEnTelefono();
-            foreach (ModeloTelefono t in lcl_lst_mod_telefonosActuales)
+            if (lcl_mod_telefonoActual != null)
             {
-                //se igualan los codigos en caso que el objeto de la lista tenga codigo (traido de base de datos), 
-                //y de true usando Equals en caso de que el resto de las variables sean iguales
-                lcl_mod_telefonoActual.codigoTelefono = t.codigoTelefono;
-                if (lcl_mod_telefonoActual.Equals(t))
+                foreach (ModeloTelefono t in lcl_lst_mod_telefonosActuales)
                 {
-                    errorActual = "El teléfono ya está ingresado.";
-                    return false;
+                    //se igualan los codigos en caso que el objeto de la lista tenga codigo (traido de base de datos), 
+                    //y de true usando Equals en caso de que el resto de las variables sean iguales
+                    lcl_mod_telefonoActual.codigoTelefono = t.codigoTelefono;
+                    if (lcl_mod_telefonoActual.Equals(t))
+                    {
+                        errorActual = "El teléfono ya está ingresado.";
+                        return false;
+                    }
                 }
             }
             return true;
@@ -849,15 +936,18 @@ namespace Vista
         {
             List<ModeloMail> lcl_lst_mod_mailsActuales = this.cargarDatosControlEnListMail();
             ModeloMail lcl_mod_mailActual = this.cargarDatosControlEnMail();
-            foreach (ModeloMail m in lcl_lst_mod_mailsActuales)
+            if (lcl_mod_mailActual != null)
             {
-                //se igualan los codigos en caso que el objeto de la lista tenga codigo (traido de base de datos), 
-                //y de true usando Equals en caso de que el resto de las variables sean iguales
-                lcl_mod_mailActual.codigoMail = m.codigoMail;
-                if (lcl_mod_mailActual.Equals(m))
+                foreach (ModeloMail m in lcl_lst_mod_mailsActuales)
                 {
-                    errorActual = "La dirección de correo electrónico ya está ingresada.";
-                    return false;
+                    //se igualan los codigos en caso que el objeto de la lista tenga codigo (traido de base de datos), 
+                    //y de true usando Equals en caso de que el resto de las variables sean iguales
+                    lcl_mod_mailActual.codigoMail = m.codigoMail;
+                    if (lcl_mod_mailActual.Equals(m))
+                    {
+                        errorActual = "La dirección de correo electrónico ya está ingresada.";
+                        return false;
+                    }
                 }
             }
             return true;
@@ -992,6 +1082,63 @@ namespace Vista
         }
 
         #endregion
+
+        private void agregarDomicilioEntidad()
+        {
+            ModeloDomicilio lcl_mod_domicilioActual = this.cargarDatosControlEnDomicilio();
+            if (this.validarDomicilioExiste() && lcl_mod_domicilioActual != null)
+            {
+                this.cargarDatosDomicilioEnDataGridViewDomicilio(lcl_mod_domicilioActual);
+
+                this.quitarTextoEnControles(tblLayoutPanelDomicilio);
+            }
+            else
+            {
+                MessageBox.Show(errorActual, "Error", MessageBoxButtons.OK);
+            }
+        }
+        private void agregarMailEntidad()
+        {
+            ModeloMail lcl_mod_mailActual = this.cargarDatosControlEnMail();
+            if (this.validarMailExiste() && lcl_mod_mailActual != null)
+            {
+                this.cargarDatosMailEnDataGridViewMail(lcl_mod_mailActual);
+
+                this.quitarTextoEnControles(tblLayoutPanelMail);
+            }
+            else
+            {
+                MessageBox.Show(this.errorActual, "Error", MessageBoxButtons.OK);
+            }
+        }
+        private void agregarTelefonoEntidad()
+        {
+            ModeloTelefono lcl_mod_telefonoActual = this.cargarDatosControlEnTelefono();
+            if (this.validarTelefonoExiste() && lcl_mod_telefonoActual != null)
+            {
+                this.cargarDatosTelefonoEnDataGridViewTelefono(lcl_mod_telefonoActual);
+
+                this.quitarTextoEnControles(tblLayoutPanelTelefono);
+            }
+            else
+            {
+                MessageBox.Show(this.errorActual, "Error", MessageBoxButtons.OK);
+            }
+        }
+        private void quitarObjetoDataGridViewSeleccionado(DataGridView p_dgvSeleccionada)
+        {
+            foreach (DataGridViewRow item in p_dgvSeleccionada.SelectedRows)
+            {
+                if (!item.IsNewRow)
+                {
+                    p_dgvSeleccionada.Rows.RemoveAt(item.Index);
+                }
+            }
+        }
+        private void quitarObjetoDataGridViewTodos(DataGridView p_dgvSeleccionada)
+        {
+            p_dgvSeleccionada.Rows.Clear();
+        }
         #endregion
 
         #region Eventos
@@ -1038,82 +1185,6 @@ namespace Vista
         #endregion
 
         #region Button
-        private void btnAgregarMail_Click(object sender, EventArgs e)
-        {
-            ModeloMail lcl_mod_mailActual = this.cargarDatosControlEnMail();
-            if (this.validarMailExiste() && lcl_mod_mailActual != null)
-            {
-                this.cargarDatosMailEnDataGridViewMail(lcl_mod_mailActual);
-
-                this.quitarTextoEnControles(tblLayoutPanelMail);
-            }
-            else 
-            {
-                MessageBox.Show(this.errorActual, "Error", MessageBoxButtons.OK);
-            }
-        }
-        private void btnQuitarMail_Click(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow item in this.dataGridViewMail.SelectedRows)
-            {
-                if (!item.IsNewRow)
-                {
-                    dataGridViewMail.Rows.RemoveAt(item.Index);
-                }
-            }
-        }
-
-        private void btnAgregarNumeroTelefono_Click(object sender, EventArgs e)
-        {
-            ModeloTelefono lcl_mod_telefonoActual = this.cargarDatosControlEnTelefono();
-            if (this.validarTelefonoExiste() && lcl_mod_telefonoActual != null)
-            {
-                this.cargarDatosTelefonoEnDataGridViewTelefono(lcl_mod_telefonoActual);
-
-                this.quitarTextoEnControles(tblLayoutPanelTelefono);
-            }
-            else
-            {
-                MessageBox.Show(this.errorActual, "Error",MessageBoxButtons.OK);
-            }
-        }
-        private void btnQuitarNumeroTelefono_Click(object sender, EventArgs e)
-        {
-            
-            foreach (DataGridViewRow item in this.dataGridViewTelefono.SelectedRows)
-            {
-                if (!item.IsNewRow)
-                {
-                    dataGridViewTelefono.Rows.RemoveAt(item.Index);
-                }
-            }
-            
-        }
-
-        private void btnAgregarDomicilio_Click(object sender, EventArgs e)
-        {
-            ModeloDomicilio lcl_mod_domicilioActual = this.cargarDatosControlEnDomicilio();
-            if (this.validarDomicilioExiste() && lcl_mod_domicilioActual != null)
-            {
-                this.cargarDatosDomicilioEnDataGridViewDomicilio(lcl_mod_domicilioActual);
-
-                this.quitarTextoEnControles(tblLayoutPanelDomicilio);
-            }
-            else
-            {
-                MessageBox.Show(errorActual,"Error",MessageBoxButtons.OK);
-            }
-        }
-        private void btnQuitarDomicilio_Click(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow item in this.dataGridViewDomicilio.SelectedRows)
-            {
-                if (!item.IsNewRow)
-                {
-                    dataGridViewDomicilio.Rows.RemoveAt(item.Index);
-                }
-            }
-        }
 
         private void btnDatosAdicionales_Click(object sender, EventArgs e)
         {
@@ -1144,15 +1215,6 @@ namespace Vista
         #endregion
 
         #region ToolStripMenuItem
-
-        //override public void toolStripMenuItemCancelar_Click(object sender, EventArgs e)
-        //{
-            //DialogResult dialogResult = MessageBox.Show("¿Esta seguro que desea salir de esta ventana?", "Atención", MessageBoxButtons.YesNo);
-            //if (dialogResult == DialogResult.Yes)
-            //{
-            //    this.Close();
-            //}
-        //}
 
         override public void toolStripMenuItemLimpiarCampos_Click(object sender, EventArgs e)
         {
@@ -1254,6 +1316,26 @@ namespace Vista
             }
         }
         #endregion
+
+        private void dataGridView_MouseDown(object sender, MouseEventArgs e) 
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                int currentMouseOverRow = (sender as DataGridView).HitTest(e.X, e.Y).RowIndex;
+                if (currentMouseOverRow >= 0)
+                {
+                    if ((ModifierKeys & Keys.Control) != Keys.Control
+                        && (sender as DataGridView).Rows[currentMouseOverRow].Selected != true)
+                    {//si selected == true significa que puede haber más elementos seleccionados anteriormente y no hay que perder selección
+                        (sender as DataGridView).ClearSelection();
+                    }
+                    (sender as DataGridView).Rows[currentMouseOverRow].Selected = true;
+
+                    this.actualizarContextMenu(sender as DataGridView);
+                    this.cntxtMenuDataGridViews.Show(sender as DataGridView, new Point(e.X, e.Y));
+                }
+            }
+        }
 
         #endregion
     }

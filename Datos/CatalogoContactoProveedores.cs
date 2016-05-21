@@ -72,7 +72,8 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(cuit, "@cuit_proveedor"));
                     string cuitProveedorQuery = " (@cuit_proveedor is null OR cuit_proveedor=@cuit_proveedor) ";
 
-                    return queryBase + " AND " +razonSocialQuery + " AND " +codigoProveedorQuery+ " AND "+cuitProveedorQuery;
+                    string extraQuery = " NOT(@razon_social is null AND @codigo_proveedor is null AND @cuit_proveedor is null) ";//algo debe ser distinto de null
+                    return queryBase + " AND " +razonSocialQuery + " AND " +codigoProveedorQuery+ " AND "+cuitProveedorQuery + " AND "+ extraQuery;
                     }
                     return queryBase;
                 default:

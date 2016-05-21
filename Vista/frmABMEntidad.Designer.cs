@@ -785,7 +785,6 @@
             this.btnAgregarDomicilio.Size = new System.Drawing.Size(22, 22);
             this.btnAgregarDomicilio.TabIndex = 19;
             this.btnAgregarDomicilio.UseVisualStyleBackColor = true;
-            this.btnAgregarDomicilio.Click += new System.EventHandler(this.btnAgregarDomicilio_Click);
             // 
             // btnQuitarDomicilio
             // 
@@ -797,7 +796,6 @@
             this.btnQuitarDomicilio.TabIndex = 16;
             this.btnQuitarDomicilio.TabStop = false;
             this.btnQuitarDomicilio.UseVisualStyleBackColor = true;
-            this.btnQuitarDomicilio.Click += new System.EventHandler(this.btnQuitarDomicilio_Click);
             // 
             // grpBoxContacto
             // 
@@ -867,7 +865,6 @@
             this.btnAgregarTelefono.Size = new System.Drawing.Size(21, 19);
             this.btnAgregarTelefono.TabIndex = 24;
             this.btnAgregarTelefono.UseVisualStyleBackColor = true;
-            this.btnAgregarTelefono.Click += new System.EventHandler(this.btnAgregarNumeroTelefono_Click);
             // 
             // btnQuitarTelefono
             // 
@@ -879,7 +876,6 @@
             this.btnQuitarTelefono.TabIndex = 11;
             this.btnQuitarTelefono.TabStop = false;
             this.btnQuitarTelefono.UseVisualStyleBackColor = true;
-            this.btnQuitarTelefono.Click += new System.EventHandler(this.btnQuitarNumeroTelefono_Click);
             // 
             // dataGridViewTelefono
             // 
@@ -1051,7 +1047,6 @@
             this.btnQuitarMail.TabIndex = 0;
             this.btnQuitarMail.TabStop = false;
             this.btnQuitarMail.UseVisualStyleBackColor = true;
-            this.btnQuitarMail.Click += new System.EventHandler(this.btnQuitarMail_Click);
             // 
             // btnAgregarMail
             // 
@@ -1062,7 +1057,6 @@
             this.btnAgregarMail.Size = new System.Drawing.Size(21, 19);
             this.btnAgregarMail.TabIndex = 21;
             this.btnAgregarMail.UseVisualStyleBackColor = true;
-            this.btnAgregarMail.Click += new System.EventHandler(this.btnAgregarMail_Click);
             // 
             // dataGridViewMail
             // 
