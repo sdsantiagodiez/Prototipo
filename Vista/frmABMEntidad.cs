@@ -85,7 +85,7 @@ namespace Vista
             {
                 this.inicializarControlesTipoEntidadProveedor();
             }
-            this.pnlTipoEntidad.Enabled = false;
+            this.tblLayoutPanelTipoEntidad.Enabled = false;
         }
         #endregion
 
