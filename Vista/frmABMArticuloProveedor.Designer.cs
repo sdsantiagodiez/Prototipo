@@ -86,10 +86,10 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.58064F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.97581F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.08065F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(434, 496);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
@@ -100,7 +100,7 @@
             this.grpBoxArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBoxArticulo.Location = new System.Drawing.Point(3, 3);
             this.grpBoxArticulo.Name = "grpBoxArticulo";
-            this.grpBoxArticulo.Size = new System.Drawing.Size(428, 106);
+            this.grpBoxArticulo.Size = new System.Drawing.Size(428, 114);
             this.grpBoxArticulo.TabIndex = 9;
             this.grpBoxArticulo.TabStop = false;
             this.grpBoxArticulo.Text = "Artículo";
@@ -123,13 +123,13 @@
             this.tblLayoutPanelArticulo.RowCount = 2;
             this.tblLayoutPanelArticulo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelArticulo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelArticulo.Size = new System.Drawing.Size(422, 83);
+            this.tblLayoutPanelArticulo.Size = new System.Drawing.Size(422, 91);
             this.tblLayoutPanelArticulo.TabIndex = 0;
             // 
             // btnModificarArticulo
             // 
             this.btnModificarArticulo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnModificarArticulo.Location = new System.Drawing.Point(342, 47);
+            this.btnModificarArticulo.Location = new System.Drawing.Point(342, 53);
             this.btnModificarArticulo.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.btnModificarArticulo.Name = "btnModificarArticulo";
             this.btnModificarArticulo.Size = new System.Drawing.Size(77, 30);
@@ -143,7 +143,7 @@
             this.lblDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDescripcion.AutoSize = true;
             this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.Location = new System.Drawing.Point(30, 53);
+            this.lblDescripcion.Location = new System.Drawing.Point(30, 59);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(87, 18);
             this.lblDescripcion.TabIndex = 5;
@@ -152,7 +152,7 @@
             // btnBuscarArticulo
             // 
             this.btnBuscarArticulo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBuscarArticulo.Location = new System.Drawing.Point(342, 5);
+            this.btnBuscarArticulo.Location = new System.Drawing.Point(342, 7);
             this.btnBuscarArticulo.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.btnBuscarArticulo.Name = "btnBuscarArticulo";
             this.btnBuscarArticulo.Size = new System.Drawing.Size(77, 30);
@@ -164,7 +164,7 @@
             // txtBoxCodigoOriginal
             // 
             this.txtBoxCodigoOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCodigoOriginal.Location = new System.Drawing.Point(123, 8);
+            this.txtBoxCodigoOriginal.Location = new System.Drawing.Point(123, 10);
             this.txtBoxCodigoOriginal.Name = "txtBoxCodigoOriginal";
             this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(211, 24);
             this.txtBoxCodigoOriginal.TabIndex = 2;
@@ -172,7 +172,7 @@
             // txtBoxDescripcion
             // 
             this.txtBoxDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxDescripcion.Location = new System.Drawing.Point(123, 50);
+            this.txtBoxDescripcion.Location = new System.Drawing.Point(123, 56);
             this.txtBoxDescripcion.Name = "txtBoxDescripcion";
             this.txtBoxDescripcion.Size = new System.Drawing.Size(211, 24);
             this.txtBoxDescripcion.TabIndex = 3;
@@ -182,7 +182,7 @@
             this.lblCodigoOriginal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCodigoOriginal.AutoSize = true;
             this.lblCodigoOriginal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoOriginal.Location = new System.Drawing.Point(7, 11);
+            this.lblCodigoOriginal.Location = new System.Drawing.Point(7, 13);
             this.lblCodigoOriginal.Name = "lblCodigoOriginal";
             this.lblCodigoOriginal.Size = new System.Drawing.Size(110, 18);
             this.lblCodigoOriginal.TabIndex = 4;
@@ -193,9 +193,9 @@
             this.grpBoxProveedor.Controls.Add(this.tblLayoutPanelProveedor);
             this.grpBoxProveedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpBoxProveedor.Location = new System.Drawing.Point(3, 115);
+            this.grpBoxProveedor.Location = new System.Drawing.Point(3, 123);
             this.grpBoxProveedor.Name = "grpBoxProveedor";
-            this.grpBoxProveedor.Size = new System.Drawing.Size(428, 103);
+            this.grpBoxProveedor.Size = new System.Drawing.Size(428, 114);
             this.grpBoxProveedor.TabIndex = 10;
             this.grpBoxProveedor.TabStop = false;
             this.grpBoxProveedor.Text = "Proveedor";
@@ -218,7 +218,7 @@
             this.tblLayoutPanelProveedor.RowCount = 2;
             this.tblLayoutPanelProveedor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelProveedor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelProveedor.Size = new System.Drawing.Size(422, 80);
+            this.tblLayoutPanelProveedor.Size = new System.Drawing.Size(422, 91);
             this.tblLayoutPanelProveedor.TabIndex = 0;
             // 
             // lblRazonSocial
@@ -226,7 +226,7 @@
             this.lblRazonSocial.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblRazonSocial.AutoSize = true;
             this.lblRazonSocial.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRazonSocial.Location = new System.Drawing.Point(20, 51);
+            this.lblRazonSocial.Location = new System.Drawing.Point(20, 59);
             this.lblRazonSocial.Name = "lblRazonSocial";
             this.lblRazonSocial.Size = new System.Drawing.Size(97, 18);
             this.lblRazonSocial.TabIndex = 6;
@@ -237,7 +237,7 @@
             this.lblCodigoProveedor.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCodigoProveedor.AutoSize = true;
             this.lblCodigoProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoProveedor.Location = new System.Drawing.Point(61, 11);
+            this.lblCodigoProveedor.Location = new System.Drawing.Point(61, 13);
             this.lblCodigoProveedor.Name = "lblCodigoProveedor";
             this.lblCodigoProveedor.Size = new System.Drawing.Size(56, 18);
             this.lblCodigoProveedor.TabIndex = 5;
@@ -246,7 +246,7 @@
             // btnBuscarProveedor
             // 
             this.btnBuscarProveedor.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBuscarProveedor.Location = new System.Drawing.Point(342, 5);
+            this.btnBuscarProveedor.Location = new System.Drawing.Point(342, 7);
             this.btnBuscarProveedor.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.btnBuscarProveedor.Name = "btnBuscarProveedor";
             this.btnBuscarProveedor.Size = new System.Drawing.Size(77, 30);
@@ -258,7 +258,7 @@
             // txtBoxCodigoProveedor
             // 
             this.txtBoxCodigoProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCodigoProveedor.Location = new System.Drawing.Point(123, 8);
+            this.txtBoxCodigoProveedor.Location = new System.Drawing.Point(123, 10);
             this.txtBoxCodigoProveedor.Name = "txtBoxCodigoProveedor";
             this.txtBoxCodigoProveedor.Size = new System.Drawing.Size(211, 24);
             this.txtBoxCodigoProveedor.TabIndex = 3;
@@ -266,7 +266,7 @@
             // txtBoxRazonSocial
             // 
             this.txtBoxRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxRazonSocial.Location = new System.Drawing.Point(123, 48);
+            this.txtBoxRazonSocial.Location = new System.Drawing.Point(123, 56);
             this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
             this.txtBoxRazonSocial.Size = new System.Drawing.Size(211, 24);
             this.txtBoxRazonSocial.TabIndex = 4;
@@ -274,7 +274,7 @@
             // btnModificarProveedor
             // 
             this.btnModificarProveedor.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnModificarProveedor.Location = new System.Drawing.Point(342, 45);
+            this.btnModificarProveedor.Location = new System.Drawing.Point(342, 53);
             this.btnModificarProveedor.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.btnModificarProveedor.Name = "btnModificarProveedor";
             this.btnModificarProveedor.Size = new System.Drawing.Size(77, 30);
@@ -288,9 +288,9 @@
             this.grpBoxStock.Controls.Add(this.tblLayoutPanelStock);
             this.grpBoxStock.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpBoxStock.Location = new System.Drawing.Point(3, 224);
+            this.grpBoxStock.Location = new System.Drawing.Point(3, 243);
             this.grpBoxStock.Name = "grpBoxStock";
-            this.grpBoxStock.Size = new System.Drawing.Size(428, 168);
+            this.grpBoxStock.Size = new System.Drawing.Size(428, 174);
             this.grpBoxStock.TabIndex = 11;
             this.grpBoxStock.TabStop = false;
             this.grpBoxStock.Text = "Stock";
@@ -299,7 +299,7 @@
             // 
             this.tblLayoutPanelStock.ColumnCount = 4;
             this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
+            this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelStock.Controls.Add(this.txtBoxPrecioVenta, 3, 1);
@@ -318,28 +318,28 @@
             this.tblLayoutPanelStock.Location = new System.Drawing.Point(3, 20);
             this.tblLayoutPanelStock.Name = "tblLayoutPanelStock";
             this.tblLayoutPanelStock.RowCount = 3;
-            this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 59.13979F));
-            this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.86021F));
-            this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
-            this.tblLayoutPanelStock.Size = new System.Drawing.Size(422, 145);
+            this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tblLayoutPanelStock.Size = new System.Drawing.Size(422, 151);
             this.tblLayoutPanelStock.TabIndex = 0;
             // 
             // txtBoxPrecioVenta
             // 
             this.txtBoxPrecioVenta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxPrecioVenta.Location = new System.Drawing.Point(337, 62);
+            this.txtBoxPrecioVenta.Location = new System.Drawing.Point(335, 63);
             this.txtBoxPrecioVenta.Name = "txtBoxPrecioVenta";
-            this.txtBoxPrecioVenta.Size = new System.Drawing.Size(82, 24);
+            this.txtBoxPrecioVenta.Size = new System.Drawing.Size(84, 24);
             this.txtBoxPrecioVenta.TabIndex = 16;
             this.txtBoxPrecioVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtBoxCodigoArticulo
             // 
             this.txtBoxCodigoArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCodigoArticulo.Location = new System.Drawing.Point(123, 15);
+            this.txtBoxCodigoArticulo.Location = new System.Drawing.Point(123, 13);
             this.txtBoxCodigoArticulo.Margin = new System.Windows.Forms.Padding(3, 3, 25, 3);
             this.txtBoxCodigoArticulo.Name = "txtBoxCodigoArticulo";
-            this.txtBoxCodigoArticulo.Size = new System.Drawing.Size(69, 24);
+            this.txtBoxCodigoArticulo.Size = new System.Drawing.Size(67, 24);
             this.txtBoxCodigoArticulo.TabIndex = 6;
             // 
             // lblCodigoArticulo
@@ -347,7 +347,7 @@
             this.lblCodigoArticulo.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCodigoArticulo.AutoSize = true;
             this.lblCodigoArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoArticulo.Location = new System.Drawing.Point(8, 18);
+            this.lblCodigoArticulo.Location = new System.Drawing.Point(8, 16);
             this.lblCodigoArticulo.Name = "lblCodigoArticulo";
             this.lblCodigoArticulo.Size = new System.Drawing.Size(109, 18);
             this.lblCodigoArticulo.TabIndex = 7;
@@ -358,7 +358,7 @@
             this.lblStockActual.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblStockActual.AutoSize = true;
             this.lblStockActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStockActual.Location = new System.Drawing.Point(26, 65);
+            this.lblStockActual.Location = new System.Drawing.Point(26, 66);
             this.lblStockActual.Name = "lblStockActual";
             this.lblStockActual.Size = new System.Drawing.Size(91, 18);
             this.lblStockActual.TabIndex = 9;
@@ -370,7 +370,7 @@
             this.lblStockMinimo.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblStockMinimo.AutoSize = true;
             this.lblStockMinimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStockMinimo.Location = new System.Drawing.Point(17, 110);
+            this.lblStockMinimo.Location = new System.Drawing.Point(17, 116);
             this.lblStockMinimo.Name = "lblStockMinimo";
             this.lblStockMinimo.Size = new System.Drawing.Size(100, 18);
             this.lblStockMinimo.TabIndex = 10;
@@ -380,7 +380,7 @@
             // nmrcUpDownStockMinimo
             // 
             this.nmrcUpDownStockMinimo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.nmrcUpDownStockMinimo.Location = new System.Drawing.Point(123, 107);
+            this.nmrcUpDownStockMinimo.Location = new System.Drawing.Point(123, 113);
             this.nmrcUpDownStockMinimo.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -393,9 +393,9 @@
             // txtBoxUbicacion
             // 
             this.txtBoxUbicacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxUbicacion.Location = new System.Drawing.Point(337, 107);
+            this.txtBoxUbicacion.Location = new System.Drawing.Point(335, 113);
             this.txtBoxUbicacion.Name = "txtBoxUbicacion";
-            this.txtBoxUbicacion.Size = new System.Drawing.Size(82, 24);
+            this.txtBoxUbicacion.Size = new System.Drawing.Size(84, 24);
             this.txtBoxUbicacion.TabIndex = 3;
             // 
             // lblUbicacion
@@ -403,7 +403,7 @@
             this.lblUbicacion.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblUbicacion.AutoSize = true;
             this.lblUbicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUbicacion.Location = new System.Drawing.Point(257, 110);
+            this.lblUbicacion.Location = new System.Drawing.Point(255, 116);
             this.lblUbicacion.Name = "lblUbicacion";
             this.lblUbicacion.Size = new System.Drawing.Size(74, 18);
             this.lblUbicacion.TabIndex = 7;
@@ -414,7 +414,7 @@
             this.lblPrecioCompra.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPrecioCompra.AutoSize = true;
             this.lblPrecioCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioCompra.Location = new System.Drawing.Point(222, 18);
+            this.lblPrecioCompra.Location = new System.Drawing.Point(220, 16);
             this.lblPrecioCompra.Name = "lblPrecioCompra";
             this.lblPrecioCompra.Size = new System.Drawing.Size(109, 18);
             this.lblPrecioCompra.TabIndex = 14;
@@ -425,7 +425,7 @@
             this.lblPrecioVenta.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPrecioVenta.AutoSize = true;
             this.lblPrecioVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioVenta.Location = new System.Drawing.Point(239, 65);
+            this.lblPrecioVenta.Location = new System.Drawing.Point(237, 66);
             this.lblPrecioVenta.Name = "lblPrecioVenta";
             this.lblPrecioVenta.Size = new System.Drawing.Size(92, 18);
             this.lblPrecioVenta.TabIndex = 13;
@@ -434,16 +434,16 @@
             // txtBoxPrecioCompra
             // 
             this.txtBoxPrecioCompra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxPrecioCompra.Location = new System.Drawing.Point(337, 15);
+            this.txtBoxPrecioCompra.Location = new System.Drawing.Point(335, 13);
             this.txtBoxPrecioCompra.Name = "txtBoxPrecioCompra";
-            this.txtBoxPrecioCompra.Size = new System.Drawing.Size(82, 24);
+            this.txtBoxPrecioCompra.Size = new System.Drawing.Size(84, 24);
             this.txtBoxPrecioCompra.TabIndex = 15;
             this.txtBoxPrecioCompra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nmrcUpDownStockActual
             // 
             this.nmrcUpDownStockActual.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.nmrcUpDownStockActual.Location = new System.Drawing.Point(123, 62);
+            this.nmrcUpDownStockActual.Location = new System.Drawing.Point(123, 63);
             this.nmrcUpDownStockActual.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -458,9 +458,9 @@
             this.grpBoxObservaciones.Controls.Add(this.rchTextBoxObservaciones);
             this.grpBoxObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxObservaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpBoxObservaciones.Location = new System.Drawing.Point(3, 398);
+            this.grpBoxObservaciones.Location = new System.Drawing.Point(3, 423);
             this.grpBoxObservaciones.Name = "grpBoxObservaciones";
-            this.grpBoxObservaciones.Size = new System.Drawing.Size(428, 95);
+            this.grpBoxObservaciones.Size = new System.Drawing.Size(428, 70);
             this.grpBoxObservaciones.TabIndex = 8;
             this.grpBoxObservaciones.TabStop = false;
             this.grpBoxObservaciones.Text = "Observaciones";
@@ -470,7 +470,7 @@
             this.rchTextBoxObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rchTextBoxObservaciones.Location = new System.Drawing.Point(3, 20);
             this.rchTextBoxObservaciones.Name = "rchTextBoxObservaciones";
-            this.rchTextBoxObservaciones.Size = new System.Drawing.Size(422, 72);
+            this.rchTextBoxObservaciones.Size = new System.Drawing.Size(422, 47);
             this.rchTextBoxObservaciones.TabIndex = 22;
             this.rchTextBoxObservaciones.Text = "";
             // 

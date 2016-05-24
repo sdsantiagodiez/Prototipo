@@ -394,8 +394,96 @@ namespace Controladores
         }
         #endregion
 
+        #region getOne(object,parametroBusqueda)
+        //Como buscar(object,parametroBusqueda), pero en vez de una lista devuelve un solo objeto
+        public static ModeloEntidad getOne(ModeloEntidad p_mod_entidad, string p_parametroBusqueda)
+        {
+            List<ModeloEntidad> lcl_lst_mod_entidad = ControladorBusqueda.buscar(p_mod_entidad, p_parametroBusqueda);
+            if (lcl_lst_mod_entidad.Count > 0)
+            {
+                return lcl_lst_mod_entidad[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public static ModeloPersonas getOne(ModeloPersonas p_mod_persona, string p_parametroBusqueda)
+        {
+            List<ModeloPersonas> lcl_lst_mod_personas = ControladorBusqueda.buscar(p_mod_persona, p_parametroBusqueda);
+            if (lcl_lst_mod_personas.Count > 0)
+            {
+                return lcl_lst_mod_personas[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public static ModeloCliente getOne(ModeloCliente p_mod_cliente, string p_parametroBusqueda)
+        {
+            List<ModeloCliente> lcl_lst_mod_clientes = ControladorBusqueda.buscar(p_mod_cliente, p_parametroBusqueda);
+            if (lcl_lst_mod_clientes.Count > 0)
+            {
+                return lcl_lst_mod_clientes[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public static ModeloUsuario getOne(ModeloUsuario p_mod_usuario, string p_parametroBusqueda)
+        {
+            List<ModeloUsuario> lcl_lst_mod_usuarios = ControladorBusqueda.buscar(p_mod_usuario, p_parametroBusqueda);
+            if (lcl_lst_mod_usuarios.Count > 0)
+            {
+                return lcl_lst_mod_usuarios[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public static ModeloProveedor getOne(ModeloProveedor p_mod_proveedor, string p_parametroBusqueda)
+        {
+            List<ModeloProveedor> lcl_lst_mod_proveedores = ControladorBusqueda.buscar(p_mod_proveedor, p_parametroBusqueda);
+            if (lcl_lst_mod_proveedores.Count > 0)
+            {
+                return lcl_lst_mod_proveedores[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public static ModeloArticuloProveedores getOne(ModeloArticuloProveedores p_mod_articuloProveedor, string p_parametroBusqueda)
+        {
+            List<ModeloArticuloProveedores> lcl_lst_mod_articuloProveedor = ControladorBusqueda.buscar(p_mod_articuloProveedor, p_parametroBusqueda);
+            if (lcl_lst_mod_articuloProveedor.Count > 0)
+            {
+                return lcl_lst_mod_articuloProveedor[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public static ModeloPedido getOne(ModeloPedido p_mod_pedido, string p_parametroBusqueda)
+        {
+            List<ModeloPedido> lcl_lst_mod_pedidos = ControladorBusqueda.buscar(p_mod_pedido, p_parametroBusqueda);
+            if (lcl_lst_mod_pedidos.Count > 0)
+            {
+                return lcl_lst_mod_pedidos[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        #endregion
+
         #region Sin uso?
-       
+
         #region Provincia
         /// <summary>
         /// Retorna provincias en base a los valores inicializados en los atributos del modelo

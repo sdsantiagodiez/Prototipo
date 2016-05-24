@@ -266,7 +266,7 @@ namespace Controladores
                     lcl_mod_articuloProveedores.codigoOriginal = lp.articulo.codigoOriginal;
                     lcl_mod_articuloProveedores.codigoArticuloProveedor = lp.articulo.codigoArticuloProveedor;
 
-                    lcl_mod_articuloProveedores = ControladorBusqueda.buscar(lcl_mod_articuloProveedores, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.One)[0];
+                    lcl_mod_articuloProveedores = ControladorBusqueda.getOne(lcl_mod_articuloProveedores, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.One);
                     //Si no se encuentra artículo tira excepción de índice
                     lcl_mod_articuloProveedores.stockActual = lcl_mod_articuloProveedores.stockActual - lp.cantidadArticulos;
                     //Excepcion si stock negativo y no esta permitido

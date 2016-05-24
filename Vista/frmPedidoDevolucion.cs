@@ -499,11 +499,11 @@ namespace Vista
         private void lblLupa_Click(object sender, EventArgs e)
         {
             //Buscar Pedido por CAE
-            List<ModeloPedido> lcl_lst_modeloPedido = ControladorBusqueda.buscar(new ModeloPedido() { CAE = this.txtCAE.Text}, Constantes.ParametrosBusqueda.Pedidos.CAE);
-            
-            if (lcl_lst_modeloPedido.Count > 0)
+            ModeloPedido lcl_mod_pedido = ControladorBusqueda.getOne(new ModeloPedido() { CAE = this.txtCAE.Text}, Constantes.ParametrosBusqueda.Pedidos.CAE);
+
+            if (lcl_mod_pedido != null)
             {
-                this.inicializarPedidoOriginal(lcl_lst_modeloPedido[0]);
+                this.inicializarPedidoOriginal(lcl_mod_pedido);
             }
             else
             {

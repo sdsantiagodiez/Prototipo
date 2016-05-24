@@ -74,19 +74,10 @@ namespace Controladores
             resultadoBusquedaArticulosProveedores = ControladorBusqueda.buscar(lcl_mod_ArticuloProveedor, p_categoriaBusquedaSeleccionada);
             return resultadoBusquedaArticulosProveedores.Count;
         }
-        public void buscarCliente(string p_dni)
-        {
-            entidadActual = ControladorBusqueda.buscar(new ModeloCliente(){dni=p_dni}, Constantes.ParametrosBusqueda.Entidades.Personas.Dni)[0];
-        }
 
         public ModeloArticuloProveedores getArticuloBusqueda(int p_indice)
         {
             return resultadoBusquedaArticulosProveedores[p_indice];
-        }
-
-        public ModeloLineaPedido getArticulo(int p_indice)
-        {
-            return pedidoActual.lineasPedido[p_indice];
         }
         #endregion
 
@@ -215,7 +206,7 @@ namespace Controladores
                     ModeloEntidad p_mod_entidadAuxiliar = new ModeloProveedor();
                     p_mod_entidadAuxiliar.codigo = linea.articulo.codigoEntidad;
                     //Se crea pedido con proveedor como entidad del pedido 
-                    ModeloPedido p_mod_pedidoAuxiliar = new ModeloPedido(ControladorBusqueda.buscar(p_mod_entidadAuxiliar, Constantes.ParametrosBusqueda.One)[0]);
+                    ModeloPedido p_mod_pedidoAuxiliar = new ModeloPedido(ControladorBusqueda.getOne(p_mod_entidadAuxiliar, Constantes.ParametrosBusqueda.One));
                     p_mod_pedidoAuxiliar.lineasPedido.Add(linea);
                     
                     p_lst_mod_pedidos.Add(p_mod_pedidoAuxiliar);

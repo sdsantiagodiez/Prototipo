@@ -175,25 +175,22 @@ namespace Vista
 
         private void txtProveedor_Leave(object sender, EventArgs e)
         {
-           
             List<ModeloProveedor> lst_mod_Proveedor = new List<ModeloProveedor>();
             ModeloEntidad lcl_modelo_entidad  = new ModeloEntidad();
             lcl_modelo_entidad.codigo= Convert.ToInt32(this.txtProveedor.Text);
-            lst_mod_Proveedor = ControladorBusqueda.buscar(lcl_modelo_entidad as ModeloProveedor,Constantes.ParametrosBusqueda.One) ;
-            lcl_modelo_entidad = lst_mod_Proveedor[0];
+            lcl_modelo_entidad = ControladorBusqueda.getOne(lcl_modelo_entidad as ModeloProveedor,Constantes.ParametrosBusqueda.One) ;
+            //si entidad es nul va a tirar error
             this.lblNombreProveedor.Text = lcl_modelo_entidad.cuit;
         }
 
         private void txtCliente_Leave(object sender, EventArgs e)
         {
-          
             List<ModeloCliente> lst_mod_cliente = new List<ModeloCliente>();
             ModeloEntidad lcl_modelo_entCliente = new ModeloEntidad();
             lcl_modelo_entCliente.codigo = Convert.ToInt32(this.txtCliente.Text);
-            lst_mod_cliente = ControladorBusqueda.buscar(lcl_modelo_entCliente as ModeloCliente, Constantes.ParametrosBusqueda.One);
-            lcl_modelo_entCliente = lst_mod_cliente[0];
+            lcl_modelo_entCliente = ControladorBusqueda.getOne(lcl_modelo_entCliente as ModeloCliente, Constantes.ParametrosBusqueda.One);
+            //Si cliente es nulo va a tirar error
             this.lblNombreProveedor.Text = lcl_modelo_entCliente.cuit;
-
         }
         #endregion
     }
