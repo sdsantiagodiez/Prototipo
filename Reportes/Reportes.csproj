@@ -61,6 +61,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="NCreditoA.rdlc" />
+    <EmbeddedResource Include="NCreditoB.rdlc" />
     <EmbeddedResource Include="FacturaB.rdlc" />
     <EmbeddedResource Include="FacturaA.rdlc" />
     <EmbeddedResource Include="FormReportes.resx">

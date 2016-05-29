@@ -25,7 +25,7 @@ namespace Vista
             this.contenedorFactura.RefreshReport();
         }
 
-        public frmImpresionFactura(ModeloReporteEncabezadoFactura p_modEncabezado, string tipoComprobante)//tipo de comprobantes A/B , no se si aplicar a NC
+        public frmImpresionFactura(ModeloReporteEncabezadoFactura p_modEncabezado, string tipoComprobante)
         {
             InitializeComponent();
             ModeloReporteEncabezadoFacturaBindingSource.Clear();
@@ -42,9 +42,17 @@ namespace Vista
             {
                 this.contenedorFactura.LocalReport.ReportEmbeddedResource = "Reportes.FacturaA.rdlc";
             }
-            else if (String.Equals(tipoComprobante, "4"))
+            else if (String.Equals(tipoComprobante, "6"))
             {
                 this.contenedorFactura.LocalReport.ReportEmbeddedResource = "Reportes.FacturaB.rdlc";
+            }
+            else if (String.Equals(tipoComprobante, "3"))
+            {
+                this.contenedorFactura.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoA.rdlc";
+            }
+            else if (String.Equals(tipoComprobante, "8"))
+            {
+                this.contenedorFactura.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoB.rdlc";
             }
             this.contenedorFactura.LocalReport.Refresh();
             this.contenedorFactura.RefreshReport();
