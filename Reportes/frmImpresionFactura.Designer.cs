@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.ModeloReporteEncabezadoFacturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.modeloReporteDetalleFacturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contenedorFactura = new Microsoft.Reporting.WinForms.ReportViewer();
@@ -49,12 +49,12 @@
             // contenedorFactura
             // 
             this.contenedorFactura.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "DSFactura";
-            reportDataSource1.Value = this.ModeloReporteEncabezadoFacturaBindingSource;
-            reportDataSource2.Name = "DSDetalleFactura";
-            reportDataSource2.Value = this.ModeloReporteEncabezadoFacturaBindingSource;
-            this.contenedorFactura.LocalReport.DataSources.Add(reportDataSource1);
-            this.contenedorFactura.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource3.Name = "DSFactura";
+            reportDataSource3.Value = this.ModeloReporteEncabezadoFacturaBindingSource;
+            reportDataSource4.Name = "DSDetalleFactura";
+            reportDataSource4.Value = this.ModeloReporteEncabezadoFacturaBindingSource;
+            this.contenedorFactura.LocalReport.DataSources.Add(reportDataSource3);
+            this.contenedorFactura.LocalReport.DataSources.Add(reportDataSource4);
             this.contenedorFactura.LocalReport.ReportEmbeddedResource = "Reportes.FacturaA.rdlc";
             this.contenedorFactura.Location = new System.Drawing.Point(0, 0);
             this.contenedorFactura.Name = "contenedorFactura";

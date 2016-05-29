@@ -31,17 +31,18 @@ namespace Vista
             ModeloReporteEncabezadoFacturaBindingSource.Clear();
             modeloReporteDetalleFacturaBindingSource.Clear();
             
-
+            modeloReporteDetalleFacturaBindingSource.DataSource = typeof(ModeloReporteDetalleFactura);
             ModeloReporteEncabezadoFacturaBindingSource.DataSource = p_modEncabezado;
             modeloReporteDetalleFacturaBindingSource.DataSource = p_modEncabezado.detalleFactura;
+            this.contenedorFactura.LocalReport.DataSources.Clear();
             this.contenedorFactura.LocalReport.DataSources.Add(new ReportDataSource("DSFactura", ModeloReporteEncabezadoFacturaBindingSource));
             this.contenedorFactura.LocalReport.DataSources.Add(new ReportDataSource("DSDetalleFactura", modeloReporteDetalleFacturaBindingSource));
 
-            if (String.Equals(tipoComprobante,'1'))
+            if (String.Equals(tipoComprobante,"1"))
             {
                 this.contenedorFactura.LocalReport.ReportEmbeddedResource = "Reportes.FacturaA.rdlc";
             }
-            else if (String.Equals(tipoComprobante, '4'))
+            else if (String.Equals(tipoComprobante, "4"))
             {
                 this.contenedorFactura.LocalReport.ReportEmbeddedResource = "Reportes.FacturaB.rdlc";
             }
