@@ -450,11 +450,13 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Parameters!parametroTitulo.Value</Value>
+                  <Value>Cod.02</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>parametroTitulo</rd:DefaultName>
@@ -462,7 +464,6 @@
           <Left>9.49632cm</Left>
           <Height>0.6cm</Height>
           <Width>3.08208cm</Width>
-          <ToolTip>=Parameters!parametroTitulo.Value</ToolTip>
           <Style>
             <Border>
               <Style>None</Style>
@@ -480,7 +481,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Parameters!parametroEmpresa.Value</Value>
+                  <Value>Mundo Renault</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -1054,7 +1055,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Parameters!parametroCuit.Value</Value>
+                  <Value>30-50331781-4</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -1119,7 +1120,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Parameters!parametroInicioAct.Value</Value>
+                  <Value>01/06/1999</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -1150,7 +1151,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Parameters!parametroDirEmpresa.Value</Value>
+                  <Value>Av. Pellegrini 3151 - Rosario, Santa Fe</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -1182,7 +1183,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Parameters!parametroTelEmpresa.Value</Value>
+                  <Value>Tel. 0341- 4353535</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -1899,32 +1900,6 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
-  <ReportParameters>
-    <ReportParameter Name="parametroTitulo">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroEmpresa">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroCuit">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroInicioAct">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroDirEmpresa">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="parametroTelEmpresa">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-  </ReportParameters>
   <EmbeddedImages>
     <EmbeddedImage Name="mundo_renault">
       <MIMEType>image/jpeg</MIMEType>

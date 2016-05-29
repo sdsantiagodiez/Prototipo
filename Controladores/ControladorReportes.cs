@@ -161,6 +161,7 @@ namespace Controladores
         {
             // Carga en modelo Reportepedido Que hacemos si no esta aprobado, donde validamos?
             ModeloReporteEncabezadoFactura lcl_mod_Factura = new ModeloReporteEncabezadoFactura();
+            lcl_mod_Factura.detalleFactura = new List<ModeloReporteDetalleFactura>();
             lcl_mod_Factura.CAINumero = p_mod_pedido.CAE;
             lcl_mod_Factura.Alicuota = Convert.ToDecimal(p_mod_pedido.alicuota.iva.porcentaje);
             lcl_mod_Factura.CentroEmisor = "0001";//p_mod_pedido.numeroComprobante;
@@ -179,15 +180,18 @@ namespace Controladores
             //lcl_mod_Factura.Comprador_RazonSocial = p_mod_pedido.entidad
             //lcl_mod_Factura.ConceptosNoGravados = p_mod_pedido.
             lcl_mod_Factura.CondicionVenta = p_mod_pedido.formasDePago[0].forma.ToString();
-            for (int i=0;i>p_mod_pedido.lineasPedido.Count;i++)
+            for (int i=0;i<p_mod_pedido.lineasPedido.Count;i++)
             {
-                lcl_mod_Factura.detalleFactura[i].Cantidad = p_mod_pedido.lineasPedido[i].cantidadArticulos;
-                lcl_mod_Factura.detalleFactura[i].CodigoArticulo = p_mod_pedido.lineasPedido[i].articulo.codigoArticuloProveedor;
-                lcl_mod_Factura.detalleFactura[i].Descripcion = p_mod_pedido.lineasPedido[i].articulo.descripcion;
-                lcl_mod_Factura.detalleFactura[i].PrecioUnitario = p_mod_pedido.lineasPedido[i].valorUnitario;
-                lcl_mod_Factura.detalleFactura[i].Precio = p_mod_pedido.lineasPedido[i].valorParcial;
+                ModeloReporteDetalleFactura lcl_mod_detalle = new ModeloReporteDetalleFactura();
+                lcl_mod_detalle.Cantidad=p_mod_pedido.lineasPedido[i].cantidadArticulos;
+                lcl_mod_detalle.CodigoArticulo = p_mod_pedido.lineasPedido[i].articulo.codigoArticuloProveedor;
+                lcl_mod_detalle.Descripcion = p_mod_pedido.lineasPedido[i].articulo.descripcion;
+                lcl_mod_detalle.PrecioUnitario = p_mod_pedido.lineasPedido[i].valorUnitario;
+                lcl_mod_detalle.Precio = p_mod_pedido.lineasPedido[i].valorParcial;
+
+                lcl_mod_Factura.detalleFactura.Add(lcl_mod_detalle);
             }
-            //lcl_mod_Factura.detalleFactura = p_mod_pedido.lineasPedido; //hacer linea por linea "for"
+            
             lcl_mod_Factura.FechaComprobante = p_mod_pedido.fecha;
             //lcl_mod_Factura.FechaVencimiento = p_mod_pedido.//tiene fecha Vto?
             lcl_mod_Factura.IVAComprobante = p_mod_pedido.alicuota.monto;
