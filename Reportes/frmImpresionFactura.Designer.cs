@@ -32,8 +32,8 @@
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.ModeloReporteEncabezadoFacturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.contenedorFactura = new Microsoft.Reporting.WinForms.ReportViewer();
             this.modeloReporteDetalleFacturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.contenedorFactura = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteEncabezadoFacturaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modeloReporteDetalleFacturaBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -42,13 +42,17 @@
             // 
             this.ModeloReporteEncabezadoFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezadoFactura);
             // 
+            // modeloReporteDetalleFacturaBindingSource
+            // 
+            this.modeloReporteDetalleFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteDetalleFactura);
+            // 
             // contenedorFactura
             // 
             this.contenedorFactura.Dock = System.Windows.Forms.DockStyle.Fill;
             reportDataSource1.Name = "DSFactura";
             reportDataSource1.Value = this.ModeloReporteEncabezadoFacturaBindingSource;
             reportDataSource2.Name = "DSDetalleFactura";
-            reportDataSource2.Value = this.modeloReporteDetalleFacturaBindingSource;
+            reportDataSource2.Value = this.ModeloReporteEncabezadoFacturaBindingSource;
             this.contenedorFactura.LocalReport.DataSources.Add(reportDataSource1);
             this.contenedorFactura.LocalReport.DataSources.Add(reportDataSource2);
             this.contenedorFactura.LocalReport.ReportEmbeddedResource = "Reportes.FacturaA.rdlc";
@@ -56,10 +60,6 @@
             this.contenedorFactura.Name = "contenedorFactura";
             this.contenedorFactura.Size = new System.Drawing.Size(827, 552);
             this.contenedorFactura.TabIndex = 0;
-            // 
-            // modeloReporteDetalleFacturaBindingSource
-            // 
-            this.modeloReporteDetalleFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteDetalleFactura);
             // 
             // frmImpresionFactura
             // 

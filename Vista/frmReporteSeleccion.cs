@@ -46,23 +46,15 @@ namespace Vista
             if (cmbxVentasReportes.Text == "Reporte de Ventas Entre Fechas")
             {
                
-                if (txtFecDesdeVentas.Text == "" || txtFecHastaVentas.Text == "" || (txtCliente.Text == "" && chkAllClientes.Checked == false))
+                if (txtFecDesdeVentas.Text == "" || txtFecHastaVentas.Text == "" )
                 {
                     MessageBox.Show("No puedes dejar el campo vacio", "Campos Vacios", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    if (chkAllClientes.Checked == true)
-                    {
-                        //glb_frm_FormReportes = glb_con_Reporte.ReporteVentaEntreFechas(Convert.ToDateTime(txtFecDesdeVentas.Text), Convert.ToDateTime(txtFecHastaVentas.Text), 0);
+                   
                         glb_frm_FormReportes = glb_con_Reporte.ReporteVentaEntreFechas(lcl_var_DateFrom, lcl_var_DateTo, 0);
-                    }
-                    else
-                    {
-                        glb_frm_FormReportes = glb_con_Reporte.ReporteVentaEntreFechas(lcl_var_DateFrom, lcl_var_DateTo, Convert.ToInt32(txtCliente.Text));
-                    }
-
-                   }
+                                      }
             }
             else
             {
@@ -77,122 +69,19 @@ namespace Vista
             DateTime lcl_var_DateFrom = DateTime.ParseExact(txtPedidoFechaDesde.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DateTime lcl_var_DateTo = DateTime.ParseExact(txtPedidoFechaHasta.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            if (txtPedidoFechaDesde.Text == "" || txtPedidoFechaHasta.Text == "" || (txtProveedor.Text == "" && chkboxAllProv.Checked==false))
+            if (txtPedidoFechaDesde.Text == "" || txtPedidoFechaHasta.Text == "" )
             {
                 MessageBox.Show("No puedes dejar el campo vacio", "Campos Vacios", MessageBoxButtons.OK);
             }
             else
             {
-                if (chkboxAllProv.Checked == true)
-                {
                     
                     glb_frm_FormReportes = glb_con_Reporte.ReportePedidoEntreFechas(lcl_var_DateFrom, lcl_var_DateTo, 0);
-                }
-                else
-                {
-                    glb_frm_FormReportes = glb_con_Reporte.ReportePedidoEntreFechas(lcl_var_DateFrom, lcl_var_DateTo, Convert.ToInt32(txtProveedor.Text));
-                }
-
-                glb_frm_FormReportes.ShowDialog();
+                    glb_frm_FormReportes.ShowDialog();
             }
         }
 
-        #region EventosControles
-
-        private void cmbxVentasReportes_Leave(object sender, EventArgs e)
-        {
-            if (cmbxVentasReportes.SelectedText == "Reporte de Ventas Entre Fechas")
-            {
-                this.txtFecDesdeVentas.Visible = true;
-                this.txtFecHastaVentas.Visible = true;
-                this.chkAllClientes.Visible = true;
-                this.lblNombreCliente.Visible = true;
-                this.txtCliente.Visible = true;
-                this.btnGeneraReporteVentas.Visible = true;
-                this.lblCliente.Visible = true;
-            }
-            else if (cmbxVentasReportes.SelectedText == "Listado Top 10 Articulos Vendidos")
-            {
-                this.txtFecDesdeVentas.Text = "";
-                this.txtFecHastaVentas.Text = "";
-                this.chkAllClientes.Visible = false;
-                this.lblNombreCliente.Visible = false;
-                this.txtCliente.Visible = false;
-                this.btnGeneraReporteVentas.Visible = true; 
-                this.lblCliente.Visible = false;
-            }
-            else
-            {
-                //this.btnGeneraReporteVentas.Visible = false;
-            }
-
-        }
-
-        private void cmbxVentasReportes_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (cmbxVentasReportes.SelectedText == "Reporte de Ventas Entre Fechas")
-            {
-                this.txtFecDesdeVentas.Visible = true;
-                this.txtFecHastaVentas.Visible = true;
-                this.chkAllClientes.Visible = true;
-                this.lblNombreCliente.Visible = true;
-                this.txtCliente.Visible = true;
-                this.btnGeneraReporteVentas.Visible = true;
-                this.lblCliente.Visible = true;
-            }
-            else if (cmbxVentasReportes.SelectedText == "Listado Top 10 Articulos Vendidos")
-            {
-                this.txtFecDesdeVentas.Text = "";
-                this.txtFecHastaVentas.Text = "";
-                this.chkAllClientes.Visible = false;
-                this.lblNombreCliente.Visible = false;
-                this.txtCliente.Visible = false;
-                this.btnGeneraReporteVentas.Visible = true;
-                this.lblCliente.Visible = false;
-            }
-            else
-            {
-                //this.btnGeneraReporteVentas.Visible = false;
-            }
-
-        }
-
-        private void chkAllClientes_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkAllClientes.Checked == true)
-            {
-                txtCliente.Visible = false;
-                lblCliente.Visible = false;
-                lblNombreCliente.Visible = false;
-            }
-            else
-            {
-                txtCliente.Visible = true;
-                lblCliente.Visible = true;
-                lblNombreCliente.Visible = true;
-            }
-        }
-
-        private void txtProveedor_Leave(object sender, EventArgs e)
-        {
-            List<ModeloProveedor> lst_mod_Proveedor = new List<ModeloProveedor>();
-            ModeloEntidad lcl_modelo_entidad  = new ModeloEntidad();
-            lcl_modelo_entidad.codigo= Convert.ToInt32(this.txtProveedor.Text);
-            lcl_modelo_entidad = ControladorBusqueda.getOne(lcl_modelo_entidad as ModeloProveedor,Constantes.ParametrosBusqueda.One) ;
-            //si entidad es nul va a tirar error
-            this.lblNombreProveedor.Text = lcl_modelo_entidad.cuit;
-        }
-
-        private void txtCliente_Leave(object sender, EventArgs e)
-        {
-            List<ModeloCliente> lst_mod_cliente = new List<ModeloCliente>();
-            ModeloEntidad lcl_modelo_entCliente = new ModeloEntidad();
-            lcl_modelo_entCliente.codigo = Convert.ToInt32(this.txtCliente.Text);
-            lcl_modelo_entCliente = ControladorBusqueda.getOne(lcl_modelo_entCliente as ModeloCliente, Constantes.ParametrosBusqueda.One);
-            //Si cliente es nulo va a tirar error
-            this.lblNombreProveedor.Text = lcl_modelo_entCliente.cuit;
-        }
-        #endregion
+        
     }
     
     

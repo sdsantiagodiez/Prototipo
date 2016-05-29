@@ -146,27 +146,47 @@ namespace Controladores
 
         public frmImpresionFactura ImpresionFacturas(ModeloPedido p_mod_pedido)
         {
+
             frmImpresionFactura lcl_frm_factura = new frmImpresionFactura(this.CompletaEntidadFactura(p_mod_pedido), p_mod_pedido.tipoComprobante.ToString());
             return lcl_frm_factura;
+        }
+        public bool ComprobanteAprobado(ModeloPedido p_mod_pedido)
+        {
+            if (p_mod_pedido.aprobadoAFIP == "SI")
+            { return true; }
+            else { return false; } 
         }
 
         private ModeloReporteEncabezadoFactura CompletaEntidadFactura(ModeloPedido p_mod_pedido)
         {
-            // Carga en modelo Reportepedido
+            // Carga en modelo Reportepedido Que hacemos si no esta aprobado, donde validamos?
             ModeloReporteEncabezadoFactura lcl_mod_Factura = new ModeloReporteEncabezadoFactura();
             lcl_mod_Factura.CAINumero = p_mod_pedido.CAE;
             lcl_mod_Factura.Alicuota = Convert.ToDecimal(p_mod_pedido.alicuota.iva.porcentaje);
             lcl_mod_Factura.CentroEmisor = "0001";//p_mod_pedido.numeroComprobante;
             lcl_mod_Factura.NumeroComprobante = p_mod_pedido.numeroComprobante;
-            lcl_mod_Factura.Comprador_Cuit = p_mod_pedido.documentoComprador.numero;
-            lcl_mod_Factura.Comprador_IVAResponsableI = p_mod_pedido.documentoComprador.tipo.descripcion;
-            lcl_mod_Factura.Comprador_Domicilio = p_mod_pedido.domicilioDeFacturacion.calle + " " + 
-                p_mod_pedido.domicilioDeFacturacion.numero + ", " + 
-                p_mod_pedido.domicilioDeFacturacion.ciudad + ", " + 
-                p_mod_pedido.domicilioDeFacturacion.provincia;
+            lcl_mod_Factura.Comprador_Cuit = p_mod_pedido.entidad.cuit;
+            //lcl_mod_Factura.Comprador_IVAResponsableI = p_mod_pedido.documentoComprador.tipo.descripcion;
+            if (p_mod_pedido.domicilioDeFacturacion==null)
+            { lcl_mod_Factura.Comprador_Domicilio = ""; }
+            else
+            {
+                lcl_mod_Factura.Comprador_Domicilio = p_mod_pedido.domicilioDeFacturacion.calle + " " +
+                    p_mod_pedido.domicilioDeFacturacion.numero + ", " +
+                    p_mod_pedido.domicilioDeFacturacion.ciudad + ", " +
+                    p_mod_pedido.domicilioDeFacturacion.provincia;
+            }
             //lcl_mod_Factura.Comprador_RazonSocial = p_mod_pedido.entidad
             //lcl_mod_Factura.ConceptosNoGravados = p_mod_pedido.
-            //lcl_mod_Factura.CondicionVenta = p_mod_pedido.formasDePago[0].forma; ver forma de pago
+            lcl_mod_Factura.CondicionVenta = p_mod_pedido.formasDePago[0].forma.ToString();
+            for (int i=0;i>p_mod_pedido.lineasPedido.Count;i++)
+            {
+                lcl_mod_Factura.detalleFactura[i].Cantidad = p_mod_pedido.lineasPedido[i].cantidadArticulos;
+                lcl_mod_Factura.detalleFactura[i].CodigoArticulo = p_mod_pedido.lineasPedido[i].articulo.codigoArticuloProveedor;
+                lcl_mod_Factura.detalleFactura[i].Descripcion = p_mod_pedido.lineasPedido[i].articulo.descripcion;
+                lcl_mod_Factura.detalleFactura[i].PrecioUnitario = p_mod_pedido.lineasPedido[i].valorUnitario;
+                lcl_mod_Factura.detalleFactura[i].Precio = p_mod_pedido.lineasPedido[i].valorParcial;
+            }
             //lcl_mod_Factura.detalleFactura = p_mod_pedido.lineasPedido; //hacer linea por linea "for"
             lcl_mod_Factura.FechaComprobante = p_mod_pedido.fecha;
             //lcl_mod_Factura.FechaVencimiento = p_mod_pedido.//tiene fecha Vto?

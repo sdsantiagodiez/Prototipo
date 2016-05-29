@@ -27,6 +27,7 @@ namespace Vista
 
         public frmImpresionFactura(ModeloReporteEncabezadoFactura p_modEncabezado, string tipoComprobante)//tipo de comprobantes A/B , no se si aplicar a NC
         {
+            InitializeComponent();
             ModeloReporteEncabezadoFacturaBindingSource.Clear();
             modeloReporteDetalleFacturaBindingSource.Clear();
             
