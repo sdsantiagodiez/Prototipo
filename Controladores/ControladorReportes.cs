@@ -177,7 +177,7 @@ namespace Controladores
                     p_mod_pedido.domicilioDeFacturacion.ciudad + ", " +
                     p_mod_pedido.domicilioDeFacturacion.provincia;
             }
-            //lcl_mod_Factura.Comprador_RazonSocial = p_mod_pedido.entidad
+            lcl_mod_Factura.Comprador_RazonSocial = p_mod_pedido.entidad.ToString();
             //lcl_mod_Factura.ConceptosNoGravados = p_mod_pedido.
             lcl_mod_Factura.CondicionVenta = p_mod_pedido.formasDePago[0].forma.ToString();
             for (int i=0;i<p_mod_pedido.lineasPedido.Count;i++)

@@ -255,7 +255,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Cantidad.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -285,7 +287,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!CodigoArticulo.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -315,7 +319,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Descripcion.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -345,7 +351,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!PrecioUnitario.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -375,7 +383,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Precio.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -1539,7 +1549,6 @@
           </Style>
         </Line>
         <Line Name="Line3">
-          <Top>0cm</Top>
           <Height>1.46786cm</Height>
           <Width>0cm</Width>
           <ZIndex>7</ZIndex>
@@ -1550,7 +1559,6 @@
           </Style>
         </Line>
         <Line Name="Line4">
-          <Top>0cm</Top>
           <Left>21cm</Left>
           <Height>1.46786cm</Height>
           <Width>0cm</Width>
