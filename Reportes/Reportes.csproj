@@ -36,6 +36,7 @@
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -84,6 +85,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Pedido.rdlc" />
+    <None Include="i2of5txt.ttf" />
     <None Include="Properties\DataSources\Modelos.ModeloArticuloProveedores.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloArticulos.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloDomicilio.datasource" />

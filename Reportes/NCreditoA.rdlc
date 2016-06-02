@@ -1586,8 +1586,8 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <Top>1.64425cm</Top>
-          <Left>17.45808cm</Left>
+          <Top>1.57369cm</Top>
+          <Left>10.13551cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.8175cm</Width>
           <ZIndex>9</ZIndex>
@@ -1620,8 +1620,8 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <Top>2.26189cm</Top>
-          <Left>17.83416cm</Left>
+          <Top>2.19133cm</Top>
+          <Left>10.51159cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.44142cm</Width>
           <ZIndex>10</ZIndex>
@@ -1654,8 +1654,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
-          <Top>1.64425cm</Top>
-          <Left>14.80815cm</Left>
+          <Top>1.57369cm</Top>
+          <Left>7.48558cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.5cm</Width>
           <ZIndex>11</ZIndex>
@@ -1688,8 +1688,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
-          <Top>2.26189cm</Top>
-          <Left>14.81852cm</Left>
+          <Top>2.19133cm</Top>
+          <Left>7.49595cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.86571cm</Width>
           <ZIndex>12</ZIndex>
@@ -1765,6 +1765,37 @@
               <Style>None</Style>
             </Border>
             <BackgroundColor>LightGrey</BackgroundColor>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="TxtCAICode">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>="*" &amp; First(Fields!CAINumero.Value, "DSFactura") &amp; "*"</Value>
+                  <Style>
+                    <FontFamily>I2OF5TXT</FontFamily>
+                    <FontSize>24pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <Top>1.64425cm</Top>
+          <Left>13.84839cm</Left>
+          <Height>1.09417cm</Height>
+          <Width>6.75195cm</Width>
+          <ZIndex>15</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
