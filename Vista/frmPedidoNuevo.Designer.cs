@@ -117,7 +117,7 @@
             this.tblLayoutPanelBase.RowCount = 2;
             this.tblLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tblLayoutPanelBase.Size = new System.Drawing.Size(958, 576);
+            this.tblLayoutPanelBase.Size = new System.Drawing.Size(958, 588);
             this.tblLayoutPanelBase.TabIndex = 1;
             // 
             // tblLayoutPanelBotones
@@ -136,7 +136,7 @@
             this.tblLayoutPanelBotones.Controls.Add(this.btnCancelar, 0, 0);
             this.tblLayoutPanelBotones.Controls.Add(this.btnSiguiente, 5, 0);
             this.tblLayoutPanelBotones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelBotones.Location = new System.Drawing.Point(3, 519);
+            this.tblLayoutPanelBotones.Location = new System.Drawing.Point(3, 531);
             this.tblLayoutPanelBotones.Name = "tblLayoutPanelBotones";
             this.tblLayoutPanelBotones.RowCount = 1;
             this.tblLayoutPanelBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -223,7 +223,7 @@
             this.tblLayoutPanelArticulos.Name = "tblLayoutPanelArticulos";
             this.tblLayoutPanelArticulos.RowCount = 1;
             this.tblLayoutPanelArticulos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelArticulos.Size = new System.Drawing.Size(952, 510);
+            this.tblLayoutPanelArticulos.Size = new System.Drawing.Size(952, 522);
             this.tblLayoutPanelArticulos.TabIndex = 1;
             // 
             // gbxDetalleArticuloSeleccionado
@@ -272,7 +272,7 @@
             this.tblLayoutPanelDetalleArticuloBotones.ColumnCount = 3;
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.40659F));
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.59341F));
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104F));
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.nmrcUpDownCantidad, 1, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnAgregar, 2, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.lblCantidad, 0, 0);
@@ -305,7 +305,7 @@
             // btnAgregar
             // 
             this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAgregar.Location = new System.Drawing.Point(169, 4);
+            this.btnAgregar.Location = new System.Drawing.Point(168, 4);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(80, 35);
             this.btnAgregar.TabIndex = 4;
@@ -564,7 +564,7 @@
             this.tblLayoutPanelDataGrids.RowCount = 2;
             this.tblLayoutPanelDataGrids.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelDataGrids.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelDataGrids.Size = new System.Drawing.Size(661, 504);
+            this.tblLayoutPanelDataGrids.Size = new System.Drawing.Size(661, 516);
             this.tblLayoutPanelDataGrids.TabIndex = 25;
             // 
             // gbxArticulosAgregar
@@ -574,7 +574,7 @@
             this.gbxArticulosAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbxArticulosAgregar.Location = new System.Drawing.Point(3, 3);
             this.gbxArticulosAgregar.Name = "gbxArticulosAgregar";
-            this.gbxArticulosAgregar.Size = new System.Drawing.Size(655, 246);
+            this.gbxArticulosAgregar.Size = new System.Drawing.Size(655, 252);
             this.gbxArticulosAgregar.TabIndex = 23;
             this.gbxArticulosAgregar.TabStop = false;
             this.gbxArticulosAgregar.Text = "Artículos a Agregar";
@@ -591,7 +591,7 @@
             this.tblLayoutPanelBuscarArticulo.RowCount = 2;
             this.tblLayoutPanelBuscarArticulo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.32258F));
             this.tblLayoutPanelBuscarArticulo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84.67742F));
-            this.tblLayoutPanelBuscarArticulo.Size = new System.Drawing.Size(649, 224);
+            this.tblLayoutPanelBuscarArticulo.Size = new System.Drawing.Size(649, 230);
             this.tblLayoutPanelBuscarArticulo.TabIndex = 0;
             // 
             // dgvArticulosResultadoBusqueda
@@ -601,6 +601,7 @@
             this.dgvArticulosResultadoBusqueda.AllowUserToOrderColumns = true;
             this.dgvArticulosResultadoBusqueda.AllowUserToResizeRows = false;
             this.dgvArticulosResultadoBusqueda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvArticulosResultadoBusqueda.BackgroundColor = System.Drawing.Color.White;
             this.dgvArticulosResultadoBusqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulosResultadoBusqueda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.indice,
@@ -609,12 +610,13 @@
             this.proveedor,
             this.descripcion});
             this.dgvArticulosResultadoBusqueda.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvArticulosResultadoBusqueda.Location = new System.Drawing.Point(3, 37);
+            this.dgvArticulosResultadoBusqueda.GridColor = System.Drawing.Color.White;
+            this.dgvArticulosResultadoBusqueda.Location = new System.Drawing.Point(3, 38);
             this.dgvArticulosResultadoBusqueda.Name = "dgvArticulosResultadoBusqueda";
             this.dgvArticulosResultadoBusqueda.ReadOnly = true;
             this.dgvArticulosResultadoBusqueda.RowHeadersVisible = false;
             this.dgvArticulosResultadoBusqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulosResultadoBusqueda.Size = new System.Drawing.Size(643, 184);
+            this.dgvArticulosResultadoBusqueda.Size = new System.Drawing.Size(643, 189);
             this.dgvArticulosResultadoBusqueda.TabIndex = 4;
             this.dgvArticulosResultadoBusqueda.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulosResultadoBusqueda_CellClick);
             this.dgvArticulosResultadoBusqueda.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvArticulosResultadoBusqueda_MouseDown);
@@ -671,7 +673,7 @@
             this.tblLayoutPanelCuadroBusqueda.Name = "tblLayoutPanelCuadroBusqueda";
             this.tblLayoutPanelCuadroBusqueda.RowCount = 1;
             this.tblLayoutPanelCuadroBusqueda.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelCuadroBusqueda.Size = new System.Drawing.Size(643, 28);
+            this.tblLayoutPanelCuadroBusqueda.Size = new System.Drawing.Size(643, 29);
             this.tblLayoutPanelCuadroBusqueda.TabIndex = 0;
             // 
             // cbxCategoriaBusqueda
@@ -724,9 +726,9 @@
             this.gbxDetalleAgregados.Controls.Add(this.dgvArticulosEnPedido);
             this.gbxDetalleAgregados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbxDetalleAgregados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxDetalleAgregados.Location = new System.Drawing.Point(3, 255);
+            this.gbxDetalleAgregados.Location = new System.Drawing.Point(3, 261);
             this.gbxDetalleAgregados.Name = "gbxDetalleAgregados";
-            this.gbxDetalleAgregados.Size = new System.Drawing.Size(655, 246);
+            this.gbxDetalleAgregados.Size = new System.Drawing.Size(655, 252);
             this.gbxDetalleAgregados.TabIndex = 22;
             this.gbxDetalleAgregados.TabStop = false;
             this.gbxDetalleAgregados.Text = "Detalle Artículos Agregados";
@@ -750,7 +752,7 @@
             this.dgvArticulosEnPedido.ReadOnly = true;
             this.dgvArticulosEnPedido.RowHeadersVisible = false;
             this.dgvArticulosEnPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulosEnPedido.Size = new System.Drawing.Size(649, 225);
+            this.dgvArticulosEnPedido.Size = new System.Drawing.Size(649, 231);
             this.dgvArticulosEnPedido.TabIndex = 5;
             this.dgvArticulosEnPedido.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulosEnPedido_CellClick);
             this.dgvArticulosEnPedido.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvArticulosEnPedido_MouseDown);
@@ -802,7 +804,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(958, 576);
+            this.ClientSize = new System.Drawing.Size(958, 588);
             this.Controls.Add(this.tblLayoutPanelBase);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

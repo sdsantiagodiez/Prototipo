@@ -9,15 +9,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using LibreriaClasesCompartidas;
+using MaterialSkin;
+using MaterialSkin.Controls;
+using MaterialSkin.Animations;
 
 namespace Vista
 {
-    public partial class frmMenuPrincipal : Form
+    public partial class frmMenuPrincipal : MaterialForm
     {
         #region Constructores
         public frmMenuPrincipal()
         {
             InitializeComponent();
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -197,8 +204,9 @@ namespace Vista
         }
         #endregion
 
-        
-        
+
+
+
         #endregion
     }
 

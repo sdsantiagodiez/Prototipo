@@ -14,7 +14,7 @@ namespace Datos
     {
         #region Leer datos
 
-        new private ModeloContactoProveedor leerDatosContactoProveedor(SqlDataReader p_drContactoProveedor)
+        private ModeloContactoProveedor leerDatosContactoProveedor(SqlDataReader p_drContactoProveedor)
         {
             ModeloContactoProveedor lcl_mod_contactoProveedor = new ModeloContactoProveedor(base.leerDatosPersonas(p_drContactoProveedor));
 

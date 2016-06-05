@@ -142,7 +142,7 @@ namespace Datos
         /// Busca todos los proveedores que se encuentren en la base de datos
         /// </summary>
         /// <returns></returns>
-        public new List<ModeloProveedor> getAll()
+        public List<ModeloProveedor> getAll()
         {
             return this.buscarProveedor(null, Constantes.ParametrosBusqueda.All);
         }

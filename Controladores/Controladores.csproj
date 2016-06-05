@@ -44,7 +44,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WSAFIPFE">
-      <HintPath>..\..\..\..\Program Files (x86)\SC\WSAFIPFE\WSAFIPFE.dll</HintPath>
+      <HintPath>.\WSAFIPFE.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

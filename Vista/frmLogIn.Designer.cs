@@ -28,73 +28,96 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblUsuario = new System.Windows.Forms.Label();
-            this.lblContrasenia = new System.Windows.Forms.Label();
-            this.btnLogIn = new System.Windows.Forms.Button();
-            this.txtBoxUsuario = new System.Windows.Forms.TextBox();
-            this.txtBoxContrasenia = new System.Windows.Forms.TextBox();
-            this.lblBienvenido = new System.Windows.Forms.Label();
+            this.lblUsuario = new MaterialSkin.Controls.MaterialLabel();
+            this.lblContrasenia = new MaterialSkin.Controls.MaterialLabel();
+            this.btnLogIn = new MaterialSkin.Controls.MaterialFlatButton();
+            this.txtBoxUsuario = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxContrasenia = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.SuspendLayout();
             // 
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(55, 96);
+            this.lblUsuario.BackColor = System.Drawing.Color.White;
+            this.lblUsuario.Depth = 0;
+            this.lblUsuario.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblUsuario.Location = new System.Drawing.Point(45, 94);
+            this.lblUsuario.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(46, 13);
-            this.lblUsuario.TabIndex = 0;
+            this.lblUsuario.Size = new System.Drawing.Size(71, 18);
+            this.lblUsuario.TabIndex = 5;
             this.lblUsuario.Text = "Usuario:";
             // 
             // lblContrasenia
             // 
             this.lblContrasenia.AutoSize = true;
-            this.lblContrasenia.Location = new System.Drawing.Point(37, 132);
+            this.lblContrasenia.BackColor = System.Drawing.Color.White;
+            this.lblContrasenia.Depth = 0;
+            this.lblContrasenia.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContrasenia.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblContrasenia.Location = new System.Drawing.Point(15, 130);
+            this.lblContrasenia.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblContrasenia.Name = "lblContrasenia";
-            this.lblContrasenia.Size = new System.Drawing.Size(64, 13);
-            this.lblContrasenia.TabIndex = 1;
+            this.lblContrasenia.Size = new System.Drawing.Size(101, 18);
+            this.lblContrasenia.TabIndex = 6;
             this.lblContrasenia.Text = "Contraseña:";
             // 
             // btnLogIn
             // 
-            this.btnLogIn.Location = new System.Drawing.Point(94, 179);
+            this.btnLogIn.AutoSize = true;
+            this.btnLogIn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnLogIn.Depth = 0;
+            this.btnLogIn.Location = new System.Drawing.Point(110, 187);
+            this.btnLogIn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnLogIn.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnLogIn.Name = "btnLogIn";
-            this.btnLogIn.Size = new System.Drawing.Size(102, 39);
-            this.btnLogIn.TabIndex = 2;
+            this.btnLogIn.Primary = false;
+            this.btnLogIn.Size = new System.Drawing.Size(55, 36);
+            this.btnLogIn.TabIndex = 7;
             this.btnLogIn.Text = "Log In";
             this.btnLogIn.UseVisualStyleBackColor = true;
             this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
             // txtBoxUsuario
             // 
-            this.txtBoxUsuario.Location = new System.Drawing.Point(110, 93);
+            this.txtBoxUsuario.BackColor = System.Drawing.Color.White;
+            this.txtBoxUsuario.Depth = 0;
+            this.txtBoxUsuario.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxUsuario.Hint = "";
+            this.txtBoxUsuario.Location = new System.Drawing.Point(122, 94);
+            this.txtBoxUsuario.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxUsuario.Name = "txtBoxUsuario";
-            this.txtBoxUsuario.Size = new System.Drawing.Size(134, 20);
-            this.txtBoxUsuario.TabIndex = 3;
+            this.txtBoxUsuario.PasswordChar = '\0';
+            this.txtBoxUsuario.SelectedText = "";
+            this.txtBoxUsuario.SelectionLength = 0;
+            this.txtBoxUsuario.SelectionStart = 0;
+            this.txtBoxUsuario.Size = new System.Drawing.Size(134, 23);
+            this.txtBoxUsuario.TabIndex = 8;
+            this.txtBoxUsuario.UseSystemPasswordChar = false;
             // 
             // txtBoxContrasenia
             // 
-            this.txtBoxContrasenia.Location = new System.Drawing.Point(110, 129);
+            this.txtBoxContrasenia.BackColor = System.Drawing.Color.White;
+            this.txtBoxContrasenia.Depth = 0;
+            this.txtBoxContrasenia.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxContrasenia.Hint = "";
+            this.txtBoxContrasenia.Location = new System.Drawing.Point(122, 130);
+            this.txtBoxContrasenia.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxContrasenia.Name = "txtBoxContrasenia";
-            this.txtBoxContrasenia.Size = new System.Drawing.Size(134, 20);
-            this.txtBoxContrasenia.TabIndex = 4;
-            // 
-            // lblBienvenido
-            // 
-            this.lblBienvenido.AutoSize = true;
-            this.lblBienvenido.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBienvenido.Location = new System.Drawing.Point(82, 25);
-            this.lblBienvenido.Name = "lblBienvenido";
-            this.lblBienvenido.Size = new System.Drawing.Size(115, 24);
-            this.lblBienvenido.TabIndex = 5;
-            this.lblBienvenido.Text = "¡Bienvenido!";
+            this.txtBoxContrasenia.PasswordChar = '\0';
+            this.txtBoxContrasenia.SelectedText = "";
+            this.txtBoxContrasenia.SelectionLength = 0;
+            this.txtBoxContrasenia.SelectionStart = 0;
+            this.txtBoxContrasenia.Size = new System.Drawing.Size(134, 23);
+            this.txtBoxContrasenia.TabIndex = 9;
+            this.txtBoxContrasenia.UseSystemPasswordChar = true;
             // 
             // frmLogIn
             // 
-            this.AcceptButton = this.btnLogIn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.lblBienvenido);
             this.Controls.Add(this.txtBoxContrasenia);
             this.Controls.Add(this.txtBoxUsuario);
             this.Controls.Add(this.btnLogIn);
@@ -109,11 +132,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblUsuario;
-        private System.Windows.Forms.Label lblContrasenia;
-        private System.Windows.Forms.Button btnLogIn;
-        private System.Windows.Forms.TextBox txtBoxUsuario;
-        private System.Windows.Forms.TextBox txtBoxContrasenia;
-        private System.Windows.Forms.Label lblBienvenido;
+        private MaterialSkin.Controls.MaterialLabel lblUsuario;
+        private MaterialSkin.Controls.MaterialLabel lblContrasenia;
+        private MaterialSkin.Controls.MaterialFlatButton btnLogIn;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxUsuario;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxContrasenia;
     }
 }

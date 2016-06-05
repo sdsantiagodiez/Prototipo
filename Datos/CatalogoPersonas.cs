@@ -166,7 +166,7 @@ namespace Datos
         /// Busca todas las personas que se encuentren en la base de datos
         /// </summary>
         /// <returns></returns>
-        public new List<ModeloPersonas> getAll()
+        public List<ModeloPersonas> getAll()
         {
             return this.buscarPersonas(null, Constantes.ParametrosBusqueda.All);
         }
