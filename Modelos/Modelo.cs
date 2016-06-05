@@ -23,6 +23,7 @@ namespace Modelos
                 if (string_convertida.Length > 0)
                     return string_convertida;
             }
+
             return null;
         }
 
