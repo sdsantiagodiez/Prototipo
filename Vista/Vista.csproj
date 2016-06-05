@@ -86,6 +86,12 @@
     <Compile Include="frmABMEntidadDatosAdicionalesUsuario.Designer.cs">
       <DependentUpon>frmABMEntidadDatosAdicionalesUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFacturacionMasiva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFacturacionMasiva.Designer.cs">
+      <DependentUpon>frmFacturacionMasiva.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLoading.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +146,12 @@
     <Compile Include="frmPedidoNuevo_editarCantidad.Designer.cs">
       <DependentUpon>frmPedidoNuevo_editarCantidad.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPreferenciasFacturacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPreferenciasFacturacion.Designer.cs">
+      <DependentUpon>frmPreferenciasFacturacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReporteSeleccion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +191,9 @@
     <EmbeddedResource Include="frmABMEntidadDatosAdicionalesUsuario.resx">
       <DependentUpon>frmABMEntidadDatosAdicionalesUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmFacturacionMasiva.resx">
+      <DependentUpon>frmFacturacionMasiva.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLoading.resx">
       <DependentUpon>frmLoading.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPedidoNuevo_editarCantidad.resx">
       <DependentUpon>frmPedidoNuevo_editarCantidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPreferenciasFacturacion.resx">
+      <DependentUpon>frmPreferenciasFacturacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReporteSeleccion.resx">
       <DependentUpon>frmReporteSeleccion.cs</DependentUpon>
