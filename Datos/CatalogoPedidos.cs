@@ -277,6 +277,44 @@ namespace Datos
         {
             return this.buscarPedido(null, Constantes.ParametrosBusqueda.All);
         }
+
+        public string getUltimoComprobante(string p_tipoComprobante)
+        {
+            string rta = "";
+
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText =
+                "SELECT MAX(numero_comprobante) as UltimoComprobante from Pedidos_Personas WHERE codigo_comprobante=@codigo_comprobante";
+
+            comando.Parameters.Add(new SqlParameter("@codigo_comprobante", SqlDbType.NVarChar));
+            comando.Parameters["@codigo_comprobante"].Value = p_tipoComprobante;
+            
+
+            comando.Connection.Open();
+
+            SqlDataReader drUltimoComprobante = comando.ExecuteReader();
+
+            rta = (string)drUltimoComprobante["UltimoComprobante"];
+              
+            
+            drUltimoComprobante.Close();
+
+            comando.Connection.Close();
+            if (rta == null)
+            {return "0"; }
+            else {return rta;}
+
+        }
+
         
         #endregion
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Modelos;
+using Datos;
 using LibreriaClasesCompartidas;
 
 namespace Controladores
@@ -386,7 +387,19 @@ namespace Controladores
                 p_mod_cliente.codigo == 0;
         }
         #endregion
-        
+
+        #region Últimos Comprobantes
+        public string UltimoComprobante(string p_tipoComprobante)
+        {
+            string ultimoComprobante = "";
+
+            CatalogoPedidos lcl_cat_pedidos = new CatalogoPedidos();
+            ultimoComprobante = lcl_cat_pedidos.getUltimoComprobante(p_tipoComprobante);
+
+            return ultimoComprobante;
+        }
+
+        #endregion
         #endregion
     }
 }
