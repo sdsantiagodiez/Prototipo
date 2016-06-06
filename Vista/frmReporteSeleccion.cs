@@ -12,10 +12,13 @@ using Modelos;
 using Reportes;
 using System.Globalization;
 using LibreriaClasesCompartidas;
+using MaterialSkin;
+using MaterialSkin.Animations;
+using MaterialSkin.Controls;
 
 namespace Vista
 {
-    public partial class frmReporteSeleccion : Form
+    public partial class frmReporteSeleccion : MaterialForm
     {
         private ControladorReportes glb_con_Reporte = new ControladorReportes();
         private FormReportes glb_frm_FormReportes;
@@ -24,6 +27,10 @@ namespace Vista
         public frmReporteSeleccion()
         {
             InitializeComponent();
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             // creo el reporte
             glb_con_Reporte = new ControladorReportes();
             // Completo los reportes dentro de los Combobox.
