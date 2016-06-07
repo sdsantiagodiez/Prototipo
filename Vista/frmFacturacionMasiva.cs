@@ -23,6 +23,10 @@ namespace Vista
             frmPreferences.ShowDialog();
         }
 
+        public void CargaEnGrid()
+        { 
+        // cargar los datos traidos por el Catálogo sobre el GridView
+        }
      
     }
 }

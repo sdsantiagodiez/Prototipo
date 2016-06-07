@@ -315,6 +315,50 @@ namespace Datos
 
         }
 
+        public List<ModeloPedido> getComprobantesNoFacturados(string p_tipoComprobante)
+        {
+            List<ModeloPedido> lcl_lst_mod_ped = new List<ModeloPedido>();
+            
+
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText =
+                "SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
+                "                Pedidos_Personas.[codigo_entidad], " +
+                "                [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], " +
+                "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante] " +
+                "            FROM pedidos, Pedidos_Personas  " +
+                "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido AND Pedidos_Personas.cae Is NULL ";
+
+            
+
+            comando.Connection.Open();
+
+            SqlDataReader drPedidoSinCAE = comando.ExecuteReader();
+
+            while (drPedidoSinCAE.Read())
+            { 
+                ModeloPedido lcl_mod_ped = new ModeloPedido();
+                lcl_mod_ped = leerDatosPedido(drPedidoSinCAE);
+
+                lcl_lst_mod_ped.Add(lcl_mod_ped);
+            }
+            
+            drPedidoSinCAE.Close();
+
+            comando.Connection.Close();
+            return lcl_lst_mod_ped;
+
+        }
+
         
         #endregion
 

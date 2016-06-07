@@ -17,6 +17,7 @@ namespace Vista
         public frmPreferenciasFacturacion()
         {
             InitializeComponent();
+            CompletaUltimosComprobantes();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
