@@ -84,6 +84,28 @@ namespace Vista
                 this.tbxCantidadFact.Text = j.ToString();
         }
 
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void chkTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkTodos.Checked == true)
+            { for(int i=0;i<dgvComprSinFact.RowCount;i++)
+                {
+                    this.dgvComprSinFact[7, i].Value = true;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < dgvComprSinFact.RowCount; i++)
+                {
+                    this.dgvComprSinFact[7, i].Value = false;
+                }
+            }
+        }
+
             
     }
 }

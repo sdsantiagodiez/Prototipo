@@ -136,6 +136,7 @@
             // txtComprobante1
             // 
             this.txtComprobante1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtComprobante1.Enabled = false;
             this.txtComprobante1.Location = new System.Drawing.Point(3, 3);
             this.txtComprobante1.Name = "txtComprobante1";
             this.txtComprobante1.Size = new System.Drawing.Size(121, 20);
@@ -244,6 +245,7 @@
             // txtComprobante3
             // 
             this.txtComprobante3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtComprobante3.Enabled = false;
             this.txtComprobante3.Location = new System.Drawing.Point(3, 3);
             this.txtComprobante3.Name = "txtComprobante3";
             this.txtComprobante3.Size = new System.Drawing.Size(121, 20);
@@ -309,6 +311,7 @@
             // txtComprobante2
             // 
             this.txtComprobante2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtComprobante2.Enabled = false;
             this.txtComprobante2.Location = new System.Drawing.Point(3, 3);
             this.txtComprobante2.Name = "txtComprobante2";
             this.txtComprobante2.Size = new System.Drawing.Size(121, 20);
@@ -375,6 +378,7 @@
             // txtComprobante4
             // 
             this.txtComprobante4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtComprobante4.Enabled = false;
             this.txtComprobante4.Location = new System.Drawing.Point(3, 3);
             this.txtComprobante4.Name = "txtComprobante4";
             this.txtComprobante4.Size = new System.Drawing.Size(121, 20);

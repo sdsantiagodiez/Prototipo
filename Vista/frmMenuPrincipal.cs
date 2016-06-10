@@ -170,6 +170,12 @@ namespace Vista
             }
         }
 
+        private void btnFacturacion_Click(object sender, EventArgs e)
+        {
+            frmFacturacionMasiva frmFacturacion = new frmFacturacionMasiva();
+            frmFacturacion.ShowDialog();
+        }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -203,6 +209,8 @@ namespace Vista
             lcl_frm_ABMArticuloProveedor.ShowDialog();
         }
         #endregion
+
+      
 
 
 

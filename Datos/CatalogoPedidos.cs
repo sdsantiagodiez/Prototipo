@@ -293,7 +293,7 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "SELECT MAX(numero_comprobante) as UltimoComprobante from Pedidos_Personas WHERE codigo_comprobante=@codigo_comprobante";
+                "SELECT ISNULL(MAX(numero_comprobante),0) as UltimoComprobante from Pedidos_Personas WHERE codigo_comprobante=@codigo_comprobante";
 
             comando.Parameters.Add(new SqlParameter("@codigo_comprobante", SqlDbType.NVarChar));
             comando.Parameters["@codigo_comprobante"].Value = p_tipoComprobante;
@@ -302,7 +302,7 @@ namespace Datos
             comando.Connection.Open();
 
             SqlDataReader drUltimoComprobante = comando.ExecuteReader();
-
+            drUltimoComprobante.Read();
             rta = (string)drUltimoComprobante["UltimoComprobante"];
               
             

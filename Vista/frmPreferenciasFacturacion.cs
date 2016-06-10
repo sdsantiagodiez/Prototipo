@@ -27,10 +27,10 @@ namespace Vista
 
         public void CompletaUltimosComprobantes()
         {
-            this.txtComprobante1.Text = glb_con_pedidoCliente.UltimoComprobante("1"); // FCA
-            this.txtComprobante2.Text=glb_con_pedidoCliente.UltimoComprobante("6"); // FCB
-            this.txtComprobante3.Text=glb_con_pedidoCliente.UltimoComprobante("3"); // NCA
-            this.txtComprobante4.Text = glb_con_pedidoCliente.UltimoComprobante("8"); // NCB
+            this.txtUltNumComp1.Text = glb_con_pedidoCliente.UltimoComprobante("1"); // FCA
+            this.txtUltNumComp2.Text=glb_con_pedidoCliente.UltimoComprobante("6"); // FCB
+            this.txtUltNumComp3.Text=glb_con_pedidoCliente.UltimoComprobante("3"); // NCA
+            this.txtUltNumComp4.Text = glb_con_pedidoCliente.UltimoComprobante("8"); // NCB
 
         }
     }

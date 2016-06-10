@@ -242,6 +242,7 @@
             this.chkTodos.TabIndex = 0;
             this.chkTodos.Text = "Seleccionar Todo";
             this.chkTodos.UseVisualStyleBackColor = true;
+            this.chkTodos.CheckedChanged += new System.EventHandler(this.chkTodos_CheckedChanged);
             // 
             // tableLayoutPanel4
             // 
@@ -416,6 +417,7 @@
             this.btnSalir.TabIndex = 1;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // frmFacturacionMasiva
             // 
