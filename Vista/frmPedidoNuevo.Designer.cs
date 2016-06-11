@@ -31,17 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoNuevo));
             this.tblLayoutPanelBase = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelBotones = new System.Windows.Forms.TableLayoutPanel();
-            this.lblTotalVar = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
+            this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
+            this.lblTotalVar = new System.Windows.Forms.Label();
+            this.btnQuitar = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnBorrarDetalleActual = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnSiguiente = new MaterialSkin.Controls.MaterialFlatButton();
             this.tblLayoutPanelArticulos = new System.Windows.Forms.TableLayoutPanel();
             this.gbxDetalleArticuloSeleccionado = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelDetalleArticulo = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelDetallesArticuloOpciones = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelDetalleArticuloBotones = new System.Windows.Forms.TableLayoutPanel();
             this.nmrcUpDownCantidad = new System.Windows.Forms.NumericUpDown();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.lblCantidad = new System.Windows.Forms.Label();
-            this.chckBoxPermitirStockNegativo = new System.Windows.Forms.CheckBox();
             this.tlpDetalles = new System.Windows.Forms.TableLayoutPanel();
             this.lblProveedorVar = new System.Windows.Forms.Label();
             this.lblObservacionesVar = new System.Windows.Forms.Label();
@@ -72,7 +73,9 @@
             this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblLayoutPanelCuadroBusqueda = new System.Windows.Forms.TableLayoutPanel();
             this.lblLupa = new System.Windows.Forms.Label();
+            this.lblCategoriaBuscar = new MaterialSkin.Controls.MaterialLabel();
             this.cbxCategoriaBusqueda = new System.Windows.Forms.ComboBox();
+            this.txtDescripcionParcial = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.gbxDetalleAgregados = new System.Windows.Forms.GroupBox();
             this.dgvArticulosEnPedido = new System.Windows.Forms.DataGridView();
             this.codOrig = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,12 +84,9 @@
             this.vUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblCategoriaBuscar = new MaterialSkin.Controls.MaterialLabel();
-            this.txtDescripcionParcial = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnQuitar = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnBorrarDetalleActual = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnSiguiente = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnAgregar = new MaterialSkin.Controls.MaterialFlatButton();
+            this.chckBoxPermitirStockNegativo = new MaterialSkin.Controls.MaterialCheckBox();
+            this.lblCantidad = new MaterialSkin.Controls.MaterialLabel();
             this.tblLayoutPanelBase.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
             this.tblLayoutPanelArticulos.SuspendLayout();
@@ -144,6 +144,34 @@
             this.tblLayoutPanelBotones.Size = new System.Drawing.Size(952, 54);
             this.tblLayoutPanelBotones.TabIndex = 0;
             // 
+            // lblTotal
+            // 
+            this.lblTotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(268, 18);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(51, 18);
+            this.lblTotal.TabIndex = 9;
+            this.lblTotal.Text = "Total:";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.AutoSize = true;
+            this.btnCancelar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCancelar.Depth = 0;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(4, 9);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Primary = false;
+            this.btnCancelar.Size = new System.Drawing.Size(82, 36);
+            this.btnCancelar.TabIndex = 14;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
             // lblTotalVar
             // 
             this.lblTotalVar.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -156,16 +184,54 @@
             this.lblTotalVar.TabIndex = 10;
             this.lblTotalVar.Text = "0";
             // 
-            // lblTotal
+            // btnQuitar
             // 
-            this.lblTotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(268, 18);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(51, 18);
-            this.lblTotal.TabIndex = 9;
-            this.lblTotal.Text = "Total:";
+            this.btnQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuitar.AutoSize = true;
+            this.btnQuitar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnQuitar.Depth = 0;
+            this.btnQuitar.Location = new System.Drawing.Point(416, 9);
+            this.btnQuitar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnQuitar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Primary = false;
+            this.btnQuitar.Size = new System.Drawing.Size(112, 36);
+            this.btnQuitar.TabIndex = 15;
+            this.btnQuitar.Text = "Quitar Seleccionado";
+            this.btnQuitar.UseVisualStyleBackColor = true;
+            // 
+            // btnBorrarDetalleActual
+            // 
+            this.btnBorrarDetalleActual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBorrarDetalleActual.AutoSize = true;
+            this.btnBorrarDetalleActual.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnBorrarDetalleActual.Depth = 0;
+            this.btnBorrarDetalleActual.Location = new System.Drawing.Point(536, 9);
+            this.btnBorrarDetalleActual.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnBorrarDetalleActual.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnBorrarDetalleActual.Name = "btnBorrarDetalleActual";
+            this.btnBorrarDetalleActual.Primary = false;
+            this.btnBorrarDetalleActual.Size = new System.Drawing.Size(112, 36);
+            this.btnBorrarDetalleActual.TabIndex = 16;
+            this.btnBorrarDetalleActual.Text = "Quitar Todo";
+            this.btnBorrarDetalleActual.UseVisualStyleBackColor = true;
+            // 
+            // btnSiguiente
+            // 
+            this.btnSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSiguiente.AutoSize = true;
+            this.btnSiguiente.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSiguiente.Depth = 0;
+            this.btnSiguiente.Location = new System.Drawing.Point(858, 9);
+            this.btnSiguiente.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnSiguiente.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Primary = false;
+            this.btnSiguiente.Size = new System.Drawing.Size(90, 36);
+            this.btnSiguiente.TabIndex = 17;
+            this.btnSiguiente.Text = "Siguiente >";
+            this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
             // tblLayoutPanelArticulos
             // 
@@ -225,9 +291,9 @@
             // tblLayoutPanelDetalleArticuloBotones
             // 
             this.tblLayoutPanelDetalleArticuloBotones.ColumnCount = 3;
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.40659F));
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.59341F));
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.83614F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.16385F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.nmrcUpDownCantidad, 1, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnAgregar, 2, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.lblCantidad, 0, 0);
@@ -235,14 +301,14 @@
             this.tblLayoutPanelDetalleArticuloBotones.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelDetalleArticuloBotones.Name = "tblLayoutPanelDetalleArticuloBotones";
             this.tblLayoutPanelDetalleArticuloBotones.RowCount = 1;
-            this.tblLayoutPanelDetalleArticuloBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelDetalleArticuloBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelDetalleArticuloBotones.Size = new System.Drawing.Size(261, 48);
             this.tblLayoutPanelDetalleArticuloBotones.TabIndex = 2;
             // 
             // nmrcUpDownCantidad
             // 
             this.nmrcUpDownCantidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(69, 14);
+            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(95, 14);
             this.nmrcUpDownCantidad.Maximum = new decimal(new int[] {
             99999999,
             0,
@@ -256,37 +322,6 @@
             0,
             0,
             0});
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAgregar.Location = new System.Drawing.Point(166, 6);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(80, 35);
-            this.btnAgregar.TabIndex = 4;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            // 
-            // lblCantidad
-            // 
-            this.lblCantidad.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(11, 17);
-            this.lblCantidad.Name = "lblCantidad";
-            this.lblCantidad.Size = new System.Drawing.Size(52, 13);
-            this.lblCantidad.TabIndex = 9;
-            this.lblCantidad.Text = "Cantidad:";
-            // 
-            // chckBoxPermitirStockNegativo
-            // 
-            this.chckBoxPermitirStockNegativo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.chckBoxPermitirStockNegativo.AutoSize = true;
-            this.chckBoxPermitirStockNegativo.Location = new System.Drawing.Point(65, 60);
-            this.chckBoxPermitirStockNegativo.Name = "chckBoxPermitirStockNegativo";
-            this.chckBoxPermitirStockNegativo.Size = new System.Drawing.Size(137, 17);
-            this.chckBoxPermitirStockNegativo.TabIndex = 3;
-            this.chckBoxPermitirStockNegativo.Text = "Permitir Stock Negativo";
-            this.chckBoxPermitirStockNegativo.UseVisualStyleBackColor = true;
             // 
             // tlpDetalles
             // 
@@ -642,6 +677,20 @@
             this.lblLupa.TabIndex = 8;
             this.lblLupa.Click += new System.EventHandler(this.lblLupa_Click);
             // 
+            // lblCategoriaBuscar
+            // 
+            this.lblCategoriaBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCategoriaBuscar.AutoSize = true;
+            this.lblCategoriaBuscar.Depth = 0;
+            this.lblCategoriaBuscar.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblCategoriaBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCategoriaBuscar.Location = new System.Drawing.Point(3, 6);
+            this.lblCategoriaBuscar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblCategoriaBuscar.Name = "lblCategoriaBuscar";
+            this.lblCategoriaBuscar.Size = new System.Drawing.Size(85, 19);
+            this.lblCategoriaBuscar.TabIndex = 9;
+            this.lblCategoriaBuscar.Text = "Buscar por:";
+            // 
             // cbxCategoriaBusqueda
             // 
             this.cbxCategoriaBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -651,11 +700,28 @@
             "Código Original",
             "Código Proveedor",
             "Descripción"});
-            this.cbxCategoriaBusqueda.Location = new System.Drawing.Point(94, 5);
+            this.cbxCategoriaBusqueda.Location = new System.Drawing.Point(94, 3);
             this.cbxCategoriaBusqueda.Name = "cbxCategoriaBusqueda";
             this.cbxCategoriaBusqueda.Size = new System.Drawing.Size(119, 24);
             this.cbxCategoriaBusqueda.TabIndex = 6;
             this.cbxCategoriaBusqueda.Text = "[Seleccionar...]";
+            // 
+            // txtDescripcionParcial
+            // 
+            this.txtDescripcionParcial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescripcionParcial.Depth = 0;
+            this.txtDescripcionParcial.Hint = "";
+            this.txtDescripcionParcial.Location = new System.Drawing.Point(219, 4);
+            this.txtDescripcionParcial.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtDescripcionParcial.Name = "txtDescripcionParcial";
+            this.txtDescripcionParcial.PasswordChar = '\0';
+            this.txtDescripcionParcial.SelectedText = "";
+            this.txtDescripcionParcial.SelectionLength = 0;
+            this.txtDescripcionParcial.SelectionStart = 0;
+            this.txtDescripcionParcial.Size = new System.Drawing.Size(381, 23);
+            this.txtDescripcionParcial.TabIndex = 10;
+            this.txtDescripcionParcial.UseSystemPasswordChar = false;
+            this.txtDescripcionParcial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescripcionParcial_KeyPress);
             // 
             // gbxDetalleAgregados
             // 
@@ -737,101 +803,52 @@
             this.vParcial.Name = "vParcial";
             this.vParcial.ReadOnly = true;
             // 
-            // lblCategoriaBuscar
+            // btnAgregar
             // 
-            this.lblCategoriaBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCategoriaBuscar.AutoSize = true;
-            this.lblCategoriaBuscar.Depth = 0;
-            this.lblCategoriaBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoriaBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCategoriaBuscar.Location = new System.Drawing.Point(3, 6);
-            this.lblCategoriaBuscar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblCategoriaBuscar.Name = "lblCategoriaBuscar";
-            this.lblCategoriaBuscar.Size = new System.Drawing.Size(85, 18);
-            this.lblCategoriaBuscar.TabIndex = 9;
-            this.lblCategoriaBuscar.Text = "Buscar por:";
+            this.btnAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAgregar.AutoSize = true;
+            this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAgregar.Depth = 0;
+            this.btnAgregar.Location = new System.Drawing.Point(155, 6);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Primary = false;
+            this.btnAgregar.Size = new System.Drawing.Size(102, 36);
+            this.btnAgregar.TabIndex = 10;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
             // 
-            // txtDescripcionParcial
+            // chckBoxPermitirStockNegativo
             // 
-            this.txtDescripcionParcial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescripcionParcial.Depth = 0;
-            this.txtDescripcionParcial.Hint = "";
-            this.txtDescripcionParcial.Location = new System.Drawing.Point(219, 4);
-            this.txtDescripcionParcial.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtDescripcionParcial.Name = "txtDescripcionParcial";
-            this.txtDescripcionParcial.PasswordChar = '\0';
-            this.txtDescripcionParcial.SelectedText = "";
-            this.txtDescripcionParcial.SelectionLength = 0;
-            this.txtDescripcionParcial.SelectionStart = 0;
-            this.txtDescripcionParcial.Size = new System.Drawing.Size(381, 23);
-            this.txtDescripcionParcial.TabIndex = 10;
-            this.txtDescripcionParcial.UseSystemPasswordChar = false;
-            this.txtDescripcionParcial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescripcionParcial_KeyPress);
+            this.chckBoxPermitirStockNegativo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chckBoxPermitirStockNegativo.AutoSize = true;
+            this.chckBoxPermitirStockNegativo.Depth = 0;
+            this.chckBoxPermitirStockNegativo.Font = new System.Drawing.Font("Roboto", 10F);
+            this.chckBoxPermitirStockNegativo.Location = new System.Drawing.Point(0, 54);
+            this.chckBoxPermitirStockNegativo.Margin = new System.Windows.Forms.Padding(0);
+            this.chckBoxPermitirStockNegativo.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chckBoxPermitirStockNegativo.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chckBoxPermitirStockNegativo.Name = "chckBoxPermitirStockNegativo";
+            this.chckBoxPermitirStockNegativo.Ripple = true;
+            this.chckBoxPermitirStockNegativo.Size = new System.Drawing.Size(267, 30);
+            this.chckBoxPermitirStockNegativo.TabIndex = 3;
+            this.chckBoxPermitirStockNegativo.Text = "Permitir Stock Negativo";
+            this.chckBoxPermitirStockNegativo.UseVisualStyleBackColor = true;
             // 
-            // btnCancelar
+            // lblCantidad
             // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.AutoSize = true;
-            this.btnCancelar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCancelar.Depth = 0;
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(4, 9);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Primary = false;
-            this.btnCancelar.Size = new System.Drawing.Size(82, 36);
-            this.btnCancelar.TabIndex = 14;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // btnQuitar
-            // 
-            this.btnQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnQuitar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnQuitar.Depth = 0;
-            this.btnQuitar.Location = new System.Drawing.Point(416, 9);
-            this.btnQuitar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnQuitar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Primary = false;
-            this.btnQuitar.Size = new System.Drawing.Size(112, 36);
-            this.btnQuitar.TabIndex = 15;
-            this.btnQuitar.Text = "Quitar Seleccionado";
-            this.btnQuitar.UseVisualStyleBackColor = true;
-            // 
-            // btnBorrarDetalleActual
-            // 
-            this.btnBorrarDetalleActual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBorrarDetalleActual.AutoSize = true;
-            this.btnBorrarDetalleActual.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnBorrarDetalleActual.Depth = 0;
-            this.btnBorrarDetalleActual.Location = new System.Drawing.Point(536, 9);
-            this.btnBorrarDetalleActual.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnBorrarDetalleActual.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnBorrarDetalleActual.Name = "btnBorrarDetalleActual";
-            this.btnBorrarDetalleActual.Primary = false;
-            this.btnBorrarDetalleActual.Size = new System.Drawing.Size(112, 36);
-            this.btnBorrarDetalleActual.TabIndex = 16;
-            this.btnBorrarDetalleActual.Text = "Quitar Todo";
-            this.btnBorrarDetalleActual.UseVisualStyleBackColor = true;
-            // 
-            // btnSiguiente
-            // 
-            this.btnSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSiguiente.AutoSize = true;
-            this.btnSiguiente.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnSiguiente.Depth = 0;
-            this.btnSiguiente.Location = new System.Drawing.Point(858, 9);
-            this.btnSiguiente.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnSiguiente.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnSiguiente.Name = "btnSiguiente";
-            this.btnSiguiente.Primary = false;
-            this.btnSiguiente.Size = new System.Drawing.Size(90, 36);
-            this.btnSiguiente.TabIndex = 17;
-            this.btnSiguiente.Text = "Siguiente >";
-            this.btnSiguiente.UseVisualStyleBackColor = true;
-            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
+            this.lblCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Depth = 0;
+            this.lblCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantidad.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblCantidad.Location = new System.Drawing.Point(3, 16);
+            this.lblCantidad.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(86, 15);
+            this.lblCantidad.TabIndex = 11;
+            this.lblCantidad.Text = "Cantidad:";
             // 
             // frmPedidoNuevo
             // 
@@ -883,9 +900,6 @@
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDetallesArticuloOpciones;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDetalleArticuloBotones;
         private System.Windows.Forms.NumericUpDown nmrcUpDownCantidad;
-        private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Label lblCantidad;
-        private System.Windows.Forms.CheckBox chckBoxPermitirStockNegativo;
         private System.Windows.Forms.TableLayoutPanel tlpDetalles;
         private System.Windows.Forms.Label lblProveedorVar;
         private System.Windows.Forms.Label lblObservacionesVar;
@@ -931,6 +945,9 @@
         private MaterialSkin.Controls.MaterialFlatButton btnQuitar;
         private MaterialSkin.Controls.MaterialFlatButton btnBorrarDetalleActual;
         private MaterialSkin.Controls.MaterialFlatButton btnSiguiente;
+        private MaterialSkin.Controls.MaterialFlatButton btnAgregar;
+        private MaterialSkin.Controls.MaterialCheckBox chckBoxPermitirStockNegativo;
+        private MaterialSkin.Controls.MaterialLabel lblCantidad;
 
 
 

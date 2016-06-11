@@ -9,15 +9,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using Controladores;
+using MaterialSkin;
+using MaterialSkin.Animations;
+using MaterialSkin.Controls;
 
 namespace Vista
 {
-    public partial class frmFacturacionMasiva : Form
+    public partial class frmFacturacionMasiva : MaterialForm
     {
         ControladorPedidoCliente controlador = new ControladorPedidoCliente();
         public frmFacturacionMasiva()
         {
             InitializeComponent();
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            dgvComprSinFact.EnableHeadersVisualStyles = false;
+            dgvComprSinFact.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
         }
 
         private void parámetrosToolStripMenuItem_Click(object sender, EventArgs e)
