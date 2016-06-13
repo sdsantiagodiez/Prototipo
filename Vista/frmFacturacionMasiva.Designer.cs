@@ -31,13 +31,6 @@
             this.tlpContenedor = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvComprSinFact = new System.Windows.Forms.DataGridView();
-            this.colFecPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNroPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTipoComprobante = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCuit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFacturar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.lblCantidadFact = new System.Windows.Forms.Label();
@@ -46,11 +39,10 @@
             this.dtpFechaFacturacion = new System.Windows.Forms.DateTimePicker();
             this.lblFechaFactura = new System.Windows.Forms.Label();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.rbutNCB = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rbutNCA = new MaterialSkin.Controls.MaterialRadioButton();
             this.rbutFCA = new MaterialSkin.Controls.MaterialRadioButton();
             this.rbutFCB = new MaterialSkin.Controls.MaterialRadioButton();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.rbutNCA = new MaterialSkin.Controls.MaterialRadioButton();
-            this.rbutNCB = new MaterialSkin.Controls.MaterialRadioButton();
             this.chkTodos = new MaterialSkin.Controls.MaterialCheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnFacturar = new MaterialSkin.Controls.MaterialFlatButton();
@@ -58,6 +50,14 @@
             this.buscarComprobantesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parámetrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.indice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFecPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNroPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTipoComprobante = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCuit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFacturar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tlpContenedor.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComprSinFact)).BeginInit();
@@ -65,7 +65,6 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -110,9 +109,13 @@
             // 
             this.dgvComprSinFact.AllowUserToAddRows = false;
             this.dgvComprSinFact.AllowUserToDeleteRows = false;
+            this.dgvComprSinFact.AllowUserToOrderColumns = true;
+            this.dgvComprSinFact.AllowUserToResizeRows = false;
+            this.dgvComprSinFact.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvComprSinFact.BackgroundColor = System.Drawing.Color.White;
             this.dgvComprSinFact.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvComprSinFact.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.indice,
             this.colFecPedido,
             this.colNroPedido,
             this.colTipoComprobante,
@@ -124,67 +127,12 @@
             this.dgvComprSinFact.GridColor = System.Drawing.Color.White;
             this.dgvComprSinFact.Location = new System.Drawing.Point(3, 3);
             this.dgvComprSinFact.Name = "dgvComprSinFact";
-            this.dgvComprSinFact.ReadOnly = true;
+            this.dgvComprSinFact.RowHeadersVisible = false;
+            this.dgvComprSinFact.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvComprSinFact.Size = new System.Drawing.Size(671, 361);
             this.dgvComprSinFact.TabIndex = 0;
-            this.dgvComprSinFact.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvComprSinFact_RowLeave);
-            // 
-            // colFecPedido
-            // 
-            this.colFecPedido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colFecPedido.FillWeight = 45F;
-            this.colFecPedido.HeaderText = "Fecha Pedido";
-            this.colFecPedido.MinimumWidth = 60;
-            this.colFecPedido.Name = "colFecPedido";
-            this.colFecPedido.ReadOnly = true;
-            // 
-            // colNroPedido
-            // 
-            this.colNroPedido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colNroPedido.FillWeight = 42.41983F;
-            this.colNroPedido.HeaderText = "Num. Pedido";
-            this.colNroPedido.Name = "colNroPedido";
-            this.colNroPedido.ReadOnly = true;
-            // 
-            // colTipoComprobante
-            // 
-            this.colTipoComprobante.HeaderText = "Tipo Comprobante";
-            this.colTipoComprobante.Name = "colTipoComprobante";
-            this.colTipoComprobante.ReadOnly = true;
-            this.colTipoComprobante.Width = 75;
-            // 
-            // colCliente
-            // 
-            this.colCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colCliente.FillWeight = 80.83965F;
-            this.colCliente.HeaderText = "Cliente";
-            this.colCliente.Name = "colCliente";
-            this.colCliente.ReadOnly = true;
-            // 
-            // colCuit
-            // 
-            this.colCuit.HeaderText = "Cuit";
-            this.colCuit.Name = "colCuit";
-            this.colCuit.ReadOnly = true;
-            this.colCuit.Width = 75;
-            // 
-            // colMonto
-            // 
-            this.colMonto.DividerWidth = 1;
-            this.colMonto.HeaderText = "Monto";
-            this.colMonto.Name = "colMonto";
-            this.colMonto.ReadOnly = true;
-            this.colMonto.Width = 50;
-            // 
-            // colFacturar
-            // 
-            this.colFacturar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colFacturar.DividerWidth = 5;
-            this.colFacturar.FillWeight = 21.20991F;
-            this.colFacturar.HeaderText = "Facturar?";
-            this.colFacturar.MinimumWidth = 25;
-            this.colFacturar.Name = "colFacturar";
-            this.colFacturar.ReadOnly = true;
+            this.dgvComprSinFact.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvComprSinFact_CellValueChanged);
+            this.dgvComprSinFact.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvComprSinFact_CurrentCellDirtyStateChanged);
             // 
             // tableLayoutPanel2
             // 
@@ -193,7 +141,6 @@
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel7, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.chkTodos, 0, 6);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(680, 3);
@@ -201,8 +148,8 @@
             this.tableLayoutPanel2.RowCount = 8;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.70083F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.216067F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
@@ -239,6 +186,7 @@
             // 
             this.tbxCantidadFact.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxCantidadFact.Depth = 0;
+            this.tbxCantidadFact.Enabled = false;
             this.tbxCantidadFact.Hint = "";
             this.tbxCantidadFact.Location = new System.Drawing.Point(3, 12);
             this.tbxCantidadFact.MouseState = MaterialSkin.MouseState.HOVER;
@@ -289,17 +237,57 @@
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Controls.Add(this.rbutNCB, 0, 3);
+            this.tableLayoutPanel6.Controls.Add(this.rbutNCA, 0, 2);
             this.tableLayoutPanel6.Controls.Add(this.rbutFCA, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.rbutFCB, 0, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 75);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(231, 48);
+            this.tableLayoutPanel6.RowCount = 4;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(231, 94);
             this.tableLayoutPanel6.TabIndex = 3;
+            // 
+            // rbutNCB
+            // 
+            this.rbutNCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbutNCB.AutoSize = true;
+            this.rbutNCB.Depth = 0;
+            this.rbutNCB.Font = new System.Drawing.Font("Roboto", 10F);
+            this.rbutNCB.Location = new System.Drawing.Point(0, 69);
+            this.rbutNCB.Margin = new System.Windows.Forms.Padding(0);
+            this.rbutNCB.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbutNCB.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbutNCB.Name = "rbutNCB";
+            this.rbutNCB.Ripple = true;
+            this.rbutNCB.Size = new System.Drawing.Size(231, 25);
+            this.rbutNCB.TabIndex = 3;
+            this.rbutNCB.TabStop = true;
+            this.rbutNCB.Text = "Notas de Crédito B";
+            this.rbutNCB.UseVisualStyleBackColor = true;
+            // 
+            // rbutNCA
+            // 
+            this.rbutNCA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbutNCA.AutoSize = true;
+            this.rbutNCA.Depth = 0;
+            this.rbutNCA.Font = new System.Drawing.Font("Roboto", 10F);
+            this.rbutNCA.Location = new System.Drawing.Point(0, 46);
+            this.rbutNCA.Margin = new System.Windows.Forms.Padding(0);
+            this.rbutNCA.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbutNCA.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbutNCA.Name = "rbutNCA";
+            this.rbutNCA.Ripple = true;
+            this.rbutNCA.Size = new System.Drawing.Size(231, 23);
+            this.rbutNCA.TabIndex = 2;
+            this.rbutNCA.TabStop = true;
+            this.rbutNCA.Text = "Notas de Crédito A";
+            this.rbutNCA.UseVisualStyleBackColor = true;
             // 
             // rbutFCA
             // 
@@ -313,7 +301,7 @@
             this.rbutFCA.MouseState = MaterialSkin.MouseState.HOVER;
             this.rbutFCA.Name = "rbutFCA";
             this.rbutFCA.Ripple = true;
-            this.rbutFCA.Size = new System.Drawing.Size(231, 24);
+            this.rbutFCA.Size = new System.Drawing.Size(231, 23);
             this.rbutFCA.TabIndex = 2;
             this.rbutFCA.TabStop = true;
             this.rbutFCA.Text = "Facturas A";
@@ -325,68 +313,17 @@
             this.rbutFCB.AutoSize = true;
             this.rbutFCB.Depth = 0;
             this.rbutFCB.Font = new System.Drawing.Font("Roboto", 10F);
-            this.rbutFCB.Location = new System.Drawing.Point(0, 24);
+            this.rbutFCB.Location = new System.Drawing.Point(0, 23);
             this.rbutFCB.Margin = new System.Windows.Forms.Padding(0);
             this.rbutFCB.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rbutFCB.MouseState = MaterialSkin.MouseState.HOVER;
             this.rbutFCB.Name = "rbutFCB";
             this.rbutFCB.Ripple = true;
-            this.rbutFCB.Size = new System.Drawing.Size(231, 24);
+            this.rbutFCB.Size = new System.Drawing.Size(231, 23);
             this.rbutFCB.TabIndex = 3;
             this.rbutFCB.TabStop = true;
             this.rbutFCB.Text = "Facturas B";
             this.rbutFCB.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.ColumnCount = 1;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Controls.Add(this.rbutNCA, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.rbutNCB, 0, 1);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 129);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 2;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(231, 48);
-            this.tableLayoutPanel7.TabIndex = 4;
-            // 
-            // rbutNCA
-            // 
-            this.rbutNCA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbutNCA.AutoSize = true;
-            this.rbutNCA.Depth = 0;
-            this.rbutNCA.Font = new System.Drawing.Font("Roboto", 10F);
-            this.rbutNCA.Location = new System.Drawing.Point(0, 0);
-            this.rbutNCA.Margin = new System.Windows.Forms.Padding(0);
-            this.rbutNCA.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rbutNCA.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rbutNCA.Name = "rbutNCA";
-            this.rbutNCA.Ripple = true;
-            this.rbutNCA.Size = new System.Drawing.Size(231, 24);
-            this.rbutNCA.TabIndex = 2;
-            this.rbutNCA.TabStop = true;
-            this.rbutNCA.Text = "Notas de Crédito A";
-            this.rbutNCA.UseVisualStyleBackColor = true;
-            // 
-            // rbutNCB
-            // 
-            this.rbutNCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbutNCB.AutoSize = true;
-            this.rbutNCB.Depth = 0;
-            this.rbutNCB.Font = new System.Drawing.Font("Roboto", 10F);
-            this.rbutNCB.Location = new System.Drawing.Point(0, 24);
-            this.rbutNCB.Margin = new System.Windows.Forms.Padding(0);
-            this.rbutNCB.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rbutNCB.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rbutNCB.Name = "rbutNCB";
-            this.rbutNCB.Ripple = true;
-            this.rbutNCB.Size = new System.Drawing.Size(231, 24);
-            this.rbutNCB.TabIndex = 3;
-            this.rbutNCB.TabStop = true;
-            this.rbutNCB.Text = "Notas de Crédito B";
-            this.rbutNCB.UseVisualStyleBackColor = true;
             // 
             // chkTodos
             // 
@@ -463,7 +400,7 @@
             // 
             this.buscarComprobantesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.buscarComprobantesToolStripMenuItem.Name = "buscarComprobantesToolStripMenuItem";
-            this.buscarComprobantesToolStripMenuItem.Size = new System.Drawing.Size(124, 20);
+            this.buscarComprobantesToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
             this.buscarComprobantesToolStripMenuItem.Text = "Buscar Comprobantes";
             this.buscarComprobantesToolStripMenuItem.Click += new System.EventHandler(this.buscarComprobantesToolStripMenuItem_Click);
             // 
@@ -471,7 +408,7 @@
             // 
             this.parámetrosToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.parámetrosToolStripMenuItem.Name = "parámetrosToolStripMenuItem";
-            this.parámetrosToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            this.parámetrosToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
             this.parámetrosToolStripMenuItem.Text = "Preferencias";
             this.parámetrosToolStripMenuItem.Click += new System.EventHandler(this.parámetrosToolStripMenuItem_Click);
             // 
@@ -486,6 +423,68 @@
             this.menuStrip1.Size = new System.Drawing.Size(926, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // indice
+            // 
+            this.indice.DataPropertyName = "indice";
+            this.indice.HeaderText = "indice";
+            this.indice.Name = "indice";
+            this.indice.Visible = false;
+            // 
+            // colFecPedido
+            // 
+            this.colFecPedido.DataPropertyName = "colFecPedido";
+            this.colFecPedido.FillWeight = 45F;
+            this.colFecPedido.HeaderText = "Fecha Pedido";
+            this.colFecPedido.MinimumWidth = 60;
+            this.colFecPedido.Name = "colFecPedido";
+            this.colFecPedido.ReadOnly = true;
+            // 
+            // colNroPedido
+            // 
+            this.colNroPedido.DataPropertyName = "colNroPedido";
+            this.colNroPedido.FillWeight = 42.41983F;
+            this.colNroPedido.HeaderText = "Num. Pedido";
+            this.colNroPedido.Name = "colNroPedido";
+            this.colNroPedido.ReadOnly = true;
+            // 
+            // colTipoComprobante
+            // 
+            this.colTipoComprobante.DataPropertyName = "colTipoComprobante";
+            this.colTipoComprobante.HeaderText = "Tipo Comprobante";
+            this.colTipoComprobante.Name = "colTipoComprobante";
+            this.colTipoComprobante.ReadOnly = true;
+            // 
+            // colCliente
+            // 
+            this.colCliente.DataPropertyName = "colCliente";
+            this.colCliente.FillWeight = 80.83965F;
+            this.colCliente.HeaderText = "Cliente";
+            this.colCliente.Name = "colCliente";
+            this.colCliente.ReadOnly = true;
+            // 
+            // colCuit
+            // 
+            this.colCuit.DataPropertyName = "colCuit";
+            this.colCuit.HeaderText = "Cuit";
+            this.colCuit.Name = "colCuit";
+            this.colCuit.ReadOnly = true;
+            // 
+            // colMonto
+            // 
+            this.colMonto.DataPropertyName = "colMonto";
+            this.colMonto.HeaderText = "Monto";
+            this.colMonto.Name = "colMonto";
+            this.colMonto.ReadOnly = true;
+            // 
+            // colFacturar
+            // 
+            this.colFacturar.DataPropertyName = "colFacturar";
+            this.colFacturar.FillWeight = 21.20991F;
+            this.colFacturar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.colFacturar.HeaderText = "Facturar?";
+            this.colFacturar.MinimumWidth = 25;
+            this.colFacturar.Name = "colFacturar";
             // 
             // frmFacturacionMasiva
             // 
@@ -508,8 +507,6 @@
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel7.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -531,15 +528,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.DateTimePicker dtpFechaFacturacion;
         private System.Windows.Forms.Label lblFechaFactura;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colFecPedido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNroPedido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTipoComprobante;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCuit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMonto;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colFacturar;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private MaterialSkin.Controls.MaterialSingleLineTextField tbxCantidadFact;
         private MaterialSkin.Controls.MaterialCheckBox chkTodos;
         private MaterialSkin.Controls.MaterialFlatButton btnFacturar;
@@ -551,5 +540,13 @@
         private System.Windows.Forms.ToolStripMenuItem buscarComprobantesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem parámetrosToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn indice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFecPedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNroPedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTipoComprobante;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCuit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMonto;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colFacturar;
     }
 }

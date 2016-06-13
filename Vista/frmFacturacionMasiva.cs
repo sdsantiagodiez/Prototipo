@@ -21,6 +21,7 @@ namespace Vista
         public frmFacturacionMasiva()
         {
             InitializeComponent();
+            inicializarControles();
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
@@ -45,6 +46,7 @@ namespace Vista
             pedidos.Columns.Add("colNroPedido");
             pedidos.Columns.Add("colTipoComprobante");
             pedidos.Columns.Add("colMonto");
+            pedidos.Columns.Add("colFacturar");
                        
             int i = 0;
             foreach (ModeloPedido mp in p_lst_mod_ped)
@@ -58,11 +60,20 @@ namespace Vista
                 row["colNroPedido"] = mp.numeroPedido.ToString() ;
                 row["colTipoComprobante"] = mp.tipoComprobante.ToString();
                 row["colMonto"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", mp.montoTotal);
+                row["colFacturar"] = false;
                 
                 pedidos.Rows.Add(row);
             }
 
             this.dgvComprSinFact.DataSource = pedidos;
+            this.dgvComprSinFact.ClearSelection();
+        }
+
+        public void inicializarControles()
+        {
+            this.dgvComprSinFact.MultiSelect = false;
+            this.dgvComprSinFact.AutoGenerateColumns = false;
+            this.rbutFCA.Checked = true;
         }
 
         private void buscarComprobantesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -81,18 +92,7 @@ namespace Vista
             this.CargaEnGrid(controlador.getPedidosSFacturar(lcl_p_tipo));
         }
 
-        private void dgvComprSinFact_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            int j =0;
-            for (int i = 0; i < dgvComprSinFact.RowCount; i++)
-            { 
-            if(Object.Equals(dgvComprSinFact[7,i].Value,(object)true))
-            {j++;}
-
-            }
-                this.tbxCantidadFact.Text = j.ToString();
-        }
-
+       
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -103,18 +103,40 @@ namespace Vista
             if (chkTodos.Checked == true)
             { for(int i=0;i<dgvComprSinFact.RowCount;i++)
                 {
-                    this.dgvComprSinFact[7, i].Value = true;
+                    this.dgvComprSinFact["colFacturar",i].Value = true;
                 }
+                this.tbxCantidadFact.Text=this.dgvComprSinFact.RowCount.ToString();
             }
             else
             {
                 for (int i = 0; i < dgvComprSinFact.RowCount; i++)
                 {
-                    this.dgvComprSinFact[7, i].Value = false;
+                    this.dgvComprSinFact["colFacturar", i].Value = false;
                 }
             }
         }
 
+        
+        private void dgvComprSinFact_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+                int j = 0;
+            for (int i = 0; i < dgvComprSinFact.RowCount; i++)
+            {
+                if (Object.Equals(dgvComprSinFact["colFacturar", i].Value, "True"))
+                { j++; }
+
+            }
+            this.tbxCantidadFact.Text = j.ToString();
+        }
+
+               
+        private void dgvComprSinFact_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            this.dgvComprSinFact.CommitEdit(DataGridViewDataErrorContexts.Commit);
+        }
+
+        }
+
             
     }
-}
+

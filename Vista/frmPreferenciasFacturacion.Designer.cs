@@ -30,6 +30,8 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtComprobante1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtUltNumComp1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -37,24 +39,22 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtComprobante3 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtUltNumComp3 = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnGuardar = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
-            this.txtComprobante1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtUltNumComp1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.label4 = new System.Windows.Forms.Label();
             this.txtComprobante2 = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtUltNumComp2 = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtComprobante3 = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtUltNumComp3 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.txtComprobante4 = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtUltNumComp4 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.btnGuardar = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -115,6 +115,40 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(127, 45);
             this.tableLayoutPanel2.TabIndex = 2;
+            // 
+            // txtComprobante1
+            // 
+            this.txtComprobante1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtComprobante1.Depth = 0;
+            this.txtComprobante1.Enabled = false;
+            this.txtComprobante1.Hint = "";
+            this.txtComprobante1.Location = new System.Drawing.Point(3, 3);
+            this.txtComprobante1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtComprobante1.Name = "txtComprobante1";
+            this.txtComprobante1.PasswordChar = '\0';
+            this.txtComprobante1.SelectedText = "";
+            this.txtComprobante1.SelectionLength = 0;
+            this.txtComprobante1.SelectionStart = 0;
+            this.txtComprobante1.Size = new System.Drawing.Size(121, 23);
+            this.txtComprobante1.TabIndex = 2;
+            this.txtComprobante1.Text = "Facturas A";
+            this.txtComprobante1.UseSystemPasswordChar = false;
+            // 
+            // txtUltNumComp1
+            // 
+            this.txtUltNumComp1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUltNumComp1.Depth = 0;
+            this.txtUltNumComp1.Hint = "";
+            this.txtUltNumComp1.Location = new System.Drawing.Point(3, 28);
+            this.txtUltNumComp1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtUltNumComp1.Name = "txtUltNumComp1";
+            this.txtUltNumComp1.PasswordChar = '\0';
+            this.txtUltNumComp1.SelectedText = "";
+            this.txtUltNumComp1.SelectionLength = 0;
+            this.txtUltNumComp1.SelectionStart = 0;
+            this.txtUltNumComp1.Size = new System.Drawing.Size(121, 23);
+            this.txtUltNumComp1.TabIndex = 3;
+            this.txtUltNumComp1.UseSystemPasswordChar = false;
             // 
             // tableLayoutPanel3
             // 
@@ -199,6 +233,40 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(127, 48);
             this.tableLayoutPanel5.TabIndex = 5;
             // 
+            // txtComprobante3
+            // 
+            this.txtComprobante3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtComprobante3.Depth = 0;
+            this.txtComprobante3.Enabled = false;
+            this.txtComprobante3.Hint = "";
+            this.txtComprobante3.Location = new System.Drawing.Point(3, 3);
+            this.txtComprobante3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtComprobante3.Name = "txtComprobante3";
+            this.txtComprobante3.PasswordChar = '\0';
+            this.txtComprobante3.SelectedText = "";
+            this.txtComprobante3.SelectionLength = 0;
+            this.txtComprobante3.SelectionStart = 0;
+            this.txtComprobante3.Size = new System.Drawing.Size(121, 23);
+            this.txtComprobante3.TabIndex = 3;
+            this.txtComprobante3.Text = "Nota de Crédito A";
+            this.txtComprobante3.UseSystemPasswordChar = false;
+            // 
+            // txtUltNumComp3
+            // 
+            this.txtUltNumComp3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUltNumComp3.Depth = 0;
+            this.txtUltNumComp3.Hint = "";
+            this.txtUltNumComp3.Location = new System.Drawing.Point(3, 27);
+            this.txtUltNumComp3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtUltNumComp3.Name = "txtUltNumComp3";
+            this.txtUltNumComp3.PasswordChar = '\0';
+            this.txtUltNumComp3.SelectedText = "";
+            this.txtUltNumComp3.SelectionLength = 0;
+            this.txtUltNumComp3.SelectionStart = 0;
+            this.txtUltNumComp3.Size = new System.Drawing.Size(121, 23);
+            this.txtUltNumComp3.TabIndex = 4;
+            this.txtUltNumComp3.UseSystemPasswordChar = false;
+            // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 1;
@@ -247,6 +315,40 @@
             this.tableLayoutPanel7.Size = new System.Drawing.Size(127, 45);
             this.tableLayoutPanel7.TabIndex = 7;
             // 
+            // txtComprobante2
+            // 
+            this.txtComprobante2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtComprobante2.Depth = 0;
+            this.txtComprobante2.Enabled = false;
+            this.txtComprobante2.Hint = "";
+            this.txtComprobante2.Location = new System.Drawing.Point(3, 3);
+            this.txtComprobante2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtComprobante2.Name = "txtComprobante2";
+            this.txtComprobante2.PasswordChar = '\0';
+            this.txtComprobante2.SelectedText = "";
+            this.txtComprobante2.SelectionLength = 0;
+            this.txtComprobante2.SelectionStart = 0;
+            this.txtComprobante2.Size = new System.Drawing.Size(121, 23);
+            this.txtComprobante2.TabIndex = 3;
+            this.txtComprobante2.Text = "Facturas B";
+            this.txtComprobante2.UseSystemPasswordChar = false;
+            // 
+            // txtUltNumComp2
+            // 
+            this.txtUltNumComp2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUltNumComp2.Depth = 0;
+            this.txtUltNumComp2.Hint = "";
+            this.txtUltNumComp2.Location = new System.Drawing.Point(3, 25);
+            this.txtUltNumComp2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtUltNumComp2.Name = "txtUltNumComp2";
+            this.txtUltNumComp2.PasswordChar = '\0';
+            this.txtUltNumComp2.SelectedText = "";
+            this.txtUltNumComp2.SelectionLength = 0;
+            this.txtUltNumComp2.SelectionStart = 0;
+            this.txtUltNumComp2.Size = new System.Drawing.Size(121, 23);
+            this.txtUltNumComp2.TabIndex = 4;
+            this.txtUltNumComp2.UseSystemPasswordChar = false;
+            // 
             // tableLayoutPanel8
             // 
             this.tableLayoutPanel8.ColumnCount = 1;
@@ -271,6 +373,16 @@
             this.label8.TabIndex = 2;
             this.label8.Text = "Ultimo Número:";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(106, 22);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Comprobante:";
+            // 
             // tableLayoutPanel9
             // 
             this.tableLayoutPanel9.ColumnCount = 1;
@@ -285,6 +397,40 @@
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.Size = new System.Drawing.Size(127, 48);
             this.tableLayoutPanel9.TabIndex = 9;
+            // 
+            // txtComprobante4
+            // 
+            this.txtComprobante4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtComprobante4.Depth = 0;
+            this.txtComprobante4.Enabled = false;
+            this.txtComprobante4.Hint = "";
+            this.txtComprobante4.Location = new System.Drawing.Point(3, 3);
+            this.txtComprobante4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtComprobante4.Name = "txtComprobante4";
+            this.txtComprobante4.PasswordChar = '\0';
+            this.txtComprobante4.SelectedText = "";
+            this.txtComprobante4.SelectionLength = 0;
+            this.txtComprobante4.SelectionStart = 0;
+            this.txtComprobante4.Size = new System.Drawing.Size(121, 23);
+            this.txtComprobante4.TabIndex = 3;
+            this.txtComprobante4.Text = "Nota de Crédito B";
+            this.txtComprobante4.UseSystemPasswordChar = false;
+            // 
+            // txtUltNumComp4
+            // 
+            this.txtUltNumComp4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUltNumComp4.Depth = 0;
+            this.txtUltNumComp4.Hint = "";
+            this.txtUltNumComp4.Location = new System.Drawing.Point(3, 27);
+            this.txtUltNumComp4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtUltNumComp4.Name = "txtUltNumComp4";
+            this.txtUltNumComp4.PasswordChar = '\0';
+            this.txtUltNumComp4.SelectedText = "";
+            this.txtUltNumComp4.SelectionLength = 0;
+            this.txtUltNumComp4.SelectionStart = 0;
+            this.txtUltNumComp4.Size = new System.Drawing.Size(121, 23);
+            this.txtUltNumComp4.TabIndex = 4;
+            this.txtUltNumComp4.UseSystemPasswordChar = false;
             // 
             // btnGuardar
             // 
@@ -318,148 +464,6 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // txtComprobante1
-            // 
-            this.txtComprobante1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtComprobante1.Depth = 0;
-            this.txtComprobante1.Hint = "";
-            this.txtComprobante1.Location = new System.Drawing.Point(3, 3);
-            this.txtComprobante1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtComprobante1.Name = "txtComprobante1";
-            this.txtComprobante1.PasswordChar = '\0';
-            this.txtComprobante1.SelectedText = "";
-            this.txtComprobante1.SelectionLength = 0;
-            this.txtComprobante1.SelectionStart = 0;
-            this.txtComprobante1.Size = new System.Drawing.Size(121, 23);
-            this.txtComprobante1.TabIndex = 2;
-            this.txtComprobante1.Text = "Facturas A";
-            this.txtComprobante1.UseSystemPasswordChar = false;
-            // 
-            // txtUltNumComp1
-            // 
-            this.txtUltNumComp1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUltNumComp1.Depth = 0;
-            this.txtUltNumComp1.Hint = "";
-            this.txtUltNumComp1.Location = new System.Drawing.Point(3, 28);
-            this.txtUltNumComp1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtUltNumComp1.Name = "txtUltNumComp1";
-            this.txtUltNumComp1.PasswordChar = '\0';
-            this.txtUltNumComp1.SelectedText = "";
-            this.txtUltNumComp1.SelectionLength = 0;
-            this.txtUltNumComp1.SelectionStart = 0;
-            this.txtUltNumComp1.Size = new System.Drawing.Size(121, 23);
-            this.txtUltNumComp1.TabIndex = 3;
-            this.txtUltNumComp1.UseSystemPasswordChar = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(3, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(106, 22);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Comprobante:";
-            // 
-            // txtComprobante2
-            // 
-            this.txtComprobante2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtComprobante2.Depth = 0;
-            this.txtComprobante2.Hint = "";
-            this.txtComprobante2.Location = new System.Drawing.Point(3, 3);
-            this.txtComprobante2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtComprobante2.Name = "txtComprobante2";
-            this.txtComprobante2.PasswordChar = '\0';
-            this.txtComprobante2.SelectedText = "";
-            this.txtComprobante2.SelectionLength = 0;
-            this.txtComprobante2.SelectionStart = 0;
-            this.txtComprobante2.Size = new System.Drawing.Size(121, 23);
-            this.txtComprobante2.TabIndex = 3;
-            this.txtComprobante2.Text = "Facturas B";
-            this.txtComprobante2.UseSystemPasswordChar = false;
-            // 
-            // txtUltNumComp2
-            // 
-            this.txtUltNumComp2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUltNumComp2.Depth = 0;
-            this.txtUltNumComp2.Hint = "";
-            this.txtUltNumComp2.Location = new System.Drawing.Point(3, 25);
-            this.txtUltNumComp2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtUltNumComp2.Name = "txtUltNumComp2";
-            this.txtUltNumComp2.PasswordChar = '\0';
-            this.txtUltNumComp2.SelectedText = "";
-            this.txtUltNumComp2.SelectionLength = 0;
-            this.txtUltNumComp2.SelectionStart = 0;
-            this.txtUltNumComp2.Size = new System.Drawing.Size(121, 23);
-            this.txtUltNumComp2.TabIndex = 4;
-            this.txtUltNumComp2.UseSystemPasswordChar = false;
-            // 
-            // txtComprobante3
-            // 
-            this.txtComprobante3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtComprobante3.Depth = 0;
-            this.txtComprobante3.Hint = "";
-            this.txtComprobante3.Location = new System.Drawing.Point(3, 3);
-            this.txtComprobante3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtComprobante3.Name = "txtComprobante3";
-            this.txtComprobante3.PasswordChar = '\0';
-            this.txtComprobante3.SelectedText = "";
-            this.txtComprobante3.SelectionLength = 0;
-            this.txtComprobante3.SelectionStart = 0;
-            this.txtComprobante3.Size = new System.Drawing.Size(121, 23);
-            this.txtComprobante3.TabIndex = 3;
-            this.txtComprobante3.Text = "Nota de Crédito A";
-            this.txtComprobante3.UseSystemPasswordChar = false;
-            // 
-            // txtUltNumComp3
-            // 
-            this.txtUltNumComp3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUltNumComp3.Depth = 0;
-            this.txtUltNumComp3.Hint = "";
-            this.txtUltNumComp3.Location = new System.Drawing.Point(3, 27);
-            this.txtUltNumComp3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtUltNumComp3.Name = "txtUltNumComp3";
-            this.txtUltNumComp3.PasswordChar = '\0';
-            this.txtUltNumComp3.SelectedText = "";
-            this.txtUltNumComp3.SelectionLength = 0;
-            this.txtUltNumComp3.SelectionStart = 0;
-            this.txtUltNumComp3.Size = new System.Drawing.Size(121, 23);
-            this.txtUltNumComp3.TabIndex = 4;
-            this.txtUltNumComp3.UseSystemPasswordChar = false;
-            // 
-            // txtComprobante4
-            // 
-            this.txtComprobante4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtComprobante4.Depth = 0;
-            this.txtComprobante4.Hint = "";
-            this.txtComprobante4.Location = new System.Drawing.Point(3, 3);
-            this.txtComprobante4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtComprobante4.Name = "txtComprobante4";
-            this.txtComprobante4.PasswordChar = '\0';
-            this.txtComprobante4.SelectedText = "";
-            this.txtComprobante4.SelectionLength = 0;
-            this.txtComprobante4.SelectionStart = 0;
-            this.txtComprobante4.Size = new System.Drawing.Size(121, 23);
-            this.txtComprobante4.TabIndex = 3;
-            this.txtComprobante4.Text = "Nota de Crédito B";
-            this.txtComprobante4.UseSystemPasswordChar = false;
-            // 
-            // txtUltNumComp4
-            // 
-            this.txtUltNumComp4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUltNumComp4.Depth = 0;
-            this.txtUltNumComp4.Hint = "";
-            this.txtUltNumComp4.Location = new System.Drawing.Point(3, 27);
-            this.txtUltNumComp4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtUltNumComp4.Name = "txtUltNumComp4";
-            this.txtUltNumComp4.PasswordChar = '\0';
-            this.txtUltNumComp4.SelectedText = "";
-            this.txtUltNumComp4.SelectionLength = 0;
-            this.txtUltNumComp4.SelectionStart = 0;
-            this.txtUltNumComp4.Size = new System.Drawing.Size(121, 23);
-            this.txtUltNumComp4.TabIndex = 4;
-            this.txtUltNumComp4.UseSystemPasswordChar = false;
             // 
             // frmPreferenciasFacturacion
             // 
