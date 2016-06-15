@@ -73,23 +73,48 @@ namespace Vista
         {
             this.dgvComprSinFact.MultiSelect = false;
             this.dgvComprSinFact.AutoGenerateColumns = false;
-            this.rbutFCA.Checked = true;
+           
+        }
+        public bool ValidaSeleccionComprobantes()
+        {
+            if (bool.Equals(chbxFCA.Checked, false) && bool.Equals(chbxFCB.Checked, false) && bool.Equals(chbxNCA.Checked, false) && bool.Equals(chbxNCB.Checked, false))
+            {
+                return false;
+            }
+            else
+            { return true;}
         }
 
         private void buscarComprobantesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Resta agregar los radio button como un grupo.
-            string lcl_p_tipo = "";
-            if (rbutFCA.Checked == true)
-            { lcl_p_tipo = "1"; }
-            else if (rbutFCB.Checked == true)
-            { lcl_p_tipo = "6"; }
-            else if (rbutNCA.Checked == true)
-            { lcl_p_tipo = "3"; }
+            if (!ValidaSeleccionComprobantes())
+            {
+                MessageBox.Show("Por favor seleccione un tipo de Comprobante","Facturacion",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+            }
             else
-            { lcl_p_tipo = "8"; }
-
-            this.CargaEnGrid(controlador.getPedidosSFacturar(lcl_p_tipo));
+            {
+                string[] lcl_p_tipo = new string[4];
+                if (chbxFCA.Checked == true)
+                { lcl_p_tipo[0] = "1"; }
+                else { lcl_p_tipo[0] = "0"; }
+                if (chbxFCB.Checked == true)
+                { lcl_p_tipo[1] = "6"; }
+                else { lcl_p_tipo[1] = "0"; }
+                if (chbxNCA.Checked == true)
+                { lcl_p_tipo[2] = "3"; }
+                else { lcl_p_tipo[2] = "0"; }
+                if (chbxNCB.Checked == true)
+                { lcl_p_tipo[3] = "8"; }
+                else { lcl_p_tipo[3] = "0"; }
+                if (controlador.getPedidosSFacturar(lcl_p_tipo).Count == 0)
+                {
+                    MessageBox.Show("No hay comprobantes pendientes de facturación", "Facturación",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                }
+                else
+                {
+                    this.CargaEnGrid(controlador.getPedidosSFacturar(lcl_p_tipo));
+                }
+            }
         }
 
        

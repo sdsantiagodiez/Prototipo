@@ -402,7 +402,7 @@ namespace Controladores
         #endregion
 
         #region Pedidos sin Facurar
-        public List<ModeloPedido> getPedidosSFacturar(string p_tipoComprobante)
+        public List<ModeloPedido> getPedidosSFacturar(string[] p_tipoComprobante)
         {
             CatalogoPedidos lcl_cat_ped = new CatalogoPedidos();
 

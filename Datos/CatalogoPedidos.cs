@@ -315,7 +315,7 @@ namespace Datos
 
         }
 
-        public List<ModeloPedido> getComprobantesNoFacturados(string p_tipoComprobante)
+        public List<ModeloPedido> getComprobantesNoFacturados(string[] p_tipoComprobante)
         {
             List<ModeloPedido> lcl_lst_mod_ped = new List<ModeloPedido>();
             
@@ -336,9 +336,18 @@ namespace Datos
                 "                [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], " +
                 "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante] " +
                 "            FROM pedidos, Pedidos_Personas  " +
-                "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido AND Pedidos_Personas.cae Is NULL ";
+                "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido AND Pedidos_Personas.cae Is NULL "+
+                "                   AND (codigo_comprobante=@tipo1 OR codigo_comprobante=@tipo2 OR codigo_comprobante=@tipo3"+
+                "                       OR codigo_comprobante=@tipo4) ";
 
-            
+            comando.Parameters.Add(new SqlParameter("@tipo1", SqlDbType.NVarChar));
+            comando.Parameters["@tipo1"].Value = p_tipoComprobante[0];
+            comando.Parameters.Add(new SqlParameter("@tipo2", SqlDbType.NVarChar));
+            comando.Parameters["@tipo2"].Value = p_tipoComprobante[1];
+            comando.Parameters.Add(new SqlParameter("@tipo3", SqlDbType.NVarChar));
+            comando.Parameters["@tipo3"].Value = p_tipoComprobante[2];
+            comando.Parameters.Add(new SqlParameter("@tipo4", SqlDbType.NVarChar));
+            comando.Parameters["@tipo4"].Value = p_tipoComprobante[3];
 
             comando.Connection.Open();
 
