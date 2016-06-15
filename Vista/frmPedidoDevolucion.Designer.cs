@@ -31,19 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoDevolucion));
             this.tblLayoutPanelBase = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelBotones = new System.Windows.Forms.TableLayoutPanel();
-            this.btnQuitar = new System.Windows.Forms.Button();
-            this.btnQuitarTodos = new System.Windows.Forms.Button();
             this.lblTotalVar = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnSiguiente = new System.Windows.Forms.Button();
             this.tblLayoutPanelArticulos = new System.Windows.Forms.TableLayoutPanel();
             this.gbxDetalleArticuloSeleccionado = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelDetalleArticulo = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelDetallesArticuloOpciones = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelDetalleArticuloBotones = new System.Windows.Forms.TableLayoutPanel();
             this.nmrcUpDownCantidad = new System.Windows.Forms.NumericUpDown();
-            this.btnAgregar = new System.Windows.Forms.Button();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.tlpDetalles = new System.Windows.Forms.TableLayoutPanel();
             this.lblProveedorVar = new System.Windows.Forms.Label();
@@ -80,7 +75,6 @@
             this.tblLayoutPanelCuadroBusqueda = new System.Windows.Forms.TableLayoutPanel();
             this.lblCAE = new System.Windows.Forms.Label();
             this.lblLupa = new System.Windows.Forms.Label();
-            this.txtCAE = new System.Windows.Forms.TextBox();
             this.gbxArticulosDevolucion = new System.Windows.Forms.GroupBox();
             this.dgvArticulosDevolucion = new System.Windows.Forms.DataGridView();
             this.indice_dgvDevolucion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -90,6 +84,12 @@
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtCAE = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnQuitar = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnQuitarTodos = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnSiguiente = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnAgregar = new MaterialSkin.Controls.MaterialFlatButton();
             this.tblLayoutPanelBase.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
             this.tblLayoutPanelArticulos.SuspendLayout();
@@ -110,12 +110,13 @@
             // 
             // tblLayoutPanelBase
             // 
+            this.tblLayoutPanelBase.BackColor = System.Drawing.Color.White;
             this.tblLayoutPanelBase.ColumnCount = 1;
             this.tblLayoutPanelBase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelBase.Controls.Add(this.tblLayoutPanelBotones, 0, 1);
             this.tblLayoutPanelBase.Controls.Add(this.tblLayoutPanelArticulos, 0, 0);
-            this.tblLayoutPanelBase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelBase.Location = new System.Drawing.Point(0, 0);
+            this.tblLayoutPanelBase.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tblLayoutPanelBase.Location = new System.Drawing.Point(0, 63);
             this.tblLayoutPanelBase.Name = "tblLayoutPanelBase";
             this.tblLayoutPanelBase.RowCount = 2;
             this.tblLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -129,14 +130,14 @@
             this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tblLayoutPanelBotones.Controls.Add(this.btnQuitar, 2, 0);
-            this.tblLayoutPanelBotones.Controls.Add(this.btnQuitarTodos, 3, 0);
-            this.tblLayoutPanelBotones.Controls.Add(this.lblTotalVar, 2, 0);
             this.tblLayoutPanelBotones.Controls.Add(this.lblTotal, 1, 0);
             this.tblLayoutPanelBotones.Controls.Add(this.btnCancelar, 0, 0);
+            this.tblLayoutPanelBotones.Controls.Add(this.lblTotalVar, 2, 0);
+            this.tblLayoutPanelBotones.Controls.Add(this.btnQuitar, 3, 0);
+            this.tblLayoutPanelBotones.Controls.Add(this.btnQuitarTodos, 4, 0);
             this.tblLayoutPanelBotones.Controls.Add(this.btnSiguiente, 5, 0);
             this.tblLayoutPanelBotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelBotones.Location = new System.Drawing.Point(3, 516);
@@ -146,34 +147,13 @@
             this.tblLayoutPanelBotones.Size = new System.Drawing.Size(893, 54);
             this.tblLayoutPanelBotones.TabIndex = 0;
             // 
-            // btnQuitar
-            // 
-            this.btnQuitar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnQuitar.Location = new System.Drawing.Point(418, 7);
-            this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Size = new System.Drawing.Size(80, 40);
-            this.btnQuitar.TabIndex = 12;
-            this.btnQuitar.Text = "Quitar Seleccionado";
-            this.btnQuitar.UseVisualStyleBackColor = true;
-            // 
-            // btnQuitarTodos
-            // 
-            this.btnQuitarTodos.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnQuitarTodos.AutoSize = true;
-            this.btnQuitarTodos.Location = new System.Drawing.Point(506, 8);
-            this.btnQuitarTodos.Name = "btnQuitarTodos";
-            this.btnQuitarTodos.Size = new System.Drawing.Size(84, 38);
-            this.btnQuitarTodos.TabIndex = 13;
-            this.btnQuitarTodos.Text = "Quitar Todo";
-            this.btnQuitarTodos.UseVisualStyleBackColor = true;
-            // 
             // lblTotalVar
             // 
             this.lblTotalVar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTotalVar.AutoSize = true;
             this.lblTotalVar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalVar.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblTotalVar.Location = new System.Drawing.Point(360, 19);
+            this.lblTotalVar.Location = new System.Drawing.Point(300, 19);
             this.lblTotalVar.Name = "lblTotalVar";
             this.lblTotalVar.Size = new System.Drawing.Size(16, 16);
             this.lblTotalVar.TabIndex = 10;
@@ -184,35 +164,11 @@
             this.lblTotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(269, 18);
+            this.lblTotal.Location = new System.Drawing.Point(209, 18);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(51, 18);
             this.lblTotal.TabIndex = 9;
             this.lblTotal.Text = "Total:";
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(8, 7);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(74, 40);
-            this.btnCancelar.TabIndex = 7;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // btnSiguiente
-            // 
-            this.btnSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSiguiente.AutoSize = true;
-            this.btnSiguiente.Location = new System.Drawing.Point(779, 8);
-            this.btnSiguiente.Margin = new System.Windows.Forms.Padding(3, 3, 30, 3);
-            this.btnSiguiente.Name = "btnSiguiente";
-            this.btnSiguiente.Size = new System.Drawing.Size(84, 38);
-            this.btnSiguiente.TabIndex = 11;
-            this.btnSiguiente.Text = "Siguiente >";
-            this.btnSiguiente.UseVisualStyleBackColor = true;
-            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
             // tblLayoutPanelArticulos
             // 
@@ -273,10 +229,10 @@
             this.tblLayoutPanelDetalleArticuloBotones.ColumnCount = 3;
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.40659F));
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.59341F));
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107F));
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.nmrcUpDownCantidad, 1, 0);
-            this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnAgregar, 2, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.lblCantidad, 0, 0);
+            this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnAgregar, 2, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelDetalleArticuloBotones.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelDetalleArticuloBotones.Name = "tblLayoutPanelDetalleArticuloBotones";
@@ -288,7 +244,7 @@
             // nmrcUpDownCantidad
             // 
             this.nmrcUpDownCantidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(70, 25);
+            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(69, 25);
             this.nmrcUpDownCantidad.Maximum = new decimal(new int[] {
             99999999,
             0,
@@ -304,21 +260,11 @@
             0});
             this.nmrcUpDownCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nmrcUpDownCantidad_KeyPress);
             // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAgregar.Location = new System.Drawing.Point(168, 18);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(80, 35);
-            this.btnAgregar.TabIndex = 4;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            // 
             // lblCantidad
             // 
             this.lblCantidad.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(12, 29);
+            this.lblCantidad.Location = new System.Drawing.Point(11, 29);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(52, 13);
             this.lblCantidad.TabIndex = 9;
@@ -592,6 +538,7 @@
             this.dgvArticulosPedido.AllowUserToDeleteRows = false;
             this.dgvArticulosPedido.AllowUserToResizeRows = false;
             this.dgvArticulosPedido.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvArticulosPedido.BackgroundColor = System.Drawing.Color.White;
             this.dgvArticulosPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulosPedido.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.indice,
@@ -717,15 +664,6 @@
             this.lblLupa.TabIndex = 8;
             this.lblLupa.Click += new System.EventHandler(this.lblLupa_Click);
             // 
-            // txtCAE
-            // 
-            this.txtCAE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCAE.Location = new System.Drawing.Point(56, 3);
-            this.txtCAE.Name = "txtCAE";
-            this.txtCAE.Size = new System.Drawing.Size(485, 23);
-            this.txtCAE.TabIndex = 7;
-            this.txtCAE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCAE_KeyPress);
-            // 
             // gbxArticulosDevolucion
             // 
             this.gbxArticulosDevolucion.Controls.Add(this.dgvArticulosDevolucion);
@@ -743,6 +681,7 @@
             this.dgvArticulosDevolucion.AllowUserToAddRows = false;
             this.dgvArticulosDevolucion.AllowUserToDeleteRows = false;
             this.dgvArticulosDevolucion.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvArticulosDevolucion.BackgroundColor = System.Drawing.Color.White;
             this.dgvArticulosDevolucion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulosDevolucion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.indice_dgvDevolucion,
@@ -813,15 +752,113 @@
             this.vParcial.Name = "vParcial";
             this.vParcial.ReadOnly = true;
             // 
+            // txtCAE
+            // 
+            this.txtCAE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCAE.Depth = 0;
+            this.txtCAE.Hint = "";
+            this.txtCAE.Location = new System.Drawing.Point(56, 3);
+            this.txtCAE.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtCAE.Name = "txtCAE";
+            this.txtCAE.PasswordChar = '\0';
+            this.txtCAE.SelectedText = "";
+            this.txtCAE.SelectionLength = 0;
+            this.txtCAE.SelectionStart = 0;
+            this.txtCAE.Size = new System.Drawing.Size(485, 23);
+            this.txtCAE.TabIndex = 9;
+            this.txtCAE.UseSystemPasswordChar = false;
+            this.txtCAE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCAE_KeyPress);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.AutoSize = true;
+            this.btnCancelar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCancelar.Depth = 0;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(4, 9);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Primary = false;
+            this.btnCancelar.Size = new System.Drawing.Size(82, 36);
+            this.btnCancelar.TabIndex = 14;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // btnQuitar
+            // 
+            this.btnQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuitar.AutoSize = true;
+            this.btnQuitar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnQuitar.Depth = 0;
+            this.btnQuitar.Location = new System.Drawing.Point(357, 9);
+            this.btnQuitar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnQuitar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Primary = false;
+            this.btnQuitar.Size = new System.Drawing.Size(112, 36);
+            this.btnQuitar.TabIndex = 15;
+            this.btnQuitar.Text = "Quitar Seleccionado";
+            this.btnQuitar.UseVisualStyleBackColor = true;
+            // 
+            // btnQuitarTodos
+            // 
+            this.btnQuitarTodos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuitarTodos.AutoSize = true;
+            this.btnQuitarTodos.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnQuitarTodos.Depth = 0;
+            this.btnQuitarTodos.Location = new System.Drawing.Point(477, 9);
+            this.btnQuitarTodos.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnQuitarTodos.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnQuitarTodos.Name = "btnQuitarTodos";
+            this.btnQuitarTodos.Primary = false;
+            this.btnQuitarTodos.Size = new System.Drawing.Size(112, 36);
+            this.btnQuitarTodos.TabIndex = 16;
+            this.btnQuitarTodos.Text = "Quitar Todo";
+            this.btnQuitarTodos.UseVisualStyleBackColor = true;
+            // 
+            // btnSiguiente
+            // 
+            this.btnSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSiguiente.AutoSize = true;
+            this.btnSiguiente.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSiguiente.Depth = 0;
+            this.btnSiguiente.Location = new System.Drawing.Point(791, 9);
+            this.btnSiguiente.Margin = new System.Windows.Forms.Padding(4, 6, 12, 6);
+            this.btnSiguiente.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Primary = false;
+            this.btnSiguiente.Size = new System.Drawing.Size(90, 36);
+            this.btnSiguiente.TabIndex = 17;
+            this.btnSiguiente.Text = "Siguiente >";
+            this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAgregar.AutoSize = true;
+            this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAgregar.Depth = 0;
+            this.btnAgregar.Location = new System.Drawing.Point(157, 17);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Primary = false;
+            this.btnAgregar.Size = new System.Drawing.Size(100, 36);
+            this.btnAgregar.TabIndex = 10;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            // 
             // frmPedidoDevolucion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(899, 573);
+            this.ClientSize = new System.Drawing.Size(899, 636);
             this.Controls.Add(this.tblLayoutPanelBase);
             this.Name = "frmPedidoDevolucion";
-            this.Text = "Devolucion";
+            this.Text = "Devolución";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPedidoDevolucion_FormClosing);
             this.tblLayoutPanelBase.ResumeLayout(false);
             this.tblLayoutPanelBotones.ResumeLayout(false);
@@ -851,19 +888,14 @@
 
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelBase;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelBotones;
-        private System.Windows.Forms.Button btnQuitar;
-        internal System.Windows.Forms.Button btnQuitarTodos;
         internal System.Windows.Forms.Label lblTotalVar;
         internal System.Windows.Forms.Label lblTotal;
-        private System.Windows.Forms.Button btnCancelar;
-        internal System.Windows.Forms.Button btnSiguiente;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelArticulos;
         private System.Windows.Forms.GroupBox gbxDetalleArticuloSeleccionado;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDetalleArticulo;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDetallesArticuloOpciones;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDetalleArticuloBotones;
         private System.Windows.Forms.NumericUpDown nmrcUpDownCantidad;
-        private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.TableLayoutPanel tlpDetalles;
         private System.Windows.Forms.Label lblProveedorVar;
@@ -890,7 +922,6 @@
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelCuadroBusqueda;
         private System.Windows.Forms.Label lblCAE;
         internal System.Windows.Forms.Label lblLupa;
-        internal System.Windows.Forms.TextBox txtCAE;
         private System.Windows.Forms.GroupBox gbxArticulosDevolucion;
         internal System.Windows.Forms.DataGridView dgvArticulosDevolucion;
         internal System.Windows.Forms.DataGridView dgvArticulosPedido;
@@ -910,5 +941,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn vUnitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn vParcial;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtCAE;
+        private MaterialSkin.Controls.MaterialFlatButton btnCancelar;
+        private MaterialSkin.Controls.MaterialFlatButton btnQuitar;
+        private MaterialSkin.Controls.MaterialFlatButton btnQuitarTodos;
+        private MaterialSkin.Controls.MaterialFlatButton btnSiguiente;
+        private MaterialSkin.Controls.MaterialFlatButton btnAgregar;
     }
 }

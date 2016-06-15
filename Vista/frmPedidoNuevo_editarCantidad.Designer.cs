@@ -31,9 +31,9 @@
             this.tblLayoutPanelDetallesArticuloOpciones = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelDetalleArticuloBotones = new System.Windows.Forms.TableLayoutPanel();
             this.nmrcUpDownCantidad = new System.Windows.Forms.NumericUpDown();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.lblCantidad = new System.Windows.Forms.Label();
-            this.chckBoxPermitirStockNegativo = new System.Windows.Forms.CheckBox();
+            this.chckBoxPermitirStockNegativo = new MaterialSkin.Controls.MaterialCheckBox();
+            this.btnEditar = new MaterialSkin.Controls.MaterialFlatButton();
             this.tblLayoutPanelDetallesArticuloOpciones.SuspendLayout();
             this.tblLayoutPanelDetalleArticuloBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownCantidad)).BeginInit();
@@ -41,12 +41,13 @@
             // 
             // tblLayoutPanelDetallesArticuloOpciones
             // 
+            this.tblLayoutPanelDetallesArticuloOpciones.BackColor = System.Drawing.Color.White;
             this.tblLayoutPanelDetallesArticuloOpciones.ColumnCount = 1;
             this.tblLayoutPanelDetallesArticuloOpciones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelDetallesArticuloOpciones.Controls.Add(this.tblLayoutPanelDetalleArticuloBotones, 0, 0);
             this.tblLayoutPanelDetallesArticuloOpciones.Controls.Add(this.chckBoxPermitirStockNegativo, 0, 1);
-            this.tblLayoutPanelDetallesArticuloOpciones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelDetallesArticuloOpciones.Location = new System.Drawing.Point(0, 0);
+            this.tblLayoutPanelDetallesArticuloOpciones.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tblLayoutPanelDetallesArticuloOpciones.Location = new System.Drawing.Point(0, 64);
             this.tblLayoutPanelDetallesArticuloOpciones.Name = "tblLayoutPanelDetallesArticuloOpciones";
             this.tblLayoutPanelDetallesArticuloOpciones.RowCount = 2;
             this.tblLayoutPanelDetallesArticuloOpciones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
@@ -59,10 +60,10 @@
             this.tblLayoutPanelDetalleArticuloBotones.ColumnCount = 3;
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.40659F));
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.59341F));
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.nmrcUpDownCantidad, 1, 0);
-            this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnEditar, 2, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.lblCantidad, 0, 0);
+            this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnEditar, 2, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelDetalleArticuloBotones.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelDetalleArticuloBotones.Name = "tblLayoutPanelDetalleArticuloBotones";
@@ -84,19 +85,6 @@
             this.nmrcUpDownCantidad.Size = new System.Drawing.Size(45, 20);
             this.nmrcUpDownCantidad.TabIndex = 2;
             // 
-            // btnEditar
-            // 
-            this.btnEditar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnEditar.Location = new System.Drawing.Point(184, 15);
-            this.btnEditar.MaximumSize = new System.Drawing.Size(80, 35);
-            this.btnEditar.MinimumSize = new System.Drawing.Size(80, 35);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(80, 35);
-            this.btnEditar.TabIndex = 4;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
             // lblCantidad
             // 
             this.lblCantidad.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -111,18 +99,41 @@
             // 
             this.chckBoxPermitirStockNegativo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.chckBoxPermitirStockNegativo.AutoSize = true;
-            this.chckBoxPermitirStockNegativo.Location = new System.Drawing.Point(70, 83);
+            this.chckBoxPermitirStockNegativo.Depth = 0;
+            this.chckBoxPermitirStockNegativo.Font = new System.Drawing.Font("Roboto", 10F);
+            this.chckBoxPermitirStockNegativo.Location = new System.Drawing.Point(51, 76);
+            this.chckBoxPermitirStockNegativo.Margin = new System.Windows.Forms.Padding(0);
+            this.chckBoxPermitirStockNegativo.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chckBoxPermitirStockNegativo.MouseState = MaterialSkin.MouseState.HOVER;
             this.chckBoxPermitirStockNegativo.Name = "chckBoxPermitirStockNegativo";
-            this.chckBoxPermitirStockNegativo.Size = new System.Drawing.Size(137, 17);
+            this.chckBoxPermitirStockNegativo.Ripple = true;
+            this.chckBoxPermitirStockNegativo.Size = new System.Drawing.Size(176, 30);
             this.chckBoxPermitirStockNegativo.TabIndex = 3;
             this.chckBoxPermitirStockNegativo.Text = "Permitir Stock Negativo";
             this.chckBoxPermitirStockNegativo.UseVisualStyleBackColor = true;
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditar.AutoSize = true;
+            this.btnEditar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnEditar.Depth = 0;
+            this.btnEditar.Location = new System.Drawing.Point(179, 15);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnEditar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Primary = false;
+            this.btnEditar.Size = new System.Drawing.Size(89, 36);
+            this.btnEditar.TabIndex = 10;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // frmPedidoNuevo_editarCantidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(278, 111);
+            this.ClientSize = new System.Drawing.Size(278, 175);
             this.Controls.Add(this.tblLayoutPanelDetallesArticuloOpciones);
             this.Name = "frmPedidoNuevo_editarCantidad";
             this.Text = "Editar Cantidad De Artículos";
@@ -140,9 +151,9 @@
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDetallesArticuloOpciones;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDetalleArticuloBotones;
         private System.Windows.Forms.NumericUpDown nmrcUpDownCantidad;
-        private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Label lblCantidad;
-        private System.Windows.Forms.CheckBox chckBoxPermitirStockNegativo;
+        private MaterialSkin.Controls.MaterialFlatButton btnEditar;
+        private MaterialSkin.Controls.MaterialCheckBox chckBoxPermitirStockNegativo;
 
     }
 }

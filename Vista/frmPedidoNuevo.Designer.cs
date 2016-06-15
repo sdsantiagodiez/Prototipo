@@ -43,6 +43,9 @@
             this.tblLayoutPanelDetallesArticuloOpciones = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelDetalleArticuloBotones = new System.Windows.Forms.TableLayoutPanel();
             this.nmrcUpDownCantidad = new System.Windows.Forms.NumericUpDown();
+            this.btnAgregar = new MaterialSkin.Controls.MaterialFlatButton();
+            this.lblCantidad = new MaterialSkin.Controls.MaterialLabel();
+            this.chckBoxPermitirStockNegativo = new MaterialSkin.Controls.MaterialCheckBox();
             this.tlpDetalles = new System.Windows.Forms.TableLayoutPanel();
             this.lblProveedorVar = new System.Windows.Forms.Label();
             this.lblObservacionesVar = new System.Windows.Forms.Label();
@@ -84,9 +87,6 @@
             this.vUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAgregar = new MaterialSkin.Controls.MaterialFlatButton();
-            this.chckBoxPermitirStockNegativo = new MaterialSkin.Controls.MaterialCheckBox();
-            this.lblCantidad = new MaterialSkin.Controls.MaterialLabel();
             this.tblLayoutPanelBase.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
             this.tblLayoutPanelArticulos.SuspendLayout();
@@ -222,8 +222,8 @@
             this.btnSiguiente.AutoSize = true;
             this.btnSiguiente.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnSiguiente.Depth = 0;
-            this.btnSiguiente.Location = new System.Drawing.Point(858, 9);
-            this.btnSiguiente.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnSiguiente.Location = new System.Drawing.Point(850, 9);
+            this.btnSiguiente.Margin = new System.Windows.Forms.Padding(4, 6, 12, 6);
             this.btnSiguiente.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Primary = false;
@@ -293,7 +293,7 @@
             this.tblLayoutPanelDetalleArticuloBotones.ColumnCount = 3;
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.83614F));
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.16385F));
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.nmrcUpDownCantidad, 1, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnAgregar, 2, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.lblCantidad, 0, 0);
@@ -308,7 +308,7 @@
             // nmrcUpDownCantidad
             // 
             this.nmrcUpDownCantidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(95, 14);
+            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(94, 14);
             this.nmrcUpDownCantidad.Maximum = new decimal(new int[] {
             99999999,
             0,
@@ -322,6 +322,53 @@
             0,
             0,
             0});
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAgregar.AutoSize = true;
+            this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAgregar.Depth = 0;
+            this.btnAgregar.Location = new System.Drawing.Point(153, 6);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Primary = false;
+            this.btnAgregar.Size = new System.Drawing.Size(104, 36);
+            this.btnAgregar.TabIndex = 10;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            // 
+            // lblCantidad
+            // 
+            this.lblCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Depth = 0;
+            this.lblCantidad.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblCantidad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCantidad.Location = new System.Drawing.Point(3, 14);
+            this.lblCantidad.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(85, 19);
+            this.lblCantidad.TabIndex = 11;
+            this.lblCantidad.Text = "Cantidad:";
+            // 
+            // chckBoxPermitirStockNegativo
+            // 
+            this.chckBoxPermitirStockNegativo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chckBoxPermitirStockNegativo.AutoSize = true;
+            this.chckBoxPermitirStockNegativo.Depth = 0;
+            this.chckBoxPermitirStockNegativo.Font = new System.Drawing.Font("Roboto", 10F);
+            this.chckBoxPermitirStockNegativo.Location = new System.Drawing.Point(0, 54);
+            this.chckBoxPermitirStockNegativo.Margin = new System.Windows.Forms.Padding(0);
+            this.chckBoxPermitirStockNegativo.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chckBoxPermitirStockNegativo.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chckBoxPermitirStockNegativo.Name = "chckBoxPermitirStockNegativo";
+            this.chckBoxPermitirStockNegativo.Ripple = true;
+            this.chckBoxPermitirStockNegativo.Size = new System.Drawing.Size(267, 30);
+            this.chckBoxPermitirStockNegativo.TabIndex = 3;
+            this.chckBoxPermitirStockNegativo.Text = "Permitir Stock Negativo";
+            this.chckBoxPermitirStockNegativo.UseVisualStyleBackColor = true;
             // 
             // tlpDetalles
             // 
@@ -802,53 +849,6 @@
             this.vParcial.HeaderText = "Valor Parcial";
             this.vParcial.Name = "vParcial";
             this.vParcial.ReadOnly = true;
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAgregar.AutoSize = true;
-            this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAgregar.Depth = 0;
-            this.btnAgregar.Location = new System.Drawing.Point(155, 6);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Primary = false;
-            this.btnAgregar.Size = new System.Drawing.Size(102, 36);
-            this.btnAgregar.TabIndex = 10;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            // 
-            // chckBoxPermitirStockNegativo
-            // 
-            this.chckBoxPermitirStockNegativo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chckBoxPermitirStockNegativo.AutoSize = true;
-            this.chckBoxPermitirStockNegativo.Depth = 0;
-            this.chckBoxPermitirStockNegativo.Font = new System.Drawing.Font("Roboto", 10F);
-            this.chckBoxPermitirStockNegativo.Location = new System.Drawing.Point(0, 54);
-            this.chckBoxPermitirStockNegativo.Margin = new System.Windows.Forms.Padding(0);
-            this.chckBoxPermitirStockNegativo.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.chckBoxPermitirStockNegativo.MouseState = MaterialSkin.MouseState.HOVER;
-            this.chckBoxPermitirStockNegativo.Name = "chckBoxPermitirStockNegativo";
-            this.chckBoxPermitirStockNegativo.Ripple = true;
-            this.chckBoxPermitirStockNegativo.Size = new System.Drawing.Size(267, 30);
-            this.chckBoxPermitirStockNegativo.TabIndex = 3;
-            this.chckBoxPermitirStockNegativo.Text = "Permitir Stock Negativo";
-            this.chckBoxPermitirStockNegativo.UseVisualStyleBackColor = true;
-            // 
-            // lblCantidad
-            // 
-            this.lblCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Depth = 0;
-            this.lblCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantidad.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblCantidad.Location = new System.Drawing.Point(3, 16);
-            this.lblCantidad.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblCantidad.Name = "lblCantidad";
-            this.lblCantidad.Size = new System.Drawing.Size(86, 15);
-            this.lblCantidad.TabIndex = 11;
-            this.lblCantidad.Text = "Cantidad:";
             // 
             // frmPedidoNuevo
             // 
