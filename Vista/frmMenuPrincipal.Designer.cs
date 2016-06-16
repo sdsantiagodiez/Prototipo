@@ -30,16 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
-            this.pnlReportes = new System.Windows.Forms.Panel();
-            this.btnEmitirReporte = new MaterialSkin.Controls.MaterialFlatButton();
-            this.pnlABM = new System.Windows.Forms.Panel();
-            this.btnABM = new MaterialSkin.Controls.MaterialFlatButton();
-            this.pnlCompras = new System.Windows.Forms.Panel();
-            this.btnPedidoProveedor = new MaterialSkin.Controls.MaterialFlatButton();
-            this.pnlVentas = new System.Windows.Forms.Panel();
-            this.btnFacturacion = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnDevolucion = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnVenta = new MaterialSkin.Controls.MaterialFlatButton();
             this.timerFechaHora = new System.Windows.Forms.Timer(this.components);
             this.cntxtMenuStripABM = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.entidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,155 +42,40 @@
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.tblMainMenu = new System.Windows.Forms.TableLayoutPanel();
             this.tblMdiMenu = new System.Windows.Forms.TableLayoutPanel();
+            this.tlsMenu = new System.Windows.Forms.ToolStrip();
+            this.tlsbtnABM = new System.Windows.Forms.ToolStripDropDownButton();
+            this.entidadesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.artículosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.artículosDeProveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tlsbtnReportes = new System.Windows.Forms.ToolStripButton();
+            this.tlsbtnVenta = new System.Windows.Forms.ToolStripButton();
+            this.tlsbtnPedidoProveedor = new System.Windows.Forms.ToolStripButton();
+            this.tlsbtnFacturacion = new System.Windows.Forms.ToolStripButton();
+            this.tlsbtnDevolucion = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.pnlReportes.SuspendLayout();
-            this.pnlABM.SuspendLayout();
-            this.pnlCompras.SuspendLayout();
-            this.pnlVentas.SuspendLayout();
+            this.mstPrincipal = new System.Windows.Forms.MenuStrip();
+            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tlsMenuRapido = new System.Windows.Forms.ToolStrip();
+            this.abrirToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.guardarToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.imprimirToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.cortarToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.copiarToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.pegarToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ayudaToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.cntxtMenuStripABM.SuspendLayout();
             this.tblMainMenu.SuspendLayout();
             this.tblMdiMenu.SuspendLayout();
+            this.tlsMenu.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.mstPrincipal.SuspendLayout();
+            this.tlsMenuRapido.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pnlReportes
-            // 
-            this.pnlReportes.BackColor = System.Drawing.Color.White;
-            this.pnlReportes.Controls.Add(this.btnEmitirReporte);
-            this.pnlReportes.Location = new System.Drawing.Point(3, 33);
-            this.pnlReportes.Name = "pnlReportes";
-            this.pnlReportes.Size = new System.Drawing.Size(234, 24);
-            this.pnlReportes.TabIndex = 23;
-            // 
-            // btnEmitirReporte
-            // 
-            this.btnEmitirReporte.AutoSize = true;
-            this.btnEmitirReporte.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnEmitirReporte.Depth = 0;
-            this.btnEmitirReporte.Location = new System.Drawing.Point(4, 6);
-            this.btnEmitirReporte.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnEmitirReporte.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnEmitirReporte.Name = "btnEmitirReporte";
-            this.btnEmitirReporte.Primary = false;
-            this.btnEmitirReporte.Size = new System.Drawing.Size(119, 36);
-            this.btnEmitirReporte.TabIndex = 1;
-            this.btnEmitirReporte.Text = "Emitir Reporte";
-            this.btnEmitirReporte.UseVisualStyleBackColor = true;
-            this.btnEmitirReporte.Click += new System.EventHandler(this.btnEmitirReporte_Click);
-            // 
-            // pnlABM
-            // 
-            this.pnlABM.BackColor = System.Drawing.Color.White;
-            this.pnlABM.Controls.Add(this.btnABM);
-            this.pnlABM.Location = new System.Drawing.Point(198, 3);
-            this.pnlABM.Name = "pnlABM";
-            this.pnlABM.Size = new System.Drawing.Size(189, 13);
-            this.pnlABM.TabIndex = 25;
-            // 
-            // btnABM
-            // 
-            this.btnABM.AutoSize = true;
-            this.btnABM.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnABM.Depth = 0;
-            this.btnABM.Location = new System.Drawing.Point(0, 6);
-            this.btnABM.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnABM.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnABM.Name = "btnABM";
-            this.btnABM.Primary = false;
-            this.btnABM.Size = new System.Drawing.Size(231, 36);
-            this.btnABM.TabIndex = 1;
-            this.btnABM.Text = "Altas, Bajas y Modificaciones";
-            this.btnABM.UseVisualStyleBackColor = true;
-            this.btnABM.Click += new System.EventHandler(this.btnABM_Click);
-            // 
-            // pnlCompras
-            // 
-            this.pnlCompras.BackColor = System.Drawing.Color.White;
-            this.pnlCompras.Controls.Add(this.btnPedidoProveedor);
-            this.pnlCompras.Location = new System.Drawing.Point(246, 3);
-            this.pnlCompras.Name = "pnlCompras";
-            this.pnlCompras.Size = new System.Drawing.Size(234, 50);
-            this.pnlCompras.TabIndex = 26;
-            // 
-            // btnPedidoProveedor
-            // 
-            this.btnPedidoProveedor.AutoSize = true;
-            this.btnPedidoProveedor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnPedidoProveedor.Depth = 0;
-            this.btnPedidoProveedor.Location = new System.Drawing.Point(11, 6);
-            this.btnPedidoProveedor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnPedidoProveedor.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnPedidoProveedor.Name = "btnPedidoProveedor";
-            this.btnPedidoProveedor.Primary = false;
-            this.btnPedidoProveedor.Size = new System.Drawing.Size(108, 36);
-            this.btnPedidoProveedor.TabIndex = 3;
-            this.btnPedidoProveedor.Text = "Nuevo Pedido";
-            this.btnPedidoProveedor.UseVisualStyleBackColor = true;
-            this.btnPedidoProveedor.Click += new System.EventHandler(this.btnPedidoProveedor_Click);
-            // 
-            // pnlVentas
-            // 
-            this.pnlVentas.BackColor = System.Drawing.Color.White;
-            this.pnlVentas.Controls.Add(this.btnFacturacion);
-            this.pnlVentas.Controls.Add(this.btnDevolucion);
-            this.pnlVentas.Controls.Add(this.btnVenta);
-            this.pnlVentas.Location = new System.Drawing.Point(3, 3);
-            this.pnlVentas.Name = "pnlVentas";
-            this.pnlVentas.Size = new System.Drawing.Size(234, 24);
-            this.pnlVentas.TabIndex = 27;
-            // 
-            // btnFacturacion
-            // 
-            this.btnFacturacion.AutoSize = true;
-            this.btnFacturacion.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnFacturacion.Depth = 0;
-            this.btnFacturacion.Location = new System.Drawing.Point(37, 46);
-            this.btnFacturacion.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnFacturacion.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnFacturacion.Name = "btnFacturacion";
-            this.btnFacturacion.Primary = false;
-            this.btnFacturacion.Size = new System.Drawing.Size(105, 36);
-            this.btnFacturacion.TabIndex = 31;
-            this.btnFacturacion.Text = "Facturación";
-            this.btnFacturacion.UseVisualStyleBackColor = true;
-            this.btnFacturacion.Click += new System.EventHandler(this.btnFacturacion_Click);
-            // 
-            // btnDevolucion
-            // 
-            this.btnDevolucion.AutoSize = true;
-            this.btnDevolucion.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnDevolucion.Depth = 0;
-            this.btnDevolucion.Location = new System.Drawing.Point(4, 87);
-            this.btnDevolucion.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnDevolucion.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnDevolucion.Name = "btnDevolucion";
-            this.btnDevolucion.Primary = false;
-            this.btnDevolucion.Size = new System.Drawing.Size(168, 36);
-            this.btnDevolucion.TabIndex = 30;
-            this.btnDevolucion.Text = "Procesar Devolución";
-            this.btnDevolucion.UseVisualStyleBackColor = true;
-            this.btnDevolucion.Click += new System.EventHandler(this.btnDevolucion_Click);
-            // 
-            // btnVenta
-            // 
-            this.btnVenta.AutoSize = true;
-            this.btnVenta.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnVenta.Depth = 0;
-            this.btnVenta.Location = new System.Drawing.Point(38, 6);
-            this.btnVenta.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnVenta.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnVenta.Name = "btnVenta";
-            this.btnVenta.Primary = false;
-            this.btnVenta.Size = new System.Drawing.Size(104, 36);
-            this.btnVenta.TabIndex = 29;
-            this.btnVenta.Text = "Nueva Venta";
-            this.btnVenta.UseVisualStyleBackColor = true;
-            this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
             // 
             // timerFechaHora
             // 
@@ -297,9 +172,9 @@
             this.tblMainMenu.ColumnCount = 1;
             this.tblMainMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblMainMenu.Controls.Add(this.tblMdiMenu, 0, 2);
-            this.tblMainMenu.Controls.Add(this.pnlVentas, 0, 0);
+            this.tblMainMenu.Controls.Add(this.tlsMenuRapido, 0, 1);
             this.tblMainMenu.Controls.Add(this.tableLayoutPanel1, 0, 3);
-            this.tblMainMenu.Controls.Add(this.pnlReportes, 0, 1);
+            this.tblMainMenu.Controls.Add(this.mstPrincipal, 0, 0);
             this.tblMainMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblMainMenu.Location = new System.Drawing.Point(0, 0);
             this.tblMainMenu.Name = "tblMainMenu";
@@ -316,16 +191,123 @@
             this.tblMdiMenu.ColumnCount = 2;
             this.tblMdiMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tblMdiMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.tblMdiMenu.Controls.Add(this.pnlCompras, 1, 0);
-            this.tblMdiMenu.Controls.Add(this.toolStrip1, 0, 0);
+            this.tblMdiMenu.Controls.Add(this.tlsMenu, 0, 0);
             this.tblMdiMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblMdiMenu.Location = new System.Drawing.Point(3, 63);
             this.tblMdiMenu.Name = "tblMdiMenu";
             this.tblMdiMenu.RowCount = 1;
             this.tblMdiMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblMdiMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblMdiMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 496F));
             this.tblMdiMenu.Size = new System.Drawing.Size(975, 496);
             this.tblMdiMenu.TabIndex = 0;
+            // 
+            // tlsMenu
+            // 
+            this.tlsMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tlsMenu.Dock = System.Windows.Forms.DockStyle.None;
+            this.tlsMenu.GripMargin = new System.Windows.Forms.Padding(1);
+            this.tlsMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tlsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tlsbtnABM,
+            this.tlsbtnReportes,
+            this.tlsbtnVenta,
+            this.tlsbtnPedidoProveedor,
+            this.tlsbtnFacturacion,
+            this.tlsbtnDevolucion});
+            this.tlsMenu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
+            this.tlsMenu.Location = new System.Drawing.Point(0, 0);
+            this.tlsMenu.Name = "tlsMenu";
+            this.tlsMenu.Size = new System.Drawing.Size(243, 496);
+            this.tlsMenu.TabIndex = 27;
+            this.tlsMenu.Text = "toolStrip1";
+            // 
+            // tlsbtnABM
+            // 
+            this.tlsbtnABM.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.entidadesToolStripMenuItem1,
+            this.artículosToolStripMenuItem1,
+            this.artículosDeProveedorToolStripMenuItem});
+            this.tlsbtnABM.Image = ((System.Drawing.Image)(resources.GetObject("tlsbtnABM.Image")));
+            this.tlsbtnABM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsbtnABM.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsbtnABM.Name = "tlsbtnABM";
+            this.tlsbtnABM.Size = new System.Drawing.Size(241, 24);
+            this.tlsbtnABM.Text = "ALTAS, BAJAS y MODIFICACIONES";
+            this.tlsbtnABM.Click += new System.EventHandler(this.tlsbtnABM_Click);
+            // 
+            // entidadesToolStripMenuItem1
+            // 
+            this.entidadesToolStripMenuItem1.Name = "entidadesToolStripMenuItem1";
+            this.entidadesToolStripMenuItem1.Size = new System.Drawing.Size(194, 22);
+            this.entidadesToolStripMenuItem1.Text = "Entidades";
+            this.entidadesToolStripMenuItem1.Click += new System.EventHandler(this.entidadesToolStripMenuItem1_Click);
+            // 
+            // artículosToolStripMenuItem1
+            // 
+            this.artículosToolStripMenuItem1.Name = "artículosToolStripMenuItem1";
+            this.artículosToolStripMenuItem1.Size = new System.Drawing.Size(194, 22);
+            this.artículosToolStripMenuItem1.Text = "Artículos";
+            this.artículosToolStripMenuItem1.Click += new System.EventHandler(this.artículosToolStripMenuItem1_Click);
+            // 
+            // artículosDeProveedorToolStripMenuItem
+            // 
+            this.artículosDeProveedorToolStripMenuItem.Name = "artículosDeProveedorToolStripMenuItem";
+            this.artículosDeProveedorToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.artículosDeProveedorToolStripMenuItem.Text = "Artículos de Proveedor";
+            this.artículosDeProveedorToolStripMenuItem.Click += new System.EventHandler(this.artículosDeProveedorToolStripMenuItem_Click);
+            // 
+            // tlsbtnReportes
+            // 
+            this.tlsbtnReportes.Image = ((System.Drawing.Image)(resources.GetObject("tlsbtnReportes.Image")));
+            this.tlsbtnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsbtnReportes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsbtnReportes.Name = "tlsbtnReportes";
+            this.tlsbtnReportes.Size = new System.Drawing.Size(241, 24);
+            this.tlsbtnReportes.Text = "EMITIR REPORTE";
+            this.tlsbtnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tlsbtnReportes.Click += new System.EventHandler(this.tlsbtnReportes_Click);
+            // 
+            // tlsbtnVenta
+            // 
+            this.tlsbtnVenta.Image = ((System.Drawing.Image)(resources.GetObject("tlsbtnVenta.Image")));
+            this.tlsbtnVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsbtnVenta.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsbtnVenta.Name = "tlsbtnVenta";
+            this.tlsbtnVenta.Size = new System.Drawing.Size(241, 24);
+            this.tlsbtnVenta.Text = "NUEVA VENTA";
+            this.tlsbtnVenta.Click += new System.EventHandler(this.tlsbtnVenta_Click);
+            // 
+            // tlsbtnPedidoProveedor
+            // 
+            this.tlsbtnPedidoProveedor.Image = ((System.Drawing.Image)(resources.GetObject("tlsbtnPedidoProveedor.Image")));
+            this.tlsbtnPedidoProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsbtnPedidoProveedor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsbtnPedidoProveedor.Name = "tlsbtnPedidoProveedor";
+            this.tlsbtnPedidoProveedor.Size = new System.Drawing.Size(241, 24);
+            this.tlsbtnPedidoProveedor.Text = "NUEVO PEDIDO";
+            this.tlsbtnPedidoProveedor.Click += new System.EventHandler(this.tlsbtnPedidoProveedor_Click);
+            // 
+            // tlsbtnFacturacion
+            // 
+            this.tlsbtnFacturacion.Image = ((System.Drawing.Image)(resources.GetObject("tlsbtnFacturacion.Image")));
+            this.tlsbtnFacturacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsbtnFacturacion.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsbtnFacturacion.Name = "tlsbtnFacturacion";
+            this.tlsbtnFacturacion.Size = new System.Drawing.Size(241, 24);
+            this.tlsbtnFacturacion.Text = "FACTURACIÓN MASIVA";
+            this.tlsbtnFacturacion.Click += new System.EventHandler(this.tlsbtnFacturacion_Click);
+            // 
+            // tlsbtnDevolucion
+            // 
+            this.tlsbtnDevolucion.Image = ((System.Drawing.Image)(resources.GetObject("tlsbtnDevolucion.Image")));
+            this.tlsbtnDevolucion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsbtnDevolucion.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsbtnDevolucion.Name = "tlsbtnDevolucion";
+            this.tlsbtnDevolucion.Size = new System.Drawing.Size(241, 24);
+            this.tlsbtnDevolucion.Text = "DEVOLUCIÓN";
+            this.tlsbtnDevolucion.Click += new System.EventHandler(this.tlsbtnDevolucion_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -335,7 +317,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.pnlABM, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnSalir, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblNombreUsuario, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblHoraLog, 4, 0);
@@ -348,50 +329,135 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(975, 19);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // toolStrip1
+            // mstPrincipal
             // 
-            this.toolStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(1);
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButton1,
-            this.toolStripButton1,
-            this.toolStripButton2});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(243, 496);
-            this.toolStrip1.TabIndex = 27;
-            this.toolStrip1.Text = "toolStrip1";
+            this.mstPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mstPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.archivoToolStripMenuItem,
+            this.editarToolStripMenuItem,
+            this.herramientasToolStripMenuItem,
+            this.ayudaToolStripMenuItem});
+            this.mstPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.mstPrincipal.Name = "mstPrincipal";
+            this.mstPrincipal.Size = new System.Drawing.Size(981, 30);
+            this.mstPrincipal.TabIndex = 2;
+            this.mstPrincipal.Text = "menuStrip1";
             // 
-            // toolStripDropDownButton1
+            // archivoToolStripMenuItem
             // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(241, 24);
-            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
+            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
+            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 26);
+            this.archivoToolStripMenuItem.Text = "Archivo";
             // 
-            // toolStripButton1
+            // editarToolStripMenuItem
             // 
-            this.toolStripButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(241, 19);
-            this.toolStripButton1.Text = "NUEVA VENTA";
+            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(49, 26);
+            this.editarToolStripMenuItem.Text = "Editar";
             // 
-            // toolStripButton2
+            // herramientasToolStripMenuItem
             // 
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(241, 24);
-            this.toolStripButton2.Text = "EMITIR REPORTE";
-            this.toolStripButton2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
+            this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(90, 26);
+            this.herramientasToolStripMenuItem.Text = "Herramientas";
+            // 
+            // ayudaToolStripMenuItem
+            // 
+            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 26);
+            this.ayudaToolStripMenuItem.Text = "Ayuda";
+            // 
+            // tlsMenuRapido
+            // 
+            this.tlsMenuRapido.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlsMenuRapido.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.abrirToolStripButton,
+            this.guardarToolStripButton,
+            this.imprimirToolStripButton,
+            this.toolStripSeparator,
+            this.cortarToolStripButton,
+            this.copiarToolStripButton,
+            this.pegarToolStripButton,
+            this.toolStripSeparator1,
+            this.ayudaToolStripButton});
+            this.tlsMenuRapido.Location = new System.Drawing.Point(0, 30);
+            this.tlsMenuRapido.Name = "tlsMenuRapido";
+            this.tlsMenuRapido.Size = new System.Drawing.Size(981, 30);
+            this.tlsMenuRapido.TabIndex = 3;
+            this.tlsMenuRapido.Text = "toolStrip1";
+            // 
+            // abrirToolStripButton
+            // 
+            this.abrirToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.abrirToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("abrirToolStripButton.Image")));
+            this.abrirToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.abrirToolStripButton.Name = "abrirToolStripButton";
+            this.abrirToolStripButton.Size = new System.Drawing.Size(23, 27);
+            this.abrirToolStripButton.Text = "&Abrir";
+            // 
+            // guardarToolStripButton
+            // 
+            this.guardarToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.guardarToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("guardarToolStripButton.Image")));
+            this.guardarToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.guardarToolStripButton.Name = "guardarToolStripButton";
+            this.guardarToolStripButton.Size = new System.Drawing.Size(23, 27);
+            this.guardarToolStripButton.Text = "&Guardar";
+            // 
+            // imprimirToolStripButton
+            // 
+            this.imprimirToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.imprimirToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("imprimirToolStripButton.Image")));
+            this.imprimirToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.imprimirToolStripButton.Name = "imprimirToolStripButton";
+            this.imprimirToolStripButton.Size = new System.Drawing.Size(23, 27);
+            this.imprimirToolStripButton.Text = "&Imprimir";
+            // 
+            // toolStripSeparator
+            // 
+            this.toolStripSeparator.Name = "toolStripSeparator";
+            this.toolStripSeparator.Size = new System.Drawing.Size(6, 30);
+            // 
+            // cortarToolStripButton
+            // 
+            this.cortarToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.cortarToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("cortarToolStripButton.Image")));
+            this.cortarToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cortarToolStripButton.Name = "cortarToolStripButton";
+            this.cortarToolStripButton.Size = new System.Drawing.Size(23, 27);
+            this.cortarToolStripButton.Text = "Cort&ar";
+            // 
+            // copiarToolStripButton
+            // 
+            this.copiarToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.copiarToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("copiarToolStripButton.Image")));
+            this.copiarToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.copiarToolStripButton.Name = "copiarToolStripButton";
+            this.copiarToolStripButton.Size = new System.Drawing.Size(23, 27);
+            this.copiarToolStripButton.Text = "&Copiar";
+            // 
+            // pegarToolStripButton
+            // 
+            this.pegarToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.pegarToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("pegarToolStripButton.Image")));
+            this.pegarToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.pegarToolStripButton.Name = "pegarToolStripButton";
+            this.pegarToolStripButton.Size = new System.Drawing.Size(23, 27);
+            this.pegarToolStripButton.Text = "&Pegar";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 30);
+            // 
+            // ayudaToolStripButton
+            // 
+            this.ayudaToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ayudaToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ayudaToolStripButton.Image")));
+            this.ayudaToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ayudaToolStripButton.Name = "ayudaToolStripButton";
+            this.ayudaToolStripButton.Size = new System.Drawing.Size(23, 27);
+            this.ayudaToolStripButton.Text = "Ay&uda";
             // 
             // frmMenuPrincipal
             // 
@@ -401,58 +467,67 @@
             this.ClientSize = new System.Drawing.Size(981, 587);
             this.Controls.Add(this.tblMainMenu);
             this.IsMdiContainer = true;
+            this.MainMenuStrip = this.mstPrincipal;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMenuPrincipal";
             this.Text = "Menú Principal";
-            this.pnlReportes.ResumeLayout(false);
-            this.pnlReportes.PerformLayout();
-            this.pnlABM.ResumeLayout(false);
-            this.pnlABM.PerformLayout();
-            this.pnlCompras.ResumeLayout(false);
-            this.pnlCompras.PerformLayout();
-            this.pnlVentas.ResumeLayout(false);
-            this.pnlVentas.PerformLayout();
             this.cntxtMenuStripABM.ResumeLayout(false);
             this.tblMainMenu.ResumeLayout(false);
+            this.tblMainMenu.PerformLayout();
             this.tblMdiMenu.ResumeLayout(false);
             this.tblMdiMenu.PerformLayout();
+            this.tlsMenu.ResumeLayout(false);
+            this.tlsMenu.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.mstPrincipal.ResumeLayout(false);
+            this.mstPrincipal.PerformLayout();
+            this.tlsMenuRapido.ResumeLayout(false);
+            this.tlsMenuRapido.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel pnlReportes;
-        private System.Windows.Forms.Panel pnlABM;
-        private System.Windows.Forms.Panel pnlCompras;
-        private System.Windows.Forms.Panel pnlVentas;
         private System.Windows.Forms.Timer timerFechaHora;
         private System.Windows.Forms.ContextMenuStrip cntxtMenuStripABM;
         private System.Windows.Forms.ToolStripMenuItem entidadesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem artículosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem artículosDeProveedoresToolStripMenuItem;
-        private MaterialSkin.Controls.MaterialFlatButton btnEmitirReporte;
-        private MaterialSkin.Controls.MaterialFlatButton btnABM;
-        private MaterialSkin.Controls.MaterialFlatButton btnPedidoProveedor;
-        private MaterialSkin.Controls.MaterialFlatButton btnDevolucion;
-        private MaterialSkin.Controls.MaterialFlatButton btnVenta;
         private MaterialSkin.Controls.MaterialRaisedButton btnSalir;
         private MaterialSkin.Controls.MaterialLabel lblNombreUsuario;
         private MaterialSkin.Controls.MaterialLabel lblFechaLog;
         private MaterialSkin.Controls.MaterialLabel lblHoraLog;
         private System.Windows.Forms.FontDialog fontDialog1;
-        private MaterialSkin.Controls.MaterialFlatButton btnFacturacion;
-        private System.Windows.Forms.TableLayoutPanel tblMainMenu;
-        private System.Windows.Forms.TableLayoutPanel tblMdiMenu;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStrip tlsMenu;
+        private System.Windows.Forms.ToolStripDropDownButton tlsbtnABM;
+        private System.Windows.Forms.ToolStripButton tlsbtnVenta;
+        private System.Windows.Forms.ToolStripMenuItem entidadesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem artículosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem artículosDeProveedorToolStripMenuItem;
+        public System.Windows.Forms.TableLayoutPanel tblMainMenu;
+        public System.Windows.Forms.TableLayoutPanel tblMdiMenu;
+        public System.Windows.Forms.ToolStripButton tlsbtnReportes;
+        private System.Windows.Forms.ToolStripButton tlsbtnPedidoProveedor;
+        private System.Windows.Forms.ToolStripButton tlsbtnFacturacion;
+        private System.Windows.Forms.ToolStripButton tlsbtnDevolucion;
+        private System.Windows.Forms.ToolStrip tlsMenuRapido;
+        private System.Windows.Forms.ToolStripButton abrirToolStripButton;
+        private System.Windows.Forms.ToolStripButton guardarToolStripButton;
+        private System.Windows.Forms.ToolStripButton imprimirToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
+        private System.Windows.Forms.ToolStripButton cortarToolStripButton;
+        private System.Windows.Forms.ToolStripButton copiarToolStripButton;
+        private System.Windows.Forms.ToolStripButton pegarToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton ayudaToolStripButton;
+        private System.Windows.Forms.MenuStrip mstPrincipal;
+        private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem herramientasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
     }
 }

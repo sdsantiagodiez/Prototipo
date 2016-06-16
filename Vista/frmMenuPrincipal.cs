@@ -86,19 +86,19 @@ namespace Vista
         }
         private void inicializarModoCompras(bool inicializar)
         {
-            this.inicializarControles(inicializar, pnlCompras);
+          //  this.inicializarControles(inicializar, pnlCompras);
         }
         private void inicializarModoVentas(bool inicializar)
         {
-            this.inicializarControles(inicializar, pnlVentas);
+           // this.inicializarControles(inicializar, pnlVentas);
         }
         private void inicializarModoReportes(bool inicializar)
         {
-            this.inicializarControles(inicializar, pnlReportes);
+           // this.inicializarControles(inicializar, pnlReportes);
         }
         private void inicializarModoABM(bool inicializar)
         {
-            this.inicializarControles(inicializar, pnlABM);
+            // this.inicializarControles(inicializar, pnlABM);
         }
         
         private void inicializarControles(bool inicializar, Control controlContenedor)
@@ -116,65 +116,125 @@ namespace Vista
 
         #region Button
         private void btnEmitirReporte_Click(object sender, EventArgs e)
+        {//BOTON VIEJO
+           /* frmReporteSeleccion frmReporteSeleccion = new Vista.frmReporteSeleccion();
+            frmReporteSeleccion.ShowDialog();*/
+        }
+        private void btnVenta_Click(object sender, EventArgs e)
+        {   //BOTON VIEJO
+            /* frmPedidoNuevo frmNuevaVenta = new frmPedidoNuevo(Constantes.CodigosTiposPedidos.TipoPedidoPersona);
+             frmNuevaVenta.ShowDialog();
+             if (frmNuevaVenta.DialogResult != System.Windows.Forms.DialogResult.Ignore)
+             {
+                 frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmNuevaVenta.controlador.pedidoActual);
+                 lcl_frm_cierre.ShowDialog();
+             }*/
+        }
+        private void btnFacturacion_Click(object sender, EventArgs e)
+        {   //BOTON VIEJO
+            /*frmFacturacionMasiva frmFacturacion = new frmFacturacionMasiva();
+            frmFacturacion.ShowDialog();*/
+        }
+       
+        private void btnPedidoProveedor_Click(object sender, EventArgs e)
+        {   //BOTON VIEJO
+           /* frmPedidoNuevo frmPedidoProv = new frmPedidoNuevo(Constantes.CodigosTiposPedidos.TipoPedidoProveedor);
+            frmPedidoProv.ShowDialog();
+            if (frmPedidoProv.DialogResult != System.Windows.Forms.DialogResult.Ignore)
+            {
+                frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmPedidoProv.controlador.pedidoActual);
+                lcl_frm_cierre.ShowDialog();
+            }*/
+        }
+        private void btnDevolucion_Click(object sender, EventArgs e)
+        {   //BOTON VIEJO
+            /* frmPedidoDevolucion frmDevolucion = new frmPedidoDevolucion(Controladores.ControladorBusqueda.buscar(new ModeloPedido() { numeroPedido = 141 }, Constantes.ParametrosBusqueda.Pedidos.NumeroPedido)[0]);
+             //frmPedidoDevolucion frmDevolucion = new frmPedidoDevolucion();
+            
+             frmDevolucion.ShowDialog();
+             if (frmDevolucion.DialogResult != System.Windows.Forms.DialogResult.Ignore)
+             {
+                 frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmDevolucion.controlador.pedidoActual, frmDevolucion.glb_mod_pedidoOriginal);
+                 lcl_frm_cierre.Show();
+             }*/
+        }
+        private void btnABM_Click(object sender, EventArgs e)
+        {   //BOTON VIEJO
+            /*  //Calcula si muestra el menuStrip no tiene lugar hacia abajo, hace que aparezca por sobre el botón
+              Point screenPoint = btnABM.PointToScreen(new Point(btnABM.Left, btnABM.Bottom));
+              if (screenPoint.Y + cntxtMenuStripABM.Size.Height > Screen.PrimaryScreen.WorkingArea.Height)
+              {
+                  cntxtMenuStripABM.Show(btnABM, new Point(0, -cntxtMenuStripABM.Size.Height));
+              }
+              else
+              {
+                  cntxtMenuStripABM.Show(btnABM, new Point(0, btnABM.Height));
+              }*/
+        }
+        
+        private void tlsbtnReportes_Click(object sender, EventArgs e)
         {
             frmReporteSeleccion frmReporteSeleccion = new Vista.frmReporteSeleccion();
-            frmReporteSeleccion.ShowDialog();
+            //frmReporteSeleccion.MdiParent = this;
+            frmReporteSeleccion.Show();
+        }
+        
+        private void tlsbtnVenta_Click(object sender, EventArgs e)
+        {
+            frmPedidoNuevo frmNuevaVenta = new frmPedidoNuevo(Constantes.CodigosTiposPedidos.TipoPedidoPersona);
+            frmNuevaVenta.Show();
+            if (frmNuevaVenta.DialogResult != System.Windows.Forms.DialogResult.Ignore)
+            {
+                frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmNuevaVenta.controlador.pedidoActual);
+                lcl_frm_cierre.Show();
+            }
         }
 
-        private void btnPedidoProveedor_Click(object sender, EventArgs e)
+        private void tlsbtnDevolucion_Click(object sender, EventArgs e)
+        {
+            frmPedidoDevolucion frmDevolucion = new frmPedidoDevolucion(Controladores.ControladorBusqueda.buscar(new ModeloPedido() { numeroPedido = 141 }, Constantes.ParametrosBusqueda.Pedidos.NumeroPedido)[0]);
+            //frmPedidoDevolucion frmDevolucion = new frmPedidoDevolucion();
+
+            frmDevolucion.ShowDialog();
+            if (frmDevolucion.DialogResult != System.Windows.Forms.DialogResult.Ignore)
+            {
+                frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmDevolucion.controlador.pedidoActual, frmDevolucion.glb_mod_pedidoOriginal);
+                lcl_frm_cierre.Show();
+            }
+        }
+
+
+        private void tlsbtnABM_Click(object sender, EventArgs e)
+        {
+            //Calcula si muestra el menuStrip no tiene lugar hacia abajo, hace que aparezca por sobre el botón
+         /*   Point screenPoint = tlsbtnABM.PointToScreen(new Point(tlsbtnABM.Left, tlsbtnABM.Bottom));
+            if (screenPoint.Y + cntxtMenuStripABM.Size.Height > Screen.PrimaryScreen.WorkingArea.Height)
+            {
+                cntxtMenuStripABM.Show(tlsbtnABM, new Point(0, -cntxtMenuStripABM.Size.Height));
+            }
+            else
+            {
+                cntxtMenuStripABM.Show(tlsbtnABM, new Point(0, tlsbtnABM.Height));
+            }*/
+        }
+        
+        private void tlsbtnPedidoProveedor_Click(object sender, EventArgs e)
         {
             frmPedidoNuevo frmPedidoProv = new frmPedidoNuevo(Constantes.CodigosTiposPedidos.TipoPedidoProveedor);
             frmPedidoProv.ShowDialog();
             if (frmPedidoProv.DialogResult != System.Windows.Forms.DialogResult.Ignore)
             {
                 frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmPedidoProv.controlador.pedidoActual);
-                lcl_frm_cierre.ShowDialog();
+                lcl_frm_cierre.Show();
             }
         }
-
-        private void btnVenta_Click(object sender, EventArgs e)
-        {
-            frmPedidoNuevo frmNuevaVenta = new frmPedidoNuevo(Constantes.CodigosTiposPedidos.TipoPedidoPersona);
-            frmNuevaVenta.ShowDialog();
-            if (frmNuevaVenta.DialogResult != System.Windows.Forms.DialogResult.Ignore)
-            {
-                frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmNuevaVenta.controlador.pedidoActual);
-                lcl_frm_cierre.ShowDialog();
-            }
-        }
-
-        private void btnDevolucion_Click(object sender, EventArgs e)
-        {
-            frmPedidoDevolucion frmDevolucion = new frmPedidoDevolucion(Controladores.ControladorBusqueda.buscar(new ModeloPedido() { numeroPedido = 141 }, Constantes.ParametrosBusqueda.Pedidos.NumeroPedido)[0]);
-            //frmPedidoDevolucion frmDevolucion = new frmPedidoDevolucion();
-            
-            frmDevolucion.ShowDialog();
-            if (frmDevolucion.DialogResult != System.Windows.Forms.DialogResult.Ignore)
-            {
-                frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmDevolucion.controlador.pedidoActual, frmDevolucion.glb_mod_pedidoOriginal);
-                lcl_frm_cierre.ShowDialog();
-            }
-        }
-
-        private void btnABM_Click(object sender, EventArgs e)
-        {
-            //Calcula si muestra el menuStrip no tiene lugar hacia abajo, hace que aparezca por sobre el botón
-            Point screenPoint = btnABM.PointToScreen(new Point(btnABM.Left, btnABM.Bottom));
-            if (screenPoint.Y + cntxtMenuStripABM.Size.Height > Screen.PrimaryScreen.WorkingArea.Height)
-            {
-                cntxtMenuStripABM.Show(btnABM, new Point(0, -cntxtMenuStripABM.Size.Height));
-            }
-            else
-            {
-                cntxtMenuStripABM.Show(btnABM, new Point(0, btnABM.Height));
-            }
-        }
-
-        private void btnFacturacion_Click(object sender, EventArgs e)
+        private void tlsbtnFacturacion_Click(object sender, EventArgs e)
         {
             frmFacturacionMasiva frmFacturacion = new frmFacturacionMasiva();
-            frmFacturacion.ShowDialog();
+            frmFacturacion.Show();
+
         }
+        
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -192,30 +252,66 @@ namespace Vista
 
         #region ToolStripMenuItem
         private void entidadesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmABMEntidad lcl_frm_ABMEntidad = new frmABMEntidad();
-            lcl_frm_ABMEntidad.ShowDialog();
+        {   //BOTON VIEJO
+           /* frmABMEntidad lcl_frm_ABMEntidad = new frmABMEntidad();
+            lcl_frm_ABMEntidad.ShowDialog();*/
         }
 
         private void artículosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmABMArticulo lcl_frm_ABMArticulo = new frmABMArticulo();
-            lcl_frm_ABMArticulo.ShowDialog();
+        {   //BOTON VIEJO
+            /*frmABMArticulo lcl_frm_ABMArticulo = new frmABMArticulo();
+            lcl_frm_ABMArticulo.ShowDialog();*/
         }
 
         private void artículosDeProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {   //BOTON VIEJO
+            /*frmABMArticuloProveedor lcl_frm_ABMArticuloProveedor = new frmABMArticuloProveedor();
+            lcl_frm_ABMArticuloProveedor.ShowDialog();*/
+        }
+        
+
+        private void entidadesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmABMEntidad lcl_frm_ABMEntidad = new frmABMEntidad();
+            lcl_frm_ABMEntidad.Show();
+        }
+        private void artículosDeProveedorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmABMArticuloProveedor lcl_frm_ABMArticuloProveedor = new frmABMArticuloProveedor();
-            lcl_frm_ABMArticuloProveedor.ShowDialog();
+            lcl_frm_ABMArticuloProveedor.Show();
         }
+        private void artículosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmABMArticulo lcl_frm_ABMArticulo = new frmABMArticulo();
+            lcl_frm_ABMArticulo.Show();
+        }
+
         #endregion
 
-      
+        
+
+        
+
+        
+
+       
+        
+
+        
+
+        
+
+        
+
+
+
 
 
 
 
         #endregion
+
+        
     }
 
     //clase para llenar combo box categoria a buscar
