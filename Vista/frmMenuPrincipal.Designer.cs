@@ -41,7 +41,6 @@
             this.lblHoraLog = new MaterialSkin.Controls.MaterialLabel();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.tblMainMenu = new System.Windows.Forms.TableLayoutPanel();
-            this.tblMdiMenu = new System.Windows.Forms.TableLayoutPanel();
             this.tlsMenu = new System.Windows.Forms.ToolStrip();
             this.tlsbtnABM = new System.Windows.Forms.ToolStripDropDownButton();
             this.entidadesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,12 +51,6 @@
             this.tlsbtnPedidoProveedor = new System.Windows.Forms.ToolStripButton();
             this.tlsbtnFacturacion = new System.Windows.Forms.ToolStripButton();
             this.tlsbtnDevolucion = new System.Windows.Forms.ToolStripButton();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.mstPrincipal = new System.Windows.Forms.MenuStrip();
-            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tlsMenuRapido = new System.Windows.Forms.ToolStrip();
             this.abrirToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.guardarToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -68,13 +61,20 @@
             this.pegarToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ayudaToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.mstPrincipal = new System.Windows.Forms.MenuStrip();
+            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.cntxtMenuStripABM.SuspendLayout();
             this.tblMainMenu.SuspendLayout();
-            this.tblMdiMenu.SuspendLayout();
             this.tlsMenu.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.mstPrincipal.SuspendLayout();
             this.tlsMenuRapido.SuspendLayout();
+            this.mstPrincipal.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerFechaHora
@@ -119,7 +119,7 @@
             this.btnSalir.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Primary = true;
-            this.btnSalir.Size = new System.Drawing.Size(189, 13);
+            this.btnSalir.Size = new System.Drawing.Size(269, 19);
             this.btnSalir.TabIndex = 29;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -132,7 +132,7 @@
             this.lblNombreUsuario.Depth = 0;
             this.lblNombreUsuario.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblNombreUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblNombreUsuario.Location = new System.Drawing.Point(393, 0);
+            this.lblNombreUsuario.Location = new System.Drawing.Point(553, 0);
             this.lblNombreUsuario.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblNombreUsuario.Name = "lblNombreUsuario";
             this.lblNombreUsuario.Size = new System.Drawing.Size(63, 19);
@@ -146,7 +146,7 @@
             this.lblFechaLog.Depth = 0;
             this.lblFechaLog.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblFechaLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblFechaLog.Location = new System.Drawing.Point(588, 0);
+            this.lblFechaLog.Location = new System.Drawing.Point(828, 0);
             this.lblFechaLog.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblFechaLog.Name = "lblFechaLog";
             this.lblFechaLog.Size = new System.Drawing.Size(85, 19);
@@ -160,7 +160,7 @@
             this.lblHoraLog.Depth = 0;
             this.lblHoraLog.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblHoraLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblHoraLog.Location = new System.Drawing.Point(783, 0);
+            this.lblHoraLog.Location = new System.Drawing.Point(1103, 0);
             this.lblHoraLog.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblHoraLog.Name = "lblHoraLog";
             this.lblHoraLog.Size = new System.Drawing.Size(65, 19);
@@ -171,42 +171,19 @@
             // 
             this.tblMainMenu.ColumnCount = 1;
             this.tblMainMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblMainMenu.Controls.Add(this.tblMdiMenu, 0, 2);
-            this.tblMainMenu.Controls.Add(this.tlsMenuRapido, 0, 1);
-            this.tblMainMenu.Controls.Add(this.tableLayoutPanel1, 0, 3);
-            this.tblMainMenu.Controls.Add(this.mstPrincipal, 0, 0);
-            this.tblMainMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblMainMenu.Location = new System.Drawing.Point(0, 0);
+            this.tblMainMenu.Controls.Add(this.tlsMenu, 0, 0);
+            this.tblMainMenu.Location = new System.Drawing.Point(0, 122);
             this.tblMainMenu.Name = "tblMainMenu";
-            this.tblMainMenu.RowCount = 4;
-            this.tblMainMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tblMainMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tblMainMenu.RowCount = 1;
             this.tblMainMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblMainMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tblMainMenu.Size = new System.Drawing.Size(981, 587);
+            this.tblMainMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 646F));
+            this.tblMainMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 646F));
+            this.tblMainMenu.Size = new System.Drawing.Size(224, 646);
             this.tblMainMenu.TabIndex = 34;
-            // 
-            // tblMdiMenu
-            // 
-            this.tblMdiMenu.ColumnCount = 2;
-            this.tblMdiMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tblMdiMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.tblMdiMenu.Controls.Add(this.tlsMenu, 0, 0);
-            this.tblMdiMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblMdiMenu.Location = new System.Drawing.Point(3, 63);
-            this.tblMdiMenu.Name = "tblMdiMenu";
-            this.tblMdiMenu.RowCount = 1;
-            this.tblMdiMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblMdiMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 496F));
-            this.tblMdiMenu.Size = new System.Drawing.Size(975, 496);
-            this.tblMdiMenu.TabIndex = 0;
             // 
             // tlsMenu
             // 
-            this.tlsMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tlsMenu.Dock = System.Windows.Forms.DockStyle.None;
+            this.tlsMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlsMenu.GripMargin = new System.Windows.Forms.Padding(1);
             this.tlsMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tlsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -219,7 +196,7 @@
             this.tlsMenu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.tlsMenu.Location = new System.Drawing.Point(0, 0);
             this.tlsMenu.Name = "tlsMenu";
-            this.tlsMenu.Size = new System.Drawing.Size(243, 496);
+            this.tlsMenu.Size = new System.Drawing.Size(224, 646);
             this.tlsMenu.TabIndex = 27;
             this.tlsMenu.Text = "toolStrip1";
             // 
@@ -233,7 +210,7 @@
             this.tlsbtnABM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tlsbtnABM.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlsbtnABM.Name = "tlsbtnABM";
-            this.tlsbtnABM.Size = new System.Drawing.Size(241, 24);
+            this.tlsbtnABM.Size = new System.Drawing.Size(222, 24);
             this.tlsbtnABM.Text = "ALTAS, BAJAS y MODIFICACIONES";
             this.tlsbtnABM.Click += new System.EventHandler(this.tlsbtnABM_Click);
             // 
@@ -264,7 +241,7 @@
             this.tlsbtnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tlsbtnReportes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlsbtnReportes.Name = "tlsbtnReportes";
-            this.tlsbtnReportes.Size = new System.Drawing.Size(241, 24);
+            this.tlsbtnReportes.Size = new System.Drawing.Size(222, 24);
             this.tlsbtnReportes.Text = "EMITIR REPORTE";
             this.tlsbtnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tlsbtnReportes.Click += new System.EventHandler(this.tlsbtnReportes_Click);
@@ -275,7 +252,7 @@
             this.tlsbtnVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tlsbtnVenta.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlsbtnVenta.Name = "tlsbtnVenta";
-            this.tlsbtnVenta.Size = new System.Drawing.Size(241, 24);
+            this.tlsbtnVenta.Size = new System.Drawing.Size(222, 24);
             this.tlsbtnVenta.Text = "NUEVA VENTA";
             this.tlsbtnVenta.Click += new System.EventHandler(this.tlsbtnVenta_Click);
             // 
@@ -285,7 +262,7 @@
             this.tlsbtnPedidoProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tlsbtnPedidoProveedor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlsbtnPedidoProveedor.Name = "tlsbtnPedidoProveedor";
-            this.tlsbtnPedidoProveedor.Size = new System.Drawing.Size(241, 24);
+            this.tlsbtnPedidoProveedor.Size = new System.Drawing.Size(222, 24);
             this.tlsbtnPedidoProveedor.Text = "NUEVO PEDIDO";
             this.tlsbtnPedidoProveedor.Click += new System.EventHandler(this.tlsbtnPedidoProveedor_Click);
             // 
@@ -295,7 +272,7 @@
             this.tlsbtnFacturacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tlsbtnFacturacion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlsbtnFacturacion.Name = "tlsbtnFacturacion";
-            this.tlsbtnFacturacion.Size = new System.Drawing.Size(241, 24);
+            this.tlsbtnFacturacion.Size = new System.Drawing.Size(222, 24);
             this.tlsbtnFacturacion.Text = "FACTURACIÓN MASIVA";
             this.tlsbtnFacturacion.Click += new System.EventHandler(this.tlsbtnFacturacion_Click);
             // 
@@ -305,67 +282,9 @@
             this.tlsbtnDevolucion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tlsbtnDevolucion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlsbtnDevolucion.Name = "tlsbtnDevolucion";
-            this.tlsbtnDevolucion.Size = new System.Drawing.Size(241, 24);
+            this.tlsbtnDevolucion.Size = new System.Drawing.Size(222, 24);
             this.tlsbtnDevolucion.Text = "DEVOLUCIÓN";
             this.tlsbtnDevolucion.Click += new System.EventHandler(this.tlsbtnDevolucion_Click);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.btnSalir, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblNombreUsuario, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblHoraLog, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblFechaLog, 3, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 565);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(975, 19);
-            this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // mstPrincipal
-            // 
-            this.mstPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mstPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.archivoToolStripMenuItem,
-            this.editarToolStripMenuItem,
-            this.herramientasToolStripMenuItem,
-            this.ayudaToolStripMenuItem});
-            this.mstPrincipal.Location = new System.Drawing.Point(0, 0);
-            this.mstPrincipal.Name = "mstPrincipal";
-            this.mstPrincipal.Size = new System.Drawing.Size(981, 30);
-            this.mstPrincipal.TabIndex = 2;
-            this.mstPrincipal.Text = "menuStrip1";
-            // 
-            // archivoToolStripMenuItem
-            // 
-            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
-            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 26);
-            this.archivoToolStripMenuItem.Text = "Archivo";
-            // 
-            // editarToolStripMenuItem
-            // 
-            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(49, 26);
-            this.editarToolStripMenuItem.Text = "Editar";
-            // 
-            // herramientasToolStripMenuItem
-            // 
-            this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
-            this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(90, 26);
-            this.herramientasToolStripMenuItem.Text = "Herramientas";
-            // 
-            // ayudaToolStripMenuItem
-            // 
-            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
-            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 26);
-            this.ayudaToolStripMenuItem.Text = "Ayuda";
             // 
             // tlsMenuRapido
             // 
@@ -382,7 +301,8 @@
             this.ayudaToolStripButton});
             this.tlsMenuRapido.Location = new System.Drawing.Point(0, 30);
             this.tlsMenuRapido.Name = "tlsMenuRapido";
-            this.tlsMenuRapido.Size = new System.Drawing.Size(981, 30);
+            this.tlsMenuRapido.Size = new System.Drawing.Size(1378, 30);
+            this.tlsMenuRapido.Stretch = true;
             this.tlsMenuRapido.TabIndex = 3;
             this.tlsMenuRapido.Text = "toolStrip1";
             // 
@@ -459,12 +379,87 @@
             this.ayudaToolStripButton.Size = new System.Drawing.Size(23, 27);
             this.ayudaToolStripButton.Text = "Ay&uda";
             // 
+            // mstPrincipal
+            // 
+            this.mstPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mstPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.archivoToolStripMenuItem,
+            this.editarToolStripMenuItem,
+            this.herramientasToolStripMenuItem,
+            this.ayudaToolStripMenuItem});
+            this.mstPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.mstPrincipal.Name = "mstPrincipal";
+            this.mstPrincipal.Size = new System.Drawing.Size(1378, 30);
+            this.mstPrincipal.TabIndex = 2;
+            this.mstPrincipal.Text = "menuStrip1";
+            // 
+            // archivoToolStripMenuItem
+            // 
+            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
+            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 26);
+            this.archivoToolStripMenuItem.Text = "Archivo";
+            // 
+            // editarToolStripMenuItem
+            // 
+            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(49, 26);
+            this.editarToolStripMenuItem.Text = "Editar";
+            // 
+            // herramientasToolStripMenuItem
+            // 
+            this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
+            this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(90, 26);
+            this.herramientasToolStripMenuItem.Text = "Herramientas";
+            // 
+            // ayudaToolStripMenuItem
+            // 
+            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 26);
+            this.ayudaToolStripMenuItem.Text = "Ayuda";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.AutoSize = true;
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.tlsMenuRapido, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.mstPrincipal, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 63);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1378, 60);
+            this.tableLayoutPanel2.TabIndex = 36;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 5;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.lblHoraLog, 4, 0);
+            this.tableLayoutPanel3.Controls.Add(this.lblNombreUsuario, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.lblFechaLog, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnSalir, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 755);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1378, 25);
+            this.tableLayoutPanel3.TabIndex = 37;
+            // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(981, 587);
+            this.ClientSize = new System.Drawing.Size(1378, 780);
+            this.Controls.Add(this.tableLayoutPanel3);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tblMainMenu);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mstPrincipal;
@@ -472,20 +467,22 @@
             this.MinimizeBox = false;
             this.Name = "frmMenuPrincipal";
             this.Text = "Menú Principal";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.cntxtMenuStripABM.ResumeLayout(false);
             this.tblMainMenu.ResumeLayout(false);
             this.tblMainMenu.PerformLayout();
-            this.tblMdiMenu.ResumeLayout(false);
-            this.tblMdiMenu.PerformLayout();
             this.tlsMenu.ResumeLayout(false);
             this.tlsMenu.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.mstPrincipal.ResumeLayout(false);
-            this.mstPrincipal.PerformLayout();
             this.tlsMenuRapido.ResumeLayout(false);
             this.tlsMenuRapido.PerformLayout();
+            this.mstPrincipal.ResumeLayout(false);
+            this.mstPrincipal.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -501,19 +498,7 @@
         private MaterialSkin.Controls.MaterialLabel lblFechaLog;
         private MaterialSkin.Controls.MaterialLabel lblHoraLog;
         private System.Windows.Forms.FontDialog fontDialog1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ToolStrip tlsMenu;
-        private System.Windows.Forms.ToolStripDropDownButton tlsbtnABM;
-        private System.Windows.Forms.ToolStripButton tlsbtnVenta;
-        private System.Windows.Forms.ToolStripMenuItem entidadesToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem artículosToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem artículosDeProveedorToolStripMenuItem;
         public System.Windows.Forms.TableLayoutPanel tblMainMenu;
-        public System.Windows.Forms.TableLayoutPanel tblMdiMenu;
-        public System.Windows.Forms.ToolStripButton tlsbtnReportes;
-        private System.Windows.Forms.ToolStripButton tlsbtnPedidoProveedor;
-        private System.Windows.Forms.ToolStripButton tlsbtnFacturacion;
-        private System.Windows.Forms.ToolStripButton tlsbtnDevolucion;
         private System.Windows.Forms.ToolStrip tlsMenuRapido;
         private System.Windows.Forms.ToolStripButton abrirToolStripButton;
         private System.Windows.Forms.ToolStripButton guardarToolStripButton;
@@ -529,5 +514,17 @@
         private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem herramientasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStrip tlsMenu;
+        private System.Windows.Forms.ToolStripDropDownButton tlsbtnABM;
+        private System.Windows.Forms.ToolStripMenuItem entidadesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem artículosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem artículosDeProveedorToolStripMenuItem;
+        public System.Windows.Forms.ToolStripButton tlsbtnReportes;
+        private System.Windows.Forms.ToolStripButton tlsbtnVenta;
+        private System.Windows.Forms.ToolStripButton tlsbtnPedidoProveedor;
+        private System.Windows.Forms.ToolStripButton tlsbtnFacturacion;
+        private System.Windows.Forms.ToolStripButton tlsbtnDevolucion;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
     }
 }
