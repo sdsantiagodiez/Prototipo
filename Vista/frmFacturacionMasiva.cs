@@ -30,14 +30,13 @@ namespace Vista
             dgvComprSinFact.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
         }
 
-        private void parámetrosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmPreferenciasFacturacion frmPreferences = new frmPreferenciasFacturacion();
-            frmPreferences.ShowDialog();
-        }
+        List<ModeloPedido> glb_lst_mod_ped = new List<ModeloPedido>();
 
+        #region Metodos
         public void CargaEnGrid(List<ModeloPedido> p_lst_mod_ped)
         {
+            glb_lst_mod_ped.Clear();
+            glb_lst_mod_ped = p_lst_mod_ped;
             DataTable pedidos = new DataTable();
             pedidos.Columns.Add("indice");
             pedidos.Columns.Add("colFecPedido");
@@ -83,6 +82,67 @@ namespace Vista
             }
             else
             { return true;}
+        }
+
+        public List<ModeloPedido> cargaGridEnModelos()
+        {
+            foreach (ModeloPedido modPed in glb_lst_mod_ped)
+            {
+                for (int i = 0; i > dgvComprSinFact.RowCount; i++)
+                {
+                    if (!string.Equals(modPed.numeroPedido.ToString(), dgvComprSinFact["colNroPedido", i].ToString()) && bool.Equals(dgvComprSinFact["colFacturar",i].Value,true))
+                    {
+                        glb_lst_mod_ped.Remove(modPed);
+                    }
+                }
+            }
+            return glb_lst_mod_ped;
+        }
+
+        public bool FacturarAFIP()
+        {
+                bool respuesta = false;
+                BackgroundWorker bw = new BackgroundWorker();
+                frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Realizando facturación electrónica AFIP.");
+            
+                bool exito = false;
+                bw.DoWork += (s, e) =>
+                { 
+                    exito = (controlador as ControladorPedidoCliente).facturarAFIP();
+                };
+                bw.RunWorkerCompleted += (s, e) => 
+                {
+                    lcl_frm_loading.Hide();
+                    if (exito)
+                    {
+                       // MessageBox.Show("Facturación electrónica realizada", "Éxito", MessageBoxButtons.OK);
+                        respuesta = true;
+                    }
+                    else
+                    {
+                        DialogResult dialogResul = MessageBox.Show(controlador.errorActual, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                        if (dialogResul == System.Windows.Forms.DialogResult.Retry)
+                        {
+                            respuesta = this.FacturarAFIP();
+                        }
+                        respuesta = false;
+                    }
+                };
+
+                bw.RunWorkerAsync();
+                lcl_frm_loading.ShowDialog();
+
+                return respuesta;
+            }
+        
+        
+        #endregion
+        
+        #region Eventos
+        private void parámetrosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPreferenciasFacturacion frmPreferences = new frmPreferenciasFacturacion();
+            frmPreferences.ShowDialog();
         }
 
         private void buscarComprobantesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -160,7 +220,27 @@ namespace Vista
             this.dgvComprSinFact.CommitEdit(DataGridViewDataErrorContexts.Commit);
         }
 
+        private void btnFacturar_Click(object sender, EventArgs e)
+        {
+            int i = 0;
+            int j = 0;
+            this.cargaGridEnModelos();
+            foreach (ModeloPedido modPed in glb_lst_mod_ped)
+            {
+                controlador.pedidoActual = modPed;
+                if (this.FacturarAFIP() == true)
+                { i++; }
+                else
+                { j++; }
+            }
+
+            MessageBox.Show("Se Facturaron "+i+" Comprobantes correctamente."+ Environment.NewLine +"No se pudieron facturar "+j+" Comprobantes.", "Éxito", MessageBoxButtons.OK);
+            
         }
+
+        #endregion  
+
+    }
 
             
     }
