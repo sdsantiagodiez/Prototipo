@@ -60,7 +60,13 @@ namespace Vista
         #region Constructores
         public frmABMEntidad()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            dataGridViewTelefono.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            dataGridViewTelefono.EnableHeadersVisualStyles = false;
+            dataGridViewMail.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            dataGridViewMail.EnableHeadersVisualStyles = false;
+            dataGridViewDomicilio.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            dataGridViewDomicilio.EnableHeadersVisualStyles = false;
             
             this.inicializarControles();
             modoFormulario = ModoFormularioInicio;
@@ -285,9 +291,9 @@ namespace Vista
         private void inicializarTextBoxes()
         {
             txtBoxCUIT.KeyPress += this.valorCUIT;
-            txtBoxCUIT.MaxLength = ModeloEntidad.CUIT.longitud;
+            //txtBoxCUIT.MaxLength = ModeloEntidad.CUIT.longitud;
             txtBoxDNI.KeyPress += this.valorDNI;
-            txtBoxDNI.MaxLength = 10;
+            //txtBoxDNI.MaxLength = 10;
         }
 
         private void actualizarContextMenu(DataGridView p_dgvActual)
