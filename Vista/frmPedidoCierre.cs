@@ -11,10 +11,13 @@ using Modelos;
 using Controladores;
 using Reportes;
 using LibreriaClasesCompartidas;
+using MaterialSkin;
+using MaterialSkin.Animations;
+using MaterialSkin.Controls;
 
 namespace Vista
 {
-    public partial class frmPedidoCierre : Form
+    public partial class frmPedidoCierre : MaterialForm
     {
         #region Atributos
         ModeloPedido glb_mod_pedidoOriginalDevolucion;
@@ -63,6 +66,12 @@ namespace Vista
         private frmPedidoCierre()
         {
             InitializeComponent();
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            dgvArticulosVenta.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            dgvArticulosVenta.EnableHeadersVisualStyles = false; 
             this.StartPosition = FormStartPosition.CenterScreen;
             this.inicializarControles();
         }
