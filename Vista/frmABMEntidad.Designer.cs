@@ -32,6 +32,10 @@
             this.tblLayoutPanelForm = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxTipoEntidad = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelTipoEntidad = new System.Windows.Forms.TableLayoutPanel();
+            this.radioButtonCliente = new MaterialSkin.Controls.MaterialRadioButton();
+            this.radioButtonProveedor = new MaterialSkin.Controls.MaterialRadioButton();
+            this.radioButtonContactoProveedor = new MaterialSkin.Controls.MaterialRadioButton();
+            this.radioButtonUsuario = new MaterialSkin.Controls.MaterialRadioButton();
             this.grpBoxObservaciones = new System.Windows.Forms.GroupBox();
             this.rchTextBoxObservaciones = new System.Windows.Forms.RichTextBox();
             this.grpBoxDatosPersonales = new System.Windows.Forms.GroupBox();
@@ -42,6 +46,12 @@
             this.lblRazonSocial = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblApellido = new System.Windows.Forms.Label();
+            this.txtBoxCodigoEntidad = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxCUIT = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxDNI = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxRazonSocial = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxApellido = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxNombre = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.grpBoxDomicilio = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelDomicilio = new System.Windows.Forms.TableLayoutPanel();
@@ -55,6 +65,12 @@
             this.lblCodigoPostal = new System.Windows.Forms.Label();
             this.lblPais = new System.Windows.Forms.Label();
             this.cmbBoxPais = new System.Windows.Forms.ComboBox();
+            this.txtBoxCalle = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxCiudad = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxNumeroDomicilio = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxCodigoPostal = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxPiso = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxDepartamento = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.tblLayoutPanelDomicilioGrid = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewDomicilio = new System.Windows.Forms.DataGridView();
             this.codigoDomicilio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,10 +85,14 @@
             this.codigoPais = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pais = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblLayoutPanelDomicilioAgregarQuitar = new System.Windows.Forms.TableLayoutPanel();
+            this.btnAgregarDomicilio = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnQuitarDomicilio = new MaterialSkin.Controls.MaterialFlatButton();
             this.grpBoxContacto = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelContacto = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelTelefonoLista = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelTelefonoListaAgregarQuitar = new System.Windows.Forms.TableLayoutPanel();
+            this.btnQuitarTelefono = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnAgregarTelefono = new MaterialSkin.Controls.MaterialFlatButton();
             this.dataGridViewTelefono = new System.Windows.Forms.DataGridView();
             this.codigoTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,38 +101,18 @@
             this.tblLayoutPanelTelefono = new System.Windows.Forms.TableLayoutPanel();
             this.lblTelefono = new System.Windows.Forms.Label();
             this.cmbBoxTipoTelefono = new System.Windows.Forms.ComboBox();
+            this.txtBoxTelefono = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.tblLayoutPanelMail = new System.Windows.Forms.TableLayoutPanel();
             this.lblMail = new System.Windows.Forms.Label();
+            this.txtBoxMail = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.tblLayoutPanelMailLista = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelMailListaAgregarQuitar = new System.Windows.Forms.TableLayoutPanel();
+            this.btnAgregarMail = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnQuitarMail = new MaterialSkin.Controls.MaterialFlatButton();
             this.dataGridViewMail = new System.Windows.Forms.DataGridView();
             this.codigoMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.radioButtonCliente = new MaterialSkin.Controls.MaterialRadioButton();
-            this.radioButtonProveedor = new MaterialSkin.Controls.MaterialRadioButton();
-            this.radioButtonContactoProveedor = new MaterialSkin.Controls.MaterialRadioButton();
-            this.radioButtonUsuario = new MaterialSkin.Controls.MaterialRadioButton();
-            this.txtBoxCodigoEntidad = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxCUIT = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxDNI = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxRazonSocial = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxApellido = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxNombre = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxCalle = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxCiudad = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxNumeroDomicilio = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxCodigoPostal = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxPiso = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxDepartamento = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxMail = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxTelefono = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.btnDatosAdicionales = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnAgregarDomicilio = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnQuitarDomicilio = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnAgregarMail = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnQuitarMail = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnQuitarTelefono = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnAgregarTelefono = new MaterialSkin.Controls.MaterialFlatButton();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
             this.tblLayoutPanelForm.SuspendLayout();
             this.grpBoxTipoEntidad.SuspendLayout();
@@ -193,6 +193,81 @@
             this.tblLayoutPanelTipoEntidad.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelTipoEntidad.Size = new System.Drawing.Size(618, 36);
             this.tblLayoutPanelTipoEntidad.TabIndex = 5;
+            // 
+            // radioButtonCliente
+            // 
+            this.radioButtonCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonCliente.AutoSize = true;
+            this.radioButtonCliente.Depth = 0;
+            this.radioButtonCliente.Font = new System.Drawing.Font("Roboto", 10F);
+            this.radioButtonCliente.Location = new System.Drawing.Point(59, 3);
+            this.radioButtonCliente.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonCliente.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.radioButtonCliente.MouseState = MaterialSkin.MouseState.HOVER;
+            this.radioButtonCliente.Name = "radioButtonCliente";
+            this.radioButtonCliente.Ripple = true;
+            this.radioButtonCliente.Size = new System.Drawing.Size(90, 30);
+            this.radioButtonCliente.TabIndex = 5;
+            this.radioButtonCliente.TabStop = true;
+            this.radioButtonCliente.Text = "Cliente";
+            this.radioButtonCliente.UseVisualStyleBackColor = true;
+            this.radioButtonCliente.CheckedChanged += new System.EventHandler(this.radioButtonCliente_CheckedChanged);
+            // 
+            // radioButtonProveedor
+            // 
+            this.radioButtonProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonProveedor.AutoSize = true;
+            this.radioButtonProveedor.Depth = 0;
+            this.radioButtonProveedor.Font = new System.Drawing.Font("Roboto", 10F);
+            this.radioButtonProveedor.Location = new System.Drawing.Point(149, 3);
+            this.radioButtonProveedor.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonProveedor.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.radioButtonProveedor.MouseState = MaterialSkin.MouseState.HOVER;
+            this.radioButtonProveedor.Name = "radioButtonProveedor";
+            this.radioButtonProveedor.Ripple = true;
+            this.radioButtonProveedor.Size = new System.Drawing.Size(120, 30);
+            this.radioButtonProveedor.TabIndex = 6;
+            this.radioButtonProveedor.TabStop = true;
+            this.radioButtonProveedor.Text = "Proveedor";
+            this.radioButtonProveedor.UseVisualStyleBackColor = true;
+            this.radioButtonProveedor.CheckedChanged += new System.EventHandler(this.radioButtonProveedor_CheckedChanged);
+            // 
+            // radioButtonContactoProveedor
+            // 
+            this.radioButtonContactoProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonContactoProveedor.AutoSize = true;
+            this.radioButtonContactoProveedor.Depth = 0;
+            this.radioButtonContactoProveedor.Font = new System.Drawing.Font("Roboto", 10F);
+            this.radioButtonContactoProveedor.Location = new System.Drawing.Point(269, 3);
+            this.radioButtonContactoProveedor.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonContactoProveedor.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.radioButtonContactoProveedor.MouseState = MaterialSkin.MouseState.HOVER;
+            this.radioButtonContactoProveedor.Name = "radioButtonContactoProveedor";
+            this.radioButtonContactoProveedor.Ripple = true;
+            this.radioButtonContactoProveedor.Size = new System.Drawing.Size(200, 30);
+            this.radioButtonContactoProveedor.TabIndex = 7;
+            this.radioButtonContactoProveedor.TabStop = true;
+            this.radioButtonContactoProveedor.Text = "Contacto Proveedor";
+            this.radioButtonContactoProveedor.UseVisualStyleBackColor = true;
+            this.radioButtonContactoProveedor.CheckedChanged += new System.EventHandler(this.radioButtonContactoProveedor_CheckedChanged);
+            // 
+            // radioButtonUsuario
+            // 
+            this.radioButtonUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonUsuario.AutoSize = true;
+            this.radioButtonUsuario.Depth = 0;
+            this.radioButtonUsuario.Font = new System.Drawing.Font("Roboto", 10F);
+            this.radioButtonUsuario.Location = new System.Drawing.Point(469, 3);
+            this.radioButtonUsuario.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonUsuario.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.radioButtonUsuario.MouseState = MaterialSkin.MouseState.HOVER;
+            this.radioButtonUsuario.Name = "radioButtonUsuario";
+            this.radioButtonUsuario.Ripple = true;
+            this.radioButtonUsuario.Size = new System.Drawing.Size(90, 30);
+            this.radioButtonUsuario.TabIndex = 8;
+            this.radioButtonUsuario.TabStop = true;
+            this.radioButtonUsuario.Text = "Usuario";
+            this.radioButtonUsuario.UseVisualStyleBackColor = true;
             // 
             // grpBoxObservaciones
             // 
@@ -322,6 +397,102 @@
             this.lblApellido.TabIndex = 2;
             this.lblApellido.Text = "Apellido:";
             // 
+            // txtBoxCodigoEntidad
+            // 
+            this.txtBoxCodigoEntidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxCodigoEntidad.Depth = 0;
+            this.txtBoxCodigoEntidad.Hint = "";
+            this.txtBoxCodigoEntidad.Location = new System.Drawing.Point(65, 3);
+            this.txtBoxCodigoEntidad.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxCodigoEntidad.Name = "txtBoxCodigoEntidad";
+            this.txtBoxCodigoEntidad.PasswordChar = '\0';
+            this.txtBoxCodigoEntidad.SelectedText = "";
+            this.txtBoxCodigoEntidad.SelectionLength = 0;
+            this.txtBoxCodigoEntidad.SelectionStart = 0;
+            this.txtBoxCodigoEntidad.Size = new System.Drawing.Size(145, 23);
+            this.txtBoxCodigoEntidad.TabIndex = 13;
+            this.txtBoxCodigoEntidad.UseSystemPasswordChar = false;
+            // 
+            // txtBoxCUIT
+            // 
+            this.txtBoxCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxCUIT.Depth = 0;
+            this.txtBoxCUIT.Hint = "";
+            this.txtBoxCUIT.Location = new System.Drawing.Point(65, 32);
+            this.txtBoxCUIT.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxCUIT.Name = "txtBoxCUIT";
+            this.txtBoxCUIT.PasswordChar = '\0';
+            this.txtBoxCUIT.SelectedText = "";
+            this.txtBoxCUIT.SelectionLength = 0;
+            this.txtBoxCUIT.SelectionStart = 0;
+            this.txtBoxCUIT.Size = new System.Drawing.Size(145, 23);
+            this.txtBoxCUIT.TabIndex = 14;
+            this.txtBoxCUIT.UseSystemPasswordChar = false;
+            // 
+            // txtBoxDNI
+            // 
+            this.txtBoxDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxDNI.Depth = 0;
+            this.txtBoxDNI.Hint = "";
+            this.txtBoxDNI.Location = new System.Drawing.Point(65, 63);
+            this.txtBoxDNI.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxDNI.Name = "txtBoxDNI";
+            this.txtBoxDNI.PasswordChar = '\0';
+            this.txtBoxDNI.SelectedText = "";
+            this.txtBoxDNI.SelectionLength = 0;
+            this.txtBoxDNI.SelectionStart = 0;
+            this.txtBoxDNI.Size = new System.Drawing.Size(145, 23);
+            this.txtBoxDNI.TabIndex = 15;
+            this.txtBoxDNI.UseSystemPasswordChar = false;
+            // 
+            // txtBoxRazonSocial
+            // 
+            this.txtBoxRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxRazonSocial.Depth = 0;
+            this.txtBoxRazonSocial.Hint = "";
+            this.txtBoxRazonSocial.Location = new System.Drawing.Point(318, 3);
+            this.txtBoxRazonSocial.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
+            this.txtBoxRazonSocial.PasswordChar = '\0';
+            this.txtBoxRazonSocial.SelectedText = "";
+            this.txtBoxRazonSocial.SelectionLength = 0;
+            this.txtBoxRazonSocial.SelectionStart = 0;
+            this.txtBoxRazonSocial.Size = new System.Drawing.Size(297, 23);
+            this.txtBoxRazonSocial.TabIndex = 16;
+            this.txtBoxRazonSocial.UseSystemPasswordChar = false;
+            // 
+            // txtBoxApellido
+            // 
+            this.txtBoxApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxApellido.Depth = 0;
+            this.txtBoxApellido.Hint = "";
+            this.txtBoxApellido.Location = new System.Drawing.Point(318, 32);
+            this.txtBoxApellido.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxApellido.Name = "txtBoxApellido";
+            this.txtBoxApellido.PasswordChar = '\0';
+            this.txtBoxApellido.SelectedText = "";
+            this.txtBoxApellido.SelectionLength = 0;
+            this.txtBoxApellido.SelectionStart = 0;
+            this.txtBoxApellido.Size = new System.Drawing.Size(297, 23);
+            this.txtBoxApellido.TabIndex = 17;
+            this.txtBoxApellido.UseSystemPasswordChar = false;
+            // 
+            // txtBoxNombre
+            // 
+            this.txtBoxNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxNombre.Depth = 0;
+            this.txtBoxNombre.Hint = "";
+            this.txtBoxNombre.Location = new System.Drawing.Point(318, 63);
+            this.txtBoxNombre.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxNombre.Name = "txtBoxNombre";
+            this.txtBoxNombre.PasswordChar = '\0';
+            this.txtBoxNombre.SelectedText = "";
+            this.txtBoxNombre.SelectionLength = 0;
+            this.txtBoxNombre.SelectionStart = 0;
+            this.txtBoxNombre.Size = new System.Drawing.Size(297, 23);
+            this.txtBoxNombre.TabIndex = 18;
+            this.txtBoxNombre.UseSystemPasswordChar = false;
+            // 
             // grpBoxDomicilio
             // 
             this.grpBoxDomicilio.Controls.Add(this.tableLayoutPanel1);
@@ -444,7 +615,7 @@
             // 
             this.cmbBoxProvincia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxProvincia.FormattingEnabled = true;
-            this.cmbBoxProvincia.Location = new System.Drawing.Point(403, 38);
+            this.cmbBoxProvincia.Location = new System.Drawing.Point(403, 36);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxProvincia.TabIndex = 18;
@@ -486,11 +657,107 @@
             // 
             this.cmbBoxPais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxPais.FormattingEnabled = true;
-            this.cmbBoxPais.Location = new System.Drawing.Point(515, 36);
+            this.cmbBoxPais.Location = new System.Drawing.Point(515, 38);
             this.cmbBoxPais.Name = "cmbBoxPais";
             this.cmbBoxPais.Size = new System.Drawing.Size(94, 26);
             this.cmbBoxPais.TabIndex = 17;
             this.cmbBoxPais.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxPais_SelectionChangeCommitted);
+            // 
+            // txtBoxCalle
+            // 
+            this.txtBoxCalle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxCalle.Depth = 0;
+            this.txtBoxCalle.Hint = "";
+            this.txtBoxCalle.Location = new System.Drawing.Point(65, 5);
+            this.txtBoxCalle.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxCalle.Name = "txtBoxCalle";
+            this.txtBoxCalle.PasswordChar = '\0';
+            this.txtBoxCalle.SelectedText = "";
+            this.txtBoxCalle.SelectionLength = 0;
+            this.txtBoxCalle.SelectionStart = 0;
+            this.txtBoxCalle.Size = new System.Drawing.Size(90, 23);
+            this.txtBoxCalle.TabIndex = 19;
+            this.txtBoxCalle.UseSystemPasswordChar = false;
+            // 
+            // txtBoxCiudad
+            // 
+            this.txtBoxCiudad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxCiudad.Depth = 0;
+            this.txtBoxCiudad.Hint = "";
+            this.txtBoxCiudad.Location = new System.Drawing.Point(65, 37);
+            this.txtBoxCiudad.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxCiudad.Name = "txtBoxCiudad";
+            this.txtBoxCiudad.PasswordChar = '\0';
+            this.txtBoxCiudad.SelectedText = "";
+            this.txtBoxCiudad.SelectionLength = 0;
+            this.txtBoxCiudad.SelectionStart = 0;
+            this.txtBoxCiudad.Size = new System.Drawing.Size(90, 23);
+            this.txtBoxCiudad.TabIndex = 20;
+            this.txtBoxCiudad.UseSystemPasswordChar = false;
+            // 
+            // txtBoxNumeroDomicilio
+            // 
+            this.txtBoxNumeroDomicilio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxNumeroDomicilio.Depth = 0;
+            this.txtBoxNumeroDomicilio.Hint = "";
+            this.txtBoxNumeroDomicilio.Location = new System.Drawing.Point(267, 5);
+            this.txtBoxNumeroDomicilio.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxNumeroDomicilio.Name = "txtBoxNumeroDomicilio";
+            this.txtBoxNumeroDomicilio.PasswordChar = '\0';
+            this.txtBoxNumeroDomicilio.SelectedText = "";
+            this.txtBoxNumeroDomicilio.SelectionLength = 0;
+            this.txtBoxNumeroDomicilio.SelectionStart = 0;
+            this.txtBoxNumeroDomicilio.Size = new System.Drawing.Size(54, 23);
+            this.txtBoxNumeroDomicilio.TabIndex = 21;
+            this.txtBoxNumeroDomicilio.UseSystemPasswordChar = false;
+            // 
+            // txtBoxCodigoPostal
+            // 
+            this.txtBoxCodigoPostal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxCodigoPostal.Depth = 0;
+            this.txtBoxCodigoPostal.Hint = "";
+            this.txtBoxCodigoPostal.Location = new System.Drawing.Point(267, 37);
+            this.txtBoxCodigoPostal.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxCodigoPostal.Name = "txtBoxCodigoPostal";
+            this.txtBoxCodigoPostal.PasswordChar = '\0';
+            this.txtBoxCodigoPostal.SelectedText = "";
+            this.txtBoxCodigoPostal.SelectionLength = 0;
+            this.txtBoxCodigoPostal.SelectionStart = 0;
+            this.txtBoxCodigoPostal.Size = new System.Drawing.Size(54, 23);
+            this.txtBoxCodigoPostal.TabIndex = 22;
+            this.txtBoxCodigoPostal.UseSystemPasswordChar = false;
+            // 
+            // txtBoxPiso
+            // 
+            this.txtBoxPiso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxPiso.Depth = 0;
+            this.txtBoxPiso.Hint = "";
+            this.txtBoxPiso.Location = new System.Drawing.Point(403, 5);
+            this.txtBoxPiso.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxPiso.Name = "txtBoxPiso";
+            this.txtBoxPiso.PasswordChar = '\0';
+            this.txtBoxPiso.SelectedText = "";
+            this.txtBoxPiso.SelectionLength = 0;
+            this.txtBoxPiso.SelectionStart = 0;
+            this.txtBoxPiso.Size = new System.Drawing.Size(54, 23);
+            this.txtBoxPiso.TabIndex = 23;
+            this.txtBoxPiso.UseSystemPasswordChar = false;
+            // 
+            // txtBoxDepartamento
+            // 
+            this.txtBoxDepartamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxDepartamento.Depth = 0;
+            this.txtBoxDepartamento.Hint = "";
+            this.txtBoxDepartamento.Location = new System.Drawing.Point(515, 5);
+            this.txtBoxDepartamento.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxDepartamento.Name = "txtBoxDepartamento";
+            this.txtBoxDepartamento.PasswordChar = '\0';
+            this.txtBoxDepartamento.SelectedText = "";
+            this.txtBoxDepartamento.SelectionLength = 0;
+            this.txtBoxDepartamento.SelectionStart = 0;
+            this.txtBoxDepartamento.Size = new System.Drawing.Size(94, 23);
+            this.txtBoxDepartamento.TabIndex = 24;
+            this.txtBoxDepartamento.UseSystemPasswordChar = false;
             // 
             // tblLayoutPanelDomicilioGrid
             // 
@@ -628,6 +895,38 @@
             this.tblLayoutPanelDomicilioAgregarQuitar.Size = new System.Drawing.Size(27, 109);
             this.tblLayoutPanelDomicilioAgregarQuitar.TabIndex = 2;
             // 
+            // btnAgregarDomicilio
+            // 
+            this.btnAgregarDomicilio.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAgregarDomicilio.AutoSize = true;
+            this.btnAgregarDomicilio.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAgregarDomicilio.Depth = 0;
+            this.btnAgregarDomicilio.Location = new System.Drawing.Point(4, 12);
+            this.btnAgregarDomicilio.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAgregarDomicilio.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAgregarDomicilio.Name = "btnAgregarDomicilio";
+            this.btnAgregarDomicilio.Primary = false;
+            this.btnAgregarDomicilio.Size = new System.Drawing.Size(19, 36);
+            this.btnAgregarDomicilio.TabIndex = 17;
+            this.btnAgregarDomicilio.Text = "+";
+            this.btnAgregarDomicilio.UseVisualStyleBackColor = true;
+            // 
+            // btnQuitarDomicilio
+            // 
+            this.btnQuitarDomicilio.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnQuitarDomicilio.AutoSize = true;
+            this.btnQuitarDomicilio.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnQuitarDomicilio.Depth = 0;
+            this.btnQuitarDomicilio.Location = new System.Drawing.Point(5, 60);
+            this.btnQuitarDomicilio.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnQuitarDomicilio.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnQuitarDomicilio.Name = "btnQuitarDomicilio";
+            this.btnQuitarDomicilio.Primary = false;
+            this.btnQuitarDomicilio.Size = new System.Drawing.Size(16, 36);
+            this.btnQuitarDomicilio.TabIndex = 18;
+            this.btnQuitarDomicilio.Text = "-";
+            this.btnQuitarDomicilio.UseVisualStyleBackColor = true;
+            // 
             // grpBoxContacto
             // 
             this.grpBoxContacto.Controls.Add(this.tblLayoutPanelContacto);
@@ -687,6 +986,38 @@
             this.tblLayoutPanelTelefonoListaAgregarQuitar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelTelefonoListaAgregarQuitar.Size = new System.Drawing.Size(27, 63);
             this.tblLayoutPanelTelefonoListaAgregarQuitar.TabIndex = 13;
+            // 
+            // btnQuitarTelefono
+            // 
+            this.btnQuitarTelefono.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnQuitarTelefono.AutoSize = true;
+            this.btnQuitarTelefono.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnQuitarTelefono.Depth = 0;
+            this.btnQuitarTelefono.Location = new System.Drawing.Point(5, 37);
+            this.btnQuitarTelefono.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnQuitarTelefono.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnQuitarTelefono.Name = "btnQuitarTelefono";
+            this.btnQuitarTelefono.Primary = false;
+            this.btnQuitarTelefono.Size = new System.Drawing.Size(16, 20);
+            this.btnQuitarTelefono.TabIndex = 25;
+            this.btnQuitarTelefono.Text = "-";
+            this.btnQuitarTelefono.UseVisualStyleBackColor = true;
+            // 
+            // btnAgregarTelefono
+            // 
+            this.btnAgregarTelefono.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAgregarTelefono.AutoSize = true;
+            this.btnAgregarTelefono.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAgregarTelefono.Depth = 0;
+            this.btnAgregarTelefono.Location = new System.Drawing.Point(4, 6);
+            this.btnAgregarTelefono.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAgregarTelefono.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAgregarTelefono.Name = "btnAgregarTelefono";
+            this.btnAgregarTelefono.Primary = false;
+            this.btnAgregarTelefono.Size = new System.Drawing.Size(19, 19);
+            this.btnAgregarTelefono.TabIndex = 26;
+            this.btnAgregarTelefono.Text = "+";
+            this.btnAgregarTelefono.UseVisualStyleBackColor = true;
             // 
             // dataGridViewTelefono
             // 
@@ -776,10 +1107,26 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 11);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 9);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxTipoTelefono.TabIndex = 23;
+            // 
+            // txtBoxTelefono
+            // 
+            this.txtBoxTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxTelefono.Depth = 0;
+            this.txtBoxTelefono.Hint = "";
+            this.txtBoxTelefono.Location = new System.Drawing.Point(131, 10);
+            this.txtBoxTelefono.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxTelefono.Name = "txtBoxTelefono";
+            this.txtBoxTelefono.PasswordChar = '\0';
+            this.txtBoxTelefono.SelectedText = "";
+            this.txtBoxTelefono.SelectionLength = 0;
+            this.txtBoxTelefono.SelectionStart = 0;
+            this.txtBoxTelefono.Size = new System.Drawing.Size(141, 23);
+            this.txtBoxTelefono.TabIndex = 24;
+            this.txtBoxTelefono.UseSystemPasswordChar = false;
             // 
             // tblLayoutPanelMail
             // 
@@ -806,6 +1153,22 @@
             this.lblMail.Size = new System.Drawing.Size(82, 34);
             this.lblMail.TabIndex = 9;
             this.lblMail.Text = "Correo Electrónico:";
+            // 
+            // txtBoxMail
+            // 
+            this.txtBoxMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxMail.Depth = 0;
+            this.txtBoxMail.Hint = "";
+            this.txtBoxMail.Location = new System.Drawing.Point(91, 10);
+            this.txtBoxMail.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxMail.Name = "txtBoxMail";
+            this.txtBoxMail.PasswordChar = '\0';
+            this.txtBoxMail.SelectedText = "";
+            this.txtBoxMail.SelectionLength = 0;
+            this.txtBoxMail.SelectionStart = 0;
+            this.txtBoxMail.Size = new System.Drawing.Size(237, 23);
+            this.txtBoxMail.TabIndex = 10;
+            this.txtBoxMail.UseSystemPasswordChar = false;
             // 
             // tblLayoutPanelMailLista
             // 
@@ -836,6 +1199,38 @@
             this.tblLayoutPanelMailListaAgregarQuitar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelMailListaAgregarQuitar.Size = new System.Drawing.Size(27, 63);
             this.tblLayoutPanelMailListaAgregarQuitar.TabIndex = 13;
+            // 
+            // btnAgregarMail
+            // 
+            this.btnAgregarMail.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAgregarMail.AutoSize = true;
+            this.btnAgregarMail.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAgregarMail.Depth = 0;
+            this.btnAgregarMail.Location = new System.Drawing.Point(4, 6);
+            this.btnAgregarMail.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAgregarMail.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAgregarMail.Name = "btnAgregarMail";
+            this.btnAgregarMail.Primary = false;
+            this.btnAgregarMail.Size = new System.Drawing.Size(19, 19);
+            this.btnAgregarMail.TabIndex = 1;
+            this.btnAgregarMail.Text = "+";
+            this.btnAgregarMail.UseVisualStyleBackColor = true;
+            // 
+            // btnQuitarMail
+            // 
+            this.btnQuitarMail.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnQuitarMail.AutoSize = true;
+            this.btnQuitarMail.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnQuitarMail.Depth = 0;
+            this.btnQuitarMail.Location = new System.Drawing.Point(5, 37);
+            this.btnQuitarMail.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnQuitarMail.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnQuitarMail.Name = "btnQuitarMail";
+            this.btnQuitarMail.Primary = false;
+            this.btnQuitarMail.Size = new System.Drawing.Size(16, 20);
+            this.btnQuitarMail.TabIndex = 2;
+            this.btnQuitarMail.Text = "-";
+            this.btnQuitarMail.UseVisualStyleBackColor = true;
             // 
             // dataGridViewMail
             // 
@@ -872,417 +1267,22 @@
             this.mail.Name = "mail";
             this.mail.ReadOnly = true;
             // 
-            // radioButtonCliente
-            // 
-            this.radioButtonCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonCliente.AutoSize = true;
-            this.radioButtonCliente.Depth = 0;
-            this.radioButtonCliente.Font = new System.Drawing.Font("Roboto", 10F);
-            this.radioButtonCliente.Location = new System.Drawing.Point(59, 3);
-            this.radioButtonCliente.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonCliente.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.radioButtonCliente.MouseState = MaterialSkin.MouseState.HOVER;
-            this.radioButtonCliente.Name = "radioButtonCliente";
-            this.radioButtonCliente.Ripple = true;
-            this.radioButtonCliente.Size = new System.Drawing.Size(90, 30);
-            this.radioButtonCliente.TabIndex = 5;
-            this.radioButtonCliente.TabStop = true;
-            this.radioButtonCliente.Text = "Cliente";
-            this.radioButtonCliente.UseVisualStyleBackColor = true;
-            this.radioButtonCliente.CheckedChanged += new System.EventHandler(this.radioButtonCliente_CheckedChanged);
-            // 
-            // radioButtonProveedor
-            // 
-            this.radioButtonProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonProveedor.AutoSize = true;
-            this.radioButtonProveedor.Depth = 0;
-            this.radioButtonProveedor.Font = new System.Drawing.Font("Roboto", 10F);
-            this.radioButtonProveedor.Location = new System.Drawing.Point(149, 3);
-            this.radioButtonProveedor.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonProveedor.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.radioButtonProveedor.MouseState = MaterialSkin.MouseState.HOVER;
-            this.radioButtonProveedor.Name = "radioButtonProveedor";
-            this.radioButtonProveedor.Ripple = true;
-            this.radioButtonProveedor.Size = new System.Drawing.Size(120, 30);
-            this.radioButtonProveedor.TabIndex = 6;
-            this.radioButtonProveedor.TabStop = true;
-            this.radioButtonProveedor.Text = "Proveedor";
-            this.radioButtonProveedor.UseVisualStyleBackColor = true;
-            this.radioButtonProveedor.CheckedChanged += new System.EventHandler(this.radioButtonProveedor_CheckedChanged);
-            // 
-            // radioButtonContactoProveedor
-            // 
-            this.radioButtonContactoProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonContactoProveedor.AutoSize = true;
-            this.radioButtonContactoProveedor.Depth = 0;
-            this.radioButtonContactoProveedor.Font = new System.Drawing.Font("Roboto", 10F);
-            this.radioButtonContactoProveedor.Location = new System.Drawing.Point(269, 3);
-            this.radioButtonContactoProveedor.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonContactoProveedor.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.radioButtonContactoProveedor.MouseState = MaterialSkin.MouseState.HOVER;
-            this.radioButtonContactoProveedor.Name = "radioButtonContactoProveedor";
-            this.radioButtonContactoProveedor.Ripple = true;
-            this.radioButtonContactoProveedor.Size = new System.Drawing.Size(200, 30);
-            this.radioButtonContactoProveedor.TabIndex = 7;
-            this.radioButtonContactoProveedor.TabStop = true;
-            this.radioButtonContactoProveedor.Text = "Contacto Proveedor";
-            this.radioButtonContactoProveedor.UseVisualStyleBackColor = true;
-            this.radioButtonContactoProveedor.CheckedChanged += new System.EventHandler(this.radioButtonContactoProveedor_CheckedChanged);
-            // 
-            // radioButtonUsuario
-            // 
-            this.radioButtonUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonUsuario.AutoSize = true;
-            this.radioButtonUsuario.Depth = 0;
-            this.radioButtonUsuario.Font = new System.Drawing.Font("Roboto", 10F);
-            this.radioButtonUsuario.Location = new System.Drawing.Point(469, 3);
-            this.radioButtonUsuario.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonUsuario.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.radioButtonUsuario.MouseState = MaterialSkin.MouseState.HOVER;
-            this.radioButtonUsuario.Name = "radioButtonUsuario";
-            this.radioButtonUsuario.Ripple = true;
-            this.radioButtonUsuario.Size = new System.Drawing.Size(90, 30);
-            this.radioButtonUsuario.TabIndex = 8;
-            this.radioButtonUsuario.TabStop = true;
-            this.radioButtonUsuario.Text = "Usuario";
-            this.radioButtonUsuario.UseVisualStyleBackColor = true;
-            // 
-            // txtBoxCodigoEntidad
-            // 
-            this.txtBoxCodigoEntidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCodigoEntidad.Depth = 0;
-            this.txtBoxCodigoEntidad.Hint = "";
-            this.txtBoxCodigoEntidad.Location = new System.Drawing.Point(65, 3);
-            this.txtBoxCodigoEntidad.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxCodigoEntidad.Name = "txtBoxCodigoEntidad";
-            this.txtBoxCodigoEntidad.PasswordChar = '\0';
-            this.txtBoxCodigoEntidad.SelectedText = "";
-            this.txtBoxCodigoEntidad.SelectionLength = 0;
-            this.txtBoxCodigoEntidad.SelectionStart = 0;
-            this.txtBoxCodigoEntidad.Size = new System.Drawing.Size(145, 23);
-            this.txtBoxCodigoEntidad.TabIndex = 13;
-            this.txtBoxCodigoEntidad.UseSystemPasswordChar = false;
-            // 
-            // txtBoxCUIT
-            // 
-            this.txtBoxCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCUIT.Depth = 0;
-            this.txtBoxCUIT.Hint = "";
-            this.txtBoxCUIT.Location = new System.Drawing.Point(65, 32);
-            this.txtBoxCUIT.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxCUIT.Name = "txtBoxCUIT";
-            this.txtBoxCUIT.PasswordChar = '\0';
-            this.txtBoxCUIT.SelectedText = "";
-            this.txtBoxCUIT.SelectionLength = 0;
-            this.txtBoxCUIT.SelectionStart = 0;
-            this.txtBoxCUIT.Size = new System.Drawing.Size(145, 23);
-            this.txtBoxCUIT.TabIndex = 14;
-            this.txtBoxCUIT.UseSystemPasswordChar = false;
-            // 
-            // txtBoxDNI
-            // 
-            this.txtBoxDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxDNI.Depth = 0;
-            this.txtBoxDNI.Hint = "";
-            this.txtBoxDNI.Location = new System.Drawing.Point(65, 63);
-            this.txtBoxDNI.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxDNI.Name = "txtBoxDNI";
-            this.txtBoxDNI.PasswordChar = '\0';
-            this.txtBoxDNI.SelectedText = "";
-            this.txtBoxDNI.SelectionLength = 0;
-            this.txtBoxDNI.SelectionStart = 0;
-            this.txtBoxDNI.Size = new System.Drawing.Size(145, 23);
-            this.txtBoxDNI.TabIndex = 15;
-            this.txtBoxDNI.UseSystemPasswordChar = false;
-            // 
-            // txtBoxRazonSocial
-            // 
-            this.txtBoxRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxRazonSocial.Depth = 0;
-            this.txtBoxRazonSocial.Hint = "";
-            this.txtBoxRazonSocial.Location = new System.Drawing.Point(318, 3);
-            this.txtBoxRazonSocial.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
-            this.txtBoxRazonSocial.PasswordChar = '\0';
-            this.txtBoxRazonSocial.SelectedText = "";
-            this.txtBoxRazonSocial.SelectionLength = 0;
-            this.txtBoxRazonSocial.SelectionStart = 0;
-            this.txtBoxRazonSocial.Size = new System.Drawing.Size(297, 23);
-            this.txtBoxRazonSocial.TabIndex = 16;
-            this.txtBoxRazonSocial.UseSystemPasswordChar = false;
-            // 
-            // txtBoxApellido
-            // 
-            this.txtBoxApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxApellido.Depth = 0;
-            this.txtBoxApellido.Hint = "";
-            this.txtBoxApellido.Location = new System.Drawing.Point(318, 32);
-            this.txtBoxApellido.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxApellido.Name = "txtBoxApellido";
-            this.txtBoxApellido.PasswordChar = '\0';
-            this.txtBoxApellido.SelectedText = "";
-            this.txtBoxApellido.SelectionLength = 0;
-            this.txtBoxApellido.SelectionStart = 0;
-            this.txtBoxApellido.Size = new System.Drawing.Size(297, 23);
-            this.txtBoxApellido.TabIndex = 17;
-            this.txtBoxApellido.UseSystemPasswordChar = false;
-            // 
-            // txtBoxNombre
-            // 
-            this.txtBoxNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNombre.Depth = 0;
-            this.txtBoxNombre.Hint = "";
-            this.txtBoxNombre.Location = new System.Drawing.Point(318, 63);
-            this.txtBoxNombre.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxNombre.Name = "txtBoxNombre";
-            this.txtBoxNombre.PasswordChar = '\0';
-            this.txtBoxNombre.SelectedText = "";
-            this.txtBoxNombre.SelectionLength = 0;
-            this.txtBoxNombre.SelectionStart = 0;
-            this.txtBoxNombre.Size = new System.Drawing.Size(297, 23);
-            this.txtBoxNombre.TabIndex = 18;
-            this.txtBoxNombre.UseSystemPasswordChar = false;
-            // 
-            // txtBoxCalle
-            // 
-            this.txtBoxCalle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCalle.Depth = 0;
-            this.txtBoxCalle.Hint = "";
-            this.txtBoxCalle.Location = new System.Drawing.Point(65, 5);
-            this.txtBoxCalle.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxCalle.Name = "txtBoxCalle";
-            this.txtBoxCalle.PasswordChar = '\0';
-            this.txtBoxCalle.SelectedText = "";
-            this.txtBoxCalle.SelectionLength = 0;
-            this.txtBoxCalle.SelectionStart = 0;
-            this.txtBoxCalle.Size = new System.Drawing.Size(90, 23);
-            this.txtBoxCalle.TabIndex = 19;
-            this.txtBoxCalle.UseSystemPasswordChar = false;
-            // 
-            // txtBoxCiudad
-            // 
-            this.txtBoxCiudad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCiudad.Depth = 0;
-            this.txtBoxCiudad.Hint = "";
-            this.txtBoxCiudad.Location = new System.Drawing.Point(65, 37);
-            this.txtBoxCiudad.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxCiudad.Name = "txtBoxCiudad";
-            this.txtBoxCiudad.PasswordChar = '\0';
-            this.txtBoxCiudad.SelectedText = "";
-            this.txtBoxCiudad.SelectionLength = 0;
-            this.txtBoxCiudad.SelectionStart = 0;
-            this.txtBoxCiudad.Size = new System.Drawing.Size(90, 23);
-            this.txtBoxCiudad.TabIndex = 20;
-            this.txtBoxCiudad.UseSystemPasswordChar = false;
-            // 
-            // txtBoxNumeroDomicilio
-            // 
-            this.txtBoxNumeroDomicilio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxNumeroDomicilio.Depth = 0;
-            this.txtBoxNumeroDomicilio.Hint = "";
-            this.txtBoxNumeroDomicilio.Location = new System.Drawing.Point(267, 5);
-            this.txtBoxNumeroDomicilio.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxNumeroDomicilio.Name = "txtBoxNumeroDomicilio";
-            this.txtBoxNumeroDomicilio.PasswordChar = '\0';
-            this.txtBoxNumeroDomicilio.SelectedText = "";
-            this.txtBoxNumeroDomicilio.SelectionLength = 0;
-            this.txtBoxNumeroDomicilio.SelectionStart = 0;
-            this.txtBoxNumeroDomicilio.Size = new System.Drawing.Size(54, 23);
-            this.txtBoxNumeroDomicilio.TabIndex = 21;
-            this.txtBoxNumeroDomicilio.UseSystemPasswordChar = false;
-            // 
-            // txtBoxCodigoPostal
-            // 
-            this.txtBoxCodigoPostal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCodigoPostal.Depth = 0;
-            this.txtBoxCodigoPostal.Hint = "";
-            this.txtBoxCodigoPostal.Location = new System.Drawing.Point(267, 37);
-            this.txtBoxCodigoPostal.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxCodigoPostal.Name = "txtBoxCodigoPostal";
-            this.txtBoxCodigoPostal.PasswordChar = '\0';
-            this.txtBoxCodigoPostal.SelectedText = "";
-            this.txtBoxCodigoPostal.SelectionLength = 0;
-            this.txtBoxCodigoPostal.SelectionStart = 0;
-            this.txtBoxCodigoPostal.Size = new System.Drawing.Size(54, 23);
-            this.txtBoxCodigoPostal.TabIndex = 22;
-            this.txtBoxCodigoPostal.UseSystemPasswordChar = false;
-            // 
-            // txtBoxPiso
-            // 
-            this.txtBoxPiso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxPiso.Depth = 0;
-            this.txtBoxPiso.Hint = "";
-            this.txtBoxPiso.Location = new System.Drawing.Point(403, 5);
-            this.txtBoxPiso.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxPiso.Name = "txtBoxPiso";
-            this.txtBoxPiso.PasswordChar = '\0';
-            this.txtBoxPiso.SelectedText = "";
-            this.txtBoxPiso.SelectionLength = 0;
-            this.txtBoxPiso.SelectionStart = 0;
-            this.txtBoxPiso.Size = new System.Drawing.Size(54, 23);
-            this.txtBoxPiso.TabIndex = 23;
-            this.txtBoxPiso.UseSystemPasswordChar = false;
-            // 
-            // txtBoxDepartamento
-            // 
-            this.txtBoxDepartamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxDepartamento.Depth = 0;
-            this.txtBoxDepartamento.Hint = "";
-            this.txtBoxDepartamento.Location = new System.Drawing.Point(515, 5);
-            this.txtBoxDepartamento.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxDepartamento.Name = "txtBoxDepartamento";
-            this.txtBoxDepartamento.PasswordChar = '\0';
-            this.txtBoxDepartamento.SelectedText = "";
-            this.txtBoxDepartamento.SelectionLength = 0;
-            this.txtBoxDepartamento.SelectionStart = 0;
-            this.txtBoxDepartamento.Size = new System.Drawing.Size(94, 23);
-            this.txtBoxDepartamento.TabIndex = 24;
-            this.txtBoxDepartamento.UseSystemPasswordChar = false;
-            // 
-            // txtBoxMail
-            // 
-            this.txtBoxMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxMail.Depth = 0;
-            this.txtBoxMail.Hint = "";
-            this.txtBoxMail.Location = new System.Drawing.Point(91, 10);
-            this.txtBoxMail.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxMail.Name = "txtBoxMail";
-            this.txtBoxMail.PasswordChar = '\0';
-            this.txtBoxMail.SelectedText = "";
-            this.txtBoxMail.SelectionLength = 0;
-            this.txtBoxMail.SelectionStart = 0;
-            this.txtBoxMail.Size = new System.Drawing.Size(237, 23);
-            this.txtBoxMail.TabIndex = 10;
-            this.txtBoxMail.UseSystemPasswordChar = false;
-            // 
-            // txtBoxTelefono
-            // 
-            this.txtBoxTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxTelefono.Depth = 0;
-            this.txtBoxTelefono.Hint = "";
-            this.txtBoxTelefono.Location = new System.Drawing.Point(131, 10);
-            this.txtBoxTelefono.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxTelefono.Name = "txtBoxTelefono";
-            this.txtBoxTelefono.PasswordChar = '\0';
-            this.txtBoxTelefono.SelectedText = "";
-            this.txtBoxTelefono.SelectionLength = 0;
-            this.txtBoxTelefono.SelectionStart = 0;
-            this.txtBoxTelefono.Size = new System.Drawing.Size(141, 23);
-            this.txtBoxTelefono.TabIndex = 24;
-            this.txtBoxTelefono.UseSystemPasswordChar = false;
-            // 
             // btnDatosAdicionales
             // 
-            this.btnDatosAdicionales.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDatosAdicionales.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnDatosAdicionales.AutoSize = true;
             this.btnDatosAdicionales.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnDatosAdicionales.Depth = 0;
-            this.btnDatosAdicionales.Location = new System.Drawing.Point(4, 632);
+            this.btnDatosAdicionales.Location = new System.Drawing.Point(242, 632);
             this.btnDatosAdicionales.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnDatosAdicionales.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnDatosAdicionales.Name = "btnDatosAdicionales";
             this.btnDatosAdicionales.Primary = false;
-            this.btnDatosAdicionales.Size = new System.Drawing.Size(622, 36);
+            this.btnDatosAdicionales.Size = new System.Drawing.Size(146, 36);
             this.btnDatosAdicionales.TabIndex = 7;
             this.btnDatosAdicionales.Text = "Datos adicionales";
             this.btnDatosAdicionales.UseVisualStyleBackColor = true;
             this.btnDatosAdicionales.Click += new System.EventHandler(this.btnDatosAdicionales_Click);
-            // 
-            // btnAgregarDomicilio
-            // 
-            this.btnAgregarDomicilio.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnAgregarDomicilio.AutoSize = true;
-            this.btnAgregarDomicilio.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAgregarDomicilio.Depth = 0;
-            this.btnAgregarDomicilio.Location = new System.Drawing.Point(4, 12);
-            this.btnAgregarDomicilio.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnAgregarDomicilio.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAgregarDomicilio.Name = "btnAgregarDomicilio";
-            this.btnAgregarDomicilio.Primary = false;
-            this.btnAgregarDomicilio.Size = new System.Drawing.Size(19, 36);
-            this.btnAgregarDomicilio.TabIndex = 17;
-            this.btnAgregarDomicilio.Text = "+";
-            this.btnAgregarDomicilio.UseVisualStyleBackColor = true;
-            // 
-            // btnQuitarDomicilio
-            // 
-            this.btnQuitarDomicilio.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnQuitarDomicilio.AutoSize = true;
-            this.btnQuitarDomicilio.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnQuitarDomicilio.Depth = 0;
-            this.btnQuitarDomicilio.Location = new System.Drawing.Point(5, 60);
-            this.btnQuitarDomicilio.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnQuitarDomicilio.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnQuitarDomicilio.Name = "btnQuitarDomicilio";
-            this.btnQuitarDomicilio.Primary = false;
-            this.btnQuitarDomicilio.Size = new System.Drawing.Size(16, 36);
-            this.btnQuitarDomicilio.TabIndex = 18;
-            this.btnQuitarDomicilio.Text = "-";
-            this.btnQuitarDomicilio.UseVisualStyleBackColor = true;
-            // 
-            // btnAgregarMail
-            // 
-            this.btnAgregarMail.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnAgregarMail.AutoSize = true;
-            this.btnAgregarMail.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAgregarMail.Depth = 0;
-            this.btnAgregarMail.Location = new System.Drawing.Point(4, 6);
-            this.btnAgregarMail.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnAgregarMail.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAgregarMail.Name = "btnAgregarMail";
-            this.btnAgregarMail.Primary = false;
-            this.btnAgregarMail.Size = new System.Drawing.Size(19, 19);
-            this.btnAgregarMail.TabIndex = 1;
-            this.btnAgregarMail.Text = "+";
-            this.btnAgregarMail.UseVisualStyleBackColor = true;
-            // 
-            // btnQuitarMail
-            // 
-            this.btnQuitarMail.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnQuitarMail.AutoSize = true;
-            this.btnQuitarMail.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnQuitarMail.Depth = 0;
-            this.btnQuitarMail.Location = new System.Drawing.Point(5, 37);
-            this.btnQuitarMail.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnQuitarMail.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnQuitarMail.Name = "btnQuitarMail";
-            this.btnQuitarMail.Primary = false;
-            this.btnQuitarMail.Size = new System.Drawing.Size(16, 20);
-            this.btnQuitarMail.TabIndex = 2;
-            this.btnQuitarMail.Text = "-";
-            this.btnQuitarMail.UseVisualStyleBackColor = true;
-            // 
-            // btnQuitarTelefono
-            // 
-            this.btnQuitarTelefono.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnQuitarTelefono.AutoSize = true;
-            this.btnQuitarTelefono.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnQuitarTelefono.Depth = 0;
-            this.btnQuitarTelefono.Location = new System.Drawing.Point(5, 37);
-            this.btnQuitarTelefono.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnQuitarTelefono.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnQuitarTelefono.Name = "btnQuitarTelefono";
-            this.btnQuitarTelefono.Primary = false;
-            this.btnQuitarTelefono.Size = new System.Drawing.Size(16, 20);
-            this.btnQuitarTelefono.TabIndex = 25;
-            this.btnQuitarTelefono.Text = "-";
-            this.btnQuitarTelefono.UseVisualStyleBackColor = true;
-            // 
-            // btnAgregarTelefono
-            // 
-            this.btnAgregarTelefono.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnAgregarTelefono.AutoSize = true;
-            this.btnAgregarTelefono.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAgregarTelefono.Depth = 0;
-            this.btnAgregarTelefono.Location = new System.Drawing.Point(4, 6);
-            this.btnAgregarTelefono.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnAgregarTelefono.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAgregarTelefono.Name = "btnAgregarTelefono";
-            this.btnAgregarTelefono.Primary = false;
-            this.btnAgregarTelefono.Size = new System.Drawing.Size(19, 19);
-            this.btnAgregarTelefono.TabIndex = 26;
-            this.btnAgregarTelefono.Text = "+";
-            this.btnAgregarTelefono.UseVisualStyleBackColor = true;
             // 
             // frmABMEntidad
             // 

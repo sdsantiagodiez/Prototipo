@@ -40,8 +40,10 @@
             this.dgvSeleccion.AllowUserToOrderColumns = true;
             this.dgvSeleccion.AllowUserToResizeRows = false;
             this.dgvSeleccion.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSeleccion.BackgroundColor = System.Drawing.Color.White;
             this.dgvSeleccion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSeleccion.Location = new System.Drawing.Point(12, 25);
+            this.dgvSeleccion.GridColor = System.Drawing.Color.White;
+            this.dgvSeleccion.Location = new System.Drawing.Point(12, 88);
             this.dgvSeleccion.Name = "dgvSeleccion";
             this.dgvSeleccion.ReadOnly = true;
             this.dgvSeleccion.RowHeadersVisible = false;
@@ -53,7 +55,8 @@
             // lblGuia
             // 
             this.lblGuia.AutoSize = true;
-            this.lblGuia.Location = new System.Drawing.Point(12, 9);
+            this.lblGuia.BackColor = System.Drawing.Color.White;
+            this.lblGuia.Location = new System.Drawing.Point(12, 72);
             this.lblGuia.Name = "lblGuia";
             this.lblGuia.Size = new System.Drawing.Size(292, 13);
             this.lblGuia.TabIndex = 1;
@@ -63,11 +66,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1031, 217);
+            this.ClientSize = new System.Drawing.Size(1031, 280);
             this.Controls.Add(this.lblGuia);
             this.Controls.Add(this.dgvSeleccion);
             this.Name = "frmSeleccion";
-            this.Text = "frmSeleccion";
             ((System.ComponentModel.ISupportInitialize)(this.dgvSeleccion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -8,10 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
+using MaterialSkin;
+using MaterialSkin.Animations;
+using MaterialSkin.Controls;
 
 namespace Vista
 {
-    public partial class frmPedidoCierre_EditarLineaPedido : Form
+    public partial class frmPedidoCierre_EditarLineaPedido : MaterialForm
     {
         private ModeloLineaPedido glb_mod_lineaActual;
 
@@ -19,6 +22,12 @@ namespace Vista
         public frmPedidoCierre_EditarLineaPedido()
         {
             InitializeComponent();
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            dgvDescuentos.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            dgvDescuentos.EnableHeadersVisualStyles = false; 
             this.DialogResult = System.Windows.Forms.DialogResult.No;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.txtBoxCodigoOriginal.Enabled =

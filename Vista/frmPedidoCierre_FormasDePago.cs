@@ -9,16 +9,25 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using LibreriaClasesCompartidas;
+using MaterialSkin;
+using MaterialSkin.Animations;
+using MaterialSkin.Controls;
 
 namespace Vista
 {
-    public partial class frmPedidoCierre_FormasDePago : Form
+    public partial class frmPedidoCierre_FormasDePago : MaterialForm
     {
         private ModeloPedido pedidoActual;
         #region Constructores
         public frmPedidoCierre_FormasDePago()
         {
             InitializeComponent();
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            dgvFormasPago.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            dgvFormasPago.EnableHeadersVisualStyles = false; 
             this.inicializarDataGridView();
             this.inicializarComboBox();
             this.StartPosition = FormStartPosition.CenterScreen;

@@ -8,10 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
+using MaterialSkin;
+using MaterialSkin.Animations;
+using MaterialSkin.Controls;
 
 namespace Vista
 {
-    public partial class frmABMEntidadDatosAdicionalesContactoProveedor : Form
+    public partial class frmABMEntidadDatosAdicionalesContactoProveedor : MaterialForm
     {
         #region Atributos
         private ModeloContactoProveedor _contactoProveedor;
@@ -27,11 +30,15 @@ namespace Vista
         public frmABMEntidadDatosAdicionalesContactoProveedor()
         {
             InitializeComponent();
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             this.inicializarFormulario();
             contactoProveedor = new ModeloContactoProveedor();
 
             txtBoxCUIT.KeyPress += this.valorCUIT;
-            txtBoxCUIT.MaxLength = ModeloEntidad.CUIT.longitud;
+            //txtBoxCUIT.MaxLength = ModeloEntidad.CUIT.longitud;
         }
         public frmABMEntidadDatosAdicionalesContactoProveedor(ModeloContactoProveedor p_mod_contactoProveedor) : this()
         {
@@ -50,7 +57,7 @@ namespace Vista
             this.MinimizeBox = false;
             
             this.StartPosition = FormStartPosition.CenterParent;
-            txtBoxCodigoSeleccionado.ReadOnly = txtBoxCUITSeleccionado.ReadOnly = txtBoxRazonSocialSeleccionado.ReadOnly = true;
+            //txtBoxCodigoSeleccionado.ReadOnly = txtBoxCUITSeleccionado.ReadOnly = txtBoxRazonSocialSeleccionado.ReadOnly = true;
         }
         #endregion
 
