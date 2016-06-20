@@ -47,10 +47,6 @@
             this.dtpFechaFacturacion = new System.Windows.Forms.DateTimePicker();
             this.lblFechaFactura = new System.Windows.Forms.Label();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.chbxNCB = new System.Windows.Forms.CheckBox();
-            this.chbxNCA = new System.Windows.Forms.CheckBox();
-            this.chbxFCB = new System.Windows.Forms.CheckBox();
-            this.chbxFCA = new System.Windows.Forms.CheckBox();
             this.chkTodos = new MaterialSkin.Controls.MaterialCheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnFacturar = new MaterialSkin.Controls.MaterialFlatButton();
@@ -58,6 +54,10 @@
             this.buscarComprobantesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parámetrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.chbxFCA = new MaterialSkin.Controls.MaterialCheckBox();
+            this.chbxFCB = new MaterialSkin.Controls.MaterialCheckBox();
+            this.chbxNCA = new MaterialSkin.Controls.MaterialCheckBox();
+            this.chbxNCB = new MaterialSkin.Controls.MaterialCheckBox();
             this.tlpContenedor.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComprSinFact)).BeginInit();
@@ -300,10 +300,10 @@
             // 
             this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Controls.Add(this.chbxNCB, 0, 3);
-            this.tableLayoutPanel6.Controls.Add(this.chbxNCA, 0, 2);
-            this.tableLayoutPanel6.Controls.Add(this.chbxFCB, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.chbxFCA, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.chbxFCB, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.chbxNCA, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.chbxNCB, 0, 3);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 75);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -314,60 +314,6 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(231, 113);
             this.tableLayoutPanel6.TabIndex = 3;
-            // 
-            // chbxNCB
-            // 
-            this.chbxNCB.AutoSize = true;
-            this.chbxNCB.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSlateGray;
-            this.chbxNCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxNCB.Location = new System.Drawing.Point(3, 87);
-            this.chbxNCB.Name = "chbxNCB";
-            this.chbxNCB.Size = new System.Drawing.Size(133, 20);
-            this.chbxNCB.TabIndex = 3;
-            this.chbxNCB.Text = "Nota de Crédito B";
-            this.chbxNCB.UseVisualStyleBackColor = true;
-            // 
-            // chbxNCA
-            // 
-            this.chbxNCA.AutoSize = true;
-            this.chbxNCA.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.chbxNCA.FlatAppearance.BorderSize = 2;
-            this.chbxNCA.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSlateGray;
-            this.chbxNCA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxNCA.Location = new System.Drawing.Point(3, 59);
-            this.chbxNCA.Name = "chbxNCA";
-            this.chbxNCA.Size = new System.Drawing.Size(133, 20);
-            this.chbxNCA.TabIndex = 2;
-            this.chbxNCA.Text = "Nota de Crédito A";
-            this.chbxNCA.UseVisualStyleBackColor = true;
-            // 
-            // chbxFCB
-            // 
-            this.chbxFCB.AutoSize = true;
-            this.chbxFCB.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.chbxFCB.FlatAppearance.BorderSize = 2;
-            this.chbxFCB.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSlateGray;
-            this.chbxFCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxFCB.Location = new System.Drawing.Point(3, 31);
-            this.chbxFCB.Name = "chbxFCB";
-            this.chbxFCB.Size = new System.Drawing.Size(84, 20);
-            this.chbxFCB.TabIndex = 1;
-            this.chbxFCB.Text = "Factura B";
-            this.chbxFCB.UseVisualStyleBackColor = true;
-            // 
-            // chbxFCA
-            // 
-            this.chbxFCA.AutoSize = true;
-            this.chbxFCA.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.chbxFCA.FlatAppearance.BorderSize = 2;
-            this.chbxFCA.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSlateGray;
-            this.chbxFCA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxFCA.Location = new System.Drawing.Point(3, 3);
-            this.chbxFCA.Name = "chbxFCA";
-            this.chbxFCA.Size = new System.Drawing.Size(84, 20);
-            this.chbxFCA.TabIndex = 0;
-            this.chbxFCA.Text = "Factura A";
-            this.chbxFCA.UseVisualStyleBackColor = true;
             // 
             // chkTodos
             // 
@@ -445,7 +391,7 @@
             // 
             this.buscarComprobantesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.buscarComprobantesToolStripMenuItem.Name = "buscarComprobantesToolStripMenuItem";
-            this.buscarComprobantesToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
+            this.buscarComprobantesToolStripMenuItem.Size = new System.Drawing.Size(124, 20);
             this.buscarComprobantesToolStripMenuItem.Text = "Buscar Comprobantes";
             this.buscarComprobantesToolStripMenuItem.Click += new System.EventHandler(this.buscarComprobantesToolStripMenuItem_Click);
             // 
@@ -453,7 +399,7 @@
             // 
             this.parámetrosToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.parámetrosToolStripMenuItem.Name = "parámetrosToolStripMenuItem";
-            this.parámetrosToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.parámetrosToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.parámetrosToolStripMenuItem.Text = "Preferencias";
             this.parámetrosToolStripMenuItem.Click += new System.EventHandler(this.parámetrosToolStripMenuItem_Click);
             // 
@@ -468,6 +414,74 @@
             this.menuStrip1.Size = new System.Drawing.Size(926, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // chbxFCA
+            // 
+            this.chbxFCA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbxFCA.AutoSize = true;
+            this.chbxFCA.Depth = 0;
+            this.chbxFCA.Font = new System.Drawing.Font("Roboto", 10F);
+            this.chbxFCA.Location = new System.Drawing.Point(0, 0);
+            this.chbxFCA.Margin = new System.Windows.Forms.Padding(0);
+            this.chbxFCA.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chbxFCA.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chbxFCA.Name = "chbxFCA";
+            this.chbxFCA.Ripple = true;
+            this.chbxFCA.Size = new System.Drawing.Size(231, 28);
+            this.chbxFCA.TabIndex = 4;
+            this.chbxFCA.Text = "Factura A";
+            this.chbxFCA.UseVisualStyleBackColor = true;
+            // 
+            // chbxFCB
+            // 
+            this.chbxFCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbxFCB.AutoSize = true;
+            this.chbxFCB.Depth = 0;
+            this.chbxFCB.Font = new System.Drawing.Font("Roboto", 10F);
+            this.chbxFCB.Location = new System.Drawing.Point(0, 28);
+            this.chbxFCB.Margin = new System.Windows.Forms.Padding(0);
+            this.chbxFCB.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chbxFCB.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chbxFCB.Name = "chbxFCB";
+            this.chbxFCB.Ripple = true;
+            this.chbxFCB.Size = new System.Drawing.Size(231, 28);
+            this.chbxFCB.TabIndex = 5;
+            this.chbxFCB.Text = "Factura B";
+            this.chbxFCB.UseVisualStyleBackColor = true;
+            // 
+            // chbxNCA
+            // 
+            this.chbxNCA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbxNCA.AutoSize = true;
+            this.chbxNCA.Depth = 0;
+            this.chbxNCA.Font = new System.Drawing.Font("Roboto", 10F);
+            this.chbxNCA.Location = new System.Drawing.Point(0, 56);
+            this.chbxNCA.Margin = new System.Windows.Forms.Padding(0);
+            this.chbxNCA.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chbxNCA.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chbxNCA.Name = "chbxNCA";
+            this.chbxNCA.Ripple = true;
+            this.chbxNCA.Size = new System.Drawing.Size(231, 28);
+            this.chbxNCA.TabIndex = 6;
+            this.chbxNCA.Text = "Nota de Crédito A";
+            this.chbxNCA.UseVisualStyleBackColor = true;
+            // 
+            // chbxNCB
+            // 
+            this.chbxNCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbxNCB.AutoSize = true;
+            this.chbxNCB.Depth = 0;
+            this.chbxNCB.Font = new System.Drawing.Font("Roboto", 10F);
+            this.chbxNCB.Location = new System.Drawing.Point(0, 84);
+            this.chbxNCB.Margin = new System.Windows.Forms.Padding(0);
+            this.chbxNCB.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chbxNCB.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chbxNCB.Name = "chbxNCB";
+            this.chbxNCB.Ripple = true;
+            this.chbxNCB.Size = new System.Drawing.Size(231, 29);
+            this.chbxNCB.TabIndex = 7;
+            this.chbxNCB.Text = "Nota de Crédito B";
+            this.chbxNCB.UseVisualStyleBackColor = true;
             // 
             // frmFacturacionMasiva
             // 
@@ -528,9 +542,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colMonto;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colFacturar;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.CheckBox chbxNCB;
-        private System.Windows.Forms.CheckBox chbxNCA;
-        private System.Windows.Forms.CheckBox chbxFCB;
-        private System.Windows.Forms.CheckBox chbxFCA;
+        private MaterialSkin.Controls.MaterialCheckBox chbxFCA;
+        private MaterialSkin.Controls.MaterialCheckBox chbxFCB;
+        private MaterialSkin.Controls.MaterialCheckBox chbxNCA;
+        private MaterialSkin.Controls.MaterialCheckBox chbxNCB;
     }
 }
