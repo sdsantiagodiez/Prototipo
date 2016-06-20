@@ -46,9 +46,11 @@
             this.lblFechaDesdeVenta = new MaterialSkin.Controls.MaterialLabel();
             this.lblReportesVenta = new MaterialSkin.Controls.MaterialLabel();
             this.tabSelector = new MaterialSkin.Controls.MaterialTabSelector();
+            this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl.SuspendLayout();
             this.tabPedidos.SuspendLayout();
             this.tabVentas.SuspendLayout();
+            this.tlpPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbxPedidosReportes
@@ -58,7 +60,7 @@
             this.cmbxPedidosReportes.FormattingEnabled = true;
             this.cmbxPedidosReportes.Location = new System.Drawing.Point(119, 25);
             this.cmbxPedidosReportes.Name = "cmbxPedidosReportes";
-            this.cmbxPedidosReportes.Size = new System.Drawing.Size(256, 21);
+            this.cmbxPedidosReportes.Size = new System.Drawing.Size(254, 21);
             this.cmbxPedidosReportes.TabIndex = 1;
             // 
             // cmbxVentasReportes
@@ -76,11 +78,12 @@
             this.tabControl.Controls.Add(this.tabPedidos);
             this.tabControl.Controls.Add(this.tabVentas);
             this.tabControl.Depth = 0;
-            this.tabControl.Location = new System.Drawing.Point(12, 90);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(3, 33);
             this.tabControl.MouseState = MaterialSkin.MouseState.HOVER;
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(394, 216);
+            this.tabControl.Size = new System.Drawing.Size(392, 221);
             this.tabControl.TabIndex = 1;
             // 
             // tabPedidos
@@ -95,7 +98,7 @@
             this.tabPedidos.Location = new System.Drawing.Point(4, 22);
             this.tabPedidos.Name = "tabPedidos";
             this.tabPedidos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPedidos.Size = new System.Drawing.Size(386, 190);
+            this.tabPedidos.Size = new System.Drawing.Size(384, 195);
             this.tabPedidos.TabIndex = 0;
             this.tabPedidos.Text = "Pedidos";
             this.tabPedidos.UseVisualStyleBackColor = true;
@@ -163,12 +166,12 @@
             // 
             this.lblFechaDesdePedido.AutoSize = true;
             this.lblFechaDesdePedido.Depth = 0;
-            this.lblFechaDesdePedido.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaDesdePedido.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblFechaDesdePedido.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblFechaDesdePedido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblFechaDesdePedido.Location = new System.Drawing.Point(3, 58);
             this.lblFechaDesdePedido.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblFechaDesdePedido.Name = "lblFechaDesdePedido";
-            this.lblFechaDesdePedido.Size = new System.Drawing.Size(110, 18);
+            this.lblFechaDesdePedido.Size = new System.Drawing.Size(99, 19);
             this.lblFechaDesdePedido.TabIndex = 1;
             this.lblFechaDesdePedido.Text = "Fecha Desde:";
             // 
@@ -176,12 +179,12 @@
             // 
             this.lblReportesPedidos.AutoSize = true;
             this.lblReportesPedidos.Depth = 0;
-            this.lblReportesPedidos.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReportesPedidos.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblReportesPedidos.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblReportesPedidos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblReportesPedidos.Location = new System.Drawing.Point(31, 24);
             this.lblReportesPedidos.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblReportesPedidos.Name = "lblReportesPedidos";
-            this.lblReportesPedidos.Size = new System.Drawing.Size(82, 18);
+            this.lblReportesPedidos.Size = new System.Drawing.Size(73, 19);
             this.lblReportesPedidos.TabIndex = 0;
             this.lblReportesPedidos.Text = "Reportes:";
             // 
@@ -252,12 +255,12 @@
             // 
             this.lblFechaHastaVenta.AutoSize = true;
             this.lblFechaHastaVenta.Depth = 0;
-            this.lblFechaHastaVenta.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaHastaVenta.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblFechaHastaVenta.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblFechaHastaVenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblFechaHastaVenta.Location = new System.Drawing.Point(6, 97);
             this.lblFechaHastaVenta.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblFechaHastaVenta.Name = "lblFechaHastaVenta";
-            this.lblFechaHastaVenta.Size = new System.Drawing.Size(107, 18);
+            this.lblFechaHastaVenta.Size = new System.Drawing.Size(97, 19);
             this.lblFechaHastaVenta.TabIndex = 3;
             this.lblFechaHastaVenta.Text = "Fecha Hasta:";
             // 
@@ -265,12 +268,12 @@
             // 
             this.lblFechaDesdeVenta.AutoSize = true;
             this.lblFechaDesdeVenta.Depth = 0;
-            this.lblFechaDesdeVenta.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaDesdeVenta.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblFechaDesdeVenta.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblFechaDesdeVenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblFechaDesdeVenta.Location = new System.Drawing.Point(3, 58);
             this.lblFechaDesdeVenta.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblFechaDesdeVenta.Name = "lblFechaDesdeVenta";
-            this.lblFechaDesdeVenta.Size = new System.Drawing.Size(110, 18);
+            this.lblFechaDesdeVenta.Size = new System.Drawing.Size(99, 19);
             this.lblFechaDesdeVenta.TabIndex = 2;
             this.lblFechaDesdeVenta.Text = "Fecha Desde:";
             // 
@@ -278,12 +281,12 @@
             // 
             this.lblReportesVenta.AutoSize = true;
             this.lblReportesVenta.Depth = 0;
-            this.lblReportesVenta.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReportesVenta.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblReportesVenta.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblReportesVenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblReportesVenta.Location = new System.Drawing.Point(31, 24);
             this.lblReportesVenta.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblReportesVenta.Name = "lblReportesVenta";
-            this.lblReportesVenta.Size = new System.Drawing.Size(82, 18);
+            this.lblReportesVenta.Size = new System.Drawing.Size(73, 19);
             this.lblReportesVenta.TabIndex = 1;
             this.lblReportesVenta.Text = "Reportes:";
             // 
@@ -291,22 +294,37 @@
             // 
             this.tabSelector.BaseTabControl = this.tabControl;
             this.tabSelector.Depth = 0;
-            this.tabSelector.Location = new System.Drawing.Point(0, 61);
+            this.tabSelector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabSelector.Location = new System.Drawing.Point(0, 0);
             this.tabSelector.Margin = new System.Windows.Forms.Padding(0);
             this.tabSelector.MouseState = MaterialSkin.MouseState.HOVER;
             this.tabSelector.Name = "tabSelector";
-            this.tabSelector.Size = new System.Drawing.Size(419, 23);
+            this.tabSelector.Size = new System.Drawing.Size(398, 30);
             this.tabSelector.TabIndex = 2;
             this.tabSelector.Text = "materialTabSelector1";
+            // 
+            // tlpPrincipal
+            // 
+            this.tlpPrincipal.ColumnCount = 1;
+            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpPrincipal.Controls.Add(this.tabSelector, 0, 0);
+            this.tlpPrincipal.Controls.Add(this.tabControl, 0, 1);
+            this.tlpPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tlpPrincipal.Location = new System.Drawing.Point(0, 61);
+            this.tlpPrincipal.Name = "tlpPrincipal";
+            this.tlpPrincipal.RowCount = 2;
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpPrincipal.Size = new System.Drawing.Size(398, 257);
+            this.tlpPrincipal.TabIndex = 3;
             // 
             // frmReporteSeleccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(419, 320);
-            this.Controls.Add(this.tabSelector);
-            this.Controls.Add(this.tabControl);
+            this.ClientSize = new System.Drawing.Size(398, 318);
+            this.Controls.Add(this.tlpPrincipal);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmReporteSeleccion";
@@ -318,6 +336,7 @@
             this.tabPedidos.PerformLayout();
             this.tabVentas.ResumeLayout(false);
             this.tabVentas.PerformLayout();
+            this.tlpPrincipal.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -342,5 +361,6 @@
         private MaterialSkin.Controls.MaterialLabel lblFechaDesdeVenta;
         private MaterialSkin.Controls.MaterialLabel lblReportesVenta;
         private MaterialSkin.Controls.MaterialFlatButton btnGeneraReporteVentas;
+        private System.Windows.Forms.TableLayoutPanel tlpPrincipal;
     }
 }
