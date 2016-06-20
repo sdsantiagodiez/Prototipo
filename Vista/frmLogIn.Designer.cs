@@ -40,12 +40,12 @@
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.BackColor = System.Drawing.Color.White;
             this.lblUsuario.Depth = 0;
-            this.lblUsuario.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblUsuario.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblUsuario.Location = new System.Drawing.Point(45, 94);
             this.lblUsuario.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(71, 18);
+            this.lblUsuario.Size = new System.Drawing.Size(65, 19);
             this.lblUsuario.TabIndex = 5;
             this.lblUsuario.Text = "Usuario:";
             // 
@@ -54,12 +54,12 @@
             this.lblContrasenia.AutoSize = true;
             this.lblContrasenia.BackColor = System.Drawing.Color.White;
             this.lblContrasenia.Depth = 0;
-            this.lblContrasenia.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContrasenia.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblContrasenia.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblContrasenia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblContrasenia.Location = new System.Drawing.Point(15, 130);
             this.lblContrasenia.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblContrasenia.Name = "lblContrasenia";
-            this.lblContrasenia.Size = new System.Drawing.Size(101, 18);
+            this.lblContrasenia.Size = new System.Drawing.Size(90, 19);
             this.lblContrasenia.TabIndex = 6;
             this.lblContrasenia.Text = "Contraseña:";
             // 
@@ -123,6 +123,8 @@
             this.Controls.Add(this.btnLogIn);
             this.Controls.Add(this.lblContrasenia);
             this.Controls.Add(this.lblUsuario);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmLogIn";
             this.Text = "Ingreso al Sistema";
             this.ResumeLayout(false);

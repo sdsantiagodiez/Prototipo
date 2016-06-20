@@ -1548,6 +1548,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(699, 566);
             this.Controls.Add(this.tblLayoutPanelPrincipal);
+            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(16, 500);
             this.Name = "frmPedidoCierre";
             this.Text = "Cierre de Pedido";

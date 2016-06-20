@@ -477,6 +477,7 @@
             this.Controls.Add(this.tlpContenedor);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "frmFacturacionMasiva";
             this.Text = "Facturación";
             this.Move += new System.EventHandler(this.frmFacturacionMasiva_Move);

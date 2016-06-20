@@ -31,24 +31,24 @@
             this.grpBoxContactoProveedor = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelContactoProveedorSeleccionar = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnAceptar = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblRazonSocial = new System.Windows.Forms.Label();
             this.lblCodigo = new System.Windows.Forms.Label();
             this.lblCUIT = new System.Windows.Forms.Label();
+            this.txtBoxCodigo = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxCUIT = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxRazonSocial = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.grpBoxContactoProveedorProveedorSeleccionado = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelContactoProveedorProveedorSeleccionado = new System.Windows.Forms.TableLayoutPanel();
             this.lblRazonSocialSeleccionado = new System.Windows.Forms.Label();
             this.lblCodigoSeleccionado = new System.Windows.Forms.Label();
             this.lblCUITSeleccionado = new System.Windows.Forms.Label();
-            this.btnSeleccionarProveedor = new MaterialSkin.Controls.MaterialFlatButton();
-            this.txtBoxCodigo = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxCUIT = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxRazonSocial = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBoxCodigoSeleccionado = new MaterialSkin.Controls.MaterialLabel();
             this.txtBoxCUITSeleccionado = new MaterialSkin.Controls.MaterialLabel();
             this.txtBoxRazonSocialSeleccionado = new MaterialSkin.Controls.MaterialLabel();
-            this.btnAceptar = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnSeleccionarProveedor = new MaterialSkin.Controls.MaterialFlatButton();
             this.grpBoxContactoProveedor.SuspendLayout();
             this.tableLayoutPanelContactoProveedorSeleccionar.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -104,6 +104,40 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(378, 46);
             this.tableLayoutPanel2.TabIndex = 14;
             // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnAceptar.AutoSize = true;
+            this.btnAceptar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAceptar.Depth = 0;
+            this.btnAceptar.Location = new System.Drawing.Point(86, 6);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 6, 30, 6);
+            this.btnAceptar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Primary = false;
+            this.btnAceptar.Size = new System.Drawing.Size(73, 34);
+            this.btnAceptar.TabIndex = 2;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnCancelar.AutoSize = true;
+            this.btnCancelar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCancelar.Depth = 0;
+            this.btnCancelar.Location = new System.Drawing.Point(219, 6);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(30, 6, 4, 6);
+            this.btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Primary = false;
+            this.btnCancelar.Size = new System.Drawing.Size(82, 34);
+            this.btnCancelar.TabIndex = 3;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
@@ -158,6 +192,54 @@
             this.lblCUIT.Size = new System.Drawing.Size(43, 17);
             this.lblCUIT.TabIndex = 7;
             this.lblCUIT.Text = "CUIT:";
+            // 
+            // txtBoxCodigo
+            // 
+            this.txtBoxCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxCodigo.Depth = 0;
+            this.txtBoxCodigo.Hint = "";
+            this.txtBoxCodigo.Location = new System.Drawing.Point(68, 6);
+            this.txtBoxCodigo.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxCodigo.Name = "txtBoxCodigo";
+            this.txtBoxCodigo.PasswordChar = '\0';
+            this.txtBoxCodigo.SelectedText = "";
+            this.txtBoxCodigo.SelectionLength = 0;
+            this.txtBoxCodigo.SelectionStart = 0;
+            this.txtBoxCodigo.Size = new System.Drawing.Size(307, 23);
+            this.txtBoxCodigo.TabIndex = 13;
+            this.txtBoxCodigo.UseSystemPasswordChar = false;
+            // 
+            // txtBoxCUIT
+            // 
+            this.txtBoxCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxCUIT.Depth = 0;
+            this.txtBoxCUIT.Hint = "";
+            this.txtBoxCUIT.Location = new System.Drawing.Point(68, 42);
+            this.txtBoxCUIT.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxCUIT.Name = "txtBoxCUIT";
+            this.txtBoxCUIT.PasswordChar = '\0';
+            this.txtBoxCUIT.SelectedText = "";
+            this.txtBoxCUIT.SelectionLength = 0;
+            this.txtBoxCUIT.SelectionStart = 0;
+            this.txtBoxCUIT.Size = new System.Drawing.Size(307, 23);
+            this.txtBoxCUIT.TabIndex = 14;
+            this.txtBoxCUIT.UseSystemPasswordChar = false;
+            // 
+            // txtBoxRazonSocial
+            // 
+            this.txtBoxRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxRazonSocial.Depth = 0;
+            this.txtBoxRazonSocial.Hint = "";
+            this.txtBoxRazonSocial.Location = new System.Drawing.Point(68, 79);
+            this.txtBoxRazonSocial.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
+            this.txtBoxRazonSocial.PasswordChar = '\0';
+            this.txtBoxRazonSocial.SelectedText = "";
+            this.txtBoxRazonSocial.SelectionLength = 0;
+            this.txtBoxRazonSocial.SelectionStart = 0;
+            this.txtBoxRazonSocial.Size = new System.Drawing.Size(307, 23);
+            this.txtBoxRazonSocial.TabIndex = 15;
+            this.txtBoxRazonSocial.UseSystemPasswordChar = false;
             // 
             // grpBoxContactoProveedorProveedorSeleccionado
             // 
@@ -224,71 +306,6 @@
             this.lblCUITSeleccionado.TabIndex = 8;
             this.lblCUITSeleccionado.Text = "CUIT:";
             // 
-            // btnSeleccionarProveedor
-            // 
-            this.btnSeleccionarProveedor.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSeleccionarProveedor.AutoSize = true;
-            this.btnSeleccionarProveedor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnSeleccionarProveedor.Depth = 0;
-            this.btnSeleccionarProveedor.Location = new System.Drawing.Point(102, 122);
-            this.btnSeleccionarProveedor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnSeleccionarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnSeleccionarProveedor.Name = "btnSeleccionarProveedor";
-            this.btnSeleccionarProveedor.Primary = false;
-            this.btnSeleccionarProveedor.Size = new System.Drawing.Size(179, 34);
-            this.btnSeleccionarProveedor.TabIndex = 0;
-            this.btnSeleccionarProveedor.Text = "Seleccionar o Cambiar";
-            this.btnSeleccionarProveedor.UseVisualStyleBackColor = true;
-            this.btnSeleccionarProveedor.Click += new System.EventHandler(this.btnSeleccionarProveedor_Click);
-            // 
-            // txtBoxCodigo
-            // 
-            this.txtBoxCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCodigo.Depth = 0;
-            this.txtBoxCodigo.Hint = "";
-            this.txtBoxCodigo.Location = new System.Drawing.Point(68, 6);
-            this.txtBoxCodigo.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxCodigo.Name = "txtBoxCodigo";
-            this.txtBoxCodigo.PasswordChar = '\0';
-            this.txtBoxCodigo.SelectedText = "";
-            this.txtBoxCodigo.SelectionLength = 0;
-            this.txtBoxCodigo.SelectionStart = 0;
-            this.txtBoxCodigo.Size = new System.Drawing.Size(307, 23);
-            this.txtBoxCodigo.TabIndex = 13;
-            this.txtBoxCodigo.UseSystemPasswordChar = false;
-            // 
-            // txtBoxCUIT
-            // 
-            this.txtBoxCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCUIT.Depth = 0;
-            this.txtBoxCUIT.Hint = "";
-            this.txtBoxCUIT.Location = new System.Drawing.Point(68, 42);
-            this.txtBoxCUIT.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxCUIT.Name = "txtBoxCUIT";
-            this.txtBoxCUIT.PasswordChar = '\0';
-            this.txtBoxCUIT.SelectedText = "";
-            this.txtBoxCUIT.SelectionLength = 0;
-            this.txtBoxCUIT.SelectionStart = 0;
-            this.txtBoxCUIT.Size = new System.Drawing.Size(307, 23);
-            this.txtBoxCUIT.TabIndex = 14;
-            this.txtBoxCUIT.UseSystemPasswordChar = false;
-            // 
-            // txtBoxRazonSocial
-            // 
-            this.txtBoxRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxRazonSocial.Depth = 0;
-            this.txtBoxRazonSocial.Hint = "";
-            this.txtBoxRazonSocial.Location = new System.Drawing.Point(68, 79);
-            this.txtBoxRazonSocial.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
-            this.txtBoxRazonSocial.PasswordChar = '\0';
-            this.txtBoxRazonSocial.SelectedText = "";
-            this.txtBoxRazonSocial.SelectionLength = 0;
-            this.txtBoxRazonSocial.SelectionStart = 0;
-            this.txtBoxRazonSocial.Size = new System.Drawing.Size(307, 23);
-            this.txtBoxRazonSocial.TabIndex = 15;
-            this.txtBoxRazonSocial.UseSystemPasswordChar = false;
-            // 
             // txtBoxCodigoSeleccionado
             // 
             this.txtBoxCodigoSeleccionado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -328,39 +345,22 @@
             this.txtBoxRazonSocialSeleccionado.Size = new System.Drawing.Size(301, 19);
             this.txtBoxRazonSocialSeleccionado.TabIndex = 21;
             // 
-            // btnAceptar
+            // btnSeleccionarProveedor
             // 
-            this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAceptar.AutoSize = true;
-            this.btnAceptar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAceptar.Depth = 0;
-            this.btnAceptar.Location = new System.Drawing.Point(86, 6);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 6, 30, 6);
-            this.btnAceptar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Primary = false;
-            this.btnAceptar.Size = new System.Drawing.Size(73, 34);
-            this.btnAceptar.TabIndex = 2;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnCancelar.AutoSize = true;
-            this.btnCancelar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCancelar.Depth = 0;
-            this.btnCancelar.Location = new System.Drawing.Point(219, 6);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(30, 6, 4, 6);
-            this.btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Primary = false;
-            this.btnCancelar.Size = new System.Drawing.Size(82, 34);
-            this.btnCancelar.TabIndex = 3;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnSeleccionarProveedor.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSeleccionarProveedor.AutoSize = true;
+            this.btnSeleccionarProveedor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSeleccionarProveedor.Depth = 0;
+            this.btnSeleccionarProveedor.Location = new System.Drawing.Point(102, 122);
+            this.btnSeleccionarProveedor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnSeleccionarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnSeleccionarProveedor.Name = "btnSeleccionarProveedor";
+            this.btnSeleccionarProveedor.Primary = false;
+            this.btnSeleccionarProveedor.Size = new System.Drawing.Size(179, 34);
+            this.btnSeleccionarProveedor.TabIndex = 0;
+            this.btnSeleccionarProveedor.Text = "Seleccionar o Cambiar";
+            this.btnSeleccionarProveedor.UseVisualStyleBackColor = true;
+            this.btnSeleccionarProveedor.Click += new System.EventHandler(this.btnSeleccionarProveedor_Click);
             // 
             // frmABMEntidadDatosAdicionalesContactoProveedor
             // 
@@ -368,6 +368,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(390, 435);
             this.Controls.Add(this.grpBoxContactoProveedor);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(390, 410);
             this.Name = "frmABMEntidadDatosAdicionalesContactoProveedor";
             this.Text = "Datos Adicionales de Contacto de Proveedor";

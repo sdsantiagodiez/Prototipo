@@ -188,6 +188,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(450, 349);
             this.Controls.Add(this.tblLayouttPanelForm);
+            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(450, 230);
             this.Name = "frmABMArticulo";
             this.Text = "Artículo";

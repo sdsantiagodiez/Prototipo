@@ -30,6 +30,8 @@
         {
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelBotones = new System.Windows.Forms.TableLayoutPanel();
+            this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnGuardar = new MaterialSkin.Controls.MaterialFlatButton();
             this.tblLayoutPanelDescuentos = new System.Windows.Forms.TableLayoutPanel();
             this.dgvFormasPago = new System.Windows.Forms.DataGridView();
             this.tblLayoutPanelFormaPagoRestante = new System.Windows.Forms.TableLayoutPanel();
@@ -42,12 +44,10 @@
             this.lblFormaPago = new System.Windows.Forms.Label();
             this.lblMonto = new System.Windows.Forms.Label();
             this.cmbBoxFormaPago = new System.Windows.Forms.ComboBox();
-            this.tblLayoutPanelFormaPagoBotones = new System.Windows.Forms.TableLayoutPanel();
             this.txtBoxMonto = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.tblLayoutPanelFormaPagoBotones = new System.Windows.Forms.TableLayoutPanel();
             this.btnAgrearFormaPago = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnQuitarFormaPago = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnGuardar = new MaterialSkin.Controls.MaterialFlatButton();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
             this.tblLayoutPanelDescuentos.SuspendLayout();
@@ -91,6 +91,40 @@
             this.tblLayoutPanelBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tblLayoutPanelBotones.Size = new System.Drawing.Size(522, 44);
             this.tblLayoutPanelBotones.TabIndex = 3;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnCancelar.AutoSize = true;
+            this.btnCancelar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCancelar.Depth = 0;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(271, 6);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(10, 6, 4, 6);
+            this.btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Primary = false;
+            this.btnCancelar.Size = new System.Drawing.Size(82, 32);
+            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnGuardar.AutoSize = true;
+            this.btnGuardar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnGuardar.Depth = 0;
+            this.btnGuardar.Location = new System.Drawing.Point(176, 6);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 6, 10, 6);
+            this.btnGuardar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Primary = false;
+            this.btnGuardar.Size = new System.Drawing.Size(75, 32);
+            this.btnGuardar.TabIndex = 2;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // tblLayoutPanelDescuentos
             // 
@@ -252,22 +286,6 @@
             this.cmbBoxFormaPago.Size = new System.Drawing.Size(148, 21);
             this.cmbBoxFormaPago.TabIndex = 6;
             // 
-            // tblLayoutPanelFormaPagoBotones
-            // 
-            this.tblLayoutPanelFormaPagoBotones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tblLayoutPanelFormaPagoBotones.ColumnCount = 1;
-            this.tblLayoutPanelFormaPagoBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelFormaPagoBotones.Controls.Add(this.btnAgrearFormaPago, 0, 0);
-            this.tblLayoutPanelFormaPagoBotones.Controls.Add(this.btnQuitarFormaPago, 0, 1);
-            this.tblLayoutPanelFormaPagoBotones.Location = new System.Drawing.Point(163, 3);
-            this.tblLayoutPanelFormaPagoBotones.Name = "tblLayoutPanelFormaPagoBotones";
-            this.tblLayoutPanelFormaPagoBotones.RowCount = 2;
-            this.tblLayoutPanelFormaPagoBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelFormaPagoBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelFormaPagoBotones.Size = new System.Drawing.Size(87, 134);
-            this.tblLayoutPanelFormaPagoBotones.TabIndex = 3;
-            // 
             // txtBoxMonto
             // 
             this.txtBoxMonto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -284,6 +302,22 @@
             this.txtBoxMonto.Size = new System.Drawing.Size(148, 23);
             this.txtBoxMonto.TabIndex = 7;
             this.txtBoxMonto.UseSystemPasswordChar = false;
+            // 
+            // tblLayoutPanelFormaPagoBotones
+            // 
+            this.tblLayoutPanelFormaPagoBotones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tblLayoutPanelFormaPagoBotones.ColumnCount = 1;
+            this.tblLayoutPanelFormaPagoBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelFormaPagoBotones.Controls.Add(this.btnAgrearFormaPago, 0, 0);
+            this.tblLayoutPanelFormaPagoBotones.Controls.Add(this.btnQuitarFormaPago, 0, 1);
+            this.tblLayoutPanelFormaPagoBotones.Location = new System.Drawing.Point(163, 3);
+            this.tblLayoutPanelFormaPagoBotones.Name = "tblLayoutPanelFormaPagoBotones";
+            this.tblLayoutPanelFormaPagoBotones.RowCount = 2;
+            this.tblLayoutPanelFormaPagoBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelFormaPagoBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelFormaPagoBotones.Size = new System.Drawing.Size(87, 134);
+            this.tblLayoutPanelFormaPagoBotones.TabIndex = 3;
             // 
             // btnAgrearFormaPago
             // 
@@ -319,46 +353,13 @@
             this.btnQuitarFormaPago.UseVisualStyleBackColor = true;
             this.btnQuitarFormaPago.Click += new System.EventHandler(this.btnQuitarFormaPago_Click);
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnCancelar.AutoSize = true;
-            this.btnCancelar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCancelar.Depth = 0;
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(271, 6);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(10, 6, 4, 6);
-            this.btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Primary = false;
-            this.btnCancelar.Size = new System.Drawing.Size(82, 32);
-            this.btnCancelar.TabIndex = 1;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnGuardar.AutoSize = true;
-            this.btnGuardar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnGuardar.Depth = 0;
-            this.btnGuardar.Location = new System.Drawing.Point(176, 6);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 6, 10, 6);
-            this.btnGuardar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Primary = false;
-            this.btnGuardar.Size = new System.Drawing.Size(75, 32);
-            this.btnGuardar.TabIndex = 2;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
             // frmPedidoCierre_FormasDePago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(528, 468);
             this.Controls.Add(this.tblLayoutPanelPrincipal);
+            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(395, 286);
             this.Name = "frmPedidoCierre_FormasDePago";
             this.Text = "Formas de Pago";

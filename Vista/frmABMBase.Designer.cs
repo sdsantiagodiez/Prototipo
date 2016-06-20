@@ -60,7 +60,7 @@
             // 
             this.toolStripMenuItemBuscar.ForeColor = System.Drawing.Color.White;
             this.toolStripMenuItemBuscar.Name = "toolStripMenuItemBuscar";
-            this.toolStripMenuItemBuscar.Size = new System.Drawing.Size(51, 20);
+            this.toolStripMenuItemBuscar.Size = new System.Drawing.Size(54, 20);
             this.toolStripMenuItemBuscar.Text = "Buscar";
             this.toolStripMenuItemBuscar.Click += new System.EventHandler(this.toolStripMenuItemBuscar_Click);
             // 
@@ -68,7 +68,7 @@
             // 
             this.toolStripMenuItemNuevo.ForeColor = System.Drawing.Color.White;
             this.toolStripMenuItemNuevo.Name = "toolStripMenuItemNuevo";
-            this.toolStripMenuItemNuevo.Size = new System.Drawing.Size(50, 20);
+            this.toolStripMenuItemNuevo.Size = new System.Drawing.Size(54, 20);
             this.toolStripMenuItemNuevo.Text = "Nuevo";
             this.toolStripMenuItemNuevo.Click += new System.EventHandler(this.toolStripMenuItemNuevo_Click);
             // 
@@ -79,21 +79,21 @@
             this.toolStripMenuItemGuardarCambios});
             this.toolStripMenuItemGuardar.ForeColor = System.Drawing.Color.White;
             this.toolStripMenuItemGuardar.Name = "toolStripMenuItemGuardar";
-            this.toolStripMenuItemGuardar.Size = new System.Drawing.Size(58, 20);
+            this.toolStripMenuItemGuardar.Size = new System.Drawing.Size(61, 20);
             this.toolStripMenuItemGuardar.Text = "Guardar";
             this.toolStripMenuItemGuardar.Click += new System.EventHandler(this.toolStripMenuItemGuardar_Click);
             // 
             // toolStripMenuItemGuardarNuevo
             // 
             this.toolStripMenuItemGuardarNuevo.Name = "toolStripMenuItemGuardarNuevo";
-            this.toolStripMenuItemGuardarNuevo.Size = new System.Drawing.Size(156, 22);
+            this.toolStripMenuItemGuardarNuevo.Size = new System.Drawing.Size(166, 22);
             this.toolStripMenuItemGuardarNuevo.Text = "Guardar Nuevo";
             this.toolStripMenuItemGuardarNuevo.Click += new System.EventHandler(this.toolStripMenuItemGuardarNuevo_Click);
             // 
             // toolStripMenuItemGuardarCambios
             // 
             this.toolStripMenuItemGuardarCambios.Name = "toolStripMenuItemGuardarCambios";
-            this.toolStripMenuItemGuardarCambios.Size = new System.Drawing.Size(156, 22);
+            this.toolStripMenuItemGuardarCambios.Size = new System.Drawing.Size(166, 22);
             this.toolStripMenuItemGuardarCambios.Text = "Guardar Cambios";
             this.toolStripMenuItemGuardarCambios.Click += new System.EventHandler(this.toolStripMenuItemGuardarCambios_Click);
             // 
@@ -101,7 +101,7 @@
             // 
             this.toolStripMenuItemEliminar.ForeColor = System.Drawing.Color.White;
             this.toolStripMenuItemEliminar.Name = "toolStripMenuItemEliminar";
-            this.toolStripMenuItemEliminar.Size = new System.Drawing.Size(55, 20);
+            this.toolStripMenuItemEliminar.Size = new System.Drawing.Size(62, 20);
             this.toolStripMenuItemEliminar.Text = "Eliminar";
             this.toolStripMenuItemEliminar.Click += new System.EventHandler(this.toolStripMenuItemEliminar_Click);
             // 
@@ -111,7 +111,7 @@
             this.toolStripMenuItemLimpiarCampos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripMenuItemLimpiarCampos.ForeColor = System.Drawing.Color.White;
             this.toolStripMenuItemLimpiarCampos.Name = "toolStripMenuItemLimpiarCampos";
-            this.toolStripMenuItemLimpiarCampos.Size = new System.Drawing.Size(93, 20);
+            this.toolStripMenuItemLimpiarCampos.Size = new System.Drawing.Size(106, 20);
             this.toolStripMenuItemLimpiarCampos.Text = "Limpiar Campos";
             this.toolStripMenuItemLimpiarCampos.Click += new System.EventHandler(this.toolStripMenuItemLimpiarCampos_Click);
             // 
@@ -119,7 +119,7 @@
             // 
             this.toolStripMenuItemCancelar.ForeColor = System.Drawing.Color.White;
             this.toolStripMenuItemCancelar.Name = "toolStripMenuItemCancelar";
-            this.toolStripMenuItemCancelar.Size = new System.Drawing.Size(61, 20);
+            this.toolStripMenuItemCancelar.Size = new System.Drawing.Size(65, 20);
             this.toolStripMenuItemCancelar.Text = "Cancelar";
             this.toolStripMenuItemCancelar.Click += new System.EventHandler(this.toolStripMenuItemCancelar_Click);
             // 
@@ -130,6 +130,7 @@
             this.ClientSize = new System.Drawing.Size(571, 308);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "frmABMBase";
             this.Text = "Altas, Bajas y Modificaciones";
             this.menuStrip1.ResumeLayout(false);

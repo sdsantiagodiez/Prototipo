@@ -463,7 +463,6 @@
             this.Controls.Add(this.tblMainMenu);
             this.MainMenuStrip = this.mstPrincipal;
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmMenuPrincipal";
             this.Text = "Menú Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

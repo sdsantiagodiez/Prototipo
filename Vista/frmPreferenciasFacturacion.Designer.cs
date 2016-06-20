@@ -471,6 +471,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(593, 270);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmPreferenciasFacturacion";
             this.Text = "Preferencias";
             this.tableLayoutPanel1.ResumeLayout(false);

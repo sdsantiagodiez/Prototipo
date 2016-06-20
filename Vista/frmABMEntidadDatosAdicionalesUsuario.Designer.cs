@@ -286,6 +286,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(371, 473);
             this.Controls.Add(this.grpBoxDatosUsuario);
+            this.MaximizeBox = false;
             this.Name = "frmABMEntidadDatosAdicionalesUsuario";
             this.Text = "Datos Adicionales de Usuario";
             this.grpBoxDatosUsuario.ResumeLayout(false);

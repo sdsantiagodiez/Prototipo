@@ -30,7 +30,7 @@
         {
             this.cmbxPedidosReportes = new System.Windows.Forms.ComboBox();
             this.cmbxVentasReportes = new System.Windows.Forms.ComboBox();
-            this.tabControl = new MaterialSkin.Controls.MaterialTabControl();
+            this.tabInventario = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPedidos = new System.Windows.Forms.TabPage();
             this.btnGeneraReportePedido = new MaterialSkin.Controls.MaterialFlatButton();
             this.lblFechaHastaPedido = new MaterialSkin.Controls.MaterialLabel();
@@ -46,7 +46,8 @@
             this.lblFechaDesdeVenta = new MaterialSkin.Controls.MaterialLabel();
             this.lblReportesVenta = new MaterialSkin.Controls.MaterialLabel();
             this.tabSelector = new MaterialSkin.Controls.MaterialTabSelector();
-            this.tabControl.SuspendLayout();
+            this.tabInventary = new System.Windows.Forms.TabPage();
+            this.tabInventario.SuspendLayout();
             this.tabPedidos.SuspendLayout();
             this.tabVentas.SuspendLayout();
             this.SuspendLayout();
@@ -71,17 +72,18 @@
             this.cmbxVentasReportes.Size = new System.Drawing.Size(256, 21);
             this.cmbxVentasReportes.TabIndex = 1;
             // 
-            // tabControl
+            // tabInventario
             // 
-            this.tabControl.Controls.Add(this.tabPedidos);
-            this.tabControl.Controls.Add(this.tabVentas);
-            this.tabControl.Depth = 0;
-            this.tabControl.Location = new System.Drawing.Point(12, 90);
-            this.tabControl.MouseState = MaterialSkin.MouseState.HOVER;
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(394, 216);
-            this.tabControl.TabIndex = 1;
+            this.tabInventario.Controls.Add(this.tabPedidos);
+            this.tabInventario.Controls.Add(this.tabVentas);
+            this.tabInventario.Controls.Add(this.tabInventary);
+            this.tabInventario.Depth = 0;
+            this.tabInventario.Location = new System.Drawing.Point(12, 90);
+            this.tabInventario.MouseState = MaterialSkin.MouseState.HOVER;
+            this.tabInventario.Name = "tabInventario";
+            this.tabInventario.SelectedIndex = 0;
+            this.tabInventario.Size = new System.Drawing.Size(394, 216);
+            this.tabInventario.TabIndex = 1;
             // 
             // tabPedidos
             // 
@@ -289,7 +291,7 @@
             // 
             // tabSelector
             // 
-            this.tabSelector.BaseTabControl = this.tabControl;
+            this.tabSelector.BaseTabControl = this.tabInventario;
             this.tabSelector.Depth = 0;
             this.tabSelector.Location = new System.Drawing.Point(0, 61);
             this.tabSelector.Margin = new System.Windows.Forms.Padding(0);
@@ -299,6 +301,16 @@
             this.tabSelector.TabIndex = 2;
             this.tabSelector.Text = "materialTabSelector1";
             // 
+            // tabInventary
+            // 
+            this.tabInventary.Location = new System.Drawing.Point(4, 22);
+            this.tabInventary.Name = "tabInventary";
+            this.tabInventary.Padding = new System.Windows.Forms.Padding(3);
+            this.tabInventary.Size = new System.Drawing.Size(386, 190);
+            this.tabInventary.TabIndex = 2;
+            this.tabInventary.Text = "Inventario";
+            this.tabInventary.UseVisualStyleBackColor = true;
+            // 
             // frmReporteSeleccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -306,14 +318,13 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(419, 320);
             this.Controls.Add(this.tabSelector);
-            this.Controls.Add(this.tabControl);
+            this.Controls.Add(this.tabInventario);
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmReporteSeleccion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Seleccione un Reporte";
             this.Move += new System.EventHandler(this.frmReporteSeleccion_Move);
-            this.tabControl.ResumeLayout(false);
+            this.tabInventario.ResumeLayout(false);
             this.tabPedidos.ResumeLayout(false);
             this.tabPedidos.PerformLayout();
             this.tabVentas.ResumeLayout(false);
@@ -326,7 +337,7 @@
 
         private System.Windows.Forms.ComboBox cmbxPedidosReportes;
         private System.Windows.Forms.ComboBox cmbxVentasReportes;
-        private MaterialSkin.Controls.MaterialTabControl tabControl;
+        private MaterialSkin.Controls.MaterialTabControl tabInventario;
         private System.Windows.Forms.TabPage tabPedidos;
         private System.Windows.Forms.TabPage tabVentas;
         private MaterialSkin.Controls.MaterialTabSelector tabSelector;
@@ -342,5 +353,6 @@
         private MaterialSkin.Controls.MaterialLabel lblFechaDesdeVenta;
         private MaterialSkin.Controls.MaterialLabel lblReportesVenta;
         private MaterialSkin.Controls.MaterialFlatButton btnGeneraReporteVentas;
+        private System.Windows.Forms.TabPage tabInventary;
     }
 }

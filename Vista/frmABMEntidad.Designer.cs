@@ -615,7 +615,7 @@
             // 
             this.cmbBoxProvincia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxProvincia.FormattingEnabled = true;
-            this.cmbBoxProvincia.Location = new System.Drawing.Point(403, 36);
+            this.cmbBoxProvincia.Location = new System.Drawing.Point(403, 38);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxProvincia.TabIndex = 18;
@@ -657,7 +657,7 @@
             // 
             this.cmbBoxPais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxPais.FormattingEnabled = true;
-            this.cmbBoxPais.Location = new System.Drawing.Point(515, 38);
+            this.cmbBoxPais.Location = new System.Drawing.Point(515, 36);
             this.cmbBoxPais.Name = "cmbBoxPais";
             this.cmbBoxPais.Size = new System.Drawing.Size(94, 26);
             this.cmbBoxPais.TabIndex = 17;
@@ -1107,7 +1107,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 9);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 11);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxTipoTelefono.TabIndex = 23;
@@ -1292,6 +1292,7 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(630, 700);
             this.Controls.Add(this.tblLayoutPanelForm);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(630, 700);
             this.Name = "frmABMEntidad";
             this.Text = "ABM Entidades";

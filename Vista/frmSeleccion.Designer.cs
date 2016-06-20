@@ -69,6 +69,7 @@
             this.ClientSize = new System.Drawing.Size(1031, 280);
             this.Controls.Add(this.lblGuia);
             this.Controls.Add(this.dgvSeleccion);
+            this.MaximizeBox = false;
             this.Name = "frmSeleccion";
             ((System.ComponentModel.ISupportInitialize)(this.dgvSeleccion)).EndInit();
             this.ResumeLayout(false);

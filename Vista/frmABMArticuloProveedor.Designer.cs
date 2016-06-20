@@ -561,6 +561,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(450, 559);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(450, 559);
             this.Name = "frmABMArticuloProveedor";
             this.Text = "Articulo Proveedor";
