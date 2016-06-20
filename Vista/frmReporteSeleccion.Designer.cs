@@ -307,6 +307,7 @@
             // 
             // tlpPrincipal
             // 
+            this.tlpPrincipal.BackColor = System.Drawing.Color.White;
             this.tlpPrincipal.ColumnCount = 1;
             this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpPrincipal.Controls.Add(this.tabSelector, 0, 0);
