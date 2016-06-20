@@ -73,6 +73,7 @@
       <DependentUpon>frmImpresionFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PedidosEntreFechas.rdlc" />
+    <EmbeddedResource Include="StockInventario.rdlc" />
     <EmbeddedResource Include="Top10Articulos.rdlc" />
     <EmbeddedResource Include="VentasEntreFechas.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -8,6 +8,7 @@ using Modelos;
 using Reportes;
 using Vista;
 using System.Windows;
+using LibreriaClasesCompartidas;
 
 namespace Controladores
 {
@@ -15,6 +16,7 @@ namespace Controladores
     {
         public static CatalogoProveedores glb_con_proveedores = new CatalogoProveedores();
         public static CatalogoPedidos glb_con_pedidos = new CatalogoPedidos();
+        public static CatalogoArticuloProveedores glb_cat_artP = new CatalogoArticuloProveedores();
         public static List<ModeloPedido> glb_lst_mod_pedidos = new List<ModeloPedido>();
         decimal glb_var_MaxMontoTotal = 0;
         decimal glb_var_MontoTotalProveedor = 0;
@@ -143,6 +145,16 @@ namespace Controladores
             
 
         }
+
+        public FormReportes StockInventario()
+        {
+            List<ModeloArticuloProveedores> lcl_lst_mod_artP = new List<ModeloArticuloProveedores>();
+            ModeloArticuloProveedores lcl_mod_artP = new ModeloArticuloProveedores();
+            lcl_lst_mod_artP=glb_cat_artP.buscar(lcl_mod_artP,Constantes.ParametrosBusqueda.ArticulosProveedores.Descripcion);
+            FormReportes lcl_frm_reporte = new FormReportes(lcl_lst_mod_artP);
+            return lcl_frm_reporte;
+        }
+
 
         public frmImpresionFactura ImpresionFacturas(ModeloPedido p_mod_pedido)
         {

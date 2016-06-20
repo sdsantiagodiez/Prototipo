@@ -138,6 +138,25 @@ namespace Reportes
 
         }
 
+        public FormReportes(List<ModeloArticuloProveedores> p_lst_mod_artP)
+        {
+            ModeloReporteEncabezadoBindingSource.Clear();
+            ModeloReportePedidoEntreFechasBindingSource.Clear();
+
+
+            ModeloReporteEncabezadoBindingSource.DataSource = typeof(List<ModeloArticuloProveedores>);
+            ModeloReporteEncabezadoBindingSource.DataSource = p_lst_mod_artP;
+
+            this.ReporteBase.LocalReport.DataSources.RemoveAt(0);
+            //this.ReporteBase.LocalReport.DataSources.RemoveAt(1);
+            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInventarioStock", ModeloReporteEncabezadoBindingSource));
+            this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.StockInventario.rdlc";
+
+            this.ReporteBase.LocalReport.Refresh();
+            this.ReporteBase.RefreshReport();
+        
+        }
+
         
         private void FormReportes_Load(object sender, EventArgs e)
         {
