@@ -479,6 +479,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmFacturacionMasiva";
             this.Text = "Facturación";
+            this.Move += new System.EventHandler(this.frmFacturacionMasiva_Move);
             this.tlpContenedor.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvComprSinFact)).EndInit();

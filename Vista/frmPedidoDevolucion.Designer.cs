@@ -31,8 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoDevolucion));
             this.tblLayoutPanelBase = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelBotones = new System.Windows.Forms.TableLayoutPanel();
-            this.lblTotalVar = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
+            this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
+            this.lblTotalVar = new System.Windows.Forms.Label();
+            this.btnQuitar = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnQuitarTodos = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnSiguiente = new MaterialSkin.Controls.MaterialFlatButton();
             this.tblLayoutPanelArticulos = new System.Windows.Forms.TableLayoutPanel();
             this.gbxDetalleArticuloSeleccionado = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelDetalleArticulo = new System.Windows.Forms.TableLayoutPanel();
@@ -40,6 +44,7 @@
             this.tblLayoutPanelDetalleArticuloBotones = new System.Windows.Forms.TableLayoutPanel();
             this.nmrcUpDownCantidad = new System.Windows.Forms.NumericUpDown();
             this.lblCantidad = new System.Windows.Forms.Label();
+            this.btnAgregar = new MaterialSkin.Controls.MaterialFlatButton();
             this.tlpDetalles = new System.Windows.Forms.TableLayoutPanel();
             this.lblProveedorVar = new System.Windows.Forms.Label();
             this.lblObservacionesVar = new System.Windows.Forms.Label();
@@ -75,6 +80,7 @@
             this.tblLayoutPanelCuadroBusqueda = new System.Windows.Forms.TableLayoutPanel();
             this.lblCAE = new System.Windows.Forms.Label();
             this.lblLupa = new System.Windows.Forms.Label();
+            this.txtCAE = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.gbxArticulosDevolucion = new System.Windows.Forms.GroupBox();
             this.dgvArticulosDevolucion = new System.Windows.Forms.DataGridView();
             this.indice_dgvDevolucion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,12 +90,6 @@
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtCAE = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnQuitar = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnQuitarTodos = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnSiguiente = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnAgregar = new MaterialSkin.Controls.MaterialFlatButton();
             this.tblLayoutPanelBase.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
             this.tblLayoutPanelArticulos.SuspendLayout();
@@ -147,6 +147,34 @@
             this.tblLayoutPanelBotones.Size = new System.Drawing.Size(893, 54);
             this.tblLayoutPanelBotones.TabIndex = 0;
             // 
+            // lblTotal
+            // 
+            this.lblTotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(209, 18);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(51, 18);
+            this.lblTotal.TabIndex = 9;
+            this.lblTotal.Text = "Total:";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.AutoSize = true;
+            this.btnCancelar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCancelar.Depth = 0;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(4, 9);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Primary = false;
+            this.btnCancelar.Size = new System.Drawing.Size(82, 36);
+            this.btnCancelar.TabIndex = 14;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
             // lblTotalVar
             // 
             this.lblTotalVar.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -159,16 +187,54 @@
             this.lblTotalVar.TabIndex = 10;
             this.lblTotalVar.Text = "0";
             // 
-            // lblTotal
+            // btnQuitar
             // 
-            this.lblTotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(209, 18);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(51, 18);
-            this.lblTotal.TabIndex = 9;
-            this.lblTotal.Text = "Total:";
+            this.btnQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuitar.AutoSize = true;
+            this.btnQuitar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnQuitar.Depth = 0;
+            this.btnQuitar.Location = new System.Drawing.Point(357, 9);
+            this.btnQuitar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnQuitar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Primary = false;
+            this.btnQuitar.Size = new System.Drawing.Size(112, 36);
+            this.btnQuitar.TabIndex = 15;
+            this.btnQuitar.Text = "Quitar Seleccionado";
+            this.btnQuitar.UseVisualStyleBackColor = true;
+            // 
+            // btnQuitarTodos
+            // 
+            this.btnQuitarTodos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuitarTodos.AutoSize = true;
+            this.btnQuitarTodos.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnQuitarTodos.Depth = 0;
+            this.btnQuitarTodos.Location = new System.Drawing.Point(477, 9);
+            this.btnQuitarTodos.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnQuitarTodos.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnQuitarTodos.Name = "btnQuitarTodos";
+            this.btnQuitarTodos.Primary = false;
+            this.btnQuitarTodos.Size = new System.Drawing.Size(112, 36);
+            this.btnQuitarTodos.TabIndex = 16;
+            this.btnQuitarTodos.Text = "Quitar Todo";
+            this.btnQuitarTodos.UseVisualStyleBackColor = true;
+            // 
+            // btnSiguiente
+            // 
+            this.btnSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSiguiente.AutoSize = true;
+            this.btnSiguiente.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSiguiente.Depth = 0;
+            this.btnSiguiente.Location = new System.Drawing.Point(791, 9);
+            this.btnSiguiente.Margin = new System.Windows.Forms.Padding(4, 6, 12, 6);
+            this.btnSiguiente.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Primary = false;
+            this.btnSiguiente.Size = new System.Drawing.Size(90, 36);
+            this.btnSiguiente.TabIndex = 17;
+            this.btnSiguiente.Text = "Siguiente >";
+            this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
             // tblLayoutPanelArticulos
             // 
@@ -229,7 +295,7 @@
             this.tblLayoutPanelDetalleArticuloBotones.ColumnCount = 3;
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.40659F));
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.59341F));
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108F));
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.nmrcUpDownCantidad, 1, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.lblCantidad, 0, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnAgregar, 2, 0);
@@ -269,6 +335,22 @@
             this.lblCantidad.Size = new System.Drawing.Size(52, 13);
             this.lblCantidad.TabIndex = 9;
             this.lblCantidad.Text = "Cantidad:";
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAgregar.AutoSize = true;
+            this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAgregar.Depth = 0;
+            this.btnAgregar.Location = new System.Drawing.Point(156, 17);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Primary = false;
+            this.btnAgregar.Size = new System.Drawing.Size(101, 36);
+            this.btnAgregar.TabIndex = 10;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
             // 
             // tlpDetalles
             // 
@@ -664,6 +746,23 @@
             this.lblLupa.TabIndex = 8;
             this.lblLupa.Click += new System.EventHandler(this.lblLupa_Click);
             // 
+            // txtCAE
+            // 
+            this.txtCAE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCAE.Depth = 0;
+            this.txtCAE.Hint = "";
+            this.txtCAE.Location = new System.Drawing.Point(56, 3);
+            this.txtCAE.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtCAE.Name = "txtCAE";
+            this.txtCAE.PasswordChar = '\0';
+            this.txtCAE.SelectedText = "";
+            this.txtCAE.SelectionLength = 0;
+            this.txtCAE.SelectionStart = 0;
+            this.txtCAE.Size = new System.Drawing.Size(485, 23);
+            this.txtCAE.TabIndex = 9;
+            this.txtCAE.UseSystemPasswordChar = false;
+            this.txtCAE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCAE_KeyPress);
+            // 
             // gbxArticulosDevolucion
             // 
             this.gbxArticulosDevolucion.Controls.Add(this.dgvArticulosDevolucion);
@@ -752,105 +851,6 @@
             this.vParcial.Name = "vParcial";
             this.vParcial.ReadOnly = true;
             // 
-            // txtCAE
-            // 
-            this.txtCAE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCAE.Depth = 0;
-            this.txtCAE.Hint = "";
-            this.txtCAE.Location = new System.Drawing.Point(56, 3);
-            this.txtCAE.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtCAE.Name = "txtCAE";
-            this.txtCAE.PasswordChar = '\0';
-            this.txtCAE.SelectedText = "";
-            this.txtCAE.SelectionLength = 0;
-            this.txtCAE.SelectionStart = 0;
-            this.txtCAE.Size = new System.Drawing.Size(485, 23);
-            this.txtCAE.TabIndex = 9;
-            this.txtCAE.UseSystemPasswordChar = false;
-            this.txtCAE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCAE_KeyPress);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.AutoSize = true;
-            this.btnCancelar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCancelar.Depth = 0;
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(4, 9);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Primary = false;
-            this.btnCancelar.Size = new System.Drawing.Size(82, 36);
-            this.btnCancelar.TabIndex = 14;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // btnQuitar
-            // 
-            this.btnQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnQuitar.AutoSize = true;
-            this.btnQuitar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnQuitar.Depth = 0;
-            this.btnQuitar.Location = new System.Drawing.Point(357, 9);
-            this.btnQuitar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnQuitar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Primary = false;
-            this.btnQuitar.Size = new System.Drawing.Size(112, 36);
-            this.btnQuitar.TabIndex = 15;
-            this.btnQuitar.Text = "Quitar Seleccionado";
-            this.btnQuitar.UseVisualStyleBackColor = true;
-            // 
-            // btnQuitarTodos
-            // 
-            this.btnQuitarTodos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnQuitarTodos.AutoSize = true;
-            this.btnQuitarTodos.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnQuitarTodos.Depth = 0;
-            this.btnQuitarTodos.Location = new System.Drawing.Point(477, 9);
-            this.btnQuitarTodos.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnQuitarTodos.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnQuitarTodos.Name = "btnQuitarTodos";
-            this.btnQuitarTodos.Primary = false;
-            this.btnQuitarTodos.Size = new System.Drawing.Size(112, 36);
-            this.btnQuitarTodos.TabIndex = 16;
-            this.btnQuitarTodos.Text = "Quitar Todo";
-            this.btnQuitarTodos.UseVisualStyleBackColor = true;
-            // 
-            // btnSiguiente
-            // 
-            this.btnSiguiente.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSiguiente.AutoSize = true;
-            this.btnSiguiente.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnSiguiente.Depth = 0;
-            this.btnSiguiente.Location = new System.Drawing.Point(791, 9);
-            this.btnSiguiente.Margin = new System.Windows.Forms.Padding(4, 6, 12, 6);
-            this.btnSiguiente.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnSiguiente.Name = "btnSiguiente";
-            this.btnSiguiente.Primary = false;
-            this.btnSiguiente.Size = new System.Drawing.Size(90, 36);
-            this.btnSiguiente.TabIndex = 17;
-            this.btnSiguiente.Text = "Siguiente >";
-            this.btnSiguiente.UseVisualStyleBackColor = true;
-            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAgregar.AutoSize = true;
-            this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAgregar.Depth = 0;
-            this.btnAgregar.Location = new System.Drawing.Point(157, 17);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Primary = false;
-            this.btnAgregar.Size = new System.Drawing.Size(100, 36);
-            this.btnAgregar.TabIndex = 10;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            // 
             // frmPedidoDevolucion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -860,6 +860,7 @@
             this.Name = "frmPedidoDevolucion";
             this.Text = "Devolución";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPedidoDevolucion_FormClosing);
+            this.Move += new System.EventHandler(this.frmPedidoDevolucion_Move);
             this.tblLayoutPanelBase.ResumeLayout(false);
             this.tblLayoutPanelBotones.ResumeLayout(false);
             this.tblLayoutPanelBotones.PerformLayout();

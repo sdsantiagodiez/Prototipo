@@ -17,6 +17,8 @@ namespace Vista
 {
     public partial class frmMenuPrincipal : MaterialForm
     {
+        Point glb_localizacion = new System.Drawing.Point(224, 124);
+
         #region Constructores
         public frmMenuPrincipal()
         {
@@ -175,20 +177,23 @@ namespace Vista
         private void tlsbtnReportes_Click(object sender, EventArgs e)
         {
             frmReporteSeleccion frmReporteSeleccion = new Vista.frmReporteSeleccion();
-            frmReporteSeleccion.MdiParent = this;
-            frmReporteSeleccion.Show();
+            //frmReporteSeleccion.MdiParent = this;
+            frmReporteSeleccion.Location = glb_localizacion;
+            frmReporteSeleccion.ShowDialog();
         }
         
         private void tlsbtnVenta_Click(object sender, EventArgs e)
         {
             frmPedidoNuevo frmNuevaVenta = new frmPedidoNuevo(Constantes.CodigosTiposPedidos.TipoPedidoPersona);
-            frmNuevaVenta.MdiParent = this;
-            frmNuevaVenta.Show();
+            //frmNuevaVenta.MdiParent = this;
+            frmNuevaVenta.Location = glb_localizacion;
+            frmNuevaVenta.ShowDialog();
             if (frmNuevaVenta.DialogResult != System.Windows.Forms.DialogResult.Ignore)
             {
                 frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmNuevaVenta.controlador.pedidoActual);
-                lcl_frm_cierre.MdiParent = this;
-                lcl_frm_cierre.Show();
+                //lcl_frm_cierre.MdiParent = this;
+                lcl_frm_cierre.Location = glb_localizacion;
+                lcl_frm_cierre.ShowDialog();
             }
         }
 
@@ -196,13 +201,15 @@ namespace Vista
         {
             frmPedidoDevolucion frmDevolucion = new frmPedidoDevolucion(Controladores.ControladorBusqueda.buscar(new ModeloPedido() { numeroPedido = 141 }, Constantes.ParametrosBusqueda.Pedidos.NumeroPedido)[0]);
             //frmPedidoDevolucion frmDevolucion = new frmPedidoDevolucion();
-            frmDevolucion.MdiParent = this;
-            frmDevolucion.Show();
+            //frmDevolucion.MdiParent = this;
+            frmDevolucion.Location = glb_localizacion;
+            frmDevolucion.ShowDialog();
             if (frmDevolucion.DialogResult != System.Windows.Forms.DialogResult.Ignore)
             {
                 frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmDevolucion.controlador.pedidoActual, frmDevolucion.glb_mod_pedidoOriginal);
-                lcl_frm_cierre.MdiParent = this;
-                lcl_frm_cierre.Show();
+                //lcl_frm_cierre.MdiParent = this;
+                lcl_frm_cierre.Location = glb_localizacion;
+                lcl_frm_cierre.ShowDialog();
             }
         }
 
@@ -224,20 +231,23 @@ namespace Vista
         private void tlsbtnPedidoProveedor_Click(object sender, EventArgs e)
         {
             frmPedidoNuevo frmPedidoProv = new frmPedidoNuevo(Constantes.CodigosTiposPedidos.TipoPedidoProveedor);
-            frmPedidoProv.MdiParent = this;
-            frmPedidoProv.Show();
+            //frmPedidoProv.MdiParent = this;
+            frmPedidoProv.Location = glb_localizacion;
+            frmPedidoProv.ShowDialog();
             if (frmPedidoProv.DialogResult != System.Windows.Forms.DialogResult.Ignore)
             {
                 frmPedidoCierre lcl_frm_cierre = new frmPedidoCierre(frmPedidoProv.controlador.pedidoActual);
-                lcl_frm_cierre.MdiParent = this;
-                lcl_frm_cierre.Show();
+                //lcl_frm_cierre.MdiParent = this;
+                lcl_frm_cierre.Location = glb_localizacion;
+                lcl_frm_cierre.ShowDialog();
             }
         }
         private void tlsbtnFacturacion_Click(object sender, EventArgs e)
         {
             frmFacturacionMasiva frmFacturacion = new frmFacturacionMasiva();
-            frmFacturacion.MdiParent = this;
-            frmFacturacion.Show();
+            //frmFacturacion.MdiParent = this;
+            frmFacturacion.Location = glb_localizacion;
+            frmFacturacion.ShowDialog();
 
         }
         
@@ -279,23 +289,31 @@ namespace Vista
         private void entidadesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmABMEntidad lcl_frm_ABMEntidad = new frmABMEntidad();
-            lcl_frm_ABMEntidad.MdiParent = this;
-            lcl_frm_ABMEntidad.Show();
+            //lcl_frm_ABMEntidad.MdiParent = this;
+            lcl_frm_ABMEntidad.Location = glb_localizacion;
+            lcl_frm_ABMEntidad.ShowDialog();
         }
         private void artículosDeProveedorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmABMArticuloProveedor lcl_frm_ABMArticuloProveedor = new frmABMArticuloProveedor();
-            lcl_frm_ABMArticuloProveedor.MdiParent = this;
-            lcl_frm_ABMArticuloProveedor.Show();
+            //lcl_frm_ABMArticuloProveedor.MdiParent = this;
+            lcl_frm_ABMArticuloProveedor.Location = glb_localizacion;
+            lcl_frm_ABMArticuloProveedor.ShowDialog();
         }
         private void artículosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmABMArticulo lcl_frm_ABMArticulo = new frmABMArticulo();
-            lcl_frm_ABMArticulo.MdiParent = this;
-            lcl_frm_ABMArticulo.Show();
+            lcl_frm_ABMArticulo.Location = glb_localizacion;
+            //lcl_frm_ABMArticulo.MdiParent = this;
+            lcl_frm_ABMArticulo.ShowDialog();
         }
 
         #endregion
+
+        private void frmMenuPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
 
       
 

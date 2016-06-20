@@ -293,7 +293,7 @@
             this.tblLayoutPanelDetalleArticuloBotones.ColumnCount = 3;
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.83614F));
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.16385F));
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.nmrcUpDownCantidad, 1, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnAgregar, 2, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.lblCantidad, 0, 0);
@@ -308,7 +308,7 @@
             // nmrcUpDownCantidad
             // 
             this.nmrcUpDownCantidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(94, 14);
+            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(93, 14);
             this.nmrcUpDownCantidad.Maximum = new decimal(new int[] {
             99999999,
             0,
@@ -329,12 +329,12 @@
             this.btnAgregar.AutoSize = true;
             this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAgregar.Depth = 0;
-            this.btnAgregar.Location = new System.Drawing.Point(153, 6);
+            this.btnAgregar.Location = new System.Drawing.Point(152, 6);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Primary = false;
-            this.btnAgregar.Size = new System.Drawing.Size(104, 36);
+            this.btnAgregar.Size = new System.Drawing.Size(105, 36);
             this.btnAgregar.TabIndex = 10;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -349,7 +349,7 @@
             this.lblCantidad.Location = new System.Drawing.Point(3, 14);
             this.lblCantidad.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCantidad.Name = "lblCantidad";
-            this.lblCantidad.Size = new System.Drawing.Size(85, 19);
+            this.lblCantidad.Size = new System.Drawing.Size(84, 19);
             this.lblCantidad.TabIndex = 11;
             this.lblCantidad.Text = "Cantidad:";
             // 
@@ -747,7 +747,7 @@
             "Código Original",
             "Código Proveedor",
             "Descripción"});
-            this.cbxCategoriaBusqueda.Location = new System.Drawing.Point(94, 3);
+            this.cbxCategoriaBusqueda.Location = new System.Drawing.Point(94, 5);
             this.cbxCategoriaBusqueda.Name = "cbxCategoriaBusqueda";
             this.cbxCategoriaBusqueda.Size = new System.Drawing.Size(119, 24);
             this.cbxCategoriaBusqueda.TabIndex = 6;
@@ -863,6 +863,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuevo Pedido";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPedidoNuevo_FormClosing);
+            this.Move += new System.EventHandler(this.frmPedidoNuevo_Move);
             this.tblLayoutPanelBase.ResumeLayout(false);
             this.tblLayoutPanelBotones.ResumeLayout(false);
             this.tblLayoutPanelBotones.PerformLayout();

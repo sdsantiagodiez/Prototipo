@@ -645,5 +645,10 @@ namespace Vista
             }
         }
         #endregion   
+
+        private void frmPedidoDevolucion_Move(object sender, EventArgs e)
+        {
+            this.Location = new Point(224, 124);
+        }
     }
 }

@@ -119,7 +119,7 @@
             this.btnSalir.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Primary = true;
-            this.btnSalir.Size = new System.Drawing.Size(269, 19);
+            this.btnSalir.Size = new System.Drawing.Size(268, 19);
             this.btnSalir.TabIndex = 29;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -132,7 +132,7 @@
             this.lblNombreUsuario.Depth = 0;
             this.lblNombreUsuario.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblNombreUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblNombreUsuario.Location = new System.Drawing.Point(553, 0);
+            this.lblNombreUsuario.Location = new System.Drawing.Point(551, 0);
             this.lblNombreUsuario.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblNombreUsuario.Name = "lblNombreUsuario";
             this.lblNombreUsuario.Size = new System.Drawing.Size(63, 19);
@@ -146,7 +146,7 @@
             this.lblFechaLog.Depth = 0;
             this.lblFechaLog.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblFechaLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblFechaLog.Location = new System.Drawing.Point(828, 0);
+            this.lblFechaLog.Location = new System.Drawing.Point(825, 0);
             this.lblFechaLog.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblFechaLog.Name = "lblFechaLog";
             this.lblFechaLog.Size = new System.Drawing.Size(85, 19);
@@ -160,7 +160,7 @@
             this.lblHoraLog.Depth = 0;
             this.lblHoraLog.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblHoraLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblHoraLog.Location = new System.Drawing.Point(1103, 0);
+            this.lblHoraLog.Location = new System.Drawing.Point(1099, 0);
             this.lblHoraLog.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblHoraLog.Name = "lblHoraLog";
             this.lblHoraLog.Size = new System.Drawing.Size(65, 19);
@@ -445,11 +445,11 @@
             this.tableLayoutPanel3.Controls.Add(this.lblFechaLog, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnSalir, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 755);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 747);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1378, 25);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1370, 25);
             this.tableLayoutPanel3.TabIndex = 37;
             // 
             // frmMenuPrincipal
@@ -457,17 +457,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1378, 780);
+            this.ClientSize = new System.Drawing.Size(1370, 772);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tblMainMenu);
-            this.IsMdiContainer = true;
             this.MainMenuStrip = this.mstPrincipal;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMenuPrincipal";
             this.Text = "Menú Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmMenuPrincipal_Load);
             this.cntxtMenuStripABM.ResumeLayout(false);
             this.tblMainMenu.ResumeLayout(false);
             this.tblMainMenu.PerformLayout();
