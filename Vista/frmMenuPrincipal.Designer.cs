@@ -127,43 +127,49 @@
             // 
             // lblNombreUsuario
             // 
+            this.lblNombreUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNombreUsuario.AutoSize = true;
-            this.lblNombreUsuario.BackColor = System.Drawing.Color.White;
+            this.lblNombreUsuario.BackColor = System.Drawing.Color.DarkGray;
             this.lblNombreUsuario.Depth = 0;
             this.lblNombreUsuario.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblNombreUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblNombreUsuario.Location = new System.Drawing.Point(551, 0);
             this.lblNombreUsuario.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblNombreUsuario.Name = "lblNombreUsuario";
-            this.lblNombreUsuario.Size = new System.Drawing.Size(63, 19);
+            this.lblNombreUsuario.Size = new System.Drawing.Size(63, 25);
             this.lblNombreUsuario.TabIndex = 30;
             this.lblNombreUsuario.Text = "Leandro";
             // 
             // lblFechaLog
             // 
+            this.lblFechaLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblFechaLog.AutoSize = true;
-            this.lblFechaLog.BackColor = System.Drawing.Color.White;
+            this.lblFechaLog.BackColor = System.Drawing.Color.DarkGray;
             this.lblFechaLog.Depth = 0;
             this.lblFechaLog.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblFechaLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblFechaLog.Location = new System.Drawing.Point(825, 0);
             this.lblFechaLog.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblFechaLog.Name = "lblFechaLog";
-            this.lblFechaLog.Size = new System.Drawing.Size(85, 19);
+            this.lblFechaLog.Size = new System.Drawing.Size(85, 25);
             this.lblFechaLog.TabIndex = 31;
             this.lblFechaLog.Text = "23/10/2016";
             // 
             // lblHoraLog
             // 
+            this.lblHoraLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblHoraLog.AutoSize = true;
-            this.lblHoraLog.BackColor = System.Drawing.Color.White;
+            this.lblHoraLog.BackColor = System.Drawing.Color.DarkGray;
             this.lblHoraLog.Depth = 0;
             this.lblHoraLog.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblHoraLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblHoraLog.Location = new System.Drawing.Point(1099, 0);
             this.lblHoraLog.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblHoraLog.Name = "lblHoraLog";
-            this.lblHoraLog.Size = new System.Drawing.Size(65, 19);
+            this.lblHoraLog.Size = new System.Drawing.Size(65, 25);
             this.lblHoraLog.TabIndex = 32;
             this.lblHoraLog.Text = "18:01:57";
             // 
@@ -434,6 +440,7 @@
             // 
             // tableLayoutPanel3
             // 
+            this.tableLayoutPanel3.BackColor = System.Drawing.Color.DarkGray;
             this.tableLayoutPanel3.ColumnCount = 5;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
