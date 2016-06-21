@@ -28,6 +28,10 @@ namespace Vista
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            Width = Screen.PrimaryScreen.WorkingArea.Width;
+            Height = Screen.PrimaryScreen.WorkingArea.Height;
+            this.ubicacionPrincipal = this.Location;
         }
 
         public frmMenuPrincipal(ModeloUsuario usuarioActual) : this()
@@ -46,6 +50,11 @@ namespace Vista
         #region Métodos
 
         #region Inicialización
+        private Point ubicacionPrincipal;
+        private void frmMenuPrincipal_Move(object sender, EventArgs e)
+        {
+            this.Location = ubicacionPrincipal;
+        }
         private bool inicializarModoFormulario(ModeloUsuario p_mod_usuario)
         {
             this.inicializarModoAdmin(false);
@@ -339,6 +348,8 @@ namespace Vista
 
 
         #endregion
+
+        
 
         
     }

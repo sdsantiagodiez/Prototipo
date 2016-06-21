@@ -465,8 +465,8 @@
             this.MaximizeBox = false;
             this.Name = "frmMenuPrincipal";
             this.Text = "Menú Principal";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMenuPrincipal_Load);
+            this.Move += new System.EventHandler(this.frmMenuPrincipal_Move);
             this.cntxtMenuStripABM.ResumeLayout(false);
             this.tblMainMenu.ResumeLayout(false);
             this.tblMainMenu.PerformLayout();
