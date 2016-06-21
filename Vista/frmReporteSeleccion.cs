@@ -43,6 +43,7 @@ namespace Vista
             this.cmbxPedidosReportes.Items.Add("Reporte de Pedidos Entre Fechas");//Ver como agregamos los Reportes
             this.cmbxVentasReportes.Items.Add("Reporte de Ventas Entre Fechas");
             this.cmbxVentasReportes.Items.Add("Listado Top 10 Articulos Vendidos");
+            this.cmbxInventarioReportes.Items.Add("Informe de Stock");
         }
 
         private void btnGeneraReporteVentas_Click(object sender, EventArgs e)
@@ -91,6 +92,12 @@ namespace Vista
         private void frmReporteSeleccion_Move(object sender, EventArgs e)
         {
             this.Location = new Point(224, 124);
+        }
+
+        private void btnGeneraReporteInvenario_Click(object sender, EventArgs e)
+        {
+            glb_frm_FormReportes = glb_con_Reporte.StockInventario();
+            glb_frm_FormReportes.ShowDialog();
         }
 
         

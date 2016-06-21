@@ -140,6 +140,7 @@ namespace Reportes
 
         public FormReportes(List<ModeloArticuloProveedores> p_lst_mod_artP)
         {
+            InitializeComponent();
             ModeloReporteEncabezadoBindingSource.Clear();
             ModeloReportePedidoEntreFechasBindingSource.Clear();
 
