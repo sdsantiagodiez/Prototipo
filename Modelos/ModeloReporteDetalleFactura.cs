@@ -12,6 +12,7 @@ namespace Modelos
         public string Descripcion { get; set; }
         public string CodigoArticulo { get; set; }
         public decimal Precio { get; set; }
+        public decimal Descuento { get; set; }
         public decimal PrecioUnitario { get; set; }
 
     }

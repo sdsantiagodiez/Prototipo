@@ -200,6 +200,7 @@ namespace Controladores
                 lcl_mod_detalle.Descripcion = p_mod_pedido.lineasPedido[i].articulo.descripcion;
                 lcl_mod_detalle.PrecioUnitario = p_mod_pedido.lineasPedido[i].valorUnitario;
                 lcl_mod_detalle.Precio = p_mod_pedido.lineasPedido[i].valorParcial;
+                lcl_mod_detalle.Descuento = p_mod_pedido.lineasPedido[i].getDescuento();
 
                 lcl_mod_Factura.detalleFactura.Add(lcl_mod_detalle);
             }

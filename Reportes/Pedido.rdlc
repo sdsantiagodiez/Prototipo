@@ -6,16 +6,19 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.15684cm</Width>
+              <Width>1.63098cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.17799cm</Width>
+              <Width>2.45164cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>9.36861cm</Width>
+              <Width>9.14246cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.41323cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.97663cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -162,6 +165,40 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="Textbox17">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Desc.</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox17</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BackgroundColor>LightSteelBlue</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="Textbox14">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -201,14 +238,14 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="cantidadArticulos">
+                    <Textbox Name="Cantidad">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!cantidadArticulos.Value</Value>
+                              <Value>=Fields!Cantidad.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -219,7 +256,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>cantidadArticulos</rd:DefaultName>
+                      <rd:DefaultName>Cantidad</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -235,14 +272,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="codigoOriginalArt">
+                    <Textbox Name="CodigoArticulo">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!codigoOriginalArt.Value</Value>
+                              <Value>=Fields!CodigoArticulo.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -253,7 +290,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>codigoOriginalArt</rd:DefaultName>
+                      <rd:DefaultName>CodigoArticulo</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -268,14 +305,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="descripcion">
+                    <Textbox Name="Descripcion">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!descripcion.Value</Value>
+                              <Value>=Fields!Descripcion.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -286,7 +323,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>descripcion</rd:DefaultName>
+                      <rd:DefaultName>Descripcion</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -301,14 +338,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="valorUnitario">
+                    <Textbox Name="PrecioUnitario">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!valorUnitario.Value</Value>
+                              <Value>=Fields!PrecioUnitario.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -319,7 +356,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>valorUnitario</rd:DefaultName>
+                      <rd:DefaultName>PrecioUnitario</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -334,14 +371,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="valorParcial">
+                    <Textbox Name="Descuento">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!valorParcial.Value</Value>
+                              <Value>=Fields!Descuento.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -352,7 +389,40 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>valorParcial</rd:DefaultName>
+                      <rd:DefaultName>Descuento</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Precio">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Precio.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Precio</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -376,6 +446,7 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
+            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -393,7 +464,7 @@
         <Top>0.64382cm</Top>
         <Left>0.88506cm</Left>
         <Height>1.2cm</Height>
-        <Width>19.61667cm</Width>
+        <Width>20.11494cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -408,7 +479,7 @@
       </Border>
     </Style>
   </Body>
-  <Width>8.63752in</Width>
+  <Width>9.0558in</Width>
   <Page>
     <PageHeader>
       <Height>6.45583cm</Height>
@@ -782,7 +853,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>NP</Value>
+                  <Value>X</Value>
                   <Style>
                     <FontFamily>Arial Black</FontFamily>
                     <FontSize>12pt</FontSize>
@@ -829,7 +900,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Nota de Pedido</Value>
+                  <Value>Remito</Value>
                   <Style>
                     <FontFamily>Arial Black</FontFamily>
                     <FontSize>11pt</FontSize>
@@ -843,9 +914,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>0.50039cm</Top>
-          <Left>15.13602cm</Left>
+          <Left>16.52337cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.95932cm</Width>
+          <Width>1.91321cm</Width>
           <ZIndex>13</ZIndex>
           <Style>
             <Border>
@@ -1090,7 +1161,7 @@
           <Left>17.22562cm</Left>
           <Height>0.6cm</Height>
           <Width>2.12392cm</Width>
-          <ToolTip>=Sum(Fields!valorParcial.Value, "DetallePedido")</ToolTip>
+          <ToolTip>=Sum(Fields!Precio.Value, "DetallePedido")</ToolTip>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1147,6 +1218,7 @@
           </Style>
         </Line>
         <Line Name="Line3">
+          <Top>0cm</Top>
           <Height>1.46786cm</Height>
           <Width>0cm</Width>
           <ZIndex>3</ZIndex>
@@ -1157,6 +1229,7 @@
           </Style>
         </Line>
         <Line Name="Line4">
+          <Top>0cm</Top>
           <Left>21cm</Left>
           <Height>1.46786cm</Height>
           <Width>0cm</Width>
@@ -1300,36 +1373,36 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="cantidadArticulos">
-          <DataField>cantidadArticulos</DataField>
+        <Field Name="Cantidad">
+          <DataField>Cantidad</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="codigoArtProveedor">
-          <DataField>codigoArtProveedor</DataField>
+        <Field Name="CodigoArticulo">
+          <DataField>CodigoArticulo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="codigoOriginalArt">
-          <DataField>codigoOriginalArt</DataField>
+        <Field Name="Descripcion">
+          <DataField>Descripcion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="descripcion">
-          <DataField>descripcion</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="valorParcial">
-          <DataField>valorParcial</DataField>
+        <Field Name="Descuento">
+          <DataField>Descuento</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="valorUnitario">
-          <DataField>valorUnitario</DataField>
+        <Field Name="Precio">
+          <DataField>Precio</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PrecioUnitario">
+          <DataField>PrecioUnitario</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloPedido</rd:TableName>
-        <rd:ObjectDataSourceSelectMethod>lineasPedido</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceType>Modelos.ModeloPedido, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ModeloReporteEncabezadoFactura</rd:TableName>
+        <rd:ObjectDataSourceSelectMethod>detalleFactura</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezadoFactura, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
     <DataSet Name="ClientePedido">
