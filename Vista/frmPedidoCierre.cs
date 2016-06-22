@@ -925,13 +925,21 @@ namespace Vista
             return maxWidth;
         }
 
-        private bool imprimirPedido()
+        private bool imprimirFactura()
         {            
             Controladores.ControladorReportes lcl_con_reporte = new ControladorReportes();
             lcl_con_reporte.ImpresionFacturas(controlador.pedidoActual).ShowDialog();
             
             return true;
         }
+        private bool imprimirpedido()
+        {
+            ControladorReportes lcl_con_reporte = new ControladorReportes();
+            ModeloPersonas lcl_mod_per = new ModeloPersonas(controlador.pedidoActual.entidad);
+            lcl_con_reporte.ReporteEmitePedido(controlador.pedidoActual, lcl_mod_per).ShowDialog();
+            return true;
+        }
+
 
         private bool guardarPedido()
         {
@@ -1192,8 +1200,8 @@ namespace Vista
             {
                 return;
             }
-
-            if (this.imprimirPedido())
+            
+            if (this.imprimirpedido())
             {
                 MessageBox.Show("Operación exitosa", "Éxito", MessageBoxButtons.OK);
             }
@@ -1222,6 +1230,11 @@ namespace Vista
                 else
                 {
                     this.inicializarPedidoFacturado();
+                }
+                if(DialogResult.OK==(MessageBox.Show("¿Desea imprimir la Factura?", "Impresión de Factura Electrónica",MessageBoxButtons.OKCancel)))
+                {
+                    if (this.imprimirFactura())
+                    { MessageBox.Show("Operación exitosa", "Éxito", MessageBoxButtons.OK); }
                 }
             }
             
