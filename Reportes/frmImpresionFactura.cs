@@ -54,6 +54,10 @@ namespace Vista
             {
                 this.contenedorFactura.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoB.rdlc";
             }
+            else if(String.Equals(tipoComprobante,"0"))
+            {
+                this.contenedorFactura.LocalReport.ReportEmbeddedResource = "Reportes.Pedido.rdlc";
+            }
             this.contenedorFactura.LocalReport.Refresh();
             this.contenedorFactura.RefreshReport();
         }

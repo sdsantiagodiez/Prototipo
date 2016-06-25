@@ -935,8 +935,8 @@ namespace Vista
         private bool imprimirpedido()
         {
             ControladorReportes lcl_con_reporte = new ControladorReportes();
-            ModeloPersonas lcl_mod_per = new ModeloPersonas(controlador.pedidoActual.entidad);
-            lcl_con_reporte.ReporteEmitePedido(controlador.pedidoActual, lcl_mod_per).ShowDialog();
+            this.controlador.pedidoActual.tipoComprobante = 0;// Seteamos el tipo de comprobante en 0 para que sea remito
+            lcl_con_reporte.ImpresionFacturas(controlador.pedidoActual).ShowDialog();
             return true;
         }
 

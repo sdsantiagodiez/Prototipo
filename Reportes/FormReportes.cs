@@ -108,8 +108,8 @@ namespace Reportes
             ModeloReporteDetallePedido.DataSource = p_ModeloPedido.lineasPedido;
 
                     
-            this.ReporteBase.LocalReport.DataSources.Clear();
-            //this.ReporteBase.LocalReport.DataSources.RemoveAt(1);
+           // this.ReporteBase.LocalReport.DataSources.Clear();
+            this.ReporteBase.LocalReport.DataSources.RemoveAt(0);
             
             this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("EncabezadoPedido", ModeloReportePedidoEntreFechasBindingSource));
             //this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DetallePedido", p_ModeloPedido.lineasPedido));

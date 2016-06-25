@@ -460,7 +460,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <RepeatColumnHeaders>true</RepeatColumnHeaders>
-        <DataSetName>DetallePedido</DataSetName>
+        <DataSetName>DSDetalleFactura</DataSetName>
         <Top>0.64382cm</Top>
         <Left>0.88506cm</Left>
         <Height>1.2cm</Height>
@@ -552,13 +552,13 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
-        <Textbox Name="txtFactura">
+        <Textbox Name="txtRemito">
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!nroPedido.Value, "EncabezadoPedido")</Value>
+                  <Value>=First(Fields!Remito.Value, "DSFactura")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -626,7 +626,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!fecha.Value, "EncabezadoPedido")</Value>
+                  <Value>=First(Fields!FechaComprobante.Value, "DSFactura")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -763,7 +763,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!calle.Value, "ClienteDomicilio")+"-"+First(Fields!ciudad.Value , "ClienteDomicilio")+" - "+First(Fields!provincia.Value, "ClienteDomicilio")</Value>
+                  <Value>=First(Fields!Comprador_Domicilio.Value, "DSFactura")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -795,7 +795,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!apellido.Value, "ClientePedido")+ ", " + First(Fields!nombre.Value,"ClientePedido")</Value>
+                  <Value>=First(Fields!Comprador_RazonSocial.Value, "DSFactura")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -1031,7 +1031,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!mail.Value, "ClienteMail")</Value>
+                  <Value EvaluationMode="Constant" />
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -1097,7 +1097,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!numero.Value, "ClienteTelefono")</Value>
+                  <Value />
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -1123,6 +1123,38 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Textbox Name="txtDoc">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!Comprador_Cuit.Value, "DSFactura")</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Language>es-AR</Language>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <Top>4.63613cm</Top>
+          <Left>3.24804cm</Left>
+          <Height>0.6cm</Height>
+          <Width>6.3059cm</Width>
+          <ZIndex>20</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
       </ReportItems>
       <Style>
         <Border>
@@ -1137,17 +1169,12 @@
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
         <Textbox Name="Total">
-          <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!monto_total.Value, "EncabezadoPedido")</Value>
-                  <Style />
-                </TextRun>
-                <TextRun>
-                  <Value>=First(Fields!monto_total.Value, "EncabezadoPedido")</Value>
+                  <Value>=First(Fields!TotalComprobante.Value, "DSFactura")</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -1161,7 +1188,6 @@
           <Left>17.22562cm</Left>
           <Height>0.6cm</Height>
           <Width>2.12392cm</Width>
-          <ToolTip>=Sum(Fields!Precio.Value, "DetallePedido")</ToolTip>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1334,40 +1360,84 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="EncabezadoPedido">
+    <DataSet Name="DSFactura">
       <Query>
         <DataSourceName>Modelos</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="codigo_tipo_pedido">
-          <DataField>codigo_tipo_pedido</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="Alicuota">
+          <DataField>Alicuota</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="fecha">
-          <DataField>fecha</DataField>
+        <Field Name="CAINumero">
+          <DataField>CAINumero</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="monto_total">
-          <DataField>monto_total</DataField>
-          <rd:TypeName>System.Single</rd:TypeName>
-        </Field>
-        <Field Name="nroPedido">
-          <DataField>nroPedido</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="observaciones">
-          <DataField>observaciones</DataField>
+        <Field Name="CentroEmisor">
+          <DataField>CentroEmisor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Comprador_Cuit">
+          <DataField>Comprador_Cuit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Comprador_Domicilio">
+          <DataField>Comprador_Domicilio</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Comprador_IVAResponsableI">
+          <DataField>Comprador_IVAResponsableI</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Comprador_RazonSocial">
+          <DataField>Comprador_RazonSocial</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ConceptosNoGravados">
+          <DataField>ConceptosNoGravados</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CondicionVenta">
+          <DataField>CondicionVenta</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FechaComprobante">
+          <DataField>FechaComprobante</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FechaVencimiento">
+          <DataField>FechaVencimiento</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="IVAComprobante">
+          <DataField>IVAComprobante</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="NumeroComprobante">
+          <DataField>NumeroComprobante</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Remito">
+          <DataField>Remito</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SubtotalComprobante">
+          <DataField>SubtotalComprobante</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TotalComprobante">
+          <DataField>TotalComprobante</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloPedido</rd:TableName>
-        <rd:ObjectDataSourceType>Modelos.ModeloPedido, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ModeloReporteEncabezadoFactura</rd:TableName>
+        <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezadoFactura, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="DetallePedido">
+    <DataSet Name="DSDetalleFactura">
       <Query>
         <DataSourceName>Modelos</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -1403,157 +1473,6 @@
         <rd:TableName>ModeloReporteEncabezadoFactura</rd:TableName>
         <rd:ObjectDataSourceSelectMethod>detalleFactura</rd:ObjectDataSourceSelectMethod>
         <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezadoFactura, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="ClientePedido">
-      <Query>
-        <DataSourceName>Modelos</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="apellido">
-          <DataField>apellido</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="codigo">
-          <DataField>codigo</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="contrasenia">
-          <DataField>contrasenia</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="cuit">
-          <DataField>cuit</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="dni">
-          <DataField>dni</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="nombre">
-          <DataField>nombre</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="observaciones">
-          <DataField>observaciones</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="tipoEntidad">
-          <DataField>tipoEntidad</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="tipoPersona">
-          <DataField>tipoPersona</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="usuario">
-          <DataField>usuario</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloPersonas</rd:TableName>
-        <rd:ObjectDataSourceType>Modelos.ModeloPersonas, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="ClienteDomicilio">
-      <Query>
-        <DataSourceName>Modelos</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="calle">
-          <DataField>calle</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ciudad">
-          <DataField>ciudad</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="codigoDomicilio">
-          <DataField>codigoDomicilio</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="codigoPostal">
-          <DataField>codigoPostal</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="departamento">
-          <DataField>departamento</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="numero">
-          <DataField>numero</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="pais">
-          <DataField>pais</DataField>
-          <rd:TypeName>Modelos.ModeloPais</rd:TypeName>
-        </Field>
-        <Field Name="piso">
-          <DataField>piso</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="provincia">
-          <DataField>provincia</DataField>
-          <rd:TypeName>Modelos.ModeloProvincia</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloPersonas</rd:TableName>
-        <rd:ObjectDataSourceSelectMethod>domicilios</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceType>Modelos.ModeloPersonas, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="ClienteTelefono">
-      <Query>
-        <DataSourceName>Modelos</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="codigoTelefono">
-          <DataField>codigoTelefono</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="numero">
-          <DataField>numero</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="tipo">
-          <DataField>tipo</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloPersonas</rd:TableName>
-        <rd:ObjectDataSourceSelectMethod>telefonos</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceType>Modelos.ModeloPersonas, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="ClienteMail">
-      <Query>
-        <DataSourceName>Modelos</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="codigoMail">
-          <DataField>codigoMail</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="mail">
-          <DataField>mail</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloPersonas</rd:TableName>
-        <rd:ObjectDataSourceSelectMethod>mails</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceType>Modelos.ModeloPersonas, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
