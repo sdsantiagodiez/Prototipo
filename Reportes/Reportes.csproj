@@ -102,6 +102,7 @@
     <None Include="Properties\DataSources\Modelos.ModeloReporteEncabezado.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteEncabezadoFactura.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReportePedidoEntreFechas.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloReporteStock.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteTop10Articulos.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteVentaEntreFechas1.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloRoles.datasource" />

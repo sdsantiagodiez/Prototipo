@@ -133,17 +133,35 @@ namespace Reportes
             ModeloReportePedidoEntreFechasBindingSource.Clear();
 
 
-            ModeloReporteEncabezadoBindingSource.DataSource = typeof(List<ModeloArticuloProveedores>);
-            ModeloReporteEncabezadoBindingSource.DataSource = p_lst_mod_artP;
+            ModeloReporteEncabezadoBindingSource.DataSource = typeof(List<ModeloReporteStock>);
+            ModeloReporteEncabezadoBindingSource.DataSource = CompletaModeloStock(p_lst_mod_artP);
 
             this.ReporteBase.LocalReport.DataSources.Clear();
             //this.ReporteBase.LocalReport.DataSources.RemoveAt(1);
-            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSInventarioStock", ModeloReporteEncabezadoBindingSource));
+            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSDetalleStock", ModeloReporteEncabezadoBindingSource));
             this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.StockInventario.rdlc";
 
             this.ReporteBase.LocalReport.Refresh();
             this.ReporteBase.RefreshReport();
         
+        }
+
+        public List<ModeloReporteStock> CompletaModeloStock(List<ModeloArticuloProveedores> p_lst_mod_artP)
+        {
+            List<ModeloReporteStock> lcl_lst_mod_repStock = new List<ModeloReporteStock>();
+            foreach (ModeloArticuloProveedores mod_artP in p_lst_mod_artP)
+            {
+                ModeloReporteStock lcl_mod_repStock = new ModeloReporteStock();
+                lcl_mod_repStock.codigoArticulo = mod_artP.codigoArticuloProveedor;
+                lcl_mod_repStock.descripcionArticulo = mod_artP.descripcionArticuloProveedor;
+                lcl_mod_repStock.stockActual = (int)mod_artP.stockActual;
+                lcl_mod_repStock.precioVenta = (decimal)mod_artP.valorVenta.valorArticulo;
+                
+                lcl_lst_mod_repStock.Add(lcl_mod_repStock);
+
+            }
+
+            return lcl_lst_mod_repStock;
         }
 
         

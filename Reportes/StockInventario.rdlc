@@ -6,19 +6,19 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>3.37769cm</Width>
+              <Width>3.38269cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>6.3451cm</Width>
+              <Width>6.3501cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.42733cm</Width>
+              <Width>3.43233cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.36745cm</Width>
+              <Width>3.37245cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.22635cm</Width>
+              <Width>3.23135cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -28,7 +28,6 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Textbox20">
-                      <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -68,7 +67,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>descripcion Articulo Proveedor</Value>
+                              <Value>Descripcion Articulo</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -202,14 +201,14 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="codigoArticuloProveedor">
+                    <Textbox Name="codigoArticulo">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!codigoArticuloProveedor.Value</Value>
+                              <Value>=Fields!codigoArticulo.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -220,7 +219,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>codigoArticuloProveedor</rd:DefaultName>
+                      <rd:DefaultName>codigoArticulo</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -236,14 +235,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="descripcionArticuloProveedor">
+                    <Textbox Name="descripcionArticulo">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!descripcionArticuloProveedor.Value</Value>
+                              <Value>=Fields!descripcionArticulo.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -254,7 +253,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>descripcionArticuloProveedor</rd:DefaultName>
+                      <rd:DefaultName>descripcionArticulo</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -335,16 +334,17 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="valorVenta">
+                    <Textbox Name="precioVenta">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!valorVenta.Value</Value>
+                              <Value>=Fields!precioVenta.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>'$'0.00;('$'0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -353,7 +353,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>valorVenta</rd:DefaultName>
+                      <rd:DefaultName>precioVenta</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -362,6 +362,7 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -385,16 +386,22 @@
               <KeepWithGroup>After</KeepWithGroup>
             </TablixMember>
             <TablixMember>
-              <Group Name="Detalles" />
+              <Group Name="Detalles">
+                <PageBreak>
+                  <BreakLocation>Between</BreakLocation>
+                </PageBreak>
+              </Group>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
         <RepeatColumnHeaders>true</RepeatColumnHeaders>
-        <DataSetName>DSInventarioStock</DataSetName>
+        <RepeatRowHeaders>true</RepeatRowHeaders>
+        <FixedRowHeaders>true</FixedRowHeaders>
+        <DataSetName>DSDetalleStock</DataSetName>
         <Top>0.8448cm</Top>
-        <Left>0.53166cm</Left>
+        <Left>0.50668cm</Left>
         <Height>1.2cm</Height>
-        <Width>19.74392cm</Width>
+        <Width>19.7689cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -669,77 +676,33 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DSInventarioStock">
+    <DataSet Name="DSDetalleStock">
       <Query>
         <DataSourceName>Modelos</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="codigoArticuloProveedor">
-          <DataField>codigoArticuloProveedor</DataField>
+        <Field Name="codigoArticulo">
+          <DataField>codigoArticulo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="codigoEntidad">
-          <DataField>codigoEntidad</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="codigoOriginal">
-          <DataField>codigoOriginal</DataField>
+        <Field Name="descripcionArticulo">
+          <DataField>descripcionArticulo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="descripcion">
-          <DataField>descripcion</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="descripcionArticuloProveedor">
-          <DataField>descripcionArticuloProveedor</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="fechaActualizacion">
-          <DataField>fechaActualizacion</DataField>
-          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="modelos">
-          <DataField>modelos</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="observaciones">
-          <DataField>observaciones</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="observacionesArticuloProveedor">
-          <DataField>observacionesArticuloProveedor</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="razonSocialProveedor">
-          <DataField>razonSocialProveedor</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="precioVenta">
+          <DataField>precioVenta</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="stockActual">
           <DataField>stockActual</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="stockMinimo">
-          <DataField>stockMinimo</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="ubicacion">
-          <DataField>ubicacion</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="valorCompra">
-          <DataField>valorCompra</DataField>
-          <rd:TypeName>Modelos.ModeloValorArticulo</rd:TypeName>
-        </Field>
-        <Field Name="valorVenta">
-          <DataField>valorVenta</DataField>
-          <rd:TypeName>Modelos.ModeloValorArticulo</rd:TypeName>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloArticuloProveedores</rd:TableName>
-        <rd:ObjectDataSourceType>Modelos.ModeloArticuloProveedores, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ModeloReporteStock</rd:TableName>
+        <rd:ObjectDataSourceType>Modelos.ModeloReporteStock, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

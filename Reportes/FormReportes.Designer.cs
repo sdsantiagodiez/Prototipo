@@ -54,6 +54,7 @@
             // 
             // ReporteBase
             // 
+            this.ReporteBase.Dock = System.Windows.Forms.DockStyle.Fill;
             reportDataSource1.Name = "DSInformeVentas";
             reportDataSource1.Value = null;
             reportDataSource2.Name = "DSInformeVentaEncabezado";
@@ -61,9 +62,9 @@
             this.ReporteBase.LocalReport.DataSources.Add(reportDataSource1);
             this.ReporteBase.LocalReport.DataSources.Add(reportDataSource2);
             this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.VentasEntreFechas.rdlc";
-            this.ReporteBase.Location = new System.Drawing.Point(12, 12);
+            this.ReporteBase.Location = new System.Drawing.Point(0, 0);
             this.ReporteBase.Name = "ReporteBase";
-            this.ReporteBase.Size = new System.Drawing.Size(803, 528);
+            this.ReporteBase.Size = new System.Drawing.Size(827, 552);
             this.ReporteBase.TabIndex = 0;
             this.ReporteBase.Load += new System.EventHandler(this.ReporteBase_Load);
             // 

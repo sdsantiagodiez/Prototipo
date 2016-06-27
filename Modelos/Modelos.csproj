@@ -50,6 +50,7 @@
     <Compile Include="ModeloReporteEncabezado.cs" />
     <Compile Include="ModeloReporteEncabezadoFactura.cs" />
     <Compile Include="ModeloReportePedidoEntreFechas.cs" />
+    <Compile Include="ModeloReporteStock.cs" />
     <Compile Include="ModeloReporteTop10Articulos.cs" />
     <Compile Include="ModeloReporteVentaEntreFechas.cs" />
     <Compile Include="ModeloTelefono.cs" />

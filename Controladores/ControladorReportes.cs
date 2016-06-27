@@ -150,7 +150,10 @@ namespace Controladores
         {
             List<ModeloArticuloProveedores> lcl_lst_mod_artP = new List<ModeloArticuloProveedores>();
             ModeloArticuloProveedores lcl_mod_artP = new ModeloArticuloProveedores();
-            lcl_lst_mod_artP=glb_cat_artP.buscar(lcl_mod_artP,Constantes.ParametrosBusqueda.ArticulosProveedores.Descripcion);
+            ControladorPedido lcl_con_ped = new ControladorPedido();
+            int Cantidad = lcl_con_ped.buscarArticulos("descripcionArticuloProveedor", "%");
+            lcl_lst_mod_artP = lcl_con_ped.resultadoBusquedaArticulosProveedores;
+            //lcl_lst_mod_artP=glb_cat_artP.buscar(lcl_mod_artP,Constantes.ParametrosBusqueda.ArticulosProveedores.Descripcion);
             FormReportes lcl_frm_reporte = new FormReportes(lcl_lst_mod_artP);
             return lcl_frm_reporte;
         }
