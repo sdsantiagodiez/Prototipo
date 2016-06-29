@@ -52,6 +52,7 @@
     <Compile Include="ControladorAlta.cs" />
     <Compile Include="ControladorBaja.cs" />
     <Compile Include="ControladorBusqueda.cs" />
+    <Compile Include="ControladorDescuento.cs" />
     <Compile Include="ControladorModificacion.cs" />
     <Compile Include="ControladorPedido.cs" />
     <Compile Include="ControladorReportes.cs" />

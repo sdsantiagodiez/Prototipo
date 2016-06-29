@@ -10,29 +10,31 @@ using System.Windows.Forms;
 using Modelos;
 using Controladores;
 
+
 namespace Vista
 {
     public partial class frmDescuentosArticulos : Vista.frmABMBase
     {
         #region Atributos
         ModeloDescuento glb_mod_Descuento;
+        ModeloArticuloProveedores glb_mod_articuloProveedor;
         #endregion
 
         #region Constructores
-        public frmABMArticuloProveedor()
+        public frmDescuentosArticulos()
         {
             InitializeComponent();
             this.inicializarModoFormularioInicio();
-            this.Text = "Artículo Proveedor";
-
-            txtBoxPrecioCompra.KeyPress += this.valorDecimal;
-            txtBoxPrecioVenta.KeyPress += this.valorDecimal;
+            this.Text = "Descuento Artículo";
+                        
         }
-        public frmABMArticuloProveedor(ModeloArticuloProveedores p_mod_articuloProveedor,string p_modoFormulario): this()
-        {
-            glb_mod_articuloProveedor = p_mod_articuloProveedor;
+        public frmDescuentosArticulos(ModeloDescuento p_mod_descuento,string p_modoFormulario): this()
+        {   //revisar
+            glb_mod_Descuento = p_mod_descuento;
             this.modoFormulario = p_modoFormulario;
         }
+                
+        
         #endregion
         
         #region Métodos
@@ -58,17 +60,18 @@ namespace Vista
             txtBoxCodigoProveedor.Enabled = true;
             txtBoxRazonSocial.Enabled = true;
 
-            txtBoxCodigoArticulo.Enabled = true;
-            txtBoxPrecioCompra.Enabled = txtBoxPrecioVenta.Enabled = txtBoxUbicacion.Enabled = nmrcUpDownStockActual.Enabled = nmrcUpDownStockMinimo.Enabled = false;
-            nmrcUpDownStockActual.Text = "";
-            nmrcUpDownStockMinimo.Text = "";
-
-            grpBoxObservaciones.Enabled = false;
+            tbxFechaDesde.Enabled = false;
+            tbxFechaHasta.Enabled = false;
+            tbxnumeroDescuento.Enabled = false;
+            tbxPorcentajeDescuento.Enabled = false;
+            dgvDescuentos.Enabled = false;
+            
         }
 
         override public void inicializarModoFormularioNuevo()
         {
             glb_mod_articuloProveedor = new ModeloArticuloProveedores();
+            ControladorDescuento lcl_con_descuento = new ControladorDescuento();
 
             base.inicializarModoFormularioNuevo();
 
@@ -82,12 +85,12 @@ namespace Vista
             btnModificarProveedor.Enabled = false;
             txtBoxCodigoProveedor.Enabled = txtBoxRazonSocial.Enabled = true;
 
-            txtBoxCodigoArticulo.Enabled = true;
-            txtBoxPrecioCompra.Enabled = txtBoxPrecioVenta.Enabled = txtBoxUbicacion.Enabled = nmrcUpDownStockActual.Enabled = nmrcUpDownStockMinimo.Enabled = true;
-            nmrcUpDownStockActual.Text = "0";
-            nmrcUpDownStockMinimo.Text = "0";
+            tbxFechaDesde.Text = DateTime.Today.ToString();
+            tbxFechaHasta.Text = DateTime.Today.ToString();
+            tbxnumeroDescuento.Text = lcl_con_descuento.getUltimoDescuento().ToString();
+            tbxPorcentajeDescuento.Text = "0";
 
-            grpBoxObservaciones.Enabled = true;
+            dgvDescuentos.Enabled = false;
         }
 
         override public void inicializarModoFormularioSeleccionado()
@@ -98,10 +101,11 @@ namespace Vista
 
             grpBoxProveedor.Enabled = false;
 
-            txtBoxCodigoArticulo.Enabled = false;
-            txtBoxPrecioCompra.Enabled = txtBoxPrecioVenta.Enabled = txtBoxUbicacion.Enabled = nmrcUpDownStockActual.Enabled = nmrcUpDownStockMinimo.Enabled = true;
+            tbxnumeroDescuento.Enabled = false;
+            tbxFechaDesde.Enabled = true;
+            tbxFechaHasta.Enabled = true;
+            tbxPorcentajeDescuento.Enabled = true;
 
-            grpBoxObservaciones.Enabled = true;
         }
 
         public override void inicializarModoFormularioVisualizarEntidad()
@@ -301,7 +305,7 @@ namespace Vista
 
             this.cargarDatosArticuloEnModeloArticuloProveedor(ref lcl_mod_articuloProveedores);
             this.cargarDatosProveedorEnModeloArticuloProveedor(ref lcl_mod_articuloProveedores);
-            this.cargarDatosStockEnModeloArticuloProveedor(ref lcl_mod_articuloProveedores);
+            
 
             return lcl_mod_articuloProveedores;
         }
@@ -326,53 +330,19 @@ namespace Vista
             p_mod_articuloProveedor.razonSocialProveedor = txtBoxRazonSocial.Text;
         }
 
-        private void cargarDatosStockEnModeloArticuloProveedor(ref ModeloArticuloProveedores p_mod_articuloProveedor)
-        {
-            p_mod_articuloProveedor.codigoArticuloProveedor = txtBoxCodigoArticulo.Text;
-            p_mod_articuloProveedor.ubicacion = txtBoxUbicacion.Text;
-            p_mod_articuloProveedor.stockActual = Convert.ToInt32(nmrcUpDownStockActual.Value);
-            p_mod_articuloProveedor.stockMinimo = Convert.ToInt32(nmrcUpDownStockMinimo.Value);
-            if (LibreriaClasesCompartidas.Validar.validarValorDecimal(txtBoxPrecioCompra.Text))
-            {
-                p_mod_articuloProveedor.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioCompra.Text);
-            }
-            else
-            {
-                p_mod_articuloProveedor.valorCompra.valorArticulo = null;
-            }
-            //lcl_mod_articuloProveedores.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioCompra.Text);
-            if (LibreriaClasesCompartidas.Validar.validarValorDecimal(txtBoxPrecioVenta.Text))
-            {
-                p_mod_articuloProveedor.valorVenta.valorArticulo = Convert.ToDecimal(txtBoxPrecioVenta.Text);
-            }
-            else
-            {
-                p_mod_articuloProveedor.valorVenta.valorArticulo = null;
-            }
-            //lcl_mod_articuloProveedores.valorVenta.valorArticulo = Convert.ToDecimal(txtBoxPrecioVenta.Text);
-            p_mod_articuloProveedor.observacionesArticuloProveedor = rchTextBoxObservaciones.Text;
-        }
+        
         #endregion
         
         #region Modelo -> Controles
         private void cargarArticuloProveedorEnControles(ModeloArticuloProveedores p_mod_articuloProveedor)
-        {
+        {   //agregar como parametro la lista de Descuentos
             glb_mod_articuloProveedor = p_mod_articuloProveedor;
 
             txtBoxCodigoOriginal.Text = p_mod_articuloProveedor.codigoOriginal;
             txtBoxDescripcion.Text = p_mod_articuloProveedor.descripcion;
             txtBoxCodigoProveedor.Text = p_mod_articuloProveedor.codigoEntidad.ToString();
             txtBoxRazonSocial.Text = p_mod_articuloProveedor.razonSocialProveedor;
-            txtBoxCodigoArticulo.Text = p_mod_articuloProveedor.codigoArticuloProveedor;
-            txtBoxUbicacion.Text = p_mod_articuloProveedor.ubicacion;
-            nmrcUpDownStockActual.Value = Convert.ToInt32(p_mod_articuloProveedor.stockActual);
-            nmrcUpDownStockActual.Text = nmrcUpDownStockActual.Value.ToString();
-            nmrcUpDownStockMinimo.Value = Convert.ToInt32(p_mod_articuloProveedor.stockMinimo);
-            nmrcUpDownStockMinimo.Text = nmrcUpDownStockMinimo.Value.ToString();
-            txtBoxPrecioCompra.Text = p_mod_articuloProveedor.valorCompra.valorArticulo.ToString();
-            txtBoxPrecioVenta.Text =  p_mod_articuloProveedor.valorVenta.valorArticulo.ToString();
-
-            rchTextBoxObservaciones.Text = p_mod_articuloProveedor.observacionesArticuloProveedor;
+            
         }
         #endregion
 
@@ -383,7 +353,7 @@ namespace Vista
         /// <returns>true si todos los controladores válidos, false caso contrario</returns>
         private bool validar()
         {
-            if (this.validarCodigoArticulo())
+            if (this.validarPorcentajeDescuento())
             {
                 return this.validarArticulo() && this.validarProveedor();
             }
@@ -408,14 +378,14 @@ namespace Vista
             }
             return true;
         }
-        private bool validarCodigoArticulo()
+        private bool validarPorcentajeDescuento()
         {
-            if (string.IsNullOrWhiteSpace(txtBoxCodigoArticulo.Text))
+            if (string.IsNullOrWhiteSpace(tbxPorcentajeDescuento.Text)|| Convert.ToDecimal(tbxPorcentajeDescuento.Text)>100)
             {
-                this.errorProviderActual.SetError(txtBoxCodigoArticulo, "Este campo es obligatorio. No puede permanecer vacío.");
+                this.errorProviderActual.SetError(tbxPorcentajeDescuento, "Este campo es obligatorio. No puede permanecer vacío o ser mayor a 100.");
                 return false;
             }
-            this.errorProviderActual.SetError(txtBoxCodigoArticulo, "");
+            this.errorProviderActual.SetError(tbxPorcentajeDescuento, "");
             return true;
         }
 
@@ -438,7 +408,7 @@ namespace Vista
 
         override public void toolStripMenuItemEliminar_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("¿Está seguro que desea eliminar el artículo proveedor seleccionado?", "Atención", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("¿Está seguro que desea eliminar el descuento seleccionado?", "Atención", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 this.baja();
@@ -515,11 +485,12 @@ namespace Vista
 
         #endregion
 
-        private void frmABMArticuloProveedor_Move(object sender, EventArgs e)
+        private void frmDescuentosArticulos_Move(object sender, EventArgs e)
         {
             this.Location = new Point(224, 124);
         }
 
+              
 
     }
 }
