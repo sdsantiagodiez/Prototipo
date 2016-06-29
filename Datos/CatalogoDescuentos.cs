@@ -195,6 +195,60 @@ namespace Datos
             return true;
         }
 
+        private bool updateDescuento(ModeloDescuento p_mod_descuento)
+        {
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.CommandText =
+                "UPDATE [Descuentos_articulos] SET ," +
+                "[fecha_desde]=@fecha_desde,[fecha_hasta]=@fecha_hasta, [porcentaje_descuento]=@porcentaje_descuento" +
+                "WHERE ([codigo_original]=@codigo_original AND [codigo_articulo_proveedor]=@codigo_articulo_proveedor " +
+                "AND [numero_descuento]=@numero_descuento)";
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.CodigoArticuloProveedor, "@codigo_articulo_proveedor"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.CodigoOriginal, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.FechaDesde, "@fecha_desde"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.FechaHasta, "@fecha_hasta"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.PorcentajeDescuento, "@porcentaje_descuento"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.numeroDescuento, "@numero_descuento"));
+            
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected != 0)
+            { return true; }
+            else
+            { return false; }
+        }
+
+        public bool remove(ModeloDescuento p_mod_descuento)
+        {
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.CommandText =
+                "DELETE FROM [Descuentos_articulos] " +
+                "   WHERE (codigo_articulo_proveedor=@codigo_articulo_proveedor AND codigo_original=@codigo_original AND numero_descuento=@numero_descuento) ";
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.CodigoArticuloProveedor, "@codigo_articulo_proveedor"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.CodigoOriginal, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.numeroDescuento, "@numero_descuento"));
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected != 0)
+            { return true; }
+            else
+            { return false; }
+        }
+
 
     }
 }
