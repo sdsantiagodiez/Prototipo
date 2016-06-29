@@ -65,6 +65,7 @@
     <Compile Include="CatalogoArticulos.cs" />
     <Compile Include="CatalogoClientes.cs" />
     <Compile Include="CatalogoContactoProveedores.cs" />
+    <Compile Include="CatalogoDescuentos.cs" />
     <Compile Include="CatalogoDomicilios.cs" />
     <Compile Include="CatalogoEntidades.cs" />
     <Compile Include="CatalogoLineasPedidos.cs" />
