@@ -53,12 +53,12 @@ namespace Vista
             txtBoxCodigoOriginal.Enabled = true;
             txtBoxDescripcion.Enabled = true;
 
-            grpBoxProveedor.Enabled = true;
+            grpBoxArticuloProveedor.Enabled = true;
 
-            btnBuscarProveedor.Enabled = true;
+            btnBuscarArticuloProveedor.Enabled = true;
             btnModificarProveedor.Enabled = false;
-            txtBoxCodigoProveedor.Enabled = true;
-            txtBoxRazonSocial.Enabled = true;
+            txtBoxCodigoArtculoProveedor.Enabled = true;
+            txtBoxDescripcionArticuloProveedor.Enabled = true;
 
             tbxFechaDesde.Enabled = false;
             tbxFechaHasta.Enabled = false;
@@ -80,10 +80,10 @@ namespace Vista
             btnModificarArticulo.Enabled = false;
             txtBoxCodigoOriginal.Enabled = txtBoxDescripcion.Enabled = true;
 
-            grpBoxProveedor.Enabled = true;
-            btnBuscarProveedor.Enabled = true;
+            grpBoxArticuloProveedor.Enabled = true;
+            btnBuscarArticuloProveedor.Enabled = true;
             btnModificarProveedor.Enabled = false;
-            txtBoxCodigoProveedor.Enabled = txtBoxRazonSocial.Enabled = true;
+            txtBoxCodigoArtculoProveedor.Enabled = txtBoxDescripcionArticuloProveedor.Enabled = true;
 
             tbxFechaDesde.Text = DateTime.Today.ToString();
             tbxFechaHasta.Text = DateTime.Today.ToString();
@@ -99,7 +99,7 @@ namespace Vista
 
             grpBoxArticulo.Enabled = false;
 
-            grpBoxProveedor.Enabled = false;
+            grpBoxArticuloProveedor.Enabled = false;
 
             tbxnumeroDescuento.Enabled = false;
             tbxFechaDesde.Enabled = true;
@@ -138,17 +138,17 @@ namespace Vista
 
         private void inicializarModoProveedorSeleccionado()
         {
-            txtBoxCodigoProveedor.Enabled = false;
-            txtBoxRazonSocial.Enabled = false;
-            btnBuscarProveedor.Enabled = false;
+            txtBoxCodigoArtculoProveedor.Enabled = false;
+            txtBoxDescripcionArticuloProveedor.Enabled = false;
+            btnBuscarArticuloProveedor.Enabled = false;
             btnModificarProveedor.Enabled = true;
         }
 
         private void inicializarModoProveedorModificado()
         {
-            txtBoxCodigoProveedor.Enabled = true;
-            txtBoxRazonSocial.Enabled = true;
-            btnBuscarProveedor.Enabled = true;
+            txtBoxCodigoArtculoProveedor.Enabled = true;
+            txtBoxDescripcionArticuloProveedor.Enabled = true;
+            btnBuscarArticuloProveedor.Enabled = true;
             btnModificarProveedor.Enabled = false;
         }
 
@@ -275,28 +275,7 @@ namespace Vista
                 this.cargarDatosArticuloEnModeloArticuloProveedor(ref glb_mod_articuloProveedor);
             }
         }
-        private void buscarProveedor()
-        {
-            //Se podría ver de mostrar solo proveedores que tengan ese articuloOriginal en articuloProveedor
-            frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
-            ModeloProveedor lcl_mod_proveedor = new ModeloProveedor();
-            
-            ModeloArticuloProveedores lcl_mod_articuloProveedor = new ModeloArticuloProveedores();
-            this.cargarDatosProveedorEnModeloArticuloProveedor(ref lcl_mod_articuloProveedor);
-            
-            lcl_mod_proveedor.codigo = lcl_mod_articuloProveedor.codigoEntidad;
-            lcl_mod_proveedor.razonSocial = lcl_mod_articuloProveedor.razonSocialProveedor;
-
-            lcl_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_proveedor);
-            if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
-            {
-                this.inicializarModoProveedorSeleccionado();
-                txtBoxCodigoProveedor.Text = (lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloProveedor).codigo.ToString();
-                txtBoxRazonSocial.Text = (lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloProveedor).razonSocial;
-
-                this.cargarDatosProveedorEnModeloArticuloProveedor(ref glb_mod_articuloProveedor);
-            }
-        }
+        
         #endregion
         
         #region Controles -> Modelo
@@ -305,8 +284,7 @@ namespace Vista
             ModeloArticuloProveedores lcl_mod_articuloProveedores = new ModeloArticuloProveedores();
 
             this.cargarDatosArticuloEnModeloArticuloProveedor(ref lcl_mod_articuloProveedores);
-            this.cargarDatosProveedorEnModeloArticuloProveedor(ref lcl_mod_articuloProveedores);
-            
+                        
 
             return lcl_mod_articuloProveedores;
         }
@@ -317,21 +295,7 @@ namespace Vista
             p_mod_articuloProveedor.descripcion = txtBoxDescripcion.Text;
         }
 
-        private void cargarDatosProveedorEnModeloArticuloProveedor(ref ModeloArticuloProveedores p_mod_articuloProveedor)
-        {
-            if (LibreriaClasesCompartidas.Validar.validarValorNumerico(txtBoxCodigoProveedor.Text))
-            {
-                p_mod_articuloProveedor.codigoEntidad = Convert.ToInt32(txtBoxCodigoProveedor.Text);
-            }
-            else
-            {
-                p_mod_articuloProveedor.codigoEntidad = 0;
-            }
-            //lcl_mod_articuloProveedores.codigoEntidad = Convert.ToInt32(txtBoxCodigoProveedor.Text);
-            p_mod_articuloProveedor.razonSocialProveedor = txtBoxRazonSocial.Text;
-        }
-
-        
+                
         #endregion
         
         #region Modelo -> Controles
@@ -341,8 +305,8 @@ namespace Vista
 
             txtBoxCodigoOriginal.Text = p_mod_articuloProveedor.codigoOriginal;
             txtBoxDescripcion.Text = p_mod_articuloProveedor.descripcion;
-            txtBoxCodigoProveedor.Text = p_mod_articuloProveedor.codigoEntidad.ToString();
-            txtBoxRazonSocial.Text = p_mod_articuloProveedor.razonSocialProveedor;
+            txtBoxCodigoArtculoProveedor.Text = p_mod_articuloProveedor.codigoEntidad.ToString();
+            txtBoxDescripcionArticuloProveedor.Text = p_mod_articuloProveedor.razonSocialProveedor;
             
         }
         private void cargarListaDescuentosEnControles(List<ModeloDescuentoArticulo> p_lst_mod_descuento)
@@ -494,12 +458,12 @@ namespace Vista
 
         private void btnBuscarProveedor_Click(object sender, EventArgs e)
         {
-            this.buscarProveedor();
+            this.buscarArticuloProveedor();
         }
         private void btnModificarProveedor_Click(object sender, EventArgs e)
         {
             this.inicializarModoProveedorModificado();
-            this.quitarTextoEnControles(grpBoxProveedor);
+            this.quitarTextoEnControles(grpBoxArticuloProveedor);
             glb_mod_articuloProveedor.codigoEntidad = 0;
             glb_mod_articuloProveedor.razonSocialProveedor = null;
         }

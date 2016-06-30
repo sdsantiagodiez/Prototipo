@@ -47,14 +47,14 @@
             this.btnModificarArticulo = new MaterialSkin.Controls.MaterialFlatButton();
             this.txtBoxCodigoOriginal = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBoxDescripcion = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.grpBoxProveedor = new System.Windows.Forms.GroupBox();
+            this.grpBoxArticuloProveedor = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelProveedor = new System.Windows.Forms.TableLayoutPanel();
             this.lblRazonSocial = new System.Windows.Forms.Label();
             this.lblCodigoProveedor = new System.Windows.Forms.Label();
-            this.btnBuscarProveedor = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnBuscarArticuloProveedor = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnModificarProveedor = new MaterialSkin.Controls.MaterialFlatButton();
-            this.txtBoxCodigoProveedor = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxRazonSocial = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxCodigoArtculoProveedor = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxDescripcionArticuloProveedor = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.grpBoxListaDescuentos = new System.Windows.Forms.GroupBox();
             this.dgvDescuentos = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
@@ -63,7 +63,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.grpBoxArticulo.SuspendLayout();
             this.tblLayoutPanelArticulo.SuspendLayout();
-            this.grpBoxProveedor.SuspendLayout();
+            this.grpBoxArticuloProveedor.SuspendLayout();
             this.tblLayoutPanelProveedor.SuspendLayout();
             this.grpBoxListaDescuentos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDescuentos)).BeginInit();
@@ -75,7 +75,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.grpBoxDescuento, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.grpBoxArticulo, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.grpBoxProveedor, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.grpBoxArticuloProveedor, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.grpBoxListaDescuentos, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 63);
@@ -316,17 +316,17 @@
             this.txtBoxDescripcion.TabIndex = 10;
             this.txtBoxDescripcion.UseSystemPasswordChar = false;
             // 
-            // grpBoxProveedor
+            // grpBoxArticuloProveedor
             // 
-            this.grpBoxProveedor.Controls.Add(this.tblLayoutPanelProveedor);
-            this.grpBoxProveedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpBoxProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpBoxProveedor.Location = new System.Drawing.Point(3, 123);
-            this.grpBoxProveedor.Name = "grpBoxProveedor";
-            this.grpBoxProveedor.Size = new System.Drawing.Size(444, 114);
-            this.grpBoxProveedor.TabIndex = 10;
-            this.grpBoxProveedor.TabStop = false;
-            this.grpBoxProveedor.Text = "Proveedor";
+            this.grpBoxArticuloProveedor.Controls.Add(this.tblLayoutPanelProveedor);
+            this.grpBoxArticuloProveedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpBoxArticuloProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpBoxArticuloProveedor.Location = new System.Drawing.Point(3, 123);
+            this.grpBoxArticuloProveedor.Name = "grpBoxArticuloProveedor";
+            this.grpBoxArticuloProveedor.Size = new System.Drawing.Size(444, 114);
+            this.grpBoxArticuloProveedor.TabIndex = 10;
+            this.grpBoxArticuloProveedor.TabStop = false;
+            this.grpBoxArticuloProveedor.Text = "Articulo Proveedor";
             // 
             // tblLayoutPanelProveedor
             // 
@@ -336,10 +336,10 @@
             this.tblLayoutPanelProveedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tblLayoutPanelProveedor.Controls.Add(this.lblRazonSocial, 0, 1);
             this.tblLayoutPanelProveedor.Controls.Add(this.lblCodigoProveedor, 0, 0);
-            this.tblLayoutPanelProveedor.Controls.Add(this.btnBuscarProveedor, 2, 0);
+            this.tblLayoutPanelProveedor.Controls.Add(this.btnBuscarArticuloProveedor, 2, 0);
             this.tblLayoutPanelProveedor.Controls.Add(this.btnModificarProveedor, 2, 1);
-            this.tblLayoutPanelProveedor.Controls.Add(this.txtBoxCodigoProveedor, 1, 0);
-            this.tblLayoutPanelProveedor.Controls.Add(this.txtBoxRazonSocial, 1, 1);
+            this.tblLayoutPanelProveedor.Controls.Add(this.txtBoxCodigoArtculoProveedor, 1, 0);
+            this.tblLayoutPanelProveedor.Controls.Add(this.txtBoxDescripcionArticuloProveedor, 1, 1);
             this.tblLayoutPanelProveedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelProveedor.Location = new System.Drawing.Point(3, 20);
             this.tblLayoutPanelProveedor.Name = "tblLayoutPanelProveedor";
@@ -354,11 +354,11 @@
             this.lblRazonSocial.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblRazonSocial.AutoSize = true;
             this.lblRazonSocial.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRazonSocial.Location = new System.Drawing.Point(20, 59);
+            this.lblRazonSocial.Location = new System.Drawing.Point(30, 59);
             this.lblRazonSocial.Name = "lblRazonSocial";
-            this.lblRazonSocial.Size = new System.Drawing.Size(97, 18);
+            this.lblRazonSocial.Size = new System.Drawing.Size(87, 18);
             this.lblRazonSocial.TabIndex = 6;
-            this.lblRazonSocial.Text = "Razón Social";
+            this.lblRazonSocial.Text = "Descripcion";
             // 
             // lblCodigoProveedor
             // 
@@ -371,22 +371,22 @@
             this.lblCodigoProveedor.TabIndex = 5;
             this.lblCodigoProveedor.Text = "Código";
             // 
-            // btnBuscarProveedor
+            // btnBuscarArticuloProveedor
             // 
-            this.btnBuscarProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBuscarProveedor.AutoSize = true;
-            this.btnBuscarProveedor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnBuscarProveedor.Depth = 0;
-            this.btnBuscarProveedor.Location = new System.Drawing.Point(357, 6);
-            this.btnBuscarProveedor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnBuscarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnBuscarProveedor.Name = "btnBuscarProveedor";
-            this.btnBuscarProveedor.Primary = false;
-            this.btnBuscarProveedor.Size = new System.Drawing.Size(77, 33);
-            this.btnBuscarProveedor.TabIndex = 8;
-            this.btnBuscarProveedor.Text = "Buscar";
-            this.btnBuscarProveedor.UseVisualStyleBackColor = true;
-            this.btnBuscarProveedor.Click += new System.EventHandler(this.btnBuscarProveedor_Click);
+            this.btnBuscarArticuloProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscarArticuloProveedor.AutoSize = true;
+            this.btnBuscarArticuloProveedor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnBuscarArticuloProveedor.Depth = 0;
+            this.btnBuscarArticuloProveedor.Location = new System.Drawing.Point(357, 6);
+            this.btnBuscarArticuloProveedor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnBuscarArticuloProveedor.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnBuscarArticuloProveedor.Name = "btnBuscarArticuloProveedor";
+            this.btnBuscarArticuloProveedor.Primary = false;
+            this.btnBuscarArticuloProveedor.Size = new System.Drawing.Size(77, 33);
+            this.btnBuscarArticuloProveedor.TabIndex = 8;
+            this.btnBuscarArticuloProveedor.Text = "Buscar";
+            this.btnBuscarArticuloProveedor.UseVisualStyleBackColor = true;
+            this.btnBuscarArticuloProveedor.Click += new System.EventHandler(this.btnBuscarProveedor_Click);
             // 
             // btnModificarProveedor
             // 
@@ -405,37 +405,37 @@
             this.btnModificarProveedor.UseVisualStyleBackColor = true;
             this.btnModificarProveedor.Click += new System.EventHandler(this.btnModificarProveedor_Click);
             // 
-            // txtBoxCodigoProveedor
+            // txtBoxCodigoArtculoProveedor
             // 
-            this.txtBoxCodigoProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCodigoProveedor.Depth = 0;
-            this.txtBoxCodigoProveedor.Hint = "";
-            this.txtBoxCodigoProveedor.Location = new System.Drawing.Point(123, 11);
-            this.txtBoxCodigoProveedor.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxCodigoProveedor.Name = "txtBoxCodigoProveedor";
-            this.txtBoxCodigoProveedor.PasswordChar = '\0';
-            this.txtBoxCodigoProveedor.SelectedText = "";
-            this.txtBoxCodigoProveedor.SelectionLength = 0;
-            this.txtBoxCodigoProveedor.SelectionStart = 0;
-            this.txtBoxCodigoProveedor.Size = new System.Drawing.Size(227, 23);
-            this.txtBoxCodigoProveedor.TabIndex = 10;
-            this.txtBoxCodigoProveedor.UseSystemPasswordChar = false;
+            this.txtBoxCodigoArtculoProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxCodigoArtculoProveedor.Depth = 0;
+            this.txtBoxCodigoArtculoProveedor.Hint = "";
+            this.txtBoxCodigoArtculoProveedor.Location = new System.Drawing.Point(123, 11);
+            this.txtBoxCodigoArtculoProveedor.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxCodigoArtculoProveedor.Name = "txtBoxCodigoArtculoProveedor";
+            this.txtBoxCodigoArtculoProveedor.PasswordChar = '\0';
+            this.txtBoxCodigoArtculoProveedor.SelectedText = "";
+            this.txtBoxCodigoArtculoProveedor.SelectionLength = 0;
+            this.txtBoxCodigoArtculoProveedor.SelectionStart = 0;
+            this.txtBoxCodigoArtculoProveedor.Size = new System.Drawing.Size(227, 23);
+            this.txtBoxCodigoArtculoProveedor.TabIndex = 10;
+            this.txtBoxCodigoArtculoProveedor.UseSystemPasswordChar = false;
             // 
-            // txtBoxRazonSocial
+            // txtBoxDescripcionArticuloProveedor
             // 
-            this.txtBoxRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxRazonSocial.Depth = 0;
-            this.txtBoxRazonSocial.Hint = "";
-            this.txtBoxRazonSocial.Location = new System.Drawing.Point(123, 56);
-            this.txtBoxRazonSocial.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
-            this.txtBoxRazonSocial.PasswordChar = '\0';
-            this.txtBoxRazonSocial.SelectedText = "";
-            this.txtBoxRazonSocial.SelectionLength = 0;
-            this.txtBoxRazonSocial.SelectionStart = 0;
-            this.txtBoxRazonSocial.Size = new System.Drawing.Size(227, 23);
-            this.txtBoxRazonSocial.TabIndex = 11;
-            this.txtBoxRazonSocial.UseSystemPasswordChar = false;
+            this.txtBoxDescripcionArticuloProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxDescripcionArticuloProveedor.Depth = 0;
+            this.txtBoxDescripcionArticuloProveedor.Hint = "";
+            this.txtBoxDescripcionArticuloProveedor.Location = new System.Drawing.Point(123, 56);
+            this.txtBoxDescripcionArticuloProveedor.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxDescripcionArticuloProveedor.Name = "txtBoxDescripcionArticuloProveedor";
+            this.txtBoxDescripcionArticuloProveedor.PasswordChar = '\0';
+            this.txtBoxDescripcionArticuloProveedor.SelectedText = "";
+            this.txtBoxDescripcionArticuloProveedor.SelectionLength = 0;
+            this.txtBoxDescripcionArticuloProveedor.SelectionStart = 0;
+            this.txtBoxDescripcionArticuloProveedor.Size = new System.Drawing.Size(227, 23);
+            this.txtBoxDescripcionArticuloProveedor.TabIndex = 11;
+            this.txtBoxDescripcionArticuloProveedor.UseSystemPasswordChar = false;
             // 
             // grpBoxListaDescuentos
             // 
@@ -476,7 +476,7 @@
             this.grpBoxArticulo.ResumeLayout(false);
             this.tblLayoutPanelArticulo.ResumeLayout(false);
             this.tblLayoutPanelArticulo.PerformLayout();
-            this.grpBoxProveedor.ResumeLayout(false);
+            this.grpBoxArticuloProveedor.ResumeLayout(false);
             this.tblLayoutPanelProveedor.ResumeLayout(false);
             this.tblLayoutPanelProveedor.PerformLayout();
             this.grpBoxListaDescuentos.ResumeLayout(false);
@@ -493,7 +493,7 @@
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelArticulo;
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.Label lblCodigoOriginal;
-        private System.Windows.Forms.GroupBox grpBoxProveedor;
+        private System.Windows.Forms.GroupBox grpBoxArticuloProveedor;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelProveedor;
         private System.Windows.Forms.Label lblRazonSocial;
         private System.Windows.Forms.Label lblCodigoProveedor;
@@ -503,10 +503,10 @@
         private MaterialSkin.Controls.MaterialFlatButton btnModificarArticulo;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxCodigoOriginal;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxDescripcion;
-        private MaterialSkin.Controls.MaterialFlatButton btnBuscarProveedor;
+        private MaterialSkin.Controls.MaterialFlatButton btnBuscarArticuloProveedor;
         private MaterialSkin.Controls.MaterialFlatButton btnModificarProveedor;
-        private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxCodigoProveedor;
-        private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxRazonSocial;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxCodigoArtculoProveedor;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxDescripcionArticuloProveedor;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label tbxnumeroDescuento;
         private System.Windows.Forms.Label label1;
