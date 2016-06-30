@@ -161,6 +161,7 @@
             this.tbxFechaHasta.Name = "tbxFechaHasta";
             this.tbxFechaHasta.Size = new System.Drawing.Size(92, 24);
             this.tbxFechaHasta.TabIndex = 2;
+            this.tbxFechaHasta.Validating += new System.ComponentModel.CancelEventHandler(this.tbxFechaHasta_Validating);
             // 
             // tbxFechaDesde
             // 
@@ -168,6 +169,7 @@
             this.tbxFechaDesde.Name = "tbxFechaDesde";
             this.tbxFechaDesde.Size = new System.Drawing.Size(92, 24);
             this.tbxFechaDesde.TabIndex = 3;
+            this.tbxFechaDesde.Validating += new System.ComponentModel.CancelEventHandler(this.tbxFechaDesde_Validating);
             // 
             // label4
             // 

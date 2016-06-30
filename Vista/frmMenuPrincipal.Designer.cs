@@ -68,6 +68,7 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.descuentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cntxtMenuStripABM.SuspendLayout();
             this.tblMainMenu.SuspendLayout();
             this.tlsMenu.SuspendLayout();
@@ -211,7 +212,8 @@
             this.tlsbtnABM.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.entidadesToolStripMenuItem1,
             this.artículosToolStripMenuItem1,
-            this.artículosDeProveedorToolStripMenuItem});
+            this.artículosDeProveedorToolStripMenuItem,
+            this.descuentosToolStripMenuItem});
             this.tlsbtnABM.Image = ((System.Drawing.Image)(resources.GetObject("tlsbtnABM.Image")));
             this.tlsbtnABM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tlsbtnABM.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -459,6 +461,13 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1370, 25);
             this.tableLayoutPanel3.TabIndex = 37;
             // 
+            // descuentosToolStripMenuItem
+            // 
+            this.descuentosToolStripMenuItem.Name = "descuentosToolStripMenuItem";
+            this.descuentosToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.descuentosToolStripMenuItem.Text = "Descuentos";
+            this.descuentosToolStripMenuItem.Click += new System.EventHandler(this.descuentosToolStripMenuItem_Click);
+            // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -532,5 +541,6 @@
         private System.Windows.Forms.ToolStripButton tlsbtnDevolucion;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.ToolStripMenuItem descuentosToolStripMenuItem;
     }
 }

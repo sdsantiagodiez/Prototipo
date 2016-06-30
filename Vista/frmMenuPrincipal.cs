@@ -316,7 +316,12 @@ namespace Vista
             //lcl_frm_ABMArticulo.MdiParent = this;
             lcl_frm_ABMArticulo.ShowDialog();
         }
-
+        private void descuentosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Vista.frmDescuentosArticulos lcl_frm_ABMDescuentos = new frmDescuentosArticulos();
+            lcl_frm_ABMDescuentos.Location = glb_localizacion;
+            lcl_frm_ABMDescuentos.ShowDialog();
+        }
         #endregion
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
@@ -348,6 +353,8 @@ namespace Vista
 
 
         #endregion
+
+        
 
         
 

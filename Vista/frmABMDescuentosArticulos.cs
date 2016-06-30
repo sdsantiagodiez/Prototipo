@@ -345,6 +345,44 @@ namespace Vista
             txtBoxRazonSocial.Text = p_mod_articuloProveedor.razonSocialProveedor;
             
         }
+        private void cargarListaDescuentosEnControles(List<ModeloDescuentoArticulo> p_lst_mod_descuento)
+        { 
+            DataTable descuentos = new DataTable();
+            descuentos.Columns.Add("indice");
+            descuentos.Columns.Add("numeroDescuento");
+            descuentos.Columns.Add("porcentajeDescuento");
+            descuentos.Columns.Add("fechaDesde");
+            descuentos.Columns.Add("fechaHasta");
+            
+            int i = 0;
+            foreach (ModeloDescuentoArticulo de in p_lst_mod_descuento)
+            {
+                var row = descuentos.NewRow();
+                 row["indice"] = i.ToString();
+                i++;
+                row["porcentajeDescuento"] = de.PorcentajeDescuento.ToString();
+                row["numeroDescuento"] = de.CodigoArticuloProveedor.ToString();
+                row["fechaDesde"] = de.FechaDesde.ToShortDateString();
+                row["fechaHasta"] = de.FechaHasta.ToShortDateString();
+
+                descuentos.Rows.Add(row);
+            }
+
+            this.dgvDescuentos.DataSource = descuentos;
+            this.dgvDescuentos.ClearSelection();
+            this.glb_mod_Descuento = null;
+            
+        
+        }
+        
+        private void cargarDescuentosEnControles(ModeloDescuentoArticulo p_mod_descuento)
+        {
+            this.tbxnumeroDescuento.Text = p_mod_descuento.numeroDescuento.ToString();
+            this.tbxPorcentajeDescuento.Text = p_mod_descuento.PorcentajeDescuento.ToString();
+            this.tbxFechaDesde.Text = p_mod_descuento.FechaDesde.ToShortDateString();
+            this.tbxFechaHasta.Text = p_mod_descuento.FechaHasta.ToShortDateString();
+        }
+
         #endregion
 
         #region Validación
@@ -489,6 +527,25 @@ namespace Vista
         private void frmDescuentosArticulos_Move(object sender, EventArgs e)
         {
             this.Location = new Point(224, 124);
+        }
+
+        private void tbxFechaDesde_Validating(object sender, CancelEventArgs e)
+        {
+            DateTime lcl_fecha;
+            if (DateTime. TryParse(tbxFechaDesde.Text, out lcl_fecha))
+            {
+                errorProviderActual.SetError(tbxFechaDesde,"La fecha ingresada no es válida");
+            }
+
+        }
+
+        private void tbxFechaHasta_Validating(object sender, CancelEventArgs e)
+        {
+            DateTime lcl_fecha;
+            if (DateTime.TryParse(tbxFechaHasta.Text, out lcl_fecha))
+            {
+                errorProviderActual.SetError(tbxFechaHasta, "La fecha ingresada no es válida");
+            }
         }
 
               
