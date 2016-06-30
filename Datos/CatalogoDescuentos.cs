@@ -195,7 +195,7 @@ namespace Datos
             return true;
         }
 
-        private bool updateDescuento(ModeloDescuento p_mod_descuento)
+        private bool update(ModeloDescuento p_mod_descuento)
         {
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
             SqlCommand comando = new SqlCommand();

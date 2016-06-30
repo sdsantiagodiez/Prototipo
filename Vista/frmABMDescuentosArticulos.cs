@@ -105,6 +105,7 @@ namespace Vista
             tbxFechaDesde.Enabled = true;
             tbxFechaHasta.Enabled = true;
             tbxPorcentajeDescuento.Enabled = true;
+            dgvDescuentos.Enabled = true;
 
         }
 
@@ -168,7 +169,7 @@ namespace Vista
             ControladorAlta lcl_con_alta = new ControladorAlta();
             glb_mod_articuloProveedor = this.cargarDatosEnModeloArticuloProveedor();
 
-            if(lcl_con_alta.agregar(glb_mod_articuloProveedor))
+            if(lcl_con_alta.agregar(glb_mod_Descuento))
             {
                 MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
                 this.inicializarModoFormularioSeleccionado();
