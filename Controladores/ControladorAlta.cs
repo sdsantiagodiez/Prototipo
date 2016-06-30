@@ -301,7 +301,7 @@ namespace Controladores
             return true;
         }
 
-        public bool agregar(ModeloDescuento p_mod_descuento)
+        public bool agregar(ModeloDescuentoArticulo p_mod_descuento)
         {
             CatalogoDescuentos lcl_cat_descuentos = new CatalogoDescuentos();
             bool respuesta = false;

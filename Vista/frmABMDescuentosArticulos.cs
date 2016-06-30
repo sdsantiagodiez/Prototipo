@@ -16,7 +16,7 @@ namespace Vista
     public partial class frmDescuentosArticulos : Vista.frmABMBase
     {
         #region Atributos
-        ModeloDescuento glb_mod_Descuento;
+        ModeloDescuentoArticulo glb_mod_Descuento;
         ModeloArticuloProveedores glb_mod_articuloProveedor;
         #endregion
 
@@ -28,7 +28,7 @@ namespace Vista
             this.Text = "Descuento Artículo";
                         
         }
-        public frmDescuentosArticulos(ModeloDescuento p_mod_descuento,string p_modoFormulario): this()
+        public frmDescuentosArticulos(ModeloDescuentoArticulo p_mod_descuento,string p_modoFormulario): this()
         {   //revisar
             glb_mod_Descuento = p_mod_descuento;
             this.modoFormulario = p_modoFormulario;

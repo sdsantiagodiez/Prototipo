@@ -13,9 +13,9 @@ namespace Datos
 {
     public class CatalogoDescuentos : Catalogo
     {
-        private ModeloDescuento leerDatosDescuento(SqlDataReader p_drDescuentos)
+        private ModeloDescuentoArticulo leerDatosDescuento(SqlDataReader p_drDescuentos)
         {
-            ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
+            ModeloDescuentoArticulo lcl_mod_descuento = new ModeloDescuentoArticulo();
 
             lcl_mod_descuento.CodigoOriginal = (string)p_drDescuentos["codigo_original"];
             lcl_mod_descuento.CodigoArticuloProveedor = (string)p_drDescuentos["codigo_articulo_proveedor"];
@@ -28,7 +28,7 @@ namespace Datos
         }
 
 
-        public List<ModeloDescuento> buscarDescuentos(string p_codigoOriginal, string p_codigoArticuloProveedor)
+        public List<ModeloDescuentoArticulo> buscarDescuentos(string p_codigoOriginal, string p_codigoArticuloProveedor)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -52,13 +52,13 @@ namespace Datos
 
             SqlDataReader drDescuentos = comando.ExecuteReader();
 
-            List<ModeloDescuento> lcl_lst_mod_descuento = new List<ModeloDescuento>();
-            ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
+            List<ModeloDescuentoArticulo> lcl_lst_mod_descuento = new List<ModeloDescuentoArticulo>();
+            ModeloDescuentoArticulo lcl_mod_descuento = new ModeloDescuentoArticulo();
 
             while (drDescuentos.Read())
             {
 
-                lcl_mod_descuento = new ModeloDescuento();
+                lcl_mod_descuento = new ModeloDescuentoArticulo();
                 lcl_mod_descuento = this.leerDatosDescuento(drDescuentos);
 
                lcl_lst_mod_descuento.Add(lcl_mod_descuento);
@@ -104,7 +104,7 @@ namespace Datos
         
         }
 
-        public ModeloDescuento getOne (string p_numero_descuento)
+        public ModeloDescuentoArticulo getOne (string p_numero_descuento)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -125,7 +125,7 @@ namespace Datos
 
             SqlDataReader drDescuentos = comando.ExecuteReader();
 
-            ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
+            ModeloDescuentoArticulo lcl_mod_descuento = new ModeloDescuentoArticulo();
 
             lcl_mod_descuento = this.leerDatosDescuento(drDescuentos);
                       
@@ -160,7 +160,7 @@ namespace Datos
             return ultimo_descuento;
         }
 
-        public bool add(ModeloDescuento p_mod_descuento)
+        public bool add(ModeloDescuentoArticulo p_mod_descuento)
         {
             if (this.descuentosSuperpuestos(p_mod_descuento.CodigoOriginal,p_mod_descuento.CodigoArticuloProveedor,p_mod_descuento.FechaDesde,p_mod_descuento.FechaHasta))
             { throw new Exception("Existe otro descuento entre las fechas."); }
@@ -195,7 +195,7 @@ namespace Datos
             return true;
         }
 
-        private bool update(ModeloDescuento p_mod_descuento)
+        public bool update(ModeloDescuentoArticulo p_mod_descuento)
         {
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
             SqlCommand comando = new SqlCommand();
@@ -225,7 +225,7 @@ namespace Datos
             { return false; }
         }
 
-        public bool remove(ModeloDescuento p_mod_descuento)
+        public bool remove(ModeloDescuentoArticulo p_mod_descuento)
         {
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
             SqlCommand comando = new SqlCommand();
