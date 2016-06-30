@@ -480,7 +480,9 @@ namespace Controladores
                 return null;
             }
         }
+
         #endregion
+
 
         #region Sin uso?
 
@@ -580,6 +582,14 @@ namespace Controladores
 
             return lcl_cat_articulos.buscarLineasPedido(null, Constantes.ParametrosBusqueda.All);
         }
+        public List<ModeloDescuentoArticulo> getDescuentos(ModeloDescuentoArticulo p_mod_descuento)
+        {
+            CatalogoDescuentos lcl_cat_descuentos = new CatalogoDescuentos();
+            List<ModeloDescuentoArticulo> lcl_lst_mod_descuento = lcl_cat_descuentos.buscarDescuentos(p_mod_descuento.CodigoOriginal,p_mod_descuento.CodigoArticuloProveedor);
+            return lcl_lst_mod_descuento;
+
+        }
+
         #endregion
         #region Roles
         /// <summary>
