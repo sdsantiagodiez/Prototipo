@@ -337,6 +337,7 @@
             this.dgvDescuentos.Name = "dgvDescuentos";
             this.dgvDescuentos.Size = new System.Drawing.Size(435, 202);
             this.dgvDescuentos.TabIndex = 0;
+            this.dgvDescuentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDescuentos_CellClick);
             this.dgvDescuentos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDescuentos_CellContentClick);
             // 
             // frmDescuentosArticulos

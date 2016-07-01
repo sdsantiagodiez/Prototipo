@@ -27,6 +27,9 @@ namespace Datos
             lcl_mod_lineaPedido.valorParcial = (decimal)p_drLineasPedidos["valor_parcial"];
             lcl_mod_lineaPedido.valorUnitario = (decimal)p_drLineasPedidos["valor_unitario"];
 
+            lcl_mod_lineaPedido.descuentoLinea.numeroDescuento = (int)p_drLineasPedidos["numero_descuento"];
+            lcl_mod_lineaPedido.descuentoLinea.PorcentajeDescuento = (decimal)p_drLineasPedidos["porcentaje_descuento"];
+
             lcl_mod_lineaPedido.articulo.descripcionArticuloProveedor= (p_drLineasPedidos["descripcion"] != DBNull.Value) ? (string)p_drLineasPedidos["descripcion"] : null;
                 
             return lcl_mod_lineaPedido;
@@ -118,7 +121,7 @@ namespace Datos
             string querySQL = this.getCondicionBusqueda(p_mod_lineaPedido, p_parametroBusqueda, ref comando);
 
             comando.CommandText =
-                "SELECT [numero_pedido],[codigo_articulo_proveedor],[codigo_original],[descripcion],[cantidad],[valor_unitario],[valor_parcial] " +
+                "SELECT [numero_pedido],[codigo_articulo_proveedor],[codigo_original],[descripcion],[cantidad],[valor_unitario],[valor_parcial],[porcentaje_descuento],[numero_descuento] " +
                 "   FROM [lineas_pedidos] " +
                 "   WHERE " + querySQL;
 
@@ -180,8 +183,9 @@ namespace Datos
 
             comando.CommandText =
                 "INSERT INTO [lineas_pedidos]([numero_pedido],[codigo_original],[codigo_articulo_proveedor],[descripcion],[cantidad],"+
-                "   [valor_parcial],[valor_unitario]) " +
-                "VALUES (@numero_pedido, @codigo_original, @codigo_articulo_proveedor,@descripcion,@cantidad,@valor_parcial,@valor_unitario)";
+                "   [valor_parcial],[valor_unitario],[numero_descuento],[porcentaje_descuento]) " +
+                "VALUES (@numero_pedido, @codigo_original, @codigo_articulo_proveedor,@descripcion,@cantidad,@valor_parcial,@valor_unitario,"+
+                "@numero_descuento,@porcentaje_descuento )";
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.numeroPedido, "@numero_pedido"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.articulo.codigoOriginal, "@codigo_original"));
@@ -190,6 +194,8 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.cantidadArticulos, "@cantidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.valorParcial, "@valor_parcial"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.valorUnitario, "@valor_unitario"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.descuentoLinea.numeroDescuento,"@numero_descuento"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.descuentoLinea.PorcentajeDescuento, "@porcentaje_descuento"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();

@@ -68,6 +68,7 @@ namespace Modelos
                 this.getValorParcial();
             }
         }
+        public ModeloDescuentoArticulo descuentoLinea { get; set; }
 
         #endregion
         
