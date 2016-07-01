@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using Controladores;
+using System.Globalization;
 
 
 namespace Vista
@@ -18,6 +19,8 @@ namespace Vista
         #region Atributos
         ModeloDescuentoArticulo glb_mod_Descuento;
         ModeloArticuloProveedores glb_mod_articuloProveedor;
+        ControladorDescuento controlador = new ControladorDescuento();
+        List<ModeloDescuentoArticulo> glb_lst_mod_descuentos;
         #endregion
 
         #region Constructores
@@ -48,18 +51,14 @@ namespace Vista
             
             grpBoxArticulo.Enabled = true;
             
-            btnBuscarArticulo.Enabled = true;
             btnModificarArticulo.Enabled = false;
             txtBoxCodigoOriginal.Enabled = true;
             txtBoxDescripcion.Enabled = true;
+            txtBoxCodigoArticulo.Enabled = true;
 
-            grpBoxArticuloProveedor.Enabled = true;
+            grpBoxDescuento.Enabled = true;
 
-            btnBuscarArticuloProveedor.Enabled = true;
-            btnModificarProveedor.Enabled = false;
-            txtBoxCodigoArtculoProveedor.Enabled = true;
-            txtBoxDescripcionArticuloProveedor.Enabled = true;
-
+            
             tbxFechaDesde.Enabled = false;
             tbxFechaHasta.Enabled = false;
             tbxnumeroDescuento.Enabled = false;
@@ -76,20 +75,18 @@ namespace Vista
             base.inicializarModoFormularioNuevo();
 
             grpBoxArticulo.Enabled = true;
-            btnBuscarArticulo.Enabled = true;
             btnModificarArticulo.Enabled = false;
-            txtBoxCodigoOriginal.Enabled = txtBoxDescripcion.Enabled = true;
-
-            grpBoxArticuloProveedor.Enabled = true;
-            btnBuscarArticuloProveedor.Enabled = true;
-            btnModificarProveedor.Enabled = false;
-            txtBoxCodigoArtculoProveedor.Enabled = txtBoxDescripcionArticuloProveedor.Enabled = true;
+            txtBoxCodigoOriginal.Enabled = txtBoxDescripcion.Enabled = txtBoxCodigoArticulo.Enabled = true;
 
             tbxFechaDesde.Text = DateTime.Today.ToString();
+            tbxFechaDesde.Enabled = true;
             tbxFechaHasta.Text = DateTime.Today.ToString();
+            tbxFechaHasta.Enabled = true;
             tbxnumeroDescuento.Text = lcl_con_descuento.getUltimoDescuento().ToString();
+            tbxnumeroDescuento.Enabled = false;
             tbxPorcentajeDescuento.Text = "0";
-
+            tbxPorcentajeDescuento.Enabled = true;
+            
             dgvDescuentos.Enabled = false;
         }
 
@@ -99,7 +96,7 @@ namespace Vista
 
             grpBoxArticulo.Enabled = false;
 
-            grpBoxArticuloProveedor.Enabled = false;
+            grpBoxDescuento.Enabled = true;
 
             tbxnumeroDescuento.Enabled = false;
             tbxFechaDesde.Enabled = true;
@@ -118,41 +115,23 @@ namespace Vista
                 c.Enabled = false;
             }
             this.cargarArticuloProveedorEnControles(glb_mod_articuloProveedor);
+            this.cargarDescuentosEnControles(glb_mod_Descuento);
+            this.cargarListaDescuentosEnControles(glb_lst_mod_descuentos);
         }
 
-        private void inicializarModoArticuloSeleccionado()
+        private void inicializarModoDescuentoModificado()
         {
-            txtBoxCodigoOriginal.Enabled = false;
-            txtBoxDescripcion.Enabled = false;
-            btnBuscarArticulo.Enabled = false;
-            btnModificarArticulo.Enabled = true;
+            grpBoxArticulo.Enabled = false;
+
+            txtBoxCodigoArticulo.Enabled = txtBoxCodigoOriginal.Enabled = txtBoxDescripcion.Enabled = false;
+
+            grpBoxListaDescuentos.Enabled = false;
+
+            dgvDescuentos.Enabled = false;
+
         }
 
-        private void inicializarModoArticuloModificado()
-        {
-            txtBoxCodigoOriginal.Enabled = true;
-            txtBoxDescripcion.Enabled = true;
-            btnBuscarArticulo.Enabled = true;
-            btnModificarArticulo.Enabled = false;
-        }
-
-        private void inicializarModoProveedorSeleccionado()
-        {
-            txtBoxCodigoArtculoProveedor.Enabled = false;
-            txtBoxDescripcionArticuloProveedor.Enabled = false;
-            btnBuscarArticuloProveedor.Enabled = false;
-            btnModificarProveedor.Enabled = true;
-        }
-
-        private void inicializarModoProveedorModificado()
-        {
-            txtBoxCodigoArtculoProveedor.Enabled = true;
-            txtBoxDescripcionArticuloProveedor.Enabled = true;
-            btnBuscarArticuloProveedor.Enabled = true;
-            btnModificarProveedor.Enabled = false;
-        }
-
-        #endregion
+       #endregion
 
         #region ABM
         /// <summary>
@@ -167,7 +146,7 @@ namespace Vista
             }
 
             ControladorAlta lcl_con_alta = new ControladorAlta();
-            glb_mod_articuloProveedor = this.cargarDatosEnModeloArticuloProveedor();
+            this.cargarDatosDescuentoEnModeloDescuentoArticulo(); 
 
             if(lcl_con_alta.agregar(glb_mod_Descuento))
             {
@@ -190,7 +169,7 @@ namespace Vista
         private void baja()
         {
             ControladorBaja lcl_con_baja = new ControladorBaja();
-            if (lcl_con_baja.eliminar(glb_mod_articuloProveedor))
+            if (lcl_con_baja.eliminar(glb_mod_Descuento))
             {
                 MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
                 this.inicializarModoFormularioInicio();
@@ -218,9 +197,9 @@ namespace Vista
             }
 
             ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
-            glb_mod_articuloProveedor = this.cargarDatosEnModeloArticuloProveedor();
+            this.cargarDatosDescuentoEnModeloDescuentoArticulo();
 
-            if (lcl_con_modificacion.modificar(glb_mod_articuloProveedor))
+            if (lcl_con_modificacion.modificar(glb_mod_Descuento))
             {
                 MessageBox.Show("Modificación exitosa", "Éxito", MessageBoxButtons.OK);
                 this.inicializarModoFormularioSeleccionado();
@@ -257,22 +236,14 @@ namespace Vista
                 this.cargarArticuloProveedorEnControles(glb_mod_articuloProveedor);
             }
         }
-        private void buscarArticulo()
+        private void buscarDescuentos()
         {
-            frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
-            ModeloArticulos lcl_mod_articulo = new ModeloArticulos();
-            
-            lcl_mod_articulo.codigoOriginal = txtBoxCodigoOriginal.Text;
-            lcl_mod_articulo.descripcion = txtBoxDescripcion.Text;
-            
-            lcl_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_articulo);
-            if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
+            int rta = controlador.buscarDescuentos(glb_mod_articuloProveedor.codigoOriginal, glb_mod_articuloProveedor.codigoArticuloProveedor);
+            if (rta != 0 || rta != null)
             {
-                this.inicializarModoArticuloSeleccionado();
-                txtBoxCodigoOriginal.Text = (lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticulos).codigoOriginal;
-                txtBoxDescripcion.Text = (lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticulos).descripcion;
-
-                this.cargarDatosArticuloEnModeloArticuloProveedor(ref glb_mod_articuloProveedor);
+                this.inicializarModoFormularioSeleccionado();
+                glb_lst_mod_descuentos = controlador.getDescuentosBusqueda();
+                this.cargarListaDatosDescuentoEnModeloDescuentoArticulo(ref glb_lst_mod_descuentos);
             }
         }
         
@@ -293,9 +264,41 @@ namespace Vista
         {
             p_mod_articuloProveedor.codigoOriginal = txtBoxCodigoOriginal.Text; ;
             p_mod_articuloProveedor.descripcion = txtBoxDescripcion.Text;
+            p_mod_articuloProveedor.codigoArticuloProveedor = txtBoxCodigoArticulo.Text;
+        }
+        
+        private void cargarDatosEnModeloDescuentoArticulo()
+        {
+           ModeloDescuentoArticulo lcl_mod_descuento = new ModeloDescuentoArticulo();
+
+            this.cargarDatosDescuentoEnModeloDescuentoArticulo();
+
         }
 
-                
+        private void cargarDatosDescuentoEnModeloDescuentoArticulo()
+        {
+            glb_mod_Descuento.CodigoOriginal = txtBoxCodigoOriginal.Text; ;
+            glb_mod_Descuento.CodigoArticuloProveedor = txtBoxCodigoArticulo.Text;
+            glb_mod_Descuento.FechaDesde = DateTime.ParseExact(tbxFechaDesde.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            glb_mod_Descuento.FechaHasta = DateTime.ParseExact(tbxFechaHasta.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            glb_mod_Descuento.numeroDescuento = Convert.ToInt32(tbxnumeroDescuento.Text);
+            glb_mod_Descuento.PorcentajeDescuento = Convert.ToDecimal(tbxPorcentajeDescuento.Text);
+        }
+
+        private List<ModeloDescuentoArticulo> cargarListaDatosEnModeloDescuentoArticulo()
+        {
+            List<ModeloDescuentoArticulo> lcl_lst_mod_descuento = new List<ModeloDescuentoArticulo>();
+
+            this.cargarListaDatosDescuentoEnModeloDescuentoArticulo(ref lcl_lst_mod_descuento);
+
+
+            return lcl_lst_mod_descuento;
+        }
+
+        private void cargarListaDatosDescuentoEnModeloDescuentoArticulo(ref List<ModeloDescuentoArticulo> p_lst_mod_descuento)
+        {
+            //ver si tiene utilidad
+        }
         #endregion
         
         #region Modelo -> Controles
@@ -305,8 +308,8 @@ namespace Vista
 
             txtBoxCodigoOriginal.Text = p_mod_articuloProveedor.codigoOriginal;
             txtBoxDescripcion.Text = p_mod_articuloProveedor.descripcion;
-            txtBoxCodigoArtculoProveedor.Text = p_mod_articuloProveedor.codigoEntidad.ToString();
-            txtBoxDescripcionArticuloProveedor.Text = p_mod_articuloProveedor.razonSocialProveedor;
+            txtBoxCodigoArticulo.Text = p_mod_articuloProveedor.codigoEntidad.ToString();
+            
             
         }
         private void cargarListaDescuentosEnControles(List<ModeloDescuentoArticulo> p_lst_mod_descuento)
@@ -341,6 +344,7 @@ namespace Vista
         
         private void cargarDescuentosEnControles(ModeloDescuentoArticulo p_mod_descuento)
         {
+            glb_mod_Descuento = p_mod_descuento;
             this.tbxnumeroDescuento.Text = p_mod_descuento.numeroDescuento.ToString();
             this.tbxPorcentajeDescuento.Text = p_mod_descuento.PorcentajeDescuento.ToString();
             this.tbxFechaDesde.Text = p_mod_descuento.FechaDesde.ToShortDateString();
@@ -358,23 +362,15 @@ namespace Vista
         {
             if (this.validarPorcentajeDescuento())
             {
-                return this.validarArticulo() && this.validarProveedor();
+                return this.validarArticulo();
             }
             errorActual = "Ha surgido un error. Por favor, revise los valores ingresados.";
             return false;
         }
-        private bool validarProveedor()
-        {
-            if (glb_mod_articuloProveedor.codigoEntidad == 0)
-            {
-                errorActual = "Debe seleccionar un proveedor.";
-                return false;
-            }
-            return true;
-        }
+        
         private bool validarArticulo()
         {
-            if (glb_mod_articuloProveedor.codigoOriginal == null)
+            if (glb_mod_articuloProveedor.codigoOriginal == null || glb_mod_articuloProveedor.codigoArticuloProveedor == null)
             {
                 errorActual = "Debe seleccionar un Artículo.";
                 return false;
@@ -440,33 +436,20 @@ namespace Vista
         override public void toolStripMenuItemBuscar_Click(object sender, EventArgs e)
         {
             this.buscar();
+            this.buscarDescuentos();
         }
         #endregion
 
         #region Buttons
-        private void btnBuscarArticulo_Click(object sender, EventArgs e)
-        {
-            this.buscarArticulo();
-        }
+        
         private void btnModificarArticulo_Click(object sender, EventArgs e)
         {
-            this.inicializarModoArticuloModificado();
+            this.inicializarModoDescuentoModificado();
             this.quitarTextoEnControles(grpBoxArticulo);
             glb_mod_articuloProveedor.codigoOriginal = null;
             glb_mod_articuloProveedor.descripcion = null;
         }
 
-        private void btnBuscarProveedor_Click(object sender, EventArgs e)
-        {
-            this.buscarArticuloProveedor();
-        }
-        private void btnModificarProveedor_Click(object sender, EventArgs e)
-        {
-            this.inicializarModoProveedorModificado();
-            this.quitarTextoEnControles(grpBoxArticuloProveedor);
-            glb_mod_articuloProveedor.codigoEntidad = 0;
-            glb_mod_articuloProveedor.razonSocialProveedor = null;
-        }
         #endregion
 
         private void valorDecimal(object sender, KeyPressEventArgs e)
@@ -510,6 +493,22 @@ namespace Vista
             {
                 errorProviderActual.SetError(tbxFechaHasta, "La fecha ingresada no es válida");
             }
+        }
+
+        private void dgvDescuentos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                //No hay fila seleccionada
+                return;
+            }
+            int i = Convert.ToInt32(this.dgvDescuentos.Rows[e.RowIndex].Cells["indice"].Value);
+            //asigno el articulo a la variable articuloSeleccionadoBusqueda en caso de que se decida agregarlo al pedido
+            this.glb_mod_Descuento = controlador.getDescuentoBusqueda(i);
+
+            cargarDatosEnModeloDescuentoArticulo();
+            
+
         }
 
               
