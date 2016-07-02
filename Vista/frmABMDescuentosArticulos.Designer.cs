@@ -50,6 +50,11 @@
             this.btnModificarArticulo = new MaterialSkin.Controls.MaterialFlatButton();
             this.grpBoxListaDescuentos = new System.Windows.Forms.GroupBox();
             this.dgvDescuentos = new System.Windows.Forms.DataGridView();
+            this.indice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeroDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaDesde = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaHasta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcentajeDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.grpBoxDescuento.SuspendLayout();
@@ -332,12 +337,60 @@
             // 
             // dgvDescuentos
             // 
+            this.dgvDescuentos.AllowUserToAddRows = false;
+            this.dgvDescuentos.AllowUserToDeleteRows = false;
             this.dgvDescuentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDescuentos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.indice,
+            this.numeroDescuento,
+            this.fechaDesde,
+            this.fechaHasta,
+            this.porcentajeDescuento});
             this.dgvDescuentos.Location = new System.Drawing.Point(6, 21);
             this.dgvDescuentos.Name = "dgvDescuentos";
+            this.dgvDescuentos.ReadOnly = true;
             this.dgvDescuentos.Size = new System.Drawing.Size(435, 202);
             this.dgvDescuentos.TabIndex = 0;
             this.dgvDescuentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDescuentos_CellClick);
+            // 
+            // indice
+            // 
+            this.indice.DataPropertyName = "indice";
+            this.indice.HeaderText = "indice";
+            this.indice.Name = "indice";
+            this.indice.ReadOnly = true;
+            this.indice.Visible = false;
+            // 
+            // numeroDescuento
+            // 
+            this.numeroDescuento.DataPropertyName = "numeroDescuento";
+            this.numeroDescuento.HeaderText = "Num";
+            this.numeroDescuento.Name = "numeroDescuento";
+            this.numeroDescuento.ReadOnly = true;
+            this.numeroDescuento.Width = 50;
+            // 
+            // fechaDesde
+            // 
+            this.fechaDesde.DataPropertyName = "fechaDesde";
+            this.fechaDesde.HeaderText = "FechaDesde";
+            this.fechaDesde.Name = "fechaDesde";
+            this.fechaDesde.ReadOnly = true;
+            this.fechaDesde.Width = 120;
+            // 
+            // fechaHasta
+            // 
+            this.fechaHasta.DataPropertyName = "fechaHasta";
+            this.fechaHasta.HeaderText = "FechaHasta";
+            this.fechaHasta.Name = "fechaHasta";
+            this.fechaHasta.ReadOnly = true;
+            this.fechaHasta.Width = 120;
+            // 
+            // porcentajeDescuento
+            // 
+            this.porcentajeDescuento.DataPropertyName = "porcentajeDescuento";
+            this.porcentajeDescuento.HeaderText = "Porcentaje";
+            this.porcentajeDescuento.Name = "porcentajeDescuento";
+            this.porcentajeDescuento.ReadOnly = true;
             // 
             // frmDescuentosArticulos
             // 
@@ -389,5 +442,10 @@
         private System.Windows.Forms.TextBox tbxnumeroDescuento;
         private System.Windows.Forms.TextBox tbxPorcentajeDescuento;
         private System.Windows.Forms.DataGridView dgvDescuentos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn indice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numeroDescuento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaDesde;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaHasta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn porcentajeDescuento;
     }
 }

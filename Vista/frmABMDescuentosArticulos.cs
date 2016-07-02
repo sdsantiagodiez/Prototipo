@@ -155,7 +155,7 @@ namespace Vista
             if(lcl_con_alta.agregar(glb_mod_Descuento))
             {
                 MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
-                this.inicializarModoFormularioVisualizarEntidad();
+                this.inicializarModoFormularioSeleccionado();
             }
             else
             {
@@ -245,7 +245,7 @@ namespace Vista
             int rta = controlador.buscarDescuentos(glb_mod_articuloProveedor.codigoOriginal, glb_mod_articuloProveedor.codigoArticuloProveedor);
             if (rta != 0 )
             {
-                this.inicializarModoFormularioInicio();
+                //this.inicializarModoFormularioInicio();
                 glb_lst_mod_descuentos = controlador.getDescuentosBusqueda();
                 this.cargarListaDescuentosEnControles(glb_lst_mod_descuentos);
                 this.cargarListaDatosDescuentoEnModeloDescuentoArticulo(ref glb_lst_mod_descuentos);
@@ -282,6 +282,7 @@ namespace Vista
 
         private void cargarDatosDescuentoEnModeloDescuentoArticulo()
         {
+            glb_mod_Descuento = new ModeloDescuentoArticulo();
             glb_mod_Descuento.CodigoOriginal = txtBoxCodigoOriginal.Text; ;
             glb_mod_Descuento.CodigoArticuloProveedor = txtBoxCodigoArticulo.Text;
             glb_mod_Descuento.FechaDesde = DateTime.ParseExact(tbxFechaDesde.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -333,16 +334,16 @@ namespace Vista
                  row["indice"] = i.ToString();
                 i++;
                 row["porcentajeDescuento"] = de.PorcentajeDescuento.ToString();
-                row["numeroDescuento"] = de.CodigoArticuloProveedor.ToString();
+                row["numeroDescuento"] = de.numeroDescuento.ToString();
                 row["fechaDesde"] = de.FechaDesde.ToShortDateString();
                 row["fechaHasta"] = de.FechaHasta.ToShortDateString();
 
                 descuentos.Rows.Add(row);
             }
-
+            this.dgvDescuentos.DataSource = null;
             this.dgvDescuentos.DataSource = descuentos;
             this.dgvDescuentos.ClearSelection();
-            this.glb_mod_Descuento = null;
+            //this.glb_mod_Descuento = null;
             
         
         }
@@ -407,6 +408,7 @@ namespace Vista
         override public void toolStripMenuItemLimpiarCampos_Click(object sender, EventArgs e)
         {
             this.modoFormulario = ModoFormularioInicio;
+            this.dgvDescuentos.DataSource = null;
             base.quitarTextoEnControles(this);
         }
 
@@ -422,6 +424,9 @@ namespace Vista
         override public void toolStripMenuItemGuardarNuevo_Click(object sender, EventArgs e)
         {
             this.alta();
+            this.limpiarCamposDescuento();
+            this.buscarDescuentos();
+            //limpiar campos descuento y actualizar lista de decue
         }
 
         override public void toolStripMenuItemGuardarCambios_Click(object sender, EventArgs e)
@@ -528,6 +533,10 @@ namespace Vista
             cargarDatosEnModeloDescuentoArticulo();
             this.inicializarModoFormularioVisualizarEntidad();
             
+        }
+        private void limpiarCamposDescuento()
+        {
+            tbxFechaDesde.Text = tbxFechaHasta.Text = tbxnumeroDescuento.Text = tbxPorcentajeDescuento.Text = "";
         }
 
               

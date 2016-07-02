@@ -151,7 +151,7 @@ namespace Datos
 
             SqlDataReader drDescuentos = comando.ExecuteReader();
             int ultimo_descuento = 0;
-            if (drDescuentos.Read())
+            while (drDescuentos.Read())
             { ultimo_descuento = (int)drDescuentos["Ultimo"]; }
                       
 
