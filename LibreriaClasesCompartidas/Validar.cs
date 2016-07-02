@@ -41,5 +41,28 @@ namespace LibreriaClasesCompartidas
             return lcl_patron.IsMatch(p_string);
         }
 
+        public static bool validarBusquedaArticulos(string p_string, string p_opcion)
+        {
+            Regex lcl_patron;
+
+            switch (p_opcion)
+            {
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoOriginal:
+                    lcl_patron = new Regex(@"[0-9]{2}-[a-zA-Z]{3}-[a-zA-Z]{3}-[0-9]{2}");
+                    break;
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor:
+                    lcl_patron = new Regex(@"[a-zA-Z]{4}-[0-9]{2}\x2F[0-9]{2}-[a-zA-Z]{3}-[a-zA-Z]{3}-[0-9]{2}\x2F[0-9]{2}");
+                    break;
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.Descripcion:
+                    lcl_patron = new Regex(@".*");
+                    break;
+                default:
+                    lcl_patron = new Regex(@".*");
+                    break;
+            }
+
+            return lcl_patron.IsMatch(p_string);
+        }
+
     }
 }
