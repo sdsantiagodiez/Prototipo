@@ -31,13 +31,13 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxDescuento = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelDescuento = new System.Windows.Forms.TableLayoutPanel();
-            this.tbxnumeroDescuento = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblnumeroDescuento = new System.Windows.Forms.Label();
+            this.lblfechaDesde = new System.Windows.Forms.Label();
+            this.lblfechaHasta = new System.Windows.Forms.Label();
             this.tbxFechaHasta = new System.Windows.Forms.TextBox();
             this.tbxFechaDesde = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblporcentajeDescuento = new System.Windows.Forms.Label();
+            this.tbxnumeroDescuento = new System.Windows.Forms.TextBox();
             this.tbxPorcentajeDescuento = new System.Windows.Forms.TextBox();
             this.grpBoxArticulo = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelArticulo = new System.Windows.Forms.TableLayoutPanel();
@@ -99,13 +99,13 @@
             this.tblLayoutPanelDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tblLayoutPanelDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.5F));
             this.tblLayoutPanelDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tblLayoutPanelDescuento.Controls.Add(this.tbxnumeroDescuento, 0, 0);
-            this.tblLayoutPanelDescuento.Controls.Add(this.label1, 3, 1);
-            this.tblLayoutPanelDescuento.Controls.Add(this.label2, 0, 1);
+            this.tblLayoutPanelDescuento.Controls.Add(this.lblnumeroDescuento, 0, 0);
+            this.tblLayoutPanelDescuento.Controls.Add(this.lblfechaDesde, 3, 1);
+            this.tblLayoutPanelDescuento.Controls.Add(this.lblfechaHasta, 0, 1);
             this.tblLayoutPanelDescuento.Controls.Add(this.tbxFechaHasta, 4, 1);
             this.tblLayoutPanelDescuento.Controls.Add(this.tbxFechaDesde, 1, 1);
-            this.tblLayoutPanelDescuento.Controls.Add(this.label4, 3, 0);
-            this.tblLayoutPanelDescuento.Controls.Add(this.textBox1, 1, 0);
+            this.tblLayoutPanelDescuento.Controls.Add(this.lblporcentajeDescuento, 3, 0);
+            this.tblLayoutPanelDescuento.Controls.Add(this.tbxnumeroDescuento, 1, 0);
             this.tblLayoutPanelDescuento.Controls.Add(this.tbxPorcentajeDescuento, 4, 0);
             this.tblLayoutPanelDescuento.Location = new System.Drawing.Point(3, 23);
             this.tblLayoutPanelDescuento.Name = "tblLayoutPanelDescuento";
@@ -115,35 +115,35 @@
             this.tblLayoutPanelDescuento.Size = new System.Drawing.Size(438, 65);
             this.tblLayoutPanelDescuento.TabIndex = 0;
             // 
-            // tbxnumeroDescuento
+            // lblnumeroDescuento
             // 
-            this.tbxnumeroDescuento.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.tbxnumeroDescuento.AutoSize = true;
-            this.tbxnumeroDescuento.Location = new System.Drawing.Point(50, 7);
-            this.tbxnumeroDescuento.Name = "tbxnumeroDescuento";
-            this.tbxnumeroDescuento.Size = new System.Drawing.Size(56, 18);
-            this.tbxnumeroDescuento.TabIndex = 4;
-            this.tbxnumeroDescuento.Text = "Codigo";
+            this.lblnumeroDescuento.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblnumeroDescuento.AutoSize = true;
+            this.lblnumeroDescuento.Location = new System.Drawing.Point(50, 7);
+            this.lblnumeroDescuento.Name = "lblnumeroDescuento";
+            this.lblnumeroDescuento.Size = new System.Drawing.Size(56, 18);
+            this.lblnumeroDescuento.TabIndex = 4;
+            this.lblnumeroDescuento.Text = "Codigo";
             // 
-            // label1
+            // lblfechaDesde
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(231, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 18);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Fecha Hasta";
+            this.lblfechaDesde.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblfechaDesde.AutoSize = true;
+            this.lblfechaDesde.Location = new System.Drawing.Point(231, 39);
+            this.lblfechaDesde.Name = "lblfechaDesde";
+            this.lblfechaDesde.Size = new System.Drawing.Size(92, 18);
+            this.lblfechaDesde.TabIndex = 0;
+            this.lblfechaDesde.Text = "Fecha Hasta";
             // 
-            // label2
+            // lblfechaHasta
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 18);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Fecha Desde";
+            this.lblfechaHasta.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblfechaHasta.AutoSize = true;
+            this.lblfechaHasta.Location = new System.Drawing.Point(10, 39);
+            this.lblfechaHasta.Name = "lblfechaHasta";
+            this.lblfechaHasta.Size = new System.Drawing.Size(96, 18);
+            this.lblfechaHasta.TabIndex = 1;
+            this.lblfechaHasta.Text = "Fecha Desde";
             // 
             // tbxFechaHasta
             // 
@@ -161,22 +161,22 @@
             this.tbxFechaDesde.TabIndex = 3;
             this.tbxFechaDesde.Validating += new System.ComponentModel.CancelEventHandler(this.tbxFechaDesde_Validating);
             // 
-            // label4
+            // lblporcentajeDescuento
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(244, 7);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 18);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Porcentaje";
+            this.lblporcentajeDescuento.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblporcentajeDescuento.AutoSize = true;
+            this.lblporcentajeDescuento.Location = new System.Drawing.Point(244, 7);
+            this.lblporcentajeDescuento.Name = "lblporcentajeDescuento";
+            this.lblporcentajeDescuento.Size = new System.Drawing.Size(79, 18);
+            this.lblporcentajeDescuento.TabIndex = 5;
+            this.lblporcentajeDescuento.Text = "Porcentaje";
             // 
-            // textBox1
+            // tbxnumeroDescuento
             // 
-            this.textBox1.Location = new System.Drawing.Point(112, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(92, 24);
-            this.textBox1.TabIndex = 6;
+            this.tbxnumeroDescuento.Location = new System.Drawing.Point(112, 3);
+            this.tbxnumeroDescuento.Name = "tbxnumeroDescuento";
+            this.tbxnumeroDescuento.Size = new System.Drawing.Size(92, 24);
+            this.tbxnumeroDescuento.TabIndex = 6;
             // 
             // tbxPorcentajeDescuento
             // 
@@ -338,7 +338,6 @@
             this.dgvDescuentos.Size = new System.Drawing.Size(435, 202);
             this.dgvDescuentos.TabIndex = 0;
             this.dgvDescuentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDescuentos_CellClick);
-            this.dgvDescuentos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDescuentos_CellContentClick);
             // 
             // frmDescuentosArticulos
             // 
@@ -381,13 +380,13 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxDescripcion;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxCodigoArticulo;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDescuento;
-        private System.Windows.Forms.Label tbxnumeroDescuento;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblnumeroDescuento;
+        private System.Windows.Forms.Label lblfechaDesde;
+        private System.Windows.Forms.Label lblfechaHasta;
         private System.Windows.Forms.TextBox tbxFechaHasta;
         private System.Windows.Forms.TextBox tbxFechaDesde;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lblporcentajeDescuento;
+        private System.Windows.Forms.TextBox tbxnumeroDescuento;
         private System.Windows.Forms.TextBox tbxPorcentajeDescuento;
         private System.Windows.Forms.DataGridView dgvDescuentos;
     }

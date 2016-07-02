@@ -20,9 +20,7 @@ namespace Controladores
 
         public int buscarDescuentos(string p_codigo_original, string p_codigo_articulo_proveedor)
         {
-            ModeloDescuentoArticulo lcl_mod_descuento = new ModeloDescuentoArticulo();
-
-            resultadoBusquedaDescuentos = ControladorBusqueda.getDescuentos(lcl_mod_descuento);
+            resultadoBusquedaDescuentos = ControladorBusqueda.getDescuentos(p_codigo_original,p_codigo_articulo_proveedor);
             return resultadoBusquedaDescuentos.Count;
         }
         public ModeloDescuentoArticulo getDescuentoBusqueda(int p_indice)

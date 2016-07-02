@@ -582,10 +582,11 @@ namespace Controladores
 
             return lcl_cat_articulos.buscarLineasPedido(null, Constantes.ParametrosBusqueda.All);
         }
-        public static List<ModeloDescuentoArticulo> getDescuentos(ModeloDescuentoArticulo p_mod_descuento)
+        public static List<ModeloDescuentoArticulo> getDescuentos(string p_codigoOriginal, string p_codigoArticuloProveedor)
         {
             CatalogoDescuentos lcl_cat_descuentos = new CatalogoDescuentos();
-            List<ModeloDescuentoArticulo> lcl_lst_mod_descuento = lcl_cat_descuentos.buscarDescuentos(p_mod_descuento.CodigoOriginal,p_mod_descuento.CodigoArticuloProveedor);
+            List<ModeloDescuentoArticulo> lcl_lst_mod_descuento = new List<ModeloDescuentoArticulo>();
+            lcl_lst_mod_descuento= lcl_cat_descuentos.buscarDescuentos(p_codigoOriginal, p_codigoArticuloProveedor);
             return lcl_lst_mod_descuento;
 
         }

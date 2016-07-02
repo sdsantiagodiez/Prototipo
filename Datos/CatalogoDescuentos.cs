@@ -40,7 +40,7 @@ namespace Datos
             //string querySQL = this.getCondicionBusqueda(p_mod_pedido, p_parametroBusqueda, ref comando);
 
             comando.CommandText =
-                "SELECT  [codigo_articulo_proveedor],[codigo_original],[fecha_desde],[fecha_hasta],[porcentaje_descuento],[numero_descuento]" +
+                "SELECT  [codigo_articulo_proveedor],[codigo_original],[fecha_desde],[fecha_hasta],[porcentaje_descuento],[numero_descuento] " +
                 "FROM  Descuentos_articulos "+
                 "WHERE codigo_original like @codigo_original AND codigo_articulo_proveedor like @codigo_articulo_proveedor "+
                 "ORDER BY codigo_original desc";
@@ -144,20 +144,21 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "SELECT  MAX [numero_descuento] as Ultimo" +
+                "SELECT  MAX([numero_descuento]) as Ultimo " +
                 "FROM  Descuentos_articulos " ;
 
                         comando.Connection.Open();
 
             SqlDataReader drDescuentos = comando.ExecuteReader();
-
-            drDescuentos.Read();
-            int ultimo_descuento = (int)drDescuentos["Ultimo"];
+            int ultimo_descuento = 0;
+            if (drDescuentos.Read())
+            { ultimo_descuento = (int)drDescuentos["Ultimo"]; }
+                      
 
             drDescuentos.Close();
             comando.Connection.Close();
 
-            return ultimo_descuento;
+            return ultimo_descuento+1;
         }
 
         public bool add(ModeloDescuentoArticulo p_mod_descuento)

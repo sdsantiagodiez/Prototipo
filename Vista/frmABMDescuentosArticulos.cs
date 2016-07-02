@@ -17,10 +17,10 @@ namespace Vista
     public partial class frmDescuentosArticulos : Vista.frmABMBase
     {
         #region Atributos
-        ModeloDescuentoArticulo glb_mod_Descuento;
+        ModeloDescuentoArticulo glb_mod_Descuento = new ModeloDescuentoArticulo();
         ModeloArticuloProveedores glb_mod_articuloProveedor;
         ControladorDescuento controlador = new ControladorDescuento();
-        List<ModeloDescuentoArticulo> glb_lst_mod_descuentos;
+        List<ModeloDescuentoArticulo> glb_lst_mod_descuentos = new List<ModeloDescuentoArticulo>();
         #endregion
 
         #region Constructores
@@ -69,18 +69,18 @@ namespace Vista
 
         override public void inicializarModoFormularioNuevo()
         {
-            glb_mod_articuloProveedor = new ModeloArticuloProveedores();
+            //glb_mod_articuloProveedor = new ModeloArticuloProveedores();
             ControladorDescuento lcl_con_descuento = new ControladorDescuento();
 
             base.inicializarModoFormularioNuevo();
 
             grpBoxArticulo.Enabled = true;
-            btnModificarArticulo.Enabled = false;
-            txtBoxCodigoOriginal.Enabled = txtBoxDescripcion.Enabled = txtBoxCodigoArticulo.Enabled = true;
+            btnModificarArticulo.Enabled = txtBoxCodigoOriginal.Enabled = txtBoxDescripcion.Enabled = txtBoxCodigoArticulo.Enabled = false;
+            
 
-            tbxFechaDesde.Text = DateTime.Today.ToString();
+            tbxFechaDesde.Text = DateTime.Today.ToShortDateString();
             tbxFechaDesde.Enabled = true;
-            tbxFechaHasta.Text = DateTime.Today.ToString();
+            tbxFechaHasta.Text = DateTime.Today.ToShortDateString();
             tbxFechaHasta.Enabled = true;
             tbxnumeroDescuento.Text = lcl_con_descuento.getUltimoDescuento().ToString();
             tbxnumeroDescuento.Enabled = false;
@@ -95,6 +95,7 @@ namespace Vista
             base.inicializarModoFormularioSeleccionado();
 
             grpBoxArticulo.Enabled = false;
+            btnModificarArticulo.Enabled = true;
 
             grpBoxDescuento.Enabled = true;
 
@@ -125,6 +126,9 @@ namespace Vista
 
             txtBoxCodigoArticulo.Enabled = txtBoxCodigoOriginal.Enabled = txtBoxDescripcion.Enabled = false;
 
+            tbxFechaDesde.Enabled = tbxFechaHasta.Enabled = tbxPorcentajeDescuento.Enabled = true;
+            tbxnumeroDescuento.Enabled = false;
+
             grpBoxListaDescuentos.Enabled = false;
 
             dgvDescuentos.Enabled = false;
@@ -151,7 +155,7 @@ namespace Vista
             if(lcl_con_alta.agregar(glb_mod_Descuento))
             {
                 MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
-                this.inicializarModoFormularioSeleccionado();
+                this.inicializarModoFormularioVisualizarEntidad();
             }
             else
             {
@@ -230,7 +234,7 @@ namespace Vista
             lcl_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_articuloProveedor);
             if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
             {
-                this.modoFormulario = ModoFormularioSeleccionado;
+                this.modoFormulario = ModoFormularioInicio;
 
                 glb_mod_articuloProveedor = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticuloProveedores;
                 this.cargarArticuloProveedorEnControles(glb_mod_articuloProveedor);
@@ -239,10 +243,11 @@ namespace Vista
         private void buscarDescuentos()
         {
             int rta = controlador.buscarDescuentos(glb_mod_articuloProveedor.codigoOriginal, glb_mod_articuloProveedor.codigoArticuloProveedor);
-            if (rta != 0 || rta != null)
+            if (rta != 0 )
             {
-                this.inicializarModoFormularioSeleccionado();
+                this.inicializarModoFormularioInicio();
                 glb_lst_mod_descuentos = controlador.getDescuentosBusqueda();
+                this.cargarListaDescuentosEnControles(glb_lst_mod_descuentos);
                 this.cargarListaDatosDescuentoEnModeloDescuentoArticulo(ref glb_lst_mod_descuentos);
             }
         }
@@ -308,7 +313,7 @@ namespace Vista
 
             txtBoxCodigoOriginal.Text = p_mod_articuloProveedor.codigoOriginal;
             txtBoxDescripcion.Text = p_mod_articuloProveedor.descripcion;
-            txtBoxCodigoArticulo.Text = p_mod_articuloProveedor.codigoEntidad.ToString();
+            txtBoxCodigoArticulo.Text = p_mod_articuloProveedor.codigoArticuloProveedor.ToString();
             
             
         }
@@ -431,6 +436,11 @@ namespace Vista
         override public void toolStripMenuItemNuevo_Click(object sender, EventArgs e)
         {
             modoFormulario = ModoFormularioNuevo;
+            if (this.glb_mod_articuloProveedor.codigoArticuloProveedor == null)
+            { 
+                this.buscar();
+                this.buscarDescuentos();
+            }
         }
 
         override public void toolStripMenuItemBuscar_Click(object sender, EventArgs e)
@@ -446,8 +456,7 @@ namespace Vista
         {
             this.inicializarModoDescuentoModificado();
             this.quitarTextoEnControles(grpBoxArticulo);
-            glb_mod_articuloProveedor.codigoOriginal = null;
-            glb_mod_articuloProveedor.descripcion = null;
+            
         }
 
         #endregion
@@ -479,25 +488,30 @@ namespace Vista
         private void tbxFechaDesde_Validating(object sender, CancelEventArgs e)
         {
             DateTime lcl_fecha;
-            if (DateTime. TryParse(tbxFechaDesde.Text, out lcl_fecha))
+                if (!DateTime.TryParse(tbxFechaDesde.Text, out lcl_fecha))
             {
-                errorProviderActual.SetError(tbxFechaDesde,"La fecha ingresada no es válida");
+                errorProviderActual.SetError(tbxFechaDesde, "La fecha ingresada no es válida");
+                e.Cancel = true;
             }
-
+            else
+            {
+                errorProviderActual.Clear();
+            }
+            
         }
 
         private void tbxFechaHasta_Validating(object sender, CancelEventArgs e)
         {
             DateTime lcl_fecha;
-            if (DateTime.TryParse(tbxFechaHasta.Text, out lcl_fecha))
+            if (!DateTime.TryParse(tbxFechaHasta.Text, out lcl_fecha))
             {
                 errorProviderActual.SetError(tbxFechaHasta, "La fecha ingresada no es válida");
+                e.Cancel = true;
             }
-        }
-
-        private void dgvDescuentos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
+            else
+            {
+                errorProviderActual.Clear();
+            }
         }
 
         private void dgvDescuentos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -512,6 +526,7 @@ namespace Vista
             this.glb_mod_Descuento = controlador.getDescuentoBusqueda(i);
 
             cargarDatosEnModeloDescuentoArticulo();
+            this.inicializarModoFormularioVisualizarEntidad();
             
         }
 
