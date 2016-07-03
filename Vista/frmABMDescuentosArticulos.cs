@@ -63,7 +63,7 @@ namespace Vista
             tbxFechaHasta.Enabled = false;
             tbxnumeroDescuento.Enabled = false;
             tbxPorcentajeDescuento.Enabled = false;
-            dgvDescuentos.Enabled = false;
+            dgvDescuentos.Enabled = true;
             
         }
 
@@ -206,7 +206,8 @@ namespace Vista
             if (lcl_con_modificacion.modificar(glb_mod_Descuento))
             {
                 MessageBox.Show("Modificación exitosa", "Éxito", MessageBoxButtons.OK);
-                this.inicializarModoFormularioSeleccionado();
+                this.limpiarCamposDescuento();
+                this.inicializarModoFormularioInicio();
             }
             else
             {
@@ -274,9 +275,7 @@ namespace Vista
         
         private void cargarDatosEnModeloDescuentoArticulo()
         {
-           ModeloDescuentoArticulo lcl_mod_descuento = new ModeloDescuentoArticulo();
-
-            this.cargarDatosDescuentoEnModeloDescuentoArticulo();
+           this.cargarDatosDescuentoEnModeloDescuentoArticulo();
 
         }
 
@@ -426,7 +425,7 @@ namespace Vista
             this.alta();
             this.limpiarCamposDescuento();
             this.buscarDescuentos();
-            //limpiar campos descuento y actualizar lista de decue
+            modoFormulario = ModoFormularioNuevo;
         }
 
         override public void toolStripMenuItemGuardarCambios_Click(object sender, EventArgs e)
@@ -440,12 +439,12 @@ namespace Vista
 
         override public void toolStripMenuItemNuevo_Click(object sender, EventArgs e)
         {
-            modoFormulario = ModoFormularioNuevo;
             if (this.glb_mod_articuloProveedor.codigoArticuloProveedor == null)
             { 
                 this.buscar();
                 this.buscarDescuentos();
             }
+            modoFormulario = ModoFormularioNuevo;
         }
 
         override public void toolStripMenuItemBuscar_Click(object sender, EventArgs e)
@@ -530,8 +529,8 @@ namespace Vista
             //asigno el articulo a la variable articuloSeleccionadoBusqueda en caso de que se decida agregarlo al pedido
             this.glb_mod_Descuento = controlador.getDescuentoBusqueda(i);
 
-            cargarDatosEnModeloDescuentoArticulo();
-            this.inicializarModoFormularioVisualizarEntidad();
+            cargarDescuentosEnControles(glb_mod_Descuento);
+            this.inicializarModoFormularioSeleccionado();
             
         }
         private void limpiarCamposDescuento()

@@ -151,7 +151,7 @@ namespace Datos
 
             SqlDataReader drDescuentos = comando.ExecuteReader();
             int ultimo_descuento = 0;
-            while (drDescuentos.Read())
+            if (drDescuentos.Read())
             { ultimo_descuento = (int)drDescuentos["Ultimo"]; }
                       
 
@@ -203,8 +203,8 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "UPDATE [Descuentos_articulos] SET ," +
-                "[fecha_desde]=@fecha_desde,[fecha_hasta]=@fecha_hasta, [porcentaje_descuento]=@porcentaje_descuento" +
+                "UPDATE [Descuentos_articulos] SET " +
+                "[fecha_desde]=@fecha_desde,[fecha_hasta]=@fecha_hasta, [porcentaje_descuento]=@porcentaje_descuento " +
                 "WHERE ([codigo_original]=@codigo_original AND [codigo_articulo_proveedor]=@codigo_articulo_proveedor " +
                 "AND [numero_descuento]=@numero_descuento)";
 
