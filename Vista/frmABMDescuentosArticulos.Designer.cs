@@ -347,8 +347,10 @@
             this.fechaHasta,
             this.porcentajeDescuento});
             this.dgvDescuentos.Location = new System.Drawing.Point(6, 21);
+            this.dgvDescuentos.MultiSelect = false;
             this.dgvDescuentos.Name = "dgvDescuentos";
             this.dgvDescuentos.ReadOnly = true;
+            this.dgvDescuentos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDescuentos.Size = new System.Drawing.Size(435, 202);
             this.dgvDescuentos.TabIndex = 0;
             this.dgvDescuentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDescuentos_CellClick);
