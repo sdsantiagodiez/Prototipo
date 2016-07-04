@@ -217,6 +217,8 @@ namespace Vista
                     this.actualizar();
                 }
             }
+            glb_lst_mod_descuentos = controlador.getDescuentosBusqueda();
+            this.cargarListaDescuentosEnControles(glb_lst_mod_descuentos);
         }
         #endregion
 
