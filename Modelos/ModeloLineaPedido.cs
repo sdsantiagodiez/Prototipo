@@ -68,7 +68,14 @@ namespace Modelos
                 this.getValorParcial();
             }
         }
-        public ModeloDescuentoArticulo descuentoLinea { get; set; }
+        public ModeloDescuentoArticulo _descuentoLinea;
+        public ModeloDescuentoArticulo descuentoLinea 
+        {
+            get { return _descuentoLinea; }
+            set { this._descuentoLinea = value; }
+        }
+
+
 
         #endregion
         
@@ -76,6 +83,7 @@ namespace Modelos
         public ModeloLineaPedido()
         {
             descuentos = new List<ModeloDescuento>();
+            descuentoLinea = new ModeloDescuentoArticulo();
             articulo = new ModeloArticuloProveedores();
         }
 
@@ -116,6 +124,22 @@ namespace Modelos
             }
             return this.valorParcial;
         }
+        public decimal getValorParcialArticulo()
+        {
+            //Metodo del ModeloDescuento
+            decimal vParcial = this.getValorParcialSinDescuentos();
+            //AplicarDescuentos
+            vParcial = vParcial - this.getDescuentoArticulo(vParcial);
+            if (vParcial < 0)
+            {
+                this.valorParcial = 0;
+            }
+            else
+            {
+                this.valorParcial = vParcial;
+            }
+            return this.valorParcial;
+        }
         /// <summary>
         /// Devuelve el descuento total que se aplicaría a la linea
         /// </summary>
@@ -130,10 +154,22 @@ namespace Modelos
             }
             return descuento;
         }
+        private decimal getDescuentoArticulo(decimal p_valorParcial)
+        {
+            //Metodo del ModeloDescuentoArticulo
+            decimal valorFinal = 0;
+            valorFinal = p_valorParcial * this.descuentoLinea.PorcentajeDescuento / 100;
 
+            return valorFinal;
+                
+        }
         public decimal getDescuento()
         {
             return this.getDescuento(this.getValorParcialSinDescuentos());
+        }
+        public decimal getDescuentoArticulo()
+        {
+            return this.getDescuentoArticulo(this.getValorParcialSinDescuentos());
         }
         /// <summary>
         /// Agrega descuento a linea
@@ -187,6 +223,8 @@ namespace Modelos
                     break;
             }
         }
+
+
 
         #region Equals
         public override bool Equals(object p_objeto)
@@ -297,6 +335,10 @@ namespace Modelos
             }
             return 0;
         }
+
+        
+
+
     }
     
 }

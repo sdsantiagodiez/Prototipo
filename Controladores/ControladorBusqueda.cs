@@ -590,6 +590,19 @@ namespace Controladores
             return lcl_lst_mod_descuento;
 
         }
+        public static ModeloDescuentoArticulo getDescuentoArticuloVigente(List<ModeloDescuentoArticulo> p_lst_mod_descuentoArticulo, DateTime p_fechaPedido)
+        {
+            ModeloDescuentoArticulo lcl_mod_descuentoArticulo = new ModeloDescuentoArticulo();
+            foreach (ModeloDescuentoArticulo md in p_lst_mod_descuentoArticulo)
+            {
+                if (md.FechaDesde <= p_fechaPedido && md.FechaHasta >= p_fechaPedido)
+                {
+                    lcl_mod_descuentoArticulo = md;
+                }
+            }
+            return lcl_mod_descuentoArticulo;
+        
+        }
 
         #endregion
         #region Roles
