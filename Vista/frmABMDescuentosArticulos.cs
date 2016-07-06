@@ -504,6 +504,19 @@ namespace Vista
                 errorProviderActual.Clear();
             }
             
+                if (tbxFechaHasta.Text != "")
+                {
+                    if (DateTime.Compare(DateTime.Parse(tbxFechaDesde.Text), DateTime.Parse(tbxFechaHasta.Text)) > 0)
+                    {
+                        errorProviderActual.SetError(tbxFechaDesde, "La fecha desde no puede ser mayor que la fecha hasta");
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        errorProviderActual.Clear();
+                    }
+                }
+            
         }
 
         private void tbxFechaHasta_Validating(object sender, CancelEventArgs e)
@@ -518,6 +531,19 @@ namespace Vista
             {
                 errorProviderActual.Clear();
             }
+            if (tbxFechaDesde.Text != "")
+            {
+                if (DateTime.Compare(DateTime.Parse(tbxFechaDesde.Text), DateTime.Parse(tbxFechaHasta.Text)) > 0)
+                {
+                    errorProviderActual.SetError(tbxFechaDesde, "La fecha hasta no puede ser menor que la fecha desde");
+                    e.Cancel = true;
+                }
+                else
+                {
+                    errorProviderActual.Clear();
+                }
+            }
+
         }
 
         private void dgvDescuentos_CellClick(object sender, DataGridViewCellEventArgs e)
