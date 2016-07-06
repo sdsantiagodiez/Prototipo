@@ -350,6 +350,7 @@
             this.dgvDescuentos.MultiSelect = false;
             this.dgvDescuentos.Name = "dgvDescuentos";
             this.dgvDescuentos.ReadOnly = true;
+            this.dgvDescuentos.RowHeadersVisible = false;
             this.dgvDescuentos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDescuentos.Size = new System.Drawing.Size(435, 202);
             this.dgvDescuentos.TabIndex = 0;
@@ -393,6 +394,7 @@
             this.porcentajeDescuento.HeaderText = "Porcentaje";
             this.porcentajeDescuento.Name = "porcentajeDescuento";
             this.porcentajeDescuento.ReadOnly = true;
+            this.porcentajeDescuento.Width = 120;
             // 
             // frmDescuentosArticulos
             // 

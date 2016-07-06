@@ -146,6 +146,7 @@ namespace Vista
             if (!this.validar())
             {
                 MessageBox.Show(errorActual,"Error",MessageBoxButtons.OK);
+                this.buscarDescuentos();
                 return;
             }
 
