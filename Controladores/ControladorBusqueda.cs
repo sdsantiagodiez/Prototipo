@@ -590,6 +590,16 @@ namespace Controladores
             return lcl_lst_mod_descuento;
 
         }
+
+        public static List<ModeloDescuentoArticulo> getDescuentosVigentes(DateTime p_fecha)
+        {
+            CatalogoDescuentos lcl_cat_descuentos = new CatalogoDescuentos();
+            List<ModeloDescuentoArticulo> lcl_lst_mod_descuento = new List<ModeloDescuentoArticulo>();
+            lcl_lst_mod_descuento = lcl_cat_descuentos.buscarDescuentosVigentes(p_fecha);
+            return lcl_lst_mod_descuento;
+
+        }
+
         public static ModeloDescuentoArticulo getDescuentoArticuloVigente(List<ModeloDescuentoArticulo> p_lst_mod_descuentoArticulo, DateTime p_fechaPedido)
         {
             ModeloDescuentoArticulo lcl_mod_descuentoArticulo = new ModeloDescuentoArticulo();

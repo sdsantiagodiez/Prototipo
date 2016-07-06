@@ -10,6 +10,8 @@ namespace Modelos
     {
         public string CodigoArticuloProveedor { get; set; }
         public string CodigoOriginal {get;set;}
+        public string descripcionArticulo { get;set; }
+        public decimal precioVenta { get; set; }
         public DateTime FechaDesde { get; set; }
         public DateTime FechaHasta { get; set; }
         public decimal PorcentajeDescuento { get; set; }

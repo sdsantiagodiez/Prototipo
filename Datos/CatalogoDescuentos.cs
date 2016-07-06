@@ -69,6 +69,48 @@ namespace Datos
             return lcl_lst_mod_descuento;
         }
 
+        public List<ModeloDescuentoArticulo> buscarDescuentosVigentes(DateTime p_fecha)
+        {
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+
+            //string querySQL = this.getCondicionBusqueda(p_mod_pedido, p_parametroBusqueda, ref comando);
+
+            comando.CommandText =
+                "SELECT  [codigo_articulo_proveedor],[codigo_original],[fecha_desde],[fecha_hasta],[porcentaje_descuento],[numero_descuento] " +
+                "FROM  Descuentos_articulos " +
+                "WHERE @fecha_hoy between fecha_desde AND fecha_hasta " +
+                "ORDER BY codigo_original desc";
+
+            comando.Parameters.Add(this.instanciarParametro(p_fecha, "@fecha_hoy"));
+            
+
+            comando.Connection.Open();
+
+            SqlDataReader drDescuentos = comando.ExecuteReader();
+
+            List<ModeloDescuentoArticulo> lcl_lst_mod_descuento = new List<ModeloDescuentoArticulo>();
+            ModeloDescuentoArticulo lcl_mod_descuento = new ModeloDescuentoArticulo();
+
+            while (drDescuentos.Read())
+            {
+
+                lcl_mod_descuento = new ModeloDescuentoArticulo();
+                lcl_mod_descuento = this.leerDatosDescuento(drDescuentos);
+
+                lcl_lst_mod_descuento.Add(lcl_mod_descuento);
+            }
+            drDescuentos.Close();
+            comando.Connection.Close();
+
+            return lcl_lst_mod_descuento;
+        }
+
+
         public bool descuentosSuperpuestos(string p_codigoOriginal, string p_codigoArticuloProveedor, DateTime p_fechaDesde, DateTime p_fechaHasta)
         {
             //Creo la conexion y la abro

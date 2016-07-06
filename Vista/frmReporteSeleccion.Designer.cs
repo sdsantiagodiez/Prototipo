@@ -38,19 +38,21 @@
             this.lblFechaDesdePedido = new MaterialSkin.Controls.MaterialLabel();
             this.lblReportesPedidos = new MaterialSkin.Controls.MaterialLabel();
             this.tabVentas = new System.Windows.Forms.TabPage();
+            this.cmbxVentasReportes = new System.Windows.Forms.ComboBox();
+            this.lblReportesVenta = new MaterialSkin.Controls.MaterialLabel();
             this.btnGeneraReporteVentas = new MaterialSkin.Controls.MaterialFlatButton();
             this.txtFecHastaVentas = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtFecDesdeVentas = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.lblFechaHastaVenta = new MaterialSkin.Controls.MaterialLabel();
             this.lblFechaDesdeVenta = new MaterialSkin.Controls.MaterialLabel();
             this.tabInventario = new System.Windows.Forms.TabPage();
-            this.tabSelector = new MaterialSkin.Controls.MaterialTabSelector();
-            this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
-            this.cmbxVentasReportes = new System.Windows.Forms.ComboBox();
-            this.lblReportesVenta = new MaterialSkin.Controls.MaterialLabel();
             this.cmbxInventarioReportes = new System.Windows.Forms.ComboBox();
             this.lblReportesInventario = new MaterialSkin.Controls.MaterialLabel();
             this.btnGeneraReporteInvenario = new MaterialSkin.Controls.MaterialFlatButton();
+            this.tabSelector = new MaterialSkin.Controls.MaterialTabSelector();
+            this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
+            this.tbxFechaInventario = new System.Windows.Forms.TextBox();
+            this.lblFechaInventario = new MaterialSkin.Controls.MaterialLabel();
             this.tabControl.SuspendLayout();
             this.tabPedidos.SuspendLayout();
             this.tabVentas.SuspendLayout();
@@ -199,6 +201,29 @@
             this.tabVentas.TabIndex = 1;
             this.tabVentas.Text = "Ventas";
             // 
+            // cmbxVentasReportes
+            // 
+            this.cmbxVentasReportes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbxVentasReportes.FormattingEnabled = true;
+            this.cmbxVentasReportes.Location = new System.Drawing.Point(119, 21);
+            this.cmbxVentasReportes.Name = "cmbxVentasReportes";
+            this.cmbxVentasReportes.Size = new System.Drawing.Size(254, 21);
+            this.cmbxVentasReportes.TabIndex = 7;
+            // 
+            // lblReportesVenta
+            // 
+            this.lblReportesVenta.AutoSize = true;
+            this.lblReportesVenta.Depth = 0;
+            this.lblReportesVenta.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblReportesVenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblReportesVenta.Location = new System.Drawing.Point(31, 20);
+            this.lblReportesVenta.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblReportesVenta.Name = "lblReportesVenta";
+            this.lblReportesVenta.Size = new System.Drawing.Size(73, 19);
+            this.lblReportesVenta.TabIndex = 8;
+            this.lblReportesVenta.Text = "Reportes:";
+            // 
             // btnGeneraReporteVentas
             // 
             this.btnGeneraReporteVentas.AutoSize = true;
@@ -273,6 +298,8 @@
             // 
             // tabInventario
             // 
+            this.tabInventario.Controls.Add(this.lblFechaInventario);
+            this.tabInventario.Controls.Add(this.tbxFechaInventario);
             this.tabInventario.Controls.Add(this.cmbxInventarioReportes);
             this.tabInventario.Controls.Add(this.lblReportesInventario);
             this.tabInventario.Controls.Add(this.btnGeneraReporteInvenario);
@@ -283,6 +310,46 @@
             this.tabInventario.TabIndex = 2;
             this.tabInventario.Text = "Inventario";
             this.tabInventario.UseVisualStyleBackColor = true;
+            // 
+            // cmbxInventarioReportes
+            // 
+            this.cmbxInventarioReportes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbxInventarioReportes.FormattingEnabled = true;
+            this.cmbxInventarioReportes.Location = new System.Drawing.Point(99, 26);
+            this.cmbxInventarioReportes.Name = "cmbxInventarioReportes";
+            this.cmbxInventarioReportes.Size = new System.Drawing.Size(254, 21);
+            this.cmbxInventarioReportes.TabIndex = 10;
+            this.cmbxInventarioReportes.SelectionChangeCommitted += new System.EventHandler(this.cmbxInventarioReportes_SelectionChangeCommitted);
+            // 
+            // lblReportesInventario
+            // 
+            this.lblReportesInventario.AutoSize = true;
+            this.lblReportesInventario.Depth = 0;
+            this.lblReportesInventario.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblReportesInventario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblReportesInventario.Location = new System.Drawing.Point(11, 25);
+            this.lblReportesInventario.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblReportesInventario.Name = "lblReportesInventario";
+            this.lblReportesInventario.Size = new System.Drawing.Size(73, 19);
+            this.lblReportesInventario.TabIndex = 11;
+            this.lblReportesInventario.Text = "Reportes:";
+            // 
+            // btnGeneraReporteInvenario
+            // 
+            this.btnGeneraReporteInvenario.AutoSize = true;
+            this.btnGeneraReporteInvenario.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnGeneraReporteInvenario.Depth = 0;
+            this.btnGeneraReporteInvenario.Location = new System.Drawing.Point(219, 153);
+            this.btnGeneraReporteInvenario.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnGeneraReporteInvenario.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnGeneraReporteInvenario.Name = "btnGeneraReporteInvenario";
+            this.btnGeneraReporteInvenario.Primary = false;
+            this.btnGeneraReporteInvenario.Size = new System.Drawing.Size(136, 36);
+            this.btnGeneraReporteInvenario.TabIndex = 9;
+            this.btnGeneraReporteInvenario.Text = "Generar Reporte";
+            this.btnGeneraReporteInvenario.UseVisualStyleBackColor = true;
+            this.btnGeneraReporteInvenario.Click += new System.EventHandler(this.btnGeneraReporteInvenario_Click);
             // 
             // tabSelector
             // 
@@ -313,67 +380,25 @@
             this.tlpPrincipal.Size = new System.Drawing.Size(398, 257);
             this.tlpPrincipal.TabIndex = 3;
             // 
-            // cmbxVentasReportes
+            // tbxFechaInventario
             // 
-            this.cmbxVentasReportes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbxVentasReportes.FormattingEnabled = true;
-            this.cmbxVentasReportes.Location = new System.Drawing.Point(119, 21);
-            this.cmbxVentasReportes.Name = "cmbxVentasReportes";
-            this.cmbxVentasReportes.Size = new System.Drawing.Size(254, 21);
-            this.cmbxVentasReportes.TabIndex = 7;
+            this.tbxFechaInventario.Location = new System.Drawing.Point(99, 80);
+            this.tbxFechaInventario.Name = "tbxFechaInventario";
+            this.tbxFechaInventario.Size = new System.Drawing.Size(100, 20);
+            this.tbxFechaInventario.TabIndex = 12;
             // 
-            // lblReportesVenta
+            // lblFechaInventario
             // 
-            this.lblReportesVenta.AutoSize = true;
-            this.lblReportesVenta.Depth = 0;
-            this.lblReportesVenta.Font = new System.Drawing.Font("Roboto", 11F);
-            this.lblReportesVenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblReportesVenta.Location = new System.Drawing.Point(31, 20);
-            this.lblReportesVenta.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblReportesVenta.Name = "lblReportesVenta";
-            this.lblReportesVenta.Size = new System.Drawing.Size(73, 19);
-            this.lblReportesVenta.TabIndex = 8;
-            this.lblReportesVenta.Text = "Reportes:";
-            // 
-            // cmbxInventarioReportes
-            // 
-            this.cmbxInventarioReportes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbxInventarioReportes.FormattingEnabled = true;
-            this.cmbxInventarioReportes.Location = new System.Drawing.Point(99, 26);
-            this.cmbxInventarioReportes.Name = "cmbxInventarioReportes";
-            this.cmbxInventarioReportes.Size = new System.Drawing.Size(254, 21);
-            this.cmbxInventarioReportes.TabIndex = 10;
-            // 
-            // lblReportesInventario
-            // 
-            this.lblReportesInventario.AutoSize = true;
-            this.lblReportesInventario.Depth = 0;
-            this.lblReportesInventario.Font = new System.Drawing.Font("Roboto", 11F);
-            this.lblReportesInventario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblReportesInventario.Location = new System.Drawing.Point(11, 25);
-            this.lblReportesInventario.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblReportesInventario.Name = "lblReportesInventario";
-            this.lblReportesInventario.Size = new System.Drawing.Size(73, 19);
-            this.lblReportesInventario.TabIndex = 11;
-            this.lblReportesInventario.Text = "Reportes:";
-            // 
-            // btnGeneraReporteInvenario
-            // 
-            this.btnGeneraReporteInvenario.AutoSize = true;
-            this.btnGeneraReporteInvenario.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnGeneraReporteInvenario.Depth = 0;
-            this.btnGeneraReporteInvenario.Location = new System.Drawing.Point(219, 153);
-            this.btnGeneraReporteInvenario.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnGeneraReporteInvenario.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnGeneraReporteInvenario.Name = "btnGeneraReporteInvenario";
-            this.btnGeneraReporteInvenario.Primary = false;
-            this.btnGeneraReporteInvenario.Size = new System.Drawing.Size(136, 36);
-            this.btnGeneraReporteInvenario.TabIndex = 9;
-            this.btnGeneraReporteInvenario.Text = "Generar Reporte";
-            this.btnGeneraReporteInvenario.UseVisualStyleBackColor = true;
-            this.btnGeneraReporteInvenario.Click += new System.EventHandler(this.btnGeneraReporteInvenario_Click);
+            this.lblFechaInventario.AutoSize = true;
+            this.lblFechaInventario.Depth = 0;
+            this.lblFechaInventario.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblFechaInventario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblFechaInventario.Location = new System.Drawing.Point(31, 81);
+            this.lblFechaInventario.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblFechaInventario.Name = "lblFechaInventario";
+            this.lblFechaInventario.Size = new System.Drawing.Size(53, 19);
+            this.lblFechaInventario.TabIndex = 13;
+            this.lblFechaInventario.Text = "Fecha:";
             // 
             // frmReporteSeleccion
             // 
@@ -425,5 +450,7 @@
         private System.Windows.Forms.ComboBox cmbxInventarioReportes;
         private MaterialSkin.Controls.MaterialLabel lblReportesInventario;
         private MaterialSkin.Controls.MaterialFlatButton btnGeneraReporteInvenario;
+        private MaterialSkin.Controls.MaterialLabel lblFechaInventario;
+        private System.Windows.Forms.TextBox tbxFechaInventario;
     }
 }

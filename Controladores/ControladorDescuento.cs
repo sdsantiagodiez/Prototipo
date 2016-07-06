@@ -23,6 +23,12 @@ namespace Controladores
             resultadoBusquedaDescuentos = ControladorBusqueda.getDescuentos(p_codigo_original,p_codigo_articulo_proveedor);
             return resultadoBusquedaDescuentos.Count;
         }
+        public List<ModeloDescuentoArticulo> buscarDescuentosVigentes(DateTime p_fecha)
+        {
+            resultadoBusquedaDescuentos = ControladorBusqueda.getDescuentosVigentes(p_fecha);
+            return resultadoBusquedaDescuentos;
+        }
+
         public ModeloDescuentoArticulo getDescuentoBusqueda(int p_indice)
         {
             return resultadoBusquedaDescuentos[p_indice];
