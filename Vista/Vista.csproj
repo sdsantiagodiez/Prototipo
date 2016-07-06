@@ -152,6 +152,12 @@
     <Compile Include="frmPedidoNuevo_editarCantidad.Designer.cs">
       <DependentUpon>frmPedidoNuevo_editarCantidad.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReimpresion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReimpresion.Designer.cs">
+      <DependentUpon>frmReimpresion.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPreferenciasFacturacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPedidoNuevo_editarCantidad.resx">
       <DependentUpon>frmPedidoNuevo_editarCantidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReimpresion.resx">
+      <DependentUpon>frmReimpresion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPreferenciasFacturacion.resx">
       <DependentUpon>frmPreferenciasFacturacion.cs</DependentUpon>
