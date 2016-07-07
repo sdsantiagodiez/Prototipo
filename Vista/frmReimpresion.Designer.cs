@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReimpresion));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
             this.lblTipoComprobante = new System.Windows.Forms.Label();
             this.lblComprobanteDesde = new System.Windows.Forms.Label();
             this.lblComprobanteHasta = new System.Windows.Forms.Label();
@@ -38,16 +37,17 @@
             this.lblFechaHasta = new System.Windows.Forms.Label();
             this.lblCliente = new System.Windows.Forms.Label();
             this.btnImprimir = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
             this.txtBoxComprobanteDesde = new System.Windows.Forms.TextBox();
             this.txtBoxComprobanteHasta = new System.Windows.Forms.TextBox();
             this.txtBoxFechaDesde = new System.Windows.Forms.TextBox();
             this.txtBoxFechaHasta = new System.Windows.Forms.TextBox();
             this.txtBoxCliente = new System.Windows.Forms.TextBox();
             this.cmbxTipoComprobante = new System.Windows.Forms.ComboBox();
-            this.lblLupa = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnBuscaTipoComprobante = new System.Windows.Forms.Label();
+            this.btnBuscaComprobanteDesde = new System.Windows.Forms.Label();
+            this.btnBuscaComprobanteHasta = new System.Windows.Forms.Label();
+            this.btnBuscaCliente = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,10 +78,10 @@
             this.tableLayoutPanel1.Controls.Add(this.txtBoxFechaHasta, 3, 5);
             this.tableLayoutPanel1.Controls.Add(this.txtBoxCliente, 3, 6);
             this.tableLayoutPanel1.Controls.Add(this.cmbxTipoComprobante, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblLupa, 5, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 5, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 5, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 5, 6);
+            this.tableLayoutPanel1.Controls.Add(this.btnBuscaTipoComprobante, 5, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnBuscaComprobanteDesde, 5, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnBuscaComprobanteHasta, 5, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnBuscaCliente, 5, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 61);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -97,23 +97,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.255473F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 309);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.AutoSize = true;
-            this.btnCancelar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCancelar.Depth = 0;
-            this.btnCancelar.Location = new System.Drawing.Point(176, 248);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Primary = false;
-            this.btnCancelar.Size = new System.Drawing.Size(152, 36);
-            this.btnCancelar.TabIndex = 11;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // lblTipoComprobante
             // 
@@ -190,6 +173,24 @@
             this.btnImprimir.TabIndex = 10;
             this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.AutoSize = true;
+            this.btnCancelar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCancelar.Depth = 0;
+            this.btnCancelar.Location = new System.Drawing.Point(176, 248);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Primary = false;
+            this.btnCancelar.Size = new System.Drawing.Size(152, 36);
+            this.btnCancelar.TabIndex = 11;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // txtBoxComprobanteDesde
             // 
@@ -239,41 +240,44 @@
             this.cmbxTipoComprobante.Size = new System.Drawing.Size(154, 21);
             this.cmbxTipoComprobante.TabIndex = 23;
             // 
-            // lblLupa
+            // btnBuscaTipoComprobante
             // 
-            this.lblLupa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblLupa.Image = ((System.Drawing.Image)(resources.GetObject("lblLupa.Image")));
-            this.lblLupa.Location = new System.Drawing.Point(343, 12);
-            this.lblLupa.Name = "lblLupa";
-            this.lblLupa.Size = new System.Drawing.Size(54, 27);
-            this.lblLupa.TabIndex = 24;
+            this.btnBuscaTipoComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscaTipoComprobante.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscaTipoComprobante.Image")));
+            this.btnBuscaTipoComprobante.Location = new System.Drawing.Point(343, 12);
+            this.btnBuscaTipoComprobante.Name = "btnBuscaTipoComprobante";
+            this.btnBuscaTipoComprobante.Size = new System.Drawing.Size(54, 27);
+            this.btnBuscaTipoComprobante.TabIndex = 24;
             // 
-            // label1
+            // btnBuscaComprobanteDesde
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
-            this.label1.Location = new System.Drawing.Point(343, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 27);
-            this.label1.TabIndex = 25;
+            this.btnBuscaComprobanteDesde.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscaComprobanteDesde.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscaComprobanteDesde.Image")));
+            this.btnBuscaComprobanteDesde.Location = new System.Drawing.Point(343, 51);
+            this.btnBuscaComprobanteDesde.Name = "btnBuscaComprobanteDesde";
+            this.btnBuscaComprobanteDesde.Size = new System.Drawing.Size(54, 27);
+            this.btnBuscaComprobanteDesde.TabIndex = 25;
+            this.btnBuscaComprobanteDesde.Click += new System.EventHandler(this.btnBuscaComprobanteDesde_Click);
             // 
-            // label2
+            // btnBuscaComprobanteHasta
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
-            this.label2.Location = new System.Drawing.Point(343, 90);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 27);
-            this.label2.TabIndex = 26;
+            this.btnBuscaComprobanteHasta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscaComprobanteHasta.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscaComprobanteHasta.Image")));
+            this.btnBuscaComprobanteHasta.Location = new System.Drawing.Point(343, 90);
+            this.btnBuscaComprobanteHasta.Name = "btnBuscaComprobanteHasta";
+            this.btnBuscaComprobanteHasta.Size = new System.Drawing.Size(54, 27);
+            this.btnBuscaComprobanteHasta.TabIndex = 26;
+            this.btnBuscaComprobanteHasta.Click += new System.EventHandler(this.btnBuscaComprobanteHasta_Click);
             // 
-            // label3
+            // btnBuscaCliente
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
-            this.label3.Location = new System.Drawing.Point(343, 209);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 23);
-            this.label3.TabIndex = 27;
+            this.btnBuscaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscaCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscaCliente.Image")));
+            this.btnBuscaCliente.Location = new System.Drawing.Point(343, 209);
+            this.btnBuscaCliente.Name = "btnBuscaCliente";
+            this.btnBuscaCliente.Size = new System.Drawing.Size(54, 23);
+            this.btnBuscaCliente.TabIndex = 27;
+            this.btnBuscaCliente.Click += new System.EventHandler(this.btnBuscaCliente_Click);
             // 
             // frmReimpresion
             // 
@@ -308,9 +312,9 @@
         private System.Windows.Forms.TextBox txtBoxFechaHasta;
         private System.Windows.Forms.TextBox txtBoxCliente;
         private System.Windows.Forms.ComboBox cmbxTipoComprobante;
-        internal System.Windows.Forms.Label lblLupa;
-        internal System.Windows.Forms.Label label1;
-        internal System.Windows.Forms.Label label2;
-        internal System.Windows.Forms.Label label3;
+        internal System.Windows.Forms.Label btnBuscaTipoComprobante;
+        internal System.Windows.Forms.Label btnBuscaComprobanteDesde;
+        internal System.Windows.Forms.Label btnBuscaComprobanteHasta;
+        internal System.Windows.Forms.Label btnBuscaCliente;
     }
 }
