@@ -74,7 +74,8 @@ namespace Vista
         public bool imprimir()
         {
             Controladores.ControladorReportes lcl_con_reporte = new ControladorReportes();
-            lcl_con_reporte.ImpresionFacturas(controlador.pedidoActual).ShowDialog();
+            //lcl_con_reporte.ImpresionFacturas(controlador.pedidoActual).ShowDialog();
+            return true;
         }
         #endregion
 
