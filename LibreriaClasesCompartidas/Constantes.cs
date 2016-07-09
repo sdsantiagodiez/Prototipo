@@ -30,6 +30,7 @@ namespace LibreriaClasesCompartidas
             {
                 public const string CodigoEntidad = "codigoEntidad";
                 public const string Cuit = "cuit";
+                public const string Observaciones = "observacionesEntidad";
 
                 public static class Personas
                 {
@@ -44,6 +45,7 @@ namespace LibreriaClasesCompartidas
                     public static class Usuarios
                     {                        
                         public const string Usuario = "usuario";
+                        public const string Contrasenia = "contrasenia";
                         public const string LogIn = "log In";
                     }
 
@@ -76,6 +78,7 @@ namespace LibreriaClasesCompartidas
             {
                 public const string CodigoOriginal = "codigoOriginal";
                 public const string Descripcion = "descripcion";
+                public const string Observaciones = "observacionesArticulo";
             }
 
             public static class ArticulosProveedores
@@ -86,6 +89,9 @@ namespace LibreriaClasesCompartidas
                 public const string DescripcionArticuloProveedor = "descripcionArticuloProveedor";
                 public const string codigoEntidadProveedor = "codigoEntidadProveedor";
                 public const string razonSocialProveedor = "razonSocialProveedor";
+                public const string Observaciones = Constantes.ParametrosBusqueda.Articulos.Observaciones;
+                public const string Modelo = "modeloArticuloProveedor";
+                public const string Ubicacion = "ubicacionArticuloProveedor";
             }
 
             public static class Pedidos
@@ -94,6 +100,7 @@ namespace LibreriaClasesCompartidas
                 public const string NumeroPedido = "numeroPedido";
                 public const string Fecha = "fecha";
                 public const string Tipo = "tipoPedido";
+                public const string Observaciones = "observacionesPedido";
             }
 
             public static class LineasPedidos
@@ -118,6 +125,31 @@ namespace LibreriaClasesCompartidas
                 public const string CodigoProvincia = "codigoProvincia";
                 public const string Provincia = "nombreProvincia";
 
+            }
+            public static class Domicilios
+            {
+                public const string CodigoDomicilio = "codigoDomicilio";
+                public const string CodigoEntidad = ParametrosBusqueda.Entidades.CodigoEntidad;
+                public const string Calle = "calle";
+                public const string NumeroCalle = "numeroCalle";
+                public const string Piso = "piso";
+                public const string Departamento = "departamento";
+                public const string Ciudad = "ciudad";
+                public const string CodigoPostal = "codigoPostal";
+                public const string CodigoProvincia = ParametrosBusqueda.Provincias.CodigoProvincia;
+            }
+            public static class Mails
+            {
+                public const string CodigoEntidad = ParametrosBusqueda.Entidades.CodigoEntidad;
+                public const string CodigoMail = "codigoMail";
+                public const string Mail = "mail";
+            }
+            public static class Telefonos
+            {
+                public const string CodigoEntidad = ParametrosBusqueda.Entidades.CodigoEntidad;
+                public const string CodigoTelefono = "codigoTelefono";
+                public const string NumeroTelefono = "numeroTelefono";
+                public const string TipoTelefono = "tipoTelefono";
             }
         }
         
