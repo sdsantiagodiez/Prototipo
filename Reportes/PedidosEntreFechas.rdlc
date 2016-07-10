@@ -12,10 +12,10 @@
               <Width>6.3451cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.94138cm</Width>
+              <Width>3.2944cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.36745cm</Width>
+              <Width>2.86223cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.58505cm</Width>
@@ -50,6 +50,21 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <LeftBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </LeftBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -84,6 +99,16 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -118,6 +143,16 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -152,6 +187,16 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -186,6 +231,21 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <RightBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </RightBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -345,6 +405,7 @@
                               <Value>=Fields!MontoTotal.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>'$' 0.00;('$' 0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -362,6 +423,7 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -394,7 +456,7 @@
         <Top>0.64382cm</Top>
         <Left>0.88506cm</Left>
         <Height>1.2cm</Height>
-        <Width>19.61667cm</Width>
+        <Width>18.46448cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -409,7 +471,7 @@
       </Border>
     </Style>
   </Body>
-  <Width>8.28335in</Width>
+  <Width>7.88752in</Width>
   <Page>
     <PageHeader>
       <Height>6.45583cm</Height>
@@ -468,7 +530,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>1.27678cm</Top>
-          <Left>16.31626cm</Left>
+          <Left>15.66928cm</Left>
           <Height>0.50286cm</Height>
           <Width>1.60042cm</Width>
           <ZIndex>1</ZIndex>
@@ -504,7 +566,7 @@
             </Paragraph>
           </Paragraphs>
           <Top>1.27678cm</Top>
-          <Left>18.09307cm</Left>
+          <Left>17.4461cm</Left>
           <Height>0.50286cm</Height>
           <Width>2.18251cm</Width>
           <ZIndex>2</ZIndex>
@@ -669,7 +731,7 @@
         <Line Name="Line1">
           <Top>3.35703cm</Top>
           <Height>0cm</Height>
-          <Width>21cm</Width>
+          <Width>20.02548cm</Width>
           <ZIndex>8</ZIndex>
           <Style>
             <Border>
@@ -894,7 +956,7 @@
           <Top>3.92148cm</Top>
           <Left>14.37222cm</Left>
           <Height>0.6cm</Height>
-          <Width>6.12951cm</Width>
+          <Width>5.25639cm</Width>
           <ZIndex>15</ZIndex>
           <Style>
             <Border>
@@ -909,7 +971,7 @@
       </ReportItems>
       <Style>
         <Border>
-          <Style>Dotted</Style>
+          <Style>Solid</Style>
         </Border>
         <BackgroundColor>LightGrey</BackgroundColor>
       </Style>
@@ -942,7 +1004,7 @@
           <Width>2.12392cm</Width>
           <Style>
             <Border>
-              <Style>None</Style>
+              <Style>Solid</Style>
             </Border>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
@@ -993,10 +1055,10 @@
     </PageFooter>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
-    <LeftMargin>0cm</LeftMargin>
-    <RightMargin>0cm</RightMargin>
-    <TopMargin>0cm</TopMargin>
-    <BottomMargin>0cm</BottomMargin>
+    <LeftMargin>0.5cm</LeftMargin>
+    <RightMargin>0.5cm</RightMargin>
+    <TopMargin>0.5cm</TopMargin>
+    <BottomMargin>0.5cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
     <Style />
   </Page>
