@@ -25,7 +25,7 @@ namespace Vista
         public ModeloPedido glb_mod_pedido = new ModeloPedido();
         public List<ModeloCliente> glb_lst_mod_cliente = new List<ModeloCliente>();
         public ModeloCliente glb_mod_cliente = new ModeloCliente();
-
+        #region inicializadores
         public frmReimpresion()
         {
             InitializeComponent();
@@ -33,13 +33,27 @@ namespace Vista
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
-            
+            //inicializaClientes();
+            }
+        public void inicializaPedidos()
+        {
+            glb_lst_mod_pedido=ControladorBusqueda.buscar(glb_mod_pedido);
         }
+
+        public void inicializaClientes()
+        {
+            glb_lst_mod_cliente = ControladorBusqueda.buscar(glb_mod_cliente,Constantes.ParametrosBusqueda.All);
+        }
+
+        #endregion   
         #region Metodos
         private void buscaComprobantes()
         {
+           // if (glb_lst_mod_pedido.Count == 0)
+            //{ inicializaPedidos(); }
             frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
-            lcl_frm_resultadoBusqueda.mostrarBusqueda(glb_lst_mod_pedido);
+            glb_mod_pedido.tipoComprobante = 1;
+            lcl_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_pedido);
             if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
             {
                 glb_mod_pedido = new ModeloPedido();
@@ -48,6 +62,8 @@ namespace Vista
         }
         private void buscaCliente()
         {
+            if (glb_lst_mod_cliente.Count == 0)
+            { inicializaClientes(); }
             frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
             lcl_frm_resultadoBusqueda.mostrarBusqueda(glb_lst_mod_cliente);
             if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)

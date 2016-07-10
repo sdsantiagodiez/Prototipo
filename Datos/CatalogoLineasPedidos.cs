@@ -26,9 +26,9 @@ namespace Datos
             lcl_mod_lineaPedido.cantidadArticulos = (int)p_drLineasPedidos["cantidad"];
             lcl_mod_lineaPedido.valorParcial = (decimal)p_drLineasPedidos["valor_parcial"];
             lcl_mod_lineaPedido.valorUnitario = (decimal)p_drLineasPedidos["valor_unitario"];
-
-            lcl_mod_lineaPedido.descuentoLinea.numeroDescuento = (int)p_drLineasPedidos["numero_descuento"];
-            lcl_mod_lineaPedido.descuentoLinea.PorcentajeDescuento = (decimal)p_drLineasPedidos["porcentaje_descuento"];
+            
+            lcl_mod_lineaPedido.descuentoLinea.numeroDescuento = (p_drLineasPedidos["numero_descuento"]!= DBNull.Value) ? (int)p_drLineasPedidos["numero_descuento"] : 0;
+            lcl_mod_lineaPedido.descuentoLinea.PorcentajeDescuento = (p_drLineasPedidos["porcentaje_descuento"]!= DBNull.Value) ? (decimal)p_drLineasPedidos["porcentaje_descuento"] : 0;
 
             lcl_mod_lineaPedido.articulo.descripcionArticuloProveedor= (p_drLineasPedidos["descripcion"] != DBNull.Value) ? (string)p_drLineasPedidos["descripcion"] : null;
                 

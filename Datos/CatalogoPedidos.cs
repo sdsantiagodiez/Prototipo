@@ -250,7 +250,79 @@ namespace Datos
 
                 lcl_lst_mod_pedido.Add(lcl_mod_pedido);
             }
-            drPedidos.Close();
+            drPedidos.Dispose();
+            comando.Connection.Close();
+
+            return lcl_lst_mod_pedido;
+        }
+
+        public List<ModeloPedido> buscarPedido(ModeloPedido p_mod_pedido,Constantes.CodigosTiposPedidos p_tipoPedido, string p_parametroBusqueda)
+        {
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+
+            string querySQL = this.getCondicionBusqueda(p_mod_pedido, p_parametroBusqueda, ref comando);
+            int tipo = 0;
+            switch(p_tipoPedido){
+                case Constantes.CodigosTiposPedidos.TipoPedidoPersona:
+                    tipo = 1;
+                    break;
+                case Constantes.CodigosTiposPedidos.TipoPedidoProveedor:
+                    tipo = 2;
+                    break;
+                default:tipo=0;break;
+            }
+
+            comando.CommandText =
+                "SELECT  [numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
+                "        [codigo_entidad], " +
+                "        [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante]  " +
+                "    FROM  " +
+                "    (  " +
+                "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
+                "                Pedidos_Personas.[codigo_entidad], " +
+                "                [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], " +
+                "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante] " +
+                "            FROM pedidos, Pedidos_Personas  " +
+                "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido  " +
+                "        )  " +
+                "    UNION  " +
+                "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
+                "                Pedidos_Proveedores.[codigo_entidad], " +
+                "                NULL as [numero_comprobante],NULL as [cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
+                "                NULL as [codigo_documento],NULL as [numero_documento_entidad],NULL as [codigo_comprobante] " +
+                "            FROM pedidos, Pedidos_Proveedores  " +
+                "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  " +
+                "        )  " +
+                "    ) as tbl " +
+                "   WHERE codigo_tipo_pedido ="+tipo+" AND " + querySQL;
+
+            comando.Connection.Open();
+
+            SqlDataReader drPedidos = comando.ExecuteReader();
+
+            List<ModeloPedido> lcl_lst_mod_pedido = new List<ModeloPedido>();
+            ModeloPedido lcl_mod_pedido = new ModeloPedido();
+
+            CatalogoLineasPedidos lcl_cat_lineasPedidos = new CatalogoLineasPedidos();
+            ModeloLineaPedido lcl_mod_lineaPedido = null;
+            while (drPedidos.Read())
+            {
+
+                lcl_mod_pedido = new ModeloPedido();
+                lcl_mod_pedido = this.leerDatosPedido(drPedidos);
+
+                lcl_mod_lineaPedido = new ModeloLineaPedido();
+                lcl_mod_lineaPedido.numeroPedido = lcl_mod_pedido.numeroPedido;
+                lcl_mod_pedido.addLineaPedidoList(lcl_cat_lineasPedidos.buscarLineasPedido(lcl_mod_lineaPedido, Constantes.ParametrosBusqueda.LineasPedidos.NumeroPedido));
+
+                lcl_lst_mod_pedido.Add(lcl_mod_pedido);
+            }
+            drPedidos.Dispose();
             comando.Connection.Close();
 
             return lcl_lst_mod_pedido;
@@ -276,6 +348,10 @@ namespace Datos
         public List<ModeloPedido> getAll()
         {
             return this.buscarPedido(null, Constantes.ParametrosBusqueda.All);
+        }
+        public List<ModeloPedido> getAllTipo(Constantes.CodigosTiposPedidos p_tipoPedido)
+        {
+            return this.buscarPedido(null, p_tipoPedido, Constantes.ParametrosBusqueda.All);
         }
 
         public string getUltimoComprobante(string p_tipoComprobante)

@@ -118,6 +118,10 @@ namespace Controladores
             {
                 lcl_ienum_objeto = ControladorBusqueda.buscar(p_objeto as ModeloArticulos);
             }
+            else if (T == typeof(ModeloPedido))
+            {
+                lcl_ienum_objeto = ControladorBusqueda.buscar(p_objeto as ModeloPedido);
+            }
             else
             {
                 lcl_ienum_objeto = ControladorBusqueda.buscar(p_objeto as ModeloEntidad);
@@ -181,11 +185,24 @@ namespace Controladores
         /// </summary>
         /// <param name="p_mod_pedido"></param>
         /// <returns>Lista de pedidos</returns>
-        public static List<ModeloPedido> buscar(ModeloPedido p_mod_pedido)
-        {
+        public static List<ModeloPedido> buscarPedido(ModeloPedido p_mod_pedido)
+        {//sin uso
             CatalogoPedidos lcl_cat_articulos = new CatalogoPedidos();
 
             return lcl_cat_articulos.buscarPedido(p_mod_pedido, Constantes.ParametrosBusqueda.Any);
+        }
+        public static List<ModeloPedido> buscar(ModeloPedido p_mod_pedido)
+        {
+            CatalogoPedidos lcl_cat_pedidos = new CatalogoPedidos();
+            if (p_mod_pedido.tipoComprobante == 1)
+            {
+                return lcl_cat_pedidos.getAllTipo(Constantes.CodigosTiposPedidos.TipoPedidoPersona);
+            }
+            else 
+            {
+                return lcl_cat_pedidos.getAllTipo(Constantes.CodigosTiposPedidos.TipoPedidoProveedor);
+            }
+            
         }
         /// <summary>
         /// Retorna líneas pedidos en base a los valores inicializados en los atributos del modelo

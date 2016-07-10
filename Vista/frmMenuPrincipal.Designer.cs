@@ -46,6 +46,7 @@
             this.entidadesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.artículosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.artículosDeProveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.descuentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tlsbtnReportes = new System.Windows.Forms.ToolStripButton();
             this.tlsbtnVenta = new System.Windows.Forms.ToolStripButton();
             this.tlsbtnPedidoProveedor = new System.Windows.Forms.ToolStripButton();
@@ -68,7 +69,7 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.descuentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tlsbtnReimpresion = new System.Windows.Forms.ToolStripButton();
             this.cntxtMenuStripABM.SuspendLayout();
             this.tblMainMenu.SuspendLayout();
             this.tlsMenu.SuspendLayout();
@@ -199,7 +200,8 @@
             this.tlsbtnVenta,
             this.tlsbtnPedidoProveedor,
             this.tlsbtnFacturacion,
-            this.tlsbtnDevolucion});
+            this.tlsbtnDevolucion,
+            this.tlsbtnReimpresion});
             this.tlsMenu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.tlsMenu.Location = new System.Drawing.Point(0, 0);
             this.tlsMenu.Name = "tlsMenu";
@@ -242,6 +244,13 @@
             this.artículosDeProveedorToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.artículosDeProveedorToolStripMenuItem.Text = "Artículos de Proveedor";
             this.artículosDeProveedorToolStripMenuItem.Click += new System.EventHandler(this.artículosDeProveedorToolStripMenuItem_Click);
+            // 
+            // descuentosToolStripMenuItem
+            // 
+            this.descuentosToolStripMenuItem.Name = "descuentosToolStripMenuItem";
+            this.descuentosToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.descuentosToolStripMenuItem.Text = "Descuentos";
+            this.descuentosToolStripMenuItem.Click += new System.EventHandler(this.descuentosToolStripMenuItem_Click);
             // 
             // tlsbtnReportes
             // 
@@ -461,12 +470,16 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1370, 25);
             this.tableLayoutPanel3.TabIndex = 37;
             // 
-            // descuentosToolStripMenuItem
+            // tlsbtnReimpresion
             // 
-            this.descuentosToolStripMenuItem.Name = "descuentosToolStripMenuItem";
-            this.descuentosToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.descuentosToolStripMenuItem.Text = "Descuentos";
-            this.descuentosToolStripMenuItem.Click += new System.EventHandler(this.descuentosToolStripMenuItem_Click);
+            this.tlsbtnReimpresion.Image = ((System.Drawing.Image)(resources.GetObject("tlsbtnReimpresion.Image")));
+            this.tlsbtnReimpresion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsbtnReimpresion.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsbtnReimpresion.Name = "tlsbtnReimpresion";
+            this.tlsbtnReimpresion.Size = new System.Drawing.Size(222, 24);
+            this.tlsbtnReimpresion.Text = "REIMPRESIÓN DE COMPROBANTES";
+            this.tlsbtnReimpresion.ToolTipText = "Reimpresiones";
+            this.tlsbtnReimpresion.Click += new System.EventHandler(this.tlsbtnReimpresion_Click);
             // 
             // frmMenuPrincipal
             // 
@@ -542,5 +555,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.ToolStripMenuItem descuentosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton tlsbtnReimpresion;
     }
 }

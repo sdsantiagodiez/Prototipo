@@ -178,6 +178,25 @@ namespace Vista
             dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
             dataGridViewResultadoBusqueda.Columns[i-1].DefaultCellStyle.Format = "dd/MM/yyyy";
         }
+        private void inicializarDataGridViewResultadoBusqueda_Pedidos()
+        {
+            int i = dataGridViewResultadoBusqueda.Columns.Count;
+
+            dataGridViewResultadoBusqueda.Columns.Add("numero_pedido", "Numero Pedido");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("fecha", "Fecha Pedido");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns[i - 1].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dataGridViewResultadoBusqueda.Columns.Add("codigoEntidad", "Código Cliente");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("nombre_entidad", "Nombre Cliente");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("apellido_entidad", "Apellido Cliente");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("monto_total", "Monto");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            
+        }
 
         #endregion
 
@@ -253,8 +272,11 @@ namespace Vista
             else if(T == typeof(ModeloCliente))
             {
                 this.inicializarDataGridViewResultadoBusqueda_Cliente();
-            } 
-            
+            }
+            else if (T == typeof(ModeloPedido))
+            {
+                this.inicializarDataGridViewResultadoBusqueda_Pedidos();
+            }
             if(this.Text == "")
             {
                 this.asignarTitulo(T);
@@ -305,7 +327,11 @@ namespace Vista
             else if (T == typeof(ModeloCliente))
             {
                 this.Text += "Clientes";
-            } 
+            }
+            else if (T == typeof(ModeloPedido))
+            {
+                this.Text += "Pedidos";
+            }
         }
 
         
@@ -323,6 +349,10 @@ namespace Vista
             else if (T == typeof(ModeloArticuloProveedores))
             {
                 return this.popularDataGridViewResultadoBusqueda(p_lst_objetos.Cast<ModeloArticuloProveedores>().ToList());
+            }
+            else if (T == typeof(ModeloPedido))
+            {
+                return this.popularDataGridViewResultadoBusqueda(p_lst_objetos.Cast<ModeloPedido>().ToList());
             }
             else
             {
@@ -400,7 +430,29 @@ namespace Vista
         {
             row.Cells["tipo"].Value = p_mod_cliente.tipoPersona;
         }
+        private void cargarDatosPedidoEnRow(ModeloPedido p_mod_pedido, ref DataGridViewRow row)
+        {
+            row.Cells["numero_pedido"].Value = p_mod_pedido.numeroPedido;
+            row.Cells["codigoEntidad"].Value = p_mod_pedido.entidad.codigo;
+            row.Cells["fecha"].Value = p_mod_pedido.fecha;
+            //Aca pasa null cuando los clientes son genericos
+            row.Cells["nombre_entidad"].Value = (p_mod_pedido.entidad as ModeloCliente).nombre ;
+            row.Cells["apellido_entidad"].Value = (p_mod_pedido.entidad as ModeloCliente).apellido;
+            row.Cells["monto_total"].Value = p_mod_pedido.montoTotal;
+        }
+        private DataGridView popularDataGridViewResultadoBusqueda(List<ModeloPedido> p_lst_mod_pedido)
+        {
+            int rowIndex;
+            DataGridViewRow row;
+            foreach (ModeloPedido a in p_lst_mod_pedido)
+            {
+                rowIndex = this.dataGridViewResultadoBusqueda.Rows.Add();
+                row = this.dataGridViewResultadoBusqueda.Rows[rowIndex];
 
+                this.cargarDatosPedidoEnRow(a, ref row);
+            }
+            return dataGridViewResultadoBusqueda;
+        }
         private DataGridView popularDataGridViewResultadoBusqueda(List<ModeloArticulos> p_lst_mod_articulo)
         {
             int rowIndex;

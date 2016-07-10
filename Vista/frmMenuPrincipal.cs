@@ -322,43 +322,23 @@ namespace Vista
             lcl_frm_ABMDescuentos.Location = glb_localizacion;
             lcl_frm_ABMDescuentos.ShowDialog();
         }
-        #endregion
 
+        private void tlsbtnReimpresion_Click(object sender, EventArgs e)
+        {
+            frmReimpresion lcl_frm_reimpresion = new frmReimpresion();
+            lcl_frm_reimpresion.Location = glb_localizacion;
+            lcl_frm_reimpresion.Show();
+        }
+
+       
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
         {
 
         }
-
-      
-
-        
-
-        
-
-        
-
-       
-        
-
-        
-
-        
-
-        
-
-
-
-
-
+        #endregion
 
 
         #endregion
-
-        
-
-        
-
-        
     }
 
     //clase para llenar combo box categoria a buscar
