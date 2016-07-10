@@ -8,25 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Controladores;
-using MaterialSkin;
-using MaterialSkin.Animations;
-using MaterialSkin.Controls;
 
 namespace Vista
 {
-    public partial class frmPreferenciasFacturacion : MaterialForm
+    public partial class frmPreferenciasFacturacion : frmMaterialSkinBase
     {
+        #region Atributos
         ControladorPedidoCliente glb_con_pedidoCliente = new ControladorPedidoCliente();
+        #endregion
+
+        #region Constructores
         public frmPreferenciasFacturacion()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+           
             CompletaUltimosComprobantes();
         }
+        #endregion
 
+        #region Métodos
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -40,5 +40,6 @@ namespace Vista
             this.txtUltNumComp4.Text = glb_con_pedidoCliente.UltimoComprobante("8"); // NCB
 
         }
+        #endregion
     }
 }

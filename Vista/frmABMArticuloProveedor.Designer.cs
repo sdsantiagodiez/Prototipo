@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxArticulo = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelArticulo = new System.Windows.Forms.TableLayoutPanel();
             this.lblDescripcion = new System.Windows.Forms.Label();
@@ -62,7 +62,7 @@
             this.grpBoxObservaciones = new System.Windows.Forms.GroupBox();
             this.rchTextBoxObservaciones = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tblLayoutPanelPrincipal.SuspendLayout();
             this.grpBoxArticulo.SuspendLayout();
             this.tblLayoutPanelArticulo.SuspendLayout();
             this.grpBoxProveedor.SuspendLayout();
@@ -74,24 +74,24 @@
             this.grpBoxObservaciones.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tblLayoutPanelPrincipal
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.grpBoxArticulo, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.grpBoxProveedor, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.grpBoxStock, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.grpBoxObservaciones, 0, 3);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 63);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(450, 496);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.tblLayoutPanelPrincipal.ColumnCount = 1;
+            this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxArticulo, 0, 0);
+            this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxProveedor, 0, 1);
+            this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxStock, 0, 2);
+            this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxObservaciones, 0, 3);
+            this.tblLayoutPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 63);
+            this.tblLayoutPanelPrincipal.Name = "tblLayoutPanelPrincipal";
+            this.tblLayoutPanelPrincipal.RowCount = 4;
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(575, 496);
+            this.tblLayoutPanelPrincipal.TabIndex = 1;
             // 
             // grpBoxArticulo
             // 
@@ -100,7 +100,7 @@
             this.grpBoxArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBoxArticulo.Location = new System.Drawing.Point(3, 3);
             this.grpBoxArticulo.Name = "grpBoxArticulo";
-            this.grpBoxArticulo.Size = new System.Drawing.Size(444, 114);
+            this.grpBoxArticulo.Size = new System.Drawing.Size(569, 114);
             this.grpBoxArticulo.TabIndex = 9;
             this.grpBoxArticulo.TabStop = false;
             this.grpBoxArticulo.Text = "Artículo";
@@ -123,7 +123,7 @@
             this.tblLayoutPanelArticulo.RowCount = 2;
             this.tblLayoutPanelArticulo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelArticulo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelArticulo.Size = new System.Drawing.Size(438, 91);
+            this.tblLayoutPanelArticulo.Size = new System.Drawing.Size(563, 91);
             this.tblLayoutPanelArticulo.TabIndex = 0;
             // 
             // lblDescripcion
@@ -154,7 +154,7 @@
             this.btnBuscarArticulo.AutoSize = true;
             this.btnBuscarArticulo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnBuscarArticulo.Depth = 0;
-            this.btnBuscarArticulo.Location = new System.Drawing.Point(357, 6);
+            this.btnBuscarArticulo.Location = new System.Drawing.Point(482, 6);
             this.btnBuscarArticulo.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnBuscarArticulo.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnBuscarArticulo.Name = "btnBuscarArticulo";
@@ -171,7 +171,7 @@
             this.btnModificarArticulo.AutoSize = true;
             this.btnModificarArticulo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnModificarArticulo.Depth = 0;
-            this.btnModificarArticulo.Location = new System.Drawing.Point(357, 51);
+            this.btnModificarArticulo.Location = new System.Drawing.Point(482, 51);
             this.btnModificarArticulo.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnModificarArticulo.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnModificarArticulo.Name = "btnModificarArticulo";
@@ -194,7 +194,7 @@
             this.txtBoxCodigoOriginal.SelectedText = "";
             this.txtBoxCodigoOriginal.SelectionLength = 0;
             this.txtBoxCodigoOriginal.SelectionStart = 0;
-            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(227, 23);
+            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(352, 23);
             this.txtBoxCodigoOriginal.TabIndex = 9;
             this.txtBoxCodigoOriginal.UseSystemPasswordChar = false;
             // 
@@ -210,7 +210,7 @@
             this.txtBoxDescripcion.SelectedText = "";
             this.txtBoxDescripcion.SelectionLength = 0;
             this.txtBoxDescripcion.SelectionStart = 0;
-            this.txtBoxDescripcion.Size = new System.Drawing.Size(227, 23);
+            this.txtBoxDescripcion.Size = new System.Drawing.Size(352, 23);
             this.txtBoxDescripcion.TabIndex = 10;
             this.txtBoxDescripcion.UseSystemPasswordChar = false;
             // 
@@ -221,7 +221,7 @@
             this.grpBoxProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBoxProveedor.Location = new System.Drawing.Point(3, 123);
             this.grpBoxProveedor.Name = "grpBoxProveedor";
-            this.grpBoxProveedor.Size = new System.Drawing.Size(444, 114);
+            this.grpBoxProveedor.Size = new System.Drawing.Size(569, 114);
             this.grpBoxProveedor.TabIndex = 10;
             this.grpBoxProveedor.TabStop = false;
             this.grpBoxProveedor.Text = "Proveedor";
@@ -244,7 +244,7 @@
             this.tblLayoutPanelProveedor.RowCount = 2;
             this.tblLayoutPanelProveedor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelProveedor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelProveedor.Size = new System.Drawing.Size(438, 91);
+            this.tblLayoutPanelProveedor.Size = new System.Drawing.Size(563, 91);
             this.tblLayoutPanelProveedor.TabIndex = 0;
             // 
             // lblRazonSocial
@@ -275,7 +275,7 @@
             this.btnBuscarProveedor.AutoSize = true;
             this.btnBuscarProveedor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnBuscarProveedor.Depth = 0;
-            this.btnBuscarProveedor.Location = new System.Drawing.Point(357, 6);
+            this.btnBuscarProveedor.Location = new System.Drawing.Point(482, 6);
             this.btnBuscarProveedor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnBuscarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnBuscarProveedor.Name = "btnBuscarProveedor";
@@ -292,7 +292,7 @@
             this.btnModificarProveedor.AutoSize = true;
             this.btnModificarProveedor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnModificarProveedor.Depth = 0;
-            this.btnModificarProveedor.Location = new System.Drawing.Point(357, 51);
+            this.btnModificarProveedor.Location = new System.Drawing.Point(482, 51);
             this.btnModificarProveedor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnModificarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnModificarProveedor.Name = "btnModificarProveedor";
@@ -315,7 +315,7 @@
             this.txtBoxCodigoProveedor.SelectedText = "";
             this.txtBoxCodigoProveedor.SelectionLength = 0;
             this.txtBoxCodigoProveedor.SelectionStart = 0;
-            this.txtBoxCodigoProveedor.Size = new System.Drawing.Size(227, 23);
+            this.txtBoxCodigoProveedor.Size = new System.Drawing.Size(352, 23);
             this.txtBoxCodigoProveedor.TabIndex = 10;
             this.txtBoxCodigoProveedor.UseSystemPasswordChar = false;
             // 
@@ -331,29 +331,31 @@
             this.txtBoxRazonSocial.SelectedText = "";
             this.txtBoxRazonSocial.SelectionLength = 0;
             this.txtBoxRazonSocial.SelectionStart = 0;
-            this.txtBoxRazonSocial.Size = new System.Drawing.Size(227, 23);
+            this.txtBoxRazonSocial.Size = new System.Drawing.Size(352, 23);
             this.txtBoxRazonSocial.TabIndex = 11;
             this.txtBoxRazonSocial.UseSystemPasswordChar = false;
             // 
             // grpBoxStock
             // 
+            this.grpBoxStock.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.grpBoxStock.Controls.Add(this.tblLayoutPanelStock);
-            this.grpBoxStock.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBoxStock.Location = new System.Drawing.Point(3, 243);
             this.grpBoxStock.Name = "grpBoxStock";
-            this.grpBoxStock.Size = new System.Drawing.Size(444, 174);
+            this.grpBoxStock.Size = new System.Drawing.Size(569, 174);
             this.grpBoxStock.TabIndex = 11;
             this.grpBoxStock.TabStop = false;
             this.grpBoxStock.Text = "Stock";
             // 
             // tblLayoutPanelStock
             // 
+            this.tblLayoutPanelStock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.tblLayoutPanelStock.ColumnCount = 4;
             this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
-            this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
+            this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
             this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblLayoutPanelStock.Controls.Add(this.lblCodigoArticulo, 0, 0);
             this.tblLayoutPanelStock.Controls.Add(this.lblStockActual, 0, 1);
             this.tblLayoutPanelStock.Controls.Add(this.lblStockMinimo, 0, 2);
@@ -366,14 +368,13 @@
             this.tblLayoutPanelStock.Controls.Add(this.txtBoxPrecioCompra, 3, 0);
             this.tblLayoutPanelStock.Controls.Add(this.txtBoxPrecioVenta, 3, 1);
             this.tblLayoutPanelStock.Controls.Add(this.txtBoxUbicacion, 3, 2);
-            this.tblLayoutPanelStock.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelStock.Location = new System.Drawing.Point(3, 20);
+            this.tblLayoutPanelStock.Location = new System.Drawing.Point(36, 20);
             this.tblLayoutPanelStock.Name = "tblLayoutPanelStock";
             this.tblLayoutPanelStock.RowCount = 3;
             this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tblLayoutPanelStock.Size = new System.Drawing.Size(438, 151);
+            this.tblLayoutPanelStock.Size = new System.Drawing.Size(498, 151);
             this.tblLayoutPanelStock.TabIndex = 0;
             // 
             // lblCodigoArticulo
@@ -429,7 +430,7 @@
             this.lblUbicacion.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblUbicacion.AutoSize = true;
             this.lblUbicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUbicacion.Location = new System.Drawing.Point(255, 116);
+            this.lblUbicacion.Location = new System.Drawing.Point(277, 116);
             this.lblUbicacion.Name = "lblUbicacion";
             this.lblUbicacion.Size = new System.Drawing.Size(74, 18);
             this.lblUbicacion.TabIndex = 7;
@@ -440,7 +441,7 @@
             this.lblPrecioCompra.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPrecioCompra.AutoSize = true;
             this.lblPrecioCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioCompra.Location = new System.Drawing.Point(220, 16);
+            this.lblPrecioCompra.Location = new System.Drawing.Point(242, 16);
             this.lblPrecioCompra.Name = "lblPrecioCompra";
             this.lblPrecioCompra.Size = new System.Drawing.Size(109, 18);
             this.lblPrecioCompra.TabIndex = 14;
@@ -451,7 +452,7 @@
             this.lblPrecioVenta.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPrecioVenta.AutoSize = true;
             this.lblPrecioVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioVenta.Location = new System.Drawing.Point(237, 66);
+            this.lblPrecioVenta.Location = new System.Drawing.Point(259, 66);
             this.lblPrecioVenta.Name = "lblPrecioVenta";
             this.lblPrecioVenta.Size = new System.Drawing.Size(92, 18);
             this.lblPrecioVenta.TabIndex = 13;
@@ -491,14 +492,14 @@
             this.txtBoxPrecioCompra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxPrecioCompra.Depth = 0;
             this.txtBoxPrecioCompra.Hint = "";
-            this.txtBoxPrecioCompra.Location = new System.Drawing.Point(335, 13);
+            this.txtBoxPrecioCompra.Location = new System.Drawing.Point(357, 13);
             this.txtBoxPrecioCompra.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxPrecioCompra.Name = "txtBoxPrecioCompra";
             this.txtBoxPrecioCompra.PasswordChar = '\0';
             this.txtBoxPrecioCompra.SelectedText = "";
             this.txtBoxPrecioCompra.SelectionLength = 0;
             this.txtBoxPrecioCompra.SelectionStart = 0;
-            this.txtBoxPrecioCompra.Size = new System.Drawing.Size(100, 23);
+            this.txtBoxPrecioCompra.Size = new System.Drawing.Size(138, 23);
             this.txtBoxPrecioCompra.TabIndex = 18;
             this.txtBoxPrecioCompra.UseSystemPasswordChar = false;
             // 
@@ -507,14 +508,14 @@
             this.txtBoxPrecioVenta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxPrecioVenta.Depth = 0;
             this.txtBoxPrecioVenta.Hint = "";
-            this.txtBoxPrecioVenta.Location = new System.Drawing.Point(335, 63);
+            this.txtBoxPrecioVenta.Location = new System.Drawing.Point(357, 63);
             this.txtBoxPrecioVenta.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxPrecioVenta.Name = "txtBoxPrecioVenta";
             this.txtBoxPrecioVenta.PasswordChar = '\0';
             this.txtBoxPrecioVenta.SelectedText = "";
             this.txtBoxPrecioVenta.SelectionLength = 0;
             this.txtBoxPrecioVenta.SelectionStart = 0;
-            this.txtBoxPrecioVenta.Size = new System.Drawing.Size(100, 23);
+            this.txtBoxPrecioVenta.Size = new System.Drawing.Size(138, 23);
             this.txtBoxPrecioVenta.TabIndex = 19;
             this.txtBoxPrecioVenta.UseSystemPasswordChar = false;
             // 
@@ -523,14 +524,14 @@
             this.txtBoxUbicacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxUbicacion.Depth = 0;
             this.txtBoxUbicacion.Hint = "";
-            this.txtBoxUbicacion.Location = new System.Drawing.Point(335, 114);
+            this.txtBoxUbicacion.Location = new System.Drawing.Point(357, 114);
             this.txtBoxUbicacion.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxUbicacion.Name = "txtBoxUbicacion";
             this.txtBoxUbicacion.PasswordChar = '\0';
             this.txtBoxUbicacion.SelectedText = "";
             this.txtBoxUbicacion.SelectionLength = 0;
             this.txtBoxUbicacion.SelectionStart = 0;
-            this.txtBoxUbicacion.Size = new System.Drawing.Size(100, 23);
+            this.txtBoxUbicacion.Size = new System.Drawing.Size(138, 23);
             this.txtBoxUbicacion.TabIndex = 20;
             this.txtBoxUbicacion.UseSystemPasswordChar = false;
             // 
@@ -541,7 +542,7 @@
             this.grpBoxObservaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBoxObservaciones.Location = new System.Drawing.Point(3, 423);
             this.grpBoxObservaciones.Name = "grpBoxObservaciones";
-            this.grpBoxObservaciones.Size = new System.Drawing.Size(444, 70);
+            this.grpBoxObservaciones.Size = new System.Drawing.Size(569, 70);
             this.grpBoxObservaciones.TabIndex = 8;
             this.grpBoxObservaciones.TabStop = false;
             this.grpBoxObservaciones.Text = "Observaciones";
@@ -551,7 +552,7 @@
             this.rchTextBoxObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rchTextBoxObservaciones.Location = new System.Drawing.Point(3, 20);
             this.rchTextBoxObservaciones.Name = "rchTextBoxObservaciones";
-            this.rchTextBoxObservaciones.Size = new System.Drawing.Size(438, 47);
+            this.rchTextBoxObservaciones.Size = new System.Drawing.Size(563, 47);
             this.rchTextBoxObservaciones.TabIndex = 22;
             this.rchTextBoxObservaciones.Text = "";
             // 
@@ -559,16 +560,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 559);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(575, 559);
+            this.Controls.Add(this.tblLayoutPanelPrincipal);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(450, 559);
             this.Name = "frmABMArticuloProveedor";
             this.Text = "Articulo Proveedor";
             this.Move += new System.EventHandler(this.frmABMArticuloProveedor_Move);
-            this.Controls.SetChildIndex(this.tableLayoutPanel1, 0);
+            this.Controls.SetChildIndex(this.tblLayoutPanelPrincipal, 0);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.grpBoxArticulo.ResumeLayout(false);
             this.tblLayoutPanelArticulo.ResumeLayout(false);
             this.tblLayoutPanelArticulo.PerformLayout();
@@ -588,7 +589,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelPrincipal;
         private System.Windows.Forms.GroupBox grpBoxArticulo;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelArticulo;
         private System.Windows.Forms.Label lblDescripcion;

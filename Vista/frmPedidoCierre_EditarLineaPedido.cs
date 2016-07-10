@@ -8,13 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
-using MaterialSkin;
-using MaterialSkin.Animations;
-using MaterialSkin.Controls;
+
 
 namespace Vista
 {
-    public partial class frmPedidoCierre_EditarLineaPedido : MaterialForm
+    public partial class frmPedidoCierre_EditarLineaPedido : frmMaterialSkinBase
     {
         private ModeloLineaPedido glb_mod_lineaActual;
 
@@ -22,10 +20,7 @@ namespace Vista
         public frmPedidoCierre_EditarLineaPedido()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            
             dgvDescuentos.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
             dgvDescuentos.EnableHeadersVisualStyles = false; 
             this.DialogResult = System.Windows.Forms.DialogResult.No;
@@ -151,7 +146,13 @@ namespace Vista
 
         private void btnQuitarDescuento_Click(object sender, EventArgs e)
         {
+            if (this.dgvDescuentos.CurrentRow == null)
+            {
+                return;
+            }
+
             ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
+            
             lcl_mod_descuento.descuento = (decimal)this.dgvDescuentos.CurrentRow.Cells["descuento"].Value;
             lcl_mod_descuento.descripcion = (string)this.dgvDescuentos.CurrentRow.Cells["descripcion"].Value;
             glb_mod_lineaActual.removeDescuento(lcl_mod_descuento);

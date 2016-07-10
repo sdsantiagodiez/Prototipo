@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoDevolucion));
-            this.tblLayoutPanelBase = new System.Windows.Forms.TableLayoutPanel();
+            this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelBotones = new System.Windows.Forms.TableLayoutPanel();
             this.lblTotal = new System.Windows.Forms.Label();
             this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
@@ -90,7 +90,7 @@
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblLayoutPanelBase.SuspendLayout();
+            this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
             this.tblLayoutPanelArticulos.SuspendLayout();
             this.gbxDetalleArticuloSeleccionado.SuspendLayout();
@@ -108,21 +108,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosDevolucion)).BeginInit();
             this.SuspendLayout();
             // 
-            // tblLayoutPanelBase
+            // tblLayoutPanelPrincipal
             // 
-            this.tblLayoutPanelBase.BackColor = System.Drawing.Color.White;
-            this.tblLayoutPanelBase.ColumnCount = 1;
-            this.tblLayoutPanelBase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelBase.Controls.Add(this.tblLayoutPanelBotones, 0, 1);
-            this.tblLayoutPanelBase.Controls.Add(this.tblLayoutPanelArticulos, 0, 0);
-            this.tblLayoutPanelBase.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tblLayoutPanelBase.Location = new System.Drawing.Point(0, 63);
-            this.tblLayoutPanelBase.Name = "tblLayoutPanelBase";
-            this.tblLayoutPanelBase.RowCount = 2;
-            this.tblLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tblLayoutPanelBase.Size = new System.Drawing.Size(899, 573);
-            this.tblLayoutPanelBase.TabIndex = 2;
+            this.tblLayoutPanelPrincipal.BackColor = System.Drawing.Color.White;
+            this.tblLayoutPanelPrincipal.ColumnCount = 1;
+            this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelPrincipal.Controls.Add(this.tblLayoutPanelBotones, 0, 1);
+            this.tblLayoutPanelPrincipal.Controls.Add(this.tblLayoutPanelArticulos, 0, 0);
+            this.tblLayoutPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 63);
+            this.tblLayoutPanelPrincipal.Name = "tblLayoutPanelPrincipal";
+            this.tblLayoutPanelPrincipal.RowCount = 2;
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(899, 573);
+            this.tblLayoutPanelPrincipal.TabIndex = 2;
             // 
             // tblLayoutPanelBotones
             // 
@@ -295,7 +295,7 @@
             this.tblLayoutPanelDetalleArticuloBotones.ColumnCount = 3;
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.40659F));
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.59341F));
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.nmrcUpDownCantidad, 1, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.lblCantidad, 0, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnAgregar, 2, 0);
@@ -342,12 +342,12 @@
             this.btnAgregar.AutoSize = true;
             this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAgregar.Depth = 0;
-            this.btnAgregar.Location = new System.Drawing.Point(155, 17);
+            this.btnAgregar.Location = new System.Drawing.Point(153, 17);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Primary = false;
-            this.btnAgregar.Size = new System.Drawing.Size(102, 36);
+            this.btnAgregar.Size = new System.Drawing.Size(104, 36);
             this.btnAgregar.TabIndex = 10;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -856,13 +856,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(899, 636);
-            this.Controls.Add(this.tblLayoutPanelBase);
+            this.Controls.Add(this.tblLayoutPanelPrincipal);
             this.MaximizeBox = false;
             this.Name = "frmPedidoDevolucion";
             this.Text = "Devolución";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPedidoDevolucion_FormClosing);
             this.Move += new System.EventHandler(this.frmPedidoDevolucion_Move);
-            this.tblLayoutPanelBase.ResumeLayout(false);
+            this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.tblLayoutPanelBotones.ResumeLayout(false);
             this.tblLayoutPanelBotones.PerformLayout();
             this.tblLayoutPanelArticulos.ResumeLayout(false);
@@ -888,7 +888,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelBase;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelPrincipal;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelBotones;
         internal System.Windows.Forms.Label lblTotalVar;
         internal System.Windows.Forms.Label lblTotal;

@@ -8,13 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
-using MaterialSkin;
-using MaterialSkin.Animations;
-using MaterialSkin.Controls;
+
 
 namespace Vista
 {
-    public partial class frmABMEntidadDatosAdicionalesContactoProveedor : MaterialForm
+    public partial class frmABMEntidadDatosAdicionalesContactoProveedor : frmMaterialSkinBase
     {
         #region Atributos
         private ModeloContactoProveedor _contactoProveedor;
@@ -30,10 +28,7 @@ namespace Vista
         public frmABMEntidadDatosAdicionalesContactoProveedor()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+
             this.inicializarFormulario();
             contactoProveedor = new ModeloContactoProveedor();
 

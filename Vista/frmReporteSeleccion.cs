@@ -12,32 +12,45 @@ using Modelos;
 using Reportes;
 using System.Globalization;
 using LibreriaClasesCompartidas;
-using MaterialSkin;
-using MaterialSkin.Animations;
-using MaterialSkin.Controls;
 
 namespace Vista
 {
-    public partial class frmReporteSeleccion : MaterialForm
+    public partial class frmReporteSeleccion : frmMaterialSkinBase
     {
+        #region Atributos
         private ControladorReportes glb_con_Reporte = new ControladorReportes();
         private FormReportes glb_frm_FormReportes;
         private ControladorBusqueda glb_con_busqueda = new ControladorBusqueda();
+        #endregion
 
+        #region Constructores
         public frmReporteSeleccion()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             // creo el reporte
             glb_con_Reporte = new ControladorReportes();
             // Completo los reportes dentro de los Combobox.
             CompletaNombreReportes();
-
         }
+        #endregion
 
+        #region Métodos
+        public void inicializarForm()
+        {
+            this.tblLayoutPanelPrincipal.Width = Width ; //un margen derecho de 3
+
+            if (Height < 700)
+            {
+                this.tblLayoutPanelPrincipal.Height = 700;  //Mínimo
+            }
+            else
+            {
+                this.tblLayoutPanelPrincipal.Height = Height - 60; // 60 pixeles para que se vea título de ventana principal
+            }
+
+            int x = Convert.ToInt16(Math.Round(Convert.ToDouble((Width - this.tblLayoutPanelPrincipal.Width) / 2)));
+            this.tblLayoutPanelPrincipal.Location = new Point(x, 65);
+        }
         private void CompletaNombreReportes()
         { 
             this.cmbxPedidosReportes.Items.Add("Reporte de Pedidos Entre Fechas");//Ver como agregamos los Reportes
@@ -46,7 +59,9 @@ namespace Vista
             this.cmbxInventarioReportes.Items.Add("Informe de Stock");
             this.cmbxInventarioReportes.Items.Add("Informe de Descuentos");
         }
+        #endregion
 
+        #region Eventos
         private void btnGeneraReporteVentas_Click(object sender, EventArgs e)
         {
              DateTime lcl_var_DateFrom = DateTime.ParseExact(txtFecDesdeVentas.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -128,9 +143,9 @@ namespace Vista
             }
         }
 
-        
+        #endregion
     }
     
     
-    }
+}
 

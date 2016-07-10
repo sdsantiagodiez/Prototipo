@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelos
 {
+     [Serializable]
     public class ModeloDescuentoArticulo : Modelo 
     {
         public string CodigoArticuloProveedor { get; set; }

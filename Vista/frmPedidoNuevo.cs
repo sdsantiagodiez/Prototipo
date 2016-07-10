@@ -10,13 +10,10 @@ using System.Windows.Forms;
 using Controladores;
 using Modelos;
 using LibreriaClasesCompartidas;
-using MaterialSkin;
-using MaterialSkin.Animations;
-using MaterialSkin.Controls;
 
 namespace Vista
 {
-    public partial class frmPedidoNuevo : MaterialForm
+    public partial class frmPedidoNuevo : frmMaterialSkinBase
     {
         #region Atributos
         ModeloArticuloProveedores glb_mod_articuloSeleccionadoBusqueda;
@@ -31,10 +28,7 @@ namespace Vista
         public frmPedidoNuevo()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+
             dgvArticulosResultadoBusqueda.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
             dgvArticulosResultadoBusqueda.EnableHeadersVisualStyles = false;
             dgvArticulosEnPedido.ColumnHeadersDefaultCellStyle.BackColor = Color.White;

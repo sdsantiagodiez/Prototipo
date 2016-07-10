@@ -15,6 +15,7 @@ using MaterialSkin;
 using MaterialSkin.Animations;
 using MaterialSkin.Controls;
 
+
 namespace Vista
 {
     public partial class frmPedidoCierre : MaterialForm
@@ -74,6 +75,10 @@ namespace Vista
             dgvArticulosVenta.EnableHeadersVisualStyles = false; 
             this.StartPosition = FormStartPosition.CenterScreen;
             this.inicializarControles();
+
+
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
         }
         /// <summary>
         /// Inicializa formulario de acuerdo al codigoTipoPedido asignado al pedido
@@ -137,6 +142,29 @@ namespace Vista
         #region Métodos
         
         #region Inicialización
+        public void inicializarForm()
+        {
+            if (Width - 3 > 1100)
+            {
+                this.tblLayoutPanelPrincipal.Width = 1100;   //Máximo
+            }
+            else
+            {
+                this.tblLayoutPanelPrincipal.Width = Width - 3; //un margen derecho de 3
+            }
+            if (Height < 560)
+            {
+                this.tblLayoutPanelPrincipal.Height = 560;  //Mínimo
+            }
+            else
+            {
+                this.tblLayoutPanelPrincipal.Height = Height - 60; // 60 pixeles para que se vea título de ventana principal
+            }
+
+            int x = Convert.ToInt16(Math.Round(Convert.ToDouble((Width - this.tblLayoutPanelPrincipal.Width) / 2)));
+            this.tblLayoutPanelPrincipal.Location = new Point(x, 60);
+        }
+
         private void inicializarCierrePedidoCliente(ModeloPedido p_mod_pedido)
         {
             modoFormulario = ModoFormularioPedidoCliente;
@@ -150,8 +178,10 @@ namespace Vista
             this.controlador = new ControladorPedidoProveedor();
             List<ModeloPedido> lcl_lst_mod_pedidos = (controlador as ControladorPedidoProveedor).getPedidosProveedores(p_mod_pedido);
             this.inicializarComboBoxPedidosProveedores(lcl_lst_mod_pedidos);
-            
-            this.cargarPedidoEnControles(lcl_lst_mod_pedidos[0]);
+            if (lcl_lst_mod_pedidos.Count > 0)
+            {
+                this.cargarPedidoEnControles(lcl_lst_mod_pedidos[0]);
+            }
         }
         private void inicializarDevolucionPedidoCliente(ModeloPedido p_mod_pedido)
         {
@@ -345,6 +375,12 @@ namespace Vista
                 //dataSource.Add(new ComboBoxItem() { Name = "Pedido "+(i+1).ToString()+" de "+lcl_lst_pedidosProveedor.Count.ToString(), Value = lcl_lst_pedidosProveedor[i] });
             }
             this.cmbBoxPedidosProveedores.DataSource = dataSource;
+            if (dataSource.Count < 1)
+            {
+                this.cmbBoxPedidosProveedores.Enabled = false;
+                return;
+            }
+            
             this.cmbBoxPedidosProveedores.DropDownWidth = this.getDropDownWidth(this.cmbBoxPedidosProveedores);
             this.cmbBoxPedidosProveedores.DisplayMember = "Name";
             this.cmbBoxPedidosProveedores.ValueMember = "Value";
@@ -941,8 +977,6 @@ namespace Vista
             lcl_con_reporte.ImpresionFacturas(controlador.pedidoActual).ShowDialog();
             return true;
         }
-
-
         private bool guardarPedido()
         {
             DialogResult dialogResult = new DialogResult();  
@@ -1007,6 +1041,18 @@ namespace Vista
             lcl_frm_loading.ShowDialog();
 
             return respuesta;
+        }
+
+        public Constantes.CodigosTiposPedidos getCodigoTipoPedido()
+        {
+            if (controlador.GetType() == typeof(ControladorPedidoCliente))
+            {
+                return Constantes.CodigosTiposPedidos.TipoPedidoPersona;
+            }
+            else
+            {
+                return Constantes.CodigosTiposPedidos.TipoPedidoProveedor;
+            }
         }
         #endregion
 

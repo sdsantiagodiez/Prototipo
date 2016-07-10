@@ -9,13 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using Controladores;
-using MaterialSkin;
-using MaterialSkin.Animations;
-using MaterialSkin.Controls;
+
 
 namespace Vista
 {
-    public partial class frmABMEntidadDatosAdicionalesUsuario : MaterialForm
+    public partial class frmABMEntidadDatosAdicionalesUsuario : frmMaterialSkinBase
     {
         #region Atributos
         ErrorProvider errorProviderActual;
@@ -41,10 +39,7 @@ namespace Vista
         public frmABMEntidadDatosAdicionalesUsuario()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+
             this.inicializarFormulario();
             errorProviderActual = new ErrorProvider();
             usuario = new ModeloUsuario();

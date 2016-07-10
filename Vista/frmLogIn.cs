@@ -9,13 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using Controladores;
-using MaterialSkin;
-using MaterialSkin.Controls;
-using MaterialSkin.Animations;
+
 
 namespace Vista
 {
-    public partial class frmLogIn : MaterialForm
+    public partial class frmLogIn : frmMaterialSkinBase
     {
         ErrorProvider errorProviderActual;
         public ModeloUsuario usuarioActual;
@@ -23,10 +21,7 @@ namespace Vista
         public frmLogIn()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            
             this.StartPosition = FormStartPosition.CenterScreen;
             txtBoxUsuario.KeyPress += this.valorUsername;
             errorProviderActual = new ErrorProvider();

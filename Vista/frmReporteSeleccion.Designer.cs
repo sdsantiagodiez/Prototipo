@@ -46,18 +46,18 @@
             this.lblFechaHastaVenta = new MaterialSkin.Controls.MaterialLabel();
             this.lblFechaDesdeVenta = new MaterialSkin.Controls.MaterialLabel();
             this.tabInventario = new System.Windows.Forms.TabPage();
+            this.lblFechaInventario = new MaterialSkin.Controls.MaterialLabel();
+            this.tbxFechaInventario = new System.Windows.Forms.TextBox();
             this.cmbxInventarioReportes = new System.Windows.Forms.ComboBox();
             this.lblReportesInventario = new MaterialSkin.Controls.MaterialLabel();
             this.btnGeneraReporteInvenario = new MaterialSkin.Controls.MaterialFlatButton();
             this.tabSelector = new MaterialSkin.Controls.MaterialTabSelector();
-            this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
-            this.tbxFechaInventario = new System.Windows.Forms.TextBox();
-            this.lblFechaInventario = new MaterialSkin.Controls.MaterialLabel();
+            this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl.SuspendLayout();
             this.tabPedidos.SuspendLayout();
             this.tabVentas.SuspendLayout();
             this.tabInventario.SuspendLayout();
-            this.tlpPrincipal.SuspendLayout();
+            this.tblLayoutPanelPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbxPedidosReportes
@@ -311,6 +311,26 @@
             this.tabInventario.Text = "Inventario";
             this.tabInventario.UseVisualStyleBackColor = true;
             // 
+            // lblFechaInventario
+            // 
+            this.lblFechaInventario.AutoSize = true;
+            this.lblFechaInventario.Depth = 0;
+            this.lblFechaInventario.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblFechaInventario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblFechaInventario.Location = new System.Drawing.Point(31, 81);
+            this.lblFechaInventario.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblFechaInventario.Name = "lblFechaInventario";
+            this.lblFechaInventario.Size = new System.Drawing.Size(53, 19);
+            this.lblFechaInventario.TabIndex = 13;
+            this.lblFechaInventario.Text = "Fecha:";
+            // 
+            // tbxFechaInventario
+            // 
+            this.tbxFechaInventario.Location = new System.Drawing.Point(99, 80);
+            this.tbxFechaInventario.Name = "tbxFechaInventario";
+            this.tbxFechaInventario.Size = new System.Drawing.Size(100, 20);
+            this.tbxFechaInventario.TabIndex = 12;
+            // 
             // cmbxInventarioReportes
             // 
             this.cmbxInventarioReportes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -364,41 +384,22 @@
             this.tabSelector.TabIndex = 2;
             this.tabSelector.Text = "materialTabSelector1";
             // 
-            // tlpPrincipal
+            // tblLayoutPanelPrincipal
             // 
-            this.tlpPrincipal.BackColor = System.Drawing.Color.White;
-            this.tlpPrincipal.ColumnCount = 1;
-            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPrincipal.Controls.Add(this.tabSelector, 0, 0);
-            this.tlpPrincipal.Controls.Add(this.tabControl, 0, 1);
-            this.tlpPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tlpPrincipal.Location = new System.Drawing.Point(0, 61);
-            this.tlpPrincipal.Name = "tlpPrincipal";
-            this.tlpPrincipal.RowCount = 2;
-            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPrincipal.Size = new System.Drawing.Size(398, 257);
-            this.tlpPrincipal.TabIndex = 3;
-            // 
-            // tbxFechaInventario
-            // 
-            this.tbxFechaInventario.Location = new System.Drawing.Point(99, 80);
-            this.tbxFechaInventario.Name = "tbxFechaInventario";
-            this.tbxFechaInventario.Size = new System.Drawing.Size(100, 20);
-            this.tbxFechaInventario.TabIndex = 12;
-            // 
-            // lblFechaInventario
-            // 
-            this.lblFechaInventario.AutoSize = true;
-            this.lblFechaInventario.Depth = 0;
-            this.lblFechaInventario.Font = new System.Drawing.Font("Roboto", 11F);
-            this.lblFechaInventario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblFechaInventario.Location = new System.Drawing.Point(31, 81);
-            this.lblFechaInventario.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblFechaInventario.Name = "lblFechaInventario";
-            this.lblFechaInventario.Size = new System.Drawing.Size(53, 19);
-            this.lblFechaInventario.TabIndex = 13;
-            this.lblFechaInventario.Text = "Fecha:";
+            this.tblLayoutPanelPrincipal.BackColor = System.Drawing.Color.White;
+            this.tblLayoutPanelPrincipal.ColumnCount = 1;
+            this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelPrincipal.Controls.Add(this.tabSelector, 0, 0);
+            this.tblLayoutPanelPrincipal.Controls.Add(this.tabControl, 0, 1);
+            this.tblLayoutPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 61);
+            this.tblLayoutPanelPrincipal.Margin = new System.Windows.Forms.Padding(0);
+            this.tblLayoutPanelPrincipal.Name = "tblLayoutPanelPrincipal";
+            this.tblLayoutPanelPrincipal.RowCount = 2;
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(398, 257);
+            this.tblLayoutPanelPrincipal.TabIndex = 3;
             // 
             // frmReporteSeleccion
             // 
@@ -406,7 +407,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(398, 318);
-            this.Controls.Add(this.tlpPrincipal);
+            this.Controls.Add(this.tblLayoutPanelPrincipal);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmReporteSeleccion";
@@ -420,7 +421,7 @@
             this.tabVentas.PerformLayout();
             this.tabInventario.ResumeLayout(false);
             this.tabInventario.PerformLayout();
-            this.tlpPrincipal.ResumeLayout(false);
+            this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -443,7 +444,7 @@
         private MaterialSkin.Controls.MaterialLabel lblFechaHastaVenta;
         private MaterialSkin.Controls.MaterialLabel lblFechaDesdeVenta;
         private MaterialSkin.Controls.MaterialFlatButton btnGeneraReporteVentas;
-        private System.Windows.Forms.TableLayoutPanel tlpPrincipal;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelPrincipal;
         private System.Windows.Forms.TabPage tabInventario;
         private System.Windows.Forms.ComboBox cmbxVentasReportes;
         private MaterialSkin.Controls.MaterialLabel lblReportesVenta;

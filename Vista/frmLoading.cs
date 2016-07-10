@@ -7,13 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MaterialSkin;
-using MaterialSkin.Animations;
-using MaterialSkin.Controls;
 
 namespace Vista
 {
-    public partial class frmLoading : MaterialForm
+    public partial class frmLoading : frmMaterialSkinBase
     {
         #region remueve Closing button
         private const int CP_NOCLOSE_BUTTON = 0x200;
@@ -36,10 +33,7 @@ namespace Vista
         public frmLoading()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            
             this.StartPosition = FormStartPosition.CenterScreen;
         }
         public frmLoading(string p_mensaje) : this()

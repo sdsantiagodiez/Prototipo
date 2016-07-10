@@ -9,23 +9,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using Controladores;
-using MaterialSkin;
-using MaterialSkin.Animations;
-using MaterialSkin.Controls;
 
 namespace Vista
 {
-    public partial class frmFacturacionMasiva : MaterialForm
+    public partial class frmFacturacionMasiva : frmMaterialSkinBase
     {
         ControladorPedidoCliente controlador = new ControladorPedidoCliente();
         public frmFacturacionMasiva()
         {
             InitializeComponent();
             inicializarControles();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            
             dgvComprSinFact.EnableHeadersVisualStyles = false;
             dgvComprSinFact.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
         }
@@ -33,7 +27,24 @@ namespace Vista
         List<ModeloPedido> glb_lst_mod_ped = new List<ModeloPedido>();
 
         #region Metodos
-        public void CargaEnGrid(List<ModeloPedido> p_lst_mod_ped)
+        public void inicializarForm()
+        {
+            this.tblLayoutPanelPrincipal.Width = Width - 3; //un margen derecho de 3
+
+            if (Height < 700)
+            {
+                this.tblLayoutPanelPrincipal.Height = 700;  //Mínimo
+            }
+            else
+            {
+                this.tblLayoutPanelPrincipal.Height = Height - 66; // 60 pixeles para que se vea título de ventana principal
+            }
+
+            int x = Convert.ToInt16(Math.Round(Convert.ToDouble((Width - this.tblLayoutPanelPrincipal.Width) / 2)));
+            this.tblLayoutPanelPrincipal.Location = new Point(x, 65);
+        }
+
+        private void CargaEnGrid(List<ModeloPedido> p_lst_mod_ped)
         {
             glb_lst_mod_ped.Clear();
             glb_lst_mod_ped = p_lst_mod_ped;
@@ -68,13 +79,13 @@ namespace Vista
             this.dgvComprSinFact.ClearSelection();
         }
 
-        public void inicializarControles()
+        private void inicializarControles()
         {
             this.dgvComprSinFact.MultiSelect = false;
             this.dgvComprSinFact.AutoGenerateColumns = false;
            
         }
-        public bool ValidaSeleccionComprobantes()
+        private bool ValidaSeleccionComprobantes()
         {
             if (bool.Equals(chbxFCA.Checked, false) && bool.Equals(chbxFCB.Checked, false) && bool.Equals(chbxNCA.Checked, false) && bool.Equals(chbxNCB.Checked, false))
             {
@@ -84,7 +95,7 @@ namespace Vista
             { return true;}
         }
 
-        public List<ModeloPedido> cargaGridEnModelos()
+        private List<ModeloPedido> cargaGridEnModelos()
         {
             foreach (ModeloPedido modPed in glb_lst_mod_ped)
             {
@@ -99,7 +110,7 @@ namespace Vista
             return glb_lst_mod_ped;
         }
 
-        public bool FacturarAFIP()
+        private bool FacturarAFIP()
         {
                 bool respuesta = false;
                 BackgroundWorker bw = new BackgroundWorker();

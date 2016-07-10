@@ -7,13 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MaterialSkin;
-using MaterialSkin.Animations;
-using MaterialSkin.Controls;
 
 namespace Vista
 {
-    public partial class frmABMBase : MaterialForm
+    public partial class frmABMBase : frmMaterialSkinBase
     {
         #region Atributos
         protected string errorActual;
@@ -61,14 +58,12 @@ namespace Vista
         }
 
         #endregion
+      
         #region Constructores
         public frmABMBase()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            
             this.StartPosition = FormStartPosition.CenterScreen;
             errorProviderActual = new ErrorProvider();
             //this.inicializarModoFormularioInicio();
@@ -262,8 +257,6 @@ namespace Vista
         {
 
         }
-        #endregion
-
-        
+        #endregion      
     }
 }

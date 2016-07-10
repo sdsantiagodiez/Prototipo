@@ -99,6 +99,23 @@ namespace Vista
 
         #region Inicialización
 
+        public void inicializarForm()
+        {
+            this.tblLayoutPanelPrincipal.Width = Width - 3; //un margen derecho de 3
+            
+            if (Height < 700)
+            {
+                this.tblLayoutPanelPrincipal.Height = 700;  //Mínimo
+            }
+            else
+            {
+                this.tblLayoutPanelPrincipal.Height = Height - 66; // 60 pixeles para que se vea título de ventana principal
+            }
+
+            int x = Convert.ToInt16(Math.Round(Convert.ToDouble((Width - this.tblLayoutPanelPrincipal.Width) / 2) ));
+            this.tblLayoutPanelPrincipal.Location = new Point(x, 65);
+        }
+        
         public override void inicializarModoFormularioInicio()
         {
             base.inicializarModoFormularioInicio();

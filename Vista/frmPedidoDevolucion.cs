@@ -10,13 +10,10 @@ using System.Windows.Forms;
 using Modelos;
 using Controladores;
 using LibreriaClasesCompartidas;
-using MaterialSkin;
-using MaterialSkin.Animations;
-using MaterialSkin.Controls;
 
 namespace Vista
 {
-    public partial class frmPedidoDevolucion : MaterialForm
+    public partial class frmPedidoDevolucion : frmMaterialSkinBase
     {
         #region Atributos
         public ModeloPedido glb_mod_pedidoOriginal;
@@ -35,10 +32,7 @@ namespace Vista
         public frmPedidoDevolucion()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            
             this.StartPosition = FormStartPosition.CenterScreen;
             dgvArticulosPedido.EnableHeadersVisualStyles = false;
             dgvArticulosPedido.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
@@ -71,6 +65,22 @@ namespace Vista
         
         #region Métodos
         #region Inicialización
+        public void inicializarForm()
+        {
+            this.tblLayoutPanelPrincipal.Width = Width - 3; //un margen derecho de 3
+
+            if (Height < 700)
+            {
+                this.tblLayoutPanelPrincipal.Height = 700;  //Mínimo
+            }
+            else
+            {
+                this.tblLayoutPanelPrincipal.Height = Height - 66; // 60 pixeles para que se vea título de ventana principal
+            }
+
+            int x = Convert.ToInt16(Math.Round(Convert.ToDouble((Width - this.tblLayoutPanelPrincipal.Width) / 2)));
+            this.tblLayoutPanelPrincipal.Location = new Point(x, 65);
+        }
         private void inicializarControles()
         {
             #region DataGridView
@@ -628,21 +638,21 @@ namespace Vista
 
         private void frmPedidoDevolucion_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (continuarPedido)
-            {
-                e.Cancel = false;
-                return;
-            }
-            DialogResult lcl_dialogResult = MessageBox.Show("¿Desea cerrar la ventana actual?", "Confirmación", MessageBoxButtons.YesNo);
-            if (lcl_dialogResult == DialogResult.Yes)
-            {
-                this.DialogResult = System.Windows.Forms.DialogResult.Ignore;
-                e.Cancel = false;
-            }
-            else
-            {
-                e.Cancel = true;
-            }
+            //if (continuarPedido)
+            //{
+            //    e.Cancel = false;
+            //    return;
+            //}
+            //DialogResult lcl_dialogResult = MessageBox.Show("¿Desea cerrar la ventana actual?", "Confirmación", MessageBoxButtons.YesNo);
+            //if (lcl_dialogResult == DialogResult.Yes)
+            //{
+            //    this.DialogResult = System.Windows.Forms.DialogResult.Ignore;
+            //    e.Cancel = false;
+            //}
+            //else
+            //{
+            //    e.Cancel = true;
+            //}
         }
         #endregion   
 

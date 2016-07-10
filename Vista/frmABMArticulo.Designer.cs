@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tblLayouttPanelForm = new System.Windows.Forms.TableLayoutPanel();
+            this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxObservaciones = new System.Windows.Forms.GroupBox();
             this.rchTextBoxObservaciones = new System.Windows.Forms.RichTextBox();
             this.tblLayoutPanelDatosArticulo = new System.Windows.Forms.TableLayoutPanel();
@@ -39,25 +39,25 @@
             this.txtBoxDescripcion = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBoxModelo = new MaterialSkin.Controls.MaterialSingleLineTextField();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
-            this.tblLayouttPanelForm.SuspendLayout();
+            this.tblLayoutPanelPrincipal.SuspendLayout();
             this.grpBoxObservaciones.SuspendLayout();
             this.tblLayoutPanelDatosArticulo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tblLayouttPanelForm
+            // tblLayoutPanelPrincipal
             // 
-            this.tblLayouttPanelForm.ColumnCount = 1;
-            this.tblLayouttPanelForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayouttPanelForm.Controls.Add(this.grpBoxObservaciones, 0, 1);
-            this.tblLayouttPanelForm.Controls.Add(this.tblLayoutPanelDatosArticulo, 0, 0);
-            this.tblLayouttPanelForm.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tblLayouttPanelForm.Location = new System.Drawing.Point(0, 62);
-            this.tblLayouttPanelForm.Name = "tblLayouttPanelForm";
-            this.tblLayouttPanelForm.RowCount = 2;
-            this.tblLayouttPanelForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 104F));
-            this.tblLayouttPanelForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayouttPanelForm.Size = new System.Drawing.Size(450, 287);
-            this.tblLayouttPanelForm.TabIndex = 2;
+            this.tblLayoutPanelPrincipal.ColumnCount = 1;
+            this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxObservaciones, 0, 1);
+            this.tblLayoutPanelPrincipal.Controls.Add(this.tblLayoutPanelDatosArticulo, 0, 0);
+            this.tblLayoutPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 62);
+            this.tblLayoutPanelPrincipal.Name = "tblLayoutPanelPrincipal";
+            this.tblLayoutPanelPrincipal.RowCount = 2;
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 104F));
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(450, 287);
+            this.tblLayoutPanelPrincipal.TabIndex = 2;
             // 
             // grpBoxObservaciones
             // 
@@ -85,7 +85,7 @@
             this.tblLayoutPanelDatosArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tblLayoutPanelDatosArticulo.ColumnCount = 2;
-            this.tblLayoutPanelDatosArticulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 92F));
+            this.tblLayoutPanelDatosArticulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
             this.tblLayoutPanelDatosArticulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelDatosArticulo.Controls.Add(this.lblCodigoOriginal, 0, 0);
             this.tblLayoutPanelDatosArticulo.Controls.Add(this.lblModelo, 0, 2);
@@ -107,9 +107,9 @@
             this.lblCodigoOriginal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCodigoOriginal.AutoSize = true;
             this.lblCodigoOriginal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoOriginal.Location = new System.Drawing.Point(34, 0);
+            this.lblCodigoOriginal.Location = new System.Drawing.Point(7, 8);
             this.lblCodigoOriginal.Name = "lblCodigoOriginal";
-            this.lblCodigoOriginal.Size = new System.Drawing.Size(55, 32);
+            this.lblCodigoOriginal.Size = new System.Drawing.Size(101, 16);
             this.lblCodigoOriginal.TabIndex = 0;
             this.lblCodigoOriginal.Text = "Código Original";
             // 
@@ -118,7 +118,7 @@
             this.lblModelo.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblModelo.AutoSize = true;
             this.lblModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModelo.Location = new System.Drawing.Point(35, 73);
+            this.lblModelo.Location = new System.Drawing.Point(54, 73);
             this.lblModelo.Name = "lblModelo";
             this.lblModelo.Size = new System.Drawing.Size(54, 16);
             this.lblModelo.TabIndex = 2;
@@ -129,7 +129,7 @@
             this.lblDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDescripcion.AutoSize = true;
             this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.Location = new System.Drawing.Point(9, 40);
+            this.lblDescripcion.Location = new System.Drawing.Point(28, 40);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(80, 16);
             this.lblDescripcion.TabIndex = 1;
@@ -140,14 +140,14 @@
             this.txtBoxCodigoOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCodigoOriginal.Depth = 0;
             this.txtBoxCodigoOriginal.Hint = "";
-            this.txtBoxCodigoOriginal.Location = new System.Drawing.Point(95, 4);
+            this.txtBoxCodigoOriginal.Location = new System.Drawing.Point(114, 4);
             this.txtBoxCodigoOriginal.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCodigoOriginal.Name = "txtBoxCodigoOriginal";
             this.txtBoxCodigoOriginal.PasswordChar = '\0';
             this.txtBoxCodigoOriginal.SelectedText = "";
             this.txtBoxCodigoOriginal.SelectionLength = 0;
             this.txtBoxCodigoOriginal.SelectionStart = 0;
-            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(346, 23);
+            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(327, 23);
             this.txtBoxCodigoOriginal.TabIndex = 6;
             this.txtBoxCodigoOriginal.UseSystemPasswordChar = false;
             // 
@@ -156,14 +156,14 @@
             this.txtBoxDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxDescripcion.Depth = 0;
             this.txtBoxDescripcion.Hint = "";
-            this.txtBoxDescripcion.Location = new System.Drawing.Point(95, 36);
+            this.txtBoxDescripcion.Location = new System.Drawing.Point(114, 36);
             this.txtBoxDescripcion.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDescripcion.Name = "txtBoxDescripcion";
             this.txtBoxDescripcion.PasswordChar = '\0';
             this.txtBoxDescripcion.SelectedText = "";
             this.txtBoxDescripcion.SelectionLength = 0;
             this.txtBoxDescripcion.SelectionStart = 0;
-            this.txtBoxDescripcion.Size = new System.Drawing.Size(346, 23);
+            this.txtBoxDescripcion.Size = new System.Drawing.Size(327, 23);
             this.txtBoxDescripcion.TabIndex = 7;
             this.txtBoxDescripcion.UseSystemPasswordChar = false;
             // 
@@ -172,14 +172,14 @@
             this.txtBoxModelo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxModelo.Depth = 0;
             this.txtBoxModelo.Hint = "";
-            this.txtBoxModelo.Location = new System.Drawing.Point(95, 69);
+            this.txtBoxModelo.Location = new System.Drawing.Point(114, 69);
             this.txtBoxModelo.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxModelo.Name = "txtBoxModelo";
             this.txtBoxModelo.PasswordChar = '\0';
             this.txtBoxModelo.SelectedText = "";
             this.txtBoxModelo.SelectionLength = 0;
             this.txtBoxModelo.SelectionStart = 0;
-            this.txtBoxModelo.Size = new System.Drawing.Size(346, 23);
+            this.txtBoxModelo.Size = new System.Drawing.Size(327, 23);
             this.txtBoxModelo.TabIndex = 8;
             this.txtBoxModelo.UseSystemPasswordChar = false;
             // 
@@ -187,15 +187,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(450, 349);
-            this.Controls.Add(this.tblLayouttPanelForm);
-            this.MaximizeBox = false;
+            this.Controls.Add(this.tblLayoutPanelPrincipal);
             this.MinimumSize = new System.Drawing.Size(450, 230);
             this.Name = "frmABMArticulo";
             this.Text = "Artículo";
             this.Move += new System.EventHandler(this.frmABMArticulo_Move);
-            this.Controls.SetChildIndex(this.tblLayouttPanelForm, 0);
+            this.Controls.SetChildIndex(this.tblLayoutPanelPrincipal, 0);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).EndInit();
-            this.tblLayouttPanelForm.ResumeLayout(false);
+            this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.grpBoxObservaciones.ResumeLayout(false);
             this.tblLayoutPanelDatosArticulo.ResumeLayout(false);
             this.tblLayoutPanelDatosArticulo.PerformLayout();
@@ -206,7 +205,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tblLayouttPanelForm;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelPrincipal;
         private System.Windows.Forms.GroupBox grpBoxObservaciones;
         private System.Windows.Forms.RichTextBox rchTextBoxObservaciones;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDatosArticulo;

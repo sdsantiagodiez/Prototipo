@@ -10,9 +10,7 @@ using System.Windows.Forms;
 using Controladores;
 using Modelos;
 using LibreriaClasesCompartidas;
-using MaterialSkin;
-using MaterialSkin.Animations;
-using MaterialSkin.Controls;
+
 
 namespace Vista
 {
@@ -24,7 +22,7 @@ namespace Vista
     /// Para el caso 1, se utiliza constructor sin parámetros y luego método mostrarResultados(objeto)
     /// Para el caso 2, se utiliza constructor con 1 o dos parámetros y luego métodos mostrarResultados() sin parámetros
     /// </summary>
-    public partial class frmResultadoBusqueda : MaterialForm
+    public partial class frmResultadoBusqueda : frmMaterialSkinBase
     {
         #region Atributos
         private Object _modeloSeleccionado;
@@ -44,10 +42,7 @@ namespace Vista
         public frmResultadoBusqueda()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            
             this.inicializarFormulario();
             this.StartPosition = FormStartPosition.CenterScreen;
         }

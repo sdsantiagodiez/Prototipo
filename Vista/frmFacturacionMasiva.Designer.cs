@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tlpContenedor = new System.Windows.Forms.TableLayoutPanel();
+            this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvComprSinFact = new System.Windows.Forms.DataGridView();
             this.indice = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +47,10 @@
             this.dtpFechaFacturacion = new System.Windows.Forms.DateTimePicker();
             this.lblFechaFactura = new System.Windows.Forms.Label();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.chbxFCA = new MaterialSkin.Controls.MaterialCheckBox();
+            this.chbxFCB = new MaterialSkin.Controls.MaterialCheckBox();
+            this.chbxNCA = new MaterialSkin.Controls.MaterialCheckBox();
+            this.chbxNCB = new MaterialSkin.Controls.MaterialCheckBox();
             this.chkTodos = new MaterialSkin.Controls.MaterialCheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnFacturar = new MaterialSkin.Controls.MaterialFlatButton();
@@ -54,11 +58,7 @@
             this.buscarComprobantesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parámetrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.chbxFCA = new MaterialSkin.Controls.MaterialCheckBox();
-            this.chbxFCB = new MaterialSkin.Controls.MaterialCheckBox();
-            this.chbxNCA = new MaterialSkin.Controls.MaterialCheckBox();
-            this.chbxNCB = new MaterialSkin.Controls.MaterialCheckBox();
-            this.tlpContenedor.SuspendLayout();
+            this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComprSinFact)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -69,21 +69,21 @@
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tlpContenedor
+            // tblLayoutPanelPrincipal
             // 
-            this.tlpContenedor.BackColor = System.Drawing.Color.White;
-            this.tlpContenedor.ColumnCount = 1;
-            this.tlpContenedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpContenedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpContenedor.Controls.Add(this.tableLayoutPanel1, 0, 0);
-            this.tlpContenedor.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tlpContenedor.Location = new System.Drawing.Point(0, 64);
-            this.tlpContenedor.Name = "tlpContenedor";
-            this.tlpContenedor.RowCount = 1;
-            this.tlpContenedor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpContenedor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpContenedor.Size = new System.Drawing.Size(926, 478);
-            this.tlpContenedor.TabIndex = 1;
+            this.tblLayoutPanelPrincipal.BackColor = System.Drawing.Color.White;
+            this.tblLayoutPanelPrincipal.ColumnCount = 1;
+            this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelPrincipal.Controls.Add(this.tableLayoutPanel1, 0, 0);
+            this.tblLayoutPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 64);
+            this.tblLayoutPanelPrincipal.Name = "tblLayoutPanelPrincipal";
+            this.tblLayoutPanelPrincipal.RowCount = 1;
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(926, 478);
+            this.tblLayoutPanelPrincipal.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
@@ -315,106 +315,6 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(231, 113);
             this.tableLayoutPanel6.TabIndex = 3;
             // 
-            // chkTodos
-            // 
-            this.chkTodos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkTodos.AutoSize = true;
-            this.chkTodos.Depth = 0;
-            this.chkTodos.Font = new System.Drawing.Font("Roboto", 10F);
-            this.chkTodos.Location = new System.Drawing.Point(0, 300);
-            this.chkTodos.Margin = new System.Windows.Forms.Padding(0);
-            this.chkTodos.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.chkTodos.MouseState = MaterialSkin.MouseState.HOVER;
-            this.chkTodos.Name = "chkTodos";
-            this.chkTodos.Ripple = true;
-            this.chkTodos.Size = new System.Drawing.Size(237, 30);
-            this.chkTodos.TabIndex = 5;
-            this.chkTodos.Text = "Seleccionar Todo";
-            this.chkTodos.UseVisualStyleBackColor = true;
-            this.chkTodos.CheckedChanged += new System.EventHandler(this.chkTodos_CheckedChanged);
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 4;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel3.Controls.Add(this.btnFacturar, 1, 1);
-            this.tableLayoutPanel3.Controls.Add(this.btnSalir, 2, 1);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 370);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 3;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(671, 99);
-            this.tableLayoutPanel3.TabIndex = 2;
-            // 
-            // btnFacturar
-            // 
-            this.btnFacturar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFacturar.AutoSize = true;
-            this.btnFacturar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnFacturar.Depth = 0;
-            this.btnFacturar.Location = new System.Drawing.Point(104, 40);
-            this.btnFacturar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnFacturar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnFacturar.Name = "btnFacturar";
-            this.btnFacturar.Primary = false;
-            this.btnFacturar.Size = new System.Drawing.Size(226, 17);
-            this.btnFacturar.TabIndex = 2;
-            this.btnFacturar.Text = "Facturar";
-            this.btnFacturar.UseVisualStyleBackColor = true;
-            this.btnFacturar.Click += new System.EventHandler(this.btnFacturar_Click);
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalir.AutoSize = true;
-            this.btnSalir.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnSalir.Depth = 0;
-            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(338, 40);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnSalir.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Primary = false;
-            this.btnSalir.Size = new System.Drawing.Size(226, 17);
-            this.btnSalir.TabIndex = 3;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            // 
-            // buscarComprobantesToolStripMenuItem
-            // 
-            this.buscarComprobantesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.buscarComprobantesToolStripMenuItem.Name = "buscarComprobantesToolStripMenuItem";
-            this.buscarComprobantesToolStripMenuItem.Size = new System.Drawing.Size(124, 20);
-            this.buscarComprobantesToolStripMenuItem.Text = "Buscar Comprobantes";
-            this.buscarComprobantesToolStripMenuItem.Click += new System.EventHandler(this.buscarComprobantesToolStripMenuItem_Click);
-            // 
-            // parámetrosToolStripMenuItem
-            // 
-            this.parámetrosToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.parámetrosToolStripMenuItem.Name = "parámetrosToolStripMenuItem";
-            this.parámetrosToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
-            this.parámetrosToolStripMenuItem.Text = "Preferencias";
-            this.parámetrosToolStripMenuItem.Click += new System.EventHandler(this.parámetrosToolStripMenuItem_Click);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.buscarComprobantesToolStripMenuItem,
-            this.parámetrosToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(926, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
             // chbxFCA
             // 
             this.chbxFCA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -483,19 +383,119 @@
             this.chbxNCB.Text = "Nota de Crédito B";
             this.chbxNCB.UseVisualStyleBackColor = true;
             // 
+            // chkTodos
+            // 
+            this.chkTodos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.chkTodos.AutoSize = true;
+            this.chkTodos.Depth = 0;
+            this.chkTodos.Font = new System.Drawing.Font("Roboto", 10F);
+            this.chkTodos.Location = new System.Drawing.Point(44, 288);
+            this.chkTodos.Margin = new System.Windows.Forms.Padding(0);
+            this.chkTodos.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chkTodos.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chkTodos.Name = "chkTodos";
+            this.chkTodos.Ripple = true;
+            this.chkTodos.Size = new System.Drawing.Size(149, 54);
+            this.chkTodos.TabIndex = 5;
+            this.chkTodos.Text = "Seleccionar Todo";
+            this.chkTodos.UseVisualStyleBackColor = true;
+            this.chkTodos.CheckedChanged += new System.EventHandler(this.chkTodos_CheckedChanged);
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 4;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel3.Controls.Add(this.btnFacturar, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.btnSalir, 2, 1);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 370);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(671, 99);
+            this.tableLayoutPanel3.TabIndex = 2;
+            // 
+            // btnFacturar
+            // 
+            this.btnFacturar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFacturar.AutoSize = true;
+            this.btnFacturar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnFacturar.Depth = 0;
+            this.btnFacturar.Location = new System.Drawing.Point(104, 40);
+            this.btnFacturar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnFacturar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnFacturar.Name = "btnFacturar";
+            this.btnFacturar.Primary = false;
+            this.btnFacturar.Size = new System.Drawing.Size(226, 17);
+            this.btnFacturar.TabIndex = 2;
+            this.btnFacturar.Text = "Facturar";
+            this.btnFacturar.UseVisualStyleBackColor = true;
+            this.btnFacturar.Click += new System.EventHandler(this.btnFacturar_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalir.AutoSize = true;
+            this.btnSalir.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSalir.Depth = 0;
+            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(338, 40);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnSalir.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Primary = false;
+            this.btnSalir.Size = new System.Drawing.Size(226, 17);
+            this.btnSalir.TabIndex = 3;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
+            // buscarComprobantesToolStripMenuItem
+            // 
+            this.buscarComprobantesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.buscarComprobantesToolStripMenuItem.Name = "buscarComprobantesToolStripMenuItem";
+            this.buscarComprobantesToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
+            this.buscarComprobantesToolStripMenuItem.Text = "Buscar Comprobantes";
+            this.buscarComprobantesToolStripMenuItem.Click += new System.EventHandler(this.buscarComprobantesToolStripMenuItem_Click);
+            // 
+            // parámetrosToolStripMenuItem
+            // 
+            this.parámetrosToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.parámetrosToolStripMenuItem.Name = "parámetrosToolStripMenuItem";
+            this.parámetrosToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.parámetrosToolStripMenuItem.Text = "Preferencias";
+            this.parámetrosToolStripMenuItem.Click += new System.EventHandler(this.parámetrosToolStripMenuItem_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buscarComprobantesToolStripMenuItem,
+            this.parámetrosToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(926, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
             // frmFacturacionMasiva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(926, 542);
-            this.Controls.Add(this.tlpContenedor);
+            this.Controls.Add(this.tblLayoutPanelPrincipal);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "frmFacturacionMasiva";
             this.Text = "Facturación";
             this.Move += new System.EventHandler(this.frmFacturacionMasiva_Move);
-            this.tlpContenedor.ResumeLayout(false);
+            this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvComprSinFact)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -517,7 +517,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tlpContenedor;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelPrincipal;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridView dgvComprSinFact;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;

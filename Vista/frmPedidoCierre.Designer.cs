@@ -176,11 +176,12 @@
             this.tblLayoutPanelPrincipal.Controls.Add(this.tblLayoutPanelBotones, 0, 4);
             this.tblLayoutPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 55);
+            this.tblLayoutPanelPrincipal.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.tblLayoutPanelPrincipal.Name = "tblLayoutPanelPrincipal";
             this.tblLayoutPanelPrincipal.RowCount = 5;
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 190F));
-            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 79F));
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(699, 565);
@@ -188,6 +189,7 @@
             // 
             // selectorControlPrincipal
             // 
+            this.selectorControlPrincipal.BackColor = System.Drawing.Color.White;
             this.selectorControlPrincipal.BaseTabControl = this.tbControlPrincipal;
             this.selectorControlPrincipal.Depth = 0;
             this.selectorControlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1068,6 +1070,7 @@
             // 
             this.rchTextBoxObservacionesPedido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rchTextBoxObservacionesPedido.Location = new System.Drawing.Point(3, 3);
+            this.rchTextBoxObservacionesPedido.Margin = new System.Windows.Forms.Padding(10);
             this.rchTextBoxObservacionesPedido.Name = "rchTextBoxObservacionesPedido";
             this.rchTextBoxObservacionesPedido.Size = new System.Drawing.Size(679, 152);
             this.rchTextBoxObservacionesPedido.TabIndex = 2;
@@ -1082,7 +1085,7 @@
             this.gbxArticulos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbxArticulos.Location = new System.Drawing.Point(3, 233);
             this.gbxArticulos.Name = "gbxArticulos";
-            this.gbxArticulos.Size = new System.Drawing.Size(693, 194);
+            this.gbxArticulos.Size = new System.Drawing.Size(693, 193);
             this.gbxArticulos.TabIndex = 14;
             this.gbxArticulos.TabStop = false;
             this.gbxArticulos.Text = "Artículos";
@@ -1099,7 +1102,7 @@
             this.tblLayoutPanelLineasPedidos.RowCount = 2;
             this.tblLayoutPanelLineasPedidos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelLineasPedidos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tblLayoutPanelLineasPedidos.Size = new System.Drawing.Size(687, 173);
+            this.tblLayoutPanelLineasPedidos.Size = new System.Drawing.Size(687, 172);
             this.tblLayoutPanelLineasPedidos.TabIndex = 6;
             // 
             // dgvArticulosVenta
@@ -1127,7 +1130,7 @@
             this.dgvArticulosVenta.ReadOnly = true;
             this.dgvArticulosVenta.RowHeadersVisible = false;
             this.dgvArticulosVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulosVenta.Size = new System.Drawing.Size(681, 128);
+            this.dgvArticulosVenta.Size = new System.Drawing.Size(681, 127);
             this.dgvArticulosVenta.TabIndex = 5;
             this.dgvArticulosVenta.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvArticulosVenta_MouseDown);
             // 
@@ -1205,7 +1208,7 @@
             this.tblLayoutPanelLineasPedidosBotones.Controls.Add(this.btnEditar, 1, 0);
             this.tblLayoutPanelLineasPedidosBotones.Controls.Add(this.btnEliminar, 2, 0);
             this.tblLayoutPanelLineasPedidosBotones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelLineasPedidosBotones.Location = new System.Drawing.Point(3, 137);
+            this.tblLayoutPanelLineasPedidosBotones.Location = new System.Drawing.Point(3, 136);
             this.tblLayoutPanelLineasPedidosBotones.Name = "tblLayoutPanelLineasPedidosBotones";
             this.tblLayoutPanelLineasPedidosBotones.RowCount = 1;
             this.tblLayoutPanelLineasPedidosBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1294,7 +1297,7 @@
             this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxSubtotal, 9, 0);
             this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxTotal, 9, 1);
             this.tblLayoutPanelValoresPedido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelValoresPedido.Location = new System.Drawing.Point(3, 433);
+            this.tblLayoutPanelValoresPedido.Location = new System.Drawing.Point(3, 432);
             this.tblLayoutPanelValoresPedido.Name = "tblLayoutPanelValoresPedido";
             this.tblLayoutPanelValoresPedido.RowCount = 2;
             this.tblLayoutPanelValoresPedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1579,7 +1582,7 @@
             this.tblLayoutPanelBotones.Controls.Add(this.btnFacturaElectronica, 3, 0);
             this.tblLayoutPanelBotones.Controls.Add(this.btnSalir, 5, 0);
             this.tblLayoutPanelBotones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelBotones.Location = new System.Drawing.Point(3, 512);
+            this.tblLayoutPanelBotones.Location = new System.Drawing.Point(3, 511);
             this.tblLayoutPanelBotones.Name = "tblLayoutPanelBotones";
             this.tblLayoutPanelBotones.RowCount = 1;
             this.tblLayoutPanelBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
