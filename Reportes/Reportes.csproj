@@ -60,8 +60,17 @@
     <Compile Include="frmImpresionFactura.Designer.cs">
       <DependentUpon>frmImpresionFactura.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmImpresionLoteFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpresionLoteFacturas.Designer.cs">
+      <DependentUpon>frmImpresionLoteFacturas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmImpresionLoteFacturas.resx">
+      <DependentUpon>frmImpresionLoteFacturas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NCreditoA.rdlc" />
     <EmbeddedResource Include="NCreditoB.rdlc" />
     <EmbeddedResource Include="FacturaB.rdlc" />

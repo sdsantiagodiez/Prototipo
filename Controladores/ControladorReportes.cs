@@ -192,20 +192,20 @@ namespace Controladores
             frmImpresionFactura lcl_frm_factura = new frmImpresionFactura(this.CompletaEntidadFactura(p_mod_pedido), p_mod_pedido.tipoComprobante.ToString());
             return lcl_frm_factura;
         }
-        //public frmImpresionLoteFacturas ImpresionLoteFacturas(List<ModeloPedido> p_lst_mod_pedidos, string p_tipoComprobante)
-        //{
-        //    List<ModeloReporteEncabezadoFactura> lcl_lst_mod_EncFac = new List<ModeloReporteEncabezadoFactura>();
-        //    foreach (ModeloPedido modPed in p_lst_mod_pedidos)
-        //    {
-        //        ModeloReporteEncabezadoFactura lcl_mod_encFac = new ModeloReporteEncabezadoFactura();
-        //        lcl_mod_encFac = this.CompletaEntidadFactura(modPed);
+        public frmImpresionLoteFacturas ImpresionLoteFacturas(List<ModeloPedido> p_lst_mod_pedidos, string p_tipoComprobante)
+        {
+            List<ModeloReporteEncabezadoFactura> lcl_lst_mod_EncFac = new List<ModeloReporteEncabezadoFactura>();
+            foreach (ModeloPedido modPed in p_lst_mod_pedidos)
+            {
+                ModeloReporteEncabezadoFactura lcl_mod_encFac = new ModeloReporteEncabezadoFactura();
+                lcl_mod_encFac = this.CompletaEntidadFactura(modPed);
                 
-        //        lcl_lst_mod_EncFac.Add(lcl_mod_encFac);
-        //    }
+                lcl_lst_mod_EncFac.Add(lcl_mod_encFac);
+            }
 
-        //    frmImpresionLoteFacturas lcl_frm_factura = new frmImpresionLoteFacturas(lcl_lst_mod_EncFac, p_tipoComprobante);
-        //    return lcl_frm_factura;
-        //}
+            frmImpresionLoteFacturas lcl_frm_factura = new frmImpresionLoteFacturas(lcl_lst_mod_EncFac, p_tipoComprobante);
+            return lcl_frm_factura;
+        }
         public bool ComprobanteAprobado(ModeloPedido p_mod_pedido)
         {
             if (p_mod_pedido.aprobadoAFIP == "SI")
