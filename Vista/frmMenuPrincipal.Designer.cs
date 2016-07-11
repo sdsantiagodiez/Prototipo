@@ -393,7 +393,7 @@
             // tblLayoutPanelPrincipal_Contenedor
             // 
             this.tblLayoutPanelPrincipal_Contenedor.ColumnCount = 2;
-            this.tblLayoutPanelPrincipal_Contenedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 225F));
+            this.tblLayoutPanelPrincipal_Contenedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 193F));
             this.tblLayoutPanelPrincipal_Contenedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelPrincipal_Contenedor.Controls.Add(this.pnlContenedorForm, 1, 0);
             this.tblLayoutPanelPrincipal_Contenedor.Controls.Add(this.tblLayoutPanelMenu, 0, 0);
@@ -409,9 +409,9 @@
             // pnlContenedorForm
             // 
             this.pnlContenedorForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContenedorForm.Location = new System.Drawing.Point(228, 3);
+            this.pnlContenedorForm.Location = new System.Drawing.Point(196, 3);
             this.pnlContenedorForm.Name = "pnlContenedorForm";
-            this.pnlContenedorForm.Size = new System.Drawing.Size(884, 408);
+            this.pnlContenedorForm.Size = new System.Drawing.Size(916, 408);
             this.pnlContenedorForm.TabIndex = 28;
             // 
             // tblLayoutPanelMenu
@@ -427,7 +427,7 @@
             this.tblLayoutPanelMenu.RowCount = 2;
             this.tblLayoutPanelMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tblLayoutPanelMenu.Size = new System.Drawing.Size(225, 414);
+            this.tblLayoutPanelMenu.Size = new System.Drawing.Size(193, 414);
             this.tblLayoutPanelMenu.TabIndex = 29;
             // 
             // tlsMenu
@@ -445,7 +445,7 @@
             this.tlsMenu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.tlsMenu.Location = new System.Drawing.Point(0, 0);
             this.tlsMenu.Name = "tlsMenu";
-            this.tlsMenu.Size = new System.Drawing.Size(225, 389);
+            this.tlsMenu.Size = new System.Drawing.Size(193, 389);
             this.tlsMenu.TabIndex = 27;
             this.tlsMenu.Text = "toolStrip1";
             // 
@@ -455,7 +455,7 @@
             this.toolStripbtnPedidoCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolStripbtnPedidoCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripbtnPedidoCliente.Name = "toolStripbtnPedidoCliente";
-            this.toolStripbtnPedidoCliente.Size = new System.Drawing.Size(223, 24);
+            this.toolStripbtnPedidoCliente.Size = new System.Drawing.Size(191, 24);
             this.toolStripbtnPedidoCliente.Text = "Pedidos Clientes";
             this.toolStripbtnPedidoCliente.Click += new System.EventHandler(this.toolStripbtnPedidoCliente_Click);
             // 
@@ -465,7 +465,7 @@
             this.toolStripbtnPedidoProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolStripbtnPedidoProveedor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripbtnPedidoProveedor.Name = "toolStripbtnPedidoProveedor";
-            this.toolStripbtnPedidoProveedor.Size = new System.Drawing.Size(223, 24);
+            this.toolStripbtnPedidoProveedor.Size = new System.Drawing.Size(191, 24);
             this.toolStripbtnPedidoProveedor.Tag = "";
             this.toolStripbtnPedidoProveedor.Text = "Pedidos Proveedores";
             this.toolStripbtnPedidoProveedor.Click += new System.EventHandler(this.toolStripbtnPedidoProveedor_Click);
@@ -476,7 +476,7 @@
             this.tlsbtnDevolucion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tlsbtnDevolucion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlsbtnDevolucion.Name = "tlsbtnDevolucion";
-            this.tlsbtnDevolucion.Size = new System.Drawing.Size(223, 24);
+            this.tlsbtnDevolucion.Size = new System.Drawing.Size(191, 24);
             this.tlsbtnDevolucion.Text = "Devoluciones Clientes";
             this.tlsbtnDevolucion.Click += new System.EventHandler(this.tlsbtnDevolucion_Click);
             // 
@@ -486,7 +486,7 @@
             this.toolStripbtnFacturacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolStripbtnFacturacion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripbtnFacturacion.Name = "toolStripbtnFacturacion";
-            this.toolStripbtnFacturacion.Size = new System.Drawing.Size(223, 24);
+            this.toolStripbtnFacturacion.Size = new System.Drawing.Size(191, 24);
             this.toolStripbtnFacturacion.Text = "Facturación Pendiente";
             this.toolStripbtnFacturacion.Click += new System.EventHandler(this.toolStripbtnFacturacion_Click);
             // 
@@ -496,7 +496,7 @@
             this.toolStripbtnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolStripbtnReportes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripbtnReportes.Name = "toolStripbtnReportes";
-            this.toolStripbtnReportes.Size = new System.Drawing.Size(223, 24);
+            this.toolStripbtnReportes.Size = new System.Drawing.Size(191, 24);
             this.toolStripbtnReportes.Text = "Emisión de Reportes";
             this.toolStripbtnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolStripbtnReportes.Click += new System.EventHandler(this.toolStripbtnReportes_Click);
@@ -512,7 +512,7 @@
             this.toolStripbtnABM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolStripbtnABM.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripbtnABM.Name = "toolStripbtnABM";
-            this.toolStripbtnABM.Size = new System.Drawing.Size(223, 24);
+            this.toolStripbtnABM.Size = new System.Drawing.Size(191, 24);
             this.toolStripbtnABM.Text = "Administración de Entidades";
             // 
             // tsmi_ABMentidades
@@ -552,7 +552,7 @@
             this.btnSalir.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Primary = true;
-            this.btnSalir.Size = new System.Drawing.Size(225, 25);
+            this.btnSalir.Size = new System.Drawing.Size(193, 25);
             this.btnSalir.TabIndex = 29;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;

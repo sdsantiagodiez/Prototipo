@@ -118,6 +118,9 @@ namespace Vista
             this.StartPosition = FormStartPosition.CenterScreen;
             Width = Screen.PrimaryScreen.WorkingArea.Width;
             Height = Screen.PrimaryScreen.WorkingArea.Height;
+            //Width = 1280;
+            //Height = 1280;
+            
             this.ubicacionPrincipal = this.Location;
             this.tblLayoutPanelPrincipal.Location = new Point(3, 60);
             this.tblLayoutPanelPrincipal.Height = Height - 60; // 60 pixeles para que se vea título de ventana principal
@@ -127,17 +130,17 @@ namespace Vista
 
         private void agregarFormulario(Form p_form)
         {
-            p_form.TopLevel = false;
-            this.pnlContenedorForm.Controls.Add(p_form);
-            p_form.Show();
-            p_form.Dock = DockStyle.Fill;
             Type T = p_form.GetType();
             
             foreach (Type t in T.Assembly.GetTypes())
-            {//Chequea si alguna clase base es frmMaterialSkinBase
+            {//Chequea si hereda de frmMaterialSkinBase
                 if (t == typeof(frmMaterialSkinBase))
                 {
-                    (glb_form as frmMaterialSkinBase).inicializarForm();
+                    p_form.TopLevel = false;
+                    p_form.Dock = DockStyle.Fill;
+                    this.pnlContenedorForm.Controls.Add(p_form);
+                    p_form.Show();
+                    (p_form as frmMaterialSkinBase).inicializarForm(this.pnlContenedorForm.Width, this.pnlContenedorForm.Height);
                     return;
                 }    
             }

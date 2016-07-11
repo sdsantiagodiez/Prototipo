@@ -34,5 +34,10 @@ namespace Vista
         {
  
         }
+        public virtual void inicializarForm(int x, int y)
+        {
+            //Si form no tiene método inicializarForm(x,y), se corre inicializarForm()
+            this.inicializarForm();
+        }
     }
 }
