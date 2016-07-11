@@ -118,7 +118,7 @@
             this.tlsMenuRapido.Size = new System.Drawing.Size(1118, 30);
             this.tlsMenuRapido.Stretch = true;
             this.tlsMenuRapido.TabIndex = 3;
-            this.tlsMenuRapido.Text = "toolStrip1";
+            this.tlsMenuRapido.Text = "toolStrip";
             // 
             // abrirToolStripButton
             // 
@@ -581,49 +581,46 @@
             // 
             // lblHoraLog
             // 
-            this.lblHoraLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblHoraLog.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblHoraLog.AutoSize = true;
             this.lblHoraLog.BackColor = System.Drawing.Color.DarkGray;
             this.lblHoraLog.Depth = 0;
             this.lblHoraLog.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblHoraLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblHoraLog.Location = new System.Drawing.Point(895, 0);
+            this.lblHoraLog.Location = new System.Drawing.Point(972, 5);
             this.lblHoraLog.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblHoraLog.Name = "lblHoraLog";
-            this.lblHoraLog.Size = new System.Drawing.Size(65, 30);
+            this.lblHoraLog.Size = new System.Drawing.Size(65, 19);
             this.lblHoraLog.TabIndex = 32;
             this.lblHoraLog.Text = "18:01:57";
             // 
             // lblNombreUsuario
             // 
-            this.lblNombreUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblNombreUsuario.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblNombreUsuario.AutoSize = true;
             this.lblNombreUsuario.BackColor = System.Drawing.Color.DarkGray;
             this.lblNombreUsuario.Depth = 0;
             this.lblNombreUsuario.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblNombreUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblNombreUsuario.Location = new System.Drawing.Point(449, 0);
+            this.lblNombreUsuario.Location = new System.Drawing.Point(526, 5);
             this.lblNombreUsuario.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblNombreUsuario.Name = "lblNombreUsuario";
-            this.lblNombreUsuario.Size = new System.Drawing.Size(63, 30);
+            this.lblNombreUsuario.Size = new System.Drawing.Size(63, 19);
             this.lblNombreUsuario.TabIndex = 30;
             this.lblNombreUsuario.Text = "Leandro";
             // 
             // lblFechaLog
             // 
-            this.lblFechaLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblFechaLog.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblFechaLog.AutoSize = true;
             this.lblFechaLog.BackColor = System.Drawing.Color.DarkGray;
             this.lblFechaLog.Depth = 0;
             this.lblFechaLog.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblFechaLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblFechaLog.Location = new System.Drawing.Point(672, 0);
+            this.lblFechaLog.Location = new System.Drawing.Point(738, 5);
             this.lblFechaLog.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblFechaLog.Name = "lblFechaLog";
-            this.lblFechaLog.Size = new System.Drawing.Size(85, 30);
+            this.lblFechaLog.Size = new System.Drawing.Size(85, 19);
             this.lblFechaLog.TabIndex = 31;
             this.lblFechaLog.Text = "23/10/2016";
             // 
@@ -635,7 +632,6 @@
             this.ClientSize = new System.Drawing.Size(1133, 619);
             this.Controls.Add(this.tblLayoutPanelPrincipal);
             this.Controls.Add(this.splitter1);
-            this.MaximizeBox = false;
             this.Name = "frmMenuPrincipal";
             this.Text = "Menú Principal";
             this.Move += new System.EventHandler(this.frmMenuPrincipal_Move);

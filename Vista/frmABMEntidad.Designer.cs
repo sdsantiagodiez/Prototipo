@@ -1288,12 +1288,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(797, 700);
             this.Controls.Add(this.tblLayoutPanelPrincipal);
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(630, 700);
+            this.MinimumSize = new System.Drawing.Size(630, 669);
             this.Name = "frmABMEntidad";
             this.Text = "ABM Entidades";
             this.Move += new System.EventHandler(this.frmABMEntidad_Move);

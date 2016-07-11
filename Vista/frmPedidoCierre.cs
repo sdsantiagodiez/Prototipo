@@ -18,7 +18,7 @@ using MaterialSkin.Controls;
 
 namespace Vista
 {
-    public partial class frmPedidoCierre : MaterialForm
+    public partial class frmPedidoCierre : frmMaterialSkinBase
     {
         #region Atributos
         ModeloPedido glb_mod_pedidoOriginalDevolucion;
@@ -142,7 +142,7 @@ namespace Vista
         #region Métodos
         
         #region Inicialización
-        public void inicializarForm()
+        public override void inicializarForm()
         {
             if (Width - 3 > 1100)
             {

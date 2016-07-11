@@ -131,6 +131,16 @@ namespace Vista
             this.pnlContenedorForm.Controls.Add(p_form);
             p_form.Show();
             p_form.Dock = DockStyle.Fill;
+            Type T = p_form.GetType();
+            
+            foreach (Type t in T.Assembly.GetTypes())
+            {//Chequea si alguna clase base es frmMaterialSkinBase
+                if (t == typeof(frmMaterialSkinBase))
+                {
+                    (glb_form as frmMaterialSkinBase).inicializarForm();
+                    return;
+                }    
+            }
         }
 
         private bool validarAgregarFormulario(Type T)
@@ -180,7 +190,6 @@ namespace Vista
             glb_form = new frmABMEntidad();
             
             this.agregarFormulario(glb_form);
-            (glb_form as frmABMEntidad).inicializarForm();
         }
         private void tsmi_ABMarticulos_Click(object sender, EventArgs e)
         {
@@ -191,7 +200,6 @@ namespace Vista
 
             glb_form = new frmABMArticulo();
             this.agregarFormulario(glb_form);
-            (glb_form as frmABMArticulo).inicializarForm();
         }
 
         private void tsmi_ABMarticulosProveedor_Click(object sender, EventArgs e)
@@ -203,7 +211,6 @@ namespace Vista
 
             glb_form = new frmABMArticuloProveedor();
             this.agregarFormulario(glb_form);
-            (glb_form as frmABMArticuloProveedor).inicializarForm();
         }
         
 
@@ -237,7 +244,6 @@ namespace Vista
 
             glb_form = new frmPedidoCierre(new ModeloPedido() {codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoPersona });
             this.agregarFormulario(glb_form);
-            (glb_form as frmPedidoCierre).inicializarForm();
         }
 
         private void toolStripbtnPedidoProveedor_Click(object sender, EventArgs e)
@@ -256,7 +262,6 @@ namespace Vista
             
             glb_form = new frmPedidoCierre(new ModeloPedido() { codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoProveedor });
             this.agregarFormulario(glb_form);
-            (glb_form as frmPedidoCierre).inicializarForm();
         }
 
         private void tlsbtnDevolucion_Click(object sender, EventArgs e)
@@ -268,7 +273,6 @@ namespace Vista
 
             glb_form = new frmPedidoDevolucion();
             this.agregarFormulario(glb_form);
-            (glb_form as frmPedidoDevolucion).inicializarForm();
         }
 
         private void toolStripbtnFacturacion_Click(object sender, EventArgs e)
@@ -280,7 +284,6 @@ namespace Vista
 
             glb_form = new frmFacturacionMasiva();
             this.agregarFormulario(glb_form);
-            (glb_form as frmFacturacionMasiva).inicializarForm();
         }
 
         private void toolStripbtnReportes_Click(object sender, EventArgs e)
@@ -292,7 +295,6 @@ namespace Vista
 
             glb_form = new frmReporteSeleccion();
             this.agregarFormulario(glb_form);
-            (glb_form as frmReporteSeleccion).inicializarForm();
         }
         #endregion
 

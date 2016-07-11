@@ -38,7 +38,7 @@ namespace Vista
         #region Métodos
 
         #region Inicialización
-        public void inicializarForm()
+        public override void inicializarForm()
         {
             this.tblLayoutPanelPrincipal.Width = Width - 3; //un margen derecho de 3
 

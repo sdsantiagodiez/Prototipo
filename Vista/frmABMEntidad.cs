@@ -99,13 +99,17 @@ namespace Vista
 
         #region Inicialización
 
-        public void inicializarForm()
+        public override void inicializarForm()
         {
             this.tblLayoutPanelPrincipal.Width = Width - 3; //un margen derecho de 3
             
-            if (Height < 700)
+            if (Height < 800)
             {
                 this.tblLayoutPanelPrincipal.Height = 700;  //Mínimo
+                ScrollBar vScrollBar1 = new VScrollBar();
+                vScrollBar1.Dock = DockStyle.Right;
+                vScrollBar1.Scroll += (sender, e) => { tblLayoutPanelPrincipal.VerticalScroll.Value = vScrollBar1.Value; };
+                tblLayoutPanelPrincipal.Controls.Add(vScrollBar1);
             }
             else
             {

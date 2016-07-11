@@ -29,5 +29,10 @@ namespace Vista
             this.MinimizeBox = false;
             this.MaximizeBox = false;
         }
+
+        public virtual void inicializarForm()
+        {
+ 
+        }
     }
 }

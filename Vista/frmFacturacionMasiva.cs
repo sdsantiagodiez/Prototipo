@@ -27,7 +27,7 @@ namespace Vista
         List<ModeloPedido> glb_lst_mod_ped = new List<ModeloPedido>();
 
         #region Metodos
-        public void inicializarForm()
+        public override void inicializarForm()
         {
             this.tblLayoutPanelPrincipal.Width = Width - 3; //un margen derecho de 3
 
