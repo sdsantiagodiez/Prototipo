@@ -241,7 +241,7 @@ namespace Controladores
 
             }
 
-            private List<ModeloArticuloProveedores> completaEntidadArticuloProveedor(DataTable p_dataTable)
+            private List<ModeloArticuloProveedores> completaModeloArticuloProveedor(DataTable p_dataTable)
             {
                 List<ModeloArticuloProveedores> lcl_lst_mod_artPro = new List<ModeloArticuloProveedores>();
 
@@ -264,7 +264,7 @@ namespace Controladores
 
                 return lcl_lst_mod_artPro;
             }
-            private List<ModeloArticulos> completaEntidadArticulo(DataTable p_dataTable)
+            private List<ModeloArticulos> completaModeloArticulo(DataTable p_dataTable)
             {
                 List<ModeloArticulos> lcl_lst_mod_art = new List<ModeloArticulos>();
 
@@ -281,7 +281,7 @@ namespace Controladores
 
                 return lcl_lst_mod_art;
             }
-            private List<ModeloCliente> completaEntidadCliente(DataTable p_dataTable)
+            private List<ModeloCliente> completaModeloCliente(DataTable p_dataTable)
             {
                 List<ModeloCliente> lcl_lst_mod_cli = new List<ModeloCliente>();
 
@@ -302,7 +302,7 @@ namespace Controladores
 
                 return lcl_lst_mod_cli;
             }
-            private List<ModeloProveedor> completaEntidadCliente(DataTable p_dataTable)
+            private List<ModeloProveedor> completaModeloProveedor(DataTable p_dataTable)
             {
                 List<ModeloProveedor> lcl_lst_mod_pro = new List<ModeloProveedor>();
 
@@ -321,7 +321,7 @@ namespace Controladores
 
                 return lcl_lst_mod_pro;
             }
-            private List<ModeloDescuentoArticulo> completaEntidadDescuento(DataTable p_dataTable)
+            private List<ModeloDescuentoArticulo> completaModeloDescuento(DataTable p_dataTable)
             {
                 List<ModeloDescuentoArticulo> lcl_lst_mod_desArt = new List<ModeloDescuentoArticulo>();
 
