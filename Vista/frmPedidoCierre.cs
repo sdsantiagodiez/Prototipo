@@ -21,6 +21,8 @@ namespace Vista
     public partial class frmPedidoCierre : frmMaterialSkinBase
     {
         #region Atributos
+        public event EventHandler AgregarLineaPedido;
+        public event EventHandler BuscarCliente;
         ModeloPedido glb_mod_pedidoOriginalDevolucion;
         List<TipoDocumento> glb_lst_tiposDocumentos;
         ControladorPedido controlador;
@@ -77,8 +79,6 @@ namespace Vista
             this.inicializarControles();
 
 
-            this.MinimizeBox = false;
-            this.MaximizeBox = false;
         }
         /// <summary>
         /// Inicializa formulario de acuerdo al codigoTipoPedido asignado al pedido
@@ -941,14 +941,6 @@ namespace Vista
         #endregion
 
         #region Otros
-        private ModeloCliente buscarCliente()
-        {
-            ModeloCliente lcl_mod_cliente = new ModeloCliente();
-            frmABMEntidad lcl_frm_entidad = new frmABMEntidad(controlador.pedidoActual.entidad,frmABMEntidad.ModoFormularioClientePedido);
-            lcl_frm_entidad.ShowDialog();
-            return lcl_frm_entidad.glb_mod_entidadActual as ModeloCliente;
-        }
-
         int getDropDownWidth(ComboBox p_comboBox)
         {
             int maxWidth = 0, temp = 0;
@@ -1298,16 +1290,23 @@ namespace Vista
             }
             else
             {
-                ModeloCliente lcl_mod_cliente = this.buscarCliente();
-                if (ControladorPedidoCliente.esClienteGenerico(lcl_mod_cliente))
-                {
-                    this.chckBoxClienteGenerico.Checked = true;
-                }
-                else
-                {
-                    controlador.pedidoActual.entidad = lcl_mod_cliente;
-                    this.cargarEntidadEnControles(controlador.pedidoActual.entidad as ModeloCliente);
-                }
+                ModeloCliente lcl_mod_cliente = new ModeloCliente();
+                frmABMEntidad lcl_frm_entidad = new frmABMEntidad(controlador.pedidoActual.entidad, frmABMEntidad.ModoFormularioClientePedido);
+                lcl_frm_entidad.CerrarForm += buscarCliente_Closed;
+                this.BuscarCliente(lcl_frm_entidad, e);
+            }
+        }
+        public void buscarCliente_Closed(object sender, EventArgs e)
+        {
+            ModeloCliente lcl_mod_cliente = (sender as frmABMEntidad).glb_mod_entidadActual as ModeloCliente;
+            if (ControladorPedidoCliente.esClienteGenerico(lcl_mod_cliente))
+            {
+                this.chckBoxClienteGenerico.Checked = true;
+            }
+            else
+            {
+                controlador.pedidoActual.entidad = lcl_mod_cliente;
+                this.cargarEntidadEnControles(controlador.pedidoActual.entidad as ModeloCliente);
             }
         }
 
@@ -1422,30 +1421,38 @@ namespace Vista
                 this.cargarPedidoEnControles(controlador.pedidoActual);
             }
         }
-
+        ModeloPedido pedidoAgregarLineas;
         /// <summary>
         /// Muestra ventana para agregar artículos al pedido actual
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void evento_agregarLinea(object sender, EventArgs e)
+        public void evento_agregarLinea(object sender, EventArgs e)
         {
-            ModeloPedido lcl_mod_pedido = ObjectCopier.Clone(controlador.pedidoActual);
+            pedidoAgregarLineas = new ModeloPedido();
+            pedidoAgregarLineas = ObjectCopier.Clone(controlador.pedidoActual);
             Form lcl_frm_agregarArticulos;
             if (modoFormulario == ModoFormularioDevolucionCliente)
             {
-                lcl_frm_agregarArticulos = new frmPedidoDevolucion(glb_mod_pedidoOriginalDevolucion, lcl_mod_pedido);
+                lcl_frm_agregarArticulos = new frmPedidoDevolucion(glb_mod_pedidoOriginalDevolucion, pedidoAgregarLineas);
+                
             }
             else
             {
-                lcl_frm_agregarArticulos = new frmPedidoNuevo(lcl_mod_pedido);
+                lcl_frm_agregarArticulos = new frmPedidoNuevo(pedidoAgregarLineas);
+                (lcl_frm_agregarArticulos as frmPedidoNuevo).CerrarForm += this.evento_agregarLineaClosed;
             }
-            //frmPedidoNuevo frm_pedidoNuevo = new frmPedidoNuevo(lcl_mod_pedido);
-            lcl_frm_agregarArticulos.ShowDialog();
-            if (lcl_frm_agregarArticulos.DialogResult != System.Windows.Forms.DialogResult.Ignore)
+            
+            AgregarLineaPedido(lcl_frm_agregarArticulos, e);
+            
+        }
+
+        private void evento_agregarLineaClosed(object sender, EventArgs e)
+        {            
+            if ((sender as Form).DialogResult != System.Windows.Forms.DialogResult.Ignore)
             {
                 controlador.pedidoActual.removeAllLineaPedido();
-                controlador.pedidoActual.addLineaPedidoList(lcl_mod_pedido.lineasPedido);
+                controlador.pedidoActual.addLineaPedidoList(pedidoAgregarLineas.lineasPedido);
                 //controlador.pedidoActual.lineasPedido = lcl_mod_pedido.lineasPedido;
                 this.cargarDatosPedidoEnControles(controlador.pedidoActual);
                 this.cargarLineasEnControles(controlador.pedidoActual);
@@ -1476,6 +1483,7 @@ namespace Vista
         {
             this.Location = new Point(224, 124);
         }
+
 
         #endregion
     }

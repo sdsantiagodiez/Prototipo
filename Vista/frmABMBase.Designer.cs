@@ -130,7 +130,6 @@
             this.ClientSize = new System.Drawing.Size(571, 308);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
             this.Name = "frmABMBase";
             this.Text = "Altas, Bajas y Modificaciones";
             this.menuStrip1.ResumeLayout(false);

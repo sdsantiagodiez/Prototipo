@@ -59,13 +59,13 @@
             // 
             // grpBoxContactoProveedor
             // 
+            this.grpBoxContactoProveedor.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.grpBoxContactoProveedor.BackColor = System.Drawing.Color.White;
             this.grpBoxContactoProveedor.Controls.Add(this.tableLayoutPanelContactoProveedorSeleccionar);
-            this.grpBoxContactoProveedor.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grpBoxContactoProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpBoxContactoProveedor.Location = new System.Drawing.Point(0, 64);
+            this.grpBoxContactoProveedor.Location = new System.Drawing.Point(3, 64);
             this.grpBoxContactoProveedor.Name = "grpBoxContactoProveedor";
-            this.grpBoxContactoProveedor.Size = new System.Drawing.Size(390, 371);
+            this.grpBoxContactoProveedor.Size = new System.Drawing.Size(382, 371);
             this.grpBoxContactoProveedor.TabIndex = 10;
             this.grpBoxContactoProveedor.TabStop = false;
             this.grpBoxContactoProveedor.Text = "Contacto de Proveedor";
@@ -86,7 +86,7 @@
             this.tableLayoutPanelContactoProveedorSeleccionar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanelContactoProveedorSeleccionar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 134F));
             this.tableLayoutPanelContactoProveedorSeleccionar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelContactoProveedorSeleccionar.Size = new System.Drawing.Size(384, 348);
+            this.tableLayoutPanelContactoProveedorSeleccionar.Size = new System.Drawing.Size(376, 348);
             this.tableLayoutPanelContactoProveedorSeleccionar.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -101,7 +101,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(378, 46);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(370, 46);
             this.tableLayoutPanel2.TabIndex = 14;
             // 
             // btnAceptar
@@ -110,7 +110,7 @@
             this.btnAceptar.AutoSize = true;
             this.btnAceptar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAceptar.Depth = 0;
-            this.btnAceptar.Location = new System.Drawing.Point(86, 6);
+            this.btnAceptar.Location = new System.Drawing.Point(82, 6);
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 6, 30, 6);
             this.btnAceptar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAceptar.Name = "btnAceptar";
@@ -127,7 +127,7 @@
             this.btnCancelar.AutoSize = true;
             this.btnCancelar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnCancelar.Depth = 0;
-            this.btnCancelar.Location = new System.Drawing.Point(219, 6);
+            this.btnCancelar.Location = new System.Drawing.Point(215, 6);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(30, 6, 4, 6);
             this.btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnCancelar.Name = "btnCancelar";
@@ -157,7 +157,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(378, 110);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(370, 110);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // lblRazonSocial
@@ -165,7 +165,7 @@
             this.lblRazonSocial.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblRazonSocial.AutoSize = true;
             this.lblRazonSocial.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRazonSocial.Location = new System.Drawing.Point(9, 74);
+            this.lblRazonSocial.Location = new System.Drawing.Point(8, 74);
             this.lblRazonSocial.Name = "lblRazonSocial";
             this.lblRazonSocial.Size = new System.Drawing.Size(53, 34);
             this.lblRazonSocial.TabIndex = 11;
@@ -176,7 +176,7 @@
             this.lblCodigo.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCodigo.AutoSize = true;
             this.lblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigo.Location = new System.Drawing.Point(6, 9);
+            this.lblCodigo.Location = new System.Drawing.Point(5, 9);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(56, 17);
             this.lblCodigo.TabIndex = 1;
@@ -187,7 +187,7 @@
             this.lblCUIT.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCUIT.AutoSize = true;
             this.lblCUIT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCUIT.Location = new System.Drawing.Point(19, 45);
+            this.lblCUIT.Location = new System.Drawing.Point(18, 45);
             this.lblCUIT.Name = "lblCUIT";
             this.lblCUIT.Size = new System.Drawing.Size(43, 17);
             this.lblCUIT.TabIndex = 7;
@@ -198,14 +198,14 @@
             this.txtBoxCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCodigo.Depth = 0;
             this.txtBoxCodigo.Hint = "";
-            this.txtBoxCodigo.Location = new System.Drawing.Point(68, 6);
+            this.txtBoxCodigo.Location = new System.Drawing.Point(67, 6);
             this.txtBoxCodigo.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCodigo.Name = "txtBoxCodigo";
             this.txtBoxCodigo.PasswordChar = '\0';
             this.txtBoxCodigo.SelectedText = "";
             this.txtBoxCodigo.SelectionLength = 0;
             this.txtBoxCodigo.SelectionStart = 0;
-            this.txtBoxCodigo.Size = new System.Drawing.Size(307, 23);
+            this.txtBoxCodigo.Size = new System.Drawing.Size(300, 23);
             this.txtBoxCodigo.TabIndex = 13;
             this.txtBoxCodigo.UseSystemPasswordChar = false;
             // 
@@ -214,14 +214,14 @@
             this.txtBoxCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCUIT.Depth = 0;
             this.txtBoxCUIT.Hint = "";
-            this.txtBoxCUIT.Location = new System.Drawing.Point(68, 42);
+            this.txtBoxCUIT.Location = new System.Drawing.Point(67, 42);
             this.txtBoxCUIT.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCUIT.Name = "txtBoxCUIT";
             this.txtBoxCUIT.PasswordChar = '\0';
             this.txtBoxCUIT.SelectedText = "";
             this.txtBoxCUIT.SelectionLength = 0;
             this.txtBoxCUIT.SelectionStart = 0;
-            this.txtBoxCUIT.Size = new System.Drawing.Size(307, 23);
+            this.txtBoxCUIT.Size = new System.Drawing.Size(300, 23);
             this.txtBoxCUIT.TabIndex = 14;
             this.txtBoxCUIT.UseSystemPasswordChar = false;
             // 
@@ -230,14 +230,14 @@
             this.txtBoxRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxRazonSocial.Depth = 0;
             this.txtBoxRazonSocial.Hint = "";
-            this.txtBoxRazonSocial.Location = new System.Drawing.Point(68, 79);
+            this.txtBoxRazonSocial.Location = new System.Drawing.Point(67, 79);
             this.txtBoxRazonSocial.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
             this.txtBoxRazonSocial.PasswordChar = '\0';
             this.txtBoxRazonSocial.SelectedText = "";
             this.txtBoxRazonSocial.SelectionLength = 0;
             this.txtBoxRazonSocial.SelectionStart = 0;
-            this.txtBoxRazonSocial.Size = new System.Drawing.Size(307, 23);
+            this.txtBoxRazonSocial.Size = new System.Drawing.Size(300, 23);
             this.txtBoxRazonSocial.TabIndex = 15;
             this.txtBoxRazonSocial.UseSystemPasswordChar = false;
             // 
@@ -247,7 +247,7 @@
             this.grpBoxContactoProveedorProveedorSeleccionado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxContactoProveedorProveedorSeleccionado.Location = new System.Drawing.Point(3, 165);
             this.grpBoxContactoProveedorProveedorSeleccionado.Name = "grpBoxContactoProveedorProveedorSeleccionado";
-            this.grpBoxContactoProveedorProveedorSeleccionado.Size = new System.Drawing.Size(378, 128);
+            this.grpBoxContactoProveedorProveedorSeleccionado.Size = new System.Drawing.Size(370, 128);
             this.grpBoxContactoProveedorProveedorSeleccionado.TabIndex = 1;
             this.grpBoxContactoProveedorProveedorSeleccionado.TabStop = false;
             this.grpBoxContactoProveedorProveedorSeleccionado.Text = "Proveedor Seleccionado";
@@ -270,7 +270,7 @@
             this.tableLayoutPanelContactoProveedorProveedorSeleccionado.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33F));
             this.tableLayoutPanelContactoProveedorProveedorSeleccionado.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33F));
             this.tableLayoutPanelContactoProveedorProveedorSeleccionado.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34F));
-            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.Size = new System.Drawing.Size(372, 105);
+            this.tableLayoutPanelContactoProveedorProveedorSeleccionado.Size = new System.Drawing.Size(364, 105);
             this.tableLayoutPanelContactoProveedorProveedorSeleccionado.TabIndex = 0;
             // 
             // lblRazonSocialSeleccionado
@@ -278,7 +278,7 @@
             this.lblRazonSocialSeleccionado.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblRazonSocialSeleccionado.AutoSize = true;
             this.lblRazonSocialSeleccionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRazonSocialSeleccionado.Location = new System.Drawing.Point(9, 69);
+            this.lblRazonSocialSeleccionado.Location = new System.Drawing.Point(7, 69);
             this.lblRazonSocialSeleccionado.Name = "lblRazonSocialSeleccionado";
             this.lblRazonSocialSeleccionado.Size = new System.Drawing.Size(53, 34);
             this.lblRazonSocialSeleccionado.TabIndex = 12;
@@ -289,7 +289,7 @@
             this.lblCodigoSeleccionado.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCodigoSeleccionado.AutoSize = true;
             this.lblCodigoSeleccionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoSeleccionado.Location = new System.Drawing.Point(6, 8);
+            this.lblCodigoSeleccionado.Location = new System.Drawing.Point(4, 8);
             this.lblCodigoSeleccionado.Name = "lblCodigoSeleccionado";
             this.lblCodigoSeleccionado.Size = new System.Drawing.Size(56, 17);
             this.lblCodigoSeleccionado.TabIndex = 2;
@@ -300,7 +300,7 @@
             this.lblCUITSeleccionado.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCUITSeleccionado.AutoSize = true;
             this.lblCUITSeleccionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCUITSeleccionado.Location = new System.Drawing.Point(19, 42);
+            this.lblCUITSeleccionado.Location = new System.Drawing.Point(17, 42);
             this.lblCUITSeleccionado.Name = "lblCUITSeleccionado";
             this.lblCUITSeleccionado.Size = new System.Drawing.Size(43, 17);
             this.lblCUITSeleccionado.TabIndex = 8;
@@ -313,10 +313,10 @@
             this.txtBoxCodigoSeleccionado.Depth = 0;
             this.txtBoxCodigoSeleccionado.Font = new System.Drawing.Font("Roboto", 11F);
             this.txtBoxCodigoSeleccionado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtBoxCodigoSeleccionado.Location = new System.Drawing.Point(68, 7);
+            this.txtBoxCodigoSeleccionado.Location = new System.Drawing.Point(66, 7);
             this.txtBoxCodigoSeleccionado.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCodigoSeleccionado.Name = "txtBoxCodigoSeleccionado";
-            this.txtBoxCodigoSeleccionado.Size = new System.Drawing.Size(301, 19);
+            this.txtBoxCodigoSeleccionado.Size = new System.Drawing.Size(295, 19);
             this.txtBoxCodigoSeleccionado.TabIndex = 19;
             // 
             // txtBoxCUITSeleccionado
@@ -326,10 +326,10 @@
             this.txtBoxCUITSeleccionado.Depth = 0;
             this.txtBoxCUITSeleccionado.Font = new System.Drawing.Font("Roboto", 11F);
             this.txtBoxCUITSeleccionado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtBoxCUITSeleccionado.Location = new System.Drawing.Point(68, 41);
+            this.txtBoxCUITSeleccionado.Location = new System.Drawing.Point(66, 41);
             this.txtBoxCUITSeleccionado.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCUITSeleccionado.Name = "txtBoxCUITSeleccionado";
-            this.txtBoxCUITSeleccionado.Size = new System.Drawing.Size(301, 19);
+            this.txtBoxCUITSeleccionado.Size = new System.Drawing.Size(295, 19);
             this.txtBoxCUITSeleccionado.TabIndex = 20;
             // 
             // txtBoxRazonSocialSeleccionado
@@ -339,10 +339,10 @@
             this.txtBoxRazonSocialSeleccionado.Depth = 0;
             this.txtBoxRazonSocialSeleccionado.Font = new System.Drawing.Font("Roboto", 11F);
             this.txtBoxRazonSocialSeleccionado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtBoxRazonSocialSeleccionado.Location = new System.Drawing.Point(68, 77);
+            this.txtBoxRazonSocialSeleccionado.Location = new System.Drawing.Point(66, 77);
             this.txtBoxRazonSocialSeleccionado.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxRazonSocialSeleccionado.Name = "txtBoxRazonSocialSeleccionado";
-            this.txtBoxRazonSocialSeleccionado.Size = new System.Drawing.Size(301, 19);
+            this.txtBoxRazonSocialSeleccionado.Size = new System.Drawing.Size(295, 19);
             this.txtBoxRazonSocialSeleccionado.TabIndex = 21;
             // 
             // btnSeleccionarProveedor
@@ -351,7 +351,7 @@
             this.btnSeleccionarProveedor.AutoSize = true;
             this.btnSeleccionarProveedor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnSeleccionarProveedor.Depth = 0;
-            this.btnSeleccionarProveedor.Location = new System.Drawing.Point(102, 122);
+            this.btnSeleccionarProveedor.Location = new System.Drawing.Point(98, 122);
             this.btnSeleccionarProveedor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnSeleccionarProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnSeleccionarProveedor.Name = "btnSeleccionarProveedor";
@@ -368,7 +368,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(390, 435);
             this.Controls.Add(this.grpBoxContactoProveedor);
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(390, 410);
             this.Name = "frmABMEntidadDatosAdicionalesContactoProveedor";
             this.Text = "Datos Adicionales de Contacto de Proveedor";

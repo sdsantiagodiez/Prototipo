@@ -221,6 +221,9 @@
     <EmbeddedResource Include="frmLoading.resx">
       <DependentUpon>frmLoading.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMaterialSkinBase.resx">
+      <DependentUpon>frmMaterialSkinBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPedidoCierre_EditarLineaPedido.resx">
       <DependentUpon>frmPedidoCierre_EditarLineaPedido.cs</DependentUpon>
     </EmbeddedResource>

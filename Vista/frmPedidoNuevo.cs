@@ -16,6 +16,7 @@ namespace Vista
     public partial class frmPedidoNuevo : frmMaterialSkinBase
     {
         #region Atributos
+        public event EventHandler CerrarForm;
         ModeloArticuloProveedores glb_mod_articuloSeleccionadoBusqueda;
         public ControladorPedido controlador;
         ContextMenu cntxMenuResultadoBusqueda;
@@ -39,7 +40,17 @@ namespace Vista
         public frmPedidoNuevo(Constantes.CodigosTiposPedidos p_codigoTipoPedido) : this()
         {
             controlador = new ControladorPedido(p_codigoTipoPedido);
-            this.chckBoxPermitirStockNegativo.Visible = controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona;
+
+            if (controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            {
+                this.chckBoxPermitirStockNegativo.Visible = true;
+                this.chckBoxPermitirStockNegativo.Checked = false;
+            }
+            else
+            {
+                this.chckBoxPermitirStockNegativo.Visible = false;
+                this.chckBoxPermitirStockNegativo.Checked = true;
+            }
         }
         /// <summary>
         /// Se agrega pedido para ser modificado
@@ -56,8 +67,31 @@ namespace Vista
        
         #region Métodos
         #region Inicialización
+        public override void inicializarForm(int x, int y)
+        {
+            if (Width - 3 > 1100)
+            {
+                this.tblLayoutPanelPrincipal.Width = 1100;   //Máximo
+            }
+            else
+            {
+                this.tblLayoutPanelPrincipal.Width = Width - 3; //un margen derecho de 3
+            }
+            if (Height < 560)
+            {
+                this.tblLayoutPanelPrincipal.Height = 560;  //Mínimo
+            }
+            else
+            {
+                this.tblLayoutPanelPrincipal.Height = Height - 60; // 60 pixeles para que se vea título de ventana principal
+            }
+
+            int x_ = Convert.ToInt16(Math.Round(Convert.ToDouble((Width - this.tblLayoutPanelPrincipal.Width) / 2)));
+            this.tblLayoutPanelPrincipal.Location = new Point(x_, 60);
+        }
         private void inicializarControles()
         {
+
             #region DataGridViews
             this.dgvArticulosResultadoBusqueda.MultiSelect = false;
             //seteo columnas de datagridviews
@@ -448,7 +482,7 @@ namespace Vista
             if (controlador.getCantidadLineas() > 0)
             {
                 this.continuarPedido = true;
-                this.Hide();
+                this.Close();
             }
             else
             {

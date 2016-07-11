@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoNuevo));
-            this.tblLayoutPanelBase = new System.Windows.Forms.TableLayoutPanel();
+            this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelBotones = new System.Windows.Forms.TableLayoutPanel();
             this.lblTotal = new System.Windows.Forms.Label();
             this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
@@ -87,7 +87,7 @@
             this.vUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblLayoutPanelBase.SuspendLayout();
+            this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
             this.tblLayoutPanelArticulos.SuspendLayout();
             this.gbxDetalleArticuloSeleccionado.SuspendLayout();
@@ -105,21 +105,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosEnPedido)).BeginInit();
             this.SuspendLayout();
             // 
-            // tblLayoutPanelBase
+            // tblLayoutPanelPrincipal
             // 
-            this.tblLayoutPanelBase.BackColor = System.Drawing.Color.White;
-            this.tblLayoutPanelBase.ColumnCount = 1;
-            this.tblLayoutPanelBase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelBase.Controls.Add(this.tblLayoutPanelBotones, 0, 1);
-            this.tblLayoutPanelBase.Controls.Add(this.tblLayoutPanelArticulos, 0, 0);
-            this.tblLayoutPanelBase.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tblLayoutPanelBase.Location = new System.Drawing.Point(0, 55);
-            this.tblLayoutPanelBase.Name = "tblLayoutPanelBase";
-            this.tblLayoutPanelBase.RowCount = 2;
-            this.tblLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tblLayoutPanelBase.Size = new System.Drawing.Size(958, 565);
-            this.tblLayoutPanelBase.TabIndex = 1;
+            this.tblLayoutPanelPrincipal.BackColor = System.Drawing.Color.White;
+            this.tblLayoutPanelPrincipal.ColumnCount = 1;
+            this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelPrincipal.Controls.Add(this.tblLayoutPanelBotones, 0, 1);
+            this.tblLayoutPanelPrincipal.Controls.Add(this.tblLayoutPanelArticulos, 0, 0);
+            this.tblLayoutPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 55);
+            this.tblLayoutPanelPrincipal.Name = "tblLayoutPanelPrincipal";
+            this.tblLayoutPanelPrincipal.RowCount = 2;
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(958, 565);
+            this.tblLayoutPanelPrincipal.TabIndex = 1;
             // 
             // tblLayoutPanelBotones
             // 
@@ -240,6 +240,7 @@
             this.tblLayoutPanelArticulos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 285F));
             this.tblLayoutPanelArticulos.Controls.Add(this.gbxDetalleArticuloSeleccionado, 1, 0);
             this.tblLayoutPanelArticulos.Controls.Add(this.tblLayoutPanelDataGrids, 0, 0);
+            this.tblLayoutPanelArticulos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelArticulos.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelArticulos.Name = "tblLayoutPanelArticulos";
             this.tblLayoutPanelArticulos.RowCount = 1;
@@ -249,8 +250,8 @@
             // 
             // gbxDetalleArticuloSeleccionado
             // 
-            this.gbxDetalleArticuloSeleccionado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.gbxDetalleArticuloSeleccionado.Controls.Add(this.tblLayoutPanelDetalleArticulo);
+            this.gbxDetalleArticuloSeleccionado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbxDetalleArticuloSeleccionado.Location = new System.Drawing.Point(670, 3);
             this.gbxDetalleArticuloSeleccionado.Name = "gbxDetalleArticuloSeleccionado";
             this.gbxDetalleArticuloSeleccionado.Size = new System.Drawing.Size(279, 493);
@@ -293,7 +294,7 @@
             this.tblLayoutPanelDetalleArticuloBotones.ColumnCount = 3;
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.83614F));
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.16385F));
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.nmrcUpDownCantidad, 1, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnAgregar, 2, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.lblCantidad, 0, 0);
@@ -308,7 +309,7 @@
             // nmrcUpDownCantidad
             // 
             this.nmrcUpDownCantidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(91, 11);
+            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(88, 11);
             this.nmrcUpDownCantidad.Maximum = new decimal(new int[] {
             99999999,
             0,
@@ -329,12 +330,12 @@
             this.btnAgregar.AutoSize = true;
             this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAgregar.Depth = 0;
-            this.btnAgregar.Location = new System.Drawing.Point(149, 6);
+            this.btnAgregar.Location = new System.Drawing.Point(144, 6);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Primary = false;
-            this.btnAgregar.Size = new System.Drawing.Size(108, 31);
+            this.btnAgregar.Size = new System.Drawing.Size(113, 31);
             this.btnAgregar.TabIndex = 10;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -349,7 +350,7 @@
             this.lblCantidad.Location = new System.Drawing.Point(3, 12);
             this.lblCantidad.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCantidad.Name = "lblCantidad";
-            this.lblCantidad.Size = new System.Drawing.Size(82, 19);
+            this.lblCantidad.Size = new System.Drawing.Size(79, 19);
             this.lblCantidad.TabIndex = 11;
             this.lblCantidad.Text = "Cantidad:";
             // 
@@ -855,15 +856,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(958, 620);
-            this.Controls.Add(this.tblLayoutPanelBase);
-            this.MaximizeBox = false;
+            this.Controls.Add(this.tblLayoutPanelPrincipal);
             this.MinimumSize = new System.Drawing.Size(745, 615);
             this.Name = "frmPedidoNuevo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuevo Pedido";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPedidoNuevo_FormClosing);
             this.Move += new System.EventHandler(this.frmPedidoNuevo_Move);
-            this.tblLayoutPanelBase.ResumeLayout(false);
+            this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.tblLayoutPanelBotones.ResumeLayout(false);
             this.tblLayoutPanelBotones.PerformLayout();
             this.tblLayoutPanelArticulos.ResumeLayout(false);
@@ -890,7 +890,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelBase;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelPrincipal;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelBotones;
         internal System.Windows.Forms.Label lblTotalVar;
         internal System.Windows.Forms.Label lblTotal;

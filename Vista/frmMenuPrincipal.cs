@@ -15,8 +15,11 @@ namespace Vista
 {
     public partial class frmMenuPrincipal : frmMaterialSkinBase
     {
-        Point glb_localizacion = new System.Drawing.Point(224, 124);
+        #region Atributos
         Form glb_form;
+        bool currentFormLocked;
+        #endregion
+
         #region Constructores
         public frmMenuPrincipal()
         {
@@ -131,7 +134,7 @@ namespace Vista
         private void agregarFormulario(Form p_form)
         {
             Type T = p_form.GetType();
-            
+            glb_form.FormClosing += (s, p) => { this.glb_form = new Form(); };//Permite abrir el mismo tipo de formulario recién cerrado.
             foreach (Type t in T.Assembly.GetTypes())
             {//Chequea si hereda de frmMaterialSkinBase
                 if (t == typeof(frmMaterialSkinBase))
@@ -148,6 +151,10 @@ namespace Vista
 
         private bool validarAgregarFormulario(Type T)
         {
+            if (currentFormLocked)
+            {
+                return false;
+            }
             if(glb_form == null )
             {
                 return true;
@@ -185,13 +192,13 @@ namespace Vista
         #region ToolStripMenuItem
         private void tsmi_ABMentidades_Click(object sender, EventArgs e)
         {
-            if (!this.validarAgregarFormulario(typeof(frmABMEntidad)))
+            if ( !this.validarAgregarFormulario(typeof(frmABMEntidad)))
             {
                 return;
             }
             
             glb_form = new frmABMEntidad();
-            
+           
             this.agregarFormulario(glb_form);
         }
         private void tsmi_ABMarticulos_Click(object sender, EventArgs e)
@@ -238,15 +245,22 @@ namespace Vista
                 {
                     return;
                 }
+                else if (currentFormLocked)
+                {
+                    return;
+                }
             }
 
             if (glb_form != null && glb_form.GetType() == typeof(frmPedidoCierre) && (glb_form as frmPedidoCierre).getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
             {
                 glb_form.Close();
             }
-
+            
             glb_form = new frmPedidoCierre(new ModeloPedido() {codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoPersona });
             this.agregarFormulario(glb_form);
+
+            (glb_form as frmPedidoCierre).AgregarLineaPedido += evento_agregarFormEmergente;
+            (glb_form as frmPedidoCierre).BuscarCliente += evento_agregarFormEmergente;
         }
 
         private void toolStripbtnPedidoProveedor_Click(object sender, EventArgs e)
@@ -254,6 +268,10 @@ namespace Vista
             if (!this.validarAgregarFormulario(typeof(frmPedidoCierre)))
             {
                 if ((glb_form as frmPedidoCierre).getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
+                {
+                    return;
+                }
+                else if (currentFormLocked)
                 {
                     return;
                 }
@@ -265,6 +283,8 @@ namespace Vista
             
             glb_form = new frmPedidoCierre(new ModeloPedido() { codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoProveedor });
             this.agregarFormulario(glb_form);
+
+            (glb_form as frmPedidoCierre).AgregarLineaPedido += evento_agregarFormEmergente;
         }
 
         private void tlsbtnDevolucion_Click(object sender, EventArgs e)
@@ -300,7 +320,23 @@ namespace Vista
             this.agregarFormulario(glb_form);
         }
         #endregion
+        /// <summary>
+        /// Forms nacidas de formularios principales que ocupan todo el panel principal. Ej: frmPedidoNuevo en frmPedidoCierre para agregar lineas
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void evento_agregarFormEmergente(object sender, EventArgs e)
+        {
+            this.agregarFormulario(sender as Form);
+            (sender as frmMaterialSkinBase).BringToFront();
+            (sender as frmMaterialSkinBase).CerrarForm += evento_cerrarFormEmergente;
+            this.currentFormLocked = true;
+        }
 
+        public void evento_cerrarFormEmergente(object sender, EventArgs e)
+        {
+            this.currentFormLocked = false;
+        }
         #endregion
     }
 

@@ -28,9 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // frmMaterialSkinBase
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(300, 300);
+            this.Name = "frmMaterialSkinBase";
             this.Text = "frmMaterialSkinBase";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMaterialSkinBase_FormClosed);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -200,6 +200,10 @@ namespace Vista
         {
             this.Width = AnchoVentana;
             this.FormClosing += frmResultadoBusqueda_FormClosing;
+
+            this.pnlBase.Location = new Point(0,60);
+            this.pnlBase.Width = this.Width;
+            this.pnlBase.Height = this.Height - 60;
         }
 
         private void inicializarMostrarBusqueda(object p_objeto)
@@ -207,10 +211,10 @@ namespace Vista
             /*
              Se los nullifica ya que más adelante se utilizará la lista no null para devolver el resultado en método asignarResultado
              */
-            this.Controls.Clear();
+            this.pnlBase.Controls.Clear();
             this.BringToFront();
             this.inicializarDataGridViewResultadoBusqueda(p_objeto);
-            this.Controls.Add(dataGridViewResultadoBusqueda);
+            this.pnlBase.Controls.Add(dataGridViewResultadoBusqueda);
             modeloSeleccionado = null;
             glb_lst_objectos = null;
         }

@@ -28,20 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.pnlBase = new System.Windows.Forms.Panel();
             this.SuspendLayout();
+            // 
+            // pnlBase
+            // 
+            this.pnlBase.Location = new System.Drawing.Point(51, 103);
+            this.pnlBase.Name = "pnlBase";
+            this.pnlBase.Size = new System.Drawing.Size(200, 100);
+            this.pnlBase.TabIndex = 0;
             // 
             // frmResultadoBusqueda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.Controls.Add(this.pnlBase);
             this.Name = "frmResultadoBusqueda";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel pnlBase;
     }
 }

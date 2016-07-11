@@ -15,6 +15,8 @@ namespace Vista
 {
     public partial class frmMaterialSkinBase : MaterialForm
     {
+        public event EventHandler CerrarForm;
+
         public frmMaterialSkinBase()
         {
             InitializeComponent();
@@ -38,6 +40,14 @@ namespace Vista
         {
             //Si form no tiene método inicializarForm(x,y), se corre inicializarForm()
             this.inicializarForm();
+        }
+
+        private void frmMaterialSkinBase_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (CerrarForm != null)
+            {
+                this.CerrarForm(sender, e);
+            }
         }
     }
 }

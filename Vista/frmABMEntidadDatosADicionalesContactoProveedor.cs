@@ -46,11 +46,6 @@ namespace Vista
         #region Inicialización
         private void inicializarFormulario()
         {
-            //no permitir al usuario modificar dimensiones de ventan
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            
             this.StartPosition = FormStartPosition.CenterParent;
             //txtBoxCodigoSeleccionado.ReadOnly = txtBoxCUITSeleccionado.ReadOnly = txtBoxRazonSocialSeleccionado.ReadOnly = true;
         }
