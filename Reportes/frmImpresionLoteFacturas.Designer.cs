@@ -31,12 +31,16 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.contenedorLote = new Microsoft.Reporting.WinForms.ReportViewer();
             this.ModeloReporteEncabezadoFacturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.contenedorLote = new Microsoft.Reporting.WinForms.ReportViewer();
             this.modeloReporteDetalleFacturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteEncabezadoFacturaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modeloReporteDetalleFacturaBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // ModeloReporteEncabezadoFacturaBindingSource
+            // 
+            this.ModeloReporteEncabezadoFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezadoFactura);
             // 
             // contenedorLote
             // 
@@ -53,13 +57,10 @@
             this.contenedorLote.Size = new System.Drawing.Size(792, 489);
             this.contenedorLote.TabIndex = 0;
             // 
-            // ModeloReporteEncabezadoFacturaBindingSource
-            // 
-            this.ModeloReporteEncabezadoFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezadoFactura);
-            // 
             // modeloReporteDetalleFacturaBindingSource
             // 
-            this.modeloReporteDetalleFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteDetalleFactura);
+            this.modeloReporteDetalleFacturaBindingSource.DataMember = "detalleFactura";
+            this.modeloReporteDetalleFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezadoFactura);
             // 
             // frmImpresionLoteFacturas
             // 

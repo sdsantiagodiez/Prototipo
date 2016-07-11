@@ -26,15 +26,16 @@ namespace Reportes
 
             ModeloReporteEncabezadoFacturaBindingSource.Clear();
             modeloReporteDetalleFacturaBindingSource.Clear();
-            modeloReporteDetalleFacturaBindingSource.DataSource = typeof(ModeloReporteDetalleFactura);
-            
-            foreach (ModeloReporteEncabezadoFactura mod in p_lst_mod_EncFac)
+            modeloReporteDetalleFacturaBindingSource.DataSource = typeof(List<ModeloReporteDetalleFactura>);
+            ModeloReporteEncabezadoFacturaBindingSource.DataSource = p_lst_mod_EncFac;
+            modeloReporteDetalleFacturaBindingSource.DataSource = p_lst_mod_EncFac;
+           /* foreach (ModeloReporteEncabezadoFactura mod in p_lst_mod_EncFac)
             {
                 //ModeloReporteEncabezadoFacturaBindingSource.DataSource = mod;
                 //modeloReporteDetalleFacturaBindingSource.DataSource = mod.detalleFactura;
                 modeloReporteDetalleFacturaBindingSource.Add(mod);
                 modeloReporteDetalleFacturaBindingSource.Add(mod.detalleFactura);
-            }
+            }*/
             
             
             this.contenedorLote.LocalReport.DataSources.Clear();
