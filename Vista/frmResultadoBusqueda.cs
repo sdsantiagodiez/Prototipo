@@ -563,5 +563,14 @@ namespace Vista
             this.Hide();
         }
         #endregion
+
+        /// <summary>
+        /// Habilita movimiento de ventana
+        /// </summary>
+        /// <param name="message"></param>
+        protected override void WndProc(ref Message message)
+        {
+            this.habilitarMovimiento(ref message);
+        }
     }
 }

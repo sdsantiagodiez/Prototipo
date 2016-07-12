@@ -61,6 +61,11 @@ namespace Vista
 
             base.WndProc(ref message);
         }
+
+        public void habilitarMovimiento(ref Message message)
+        {
+            base.WndProc(ref message);
+        }
         private void frmMaterialSkinBase_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (CerrarForm != null)
