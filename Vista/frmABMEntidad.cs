@@ -1295,12 +1295,6 @@ namespace Vista
         {
             this.buscar();
         }
-
-        private void frmABMEntidad_Move(object sender, EventArgs e)
-        {
-            this.Location = new Point(224, 124);
-        }
-
         #endregion
 
         #region ComboBox
@@ -1376,8 +1370,6 @@ namespace Vista
             }
         }
 
-        #endregion
-
-                
+        #endregion           
     }
 }

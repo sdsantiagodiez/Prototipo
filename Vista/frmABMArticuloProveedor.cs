@@ -530,12 +530,5 @@ namespace Vista
         }
 
         #endregion
-
-        private void frmABMArticuloProveedor_Move(object sender, EventArgs e)
-        {
-            this.Location = new Point(224, 124);
-        }
-
-
     }
 }

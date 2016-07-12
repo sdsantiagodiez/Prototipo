@@ -191,7 +191,6 @@
             this.MinimumSize = new System.Drawing.Size(450, 230);
             this.Name = "frmABMArticulo";
             this.Text = "Artículo";
-            this.Move += new System.EventHandler(this.frmABMArticulo_Move);
             this.Controls.SetChildIndex(this.tblLayoutPanelPrincipal, 0);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).EndInit();
             this.tblLayoutPanelPrincipal.ResumeLayout(false);

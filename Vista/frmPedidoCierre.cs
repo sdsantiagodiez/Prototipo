@@ -1481,13 +1481,6 @@ namespace Vista
             lcl_frm_articuloProveedor.ShowDialog();
         }
         #endregion
-
-        private void frmPedidoCierre_Move(object sender, EventArgs e)
-        {
-            this.Location = new Point(224, 124);
-        }
-
-
         #endregion
 
         private void btnSalir_Click(object sender, EventArgs e)

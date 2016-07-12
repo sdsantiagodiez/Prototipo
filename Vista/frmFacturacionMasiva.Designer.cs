@@ -491,10 +491,8 @@
             this.Controls.Add(this.tblLayoutPanelPrincipal);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
             this.Name = "frmFacturacionMasiva";
             this.Text = "Facturación";
-            this.Move += new System.EventHandler(this.frmFacturacionMasiva_Move);
             this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvComprSinFact)).EndInit();

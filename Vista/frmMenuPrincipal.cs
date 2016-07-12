@@ -46,11 +46,6 @@ namespace Vista
         #region Métodos
 
         #region Inicialización
-        private Point ubicacionPrincipal;
-        private void frmMenuPrincipal_Move(object sender, EventArgs e)
-        {
-            this.Location = ubicacionPrincipal;
-        }
         private bool inicializarModoFormulario(ModeloUsuario p_mod_usuario)
         {
             this.inicializarModoAdmin(false);
@@ -116,7 +111,7 @@ namespace Vista
             }
         }
 
-        private void inicializarForm()
+        public override void inicializarForm()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
             Width = Screen.PrimaryScreen.WorkingArea.Width;
@@ -124,7 +119,6 @@ namespace Vista
             //Width = 1280;
             //Height = 1280;
             
-            this.ubicacionPrincipal = this.Location;
             this.tblLayoutPanelPrincipal.Location = new Point(3, 60);
             this.tblLayoutPanelPrincipal.Height = Height - 60; // 60 pixeles para que se vea título de ventana principal
             this.tblLayoutPanelPrincipal.Width = Width -3; //un margen derecho de 3

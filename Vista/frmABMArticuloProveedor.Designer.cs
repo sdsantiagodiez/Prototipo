@@ -562,11 +562,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(575, 559);
             this.Controls.Add(this.tblLayoutPanelPrincipal);
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(450, 559);
             this.Name = "frmABMArticuloProveedor";
             this.Text = "Articulo Proveedor";
-            this.Move += new System.EventHandler(this.frmABMArticuloProveedor_Move);
             this.Controls.SetChildIndex(this.tblLayoutPanelPrincipal, 0);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).EndInit();
             this.tblLayoutPanelPrincipal.ResumeLayout(false);

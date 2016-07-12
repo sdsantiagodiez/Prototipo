@@ -41,7 +41,26 @@ namespace Vista
             //Si form no tiene método inicializarForm(x,y), se corre inicializarForm()
             this.inicializarForm();
         }
+        /// <summary>
+        /// Deshabilita posibilidad de usuario de mover la ventana
+        /// </summary>
+        /// <param name="message"></param>
+        protected override void WndProc(ref Message message)
+        {
+            const int WM_SYSCOMMAND = 0x0112;
+            const int SC_MOVE = 0xF010;
 
+            switch (message.Msg)
+            {
+                case WM_SYSCOMMAND:
+                    int command = message.WParam.ToInt32() & 0xfff0;
+                    if (command == SC_MOVE)
+                        return;
+                    break;
+            }
+
+            base.WndProc(ref message);
+        }
         private void frmMaterialSkinBase_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (CerrarForm != null)

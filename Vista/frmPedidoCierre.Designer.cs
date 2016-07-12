@@ -1682,7 +1682,6 @@
             this.MinimumSize = new System.Drawing.Size(16, 500);
             this.Name = "frmPedidoCierre";
             this.Text = "Cierre de Pedido";
-            this.Move += new System.EventHandler(this.frmPedidoCierre_Move);
             this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.tblLayoutPanelPrincipal.PerformLayout();
             this.tbControlPrincipal.ResumeLayout(false);

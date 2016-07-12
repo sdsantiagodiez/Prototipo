@@ -408,12 +408,9 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(398, 318);
             this.Controls.Add(this.tblLayoutPanelPrincipal);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmReporteSeleccion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Seleccione un Reporte";
-            this.Move += new System.EventHandler(this.frmReporteSeleccion_Move);
             this.tabControl.ResumeLayout(false);
             this.tabPedidos.ResumeLayout(false);
             this.tabPedidos.PerformLayout();

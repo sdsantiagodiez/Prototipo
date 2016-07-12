@@ -634,7 +634,6 @@
             this.Controls.Add(this.splitter1);
             this.Name = "frmMenuPrincipal";
             this.Text = "Menú Principal";
-            this.Move += new System.EventHandler(this.frmMenuPrincipal_Move);
             this.tlsMenuRapido.ResumeLayout(false);
             this.tlsMenuRapido.PerformLayout();
             this.menuStrip.ResumeLayout(false);

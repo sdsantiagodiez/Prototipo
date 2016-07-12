@@ -1304,7 +1304,6 @@
             this.Controls.Add(this.pnlBase);
             this.Name = "frmABMEntidad";
             this.Text = "ABM Entidades";
-            this.Move += new System.EventHandler(this.frmABMEntidad_Move);
             this.Controls.SetChildIndex(this.pnlBase, 0);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).EndInit();
             this.tblLayoutPanelPrincipal.ResumeLayout(false);
