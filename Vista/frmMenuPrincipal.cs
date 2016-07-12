@@ -389,6 +389,12 @@ namespace Vista
             //Nada todavia, falta definir que hacemos con los descuentos
 
         }
+
+        private void artículoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmImportacionPath lcl_frm_importacion = new frmImportacionPath();
+            lcl_frm_importacion.ShowDialog();
+        }
     }
 
     //clase para llenar combo box categoria a buscar
