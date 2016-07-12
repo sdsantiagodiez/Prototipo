@@ -129,18 +129,13 @@ namespace Vista
             };
 
             cntxMenuLineasPedidos = new ContextMenu();
-            cntxMenuLineasPedidos.MenuItems.Add("Editar Cantidad");
-            cntxMenuLineasPedidos.MenuItems[0].Click += (s, e) =>
-            {
-                //this.editarCantidadArticulosEnLineaPedido();
-            };
             cntxMenuLineasPedidos.MenuItems.Add("Quitar seleccionado");
-            cntxMenuLineasPedidos.MenuItems[1].Click += (s, e) =>
+            cntxMenuLineasPedidos.MenuItems[0].Click += (s, e) =>
             {
                 this.eliminarLineaPedidoADevolucion();
             };
             cntxMenuLineasPedidos.MenuItems.Add("Quitar todos");
-            cntxMenuLineasPedidos.MenuItems[2].Click += (s, e) =>
+            cntxMenuLineasPedidos.MenuItems[1].Click += (s, e) =>
             {
                 this.eliminarLineaPedidoADevolucionTodos();
             };
@@ -230,22 +225,20 @@ namespace Vista
         {
             if (this.dgvArticulosDevolucion.SelectedRows.Count > 1)
             {
-                this.cntxMenuLineasPedidos.MenuItems[0].Visible = false;
-                this.cntxMenuLineasPedidos.MenuItems[1].Text = "Quitar seleccionados";
+                this.cntxMenuLineasPedidos.MenuItems[0].Text = "Quitar seleccionados";
                 if (this.dgvArticulosDevolucion.SelectedRows.Count == this.controlador.pedidoActual.lineasPedido.Count)
                 {
-                    this.cntxMenuLineasPedidos.MenuItems[1].Visible = false;
+                    this.cntxMenuLineasPedidos.MenuItems[0].Visible = false;
                 }
                 else
                 {
-                    this.cntxMenuLineasPedidos.MenuItems[1].Visible = true;
+                    this.cntxMenuLineasPedidos.MenuItems[0].Visible = true;
                 }
             }
             else
             {
                 this.cntxMenuLineasPedidos.MenuItems[0].Visible = true;
-                this.cntxMenuLineasPedidos.MenuItems[1].Visible = true;
-                this.cntxMenuLineasPedidos.MenuItems[1].Text = "Quitar seleccionado";
+                this.cntxMenuLineasPedidos.MenuItems[0].Text = "Quitar seleccionado";
             }
         }
         private void inicializarPedidoOriginal(ModeloPedido p_mod_pedido)
