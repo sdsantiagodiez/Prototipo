@@ -296,6 +296,7 @@ namespace Vista
 
             glb_form = new frmPedidoDevolucion();
             this.agregarFormulario(glb_form);
+            (glb_form as frmPedidoDevolucion).IniciarDevolucionPedido += evento_iniciarDevolverPedido;
         }
 
         private void toolStripbtnFacturacion_Click(object sender, EventArgs e)
@@ -320,6 +321,7 @@ namespace Vista
             this.agregarFormulario(glb_form);
         }
         #endregion
+ 
         /// <summary>
         /// Forms nacidas de formularios principales que ocupan todo el panel principal. Ej: frmPedidoNuevo en frmPedidoCierre para agregar lineas
         /// </summary>
@@ -330,12 +332,31 @@ namespace Vista
             this.agregarFormulario(sender as Form);
             (sender as frmMaterialSkinBase).BringToFront();
             (sender as frmMaterialSkinBase).CerrarForm += evento_cerrarFormEmergente;
+            if (sender.GetType() == typeof(frmPedidoDevolucion))
+            {
+                (sender as frmPedidoDevolucion).ContinuarDevolucionPedido += this.evento_continuarDevolverPedido;
+            }
             this.currentFormLocked = true;
         }
 
         public void evento_cerrarFormEmergente(object sender, EventArgs e)
         {
             this.currentFormLocked = false;
+        }
+
+        public void evento_iniciarDevolverPedido(object sender, EventArgs e)
+        {
+            glb_form.Close();
+            glb_form = new frmPedidoCierre((sender as frmPedidoDevolucion).controlador.pedidoActual, (sender as frmPedidoDevolucion).glb_mod_pedidoOriginal);
+            this.agregarFormulario(glb_form);
+
+            (glb_form as frmPedidoCierre).AgregarLineaPedido += evento_agregarFormEmergente;
+            (glb_form as frmPedidoCierre).BuscarCliente += evento_agregarFormEmergente;
+        }
+        public void evento_continuarDevolverPedido(object sender, EventArgs e)
+        {
+            glb_form = new frmPedidoCierre((sender as frmPedidoDevolucion).controlador.pedidoActual, (sender as frmPedidoDevolucion).glb_mod_pedidoOriginal);
+            (sender as Form).Close();
         }
         #endregion
     }

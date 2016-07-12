@@ -16,13 +16,15 @@ namespace Vista
     public partial class frmPedidoDevolucion : frmMaterialSkinBase
     {
         #region Atributos
+        public EventHandler IniciarDevolucionPedido;
+        public EventHandler ContinuarDevolucionPedido;
         public ModeloPedido glb_mod_pedidoOriginal;
         ModeloLineaPedido glb_mod_lineaPedidoActual;
         public ControladorPedido controlador;
         ContextMenu cntxMenuResultadoBusqueda;
         ContextMenu cntxMenuLineasPedidos;
         //se usa para evitar mostrar mensaje de confirmación cuando se cierra la ventana y se selecciona continuar
-        bool continuarPedido;
+        bool continuarDevolucion;
         #endregion
         
         #region Constructores
@@ -48,6 +50,7 @@ namespace Vista
         public frmPedidoDevolucion(ModeloPedido p_mod_pedido) :this()
         {
             this.inicializarPedidoOriginal(p_mod_pedido);
+            this.continuarDevolucion = true;
         }
         /// <summary>
         /// Inicializa pedido del que se extraerán artículos a devolución y pedido con artículos a devolver
@@ -627,8 +630,15 @@ namespace Vista
             //compruebo que existan articulos para generar pedido
             if (controlador.getCantidadLineas() > 0)
             {
-                this.continuarPedido = true;
-                this.Hide();
+                if (!continuarDevolucion)
+                {
+                    this.IniciarDevolucionPedido(this, e);
+                }
+                else
+                {
+                    this.ContinuarDevolucionPedido(this, e);
+                }
+
             }
             else
             {

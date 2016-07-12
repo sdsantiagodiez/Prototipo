@@ -1438,7 +1438,7 @@ namespace Vista
             if (modoFormulario == ModoFormularioDevolucionCliente)
             {
                 lcl_frm_agregarArticulos = new frmPedidoDevolucion(glb_mod_pedidoOriginalDevolucion, pedidoAgregarLineas);
-                
+                (lcl_frm_agregarArticulos as frmPedidoDevolucion).CerrarForm += this.evento_agregarLineaClosed;
             }
             else
             {

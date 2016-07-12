@@ -474,7 +474,7 @@ namespace Vista
         }
         #endregion
 
-        #region Eventos       
+        #region Eventos
         #region Botones
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
