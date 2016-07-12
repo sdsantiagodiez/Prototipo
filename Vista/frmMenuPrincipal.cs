@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using LibreriaClasesCompartidas;
+using Controladores;
 
 
 namespace Vista
@@ -353,6 +354,41 @@ namespace Vista
             (sender as Form).Close();
         }
         #endregion
+
+        private void articuloProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ControladorExcel lcl_con_excel = new ControladorExcel();
+            lcl_con_excel.ExportarAExcel(typeof(ModeloArticuloProveedores));
+            MessageBox.Show("La Exportacion de ArtículoProveedor se realizó Correctamente");
+
+        }
+
+        private void artículosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ControladorExcel lcl_con_excel = new ControladorExcel();
+            lcl_con_excel.ExportarAExcel(typeof(ModeloArticulos));
+            MessageBox.Show("La Exportacion de Artículos se realizó Correctamente");
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ControladorExcel lcl_con_excel = new ControladorExcel();
+            lcl_con_excel.ExportarAExcel(typeof(ModeloCliente));
+            MessageBox.Show("La Exportacion de Clientes se realizó Correctamente");
+        }
+
+        private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ControladorExcel lcl_con_excel = new ControladorExcel();
+            lcl_con_excel.ExportarAExcel(typeof(ModeloProveedor));
+            MessageBox.Show("La Exportacion de Proveedores se realizó Correctamente");
+        }
+
+        private void descuentosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Nada todavia, falta definir que hacemos con los descuentos
+
+        }
     }
 
     //clase para llenar combo box categoria a buscar

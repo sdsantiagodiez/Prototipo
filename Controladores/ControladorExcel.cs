@@ -14,7 +14,7 @@ namespace Controladores
     {
         ExcelLib._Worksheet glb_hojaTrabajo;
         System.Data.DataTable glb_dataTable; 
-            public string ExportarAExcel(object p_objecto)
+            public bool ExportarAExcel(Type p_type)
             {
                 // se inicia la aplicacion
                 var ExcelApp = new ExcelLib.Application();
@@ -22,39 +22,42 @@ namespace Controladores
                 ExcelApp.Visible = true;
                 //Se agrega una hoja de trabajo
                 ExcelApp.Workbooks.Add();
-                //trabajamos la hoja creada
-                this.aExcel(p_objecto);
                 //Asociamos nuestra hoja a la hoja activa
                 glb_hojaTrabajo = (ExcelLib._Worksheet)ExcelApp.ActiveSheet;
-                //ver cual de los dos funciona
-                glb_hojaTrabajo = ExcelApp.Worksheets.Add();
-
-                return "OK";
+                //trabajamos la hoja creada
+                this.aExcel(p_type);
+                
+                
+                return true;
             }
 
-            private void aExcel(object p_objeto)
+            private void aExcel(Type p_type)
             {
-                Type T = p_objeto.GetType();
+                Type T = p_type;
                 if (T == typeof(ModeloArticuloProveedores))
                 {
                     this.completarColumnasArticuloProveedor();
-                    completaFilasArticuloProveedor(ControladorBusqueda.buscar(p_objeto as ModeloArticuloProveedores));
+                    ModeloArticuloProveedores lcl_mod_artP = new ModeloArticuloProveedores();
+                    completaFilasArticuloProveedor(ControladorBusqueda.buscar(lcl_mod_artP));
 
                 }
                 else if (T == typeof(ModeloArticulos))
                 {
                     completarColumnasArticulo();
-                    completaFilasArticulo(ControladorBusqueda.buscar(p_objeto as ModeloArticulos));
+                    ModeloArticulos lcl_mod_art = new ModeloArticulos();
+                    completaFilasArticulo(ControladorBusqueda.buscar(lcl_mod_art));
                 }
                 else if (T == typeof(ModeloCliente))
                 {
                     completarColumnasCliente();
-                    //completaFilasCliente(ControladorBusqueda.buscar(p_objeto as ModeloCliente));
+                    ModeloEntidad lcl_mod_entidad = new ModeloCliente();
+                    completaFilasCliente(ControladorBusqueda.buscar(lcl_mod_entidad as ModeloCliente));
                 }
                 else if (T == typeof(ModeloProveedor))
                 {
                     completarColumnasProveedor();
-                    //completaFilasProveedor(ControladorBusqueda.buscar(p_objeto as ModeloProveedor));
+                    ModeloEntidad lcl_mod_entidad = new ModeloProveedor();
+                    completaFilasProveedor(ControladorBusqueda.buscar(lcl_mod_entidad as ModeloProveedor));
                 }
                 else if (T == typeof(ModeloDescuentoArticulo))
                 {
@@ -177,8 +180,8 @@ namespace Controladores
                         glb_hojaTrabajo.Cells[row, "F"] = p_mod.stockMinimo;
                         glb_hojaTrabajo.Cells[row, "G"] = p_mod.stockActual;
                         glb_hojaTrabajo.Cells[row, "H"] = p_mod.ubicacion;
-                        glb_hojaTrabajo.Cells[row, "I"] = p_mod.valorCompra;
-                        glb_hojaTrabajo.Cells[row, "J"] = p_mod.valorVenta;
+                        glb_hojaTrabajo.Cells[row, "I"] = p_mod.valorCompra.valorArticulo;
+                        glb_hojaTrabajo.Cells[row, "J"] = p_mod.valorVenta.valorArticulo;
                   }
             }
             private void completaFilasArticulo(List<ModeloArticulos> p_lst_mod_art)
@@ -194,34 +197,34 @@ namespace Controladores
                 }
             
             }
-            private void completaFilasCliente(List<ModeloCliente> p_lst_mod_cli)
+            private void completaFilasCliente(List<ModeloEntidad> p_lst_mod_cli)
             {
                 var row = 1;
-                foreach (ModeloCliente p_mod in p_lst_mod_cli)
+                foreach (ModeloEntidad p_mod in p_lst_mod_cli)
                 {
                     row++;
                     glb_hojaTrabajo.Cells[row, "A"] = p_mod.codigo;
                     glb_hojaTrabajo.Cells[row, "B"] = p_mod.tipoEntidad;
                     glb_hojaTrabajo.Cells[row, "C"] = p_mod.cuit;
-                    glb_hojaTrabajo.Cells[row, "D"] = p_mod.observaciones;
-                    glb_hojaTrabajo.Cells[row, "E"] = p_mod.dni;
-                    glb_hojaTrabajo.Cells[row, "F"] = p_mod.nombre;
-                    glb_hojaTrabajo.Cells[row, "G"] = p_mod.apellido;
-                    glb_hojaTrabajo.Cells[row, "H"] = p_mod.tipoPersona;
+                    glb_hojaTrabajo.Cells[row, "D"] = (p_mod.observaciones != null) ? p_mod.observaciones : "";
+                    glb_hojaTrabajo.Cells[row, "E"] = (p_mod as ModeloCliente).dni;
+                    glb_hojaTrabajo.Cells[row, "F"] = (p_mod as ModeloCliente).nombre;
+                    glb_hojaTrabajo.Cells[row, "G"] = (p_mod as ModeloCliente).apellido;
+                    glb_hojaTrabajo.Cells[row, "H"] = (p_mod as ModeloCliente).tipoPersona;
                 }
 
             }
-            private void completaFilasProveedor(List<ModeloProveedor> p_lst_mod_prov)
+            private void completaFilasProveedor(List<ModeloEntidad> p_lst_mod_prov)
             {
                 var row = 1;
-                foreach (ModeloProveedor p_mod in p_lst_mod_prov)
+                foreach (ModeloEntidad p_mod in p_lst_mod_prov)
                 {
                     row++;
                     glb_hojaTrabajo.Cells[row, "A"] = p_mod.codigo;
                     glb_hojaTrabajo.Cells[row, "B"] = p_mod.tipoEntidad;
                     glb_hojaTrabajo.Cells[row, "C"] = p_mod.cuit;
                     glb_hojaTrabajo.Cells[row, "D"] = p_mod.observaciones;
-                    glb_hojaTrabajo.Cells[row, "E"] = p_mod.razonSocial;
+                    glb_hojaTrabajo.Cells[row, "E"] = (p_mod as ModeloProveedor).razonSocial;
                 }
 
             }
