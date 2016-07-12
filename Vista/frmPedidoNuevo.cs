@@ -16,7 +16,7 @@ namespace Vista
     public partial class frmPedidoNuevo : frmMaterialSkinBase
     {
         #region Atributos
-        public event EventHandler CerrarForm;
+        
         ModeloArticuloProveedores glb_mod_articuloSeleccionadoBusqueda;
         public ControladorPedido controlador;
         ContextMenu cntxMenuResultadoBusqueda;

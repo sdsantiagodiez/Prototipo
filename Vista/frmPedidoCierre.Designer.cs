@@ -1667,6 +1667,7 @@
             this.btnSalir.TabIndex = 11;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // modeloLineaPedidoBindingSource
             // 
@@ -1678,7 +1679,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(699, 620);
             this.Controls.Add(this.tblLayoutPanelPrincipal);
-            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(16, 500);
             this.Name = "frmPedidoCierre";
             this.Text = "Cierre de Pedido";

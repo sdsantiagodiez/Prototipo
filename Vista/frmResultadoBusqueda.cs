@@ -517,6 +517,7 @@ namespace Vista
                 if(cantidadResultados > 1)
                     s = "s";
                 this.Text += " ("+cantidadResultados.ToString()+" resultado"+s+" encontrado"+s+")";
+                
                 this.ShowDialog();
             }
             else
@@ -532,7 +533,7 @@ namespace Vista
             this.mostrarBusqueda();
         }
 
-        private void hacerBusqueda(Object p_objeto)
+        public void hacerBusqueda(Object p_objeto)
         {
             this.inicializarMostrarBusqueda(p_objeto);
             glb_lst_objectos = ControladorBusqueda.buscar(p_objeto);

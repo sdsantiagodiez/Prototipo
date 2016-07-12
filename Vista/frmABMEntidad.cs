@@ -463,7 +463,7 @@ namespace Vista
             }
             return true;
         }
-
+  
         private void buscarEntidad()
         {
             BackgroundWorker bw = new BackgroundWorker();
@@ -471,11 +471,13 @@ namespace Vista
             frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
             bw.DoWork += (s, e) =>
             {
-                lcl_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_entidadActual);    
+                lcl_frm_resultadoBusqueda.hacerBusqueda(glb_mod_entidadActual);  
             };
             bw.RunWorkerCompleted += (s, e) =>
             {
                 lcl_frm_loading.Hide();
+
+                lcl_frm_resultadoBusqueda.mostrarBusqueda();
                 if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
                 {
                     if (this.modoFormulario != ModoFormularioClientePedido)
@@ -488,7 +490,7 @@ namespace Vista
                     else
                     {
                         glb_mod_entidadActual = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad;
-                        this.Hide();
+                        this.Close();
                     }
                 }
             };

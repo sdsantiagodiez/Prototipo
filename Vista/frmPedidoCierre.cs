@@ -201,12 +201,14 @@ namespace Vista
             this.habilitarControl(this.btnSalir);
             this.habilitarControl(this.tbControlPrincipal);
             this.habilitarControl(this.cmbBoxPedidosProveedores);
+            this.habilitarControl(this.selectorControlPrincipal);
             this.dgvArticulosVenta.ClearSelection();
         }
         private void inicializarPedidoFacturado()
         {
             this.inicializarPedidoCerrado();
             this.habilitarControl(this.btnGuardar);
+
         }
  
         private void inicializarControles()
@@ -1307,6 +1309,7 @@ namespace Vista
             {
                 controlador.pedidoActual.entidad = lcl_mod_cliente;
                 this.cargarEntidadEnControles(controlador.pedidoActual.entidad as ModeloCliente);
+                this.cargarDocumentoEnControles(controlador.pedidoActual);
             }
         }
 
@@ -1486,5 +1489,10 @@ namespace Vista
 
 
         #endregion
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
