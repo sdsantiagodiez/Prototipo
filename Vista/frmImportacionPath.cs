@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Controladores;
 
 namespace Vista
 {
@@ -27,10 +28,13 @@ namespace Vista
         #endregion
 
         ErrorProvider errorActual = new ErrorProvider();
-        public frmImportacionPath()
+        Type glb_localType;
+        ControladorExcel glb_con_excel = new ControladorExcel();
+        public frmImportacionPath(Type p_typeOf, string p_modelo)
         {
             InitializeComponent();
-            
+            glb_localType = p_typeOf;
+            this.Text = p_modelo + "- Seleccione el Archivo a Importar";
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -51,7 +55,7 @@ namespace Vista
 
         private void btnImportar_Click(object sender, EventArgs e)
         {
-            
+            devuelveMensaje(glb_con_excel.ImportarDeExcel(this.txtPathImportacion.Text, glb_localType));
         }
 
         private void txtPathImportacion_Leave(object sender, EventArgs e)
@@ -80,6 +84,10 @@ namespace Vista
                 errorActual.Clear();
                 this.btnImportar.Enabled = true;
             }
+        }
+        private void devuelveMensaje(string p_message)
+        {
+            MessageBox.Show(p_message);
         }
         
         

@@ -13,7 +13,8 @@ namespace Controladores
     public class ControladorExcel
     {
         ExcelLib._Worksheet glb_hojaTrabajo;
-        System.Data.DataTable glb_dataTable; 
+        System.Data.DataTable glb_dataTable;
+        ControladorAlta glb_con_alta = new ControladorAlta();
             public bool ExportarAExcel(Type p_type)
             {
                 // se inicia la aplicacion
@@ -105,12 +106,42 @@ namespace Controladores
                     row[7] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 8]).Value2);
                     row[8] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 9]).Value2);
                     row[9] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 10]).Value2);
-                    row[10] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 11]).Value2);
+                   //row[10] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 11]).Value2);
                     index++;
                     dt.Rows.Add(row);
                 }
                 app.Workbooks.Close();
                 return dt;
+            }
+            public string ImportarDeExcel(string p_path, Type p_typeOf)
+            {
+                DataTable p_dataTable = this.deExcel(p_path);
+                string message = "";
+
+                if (p_typeOf == typeof(ModeloArticuloProveedores))
+                {
+                    message= (addArticuloProveedor(this.completaModeloArticuloProveedor(p_dataTable)));
+                    
+                }
+                else if (p_typeOf == typeof(ModeloArticulos))
+                {
+                    message=(addArticulo(this.completaModeloArticulo(p_dataTable)));
+                }
+                else if (p_typeOf == typeof(ModeloCliente))
+                {
+                    //message=(addCliente(this.completaModeloCliente(p_dataTable)));
+                }
+                else if (p_typeOf == typeof(ModeloProveedor))
+                {
+                    //message=(addProveedor(this.completaModeloProveedor(p_dataTable)));
+                }
+                else if (p_typeOf == typeof(ModeloDescuentoArticulo))
+                {
+                    message=(addDescuento(this.completaModeloDescuento(p_dataTable)));
+                }
+                else { message = "Se ha producido un error en la importación."; };
+                
+                return message;
             }
 
             private void completarColumnasArticuloProveedor()
@@ -344,6 +375,56 @@ namespace Controladores
                 return lcl_lst_mod_desArt;
             }
 
+            private string addArticuloProveedor(List<ModeloArticuloProveedores> p_lst_mod_artPro)
+            {
+
+                int i = 0;
+                foreach (ModeloArticuloProveedores modArt in p_lst_mod_artPro)
+                {
+                   i = (glb_con_alta.agregar(modArt)==true)? i++:i;
+                }
+                return "Se agregaron " + i + " ArtículoProveedor.";
+            }
+            private string addArticulo(List<ModeloArticulos> p_lst_mod_art)
+            {
+
+                int i = 0;
+                foreach (ModeloArticulos modArt in p_lst_mod_art)
+                {
+                    i = (glb_con_alta.agregar(modArt) == true) ? i++ : i;
+                }
+                return "Se agregaron " + i + " Artículos.";
+            }
+            private string addCliente(List<ModeloEntidad> p_lst_mod_cli)
+            {
+                ModeloEntidad lcl_aux_cli = new ModeloCliente();
+                int i = 0;
+                foreach (ModeloCliente modCli in p_lst_mod_cli)
+                {
+                   // i = (glb_con_alta.agregar(ref modCli) == true) ? i++ : i;
+                }
+                return "Se agregaron " + i + " Clientes.";
+            }
+            private string addProveedor(List<ModeloEntidad> p_lst_mod_pro)
+            {
+                ModeloEntidad lcl_aux_pro = new ModeloProveedor();
+                int i = 0;
+                foreach (ModeloCliente modPro in p_lst_mod_pro)
+                {
+                    // i = (glb_con_alta.agregar(ref modPro) == true) ? i++ : i;
+                }
+                return "Se agregaron " + i + " Proveedores.";
+            }
+            private string addDescuento(List<ModeloDescuentoArticulo> p_lst_mod_desc)
+            {
+                int i = 0;
+                foreach (ModeloDescuentoArticulo modDes in p_lst_mod_desc)
+                {
+                    // i = (glb_con_alta.agregar(ref modDes) == true) ? i++ : i;
+                }
+                return "Se agregaron " + i + " Descuentos.";
+            }
+            
             public void ajustarColumnas()
             {
                 //Ajusta el ancho de las columnas
