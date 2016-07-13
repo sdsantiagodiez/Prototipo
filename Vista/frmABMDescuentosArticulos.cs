@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Modelos;
 using Controladores;
 using System.Globalization;
+using LibreriaClasesCompartidas;
 
 
 namespace Vista
@@ -565,6 +566,61 @@ namespace Vista
         private void limpiarCamposDescuento()
         {
             tbxFechaDesde.Text = tbxFechaHasta.Text = tbxnumeroDescuento.Text = tbxPorcentajeDescuento.Text = "";
+        }
+
+        private void txtBoxCodigoArticulo_Leave(object sender, EventArgs e)
+        {
+            if (!Validar.validarInput(txtBoxCodigoArticulo.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor))
+            {
+                txtBoxCodigoArticulo.Select();
+                epCodigoArticuloProveedor.Icon = Properties.Resources.error;
+                epCodigoArticuloProveedor.SetError(txtBoxCodigoArticulo, "Código Artículo - Proveedor No Válido");
+            }
+            else
+            {
+                epCodigoArticuloProveedor.Icon = Properties.Resources.success;
+                epCodigoArticuloProveedor.SetError(txtBoxCodigoArticulo, "OK");
+            }
+        }
+
+        private void txtBoxCodigoOriginal_Leave(object sender, EventArgs e)
+        {
+            if (!Validar.validarInput(txtBoxCodigoOriginal.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal))
+            {
+                txtBoxCodigoOriginal.Select();
+                epCodigoOriginal.Icon = Properties.Resources.error;
+                epCodigoOriginal.SetError(txtBoxCodigoOriginal, "Código Original No Válido");
+            }
+            else
+            {
+                epCodigoOriginal.Icon = Properties.Resources.success;
+                epCodigoOriginal.SetError(txtBoxCodigoOriginal, "OK");
+            }
+        }
+
+        private void txtBoxDescripcion_Leave(object sender, EventArgs e)
+        {
+            if (!Validar.validarInput(txtBoxDescripcion.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion))
+            {
+                txtBoxDescripcion.Select();
+                epDescripcion.Icon = Properties.Resources.error;
+                epDescripcion.SetError(txtBoxDescripcion, "Descripción no Válida");
+            }
+            else
+            {
+                epDescripcion.Icon = Properties.Resources.success;
+                epDescripcion.SetError(txtBoxDescripcion, "OK");
+            }
+        }
+
+        private void tbxnumeroDescuento_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbxPorcentajeDescuento_Leave(object sender, EventArgs e)
+        {
+
         }
 
               

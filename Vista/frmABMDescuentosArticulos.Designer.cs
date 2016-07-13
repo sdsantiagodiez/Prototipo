@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxDescuento = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelDescuento = new System.Windows.Forms.TableLayoutPanel();
@@ -55,6 +56,12 @@
             this.fechaDesde = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaHasta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.porcentajeDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.epCodigoArticuloProveedor = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epCodigoOriginal = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epDescripcion = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epPorcentaje = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epFechaHasta = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epFechaDesde = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.grpBoxDescuento.SuspendLayout();
@@ -63,6 +70,12 @@
             this.tblLayoutPanelArticulo.SuspendLayout();
             this.grpBoxListaDescuentos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDescuentos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoArticuloProveedor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoOriginal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epDescripcion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epPorcentaje)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epFechaHasta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epFechaDesde)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -182,6 +195,7 @@
             this.tbxnumeroDescuento.Name = "tbxnumeroDescuento";
             this.tbxnumeroDescuento.Size = new System.Drawing.Size(92, 24);
             this.tbxnumeroDescuento.TabIndex = 6;
+            this.tbxnumeroDescuento.Leave += new System.EventHandler(this.tbxnumeroDescuento_Leave);
             // 
             // tbxPorcentajeDescuento
             // 
@@ -189,6 +203,7 @@
             this.tbxPorcentajeDescuento.Name = "tbxPorcentajeDescuento";
             this.tbxPorcentajeDescuento.Size = new System.Drawing.Size(92, 24);
             this.tbxPorcentajeDescuento.TabIndex = 7;
+            this.tbxPorcentajeDescuento.Leave += new System.EventHandler(this.tbxPorcentajeDescuento_Leave);
             // 
             // grpBoxArticulo
             // 
@@ -251,6 +266,7 @@
             this.txtBoxDescripcion.Size = new System.Drawing.Size(227, 23);
             this.txtBoxDescripcion.TabIndex = 10;
             this.txtBoxDescripcion.UseSystemPasswordChar = false;
+            this.txtBoxDescripcion.Leave += new System.EventHandler(this.txtBoxDescripcion_Leave);
             // 
             // txtBoxCodigoOriginal
             // 
@@ -267,6 +283,7 @@
             this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(227, 23);
             this.txtBoxCodigoOriginal.TabIndex = 9;
             this.txtBoxCodigoOriginal.UseSystemPasswordChar = false;
+            this.txtBoxCodigoOriginal.Leave += new System.EventHandler(this.txtBoxCodigoOriginal_Leave);
             // 
             // txtBoxCodigoArticulo
             // 
@@ -283,6 +300,7 @@
             this.txtBoxCodigoArticulo.Size = new System.Drawing.Size(227, 23);
             this.txtBoxCodigoArticulo.TabIndex = 10;
             this.txtBoxCodigoArticulo.UseSystemPasswordChar = false;
+            this.txtBoxCodigoArticulo.Leave += new System.EventHandler(this.txtBoxCodigoArticulo_Leave);
             // 
             // lblCodigoOriginal
             // 
@@ -396,13 +414,36 @@
             this.porcentajeDescuento.ReadOnly = true;
             this.porcentajeDescuento.Width = 120;
             // 
+            // epCodigoArticuloProveedor
+            // 
+            this.epCodigoArticuloProveedor.ContainerControl = this;
+            // 
+            // epCodigoOriginal
+            // 
+            this.epCodigoOriginal.ContainerControl = this;
+            // 
+            // epDescripcion
+            // 
+            this.epDescripcion.ContainerControl = this;
+            // 
+            // epPorcentaje
+            // 
+            this.epPorcentaje.ContainerControl = this;
+            // 
+            // epFechaHasta
+            // 
+            this.epFechaHasta.ContainerControl = this;
+            // 
+            // epFechaDesde
+            // 
+            this.epFechaDesde.ContainerControl = this;
+            // 
             // frmDescuentosArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(450, 559);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(450, 559);
             this.Name = "frmDescuentosArticulos";
             this.Text = "Descuentos por Articulo";
@@ -417,6 +458,12 @@
             this.tblLayoutPanelArticulo.PerformLayout();
             this.grpBoxListaDescuentos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDescuentos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoArticuloProveedor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoOriginal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epDescripcion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epPorcentaje)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epFechaHasta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epFechaDesde)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -451,5 +498,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaDesde;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaHasta;
         private System.Windows.Forms.DataGridViewTextBoxColumn porcentajeDescuento;
+        private System.Windows.Forms.ErrorProvider epCodigoArticuloProveedor;
+        private System.Windows.Forms.ErrorProvider epCodigoOriginal;
+        private System.Windows.Forms.ErrorProvider epDescripcion;
+        private System.Windows.Forms.ErrorProvider epPorcentaje;
+        private System.Windows.Forms.ErrorProvider epFechaHasta;
+        private System.Windows.Forms.ErrorProvider epFechaDesde;
     }
 }
