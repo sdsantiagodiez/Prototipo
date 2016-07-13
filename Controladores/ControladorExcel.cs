@@ -15,6 +15,9 @@ namespace Controladores
         ExcelLib._Worksheet glb_hojaTrabajo;
         System.Data.DataTable glb_dataTable;
         ControladorAlta glb_con_alta = new ControladorAlta();
+        int i = 0;
+        public static string filasNoGravadas = "Las siguientes filas no fueron gravadas: ";
+
             public bool ExportarAExcel(Type p_type)
             {
                 // se inicia la aplicacion
@@ -275,25 +278,46 @@ namespace Controladores
 
             }
 
+            private bool camposVacios(int[] p_index, DataRow p_row)
+            {
+                foreach (int i in p_index)
+                {
+                    if (p_row[i].ToString() != "")
+                    return false;
+                }
+                return true;
+            }
+
             private List<ModeloArticuloProveedores> completaModeloArticuloProveedor(DataTable p_dataTable)
             {
                 List<ModeloArticuloProveedores> lcl_lst_mod_artPro = new List<ModeloArticuloProveedores>();
+                int[] obligatorios ={1,2,3,5,6,8,9};// campos obligatorios del excel
+                string filasError ="";
+                int filas=1;
 
                 foreach (DataRow row in p_dataTable.Rows)
                 {
-                    ModeloArticuloProveedores lcl_mod_artPro = new ModeloArticuloProveedores();
-                    lcl_mod_artPro.codigoOriginal = row[0].ToString();
-                    lcl_mod_artPro.codigoArticuloProveedor = row[1].ToString();
-                    lcl_mod_artPro.codigoEntidad = Convert.ToInt32(row[2].ToString());
-                    lcl_mod_artPro.descripcionArticuloProveedor = row[3].ToString();
-                    lcl_mod_artPro.observacionesArticuloProveedor = row[4].ToString();
-                    lcl_mod_artPro.stockMinimo = Convert.ToInt32(row[5].ToString());
-                    lcl_mod_artPro.stockActual = Convert.ToInt32(row[6].ToString());
-                    lcl_mod_artPro.ubicacion = row[7].ToString();
-                    lcl_mod_artPro.valorCompra.valorArticulo = Convert.ToDecimal(row[8].ToString());
-                    lcl_mod_artPro.valorVenta.valorArticulo = Convert.ToDecimal(row[9].ToString());
+                    filas++;
+                    if (!camposVacios(obligatorios, row))
+                    {
+                        filasError += filasError + " " + filas.ToString() + ", ";
+                    }
+                    else
+                    {
+                        ModeloArticuloProveedores lcl_mod_artPro = new ModeloArticuloProveedores();
+                        lcl_mod_artPro.codigoOriginal = row[0].ToString();
+                        lcl_mod_artPro.codigoArticuloProveedor = row[1].ToString();
+                        lcl_mod_artPro.codigoEntidad = Convert.ToInt32(row[2].ToString());
+                        lcl_mod_artPro.descripcionArticuloProveedor = row[3].ToString();
+                        lcl_mod_artPro.observacionesArticuloProveedor = row[4].ToString();
+                        lcl_mod_artPro.stockMinimo = Convert.ToInt32(row[5].ToString());
+                        lcl_mod_artPro.stockActual = Convert.ToInt32(row[6].ToString());
+                        lcl_mod_artPro.ubicacion = row[7].ToString();
+                        lcl_mod_artPro.valorCompra.valorArticulo = Convert.ToDecimal(row[8].ToString());
+                        lcl_mod_artPro.valorVenta.valorArticulo = Convert.ToDecimal(row[9].ToString());
 
-                    lcl_lst_mod_artPro.Add(lcl_mod_artPro);
+                        lcl_lst_mod_artPro.Add(lcl_mod_artPro);
+                    }
                 }
 
                 return lcl_lst_mod_artPro;
@@ -301,37 +325,59 @@ namespace Controladores
             private List<ModeloArticulos> completaModeloArticulo(DataTable p_dataTable)
             {
                 List<ModeloArticulos> lcl_lst_mod_art = new List<ModeloArticulos>();
+                int[] obligatorios = { 1,2 };// campos obligatorios del excel
+                string filasError = "";
+                int filas = 1;
 
                 foreach (DataRow row in p_dataTable.Rows)
                 {
-                    ModeloArticulos lcl_mod_art = new ModeloArticulos();
-                    lcl_mod_art.codigoOriginal = row[0].ToString();
-                    lcl_mod_art.descripcion = row[1].ToString();
-                    lcl_mod_art.modelos = row[2].ToString();
-                    lcl_mod_art.observaciones = row[3].ToString();
-                    
-                    lcl_lst_mod_art.Add(lcl_mod_art);
-                }
+                    filas++;
+                    if (!camposVacios(obligatorios, row))
+                    {
+                        filasError += filasError + " " + filas.ToString() + ", ";
+                    }
+                    else
+                    {
+                        ModeloArticulos lcl_mod_art = new ModeloArticulos();
+                        lcl_mod_art.codigoOriginal = row[0].ToString();
+                        lcl_mod_art.descripcion = row[1].ToString();
+                        lcl_mod_art.modelos = row[2].ToString();
+                        lcl_mod_art.observaciones = row[3].ToString();
 
+                        lcl_lst_mod_art.Add(lcl_mod_art);
+                    }
+                }
                 return lcl_lst_mod_art;
             }
             private List<ModeloCliente> completaModeloCliente(DataTable p_dataTable)
             {
                 List<ModeloCliente> lcl_lst_mod_cli = new List<ModeloCliente>();
+                int[] obligatorios = { 3, 4, 5, 6 };// campos obligatorios del excel
+                string filasError = "";
+                int filas = 1;
 
                 foreach (DataRow row in p_dataTable.Rows)
                 {
-                    ModeloCliente lcl_mod_cli = new ModeloCliente();
-                    lcl_mod_cli.codigo = Convert.ToInt32(row[0].ToString());
-                    lcl_mod_cli.tipoEntidad = row[1].ToString();
-                    lcl_mod_cli.cuit = row[2].ToString();
-                    lcl_mod_cli.observaciones = row[3].ToString();
-                    lcl_mod_cli.dni = row[4].ToString();
-                    lcl_mod_cli.nombre = row[5].ToString();
-                    lcl_mod_cli.apellido = row[6].ToString();
-                    lcl_mod_cli.tipoPersona = row[7].ToString();
+                    filas++;
+                    if (!camposVacios(obligatorios, row))
+                    {
+                        filasError += filasError + " " + filas.ToString() + ", ";
+                    }
+                    else
+                    {
 
-                    lcl_lst_mod_cli.Add(lcl_mod_cli);
+                        ModeloCliente lcl_mod_cli = new ModeloCliente();
+                        lcl_mod_cli.codigo = Convert.ToInt32(row[0].ToString());//ver por que seguro no lo va a poder convertir
+                        lcl_mod_cli.tipoEntidad = row[1].ToString();
+                        lcl_mod_cli.cuit = row[2].ToString();
+                        lcl_mod_cli.observaciones = row[3].ToString();
+                        lcl_mod_cli.dni = row[4].ToString();
+                        lcl_mod_cli.nombre = row[5].ToString();
+                        lcl_mod_cli.apellido = row[6].ToString();
+                        lcl_mod_cli.tipoPersona = row[7].ToString();
+
+                        lcl_lst_mod_cli.Add(lcl_mod_cli);
+                    }
                 }
 
                 return lcl_lst_mod_cli;
@@ -339,18 +385,29 @@ namespace Controladores
             private List<ModeloProveedor> completaModeloProveedor(DataTable p_dataTable)
             {
                 List<ModeloProveedor> lcl_lst_mod_pro = new List<ModeloProveedor>();
+                int[] obligatorios = { 3, 4, 5, 6 };// campos obligatorios del excel
+                string filasError = "";
+                int filas = 1;
 
                 foreach (DataRow row in p_dataTable.Rows)
                 {
-                    ModeloProveedor lcl_mod_pro = new ModeloProveedor();
-                    lcl_mod_pro.codigo = Convert.ToInt32(row[0].ToString());
-                    lcl_mod_pro.tipoEntidad = row[1].ToString();
-                    lcl_mod_pro.cuit = row[2].ToString();
-                    lcl_mod_pro.observaciones = row[3].ToString();
-                    lcl_mod_pro.razonSocial = row[4].ToString();
-                    
+                    filas++;
+                    if (!camposVacios(obligatorios, row))
+                    {
+                        filasError += filasError + " " + filas.ToString() + ", ";
+                    }
+                    else
+                    {
+                        ModeloProveedor lcl_mod_pro = new ModeloProveedor();
+                        lcl_mod_pro.codigo = Convert.ToInt32(row[0].ToString());
+                        lcl_mod_pro.tipoEntidad = row[1].ToString();
+                        lcl_mod_pro.cuit = row[2].ToString();
+                        lcl_mod_pro.observaciones = row[3].ToString();
+                        lcl_mod_pro.razonSocial = row[4].ToString();
 
-                    lcl_lst_mod_pro.Add(lcl_mod_pro);
+
+                        lcl_lst_mod_pro.Add(lcl_mod_pro);
+                    }
                 }
 
                 return lcl_lst_mod_pro;
@@ -378,17 +435,16 @@ namespace Controladores
             private string addArticuloProveedor(List<ModeloArticuloProveedores> p_lst_mod_artPro)
             {
 
-                int i = 0;
                 foreach (ModeloArticuloProveedores modArt in p_lst_mod_artPro)
                 {
-                   i = (glb_con_alta.agregar(modArt)==true)? i++:i;
+                   i = (glb_con_alta.agregar(modArt)==true)? i+1:i;
                 }
                 return "Se agregaron " + i + " ArtículoProveedor.";
             }
             private string addArticulo(List<ModeloArticulos> p_lst_mod_art)
             {
 
-                int i = 0;
+                //int i = 0;
                 foreach (ModeloArticulos modArt in p_lst_mod_art)
                 {
                     i = (glb_con_alta.agregar(modArt) == true) ? i++ : i;
