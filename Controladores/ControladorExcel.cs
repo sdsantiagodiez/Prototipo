@@ -151,7 +151,7 @@ namespace Controladores
             {
                 glb_hojaTrabajo.Cells[1, "A"] = "Codigo Original";
                 glb_hojaTrabajo.Cells[1, "B"] = "Codigo Articulo Proveedor";
-                glb_hojaTrabajo.Cells[1, "C"] = "Codigo Entidad";
+                glb_hojaTrabajo.Cells[1, "C"] = "Codigo Entidad Proveedor";
                 glb_hojaTrabajo.Cells[1, "D"] = "Descripcion ArticuloProveedor";
                 glb_hojaTrabajo.Cells[1, "E"] = "Observaciones";
                 glb_hojaTrabajo.Cells[1, "F"] = "Stock Minimo";
@@ -455,19 +455,30 @@ namespace Controladores
             {
                 ModeloEntidad lcl_aux_cli = new ModeloCliente();
                 int i = 0;
-                foreach (ModeloCliente modCli in p_lst_mod_cli)
-                {
+                //foreach (ModeloCliente modCli in p_lst_mod_cli) // No se puede utilizar metodos que utilicen referencias en foreach
+              //  {
                    // i = (glb_con_alta.agregar(ref modCli) == true) ? i++ : i;
+              //  }
+                for (int j = 0; j < p_lst_mod_cli.Count; j++)
+                {
+                    lcl_aux_cli = p_lst_mod_cli[j] as ModeloCliente;
+                    i = (glb_con_alta.agregar(ref lcl_aux_cli) == true) ? i++ : i;
                 }
+                
                 return "Se agregaron " + i + " Clientes.";
             }
             private string addProveedor(List<ModeloEntidad> p_lst_mod_pro)
             {
                 ModeloEntidad lcl_aux_pro = new ModeloProveedor();
                 int i = 0;
-                foreach (ModeloCliente modPro in p_lst_mod_pro)
+                // foreach (ModeloEntidad modPro in p_lst_mod_pro) // No se puede utilizar metodos que utilicen referencias en foreach
+                //{
+                 //    i = (glb_con_alta.agregar(ref modPro) == true) ? i++ : i;
+               // }
+                for (int j = 0; j < p_lst_mod_pro.Count; j++)
                 {
-                    // i = (glb_con_alta.agregar(ref modPro) == true) ? i++ : i;
+                    lcl_aux_pro = p_lst_mod_pro[j] as ModeloProveedor;
+                    i = (glb_con_alta.agregar(ref lcl_aux_pro) == true) ? i++ : i;
                 }
                 return "Se agregaron " + i + " Proveedores.";
             }
