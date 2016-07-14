@@ -132,11 +132,11 @@ namespace Controladores
                 }
                 else if (p_typeOf == typeof(ModeloCliente))
                 {
-                    //message=(addCliente(this.completaModeloCliente(p_dataTable)));
+                    message=(addCliente(this.completaModeloCliente(p_dataTable)));
                 }
                 else if (p_typeOf == typeof(ModeloProveedor))
                 {
-                    //message=(addProveedor(this.completaModeloProveedor(p_dataTable)));
+                    message=(addProveedor(this.completaModeloProveedor(p_dataTable)));
                 }
                 else if (p_typeOf == typeof(ModeloDescuentoArticulo))
                 {
@@ -150,55 +150,69 @@ namespace Controladores
             private void completarColumnasArticuloProveedor()
             {
                 glb_hojaTrabajo.Cells[1, "A"] = "Codigo Original";
+                glb_hojaTrabajo.Range["A1"].AddComment("Campo Obligatorio");
                 glb_hojaTrabajo.Cells[1, "B"] = "Codigo Articulo Proveedor";
+                glb_hojaTrabajo.Range["B1"].AddComment("Campo Obligatorio");
                 glb_hojaTrabajo.Cells[1, "C"] = "Codigo Entidad Proveedor";
+                glb_hojaTrabajo.Range["C1"].AddComment("Campo Obligatorio");
                 glb_hojaTrabajo.Cells[1, "D"] = "Descripcion ArticuloProveedor";
+                glb_hojaTrabajo.Range["D1"].AddComment("Campo Obligatorio");
                 glb_hojaTrabajo.Cells[1, "E"] = "Observaciones";
                 glb_hojaTrabajo.Cells[1, "F"] = "Stock Minimo";
+                glb_hojaTrabajo.Range["F1"].AddComment("Campo Obligatorio");
                 glb_hojaTrabajo.Cells[1, "G"] = "Stock Actual";
+                glb_hojaTrabajo.Range["G1"].AddComment("Campo Obligatorio");
                 glb_hojaTrabajo.Cells[1, "H"] = "Ubicacion";
                 glb_hojaTrabajo.Cells[1, "I"] = "Valor Compra";
+                glb_hojaTrabajo.Range["I1"].AddComment("Campo Obligatorio");
                 glb_hojaTrabajo.Cells[1, "J"] = "Valor Venta";
+                glb_hojaTrabajo.Range["J1"].AddComment("Campo Obligatorio");
 
             }
             private void completarColumnasArticulo()
             {
                 glb_hojaTrabajo.Cells[1, "A"] = "Codigo Original";
+                glb_hojaTrabajo.Range["A1"].AddComment("Campo Obligatorio");
                 glb_hojaTrabajo.Cells[1, "B"] = "Descripcion";
+                glb_hojaTrabajo.Range["B1"].AddComment("Campo Obligatorio");
                 glb_hojaTrabajo.Cells[1, "C"] = "Modelos";
                 glb_hojaTrabajo.Cells[1, "D"] = "Observaciones";
                 
             }
             private void completarColumnasCliente()
             {
-                glb_hojaTrabajo.Cells[1, "A"] = "Codigo Entidad";
-                glb_hojaTrabajo.Cells[1, "B"] = "Tipo Entidad";
-                glb_hojaTrabajo.Cells[1, "C"] = "Cuit";
-                glb_hojaTrabajo.Cells[1, "D"] = "Observaciones";
-                glb_hojaTrabajo.Cells[1, "E"] = "DNI";
-                glb_hojaTrabajo.Cells[1, "F"] = "Nombre";
-                glb_hojaTrabajo.Cells[1, "G"] = "Apellido";
-                glb_hojaTrabajo.Cells[1, "H"] = "Tipo Persona";
-                
+                glb_hojaTrabajo.Cells[1, "A"] = "Cuit";
+                glb_hojaTrabajo.Cells[1, "B"] = "Observaciones";
+                glb_hojaTrabajo.Cells[1, "C"] = "DNI";
+                glb_hojaTrabajo.Range["C1"].AddComment("Campo Obligatorio");
+                glb_hojaTrabajo.Cells[1, "D"] = "Nombre";
+                glb_hojaTrabajo.Range["D1"].AddComment("Campo Obligatorio");
+                glb_hojaTrabajo.Cells[1, "E"] = "Apellido";
+                glb_hojaTrabajo.Range["E1"].AddComment("Campo Obligatorio");
+                                
             }
             private void completarColumnasProveedor()
             {
-                glb_hojaTrabajo.Cells[1, "A"] = "Codigo Entidad";
-                glb_hojaTrabajo.Cells[1, "B"] = "Tipo Entidad";
-                glb_hojaTrabajo.Cells[1, "C"] = "Cuit";
-                glb_hojaTrabajo.Cells[1, "D"] = "Observaciones";
-                glb_hojaTrabajo.Cells[1, "E"] = "Razon Social";
+                glb_hojaTrabajo.Cells[1, "A"] = "Cuit";
+                glb_hojaTrabajo.Range["A1"].AddComment("Campo Obligatorio");
+                glb_hojaTrabajo.Cells[1, "B"] = "Observaciones";
+                glb_hojaTrabajo.Cells[1, "C"] = "Razon Social";
+                glb_hojaTrabajo.Range["C1"].AddComment("Campo Obligatorio");
                 
             }
             private void completarColumnasDescuento()
             {
-               glb_hojaTrabajo.Cells[1, "A"] = "Codigo Articulo Proveedor";
+                glb_hojaTrabajo.Cells[1, "A"] = "Codigo Articulo Proveedor";
+                glb_hojaTrabajo.Range["A1"].AddComment("Campo Obligatorio");
                 glb_hojaTrabajo.Cells[1, "B"] = "Codigo Original";
+                glb_hojaTrabajo.Range["B1"].AddComment("Campo Obligatorio");
                 glb_hojaTrabajo.Cells[1, "C"] = "Fecha Desde";
+                glb_hojaTrabajo.Range["C1"].AddComment("Campo Obligatorio");
                 glb_hojaTrabajo.Cells[1, "D"] = "Fecha Hasta";
+                glb_hojaTrabajo.Range["D1"].AddComment("Campo Obligatorio");
                 glb_hojaTrabajo.Cells[1, "E"] = "Porcentaje Descuento";
-                glb_hojaTrabajo.Cells[1, "F"] = "Numero Descuento";
-                
+                glb_hojaTrabajo.Range["E1"].AddComment("Campo Obligatorio");
+                                
             }
             private void completaFilasArticuloProveedor(List<ModeloArticuloProveedores> p_lst_mod_artProv)
             {
@@ -237,14 +251,12 @@ namespace Controladores
                 foreach (ModeloEntidad p_mod in p_lst_mod_cli)
                 {
                     row++;
-                    glb_hojaTrabajo.Cells[row, "A"] = p_mod.codigo;
-                    glb_hojaTrabajo.Cells[row, "B"] = p_mod.tipoEntidad;
-                    glb_hojaTrabajo.Cells[row, "C"] = p_mod.cuit;
-                    glb_hojaTrabajo.Cells[row, "D"] = (p_mod.observaciones != null) ? p_mod.observaciones : "";
-                    glb_hojaTrabajo.Cells[row, "E"] = (p_mod as ModeloCliente).dni;
-                    glb_hojaTrabajo.Cells[row, "F"] = (p_mod as ModeloCliente).nombre;
-                    glb_hojaTrabajo.Cells[row, "G"] = (p_mod as ModeloCliente).apellido;
-                    glb_hojaTrabajo.Cells[row, "H"] = (p_mod as ModeloCliente).tipoPersona;
+                    glb_hojaTrabajo.Cells[row, "A"] = p_mod.cuit;
+                    glb_hojaTrabajo.Cells[row, "B"] = (p_mod.observaciones != null) ? p_mod.observaciones : "";
+                    glb_hojaTrabajo.Cells[row, "C"] = (p_mod as ModeloCliente).dni;
+                    glb_hojaTrabajo.Cells[row, "D"] = (p_mod as ModeloCliente).nombre;
+                    glb_hojaTrabajo.Cells[row, "E"] = (p_mod as ModeloCliente).apellido;
+                    
                 }
 
             }
@@ -254,11 +266,9 @@ namespace Controladores
                 foreach (ModeloEntidad p_mod in p_lst_mod_prov)
                 {
                     row++;
-                    glb_hojaTrabajo.Cells[row, "A"] = p_mod.codigo;
-                    glb_hojaTrabajo.Cells[row, "B"] = p_mod.tipoEntidad;
-                    glb_hojaTrabajo.Cells[row, "C"] = p_mod.cuit;
-                    glb_hojaTrabajo.Cells[row, "D"] = p_mod.observaciones;
-                    glb_hojaTrabajo.Cells[row, "E"] = (p_mod as ModeloProveedor).razonSocial;
+                    glb_hojaTrabajo.Cells[row, "A"] = p_mod.cuit;
+                    glb_hojaTrabajo.Cells[row, "B"] = p_mod.observaciones;
+                    glb_hojaTrabajo.Cells[row, "C"] = (p_mod as ModeloProveedor).razonSocial;
                 }
 
             }
@@ -273,7 +283,6 @@ namespace Controladores
                     glb_hojaTrabajo.Cells[row, "C"] = p_mod.FechaDesde;
                     glb_hojaTrabajo.Cells[row, "D"] = p_mod.FechaHasta;
                     glb_hojaTrabajo.Cells[row, "E"] = p_mod.PorcentajeDescuento;
-                    glb_hojaTrabajo.Cells[row, "F"] = p_mod.numeroDescuento;
                 }
 
             }
@@ -291,14 +300,14 @@ namespace Controladores
             private List<ModeloArticuloProveedores> completaModeloArticuloProveedor(DataTable p_dataTable)
             {
                 List<ModeloArticuloProveedores> lcl_lst_mod_artPro = new List<ModeloArticuloProveedores>();
-                int[] obligatorios ={1,2,3,5,6,8,9};// campos obligatorios del excel
+                int[] obligatorios ={0,1,2,3,5,6,8,9};// campos obligatorios del excel
                 string filasError ="";
                 int filas=1;
 
                 foreach (DataRow row in p_dataTable.Rows)
                 {
                     filas++;
-                    if (!camposVacios(obligatorios, row))
+                    if (camposVacios(obligatorios, row))
                     {
                         filasError += filasError + " " + filas.ToString() + ", ";
                     }
@@ -332,7 +341,7 @@ namespace Controladores
                 foreach (DataRow row in p_dataTable.Rows)
                 {
                     filas++;
-                    if (!camposVacios(obligatorios, row))
+                    if (camposVacios(obligatorios, row))
                     {
                         filasError += filasError + " " + filas.ToString() + ", ";
                     }
@@ -349,61 +358,58 @@ namespace Controladores
                 }
                 return lcl_lst_mod_art;
             }
-            private List<ModeloCliente> completaModeloCliente(DataTable p_dataTable)
+            private List<ModeloEntidad> completaModeloCliente(DataTable p_dataTable)
             {
-                List<ModeloCliente> lcl_lst_mod_cli = new List<ModeloCliente>();
-                int[] obligatorios = { 3, 4, 5, 6 };// campos obligatorios del excel
+                List<ModeloEntidad> lcl_lst_mod_cli = new List<ModeloEntidad>();
+                int[] obligatorios = { 2, 3, 4 };// campos obligatorios del excel
                 string filasError = "";
                 int filas = 1;
 
                 foreach (DataRow row in p_dataTable.Rows)
                 {
                     filas++;
-                    if (!camposVacios(obligatorios, row))
+                    if (camposVacios(obligatorios, row))
                     {
                         filasError += filasError + " " + filas.ToString() + ", ";
                     }
                     else
                     {
 
-                        ModeloCliente lcl_mod_cli = new ModeloCliente();
-                        lcl_mod_cli.codigo = Convert.ToInt32(row[0].ToString());//ver por que seguro no lo va a poder convertir
-                        lcl_mod_cli.tipoEntidad = row[1].ToString();
-                        lcl_mod_cli.cuit = row[2].ToString();
-                        lcl_mod_cli.observaciones = row[3].ToString();
-                        lcl_mod_cli.dni = row[4].ToString();
-                        lcl_mod_cli.nombre = row[5].ToString();
-                        lcl_mod_cli.apellido = row[6].ToString();
-                        lcl_mod_cli.tipoPersona = row[7].ToString();
-
+                        ModeloEntidad lcl_mod_cli = new ModeloCliente();
+                        
+                        lcl_mod_cli.cuit = row[0].ToString();
+                        lcl_mod_cli.observaciones = row[1].ToString();
+                        (lcl_mod_cli as ModeloCliente).dni = row[2].ToString();
+                        (lcl_mod_cli as ModeloCliente).nombre = row[3].ToString();
+                        (lcl_mod_cli as ModeloCliente).apellido = row[4].ToString();
+                        
                         lcl_lst_mod_cli.Add(lcl_mod_cli);
                     }
                 }
 
                 return lcl_lst_mod_cli;
             }
-            private List<ModeloProveedor> completaModeloProveedor(DataTable p_dataTable)
+            private List<ModeloEntidad> completaModeloProveedor(DataTable p_dataTable)
             {
-                List<ModeloProveedor> lcl_lst_mod_pro = new List<ModeloProveedor>();
-                int[] obligatorios = { 3, 4, 5, 6 };// campos obligatorios del excel
+                List<ModeloEntidad> lcl_lst_mod_pro = new List<ModeloEntidad>();
+                int[] obligatorios = { 0, 2 };// campos obligatorios del excel
                 string filasError = "";
                 int filas = 1;
 
                 foreach (DataRow row in p_dataTable.Rows)
                 {
                     filas++;
-                    if (!camposVacios(obligatorios, row))
+                    if (camposVacios(obligatorios, row))
                     {
                         filasError += filasError + " " + filas.ToString() + ", ";
                     }
                     else
                     {
-                        ModeloProveedor lcl_mod_pro = new ModeloProveedor();
-                        lcl_mod_pro.codigo = Convert.ToInt32(row[0].ToString());
-                        lcl_mod_pro.tipoEntidad = row[1].ToString();
-                        lcl_mod_pro.cuit = row[2].ToString();
-                        lcl_mod_pro.observaciones = row[3].ToString();
-                        lcl_mod_pro.razonSocial = row[4].ToString();
+                        ModeloEntidad lcl_mod_pro = new ModeloProveedor();
+                        
+                        lcl_mod_pro.cuit = row[0].ToString();
+                        lcl_mod_pro.observaciones = row[1].ToString();
+                        (lcl_mod_pro as ModeloProveedor).razonSocial = row[2].ToString();
 
 
                         lcl_lst_mod_pro.Add(lcl_mod_pro);

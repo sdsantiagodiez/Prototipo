@@ -410,13 +410,13 @@ namespace Vista
 
         private void descuentosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloProveedor), "Proveedores");
+            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloDescuentoArticulo), "Descuento Articulos");
             lcl_frm_importacion.ShowDialog();
         }
 
         private void proveedoresToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloDescuentoArticulo), "Descuentos");
+            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloProveedor), "Proveedores ");
             lcl_frm_importacion.ShowDialog();
         }
     }
