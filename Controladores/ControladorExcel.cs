@@ -214,6 +214,30 @@ namespace Controladores
                 glb_hojaTrabajo.Range["E1"].AddComment("Campo Obligatorio");
                                 
             }
+            private void completarColumnasValoresCompra()
+            {
+                glb_hojaTrabajo.Cells[1, "A"] = "Codigo Articulo Proveedor";
+                glb_hojaTrabajo.Range["A1"].AddComment("Campo Obligatorio");
+                glb_hojaTrabajo.Cells[1, "B"] = "Codigo Original";
+                glb_hojaTrabajo.Range["B1"].AddComment("Campo Obligatorio");
+                glb_hojaTrabajo.Cells[1, "C"] = "Precio";
+                glb_hojaTrabajo.Range["C1"].AddComment("Campo Obligatorio");
+                glb_hojaTrabajo.Cells[1, "D"] = "Fecha Actualización";
+                glb_hojaTrabajo.Range["D1"].AddComment("Campo Obligatorio");
+                
+            }
+            private void completarColumnasValoresVenta()
+            {
+                glb_hojaTrabajo.Cells[1, "A"] = "Codigo Articulo Proveedor";
+                glb_hojaTrabajo.Range["A1"].AddComment("Campo Obligatorio");
+                glb_hojaTrabajo.Cells[1, "B"] = "Codigo Original";
+                glb_hojaTrabajo.Range["B1"].AddComment("Campo Obligatorio");
+                glb_hojaTrabajo.Cells[1, "C"] = "Precio";
+                glb_hojaTrabajo.Range["C1"].AddComment("Campo Obligatorio");
+                glb_hojaTrabajo.Cells[1, "D"] = "Fecha Actualización";
+                glb_hojaTrabajo.Range["D1"].AddComment("Campo Obligatorio");
+                
+            }
             private void completaFilasArticuloProveedor(List<ModeloArticuloProveedores> p_lst_mod_artProv)
             {
                 var row = 1;
@@ -283,6 +307,32 @@ namespace Controladores
                     glb_hojaTrabajo.Cells[row, "C"] = p_mod.FechaDesde;
                     glb_hojaTrabajo.Cells[row, "D"] = p_mod.FechaHasta;
                     glb_hojaTrabajo.Cells[row, "E"] = p_mod.PorcentajeDescuento;
+                }
+
+            }
+            private void completaFilasValoArticulosCompra(List<ModeloArticuloProveedores> p_lst_mod_artPro)
+            {
+                var row = 1;
+                foreach (ModeloArticuloProveedores p_mod in p_lst_mod_artPro)
+                {
+                    row++;
+                    glb_hojaTrabajo.Cells[row, "A"] = p_mod.codigoArticuloProveedor;
+                    glb_hojaTrabajo.Cells[row, "B"] = p_mod.codigoOriginal;
+                    glb_hojaTrabajo.Cells[row, "C"] = p_mod.valorCompra.valorArticulo;
+                    glb_hojaTrabajo.Cells[row, "D"] = p_mod.valorCompra.fechaUltimaActualizacion;
+                }
+
+            }
+            private void completaFilasValoArticulosVenta(List<ModeloArticuloProveedores> p_lst_mod_artPro)
+            {
+                var row = 1;
+                foreach (ModeloArticuloProveedores p_mod in p_lst_mod_artPro)
+                {
+                    row++;
+                    glb_hojaTrabajo.Cells[row, "A"] = p_mod.codigoArticuloProveedor;
+                    glb_hojaTrabajo.Cells[row, "B"] = p_mod.codigoOriginal;
+                    glb_hojaTrabajo.Cells[row, "C"] = p_mod.valorVenta.valorArticulo;
+                    glb_hojaTrabajo.Cells[row, "D"] = p_mod.valorVenta.fechaUltimaActualizacion;
                 }
 
             }

@@ -67,6 +67,9 @@
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importarDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.articuloProveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.artículosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.preciosParaVentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.preciosParaCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.artículoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.descuentosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -391,10 +394,35 @@
             // 
             // articuloProveedorToolStripMenuItem
             // 
+            this.articuloProveedorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.artículosToolStripMenuItem1,
+            this.preciosParaVentaToolStripMenuItem,
+            this.preciosParaCompraToolStripMenuItem});
             this.articuloProveedorToolStripMenuItem.Name = "articuloProveedorToolStripMenuItem";
             this.articuloProveedorToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.articuloProveedorToolStripMenuItem.Text = "Artículo Proveedor";
             this.articuloProveedorToolStripMenuItem.Click += new System.EventHandler(this.articuloProveedorToolStripMenuItem_Click);
+            // 
+            // artículosToolStripMenuItem1
+            // 
+            this.artículosToolStripMenuItem1.Name = "artículosToolStripMenuItem1";
+            this.artículosToolStripMenuItem1.Size = new System.Drawing.Size(184, 22);
+            this.artículosToolStripMenuItem1.Text = "Artículos";
+            this.artículosToolStripMenuItem1.Click += new System.EventHandler(this.artículosToolStripMenuItem1_Click);
+            // 
+            // preciosParaVentaToolStripMenuItem
+            // 
+            this.preciosParaVentaToolStripMenuItem.Name = "preciosParaVentaToolStripMenuItem";
+            this.preciosParaVentaToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.preciosParaVentaToolStripMenuItem.Text = "Precios para Venta";
+            this.preciosParaVentaToolStripMenuItem.Click += new System.EventHandler(this.preciosParaVentaToolStripMenuItem_Click);
+            // 
+            // preciosParaCompraToolStripMenuItem
+            // 
+            this.preciosParaCompraToolStripMenuItem.Name = "preciosParaCompraToolStripMenuItem";
+            this.preciosParaCompraToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.preciosParaCompraToolStripMenuItem.Text = "Precios para Compra";
+            this.preciosParaCompraToolStripMenuItem.Click += new System.EventHandler(this.preciosParaCompraToolStripMenuItem_Click);
             // 
             // artículoToolStripMenuItem
             // 
@@ -812,5 +840,8 @@
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem descuentosToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem proveedoresToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem artículosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem preciosParaVentaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem preciosParaCompraToolStripMenuItem;
     }
 }

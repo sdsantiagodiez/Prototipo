@@ -398,8 +398,7 @@ namespace Vista
 
         private void articuloProveedorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloArticuloProveedores), "ArtículoProveedores");
-            lcl_frm_importacion.ShowDialog();
+            
         }
 
         private void clientesToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -418,6 +417,22 @@ namespace Vista
         {
             frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloProveedor), "Proveedores ");
             lcl_frm_importacion.ShowDialog();
+        }
+
+        private void artículosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloArticuloProveedores), "ArtículoProveedores");
+            lcl_frm_importacion.ShowDialog();
+        }
+
+        private void preciosParaVentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void preciosParaCompraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
