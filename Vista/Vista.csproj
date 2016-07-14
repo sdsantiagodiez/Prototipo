@@ -59,6 +59,12 @@
     <Compile Include="frmABMArticulo.Designer.cs">
       <DependentUpon>frmABMArticulo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmABMDescuentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmABMDescuentos.Designer.cs">
+      <DependentUpon>frmABMDescuentos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmABMDescuentosArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmABMArticulo.resx">
       <DependentUpon>frmABMArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmABMDescuentos.resx">
+      <DependentUpon>frmABMDescuentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmABMDescuentosArticulos.resx">
       <DependentUpon>frmABMDescuentosArticulos.cs</DependentUpon>

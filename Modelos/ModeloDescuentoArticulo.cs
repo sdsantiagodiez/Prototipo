@@ -18,6 +18,5 @@ namespace Modelos
         public decimal PorcentajeDescuento { get; set; }
         public int numeroDescuento { get; set; }
         public decimal descuentoSobreTotal { get; set; }
-
     }
 }

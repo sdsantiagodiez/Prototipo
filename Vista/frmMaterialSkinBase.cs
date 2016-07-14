@@ -73,5 +73,39 @@ namespace Vista
                 this.CerrarForm(sender, e);
             }
         }
+
+        protected int getDropDownWidth(ComboBox p_comboBox)
+        {
+            int maxWidth = 0, temp = 0;
+            foreach (var obj in p_comboBox.Items)
+            {
+                temp = TextRenderer.MeasureText(obj.ToString(), p_comboBox.Font).Width;
+                if (temp > maxWidth)
+                {
+                    maxWidth = temp;
+                }
+            }
+            return maxWidth;
+        }
+
+        protected void inicializarCmbBox(ComboBox p_comboBox)
+        {
+            p_comboBox.DropDownWidth = this.getDropDownWidth(p_comboBox);
+            p_comboBox.DisplayMember = "Name";
+            p_comboBox.ValueMember = "Value";
+            p_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+    }
+    
+    //clase para llenar combo box categoria a buscar
+    class ComboBoxItem
+    {
+        public string Name { get; set; }
+        public object Value { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

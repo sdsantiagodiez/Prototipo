@@ -31,7 +31,7 @@ namespace Vista
             get { return _modeloSeleccionado; }
             set { _modeloSeleccionado = value;}
         }
-        List<Object> glb_lst_objectos;
+        public List<Object> glb_lst_objectos;
         
         public DataGridView dataGridViewResultadoBusqueda;
 
@@ -167,6 +167,8 @@ namespace Vista
             dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
             dataGridViewResultadoBusqueda.Columns.Add("stockActual", "Stock Actual");
             dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("descuentosVigentes", "Descuentos Vigentes");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
             dataGridViewResultadoBusqueda.Columns.Add("ubicacion", "Ubicación");
             dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
             dataGridViewResultadoBusqueda.Columns.Add("fechaActualizacion", "Fecha Última Actualización");
@@ -231,7 +233,7 @@ namespace Vista
             dataGridViewResultadoBusqueda.RowHeadersVisible = false;
             //dataGridViewResultadoBusqueda.CellContentDoubleClick += dataGridViewResultadoBusqueda_CellContentDoubleClick;
             dataGridViewResultadoBusqueda.CellDoubleClick += dataGridViewResultadoBusqueda_CellContentDoubleClick;
-            dataGridViewResultadoBusqueda.Columns.Add("dgbKey", "KEY");
+            dataGridViewResultadoBusqueda.Columns.Add("dgvKey", "KEY");
             dataGridViewResultadoBusqueda.Columns[0].FillWeight = 1;
             dataGridViewResultadoBusqueda.Columns[0].Visible = false;
             dataGridViewResultadoBusqueda.AllowUserToAddRows = false;
@@ -286,7 +288,7 @@ namespace Vista
         
         private void insertarIndice()
         {
-            for (int i = 1; i < dataGridViewResultadoBusqueda.Rows.Count; i++)
+            for (int i = 0; i < dataGridViewResultadoBusqueda.Rows.Count; i++)
             {
                 dataGridViewResultadoBusqueda.Rows[i].Cells[0].Value = i;
             }
@@ -501,6 +503,7 @@ namespace Vista
             row.Cells["stockActual"].Value = p_mod_articuloProveedor.stockActual.ToString();
             row.Cells["ubicacion"].Value = p_mod_articuloProveedor.ubicacion;
             row.Cells["fechaActualizacion"].Value = p_mod_articuloProveedor.fechaActualizacion;
+            row.Cells["descuentosVigentes"].Value = p_mod_articuloProveedor.tieneDescuentosVigentes()? "Sí":"No";
         }
         #endregion
         

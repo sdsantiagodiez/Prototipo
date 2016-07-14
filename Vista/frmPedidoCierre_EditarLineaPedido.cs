@@ -74,12 +74,12 @@ namespace Vista
         #endregion
 
         #region Modelo -> Controles
-        private void cargarDescuentosEnControl(List<ModeloDescuento> p_lst_mod_descuento)
+        private void cargarDescuentosEnControl(List<ModeloDescuentoLineaPedido> p_lst_mod_descuento)
         {
             dgvDescuentos.Rows.Clear();
             DataGridViewRow row;
             int rowIndex;
-            foreach (ModeloDescuento descuento in p_lst_mod_descuento)
+            foreach (ModeloDescuentoLineaPedido descuento in p_lst_mod_descuento)
             {
                 rowIndex = dgvDescuentos.Rows.Add();
                 row = dgvDescuentos.Rows[rowIndex];
@@ -132,7 +132,7 @@ namespace Vista
             }
             porcentaje = porcentaje / 100;
             
-            ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
+            ModeloDescuentoLineaPedido lcl_mod_descuento = new ModeloDescuentoLineaPedido();
 
             lcl_mod_descuento.descripcion = this.txtBoxDescuentoDescripcion.Text;
             lcl_mod_descuento.descuento = descuento;
@@ -151,7 +151,7 @@ namespace Vista
                 return;
             }
 
-            ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
+            ModeloDescuentoLineaPedido lcl_mod_descuento = new ModeloDescuentoLineaPedido();
             
             lcl_mod_descuento.descuento = (decimal)this.dgvDescuentos.CurrentRow.Cells["descuento"].Value;
             lcl_mod_descuento.descripcion = (string)this.dgvDescuentos.CurrentRow.Cells["descripcion"].Value;

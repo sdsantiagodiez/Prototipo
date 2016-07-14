@@ -333,20 +333,6 @@ namespace Vista
                 this.cntxtMenuDataGridViews.MenuItems[0].Text = "Quitar seleccionado";
             }
         }
-
-        int getDropDownWidth(ComboBox p_comboBox)
-        {
-            int maxWidth = 0, temp = 0;
-            foreach (var obj in p_comboBox.Items)
-            {
-                temp = TextRenderer.MeasureText(obj.ToString(), p_comboBox.Font).Width;
-                if (temp > maxWidth)
-                {
-                    maxWidth = temp;
-                }
-            }
-            return maxWidth;
-        }
         #endregion
 
         #region ABM

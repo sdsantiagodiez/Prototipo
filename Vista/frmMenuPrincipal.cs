@@ -221,13 +221,15 @@ namespace Vista
 
         private void tsmi_ABMdescuentos_Click(object sender, EventArgs e)
         {
-            if (!this.validarAgregarFormulario(typeof(frmDescuentosArticulos)))
+            if (!this.validarAgregarFormulario(typeof(frmABMDescuentos)))
             {
                 return;
             }
 
-            glb_form = new frmDescuentosArticulos();
+            glb_form = new frmABMDescuentos();
             this.agregarFormulario(glb_form);
+
+            (glb_form as frmABMDescuentos).abrirDescuentosArticuloProveedor += evento_agregarFormEmergente;
         }
         #endregion
    
@@ -436,15 +438,5 @@ namespace Vista
         }
     }
 
-    //clase para llenar combo box categoria a buscar
-    class ComboBoxItem
-    {
-        public string Name { get; set; }
-        public object Value { get; set; }
-
-        public override string ToString()
-        {
-            return Name;
-        }
-    }
+    
 }

@@ -943,19 +943,6 @@ namespace Vista
         #endregion
 
         #region Otros
-        int getDropDownWidth(ComboBox p_comboBox)
-        {
-            int maxWidth = 0, temp = 0;
-            foreach (var obj in p_comboBox.Items)
-            {
-                temp = TextRenderer.MeasureText(obj.ToString(), p_comboBox.Font).Width;
-                if (temp > maxWidth)
-                {
-                    maxWidth = temp;
-                }
-            }
-            return maxWidth;
-        }
 
         private bool imprimirFactura()
         {            
@@ -1068,7 +1055,7 @@ namespace Vista
             }
             porcentaje = porcentaje / 100;
 
-            ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
+            ModeloDescuentoLineaPedido lcl_mod_descuento = new ModeloDescuentoLineaPedido();
             lcl_mod_descuento.porcentajeSobreTotal = porcentaje;
             controlador.pedidoActual.descuento_1 = lcl_mod_descuento;
             this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
@@ -1086,7 +1073,7 @@ namespace Vista
                 return;
             }
 
-            ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
+            ModeloDescuentoLineaPedido lcl_mod_descuento = new ModeloDescuentoLineaPedido();
             lcl_mod_descuento.descuento = descuento;
             controlador.pedidoActual.descuento_1 = lcl_mod_descuento;
             this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
@@ -1105,7 +1092,7 @@ namespace Vista
             }
             porcentaje = porcentaje / 100;
 
-            ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
+            ModeloDescuentoLineaPedido lcl_mod_descuento = new ModeloDescuentoLineaPedido();
             lcl_mod_descuento.porcentajeSobreTotal = porcentaje;
             controlador.pedidoActual.descuento_2 = lcl_mod_descuento;
             this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
@@ -1123,7 +1110,7 @@ namespace Vista
                 return;
             }
             
-            ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
+            ModeloDescuentoLineaPedido lcl_mod_descuento = new ModeloDescuentoLineaPedido();
             lcl_mod_descuento.descuento = descuento;
             controlador.pedidoActual.descuento_2 = lcl_mod_descuento;
             this.cargarDatosMonetariosEnControles(controlador.pedidoActual);

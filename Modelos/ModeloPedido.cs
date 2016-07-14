@@ -156,18 +156,18 @@ namespace Modelos
             set { _alicuota = value; }
         }
 
-        ModeloDescuento _descuento_1;
-        public ModeloDescuento descuento_1
+        ModeloDescuentoLineaPedido _descuento_1;
+        public ModeloDescuentoLineaPedido descuento_1
         {
             get { return _descuento_1; }
-            set { _descuento_1 = new ModeloDescuento(value, this.getTotalSinDescuento()); }
+            set { _descuento_1 = new ModeloDescuentoLineaPedido(value, this.getTotalSinDescuento()); }
         }
 
-        ModeloDescuento _descuento_2;
-        public ModeloDescuento descuento_2
+        ModeloDescuentoLineaPedido _descuento_2;
+        public ModeloDescuentoLineaPedido descuento_2
         {
             get { return _descuento_2; }
-            set { _descuento_2 = new ModeloDescuento(value, this.getTotalSinDescuento()); }
+            set { _descuento_2 = new ModeloDescuentoLineaPedido(value, this.getTotalSinDescuento()); }
         }
 
         decimal _senia;
@@ -184,8 +184,8 @@ namespace Modelos
             this.alicuota = new Alicuota();
             this.documentoComprador = new Documento();
             this.fecha = DateTime.Today;
-            this.descuento_1 = new ModeloDescuento();
-            this.descuento_2 = new ModeloDescuento();
+            this.descuento_1 = new ModeloDescuentoLineaPedido();
+            this.descuento_2 = new ModeloDescuentoLineaPedido();
             this.formasDePago = new List<FormaPago>();
             this.entidad = new ModeloEntidad();
         }

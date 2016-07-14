@@ -10,6 +10,24 @@ namespace Controladores
 {
     public class ControladorDescuento
     {
+        public static List<ModeloDescuento> getDescuentosBase()
+        {
+            List<int> lst_porcentajes = new List<int>() { 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80 };
+            List<ModeloDescuento> lcl_lst_DescuentosBase = new List<ModeloDescuento>();
+            int codigo = 1;
+            foreach (int i in lst_porcentajes)
+            {
+                lcl_lst_DescuentosBase.Add(new ModeloDescuento()
+                {
+                    codigoDescuento = codigo,
+                    porcentaje = Convert.ToDecimal(i) / 100,
+                    descripcion = i.ToString() + " %"
+                });
+                codigo++;
+            }
+            return lcl_lst_DescuentosBase;
+        }
+
         public static List<ModeloDescuentoArticulo> resultadoBusquedaDescuentos;
 
         public int getUltimoDescuento()

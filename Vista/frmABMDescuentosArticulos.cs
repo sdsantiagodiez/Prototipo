@@ -488,11 +488,6 @@ namespace Vista
 
         #endregion
 
-        private void frmDescuentosArticulos_Move(object sender, EventArgs e)
-        {
-            this.Location = new Point(224, 124);
-        }
-
         private void tbxFechaDesde_Validating(object sender, CancelEventArgs e)
         {
             DateTime lcl_fecha;

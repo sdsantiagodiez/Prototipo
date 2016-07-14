@@ -80,7 +80,7 @@ namespace Modelos
 
         public bool Equals(ModeloContactoProveedor p_mod_contactoProveedor)
         {
-            return this.Equals(this.proveedor,p_mod_contactoProveedor.proveedor);
+            return this.Equals(this.proveedor, p_mod_contactoProveedor.proveedor);
         }
         #endregion
     }

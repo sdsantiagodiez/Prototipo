@@ -13,6 +13,7 @@ namespace Modelos
         {
             this.valorVenta = new ModeloValorArticulo();
             this.valorCompra = new ModeloValorArticulo();
+            this.descuentos = new List<ModeloDescuentoArticuloProveedor>();
         }
         
         #region Getters/Setters
@@ -24,6 +25,7 @@ namespace Modelos
             get { return _codigoEntidad; }
             set { this._codigoEntidad = value; }
         }
+
         string _razonSocialProveedor;
         public string razonSocialProveedor
         {
@@ -51,6 +53,13 @@ namespace Modelos
         {
             get { return _observacionesArticuloProveedor; }
             set { this._observacionesArticuloProveedor = !string.IsNullOrWhiteSpace(value) ? value : null; }
+        }
+
+        List<ModeloDescuentoArticuloProveedor> _descuentos;
+        public List<ModeloDescuentoArticuloProveedor> descuentos
+        {
+            get { return _descuentos; }
+            set { _descuentos = value; }
         }
 
         ModeloValorArticulo _valorVenta;
@@ -151,6 +160,130 @@ namespace Modelos
 
         #endregion
 
+        #region Descuentos
+        private bool existeDescuento(ModeloDescuentoArticuloProveedor p_mod_descuento)
+        {
+            foreach (ModeloDescuentoArticuloProveedor d in this.descuentos)
+            {
+                if (d.Equals(p_mod_descuento as object))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// Agrega descuento a la lista de descuentos
+        /// </summary>
+        /// <param name="p_mod_descuento"></param>
+        /// <returns></returns>
+        public bool agregarDescuento(ModeloDescuentoArticuloProveedor p_mod_descuento)
+        {
+            if (!p_mod_descuento.validar() || this.existeDescuento(p_mod_descuento))
+            {
+                return false;
+            }
+
+            descuentos.Add(p_mod_descuento);
+            return true;
+        }
+        /// <summary>
+        /// Quita descuento de la lista de descuentos
+        /// </summary>
+        /// <param name="p_mod_descuento"></param>
+        /// <returns></returns>
+        public bool eliminarDescuento(ModeloDescuentoArticuloProveedor p_mod_descuento)
+        {
+            foreach (ModeloDescuentoArticuloProveedor d in descuentos)
+            {
+                if (d.Equals(p_mod_descuento))
+                {
+                    this.descuentos.Remove(p_mod_descuento);
+                    return true;
+                }
+            }
+            return false;
+        }
+        public void eliminarDescuentosAll()
+        {
+            this.descuentos = new List<ModeloDescuentoArticuloProveedor>();
+        }
+        /// <summary>
+        /// Elimina los descuentos que existan donde la DateTime.Today este contenido en fecha desde y hasta de descuento
+        /// </summary>
+        /// <returns></returns>
+        public bool eliminarDescuentosVigentes()
+        {
+            return true;
+        }
+        /// <summary>
+        /// Retorna si tiene descuentos vigentes al día de hoy
+        /// </summary>
+        /// <returns></returns>
+        public bool tieneDescuentosVigentes()
+        {
+            return this.tieneDescuentosVigentes(DateTime.Today.Date);
+        }
+        /// <summary>
+        /// Retorna si hay descuentos vigentes para la fecha ingresada
+        /// </summary>
+        /// <param name="p_dia"></param>
+        /// <returns></returns>
+        public bool tieneDescuentosVigentes(DateTime p_dia)
+        {
+            foreach (ModeloDescuentoArticuloProveedor d in descuentos)
+            {
+                if (d.esVigente(p_dia.Date))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// Retorna el descuento vigente más alto para al día de hoy
+        /// </summary>
+        /// <returns>null si no hay descuento vigente</returns>
+        public ModeloDescuento getDescuentoVigente()
+        {
+            return this.getDescuentoVigente(DateTime.Today.Date);
+        }
+        /// <summary>
+        /// Retorna el descuento vigente más alto para la fecha ingresada
+        /// </summary>
+        /// <param name="p_dia"></param>
+        /// <returns>null si no hay descuento vigente</returns>
+        public ModeloDescuento getDescuentoVigente(DateTime p_dia)
+        {
+            List<ModeloDescuentoArticuloProveedor> lcl_lst_descuentosVigentes = new List<ModeloDescuentoArticuloProveedor>();
+            foreach (ModeloDescuentoArticuloProveedor d in descuentos)
+            {
+                if (d.esVigente(p_dia.Date))
+                {
+                    lcl_lst_descuentosVigentes.Add(d);
+                }
+            }
+
+            if (lcl_lst_descuentosVigentes.Count == 0)
+            {
+                return null;
+            }
+
+            ModeloDescuentoArticuloProveedor lcl_mod_descuento = new ModeloDescuentoArticuloProveedor();
+            
+            lcl_mod_descuento = lcl_lst_descuentosVigentes[0];
+            foreach (ModeloDescuentoArticuloProveedor d in lcl_lst_descuentosVigentes)
+            {
+                if (lcl_mod_descuento.porcentaje > d.porcentaje)
+                {
+                    lcl_mod_descuento = d;
+                }
+            }
+
+            return lcl_mod_descuento;
+        }
+        #endregion
+
         #region Equals
         public override bool Equals(object p_objeto)
         {
@@ -165,7 +298,7 @@ namespace Modelos
                 && this.Equals(p_mod_articulo as ModeloArticuloProveedores);
         }
 
-        public bool Equals(ModeloArticuloProveedores p_mod_articuloProveedor)
+        public virtual bool Equals(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
             return this.Equals(this.codigoArticuloProveedor, p_mod_articuloProveedor.codigoArticuloProveedor)
                 && this.Equals(this.codigoEntidad, p_mod_articuloProveedor.codigoEntidad)
@@ -189,4 +322,6 @@ namespace Modelos
         //}
         #endregion
     }
+
+  
 }

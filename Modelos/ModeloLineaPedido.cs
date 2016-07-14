@@ -58,8 +58,8 @@ namespace Modelos
             set { this._valorParcial = value; }
         }
 
-        List<ModeloDescuento> _descuentos;
-        public List<ModeloDescuento> descuentos
+        List<ModeloDescuentoLineaPedido> _descuentos;
+        public List<ModeloDescuentoLineaPedido> descuentos
         {
             get { return _descuentos; }
             set 
@@ -82,7 +82,7 @@ namespace Modelos
         #region Constructores
         public ModeloLineaPedido()
         {
-            descuentos = new List<ModeloDescuento>();
+            descuentos = new List<ModeloDescuentoLineaPedido>();
             descuentoLinea = new ModeloDescuentoArticulo();
             articulo = new ModeloArticuloProveedores();
         }
@@ -148,7 +148,7 @@ namespace Modelos
         private decimal getDescuento(decimal p_valorParcial)
         {
             decimal descuento = 0;
-            foreach (ModeloDescuento d in descuentos)
+            foreach (ModeloDescuentoLineaPedido d in descuentos)
             {
                 descuento += d.getDescuento(p_valorParcial);
             }
@@ -176,9 +176,9 @@ namespace Modelos
         /// </summary>
         /// <param name="p_descuento"></param>
         /// <returns></returns>
-        public void addDescuento(ModeloDescuento p_descuento)
+        public void addDescuento(ModeloDescuentoLineaPedido p_descuento)
         {
-            ModeloDescuento descuento = new ModeloDescuento(p_descuento, this.getValorParcialSinDescuentos());
+            ModeloDescuentoLineaPedido descuento = new ModeloDescuentoLineaPedido(p_descuento, this.getValorParcialSinDescuentos());
             this.descuentos.Add(descuento);
             this.getValorParcial();
         }       
@@ -187,9 +187,9 @@ namespace Modelos
         /// </summary>
         /// <param name="p_descuento"></param>
         /// <returns>falso si el descuento no se encuentra en la linea</returns>
-        public bool removeDescuento(ModeloDescuento p_descuento)
+        public bool removeDescuento(ModeloDescuentoLineaPedido p_descuento)
         {
-            ModeloDescuento descuentoToRemove = this.descuentos.FirstOrDefault(d => d.descuento == p_descuento.descuento && d.descripcion == p_descuento.descripcion);
+            ModeloDescuentoLineaPedido descuentoToRemove = this.descuentos.FirstOrDefault(d => d.descuento == p_descuento.descuento && d.descripcion == p_descuento.descripcion);
             if (descuentoToRemove == null)
             {
                 return false;                
@@ -204,7 +204,7 @@ namespace Modelos
             decimal valorParcialSinDescuentos = this.getValorParcialSinDescuentos();
             for (int i = 0; i < this.descuentos.Count; i++ )
             {
-                this.descuentos[i] = new ModeloDescuento(this.descuentos[i], valorParcialSinDescuentos);
+                this.descuentos[i] = new ModeloDescuentoLineaPedido(this.descuentos[i], valorParcialSinDescuentos);
             }
             this.getValorParcial();
         }
@@ -256,14 +256,15 @@ namespace Modelos
         #endregion
         #endregion
     }
+  
     [Serializable]
-    public class ModeloDescuento
+    public class ModeloDescuentoLineaPedido
     {
-        public ModeloDescuento()
+        public ModeloDescuentoLineaPedido()
         {
             this.descripcion = "Estándar";
         }
-        public ModeloDescuento(ModeloDescuento descuento,decimal valorParcial)
+        public ModeloDescuentoLineaPedido(ModeloDescuentoLineaPedido descuento,decimal valorParcial)
         {
             this.descripcion = descuento.descripcion;
             this.descuento = descuento.descuento;
@@ -335,10 +336,6 @@ namespace Modelos
             }
             return 0;
         }
-
-        
-
-
     }
     
 }
