@@ -272,6 +272,15 @@ namespace LibreriaClasesCompartidas
             public const string Datos_Reportes = "Encargado de Reportes";
             public const string Admin = "Admin";
         }
+
+        public static class Numericos
+        {
+            public const string Decimal = "decimal";
+            public const string DecimalPositivo = "decimalPositivo";
+            public const string Porcentual = "porcentual";
+            public const string Entero = "entero";
+            public const string EnteroPositivoSinCero = "enteroPositivoSinCero";
+        }
     }
     
 }

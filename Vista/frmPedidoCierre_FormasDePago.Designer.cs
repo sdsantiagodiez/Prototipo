@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelBotones = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
@@ -48,6 +49,7 @@
             this.tblLayoutPanelFormaPagoBotones = new System.Windows.Forms.TableLayoutPanel();
             this.btnAgrearFormaPago = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnQuitarFormaPago = new MaterialSkin.Controls.MaterialFlatButton();
+            this.epMonto = new System.Windows.Forms.ErrorProvider(this.components);
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
             this.tblLayoutPanelDescuentos.SuspendLayout();
@@ -58,6 +60,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tblLayoutPanelFormaPago.SuspendLayout();
             this.tblLayoutPanelFormaPagoBotones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epMonto)).BeginInit();
             this.SuspendLayout();
             // 
             // tblLayoutPanelPrincipal
@@ -240,8 +243,9 @@
             // 
             this.tblLayoutPanelFormaPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tblLayoutPanelFormaPago.ColumnCount = 1;
+            this.tblLayoutPanelFormaPago.ColumnCount = 2;
             this.tblLayoutPanelFormaPago.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelFormaPago.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelFormaPago.Controls.Add(this.lblFormaPago, 0, 2);
             this.tblLayoutPanelFormaPago.Controls.Add(this.lblMonto, 0, 0);
             this.tblLayoutPanelFormaPago.Controls.Add(this.cmbBoxFormaPago, 0, 3);
@@ -249,10 +253,10 @@
             this.tblLayoutPanelFormaPago.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelFormaPago.Name = "tblLayoutPanelFormaPago";
             this.tblLayoutPanelFormaPago.RowCount = 4;
-            this.tblLayoutPanelFormaPago.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tblLayoutPanelFormaPago.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 32.5F));
-            this.tblLayoutPanelFormaPago.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.16667F));
-            this.tblLayoutPanelFormaPago.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38.33333F));
+            this.tblLayoutPanelFormaPago.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.39344F));
+            this.tblLayoutPanelFormaPago.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.96721F));
+            this.tblLayoutPanelFormaPago.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.93443F));
+            this.tblLayoutPanelFormaPago.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.70491F));
             this.tblLayoutPanelFormaPago.Size = new System.Drawing.Size(154, 134);
             this.tblLayoutPanelFormaPago.TabIndex = 4;
             // 
@@ -283,7 +287,7 @@
             this.cmbBoxFormaPago.FormattingEnabled = true;
             this.cmbBoxFormaPago.Location = new System.Drawing.Point(3, 84);
             this.cmbBoxFormaPago.Name = "cmbBoxFormaPago";
-            this.cmbBoxFormaPago.Size = new System.Drawing.Size(148, 21);
+            this.cmbBoxFormaPago.Size = new System.Drawing.Size(123, 21);
             this.cmbBoxFormaPago.TabIndex = 6;
             // 
             // txtBoxMonto
@@ -299,9 +303,10 @@
             this.txtBoxMonto.SelectedText = "";
             this.txtBoxMonto.SelectionLength = 0;
             this.txtBoxMonto.SelectionStart = 0;
-            this.txtBoxMonto.Size = new System.Drawing.Size(148, 23);
+            this.txtBoxMonto.Size = new System.Drawing.Size(123, 23);
             this.txtBoxMonto.TabIndex = 7;
             this.txtBoxMonto.UseSystemPasswordChar = false;
+            this.txtBoxMonto.Leave += new System.EventHandler(this.txtBoxMonto_Leave);
             // 
             // tblLayoutPanelFormaPagoBotones
             // 
@@ -353,13 +358,16 @@
             this.btnQuitarFormaPago.UseVisualStyleBackColor = true;
             this.btnQuitarFormaPago.Click += new System.EventHandler(this.btnQuitarFormaPago_Click);
             // 
+            // epMonto
+            // 
+            this.epMonto.ContainerControl = this;
+            // 
             // frmPedidoCierre_FormasDePago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(528, 468);
             this.Controls.Add(this.tblLayoutPanelPrincipal);
-            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(395, 286);
             this.Name = "frmPedidoCierre_FormasDePago";
             this.Text = "Formas de Pago";
@@ -377,6 +385,7 @@
             this.tblLayoutPanelFormaPago.PerformLayout();
             this.tblLayoutPanelFormaPagoBotones.ResumeLayout(false);
             this.tblLayoutPanelFormaPagoBotones.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epMonto)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -403,5 +412,6 @@
         private MaterialSkin.Controls.MaterialFlatButton btnCancelar;
         private MaterialSkin.Controls.MaterialFlatButton btnGuardar;
         private MaterialSkin.Controls.MaterialFlatButton btnQuitarFormaPago;
+        private System.Windows.Forms.ErrorProvider epMonto;
     }
 }

@@ -515,7 +515,9 @@ namespace Vista
         #region Eventos
         private void lblLupa_Click(object sender, EventArgs e)
         {
-            //Buscar Pedido por CAE
+            if (txtCAE_Leave(sender,e))
+            {
+                //Buscar Pedido por CAE
             ModeloPedido lcl_mod_pedido = ControladorBusqueda.getOne(new ModeloPedido() { CAE = this.txtCAE.Text}, Constantes.ParametrosBusqueda.Pedidos.CAE);
 
             if (lcl_mod_pedido != null)
@@ -525,6 +527,7 @@ namespace Vista
             else
             {
                 MessageBox.Show("No se encontraron coincidencias.","Resultado Búsqueda",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
+            }
             }
         }
 
@@ -658,5 +661,21 @@ namespace Vista
             //}
         }
         #endregion   
+
+        private bool txtCAE_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = true;//Validar.validarInput(txtDescripcionParcial.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
+            if (!respuesta)
+            {
+                epCAE.Icon = Properties.Resources.error;
+                epCAE.SetError(txtCAE, "CAE No Válido");
+            }
+            else
+            {
+                epCAE.Icon = Properties.Resources.success;
+                epCAE.SetError(txtCAE, "OK");
+            }
+            return respuesta;
+        }
     }
 }

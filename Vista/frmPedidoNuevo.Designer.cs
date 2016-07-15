@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoNuevo));
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelBotones = new System.Windows.Forms.TableLayoutPanel();
@@ -87,6 +88,7 @@
             this.vUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.epDescripcionParcial = new System.Windows.Forms.ErrorProvider(this.components);
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
             this.tblLayoutPanelArticulos.SuspendLayout();
@@ -103,6 +105,7 @@
             this.tblLayoutPanelCuadroBusqueda.SuspendLayout();
             this.gbxDetalleAgregados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosEnPedido)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epDescripcionParcial)).BeginInit();
             this.SuspendLayout();
             // 
             // tblLayoutPanelPrincipal
@@ -294,7 +297,7 @@
             this.tblLayoutPanelDetalleArticuloBotones.ColumnCount = 3;
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.83614F));
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.16385F));
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.nmrcUpDownCantidad, 1, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnAgregar, 2, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.lblCantidad, 0, 0);
@@ -330,12 +333,12 @@
             this.btnAgregar.AutoSize = true;
             this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAgregar.Depth = 0;
-            this.btnAgregar.Location = new System.Drawing.Point(136, 6);
+            this.btnAgregar.Location = new System.Drawing.Point(135, 6);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Primary = false;
-            this.btnAgregar.Size = new System.Drawing.Size(121, 31);
+            this.btnAgregar.Size = new System.Drawing.Size(122, 31);
             this.btnAgregar.TabIndex = 10;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -698,12 +701,13 @@
             // tblLayoutPanelCuadroBusqueda
             // 
             this.tblLayoutPanelCuadroBusqueda.BackColor = System.Drawing.Color.White;
-            this.tblLayoutPanelCuadroBusqueda.ColumnCount = 4;
+            this.tblLayoutPanelCuadroBusqueda.ColumnCount = 5;
             this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tblLayoutPanelCuadroBusqueda.Controls.Add(this.lblLupa, 3, 0);
+            this.tblLayoutPanelCuadroBusqueda.Controls.Add(this.lblLupa, 4, 0);
             this.tblLayoutPanelCuadroBusqueda.Controls.Add(this.lblCategoriaBuscar, 0, 0);
             this.tblLayoutPanelCuadroBusqueda.Controls.Add(this.cbxCategoriaBusqueda, 1, 0);
             this.tblLayoutPanelCuadroBusqueda.Controls.Add(this.txtDescripcionParcial, 2, 0);
@@ -766,10 +770,11 @@
             this.txtDescripcionParcial.SelectedText = "";
             this.txtDescripcionParcial.SelectionLength = 0;
             this.txtDescripcionParcial.SelectionStart = 0;
-            this.txtDescripcionParcial.Size = new System.Drawing.Size(381, 23);
+            this.txtDescripcionParcial.Size = new System.Drawing.Size(356, 23);
             this.txtDescripcionParcial.TabIndex = 10;
             this.txtDescripcionParcial.UseSystemPasswordChar = false;
             this.txtDescripcionParcial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescripcionParcial_KeyPress);
+            this.txtDescripcionParcial.Leave += new System.EventHandler(this.txtDescripcionParcial_Leave);
             // 
             // gbxDetalleAgregados
             // 
@@ -851,6 +856,10 @@
             this.vParcial.Name = "vParcial";
             this.vParcial.ReadOnly = true;
             // 
+            // epDescripcionParcial
+            // 
+            this.epDescripcionParcial.ContainerControl = this;
+            // 
             // frmPedidoNuevo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -883,6 +892,7 @@
             this.tblLayoutPanelCuadroBusqueda.PerformLayout();
             this.gbxDetalleAgregados.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosEnPedido)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epDescripcionParcial)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -947,6 +957,7 @@
         private MaterialSkin.Controls.MaterialFlatButton btnAgregar;
         private MaterialSkin.Controls.MaterialCheckBox chckBoxPermitirStockNegativo;
         private MaterialSkin.Controls.MaterialLabel lblCantidad;
+        private System.Windows.Forms.ErrorProvider epDescripcionParcial;
 
 
 

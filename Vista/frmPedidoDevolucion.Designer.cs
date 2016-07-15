@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoDevolucion));
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelBotones = new System.Windows.Forms.TableLayoutPanel();
@@ -90,6 +91,7 @@
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.epCAE = new System.Windows.Forms.ErrorProvider(this.components);
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
             this.tblLayoutPanelArticulos.SuspendLayout();
@@ -106,6 +108,7 @@
             this.tblLayoutPanelCuadroBusqueda.SuspendLayout();
             this.gbxArticulosDevolucion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosDevolucion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCAE)).BeginInit();
             this.SuspendLayout();
             // 
             // tblLayoutPanelPrincipal
@@ -295,7 +298,7 @@
             this.tblLayoutPanelDetalleArticuloBotones.ColumnCount = 3;
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.40659F));
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.59341F));
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.nmrcUpDownCantidad, 1, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.lblCantidad, 0, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnAgregar, 2, 0);
@@ -310,7 +313,7 @@
             // nmrcUpDownCantidad
             // 
             this.nmrcUpDownCantidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(66, 25);
+            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(65, 25);
             this.nmrcUpDownCantidad.Maximum = new decimal(new int[] {
             99999999,
             0,
@@ -330,7 +333,7 @@
             // 
             this.lblCantidad.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(8, 29);
+            this.lblCantidad.Location = new System.Drawing.Point(7, 29);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(52, 13);
             this.lblCantidad.TabIndex = 9;
@@ -342,12 +345,12 @@
             this.btnAgregar.AutoSize = true;
             this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAgregar.Depth = 0;
-            this.btnAgregar.Location = new System.Drawing.Point(149, 17);
+            this.btnAgregar.Location = new System.Drawing.Point(148, 17);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Primary = false;
-            this.btnAgregar.Size = new System.Drawing.Size(108, 36);
+            this.btnAgregar.Size = new System.Drawing.Size(109, 36);
             this.btnAgregar.TabIndex = 10;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -709,19 +712,19 @@
             // 
             // tblLayoutPanelCuadroBusqueda
             // 
-            this.tblLayoutPanelCuadroBusqueda.ColumnCount = 3;
+            this.tblLayoutPanelCuadroBusqueda.ColumnCount = 4;
             this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
             this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tblLayoutPanelCuadroBusqueda.Controls.Add(this.lblCAE, 0, 0);
-            this.tblLayoutPanelCuadroBusqueda.Controls.Add(this.lblLupa, 2, 0);
+            this.tblLayoutPanelCuadroBusqueda.Controls.Add(this.lblLupa, 3, 0);
             this.tblLayoutPanelCuadroBusqueda.Controls.Add(this.txtCAE, 1, 0);
             this.tblLayoutPanelCuadroBusqueda.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelCuadroBusqueda.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelCuadroBusqueda.Name = "tblLayoutPanelCuadroBusqueda";
             this.tblLayoutPanelCuadroBusqueda.RowCount = 1;
             this.tblLayoutPanelCuadroBusqueda.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelCuadroBusqueda.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tblLayoutPanelCuadroBusqueda.Size = new System.Drawing.Size(584, 28);
             this.tblLayoutPanelCuadroBusqueda.TabIndex = 0;
             // 
@@ -758,10 +761,11 @@
             this.txtCAE.SelectedText = "";
             this.txtCAE.SelectionLength = 0;
             this.txtCAE.SelectionStart = 0;
-            this.txtCAE.Size = new System.Drawing.Size(485, 23);
+            this.txtCAE.Size = new System.Drawing.Size(460, 23);
             this.txtCAE.TabIndex = 9;
             this.txtCAE.UseSystemPasswordChar = false;
             this.txtCAE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCAE_KeyPress);
+            this.txtCAE.Leave += new System.EventHandler(this.txtCAE_Leave);
             // 
             // gbxArticulosDevolucion
             // 
@@ -851,6 +855,10 @@
             this.vParcial.Name = "vParcial";
             this.vParcial.ReadOnly = true;
             // 
+            // epCAE
+            // 
+            this.epCAE.ContainerControl = this;
+            // 
             // frmPedidoDevolucion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -880,6 +888,7 @@
             this.tblLayoutPanelCuadroBusqueda.PerformLayout();
             this.gbxArticulosDevolucion.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosDevolucion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCAE)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -947,5 +956,6 @@
         private MaterialSkin.Controls.MaterialFlatButton btnQuitarTodos;
         private MaterialSkin.Controls.MaterialFlatButton btnSiguiente;
         private MaterialSkin.Controls.MaterialFlatButton btnAgregar;
+        private System.Windows.Forms.ErrorProvider epCAE;
     }
 }

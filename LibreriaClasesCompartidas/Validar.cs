@@ -20,6 +20,37 @@ namespace LibreriaClasesCompartidas
             return Decimal.TryParse(p_stringDecimal, out numero);
         }
 
+        public static bool validarNumerico(string p_numero, string p_opcion)
+        {
+            bool resultado;
+            decimal numeroDecimal;
+            switch (p_opcion)
+            {
+                case Constantes.Numericos.DecimalPositivo:
+                    try
+                    {
+                        resultado = Decimal.TryParse(p_numero, out numeroDecimal);
+                        if(numeroDecimal>0)
+                        {
+                            resultado = true;
+                        }
+                        else
+                        {
+                            resultado = false;
+                        }
+                    }
+                    catch(FormatException)
+                    {
+                        resultado = false;
+                    }
+                    break;
+                default:
+                    resultado=false;
+                    break;
+            }
+            return resultado;
+        }
+
         public static bool validarValorPorcentual(string p_stringPorcentual)
         {
             decimal numero;

@@ -582,16 +582,19 @@ namespace Vista
         #region Labels, txtBox y numericUpDown
         private void lblLupa_Click(object sender, EventArgs e)
         {
-            List<ModeloArticuloProveedores> lcl_lst_articulosProveedoresEncontrados = this.buscarArticuloProveedor();
-            if (lcl_lst_articulosProveedoresEncontrados != null)
+            if(txtDescripcionParcial_Leave(sender,e))
             {
-                if (lcl_lst_articulosProveedoresEncontrados.Count > 0)
+                List<ModeloArticuloProveedores> lcl_lst_articulosProveedoresEncontrados = this.buscarArticuloProveedor();
+                if (lcl_lst_articulosProveedoresEncontrados != null)
                 {
-                    this.cargarArticulosProveedoresEncontradosEnControles(lcl_lst_articulosProveedoresEncontrados);
-                }
-                else
-                {
-                    MessageBox.Show("No se encontraron coincidencias.", "Resultado Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    if (lcl_lst_articulosProveedoresEncontrados.Count > 0)
+                    {
+                        this.cargarArticulosProveedoresEncontradosEnControles(lcl_lst_articulosProveedoresEncontrados);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron coincidencias.", "Resultado Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    }
                 }
             }
         }
@@ -638,5 +641,21 @@ namespace Vista
         }
 
         #endregion                   
+
+        private bool txtDescripcionParcial_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInput(txtDescripcionParcial.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
+            if (!respuesta)
+            {
+                epDescripcionParcial.Icon = Properties.Resources.error;
+                epDescripcionParcial.SetError(txtDescripcionParcial, "Descripción parcial no válida");
+            }
+            else
+            {
+                epDescripcionParcial.Icon = Properties.Resources.success;
+                epDescripcionParcial.SetError(txtDescripcionParcial, "OK");
+            }
+            return respuesta;
+        }
     }
 }

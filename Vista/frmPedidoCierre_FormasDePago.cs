@@ -165,6 +165,21 @@ namespace Vista
             this.cargarPedidoEnControles(pedidoActual);
         }
         #endregion
+
+        private void txtBoxMonto_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarNumerico(txtBoxMonto.Text.ToString(),Constantes.Numericos.DecimalPositivo);
+            if (!respuesta)
+            {
+                epMonto.Icon = Properties.Resources.error;
+                epMonto.SetError(txtBoxMonto, "CAE No Válido");
+            }
+            else
+            {
+                epMonto.Icon = Properties.Resources.success;
+                epMonto.SetError(txtBoxMonto, "OK");
+            }
+        }
         #endregion
     }
 }

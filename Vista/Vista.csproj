@@ -323,12 +323,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\error.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\success.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\error.ico" />
   </ItemGroup>
   <ItemGroup>
