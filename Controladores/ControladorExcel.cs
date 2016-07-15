@@ -7,11 +7,11 @@ using ExcelLib = Microsoft.Office.Interop.Excel;
 using Modelos;
 using System.Data;
 using LibreriaClasesCompartidas;
-
+using System.Transactions;
 
 namespace Controladores
 {
-    public class ControladorExcel
+    public class ControladorExcel:Controlador
     {
         ExcelLib._Worksheet glb_hojaTrabajo;
         System.Data.DataTable glb_dataTable;
@@ -31,10 +31,30 @@ namespace Controladores
                 //Asociamos nuestra hoja a la hoja activa
                 glb_hojaTrabajo = (ExcelLib._Worksheet)ExcelApp.ActiveSheet;
                 //trabajamos la hoja creada
-                this.aExcel(p_type);
-                
-                
-                return true;
+                errorActual = "No se ha podido realizar la actualizacion.";
+                    try
+                    {
+                        using (TransactionScope scope = new TransactionScope())
+                        {
+                            this.aExcel(p_type);
+                            scope.Complete();
+                        }
+                    }
+                 
+                    catch (TransactionAbortedException ex)
+                    {
+                        errorActual = "TransactionAbortedException Message: " + ex.Message;
+                    }
+                    catch (ApplicationException ex)
+                    {
+                        errorActual = "ApplicationException Message: " + ex.Message;
+                    }
+                    catch (Exception ex)
+                    {
+                        errorActual = ex.Message;
+                    }
+
+                return true; 
             }
 
             private void aExcel(Type p_type)
@@ -111,7 +131,7 @@ namespace Controladores
                     row[7] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 8]).Value2);
                     row[8] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 9]).Value2);
                     row[9] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 10]).Value2);
-                   //row[10] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 11]).Value2);
+                   
                     index++;
                     dt.Rows.Add(row);
                 }
@@ -557,7 +577,7 @@ namespace Controladores
                 //int i = 0;
                 foreach (ModeloArticulos modArt in p_lst_mod_art)
                 {
-                    i = (glb_con_alta.agregar(modArt) == true) ? i++ : i;
+                    i = (glb_con_alta.agregar(modArt) == true) ? i+1 : i;
                 }
                 return "Se agregaron " + i + " Artículos.";
             }
@@ -572,7 +592,7 @@ namespace Controladores
                 for (int j = 0; j < p_lst_mod_cli.Count; j++)
                 {
                     lcl_aux_cli = p_lst_mod_cli[j] as ModeloCliente;
-                    i = (glb_con_alta.agregar(ref lcl_aux_cli) == true) ? i++ : i;
+                    i = (glb_con_alta.agregar(ref lcl_aux_cli) == true) ? i+1 : i;
                 }
                 
                 return "Se agregaron " + i + " Clientes.";
@@ -588,7 +608,7 @@ namespace Controladores
                 for (int j = 0; j < p_lst_mod_pro.Count; j++)
                 {
                     lcl_aux_pro = p_lst_mod_pro[j] as ModeloProveedor;
-                    i = (glb_con_alta.agregar(ref lcl_aux_pro) == true) ? i++ : i;
+                    i = (glb_con_alta.agregar(ref lcl_aux_pro) == true) ? i+1 : i;
                 }
                 return "Se agregaron " + i + " Proveedores.";
             }
@@ -597,7 +617,7 @@ namespace Controladores
                 int i = 0;
                 foreach (ModeloDescuentoArticuloProveedor modDes in p_lst_mod_desc)
                 {
-                     i = (glb_con_alta.agregar(modDes) == true) ? i++ : i;
+                     i = (glb_con_alta.agregar(modDes) == true) ? i+1 : i;
                 }
                 return "Se agregaron " + i + " Descuentos.";
             }
