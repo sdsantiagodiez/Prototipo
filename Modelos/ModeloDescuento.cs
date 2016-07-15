@@ -9,7 +9,7 @@ namespace Modelos
     [Serializable]
     public class ModeloDescuento : Modelo
     {
-        #region Getters/Setters
+        #region Atributos
         int _codigoDescuento;
         public int codigoDescuento
         {
@@ -51,6 +51,11 @@ namespace Modelos
             return String.Format("{0:0.00}", porcentaje * 100);
         }
 
+        /// <summary>
+        /// Convierte porcentaje string en decimal
+        /// </summary>
+        /// <param name="p_porcentaje"></param>
+        /// <returns></returns>
         public bool asignarPorcentaje(string p_porcentaje)
         {
             Decimal p;
@@ -215,5 +220,146 @@ namespace Modelos
         #endregion
     }
 
+    [Serializable]
+    public class ModeloDescuentoLineaPedido : ModeloDescuento
+    {
+        decimal _montoDescontadoSobreTotal;
+        public decimal montoDescontadoSobreTotal
+        {
+            get { return _montoDescontadoSobreTotal; }
+            set { _montoDescontadoSobreTotal = value; }
+        }
 
+        decimal _montoTotal;
+        /// <summary>
+        /// El valor total que se tomará para realizar el descuento
+        /// </summary>
+        public decimal montoTotal
+        {
+            get { return _montoTotal; }
+            set { _montoTotal = value; }
+        }
+
+        public ModeloDescuentoLineaPedido()
+        {
+            this.descripcion = "Estándar";
+        }
+        public ModeloDescuentoLineaPedido(ModeloDescuentoLineaPedido p_descuento, decimal valorParcial)
+        {
+            this.codigoDescuento = p_descuento.codigoDescuento;
+            this.descripcion = p_descuento.descripcion;
+            this.porcentaje = p_descuento.porcentaje;
+            
+            this.montoDescontadoSobreTotal =p_descuento.montoDescontadoSobreTotal;
+            
+            this.asignarValorTotalLinea(valorParcial);
+
+            this.asignarDescuento(valorParcial);
+        }
+
+        #region Validación
+        public bool validarTotal(decimal p_total)
+        {
+            return p_total > 0;
+        }
+        public bool validarDescuentoSobreTotal(decimal p_descuentoSobreTotal)
+        {
+            return p_descuentoSobreTotal > 0 && (p_descuentoSobreTotal <= this.montoTotal ) ;
+        }
+        public bool validar()
+        {
+            return this.validarTotal(this.montoTotal) && this.validarDescuentoSobreTotal(this.montoDescontadoSobreTotal)
+                && base.validar();
+        }
+        #endregion
+
+        #region Asignar Descuento de Línea
+        public void asignarValorTotalLinea(decimal p_valorTotal)
+        {
+            this.montoTotal = this.validarTotal(p_valorTotal) ? p_valorTotal : 0;
+        }
+        /// <summary>
+        /// Calcula monto a descontar de acuerdo a MontoTotal y porcentaje o montoADescontar ya ingresados
+        /// </summary>
+        /// <returns>Devuelve monto a descontar. 0 si algún valor no es válido</returns>
+        public decimal asignarDescuento()
+        {
+            return this.asignarDescuento(this.montoTotal);
+        }
+        /// <summary>
+        /// Asigna descuento a un valor total de linea de pedido de acuerdo a parámetros ya inicializados en el descuento
+        /// </summary>
+        /// <param name="p_valorTotal"></param>
+        /// <returns>Devuelve monto a descontar. 0 si algún valor no es válido</returns>
+        public decimal asignarDescuento(decimal p_valorTotal)
+        {
+            //Si el porcentaje es válido, se toma como predeterminado aplicar porcentaje
+            if (this.validarPorcentaje(this.porcentaje))
+            {
+                return this.asignarDescuentoPorcentual(p_valorTotal);
+            }
+            else
+            {//Si no es válido, se presupone que hay que hacer un descuento neto
+                return this.asignarDescuentoNeto(p_valorTotal);
+            }
+        }
+
+        /// <summary>
+        /// Inicializa monto total y montoADescontar utilizando porcentaje ya asignado previamente
+        /// </summary>
+        /// <param name="p_valorTotal"></param>
+        /// <returns>Devuelve monto a descontar. 0 si algún valor no es válido</returns>
+        public decimal asignarDescuentoPorcentual(decimal p_valorTotal)
+        {
+            return this.asignarDescuentoPorcentual(p_valorTotal, this.porcentaje);
+        }
+        /// <summary>
+        /// Inicializa monto total, porcentaje y monto a descontar
+        /// </summary>
+        /// <param name="p_valorTotal"></param>
+        /// <param name="p_porcentaje"></param>
+        /// <returns>Devuelve monto a descontar. 0 si algún valor no es válido</returns>
+        public decimal asignarDescuentoPorcentual(decimal p_valorTotal, decimal p_porcentaje)
+        {
+            if (!this.validarPorcentaje(p_porcentaje) || !this.validarTotal(p_valorTotal))
+            {
+                return 0;
+            }
+
+            this.montoTotal = p_valorTotal;
+            this.porcentaje = p_porcentaje;
+            this.montoDescontadoSobreTotal = p_valorTotal * p_porcentaje;
+
+            return montoDescontadoSobreTotal;
+        }
+        /// <summary>
+        /// Inicializa monto total y porcentaje utilizando montoADescontar ya asignado previamente
+        /// </summary>
+        /// <param name="p_valorTotal"></param>
+        /// <returns>Devuelve monto a descontar. 0 si algún valor no es válido</returns>
+        public decimal asignarDescuentoNeto(decimal p_valorTotal)
+        {
+            return this.asignarDescuentoNeto(p_valorTotal,this.montoDescontadoSobreTotal);
+        }
+        /// <summary>
+        /// Inicializa monto total, porcentaje y monto a descontar
+        /// </summary>
+        /// <param name="p_valorTotal"></param>
+        /// <param name="p_montoDescontar"></param>
+        /// <returns>Devuelve monto a descontar. 0 si algún valor no es válido</returns>
+        public decimal asignarDescuentoNeto(decimal p_valorTotal, decimal p_montoDescontar)
+        {
+            if (p_montoDescontar <= 0 || p_montoDescontar > p_valorTotal || !this.validarTotal(p_valorTotal))
+            {
+                return 0;
+            }
+
+            this.montoTotal = p_valorTotal;
+            this.montoDescontadoSobreTotal = p_montoDescontar;
+            this.porcentaje = p_montoDescontar / p_valorTotal;
+
+            return montoDescontadoSobreTotal;
+        }
+        #endregion
+    }
 }

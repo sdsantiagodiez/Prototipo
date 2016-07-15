@@ -13,22 +13,24 @@ namespace Datos
 {
     public class CatalogoDescuentos : Catalogo
     {
-        private ModeloDescuentoArticulo leerDatosDescuento(SqlDataReader p_drDescuentos)
+        private ModeloDescuentoArticuloProveedor leerDatosDescuento(SqlDataReader p_drDescuentos)
         {
-            ModeloDescuentoArticulo lcl_mod_descuento = new ModeloDescuentoArticulo();
+            ModeloDescuentoArticuloProveedor lcl_mod_descuento = new ModeloDescuentoArticuloProveedor();
 
-            lcl_mod_descuento.CodigoOriginal = (string)p_drDescuentos["codigo_original"];
-            lcl_mod_descuento.CodigoArticuloProveedor = (string)p_drDescuentos["codigo_articulo_proveedor"];
-            lcl_mod_descuento.numeroDescuento = (int)p_drDescuentos["numero_descuento"];
-            lcl_mod_descuento.PorcentajeDescuento = (decimal)p_drDescuentos["porcentaje_descuento"];
-            lcl_mod_descuento.FechaDesde = (DateTime)p_drDescuentos["fecha_desde"];
-            lcl_mod_descuento.FechaHasta = (DateTime)p_drDescuentos["fecha_hasta"];
+            lcl_mod_descuento.codigoDescuento = (int)p_drDescuentos["numero_descuento"];
+            lcl_mod_descuento.codigoOriginalArticulo = (string)p_drDescuentos["codigo_original"];
+            lcl_mod_descuento.codigoArticuloProveedor = (string)p_drDescuentos["codigo_articulo_proveedor"];
+            lcl_mod_descuento.descripcion = (string)p_drDescuentos["descripcion"];
+            lcl_mod_descuento.porcentaje = (decimal)p_drDescuentos["porcentaje_descuento"];
+            lcl_mod_descuento.fechaVigenciaDesde = (DateTime)p_drDescuentos["fecha_desde"];
+            lcl_mod_descuento.fechaVigenciaHasta = (DateTime)p_drDescuentos["fecha_hasta"];
+            
             
             return lcl_mod_descuento;
         }
 
 
-        public List<ModeloDescuentoArticulo> buscarDescuentos(string p_codigoOriginal, string p_codigoArticuloProveedor)
+        public List<ModeloDescuentoArticuloProveedor> buscarDescuentos(string p_codigoOriginal, string p_codigoArticuloProveedor)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -52,13 +54,13 @@ namespace Datos
 
             SqlDataReader drDescuentos = comando.ExecuteReader();
 
-            List<ModeloDescuentoArticulo> lcl_lst_mod_descuento = new List<ModeloDescuentoArticulo>();
-            ModeloDescuentoArticulo lcl_mod_descuento = new ModeloDescuentoArticulo();
+            List<ModeloDescuentoArticuloProveedor> lcl_lst_mod_descuento = new List<ModeloDescuentoArticuloProveedor>();
+            ModeloDescuentoArticuloProveedor lcl_mod_descuento = new ModeloDescuentoArticuloProveedor();
 
             while (drDescuentos.Read())
             {
 
-                lcl_mod_descuento = new ModeloDescuentoArticulo();
+                lcl_mod_descuento = new ModeloDescuentoArticuloProveedor();
                 lcl_mod_descuento = this.leerDatosDescuento(drDescuentos);
 
                lcl_lst_mod_descuento.Add(lcl_mod_descuento);
@@ -69,7 +71,7 @@ namespace Datos
             return lcl_lst_mod_descuento;
         }
 
-        public List<ModeloDescuentoArticulo> buscarDescuentosVigentes(DateTime p_fecha)
+        public List<ModeloDescuentoArticuloProveedor> buscarDescuentosVigentes(DateTime p_fecha)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -93,13 +95,13 @@ namespace Datos
 
             SqlDataReader drDescuentos = comando.ExecuteReader();
 
-            List<ModeloDescuentoArticulo> lcl_lst_mod_descuento = new List<ModeloDescuentoArticulo>();
-            ModeloDescuentoArticulo lcl_mod_descuento = new ModeloDescuentoArticulo();
+            List<ModeloDescuentoArticuloProveedor> lcl_lst_mod_descuento = new List<ModeloDescuentoArticuloProveedor>();
+            ModeloDescuentoArticuloProveedor lcl_mod_descuento = new ModeloDescuentoArticuloProveedor();
 
             while (drDescuentos.Read())
             {
 
-                lcl_mod_descuento = new ModeloDescuentoArticulo();
+                lcl_mod_descuento = new ModeloDescuentoArticuloProveedor();
                 lcl_mod_descuento = this.leerDatosDescuento(drDescuentos);
 
                 lcl_lst_mod_descuento.Add(lcl_mod_descuento);
@@ -111,7 +113,7 @@ namespace Datos
         }
 
 
-        public bool descuentosSuperpuestos(string p_codigoOriginal, string p_codigoArticuloProveedor, DateTime p_fechaDesde, DateTime p_fechaHasta)
+        public bool descuentosSuperpuestos(ModeloDescuentoArticuloProveedor p_mod_descuentoAP)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -129,10 +131,10 @@ namespace Datos
                 "AND ((fecha_desde between @fecha_desde AND @fecha_hasta) OR (fecha_hasta between @fecha_desde AND @fecha_hasta))";
                 
 
-            comando.Parameters.Add(this.instanciarParametro(p_codigoOriginal, "@codigo_original"));
-            comando.Parameters.Add(this.instanciarParametro(p_codigoArticuloProveedor, "@codigo_articulo_proveedor"));
-            comando.Parameters.Add(this.instanciarParametro(p_fechaDesde, "@fecha_desde"));
-            comando.Parameters.Add(this.instanciarParametro(p_fechaHasta, "@fecha_hasta"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoAP.codigoOriginalArticulo, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoAP.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoAP.fechaVigenciaDesde, "@fecha_desde"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoAP.fechaVigenciaHasta, "@fecha_hasta"));
 
             comando.Connection.Open();
 
@@ -146,7 +148,7 @@ namespace Datos
         
         }
 
-        public ModeloDescuentoArticulo getOne (string p_numero_descuento)
+        public ModeloDescuentoArticuloProveedor getOne (string p_numero_descuento)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -167,7 +169,7 @@ namespace Datos
 
             SqlDataReader drDescuentos = comando.ExecuteReader();
 
-            ModeloDescuentoArticulo lcl_mod_descuento = new ModeloDescuentoArticulo();
+            ModeloDescuentoArticuloProveedor lcl_mod_descuento = new ModeloDescuentoArticuloProveedor();
 
             lcl_mod_descuento = this.leerDatosDescuento(drDescuentos);
                       
@@ -206,9 +208,9 @@ namespace Datos
             return ultimo_descuento+1;
         }
 
-        public bool add(ModeloDescuentoArticulo p_mod_descuento)
+        public bool add(ModeloDescuentoArticuloProveedor p_mod_descuento)
         {
-            if (this.descuentosSuperpuestos(p_mod_descuento.CodigoOriginal,p_mod_descuento.CodigoArticuloProveedor,p_mod_descuento.FechaDesde,p_mod_descuento.FechaHasta))
+            if (this.descuentosSuperpuestos(p_mod_descuento))
             { throw new Exception("Existe otro descuento entre las fechas."); }
 
             SqlConnection ConexionSQL = Conexion.crearConexion();
@@ -221,12 +223,12 @@ namespace Datos
                 "   VALUES (@codigo_original, @codigo_articulo_proveedor, @fecha_desde, @fecha_hasta, @porcentaje_descuento, " +
                 "   @numero_descuento); ";
                 
-            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.CodigoArticuloProveedor, "@codigo_articulo_proveedor"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.CodigoOriginal, "@codigo_original"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.FechaDesde, "@fecha_desde"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.FechaHasta, "@fecha_hasta"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.numeroDescuento, "@numero_descuento"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.PorcentajeDescuento, "@porcentaje_descuento"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.codigoOriginalArticulo, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.fechaVigenciaDesde, "@fecha_desde"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.fechaVigenciaHasta, "@fecha_hasta"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.codigoDescuento, "@numero_descuento"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.porcentaje, "@porcentaje_descuento"));
                        
 
             comando.Connection.Open();
@@ -241,7 +243,7 @@ namespace Datos
             return true;
         }
 
-        public bool update(ModeloDescuentoArticulo p_mod_descuento)
+        public bool update(ModeloDescuentoArticuloProveedor p_mod_descuento)
         {
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
             SqlCommand comando = new SqlCommand();
@@ -253,12 +255,12 @@ namespace Datos
                 "WHERE ([codigo_original]=@codigo_original AND [codigo_articulo_proveedor]=@codigo_articulo_proveedor " +
                 "AND [numero_descuento]=@numero_descuento)";
 
-            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.CodigoArticuloProveedor, "@codigo_articulo_proveedor"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.CodigoOriginal, "@codigo_original"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.FechaDesde, "@fecha_desde"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.FechaHasta, "@fecha_hasta"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.PorcentajeDescuento, "@porcentaje_descuento"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.numeroDescuento, "@numero_descuento"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.codigoOriginalArticulo, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.fechaVigenciaDesde, "@fecha_desde"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.fechaVigenciaHasta, "@fecha_hasta"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.codigoDescuento, "@numero_descuento"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.porcentaje, "@porcentaje_descuento"));
             
 
             comando.Connection.Open();
@@ -271,7 +273,7 @@ namespace Datos
             { return false; }
         }
 
-        public bool remove(ModeloDescuentoArticulo p_mod_descuento)
+        public bool remove(ModeloDescuentoArticuloProveedor p_mod_descuento)
         {
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
             SqlCommand comando = new SqlCommand();
@@ -281,9 +283,11 @@ namespace Datos
                 "DELETE FROM [Descuentos_articulos] " +
                 "   WHERE (codigo_articulo_proveedor=@codigo_articulo_proveedor AND codigo_original=@codigo_original AND numero_descuento=@numero_descuento) ";
 
-            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.CodigoArticuloProveedor, "@codigo_articulo_proveedor"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.CodigoOriginal, "@codigo_original"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.numeroDescuento, "@numero_descuento"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.codigoOriginalArticulo, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.fechaVigenciaDesde, "@fecha_desde"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.fechaVigenciaHasta, "@fecha_hasta"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.codigoDescuento, "@numero_descuento"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();

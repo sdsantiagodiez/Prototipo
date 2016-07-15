@@ -69,6 +69,43 @@ namespace Controladores
             return ControladorBusqueda.buscar(lcl_mod_articuloProveedor, Constantes.ParametrosBusqueda.All);
         }
         /// <summary>
+        /// Descuentos Predeterminados
+        /// </summary>
+        /// <returns></returns>
+        public static List<ModeloDescuento> getDescuentosBase()
+        {
+            List<int> lst_porcentajes = new List<int>() { 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80 };
+            List<ModeloDescuento> lcl_lst_DescuentosBase = new List<ModeloDescuento>();
+            int codigo = 1;
+            foreach (int i in lst_porcentajes)
+            {
+                lcl_lst_DescuentosBase.Add(new ModeloDescuento()
+                {
+                    codigoDescuento = codigo,
+                    porcentaje = Convert.ToDecimal(i) / 100,
+                    descripcion = i.ToString() + " %"
+                });
+                codigo++;
+            }
+            return lcl_lst_DescuentosBase;
+        }
+        /// <summary>
+        /// Descuentos Predeterminados y descuentos creados por usuario
+        /// </summary>
+        /// <returns></returns>
+        public static List<ModeloDescuento> getDescuentos()
+        {
+            return new List<ModeloDescuento>();
+        }
+        /// <summary>
+        /// Descuentos asignados a artículos
+        /// </summary>
+        /// <returns></returns>
+        public static List<ModeloDescuentoArticuloProveedor> getDescuentosArticulosProveedores()
+        {
+            return new List<ModeloDescuentoArticuloProveedor>();
+        }
+        /// <summary>
         /// Retorna todas las provincias de la base de datos
         /// </summary>
         /// <returns>Lista de provincias</returns>
@@ -599,30 +636,30 @@ namespace Controladores
 
             return lcl_cat_articulos.buscarLineasPedido(null, Constantes.ParametrosBusqueda.All);
         }
-        public static List<ModeloDescuentoArticulo> getDescuentos(string p_codigoOriginal, string p_codigoArticuloProveedor)
+        public static List<ModeloDescuentoArticuloProveedor> getDescuentos(string p_codigoOriginal, string p_codigoArticuloProveedor)
         {
             CatalogoDescuentos lcl_cat_descuentos = new CatalogoDescuentos();
-            List<ModeloDescuentoArticulo> lcl_lst_mod_descuento = new List<ModeloDescuentoArticulo>();
+            List<ModeloDescuentoArticuloProveedor> lcl_lst_mod_descuento = new List<ModeloDescuentoArticuloProveedor>();
             lcl_lst_mod_descuento= lcl_cat_descuentos.buscarDescuentos(p_codigoOriginal, p_codigoArticuloProveedor);
             return lcl_lst_mod_descuento;
 
         }
 
-        public static List<ModeloDescuentoArticulo> getDescuentosVigentes(DateTime p_fecha)
+        public static List<ModeloDescuentoArticuloProveedor> getDescuentosVigentes(DateTime p_fecha)
         {
             CatalogoDescuentos lcl_cat_descuentos = new CatalogoDescuentos();
-            List<ModeloDescuentoArticulo> lcl_lst_mod_descuento = new List<ModeloDescuentoArticulo>();
+            List<ModeloDescuentoArticuloProveedor> lcl_lst_mod_descuento = new List<ModeloDescuentoArticuloProveedor>();
             lcl_lst_mod_descuento = lcl_cat_descuentos.buscarDescuentosVigentes(p_fecha);
             return lcl_lst_mod_descuento;
 
         }
 
-        public static ModeloDescuentoArticulo getDescuentoArticuloVigente(List<ModeloDescuentoArticulo> p_lst_mod_descuentoArticulo, DateTime p_fechaPedido)
+        public static ModeloDescuentoArticuloProveedor getDescuentoArticuloVigente(List<ModeloDescuentoArticuloProveedor> p_lst_mod_descuentoArticulo, DateTime p_fechaPedido)
         {
-            ModeloDescuentoArticulo lcl_mod_descuentoArticulo = new ModeloDescuentoArticulo();
-            foreach (ModeloDescuentoArticulo md in p_lst_mod_descuentoArticulo)
+            ModeloDescuentoArticuloProveedor lcl_mod_descuentoArticulo = new ModeloDescuentoArticuloProveedor();
+            foreach (ModeloDescuentoArticuloProveedor md in p_lst_mod_descuentoArticulo)
             {
-                if (md.FechaDesde <= p_fechaPedido && md.FechaHasta >= p_fechaPedido)
+                if (md.fechaVigenciaDesde <= p_fechaPedido && md.fechaVigenciaHasta >= p_fechaPedido)
                 {
                     lcl_mod_descuentoArticulo = md;
                 }

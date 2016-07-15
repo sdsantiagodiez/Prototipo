@@ -27,8 +27,9 @@ namespace Datos
             lcl_mod_lineaPedido.valorParcial = (decimal)p_drLineasPedidos["valor_parcial"];
             lcl_mod_lineaPedido.valorUnitario = (decimal)p_drLineasPedidos["valor_unitario"];
             
-            lcl_mod_lineaPedido.descuentoLinea.numeroDescuento = (p_drLineasPedidos["numero_descuento"]!= DBNull.Value) ? (int)p_drLineasPedidos["numero_descuento"] : 0;
-            lcl_mod_lineaPedido.descuentoLinea.PorcentajeDescuento = (p_drLineasPedidos["porcentaje_descuento"]!= DBNull.Value) ? (decimal)p_drLineasPedidos["porcentaje_descuento"] : 0;
+            //MISSING CHILDREN: LLAMAR A CATALOGODESCUENTOS!!!!!
+            //lcl_mod_lineaPedido.descuentoLinea.numeroDescuento = (p_drLineasPedidos["numero_descuento"]!= DBNull.Value) ? (int)p_drLineasPedidos["numero_descuento"] : 0;
+            //lcl_mod_lineaPedido.descuentoLinea.PorcentajeDescuento = (p_drLineasPedidos["porcentaje_descuento"]!= DBNull.Value) ? (decimal)p_drLineasPedidos["porcentaje_descuento"] : 0;
 
             lcl_mod_lineaPedido.articulo.descripcionArticuloProveedor= (p_drLineasPedidos["descripcion"] != DBNull.Value) ? (string)p_drLineasPedidos["descripcion"] : null;
                 
@@ -194,8 +195,7 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.cantidadArticulos, "@cantidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.valorParcial, "@valor_parcial"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.valorUnitario, "@valor_unitario"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.descuentoLinea.numeroDescuento,"@numero_descuento"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.descuentoLinea.PorcentajeDescuento, "@porcentaje_descuento"));
+            //MISSING CHILDREN: 
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();

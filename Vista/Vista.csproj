@@ -65,12 +65,6 @@
     <Compile Include="frmABMDescuentos.Designer.cs">
       <DependentUpon>frmABMDescuentos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmABMDescuentosArticulos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmABMDescuentosArticulos.Designer.cs">
-      <DependentUpon>frmABMDescuentosArticulos.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmABMArticuloProveedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,9 +204,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmABMDescuentos.resx">
       <DependentUpon>frmABMDescuentos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmABMDescuentosArticulos.resx">
-      <DependentUpon>frmABMDescuentosArticulos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmABMArticuloProveedor.resx">
       <DependentUpon>frmABMArticuloProveedor.cs</DependentUpon>

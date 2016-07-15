@@ -160,29 +160,16 @@ namespace Controladores
 
         public FormReportes DescuentosVigentes(DateTime p_fecha)
         {
-            List<ModeloDescuentoArticulo> lcl_lst_mod_descA = new List<ModeloDescuentoArticulo>();
-
-            ControladorDescuento lcl_con_des = new ControladorDescuento();
-            lcl_lst_mod_descA = lcl_con_des.buscarDescuentosVigentes(p_fecha);
-            //Pasar descipcion y precio al modelodescuentoArticulo
-            List<ModeloArticuloProveedores> lcl_lst_mod_artP = new List<ModeloArticuloProveedores>();
-            ControladorPedido lcl_con_ped = new ControladorPedido();
-            int Cantidad = lcl_con_ped.buscarArticulos("descripcionArticuloProveedor", "%");
-            lcl_lst_mod_artP = lcl_con_ped.resultadoBusquedaArticulosProveedores;
-            foreach (ModeloArticuloProveedores modArtP in lcl_lst_mod_artP)
+            List<ModeloArticuloProveedores> lcl_lst_articulosProveedoresConDescuentosVigentes = new List<ModeloArticuloProveedores>();
+            foreach (ModeloArticuloProveedores ap in ControladorBusqueda.getArticulosProveedores())
             {
-                foreach (ModeloDescuentoArticulo modDes in lcl_lst_mod_descA)
+                if (ap.getDescuentoVigente(p_fecha) != null)
                 {
-                    if (modArtP.codigoArticuloProveedor == modDes.CodigoArticuloProveedor && modArtP.codigoOriginal == modDes.CodigoOriginal)
-                    {
-                        modDes.descripcionArticulo = modArtP.descripcionArticuloProveedor;
-                        modDes.precioVenta = (decimal)modArtP.valorVenta.valorArticulo;
-                    }
+                    lcl_lst_articulosProveedoresConDescuentosVigentes.Add(ap);
                 }
             }
-            
 
-            FormReportes lcl_frm_reporte = new FormReportes(lcl_lst_mod_descA);
+            FormReportes lcl_frm_reporte = new FormReportes(lcl_lst_articulosProveedoresConDescuentosVigentes);
             return lcl_frm_reporte;
         }
 

@@ -118,7 +118,7 @@ namespace Vista
             Width = Screen.PrimaryScreen.WorkingArea.Width;
             Height = Screen.PrimaryScreen.WorkingArea.Height;
             //Width = 1280;
-            //Height = 1280;
+            //Height = 1024;
             
             this.tblLayoutPanelPrincipal.Location = new Point(3, 60);
             this.tblLayoutPanelPrincipal.Height = Height - 60; // 60 pixeles para que se vea título de ventana principal
@@ -411,7 +411,7 @@ namespace Vista
 
         private void descuentosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloDescuentoArticulo), "Descuento Articulos");
+            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloDescuentoArticuloProveedor), "Descuento Articulos");
             lcl_frm_importacion.ShowDialog();
         }
 

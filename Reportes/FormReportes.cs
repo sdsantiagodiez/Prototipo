@@ -146,7 +146,7 @@ namespace Reportes
         
         }
 
-        public FormReportes(List<ModeloDescuentoArticulo> p_lst_mod_descA)
+        public FormReportes(List<ModeloDescuentoArticuloProveedor> p_lst_mod_descA)
         {
             InitializeComponent();
             ModeloReporteEncabezadoBindingSource.Clear();
@@ -184,16 +184,16 @@ namespace Reportes
             return lcl_lst_mod_repStock;
         }
 
-        public List<ModeloReporteStock> CompletaModeloStock(List<ModeloDescuentoArticulo> p_lst_mod_descA)
+        public List<ModeloReporteStock> CompletaModeloStock(List<ModeloDescuentoArticuloProveedor> p_lst_mod_descA)
         {
             List<ModeloReporteStock> lcl_lst_mod_repStock = new List<ModeloReporteStock>();
-            foreach (ModeloDescuentoArticulo mod_descA in p_lst_mod_descA)
+            foreach (ModeloDescuentoArticuloProveedor mod_descA in p_lst_mod_descA)
             {
                 ModeloReporteStock lcl_mod_repStock = new ModeloReporteStock();
-                lcl_mod_repStock.codigoArticulo = mod_descA.CodigoArticuloProveedor;
-                lcl_mod_repStock.descripcionArticulo = mod_descA.descripcionArticulo;
-                lcl_mod_repStock.descuento = (decimal)mod_descA.PorcentajeDescuento;
-                lcl_mod_repStock.precioVenta = (decimal)mod_descA.precioVenta;
+                //lcl_mod_repStock.codigoArticulo = mod_descA.CodigoArticuloProveedor;
+                //lcl_mod_repStock.descripcionArticulo = mod_descA.descripcionArticulo;
+                lcl_mod_repStock.descuento = (decimal)mod_descA.porcentaje;
+                //lcl_mod_repStock.precioVenta = (decimal)mod_descA.precioVenta;
 
                 lcl_lst_mod_repStock.Add(lcl_mod_repStock);
 

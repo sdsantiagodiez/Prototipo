@@ -278,8 +278,8 @@ namespace Modelos
         {
             return 
                 this.getDescuentoLineas() + 
-                this.descuento_1.getDescuento(this.getTotalSinDescuento()) + 
-                this.descuento_2.getDescuento(this.getTotalSinDescuento()) +
+                this.descuento_1.asignarDescuento(this.getTotalSinDescuento()) + 
+                this.descuento_2.asignarDescuento(this.getTotalSinDescuento()) +
                 this.senia;
         }
         public decimal getTotalSinDescuento()

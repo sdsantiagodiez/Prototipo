@@ -63,7 +63,7 @@ namespace Controladores
                     ModeloEntidad lcl_mod_entidad = new ModeloProveedor();
                     completaFilasProveedor(ControladorBusqueda.buscar(lcl_mod_entidad as ModeloProveedor));
                 }
-                else if (T == typeof(ModeloDescuentoArticulo))
+                else if (T == typeof(ModeloDescuentoArticuloProveedor))
                 {
                     completarColumnasDescuento();
                     //completaFilasDescuento(ControladorBusqueda.buscar(p_objeto as ModeloDescuentoArticulo));
@@ -138,7 +138,7 @@ namespace Controladores
                 {
                     message=(addProveedor(this.completaModeloProveedor(p_dataTable)));
                 }
-                else if (p_typeOf == typeof(ModeloDescuentoArticulo))
+                else if (p_typeOf == typeof(ModeloDescuentoArticuloProveedor))
                 {
                     message=(addDescuento(this.completaModeloDescuento(p_dataTable)));
                 }
@@ -296,17 +296,20 @@ namespace Controladores
                 }
 
             }
-            private void completaFilasDescuento(List<ModeloDescuentoArticulo> p_lst_mod_descArt)
+            private void completaFilasDescuento(List<ModeloDescuentoArticuloProveedor> p_lst_mod_descArt)
             {
                 var row = 1;
-                foreach (ModeloDescuentoArticulo p_mod in p_lst_mod_descArt)
+                foreach (ModeloDescuentoArticuloProveedor p_mod in p_lst_mod_descArt)
                 {
                     row++;
-                    glb_hojaTrabajo.Cells[row, "A"] = p_mod.CodigoArticuloProveedor;
-                    glb_hojaTrabajo.Cells[row, "B"] = p_mod.CodigoOriginal;
-                    glb_hojaTrabajo.Cells[row, "C"] = p_mod.FechaDesde;
-                    glb_hojaTrabajo.Cells[row, "D"] = p_mod.FechaHasta;
-                    glb_hojaTrabajo.Cells[row, "E"] = p_mod.PorcentajeDescuento;
+                    glb_hojaTrabajo.Cells[row, "A"] = p_mod.codigoDescuento;
+                    glb_hojaTrabajo.Cells[row, "B"] = p_mod.codigoOriginalArticulo;
+                    glb_hojaTrabajo.Cells[row, "C"] = p_mod.codigoArticuloProveedor;
+                    glb_hojaTrabajo.Cells[row, "D"] = p_mod.fechaVigenciaDesde;
+                    glb_hojaTrabajo.Cells[row, "E"] = p_mod.fechaVigenciaHasta;
+                    glb_hojaTrabajo.Cells[row, "F"] = p_mod.porcentaje;
+                    glb_hojaTrabajo.Cells[row, "G"] = p_mod.descripcion;
+
                 }
 
             }
@@ -468,19 +471,20 @@ namespace Controladores
 
                 return lcl_lst_mod_pro;
             }
-            private List<ModeloDescuentoArticulo> completaModeloDescuento(DataTable p_dataTable)
+            private List<ModeloDescuentoArticuloProveedor> completaModeloDescuento(DataTable p_dataTable)
             {
-                List<ModeloDescuentoArticulo> lcl_lst_mod_desArt = new List<ModeloDescuentoArticulo>();
+                List<ModeloDescuentoArticuloProveedor> lcl_lst_mod_desArt = new List<ModeloDescuentoArticuloProveedor>();
 
                 foreach (DataRow row in p_dataTable.Rows)
                 {
-                    ModeloDescuentoArticulo lcl_mod_desArt = new ModeloDescuentoArticulo();
-                    lcl_mod_desArt.CodigoArticuloProveedor = row[0].ToString();
-                    lcl_mod_desArt.CodigoOriginal = row[1].ToString();
-                    lcl_mod_desArt.FechaDesde = Convert.ToDateTime(row[2].ToString());
-                    lcl_mod_desArt.FechaHasta = Convert.ToDateTime(row[3].ToString());
-                    lcl_mod_desArt.PorcentajeDescuento = Convert.ToDecimal(row[4].ToString());
-                    lcl_mod_desArt.numeroDescuento = Convert.ToInt32(row[5].ToString());
+                    ModeloDescuentoArticuloProveedor lcl_mod_desArt = new ModeloDescuentoArticuloProveedor();
+                    lcl_mod_desArt.codigoDescuento = Convert.ToInt32(row[0].ToString());
+                    lcl_mod_desArt.codigoOriginalArticulo = row[1].ToString();
+                    lcl_mod_desArt.codigoArticuloProveedor = row[2].ToString();
+                    lcl_mod_desArt.fechaVigenciaDesde = Convert.ToDateTime(row[3].ToString());
+                    lcl_mod_desArt.fechaVigenciaHasta = Convert.ToDateTime(row[4].ToString());
+                    lcl_mod_desArt.porcentaje = Convert.ToDecimal(row[5].ToString());
+                    lcl_mod_desArt.descripcion = row[6].ToString();
 
                     lcl_lst_mod_desArt.Add(lcl_mod_desArt);
                 }
@@ -538,10 +542,10 @@ namespace Controladores
                 }
                 return "Se agregaron " + i + " Proveedores.";
             }
-            private string addDescuento(List<ModeloDescuentoArticulo> p_lst_mod_desc)
+            private string addDescuento(List<ModeloDescuentoArticuloProveedor> p_lst_mod_desc)
             {
                 int i = 0;
-                foreach (ModeloDescuentoArticulo modDes in p_lst_mod_desc)
+                foreach (ModeloDescuentoArticuloProveedor modDes in p_lst_mod_desc)
                 {
                     // i = (glb_con_alta.agregar(ref modDes) == true) ? i++ : i;
                 }
@@ -561,4 +565,3 @@ namespace Controladores
 
         }
     }
-

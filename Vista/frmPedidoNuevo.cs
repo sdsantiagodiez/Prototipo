@@ -91,6 +91,7 @@ namespace Vista
         }
         private void inicializarControles()
         {
+            this.txtDescripcionParcial.Leave += (s, e) => { txtDescripcionParcial_Leave(); };
 
             #region DataGridViews
             this.dgvArticulosResultadoBusqueda.MultiSelect = false;
@@ -582,7 +583,7 @@ namespace Vista
         #region Labels, txtBox y numericUpDown
         private void lblLupa_Click(object sender, EventArgs e)
         {
-            if(txtDescripcionParcial_Leave(sender,e))
+            if(txtDescripcionParcial_Leave())
             {
                 List<ModeloArticuloProveedores> lcl_lst_articulosProveedoresEncontrados = this.buscarArticuloProveedor();
                 if (lcl_lst_articulosProveedoresEncontrados != null)
@@ -642,7 +643,7 @@ namespace Vista
 
         #endregion                   
 
-        private bool txtDescripcionParcial_Leave(object sender, EventArgs e)
+        private bool txtDescripcionParcial_Leave()
         {
             bool respuesta = Validar.validarInput(txtDescripcionParcial.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
             if (!respuesta)

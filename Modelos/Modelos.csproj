@@ -43,7 +43,6 @@
     <Compile Include="ModeloCliente.cs" />
     <Compile Include="ModeloContactoProveedor.cs" />
     <Compile Include="ModeloDescuento.cs" />
-    <Compile Include="ModeloDescuentoArticulo.cs" />
     <Compile Include="ModeloDomicilio.cs" />
     <Compile Include="ModeloEntidad.cs" />
     <Compile Include="ModeloPais.cs" />

@@ -198,7 +198,7 @@ namespace Vista
         }
         private void inicializarCmbBoxPorcentajeDescuento()
         {
-            this.glb_lst_DescuentosBase = ControladorDescuento.getDescuentosBase();
+            this.glb_lst_DescuentosBase = ControladorBusqueda.getDescuentosBase();
 
             var dataSource = new List<ComboBoxItem>();
             foreach (ModeloDescuento d in glb_lst_DescuentosBase)
@@ -550,12 +550,6 @@ namespace Vista
                         this.dgvResultadoBusqueda.ClearSelection();
                     }
                     this.dgvResultadoBusqueda.Rows[currentMouseOverRow].Selected = true;
-                    //int i = Convert.ToInt32(this.dgvResultadoBusqueda.Rows[currentMouseOverRow].Cells["indice"].Value);
-                    //asigno el articulo a la variable articuloSeleccionadoBusqueda en caso de que se decida agregarlo al pedido
-                    //this.glb_mod_articuloSeleccionadoBusqueda = controlador.getArticuloBusqueda(i);
-
-                    //cargarArticuloProveedorDetallesEnControles(this.glb_mod_articuloSeleccionadoBusqueda);
-                    //this.inicializarContextMenuResultadoBusqueda();
                     
                     this.cntxMenuResultadoBusqueda.Show(this.dgvResultadoBusqueda, new Point(e.X, e.Y));
                 }

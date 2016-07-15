@@ -132,7 +132,7 @@ namespace Controladores
             return respuesta;
         }
 
-        public bool eliminar(ModeloDescuentoArticulo p_mod_descuento)
+        public bool eliminar(ModeloDescuentoArticuloProveedor p_mod_descuento)
         {
             CatalogoDescuentos lcl_cat_descuentos = new CatalogoDescuentos();
             bool respuesta = false;

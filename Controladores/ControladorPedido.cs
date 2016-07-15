@@ -135,9 +135,6 @@ namespace Controladores
         {
             //le cambio el formato  y lo agrego a la lista de articulos ya seleccionados
             ModeloLineaPedido lcl_mod_nuevaLinea = new ModeloLineaPedido(p_articulo, p_cantidad, this.tipoPedido);
-            List<ModeloDescuentoArticulo> lcl_lst_mod_descuento = new List<ModeloDescuentoArticulo>();
-            lcl_lst_mod_descuento = ControladorBusqueda.getDescuentos(p_articulo.codigoOriginal,p_articulo.codigoArticuloProveedor);
-            lcl_mod_nuevaLinea.descuentoLinea = ControladorBusqueda.getDescuentoArticuloVigente(lcl_lst_mod_descuento, pedidoActual.fecha);
             this.pedidoActual.addLineaPedido(lcl_mod_nuevaLinea);
         }
         public bool exists(ModeloArticuloProveedores p_articulo)

@@ -86,6 +86,8 @@ namespace Vista
         }
         private void inicializarControles()
         {
+            this.txtCAE.Leave += (s, e) => { this.txtCAE_Leave(); };
+
             #region DataGridView
             //dgvArticulosPedido
             //Cambiar a multiSelect
@@ -308,7 +310,7 @@ namespace Vista
                 row["valorUnitario"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.valorUnitario);
                 row["descuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getDescuento());
                 row["valorParcialSinDescuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getValorParcialSinDescuentos());
-                row["valorParcialConDescuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getValorParcial());
+                row["valorParcialConDescuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getValorParcialConDescuento());
 
                 lineas.Rows.Add(row);
             }
@@ -515,7 +517,7 @@ namespace Vista
         #region Eventos
         private void lblLupa_Click(object sender, EventArgs e)
         {
-            if (txtCAE_Leave(sender,e))
+            if (txtCAE_Leave())
             {
                 //Buscar Pedido por CAE
             ModeloPedido lcl_mod_pedido = ControladorBusqueda.getOne(new ModeloPedido() { CAE = this.txtCAE.Text}, Constantes.ParametrosBusqueda.Pedidos.CAE);
@@ -662,7 +664,7 @@ namespace Vista
         }
         #endregion   
 
-        private bool txtCAE_Leave(object sender, EventArgs e)
+        private bool txtCAE_Leave()
         {
             bool respuesta = true;//Validar.validarInput(txtDescripcionParcial.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
             if (!respuesta)

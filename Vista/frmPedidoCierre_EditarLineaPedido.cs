@@ -85,8 +85,8 @@ namespace Vista
                 row = dgvDescuentos.Rows[rowIndex];
 
                 row.Cells["descripcion"].Value = descuento.descripcion;
-                row.Cells["descuento"].Value = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", descuento.descuento);
-                row.Cells["porcentaje"].Value = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:P1}", descuento.porcentajeSobreTotal);
+                row.Cells["descuento"].Value = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", descuento.montoDescontadoSobreTotal);
+                row.Cells["porcentaje"].Value = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:P1}", descuento.porcentaje *100);
             }
 
             this.txtBoxDescuentoDescripcion.Text = "";
@@ -103,7 +103,7 @@ namespace Vista
             this.txtBoxValorUnitario.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_lineaPedido.valorUnitario);
             this.nmrcUpDownCantidad.Value = p_mod_lineaPedido.cantidadArticulos;
             this.txtBoxValorParcialSinDescuento.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_lineaPedido.getValorParcialSinDescuentos()); 
-            this.txtBoxValorParcialConDescuento.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_lineaPedido.getValorParcial()); 
+            this.txtBoxValorParcialConDescuento.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_lineaPedido.getValorParcialConDescuento()); 
         }
         #endregion
 
@@ -118,9 +118,9 @@ namespace Vista
         private void btnAgrearDescuento_Click(object sender, EventArgs e)
         {
             decimal descuento;
-            double porcentaje = 0;
+            decimal porcentaje = 0;
             if (!Decimal.TryParse(this.txtBoxDescuentoNeto.Text.Replace("$", ""), out descuento) &&
-                !Double.TryParse(this.txtBoxDescuentoPorcentaje.Text.Replace("%", "").Replace(".", ","), out porcentaje))
+                !Decimal.TryParse(this.txtBoxDescuentoPorcentaje.Text.Replace("%", "").Replace(".", ","), out porcentaje))
             {
                 MessageBox.Show("Los datos ingresados para nuevo descuento no son válidos");
                 return;
@@ -135,8 +135,8 @@ namespace Vista
             ModeloDescuentoLineaPedido lcl_mod_descuento = new ModeloDescuentoLineaPedido();
 
             lcl_mod_descuento.descripcion = this.txtBoxDescuentoDescripcion.Text;
-            lcl_mod_descuento.descuento = descuento;
-            lcl_mod_descuento.porcentajeSobreTotal = porcentaje;
+            lcl_mod_descuento.montoDescontadoSobreTotal = descuento;
+            lcl_mod_descuento.porcentaje = porcentaje;
 
             glb_mod_lineaActual.addDescuento(lcl_mod_descuento);
 
@@ -153,7 +153,7 @@ namespace Vista
 
             ModeloDescuentoLineaPedido lcl_mod_descuento = new ModeloDescuentoLineaPedido();
             
-            lcl_mod_descuento.descuento = (decimal)this.dgvDescuentos.CurrentRow.Cells["descuento"].Value;
+            lcl_mod_descuento.montoDescontadoSobreTotal = (decimal)this.dgvDescuentos.CurrentRow.Cells["descuento"].Value;
             lcl_mod_descuento.descripcion = (string)this.dgvDescuentos.CurrentRow.Cells["descripcion"].Value;
             glb_mod_lineaActual.removeDescuento(lcl_mod_descuento);
 
