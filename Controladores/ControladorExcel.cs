@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ExcelLib = Microsoft.Office.Interop.Excel;
 using Modelos;
 using System.Data;
+using LibreriaClasesCompartidas;
 
 
 namespace Controladores
@@ -15,6 +16,7 @@ namespace Controladores
         ExcelLib._Worksheet glb_hojaTrabajo;
         System.Data.DataTable glb_dataTable;
         ControladorAlta glb_con_alta = new ControladorAlta();
+        ControladorModificacion glb_con_modificacion = new ControladorModificacion();
         int i = 0;
         public static string filasNoGravadas = "Las siguientes filas no fueron gravadas: ";
 
@@ -128,7 +130,7 @@ namespace Controladores
                 }
                 else if (p_typeOf == typeof(ModeloArticulos))
                 {
-                    message=(addArticulo(this.completaModeloArticulo(p_dataTable)));
+                    message = (addArticulo(this.completaModeloArticulo(p_dataTable)));
                 }
                 else if (p_typeOf == typeof(ModeloCliente))
                 {
@@ -145,6 +147,24 @@ namespace Controladores
                 else { message = "Se ha producido un error en la importación."; };
                 
                 return message;
+            }
+            public string ImportarDeExcel(string p_path, Type p_typeOf, string p_tipoValor)
+            {
+                DataTable p_dataTable = this.deExcel(p_path);
+                string message = "";
+                if (p_typeOf == typeof(ModeloValorArticulo) && p_tipoValor == Constantes.TipoValorArticulo.Compra)
+                {
+                    message = (addValor(this.completaModeloValorArticuloProveedor(p_dataTable,p_tipoValor),p_tipoValor));
+
+                }
+                else if (p_typeOf == typeof(ModeloValorArticulo) && p_tipoValor == Constantes.TipoValorArticulo.Venta)
+                {
+                    message = (addValor(this.completaModeloValorArticuloProveedor(p_dataTable,p_tipoValor),p_tipoValor));
+                }
+                else { message = "Se ha producido un error en la importación."; };
+
+                return message;
+            
             }
 
             private void completarColumnasArticuloProveedor()
@@ -313,7 +333,7 @@ namespace Controladores
                 }
 
             }
-            private void completaFilasValoArticulosCompra(List<ModeloArticuloProveedores> p_lst_mod_artPro)
+            private void completaFilasValorArticulosCompra(List<ModeloArticuloProveedores> p_lst_mod_artPro)
             {
                 var row = 1;
                 foreach (ModeloArticuloProveedores p_mod in p_lst_mod_artPro)
@@ -326,7 +346,7 @@ namespace Controladores
                 }
 
             }
-            private void completaFilasValoArticulosVenta(List<ModeloArticuloProveedores> p_lst_mod_artPro)
+            private void completaFilasValorArticulosVenta(List<ModeloArticuloProveedores> p_lst_mod_artPro)
             {
                 var row = 1;
                 foreach (ModeloArticuloProveedores p_mod in p_lst_mod_artPro)
@@ -377,6 +397,36 @@ namespace Controladores
                         lcl_mod_artPro.ubicacion = row[7].ToString();
                         lcl_mod_artPro.valorCompra.valorArticulo = Convert.ToDecimal(row[8].ToString());
                         lcl_mod_artPro.valorVenta.valorArticulo = Convert.ToDecimal(row[9].ToString());
+
+                        lcl_lst_mod_artPro.Add(lcl_mod_artPro);
+                    }
+                }
+
+                return lcl_lst_mod_artPro;
+            }
+            private List<ModeloArticuloProveedores> completaModeloValorArticuloProveedor(DataTable p_dataTable, string p_tipoValorArticulo)
+            {
+                List<ModeloArticuloProveedores> lcl_lst_mod_artPro = new List<ModeloArticuloProveedores>();
+                int[] obligatorios = { 0, 1, 2, 3};// campos obligatorios del excel
+                string filasError = "";
+                int filas = 1;
+
+                foreach (DataRow row in p_dataTable.Rows)
+                {
+                    filas++;
+                    if (camposVacios(obligatorios, row))
+                    {
+                        filasError += filasError + " " + filas.ToString() + ", ";
+                    }
+                    else
+                    {
+                        ModeloArticuloProveedores lcl_mod_artPro = new ModeloArticuloProveedores();
+                        lcl_mod_artPro.codigoOriginal = row[0].ToString();
+                        lcl_mod_artPro.codigoArticuloProveedor = row[1].ToString();
+                        if(p_tipoValorArticulo == Constantes.TipoValorArticulo.Compra)
+                        {lcl_mod_artPro.valorCompra.valorArticulo = Convert.ToDecimal(row[2].ToString());}
+                        else
+                        {lcl_mod_artPro.valorVenta.valorArticulo = Convert.ToDecimal(row[2].ToString());}
 
                         lcl_lst_mod_artPro.Add(lcl_mod_artPro);
                     }
@@ -547,9 +597,18 @@ namespace Controladores
                 int i = 0;
                 foreach (ModeloDescuentoArticuloProveedor modDes in p_lst_mod_desc)
                 {
-                    // i = (glb_con_alta.agregar(ref modDes) == true) ? i++ : i;
+                     i = (glb_con_alta.agregar(modDes) == true) ? i++ : i;
                 }
                 return "Se agregaron " + i + " Descuentos.";
+            }
+            private string addValor(List<ModeloArticuloProveedores> p_lst_mod_valArt, string p_tipoValor)
+            {
+                int i = 0;
+                foreach (ModeloArticuloProveedores modArt in p_lst_mod_valArt)
+                {
+                     i = (glb_con_modificacion.modificarValores(modArt,p_tipoValor) == true) ? i+1 : i;
+                }
+                return "Se actualizaron " + i + " precios.";
             }
             
             public void ajustarColumnas()

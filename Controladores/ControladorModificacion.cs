@@ -196,6 +196,37 @@ namespace Controladores
             }
             return respuesta;  
         }
+        public bool modificarValores(ModeloArticuloProveedores p_mod_articuloProveedor, string p_tipoValorArticulo)
+        {
+            CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
+            bool respuesta = false;
+            errorActual = "No se ha podido realizar la actualizacion.";
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    respuesta = lcl_cat_articuloProveedores.updateValor(p_mod_articuloProveedor,p_tipoValorArticulo);
+                    scope.Complete();
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                errorActual = "TransactionAbortedException Message: " + ex.Message;
+            }
+            catch (ApplicationException ex)
+            {
+                errorActual = "ApplicationException Message: " + ex.Message;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                errorActual = "SQLexception Message: " + ex.Message;
+            }
+            catch (Exception ex)
+            {
+                errorActual = ex.Message;
+            }
+            return respuesta;
+        }
 
         public bool modificar(ModeloDescuentoArticuloProveedor p_mod_descuento)
         {

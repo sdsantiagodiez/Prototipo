@@ -429,12 +429,14 @@ namespace Vista
 
         private void preciosParaVentaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloValorArticulo), "Valores Venta ArtículoProveedores",Constantes.TipoValorArticulo.Venta);
+            lcl_frm_importacion.ShowDialog();
         }
 
         private void preciosParaCompraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloValorArticulo), "Valores Compra ArtículoProveedores", Constantes.TipoValorArticulo.Compra);
+            lcl_frm_importacion.ShowDialog();
         }
     }
 

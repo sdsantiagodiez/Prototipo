@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Controladores;
-
+using LibreriaClasesCompartidas;
 namespace Vista
 {
     public partial class frmImportacionPath : frmMaterialSkinBase
@@ -30,6 +30,8 @@ namespace Vista
         ErrorProvider errorActual = new ErrorProvider();
         Type glb_localType;
         ControladorExcel glb_con_excel = new ControladorExcel();
+        string glb_tipoValor = "";
+
         public frmImportacionPath(Type p_typeOf, string p_modelo)
         {
             InitializeComponent();
@@ -37,7 +39,14 @@ namespace Vista
             this.Text = p_modelo + "- Seleccione el Archivo a Importar";
             this.StartPosition = FormStartPosition.CenterScreen;
         }
-
+        public frmImportacionPath(Type p_typeOf, string p_modelo, string p_tipoValor)
+        {
+            InitializeComponent();
+            glb_localType = p_typeOf;
+            glb_tipoValor = p_tipoValor;
+            this.Text = p_modelo + "- Seleccione el Archivo a Importar";
+            this.StartPosition = FormStartPosition.CenterScreen;
+        }
         private void btnFileDialog_Click(object sender, EventArgs e)
         {
             this.openFileDialog.ShowDialog();
@@ -55,7 +64,10 @@ namespace Vista
 
         private void btnImportar_Click(object sender, EventArgs e)
         {
-            devuelveMensaje(glb_con_excel.ImportarDeExcel(this.txtPathImportacion.Text, glb_localType));
+            if (glb_tipoValor == "")
+            { devuelveMensaje(glb_con_excel.ImportarDeExcel(this.txtPathImportacion.Text, glb_localType)); }
+            else
+            { devuelveMensaje(glb_con_excel.ImportarDeExcel(this.txtPathImportacion.Text, glb_localType,glb_tipoValor)); }
         }
 
         private void txtPathImportacion_Leave(object sender, EventArgs e)
