@@ -19,7 +19,7 @@ namespace Datos
         {
             string startupPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
             startupPath = startupPath + @"\Datos\DBPrueba.mdf";
-            //startupPath = this.rutaBD();
+            //startupPath = rutaBD();
             connectionString = @"Data Source=(localDB)\v11.0;AttachDbFilename="+startupPath+";Initial Catalog=DBPrueba;Integrated Security=True";
             SqlConnection Conexion;
             try
@@ -41,7 +41,7 @@ namespace Datos
             comando.CommandType = System.Data.CommandType.Text;
             return comando;
         }
-        public string rutaBD()
+        public static string rutaBD()
         {
             string path = "";
             try
