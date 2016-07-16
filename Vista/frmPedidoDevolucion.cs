@@ -666,7 +666,7 @@ namespace Vista
 
         private bool txtCAE_Leave()
         {
-            bool respuesta = true;//Validar.validarInput(txtDescripcionParcial.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
+            bool respuesta = Validar.validarInput(txtCAE.Text.ToString(), Constantes.ParametrosBusqueda.Pedidos.CAE);
             if (!respuesta)
             {
                 epCAE.Icon = Properties.Resources.error;

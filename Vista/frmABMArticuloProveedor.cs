@@ -330,7 +330,7 @@ namespace Vista
 
         private void cargarDatosProveedorEnModeloArticuloProveedor(ref ModeloArticuloProveedores p_mod_articuloProveedor)
         {
-            if (LibreriaClasesCompartidas.Validar.validarValorNumerico(txtBoxCodigoProveedor.Text))
+            if (LibreriaClasesCompartidas.Validar.validarNumerico(txtBoxCodigoProveedor.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Entero))
             {
                 p_mod_articuloProveedor.codigoEntidad = Convert.ToInt32(txtBoxCodigoProveedor.Text);
             }
@@ -348,7 +348,7 @@ namespace Vista
             p_mod_articuloProveedor.ubicacion = txtBoxUbicacion.Text;
             p_mod_articuloProveedor.stockActual = Convert.ToInt32(nmrcUpDownStockActual.Value);
             p_mod_articuloProveedor.stockMinimo = Convert.ToInt32(nmrcUpDownStockMinimo.Value);
-            if (LibreriaClasesCompartidas.Validar.validarValorDecimal(txtBoxPrecioCompra.Text))
+            if (LibreriaClasesCompartidas.Validar.validarNumerico(txtBoxPrecioCompra.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Decimal))
             {
                 p_mod_articuloProveedor.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioCompra.Text);
             }
@@ -357,7 +357,7 @@ namespace Vista
                 p_mod_articuloProveedor.valorCompra.valorArticulo = null;
             }
             //lcl_mod_articuloProveedores.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioCompra.Text);
-            if (LibreriaClasesCompartidas.Validar.validarValorDecimal(txtBoxPrecioVenta.Text))
+            if (LibreriaClasesCompartidas.Validar.validarNumerico(txtBoxPrecioVenta.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Decimal))
             {
                 p_mod_articuloProveedor.valorVenta.valorArticulo = Convert.ToDecimal(txtBoxPrecioVenta.Text);
             }

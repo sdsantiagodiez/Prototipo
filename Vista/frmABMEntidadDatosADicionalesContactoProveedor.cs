@@ -74,7 +74,7 @@ namespace Vista
         #region Controles -> Modelo
         private void cargarDatosEnModeloProveedor(ref ModeloProveedor lcl_mod_proveedor)
         {
-            if (LibreriaClasesCompartidas.Validar.validarValorNumerico(txtBoxCodigo.Text))
+            if (LibreriaClasesCompartidas.Validar.validarNumerico(txtBoxCodigo.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Entero))
             {
                 lcl_mod_proveedor.codigo = Convert.ToInt32(txtBoxCodigo.Text);
             }

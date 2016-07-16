@@ -511,7 +511,7 @@ namespace Vista
         
         private void cargarDatosControlEnEntidad(ref ModeloEntidad p_mod_entidad)
         {
-            if (LibreriaClasesCompartidas.Validar.validarValorNumerico(txtBoxCodigoEntidad.Text))
+            if (LibreriaClasesCompartidas.Validar.validarNumerico(txtBoxCodigoEntidad.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Entero))
             {
                 p_mod_entidad.codigo = Convert.ToInt32(txtBoxCodigoEntidad.Text);
             }

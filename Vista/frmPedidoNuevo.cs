@@ -215,7 +215,7 @@ namespace Vista
                 respuesta = false;
             } 
             //Verifico la cantidad
-            else if (!LibreriaClasesCompartidas.Validar.validarEnteroPositivoSinCero(this.nmrcUpDownCantidad.Value.ToString()))
+            else if (!LibreriaClasesCompartidas.Validar.validarNumerico(this.nmrcUpDownCantidad.Value.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.EnteroPositivoSinCero))
             {
                 mensajeError = "La cantidad de articulos debe ser un número mayor a cero.";
                 respuesta = false;

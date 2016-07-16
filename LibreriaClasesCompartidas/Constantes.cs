@@ -131,7 +131,7 @@ namespace LibreriaClasesCompartidas
                 public const string CodigoDomicilio = "codigoDomicilio";
                 public const string CodigoEntidad = ParametrosBusqueda.Entidades.CodigoEntidad;
                 public const string Calle = "calle";
-                public const string NumeroCalle = "numeroCalle";
+                public const string NumeroDomicilio = "numeroDomicilio";
                 public const string Piso = "piso";
                 public const string Departamento = "departamento";
                 public const string Ciudad = "ciudad";
@@ -280,6 +280,7 @@ namespace LibreriaClasesCompartidas
             public const string Porcentual = "porcentual";
             public const string Entero = "entero";
             public const string EnteroPositivoSinCero = "enteroPositivoSinCero";
+            public const string EnteroPositivo = "enteroPositivo";
         }
     }
     
