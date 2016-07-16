@@ -100,6 +100,7 @@
             this.lblHoraLog = new MaterialSkin.Controls.MaterialLabel();
             this.lblNombreUsuario = new MaterialSkin.Controls.MaterialLabel();
             this.lblFechaLog = new MaterialSkin.Controls.MaterialLabel();
+            this.toolStripbtnReimpresion = new System.Windows.Forms.ToolStripButton();
             this.tlsMenuRapido.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.tblLayoutPanelPrincipal.SuspendLayout();
@@ -561,6 +562,7 @@
             this.tlsbtnDevolucion,
             this.toolStripbtnFacturacion,
             this.toolStripbtnReportes,
+            this.toolStripbtnReimpresion,
             this.toolStripbtnABM});
             this.tlsMenu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.tlsMenu.Location = new System.Drawing.Point(0, 0);
@@ -744,6 +746,17 @@
             this.lblFechaLog.TabIndex = 31;
             this.lblFechaLog.Text = "23/10/2016";
             // 
+            // toolStripbtnReimpresion
+            // 
+            this.toolStripbtnReimpresion.Image = ((System.Drawing.Image)(resources.GetObject("toolStripbtnReimpresion.Image")));
+            this.toolStripbtnReimpresion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripbtnReimpresion.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripbtnReimpresion.Name = "toolStripbtnReimpresion";
+            this.toolStripbtnReimpresion.Size = new System.Drawing.Size(191, 24);
+            this.toolStripbtnReimpresion.Text = "Reimpresión Comprobantes";
+            this.toolStripbtnReimpresion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolStripbtnReimpresion.Click += new System.EventHandler(this.toolStripbtnReimpresion_Click);
+            // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -843,5 +856,6 @@
         private System.Windows.Forms.ToolStripMenuItem artículosToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem preciosParaVentaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preciosParaCompraToolStripMenuItem;
+        public System.Windows.Forms.ToolStripButton toolStripbtnReimpresion;
     }
 }

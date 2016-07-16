@@ -409,6 +409,12 @@ namespace Controladores
             return lcl_cat_ped.getComprobantesNoFacturados(p_tipoComprobante);
         }
         #endregion
+        public List<ModeloPedido> getPedidosDesdeHasta(int p_numeroDesde, int p_numeroHasta)
+        {
+            CatalogoPedidos lcl_cat_ped = new CatalogoPedidos();
+
+            return lcl_cat_ped.getComprobantesDesdeHasta(p_numeroDesde,p_numeroHasta);
+        }
         #endregion
     }
 }

@@ -440,6 +440,17 @@ namespace Vista
             frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloValorArticulo), "Valores Compra ArtículoProveedores", Constantes.TipoValorArticulo.Compra);
             lcl_frm_importacion.ShowDialog();
         }
+
+        private void toolStripbtnReimpresion_Click(object sender, EventArgs e)
+        {
+            if (!this.validarAgregarFormulario(typeof(frmReimpresion)))
+            {
+                return;
+            }
+
+            glb_form = new frmReimpresion();
+            this.agregarFormulario(glb_form);
+        }
     }
 
     

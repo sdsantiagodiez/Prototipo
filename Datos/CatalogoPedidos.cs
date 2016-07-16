@@ -444,7 +444,61 @@ namespace Datos
 
         }
 
-        
+        public List<ModeloPedido> getComprobantesDesdeHasta(int p_numDesde, int p_numHasta)
+        {
+            List<ModeloPedido> lcl_lst_mod_ped = new List<ModeloPedido>();
+            ModeloLineaPedido lcl_mod_lineaPedido = new ModeloLineaPedido();
+            CatalogoLineasPedidos lcl_cat_lineasPedidos = new CatalogoLineasPedidos();
+
+
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText =
+                "SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
+                "                Pedidos_Personas.[codigo_entidad], " +
+                "                [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], " +
+                "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante] " +
+                "            FROM pedidos, Pedidos_Personas  " +
+                "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido " +
+                "                   AND pedidos.numero_pedido>=@num_desde AND pedidos.numero_pedido<=@num_hasta ";
+
+            comando.Parameters.Add(new SqlParameter("@num_desde", SqlDbType.Int));
+            comando.Parameters["@num_desde"].Value = p_numDesde;
+            comando.Parameters.Add(new SqlParameter("@num_hasta", SqlDbType.Int));
+            comando.Parameters["@num_hasta"].Value = p_numHasta;
+            
+
+            comando.Connection.Open();
+
+            SqlDataReader drPedido = comando.ExecuteReader();
+
+            while (drPedido.Read())
+            {
+                ModeloPedido lcl_mod_ped = new ModeloPedido();
+                lcl_mod_ped = leerDatosPedido(drPedido);
+
+                lcl_mod_lineaPedido = new ModeloLineaPedido();
+                lcl_mod_lineaPedido.numeroPedido = lcl_mod_ped.numeroPedido;
+                lcl_mod_ped.addLineaPedidoList(lcl_cat_lineasPedidos.buscarLineasPedido(lcl_mod_lineaPedido, Constantes.ParametrosBusqueda.LineasPedidos.NumeroPedido));
+
+                lcl_lst_mod_ped.Add(lcl_mod_ped);
+            }
+
+            drPedido.Close();
+
+            comando.Connection.Close();
+            return lcl_lst_mod_ped;
+
+        }
+
         #endregion
 
         #region Reportes

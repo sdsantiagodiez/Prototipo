@@ -222,7 +222,7 @@ namespace Controladores
             }
             lcl_mod_Factura.Comprador_RazonSocial = p_mod_pedido.entidad.ToString();
             //lcl_mod_Factura.ConceptosNoGravados = p_mod_pedido.
-            lcl_mod_Factura.CondicionVenta = p_mod_pedido.formasDePago[0].forma.ToString();
+            lcl_mod_Factura.CondicionVenta = (p_mod_pedido.formasDePago == null) ? p_mod_pedido.formasDePago[0].forma.ToString():null;
             for (int i=0;i<p_mod_pedido.lineasPedido.Count;i++)
             {
                 ModeloReporteDetalleFactura lcl_mod_detalle = new ModeloReporteDetalleFactura();

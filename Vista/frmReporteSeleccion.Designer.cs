@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmbxPedidosReportes = new System.Windows.Forms.ComboBox();
+            this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
+            this.tabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.tabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPedidos = new System.Windows.Forms.TabPage();
             this.btnGeneraReportePedido = new MaterialSkin.Controls.MaterialFlatButton();
+            this.cmbxPedidosReportes = new System.Windows.Forms.ComboBox();
             this.lblFechaHastaPedido = new MaterialSkin.Controls.MaterialLabel();
             this.txtPedidoFechaHasta = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtPedidoFechaDesde = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -51,24 +53,42 @@
             this.cmbxInventarioReportes = new System.Windows.Forms.ComboBox();
             this.lblReportesInventario = new MaterialSkin.Controls.MaterialLabel();
             this.btnGeneraReporteInvenario = new MaterialSkin.Controls.MaterialFlatButton();
-            this.tabSelector = new MaterialSkin.Controls.MaterialTabSelector();
-            this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
+            this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPedidos.SuspendLayout();
             this.tabVentas.SuspendLayout();
             this.tabInventario.SuspendLayout();
-            this.tblLayoutPanelPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
-            // cmbxPedidosReportes
+            // tblLayoutPanelPrincipal
             // 
-            this.cmbxPedidosReportes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbxPedidosReportes.FormattingEnabled = true;
-            this.cmbxPedidosReportes.Location = new System.Drawing.Point(119, 25);
-            this.cmbxPedidosReportes.Name = "cmbxPedidosReportes";
-            this.cmbxPedidosReportes.Size = new System.Drawing.Size(254, 21);
-            this.cmbxPedidosReportes.TabIndex = 1;
+            this.tblLayoutPanelPrincipal.BackColor = System.Drawing.Color.White;
+            this.tblLayoutPanelPrincipal.ColumnCount = 1;
+            this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelPrincipal.Controls.Add(this.tabSelector, 0, 0);
+            this.tblLayoutPanelPrincipal.Controls.Add(this.tabControl, 0, 1);
+            this.tblLayoutPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 61);
+            this.tblLayoutPanelPrincipal.Margin = new System.Windows.Forms.Padding(0);
+            this.tblLayoutPanelPrincipal.Name = "tblLayoutPanelPrincipal";
+            this.tblLayoutPanelPrincipal.RowCount = 2;
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(398, 257);
+            this.tblLayoutPanelPrincipal.TabIndex = 3;
+            // 
+            // tabSelector
+            // 
+            this.tabSelector.BaseTabControl = this.tabControl;
+            this.tabSelector.Depth = 0;
+            this.tabSelector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabSelector.Location = new System.Drawing.Point(0, 0);
+            this.tabSelector.Margin = new System.Windows.Forms.Padding(0);
+            this.tabSelector.MouseState = MaterialSkin.MouseState.HOVER;
+            this.tabSelector.Name = "tabSelector";
+            this.tabSelector.Size = new System.Drawing.Size(398, 30);
+            this.tabSelector.TabIndex = 2;
+            this.tabSelector.Text = "materialTabSelector1";
             // 
             // tabControl
             // 
@@ -86,6 +106,7 @@
             // 
             // tabPedidos
             // 
+            this.tabPedidos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tabPedidos.Controls.Add(this.btnGeneraReportePedido);
             this.tabPedidos.Controls.Add(this.cmbxPedidosReportes);
             this.tabPedidos.Controls.Add(this.lblFechaHastaPedido);
@@ -115,6 +136,16 @@
             this.btnGeneraReportePedido.Text = "Generar Reporte";
             this.btnGeneraReportePedido.UseVisualStyleBackColor = true;
             this.btnGeneraReportePedido.Click += new System.EventHandler(this.btnGeneraReportePedido_Click);
+            // 
+            // cmbxPedidosReportes
+            // 
+            this.cmbxPedidosReportes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbxPedidosReportes.FormattingEnabled = true;
+            this.cmbxPedidosReportes.Location = new System.Drawing.Point(119, 25);
+            this.cmbxPedidosReportes.Name = "cmbxPedidosReportes";
+            this.cmbxPedidosReportes.Size = new System.Drawing.Size(254, 21);
+            this.cmbxPedidosReportes.TabIndex = 1;
             // 
             // lblFechaHastaPedido
             // 
@@ -187,6 +218,7 @@
             // 
             // tabVentas
             // 
+            this.tabVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tabVentas.Controls.Add(this.cmbxVentasReportes);
             this.tabVentas.Controls.Add(this.lblReportesVenta);
             this.tabVentas.Controls.Add(this.btnGeneraReporteVentas);
@@ -298,6 +330,7 @@
             // 
             // tabInventario
             // 
+            this.tabInventario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tabInventario.Controls.Add(this.lblFechaInventario);
             this.tabInventario.Controls.Add(this.tbxFechaInventario);
             this.tabInventario.Controls.Add(this.cmbxInventarioReportes);
@@ -309,7 +342,6 @@
             this.tabInventario.Size = new System.Drawing.Size(384, 195);
             this.tabInventario.TabIndex = 2;
             this.tabInventario.Text = "Inventario";
-            this.tabInventario.UseVisualStyleBackColor = true;
             // 
             // lblFechaInventario
             // 
@@ -371,36 +403,6 @@
             this.btnGeneraReporteInvenario.UseVisualStyleBackColor = true;
             this.btnGeneraReporteInvenario.Click += new System.EventHandler(this.btnGeneraReporteInvenario_Click);
             // 
-            // tabSelector
-            // 
-            this.tabSelector.BaseTabControl = this.tabControl;
-            this.tabSelector.Depth = 0;
-            this.tabSelector.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabSelector.Location = new System.Drawing.Point(0, 0);
-            this.tabSelector.Margin = new System.Windows.Forms.Padding(0);
-            this.tabSelector.MouseState = MaterialSkin.MouseState.HOVER;
-            this.tabSelector.Name = "tabSelector";
-            this.tabSelector.Size = new System.Drawing.Size(398, 30);
-            this.tabSelector.TabIndex = 2;
-            this.tabSelector.Text = "materialTabSelector1";
-            // 
-            // tblLayoutPanelPrincipal
-            // 
-            this.tblLayoutPanelPrincipal.BackColor = System.Drawing.Color.White;
-            this.tblLayoutPanelPrincipal.ColumnCount = 1;
-            this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelPrincipal.Controls.Add(this.tabSelector, 0, 0);
-            this.tblLayoutPanelPrincipal.Controls.Add(this.tabControl, 0, 1);
-            this.tblLayoutPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 61);
-            this.tblLayoutPanelPrincipal.Margin = new System.Windows.Forms.Padding(0);
-            this.tblLayoutPanelPrincipal.Name = "tblLayoutPanelPrincipal";
-            this.tblLayoutPanelPrincipal.RowCount = 2;
-            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(398, 257);
-            this.tblLayoutPanelPrincipal.TabIndex = 3;
-            // 
             // frmReporteSeleccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,8 +411,8 @@
             this.ClientSize = new System.Drawing.Size(398, 318);
             this.Controls.Add(this.tblLayoutPanelPrincipal);
             this.Name = "frmReporteSeleccion";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Seleccione un Reporte";
+            this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.tabPedidos.ResumeLayout(false);
             this.tabPedidos.PerformLayout();
@@ -418,7 +420,6 @@
             this.tabVentas.PerformLayout();
             this.tabInventario.ResumeLayout(false);
             this.tabInventario.PerformLayout();
-            this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

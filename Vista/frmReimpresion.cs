@@ -16,9 +16,10 @@ using LibreriaClasesCompartidas;
 
 namespace Vista
 {
-    public partial class frmReimpresion : MaterialForm
+    public partial class frmReimpresion : frmMaterialSkinBase
     {
         ControladorPedidoCliente glb_con_pedidoCliente = new ControladorPedidoCliente();
+        public ControladorBusqueda glb_con_busqueda = new ControladorBusqueda();
         public ControladorBusqueda controlador = new ControladorBusqueda();
         public List<ModeloPedido> glb_lst_mod_pedido = new List<ModeloPedido>();
         public ModeloPedido glb_mod_pedido = new ModeloPedido();
@@ -86,10 +87,17 @@ namespace Vista
             this.buscaComprobantes();
             txtBoxComprobanteHasta.Text = glb_mod_pedido.numeroPedido.ToString();
         }
+        public void comprobantesAReimprimir()
+        {
+            if (glb_lst_mod_pedido.Count == 0)
+            { glb_lst_mod_pedido = glb_con_pedidoCliente.getPedidosDesdeHasta(Convert.ToInt32(this.txtBoxComprobanteDesde.Text),Convert.ToInt32(this.txtBoxComprobanteHasta.Text)); }
+            }
+
         public bool imprimir()
         {
+            this.comprobantesAReimprimir();
             Controladores.ControladorReportes lcl_con_reporte = new ControladorReportes();
-            //lcl_con_reporte.ImpresionFacturas(controlador.pedidoActual).ShowDialog();
+            lcl_con_reporte.ImpresionLoteFacturas(glb_lst_mod_pedido,"0").ShowDialog();
             return true;
         }
         #endregion
@@ -115,7 +123,7 @@ namespace Vista
         }
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-
+            this.imprimir();
         }
 
         #endregion
