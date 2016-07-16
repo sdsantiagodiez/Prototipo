@@ -212,7 +212,10 @@ namespace Datos
         {
             if (this.descuentosSuperpuestos(p_mod_descuento))
             { throw new Exception("Existe otro descuento entre las fechas."); }
-
+            if (p_mod_descuento.codigoDescuento == null || p_mod_descuento.codigoDescuento == 0)
+            {
+                p_mod_descuento.codigoDescuento = this.getUltimoNumero();//le asignamos el ultimo numero si es que no viene con el mismo.
+            }
             SqlConnection ConexionSQL = Conexion.crearConexion();
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;

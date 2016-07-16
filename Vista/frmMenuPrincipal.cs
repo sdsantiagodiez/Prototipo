@@ -388,7 +388,9 @@ namespace Vista
 
         private void descuentosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Nada todavia, falta definir que hacemos con los descuentos
+            ControladorExcel lcl_con_excel = new ControladorExcel();
+            lcl_con_excel.ExportarAExcel(typeof(ModeloDescuentoArticuloProveedor));
+            MessageBox.Show("La Exportacion de Descuentos se realizó Correctamente");
 
         }
 

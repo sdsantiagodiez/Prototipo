@@ -88,7 +88,7 @@ namespace Controladores
                 else if (T == typeof(ModeloDescuentoArticuloProveedor))
                 {
                     completarColumnasDescuento();
-                    //completaFilasDescuento(ControladorBusqueda.buscar(p_objeto as ModeloDescuentoArticulo));
+                    completaFilasDescuento(ControladorBusqueda.getDescuentosArticulosProveedores());
                 }
                 ajustarColumnas();
             }
@@ -252,7 +252,9 @@ namespace Controladores
                 glb_hojaTrabajo.Range["D1"].AddComment("Campo Obligatorio");
                 glb_hojaTrabajo.Cells[1, "E"] = "Porcentaje Descuento";
                 glb_hojaTrabajo.Range["E1"].AddComment("Campo Obligatorio");
-                                
+                glb_hojaTrabajo.Cells[1, "F"] = "Descripcion";
+                
+                
             }
             private void completarColumnasValoresCompra()
             {
@@ -342,13 +344,13 @@ namespace Controladores
                 foreach (ModeloDescuentoArticuloProveedor p_mod in p_lst_mod_descArt)
                 {
                     row++;
-                    glb_hojaTrabajo.Cells[row, "A"] = p_mod.codigoDescuento;
-                    glb_hojaTrabajo.Cells[row, "B"] = p_mod.codigoOriginalArticulo;
-                    glb_hojaTrabajo.Cells[row, "C"] = p_mod.codigoArticuloProveedor;
-                    glb_hojaTrabajo.Cells[row, "D"] = p_mod.fechaVigenciaDesde;
-                    glb_hojaTrabajo.Cells[row, "E"] = p_mod.fechaVigenciaHasta;
-                    glb_hojaTrabajo.Cells[row, "F"] = p_mod.porcentaje;
-                    glb_hojaTrabajo.Cells[row, "G"] = p_mod.descripcion;
+                    
+                    glb_hojaTrabajo.Cells[row, "A"] = p_mod.codigoOriginalArticulo;
+                    glb_hojaTrabajo.Cells[row, "B"] = p_mod.codigoArticuloProveedor;
+                    glb_hojaTrabajo.Cells[row, "C"] = p_mod.fechaVigenciaDesde;
+                    glb_hojaTrabajo.Cells[row, "D"] = p_mod.fechaVigenciaHasta;
+                    glb_hojaTrabajo.Cells[row, "E"] = p_mod.porcentaje;
+                    glb_hojaTrabajo.Cells[row, "F"] = p_mod.descripcion;
 
                 }
 
@@ -548,13 +550,13 @@ namespace Controladores
                 foreach (DataRow row in p_dataTable.Rows)
                 {
                     ModeloDescuentoArticuloProveedor lcl_mod_desArt = new ModeloDescuentoArticuloProveedor();
-                    lcl_mod_desArt.codigoDescuento = Convert.ToInt32(row[0].ToString());
-                    lcl_mod_desArt.codigoOriginalArticulo = row[1].ToString();
-                    lcl_mod_desArt.codigoArticuloProveedor = row[2].ToString();
-                    lcl_mod_desArt.fechaVigenciaDesde = Convert.ToDateTime(row[3].ToString());
-                    lcl_mod_desArt.fechaVigenciaHasta = Convert.ToDateTime(row[4].ToString());
-                    lcl_mod_desArt.porcentaje = Convert.ToDecimal(row[5].ToString());
-                    lcl_mod_desArt.descripcion = row[6].ToString();
+                    
+                    lcl_mod_desArt.codigoOriginalArticulo = row[0].ToString();
+                    lcl_mod_desArt.codigoArticuloProveedor = row[1].ToString();
+                    lcl_mod_desArt.fechaVigenciaDesde = Convert.ToDateTime(row[2].ToString());
+                    lcl_mod_desArt.fechaVigenciaHasta = Convert.ToDateTime(row[3].ToString());
+                    lcl_mod_desArt.porcentaje = Convert.ToDecimal(row[4].ToString());
+                    lcl_mod_desArt.descripcion = row[5].ToString();
 
                     lcl_lst_mod_desArt.Add(lcl_mod_desArt);
                 }
