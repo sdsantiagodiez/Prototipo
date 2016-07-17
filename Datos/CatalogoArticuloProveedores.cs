@@ -372,6 +372,30 @@ namespace Datos
             {return false;}
         }
 
+        private bool estadoArticuloProveedor(ModeloArticuloProveedores p_mod_articuloProveedor, string p_activo)
+        {
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.CommandText =
+                "UPDATE [Articulos_Proveedores] SET [activo]=@activo  " +
+                "WHERE ([Articulos_Proveedores].codigo_original=@codigo_original AND [Articulos_Proveedores].codigo_articulo_proveedor=@codigo_articulo_proveedor)";
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoOriginal, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(p_activo, "@activo"));
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected != 0)
+            { return true; }
+            else
+            { return false; }
+        }
+
         /// <summary>
         /// Genera insert en tabla valor_(Compra|Venta) con el nuevo valor
         /// </summary>

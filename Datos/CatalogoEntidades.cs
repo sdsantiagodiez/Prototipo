@@ -339,6 +339,38 @@ namespace Datos
             }
         }
 
+        protected bool estadoEntidad(ModeloEntidad p_mod_entidad, string p_activo)
+        {
+            //Creo la conexion y la abro
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+
+            comando.Connection = ConexionSQL;
+
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText =
+                "UPDATE [entidades] SET [activo]=@activo WHERE [entidades].codigo=@codigo_entidad";
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.codigo, "@codigo_entidad"));
+            comando.Parameters.Add(this.instanciarParametro(p_activo, "@activo"));
+            
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public virtual bool update(ModeloEntidad p_mod_entidad_original, ModeloEntidad p_mod_entidad_nueva)
         {
             if (!p_mod_entidad_original.Equals(p_mod_entidad_nueva))

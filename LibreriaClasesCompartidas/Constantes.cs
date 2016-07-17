@@ -282,6 +282,11 @@ namespace LibreriaClasesCompartidas
             public const string EnteroPositivoSinCero = "enteroPositivoSinCero";
             public const string EnteroPositivo = "enteroPositivo";
         }
+        public static class Estado
+        {
+            public const string Activo = "Y";
+            public const string Inactivo = "N";
+        }
     }
     
 }
