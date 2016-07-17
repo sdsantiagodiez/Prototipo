@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxObservaciones = new System.Windows.Forms.GroupBox();
             this.rchTextBoxObservaciones = new System.Windows.Forms.RichTextBox();
@@ -38,10 +39,16 @@
             this.txtBoxCodigoOriginal = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBoxDescripcion = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBoxModelo = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.epCodigoOriginal = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epDescripcion = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epModelo = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.grpBoxObservaciones.SuspendLayout();
             this.tblLayoutPanelDatosArticulo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoOriginal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epDescripcion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epModelo)).BeginInit();
             this.SuspendLayout();
             // 
             // tblLayoutPanelPrincipal
@@ -84,9 +91,10 @@
             // 
             this.tblLayoutPanelDatosArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tblLayoutPanelDatosArticulo.ColumnCount = 2;
+            this.tblLayoutPanelDatosArticulo.ColumnCount = 3;
             this.tblLayoutPanelDatosArticulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
             this.tblLayoutPanelDatosArticulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelDatosArticulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelDatosArticulo.Controls.Add(this.lblCodigoOriginal, 0, 0);
             this.tblLayoutPanelDatosArticulo.Controls.Add(this.lblModelo, 0, 2);
             this.tblLayoutPanelDatosArticulo.Controls.Add(this.lblDescripcion, 0, 1);
@@ -147,9 +155,10 @@
             this.txtBoxCodigoOriginal.SelectedText = "";
             this.txtBoxCodigoOriginal.SelectionLength = 0;
             this.txtBoxCodigoOriginal.SelectionStart = 0;
-            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(327, 23);
+            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(302, 23);
             this.txtBoxCodigoOriginal.TabIndex = 6;
             this.txtBoxCodigoOriginal.UseSystemPasswordChar = false;
+            this.txtBoxCodigoOriginal.Leave += new System.EventHandler(this.txtBoxCodigoOriginal_Leave);
             // 
             // txtBoxDescripcion
             // 
@@ -163,9 +172,10 @@
             this.txtBoxDescripcion.SelectedText = "";
             this.txtBoxDescripcion.SelectionLength = 0;
             this.txtBoxDescripcion.SelectionStart = 0;
-            this.txtBoxDescripcion.Size = new System.Drawing.Size(327, 23);
+            this.txtBoxDescripcion.Size = new System.Drawing.Size(302, 23);
             this.txtBoxDescripcion.TabIndex = 7;
             this.txtBoxDescripcion.UseSystemPasswordChar = false;
+            this.txtBoxDescripcion.Leave += new System.EventHandler(this.txtBoxDescripcion_Leave);
             // 
             // txtBoxModelo
             // 
@@ -179,9 +189,22 @@
             this.txtBoxModelo.SelectedText = "";
             this.txtBoxModelo.SelectionLength = 0;
             this.txtBoxModelo.SelectionStart = 0;
-            this.txtBoxModelo.Size = new System.Drawing.Size(327, 23);
+            this.txtBoxModelo.Size = new System.Drawing.Size(302, 23);
             this.txtBoxModelo.TabIndex = 8;
             this.txtBoxModelo.UseSystemPasswordChar = false;
+            this.txtBoxModelo.Leave += new System.EventHandler(this.txtBoxModelo_Leave);
+            // 
+            // epCodigoOriginal
+            // 
+            this.epCodigoOriginal.ContainerControl = this;
+            // 
+            // epDescripcion
+            // 
+            this.epDescripcion.ContainerControl = this;
+            // 
+            // epModelo
+            // 
+            this.epModelo.ContainerControl = this;
             // 
             // frmABMArticulo
             // 
@@ -197,6 +220,9 @@
             this.grpBoxObservaciones.ResumeLayout(false);
             this.tblLayoutPanelDatosArticulo.ResumeLayout(false);
             this.tblLayoutPanelDatosArticulo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoOriginal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epDescripcion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epModelo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,5 +240,8 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxCodigoOriginal;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxDescripcion;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxModelo;
+        private System.Windows.Forms.ErrorProvider epCodigoOriginal;
+        private System.Windows.Forms.ErrorProvider epDescripcion;
+        private System.Windows.Forms.ErrorProvider epModelo;
     }
 }

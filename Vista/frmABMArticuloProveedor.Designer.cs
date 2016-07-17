@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxArticulo = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelArticulo = new System.Windows.Forms.TableLayoutPanel();
@@ -61,6 +62,14 @@
             this.txtBoxUbicacion = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.grpBoxObservaciones = new System.Windows.Forms.GroupBox();
             this.rchTextBoxObservaciones = new System.Windows.Forms.RichTextBox();
+            this.epCodigoOriginal = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epDescripcion = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epCodigoProveedor = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epRazonSocialProveedor = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epCodigoArticulo = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epPrecioCompra = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epPrecioVenta = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epUbicacion = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.grpBoxArticulo.SuspendLayout();
@@ -72,6 +81,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownStockMinimo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownStockActual)).BeginInit();
             this.grpBoxObservaciones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoOriginal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epDescripcion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoProveedor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epRazonSocialProveedor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoArticulo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epPrecioCompra)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epPrecioVenta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epUbicacion)).BeginInit();
             this.SuspendLayout();
             // 
             // tblLayoutPanelPrincipal
@@ -107,14 +124,15 @@
             // 
             // tblLayoutPanelArticulo
             // 
-            this.tblLayoutPanelArticulo.ColumnCount = 3;
+            this.tblLayoutPanelArticulo.ColumnCount = 4;
             this.tblLayoutPanelArticulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tblLayoutPanelArticulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelArticulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelArticulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tblLayoutPanelArticulo.Controls.Add(this.lblDescripcion, 0, 1);
             this.tblLayoutPanelArticulo.Controls.Add(this.lblCodigoOriginal, 0, 0);
-            this.tblLayoutPanelArticulo.Controls.Add(this.btnBuscarArticulo, 2, 0);
-            this.tblLayoutPanelArticulo.Controls.Add(this.btnModificarArticulo, 2, 1);
+            this.tblLayoutPanelArticulo.Controls.Add(this.btnBuscarArticulo, 3, 0);
+            this.tblLayoutPanelArticulo.Controls.Add(this.btnModificarArticulo, 3, 1);
             this.tblLayoutPanelArticulo.Controls.Add(this.txtBoxCodigoOriginal, 1, 0);
             this.tblLayoutPanelArticulo.Controls.Add(this.txtBoxDescripcion, 1, 1);
             this.tblLayoutPanelArticulo.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -194,9 +212,10 @@
             this.txtBoxCodigoOriginal.SelectedText = "";
             this.txtBoxCodigoOriginal.SelectionLength = 0;
             this.txtBoxCodigoOriginal.SelectionStart = 0;
-            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(352, 23);
+            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(327, 23);
             this.txtBoxCodigoOriginal.TabIndex = 9;
             this.txtBoxCodigoOriginal.UseSystemPasswordChar = false;
+            this.txtBoxCodigoOriginal.Leave += new System.EventHandler(this.txtBoxCodigoOriginal_Leave);
             // 
             // txtBoxDescripcion
             // 
@@ -210,9 +229,10 @@
             this.txtBoxDescripcion.SelectedText = "";
             this.txtBoxDescripcion.SelectionLength = 0;
             this.txtBoxDescripcion.SelectionStart = 0;
-            this.txtBoxDescripcion.Size = new System.Drawing.Size(352, 23);
+            this.txtBoxDescripcion.Size = new System.Drawing.Size(327, 23);
             this.txtBoxDescripcion.TabIndex = 10;
             this.txtBoxDescripcion.UseSystemPasswordChar = false;
+            this.txtBoxDescripcion.Leave += new System.EventHandler(this.txtBoxDescripcion_Leave);
             // 
             // grpBoxProveedor
             // 
@@ -228,14 +248,15 @@
             // 
             // tblLayoutPanelProveedor
             // 
-            this.tblLayoutPanelProveedor.ColumnCount = 3;
+            this.tblLayoutPanelProveedor.ColumnCount = 4;
             this.tblLayoutPanelProveedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tblLayoutPanelProveedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelProveedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelProveedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tblLayoutPanelProveedor.Controls.Add(this.lblRazonSocial, 0, 1);
             this.tblLayoutPanelProveedor.Controls.Add(this.lblCodigoProveedor, 0, 0);
-            this.tblLayoutPanelProveedor.Controls.Add(this.btnBuscarProveedor, 2, 0);
-            this.tblLayoutPanelProveedor.Controls.Add(this.btnModificarProveedor, 2, 1);
+            this.tblLayoutPanelProveedor.Controls.Add(this.btnBuscarProveedor, 3, 0);
+            this.tblLayoutPanelProveedor.Controls.Add(this.btnModificarProveedor, 3, 1);
             this.tblLayoutPanelProveedor.Controls.Add(this.txtBoxCodigoProveedor, 1, 0);
             this.tblLayoutPanelProveedor.Controls.Add(this.txtBoxRazonSocial, 1, 1);
             this.tblLayoutPanelProveedor.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -315,9 +336,10 @@
             this.txtBoxCodigoProveedor.SelectedText = "";
             this.txtBoxCodigoProveedor.SelectionLength = 0;
             this.txtBoxCodigoProveedor.SelectionStart = 0;
-            this.txtBoxCodigoProveedor.Size = new System.Drawing.Size(352, 23);
+            this.txtBoxCodigoProveedor.Size = new System.Drawing.Size(327, 23);
             this.txtBoxCodigoProveedor.TabIndex = 10;
             this.txtBoxCodigoProveedor.UseSystemPasswordChar = false;
+            this.txtBoxCodigoProveedor.Leave += new System.EventHandler(this.txtBoxCodigoProveedor_Leave);
             // 
             // txtBoxRazonSocial
             // 
@@ -331,9 +353,10 @@
             this.txtBoxRazonSocial.SelectedText = "";
             this.txtBoxRazonSocial.SelectionLength = 0;
             this.txtBoxRazonSocial.SelectionStart = 0;
-            this.txtBoxRazonSocial.Size = new System.Drawing.Size(352, 23);
+            this.txtBoxRazonSocial.Size = new System.Drawing.Size(327, 23);
             this.txtBoxRazonSocial.TabIndex = 11;
             this.txtBoxRazonSocial.UseSystemPasswordChar = false;
+            this.txtBoxRazonSocial.Leave += new System.EventHandler(this.txtBoxRazonSocial_Leave);
             // 
             // grpBoxStock
             // 
@@ -353,9 +376,8 @@
             this.tblLayoutPanelStock.ColumnCount = 4;
             this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
-            this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
+            this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblLayoutPanelStock.Controls.Add(this.lblCodigoArticulo, 0, 0);
             this.tblLayoutPanelStock.Controls.Add(this.lblStockActual, 0, 1);
             this.tblLayoutPanelStock.Controls.Add(this.lblStockMinimo, 0, 2);
@@ -430,7 +452,7 @@
             this.lblUbicacion.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblUbicacion.AutoSize = true;
             this.lblUbicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUbicacion.Location = new System.Drawing.Point(277, 116);
+            this.lblUbicacion.Location = new System.Drawing.Point(268, 116);
             this.lblUbicacion.Name = "lblUbicacion";
             this.lblUbicacion.Size = new System.Drawing.Size(74, 18);
             this.lblUbicacion.TabIndex = 7;
@@ -441,7 +463,7 @@
             this.lblPrecioCompra.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPrecioCompra.AutoSize = true;
             this.lblPrecioCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioCompra.Location = new System.Drawing.Point(242, 16);
+            this.lblPrecioCompra.Location = new System.Drawing.Point(233, 16);
             this.lblPrecioCompra.Name = "lblPrecioCompra";
             this.lblPrecioCompra.Size = new System.Drawing.Size(109, 18);
             this.lblPrecioCompra.TabIndex = 14;
@@ -452,7 +474,7 @@
             this.lblPrecioVenta.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPrecioVenta.AutoSize = true;
             this.lblPrecioVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioVenta.Location = new System.Drawing.Point(259, 66);
+            this.lblPrecioVenta.Location = new System.Drawing.Point(250, 66);
             this.lblPrecioVenta.Name = "lblPrecioVenta";
             this.lblPrecioVenta.Size = new System.Drawing.Size(92, 18);
             this.lblPrecioVenta.TabIndex = 13;
@@ -486,54 +508,58 @@
             this.txtBoxCodigoArticulo.Size = new System.Drawing.Size(89, 23);
             this.txtBoxCodigoArticulo.TabIndex = 17;
             this.txtBoxCodigoArticulo.UseSystemPasswordChar = false;
+            this.txtBoxCodigoArticulo.Leave += new System.EventHandler(this.txtBoxCodigoArticulo_Leave);
             // 
             // txtBoxPrecioCompra
             // 
             this.txtBoxPrecioCompra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxPrecioCompra.Depth = 0;
             this.txtBoxPrecioCompra.Hint = "";
-            this.txtBoxPrecioCompra.Location = new System.Drawing.Point(357, 13);
+            this.txtBoxPrecioCompra.Location = new System.Drawing.Point(348, 13);
             this.txtBoxPrecioCompra.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxPrecioCompra.Name = "txtBoxPrecioCompra";
             this.txtBoxPrecioCompra.PasswordChar = '\0';
             this.txtBoxPrecioCompra.SelectedText = "";
             this.txtBoxPrecioCompra.SelectionLength = 0;
             this.txtBoxPrecioCompra.SelectionStart = 0;
-            this.txtBoxPrecioCompra.Size = new System.Drawing.Size(138, 23);
+            this.txtBoxPrecioCompra.Size = new System.Drawing.Size(147, 23);
             this.txtBoxPrecioCompra.TabIndex = 18;
             this.txtBoxPrecioCompra.UseSystemPasswordChar = false;
+            this.txtBoxPrecioCompra.Leave += new System.EventHandler(this.txtBoxPrecioCompra_Leave);
             // 
             // txtBoxPrecioVenta
             // 
             this.txtBoxPrecioVenta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxPrecioVenta.Depth = 0;
             this.txtBoxPrecioVenta.Hint = "";
-            this.txtBoxPrecioVenta.Location = new System.Drawing.Point(357, 63);
+            this.txtBoxPrecioVenta.Location = new System.Drawing.Point(348, 63);
             this.txtBoxPrecioVenta.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxPrecioVenta.Name = "txtBoxPrecioVenta";
             this.txtBoxPrecioVenta.PasswordChar = '\0';
             this.txtBoxPrecioVenta.SelectedText = "";
             this.txtBoxPrecioVenta.SelectionLength = 0;
             this.txtBoxPrecioVenta.SelectionStart = 0;
-            this.txtBoxPrecioVenta.Size = new System.Drawing.Size(138, 23);
+            this.txtBoxPrecioVenta.Size = new System.Drawing.Size(147, 23);
             this.txtBoxPrecioVenta.TabIndex = 19;
             this.txtBoxPrecioVenta.UseSystemPasswordChar = false;
+            this.txtBoxPrecioVenta.Leave += new System.EventHandler(this.txtBoxPrecioVenta_Leave);
             // 
             // txtBoxUbicacion
             // 
             this.txtBoxUbicacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxUbicacion.Depth = 0;
             this.txtBoxUbicacion.Hint = "";
-            this.txtBoxUbicacion.Location = new System.Drawing.Point(357, 114);
+            this.txtBoxUbicacion.Location = new System.Drawing.Point(348, 114);
             this.txtBoxUbicacion.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxUbicacion.Name = "txtBoxUbicacion";
             this.txtBoxUbicacion.PasswordChar = '\0';
             this.txtBoxUbicacion.SelectedText = "";
             this.txtBoxUbicacion.SelectionLength = 0;
             this.txtBoxUbicacion.SelectionStart = 0;
-            this.txtBoxUbicacion.Size = new System.Drawing.Size(138, 23);
+            this.txtBoxUbicacion.Size = new System.Drawing.Size(147, 23);
             this.txtBoxUbicacion.TabIndex = 20;
             this.txtBoxUbicacion.UseSystemPasswordChar = false;
+            this.txtBoxUbicacion.Leave += new System.EventHandler(this.txtBoxUbicacion_Leave);
             // 
             // grpBoxObservaciones
             // 
@@ -555,6 +581,38 @@
             this.rchTextBoxObservaciones.Size = new System.Drawing.Size(563, 47);
             this.rchTextBoxObservaciones.TabIndex = 22;
             this.rchTextBoxObservaciones.Text = "";
+            // 
+            // epCodigoOriginal
+            // 
+            this.epCodigoOriginal.ContainerControl = this;
+            // 
+            // epDescripcion
+            // 
+            this.epDescripcion.ContainerControl = this;
+            // 
+            // epCodigoProveedor
+            // 
+            this.epCodigoProveedor.ContainerControl = this;
+            // 
+            // epRazonSocialProveedor
+            // 
+            this.epRazonSocialProveedor.ContainerControl = this;
+            // 
+            // epCodigoArticulo
+            // 
+            this.epCodigoArticulo.ContainerControl = this;
+            // 
+            // epPrecioCompra
+            // 
+            this.epPrecioCompra.ContainerControl = this;
+            // 
+            // epPrecioVenta
+            // 
+            this.epPrecioVenta.ContainerControl = this;
+            // 
+            // epUbicacion
+            // 
+            this.epUbicacion.ContainerControl = this;
             // 
             // frmABMArticuloProveedor
             // 
@@ -580,6 +638,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownStockMinimo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownStockActual)).EndInit();
             this.grpBoxObservaciones.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoOriginal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epDescripcion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoProveedor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epRazonSocialProveedor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoArticulo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epPrecioCompra)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epPrecioVenta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epUbicacion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -620,5 +686,13 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxPrecioCompra;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxPrecioVenta;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxUbicacion;
+        private System.Windows.Forms.ErrorProvider epCodigoOriginal;
+        private System.Windows.Forms.ErrorProvider epDescripcion;
+        private System.Windows.Forms.ErrorProvider epCodigoProveedor;
+        private System.Windows.Forms.ErrorProvider epRazonSocialProveedor;
+        private System.Windows.Forms.ErrorProvider epCodigoArticulo;
+        private System.Windows.Forms.ErrorProvider epPrecioCompra;
+        private System.Windows.Forms.ErrorProvider epPrecioVenta;
+        private System.Windows.Forms.ErrorProvider epUbicacion;
     }
 }

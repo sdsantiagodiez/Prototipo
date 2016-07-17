@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using Controladores;
+using LibreriaClasesCompartidas;
 
 namespace Vista
 {
     public partial class frmABMArticuloProveedor : Vista.frmABMBase
     {
         #region Atributos
+        bool glb_banderaCodigoOriginal = false;
         ModeloArticuloProveedores glb_mod_articuloProveedor;
         #endregion
 
@@ -171,7 +173,7 @@ namespace Vista
         /// </summary>
         private void alta()
         {
-            if (!this.validar())
+            if (!this.glb_banderaCodigoOriginal)
             {
                 MessageBox.Show(errorActual,"Error",MessageBoxButtons.OK);
                 return;
@@ -222,7 +224,7 @@ namespace Vista
         /// </summary>
         private void actualizar()
         {
-            if (!this.validar())
+            if (!this.glb_banderaCodigoOriginal)
             {
                 MessageBox.Show(errorActual, "Error", MessageBoxButtons.OK);
                 return;
@@ -397,44 +399,163 @@ namespace Vista
         /// Valida que los controladores que se hayan completados tengan el formato correcto y además que los campos obligatorios hayas sido rellenados
         /// </summary>
         /// <returns>true si todos los controladores válidos, false caso contrario</returns>
-        private bool validar()
+        //private bool validar()
+        //{
+        //    if (this.validarCodigoArticulo())
+        //    {
+        //        return this.validarArticulo() && this.validarProveedor();
+        //    }
+        //    errorActual = "Ha surgido un error. Por favor, revise los valores ingresados.";
+        //    return false;
+        //}
+        //private bool validarProveedor()
+        //{
+        //    if (glb_mod_articuloProveedor.codigoEntidad == 0)
+        //    {
+        //        errorActual = "Debe seleccionar un proveedor.";
+        //        return false;
+        //    }
+        //    return true;
+        //}
+        //private bool validarArticulo()
+        //{
+        //    if (glb_mod_articuloProveedor.codigoOriginal == null)
+        //    {
+        //        errorActual = "Debe seleccionar un Artículo.";
+        //        return false;
+        //    }
+        //    return true;
+        //}
+        //private bool validarCodigoArticulo()
+        //{
+        //    if (string.IsNullOrWhiteSpace(txtBoxCodigoArticulo.Text))
+        //    {
+        //        this.errorProviderActual.SetError(txtBoxCodigoArticulo, "Este campo es obligatorio. No puede permanecer vacío.");
+        //        return false;
+        //    }
+        //    this.errorProviderActual.SetError(txtBoxCodigoArticulo, "");
+        //    return true;
+        //}
+        private void txtBoxCodigoOriginal_Leave(object sender, EventArgs e)
         {
-            if (this.validarCodigoArticulo())
+            bool respuesta = Validar.validarInput(txtBoxCodigoOriginal.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
+            if (!respuesta)
             {
-                return this.validarArticulo() && this.validarProveedor();
+                epCodigoOriginal.Icon = Properties.Resources.error;
+                epCodigoOriginal.SetError(txtBoxCodigoOriginal, "Código Original no válido");
             }
-            errorActual = "Ha surgido un error. Por favor, revise los valores ingresados.";
-            return false;
-        }
-        private bool validarProveedor()
-        {
-            if (glb_mod_articuloProveedor.codigoEntidad == 0)
+            else
             {
-                errorActual = "Debe seleccionar un proveedor.";
-                return false;
+                epCodigoOriginal.Icon = Properties.Resources.success;
+                epCodigoOriginal.SetError(txtBoxCodigoOriginal, "OK");
+                glb_banderaCodigoOriginal = true;
             }
-            return true;
-        }
-        private bool validarArticulo()
-        {
-            if (glb_mod_articuloProveedor.codigoOriginal == null)
-            {
-                errorActual = "Debe seleccionar un Artículo.";
-                return false;
-            }
-            return true;
-        }
-        private bool validarCodigoArticulo()
-        {
-            if (string.IsNullOrWhiteSpace(txtBoxCodigoArticulo.Text))
-            {
-                this.errorProviderActual.SetError(txtBoxCodigoArticulo, "Este campo es obligatorio. No puede permanecer vacío.");
-                return false;
-            }
-            this.errorProviderActual.SetError(txtBoxCodigoArticulo, "");
-            return true;
         }
 
+        private void txtBoxDescripcion_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInput(txtBoxDescripcion.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
+            if (!respuesta)
+            {
+                epDescripcion.Icon = Properties.Resources.error;
+                epDescripcion.SetError(txtBoxDescripcion, "Descripción no válida");
+            }
+            else
+            {
+                epDescripcion.Icon = Properties.Resources.success;
+                epDescripcion.SetError(txtBoxDescripcion, "OK");
+            }
+        }
+
+        private void txtBoxCodigoProveedor_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInput(txtBoxCodigoProveedor.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad);
+            if (!respuesta)
+            {
+                epCodigoProveedor.Icon = Properties.Resources.error;
+                epCodigoProveedor.SetError(txtBoxCodigoProveedor, "Código de proveedor no válido");
+            }
+            else
+            {
+                epCodigoProveedor.Icon = Properties.Resources.success;
+                epCodigoProveedor.SetError(txtBoxCodigoProveedor, "OK");
+            }
+        }
+
+        private void txtBoxRazonSocial_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInput(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
+            if (!respuesta)
+            {
+                epRazonSocialProveedor.Icon = Properties.Resources.error;
+                epRazonSocialProveedor.SetError(txtBoxRazonSocial, "Razón Social no válida");
+            }
+            else
+            {
+                epRazonSocialProveedor.Icon = Properties.Resources.success;
+                epRazonSocialProveedor.SetError(txtBoxRazonSocial, "OK");
+            }
+        }
+
+        private void txtBoxCodigoArticulo_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInput(txtBoxCodigoArticulo.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
+            if (!respuesta)
+            {
+                epCodigoArticulo.Icon = Properties.Resources.error;
+                epCodigoArticulo.SetError(txtBoxCodigoArticulo, "Razón Social no válida");
+            }
+            else
+            {
+                epCodigoArticulo.Icon = Properties.Resources.success;
+                epCodigoArticulo.SetError(txtBoxCodigoArticulo, "OK");
+            }
+        }
+
+        private void txtBoxPrecioCompra_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarNumerico(txtBoxPrecioCompra.Text.ToString(), Constantes.Numericos.EnteroPositivoSinCero);
+            if (!respuesta)
+            {
+                epPrecioCompra.Icon = Properties.Resources.error;
+                epPrecioCompra.SetError(txtBoxPrecioCompra, "Razón Social no válida");
+            }
+            else
+            {
+                epPrecioCompra.Icon = Properties.Resources.success;
+                epPrecioCompra.SetError(txtBoxPrecioCompra, "OK");
+            }
+        }
+
+        private void txtBoxPrecioVenta_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarNumerico(txtBoxPrecioVenta.Text.ToString(), Constantes.Numericos.EnteroPositivoSinCero);
+            if (!respuesta)
+            {
+                epPrecioVenta.Icon = Properties.Resources.error;
+                epPrecioVenta.SetError(txtBoxPrecioVenta, "Razón Social no válida");
+            }
+            else
+            {
+                epPrecioVenta.Icon = Properties.Resources.success;
+                epPrecioVenta.SetError(txtBoxPrecioVenta, "OK");
+            }
+        }
+
+        private void txtBoxUbicacion_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarNumerico(txtBoxUbicacion.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion);
+            if (!respuesta)
+            {
+                epUbicacion.Icon = Properties.Resources.error;
+                epUbicacion.SetError(txtBoxUbicacion, "Razón Social no válida");
+            }
+            else
+            {
+                epUbicacion.Icon = Properties.Resources.success;
+                epUbicacion.SetError(txtBoxUbicacion, "OK");
+            }
+        }
         #endregion
         #endregion
        

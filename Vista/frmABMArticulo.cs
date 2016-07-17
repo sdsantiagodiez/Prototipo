@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Modelos;
 using Controladores;
+using LibreriaClasesCompartidas;
 
 namespace Vista
 {
@@ -14,6 +15,7 @@ namespace Vista
     {
         #region Atributos
         ModeloArticulos glb_mod_articulo;
+        bool glb_banderaCodigoOriginal=false;
         #endregion
 
         #region Constructores
@@ -77,7 +79,7 @@ namespace Vista
         /// </summary>
         private void alta()
         {
-            if(!this.validar())
+            if (!this.glb_banderaCodigoOriginal)
             { return; }
 
             ControladorAlta lcl_con_alta = new ControladorAlta();
@@ -123,7 +125,7 @@ namespace Vista
         /// </summary>
         private void actualizar()
         {
-            if (!this.validar())
+            if (!glb_banderaCodigoOriginal)
             { return; }
 
             ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
@@ -191,20 +193,50 @@ namespace Vista
         #endregion
 
         #region Validación
-        private bool validar()
+        private void txtBoxCodigoOriginal_Leave(object sender, EventArgs e)
         {
-            return this.validarCodigoOriginal();
+            bool respuesta = Validar.validarInput(txtBoxCodigoOriginal.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
+            if (!respuesta)
+            {
+                epCodigoOriginal.Icon = Properties.Resources.error;
+                epCodigoOriginal.SetError(txtBoxCodigoOriginal, "Código Original no válido");
+            }
+            else
+            {
+                epCodigoOriginal.Icon = Properties.Resources.success;
+                epCodigoOriginal.SetError(txtBoxCodigoOriginal, "OK");
+                glb_banderaCodigoOriginal = true;
+            }
         }
 
-        private bool validarCodigoOriginal()
+        private void txtBoxDescripcion_Leave(object sender, EventArgs e)
         {
-            if (!ModeloArticulos.validarCodigoOriginal(txtBoxCodigoOriginal.Text))
+            bool respuesta = Validar.validarInput(txtBoxDescripcion.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
+            if (!respuesta)
             {
-                errorProviderActual.SetError(txtBoxCodigoOriginal,"Este campo es obligatorio. No puede permanecer vacío.");
-                return false;
+                epDescripcion.Icon = Properties.Resources.error;
+                epDescripcion.SetError(txtBoxDescripcion, "Descripción no válida");
             }
-            errorProviderActual.SetError(txtBoxCodigoOriginal, "");
-            return true;
+            else
+            {
+                epDescripcion.Icon = Properties.Resources.success;
+                epDescripcion.SetError(txtBoxDescripcion, "OK");
+            }
+        }
+
+        private void txtBoxModelo_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInput(txtBoxModelo.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo);
+            if (!respuesta)
+            {
+                epModelo.Icon = Properties.Resources.error;
+                epModelo.SetError(txtBoxModelo, "Modelo no válido");
+            }
+            else
+            {
+                epModelo.Icon = Properties.Resources.success;
+                epModelo.SetError(txtBoxModelo, "OK");
+            }
         }
         #endregion
         #endregion
@@ -258,5 +290,7 @@ namespace Vista
         #endregion
         
         #endregion
+
+        
     }
 }

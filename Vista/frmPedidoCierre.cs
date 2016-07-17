@@ -1477,7 +1477,7 @@ namespace Vista
         #endregion
 
         #region Validaciones
-        private bool txtBoxNumeroDocumento_Leave(object sender, EventArgs e)
+        private void txtBoxNumeroDocumento_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInput(txtBoxNumeroDocumento.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
             if (!respuesta)
@@ -1490,10 +1490,9 @@ namespace Vista
                 epNumeroDocumento.Icon = Properties.Resources.success;
                 epNumeroDocumento.SetError(txtBoxNumeroDocumento, "OK");
             }
-            return respuesta;
         }
 
-        private bool txtBoxApellido_Leave(object sender, EventArgs e)
+        private void txtBoxApellido_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInput(txtBoxApellido.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Apellido);
             if (!respuesta)
@@ -1506,10 +1505,9 @@ namespace Vista
                 epApellido.Icon = Properties.Resources.success;
                 epApellido.SetError(txtBoxApellido, "OK");
             }
-            return respuesta;
         }
 
-        private bool txtBoxNombre_Leave(object sender, EventArgs e)
+        private void txtBoxNombre_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInput(txtBoxNombre.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Nombre);
             if (!respuesta)
@@ -1522,10 +1520,9 @@ namespace Vista
                 epNombre.Icon = Properties.Resources.success;
                 epNombre.SetError(txtBoxNombre, "OK");
             }
-            return respuesta;
         }
 
-        private bool txtBoxRazonSocial_Leave(object sender, EventArgs e)
+        private void txtBoxRazonSocial_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInput(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
             if (!respuesta)
@@ -1538,10 +1535,9 @@ namespace Vista
                 epRazonSocial.Icon = Properties.Resources.success;
                 epRazonSocial.SetError(txtBoxRazonSocial, "OK");
             }
-            return respuesta;
         }
 
-        private bool txtBoxNumeroPedido_Leave(object sender, EventArgs e)
+        private void txtBoxNumeroPedido_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarNumerico(txtBoxNumeroPedido.Text.ToString(),Constantes.Numericos.EnteroPositivoSinCero);
             if (!respuesta)
@@ -1554,10 +1550,9 @@ namespace Vista
                 epNumeroPedido.Icon = Properties.Resources.success;
                 epNumeroPedido.SetError(txtBoxNumeroPedido, "OK");
             }
-            return respuesta;
         }
 
-        private bool txtBoxCAE_Leave(object sender, EventArgs e)
+        private void txtBoxCAE_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInput(txtBoxCAE.Text.ToString(), Constantes.ParametrosBusqueda.Pedidos.CAE);
             if (!respuesta)
@@ -1570,10 +1565,9 @@ namespace Vista
                 epCAE.Icon = Properties.Resources.success;
                 epCAE.SetError(txtBoxCAE, "OK");
             }
-            return respuesta;
         }
 
-        private bool txtBoxCalle_Leave(object sender, EventArgs e)
+        private void txtBoxCalle_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInput(txtBoxCalle.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Calle);
             if (!respuesta)
@@ -1586,10 +1580,9 @@ namespace Vista
                 epCalle.Icon = Properties.Resources.success;
                 epCalle.SetError(txtBoxCalle, "OK");
             }
-            return respuesta;
         }
 
-        private bool txtBoxNumeroDomicilio_Leave(object sender, EventArgs e)
+        private void txtBoxNumeroDomicilio_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInput(txtBoxNumeroDomicilio.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio);
             if (!respuesta)
@@ -1602,10 +1595,9 @@ namespace Vista
                 epNumeroDomicilio.Icon = Properties.Resources.success;
                 epNumeroDomicilio.SetError(txtBoxNumeroDomicilio, "OK");
             }
-            return respuesta;
         }
 
-        private bool txtBoxPiso_Leave(object sender, EventArgs e)
+        private void txtBoxPiso_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInput(txtBoxPiso.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Piso);
             if (!respuesta)
@@ -1618,10 +1610,9 @@ namespace Vista
                 epPiso.Icon = Properties.Resources.success;
                 epPiso.SetError(txtBoxPiso, "OK");
             }
-            return respuesta;
         }
 
-        private bool txtBoxDepartamento_Leave(object sender, EventArgs e)
+        private void txtBoxDepartamento_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInput(txtBoxDepartamento.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Departamento);
             if (!respuesta)
@@ -1634,10 +1625,9 @@ namespace Vista
                 epDepartamento.Icon = Properties.Resources.success;
                 epDepartamento.SetError(txtBoxDepartamento, "OK");
             }
-            return respuesta;
         }
 
-        private bool txtBoxCiudad_Leave(object sender, EventArgs e)
+        private void txtBoxCiudad_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInput(txtBoxCiudad.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Ciudad);
             if (!respuesta)
@@ -1650,10 +1640,9 @@ namespace Vista
                 epCiudad.Icon = Properties.Resources.success;
                 epCiudad.SetError(txtBoxCiudad, "OK");
             }
-            return respuesta;
         }
 
-        private bool txtBoxCodigoPostal_Leave(object sender, EventArgs e)
+        private void txtBoxCodigoPostal_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInput(txtBoxCodigoPostal.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.CodigoPostal);
             if (!respuesta)
@@ -1666,10 +1655,9 @@ namespace Vista
                 epCodigoPostal.Icon = Properties.Resources.success;
                 epCodigoPostal.SetError(txtBoxCodigoPostal, "OK");
             }
-            return respuesta;
         }
 
-        private bool txtBoxMail_Leave(object sender, EventArgs e)
+        private void txtBoxMail_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInput(txtBoxMail.Text.ToString(), Constantes.ParametrosBusqueda.Mails.Mail);
             if (!respuesta)
@@ -1682,10 +1670,9 @@ namespace Vista
                 epMail.Icon = Properties.Resources.success;
                 epMail.SetError(txtBoxMail, "OK");
             }
-            return respuesta;
         }
 
-        private bool txtBoxTelefono_Leave(object sender, EventArgs e)
+        private void txtBoxTelefono_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInput(txtBoxTelefono.Text.ToString(), Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono);
             if (!respuesta)
@@ -1698,10 +1685,9 @@ namespace Vista
                 epNumeroTelefono.Icon = Properties.Resources.success;
                 epNumeroTelefono.SetError(txtBoxTelefono, "OK");
             }
-            return respuesta;
         }
 
-        private bool txtBoxIVAPorcentaje_Leave(object sender, EventArgs e)
+        private void txtBoxIVAPorcentaje_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInput(txtBoxIVAPorcentaje.Text.ToString(), Constantes.Numericos.Porcentual);
             if (!respuesta)
@@ -1714,10 +1700,9 @@ namespace Vista
                 epIvaPorcentaje.Icon = Properties.Resources.success;
                 epIvaPorcentaje.SetError(txtBoxIVAPorcentaje, "OK");
             }
-            return respuesta;
         }
 
-        private bool txtBoxIVAMonto_Leave(object sender, EventArgs e)
+        private void txtBoxIVAMonto_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInput(txtBoxIVAMonto.Text.ToString(), Constantes.Numericos.EnteroPositivo);
             if (!respuesta)
@@ -1730,7 +1715,6 @@ namespace Vista
                 epIvaMonto.Icon = Properties.Resources.success;
                 epIvaMonto.SetError(txtBoxIVAMonto, "OK");
             }
-            return respuesta;
         }
         #endregion
 
