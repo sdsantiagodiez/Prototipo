@@ -130,7 +130,7 @@ namespace Modelos
         DateTime _fechaVigenciaDesde;
         public DateTime fechaVigenciaDesde
         {
-            get { return _fechaVigenciaDesde; }
+            get { return _fechaVigenciaDesde.Date; }
             set
             {
                 _fechaVigenciaDesde = value;
@@ -140,7 +140,7 @@ namespace Modelos
         DateTime _fechaVigenciaHasta;
         public DateTime fechaVigenciaHasta
         {
-            get { return _fechaVigenciaHasta; }
+            get { return _fechaVigenciaHasta.Date; }
             set
             {
                 _fechaVigenciaHasta = value;
@@ -158,7 +158,6 @@ namespace Modelos
         {
             
         }
-
 
         #region Validación
         public override bool validar()
@@ -223,6 +222,25 @@ namespace Modelos
     [Serializable]
     public class ModeloDescuentoLineaPedido : ModeloDescuento
     {
+        int _numeroPedido;
+        public int numeroPedido
+        {
+            get { return _numeroPedido; }
+            set { _numeroPedido = value; }
+        }
+        string _codigoArticuloProveedor;
+        public string codigoArticuloProveedor
+        {
+            get { return _codigoArticuloProveedor; }
+            set { _codigoArticuloProveedor = value; }
+        }
+        string _codigoOriginalArticulo;
+        public string codigoOriginalArticulo
+        {
+            get { return _codigoOriginalArticulo; }
+            set { _codigoOriginalArticulo = value; }
+        }
+        bool porcentual;
         decimal _montoDescontadoSobreTotal;
         public decimal montoDescontadoSobreTotal
         {
@@ -243,13 +261,20 @@ namespace Modelos
         public ModeloDescuentoLineaPedido()
         {
             this.descripcion = "Estándar";
+            this.porcentual = true;
         }
-        public ModeloDescuentoLineaPedido(ModeloDescuentoLineaPedido p_descuento, decimal valorParcial)
+        public ModeloDescuentoLineaPedido(ModeloLineaPedido p_mod_lineaPedido) : this()
+        {
+            this.asignarDatosLineaPedido(p_mod_lineaPedido);
+        }
+        public ModeloDescuentoLineaPedido(ModeloDescuento p_descuento) : this()
         {
             this.codigoDescuento = p_descuento.codigoDescuento;
             this.descripcion = p_descuento.descripcion;
             this.porcentaje = p_descuento.porcentaje;
-            
+        }
+        public ModeloDescuentoLineaPedido(ModeloDescuentoLineaPedido p_descuento, decimal valorParcial) : this(p_descuento)
+        {
             this.montoDescontadoSobreTotal =p_descuento.montoDescontadoSobreTotal;
             
             this.asignarValorTotalLinea(valorParcial);
@@ -270,6 +295,16 @@ namespace Modelos
         {
             return this.validarTotal(this.montoTotal) && this.validarDescuentoSobreTotal(this.montoDescontadoSobreTotal)
                 && base.validar();
+        }
+        #endregion
+
+        #region Asignar Linea
+        public void asignarDatosLineaPedido(ModeloLineaPedido p_mod_lineaPedido)
+        {
+            this.numeroPedido = p_mod_lineaPedido.numeroPedido;
+            this.codigoOriginalArticulo = p_mod_lineaPedido.articulo.codigoOriginal;
+            this.codigoArticuloProveedor = p_mod_lineaPedido.articulo.codigoArticuloProveedor;
+            this.montoTotal = p_mod_lineaPedido.getValorParcialSinDescuentos();
         }
         #endregion
 
@@ -294,14 +329,16 @@ namespace Modelos
         public decimal asignarDescuento(decimal p_valorTotal)
         {
             //Si el porcentaje es válido, se toma como predeterminado aplicar porcentaje
-            if (this.validarPorcentaje(this.porcentaje))
+            if (porcentual && this.validarPorcentaje(this.porcentaje))
             {
                 return this.asignarDescuentoPorcentual(p_valorTotal);
             }
-            else
+            else if(!porcentual)
             {//Si no es válido, se presupone que hay que hacer un descuento neto
                 return this.asignarDescuentoNeto(p_valorTotal);
             }
+            //cuando es porcentual, pero el porcentaje ingresado no es válido
+            return 0;
         }
 
         /// <summary>
@@ -321,6 +358,7 @@ namespace Modelos
         /// <returns>Devuelve monto a descontar. 0 si algún valor no es válido</returns>
         public decimal asignarDescuentoPorcentual(decimal p_valorTotal, decimal p_porcentaje)
         {
+            porcentual = true;
             if (!this.validarPorcentaje(p_porcentaje) || !this.validarTotal(p_valorTotal))
             {
                 return 0;
@@ -349,6 +387,7 @@ namespace Modelos
         /// <returns>Devuelve monto a descontar. 0 si algún valor no es válido</returns>
         public decimal asignarDescuentoNeto(decimal p_valorTotal, decimal p_montoDescontar)
         {
+            porcentual = false;
             if (p_montoDescontar <= 0 || p_montoDescontar > p_valorTotal || !this.validarTotal(p_valorTotal))
             {
                 return 0;
@@ -360,6 +399,118 @@ namespace Modelos
 
             return montoDescontadoSobreTotal;
         }
+        #endregion
+    }
+    [Serializable]
+    public class ModeloDescuentoPedido : Modelo
+    {
+        decimal montoTotal;
+
+        decimal _descuento_total_monto;
+        public decimal descuento_total_monto
+        {
+            get { return _descuento_total_monto; }
+            set { _descuento_total_monto = value; }
+        }
+        decimal _descuento_total_porcentaje;
+        public decimal descuento_total_porcentaje
+        {
+            get { return _descuento_total_porcentaje; }
+            set { _descuento_total_porcentaje = value; }
+        }
+
+        bool descuento_1_porcentual = true;
+        decimal _descuento_monto_1;
+        public decimal descuento_monto_1
+        {
+            get { return _descuento_monto_1; }
+            set 
+            { 
+                _descuento_monto_1 = value;
+                descuento_1_porcentual = false;
+                this.actualizarDescuentos();
+            }
+        }
+        decimal _descuento_porcentaje_1;
+        public decimal descuento_porcentaje_1
+        {
+            get { return _descuento_porcentaje_1; }
+            set 
+            { 
+                _descuento_porcentaje_1 = value;
+                descuento_1_porcentual = true;
+                this.actualizarDescuentos();
+            }
+        }
+        
+        bool descuento_2_porcentual = true;
+        decimal _descuento_monto_2;
+        public decimal descuento_monto_2
+        {
+            get { return _descuento_monto_2; }
+            set 
+            { 
+                _descuento_monto_2 = value;
+                descuento_2_porcentual = false;
+                this.actualizarDescuentos();
+            }
+        }
+        decimal _descuento_porcentaje_2;
+        public decimal descuento_porcentaje_2
+        {
+            get { return _descuento_porcentaje_2; }
+            set 
+            { 
+                _descuento_porcentaje_2 = value;
+                descuento_2_porcentual = true;
+                this.actualizarDescuentos();
+            }
+        }
+
+        private bool validarTotal(decimal p_total)
+        {
+            return p_total > 0;
+        }
+        
+        #region Asignar Descuento de Línea
+        public void asignarMontoTotal(decimal p_valorTotal)
+        {
+            this.montoTotal = this.validarTotal(p_valorTotal) ? p_valorTotal : 0;
+            this.actualizarDescuentos();
+        }
+        public void actualizarDescuentos()
+        {
+            if (!this.validarTotal(this.montoTotal))
+            {
+                return;
+            }
+            /*
+             * Se utilizan los atributos con _ (ej this._descuento_monto_1 en vez de this.descuento_monto_1) 
+             * para no activar las propiedades 
+             */
+
+            if (this.descuento_1_porcentual)
+            {
+                this._descuento_monto_1 = this.montoTotal * this._descuento_porcentaje_1;
+            }
+            else
+            {
+                this._descuento_porcentaje_1 = (this.descuento_monto_1 / this.montoTotal) ;
+            }
+
+            if (this.descuento_2_porcentual)
+            {
+                this._descuento_monto_2 = this.montoTotal * this.descuento_porcentaje_2;
+            }
+            else
+            {
+                this._descuento_porcentaje_2 = (this.descuento_monto_2 / this.montoTotal) ;
+            }
+
+            this.descuento_total_monto = this.descuento_monto_1 + this.descuento_monto_2 ;
+            this.descuento_total_porcentaje = this.descuento_porcentaje_1 + this.descuento_porcentaje_2;
+        }
+
         #endregion
     }
 }

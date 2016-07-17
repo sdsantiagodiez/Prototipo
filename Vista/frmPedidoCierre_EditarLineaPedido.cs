@@ -64,12 +64,15 @@ namespace Vista
         #region Inicialización
         private void inicializarDataGridView()
         {
-            dgvDescuentos.Columns.Add("descripcion","Nombre");
+            dgvDescuentos.Columns.Add("codigoDescuento", "Código");
             dgvDescuentos.Columns[0].FillWeight = 1;
-            dgvDescuentos.Columns.Add("descuento", "Descuento");
+            dgvDescuentos.Columns[0].Visible = false;
+            dgvDescuentos.Columns.Add("descripcion","Nombre");
             dgvDescuentos.Columns[1].FillWeight = 1;
-            dgvDescuentos.Columns.Add("porcentaje", "Porcentaje");
+            dgvDescuentos.Columns.Add("descuento", "Descuento");
             dgvDescuentos.Columns[2].FillWeight = 1;
+            dgvDescuentos.Columns.Add("porcentaje", "Porcentaje");
+            dgvDescuentos.Columns[3].FillWeight = 1;
         }
         #endregion
 
@@ -84,9 +87,10 @@ namespace Vista
                 rowIndex = dgvDescuentos.Rows.Add();
                 row = dgvDescuentos.Rows[rowIndex];
 
+                row.Cells["codigoDescuento"].Value = descuento.codigoDescuento;
                 row.Cells["descripcion"].Value = descuento.descripcion;
                 row.Cells["descuento"].Value = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", descuento.montoDescontadoSobreTotal);
-                row.Cells["porcentaje"].Value = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:P1}", descuento.porcentaje *100);
+                row.Cells["porcentaje"].Value = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:P1}", descuento.porcentaje);
             }
 
             this.txtBoxDescuentoDescripcion.Text = "";
@@ -135,8 +139,15 @@ namespace Vista
             ModeloDescuentoLineaPedido lcl_mod_descuento = new ModeloDescuentoLineaPedido();
 
             lcl_mod_descuento.descripcion = this.txtBoxDescuentoDescripcion.Text;
-            lcl_mod_descuento.montoDescontadoSobreTotal = descuento;
-            lcl_mod_descuento.porcentaje = porcentaje;
+
+            if (porcentaje > 0)
+            {
+                lcl_mod_descuento.asignarDescuentoPorcentual(this.glb_mod_lineaActual.getValorParcialSinDescuentos(), porcentaje);
+            }
+            else
+            {
+                lcl_mod_descuento.asignarDescuentoNeto(this.glb_mod_lineaActual.getValorParcialSinDescuentos(), descuento);
+            }
 
             glb_mod_lineaActual.addDescuento(lcl_mod_descuento);
 
@@ -152,8 +163,18 @@ namespace Vista
             }
 
             ModeloDescuentoLineaPedido lcl_mod_descuento = new ModeloDescuentoLineaPedido();
-            
-            lcl_mod_descuento.montoDescontadoSobreTotal = (decimal)this.dgvDescuentos.CurrentRow.Cells["descuento"].Value;
+            string str_monto = Convert.ToString(this.dgvDescuentos.CurrentRow.Cells["descuento"].Value);
+            decimal monto;
+
+            if (decimal.TryParse(System.Text.RegularExpressions.Regex.Replace(str_monto, @"\$", ""), out monto))
+            {
+                lcl_mod_descuento.montoDescontadoSobreTotal = monto;
+            }
+            else
+            {
+                MessageBox.Show("error");
+            }
+            lcl_mod_descuento.codigoDescuento = (int)this.dgvDescuentos.CurrentRow.Cells["codigoDescuento"].Value;
             lcl_mod_descuento.descripcion = (string)this.dgvDescuentos.CurrentRow.Cells["descripcion"].Value;
             glb_mod_lineaActual.removeDescuento(lcl_mod_descuento);
 

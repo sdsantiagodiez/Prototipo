@@ -160,10 +160,10 @@ namespace Controladores
                 {
                     message=(addProveedor(this.completaModeloProveedor(p_dataTable)));
                 }
-                else if (p_typeOf == typeof(ModeloDescuentoArticuloProveedor))
-                {
-                    message=(addDescuento(this.completaModeloDescuento(p_dataTable)));
-                }
+                //else if (p_typeOf == typeof(ModeloDescuentoArticuloProveedor))
+                //{
+                //    message=(addDescuento(this.completaModeloDescuento(p_dataTable)));
+                //}
                 else { message = "Se ha producido un error en la importación."; };
                 
                 return message;
@@ -614,15 +614,15 @@ namespace Controladores
                 }
                 return "Se agregaron " + i + " Proveedores.";
             }
-            private string addDescuento(List<ModeloDescuentoArticuloProveedor> p_lst_mod_desc)
-            {
-                int i = 0;
-                foreach (ModeloDescuentoArticuloProveedor modDes in p_lst_mod_desc)
-                {
-                     i = (glb_con_alta.agregar(modDes) == true) ? i+1 : i;
-                }
-                return "Se agregaron " + i + " Descuentos.";
-            }
+            //private string addDescuento(List<ModeloDescuentoArticuloProveedor> p_lst_mod_desc)
+            //{
+            //    int i = 0;
+            //    foreach (ModeloDescuentoArticuloProveedor modDes in p_lst_mod_desc)
+            //    {
+            //         i = (glb_con_alta.agregar(modDes) == true) ? i+1 : i;
+            //    }
+            //    return "Se agregaron " + i + " Descuentos.";
+            //}
             private string addValor(List<ModeloArticuloProveedores> p_lst_mod_valArt, string p_tipoValor)
             {
                 int i = 0;

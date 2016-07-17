@@ -74,20 +74,22 @@ namespace Controladores
         /// <returns></returns>
         public static List<ModeloDescuento> getDescuentosBase()
         {
-            List<int> lst_porcentajes = new List<int>() { 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80 };
-            List<ModeloDescuento> lcl_lst_DescuentosBase = new List<ModeloDescuento>();
-            int codigo = 1;
-            foreach (int i in lst_porcentajes)
-            {
-                lcl_lst_DescuentosBase.Add(new ModeloDescuento()
-                {
-                    codigoDescuento = codigo,
-                    porcentaje = Convert.ToDecimal(i) / 100,
-                    descripcion = i.ToString() + " %"
-                });
-                codigo++;
-            }
-            return lcl_lst_DescuentosBase;
+            CatalogoDescuentoArticuloProveedores lcl_cat_descuentosAP = new CatalogoDescuentoArticuloProveedores();
+            return lcl_cat_descuentosAP.getDescuentoBase();
+            //List<int> lst_porcentajes = new List<int>() { 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80 };
+            //List<ModeloDescuento> lcl_lst_DescuentosBase = new List<ModeloDescuento>();
+            //int codigo = 1;
+            //foreach (int i in lst_porcentajes)
+            //{
+            //    lcl_lst_DescuentosBase.Add(new ModeloDescuento()
+            //    {
+            //        codigoDescuento = codigo,
+            //        porcentaje = Convert.ToDecimal(i) / 100,
+            //        descripcion = i.ToString() + " %"
+            //    });
+            //    codigo++;
+            //}
+            //return lcl_lst_DescuentosBase;
         }
         /// <summary>
         /// Descuentos Predeterminados y descuentos creados por usuario
@@ -624,51 +626,9 @@ namespace Controladores
             return lcl_cat_articulos.buscarPedido(null, Constantes.ParametrosBusqueda.All);
         }
         #endregion
-       
-        #region LineasPedido
-        /// <summary>
-        /// Retorna todos las líneas pedidos de la base de datos
-        /// </summary>
-        /// <returns>Lista de líneas pedidos</returns>
-        public List<ModeloLineaPedido> getLineasPedido()
-        {
-            CatalogoLineasPedidos lcl_cat_articulos = new CatalogoLineasPedidos();
-
-            return lcl_cat_articulos.buscarLineasPedido(null, Constantes.ParametrosBusqueda.All);
-        }
-        public static List<ModeloDescuentoArticuloProveedor> getDescuentos(string p_codigoOriginal, string p_codigoArticuloProveedor)
-        {
-            CatalogoDescuentos lcl_cat_descuentos = new CatalogoDescuentos();
-            List<ModeloDescuentoArticuloProveedor> lcl_lst_mod_descuento = new List<ModeloDescuentoArticuloProveedor>();
-            lcl_lst_mod_descuento= lcl_cat_descuentos.buscarDescuentos(p_codigoOriginal, p_codigoArticuloProveedor);
-            return lcl_lst_mod_descuento;
-
-        }
-
-        public static List<ModeloDescuentoArticuloProveedor> getDescuentosVigentes(DateTime p_fecha)
-        {
-            CatalogoDescuentos lcl_cat_descuentos = new CatalogoDescuentos();
-            List<ModeloDescuentoArticuloProveedor> lcl_lst_mod_descuento = new List<ModeloDescuentoArticuloProveedor>();
-            lcl_lst_mod_descuento = lcl_cat_descuentos.buscarDescuentosVigentes(p_fecha);
-            return lcl_lst_mod_descuento;
-
-        }
-
-        public static ModeloDescuentoArticuloProveedor getDescuentoArticuloVigente(List<ModeloDescuentoArticuloProveedor> p_lst_mod_descuentoArticulo, DateTime p_fechaPedido)
-        {
-            ModeloDescuentoArticuloProveedor lcl_mod_descuentoArticulo = new ModeloDescuentoArticuloProveedor();
-            foreach (ModeloDescuentoArticuloProveedor md in p_lst_mod_descuentoArticulo)
-            {
-                if (md.fechaVigenciaDesde <= p_fechaPedido && md.fechaVigenciaHasta >= p_fechaPedido)
-                {
-                    lcl_mod_descuentoArticulo = md;
-                }
-            }
-            return lcl_mod_descuentoArticulo;
-        
-        }
 
         #endregion
+
         #region Roles
         /// <summary>
         /// Retorna roles en base a los valores inicializados en los atributos del modelo
@@ -683,6 +643,6 @@ namespace Controladores
         }
         #endregion
         
-        #endregion
+
     }
 }

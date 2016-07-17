@@ -482,10 +482,10 @@ namespace Vista
         {
             this.txtBoxSenia.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.senia);
 
-            this.txtBoxDescuento1Porcentaje.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"),"{0:P1}", (p_mod_pedido.descuento_1.ToString()));
-            this.txtBoxDescuento1Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.descuento_1.montoDescontadoSobreTotal);
-            this.txtBoxDescuento2Porcentaje.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:P1}", (p_mod_pedido.descuento_2.ToString()));
-            this.txtBoxDescuento2Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.descuento_2.montoDescontadoSobreTotal);
+            this.txtBoxDescuento1Porcentaje.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"),"{0:P1}", (p_mod_pedido.descuentos.descuento_porcentaje_1));
+            this.txtBoxDescuento1Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.descuentos.descuento_monto_1);
+            this.txtBoxDescuento2Porcentaje.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:P1}", (p_mod_pedido.descuentos.descuento_porcentaje_2));
+            this.txtBoxDescuento2Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.descuentos.descuento_monto_2);
             this.txtBoxDescuentoLineas.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getDescuentoLineas());
             this.txtBoxDescuentoTotal.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_pedido.getDescuentoTotal());
             
@@ -1049,17 +1049,15 @@ namespace Vista
             //
             decimal porcentaje;
             if (!Decimal.TryParse(this.txtBoxDescuento1Porcentaje.Text.Replace("%", "").Replace(".", ","), out porcentaje) 
-                || (porcentaje / 100)==controlador.pedidoActual.descuento_1.porcentaje)
+                || (porcentaje / 100)==controlador.pedidoActual.descuentos.descuento_porcentaje_1)
             {
                 this.txtBoxDescuento1Porcentaje.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), 
-                                                            "{0:P1}", (controlador.pedidoActual.descuento_1.porcentaje));
+                                                            "{0:P1}", (controlador.pedidoActual.descuentos.descuento_porcentaje_1));
                 return;
             }
-            porcentaje = porcentaje / 100;
+            porcentaje = porcentaje/100 ;
 
-            ModeloDescuentoLineaPedido lcl_mod_descuento = new ModeloDescuentoLineaPedido();
-            lcl_mod_descuento.asignarDescuentoPorcentual(controlador.pedidoActual.getTotal(), porcentaje);
-            controlador.pedidoActual.descuento_1 = lcl_mod_descuento;
+            controlador.pedidoActual.descuentos.descuento_porcentaje_1 = porcentaje;
             this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
         }
 
@@ -1070,16 +1068,14 @@ namespace Vista
             //
             decimal descuento;
             if (!Decimal.TryParse(this.txtBoxDescuento1Monto.Text, out descuento) 
-                || descuento == controlador.pedidoActual.descuento_1.montoDescontadoSobreTotal)
+                || descuento == controlador.pedidoActual.descuentos.descuento_monto_1)
             {
-                this.txtBoxDescuento1Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), 
-                                                    "{0:C}", controlador.pedidoActual.descuento_1.montoDescontadoSobreTotal);
+                this.txtBoxDescuento1Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"),
+                                                    "{0:C}", controlador.pedidoActual.descuentos.descuento_monto_1);
                 return;
             }
 
-            ModeloDescuentoLineaPedido lcl_mod_descuento = new ModeloDescuentoLineaPedido();
-            lcl_mod_descuento.asignarDescuentoPorcentual(controlador.pedidoActual.getTotal(), descuento); 
-            controlador.pedidoActual.descuento_1 = lcl_mod_descuento;
+            controlador.pedidoActual.descuentos.descuento_monto_1 = descuento;
             this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
         }
 
@@ -1090,17 +1086,15 @@ namespace Vista
             //
             Decimal porcentaje;
             if (!Decimal.TryParse(this.txtBoxDescuento2Porcentaje.Text.Replace("%", "").Replace(".", ","), out porcentaje) 
-                || (porcentaje / 100)== controlador.pedidoActual.descuento_2.porcentaje )
+                || (porcentaje / 100)== controlador.pedidoActual.descuentos.descuento_porcentaje_2)
             {
                 this.txtBoxDescuento2Porcentaje.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"),
-                                                        "{0:P1}", (controlador.pedidoActual.descuento_2.porcentaje));
+                                                        "{0:P1}", (controlador.pedidoActual.descuentos.descuento_porcentaje_2));
                 return;
             }
             porcentaje = porcentaje / 100;
 
-            ModeloDescuentoLineaPedido lcl_mod_descuento = new ModeloDescuentoLineaPedido();
-            lcl_mod_descuento.asignarDescuentoPorcentual(controlador.pedidoActual.getTotal(), porcentaje);
-            controlador.pedidoActual.descuento_2 = lcl_mod_descuento;
+            controlador.pedidoActual.descuentos.descuento_porcentaje_2 = porcentaje;
             this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
         }
 
@@ -1110,15 +1104,15 @@ namespace Vista
             alreadyFocused = false;
             //
             decimal descuento;
-            if (!Decimal.TryParse(this.txtBoxDescuento2Monto.Text.Replace("$", ""), out descuento) || descuento == controlador.pedidoActual.descuento_2.montoDescontadoSobreTotal)
+            if (!Decimal.TryParse(this.txtBoxDescuento2Monto.Text.Replace("$", ""), out descuento) 
+                || descuento == controlador.pedidoActual.descuentos.descuento_monto_2)
             {
-                this.txtBoxDescuento2Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", controlador.pedidoActual.descuento_2.montoDescontadoSobreTotal);
+                this.txtBoxDescuento2Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}",
+                    controlador.pedidoActual.descuentos.descuento_monto_2);
                 return;
             }
-            
-            ModeloDescuentoLineaPedido lcl_mod_descuento = new ModeloDescuentoLineaPedido();
-            lcl_mod_descuento.asignarDescuentoNeto(controlador.pedidoActual.getTotal(), descuento);
-            controlador.pedidoActual.descuento_2 = lcl_mod_descuento;
+
+            controlador.pedidoActual.descuentos.descuento_monto_2 = descuento;
             this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
         }
 

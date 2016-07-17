@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Modelos
-{       
+{       //ver getDescuentoTotal()
     [Serializable]
     public class ModeloPedido : Modelo
     {
@@ -156,18 +156,11 @@ namespace Modelos
             set { _alicuota = value; }
         }
 
-        ModeloDescuentoLineaPedido _descuento_1;
-        public ModeloDescuentoLineaPedido descuento_1
+        ModeloDescuentoPedido _descuentos;
+        public ModeloDescuentoPedido descuentos
         {
-            get { return _descuento_1; }
-            set { _descuento_1 = new ModeloDescuentoLineaPedido(value, this.getTotalSinDescuento()); }
-        }
-
-        ModeloDescuentoLineaPedido _descuento_2;
-        public ModeloDescuentoLineaPedido descuento_2
-        {
-            get { return _descuento_2; }
-            set { _descuento_2 = new ModeloDescuentoLineaPedido(value, this.getTotalSinDescuento()); }
+            get { return _descuentos; }
+            set { _descuentos = value; }
         }
 
         decimal _senia;
@@ -184,8 +177,8 @@ namespace Modelos
             this.alicuota = new Alicuota();
             this.documentoComprador = new Documento();
             this.fecha = DateTime.Today;
-            this.descuento_1 = new ModeloDescuentoLineaPedido();
-            this.descuento_2 = new ModeloDescuentoLineaPedido();
+            this.descuentos = new ModeloDescuentoPedido();
+            this.descuentos.asignarMontoTotal(this.getTotalSinDescuento());
             this.formasDePago = new List<FormaPago>();
             this.entidad = new ModeloEntidad();
         }
@@ -278,8 +271,8 @@ namespace Modelos
         {
             return 
                 this.getDescuentoLineas() + 
-                this.descuento_1.asignarDescuento(this.getTotalSinDescuento()) + 
-                this.descuento_2.asignarDescuento(this.getTotalSinDescuento()) +
+                this.descuentos.descuento_total_monto +
+                //VER si correspondería sacar la seña a un método diferente
                 this.senia;
         }
         public decimal getTotalSinDescuento()
@@ -289,6 +282,7 @@ namespace Modelos
             {
                 lcl_total += linea.getValorParcialSinDescuentos();
             }
+            this.descuentos.asignarMontoTotal(lcl_total);
             return lcl_total;
         }
         public decimal getTotal()
@@ -303,7 +297,10 @@ namespace Modelos
             //this.montoTotal =  lcl_total - descuento_1.descuento - descuento_2.descuento;
             return this.montoTotal;
         }
-
+        /// <summary>
+        /// Discrimina Alícuota
+        /// </summary>
+        /// <returns></returns>
         public decimal getSubTotal()
         {
             decimal divisorIVA = 1 + (Convert.ToDecimal(this.alicuota.iva.porcentaje) / 100);
@@ -625,6 +622,8 @@ namespace Modelos
             tipo = new TipoDocumento();
         }
     }
+    
+
 }
 
 

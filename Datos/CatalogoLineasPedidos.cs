@@ -24,15 +24,13 @@ namespace Datos
             lcl_mod_lineaPedido.articulo.codigoArticuloProveedor= (string)p_drLineasPedidos["codigo_articulo_proveedor"];
 
             lcl_mod_lineaPedido.cantidadArticulos = (int)p_drLineasPedidos["cantidad"];
-            lcl_mod_lineaPedido.valorParcial = (decimal)p_drLineasPedidos["valor_parcial"];
             lcl_mod_lineaPedido.valorUnitario = (decimal)p_drLineasPedidos["valor_unitario"];
+            lcl_mod_lineaPedido.valorParcial = (decimal)p_drLineasPedidos["valor_parcial"];
             
-            //MISSING CHILDREN: LLAMAR A CATALOGODESCUENTOS!!!!!
-            //lcl_mod_lineaPedido.descuentoLinea.numeroDescuento = (p_drLineasPedidos["numero_descuento"]!= DBNull.Value) ? (int)p_drLineasPedidos["numero_descuento"] : 0;
-            //lcl_mod_lineaPedido.descuentoLinea.PorcentajeDescuento = (p_drLineasPedidos["porcentaje_descuento"]!= DBNull.Value) ? (decimal)p_drLineasPedidos["porcentaje_descuento"] : 0;
-
-            lcl_mod_lineaPedido.articulo.descripcionArticuloProveedor= (p_drLineasPedidos["descripcion"] != DBNull.Value) ? (string)p_drLineasPedidos["descripcion"] : null;
-                
+            lcl_mod_lineaPedido.valorParcialSinDescuento = (decimal)p_drLineasPedidos["valor_parcial_sin_descuento"];
+            lcl_mod_lineaPedido.descuentoTotalMonto = (decimal)p_drLineasPedidos["descuento_total_monto"];
+            lcl_mod_lineaPedido.descuentoTotalPorcentaje = (decimal)p_drLineasPedidos["descuento_total_porcentaje"];
+            
             return lcl_mod_lineaPedido;
         }
 
@@ -122,7 +120,8 @@ namespace Datos
             string querySQL = this.getCondicionBusqueda(p_mod_lineaPedido, p_parametroBusqueda, ref comando);
 
             comando.CommandText =
-                "SELECT [numero_pedido],[codigo_articulo_proveedor],[codigo_original],[descripcion],[cantidad],[valor_unitario],[valor_parcial],[porcentaje_descuento],[numero_descuento] " +
+                "SELECT [numero_pedido],[codigo_original],[codigo_articulo_proveedor],[cantidad],[valor_unitario],[valor_parcial],"+
+                "   [valor_parcial_sin_descuento],[descuento_total_monto],[descuento_total_porcentaje] " +
                 "   FROM [lineas_pedidos] " +
                 "   WHERE " + querySQL;
 
@@ -133,11 +132,15 @@ namespace Datos
             List<ModeloLineaPedido> lcl_lst_mod_lineasPedido = new List<ModeloLineaPedido>();
             ModeloLineaPedido lcl_mod_lineaPedido = new ModeloLineaPedido();
             CatalogoArticuloProveedores lcl_cat_articulosProveedores = new CatalogoArticuloProveedores();
+            CatalogoDescuentoLineasPedido lcl_cat_descuentoLP = new CatalogoDescuentoLineasPedido();
             while (drLineasPedidos.Read())
             {
                 lcl_mod_lineaPedido = new ModeloLineaPedido();
                 lcl_mod_lineaPedido = this.leerDatosLineaPedido(drLineasPedidos);
                 lcl_mod_lineaPedido.articulo = lcl_cat_articulosProveedores.buscar(lcl_mod_lineaPedido.articulo, Constantes.ParametrosBusqueda.One)[0];
+                
+                lcl_cat_descuentoLP.getDescuentos(lcl_mod_lineaPedido);
+
                 lcl_lst_mod_lineasPedido.Add(lcl_mod_lineaPedido);
             }
             drLineasPedidos.Close();
@@ -183,19 +186,20 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "INSERT INTO [lineas_pedidos]([numero_pedido],[codigo_original],[codigo_articulo_proveedor],[descripcion],[cantidad],"+
-                "   [valor_parcial],[valor_unitario],[numero_descuento],[porcentaje_descuento]) " +
-                "VALUES (@numero_pedido, @codigo_original, @codigo_articulo_proveedor,@descripcion,@cantidad,@valor_parcial,@valor_unitario,"+
-                "@numero_descuento,@porcentaje_descuento )";
+                "INSERT INTO [lineas_pedidos]([numero_pedido],[codigo_original],[codigo_articulo_proveedor],[cantidad],"+
+                "   [valor_unitario],[valor_parcial],[valor_parcial_sin_descuento],[descuento_total_monto],[descuento_total_porcentaje]) " +
+                "VALUES (@numero_pedido, @codigo_original, @codigo_articulo_proveedor,@cantidad,@valor_unitario,@valor_parcial," +
+                "   @valor_parcial_sin_descuento,@descuento_total_monto, @descuento_total_porcentaje)";
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.numeroPedido, "@numero_pedido"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.articulo.codigoOriginal, "@codigo_original"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.articulo.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.articulo.descripcionArticuloProveedor, "@descripcion"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.cantidadArticulos, "@cantidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.valorParcial, "@valor_parcial"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.valorUnitario, "@valor_unitario"));
-            //MISSING CHILDREN: 
+            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.valorParcialSinDescuento, "@valor_parcial_sin_descuento"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.descuentoTotalMonto, "@descuento_total_monto"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.descuentoTotalPorcentaje, "@descuento_total_porcentaje"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
@@ -203,14 +207,13 @@ namespace Datos
 
             if (rowaffected > 0)
             {
-                return true;
+                p_mod_lineaPedido.asignarDatosADescuentos();
+                CatalogoDescuentoLineasPedido lcl_cat_descuentosLP = new CatalogoDescuentoLineasPedido();
+                return lcl_cat_descuentosLP.add(p_mod_lineaPedido.descuentos);
             }
             else
-            {
-                return false;
-            }
+            { return false; }
         }
-
 
         //AL día 03/02/16 se considera no avanzar en estos métodos ya que no se le encuentra uso práctico
         //public bool update(ModeloLineaPedido p_mod_lineaPedido)
@@ -285,10 +288,103 @@ namespace Datos
         //        return false;
         //    }
         //}
-        
-        
-        
+           
         #endregion
+    }
 
+    public class CatalogoDescuentoLineasPedido : Catalogo
+    {
+        private ModeloDescuentoLineaPedido leerDatosDescuentoLineaPedido(SqlDataReader p_drDescuentoLP)
+        {
+            ModeloDescuentoLineaPedido lcl_mod_descuentoLP = new ModeloDescuentoLineaPedido();
+
+            lcl_mod_descuentoLP.numeroPedido = (int)p_drDescuentoLP["numero_pedido"];
+            lcl_mod_descuentoLP.codigoOriginalArticulo = (string)p_drDescuentoLP["codigo_original"];
+            lcl_mod_descuentoLP.codigoArticuloProveedor = (string)p_drDescuentoLP["codigo_articulo_proveedor"];
+            lcl_mod_descuentoLP.codigoDescuento = (int)p_drDescuentoLP["numero_descuento"];
+            lcl_mod_descuentoLP.descripcion = (string)p_drDescuentoLP["descripcion_descuento"];
+            lcl_mod_descuentoLP.porcentaje= (decimal)p_drDescuentoLP["porcentaje_descuento"];
+            lcl_mod_descuentoLP.montoDescontadoSobreTotal = (decimal)p_drDescuentoLP["monto_a_descontar"];
+            return lcl_mod_descuentoLP;
+        }
+        public void getDescuentos(ModeloLineaPedido p_mod_lineaPedido)
+        {
+            string query =
+                       "SELECT " +
+                        "   numero_pedido, codigo_original, codigo_articulo_proveedor, numero_descuento, descripcion_descuento " +
+                        "   porcentaje_descuento, monto_a_descontar"+
+                        "   FROM [descuentos_lineas_pedido] " +
+                        "   WHERE (codigo_original = @codigo_original AND codigo_articulo_proveedor = @codigo_articulo_proveedor "+
+                        "       AND numero_pedido = @numero_pedido)";
+
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.numeroPedido, "@numero_pedido"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.articulo.codigoOriginal, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_lineaPedido.articulo.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
+
+            comando.Connection.Open();
+            SqlDataReader drDescuentoLineaPedido = comando.ExecuteReader();
+            ModeloDescuentoLineaPedido lcl_mod_descuentoLP;
+
+            while (drDescuentoLineaPedido.Read())
+            {
+                lcl_mod_descuentoLP = new ModeloDescuentoLineaPedido();
+                lcl_mod_descuentoLP = this.leerDatosDescuentoLineaPedido(drDescuentoLineaPedido);
+                p_mod_lineaPedido.addDescuento(lcl_mod_descuentoLP);
+            }
+            drDescuentoLineaPedido.Close();
+            comando.Connection.Close();
+        }
+
+        public bool add(List<ModeloDescuentoLineaPedido> p_lst_mod_descuentoLP)
+        {
+            foreach (ModeloDescuentoLineaPedido d_ap in p_lst_mod_descuentoLP)
+            {
+                if (!this.add(d_ap))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public bool add(ModeloDescuentoLineaPedido p_mod_descuentoLP)
+        {
+            //Si descuento no existe (codigo 0) se lo agrega
+            if (p_mod_descuentoLP.codigoDescuento == 0 )
+            {
+                //No se pudo agregar descuento
+                return false;
+            }
+
+            string query =
+                "INSERT INTO [descuentos_lineas_pedido] ([numero_pedido], [codigo_original],[codigo_articulo_proveedor], [numero_descuento], " +
+                "   [descripcion_descuento], [porcentaje_descuento], [monto_a_descontar]) " +
+                "    VALUES (@numero_pedido,  @codigo_original, @codigo_articulo_proveedor, @numero_descuento, " +
+                "   @descripcion_descuento, @porcentaje_descuento, @monto_a_descontar)";
+
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+
+            //Indica los parametros
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoLP.codigoDescuento, "@numero_descuento"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoLP.numeroPedido, "@numero_pedido"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoLP.codigoOriginalArticulo, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoLP.codigoArticuloProveedor, "@codigo_articulo_Proveedor"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoLP.descripcion, "@descripcion_descuento"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoLP.porcentaje, "@porcentaje_descuento"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoLP.montoDescontadoSobreTotal, "@monto_a_descontar"));
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected != 0)
+            { return true; }
+            else
+            {
+                //Confirmar que pase por aca cuando descuento ya exista
+                return false;
+            }
+        }
     }
 }

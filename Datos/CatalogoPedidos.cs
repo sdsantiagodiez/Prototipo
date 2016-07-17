@@ -27,6 +27,9 @@ namespace Datos
             lcl_mod_pedido.montoTotal = (p_drPedidos["monto_total"] != DBNull.Value) ? (decimal)p_drPedidos["monto_total"] : 0;
             lcl_mod_pedido.observaciones = (p_drPedidos["observaciones"] != DBNull.Value) ? (string)p_drPedidos["observaciones"] : null;
 
+            lcl_mod_pedido.descuentos.descuento_monto_1 = (decimal)p_drPedidos["descuento_1_monto"];
+            lcl_mod_pedido.descuentos.descuento_monto_2 = (decimal)p_drPedidos["descuento_2_monto"];
+
             #region Datos Pedidos_Personas
             if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
             {
@@ -43,87 +46,6 @@ namespace Datos
 
             return lcl_mod_pedido;
         }
-
-        /// <summary>
-        /// NO USAR. Usar método buscarPedido(ModeloPedido,Constantes...TipoPedido) (BORRAR)
-        /// </summary>
-        /// <param name="tipoPedido"></param>
-        /// <returns></returns>
-        public List<ModeloPedido> getPedidos(string tipoPedido)
-        {
-            return null;
-            //List<ModeloPedido> listPedidos = new List<ModeloPedido>();
-
-            ////Creo la conexion y la abro
-            //SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            ////crea SQL command
-            //SqlCommand comando = new SqlCommand();
-
-            //comando.Connection = ConexionSQL;
-
-            //comando.CommandType = CommandType.Text;
-
-            //comando.CommandText = "SELECT Pedidos.numero_pedido, Pedidos.fecha, Pedidos.monto_total, Pedidos.observaciones," +
-            //    " Pedidos.codigo_tipo_pedido FROM Pedidos WHERE Pedidos.codigo_tipo_pedido =@tipoPedido ";
-            //comando.Parameters.Add(new SqlParameter("@codigo", SqlDbType.VarChar));
-            //comando.Parameters["@tipoPedido"].Value = tipoPedido;
-
-            //comando.Connection.Open();
-
-            //SqlDataReader drPedidos = comando.ExecuteReader();
-
-            //while (drPedidos.Read())
-            //{
-            //    ModeloPedido modPedido = new ModeloPedido();
-            //    modPedido = this.leerDatosPedidos(drPedidos);
-            //    listPedidos.Add(modPedido);
-            //}
-
-            //drPedidos.Close();
-            //comando.Connection.Close();
-            //return listPedidos;
-        }
-
-        /// <summary>
-        /// NO USAR Reemplazar por métodos válidos (BORRAR)
-        /// </summary>
-        /// <param name="codigoPedido"></param>
-        /// <returns></returns>
-        public ModeloProveedor getProveedorPedido(int codigoPedido)
-        {
-            return null;
-
-            //ModeloProveedor modProv = new ModeloProveedor();
-            //CatalogoProveedores catProv = new CatalogoProveedores();
-            ////Creo la conexion y la abro
-            //SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            ////crea SQL command
-            //SqlCommand comando = new SqlCommand();
-
-            //comando.Connection = ConexionSQL;
-
-            //comando.CommandType = CommandType.Text;
-            ///*VER consulta con parametro
-            //comando.CommandText = "SELECT Proveedores.razon_social,Proveedores.codigo_entidad AS codigo, Entidades.cuit, Entidades.observaciones, Entidades.tipo_entidad " +
-            //                      "FROM Pedidos INNER JOIN Pedidos_Proveedores ON Pedidos.numero_pedido=Pedidos_Proveedores.numero_pedido"+
-            //                      "INNER JOIN Proveedores ON Pedidos_Proveedores.codigo_entidad = Proveedores.codigo_entidad INNER JOIN Entidades ON"+
-            //                      "Entidades.codigo = Proveedores.codigo_entidad WHERE numero_pedido = @codigoPedido;
-            //*/
-            //comando.Parameters.Add(new SqlParameter("@codigoPedido", SqlDbType.Int));
-            //comando.Parameters["@codigoPedido"].Value = codigoPedido;
-
-            //comando.Connection.Open();
-
-            //SqlDataReader drProveedor = comando.ExecuteReader();
-
-            //while (drProveedor.Read())
-            //{
-            //    modProv = catProv.leerDatosProveedor(drProveedor);
-            //}
-            //return modProv;
-        }        
 
         public bool validarDatos(ModeloPedido p_mod_pedido)
         {
@@ -825,9 +747,13 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-            "INSERT INTO [pedidos]([codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones]) " +
+            "INSERT INTO [pedidos](codigo_tipo_pedido,fecha,alicuota,monto_subtotal,monto_total,observaciones, "+
+            "   senia, descuento_1_monto, descuento_1_porcentaje, descuento_2_monto, descuento_2_porcentaje, "+
+            "   descuento_lineas_monto, descuento_lineas_porcentaje, descuento_total_monto, descuento_total_porcentaje) " +
             "   OUTPUT INSERTED.NUMERO_PEDIDO " +
-            "   VALUES (@codigo_tipo_pedido,@fecha, @alicuota,@monto_subtotal,@monto_total, @observaciones)";
+            "   VALUES (@codigo_tipo_pedido,@fecha, @alicuota,@monto_subtotal,@monto_total, @observaciones, "+
+            "   @senia, @descuento_1_monto, @descuento_1_porcentaje, @descuento_2_monto, @descuento_2_porcentaje, " +
+            "   @descuento_lineas_monto, @descuento_lineas_porcentaje, @descuento_total_monto, @descuento_total_porcentaje) ";
 
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
@@ -836,6 +762,20 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.montoSubTotal, "@monto_subtotal"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.montoTotal, "@monto_total"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.observaciones, "@observaciones"));
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.senia, "@senia"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.descuentos.descuento_monto_1, "@descuento_1_monto"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.descuentos.descuento_porcentaje_1, "@descuento_1_porcentaje"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.descuentos.descuento_monto_2, "@descuento_2_monto"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.descuentos.descuento_porcentaje_2, "@descuento_2_porcentaje"));
+            decimal descuento_lineas_monto = p_mod_pedido.getDescuentoLineas();
+            decimal descuento_lineas_porcentaje = descuento_lineas_monto / p_mod_pedido.montoTotal;
+            comando.Parameters.Add(this.instanciarParametro(descuento_lineas_monto, "@descuento_lineas_monto"));
+            comando.Parameters.Add(this.instanciarParametro(descuento_lineas_porcentaje, "@descuento_lineas_porcentaje"));
+            decimal descuento_total_monto = p_mod_pedido.getDescuentoTotal();
+            decimal descuento_total_porcentaje = descuento_total_monto / p_mod_pedido.montoTotal;
+            comando.Parameters.Add(this.instanciarParametro(descuento_total_monto, "@descuento_total_monto"));
+            comando.Parameters.Add(this.instanciarParametro(descuento_total_porcentaje, "@descuento_total_porcentaje"));
 
             comando.Connection.Open();
             //falta agregar domicilio, mail y telefono de facturacion
@@ -923,13 +863,35 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "UPDATE [pedidos] SET [fecha]=@fecha,[monto_total]=@monto_total,[observaciones]=@observaciones, [codigo_tipo_pedido]=@codigo_tipo_pedido " +
+                "UPDATE [pedidos] "+
+                "SET fecha=@fecha, alicuota=@alicuota,monto_subtotal=@monto_subtotal,monto_total=@monto_total, observaciones=@observaciones, " +
+                "   senia=@senia, descuento_1_monto=@descuento_1_monto, descuento_1_porcentaje=@descuento_1_porcentaje, "+
+                "   descuento_2_monto=@descuento_2_monto, descuento_2_porcentaje=@descuento_2_porcentaje, " +
+                "   descuento_lineas_monto=@descuento_lineas_monto, descuento_lineas_porcentaje=@descuento_lineas_porcentaje, "+
+                "   descuento_total_montno=@descuento_total_monto, descuento_total_porcentaje=@descuento_total_porcentaje " +
                 "WHERE [pedidos].numero_pedido=@numero_pedido";
 
+            //Indica los parametros
+            
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.fecha, "@fecha"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.alicuota.monto, "@alicuota"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.montoSubTotal, "@monto_subtotal"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.montoTotal, "@monto_total"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.observaciones, "@observaciones"));
-            comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.senia, "@senia"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.descuentos.descuento_monto_1, "@descuento_1_monto"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.descuentos.descuento_porcentaje_1, "@descuento_1_porcentaje"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.descuentos.descuento_monto_2, "@descuento_2_monto"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.descuentos.descuento_porcentaje_2, "@descuento_2_porcentaje"));
+            decimal descuento_lineas_monto = p_mod_pedido.getDescuentoLineas();
+            decimal descuento_lineas_porcentaje = descuento_lineas_monto / p_mod_pedido.montoTotal;
+            comando.Parameters.Add(this.instanciarParametro(descuento_lineas_monto, "@descuento_lineas_monto"));
+            comando.Parameters.Add(this.instanciarParametro(descuento_lineas_porcentaje, "@descuento_lineas_porcentaje"));
+            decimal descuento_total_monto = p_mod_pedido.getDescuentoTotal();
+            decimal descuento_total_porcentaje = descuento_total_monto / p_mod_pedido.montoTotal;
+            comando.Parameters.Add(this.instanciarParametro(descuento_total_monto, "@descuento_total_monto"));
+            comando.Parameters.Add(this.instanciarParametro(descuento_total_porcentaje, "@descuento_total_porcentaje"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();

@@ -34,7 +34,7 @@ namespace Datos
             return respuesta;
         }
 
-        private ModeloArticuloProveedores leerDatosArticuloProveedorConPrecio(SqlDataReader p_drArticulosProveedor)
+        private ModeloArticuloProveedores leerDatosArticuloProveedor(SqlDataReader p_drArticulosProveedor)
         {
             ModeloArticuloProveedores lcl_mod_articuloProveedor = new ModeloArticuloProveedores();
 
@@ -49,26 +49,6 @@ namespace Datos
             lcl_mod_valorArticuloVenta.valorArticulo = (p_drArticulosProveedor["valor_venta"] != DBNull.Value) ? (decimal?)p_drArticulosProveedor["valor_venta"] : null; ;
             //lcl_mod_articuloProveedor.valorVenta = lcl_mod_valorArticuloVenta;
             lcl_mod_articuloProveedor.valorVenta = lcl_mod_valorArticuloVenta;
-
-            lcl_mod_articuloProveedor.codigoOriginal = (string)p_drArticulosProveedor["codigo_original"];
-            lcl_mod_articuloProveedor.codigoArticuloProveedor = (string)p_drArticulosProveedor["codigo_articulo_proveedor"];
-            lcl_mod_articuloProveedor.codigoEntidad = (int)p_drArticulosProveedor["codigo_entidad"];
-            lcl_mod_articuloProveedor.razonSocialProveedor = (string)p_drArticulosProveedor["razon_social_proveedor"];
-            //Si algún valor esta null en Base de datos, se asigna null en el objeto
-            //Caso contrario hay una string, y se asigna string
-            lcl_mod_articuloProveedor.descripcionArticuloProveedor = (p_drArticulosProveedor["descripcion"] != DBNull.Value) ? (string)p_drArticulosProveedor["descripcion"] : null;
-            lcl_mod_articuloProveedor.observacionesArticuloProveedor = (p_drArticulosProveedor["observaciones"] != DBNull.Value) ? (string)p_drArticulosProveedor["observaciones"] : null;
-            lcl_mod_articuloProveedor.stockActual = (p_drArticulosProveedor["stock_actual"] != DBNull.Value) ? (int)p_drArticulosProveedor["stock_actual"] : (int?)null;
-            lcl_mod_articuloProveedor.stockMinimo = (p_drArticulosProveedor["stock_minimo"] != DBNull.Value) ? (int)p_drArticulosProveedor["stock_minimo"] : (int?)null;
-            lcl_mod_articuloProveedor.fechaActualizacion = (p_drArticulosProveedor["fecha_actualizacion"] != DBNull.Value) ? (DateTime)p_drArticulosProveedor["fecha_actualizacion"] : (DateTime?)null;
-            lcl_mod_articuloProveedor.ubicacion = (p_drArticulosProveedor["ubicacion"] != DBNull.Value) ? (string)p_drArticulosProveedor["ubicacion"] : null;
-
-            return lcl_mod_articuloProveedor;
-        }
-
-        private ModeloArticuloProveedores leerDatosArticuloProveedorSinPrecio(SqlDataReader p_drArticulosProveedor)
-        {
-            ModeloArticuloProveedores lcl_mod_articuloProveedor = new ModeloArticuloProveedores();
 
             lcl_mod_articuloProveedor.codigoOriginal = (string)p_drArticulosProveedor["codigo_original"];
             lcl_mod_articuloProveedor.codigoArticuloProveedor = (string)p_drArticulosProveedor["codigo_articulo_proveedor"];
@@ -206,15 +186,23 @@ namespace Datos
 
             List<ModeloArticuloProveedores> lcl_lst_mod_articulosProveedores = new List<ModeloArticuloProveedores>();
             ModeloArticuloProveedores lcl_mod_articuloProveedor = null;
+            
             while (drArtProveedores.Read())
             {
                 lcl_mod_articuloProveedor = new ModeloArticuloProveedores();
-                lcl_mod_articuloProveedor = this.leerDatosArticuloProveedorConPrecio(drArtProveedores);
+                lcl_mod_articuloProveedor = this.leerDatosArticuloProveedor(drArtProveedores);
+                
                 lcl_lst_mod_articulosProveedores.Add(lcl_mod_articuloProveedor);
             }
 
             drArtProveedores.Close();
             comando.Connection.Dispose();
+
+            CatalogoDescuentoArticuloProveedores lcl_cat_descuentosAP = new CatalogoDescuentoArticuloProveedores();
+            foreach (ModeloArticuloProveedores ap in lcl_lst_mod_articulosProveedores)
+            {
+                lcl_cat_descuentosAP.getDescuentos(ap);
+            }
 
             return lcl_lst_mod_articulosProveedores;
         }
@@ -235,23 +223,6 @@ namespace Datos
             }
         }
 
-        public ModeloArticuloProveedores getOne(string p_codigoOriginal, string p_codigoArticuloProveedor)
-        {
-            ModeloArticuloProveedores lcl_mod_articuloProveedor = new ModeloArticuloProveedores();
-            List<ModeloArticuloProveedores> lcl_lst_mod_articuloProveedor = new List<ModeloArticuloProveedores>();
-            lcl_mod_articuloProveedor.codigoOriginal = p_codigoOriginal;
-            lcl_mod_articuloProveedor.codigoArticuloProveedor = p_codigoArticuloProveedor;
-            lcl_lst_mod_articuloProveedor = this.buscar(lcl_mod_articuloProveedor, Constantes.ParametrosBusqueda.One);
-
-            if (lcl_lst_mod_articuloProveedor.Count > 0)
-            {
-                return lcl_lst_mod_articuloProveedor[0];
-            }
-            else
-            {
-                return null;
-            }
-        }
         #endregion
 
         #region Alta/Baja/Modificación
@@ -334,6 +305,14 @@ namespace Datos
                 if (!p_mod_articuloProveedor_original.valorVenta.Equals(p_mod_articuloProveedor_nuevo.valorVenta))
                 {
                     if (!this.updateValor(p_mod_articuloProveedor_nuevo, Constantes.TipoValorArticulo.Venta))
+                    {
+                        return false;
+                    }
+                }
+                if (!p_mod_articuloProveedor_original.descuentos.Equals(p_mod_articuloProveedor_nuevo.descuentos))
+                {
+                    CatalogoDescuentoArticuloProveedores lcl_cat_descuentosAP = new CatalogoDescuentoArticuloProveedores();
+                    if (!lcl_cat_descuentosAP.update(p_mod_articuloProveedor_original.descuentos, p_mod_articuloProveedor_nuevo.descuentos))
                     {
                         return false;
                     }
@@ -458,11 +437,294 @@ namespace Datos
             comando.Connection.Close();
 
             if (rowaffected != 0)
-            {return true;}
+            {
+                CatalogoDescuentoArticuloProveedores lcl_cat_descuentosAP = new CatalogoDescuentoArticuloProveedores();
+                return lcl_cat_descuentosAP.remove(p_mod_articuloProveedor.descuentos);
+            }
             else
             { return false; }
         }
         #endregion
     }
 
+    public class CatalogoDescuentoArticuloProveedores : Catalogo
+    {
+        #region leer datos
+        private ModeloDescuento leerDatosDescuento(SqlDataReader p_drDescuento)
+        {
+            ModeloDescuento lcl_mod_descuento = new ModeloDescuento();
+
+            lcl_mod_descuento.codigoDescuento = (int)p_drDescuento["codigo"];
+            lcl_mod_descuento.descripcion = p_drDescuento["descripcion"] != DBNull.Value ?
+                                                  (string)p_drDescuento["descripcion"] : null;
+            lcl_mod_descuento.porcentaje = (decimal)p_drDescuento["porcentaje"];
+
+            return lcl_mod_descuento;
+        }
+        private ModeloDescuentoArticuloProveedor leerDatosDescuentoArticuloProveedor(SqlDataReader p_drDescuentoAP)
+        {
+            ModeloDescuentoArticuloProveedor lcl_mod_descuentoAP = new ModeloDescuentoArticuloProveedor();
+
+            lcl_mod_descuentoAP.codigoDescuento = (int)p_drDescuentoAP["codigo_descuento"];
+            lcl_mod_descuentoAP.codigoOriginalArticulo = (string)p_drDescuentoAP["codigo_original"];
+            lcl_mod_descuentoAP.codigoArticuloProveedor = (string)p_drDescuentoAP["codigo_articulo_proveedor"];
+            lcl_mod_descuentoAP.fechaVigenciaDesde = (DateTime)p_drDescuentoAP["fecha_desde"];
+            lcl_mod_descuentoAP.fechaVigenciaHasta = (DateTime)p_drDescuentoAP["fecha_hasta"];
+            return lcl_mod_descuentoAP;
+        }
+        #endregion
+
+        #region Alta/Baja/Modificación
+        public bool add(List<ModeloDescuentoArticuloProveedor> p_lst_mod_descuentoAP)
+        {
+            foreach (ModeloDescuentoArticuloProveedor d_ap in p_lst_mod_descuentoAP)
+            {
+                if(!this.add(d_ap))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public bool add(ModeloDescuentoArticuloProveedor p_mod_descuentoAP)
+        {
+            //Si descuento no existe (codigo 0) se lo agrega
+            if(p_mod_descuentoAP.codigoDescuento == 0 && !this.add(p_mod_descuentoAP as ModeloDescuento))
+            {
+                //No se pudo agregar descuento
+                return false;
+            }
+            
+            string query =
+                "INSERT INTO [descuentos_articulos_proveedores] ([codigo_descuento], [codigo_original], [codigo_articulo_proveedor], [fecha_desde], [fecha_hasta]) " +
+                "    VALUES (@codigo_descuento, @codigo_original, @codigo_articulo_proveedor, @fecha_desde, @fecha_hasta)";
+
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+
+            //Indica los parametros
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoAP.codigoDescuento, "@codigo_descuento"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoAP.codigoOriginalArticulo, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoAP.codigoArticuloProveedor, "@codigo_articulo_Proveedor"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoAP.fechaVigenciaDesde, "@fecha_hasta"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoAP.fechaVigenciaHasta, "@fecha_desde"));
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected != 0)
+            { return true; }
+            else
+            {
+                //Confirmar que pase por aca cuando descuento ya exista
+                return false; 
+            }
+        }
+        public bool add(ModeloDescuento p_mod_descuento)
+        {
+
+            string query =
+             "INSERT INTO [descuentos_articulos] ([descripcion], [porcentaje]) " +
+             "    VALUES ( @descripcion, @porcentaje)";
+
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+
+            //Indica los parametros
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.descripcion, "@descripcion"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuento.porcentaje, "@porcentaje"));
+
+            comando.Connection.Open();
+            
+            int? nuevoCodigoDescuento = (int?)comando.ExecuteScalar();
+            comando.Connection.Close();
+
+            if (nuevoCodigoDescuento != null)
+            {
+                p_mod_descuento.codigoDescuento = Convert.ToInt32(nuevoCodigoDescuento);
+                return true; 
+            }
+            else
+            { return false; }
+        }
+
+        public bool update(List<ModeloDescuentoArticuloProveedor> p_lst_descuentosAP_original, List<ModeloDescuentoArticuloProveedor> p_lst_descuentosAP_nueva)
+        {
+            #region get descuentos nuevos
+            List<ModeloDescuentoArticuloProveedor> lcl_lst_descuentosAP_agregar = new List<ModeloDescuentoArticuloProveedor>();
+            bool existe;
+            foreach (ModeloDescuentoArticuloProveedor d_ap_nuevo in p_lst_descuentosAP_nueva)
+            {
+                existe = false;
+                foreach (ModeloDescuentoArticuloProveedor d_ap_original in p_lst_descuentosAP_original)
+                {
+                    if (d_ap_nuevo.Equals(d_ap_original))
+                    {
+                        existe = true;
+                        break;
+                    }
+                }
+
+                if (!existe)
+                {
+                    lcl_lst_descuentosAP_agregar.Add(d_ap_nuevo);
+                }
+            }
+            #endregion
+
+            #region get descuentos eliminados
+            List<ModeloDescuentoArticuloProveedor> lcl_lst_descuentosAP_eliminar = new List<ModeloDescuentoArticuloProveedor>();
+            foreach (ModeloDescuentoArticuloProveedor d_ap_original in p_lst_descuentosAP_original)
+            {
+                existe = false;
+                foreach (ModeloDescuentoArticuloProveedor d_ap_nuevo in p_lst_descuentosAP_nueva)
+                {
+                    if (d_ap_original.Equals(d_ap_nuevo))
+                    {
+                        existe = true;
+                        break;
+                    }
+                }
+
+                if (!existe)
+                {
+                    lcl_lst_descuentosAP_eliminar.Add(d_ap_original);
+                }
+            }
+            #endregion
+
+            return this.remove(lcl_lst_descuentosAP_eliminar) && this.add(lcl_lst_descuentosAP_agregar);
+        }
+
+        public bool remove(List<ModeloDescuentoArticuloProveedor> p_lst_mod_descuentoAP)
+        {
+            foreach (ModeloDescuentoArticuloProveedor d_ap in p_lst_mod_descuentoAP)
+            {
+                if (!this.remove(d_ap))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        public bool remove(ModeloDescuentoArticuloProveedor p_mod_descuentoAP)
+        {
+            string query =
+                "DELETE FROM [descuentos_articulos_proveedores] " +
+                "   WHERE (@codigo_descuento=codigo_descuento AND @codigo_original = codigo_original AND "+
+                " @codigo_articulo_proveedor = codigo_articulo_proveedor AND @fecha_desde = fecha_desde AND "+
+                " @fecha_hasta = fecha_hasta) ";
+
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+
+            //Indica los parametros
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoAP.codigoDescuento, "@codigo_descuento"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoAP.codigoOriginalArticulo, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoAP.codigoArticuloProveedor, "@codigo_articulo_Proveedor"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoAP.fechaVigenciaDesde, "@fecha_hasta"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoAP.fechaVigenciaHasta, "@fecha_desde"));
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected != 0)
+            { return true; }
+            else
+            { return false; }
+        }
+        #endregion
+
+        #region Búsqueda
+        /// <summary>
+        /// Busca los descuentos asignados a un determinado artículo proveedor
+        /// </summary>
+        /// <param name="p_mod_articuloProveedor"></param>
+        public void getDescuentos(ModeloArticuloProveedores p_mod_articuloProveedor)
+        {
+            string query =
+             "SELECT " +
+              "codigo_articulo_proveedor, codigo_original, codigo_descuento, fecha_desde,fecha_hasta " +
+              "   FROM [descuentos_articulos_proveedores] " +
+              "   WHERE (codigo_original = @codigo_original AND codigo_articulo_proveedor = @codigo_articulo_proveedor)";
+
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoOriginal, "@codigo_original"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
+           
+            comando.Connection.Open();
+            SqlDataReader drDescuentoArticuloProveedor = comando.ExecuteReader();
+            ModeloDescuentoArticuloProveedor lcl_mod_descuentoAP;
+            
+            while (drDescuentoArticuloProveedor.Read())
+            {
+                lcl_mod_descuentoAP = new ModeloDescuentoArticuloProveedor();
+                lcl_mod_descuentoAP = this.leerDatosDescuentoArticuloProveedor(drDescuentoArticuloProveedor);
+                this.getDescuentoBase(lcl_mod_descuentoAP);
+                p_mod_articuloProveedor.agregarDescuento(lcl_mod_descuentoAP);
+            }
+            drDescuentoArticuloProveedor.Close();
+            comando.Connection.Close();
+        }
+        /// <summary>
+        /// Busca el descuento base para un determinado descuentoArticuloProveedor
+        /// </summary>
+        /// <param name="p_mod_descuentoAP"></param>
+        public void getDescuentoBase(ModeloDescuentoArticuloProveedor p_mod_descuentoAP)
+        {
+            string query =
+             "SELECT " +
+              "codigo, descripcion, porcentaje " +
+              "   FROM [descuentos_articulos] " +
+              "   WHERE (codigo = @codigo_descuento)";
+
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_descuentoAP.codigoDescuento, "@codigo_descuento"));
+           
+            comando.Connection.Open();
+            SqlDataReader drDescuento = comando.ExecuteReader();
+
+            while (drDescuento.Read())
+            {
+                ModeloDescuento lcl_mod_descuento = this.leerDatosDescuento(drDescuento);
+                p_mod_descuentoAP.descripcion = lcl_mod_descuento.descripcion;
+                p_mod_descuentoAP.porcentaje = lcl_mod_descuento.porcentaje;
+            }
+            drDescuento.Close();
+            comando.Connection.Close();
+          }
+        /// <summary>
+        /// Retorna los descuentos preestablecidos por defecto en la base de datos
+        /// </summary>
+        /// <returns></returns>
+        public List<ModeloDescuento> getDescuentoBase()
+        {
+            string query =
+             "SELECT " +
+              "codigo, descripcion, porcentaje " +
+              "   FROM [descuentos_articulos] " +
+              "   WHERE (codigo < 1000)";
+
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+
+            comando.Connection.Open();
+            SqlDataReader drDescuento = comando.ExecuteReader();
+            List<ModeloDescuento> lcl_lst_descuentosBase = new List<ModeloDescuento>();
+            ModeloDescuento lcl_mod_descuento;
+            while (drDescuento.Read())
+            {
+                lcl_mod_descuento = new ModeloDescuento();
+                lcl_mod_descuento = this.leerDatosDescuento(drDescuento);
+                lcl_lst_descuentosBase.Add(lcl_mod_descuento);
+            }
+            drDescuento.Close();
+            comando.Connection.Close();
+
+            return lcl_lst_descuentosBase;
+        }
+        
+        #endregion
+    }
 }

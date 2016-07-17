@@ -9,7 +9,7 @@ namespace Modelos
     [Serializable]
     public class ModeloLineaPedido : Modelo
     {
-        #region Getters/Setters
+        #region Atributos
 
         int _numeroPedido;
         public int numeroPedido
@@ -31,6 +31,7 @@ namespace Modelos
             get { return _permitirStockNegativo; }
             set { _permitirStockNegativo = value; }
         }
+        
         int _cantidadArticulos;
         public int cantidadArticulos
         {
@@ -51,11 +52,30 @@ namespace Modelos
                 this.updateDescuentos();
             }
         }
+        
         decimal _valorParcial;
         public decimal valorParcial
         {
             get { return _valorParcial; }
             set { this._valorParcial = value; }
+        }
+        decimal _valorParcialSinDescuento;
+        public decimal valorParcialSinDescuento
+        {
+            get { return _valorParcialSinDescuento; }
+            set { _valorParcialSinDescuento = value; } 
+        }
+        decimal _descuentoTotalMonto;
+        public decimal descuentoTotalMonto
+        {
+            get { return _descuentoTotalMonto; }
+            set { _descuentoTotalMonto = value; }
+        }
+        decimal _descuentoTotalPorcentaje;
+        public decimal descuentoTotalPorcentaje
+        {
+            get { return _descuentoTotalPorcentaje; }
+            set { _descuentoTotalPorcentaje = value; }
         }
 
         List<ModeloDescuentoLineaPedido> _descuentos;
@@ -91,8 +111,8 @@ namespace Modelos
         /// <returns></returns>
         public decimal getValorParcialSinDescuentos()
         {
-            return this.valorUnitario * this.cantidadArticulos;
-            //return this.valorParcial;
+            this.valorParcialSinDescuento = this.valorUnitario * this.cantidadArticulos;
+            return this.valorParcialSinDescuento;
         }
         /// <summary>
         /// Asigna y devuelve valor parcial teniendo en cuenta descuentos
@@ -125,9 +145,18 @@ namespace Modelos
             {
                 descuento += d.asignarDescuento(p_valorParcial);
             }
-            return descuento;
+            this.descuentoTotalMonto = descuento;
+            decimal valorParcialSinDescuento = this.getValorParcialSinDescuentos();
+            if (valorParcialSinDescuento > 0)
+            {
+                this.descuentoTotalPorcentaje = this.descuentoTotalMonto / valorParcialSinDescuento;
+            }
+            return this.descuentoTotalMonto;
         }
-   
+        /// <summary>
+        /// Devuelve el descuento total que se aplicará a la línea
+        /// </summary>
+        /// <returns></returns>
         public decimal getDescuento()
         {
             return this.getDescuento(this.getValorParcialSinDescuentos());
@@ -144,6 +173,7 @@ namespace Modelos
                 p_descuento.codigoDescuento = getUltimoCodigoDescuento();
             }
             ModeloDescuentoLineaPedido descuento = new ModeloDescuentoLineaPedido(p_descuento, this.getValorParcialSinDescuentos());
+            descuento.asignarDatosLineaPedido(this);
             this.descuentos.Add(descuento);
             this.getValorParcialConDescuento();
         }       
@@ -182,12 +212,17 @@ namespace Modelos
             {
                 case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona:
                     this.valorUnitario = Convert.ToDecimal(p_mod_articuloProveedor.valorVenta.valorArticulo);
-                    this.getValorParcialConDescuento();
                     break;
                 case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor:
                     this.valorUnitario = Convert.ToDecimal(p_mod_articuloProveedor.valorCompra.valorArticulo);
                     break;
             }
+            if(p_tipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona && p_mod_articuloProveedor.tieneDescuentosVigentes())
+            {
+                this.addDescuento(new ModeloDescuentoLineaPedido(p_mod_articuloProveedor.getDescuentoVigente()));
+                
+            }
+            this.getValorParcialConDescuento();
         }
         /// <summary>
         /// Se presupone que los rangos entre 100 y 1000 no se usarán para descuentos
@@ -198,15 +233,20 @@ namespace Modelos
             int i = 100;
             foreach(ModeloDescuentoLineaPedido d in descuentos)
             {
-                if (d.codigoDescuento > i && d.codigoDescuento < 1000)
+                if (d.codigoDescuento >= i && d.codigoDescuento < 1000)
                 {
-                    i = d.codigoDescuento;
+                    i = d.codigoDescuento+1;
                 }
             }
-            return i++;
+            return i;
         }
-
-
+        public void asignarDatosADescuentos()
+        {
+            foreach (ModeloDescuentoLineaPedido d_lp in this.descuentos)
+            {
+                d_lp.asignarDatosLineaPedido(this);
+            }
+        }
         #region Equals
         public override bool Equals(object p_objeto)
         {

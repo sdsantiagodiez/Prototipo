@@ -32,21 +32,25 @@ namespace Controladores
             
             if (String.Equals(p_var_razonSocial, "") == false && (p_date_fechaFin > p_date_fechaInicio || p_date_fechaFin <= DateTime.Today))
             {
-                glb_lst_mod_pedidos = glb_con_pedidos.getPedidos("Pedido a proveedor");
+                glb_lst_mod_pedidos = ControladorBusqueda.buscar(new ModeloPedido() { codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoProveedor}, Constantes.ParametrosBusqueda.Pedidos.Tipo);
                 
                 foreach (string RSocial in p_var_razonSocial)
                 {
-                    foreach (ModeloPedido lcl_mod_pedido in glb_lst_mod_pedidos) 
+                    foreach (ModeloPedido pedido in glb_lst_mod_pedidos) 
                     {
                         ModeloProveedor lcl_mod_proveedor = new ModeloProveedor();
-                        lcl_mod_proveedor = glb_con_pedidos.getProveedorPedido(lcl_mod_pedido.numeroPedido);
+                        ModeloPedido lcl_mod_pedido = ControladorBusqueda.buscar(new ModeloPedido(){numeroPedido = pedido.numeroPedido},Constantes.ParametrosBusqueda.Pedidos.NumeroPedido )[0];
+                        if(pedido != null)
+                        {
+                            lcl_mod_proveedor = new ModeloProveedor(lcl_mod_pedido.entidad);
+                        }
                         if (lcl_mod_proveedor.razonSocial == RSocial)
                         {
-                            if (Convert.ToDateTime(lcl_mod_pedido.fecha) >= p_date_fechaInicio && Convert.ToDateTime(lcl_mod_pedido.fecha) <= p_date_fechaFin)
+                            if (Convert.ToDateTime(pedido.fecha) >= p_date_fechaInicio && Convert.ToDateTime(pedido.fecha) <= p_date_fechaFin)
                             {
-                                glb_var_MaxMontoTotal = (lcl_mod_pedido.montoTotal>glb_var_MaxMontoTotal)? lcl_mod_pedido.montoTotal : glb_var_MaxMontoTotal ;
-                                glb_var_MontoTotalProveedor = glb_var_MontoTotalProveedor + lcl_mod_pedido.montoTotal;
-                                foreach (ModeloLineaPedido lcl_mod_lineapedido in lcl_mod_pedido.lineasPedido)
+                                glb_var_MaxMontoTotal = (pedido.montoTotal>glb_var_MaxMontoTotal)? pedido.montoTotal : glb_var_MaxMontoTotal ;
+                                glb_var_MontoTotalProveedor = glb_var_MontoTotalProveedor + pedido.montoTotal;
+                                foreach (ModeloLineaPedido lcl_mod_lineapedido in pedido.lineasPedido)
                                 {
                                     glb_var_CantidadTotalArticulos = glb_var_CantidadTotalArticulos + lcl_mod_lineapedido.cantidadArticulos;
                                 }

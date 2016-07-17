@@ -132,37 +132,7 @@ namespace Controladores
             return respuesta;
         }
 
-        public bool eliminar(ModeloDescuentoArticuloProveedor p_mod_descuento)
-        {
-            CatalogoDescuentos lcl_cat_descuentos = new CatalogoDescuentos();
-            bool respuesta = false;
-            errorActual = "No se ha podido realizar la eliminación.";
-            try
-            {
-                using (TransactionScope scope = new TransactionScope())
-                {
-                    respuesta = lcl_cat_descuentos.remove(p_mod_descuento);
-                    scope.Complete();
-                }
-            }
-            catch (TransactionAbortedException ex)
-            {
-                errorActual = "TransactionAbortedException Message: " + ex.Message;
-            }
-            catch (ApplicationException ex)
-            {
-                errorActual = "ApplicationException Message: " + ex.Message;
-            }
-            catch (System.Data.SqlClient.SqlException ex)
-            {
-                errorActual = "SQLexception Message: " + ex.Message;
-            }
-            catch (Exception ex)
-            {
-                errorActual = ex.Message;
-            }
-            return respuesta;
-        }
+      
 
     }
 }
