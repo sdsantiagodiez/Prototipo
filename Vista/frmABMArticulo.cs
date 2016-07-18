@@ -30,13 +30,20 @@ namespace Vista
         #region Métodos
 
         #region Inicialización
-        public override void inicializarForm()
+        public override void inicializarForm(int ventanaAncho, int ventanaAlto)
         {
-            this.tblLayoutPanelPrincipal.Width = Width - 3; //un margen derecho de 3
+            this.tblLayoutPanelPrincipal.Width = ventanaAncho - 20; //un margen derecho de 20 para que se vea scrollbar
+            this.pnlBase.Width = ventanaAncho - 3;  //un márgen derecho de 3
+            this.pnlBase.Height = ventanaAlto - 60; //un márgen arriba para que se vea título
 
-            if (Height < 700)
+            if (Height < 500)
             {
-                this.tblLayoutPanelPrincipal.Height = 700;  //Mínimo
+                this.tblLayoutPanelPrincipal.Height = 500;  //Mínimo
+                this.pnlBase.AutoScroll = true;
+                ScrollBar vScrollBar = new VScrollBar();
+                vScrollBar.Dock = DockStyle.Right;
+                vScrollBar.Scroll += (sender, e) => { pnlBase.VerticalScroll.Value = vScrollBar.Value; };
+                pnlBase.Controls.Add(vScrollBar);
             }
             else
             {
@@ -44,7 +51,8 @@ namespace Vista
             }
 
             int x = Convert.ToInt16(Math.Round(Convert.ToDouble((Width - this.tblLayoutPanelPrincipal.Width) / 2)));
-            this.tblLayoutPanelPrincipal.Location = new Point(x, 65);
+            this.tblLayoutPanelPrincipal.Location = new Point(10, 0);
+            this.pnlBase.Location = new Point(0, 65);
         }
 
         override public void inicializarModoFormularioInicio()

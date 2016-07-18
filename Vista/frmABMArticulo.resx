@@ -121,12 +121,12 @@
     <value>17, 17</value>
   </metadata>
   <metadata name="epCodigoOriginal.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>273, 17</value>
+    <value>341, 17</value>
   </metadata>
   <metadata name="epDescripcion.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>409, 17</value>
+    <value>518, 17</value>
   </metadata>
   <metadata name="epModelo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>530, 17</value>
+    <value>671, 17</value>
   </metadata>
 </root>
