@@ -56,13 +56,15 @@ namespace Datos
             lcl_mod_articuloProveedor.razonSocialProveedor = (string)p_drArticulosProveedor["razon_social_proveedor"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
-            lcl_mod_articuloProveedor.activo = (bool)p_drArticulosProveedor["activo"];
+            
             lcl_mod_articuloProveedor.descripcionArticuloProveedor = (p_drArticulosProveedor["descripcion"] != DBNull.Value) ? (string)p_drArticulosProveedor["descripcion"] : null;
             lcl_mod_articuloProveedor.observacionesArticuloProveedor = (p_drArticulosProveedor["observaciones"] != DBNull.Value) ? (string)p_drArticulosProveedor["observaciones"] : null;
             lcl_mod_articuloProveedor.stockActual = (p_drArticulosProveedor["stock_actual"] != DBNull.Value) ? (int)p_drArticulosProveedor["stock_actual"] : (int?)null;
             lcl_mod_articuloProveedor.stockMinimo = (p_drArticulosProveedor["stock_minimo"] != DBNull.Value) ? (int)p_drArticulosProveedor["stock_minimo"] : (int?)null;
             lcl_mod_articuloProveedor.fechaActualizacion = (p_drArticulosProveedor["fecha_actualizacion"] != DBNull.Value) ? (DateTime)p_drArticulosProveedor["fecha_actualizacion"] : (DateTime?)null;
             lcl_mod_articuloProveedor.ubicacion = (p_drArticulosProveedor["ubicacion"] != DBNull.Value) ? (string)p_drArticulosProveedor["ubicacion"] : null;
+
+            lcl_mod_articuloProveedor.activo = p_drArticulosProveedor.GetBoolean(p_drArticulosProveedor.GetOrdinal("activo")); 
 
             return lcl_mod_articuloProveedor;
         }
@@ -258,7 +260,8 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.ubicacion,"@ubicacion"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.valorCompra.valorArticulo, "@valor_compra"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.valorVenta.valorArticulo,"@valor_venta"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.activo, "@activo"));
+            
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.activo ? 1 : 0, "@activo"));
 
             comando.Parameters.Add(this.instanciarParametro(DateTime.Now, "@fecha_actualizacion"));
 
@@ -343,7 +346,7 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.stockActual, "@stock_actual"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.fechaActualizacion, "@fecha_actualizacion"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.ubicacion, "@ubicacion"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.activo, "@activo"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.activo ? 1: 0, "@activo"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
@@ -353,30 +356,6 @@ namespace Datos
             {return true;}
             else
             {return false;}
-        }
-
-        private bool estadoArticuloProveedor(ModeloArticuloProveedores p_mod_articuloProveedor, bool p_activo)
-        {
-            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
-                "UPDATE [Articulos_Proveedores] SET [activo]=@activo  " +
-                "WHERE ([Articulos_Proveedores].codigo_original=@codigo_original AND [Articulos_Proveedores].codigo_articulo_proveedor=@codigo_articulo_proveedor)";
-
-            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoOriginal, "@codigo_original"));
-            comando.Parameters.Add(this.instanciarParametro(p_activo, "@activo"));
-
-            comando.Connection.Open();
-            int rowaffected = comando.ExecuteNonQuery();
-            comando.Connection.Close();
-
-            if (rowaffected != 0)
-            { return true; }
-            else
-            { return false; }
         }
 
         /// <summary>

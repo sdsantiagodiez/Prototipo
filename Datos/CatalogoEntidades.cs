@@ -27,7 +27,7 @@ namespace Datos
             lcl_mod_entidad.cuit = (p_drEntidades["cuit"] != DBNull.Value) ? (string)p_drEntidades["cuit"] : null;
             lcl_mod_entidad.tipoEntidad = (p_drEntidades["tipo_entidad"] != DBNull.Value) ? (string)p_drEntidades["tipo_entidad"] : null;
             lcl_mod_entidad.observaciones = (p_drEntidades["observaciones"] != DBNull.Value) ? (string)p_drEntidades["observaciones"] : null;
-            lcl_mod_entidad.activo = (bool)p_drEntidades["activo"];
+            lcl_mod_entidad.activo = p_drEntidades.GetBoolean(p_drEntidades.GetOrdinal("activo"));
 
             lcl_mod_entidad.mails = this.getMails(lcl_mod_entidad.codigo);
             lcl_mod_entidad.telefonos = this.getTelefonos(lcl_mod_entidad.codigo);
@@ -185,7 +185,7 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.tipoEntidad, "@tipo_entidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.cuit, "@cuit"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.observaciones, "@observaciones"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.activo, "@activo"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.activo? 1:0, "@activo"));
 
             comando.Connection.Open();
             int? nuevoCodigoEntidad = (int?)comando.ExecuteScalar();
@@ -308,7 +308,7 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.cuit, "@cuit"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.observaciones, "@observaciones"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.tipoEntidad, "@tipo_entidad"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.activo, "@activo"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.activo ? 1 : 0, "@activo"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
@@ -331,38 +331,6 @@ namespace Datos
             {
                 this.actualizarDomicilio(d);
             }
-
-            if (rowaffected != 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        protected bool estadoEntidad(ModeloEntidad p_mod_entidad, bool p_activo)
-        {
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                "UPDATE [entidades] SET [activo]=@activo WHERE [entidades].codigo=@codigo_entidad";
-
-            comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.codigo, "@codigo_entidad"));
-            comando.Parameters.Add(this.instanciarParametro(p_activo, "@activo"));
-            
-            comando.Connection.Open();
-            int rowaffected = comando.ExecuteNonQuery();
-            comando.Connection.Close();
 
             if (rowaffected != 0)
             {

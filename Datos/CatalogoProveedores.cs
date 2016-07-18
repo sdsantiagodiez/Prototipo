@@ -90,7 +90,8 @@ namespace Datos
             string querySQL = this.getCondicionBusqueda(p_mod_proveedor,p_parametroBusqueda,ref comando);
             
             comando.CommandText =
-                "SELECT [proveedores].codigo_entidad,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[proveedores].razon_social" +
+                "SELECT [proveedores].codigo_entidad,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[proveedores].razon_social, "+
+                "   [entidades].activo " +
                 "   FROM [proveedores] " +
                 "   INNER JOIN [entidades] on [entidades].codigo = [proveedores].codigo_entidad " +
                 "   WHERE " + querySQL;

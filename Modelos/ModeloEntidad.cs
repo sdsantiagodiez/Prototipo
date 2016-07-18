@@ -179,7 +179,8 @@ namespace Modelos
                 && this.Equals(this.tipoEntidad, p_mod_entidad.tipoEntidad)
                 && this.Equals(this.mails, p_mod_entidad.mails)
                 && this.Equals(this.telefonos, p_mod_entidad.telefonos)
-                && this.Equals(this.domicilios, p_mod_entidad.domicilios);
+                && this.Equals(this.domicilios, p_mod_entidad.domicilios)
+                && this.Equals(this.activo,p_mod_entidad.activo);
         }
         #endregion
         [Serializable]
