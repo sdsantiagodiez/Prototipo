@@ -27,6 +27,7 @@ namespace Datos
             lcl_mod_entidad.cuit = (p_drEntidades["cuit"] != DBNull.Value) ? (string)p_drEntidades["cuit"] : null;
             lcl_mod_entidad.tipoEntidad = (p_drEntidades["tipo_entidad"] != DBNull.Value) ? (string)p_drEntidades["tipo_entidad"] : null;
             lcl_mod_entidad.observaciones = (p_drEntidades["observaciones"] != DBNull.Value) ? (string)p_drEntidades["observaciones"] : null;
+            lcl_mod_entidad.activo = (bool)p_drEntidades["activo"];
 
             lcl_mod_entidad.mails = this.getMails(lcl_mod_entidad.codigo);
             lcl_mod_entidad.telefonos = this.getTelefonos(lcl_mod_entidad.codigo);
@@ -90,7 +91,7 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "SELECT [codigo] as codigo_entidad,[tipo_entidad],[cuit],[observaciones] " +
+                "SELECT [codigo] as codigo_entidad,[tipo_entidad],[cuit],[observaciones],[activo] " +
                     "FROM [entidades]  " +
                     "WHERE [entidades].codigo = @codigo";
             comando.Parameters.Add(new SqlParameter("@codigo", SqlDbType.Int));
@@ -177,13 +178,14 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "INSERT INTO [entidades] ([tipo_entidad],[cuit],[observaciones]) " +
+                "INSERT INTO [entidades] ([tipo_entidad],[cuit],[observaciones],[activo]) " +
                 "OUTPUT INSERTED.CODIGO " +
-                "VALUES (@tipo_entidad, @cuit, @observaciones)";
+                "VALUES (@tipo_entidad, @cuit, @observaciones,@activo)";
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.tipoEntidad, "@tipo_entidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.cuit, "@cuit"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.observaciones, "@observaciones"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.activo, "@activo"));
 
             comando.Connection.Open();
             int? nuevoCodigoEntidad = (int?)comando.ExecuteScalar();
@@ -299,13 +301,14 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "UPDATE [entidades] SET [cuit]=@cuit, [observaciones]=@observaciones,[tipo_entidad]=@tipo_entidad " +
+                "UPDATE [entidades] SET [cuit]=@cuit, [observaciones]=@observaciones,[tipo_entidad]=@tipo_entidad,[activo]=@activo " +
                 "WHERE [entidades].codigo=@codigo_entidad";
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.codigo, "@codigo_entidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.cuit, "@cuit"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.observaciones, "@observaciones"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.tipoEntidad, "@tipo_entidad"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.activo, "@activo"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
@@ -339,7 +342,7 @@ namespace Datos
             }
         }
 
-        protected bool estadoEntidad(ModeloEntidad p_mod_entidad, string p_activo)
+        protected bool estadoEntidad(ModeloEntidad p_mod_entidad, bool p_activo)
         {
             //Creo la conexion y la abro
             SqlConnection ConexionSQL = Conexion.crearConexion();

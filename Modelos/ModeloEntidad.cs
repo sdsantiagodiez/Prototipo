@@ -80,6 +80,12 @@ namespace Modelos
             get { return _tipoEntidad; }
             set { _tipoEntidad = this.validarTipoEntidad(value) ? value : null; }
         }
+        bool _activo;
+        public bool activo
+        {
+            get { return _activo; }
+            set { this._activo = value; }
+        }
         #endregion
         
         #region Validación

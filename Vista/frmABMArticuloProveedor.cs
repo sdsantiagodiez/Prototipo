@@ -350,6 +350,7 @@ namespace Vista
             p_mod_articuloProveedor.ubicacion = txtBoxUbicacion.Text;
             p_mod_articuloProveedor.stockActual = Convert.ToInt32(nmrcUpDownStockActual.Value);
             p_mod_articuloProveedor.stockMinimo = Convert.ToInt32(nmrcUpDownStockMinimo.Value);
+            p_mod_articuloProveedor.activo = chbxActivo.Checked;
             if (LibreriaClasesCompartidas.Validar.validarNumerico(txtBoxPrecioCompra.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Decimal))
             {
                 p_mod_articuloProveedor.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioCompra.Text);
@@ -389,6 +390,7 @@ namespace Vista
             nmrcUpDownStockMinimo.Text = nmrcUpDownStockMinimo.Value.ToString();
             txtBoxPrecioCompra.Text = p_mod_articuloProveedor.valorCompra.valorArticulo.ToString();
             txtBoxPrecioVenta.Text =  p_mod_articuloProveedor.valorVenta.valorArticulo.ToString();
+            chbxActivo.Checked = p_mod_articuloProveedor.activo;
 
             rchTextBoxObservaciones.Text = p_mod_articuloProveedor.observacionesArticuloProveedor;
         }

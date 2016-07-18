@@ -56,6 +56,7 @@ namespace Datos
             lcl_mod_articuloProveedor.razonSocialProveedor = (string)p_drArticulosProveedor["razon_social_proveedor"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
+            lcl_mod_articuloProveedor.activo = (bool)p_drArticulosProveedor["activo"];
             lcl_mod_articuloProveedor.descripcionArticuloProveedor = (p_drArticulosProveedor["descripcion"] != DBNull.Value) ? (string)p_drArticulosProveedor["descripcion"] : null;
             lcl_mod_articuloProveedor.observacionesArticuloProveedor = (p_drArticulosProveedor["observaciones"] != DBNull.Value) ? (string)p_drArticulosProveedor["observaciones"] : null;
             lcl_mod_articuloProveedor.stockActual = (p_drArticulosProveedor["stock_actual"] != DBNull.Value) ? (int)p_drArticulosProveedor["stock_actual"] : (int?)null;
@@ -148,7 +149,7 @@ namespace Datos
                 "SELECT " +
                 "    ap.[codigo_original],ap.[codigo_articulo_proveedor],ap.[stock_minimo],ap.[stock_actual],ap.[observaciones],ap.[ubicacion], " +
                 "    ap.[descripcion],ap.[fecha_actualizacion],ap.[codigo_entidad],vv.[valor] AS [valor_venta], vv.[fecha_valor] AS [fecha_valor_venta], " +
-                "    vc.[valor] AS [valor_compra], vc.[fecha_valor] AS [fecha_valor_compra] , [prov].razon_social as razon_social_proveedor " +
+                "    vc.[valor] AS [valor_compra], vc.[fecha_valor] AS [fecha_valor_compra] , [prov].razon_social as razon_social_proveedor, ap.activo " +
                 "   FROM [Articulos_Proveedores] ap " +
                 "   INNER JOIN [proveedores] prov " +
                 "   ON [prov].codigo_entidad = [ap].codigo_entidad " +
@@ -237,9 +238,9 @@ namespace Datos
             comando.CommandType= CommandType.Text;
             comando.CommandText = 
                 "INSERT INTO [Articulos_Proveedores]([codigo_original],[codigo_articulo_proveedor],[stock_minimo],[stock_actual],"+
-                "   [ubicacion],[observaciones],[descripcion],[fecha_actualizacion],[codigo_entidad]) "+
+                "   [ubicacion],[observaciones],[descripcion],[fecha_actualizacion],[codigo_entidad],[activo]) "+
                 "   VALUES (@codigo_original, @codigo_articulo_proveedor, @stock_minimo, @stock_actual, @ubicacion, "+
-                "   @observaciones, @descripcion, @fecha_actualizacion, @codigo_entidad ); " +
+                "   @observaciones, @descripcion, @fecha_actualizacion, @codigo_entidad,@activo ); " +
                 
                 "INSERT INTO [Valores_Compra]([codigo_articulo_proveedor],[codigo_original],[fecha_valor],[valor]) "+
                 "   VALUES (@codigo_articulo_proveedor, @codigo_original, @fecha_actualizacion, @valor_compra ); "+
@@ -257,6 +258,7 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.ubicacion,"@ubicacion"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.valorCompra.valorArticulo, "@valor_compra"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.valorVenta.valorArticulo,"@valor_venta"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.activo, "@activo"));
 
             comando.Parameters.Add(this.instanciarParametro(DateTime.Now, "@fecha_actualizacion"));
 
@@ -329,7 +331,7 @@ namespace Datos
             comando.CommandType = CommandType.Text;
             comando.CommandText = 
                 "UPDATE [Articulos_Proveedores] SET [stock_minimo]=@stock_minimo,[stock_actual]=@stock_actual,[observaciones]=@observaciones,"+
-                "[descripcion]=@descripcion,[fecha_actualizacion]=@fecha_actualizacion, [ubicacion]=@ubicacion  "+
+                "[descripcion]=@descripcion,[fecha_actualizacion]=@fecha_actualizacion, [ubicacion]=@ubicacion, [activo]=@activo  "+
                 "WHERE ([Articulos_Proveedores].codigo_original=@codigo_original AND [Articulos_Proveedores].codigo_articulo_proveedor=@codigo_articulo_proveedor)";
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.codigoArticuloProveedor, "@codigo_articulo_proveedor"));
@@ -340,6 +342,7 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.stockActual, "@stock_actual"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.fechaActualizacion, "@fecha_actualizacion"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.ubicacion, "@ubicacion"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articuloProveedor.activo, "@activo"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
@@ -351,7 +354,7 @@ namespace Datos
             {return false;}
         }
 
-        private bool estadoArticuloProveedor(ModeloArticuloProveedores p_mod_articuloProveedor, string p_activo)
+        private bool estadoArticuloProveedor(ModeloArticuloProveedores p_mod_articuloProveedor, bool p_activo)
         {
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
             SqlCommand comando = new SqlCommand();

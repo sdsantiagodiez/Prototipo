@@ -284,8 +284,8 @@ namespace LibreriaClasesCompartidas
         }
         public static class Estado
         {
-            public const string Activo = "Y";
-            public const string Inactivo = "N";
+            public const bool Activo = true;
+            public const bool Inactivo = false;
         }
     }
     

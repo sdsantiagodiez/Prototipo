@@ -525,6 +525,7 @@ namespace Vista
             p_mod_entidad.telefonos = this.cargarDatosControlEnListTelefono();
             p_mod_entidad.mails = this.cargarDatosControlEnListMail();
             p_mod_entidad.observaciones = rchTextBoxObservaciones.Text;
+            p_mod_entidad.activo = chbxActivo.Checked;
             
         }
         private void cargarDatosControlEnProveedor(ref ModeloProveedor p_mod_proveedor)
@@ -736,6 +737,7 @@ namespace Vista
         {
             txtBoxCodigoEntidad.Text = p_mod_entidad.codigo.ToString();
             txtBoxCUIT.Text = p_mod_entidad.cuit != null ? p_mod_entidad.cuit : "";
+            chbxActivo.Checked = p_mod_entidad.activo;
 
             this.cargarDatosDomicilioEnDataGridViewDomicilio(p_mod_entidad.domicilios);
             this.cargarDatosTelefonoEnDataGridViewTelefono(p_mod_entidad.telefonos);

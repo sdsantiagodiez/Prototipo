@@ -382,6 +382,7 @@ namespace Vista
             row.Cells["direccion"].Value = p_mod_entidad.domicilios.Count == 0 ? "Sin datos" : p_mod_entidad.domicilios[0].calle + " " + p_mod_entidad.domicilios[0].numero;
             row.Cells["ciudad"].Value = p_mod_entidad.domicilios.Count == 0 ? "Sin datos" : p_mod_entidad.domicilios[0].ciudad;
             row.Cells["provincia"].Value = p_mod_entidad.domicilios.Count == 0 ? "Sin datos" : p_mod_entidad.domicilios[0].provincia.provincia;
+            row.Cells["activo"].Value = p_mod_entidad.activo;
 
             if (p_mod_entidad.GetType() == typeof(ModeloProveedor))
             {
@@ -497,6 +498,7 @@ namespace Vista
             row.Cells["codigoEntidad"].Value = p_mod_articuloProveedor.codigoEntidad;
             row.Cells["razonSocialProveedor"].Value = p_mod_articuloProveedor.razonSocialProveedor;
 
+            row.Cells["activo"].Value = p_mod_articuloProveedor.activo;
             row.Cells["valorVenta"].Value = p_mod_articuloProveedor.valorVenta.valorArticulo.ToString();
             row.Cells["valorCompra"].Value = p_mod_articuloProveedor.valorCompra.valorArticulo.ToString();
             row.Cells["stockMinimo"].Value = p_mod_articuloProveedor.stockMinimo.ToString();

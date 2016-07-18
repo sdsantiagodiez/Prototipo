@@ -70,6 +70,7 @@
             this.epPrecioCompra = new System.Windows.Forms.ErrorProvider(this.components);
             this.epPrecioVenta = new System.Windows.Forms.ErrorProvider(this.components);
             this.epUbicacion = new System.Windows.Forms.ErrorProvider(this.components);
+            this.chbxActivo = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.grpBoxArticulo.SuspendLayout();
@@ -378,24 +379,27 @@
             this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tblLayoutPanelStock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelStock.Controls.Add(this.lblCodigoArticulo, 0, 0);
-            this.tblLayoutPanelStock.Controls.Add(this.lblStockActual, 0, 1);
-            this.tblLayoutPanelStock.Controls.Add(this.lblStockMinimo, 0, 2);
-            this.tblLayoutPanelStock.Controls.Add(this.nmrcUpDownStockMinimo, 1, 2);
-            this.tblLayoutPanelStock.Controls.Add(this.lblUbicacion, 2, 2);
-            this.tblLayoutPanelStock.Controls.Add(this.lblPrecioCompra, 2, 0);
-            this.tblLayoutPanelStock.Controls.Add(this.lblPrecioVenta, 2, 1);
-            this.tblLayoutPanelStock.Controls.Add(this.nmrcUpDownStockActual, 1, 1);
-            this.tblLayoutPanelStock.Controls.Add(this.txtBoxCodigoArticulo, 1, 0);
-            this.tblLayoutPanelStock.Controls.Add(this.txtBoxPrecioCompra, 3, 0);
-            this.tblLayoutPanelStock.Controls.Add(this.txtBoxPrecioVenta, 3, 1);
-            this.tblLayoutPanelStock.Controls.Add(this.txtBoxUbicacion, 3, 2);
+            this.tblLayoutPanelStock.Controls.Add(this.lblCodigoArticulo, 0, 1);
+            this.tblLayoutPanelStock.Controls.Add(this.lblStockActual, 0, 2);
+            this.tblLayoutPanelStock.Controls.Add(this.lblStockMinimo, 0, 3);
+            this.tblLayoutPanelStock.Controls.Add(this.nmrcUpDownStockMinimo, 1, 3);
+            this.tblLayoutPanelStock.Controls.Add(this.lblUbicacion, 2, 3);
+            this.tblLayoutPanelStock.Controls.Add(this.lblPrecioCompra, 2, 1);
+            this.tblLayoutPanelStock.Controls.Add(this.lblPrecioVenta, 2, 2);
+            this.tblLayoutPanelStock.Controls.Add(this.nmrcUpDownStockActual, 1, 2);
+            this.tblLayoutPanelStock.Controls.Add(this.txtBoxCodigoArticulo, 1, 1);
+            this.tblLayoutPanelStock.Controls.Add(this.txtBoxPrecioCompra, 3, 1);
+            this.tblLayoutPanelStock.Controls.Add(this.txtBoxPrecioVenta, 3, 2);
+            this.tblLayoutPanelStock.Controls.Add(this.txtBoxUbicacion, 3, 3);
+            this.tblLayoutPanelStock.Controls.Add(this.chbxActivo, 3, 0);
             this.tblLayoutPanelStock.Location = new System.Drawing.Point(36, 20);
             this.tblLayoutPanelStock.Name = "tblLayoutPanelStock";
-            this.tblLayoutPanelStock.RowCount = 3;
-            this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tblLayoutPanelStock.RowCount = 4;
+            this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.61415F));
+            this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.79528F));
+            this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.79529F));
+            this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.79528F));
+            this.tblLayoutPanelStock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblLayoutPanelStock.Size = new System.Drawing.Size(498, 151);
             this.tblLayoutPanelStock.TabIndex = 0;
             // 
@@ -404,7 +408,7 @@
             this.lblCodigoArticulo.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCodigoArticulo.AutoSize = true;
             this.lblCodigoArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoArticulo.Location = new System.Drawing.Point(8, 16);
+            this.lblCodigoArticulo.Location = new System.Drawing.Point(8, 40);
             this.lblCodigoArticulo.Name = "lblCodigoArticulo";
             this.lblCodigoArticulo.Size = new System.Drawing.Size(109, 18);
             this.lblCodigoArticulo.TabIndex = 7;
@@ -415,7 +419,7 @@
             this.lblStockActual.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblStockActual.AutoSize = true;
             this.lblStockActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStockActual.Location = new System.Drawing.Point(26, 66);
+            this.lblStockActual.Location = new System.Drawing.Point(26, 80);
             this.lblStockActual.Name = "lblStockActual";
             this.lblStockActual.Size = new System.Drawing.Size(91, 18);
             this.lblStockActual.TabIndex = 9;
@@ -427,7 +431,7 @@
             this.lblStockMinimo.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblStockMinimo.AutoSize = true;
             this.lblStockMinimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStockMinimo.Location = new System.Drawing.Point(17, 116);
+            this.lblStockMinimo.Location = new System.Drawing.Point(17, 121);
             this.lblStockMinimo.Name = "lblStockMinimo";
             this.lblStockMinimo.Size = new System.Drawing.Size(100, 18);
             this.lblStockMinimo.TabIndex = 10;
@@ -437,7 +441,7 @@
             // nmrcUpDownStockMinimo
             // 
             this.nmrcUpDownStockMinimo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.nmrcUpDownStockMinimo.Location = new System.Drawing.Point(123, 113);
+            this.nmrcUpDownStockMinimo.Location = new System.Drawing.Point(123, 118);
             this.nmrcUpDownStockMinimo.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -452,7 +456,7 @@
             this.lblUbicacion.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblUbicacion.AutoSize = true;
             this.lblUbicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUbicacion.Location = new System.Drawing.Point(268, 116);
+            this.lblUbicacion.Location = new System.Drawing.Point(268, 121);
             this.lblUbicacion.Name = "lblUbicacion";
             this.lblUbicacion.Size = new System.Drawing.Size(74, 18);
             this.lblUbicacion.TabIndex = 7;
@@ -463,7 +467,7 @@
             this.lblPrecioCompra.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPrecioCompra.AutoSize = true;
             this.lblPrecioCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioCompra.Location = new System.Drawing.Point(233, 16);
+            this.lblPrecioCompra.Location = new System.Drawing.Point(233, 40);
             this.lblPrecioCompra.Name = "lblPrecioCompra";
             this.lblPrecioCompra.Size = new System.Drawing.Size(109, 18);
             this.lblPrecioCompra.TabIndex = 14;
@@ -474,7 +478,7 @@
             this.lblPrecioVenta.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPrecioVenta.AutoSize = true;
             this.lblPrecioVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioVenta.Location = new System.Drawing.Point(250, 66);
+            this.lblPrecioVenta.Location = new System.Drawing.Point(250, 80);
             this.lblPrecioVenta.Name = "lblPrecioVenta";
             this.lblPrecioVenta.Size = new System.Drawing.Size(92, 18);
             this.lblPrecioVenta.TabIndex = 13;
@@ -483,7 +487,7 @@
             // nmrcUpDownStockActual
             // 
             this.nmrcUpDownStockActual.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.nmrcUpDownStockActual.Location = new System.Drawing.Point(123, 63);
+            this.nmrcUpDownStockActual.Location = new System.Drawing.Point(123, 77);
             this.nmrcUpDownStockActual.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -498,7 +502,7 @@
             this.txtBoxCodigoArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCodigoArticulo.Depth = 0;
             this.txtBoxCodigoArticulo.Hint = "";
-            this.txtBoxCodigoArticulo.Location = new System.Drawing.Point(123, 13);
+            this.txtBoxCodigoArticulo.Location = new System.Drawing.Point(123, 37);
             this.txtBoxCodigoArticulo.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCodigoArticulo.Name = "txtBoxCodigoArticulo";
             this.txtBoxCodigoArticulo.PasswordChar = '\0';
@@ -515,7 +519,7 @@
             this.txtBoxPrecioCompra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxPrecioCompra.Depth = 0;
             this.txtBoxPrecioCompra.Hint = "";
-            this.txtBoxPrecioCompra.Location = new System.Drawing.Point(348, 13);
+            this.txtBoxPrecioCompra.Location = new System.Drawing.Point(348, 37);
             this.txtBoxPrecioCompra.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxPrecioCompra.Name = "txtBoxPrecioCompra";
             this.txtBoxPrecioCompra.PasswordChar = '\0';
@@ -532,7 +536,7 @@
             this.txtBoxPrecioVenta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxPrecioVenta.Depth = 0;
             this.txtBoxPrecioVenta.Hint = "";
-            this.txtBoxPrecioVenta.Location = new System.Drawing.Point(348, 63);
+            this.txtBoxPrecioVenta.Location = new System.Drawing.Point(348, 77);
             this.txtBoxPrecioVenta.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxPrecioVenta.Name = "txtBoxPrecioVenta";
             this.txtBoxPrecioVenta.PasswordChar = '\0';
@@ -549,7 +553,7 @@
             this.txtBoxUbicacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxUbicacion.Depth = 0;
             this.txtBoxUbicacion.Hint = "";
-            this.txtBoxUbicacion.Location = new System.Drawing.Point(348, 114);
+            this.txtBoxUbicacion.Location = new System.Drawing.Point(348, 118);
             this.txtBoxUbicacion.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxUbicacion.Name = "txtBoxUbicacion";
             this.txtBoxUbicacion.PasswordChar = '\0';
@@ -613,6 +617,17 @@
             // epUbicacion
             // 
             this.epUbicacion.ContainerControl = this;
+            // 
+            // chbxActivo
+            // 
+            this.chbxActivo.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.chbxActivo.AutoSize = true;
+            this.chbxActivo.Location = new System.Drawing.Point(348, 3);
+            this.chbxActivo.Name = "chbxActivo";
+            this.chbxActivo.Size = new System.Drawing.Size(67, 22);
+            this.chbxActivo.TabIndex = 22;
+            this.chbxActivo.Text = "Activo";
+            this.chbxActivo.UseVisualStyleBackColor = true;
             // 
             // frmABMArticuloProveedor
             // 
@@ -694,5 +709,6 @@
         private System.Windows.Forms.ErrorProvider epPrecioCompra;
         private System.Windows.Forms.ErrorProvider epPrecioVenta;
         private System.Windows.Forms.ErrorProvider epUbicacion;
+        private System.Windows.Forms.CheckBox chbxActivo;
     }
 }

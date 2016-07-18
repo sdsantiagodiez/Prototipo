@@ -108,6 +108,13 @@ namespace Modelos
             get { return _fechaActualizacion; }
             set { this._fechaActualizacion = value; }
         }
+
+        bool _activo;
+        public bool activo
+        {
+            get { return _activo; }
+            set { this._activo = value; }
+        }
         #endregion
 
         #region Validaciones
