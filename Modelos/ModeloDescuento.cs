@@ -64,13 +64,13 @@ namespace Modelos
                 //no se pudo realizar la conversión de string a decimal
                 return false;
             }
-
+            p = p / 100;
             if (!this.validarPorcentaje(p))
             {
                 return false;
             }
 
-            this.porcentaje = p / 100;
+            this.porcentaje = p;
             return true;
         }
      
@@ -169,7 +169,11 @@ namespace Modelos
             return this.fechaVigenciaDesde <= this._fechaVigenciaHasta;
         }
         #endregion
-
+        public void asignarDatosArticuloProveedor(ModeloArticuloProveedores p_mod_articuloProveedor)
+        {
+            this.codigoOriginalArticulo = p_mod_articuloProveedor.codigoOriginal;
+            this.codigoArticuloProveedor = p_mod_articuloProveedor.codigoArticuloProveedor;
+        }
         #region Vigencia
         /// <summary>
         /// Retorna si es vigente el descuento al día de hoy

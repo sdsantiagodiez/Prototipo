@@ -45,7 +45,7 @@ namespace Modelos
                 {count_original++;}
             
             int count_nuevo = 0;
-            foreach (var a in p_lista_original)
+            foreach (var a in p_lista_nueva)
                 {count_nuevo++;}
             
             if (count_original != count_nuevo)

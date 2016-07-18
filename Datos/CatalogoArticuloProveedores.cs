@@ -318,8 +318,9 @@ namespace Datos
                     {
                         return false;
                     }
-                }
+                }    
             }
+            
             return true;
         }
 
@@ -528,6 +529,7 @@ namespace Datos
 
             string query =
              "INSERT INTO [descuentos_articulos] ([descripcion], [porcentaje]) " +
+             "OUTPUT INSERTED.CODIGO " +
              "    VALUES ( @descripcion, @porcentaje)";
 
             SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
@@ -659,16 +661,22 @@ namespace Datos
             comando.Connection.Open();
             SqlDataReader drDescuentoArticuloProveedor = comando.ExecuteReader();
             ModeloDescuentoArticuloProveedor lcl_mod_descuentoAP;
-            
+            List<ModeloDescuentoArticuloProveedor> lcl_lst_descuentosAP = new List<ModeloDescuentoArticuloProveedor>();
             while (drDescuentoArticuloProveedor.Read())
             {
                 lcl_mod_descuentoAP = new ModeloDescuentoArticuloProveedor();
                 lcl_mod_descuentoAP = this.leerDatosDescuentoArticuloProveedor(drDescuentoArticuloProveedor);
-                this.getDescuentoBase(lcl_mod_descuentoAP);
-                p_mod_articuloProveedor.agregarDescuento(lcl_mod_descuentoAP);
+                lcl_lst_descuentosAP.Add(lcl_mod_descuentoAP);
+                
             }
             drDescuentoArticuloProveedor.Close();
             comando.Connection.Close();
+
+            foreach (ModeloDescuentoArticuloProveedor d_ap in lcl_lst_descuentosAP)
+            {
+                this.getDescuentoBase(d_ap);
+                p_mod_articuloProveedor.agregarDescuento(d_ap);
+            }
         }
         /// <summary>
         /// Busca el descuento base para un determinado descuentoArticuloProveedor

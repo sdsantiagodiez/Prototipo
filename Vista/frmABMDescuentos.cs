@@ -205,7 +205,7 @@ namespace Vista
             {
                 dataSource.Add(new ComboBoxItem()
                 {
-                    Name = d.ToString() + "%",
+                    Name = d.descripcion,
                     Value = d
                 });
             }
@@ -233,9 +233,14 @@ namespace Vista
         {
             this.txtBoxPorcentajeDescuento.Enabled = p_inicializar;
             this.txtBoxDescripcionDescuento.Enabled = p_inicializar;
+
             if (!p_inicializar)
             {
                 this.txtBoxDescripcionDescuento.Text = (this.cmbBoxPorcentajeDescuento.SelectedValue as ModeloDescuento).descripcion;
+            }
+            else
+            {
+                this.txtBoxDescripcionDescuento.Text = "";
             }
         }
         private void inicializarContextMenu()
@@ -258,80 +263,86 @@ namespace Vista
             }
 
             cntxMenuResultadoBusqueda.Items.Add("Agregar Para el Día de Hoy Descuento de...");
-            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[0].ToString() + " %");
+            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[0].descripcion);
             (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems[0].Click += (s, e) =>
             {
                 this.guardarDescuento(lcl_lst_mod_descuentosAP[0]);
             };
 
-            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[1].ToString() + " %");
+            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[1].descripcion);
             (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems[1].Click += (s, e) =>
             {
 
                 this.guardarDescuento(lcl_lst_mod_descuentosAP[1]);
             };
 
-            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[2].ToString() + " %");
+            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[2].descripcion);
             (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems[2].Click += (s, e) =>
             {
 
                 this.guardarDescuento(lcl_lst_mod_descuentosAP[2]);
             };
 
-            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[3].ToString() + " %");
+            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[3].descripcion);
             (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems[3].Click += (s, e) =>
             {
 
                 this.guardarDescuento(lcl_lst_mod_descuentosAP[3]);
             };
 
-            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[4].ToString() + " %");
+            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[4].descripcion);
             (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems[4].Click += (s, e) =>
             {
 
                 this.guardarDescuento(lcl_lst_mod_descuentosAP[4]);
             };
 
-            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[5].ToString() + " %");
+            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[5].descripcion);
             (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems[5].Click += (s, e) =>
             {
 
                 this.guardarDescuento(lcl_lst_mod_descuentosAP[5]);
             };
 
-            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[6].ToString() + " %");
+            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[6].descripcion);
             (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems[6].Click += (s, e) =>
             {
 
                 this.guardarDescuento(lcl_lst_mod_descuentosAP[6]);
             };
 
-            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[7].ToString() + " %");
+            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[7].descripcion);
             (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems[7].Click += (s, e) =>
             {
 
                 this.guardarDescuento(lcl_lst_mod_descuentosAP[7]);
             };
 
-            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[8].ToString() + " %");
+            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[8].descripcion);
             (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems[8].Click += (s, e) =>
             {
 
                 this.guardarDescuento(lcl_lst_mod_descuentosAP[8]);
             };
 
-            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[9].ToString() + " %");
+            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[9].descripcion);
             (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems[9].Click += (s, e) =>
             {
 
                 this.guardarDescuento(lcl_lst_mod_descuentosAP[9]);
             };
 
-            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[10].ToString() + " %");
+            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[10].descripcion);
             (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems[10].Click += (s, e) =>
             {
 
                 this.guardarDescuento(lcl_lst_mod_descuentosAP[10]);
+            };
+            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems.Add(glb_lst_DescuentosBase[11].descripcion);
+            (this.cntxMenuResultadoBusqueda.Items[1] as ToolStripMenuItem).DropDownItems[11].Click += (s, e) =>
+            {
+
+                this.guardarDescuento(lcl_lst_mod_descuentosAP[11]);
             };
             #endregion
         }
@@ -369,18 +380,34 @@ namespace Vista
             return true;
         }
 
-        private bool validarAgregarDescuento(List<ModeloArticuloProveedores> p_lst_mod_articuloProveedor, ModeloDescuento p_mod_descuento)
+        private bool validarAgregarDescuento(List<ModeloArticuloProveedores> p_lst_mod_articuloProveedor, ModeloDescuentoArticuloProveedor p_mod_descuento)
         {
             if (p_lst_mod_articuloProveedor == null)
             {
-                MessageBox.Show("No hay línea de pedido seleccionada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No hay artículos seleccionados", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             if (p_mod_descuento == null)
             {
                 return false;
             }
-            return true;
+            
+            bool valido = true;
+            string mensajeError = "";
+            string errorArticulo;
+            foreach (ModeloArticuloProveedores ap in p_lst_mod_articuloProveedor)
+            {
+                if (!ap.validarAgregarDescuento(p_mod_descuento, out errorArticulo))
+                {
+                    mensajeError += errorArticulo + System.Environment.NewLine;
+                    valido = false;
+                }
+            }
+            if (!valido)
+            {
+                MessageBox.Show(mensajeError, "Error", MessageBoxButtons.OK);
+            }
+            return valido;
         }
         #endregion
 
@@ -562,7 +589,7 @@ namespace Vista
         private void guardarDescuento(ModeloDescuentoArticuloProveedor p_mod_descuento)
         {
             List<ModeloArticuloProveedores> lcl_lst_articulosProveedoresDescuento = new List<ModeloArticuloProveedores>();
-            if (glb_mod_articuloProveedorSeleccionado != null)
+            if (glb_mod_articuloProveedorSeleccionado != null)//Si no es null, la ventana esta inicializada con un artículo seleccionado
             {
                 lcl_lst_articulosProveedoresDescuento.Add(glb_mod_articuloProveedorSeleccionado);
             }
@@ -580,22 +607,7 @@ namespace Vista
                 return;
             }
 
-            List<ModeloArticuloProveedores> lcl_lst_articulosProveedoresSinDescuento = this.agregarDescuento(lcl_lst_articulosProveedoresDescuento, p_mod_descuento);
-            int cantidadArticulosConDescuento = lcl_lst_articulosProveedoresDescuento.Count - lcl_lst_articulosProveedoresSinDescuento.Count;
-
-            if (cantidadArticulosConDescuento == 0)
-            {
-                MessageBox.Show("No se ha podido asignar ningún descuento");
-            }
-            else if (cantidadArticulosConDescuento == lcl_lst_articulosProveedoresDescuento.Count)
-            {
-                MessageBox.Show("Se ha asignado el descuento a todos los artículos seleccionados");
-            }
-            else
-            {
-                MessageBox.Show("Se ha asignado el descuento a algunos artículos seleccionados");
-                this.mostrarDescuentosNoAgregados(lcl_lst_articulosProveedoresSinDescuento, p_mod_descuento);
-            }
+            this.agregarDescuento(lcl_lst_articulosProveedoresDescuento, p_mod_descuento);
         }
         /// <summary>
         /// Habría que mostrar el mensaje un una richTextBox en caso de que sean muchos artículos seleccionados
@@ -622,48 +634,84 @@ namespace Vista
             DialogResult dialogResult = MessageBox.Show(mensaje, "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             return (dialogResult == System.Windows.Forms.DialogResult.Yes);
         }
+        private void agregarDescuento(List<ModeloArticuloProveedores> p_lst_mod_articuloProveedores, ModeloDescuentoArticuloProveedor p_mod_descuento)
+        {
+            bool resultado;
+            string mensajeResultado;
+            List<ModeloArticuloProveedores> lcl_lst_articulosProveedoresSinDescuento = this.agregarDescuento(p_lst_mod_articuloProveedores, p_mod_descuento, out mensajeResultado);
+            int cantidadArticulosConDescuento = p_lst_mod_articuloProveedores.Count - lcl_lst_articulosProveedoresSinDescuento.Count;
+
+            if (cantidadArticulosConDescuento == 0)
+            {
+                mensajeResultado = "No se ha podido asignar ningún descuento." + System.Environment.NewLine + mensajeResultado;
+                resultado = false;
+            }
+            else if (cantidadArticulosConDescuento == p_lst_mod_articuloProveedores.Count)
+            {
+                mensajeResultado = "Se ha asignado el descuento a todos los artículos seleccionados." + System.Environment.NewLine + mensajeResultado;
+                resultado = true;
+            }
+            else
+            {
+                mensajeResultado = "No se ha podido asignar algunos descuentos." + System.Environment.NewLine + mensajeResultado;
+                resultado = false;
+            }
+
+            if (resultado)
+            {
+                MessageBox.Show(mensajeResultado, "Éxito", MessageBoxButtons.OK);
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show(mensajeResultado, "Error", MessageBoxButtons.RetryCancel);
+                if (dialogResult == DialogResult.Retry)
+                {
+                    this.agregarDescuento(lcl_lst_articulosProveedoresSinDescuento, p_mod_descuento);
+                }
+            }
+        }
         /// <summary>
         /// Agrega el descuento a la lista de artículos
         /// </summary>
         /// <param name="p_lst_mod_articuloProveedor"></param>
         /// <param name="p_mod_descuento"></param>
         /// <returns>Artículos a los que no se ha asignado descuento</returns>
-        private List<ModeloArticuloProveedores> agregarDescuento(List<ModeloArticuloProveedores> p_lst_mod_articuloProveedor, ModeloDescuentoArticuloProveedor p_mod_descuento)
+        private List<ModeloArticuloProveedores> agregarDescuento(List<ModeloArticuloProveedores> p_lst_mod_articuloProveedor, ModeloDescuentoArticuloProveedor p_mod_descuento, out string mensajeResultado)
         {
+            mensajeResultado = "";
             List<ModeloArticuloProveedores> lcl_lst_articulosProveedoresDescuento_noAgregado = new List<ModeloArticuloProveedores>();
-            foreach (ModeloArticuloProveedores ap in p_lst_mod_articuloProveedor)
-            {//FALTA Agregar guardado en base de datos
-                if (!ap.agregarDescuento(p_mod_descuento))
-                {
-                    lcl_lst_articulosProveedoresDescuento_noAgregado.Add(ap);
-                }
-            }
-            return lcl_lst_articulosProveedoresDescuento_noAgregado;
-        }
-        /// <summary>
-        /// Muestra los artículos a los cuales no se les ha podido agregar descuento.
-        /// </summary>
-        /// <param name="p_lst_mod_articuloProveedor"></param>
-        /// <param name="p_mod_descuento"></param>
-        private void mostrarDescuentosNoAgregados(List<ModeloArticuloProveedores> p_lst_mod_articuloProveedor, ModeloDescuentoArticuloProveedor p_mod_descuento)
-        {
-            if (p_lst_mod_articuloProveedor.Count < 1)
-            { return; }
-
-            string descripcionDescuento = p_mod_descuento.ToString() + " %";
-            string mensaje = dgvResultadoBusqueda.SelectedRows.Count > 1 ?
-                    " a los artículos: " :
-                    " al artículo: ";
-            mensaje = "No se ha podido agregar el descuento de " + descripcionDescuento + mensaje;
-
-            string detallesArticulos = "";
+            
+            ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
+            ModeloArticuloProveedores lcl_mod_articuloProveedor_Auxiliar;
             foreach (ModeloArticuloProveedores ap in p_lst_mod_articuloProveedor)
             {
-                detallesArticulos += System.Environment.NewLine + ap.codigoOriginal + ", " + ap.codigoArticuloProveedor + ", " + ap.descripcion;
+                mensajeResultado += ap.codigoOriginal + ", " + ap.codigoArticuloProveedor+": ";
+                //Se hace una copia para el caso en que no se pueda agregar el descuento, el modelo original no lo tiene agregado
+                //Si no, podría darse el caso de agregar el descuento al modelo y que no se guarde en Base de Datos, lo que mostraría en el formulario
+                //que el descuento ya existe en el artículo, cuando esa situación no esta reflejada en la Base de Datos
+                lcl_mod_articuloProveedor_Auxiliar = new ModeloArticuloProveedores();
+                lcl_mod_articuloProveedor_Auxiliar = LibreriaClasesCompartidas.ObjectCopier.Clone(ap);
+                if (lcl_mod_articuloProveedor_Auxiliar.agregarDescuento(p_mod_descuento))
+                {
+                    if (lcl_con_modificacion.modificar(lcl_mod_articuloProveedor_Auxiliar))
+                    {
+                        ap.agregarDescuento(p_mod_descuento);
+                        mensajeResultado += "Agregado correctamente";
+                    }
+                    else
+                    {
+                        lcl_lst_articulosProveedoresDescuento_noAgregado.Add(ap);
+                        mensajeResultado += "Error al guardar en base de datos";
+                    }
+                }
+                else
+                {
+                    lcl_lst_articulosProveedoresDescuento_noAgregado.Add(ap);
+                    mensajeResultado += "Descuento no válido";
+                }
+                mensajeResultado += System.Environment.NewLine;
             }
-            mensaje += detallesArticulos;
-
-            MessageBox.Show(mensaje);
+            return lcl_lst_articulosProveedoresDescuento_noAgregado;
         }
         #endregion
 
@@ -676,13 +724,66 @@ namespace Vista
                 MessageBox.Show("No hay descuentos seleccionados");
                 return;
             }
-
-            foreach (ModeloDescuentoArticuloProveedor d in lcl_lst_descuentosSeleccionados)
+            if(!this.confirmarEliminarDescuento(lcl_lst_descuentosSeleccionados))
             {
-                glb_mod_articuloProveedorSeleccionado.eliminarDescuento(d);
+                return ;
             }
+
+            this.eliminarDescuento(lcl_lst_descuentosSeleccionados);
+
             this.actualizarDGVdescuentos();
         }
+        private void eliminarDescuento(List<ModeloDescuentoArticuloProveedor> p_lst_mod_descuentosAP)
+        {
+            List<ModeloDescuentoArticuloProveedor> lcl_lst_descuentosNoEliminados = new List<ModeloDescuentoArticuloProveedor>();
+            
+            ModeloArticuloProveedores lcl_mod_articuloProveedor_auxiliar = new ModeloArticuloProveedores();
+            lcl_mod_articuloProveedor_auxiliar = LibreriaClasesCompartidas.ObjectCopier.Clone(glb_mod_articuloProveedorSeleccionado);
+            
+            ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
+            foreach (ModeloDescuentoArticuloProveedor d in p_lst_mod_descuentosAP)
+            {
+                lcl_mod_articuloProveedor_auxiliar.eliminarDescuento(d);
+                if (lcl_con_modificacion.modificar(lcl_mod_articuloProveedor_auxiliar))
+                {
+                    glb_mod_articuloProveedorSeleccionado.eliminarDescuento(d);
+                }
+                else
+                {
+                    lcl_lst_descuentosNoEliminados.Add(d);
+                }
+            }
+            
+            if(lcl_lst_descuentosNoEliminados.Count <1)
+            {
+                MessageBox.Show("Descuentos eliminados.","Éxito",MessageBoxButtons.OK);
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Algunos descuentos no han podido ser eliminados","Error",MessageBoxButtons.RetryCancel);
+                if (dialogResult == System.Windows.Forms.DialogResult.Retry)
+                {
+                    this.eliminarDescuento(lcl_lst_descuentosNoEliminados);
+                }
+            }
+        }
+        private bool confirmarEliminarDescuento(List<ModeloDescuentoArticuloProveedor> p_lst_mod_descuentosAP)
+        {
+            if (p_lst_mod_descuentosAP.Count < 1)
+            {
+                return false;
+            }
+
+            string mensaje = "Se eliminarán los siguientes descuentos:"+System.Environment.NewLine;
+            foreach (ModeloDescuentoArticuloProveedor d_ap in p_lst_mod_descuentosAP)
+            {
+                mensaje += d_ap.ToString() + ": " + d_ap.descripcion + System.Environment.NewLine;
+            }
+
+            DialogResult dialogResult = MessageBox.Show(mensaje, "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return (dialogResult == System.Windows.Forms.DialogResult.Yes);
+        }
+        
         #endregion
 
         #region Abrir Descuentos de Artículo Proveedor

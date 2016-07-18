@@ -180,17 +180,51 @@ namespace Modelos
             return false;
         }
         /// <summary>
+        /// Válida si es posible agregar descuento a artículo.
+        /// </summary>
+        /// <param name="p_mod_descuento">Descuento a validar</param>
+        /// <param name="p_error">Mensaje de error si agregar descuento no es válido</param>
+        /// <returns></returns>
+        public bool validarAgregarDescuento(ModeloDescuentoArticuloProveedor p_mod_descuento, out string p_error)
+        {
+            p_mod_descuento.asignarDatosArticuloProveedor(this);
+            p_error = "";
+            if(!p_mod_descuento.validar())
+            {
+                p_error = "Descuento no válido";
+                return false;
+            }
+            if (this.existeDescuento(p_mod_descuento))
+            {
+                p_error = "El descuento ya existe en el artículo "+this.codigoOriginal+", "+this.codigoArticuloProveedor+", "+this.descripcionArticuloProveedor;
+                return false;
+            }
+            
+            return true;
+        }
+        /// <summary>
+        /// Válida si es posible agregar descuento a artículo
+        /// </summary>
+        /// <param name="p_mod_descuento">Descuento a validar</param>
+        /// <returns></returns>
+        public bool validarAgregarDescuento(ModeloDescuentoArticuloProveedor p_mod_descuento)
+        {
+            string error;
+            return this.validarAgregarDescuento(p_mod_descuento, out error);
+        }
+        /// <summary>
         /// Agrega descuento a la lista de descuentos
         /// </summary>
         /// <param name="p_mod_descuento"></param>
         /// <returns></returns>
         public bool agregarDescuento(ModeloDescuentoArticuloProveedor p_mod_descuento)
         {
-            if (!p_mod_descuento.validar() || this.existeDescuento(p_mod_descuento))
+            p_mod_descuento.asignarDatosArticuloProveedor(this);
+            if (!this.validarAgregarDescuento(p_mod_descuento))
             {
                 return false;
             }
-
+            
             descuentos.Add(p_mod_descuento);
             return true;
         }
@@ -281,7 +315,7 @@ namespace Modelos
             lcl_mod_descuento = lcl_lst_descuentosVigentes[0];
             foreach (ModeloDescuentoArticuloProveedor d in lcl_lst_descuentosVigentes)
             {
-                if (lcl_mod_descuento.porcentaje > d.porcentaje)
+                if (lcl_mod_descuento.porcentaje < d.porcentaje)
                 {
                     lcl_mod_descuento = d;
                 }
