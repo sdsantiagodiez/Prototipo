@@ -40,14 +40,14 @@
             this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
             this.txtBoxComprobanteDesde = new System.Windows.Forms.TextBox();
             this.txtBoxComprobanteHasta = new System.Windows.Forms.TextBox();
-            this.txtBoxFechaDesde = new System.Windows.Forms.TextBox();
-            this.txtBoxFechaHasta = new System.Windows.Forms.TextBox();
             this.txtBoxCliente = new System.Windows.Forms.TextBox();
             this.cmbxTipoComprobante = new System.Windows.Forms.ComboBox();
             this.btnBuscaTipoComprobante = new System.Windows.Forms.Label();
             this.btnBuscaComprobanteDesde = new System.Windows.Forms.Label();
             this.btnBuscaComprobanteHasta = new System.Windows.Forms.Label();
             this.btnBuscaCliente = new System.Windows.Forms.Label();
+            this.txtBoxFechaDesde = new System.Windows.Forms.DateTimePicker();
+            this.txtBoxFechaHasta = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,14 +74,14 @@
             this.tableLayoutPanel1.Controls.Add(this.btnCancelar, 3, 7);
             this.tableLayoutPanel1.Controls.Add(this.txtBoxComprobanteDesde, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtBoxComprobanteHasta, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.txtBoxFechaDesde, 3, 4);
-            this.tableLayoutPanel1.Controls.Add(this.txtBoxFechaHasta, 3, 5);
             this.tableLayoutPanel1.Controls.Add(this.txtBoxCliente, 3, 6);
             this.tableLayoutPanel1.Controls.Add(this.cmbxTipoComprobante, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnBuscaTipoComprobante, 5, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnBuscaComprobanteDesde, 5, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnBuscaComprobanteHasta, 5, 3);
             this.tableLayoutPanel1.Controls.Add(this.btnBuscaCliente, 5, 6);
+            this.tableLayoutPanel1.Controls.Add(this.txtBoxFechaDesde, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.txtBoxFechaHasta, 3, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 61);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -208,22 +208,6 @@
             this.txtBoxComprobanteHasta.Size = new System.Drawing.Size(154, 20);
             this.txtBoxComprobanteHasta.TabIndex = 19;
             // 
-            // txtBoxFechaDesde
-            // 
-            this.txtBoxFechaDesde.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtBoxFechaDesde.Location = new System.Drawing.Point(175, 132);
-            this.txtBoxFechaDesde.Name = "txtBoxFechaDesde";
-            this.txtBoxFechaDesde.Size = new System.Drawing.Size(153, 20);
-            this.txtBoxFechaDesde.TabIndex = 20;
-            // 
-            // txtBoxFechaHasta
-            // 
-            this.txtBoxFechaHasta.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtBoxFechaHasta.Location = new System.Drawing.Point(175, 171);
-            this.txtBoxFechaHasta.Name = "txtBoxFechaHasta";
-            this.txtBoxFechaHasta.Size = new System.Drawing.Size(154, 20);
-            this.txtBoxFechaHasta.TabIndex = 21;
-            // 
             // txtBoxCliente
             // 
             this.txtBoxCliente.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -279,14 +263,30 @@
             this.btnBuscaCliente.TabIndex = 27;
             this.btnBuscaCliente.Click += new System.EventHandler(this.btnBuscaCliente_Click);
             // 
+            // txtBoxFechaDesde
+            // 
+            this.txtBoxFechaDesde.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtBoxFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.txtBoxFechaDesde.Location = new System.Drawing.Point(175, 132);
+            this.txtBoxFechaDesde.Name = "txtBoxFechaDesde";
+            this.txtBoxFechaDesde.Size = new System.Drawing.Size(154, 20);
+            this.txtBoxFechaDesde.TabIndex = 28;
+            // 
+            // txtBoxFechaHasta
+            // 
+            this.txtBoxFechaHasta.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtBoxFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.txtBoxFechaHasta.Location = new System.Drawing.Point(175, 171);
+            this.txtBoxFechaHasta.Name = "txtBoxFechaHasta";
+            this.txtBoxFechaHasta.Size = new System.Drawing.Size(154, 20);
+            this.txtBoxFechaHasta.TabIndex = 29;
+            // 
             // frmReimpresion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 370);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmReimpresion";
             this.Text = "Reimpresiones";
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -308,13 +308,13 @@
         private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.TextBox txtBoxComprobanteDesde;
         private System.Windows.Forms.TextBox txtBoxComprobanteHasta;
-        private System.Windows.Forms.TextBox txtBoxFechaDesde;
-        private System.Windows.Forms.TextBox txtBoxFechaHasta;
         private System.Windows.Forms.TextBox txtBoxCliente;
         private System.Windows.Forms.ComboBox cmbxTipoComprobante;
         internal System.Windows.Forms.Label btnBuscaTipoComprobante;
         internal System.Windows.Forms.Label btnBuscaComprobanteDesde;
         internal System.Windows.Forms.Label btnBuscaComprobanteHasta;
         internal System.Windows.Forms.Label btnBuscaCliente;
+        private System.Windows.Forms.DateTimePicker txtBoxFechaDesde;
+        private System.Windows.Forms.DateTimePicker txtBoxFechaHasta;
     }
 }
