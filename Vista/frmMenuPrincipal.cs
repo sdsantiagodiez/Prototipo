@@ -451,6 +451,17 @@ namespace Vista
             glb_form = new frmReimpresion();
             this.agregarFormulario(glb_form);
         }
+
+        private void backUpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ControladorBD lcl_con_BD = new ControladorBD();
+            if (lcl_con_BD.backUpDatabase())
+            { MessageBox.Show("El BackUp se realizó correctamente.","Back Up OK",MessageBoxButtons.OK,MessageBoxIcon.Information); }
+            else
+            { MessageBox.Show("Error al realizar el BackUp.", "Back Up Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+
+
+        }
     }
 
     

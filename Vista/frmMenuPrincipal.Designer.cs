@@ -90,6 +90,7 @@
             this.tlsbtnDevolucion = new System.Windows.Forms.ToolStripButton();
             this.toolStripbtnFacturacion = new System.Windows.Forms.ToolStripButton();
             this.toolStripbtnReportes = new System.Windows.Forms.ToolStripButton();
+            this.toolStripbtnReimpresion = new System.Windows.Forms.ToolStripButton();
             this.toolStripbtnABM = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmi_ABMentidades = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_ABMarticulos = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,7 +101,9 @@
             this.lblHoraLog = new MaterialSkin.Controls.MaterialLabel();
             this.lblNombreUsuario = new MaterialSkin.Controls.MaterialLabel();
             this.lblFechaLog = new MaterialSkin.Controls.MaterialLabel();
-            this.toolStripbtnReimpresion = new System.Windows.Forms.ToolStripButton();
+            this.baseDeDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tlsMenuRapido.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.tblLayoutPanelPrincipal.SuspendLayout();
@@ -329,6 +332,8 @@
             this.importarExportarDatosToolStripMenuItem,
             this.importarDatosToolStripMenuItem,
             this.toolStripMenuItem6,
+            this.baseDeDatosToolStripMenuItem,
+            this.toolStripSeparator2,
             this.opcionesToolStripMenuItem});
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
             this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(90, 26);
@@ -477,18 +482,18 @@
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.acercaDeToolStripMenuItem.Text = "Acerca de";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(125, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
             // 
             // manualToolStripMenuItem
             // 
             this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
-            this.manualToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.manualToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.manualToolStripMenuItem.Text = "Ver Ayuda";
             // 
             // tblLayoutPanelPrincipal
@@ -623,6 +628,17 @@
             this.toolStripbtnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolStripbtnReportes.Click += new System.EventHandler(this.toolStripbtnReportes_Click);
             // 
+            // toolStripbtnReimpresion
+            // 
+            this.toolStripbtnReimpresion.Image = ((System.Drawing.Image)(resources.GetObject("toolStripbtnReimpresion.Image")));
+            this.toolStripbtnReimpresion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripbtnReimpresion.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripbtnReimpresion.Name = "toolStripbtnReimpresion";
+            this.toolStripbtnReimpresion.Size = new System.Drawing.Size(191, 24);
+            this.toolStripbtnReimpresion.Text = "Reimpresión Comprobantes";
+            this.toolStripbtnReimpresion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolStripbtnReimpresion.Click += new System.EventHandler(this.toolStripbtnReimpresion_Click);
+            // 
             // toolStripbtnABM
             // 
             this.toolStripbtnABM.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -746,16 +762,25 @@
             this.lblFechaLog.TabIndex = 31;
             this.lblFechaLog.Text = "23/10/2016";
             // 
-            // toolStripbtnReimpresion
+            // baseDeDatosToolStripMenuItem
             // 
-            this.toolStripbtnReimpresion.Image = ((System.Drawing.Image)(resources.GetObject("toolStripbtnReimpresion.Image")));
-            this.toolStripbtnReimpresion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripbtnReimpresion.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripbtnReimpresion.Name = "toolStripbtnReimpresion";
-            this.toolStripbtnReimpresion.Size = new System.Drawing.Size(191, 24);
-            this.toolStripbtnReimpresion.Text = "Reimpresión Comprobantes";
-            this.toolStripbtnReimpresion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolStripbtnReimpresion.Click += new System.EventHandler(this.toolStripbtnReimpresion_Click);
+            this.baseDeDatosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.backUpToolStripMenuItem});
+            this.baseDeDatosToolStripMenuItem.Name = "baseDeDatosToolStripMenuItem";
+            this.baseDeDatosToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.baseDeDatosToolStripMenuItem.Text = "Base de Datos";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(150, 6);
+            // 
+            // backUpToolStripMenuItem
+            // 
+            this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
+            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.backUpToolStripMenuItem.Text = "Back Up";
+            this.backUpToolStripMenuItem.Click += new System.EventHandler(this.backUpToolStripMenuItem_Click);
             // 
             // frmMenuPrincipal
             // 
@@ -857,5 +882,8 @@
         private System.Windows.Forms.ToolStripMenuItem preciosParaVentaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preciosParaCompraToolStripMenuItem;
         public System.Windows.Forms.ToolStripButton toolStripbtnReimpresion;
+        private System.Windows.Forms.ToolStripMenuItem baseDeDatosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem backUpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.IO;
+using System.Data;
 namespace Datos
 {
     public class Conexion
@@ -66,6 +67,30 @@ namespace Datos
             SqlCommand comando = Conexion.crearComando();
             comando.CommandText = p_query;
             return comando;
+        }
+
+        public static bool backUpDatabase()
+        {
+            bool resp = false;
+                        
+            string endPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            endPath = endPath + @"\Datos\DBPrueba-" + DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day + DateTime.Now.Hour +
+            DateTime.Now.Minute + DateTime.Now.Second + ".bak";
+            SqlConnection ConexionSQL = Conexion.crearConexion();
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+            comando.CommandText = "backup database [DBPrueba] to disk='" + endPath +
+                "' ";//with init, stats=10 ";
+            comando.Connection.Open();
+            if (comando.ExecuteNonQuery() == -1)
+            { resp = true; }
+            
+            comando.Connection.Close();
+            ConexionSQL.Dispose();
+
+            return resp;
         }
     }
 }
