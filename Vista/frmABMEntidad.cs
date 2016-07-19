@@ -104,9 +104,9 @@ namespace Vista
             this.tblLayoutPanelPrincipal.Width = ventanaAncho - 20; //un margen derecho de 20 para que se vea scrollbar
             this.pnlBase.Width = ventanaAncho - 3;  //un márgen derecho de 3
             this.pnlBase.Height = ventanaAlto - 60; //un márgen arriba para que se vea título
-            if (pnlBase.Height < 700)
+            if (pnlBase.Height < 820)
             {
-                this.tblLayoutPanelPrincipal.Height = 700;  //Mínimo
+                this.tblLayoutPanelPrincipal.Height = 820;  //Mínimo
                 
                 this.pnlBase.AutoScroll = true;
                 ScrollBar vScrollBar = new VScrollBar();
