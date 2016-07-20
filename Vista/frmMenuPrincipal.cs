@@ -246,6 +246,8 @@ namespace Vista
 
             (glb_form as frmPedidoCierre).AgregarLineaPedido += evento_agregarFormEmergente;
             (glb_form as frmPedidoCierre).BuscarCliente += evento_agregarFormEmergente;
+            (glb_form as frmPedidoCierre).MostrarDetallesArticulo += evento_agregarFormEmergente;
+
         }
 
         private void toolStripbtnPedidoProveedor_Click(object sender, EventArgs e)
@@ -270,6 +272,7 @@ namespace Vista
             this.agregarFormulario(glb_form);
 
             (glb_form as frmPedidoCierre).AgregarLineaPedido += evento_agregarFormEmergente;
+            (glb_form as frmPedidoCierre).MostrarDetallesArticulo += evento_agregarFormEmergente;
         }
 
         private void tlsbtnDevolucion_Click(object sender, EventArgs e)

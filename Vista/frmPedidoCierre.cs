@@ -23,6 +23,7 @@ namespace Vista
         #region Atributos
         public event EventHandler AgregarLineaPedido;
         public event EventHandler BuscarCliente;
+        public event EventHandler MostrarDetallesArticulo;
         ModeloPedido glb_mod_pedidoOriginalDevolucion;
         List<TipoDocumento> glb_lst_tiposDocumentos;
         ControladorPedido controlador;
@@ -1463,9 +1464,9 @@ namespace Vista
             }
 
             int i = Convert.ToInt32(this.dgvArticulosVenta.CurrentRow.Cells["indice"].Value);
-            
-            frmABMArticulo lcl_frm_articuloProveedor = new frmABMArticulo(controlador.pedidoActual.lineasPedido[i].articulo,frmABMArticulo.ModoFormularioVisualizarEntidad);
-            lcl_frm_articuloProveedor.ShowDialog();
+
+            frmABMArticulo lcl_frm_articuloProveedor = new frmABMArticulo(controlador.pedidoActual.lineasPedido[i].articulo, frmABMArticulo.ModoFormularioVisualizarEntidad);
+            MostrarDetallesArticulo(lcl_frm_articuloProveedor, e);
         }
         #endregion
         #endregion
