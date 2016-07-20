@@ -215,7 +215,7 @@ namespace Vista
                 respuesta = false;
             } 
             //Verifico la cantidad
-            else if (!LibreriaClasesCompartidas.Validar.validarNumerico(this.nmrcUpDownCantidad.Value.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.EnteroPositivoSinCero))
+            else if (!LibreriaClasesCompartidas.Validar.validarInputNumerico(this.nmrcUpDownCantidad.Value.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.EnteroPositivoSinCero))
             {
                 mensajeError = "La cantidad de articulos debe ser un número mayor a cero.";
                 respuesta = false;
@@ -645,7 +645,7 @@ namespace Vista
 
         private bool txtDescripcionParcial_Leave()
         {
-            bool respuesta = Validar.validarInput(txtDescripcionParcial.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
+            bool respuesta = Validar.validarInputNoNumerico(txtDescripcionParcial.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
             if (!respuesta)
             {
                 epDescripcionParcial.Icon = Properties.Resources.error;

@@ -168,7 +168,7 @@ namespace Vista
 
         private void txtBoxMonto_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarNumerico(txtBoxMonto.Text.ToString(),Constantes.Numericos.DecimalPositivo);
+            bool respuesta = Validar.validarInputNumerico(txtBoxMonto.Text.ToString(),Constantes.Numericos.DecimalPositivo);
             if (!respuesta)
             {
                 epMonto.Icon = Properties.Resources.error;

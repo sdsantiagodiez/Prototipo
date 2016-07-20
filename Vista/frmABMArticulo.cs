@@ -203,7 +203,7 @@ namespace Vista
         #region Validación
         private void txtBoxCodigoOriginal_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxCodigoOriginal.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoOriginal.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
             if (!respuesta)
             {
                 epCodigoOriginal.Icon = Properties.Resources.error;
@@ -219,7 +219,7 @@ namespace Vista
 
         private void txtBoxDescripcion_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxDescripcion.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxDescripcion.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
             if (!respuesta)
             {
                 epDescripcion.Icon = Properties.Resources.error;
@@ -234,7 +234,7 @@ namespace Vista
 
         private void txtBoxModelo_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxModelo.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxModelo.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo);
             if (!respuesta)
             {
                 epModelo.Icon = Properties.Resources.error;

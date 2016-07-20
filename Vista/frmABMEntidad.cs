@@ -511,7 +511,7 @@ namespace Vista
         
         private void cargarDatosControlEnEntidad(ref ModeloEntidad p_mod_entidad)
         {
-            if (LibreriaClasesCompartidas.Validar.validarNumerico(txtBoxCodigoEntidad.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Entero))
+            if (LibreriaClasesCompartidas.Validar.validarInputNumerico(txtBoxCodigoEntidad.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Entero))
             {
                 p_mod_entidad.codigo = Convert.ToInt32(txtBoxCodigoEntidad.Text);
             }
@@ -1359,5 +1359,217 @@ namespace Vista
         }
 
         #endregion           
+
+        #region Validaciones
+        private void txtBoxCodigoEntidad_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoEntidad.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.CodigoEntidad);
+            if (!respuesta)
+            {
+                epCodigoEntidad.Icon = Properties.Resources.error;
+                epCodigoEntidad.SetError(txtBoxCodigoEntidad, "Código de Entidad no válido");
+            }
+            else
+            {
+                epCodigoEntidad.Icon = Properties.Resources.success;
+                epCodigoEntidad.SetError(txtBoxCodigoEntidad, "OK");
+            }
+        }
+
+        private void txtBoxCUIT_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCUIT.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Cuit);
+            if (!respuesta)
+            {
+                epCUIT.Icon = Properties.Resources.error;
+                epCUIT.SetError(txtBoxCUIT, "CUIT no válido");
+            }
+            else
+            {
+                epCUIT.Icon = Properties.Resources.success;
+                epCUIT.SetError(txtBoxCUIT, "OK");
+            }
+        }
+
+        private void txtBoxDNI_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxDNI.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
+            if (!respuesta)
+            {
+                epDNI.Icon = Properties.Resources.error;
+                epDNI.SetError(txtBoxDNI, "DNI no válido");
+            }
+            else
+            {
+                epDNI.Icon = Properties.Resources.success;
+                epDNI.SetError(txtBoxDNI, "OK");
+            }
+        }
+
+        private void txtBoxNombre_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxNombre.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Nombre);
+            if (!respuesta)
+            {
+                epNombre.Icon = Properties.Resources.error;
+                epNombre.SetError(txtBoxNombre, "Nombre no válido");
+            }
+            else
+            {
+                epNombre.Icon = Properties.Resources.success;
+                epNombre.SetError(txtBoxNombre, "OK");
+            }
+        }
+
+        private void txtBoxApellido_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxApellido.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Apellido);
+            if (!respuesta)
+            {
+                epApellido.Icon = Properties.Resources.error;
+                epApellido.SetError(txtBoxApellido, "Apellido no válido");
+            }
+            else
+            {
+                epApellido.Icon = Properties.Resources.success;
+                epApellido.SetError(txtBoxApellido, "OK");
+            }
+        }
+
+        private void txtBoxRazonSocial_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
+            if (!respuesta)
+            {
+                epRazonSocial.Icon = Properties.Resources.error;
+                epRazonSocial.SetError(txtBoxRazonSocial, "Razón Social no válida");
+            }
+            else
+            {
+                epRazonSocial.Icon = Properties.Resources.success;
+                epRazonSocial.SetError(txtBoxRazonSocial, "OK");
+            }
+        }
+
+        private void txtBoxCalle_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCalle.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Calle);
+            if (!respuesta)
+            {
+                epCalle.Icon = Properties.Resources.error;
+                epCalle.SetError(txtBoxCalle, "Calle no válida");
+            }
+            else
+            {
+                epCalle.Icon = Properties.Resources.success;
+                epCalle.SetError(txtBoxCalle, "OK");
+            }
+        }
+
+        private void txtBoxNumeroDomicilio_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxNumeroDomicilio.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio);
+            if (!respuesta)
+            {
+                epNumeroDomicilio.Icon = Properties.Resources.error;
+                epNumeroDomicilio.SetError(txtBoxNumeroDomicilio, "Número de Domicilio no válido");
+            }
+            else
+            {
+                epNumeroDomicilio.Icon = Properties.Resources.success;
+                epNumeroDomicilio.SetError(txtBoxNumeroDomicilio, "OK");
+            }
+        }
+
+        private void txtBoxPiso_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxPiso.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Piso);
+            if (!respuesta)
+            {
+                epPiso.Icon = Properties.Resources.error;
+                epPiso.SetError(txtBoxPiso, "Piso no válido");
+            }
+            else
+            {
+                epPiso.Icon = Properties.Resources.success;
+                epPiso.SetError(txtBoxPiso, "OK");
+            }
+        }
+
+        private void txtBoxDepartamento_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxDepartamento.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Departamento);
+            if (!respuesta)
+            {
+                epDepartamento.Icon = Properties.Resources.error;
+                epDepartamento.SetError(txtBoxDepartamento, "Departamento no válido");
+            }
+            else
+            {
+                epDepartamento.Icon = Properties.Resources.success;
+                epDepartamento.SetError(txtBoxDepartamento, "OK");
+            }
+        }
+
+        private void txtBoxCodigoPostal_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoPostal.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.CodigoPostal);
+            if (!respuesta)
+            {
+                epCodigoPostal.Icon = Properties.Resources.error;
+                epCodigoPostal.SetError(txtBoxCodigoPostal, "Código Postal no válido");
+            }
+            else
+            {
+                epCodigoPostal.Icon = Properties.Resources.success;
+                epCodigoPostal.SetError(txtBoxCodigoPostal, "OK");
+            }
+        }
+
+        private void txtBoxCiudad_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCiudad.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Ciudad);
+            if (!respuesta)
+            {
+                epCiudad.Icon = Properties.Resources.error;
+                epCiudad.SetError(txtBoxCiudad, "Ciudad no válida");
+            }
+            else
+            {
+                epCiudad.Icon = Properties.Resources.success;
+                epCiudad.SetError(txtBoxCiudad, "OK");
+            }
+        }
+
+        private void txtBoxMail_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxMail.Text.ToString(), Constantes.ParametrosBusqueda.Mails.Mail);
+            if (!respuesta)
+            {
+                epMail.Icon = Properties.Resources.error;
+                epMail.SetError(txtBoxMail, "Mail no válido");
+            }
+            else
+            {
+                epMail.Icon = Properties.Resources.success;
+                epMail.SetError(txtBoxMail, "OK");
+            }
+        }
+
+        private void txtBoxTelefono_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxTelefono.Text.ToString(), Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono);
+            if (!respuesta)
+            {
+                epNumeroTelefono.Icon = Properties.Resources.error;
+                epNumeroTelefono.SetError(txtBoxTelefono, "Número de Teléfono no válido");
+            }
+            else
+            {
+                epNumeroTelefono.Icon = Properties.Resources.success;
+                epNumeroTelefono.SetError(txtBoxTelefono, "OK");
+            }
+        }
+        #endregion
     }
 }

@@ -151,6 +151,10 @@ namespace LibreriaClasesCompartidas
                 public const string NumeroTelefono = "numeroTelefono";
                 public const string TipoTelefono = "tipoTelefono";
             }
+            public static class Descuentos
+            {
+                public const string Descripcion = "descripcion";
+            }
         }
         
         public static class TiposEntidad

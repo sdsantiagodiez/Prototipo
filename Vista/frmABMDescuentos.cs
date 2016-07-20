@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using Controladores;
+using LibreriaClasesCompartidas;
 
 namespace Vista
 {
@@ -846,6 +847,98 @@ namespace Vista
         }
         #endregion
 
+        #region Validaciones
+        private void txtBoxCodigoOriginal_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoOriginal.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
+            if (!respuesta)
+            {
+                epCodigoOriginal.Icon = Properties.Resources.error;
+                epCodigoOriginal.SetError(txtBoxCodigoOriginal, "Codigo Orignal no válido");
+            }
+            else
+            {
+                epCodigoOriginal.Icon = Properties.Resources.success;
+                epCodigoOriginal.SetError(txtBoxCodigoOriginal, "OK");
+            }
+        }
+
+        #endregion
+
+        private void txtBoxDescripcion_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxDescripcion.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
+            if (!respuesta)
+            {
+                epDescripcionArticulo.Icon = Properties.Resources.error;
+                epDescripcionArticulo.SetError(txtBoxDescripcion, "Descripción no válida");
+            }
+            else
+            {
+                epDescripcionArticulo.Icon = Properties.Resources.success;
+                epDescripcionArticulo.SetError(txtBoxDescripcion, "OK");
+            }
+        }
+
+        private void txtBoxCodigoArticuloProveedor_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoArticuloProveedor.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor);
+            if (!respuesta)
+            {
+                epCodigoArticuloProveedor.Icon = Properties.Resources.error;
+                epCodigoArticuloProveedor.SetError(txtBoxCodigoArticuloProveedor, "Codigo Articulo no válido");
+            }
+            else
+            {
+                epCodigoArticuloProveedor.Icon = Properties.Resources.success;
+                epCodigoArticuloProveedor.SetError(txtBoxCodigoArticuloProveedor, "OK");
+            }
+        }
+
+        private void txtBoxModelo_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxModelo.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo);
+            if (!respuesta)
+            {
+                epModelo.Icon = Properties.Resources.error;
+                epModelo.SetError(txtBoxModelo, "Modelo no válido");
+            }
+            else
+            {
+                epModelo.Icon = Properties.Resources.success;
+                epModelo.SetError(txtBoxModelo, "OK");
+            }
+        }
+
+        private void txtBoxPorcentajeDescuento_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNumerico(txtBoxPorcentajeDescuento.Text.ToString(), Constantes.Numericos.Porcentual);
+            if (!respuesta)
+            {
+                epPorcentaje.Icon = Properties.Resources.error;
+                epPorcentaje.SetError(txtBoxPorcentajeDescuento, "Porcentaje no válido");
+            }
+            else
+            {
+                epPorcentaje.Icon = Properties.Resources.success;
+                epPorcentaje.SetError(txtBoxPorcentajeDescuento, "OK");
+            }
+        }
+
+        private void txtBoxDescripcionDescuento_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxDescripcionDescuento.Text.ToString(), Constantes.ParametrosBusqueda.Descuentos.Descripcion);
+            if (!respuesta)
+            {
+                epPorcentaje.Icon = Properties.Resources.error;
+                epPorcentaje.SetError(txtBoxDescripcionDescuento, "Descripcion no válida");
+            }
+            else
+            {
+                epPorcentaje.Icon = Properties.Resources.success;
+                epPorcentaje.SetError(txtBoxDescripcionDescuento, "OK");
+            }
+        }
         #endregion
     }
 }

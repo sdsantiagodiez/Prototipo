@@ -1473,7 +1473,7 @@ namespace Vista
         #region Validaciones
         private void txtBoxNumeroDocumento_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxNumeroDocumento.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxNumeroDocumento.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
             if (!respuesta)
             {
                 epNumeroDocumento.Icon = Properties.Resources.error;
@@ -1488,7 +1488,7 @@ namespace Vista
 
         private void txtBoxApellido_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxApellido.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Apellido);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxApellido.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Apellido);
             if (!respuesta)
             {
                 epApellido.Icon = Properties.Resources.error;
@@ -1503,7 +1503,7 @@ namespace Vista
 
         private void txtBoxNombre_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxNombre.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Nombre);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxNombre.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Nombre);
             if (!respuesta)
             {
                 epNombre.Icon = Properties.Resources.error;
@@ -1518,7 +1518,7 @@ namespace Vista
 
         private void txtBoxRazonSocial_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
             if (!respuesta)
             {
                 epRazonSocial.Icon = Properties.Resources.error;
@@ -1533,7 +1533,7 @@ namespace Vista
 
         private void txtBoxNumeroPedido_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarNumerico(txtBoxNumeroPedido.Text.ToString(),Constantes.Numericos.EnteroPositivoSinCero);
+            bool respuesta = Validar.validarInputNumerico(txtBoxNumeroPedido.Text.ToString(),Constantes.Numericos.EnteroPositivoSinCero);
             if (!respuesta)
             {
                 epNumeroPedido.Icon = Properties.Resources.error;
@@ -1548,7 +1548,7 @@ namespace Vista
 
         private void txtBoxCAE_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxCAE.Text.ToString(), Constantes.ParametrosBusqueda.Pedidos.CAE);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCAE.Text.ToString(), Constantes.ParametrosBusqueda.Pedidos.CAE);
             if (!respuesta)
             {
                 epCAE.Icon = Properties.Resources.error;
@@ -1563,7 +1563,7 @@ namespace Vista
 
         private void txtBoxCalle_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxCalle.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Calle);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCalle.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Calle);
             if (!respuesta)
             {
                 epCalle.Icon = Properties.Resources.error;
@@ -1578,7 +1578,7 @@ namespace Vista
 
         private void txtBoxNumeroDomicilio_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxNumeroDomicilio.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxNumeroDomicilio.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio);
             if (!respuesta)
             {
                 epNumeroDomicilio.Icon = Properties.Resources.error;
@@ -1593,7 +1593,7 @@ namespace Vista
 
         private void txtBoxPiso_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxPiso.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Piso);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxPiso.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Piso);
             if (!respuesta)
             {
                 epPiso.Icon = Properties.Resources.error;
@@ -1608,7 +1608,7 @@ namespace Vista
 
         private void txtBoxDepartamento_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxDepartamento.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Departamento);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxDepartamento.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Departamento);
             if (!respuesta)
             {
                 epDepartamento.Icon = Properties.Resources.error;
@@ -1623,7 +1623,7 @@ namespace Vista
 
         private void txtBoxCiudad_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxCiudad.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Ciudad);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCiudad.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Ciudad);
             if (!respuesta)
             {
                 epCiudad.Icon = Properties.Resources.error;
@@ -1638,7 +1638,7 @@ namespace Vista
 
         private void txtBoxCodigoPostal_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxCodigoPostal.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.CodigoPostal);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoPostal.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.CodigoPostal);
             if (!respuesta)
             {
                 epCodigoPostal.Icon = Properties.Resources.error;
@@ -1653,7 +1653,7 @@ namespace Vista
 
         private void txtBoxMail_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxMail.Text.ToString(), Constantes.ParametrosBusqueda.Mails.Mail);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxMail.Text.ToString(), Constantes.ParametrosBusqueda.Mails.Mail);
             if (!respuesta)
             {
                 epMail.Icon = Properties.Resources.error;
@@ -1668,7 +1668,7 @@ namespace Vista
 
         private void txtBoxTelefono_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxTelefono.Text.ToString(), Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxTelefono.Text.ToString(), Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono);
             if (!respuesta)
             {
                 epNumeroTelefono.Icon = Properties.Resources.error;
@@ -1683,7 +1683,7 @@ namespace Vista
 
         private void txtBoxIVAPorcentaje_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxIVAPorcentaje.Text.ToString(), Constantes.Numericos.Porcentual);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxIVAPorcentaje.Text.ToString(), Constantes.Numericos.Porcentual);
             if (!respuesta)
             {
                 epIvaPorcentaje.Icon = Properties.Resources.error;
@@ -1698,7 +1698,7 @@ namespace Vista
 
         private void txtBoxIVAMonto_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxIVAMonto.Text.ToString(), Constantes.Numericos.EnteroPositivo);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxIVAMonto.Text.ToString(), Constantes.Numericos.EnteroPositivo);
             if (!respuesta)
             {
                 epIvaMonto.Icon = Properties.Resources.error;

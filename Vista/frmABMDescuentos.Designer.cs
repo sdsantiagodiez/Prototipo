@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlBase = new System.Windows.Forms.Panel();
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxResultadoBusqueda = new System.Windows.Forms.GroupBox();
@@ -58,6 +59,12 @@
             this.dtpFechaDesdeDescuento = new System.Windows.Forms.DateTimePicker();
             this.txtBoxDescripcionDescuento = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.btnGuardarDescuento = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.epCodigoOriginal = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epDescripcionArticulo = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epCodigoArticuloProveedor = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epModelo = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epPorcentaje = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epDescripcionDescuento = new System.Windows.Forms.ErrorProvider(this.components);
             this.pnlBase.SuspendLayout();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.grpBoxDatosBusqueda.SuspendLayout();
@@ -65,6 +72,12 @@
             this.tblLayoutPanelParametrosBusqueda.SuspendLayout();
             this.grpBoxDescuento.SuspendLayout();
             this.tblLayoutPanelParametrosDescuento.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoOriginal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epDescripcionArticulo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoArticuloProveedor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epModelo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epPorcentaje)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epDescripcionDescuento)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlBase
@@ -202,6 +215,7 @@
             this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(122, 23);
             this.txtBoxCodigoOriginal.TabIndex = 7;
             this.txtBoxCodigoOriginal.UseSystemPasswordChar = false;
+            this.txtBoxCodigoOriginal.Leave += new System.EventHandler(this.txtBoxCodigoOriginal_Leave);
             // 
             // txtBoxModelo
             // 
@@ -219,6 +233,7 @@
             this.txtBoxModelo.Size = new System.Drawing.Size(122, 23);
             this.txtBoxModelo.TabIndex = 9;
             this.txtBoxModelo.UseSystemPasswordChar = false;
+            this.txtBoxModelo.Leave += new System.EventHandler(this.txtBoxModelo_Leave);
             // 
             // btnBuscar
             // 
@@ -288,6 +303,7 @@
             this.txtBoxDescripcion.Size = new System.Drawing.Size(122, 23);
             this.txtBoxDescripcion.TabIndex = 8;
             this.txtBoxDescripcion.UseSystemPasswordChar = false;
+            this.txtBoxDescripcion.Leave += new System.EventHandler(this.txtBoxDescripcion_Leave);
             // 
             // lblCodigoArticuloProveedor
             // 
@@ -320,6 +336,7 @@
             this.txtBoxCodigoArticuloProveedor.Size = new System.Drawing.Size(122, 23);
             this.txtBoxCodigoArticuloProveedor.TabIndex = 6;
             this.txtBoxCodigoArticuloProveedor.UseSystemPasswordChar = false;
+            this.txtBoxCodigoArticuloProveedor.Leave += new System.EventHandler(this.txtBoxCodigoArticuloProveedor_Leave);
             // 
             // chckBoxDescuentosActivos
             // 
@@ -392,6 +409,7 @@
             this.txtBoxPorcentajeDescuento.Size = new System.Drawing.Size(131, 23);
             this.txtBoxPorcentajeDescuento.TabIndex = 5;
             this.txtBoxPorcentajeDescuento.UseSystemPasswordChar = false;
+            this.txtBoxPorcentajeDescuento.Leave += new System.EventHandler(this.txtBoxPorcentajeDescuento_Leave);
             // 
             // lblFechaHastaDescuento
             // 
@@ -494,6 +512,7 @@
             this.txtBoxDescripcionDescuento.Size = new System.Drawing.Size(132, 23);
             this.txtBoxDescripcionDescuento.TabIndex = 4;
             this.txtBoxDescripcionDescuento.UseSystemPasswordChar = false;
+            this.txtBoxDescripcionDescuento.Leave += new System.EventHandler(this.txtBoxDescripcionDescuento_Leave);
             // 
             // btnGuardarDescuento
             // 
@@ -508,6 +527,30 @@
             this.btnGuardarDescuento.Text = "Agregar Descuento";
             this.btnGuardarDescuento.UseVisualStyleBackColor = true;
             this.btnGuardarDescuento.Click += new System.EventHandler(this.btnGuardarDescuento_Click);
+            // 
+            // epCodigoOriginal
+            // 
+            this.epCodigoOriginal.ContainerControl = this;
+            // 
+            // epDescripcionArticulo
+            // 
+            this.epDescripcionArticulo.ContainerControl = this;
+            // 
+            // epCodigoArticuloProveedor
+            // 
+            this.epCodigoArticuloProveedor.ContainerControl = this;
+            // 
+            // epModelo
+            // 
+            this.epModelo.ContainerControl = this;
+            // 
+            // epPorcentaje
+            // 
+            this.epPorcentaje.ContainerControl = this;
+            // 
+            // epDescripcionDescuento
+            // 
+            this.epDescripcionDescuento.ContainerControl = this;
             // 
             // frmABMDescuentos
             // 
@@ -526,6 +569,12 @@
             this.grpBoxDescuento.ResumeLayout(false);
             this.tblLayoutPanelParametrosDescuento.ResumeLayout(false);
             this.tblLayoutPanelParametrosDescuento.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoOriginal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epDescripcionArticulo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCodigoArticuloProveedor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epModelo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epPorcentaje)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epDescripcionDescuento)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -562,5 +611,11 @@
         private System.Windows.Forms.DateTimePicker dtpFechaDesdeDescuento;
         private System.Windows.Forms.DateTimePicker dtpFechaHastaDescuento;
         private MaterialSkin.Controls.MaterialRaisedButton btnGuardarDescuento;
+        private System.Windows.Forms.ErrorProvider epCodigoOriginal;
+        private System.Windows.Forms.ErrorProvider epDescripcionArticulo;
+        private System.Windows.Forms.ErrorProvider epCodigoArticuloProveedor;
+        private System.Windows.Forms.ErrorProvider epModelo;
+        private System.Windows.Forms.ErrorProvider epPorcentaje;
+        private System.Windows.Forms.ErrorProvider epDescripcionDescuento;
     }
 }

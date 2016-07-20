@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using Controladores;
+using LibreriaClasesCompartidas;
 
 
 namespace Vista
@@ -233,6 +234,59 @@ namespace Vista
             txtBoxConfirmarContraseña.UseSystemPasswordChar = txtBoxContraseña.UseSystemPasswordChar = !(sender as CheckBox).Checked;
         }
         #endregion
+
+        private void txtBoxUsuario_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxUsuario.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario);
+            if (!respuesta)
+            {
+                epUsuario.Icon = Properties.Resources.error;
+                epUsuario.SetError(txtBoxUsuario, "Usuario no válido");
+            }
+            else
+            {
+                epUsuario.Icon = Properties.Resources.success;
+                epUsuario.SetError(txtBoxUsuario, "OK");
+            }
+        }
+
+        private void txtBoxContraseña_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxContraseña.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
+            if (!respuesta)
+            {
+                epContraseña.Icon = Properties.Resources.error;
+                epContraseña.SetError(txtBoxContraseña, "Contraseña no válida");
+            }
+            else
+            {
+                epContraseña.Icon = Properties.Resources.success;
+                epContraseña.SetError(txtBoxContraseña, "OK");
+            }
+        }
+
+        private void txtBoxConfirmarContraseña_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxConfirmarContraseña.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
+            if (!respuesta)
+            {
+                epContraseña.Icon = Properties.Resources.error;
+                epContraseña.SetError(txtBoxConfirmarContraseña, "Contraseña no válida");
+            }
+            else
+            {
+                if (string.Equals(txtBoxContraseña.Text.ToString(), txtBoxConfirmarContraseña.Text.ToString()))
+                {
+                    epContraseña.Icon = Properties.Resources.success;
+                    epContraseña.SetError(txtBoxConfirmarContraseña, "OK");
+                }
+                else
+                {
+                    epContraseña.Icon = Properties.Resources.error;
+                    epContraseña.SetError(txtBoxConfirmarContraseña, "Las contraseñas no coinciden");
+                }
+            }
+        }
         
     }
 }

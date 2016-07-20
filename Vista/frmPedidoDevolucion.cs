@@ -674,7 +674,7 @@ namespace Vista
 
         private bool txtCAE_Leave()
         {
-            bool respuesta = Validar.validarInput(txtCAE.Text.ToString(), Constantes.ParametrosBusqueda.Pedidos.CAE);
+            bool respuesta = Validar.validarInputNoNumerico(txtCAE.Text.ToString(), Constantes.ParametrosBusqueda.Pedidos.CAE);
             if (!respuesta)
             {
                 epCAE.Icon = Properties.Resources.error;

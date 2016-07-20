@@ -14,7 +14,7 @@ namespace LibreriaClasesCompartidas
         /* puede sea necesario pasarlos a unicode, octal, u otros                                        */
         /*************************************************************************************************/
 
-        public static bool validarNumerico(string p_numero, string p_opcion)
+        public static bool validarInputNumerico(string p_numero, string p_opcion)
         {
             bool resultado;
             decimal numeroDecimal;
@@ -120,7 +120,7 @@ namespace LibreriaClasesCompartidas
             return resultado;
         }
 
-        public static bool validarInput(string p_string, string p_opcion)
+        public static bool validarInputNoNumerico(string p_string, string p_opcion)
         {
             string especial = "";
             Regex lcl_patron = new Regex(@"^.*$");

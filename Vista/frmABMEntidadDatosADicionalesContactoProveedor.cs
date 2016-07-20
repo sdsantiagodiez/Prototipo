@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
+using LibreriaClasesCompartidas;
 
 
 namespace Vista
@@ -74,7 +75,7 @@ namespace Vista
         #region Controles -> Modelo
         private void cargarDatosEnModeloProveedor(ref ModeloProveedor lcl_mod_proveedor)
         {
-            if (LibreriaClasesCompartidas.Validar.validarNumerico(txtBoxCodigo.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Entero))
+            if (LibreriaClasesCompartidas.Validar.validarInputNumerico(txtBoxCodigo.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Entero))
             {
                 lcl_mod_proveedor.codigo = Convert.ToInt32(txtBoxCodigo.Text);
             }
@@ -151,6 +152,97 @@ namespace Vista
 
         #endregion
 
+        #region Validaciones
+        private void txtBoxCodigo_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigo.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad);
+            if (!respuesta)
+            {
+                epCodigo.Icon = Properties.Resources.error;
+                epCodigo.SetError(txtBoxCodigo, "Código no válido");
+            }
+            else
+            {
+                epCodigo.Icon = Properties.Resources.success;
+                epCodigo.SetError(txtBoxCodigo, "OK");
+            }
+        }
+
+        private void txtBoxCUIT_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCUIT.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit);
+            if (!respuesta)
+            {
+                epCUIT.Icon = Properties.Resources.error;
+                epCUIT.SetError(txtBoxCUIT, "CUIT no válido");
+            }
+            else
+            {
+                epCUIT.Icon = Properties.Resources.success;
+                epCUIT.SetError(txtBoxCUIT, "OK");
+            }
+        }
+
+        private void txtBoxRazonSocial_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
+            if (!respuesta)
+            {
+                epRazonSocial.Icon = Properties.Resources.error;
+                epRazonSocial.SetError(txtBoxRazonSocial, "Razón Social no válida");
+            }
+            else
+            {
+                epRazonSocial.Icon = Properties.Resources.success;
+                epRazonSocial.SetError(txtBoxRazonSocial, "OK");
+            }
+        }
+
+        private void txtBoxCodigoSeleccionado_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoSeleccionado.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad);
+            if (!respuesta)
+            {
+                epCodigoSeleccionado.Icon = Properties.Resources.error;
+                epCodigoSeleccionado.SetError(txtBoxCodigoSeleccionado, "Código no válido");
+            }
+            else
+            {
+                epCodigoSeleccionado.Icon = Properties.Resources.success;
+                epCodigoSeleccionado.SetError(txtBoxCodigoSeleccionado, "OK");
+            }
+        }
+
+        private void txtBoxCUITSeleccionado_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCUITSeleccionado.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit);
+            if (!respuesta)
+            {
+                epCUITSeleccionado.Icon = Properties.Resources.error;
+                epCUITSeleccionado.SetError(txtBoxCUITSeleccionado, "CUIT no válido");
+            }
+            else
+            {
+                epCUITSeleccionado.Icon = Properties.Resources.success;
+                epCUITSeleccionado.SetError(txtBoxCUITSeleccionado, "OK");
+            }
+        }
+
+        private void txtBoxRazonSocialSeleccionado_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocialSeleccionado.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
+            if (!respuesta)
+            {
+                epRazonSocialSeleccionado.Icon = Properties.Resources.error;
+                epRazonSocialSeleccionado.SetError(txtBoxRazonSocialSeleccionado, "Razón Social no válida");
+            }
+            else
+            {
+                epRazonSocialSeleccionado.Icon = Properties.Resources.success;
+                epRazonSocialSeleccionado.SetError(txtBoxRazonSocialSeleccionado, "OK");
+            }
+        }
+#endregion
        
     }
 }

@@ -340,7 +340,7 @@ namespace Vista
 
         private void cargarDatosProveedorEnModeloArticuloProveedor(ref ModeloArticuloProveedores p_mod_articuloProveedor)
         {
-            if (LibreriaClasesCompartidas.Validar.validarNumerico(txtBoxCodigoProveedor.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Entero))
+            if (LibreriaClasesCompartidas.Validar.validarInputNumerico(txtBoxCodigoProveedor.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Entero))
             {
                 p_mod_articuloProveedor.codigoEntidad = Convert.ToInt32(txtBoxCodigoProveedor.Text);
             }
@@ -359,7 +359,7 @@ namespace Vista
             p_mod_articuloProveedor.stockActual = Convert.ToInt32(nmrcUpDownStockActual.Value);
             p_mod_articuloProveedor.stockMinimo = Convert.ToInt32(nmrcUpDownStockMinimo.Value);
             p_mod_articuloProveedor.activo = chbxActivo.Checked;
-            if (LibreriaClasesCompartidas.Validar.validarNumerico(txtBoxPrecioCompra.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Decimal))
+            if (LibreriaClasesCompartidas.Validar.validarInputNumerico(txtBoxPrecioCompra.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Decimal))
             {
                 p_mod_articuloProveedor.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioCompra.Text);
             }
@@ -368,7 +368,7 @@ namespace Vista
                 p_mod_articuloProveedor.valorCompra.valorArticulo = null;
             }
             //lcl_mod_articuloProveedores.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioCompra.Text);
-            if (LibreriaClasesCompartidas.Validar.validarNumerico(txtBoxPrecioVenta.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Decimal))
+            if (LibreriaClasesCompartidas.Validar.validarInputNumerico(txtBoxPrecioVenta.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Decimal))
             {
                 p_mod_articuloProveedor.valorVenta.valorArticulo = Convert.ToDecimal(txtBoxPrecioVenta.Text);
             }
@@ -448,7 +448,7 @@ namespace Vista
         //}
         private void txtBoxCodigoOriginal_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxCodigoOriginal.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoOriginal.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
             if (!respuesta)
             {
                 epCodigoOriginal.Icon = Properties.Resources.error;
@@ -464,7 +464,7 @@ namespace Vista
 
         private void txtBoxDescripcion_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxDescripcion.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxDescripcion.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
             if (!respuesta)
             {
                 epDescripcion.Icon = Properties.Resources.error;
@@ -479,7 +479,7 @@ namespace Vista
 
         private void txtBoxCodigoProveedor_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxCodigoProveedor.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoProveedor.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad);
             if (!respuesta)
             {
                 epCodigoProveedor.Icon = Properties.Resources.error;
@@ -494,7 +494,7 @@ namespace Vista
 
         private void txtBoxRazonSocial_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
             if (!respuesta)
             {
                 epRazonSocialProveedor.Icon = Properties.Resources.error;
@@ -509,7 +509,7 @@ namespace Vista
 
         private void txtBoxCodigoArticulo_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInput(txtBoxCodigoArticulo.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoArticulo.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
             if (!respuesta)
             {
                 epCodigoArticulo.Icon = Properties.Resources.error;
@@ -524,7 +524,7 @@ namespace Vista
 
         private void txtBoxPrecioCompra_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarNumerico(txtBoxPrecioCompra.Text.ToString(), Constantes.Numericos.EnteroPositivoSinCero);
+            bool respuesta = Validar.validarInputNumerico(txtBoxPrecioCompra.Text.ToString(), Constantes.Numericos.EnteroPositivoSinCero);
             if (!respuesta)
             {
                 epPrecioCompra.Icon = Properties.Resources.error;
@@ -539,7 +539,7 @@ namespace Vista
 
         private void txtBoxPrecioVenta_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarNumerico(txtBoxPrecioVenta.Text.ToString(), Constantes.Numericos.EnteroPositivoSinCero);
+            bool respuesta = Validar.validarInputNumerico(txtBoxPrecioVenta.Text.ToString(), Constantes.Numericos.EnteroPositivoSinCero);
             if (!respuesta)
             {
                 epPrecioVenta.Icon = Properties.Resources.error;
@@ -554,7 +554,7 @@ namespace Vista
 
         private void txtBoxUbicacion_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarNumerico(txtBoxUbicacion.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion);
+            bool respuesta = Validar.validarInputNumerico(txtBoxUbicacion.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion);
             if (!respuesta)
             {
                 epUbicacion.Icon = Properties.Resources.error;
