@@ -562,7 +562,7 @@ namespace Vista
             this.dgvResultadoBusqueda = new DataGridView();
             this.dgvResultadoBusqueda = lcl_frm_resultadoBusqueda.dataGridViewResultadoBusqueda;
             this.dgvResultadoBusqueda.MouseDown += this.dgvResultadoBusqueda_MouseDown;
-            this.glb_lst_articulosProveedoresEncontrados = lcl_frm_resultadoBusqueda.glb_lst_objectos.Cast<ModeloArticuloProveedores>().ToList();
+            this.glb_lst_articulosProveedoresEncontrados = lcl_frm_resultadoBusqueda.glb_lst_objetos.Cast<ModeloArticuloProveedores>().ToList();
             this.grpBoxResultadoBusqueda.Controls.Add(this.dgvResultadoBusqueda);
         }
         private void dgvResultadoBusqueda_MouseDown(object sender, MouseEventArgs e)

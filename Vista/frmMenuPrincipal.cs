@@ -207,18 +207,6 @@ namespace Vista
             this.agregarFormulario(glb_form);
         }
 
-        private void tsmi_ABMarticulosProveedor_Click(object sender, EventArgs e)
-        {
-            if (!this.validarAgregarFormulario(typeof(frmABMArticuloProveedor)))
-            {
-                return;
-            }
-
-            glb_form = new frmABMArticuloProveedor();
-            this.agregarFormulario(glb_form);
-        }
-        
-
         private void tsmi_ABMdescuentos_Click(object sender, EventArgs e)
         {
             if (!this.validarAgregarFormulario(typeof(frmABMDescuentos)))

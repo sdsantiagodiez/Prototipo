@@ -1464,7 +1464,7 @@ namespace Vista
 
             int i = Convert.ToInt32(this.dgvArticulosVenta.CurrentRow.Cells["indice"].Value);
             
-            frmABMArticuloProveedor lcl_frm_articuloProveedor = new frmABMArticuloProveedor(controlador.pedidoActual.lineasPedido[i].articulo,frmABMArticuloProveedor.ModoFormularioVisualizarEntidad);
+            frmABMArticulo lcl_frm_articuloProveedor = new frmABMArticulo(controlador.pedidoActual.lineasPedido[i].articulo,frmABMArticulo.ModoFormularioVisualizarEntidad);
             lcl_frm_articuloProveedor.ShowDialog();
         }
         #endregion

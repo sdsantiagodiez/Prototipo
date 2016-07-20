@@ -187,7 +187,6 @@
             this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxDomicilio, 0, 2);
             this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxContacto, 0, 3);
             this.tblLayoutPanelPrincipal.Controls.Add(this.btnDatosAdicionales, 0, 5);
-            this.tblLayoutPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 0);
             this.tblLayoutPanelPrincipal.Name = "tblLayoutPanelPrincipal";
             this.tblLayoutPanelPrincipal.RowCount = 6;

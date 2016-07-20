@@ -31,7 +31,7 @@ namespace Vista
             get { return _modeloSeleccionado; }
             set { _modeloSeleccionado = value;}
         }
-        public List<Object> glb_lst_objectos;
+        public List<Object> glb_lst_objetos;
         
         public DataGridView dataGridViewResultadoBusqueda;
 
@@ -218,7 +218,7 @@ namespace Vista
             this.inicializarDataGridViewResultadoBusqueda(p_objeto);
             this.pnlBase.Controls.Add(dataGridViewResultadoBusqueda);
             modeloSeleccionado = null;
-            glb_lst_objectos = null;
+            glb_lst_objetos = null;
         }
 
         #endregion
@@ -515,7 +515,7 @@ namespace Vista
         /// </summary>
         public void mostrarBusqueda()
         {
-            int cantidadResultados = glb_lst_objectos.Count;
+            int cantidadResultados = glb_lst_objetos.Count;
             if (cantidadResultados > 0)
             {
                 string s = "";
@@ -541,13 +541,21 @@ namespace Vista
         public void hacerBusqueda(Object p_objeto)
         {
             this.inicializarMostrarBusqueda(p_objeto);
-            glb_lst_objectos = ControladorBusqueda.buscar(p_objeto);
+            glb_lst_objetos = ControladorBusqueda.buscar(p_objeto);
 
-            if (glb_lst_objectos.Count != 0)
+            if (glb_lst_objetos.Count != 0)
             {
-                this.popularDataGridViewResultadoBusqueda(glb_lst_objectos);
+                this.popularDataGridViewResultadoBusqueda(glb_lst_objetos);
                 this.insertarIndice();
             }
+        }
+
+        public void actualizarResultados()
+        {
+            this.dataGridViewResultadoBusqueda.DataSource = null;
+            this.dataGridViewResultadoBusqueda.Refresh();
+            this.popularDataGridViewResultadoBusqueda(glb_lst_objetos);
+            this.insertarIndice();
         }
 
         #endregion
@@ -563,7 +571,7 @@ namespace Vista
         {
             //toma el valor de la primera columna que no se muestra en la tabla. La misma funciona como índice y no se ve afectada por ordenamiento de tabla
             int indice = Convert.ToInt32(dataGridViewResultadoBusqueda.CurrentRow.Cells[0].Value);
-            modeloSeleccionado = glb_lst_objectos[indice];
+            modeloSeleccionado = glb_lst_objetos[indice];
 
             this.Hide();
         }

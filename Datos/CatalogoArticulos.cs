@@ -36,7 +36,7 @@ namespace Datos
         }
         
         #region Búsqueda
-        private ModeloArticulos leerDatosArticulo(SqlDataReader p_drArticulos)
+        public ModeloArticulos leerDatosArticulo(SqlDataReader p_drArticulos)
         {
             ModeloArticulos lcl_mod_articulo = new ModeloArticulos();
 

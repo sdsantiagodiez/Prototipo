@@ -15,7 +15,15 @@ namespace Modelos
             this.valorCompra = new ModeloValorArticulo();
             this.descuentos = new List<ModeloDescuentoArticuloProveedor>();
         }
-        
+
+        public ModeloArticuloProveedores(ModeloArticulos p_mod_articulo) : this()
+        {
+            this.codigoOriginal = p_mod_articulo.codigoOriginal;
+            this.descripcion = p_mod_articulo.descripcion;
+            this.modelos = p_mod_articulo.modelos;
+            this.observaciones = p_mod_articulo.observaciones;
+        }
+
         #region Getters/Setters
 
         #region Variables de Proveedor al que pertenece Artículo Proveedor
