@@ -442,13 +442,37 @@ namespace Vista
 
         private void backUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ControladorBD lcl_con_BD = new ControladorBD();
-            if (lcl_con_BD.backUpDatabase())
-            { MessageBox.Show("El BackUp se realizó correctamente.","Back Up OK",MessageBoxButtons.OK,MessageBoxIcon.Information); }
+            FolderBrowserDialog lcl_fbd = new FolderBrowserDialog();
+            lcl_fbd.Description = "Destino de Archivo de Respaldo de Base de Datos";
+            lcl_fbd.SelectedPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName +"\\Datos";
+            string folderLocation;
+            if (lcl_fbd.ShowDialog() == DialogResult.OK)
+            {
+                folderLocation = lcl_fbd.SelectedPath;
+                bool exitoBackUp = false;
+                frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Realizando Backup de Base de Datos.");
+                BackgroundWorker bw = new BackgroundWorker();
+                ControladorBD lcl_con_BD = new ControladorBD();
+                bw.DoWork += (s, ev) =>
+                {
+                    exitoBackUp = lcl_con_BD.backUpDatabase(folderLocation);
+                };
+                bw.RunWorkerCompleted += (s, ev) =>
+                {
+                lcl_frm_loading.Hide();
+                if (exitoBackUp)
+                { MessageBox.Show("El BackUp se realizó correctamente.", "Back Up OK", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                else
+                { MessageBox.Show("Error al realizar el BackUp.", "Back Up Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                };
+
+                bw.RunWorkerAsync();
+                lcl_frm_loading.ShowDialog(); 
+            }
             else
-            { MessageBox.Show("Error al realizar el BackUp.", "Back Up Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-
-
+            {
+                return;
+            }
         }
     }
 

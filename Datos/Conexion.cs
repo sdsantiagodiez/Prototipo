@@ -69,19 +69,20 @@ namespace Datos
             return comando;
         }
 
-        public static bool backUpDatabase()
+        public static bool backUpDatabase(string p_direccionCarpeta)
         {
             bool resp = false;
-                        
-            string endPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-            endPath = endPath + @"\Datos\DBPrueba-" + DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day + DateTime.Now.Hour +
-            DateTime.Now.Minute + DateTime.Now.Second + ".bak";
+            string p_direccionArchivo = p_direccionCarpeta + @"\DBPrueba-" +
+                        //pad left para que los números de un digito aparezcan con 2 (7 -> 07) y no generen confusión
+                        DateTime.Now.Year + DateTime.Now.Month.ToString().PadLeft(2, '0') + DateTime.Now.Day.ToString().PadLeft(2, '0') + 
+                        DateTime.Now.Hour.ToString().PadLeft(2, '0') + DateTime.Now.Minute.ToString().PadLeft(2, '0') + DateTime.Now.Second.ToString().PadLeft(2, '0') + 
+                        ".bak";
             SqlConnection ConexionSQL = Conexion.crearConexion();
             //crea SQL command
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
-            comando.CommandText = "backup database [DBPrueba] to disk='" + endPath +
+            comando.CommandText = "backup database [DBPrueba] to disk='" + p_direccionArchivo +
                 "' ";//with init, stats=10 ";
             comando.Connection.Open();
             if (comando.ExecuteNonQuery() == -1)
