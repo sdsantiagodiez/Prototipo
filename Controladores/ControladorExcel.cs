@@ -8,6 +8,7 @@ using Modelos;
 using System.Data;
 using LibreriaClasesCompartidas;
 using System.Transactions;
+using System.Reflection;
 
 namespace Controladores
 {
@@ -20,14 +21,13 @@ namespace Controladores
         int i = 0;
         public static string filasNoGravadas = "Las siguientes filas no fueron gravadas: ";
 
-            public bool ExportarAExcel(Type p_type)
+            public bool ExportarAExcel(Type p_type,string p_direccionDeArchivo)
             {
-                // se inicia la aplicacion
-                var ExcelApp = new ExcelLib.Application();
-                //Se setea visible
-                ExcelApp.Visible = true;
-                //Se agrega una hoja de trabajo
-                ExcelApp.Workbooks.Add();
+                p_direccionDeArchivo += "\\" + this.getNombreArchivo(p_type);
+
+                var ExcelApp = new ExcelLib.Application(); // se inicia la aplicacion
+                ExcelApp.Visible = false; //Se setea false para que no se abra MS Excel (quizas no lo tienen instalado)
+                ExcelLib.Workbook excelWorkbook = ExcelApp.Workbooks.Add(); //Se agrega una hoja de trabajo
                 //Asociamos nuestra hoja a la hoja activa
                 glb_hojaTrabajo = (ExcelLib._Worksheet)ExcelApp.ActiveSheet;
                 //trabajamos la hoja creada
@@ -37,7 +37,13 @@ namespace Controladores
                         using (TransactionScope scope = new TransactionScope())
                         {
                             this.aExcel(p_type);
+                            excelWorkbook.SaveAs(p_direccionDeArchivo, ExcelLib.XlFileFormat.xlOpenXMLWorkbook, Missing.Value,
+                                    Missing.Value, false, false, ExcelLib.XlSaveAsAccessMode.xlNoChange,
+                                    ExcelLib.XlSaveConflictResolution.xlUserResolution, true,
+                                    Missing.Value, Missing.Value, Missing.Value);
+                            excelWorkbook.Close();
                             scope.Complete();
+                            return true;
                         }
                     }
                  
@@ -54,7 +60,7 @@ namespace Controladores
                         errorActual = ex.Message;
                     }
 
-                return true; 
+                return false; 
             }
 
             private void aExcel(Type p_type)
@@ -65,30 +71,34 @@ namespace Controladores
                     this.completarColumnasArticuloProveedor();
                     ModeloArticuloProveedores lcl_mod_artP = new ModeloArticuloProveedores();
                     completaFilasArticuloProveedor(ControladorBusqueda.buscar(lcl_mod_artP));
-
+                    errorActual = "La Exportacion de Artículos de Proveedores se realizó Correctamente";
                 }
                 else if (T == typeof(ModeloArticulos))
                 {
                     completarColumnasArticulo();
                     ModeloArticulos lcl_mod_art = new ModeloArticulos();
                     completaFilasArticulo(ControladorBusqueda.buscar(lcl_mod_art));
+                    errorActual = "La Exportacion de Artículos se realizó Correctamente";
                 }
                 else if (T == typeof(ModeloCliente))
                 {
                     completarColumnasCliente();
                     ModeloEntidad lcl_mod_entidad = new ModeloCliente();
                     completaFilasCliente(ControladorBusqueda.buscar(lcl_mod_entidad as ModeloCliente));
+                    errorActual = "La Exportacion de Clientes se realizó Correctamente";
                 }
                 else if (T == typeof(ModeloProveedor))
                 {
                     completarColumnasProveedor();
                     ModeloEntidad lcl_mod_entidad = new ModeloProveedor();
                     completaFilasProveedor(ControladorBusqueda.buscar(lcl_mod_entidad as ModeloProveedor));
+                    errorActual = "La Exportacion de Proveedores se realizó Correctamente";
                 }
                 else if (T == typeof(ModeloDescuentoArticuloProveedor))
                 {
                     completarColumnasDescuento();
                     completaFilasDescuento(ControladorBusqueda.getDescuentosArticulosProveedores());
+                    errorActual = "La Exportacion de Descuentos se realizó Correctamente";
                 }
                 ajustarColumnas();
             }
@@ -643,6 +653,32 @@ namespace Controladores
                 
             }
 
+            private string getNombreArchivo(Type T)
+            {
+                string nombreArchivo = "";
+                if (T == typeof(ModeloArticuloProveedores))
+                {
+                    nombreArchivo = "ArticulosProveedores";
+                }
+                else if (T == typeof(ModeloArticulos))
+                {
+                    nombreArchivo = "Articulos";
+                }
+                else if (T == typeof(ModeloCliente))
+                {
+                    nombreArchivo = "Clientes";
+                }
+                else if (T == typeof(ModeloProveedor))
+                {
+                    nombreArchivo = "Proveedores";
+                }
+                else if (T == typeof(ModeloDescuentoArticuloProveedor))
+                {
+                    nombreArchivo = "DescuentosArticulosProveedores";
+                }
 
+                nombreArchivo += "_" + DateTime.Now.Year + DateTime.Now.Month.ToString().PadLeft(2, '0') + DateTime.Now.Day.ToString().PadLeft(2, '0');
+                return nombreArchivo;
+            }
         }
     }

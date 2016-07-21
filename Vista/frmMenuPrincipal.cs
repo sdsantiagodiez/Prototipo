@@ -126,6 +126,52 @@ namespace Vista
         }
         #endregion
 
+        private void exportarDatos(Type T)
+        {
+            FolderBrowserDialog lcl_fbd = new FolderBrowserDialog();
+            lcl_fbd.Description = "Destino de Datos a Exportar";
+
+            if (lcl_fbd.ShowDialog() == DialogResult.OK)
+            {
+                string direccionDeArchivo = lcl_fbd.SelectedPath;
+                bool exito = false;
+                ControladorExcel lcl_con_excel = new ControladorExcel();
+                
+                frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Realizando exportación de datos.");
+                frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
+                
+                BackgroundWorker bw = new BackgroundWorker();
+                bw.DoWork += (s, e) =>
+                {
+                    exito = lcl_con_excel.ExportarAExcel(T,direccionDeArchivo);
+                };
+                bw.RunWorkerCompleted += (s, e) =>
+                {
+                    lcl_frm_loading.Hide();
+
+                    if(exito)
+                    {
+                        MessageBox.Show(lcl_con_excel.errorActual,"Éxito",MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        System.Windows.Forms.DialogResult dialogResult = MessageBox.Show(lcl_con_excel.errorActual,"Error",MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
+                        if (dialogResult == System.Windows.Forms.DialogResult.Retry)
+                        {
+                            this.exportarDatos(T);
+                        }
+                    }
+                };
+
+                bw.RunWorkerAsync();
+                lcl_frm_loading.ShowDialog();  
+            }
+            else
+            {
+                return;
+            }
+        }
+
         private void agregarFormulario(Form p_form)
         {
             Type T = p_form.GetType();
@@ -348,42 +394,32 @@ namespace Vista
         }
         #endregion
 
+        #region ToolStripMenuItem Exportar
         private void articuloProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ControladorExcel lcl_con_excel = new ControladorExcel();
-            lcl_con_excel.ExportarAExcel(typeof(ModeloArticuloProveedores));
-            MessageBox.Show("La Exportacion de ArtículoProveedor se realizó Correctamente");
-
+            this.exportarDatos(typeof(ModeloArticuloProveedores));
         }
 
         private void artículosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ControladorExcel lcl_con_excel = new ControladorExcel();
-            lcl_con_excel.ExportarAExcel(typeof(ModeloArticulos));
-            MessageBox.Show("La Exportacion de Artículos se realizó Correctamente");
+            this.exportarDatos(typeof(ModeloArticulos));
         }
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ControladorExcel lcl_con_excel = new ControladorExcel();
-            lcl_con_excel.ExportarAExcel(typeof(ModeloCliente));
-            MessageBox.Show("La Exportacion de Clientes se realizó Correctamente");
+            this.exportarDatos(typeof(ModeloCliente));
         }
 
         private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ControladorExcel lcl_con_excel = new ControladorExcel();
-            lcl_con_excel.ExportarAExcel(typeof(ModeloProveedor));
-            MessageBox.Show("La Exportacion de Proveedores se realizó Correctamente");
+            this.exportarDatos(typeof(ModeloProveedor));
         }
 
         private void descuentosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ControladorExcel lcl_con_excel = new ControladorExcel();
-            lcl_con_excel.ExportarAExcel(typeof(ModeloDescuentoArticuloProveedor));
-            MessageBox.Show("La Exportacion de Descuentos se realizó Correctamente");
-
+            this.exportarDatos(typeof(ModeloDescuentoArticuloProveedor));
         }
+        #endregion
 
         private void artículoToolStripMenuItem_Click(object sender, EventArgs e)
         {
