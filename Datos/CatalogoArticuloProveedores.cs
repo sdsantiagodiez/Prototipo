@@ -153,7 +153,7 @@ namespace Datos
                 "   ap.[codigo_original],ap.[codigo_articulo_proveedor],ap.[stock_minimo],ap.[stock_actual],ap.[observaciones] as [observacionesArticuloProveedor],ap.[ubicacion], " +
                 "   ap.[descripcion] as [descripcionArticuloProveedor],ap.[fecha_actualizacion],ap.[codigo_entidad],vv.[valor] AS [valor_venta], vv.[fecha_valor] AS [fecha_valor_venta], " +
                 "   vc.[valor] AS [valor_compra], vc.[fecha_valor] AS [fecha_valor_compra] , [prov].razon_social as razon_social_proveedor, ap.activo, " +
-                "   art.[descripcion] AS [descripcion], art.[modelos] AS [modelos], art.[observaciones] AS [observaciones] "+
+                "   art.[descripcion] AS [descripcion], art.[modelos] AS [modelos], art.[observaciones] AS [observaciones], art.[imagen] as [imagen] "+
                 "   FROM [Articulos_Proveedores] ap " +
                 "   INNER JOIN [Articulos] art "+
                 "       ON [art].codigo_original = [ap].codigo_original " +

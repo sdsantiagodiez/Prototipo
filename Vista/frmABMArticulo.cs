@@ -35,6 +35,7 @@ namespace Vista
             InitializeComponent();
             this.inicializarModoFormularioInicio();
             this.Text = "Artículo";
+            this.pathimagen.Text = "";
 
             this.inicializarControles();
         }
@@ -392,6 +393,7 @@ namespace Vista
             lcl_mod_articulo.descripcion = txtBoxDescripcion.Text;
             lcl_mod_articulo.modelos = txtBoxModelo.Text;
             lcl_mod_articulo.observaciones = rchTextBoxObservaciones.Text;
+            lcl_mod_articulo.imagen = this.pathimagen.Text;
             return lcl_mod_articulo;
         }
 
@@ -446,6 +448,10 @@ namespace Vista
             txtBoxDescripcion.Text = p_mod_articulo.descripcion;
             txtBoxModelo.Text = p_mod_articulo.modelos;
             rchTextBoxObservaciones.Text = p_mod_articulo.observaciones;
+            if (p_mod_articulo.imagen != null)
+            { picBoxImagen.Image = Image.FromFile(p_mod_articulo.imagen);
+            this.pathimagen.Text = p_mod_articulo.imagen;
+            }
         }
         private void cargarArticuloProveedorEnControles(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
@@ -746,6 +752,49 @@ namespace Vista
             }
         }
         #endregion
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            DialogResult dialog = MessageBox.Show("Esta seguro que desea quitar la imagen?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialog == DialogResult.Yes)
+            {
+                System.IO.File.Delete(this.glb_mod_articulo.imagen);
+                this.glb_mod_articulo.imagen = null;
+                this.picBoxImagen.Image = null;
+                this.pathimagen.Text=null;
+            }
+        }
+
+        private void btnAgregaImagen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog image_dialog = new OpenFileDialog();
+            string imagePath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\Vista\Resources\";
+            image_dialog.Filter = "*.jpg|*.png";
+            
+            DialogResult result = image_dialog.ShowDialog();
+            
+            if (result == DialogResult.OK)
+            {
+                if (this.glb_mod_articulo.imagen != null)
+                {
+                    //SI TIENE ASOCIADA UNA IMAGEN LA BORRA
+                    System.IO.File.Delete(glb_mod_articulo.imagen);
+                    
+                }
+                
+                    imagePath = imagePath + glb_mod_articulo.codigoOriginal + ".jpg";
+                // por las dudas borra un archivo con el mismo nombre
+                    if (System.IO.File.Exists(imagePath))
+                    { System.IO.File.Delete(imagePath); }
+
+                    System.IO.File.Copy(image_dialog.FileName, imagePath);
+                    picBoxImagen.Image = Image.FromFile(imagePath);
+                    this.glb_mod_articulo.imagen = imagePath;
+                    this.pathimagen.Text = imagePath;
+                
+            }
+
+        }
 
 
     }

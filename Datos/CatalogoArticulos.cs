@@ -46,6 +46,7 @@ namespace Datos
             lcl_mod_articulo.descripcion = (p_drArticulos["descripcion"] != DBNull.Value) ? (string)p_drArticulos["descripcion"] : null;
             lcl_mod_articulo.modelos= (p_drArticulos["modelos"] != DBNull.Value) ? (string)p_drArticulos["modelos"] : null;
             lcl_mod_articulo.observaciones = (p_drArticulos["observaciones"] != DBNull.Value) ? (string)p_drArticulos["observaciones"] : null;
+            lcl_mod_articulo.imagen = (p_drArticulos["imagen"] != DBNull.Value) ? (string)p_drArticulos["imagen"] : null;
 
             return lcl_mod_articulo;
         }
@@ -99,7 +100,7 @@ namespace Datos
             string querySQL = this.getCondicionBusqueda(p_mod_articulo,p_parametroBusqueda,ref comando);
 
             comando.CommandText =
-                "SELECT [codigo_original],[descripcion],[modelos],[observaciones] "+
+                "SELECT [codigo_original],[descripcion],[modelos],[observaciones],[imagen] "+
                 "   FROM [articulos] " +
                 "   WHERE " + querySQL;
 
@@ -153,13 +154,14 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "INSERT INTO [articulos]([codigo_original],[descripcion],[modelos],[observaciones]) " +
-                "   VALUES (@codigo_original, @descripcion, @modelos, @observaciones)";
+                "INSERT INTO [articulos]([codigo_original],[descripcion],[modelos],[observaciones],[imagen]) " +
+                "   VALUES (@codigo_original, @descripcion, @modelos, @observaciones, @imagen)";
                 
             comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.codigoOriginal, "@codigo_original"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.descripcion, "@descripcion"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.modelos, "@modelos"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.observaciones, "@observaciones"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.imagen, "@imagen"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
@@ -178,13 +180,14 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText = 
-                "UPDATE [articulos] SET [descripcion]=@descripcion,[modelos]=@modelos,[observaciones]=@observaciones "+
-                "   WHERE [articulos].codigo_original=@codigo_original";
+                "UPDATE [articulos] SET [descripcion]=@descripcion,[modelos]=@modelos,[observaciones]=@observaciones, "+
+                " [imagen]=@imagen   WHERE [articulos].codigo_original=@codigo_original";
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.codigoOriginal, "@codigo_original"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.descripcion, "@descripcion"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.modelos, "@modelos"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.observaciones, "@observaciones"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_articulo.imagen, "@imagen"));
             
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();

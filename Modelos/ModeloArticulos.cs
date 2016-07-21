@@ -37,6 +37,12 @@ namespace Modelos
            get { return _observaciones; }
            set { this._observaciones = !string.IsNullOrWhiteSpace(value) ? value : null; }
        }
+       string _imagen;
+       public string imagen
+       {
+           get { return _imagen; }
+           set { this._imagen = !string.IsNullOrWhiteSpace(value) ? value : null; }
+       }
        #endregion
 
        #region Validación

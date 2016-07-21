@@ -113,6 +113,10 @@ namespace Vista
                 {
                     ((RadioButton)c).Checked = false; bandera = false;
                 }
+                if (c is PictureBox)
+                {
+                    ((PictureBox)c).Image=null; bandera = false;
+                }
 
                 if (bandera)
                     quitarTextoEnControles(c);
