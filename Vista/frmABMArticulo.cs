@@ -110,12 +110,13 @@ namespace Vista
         }
         public override void inicializarModoFormularioVisualizarEntidad()
         {
-            base.inicializarModoFormularioVisualizarEntidad();
-
             foreach (Control c in this.Controls)
             {
                 c.Enabled = false;
             }
+            this.menuStrip.Enabled = true;
+            base.inicializarModoFormularioVisualizarEntidad();
+
             this.cargarArticuloProveedorEnControles(glb_mod_articuloProveedor);
         }
        

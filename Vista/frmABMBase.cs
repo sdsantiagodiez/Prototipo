@@ -128,7 +128,7 @@ namespace Vista
             toolStripMenuItemBuscar.Enabled = 
                 toolStripMenuItemNuevo.Enabled = 
                 toolStripMenuItemLimpiarCampos.Enabled = 
-                toolStripMenuItemCancelar.Enabled = 
+                toolStripMenuItemCerrar.Enabled = 
                 true;
             toolStripMenuItemGuardar.Enabled = 
                 toolStripMenuItemGuardarCambios.Enabled = 
@@ -148,7 +148,7 @@ namespace Vista
             toolStripMenuItemGuardar.Enabled = 
                 toolStripMenuItemGuardarNuevo.Enabled = 
                 toolStripMenuItemLimpiarCampos.Enabled = 
-                toolStripMenuItemCancelar.Enabled = 
+                toolStripMenuItemCerrar.Enabled = 
                 true;
         }
 
@@ -162,7 +162,7 @@ namespace Vista
                 toolStripMenuItemGuardarCambios.Enabled = 
                 toolStripMenuItemEliminar.Enabled = 
                 toolStripMenuItemLimpiarCampos.Enabled = 
-                toolStripMenuItemCancelar.Enabled = 
+                toolStripMenuItemCerrar.Enabled = 
                 true;
         }
 
@@ -175,7 +175,7 @@ namespace Vista
                 false;
             this.toolStripMenuItemBuscar.Enabled =
                 this.toolStripMenuItemLimpiarCampos.Enabled =
-                this.toolStripMenuItemCancelar.Enabled = 
+                this.toolStripMenuItemCerrar.Enabled = 
                 true;
         }
         
@@ -185,11 +185,11 @@ namespace Vista
                 this.toolStripMenuItemGuardar.Enabled =
                 this.toolStripMenuItemGuardarCambios.Enabled =
                 this.toolStripMenuItemNuevo.Enabled =
-                false;
-            this.toolStripMenuItemBuscar.Enabled =
+                this.toolStripMenuItemBuscar.Enabled =
                 this.toolStripMenuItemLimpiarCampos.Enabled =
-                this.toolStripMenuItemCancelar.Enabled =
                 false;
+            this.toolStripMenuItemCerrar.Enabled =
+                true;
         }
 
         virtual public void inicializarModoFormularioClientePedido()
@@ -200,7 +200,7 @@ namespace Vista
                 false;
             this.toolStripMenuItemBuscar.Enabled =
                 this.toolStripMenuItemLimpiarCampos.Enabled =
-                this.toolStripMenuItemCancelar.Enabled =
+                this.toolStripMenuItemCerrar.Enabled =
                 this.toolStripMenuItemNuevo.Enabled =
                 this.toolStripMenuItemGuardar.Enabled =
                 this.toolStripMenuItemGuardarNuevo.Enabled =
@@ -222,10 +222,11 @@ namespace Vista
         #endregion
 
         #region Eventos
-        virtual public void toolStripMenuItemCancelar_Click(object sender, EventArgs e)
+        virtual public void toolStripMenuItemCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
 
         virtual public void toolStripMenuItemLimpiarCampos_Click(object sender, EventArgs e)
         {
@@ -262,6 +263,8 @@ namespace Vista
 
         }
         #endregion      
+
+
 
     }
 }

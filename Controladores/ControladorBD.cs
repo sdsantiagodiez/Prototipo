@@ -10,15 +10,15 @@ namespace Controladores
 {
     public class ControladorBD:Controlador
     {
-        public bool backUpDatabase()
+        public bool backUpDatabase(string p_direccionCarpeta)
         {
             bool resp = false;
             try
             {
                 using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
                 {
-                    
-                    resp= Conexion.backUpDatabase();
+
+                    resp = Conexion.backUpDatabase(p_direccionCarpeta);
                     scope.Complete();
                 }
             }
