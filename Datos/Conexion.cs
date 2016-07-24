@@ -10,6 +10,7 @@ namespace Datos
 {
     public class Conexion
     {
+        static string dbNombre = "DBPrueba";
         static string connectionString = "";
         public Conexion()
         {
@@ -21,7 +22,7 @@ namespace Datos
             string startupPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
             startupPath = startupPath + @"\Datos\DBPrueba.mdf";
             //startupPath = rutaBD();
-            connectionString = @"Data Source=(localDB)\v11.0;AttachDbFilename="+startupPath+";Initial Catalog=DBPrueba;Integrated Security=True";
+            connectionString = @"Data Source=(localDB)\v11.0;AttachDbFilename="+startupPath+";Initial Catalog="+dbNombre+";Integrated Security=True";
             SqlConnection Conexion;
             try
             {
@@ -92,6 +93,22 @@ namespace Datos
             ConexionSQL.Dispose();
 
             return resp;
+        }
+
+        public static bool restoreDatabase(string p_direccionArcivo)
+        {
+            string query =
+            "use master; RESTORE DATABASE "+dbNombre+" FROM DISK = '"+p_direccionArcivo+"'";
+
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+
+            comando.Connection.Open();
+            //Si falla, tira exception
+            comando.ExecuteNonQuery();
+            
+            comando.Connection.Close();
+            
+            return true; 
         }
     }
 }

@@ -537,6 +537,57 @@ namespace Vista
             }
         }
 
+        private void restaurarBaseDeDatosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string filePath = null;
+            OpenFileDialog lcl_ofd = new OpenFileDialog();
+            lcl_ofd.Filter = "Archivo de BackUp |*.bak";
+            lcl_ofd.FilterIndex = 1;
+            lcl_ofd.Multiselect = false;
+            if (lcl_ofd.ShowDialog() == DialogResult.OK)
+            {
+                if (lcl_ofd.CheckPathExists && lcl_ofd.CheckFileExists)
+                {
+                    filePath = lcl_ofd.FileName;
+
+                }
+            }
+            if (!string.IsNullOrWhiteSpace(filePath))
+            {
+                this.restoreDatabase(filePath);
+            }
+        }
+        private void restoreDatabase(string p_path)
+        {
+            bool exito = false;
+            ControladorBD lcl_con_bd = new ControladorBD();
+            
+            frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Realizando restauración de base de datos.");
+            frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
+
+            BackgroundWorker bw = new BackgroundWorker();
+            bw.DoWork += (s, e) =>
+            {
+                exito = lcl_con_bd.restoreDatabase(p_path);
+            };
+            bw.RunWorkerCompleted += (s, e) =>
+            {
+                lcl_frm_loading.Hide();
+
+                if (exito)
+                {
+                    MessageBox.Show("Restauración de base de datos exitosa", "Éxito", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show(lcl_con_bd.errorActual, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            };
+
+            bw.RunWorkerAsync();
+            lcl_frm_loading.ShowDialog();  
+        }
+
         
 
         

@@ -41,5 +41,35 @@ namespace Controladores
             return resp;
         }
 
+        public bool restoreDatabase(string p_direccionArchivo)
+        {
+            bool resp = false;
+            try
+            {
+                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
+                {
+
+                    resp = Conexion.restoreDatabase(p_direccionArchivo);
+                    scope.Complete();
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                errorActual = "TransactionAbortedException Message: " + ex.Message;
+            }
+            catch (ApplicationException ex)
+            {
+                errorActual = "ApplicationException Message: " + ex.Message;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                errorActual = "SQLexception Message: " + ex.Message;
+            }
+            catch (Exception ex)
+            {
+                errorActual = ex.Message;
+            }
+            return resp;
+        }
     }
 }
