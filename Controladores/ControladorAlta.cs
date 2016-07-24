@@ -13,12 +13,99 @@ namespace Controladores
 {
     public class ControladorAlta : Controlador
     {
+        public bool agregar(List<object> p_lista)
+        {
+            if (p_lista.Count < 1)
+            {
+                return true;
+            }
+            bool respuesta = false;
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    string mensaje= "";
+                    foreach (object o in p_lista)
+                    {
+                        if (!this.agregar(o, out mensaje))
+                        {
+                            throw new Exception(mensaje);
+                        }
+                    }
+                    respuesta = true;
+                    scope.Complete();
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                errorActual = "TransactionAbortedException Message: " + ex.Message;
+            }
+            catch (ApplicationException ex)
+            {
+                errorActual = "ApplicationException Message: " + ex.Message;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                errorActual = "SQLexception Message: " + ex.Message;
+            }
+            catch (Exception ex)
+            {
+                errorActual = ex.Message;
+            }
+            return respuesta;
+        }
+
+        private bool agregar(object p_object, out string mensaje)
+        {
+            mensaje = "";
+            Type T = p_object.GetType();
+            if (T == typeof(ModeloArticulos))
+            {
+                if (!this.agregar(p_object as ModeloArticulos))
+                {
+                    mensaje = "Ha ocurrido un error al guardar " + (p_object as ModeloArticulos).codigoOriginal + ", " + (p_object as ModeloArticulos).descripcion;
+                    return false;
+                }
+            }
+            else if (T == typeof(ModeloArticuloProveedores))
+            {
+                if(!this.agregar(p_object as ModeloArticuloProveedores))
+                {
+                    mensaje = "Ha ocurrido un error al guardar " + (p_object as ModeloArticuloProveedores).codigoOriginal + ", " + (p_object as ModeloArticuloProveedores).codigoArticuloProveedor;
+                    return false;
+                }
+            }
+            else if (T == typeof(ModeloCliente))
+            {
+                if (!this.agregar(p_object as ModeloCliente))
+                {
+                    mensaje = "Ha ocurrido un error al guardar " + (p_object as ModeloCliente).dni + ", " + (p_object as ModeloCliente).nombre + ", " + (p_object as ModeloCliente).apellido;
+                    return false;
+                }
+            }
+            else if (T == typeof(ModeloProveedor))
+            {
+                if (!this.agregar(p_object as ModeloProveedor))
+                {
+                    mensaje = "Ha ocurrido un error al guardar " + (p_object as ModeloProveedor).cuit + ", " + (p_object as ModeloProveedor).razonSocial;
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
         /// <summary>
         /// Se comunica con la capa de datos para realizar INSERT en la base de datos. Acepta modeloEntidad o cualquiera de sus descendientes.
         /// </summary>
         /// <param name="p_mod_entidad"></param>
         /// <returns>true si se ha insertado, false y excepción si ha habido fallo</returns>
-        public bool agregar(ref ModeloEntidad p_mod_entidad)
+        public bool agregar(ModeloEntidad p_mod_entidad)
         {
             Type T = p_mod_entidad.GetType();
             CatalogoEntidades lcl_catalogo;

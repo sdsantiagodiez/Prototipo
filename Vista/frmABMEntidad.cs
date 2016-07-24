@@ -349,7 +349,7 @@ namespace Vista
 
             ControladorAlta lcl_con_alta = new ControladorAlta();
             cargarDatosControlEnEntidadActual(ref glb_mod_entidadActual);
-            if (lcl_con_alta.agregar(ref glb_mod_entidadActual))
+            if (lcl_con_alta.agregar(glb_mod_entidadActual))
             {
                 MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
                 if (this.modoFormulario != ModoFormularioClientePedido)

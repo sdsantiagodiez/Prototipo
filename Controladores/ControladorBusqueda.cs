@@ -151,7 +151,6 @@ namespace Controladores
             if (T == typeof(ModeloArticuloProveedores))
             {
                 lcl_ienum_objeto = ControladorBusqueda.buscar(p_objeto as ModeloArticuloProveedores);
-
             }
             else if (T == typeof(ModeloArticulos))
             {

@@ -95,11 +95,11 @@
     <Compile Include="frmFacturacionMasiva.Designer.cs">
       <DependentUpon>frmFacturacionMasiva.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmImportacionPath.cs">
+    <Compile Include="frmImportarPreview.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmImportacionPath.Designer.cs">
-      <DependentUpon>frmImportacionPath.cs</DependentUpon>
+    <Compile Include="frmImportarPreview.Designer.cs">
+      <DependentUpon>frmImportarPreview.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLoading.cs">
       <SubType>Form</SubType>
@@ -215,8 +215,8 @@
     <EmbeddedResource Include="frmFacturacionMasiva.resx">
       <DependentUpon>frmFacturacionMasiva.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmImportacionPath.resx">
-      <DependentUpon>frmImportacionPath.cs</DependentUpon>
+    <EmbeddedResource Include="frmImportarPreview.resx">
+      <DependentUpon>frmImportarPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLoading.resx">
       <DependentUpon>frmLoading.cs</DependentUpon>

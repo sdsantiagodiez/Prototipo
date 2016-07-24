@@ -206,6 +206,10 @@ namespace Vista
                 //Mensaje para confirmar que si cierre se pierde el progreso hecho en el form 
                 return true;
             }
+            else if (glb_form.GetType() == typeof(frmImportarPreview))
+            {
+                return true;    //lo cerramos por mas de que ya esté abierto porque puede haber importación de distintos tipos de modelos y no lo detecta
+            }
             else
             {
                 return false;
@@ -421,10 +425,49 @@ namespace Vista
         }
         #endregion
 
-        private void artículoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void artículoImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloArticulos),"Artículos");
-            lcl_frm_importacion.ShowDialog();
+            if (!this.validarAgregarFormulario(typeof(frmImportarPreview)))
+            {
+                return;
+            }
+
+            glb_form = new frmImportarPreview(typeof(ModeloArticulos));
+
+            this.agregarFormulario(glb_form);
+        }
+        private void artículoProveedorImportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!this.validarAgregarFormulario(typeof(frmImportarPreview)))
+            {
+                return;
+            }
+
+            glb_form = new frmImportarPreview(typeof(ModeloArticuloProveedores));
+
+            this.agregarFormulario(glb_form);
+        }
+        private void clientesImportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!this.validarAgregarFormulario(typeof(frmImportarPreview)))
+            {
+                return;
+            }
+
+            glb_form = new frmImportarPreview(typeof(ModeloCliente));
+
+            this.agregarFormulario(glb_form);
+        }
+        private void proveedorImportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!this.validarAgregarFormulario(typeof(frmImportarPreview)))
+            {
+                return;
+            }
+
+            glb_form = new frmImportarPreview(typeof(ModeloProveedor));
+
+            this.agregarFormulario(glb_form);
         }
 
         private void articuloProveedorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -432,40 +475,20 @@ namespace Vista
             
         }
 
-        private void clientesToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void descuentosImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloCliente), "Clientes");
-            lcl_frm_importacion.ShowDialog();
+            MessageBox.Show("proximamente");
         }
 
-        private void descuentosToolStripMenuItem1_Click(object sender, EventArgs e)
+
+        private void preciosParaVentaImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloDescuentoArticuloProveedor), "Descuento Articulos");
-            lcl_frm_importacion.ShowDialog();
+            MessageBox.Show("proximamente");
         }
 
-        private void proveedoresToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void preciosParaCompraImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloProveedor), "Proveedores ");
-            lcl_frm_importacion.ShowDialog();
-        }
-
-        private void artículosToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloArticuloProveedores), "ArtículoProveedores");
-            lcl_frm_importacion.ShowDialog();
-        }
-
-        private void preciosParaVentaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloValorArticulo), "Valores Venta ArtículoProveedores",Constantes.TipoValorArticulo.Venta);
-            lcl_frm_importacion.ShowDialog();
-        }
-
-        private void preciosParaCompraToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmImportacionPath lcl_frm_importacion = new frmImportacionPath(typeof(ModeloValorArticulo), "Valores Compra ArtículoProveedores", Constantes.TipoValorArticulo.Compra);
-            lcl_frm_importacion.ShowDialog();
+            MessageBox.Show("proximamente");
         }
 
         private void toolStripbtnReimpresion_Click(object sender, EventArgs e)
@@ -513,6 +536,20 @@ namespace Vista
                 return;
             }
         }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+    
     }
 
     
