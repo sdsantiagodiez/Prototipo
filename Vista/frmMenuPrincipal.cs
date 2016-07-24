@@ -588,6 +588,49 @@ namespace Vista
             lcl_frm_loading.ShowDialog();  
         }
 
+        private void manualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (glb_form == null)
+            { 
+                 string lcl_dir_help = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName; 
+            lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\helpmenuproyecto.chm";
+            Help.ShowHelp(this, lcl_dir_help, HelpNavigator.TableOfContents);
+            }
+            else
+            { this.mostrarManual(glb_form.GetType()); }
+        }
+        private void mostrarManual(Type p_ventanaActiva)
+        {
+            string topic = "";
+            if (p_ventanaActiva == typeof(frmABMArticulo))
+            { topic = "abmarticulo"; }
+            else if (p_ventanaActiva == typeof(frmABMDescuentos))
+            { topic = "abmdescuento"; }
+            else if (p_ventanaActiva == typeof(frmABMEntidad))
+            { topic = "abmcliente"; }
+            else if (p_ventanaActiva == typeof(frmFacturacionMasiva))
+            { topic = "facturacionmasiva"; }
+            else if (p_ventanaActiva == typeof(frmPedidoCierre))
+            { topic = "cierredepedidodeventa"; }
+            else if (p_ventanaActiva == typeof(frmPedidoDevolucion))
+            { topic = "agregarunadevolucion"; }
+            else if (p_ventanaActiva == typeof(frmPedidoNuevo))
+            { topic = "agregarunarticuloalpedido"; }
+            else if (p_ventanaActiva == typeof(frmReimpresion))
+            { topic = "reimpresiondecomprobantes"; }
+            else if (p_ventanaActiva == typeof(frmReporteSeleccion))
+            { topic = "reportesdeventas"; }
+            else if (p_ventanaActiva == typeof(frmImportarPreview))
+            { topic = "importacion"; }
+            else
+            { topic = "abmarticulo"; }
+            
+            string lcl_dir_help = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName; 
+            lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\helpmenuproyecto.chm";
+
+            Help.ShowHelp(glb_form, lcl_dir_help, HelpNavigator.Topic, topic + ".html");
+        }
+
         
 
         

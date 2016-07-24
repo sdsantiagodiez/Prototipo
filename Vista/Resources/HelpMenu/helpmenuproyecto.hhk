@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY><OBJECT type="text/site properties">
+</OBJECT>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Artículo">
+	<param name="Local" value="abmarticulo.html">
+	</OBJECT>
+</UL>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Clientes">
+	<param name="Local" value="abmcliente.html">
+	</OBJECT>
+</UL>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Contacto Proveedor">
+	<param name="Local" value="abmcontactoproveedor.html">
+	</OBJECT>
+</UL>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Proveedor">
+	<param name="Local" value="abmproveedor.html">
+	</OBJECT>
+</UL>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Usuario">
+	<param name="Local" value="abmusuario.html">
+	</OBJECT>
+</UL>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Devoluciones">
+	<param name="Local" value="agregarunadevolución.html">
+	</OBJECT>
+</UL>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Precio de Compra">
+	<param name="Local" value="nuevopreciodecompra.html">
+	</OBJECT>
+</UL>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Precio de Venta">
+	<param name="Local" value="nuevopreciodeventa.html">
+	</OBJECT>
+</UL>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Saldos de Stock">
+	<param name="Local" value="saldosdestock.html">
+	</OBJECT>
+</UL>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Agregar un Articulo a Pedido Proveedor">
+	<param name="Local" value="agregarunarticuloalpedidoaproveedor.html">
+	</OBJECT>
+</UL>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Ingreso de Pedido">
+	<param name="Local" value="altapedido.html">
+	</OBJECT>
+</UL>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Reporte de compras">
+	<param name="Local" value="reportesdecompras.html">
+	</OBJECT>
+</UL>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Reportes de Ventas">
+	<param name="Local" value="reportesdeventas.html">
+	</OBJECT>
+</UL>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Agregar artículo a pedido de Venta">
+	<param name="Local" value="agregarunartículoalpedido.html">
+	</OBJECT>
+</UL>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Cierre de pedido de Venta">
+	<param name="Local" value="cierredepedidodeventa.html">
+	</OBJECT>
+</UL>
+<UL>
+	<LI><OBJECT type="text/sitemap">
+	<param name="Name" value="Ingreso de pedido de Venta">
+	<param name="Local" value="ingresodepedidodeventa.html">
+	</OBJECT>
+</UL>
+
+	
+</BODY></HTML>

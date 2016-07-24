@@ -1,0 +1,25 @@
+#define abmarticulo 0
+#define abmcliente 0
+#define abmcontactoproveedor 0
+#define abmdescuento 0
+#define abmproveedor 0
+#define abmusuario 0
+#define agregarunadevolución 0
+#define cerrardevolucion 0
+#define nuevopreciodecompra 0
+#define nuevopreciodeventa 0
+#define saldosdestock 0
+#define backup 0
+#define exportacion 0
+#define importacion 0
+#define agregarunarticuloalpedidoaproveedor 0
+#define altapedido 0
+#define reportesdecompras 0
+#define reportesdeinventario 0
+#define reportesdeventas 0
+#define agregarunartículoalpedido 0
+#define cierredepedidodeventa 0
+#define facturacionmasiva 0
+#define ingresodepedidodeventa 0
+#define reimpresiondecomprobantes 0
+

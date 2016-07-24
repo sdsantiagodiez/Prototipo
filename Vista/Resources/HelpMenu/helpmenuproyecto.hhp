@@ -1,0 +1,52 @@
+[OPTIONS]
+TITLE=Menú de Atuda SDG de Repuestos
+Full-text search=Yes
+Display compile notes=YES
+Display compile progress=YES
+Compatibility=1.1
+Default Window=Main
+Language=0x409 English (United States)
+Default Font=Arial,8,0
+Compiled file=helpmenuproyecto.chm
+Error Log file=helpmenuproyecto.log
+Contents file=helpmenuproyecto.hhc
+Index File=helpmenuproyecto.hhk
+Default Topic=reimpresiondecomprobantes.html
+
+[FILES]
+abmarticulo.html
+abmcliente.html
+abmcontactoproveedor.html
+abmdescuento.html
+abmproveedor.html
+abmusuario.html
+agregarunadevolución.html
+cerrardevolucion.html
+nuevopreciodecompra.html
+nuevopreciodeventa.html
+saldosdestock.html
+backup.html
+exportacion.html
+importacion.html
+agregarunarticuloalpedidoaproveedor.html
+altapedido.html
+reportesdecompras.html
+reportesdeinventario.html
+reportesdeventas.html
+agregarunartículoalpedido.html
+cierredepedidodeventa.html
+facturacionmasiva.html
+ingresodepedidodeventa.html
+reimpresiondecomprobantes.html
+
+
+[WINDOWS]
+Main="Ayuda SDG de Repuestos","helpmenuproyecto.hhc","helpmenuproyecto.hhk","","", ,,,,0x040120,200, 0x00300E, [9, 9, 566, 600]  , 0x307e, , , , , , , , 0
+Popup="Popup","helpmenuproyecto.hhc","helpmenuproyecto.hhk","","", ,,,,0x061520,200, 0x00304E, [9, 9, 566, 600]  , 0x307e, , , , , , , , 0
+
+
+[MAP]
+#include helpmenuproyecto.h
+
+[TEXT POPUPS]
+CSHelp.txt
