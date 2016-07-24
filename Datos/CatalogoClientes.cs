@@ -88,6 +88,12 @@ namespace Datos
             drUsuarios.Close();
             comando.Connection.Close();
 
+
+            foreach (ModeloCliente c in lcl_lst_mod_clientes)
+            {
+                this.getDatosAdicionales(c);
+            }
+
             return lcl_lst_mod_clientes;
         }
                

@@ -136,6 +136,11 @@ namespace Datos
             drContactoProveedor.Close();
             comando.Connection.Close();
 
+            foreach (ModeloContactoProveedor c in lcl_lst_mod_contactoProveedor)
+            {
+                this.getDatosAdicionales(c);
+            }
+
             return lcl_lst_mod_contactoProveedor;
         }
                

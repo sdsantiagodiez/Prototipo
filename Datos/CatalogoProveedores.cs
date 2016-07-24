@@ -114,6 +114,11 @@ namespace Datos
 
             comando.Connection.Close();
 
+            foreach (ModeloProveedor p in lcl_lst_mod_proveedor)
+            {
+                this.getDatosAdicionales(p);
+            }
+
             return lcl_lst_mod_proveedor;
         }
         

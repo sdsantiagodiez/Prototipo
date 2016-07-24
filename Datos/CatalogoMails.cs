@@ -26,15 +26,12 @@ namespace Datos
         public List<ModeloMail> getMails(int codigoEntidad)
         {
             List<ModeloMail> lcl_lst_mod_mails = new List<ModeloMail>();
-            
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-            comando.CommandText =
-                "SELECT [codigo_mail], [mail] " +
+            string query =
+              "SELECT [codigo_mail], [mail] " +
                 "   FROM [mails_entidad] " +
                 "   WHERE mails_entidad.codigo_entidad = @codigo_entidad";
+
+            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
 
             comando.Parameters.Add(new SqlParameter("@codigo_entidad", SqlDbType.Int));
             comando.Parameters["@codigo_entidad"].Value = codigoEntidad;

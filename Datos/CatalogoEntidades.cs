@@ -29,10 +29,6 @@ namespace Datos
             lcl_mod_entidad.observaciones = (p_drEntidades["observaciones"] != DBNull.Value) ? (string)p_drEntidades["observaciones"] : null;
             lcl_mod_entidad.activo = p_drEntidades.GetBoolean(p_drEntidades.GetOrdinal("activo"));
 
-            lcl_mod_entidad.mails = this.getMails(lcl_mod_entidad.codigo);
-            lcl_mod_entidad.telefonos = this.getTelefonos(lcl_mod_entidad.codigo);
-            lcl_mod_entidad.domicilios = this.getDomicilios(lcl_mod_entidad.codigo);
-
             return lcl_mod_entidad;
         }
 
@@ -108,25 +104,9 @@ namespace Datos
             drEntidades.Close();
             comando.Connection.Close();
 
+            this.getDatosAdicionales(lcl_mod_entidad);
+
             return lcl_mod_entidad;
-        }
-
-        public List<ModeloMail> getMails(int p_codigoEntidad)
-        {     
-            CatalogoMails lcl_cat_mails = new CatalogoMails();
-            return lcl_cat_mails.getMails(p_codigoEntidad);
-        }
-
-        public List<ModeloDomicilio> getDomicilios(int p_codigoEntidad)
-        {
-            CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
-            return lcl_cat_domicilios.getDomicilios(p_codigoEntidad);
-        }
-
-        public List<ModeloTelefono> getTelefonos(int p_codigoEntidad)
-        {
-            CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
-            return lcl_cat_telefonos.getTelefonos(p_codigoEntidad);
         }
 
         public List<TipoDocumento> getTiposDocumentos()
@@ -159,6 +139,30 @@ namespace Datos
             comando.Connection.Close();
 
             return lcl_lst_tiposDocumentos;
+        }
+
+        protected void getDatosAdicionales(ModeloEntidad p_mod_entidad)
+        {
+            p_mod_entidad.mails = this.getMails(p_mod_entidad.codigo);
+            p_mod_entidad.telefonos = this.getTelefonos(p_mod_entidad.codigo);
+            p_mod_entidad.domicilios = this.getDomicilios(p_mod_entidad.codigo);
+        }
+        private List<ModeloMail> getMails(int p_codigoEntidad)
+        {
+            CatalogoMails lcl_cat_mails = new CatalogoMails();
+            return lcl_cat_mails.getMails(p_codigoEntidad);
+        }
+
+        private List<ModeloDomicilio> getDomicilios(int p_codigoEntidad)
+        {
+            CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
+            return lcl_cat_domicilios.getDomicilios(p_codigoEntidad);
+        }
+
+        private List<ModeloTelefono> getTelefonos(int p_codigoEntidad)
+        {
+            CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
+            return lcl_cat_telefonos.getTelefonos(p_codigoEntidad);
         }
         #endregion
 

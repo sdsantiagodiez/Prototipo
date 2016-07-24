@@ -138,6 +138,11 @@ namespace Datos
             drPersonas.Close();
             comando.Connection.Close();
 
+            foreach (ModeloPersonas p in lcl_lst_mod_persona)
+            {
+                this.getDatosAdicionales(p);
+            }
+
             return lcl_lst_mod_persona;
         }
         

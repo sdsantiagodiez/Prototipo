@@ -19,6 +19,7 @@ namespace Vista
         DataGridView dgvPreview;
         List<ComboBoxItem> glb_lst_atributos;
         string filePath;
+        
         #region Constructores
         private frmImportarPreview()
         {
@@ -27,10 +28,17 @@ namespace Vista
         public frmImportarPreview(Type T) : this()
         {
             TypeModelo = T;
+            
+            this.inicializarTituloForm(T);
+            inicializarDgvReview();
+            inicializarSeleccionDeColumnas(T);
+            this.habilitarImportar(false);
         }
         #endregion
 
         #region Métodos
+      
+        #region Inicialización
         public override void inicializarForm(int ventanaAncho, int ventanaAlto)
         {
             this.tblLayoutPanelPrincipal.Width = ventanaAncho - 20; //un margen derecho de 20 para que se vea scrollbar
@@ -40,6 +48,81 @@ namespace Vista
             int x = Convert.ToInt16(Math.Round(Convert.ToDouble((Width - this.tblLayoutPanelPrincipal.Width) / 2)));
             this.tblLayoutPanelPrincipal.Location = new Point(10, 0);
             this.pnlBase.Location = new Point(0, 65);
+        }
+        private void inicializarDgvReview()
+        {
+            this.dgvPreview = new DataGridView();
+            this.dgvPreview.CellValueChanged += new DataGridViewCellEventHandler(dgvPreview_CellValueChanged);
+            this.dgvPreview.CurrentCellDirtyStateChanged += new EventHandler(dgvPreview_CurrentCellDirtyStateChanged);
+            this.dgvPreview.ColumnHeadersVisible = false;
+            this.dgvPreview.Dock = DockStyle.Fill;
+            this.dgvPreview.AutoGenerateColumns = false;
+            this.dgvPreview.AllowUserToAddRows = false;
+            this.dgvPreview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            this.tblLayoutPanelPrincipal.Controls.Add(this.dgvPreview, 0, 2);
+        }
+        private void inicializarSeleccionDeColumnas(Type T)
+        {
+            var dataSource = this.getAtributos(T);
+
+            glb_lst_atributos = new List<ComboBoxItem>();
+            glb_lst_atributos = this.getAtributos(T);
+
+            List<DataGridViewComboBoxCell> lcl_lst_comboBoxCell = new List<DataGridViewComboBoxCell>();
+            DataGridViewComboBoxCell lcl_c;
+
+            for (int i = 0; i < dataSource.Count - 1; i++) //-1 por -seleccionar- al inicio
+            {
+                this.dgvPreview.Columns.Add(i.ToString(), "c " + i.ToString());
+
+                lcl_c = new DataGridViewComboBoxCell();
+                lcl_c.DisplayMember = "Name";
+                lcl_c.ValueMember = "Value";
+                lcl_c.DataSource = glb_lst_atributos;
+
+                lcl_lst_comboBoxCell.Add(lcl_c);
+            }
+
+            this.dgvPreview.Rows.Add();
+            //Adding combo box column in dataGridView
+            foreach (DataGridViewColumn c in this.dgvPreview.Columns)
+            {
+                this.dgvPreview.Rows[0].Cells[c.Index] = lcl_lst_comboBoxCell[c.Index];
+            }
+        }
+        private void inicializarTituloForm(Type T)
+        {
+            string titulo = "Importar ";
+            if (T == typeof(ModeloArticuloProveedores))
+            {
+                titulo += "Artículos Proveedores";
+            }
+            else if (T == typeof(ModeloArticulos))
+            {
+                titulo += "Artículos";
+            }
+            else if (T == typeof(ModeloCliente))
+            {
+                titulo += "Clientes";
+            }
+            else if (T == typeof(ModeloProveedor))
+            {
+                titulo += "Proveedores";
+            }
+            else
+            {
+                titulo += "Archivo";
+            }
+            this.Text = titulo;
+        }
+        #endregion
+       
+        private void habilitarImportar(bool p_habilitar)
+        {
+            this.chckBoxPrimeraFilaHeaders.Enabled = p_habilitar;
+            this.dgvPreview.Enabled = p_habilitar;
+            this.btnImportar.Enabled = p_habilitar;
         }
 
         private void buscarArchivo()
@@ -55,71 +138,25 @@ namespace Vista
                 {
                     filePath = lcl_ofd.FileName;
                     this.txtBoxDireccionArchivo.Text = filePath;
+                    this.habilitarImportar(true);
+                }
+                else
+                {
+                    this.habilitarImportar(false);
                 }
             }
             if (!string.IsNullOrWhiteSpace(filePath))
             {
-                this.mostrarDgvPreview(filePath, TypeModelo);
+                this.cargarDatosPreview(Controladores.ControladorExcel.getPreviewDeArchivo(filePath, TypeModelo));
             }
-        }
-
-        private void mostrarDgvPreview(string p_filePath,Type T)
-        {
-            inicializarDgvReview();
-
-            cargarSeleccionDeColumnas(T);
-            
-            this.cargarDatosPreview(Controladores.ControladorExcel.getPreviewDeArchivo(p_filePath,T));
-        }
-
-        private void cargarSeleccionDeColumnas(Type T)
-        {
-            var dataSource = this.getAtributos(T);
-
-            glb_lst_atributos = new List<ComboBoxItem>();
-            glb_lst_atributos = this.getAtributos(T);
-
-            
-            List<DataGridViewComboBoxCell> lcl_lst_comboBoxCell = new List<DataGridViewComboBoxCell>();
-            DataGridViewComboBoxCell lcl_c;
-
-            for (int i = 0; i < dataSource.Count - 1; i++) //-1 por -seleccionar- al inicio
-            {
-                this.dgvPreview.Columns.Add(i.ToString(), "c " + i.ToString());
-
-                lcl_c = new DataGridViewComboBoxCell();
-                lcl_c.DisplayMember = "Name";
-                lcl_c.ValueMember = "Value";
-                lcl_c.DataSource = glb_lst_atributos;
-                
-                lcl_lst_comboBoxCell.Add(lcl_c);
-            }
-
-            this.dgvPreview.Rows.Add();
-            //Adding combo box column in dataGridView
-            foreach(DataGridViewColumn c in this.dgvPreview.Columns)
-            {
-                this.dgvPreview.Rows[0].Cells[c.Index] = lcl_lst_comboBoxCell[c.Index];
-            }
-        }
-
-        private void inicializarDgvReview()
-        {
-            this.dgvPreview = new DataGridView();
-            this.dgvPreview.CellValueChanged += new DataGridViewCellEventHandler(dgvPreview_CellValueChanged);
-            this.dgvPreview.CurrentCellDirtyStateChanged += new EventHandler(dgvPreview_CurrentCellDirtyStateChanged);
-            this.dgvPreview.ColumnHeadersVisible = false;
-            this.dgvPreview.Dock = DockStyle.Fill;
-            this.dgvPreview.AutoGenerateColumns = false;
-            this.dgvPreview.AllowUserToAddRows = false;
-            this.dgvPreview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            this.tblLayoutPanelPrincipal.Controls.Add(this.dgvPreview,0,2);
         }
 
         private void cargarDatosPreview(DataTable p_dt_datos)
         {
-            
+            if (this.dgvPreview.Rows.Count > 1)
+            {
+                this.clearDgvPreview();
+            }
             int rowCount = p_dt_datos.Rows.Count > 25? 25: p_dt_datos.Rows.Count;//Se setea un valor máximo de rows a mostrar
             for (int i = 1; i < rowCount+1; i++)  //empieza en 1 porque 0 lo tienen los comboBoxes
             {
@@ -129,6 +166,14 @@ namespace Vista
                     this.dgvPreview.Rows[i].Cells[c.Index].Value = p_dt_datos.Rows[i-1][c.Index];
                 }
             }
+        }
+        private void clearDgvPreview()
+        {
+            while (this.dgvPreview.Rows.Count > 1)
+            {
+                this.dgvPreview.Rows.RemoveAt(this.dgvPreview.Rows.Count - 1);
+            }
+            
         }
 
         /// <summary>
@@ -227,11 +272,12 @@ namespace Vista
         private List<ComboBoxItem> getAtributosCliente()
         {
             List<ComboBoxItem> lcl_lst_atributos = new List<ComboBoxItem>();
-            lcl_lst_atributos.Add(new ComboBoxItem() { Name = "CUIT", Value = 0 });
-            lcl_lst_atributos.Add(new ComboBoxItem() { Name = "Observaciones", Value = 1 });
-            lcl_lst_atributos.Add(new ComboBoxItem() { Name = "DNI*", Value = 2 });
-            lcl_lst_atributos.Add(new ComboBoxItem() { Name = "Nombre*", Value = 3 });
-            lcl_lst_atributos.Add(new ComboBoxItem() { Name = "Apellido*", Value = 4 });
+            lcl_lst_atributos.Add(new ComboBoxItem() { Name = "DNI*", Value = 0 });
+            lcl_lst_atributos.Add(new ComboBoxItem() { Name = "Nombre*", Value = 1 });
+            lcl_lst_atributos.Add(new ComboBoxItem() { Name = "Apellido*", Value = 2 });
+            lcl_lst_atributos.Add(new ComboBoxItem() { Name = "CUIT", Value = 3 });
+            lcl_lst_atributos.Add(new ComboBoxItem() { Name = "Observaciones", Value = 4 });
+            
 
             return lcl_lst_atributos;
         }
@@ -239,8 +285,8 @@ namespace Vista
         {
             List<ComboBoxItem> lcl_lst_atributos = new List<ComboBoxItem>();
             lcl_lst_atributos.Add(new ComboBoxItem() { Name = "CUIT*", Value = 0 });
-            lcl_lst_atributos.Add(new ComboBoxItem() { Name = "Observaciones", Value = 1 });
-            lcl_lst_atributos.Add(new ComboBoxItem() { Name = "Razón Social*", Value = 2 });
+            lcl_lst_atributos.Add(new ComboBoxItem() { Name = "Razón Social*", Value = 1 });
+            lcl_lst_atributos.Add(new ComboBoxItem() { Name = "Observaciones", Value = 2 });
             
             return lcl_lst_atributos;
         }
@@ -249,6 +295,8 @@ namespace Vista
         #endregion
 
         #region Eventos
+
+        #region DataGridView
         /// <summary>
         /// Se usa para llamar al evento cellValueChanged
         /// </summary>
@@ -287,7 +335,8 @@ namespace Vista
             }
         }
         #endregion
-
+        
+        #region Button
         private void btnImportar_Click(object sender, EventArgs e)
         {
             string respuesta;
@@ -302,9 +351,19 @@ namespace Vista
                 MessageBox.Show(respuesta, "Error");
             }
         }
+        private void btnBuscarArchivo_Click(object sender, EventArgs e)
+        {
+            this.buscarArchivo();
+        }
+        #endregion
 
+        #region CheckBox
         private void chckBoxPrimeraFilaHeaders_CheckedChanged(object sender, EventArgs e)
         {
+            if (this.dgvPreview == null)
+            {
+                return;
+            }
             if (this.chckBoxPrimeraFilaHeaders.Checked)
             {
                 this.dgvPreview.Rows[1].Visible = false;
@@ -314,10 +373,8 @@ namespace Vista
                 this.dgvPreview.Rows[1].Visible = true;
             }
         }
+        #endregion
 
-        private void btnBuscarArchivo_Click(object sender, EventArgs e)
-        {
-            this.buscarArchivo();
-        }
+        #endregion
     }
 }

@@ -105,6 +105,11 @@ namespace Datos
             drUsuarios.Close();
             comando.Connection.Close();
 
+            foreach (ModeloUsuario u in lcl_lst_mod_usuarios)
+            {
+                this.getDatosAdicionales(u);
+            }
+
             return lcl_lst_mod_usuarios;
         }
 

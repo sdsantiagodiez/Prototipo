@@ -42,7 +42,6 @@ namespace Controladores
                             Missing.Value, false, false, Excel.XlSaveAsAccessMode.xlNoChange,
                             Excel.XlSaveConflictResolution.xlUserResolution, true,
                             Missing.Value, Missing.Value, Missing.Value);
-                    excelWorkbook.Close();
                     scope.Complete();
                     return true;
                 }
@@ -59,6 +58,10 @@ namespace Controladores
             catch (Exception ex)
             {
                 errorActual = ex.Message;
+            }
+            finally
+            {
+                excelWorkbook.Close();
             }
 
             return false;
@@ -138,23 +141,23 @@ namespace Controladores
         }
         private void completarColumnasCliente()
         {
-            glb_hojaTrabajo.Cells[1, "A"] = "Cuit";
-            glb_hojaTrabajo.Cells[1, "B"] = "Observaciones";
-            glb_hojaTrabajo.Cells[1, "C"] = "DNI";
+            glb_hojaTrabajo.Cells[1, "A"] = "DNI";
+            glb_hojaTrabajo.Range["A1"].AddComment("Campo Obligatorio");
+            glb_hojaTrabajo.Cells[1, "B"] = "Nombre";
+            glb_hojaTrabajo.Range["B1"].AddComment("Campo Obligatorio");
+            glb_hojaTrabajo.Cells[1, "C"] = "Apellido";
             glb_hojaTrabajo.Range["C1"].AddComment("Campo Obligatorio");
-            glb_hojaTrabajo.Cells[1, "D"] = "Nombre";
-            glb_hojaTrabajo.Range["D1"].AddComment("Campo Obligatorio");
-            glb_hojaTrabajo.Cells[1, "E"] = "Apellido";
-            glb_hojaTrabajo.Range["E1"].AddComment("Campo Obligatorio");
+            glb_hojaTrabajo.Cells[1, "D"] = "Cuit";
+            glb_hojaTrabajo.Cells[1, "E"] = "Observaciones";
 
         }
         private void completarColumnasProveedor()
         {
             glb_hojaTrabajo.Cells[1, "A"] = "Cuit";
             glb_hojaTrabajo.Range["A1"].AddComment("Campo Obligatorio");
-            glb_hojaTrabajo.Cells[1, "B"] = "Observaciones";
-            glb_hojaTrabajo.Cells[1, "C"] = "Razon Social";
-            glb_hojaTrabajo.Range["C1"].AddComment("Campo Obligatorio");
+            glb_hojaTrabajo.Cells[1, "B"] = "Razon Social";
+            glb_hojaTrabajo.Range["B1"].AddComment("Campo Obligatorio");
+            glb_hojaTrabajo.Cells[1, "C"] = "Observaciones";
 
         }
         private void completarColumnasDescuento()
@@ -235,14 +238,13 @@ namespace Controladores
             foreach (ModeloEntidad p_mod in p_lst_mod_cli)
             {
                 row++;
-                glb_hojaTrabajo.Cells[row, "A"] = p_mod.cuit;
-                glb_hojaTrabajo.Cells[row, "B"] = (p_mod.observaciones != null) ? p_mod.observaciones : "";
-                glb_hojaTrabajo.Cells[row, "C"] = (p_mod as ModeloCliente).dni;
-                glb_hojaTrabajo.Cells[row, "D"] = (p_mod as ModeloCliente).nombre;
-                glb_hojaTrabajo.Cells[row, "E"] = (p_mod as ModeloCliente).apellido;
+                glb_hojaTrabajo.Cells[row, "A"] = (p_mod as ModeloCliente).dni;
+                glb_hojaTrabajo.Cells[row, "B"] = (p_mod as ModeloCliente).nombre;
+                glb_hojaTrabajo.Cells[row, "C"] = (p_mod as ModeloCliente).apellido;
+                glb_hojaTrabajo.Cells[row, "D"] = p_mod.cuit;
+                glb_hojaTrabajo.Cells[row, "E"] = (p_mod.observaciones != null) ? p_mod.observaciones : "";
 
             }
-
         }
         private void completaFilasProveedor(List<ModeloEntidad> p_lst_mod_prov)
         {
@@ -251,8 +253,8 @@ namespace Controladores
             {
                 row++;
                 glb_hojaTrabajo.Cells[row, "A"] = p_mod.cuit;
-                glb_hojaTrabajo.Cells[row, "B"] = p_mod.observaciones;
-                glb_hojaTrabajo.Cells[row, "C"] = (p_mod as ModeloProveedor).razonSocial;
+                glb_hojaTrabajo.Cells[row, "B"] = (p_mod as ModeloProveedor).razonSocial;
+                glb_hojaTrabajo.Cells[row, "C"] = p_mod.observaciones;
             }
 
         }
@@ -412,7 +414,7 @@ namespace Controladores
                 return false;
             }
 
-            if (!this.importarDatos_getDatos(p_path, p_indiceAtributo, lcl_dataTable, p_primeraRowHeaders))
+            if (!this.importarDatos_getDatos(p_path, p_indiceAtributo, ref lcl_dataTable, p_primeraRowHeaders))
             {
                 p_respuesta = "Ha surgido un problema al leer los datos del archivo.";
                 return false;
@@ -481,11 +483,11 @@ namespace Controladores
         {
             DataTable lcl_dataTable = new DataTable();
 
-            lcl_dataTable.Columns.Add("cuit");
-            lcl_dataTable.Columns.Add("observaciones");
             lcl_dataTable.Columns.Add("dni");
             lcl_dataTable.Columns.Add("nombre");
-            lcl_dataTable.Columns.Add("apellido");   
+            lcl_dataTable.Columns.Add("apellido");
+            lcl_dataTable.Columns.Add("cuit");
+            lcl_dataTable.Columns.Add("observaciones");
 
             return lcl_dataTable;
         }
@@ -494,14 +496,15 @@ namespace Controladores
             DataTable lcl_dataTable = new DataTable();
 
             lcl_dataTable.Columns.Add("cuit");
-            lcl_dataTable.Columns.Add("observaciones");
             lcl_dataTable.Columns.Add("razonSocial");
+            lcl_dataTable.Columns.Add("observaciones");
 
             return lcl_dataTable;
         }
 
-        private bool importarDatos_getDatos(string p_path, List<int?> p_indiceAtributo, DataTable p_dataTable, bool p_primeraRowHeaders)
+        private bool importarDatos_getDatos(string p_path, List<int?> p_indiceAtributo, ref DataTable p_dataTable, bool p_primeraRowHeaders)
         {
+            string aux;
             try
             {
                 Excel.Application app = new Excel.Application();
@@ -516,7 +519,10 @@ namespace Controladores
 
                     foreach (DataColumn c in p_dataTable.Columns)
                     {
-                        row[c.Ordinal] = (string)(workSheet.Cells[rowIndex, p_indiceAtributo[c.Ordinal]+1] as Excel.Range).Value2;
+                        if (p_indiceAtributo[c.Ordinal] == null)
+                        { continue; }
+                        aux = Convert.ToString((workSheet.Cells[rowIndex, p_indiceAtributo[c.Ordinal]+1] as Excel.Range).Value2);
+                        row[c.Ordinal] = aux;
                     }
                     p_dataTable.Rows.Add(row);
                 }
@@ -551,9 +557,7 @@ namespace Controladores
             
             ControladorAlta lcl_con_alta = new ControladorAlta();
 
-            //lcl_con_alta.agregar(lcl_lst_datos);
-
-            return true;
+            return  lcl_con_alta.agregar(lcl_lst_datos);
         }
 
         private List<object> importarDatos_getModelos(Type T, DataTable p_dataTable)
