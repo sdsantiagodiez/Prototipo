@@ -142,25 +142,28 @@
             // 
             // tblLayoutPanelParametrosBusqueda
             // 
-            this.tblLayoutPanelParametrosBusqueda.ColumnCount = 6;
+            this.tblLayoutPanelParametrosBusqueda.ColumnCount = 9;
             this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
-            this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33332F));
+            this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.lblCodigoOriginal, 0, 0);
-            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.lblModelo, 2, 1);
+            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.lblModelo, 3, 1);
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.txtBoxCodigoOriginal, 1, 0);
-            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.txtBoxModelo, 3, 1);
-            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.btnBuscar, 5, 2);
-            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.lblProveedor, 4, 0);
-            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.cmbBoxProveedores, 5, 0);
+            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.txtBoxModelo, 4, 1);
+            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.btnBuscar, 7, 2);
+            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.lblProveedor, 6, 0);
+            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.cmbBoxProveedores, 7, 0);
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.lblDescripcion, 0, 1);
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.txtBoxDescripcion, 1, 1);
-            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.lblCodigoArticuloProveedor, 2, 0);
-            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.txtBoxCodigoArticuloProveedor, 3, 0);
-            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.chckBoxDescuentosActivos, 5, 1);
+            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.lblCodigoArticuloProveedor, 3, 0);
+            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.txtBoxCodigoArticuloProveedor, 4, 0);
+            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.chckBoxDescuentosActivos, 7, 1);
             this.tblLayoutPanelParametrosBusqueda.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelParametrosBusqueda.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelParametrosBusqueda.Name = "tblLayoutPanelParametrosBusqueda";
@@ -212,7 +215,7 @@
             this.txtBoxCodigoOriginal.SelectedText = "";
             this.txtBoxCodigoOriginal.SelectionLength = 0;
             this.txtBoxCodigoOriginal.SelectionStart = 0;
-            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(122, 23);
+            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(97, 23);
             this.txtBoxCodigoOriginal.TabIndex = 7;
             this.txtBoxCodigoOriginal.UseSystemPasswordChar = false;
             this.txtBoxCodigoOriginal.Leave += new System.EventHandler(this.txtBoxCodigoOriginal_Leave);
@@ -230,7 +233,7 @@
             this.txtBoxModelo.SelectedText = "";
             this.txtBoxModelo.SelectionLength = 0;
             this.txtBoxModelo.SelectionStart = 0;
-            this.txtBoxModelo.Size = new System.Drawing.Size(122, 23);
+            this.txtBoxModelo.Size = new System.Drawing.Size(97, 23);
             this.txtBoxModelo.TabIndex = 9;
             this.txtBoxModelo.UseSystemPasswordChar = false;
             this.txtBoxModelo.Leave += new System.EventHandler(this.txtBoxModelo_Leave);
@@ -239,12 +242,12 @@
             // 
             this.btnBuscar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBuscar.Depth = 0;
-            this.btnBuscar.Location = new System.Drawing.Point(649, 87);
+            this.btnBuscar.Location = new System.Drawing.Point(639, 87);
             this.btnBuscar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnBuscar.Primary = true;
-            this.btnBuscar.Size = new System.Drawing.Size(110, 38);
+            this.btnBuscar.Size = new System.Drawing.Size(104, 38);
             this.btnBuscar.TabIndex = 6;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -270,7 +273,7 @@
             this.cmbBoxProveedores.Location = new System.Drawing.Point(639, 10);
             this.cmbBoxProveedores.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.cmbBoxProveedores.Name = "cmbBoxProveedores";
-            this.cmbBoxProveedores.Size = new System.Drawing.Size(123, 21);
+            this.cmbBoxProveedores.Size = new System.Drawing.Size(97, 21);
             this.cmbBoxProveedores.TabIndex = 10;
             // 
             // lblDescripcion
@@ -300,7 +303,7 @@
             this.txtBoxDescripcion.SelectedText = "";
             this.txtBoxDescripcion.SelectionLength = 0;
             this.txtBoxDescripcion.SelectionStart = 0;
-            this.txtBoxDescripcion.Size = new System.Drawing.Size(122, 23);
+            this.txtBoxDescripcion.Size = new System.Drawing.Size(97, 23);
             this.txtBoxDescripcion.TabIndex = 8;
             this.txtBoxDescripcion.UseSystemPasswordChar = false;
             this.txtBoxDescripcion.Leave += new System.EventHandler(this.txtBoxDescripcion_Leave);
@@ -333,7 +336,7 @@
             this.txtBoxCodigoArticuloProveedor.SelectedText = "";
             this.txtBoxCodigoArticuloProveedor.SelectionLength = 0;
             this.txtBoxCodigoArticuloProveedor.SelectionStart = 0;
-            this.txtBoxCodigoArticuloProveedor.Size = new System.Drawing.Size(122, 23);
+            this.txtBoxCodigoArticuloProveedor.Size = new System.Drawing.Size(97, 23);
             this.txtBoxCodigoArticuloProveedor.TabIndex = 6;
             this.txtBoxCodigoArticuloProveedor.UseSystemPasswordChar = false;
             this.txtBoxCodigoArticuloProveedor.Leave += new System.EventHandler(this.txtBoxCodigoArticuloProveedor_Leave);
@@ -350,7 +353,7 @@
             this.chckBoxDescuentosActivos.MouseState = MaterialSkin.MouseState.HOVER;
             this.chckBoxDescuentosActivos.Name = "chckBoxDescuentosActivos";
             this.chckBoxDescuentosActivos.Ripple = true;
-            this.chckBoxDescuentosActivos.Size = new System.Drawing.Size(136, 30);
+            this.chckBoxDescuentosActivos.Size = new System.Drawing.Size(110, 30);
             this.chckBoxDescuentosActivos.TabIndex = 4;
             this.chckBoxDescuentosActivos.Text = "Tiene Descuentos Vigentes";
             this.chckBoxDescuentosActivos.UseVisualStyleBackColor = true;
@@ -368,23 +371,25 @@
             // 
             // tblLayoutPanelParametrosDescuento
             // 
-            this.tblLayoutPanelParametrosDescuento.ColumnCount = 6;
+            this.tblLayoutPanelParametrosDescuento.ColumnCount = 8;
+            this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
+            this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
-            this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelParametrosDescuento.Controls.Add(this.txtBoxPorcentajeDescuento, 1, 1);
-            this.tblLayoutPanelParametrosDescuento.Controls.Add(this.lblFechaHastaDescuento, 2, 1);
-            this.tblLayoutPanelParametrosDescuento.Controls.Add(this.dtpFechaHastaDescuento, 3, 1);
+            this.tblLayoutPanelParametrosDescuento.Controls.Add(this.lblFechaHastaDescuento, 3, 1);
+            this.tblLayoutPanelParametrosDescuento.Controls.Add(this.dtpFechaHastaDescuento, 4, 1);
             this.tblLayoutPanelParametrosDescuento.Controls.Add(this.cmbBoxPorcentajeDescuento, 1, 0);
             this.tblLayoutPanelParametrosDescuento.Controls.Add(this.lblPorcentajeDescuento, 0, 0);
-            this.tblLayoutPanelParametrosDescuento.Controls.Add(this.lblFechaDesdeDescuento, 2, 0);
-            this.tblLayoutPanelParametrosDescuento.Controls.Add(this.lblDescripcionDescuento, 4, 0);
-            this.tblLayoutPanelParametrosDescuento.Controls.Add(this.dtpFechaDesdeDescuento, 3, 0);
-            this.tblLayoutPanelParametrosDescuento.Controls.Add(this.txtBoxDescripcionDescuento, 5, 0);
-            this.tblLayoutPanelParametrosDescuento.Controls.Add(this.btnGuardarDescuento, 5, 1);
+            this.tblLayoutPanelParametrosDescuento.Controls.Add(this.lblFechaDesdeDescuento, 3, 0);
+            this.tblLayoutPanelParametrosDescuento.Controls.Add(this.lblDescripcionDescuento, 5, 0);
+            this.tblLayoutPanelParametrosDescuento.Controls.Add(this.dtpFechaDesdeDescuento, 4, 0);
+            this.tblLayoutPanelParametrosDescuento.Controls.Add(this.txtBoxDescripcionDescuento, 6, 0);
+            this.tblLayoutPanelParametrosDescuento.Controls.Add(this.btnGuardarDescuento, 6, 1);
             this.tblLayoutPanelParametrosDescuento.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelParametrosDescuento.Location = new System.Drawing.Point(3, 16);
             this.tblLayoutPanelParametrosDescuento.Name = "tblLayoutPanelParametrosDescuento";
@@ -406,7 +411,7 @@
             this.txtBoxPorcentajeDescuento.SelectedText = "";
             this.txtBoxPorcentajeDescuento.SelectionLength = 0;
             this.txtBoxPorcentajeDescuento.SelectionStart = 0;
-            this.txtBoxPorcentajeDescuento.Size = new System.Drawing.Size(131, 23);
+            this.txtBoxPorcentajeDescuento.Size = new System.Drawing.Size(114, 23);
             this.txtBoxPorcentajeDescuento.TabIndex = 5;
             this.txtBoxPorcentajeDescuento.UseSystemPasswordChar = false;
             this.txtBoxPorcentajeDescuento.Leave += new System.EventHandler(this.txtBoxPorcentajeDescuento_Leave);
@@ -416,12 +421,12 @@
             this.lblFechaHastaDescuento.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblFechaHastaDescuento.AutoSize = true;
             this.lblFechaHastaDescuento.Depth = 0;
-            this.lblFechaHastaDescuento.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblFechaHastaDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.lblFechaHastaDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblFechaHastaDescuento.Location = new System.Drawing.Point(281, 65);
+            this.lblFechaHastaDescuento.Location = new System.Drawing.Point(290, 66);
             this.lblFechaHastaDescuento.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblFechaHastaDescuento.Name = "lblFechaHastaDescuento";
-            this.lblFechaHastaDescuento.Size = new System.Drawing.Size(97, 19);
+            this.lblFechaHastaDescuento.Size = new System.Drawing.Size(96, 18);
             this.lblFechaHastaDescuento.TabIndex = 2;
             this.lblFechaHastaDescuento.Text = "Fecha Hasta:";
             // 
@@ -429,9 +434,9 @@
             // 
             this.dtpFechaHastaDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpFechaHastaDescuento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaHastaDescuento.Location = new System.Drawing.Point(384, 65);
+            this.dtpFechaHastaDescuento.Location = new System.Drawing.Point(392, 65);
             this.dtpFechaHastaDescuento.Name = "dtpFechaHastaDescuento";
-            this.dtpFechaHastaDescuento.Size = new System.Drawing.Size(131, 20);
+            this.dtpFechaHastaDescuento.Size = new System.Drawing.Size(114, 20);
             this.dtpFechaHastaDescuento.TabIndex = 8;
             // 
             // cmbBoxPorcentajeDescuento
@@ -440,7 +445,7 @@
             this.cmbBoxPorcentajeDescuento.FormattingEnabled = true;
             this.cmbBoxPorcentajeDescuento.Location = new System.Drawing.Point(125, 14);
             this.cmbBoxPorcentajeDescuento.Name = "cmbBoxPorcentajeDescuento";
-            this.cmbBoxPorcentajeDescuento.Size = new System.Drawing.Size(131, 21);
+            this.cmbBoxPorcentajeDescuento.Size = new System.Drawing.Size(114, 21);
             this.cmbBoxPorcentajeDescuento.TabIndex = 6;
             this.cmbBoxPorcentajeDescuento.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxPorcentajeDescuento_SelectionChangeCommitted);
             // 
@@ -463,12 +468,12 @@
             this.lblFechaDesdeDescuento.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblFechaDesdeDescuento.AutoSize = true;
             this.lblFechaDesdeDescuento.Depth = 0;
-            this.lblFechaDesdeDescuento.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblFechaDesdeDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.lblFechaDesdeDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblFechaDesdeDescuento.Location = new System.Drawing.Point(279, 15);
+            this.lblFechaDesdeDescuento.Location = new System.Drawing.Point(286, 16);
             this.lblFechaDesdeDescuento.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblFechaDesdeDescuento.Name = "lblFechaDesdeDescuento";
-            this.lblFechaDesdeDescuento.Size = new System.Drawing.Size(99, 19);
+            this.lblFechaDesdeDescuento.Size = new System.Drawing.Size(100, 18);
             this.lblFechaDesdeDescuento.TabIndex = 1;
             this.lblFechaDesdeDescuento.Text = "Fecha Desde:";
             // 
@@ -477,12 +482,12 @@
             this.lblDescripcionDescuento.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDescripcionDescuento.AutoSize = true;
             this.lblDescripcionDescuento.Depth = 0;
-            this.lblDescripcionDescuento.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblDescripcionDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.lblDescripcionDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblDescripcionDescuento.Location = new System.Drawing.Point(544, 15);
+            this.lblDescripcionDescuento.Location = new System.Drawing.Point(537, 16);
             this.lblDescripcionDescuento.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblDescripcionDescuento.Name = "lblDescripcionDescuento";
-            this.lblDescripcionDescuento.Size = new System.Drawing.Size(93, 19);
+            this.lblDescripcionDescuento.Size = new System.Drawing.Size(91, 18);
             this.lblDescripcionDescuento.TabIndex = 0;
             this.lblDescripcionDescuento.Text = "Descripción:";
             // 
@@ -491,9 +496,9 @@
             this.dtpFechaDesdeDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpFechaDesdeDescuento.CustomFormat = "";
             this.dtpFechaDesdeDescuento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaDesdeDescuento.Location = new System.Drawing.Point(384, 15);
+            this.dtpFechaDesdeDescuento.Location = new System.Drawing.Point(392, 15);
             this.dtpFechaDesdeDescuento.Name = "dtpFechaDesdeDescuento";
-            this.dtpFechaDesdeDescuento.Size = new System.Drawing.Size(131, 20);
+            this.dtpFechaDesdeDescuento.Size = new System.Drawing.Size(114, 20);
             this.dtpFechaDesdeDescuento.TabIndex = 7;
             this.dtpFechaDesdeDescuento.ValueChanged += new System.EventHandler(this.dtpFechaDesdeDescuento_ValueChanged);
             // 
@@ -502,14 +507,14 @@
             this.txtBoxDescripcionDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxDescripcionDescuento.Depth = 0;
             this.txtBoxDescripcionDescuento.Hint = "";
-            this.txtBoxDescripcionDescuento.Location = new System.Drawing.Point(643, 13);
+            this.txtBoxDescripcionDescuento.Location = new System.Drawing.Point(634, 13);
             this.txtBoxDescripcionDescuento.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDescripcionDescuento.Name = "txtBoxDescripcionDescuento";
             this.txtBoxDescripcionDescuento.PasswordChar = '\0';
             this.txtBoxDescripcionDescuento.SelectedText = "";
             this.txtBoxDescripcionDescuento.SelectionLength = 0;
             this.txtBoxDescripcionDescuento.SelectionStart = 0;
-            this.txtBoxDescripcionDescuento.Size = new System.Drawing.Size(132, 23);
+            this.txtBoxDescripcionDescuento.Size = new System.Drawing.Size(114, 23);
             this.txtBoxDescripcionDescuento.TabIndex = 4;
             this.txtBoxDescripcionDescuento.UseSystemPasswordChar = false;
             this.txtBoxDescripcionDescuento.Leave += new System.EventHandler(this.txtBoxDescripcionDescuento_Leave);
@@ -518,7 +523,7 @@
             // 
             this.btnGuardarDescuento.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnGuardarDescuento.Depth = 0;
-            this.btnGuardarDescuento.Location = new System.Drawing.Point(654, 53);
+            this.btnGuardarDescuento.Location = new System.Drawing.Point(636, 53);
             this.btnGuardarDescuento.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnGuardarDescuento.Name = "btnGuardarDescuento";
             this.btnGuardarDescuento.Primary = true;

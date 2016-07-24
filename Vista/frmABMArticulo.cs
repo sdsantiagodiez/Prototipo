@@ -18,6 +18,7 @@ namespace Vista
         ModeloArticulos glb_mod_articulo;
         ModeloArticuloProveedores glb_mod_articuloProveedor;
         List<ModeloArticuloProveedores> glb_lst_mod_articulosProveedores;
+        List<bool> glb_lst_respuestasValidaciones;
         bool glb_banderaCodigoOriginal=false;
         /// <summary>
         /// indica si hay un artículo seleccionado desde una búsqueda de artículos
@@ -38,6 +39,11 @@ namespace Vista
             this.pathimagen.Text = "";
 
             this.inicializarControles();
+
+            for (int i = 0; i < 7; i++)
+            {
+                glb_lst_respuestasValidaciones.Add(false);
+            }
         }
         /// <summary>
         /// Uso externo para visualizar artículo
@@ -493,6 +499,53 @@ namespace Vista
         #endregion
 
         #region Validación
+
+        private int getIndex(string p_inputName)
+        {
+            int index;
+            switch (p_inputName)
+            {
+                case Constantes.ParametrosBusqueda.Articulos.CodigoOriginal:
+                    index = 0;
+                    break;
+                case Constantes.ParametrosBusqueda.Articulos.Descripcion:
+                    index = 1;
+                    break;
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo:
+                    index = 2;
+                    break;
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor:
+                    index = 3;
+                    break;
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion:
+                    index = 4;
+                    break;
+                case Constantes.TipoValorArticulo.Compra:
+                    index = 5;
+                    break;
+                case Constantes.TipoValorArticulo.Venta:
+                    index = 6;
+                    break;
+                default:
+                    index = 0;
+                    break;
+            }
+            return index;
+        }
+
+        private bool validarInputs(object sender, EventArgs e)
+        {
+            txtBoxCodigoArticulo_Leave(sender, e);
+            txtBoxCodigoOriginal_Leave(sender, e);
+            txtBoxDescripcion_Leave(sender, e);
+            txtBoxModelo_Leave(sender, e);
+            txtBoxPrecioCompra_Leave(sender, e);
+            txtBoxPrecioVenta_Leave(sender, e);
+            txtBoxUbicacion_Leave(sender, e);
+            return (glb_lst_respuestasValidaciones[0] & glb_lst_respuestasValidaciones[1] & glb_lst_respuestasValidaciones[2]
+                 & glb_lst_respuestasValidaciones[3] & glb_lst_respuestasValidaciones[4] & glb_lst_respuestasValidaciones[5]
+                  & glb_lst_respuestasValidaciones[6]);
+        }
         private bool validarABM(ModeloArticulos p_mod_articulo)
         {
             if (p_mod_articulo == null)
@@ -584,6 +637,7 @@ namespace Vista
         private void txtBoxCodigoOriginal_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoOriginal.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)]=respuesta;
             if (!respuesta)
             {
                 epCodigoOriginal.Icon = Properties.Resources.error;
@@ -600,6 +654,7 @@ namespace Vista
         private void txtBoxDescripcion_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxDescripcion.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)] = respuesta;
             if (!respuesta)
             {
                 epDescripcion.Icon = Properties.Resources.error;
@@ -615,6 +670,7 @@ namespace Vista
         private void txtBoxModelo_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxModelo.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)] = respuesta;
             if (!respuesta)
             {
                 epModelo.Icon = Properties.Resources.error;
@@ -628,7 +684,8 @@ namespace Vista
         }
         private void txtBoxCodigoArticulo_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoArticulo.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoArticulo.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor)] = respuesta;
             if (!respuesta)
             {
                 epCodigoArticulo.Icon = Properties.Resources.error;
@@ -643,6 +700,7 @@ namespace Vista
         private void txtBoxPrecioCompra_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNumerico(txtBoxPrecioCompra.Text.ToString(), Constantes.Numericos.EnteroPositivoSinCero);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.TipoValorArticulo.Compra)] = respuesta;
             if (!respuesta)
             {
                 epPrecioCompra.Icon = Properties.Resources.error;
@@ -658,6 +716,7 @@ namespace Vista
         private void txtBoxPrecioVenta_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNumerico(txtBoxPrecioVenta.Text.ToString(), Constantes.Numericos.EnteroPositivoSinCero);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.TipoValorArticulo.Venta)] = respuesta;
             if (!respuesta)
             {
                 epPrecioVenta.Icon = Properties.Resources.error;
@@ -673,6 +732,7 @@ namespace Vista
         private void txtBoxUbicacion_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNumerico(txtBoxUbicacion.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion)] = respuesta;
             if (!respuesta)
             {
                 epUbicacion.Icon = Properties.Resources.error;
@@ -723,7 +783,14 @@ namespace Vista
         #region Buttons
         private void btnAgregarArticuloProveedor_Click(object sender, EventArgs e)
         {
-            this.alta_ArticuloProveedor();
+            if (this.validarInputs(sender, e))
+            {
+                this.alta_ArticuloProveedor();
+            }
+            else
+            {
+                MessageBox.Show("Existen compos erroneamente ingresados, por favor corríjalos");
+            }
         }
 
         private void btnEditarArticuloProveedor_Click(object sender, EventArgs e)

@@ -533,23 +533,25 @@
             // 
             // tblLayoutPanelArticulosProveedores_Datos_1
             // 
-            this.tblLayoutPanelArticulosProveedores_Datos_1.ColumnCount = 4;
+            this.tblLayoutPanelArticulosProveedores_Datos_1.ColumnCount = 6;
             this.tblLayoutPanelArticulosProveedores_Datos_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tblLayoutPanelArticulosProveedores_Datos_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelArticulosProveedores_Datos_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelArticulosProveedores_Datos_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tblLayoutPanelArticulosProveedores_Datos_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelArticulosProveedores_Datos_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.txtBoxCodigoArticulo, 1, 0);
             this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.lblCodigoArticulo, 0, 0);
             this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.lblUbicacion, 0, 3);
-            this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.lblPrecioCompra, 2, 2);
-            this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.txtBoxPrecioCompra, 3, 2);
-            this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.cmbBoxProveedores, 3, 0);
-            this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.materialLabel1, 2, 0);
-            this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.lblStockActual, 2, 1);
+            this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.lblPrecioCompra, 3, 2);
+            this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.txtBoxPrecioCompra, 4, 2);
+            this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.cmbBoxProveedores, 4, 0);
+            this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.materialLabel1, 3, 0);
+            this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.lblStockActual, 3, 1);
             this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.lblPrecioVenta, 0, 2);
             this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.txtBoxUbicacion, 1, 3);
             this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.txtBoxPrecioVenta, 1, 2);
-            this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.nmrcUpDownStockActual, 3, 1);
+            this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.nmrcUpDownStockActual, 4, 1);
             this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.lblStockMinimo, 0, 1);
             this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.nmrcUpDownStockMinimo, 1, 1);
             this.tblLayoutPanelArticulosProveedores_Datos_1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -576,7 +578,7 @@
             this.txtBoxCodigoArticulo.SelectedText = "";
             this.txtBoxCodigoArticulo.SelectionLength = 0;
             this.txtBoxCodigoArticulo.SelectionStart = 0;
-            this.txtBoxCodigoArticulo.Size = new System.Drawing.Size(111, 23);
+            this.txtBoxCodigoArticulo.Size = new System.Drawing.Size(86, 23);
             this.txtBoxCodigoArticulo.TabIndex = 17;
             this.txtBoxCodigoArticulo.UseSystemPasswordChar = false;
             this.txtBoxCodigoArticulo.Leave += new System.EventHandler(this.txtBoxCodigoArticulo_Leave);
@@ -626,7 +628,7 @@
             this.txtBoxPrecioCompra.SelectedText = "";
             this.txtBoxPrecioCompra.SelectionLength = 0;
             this.txtBoxPrecioCompra.SelectionStart = 0;
-            this.txtBoxPrecioCompra.Size = new System.Drawing.Size(112, 23);
+            this.txtBoxPrecioCompra.Size = new System.Drawing.Size(86, 23);
             this.txtBoxPrecioCompra.TabIndex = 18;
             this.txtBoxPrecioCompra.UseSystemPasswordChar = false;
             this.txtBoxPrecioCompra.Leave += new System.EventHandler(this.txtBoxPrecioCompra_Leave);
@@ -638,7 +640,7 @@
             this.cmbBoxProveedores.Location = new System.Drawing.Point(360, 5);
             this.cmbBoxProveedores.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.cmbBoxProveedores.Name = "cmbBoxProveedores";
-            this.cmbBoxProveedores.Size = new System.Drawing.Size(105, 21);
+            this.cmbBoxProveedores.Size = new System.Drawing.Size(79, 21);
             this.cmbBoxProveedores.TabIndex = 10;
             // 
             // materialLabel1
@@ -690,7 +692,7 @@
             this.txtBoxUbicacion.SelectedText = "";
             this.txtBoxUbicacion.SelectionLength = 0;
             this.txtBoxUbicacion.SelectionStart = 0;
-            this.txtBoxUbicacion.Size = new System.Drawing.Size(111, 23);
+            this.txtBoxUbicacion.Size = new System.Drawing.Size(86, 23);
             this.txtBoxUbicacion.TabIndex = 20;
             this.txtBoxUbicacion.UseSystemPasswordChar = false;
             this.txtBoxUbicacion.Leave += new System.EventHandler(this.txtBoxUbicacion_Leave);
@@ -707,7 +709,7 @@
             this.txtBoxPrecioVenta.SelectedText = "";
             this.txtBoxPrecioVenta.SelectionLength = 0;
             this.txtBoxPrecioVenta.SelectionStart = 0;
-            this.txtBoxPrecioVenta.Size = new System.Drawing.Size(111, 23);
+            this.txtBoxPrecioVenta.Size = new System.Drawing.Size(86, 23);
             this.txtBoxPrecioVenta.TabIndex = 19;
             this.txtBoxPrecioVenta.UseSystemPasswordChar = false;
             this.txtBoxPrecioVenta.Leave += new System.EventHandler(this.txtBoxPrecioVenta_Leave);
