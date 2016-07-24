@@ -40,6 +40,7 @@ namespace Vista
 
             this.inicializarControles();
 
+            glb_lst_respuestasValidaciones = new List<bool>();
             for (int i = 0; i < 7; i++)
             {
                 glb_lst_respuestasValidaciones.Add(false);
@@ -553,11 +554,11 @@ namespace Vista
                 MessageBox.Show("Revisar campos");
                 return false;
             }
-            if (String.IsNullOrWhiteSpace(p_mod_articulo.codigoOriginal))
-            {
-                MessageBox.Show("revisar código original");
-                return false;
-            }
+            //if (String.IsNullOrWhiteSpace(p_mod_articulo.codigoOriginal))
+            //{
+            //    MessageBox.Show("revisar código original");
+            //    return false;
+            //}
             //if (String.IsNullOrWhiteSpace(p_mod_articulo.descripcion))
             //{
             //    MessageBox.Show("revisar descripción artículo");
@@ -572,14 +573,14 @@ namespace Vista
                 return false;
             }
 
-            if (String.IsNullOrWhiteSpace(p_mod_articuloProveedor.codigoArticuloProveedor))
-            {
-                MessageBox.Show("revisar código artículo proveedor");
-                return false;
-            }
+            //if (String.IsNullOrWhiteSpace(p_mod_articuloProveedor.codigoArticuloProveedor))
+            //{
+            //    MessageBox.Show("revisar código artículo proveedor");
+            //    return false;
+            //}
             if (this.cmbBoxProveedores.SelectedValue == null)
             {
-                MessageBox.Show("revisar proveedor");
+                MessageBox.Show("Debe seleccionar un proveedor");
                 return false;
             }
 
@@ -689,7 +690,7 @@ namespace Vista
             if (!respuesta)
             {
                 epCodigoArticulo.Icon = Properties.Resources.error;
-                epCodigoArticulo.SetError(txtBoxCodigoArticulo, "Razón Social no válida");
+                epCodigoArticulo.SetError(txtBoxCodigoArticulo, "Código Artículo Proveedor no válido");
             }
             else
             {
@@ -699,12 +700,12 @@ namespace Vista
         }
         private void txtBoxPrecioCompra_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNumerico(txtBoxPrecioCompra.Text.ToString(), Constantes.Numericos.EnteroPositivoSinCero);
+            bool respuesta = Validar.validarInputNumerico(txtBoxPrecioCompra.Text.ToString(), Constantes.Numericos.DecimalPositivo);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.TipoValorArticulo.Compra)] = respuesta;
             if (!respuesta)
             {
                 epPrecioCompra.Icon = Properties.Resources.error;
-                epPrecioCompra.SetError(txtBoxPrecioCompra, "Razón Social no válida");
+                epPrecioCompra.SetError(txtBoxPrecioCompra, "Precio no válido");
             }
             else
             {
@@ -715,12 +716,12 @@ namespace Vista
 
         private void txtBoxPrecioVenta_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNumerico(txtBoxPrecioVenta.Text.ToString(), Constantes.Numericos.EnteroPositivoSinCero);
+            bool respuesta = Validar.validarInputNumerico(txtBoxPrecioVenta.Text.ToString(), Constantes.Numericos.DecimalPositivo);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.TipoValorArticulo.Venta)] = respuesta;
             if (!respuesta)
             {
                 epPrecioVenta.Icon = Properties.Resources.error;
-                epPrecioVenta.SetError(txtBoxPrecioVenta, "Razón Social no válida");
+                epPrecioVenta.SetError(txtBoxPrecioVenta, "Precio no válido");
             }
             else
             {
@@ -731,12 +732,12 @@ namespace Vista
 
         private void txtBoxUbicacion_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNumerico(txtBoxUbicacion.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion);
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxUbicacion.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion)] = respuesta;
             if (!respuesta)
             {
                 epUbicacion.Icon = Properties.Resources.error;
-                epUbicacion.SetError(txtBoxUbicacion, "Razón Social no válida");
+                epUbicacion.SetError(txtBoxUbicacion, "Ubicación no válida");
             }
             else
             {
@@ -795,7 +796,14 @@ namespace Vista
 
         private void btnEditarArticuloProveedor_Click(object sender, EventArgs e)
         {
-            this.actualizar_ArticuloProveedor();
+            if (this.validarInputs(sender, e))
+            {
+                this.actualizar_ArticuloProveedor();
+            }
+            else
+            {
+                MessageBox.Show("Existen compos erroneamente ingresados, por favor corríjalos");
+            }
         }
 
         private void btnEliminarArticuloProveedor_Click(object sender, EventArgs e)

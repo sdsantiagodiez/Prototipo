@@ -153,7 +153,8 @@ namespace LibreriaClasesCompartidas
             }
             public static class Descuentos
             {
-                public const string Descripcion = "descripcion";
+                public const string Descripcion = "descripcionDescuento";
+                public const string Porcentaje = "porcentaje";
             }
         }
         
@@ -285,6 +286,7 @@ namespace LibreriaClasesCompartidas
             public const string Entero = "entero";
             public const string EnteroPositivoSinCero = "enteroPositivoSinCero";
             public const string EnteroPositivo = "enteroPositivo";
+            public const string Descuento = "descuento";
         }
         public static class Estado
         {

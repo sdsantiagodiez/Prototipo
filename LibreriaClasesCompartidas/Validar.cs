@@ -21,6 +21,31 @@ namespace LibreriaClasesCompartidas
             int numeroEntero;
             switch (p_opcion)
             {
+                case Constantes.Numericos.Descuento:
+                    try
+                    {
+                        resultado = int.TryParse(p_numero, out numeroEntero);
+                        if (numeroEntero >0 )
+                        {
+                            if (numeroEntero <= 100)
+                            {
+                                resultado = true;
+                            }
+                            else
+                            {
+                                resultado = false;
+                            }
+                        }
+                        else
+                        {
+                            resultado = false;
+                        }
+                    }
+                    catch(FormatException)
+                    {
+                        resultado = false;
+                    }
+                    break;
                 case Constantes.Numericos.Porcentual:
                     try
                     {
@@ -142,6 +167,7 @@ namespace LibreriaClasesCompartidas
                     break;
                 case Constantes.ParametrosBusqueda.Articulos.Descripcion:
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.DescripcionArticuloProveedor:
+                case Constantes.ParametrosBusqueda.Descuentos.Descripcion:
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.razonSocialProveedor:
                 case Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial:
                 case Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.RazonSocial_Proveedor:
@@ -150,7 +176,7 @@ namespace LibreriaClasesCompartidas
                 case Constantes.ParametrosBusqueda.Pedidos.Observaciones:
                 case Constantes.ParametrosBusqueda.Entidades.Observaciones:
                 //Admite cualquier caracter, sin restricción de repeticiones de los mismos
-                    lcl_patron = new Regex(@"^.*$");
+                    lcl_patron = new Regex(@"^.+$");
                     break;
                 case Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario:
                     // Admite alfanuméricos, al menos uno en la cadena
@@ -193,7 +219,10 @@ namespace LibreriaClasesCompartidas
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion:
                 case Constantes.ParametrosBusqueda.Domicilios.Calle:
                     //Admite Alfanumericos con espacios
-                    lcl_patron = new Regex(@"^[\w\s]*$");
+                    lcl_patron = new Regex(@"^[\w\s]+$");
+                    break;
+                case Constantes.ParametrosBusqueda.Mails.Mail:
+                    especial = Constantes.ParametrosBusqueda.Mails.Mail;
                     break;
                 default:
                     break;
@@ -216,10 +245,16 @@ namespace LibreriaClasesCompartidas
                     return false;
                 }
             }
+
+            if (string.IsNullOrWhiteSpace(p_string))
+            {
+                return false;
+            }
+            else
             {
                 return lcl_patron.IsMatch(p_string);
             }
-            
+                
         }
     }
 }

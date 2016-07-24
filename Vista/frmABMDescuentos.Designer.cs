@@ -151,7 +151,7 @@
             this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.lblCodigoOriginal, 0, 0);
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.lblModelo, 3, 1);
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.txtBoxCodigoOriginal, 1, 0);
@@ -233,7 +233,7 @@
             this.txtBoxModelo.SelectedText = "";
             this.txtBoxModelo.SelectionLength = 0;
             this.txtBoxModelo.SelectionStart = 0;
-            this.txtBoxModelo.Size = new System.Drawing.Size(97, 23);
+            this.txtBoxModelo.Size = new System.Drawing.Size(96, 23);
             this.txtBoxModelo.TabIndex = 9;
             this.txtBoxModelo.UseSystemPasswordChar = false;
             this.txtBoxModelo.Leave += new System.EventHandler(this.txtBoxModelo_Leave);
@@ -242,7 +242,7 @@
             // 
             this.btnBuscar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBuscar.Depth = 0;
-            this.btnBuscar.Location = new System.Drawing.Point(639, 87);
+            this.btnBuscar.Location = new System.Drawing.Point(638, 87);
             this.btnBuscar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -259,7 +259,7 @@
             this.lblProveedor.Depth = 0;
             this.lblProveedor.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblProveedor.Location = new System.Drawing.Point(552, 11);
+            this.lblProveedor.Location = new System.Drawing.Point(551, 11);
             this.lblProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblProveedor.Name = "lblProveedor";
             this.lblProveedor.Size = new System.Drawing.Size(81, 19);
@@ -270,7 +270,7 @@
             // 
             this.cmbBoxProveedores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxProveedores.FormattingEnabled = true;
-            this.cmbBoxProveedores.Location = new System.Drawing.Point(639, 10);
+            this.cmbBoxProveedores.Location = new System.Drawing.Point(638, 10);
             this.cmbBoxProveedores.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.cmbBoxProveedores.Name = "cmbBoxProveedores";
             this.cmbBoxProveedores.Size = new System.Drawing.Size(97, 21);
@@ -336,7 +336,7 @@
             this.txtBoxCodigoArticuloProveedor.SelectedText = "";
             this.txtBoxCodigoArticuloProveedor.SelectionLength = 0;
             this.txtBoxCodigoArticuloProveedor.SelectionStart = 0;
-            this.txtBoxCodigoArticuloProveedor.Size = new System.Drawing.Size(97, 23);
+            this.txtBoxCodigoArticuloProveedor.Size = new System.Drawing.Size(96, 23);
             this.txtBoxCodigoArticuloProveedor.TabIndex = 6;
             this.txtBoxCodigoArticuloProveedor.UseSystemPasswordChar = false;
             this.txtBoxCodigoArticuloProveedor.Leave += new System.EventHandler(this.txtBoxCodigoArticuloProveedor_Leave);
@@ -347,7 +347,7 @@
             this.chckBoxDescuentosActivos.AutoSize = true;
             this.chckBoxDescuentosActivos.Depth = 0;
             this.chckBoxDescuentosActivos.Font = new System.Drawing.Font("Roboto", 10F);
-            this.chckBoxDescuentosActivos.Location = new System.Drawing.Point(636, 42);
+            this.chckBoxDescuentosActivos.Location = new System.Drawing.Point(635, 42);
             this.chckBoxDescuentosActivos.Margin = new System.Windows.Forms.Padding(0);
             this.chckBoxDescuentosActivos.MouseLocation = new System.Drawing.Point(-1, -1);
             this.chckBoxDescuentosActivos.MouseState = MaterialSkin.MouseState.HOVER;
@@ -379,7 +379,7 @@
             this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tblLayoutPanelParametrosDescuento.Controls.Add(this.txtBoxPorcentajeDescuento, 1, 1);
             this.tblLayoutPanelParametrosDescuento.Controls.Add(this.lblFechaHastaDescuento, 3, 1);
             this.tblLayoutPanelParametrosDescuento.Controls.Add(this.dtpFechaHastaDescuento, 4, 1);
@@ -421,12 +421,12 @@
             this.lblFechaHastaDescuento.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblFechaHastaDescuento.AutoSize = true;
             this.lblFechaHastaDescuento.Depth = 0;
-            this.lblFechaHastaDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.lblFechaHastaDescuento.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblFechaHastaDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblFechaHastaDescuento.Location = new System.Drawing.Point(290, 66);
+            this.lblFechaHastaDescuento.Location = new System.Drawing.Point(289, 65);
             this.lblFechaHastaDescuento.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblFechaHastaDescuento.Name = "lblFechaHastaDescuento";
-            this.lblFechaHastaDescuento.Size = new System.Drawing.Size(96, 18);
+            this.lblFechaHastaDescuento.Size = new System.Drawing.Size(97, 19);
             this.lblFechaHastaDescuento.TabIndex = 2;
             this.lblFechaHastaDescuento.Text = "Fecha Hasta:";
             // 
@@ -468,12 +468,12 @@
             this.lblFechaDesdeDescuento.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblFechaDesdeDescuento.AutoSize = true;
             this.lblFechaDesdeDescuento.Depth = 0;
-            this.lblFechaDesdeDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.lblFechaDesdeDescuento.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblFechaDesdeDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblFechaDesdeDescuento.Location = new System.Drawing.Point(286, 16);
+            this.lblFechaDesdeDescuento.Location = new System.Drawing.Point(287, 15);
             this.lblFechaDesdeDescuento.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblFechaDesdeDescuento.Name = "lblFechaDesdeDescuento";
-            this.lblFechaDesdeDescuento.Size = new System.Drawing.Size(100, 18);
+            this.lblFechaDesdeDescuento.Size = new System.Drawing.Size(99, 19);
             this.lblFechaDesdeDescuento.TabIndex = 1;
             this.lblFechaDesdeDescuento.Text = "Fecha Desde:";
             // 
@@ -482,12 +482,12 @@
             this.lblDescripcionDescuento.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDescripcionDescuento.AutoSize = true;
             this.lblDescripcionDescuento.Depth = 0;
-            this.lblDescripcionDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.lblDescripcionDescuento.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblDescripcionDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblDescripcionDescuento.Location = new System.Drawing.Point(537, 16);
+            this.lblDescripcionDescuento.Location = new System.Drawing.Point(535, 15);
             this.lblDescripcionDescuento.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblDescripcionDescuento.Name = "lblDescripcionDescuento";
-            this.lblDescripcionDescuento.Size = new System.Drawing.Size(91, 18);
+            this.lblDescripcionDescuento.Size = new System.Drawing.Size(93, 19);
             this.lblDescripcionDescuento.TabIndex = 0;
             this.lblDescripcionDescuento.Text = "Descripción:";
             // 

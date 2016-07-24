@@ -31,6 +31,7 @@ namespace Vista
         /// </summary>
         ModeloArticuloProveedores glb_mod_articuloProveedorSeleccionado;
         MaterialSkin.Controls.MaterialContextMenuStrip cntxMenuResultadoBusqueda;
+        List<bool> glb_lst_respuestasValidaciones;
         #endregion
 
         #region Constructores
@@ -164,6 +165,13 @@ namespace Vista
             this.inicializarDateTimePickers();
             this.inicializarPorcentajePersonalizado(false);
             this.inicializarContextMenu();
+            glb_lst_respuestasValidaciones = new List<bool>();
+            for (int i = 0; i < 4; i++)
+            {
+                glb_lst_respuestasValidaciones.Add(false);
+            }
+            glb_lst_respuestasValidaciones.Add(true);
+            glb_lst_respuestasValidaciones.Add(true);
         }
         private void inicializarBotones()
         {
@@ -350,6 +358,56 @@ namespace Vista
         #endregion
 
         #region Validación
+        private int getIndex(string p_inputName)
+        {
+            int index;
+            switch (p_inputName)
+            {
+                case Constantes.ParametrosBusqueda.Articulos.CodigoOriginal:
+                    index = 0;
+                    break;
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor:
+                    index = 1;
+                    break;
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.Descripcion:
+                    index = 2;
+                    break;
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo:
+                    index = 3;
+                    break;
+                case Constantes.ParametrosBusqueda.Descuentos.Descripcion:
+                    index = 4;
+                    break;
+                case Constantes.ParametrosBusqueda.Descuentos.Porcentaje:
+                    index = 5;
+                    break;
+                default:
+                    index = 0;
+                    break;
+            }
+            return index;
+        }
+
+        private bool validarInputs(object sender, EventArgs e)
+        {
+            txtBoxCodigoArticuloProveedor_Leave(sender,e);
+            txtBoxCodigoOriginal_Leave(sender, e);
+            txtBoxDescripcion_Leave(sender, e);
+            txtBoxModelo_Leave(sender, e);
+            if (this.txtBoxPorcentajeDescuento.Enabled)
+            {
+                txtBoxPorcentajeDescuento_Leave(sender, e);
+                txtBoxDescripcionDescuento_Leave(sender, e);
+                return (glb_lst_respuestasValidaciones[0] & glb_lst_respuestasValidaciones[1] & glb_lst_respuestasValidaciones[2]
+                 & glb_lst_respuestasValidaciones[3] & glb_lst_respuestasValidaciones[4] & glb_lst_respuestasValidaciones[5]);
+            }
+            else
+            {
+                return (glb_lst_respuestasValidaciones[0] & glb_lst_respuestasValidaciones[1] & glb_lst_respuestasValidaciones[2]
+                 & glb_lst_respuestasValidaciones[3]);
+            }
+        }
+        
         private bool validarParametrosBusqueda()
         {
             //No hay parametros a validar
@@ -816,10 +874,17 @@ namespace Vista
         #region Buttons
         private void btnGuardarDescuento_Click(object sender, EventArgs e)
         {
-            ModeloDescuentoArticuloProveedor lcl_mod_descuento = this.cargarControlesEnDescuento();
-            if (lcl_mod_descuento != null)
+            if (validarInputs(sender, e))
             {
-                this.guardarDescuento(lcl_mod_descuento);
+                ModeloDescuentoArticuloProveedor lcl_mod_descuento = this.cargarControlesEnDescuento();
+                if (lcl_mod_descuento != null)
+                {
+                    this.guardarDescuento(lcl_mod_descuento);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Existen compos erroneamente ingresados, por favor corríjalos");
             }
         }
         
@@ -847,10 +912,11 @@ namespace Vista
         }
         #endregion
 
-        #region Validaciones
+        #region TextBoxs
         private void txtBoxCodigoOriginal_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoOriginal.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)] = respuesta;
             if (!respuesta)
             {
                 epCodigoOriginal.Icon = Properties.Resources.error;
@@ -863,11 +929,10 @@ namespace Vista
             }
         }
 
-        #endregion
-
         private void txtBoxDescripcion_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxDescripcion.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)] = respuesta;
             if (!respuesta)
             {
                 epDescripcionArticulo.Icon = Properties.Resources.error;
@@ -883,10 +948,11 @@ namespace Vista
         private void txtBoxCodigoArticuloProveedor_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoArticuloProveedor.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor)] = respuesta;
             if (!respuesta)
             {
                 epCodigoArticuloProveedor.Icon = Properties.Resources.error;
-                epCodigoArticuloProveedor.SetError(txtBoxCodigoArticuloProveedor, "Codigo Articulo no válido");
+                epCodigoArticuloProveedor.SetError(txtBoxCodigoArticuloProveedor, "Codigo Articulo Proveedor no válido");
             }
             else
             {
@@ -898,6 +964,7 @@ namespace Vista
         private void txtBoxModelo_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxModelo.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)] = respuesta;
             if (!respuesta)
             {
                 epModelo.Icon = Properties.Resources.error;
@@ -912,7 +979,8 @@ namespace Vista
 
         private void txtBoxPorcentajeDescuento_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNumerico(txtBoxPorcentajeDescuento.Text.ToString(), Constantes.Numericos.Porcentual);
+            bool respuesta = Validar.validarInputNumerico(txtBoxPorcentajeDescuento.Text.ToString(), Constantes.Numericos.Descuento);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Descuentos.Porcentaje)] = respuesta;
             if (!respuesta)
             {
                 epPorcentaje.Icon = Properties.Resources.error;
@@ -928,6 +996,7 @@ namespace Vista
         private void txtBoxDescripcionDescuento_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxDescripcionDescuento.Text.ToString(), Constantes.ParametrosBusqueda.Descuentos.Descripcion);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Descuentos.Descripcion)] = respuesta;
             if (!respuesta)
             {
                 epPorcentaje.Icon = Properties.Resources.error;
@@ -939,6 +1008,7 @@ namespace Vista
                 epPorcentaje.SetError(txtBoxDescripcionDescuento, "OK");
             }
         }
+        #endregion
         #endregion
     }
 }
