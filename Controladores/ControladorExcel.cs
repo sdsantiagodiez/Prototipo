@@ -655,6 +655,7 @@ namespace Controladores
             ModeloArticuloProveedores lcl_mod_articuloProveedor;
             int int_aux;
             decimal dec_aux;
+            
             foreach (DataRow row in p_dataTable.Rows)
             {
                 lcl_mod_articuloProveedor = new ModeloArticuloProveedores();
@@ -667,11 +668,12 @@ namespace Controladores
                 { lcl_mod_articuloProveedor.codigoEntidad = 0; }
                 lcl_mod_articuloProveedor.descripcionArticuloProveedor = string.IsNullOrWhiteSpace(row["descripcion"].ToString()) ? null : row["descripcion"].ToString();
 
-                if (Decimal.TryParse(row["precioCompra"].ToString(), out dec_aux))
+                if (Transformar.ToDecimal(row["precioCompra"].ToString(), out dec_aux))
                 { lcl_mod_articuloProveedor.valorCompra.valorArticulo = dec_aux; }
                 else
                 { lcl_mod_articuloProveedor.valorCompra.valorArticulo = null; }
-                if (Decimal.TryParse(row["precioVenta"].ToString(), out dec_aux))
+                
+                if (Transformar.ToDecimal(row["precioVenta"].ToString(), out dec_aux))
                 { lcl_mod_articuloProveedor.valorVenta.valorArticulo = dec_aux; }
                 else
                 { lcl_mod_articuloProveedor.valorVenta.valorArticulo = null; }
@@ -745,8 +747,8 @@ namespace Controladores
 
                 lcl_mod_articuloProveedore.codigoOriginal  = row["codigoOriginal"].ToString();
                 lcl_mod_articuloProveedore.codigoArticuloProveedor = row["codigoArticuloProveedor"].ToString();
-                
-                if(Decimal.TryParse(string.IsNullOrWhiteSpace(row["valor"].ToString()) ? null : row["valor"].ToString(), out dec_aux))
+
+                if (Transformar.ToDecimal(row["valor"].ToString(), out dec_aux))
                 { dec_nullable_aux = dec_aux; }
                 else
                 { 

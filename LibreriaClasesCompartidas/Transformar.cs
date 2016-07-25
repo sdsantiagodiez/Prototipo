@@ -48,5 +48,39 @@ namespace LibreriaClasesCompartidas
 
             return lcl_stringTransformada;
         }
+        /// <summary>
+        /// Elimina todas las comas y puntos que puedan sobrar y sólo considera la más próxima a los decimales
+        /// Por ejempo: 123.256.456,2-> 123256456,2 || 12,653,32,31,8 -> 126533231,8
+        /// </summary>
+        /// <param name="p_string"></param>
+        /// <param name="p_decimal"></param>
+        /// <returns></returns>
+        public static bool ToDecimal(string p_string, out decimal p_decimal)
+        {
+            if (string.IsNullOrWhiteSpace(p_string))
+            {
+                p_decimal = 0;
+                return false;
+            }
+            //Regex r_puntoPorComa = new Regex(@"\.");
+            //r_puntoPorComa.Replace(p_string, "");
+            p_string = p_string.Replace('.', ',');
+
+            p_string = Transformar.ToDecimal_quitarComasSobrantes(p_string);
+
+            return Decimal.TryParse(p_string, out p_decimal);
+        }
+        private static string ToDecimal_quitarComasSobrantes(string p_string)
+        {
+            string result = p_string;
+            Regex r_separadorDecimal = new Regex(@",.*,");
+            if (r_separadorDecimal.IsMatch(p_string))
+            {
+                //quiere decir que hay más de una coma en el número. Se eliminan las comas hasta que sólo haya una 
+                Regex rgx = new Regex(@",");
+                result = Transformar.ToDecimal_quitarComasSobrantes(rgx.Replace(p_string, "", 1));
+            }
+            return result;
+        }
     }
 }
