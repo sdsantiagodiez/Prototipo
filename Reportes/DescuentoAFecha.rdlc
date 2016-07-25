@@ -489,13 +489,12 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="descuento">
-                      <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!descuento.Value/100</Value>
+                              <Value>=Fields!descuento.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <Format>0.00%</Format>
@@ -562,7 +561,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!precioVenta.Value*Fields!descuento.Value/2</Value>
+                              <Value>=Fields!precioVenta.Value-(Fields!precioVenta.Value*Fields!descuento.Value)</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <Format>'$' 0.00;('$' 0.00)</Format>
@@ -586,6 +585,7 @@
                         <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -609,18 +609,14 @@
               <KeepWithGroup>After</KeepWithGroup>
             </TablixMember>
             <TablixMember>
-              <Group Name="Detalles">
-                <PageBreak>
-                  <BreakLocation>Between</BreakLocation>
-                </PageBreak>
-              </Group>
+              <Group Name="Detalles" />
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
         <RepeatColumnHeaders>true</RepeatColumnHeaders>
         <RepeatRowHeaders>true</RepeatRowHeaders>
         <FixedRowHeaders>true</FixedRowHeaders>
-        <DataSetName>DSDetalleStock</DataSetName>
+        <DataSetName>DSDetalleDescuento</DataSetName>
         <Top>0.8448cm</Top>
         <Left>0.50668cm</Left>
         <Height>1.2cm</Height>
@@ -899,7 +895,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DSDetalleStock">
+    <DataSet Name="DSDetalleDescuento">
       <Query>
         <DataSourceName>Modelos</DataSourceName>
         <CommandText>/* Local Query */</CommandText>

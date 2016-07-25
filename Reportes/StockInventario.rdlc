@@ -291,6 +291,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -446,18 +447,16 @@
               <KeepWithGroup>After</KeepWithGroup>
             </TablixMember>
             <TablixMember>
-              <Group Name="Detalles">
-                <PageBreak>
-                  <BreakLocation>Between</BreakLocation>
-                </PageBreak>
-              </Group>
+              <Group Name="Detalles" />
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <RepeatColumnHeaders>true</RepeatColumnHeaders>
-        <RepeatRowHeaders>true</RepeatRowHeaders>
-        <FixedRowHeaders>true</FixedRowHeaders>
         <DataSetName>DSDetalleStock</DataSetName>
+        <SortExpressions>
+          <SortExpression>
+            <Value>=Fields!codigoArticulo.Value</Value>
+          </SortExpression>
+        </SortExpressions>
         <Top>0.8448cm</Top>
         <Left>0.50668cm</Left>
         <Height>1.2cm</Height>

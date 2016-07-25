@@ -138,11 +138,11 @@ namespace Vista
         {
             if (cmbxInventarioReportes.Text == "Informe de Stock")
             {
-                this.tbxFechaInventario.Visible = this.lblFechaInventario.Visible = false;
+                this.tbxFechaInventario.Visible = this.lblFechaInventario.Visible = true;
             }
             else 
             {
-                this.tbxFechaInventario.Visible = this.lblFechaInventario.Visible = true;
+                this.tbxFechaInventario.Visible = this.lblFechaInventario.Visible = false;
             }
         }
 

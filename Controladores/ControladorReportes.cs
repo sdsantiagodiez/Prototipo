@@ -173,7 +173,7 @@ namespace Controladores
                 }
             }
 
-            FormReportes lcl_frm_reporte = new FormReportes(lcl_lst_articulosProveedoresConDescuentosVigentes);
+            FormReportes lcl_frm_reporte = new FormReportes(lcl_lst_articulosProveedoresConDescuentosVigentes,"descuento");
             return lcl_frm_reporte;
         }
 

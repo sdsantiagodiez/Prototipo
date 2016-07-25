@@ -519,23 +519,27 @@ namespace Datos
             SqlDataReader drPedidosEntreFechas = comando.ExecuteReader();
 
             ModeloReporteEncabezado lcl_mod_ReporteEncabezado = new ModeloReporteEncabezado();
-            int i = 0;
+            lcl_mod_ReporteEncabezado.detallePedido = new List<ModeloReportePedidoEntreFechas>();
+            
             lcl_mod_ReporteEncabezado.FechaDesde = p_FechaInicio;
             lcl_mod_ReporteEncabezado.FechaHasta = P_FechaFin;
             lcl_mod_ReporteEncabezado.PersonaDesde = "000000000";
             lcl_mod_ReporteEncabezado.PersonaHasta = "999999999";
             lcl_mod_ReporteEncabezado.FechaInforme = DateTime.Today;
-            
 
+            ModeloReportePedidoEntreFechas lcl_mod_det;
             while (drPedidosEntreFechas.Read())
             {
-                lcl_mod_ReporteEncabezado.detallePedido[i].codProveedor = (string)drPedidosEntreFechas["codigo_proveedor"];
-                lcl_mod_ReporteEncabezado.detallePedido[i].razonSocial = (string)drPedidosEntreFechas["razon_social"];
-                lcl_mod_ReporteEncabezado.detallePedido[i].CantidadArticulos = (int)drPedidosEntreFechas["cantidad_articulos"];
-                lcl_mod_ReporteEncabezado.detallePedido[i].CantidadPedidos = (int)drPedidosEntreFechas["cantidad_pedidos"];
-                lcl_mod_ReporteEncabezado.detallePedido[i].MontoTotal = (decimal)drPedidosEntreFechas["monto_total"];
-                lcl_mod_ReporteEncabezado.MontoTotal = lcl_mod_ReporteEncabezado.MontoTotal + lcl_mod_ReporteEncabezado.detallePedido[i].MontoTotal;
-                i++;
+                lcl_mod_det = new ModeloReportePedidoEntreFechas();
+
+                lcl_mod_det.codProveedor = Convert.ToString((int)drPedidosEntreFechas["codigo_proveedor"]);
+                lcl_mod_det.razonSocial = (string)drPedidosEntreFechas["razon_social"];
+                lcl_mod_det.CantidadArticulos = (int)drPedidosEntreFechas["cantidad_articulos"];
+                lcl_mod_det.CantidadPedidos = (int)drPedidosEntreFechas["cantidad_pedidos"];
+                lcl_mod_det.MontoTotal = (decimal)drPedidosEntreFechas["monto_total"];
+                lcl_mod_ReporteEncabezado.MontoTotal = lcl_mod_ReporteEncabezado.MontoTotal + lcl_mod_det.MontoTotal;
+
+                lcl_mod_ReporteEncabezado.detallePedido.Add(lcl_mod_det);
 
             }
             drPedidosEntreFechas.Close();

@@ -146,7 +146,7 @@ namespace Reportes
         
         }
 
-        public FormReportes(List<ModeloDescuentoArticuloProveedor> p_lst_mod_descA)
+        public FormReportes(List<ModeloArticuloProveedores> p_lst_mod_descA, string descuento )
         {
             InitializeComponent();
             ModeloReporteEncabezadoBindingSource.Clear();
@@ -158,7 +158,7 @@ namespace Reportes
 
             this.ReporteBase.LocalReport.DataSources.Clear();
             //this.ReporteBase.LocalReport.DataSources.RemoveAt(1);
-            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSDetalleStock", ModeloReporteEncabezadoBindingSource));
+            this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("DSDetalleDescuento", ModeloReporteEncabezadoBindingSource));
             this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.DescuentoAFecha.rdlc";
 
             this.ReporteBase.LocalReport.Refresh();
@@ -176,6 +176,7 @@ namespace Reportes
                 lcl_mod_repStock.descripcionArticulo = mod_artP.descripcionArticuloProveedor;
                 lcl_mod_repStock.stockActual = (int)mod_artP.stockActual;
                 lcl_mod_repStock.precioVenta = (decimal)mod_artP.valorVenta.valorArticulo;
+                lcl_mod_repStock.descuento = (decimal)mod_artP.descuentos[0].porcentaje;
                 
                 lcl_lst_mod_repStock.Add(lcl_mod_repStock);
 
@@ -184,8 +185,8 @@ namespace Reportes
             return lcl_lst_mod_repStock;
         }
 
-        public List<ModeloReporteStock> CompletaModeloStock(List<ModeloDescuentoArticuloProveedor> p_lst_mod_descA)
-        {
+        public List<ModeloReporteStock> CompletaModeloDescuento(List<ModeloDescuentoArticuloProveedor> p_lst_mod_descA)
+        {//No usar proximo a eliminar
             List<ModeloReporteStock> lcl_lst_mod_repStock = new List<ModeloReporteStock>();
             foreach (ModeloDescuentoArticuloProveedor mod_descA in p_lst_mod_descA)
             {
