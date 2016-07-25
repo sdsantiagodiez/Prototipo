@@ -129,7 +129,6 @@ namespace Controladores
             glb_hojaTrabajo.Range["I1"].AddComment("Campo Obligatorio");
             glb_hojaTrabajo.Cells[1, "J"] = "Valor Venta";
             glb_hojaTrabajo.Range["J1"].AddComment("Campo Obligatorio");
-
         }
         private void completarColumnasArticulo()
         {
@@ -139,7 +138,6 @@ namespace Controladores
             glb_hojaTrabajo.Range["B1"].AddComment("Campo Obligatorio");
             glb_hojaTrabajo.Cells[1, "C"] = "Modelos";
             glb_hojaTrabajo.Cells[1, "D"] = "Observaciones";
-
         }
         private void completarColumnasCliente()
         {
@@ -151,7 +149,6 @@ namespace Controladores
             glb_hojaTrabajo.Range["C1"].AddComment("Campo Obligatorio");
             glb_hojaTrabajo.Cells[1, "D"] = "Cuit";
             glb_hojaTrabajo.Cells[1, "E"] = "Observaciones";
-
         }
         private void completarColumnasProveedor()
         {
@@ -160,7 +157,6 @@ namespace Controladores
             glb_hojaTrabajo.Cells[1, "B"] = "Razon Social";
             glb_hojaTrabajo.Range["B1"].AddComment("Campo Obligatorio");
             glb_hojaTrabajo.Cells[1, "C"] = "Observaciones";
-
         }
         private void completarColumnasDescuento()
         {
@@ -175,33 +171,31 @@ namespace Controladores
             glb_hojaTrabajo.Cells[1, "E"] = "Porcentaje Descuento";
             glb_hojaTrabajo.Range["E1"].AddComment("Campo Obligatorio");
             glb_hojaTrabajo.Cells[1, "F"] = "Descripcion";
-
-
         }
-        private void completarColumnasValoresCompra()
-        {
-            glb_hojaTrabajo.Cells[1, "A"] = "Codigo Articulo Proveedor";
-            glb_hojaTrabajo.Range["A1"].AddComment("Campo Obligatorio");
-            glb_hojaTrabajo.Cells[1, "B"] = "Codigo Original";
-            glb_hojaTrabajo.Range["B1"].AddComment("Campo Obligatorio");
-            glb_hojaTrabajo.Cells[1, "C"] = "Precio";
-            glb_hojaTrabajo.Range["C1"].AddComment("Campo Obligatorio");
-            glb_hojaTrabajo.Cells[1, "D"] = "Fecha Actualización";
-            glb_hojaTrabajo.Range["D1"].AddComment("Campo Obligatorio");
+        //private void completarColumnasValoresCompra()
+        //{
+        //    glb_hojaTrabajo.Cells[1, "A"] = "Codigo Articulo Proveedor";
+        //    glb_hojaTrabajo.Range["A1"].AddComment("Campo Obligatorio");
+        //    glb_hojaTrabajo.Cells[1, "B"] = "Codigo Original";
+        //    glb_hojaTrabajo.Range["B1"].AddComment("Campo Obligatorio");
+        //    glb_hojaTrabajo.Cells[1, "C"] = "Precio";
+        //    glb_hojaTrabajo.Range["C1"].AddComment("Campo Obligatorio");
+        //    glb_hojaTrabajo.Cells[1, "D"] = "Fecha Actualización";
+        //    glb_hojaTrabajo.Range["D1"].AddComment("Campo Obligatorio");
 
-        }
-        private void completarColumnasValoresVenta()
-        {
-            glb_hojaTrabajo.Cells[1, "A"] = "Codigo Articulo Proveedor";
-            glb_hojaTrabajo.Range["A1"].AddComment("Campo Obligatorio");
-            glb_hojaTrabajo.Cells[1, "B"] = "Codigo Original";
-            glb_hojaTrabajo.Range["B1"].AddComment("Campo Obligatorio");
-            glb_hojaTrabajo.Cells[1, "C"] = "Precio";
-            glb_hojaTrabajo.Range["C1"].AddComment("Campo Obligatorio");
-            glb_hojaTrabajo.Cells[1, "D"] = "Fecha Actualización";
-            glb_hojaTrabajo.Range["D1"].AddComment("Campo Obligatorio");
+        //}
+        //private void completarColumnasValoresVenta()
+        //{
+        //    glb_hojaTrabajo.Cells[1, "A"] = "Codigo Articulo Proveedor";
+        //    glb_hojaTrabajo.Range["A1"].AddComment("Campo Obligatorio");
+        //    glb_hojaTrabajo.Cells[1, "B"] = "Codigo Original";
+        //    glb_hojaTrabajo.Range["B1"].AddComment("Campo Obligatorio");
+        //    glb_hojaTrabajo.Cells[1, "C"] = "Precio";
+        //    glb_hojaTrabajo.Range["C1"].AddComment("Campo Obligatorio");
+        //    glb_hojaTrabajo.Cells[1, "D"] = "Fecha Actualización";
+        //    glb_hojaTrabajo.Range["D1"].AddComment("Campo Obligatorio");
 
-        }
+        //}
         
         private void completaFilasArticuloProveedor(List<ModeloArticuloProveedores> p_lst_mod_artProv)
         {
@@ -277,32 +271,32 @@ namespace Controladores
             }
 
         }
-        private void completaFilasValorArticulosCompra(List<ModeloArticuloProveedores> p_lst_mod_artPro)
-        {
-            var row = 1;
-            foreach (ModeloArticuloProveedores p_mod in p_lst_mod_artPro)
-            {
-                row++;
-                glb_hojaTrabajo.Cells[row, "A"] = p_mod.codigoArticuloProveedor;
-                glb_hojaTrabajo.Cells[row, "B"] = p_mod.codigoOriginal;
-                glb_hojaTrabajo.Cells[row, "C"] = p_mod.valorCompra.valorArticulo;
-                glb_hojaTrabajo.Cells[row, "D"] = p_mod.valorCompra.fechaUltimaActualizacion;
-            }
+        //private void completaFilasValorArticulosCompra(List<ModeloArticuloProveedores> p_lst_mod_artPro)
+        //{
+        //    var row = 1;
+        //    foreach (ModeloArticuloProveedores p_mod in p_lst_mod_artPro)
+        //    {
+        //        row++;
+        //        glb_hojaTrabajo.Cells[row, "A"] = p_mod.codigoArticuloProveedor;
+        //        glb_hojaTrabajo.Cells[row, "B"] = p_mod.codigoOriginal;
+        //        glb_hojaTrabajo.Cells[row, "C"] = p_mod.valorCompra.valorArticulo;
+        //        glb_hojaTrabajo.Cells[row, "D"] = p_mod.valorCompra.fechaUltimaActualizacion;
+        //    }
 
-        }
-        private void completaFilasValorArticulosVenta(List<ModeloArticuloProveedores> p_lst_mod_artPro)
-        {
-            var row = 1;
-            foreach (ModeloArticuloProveedores p_mod in p_lst_mod_artPro)
-            {
-                row++;
-                glb_hojaTrabajo.Cells[row, "A"] = p_mod.codigoArticuloProveedor;
-                glb_hojaTrabajo.Cells[row, "B"] = p_mod.codigoOriginal;
-                glb_hojaTrabajo.Cells[row, "C"] = p_mod.valorVenta.valorArticulo;
-                glb_hojaTrabajo.Cells[row, "D"] = p_mod.valorVenta.fechaUltimaActualizacion;
-            }
+        //}
+        //private void completaFilasValorArticulosVenta(List<ModeloArticuloProveedores> p_lst_mod_artPro)
+        //{
+        //    var row = 1;
+        //    foreach (ModeloArticuloProveedores p_mod in p_lst_mod_artPro)
+        //    {
+        //        row++;
+        //        glb_hojaTrabajo.Cells[row, "A"] = p_mod.codigoArticuloProveedor;
+        //        glb_hojaTrabajo.Cells[row, "B"] = p_mod.codigoOriginal;
+        //        glb_hojaTrabajo.Cells[row, "C"] = p_mod.valorVenta.valorArticulo;
+        //        glb_hojaTrabajo.Cells[row, "D"] = p_mod.valorVenta.fechaUltimaActualizacion;
+        //    }
 
-        }
+        //}
 
         private void ajustarColumnas()
         {

@@ -15,12 +15,14 @@ namespace Vista
 {
     public partial class frmImportarPreview : frmMaterialSkinBase
     {
+        #region Atributos
         Type TypeModelo;
         DataGridView dgvPreview;
         List<ComboBoxItem> glb_lst_atributos;
         string filePath;
         bool esValorVenta;
-        
+        #endregion
+
         #region Constructores
         private frmImportarPreview()
         {
@@ -204,6 +206,54 @@ namespace Vista
                 this.dgvPreview.Rows.RemoveAt(this.dgvPreview.Rows.Count - 1);
             }
             
+        }
+
+        private bool importarDatos(out string p_respuesta)
+        {
+            p_respuesta = "";
+            string respuesta = "Error inesperado";
+            bool primeraFilaHeaders = this.chckBoxPrimeraFilaHeaders.Checked;
+            ControladorExcel lcl_con_excel = new ControladorExcel();
+            if (TypeModelo == typeof(ModeloValorArticulo))
+            {
+                lcl_con_excel.esValorVenta = esValorVenta;
+            }
+
+            if(!this.validarCamposObligatorios())
+            {
+                p_respuesta ="Existen columnas obligatorias sin asignar";
+                return false;
+            }
+
+            frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Realizando importación de datos.");
+            bool exito = false;
+            BackgroundWorker bw = new BackgroundWorker();
+            bw.DoWork += (s, e) =>
+            {
+                exito = (lcl_con_excel.importarDatos(filePath, TypeModelo, this.getIndicesDeAtributos(), primeraFilaHeaders, out respuesta));
+            };
+            bw.RunWorkerCompleted += (s, e) =>
+            {
+                lcl_frm_loading.Hide();
+            };
+
+            bw.RunWorkerAsync();
+            lcl_frm_loading.ShowDialog();
+
+            p_respuesta = respuesta;
+            return exito;
+        }
+        private bool validarCamposObligatorios()
+        {
+            List<int?> lcl_lst_indices = this.getIndicesDeAtributos();
+            for (int i = 0; i < glb_lst_atributos.Count; i++) 
+            {
+                if (glb_lst_atributos[i].Name.Contains('*') && lcl_lst_indices[i - 1] == null)//-1 por el --seleccionar--
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -406,19 +456,14 @@ namespace Vista
         private void btnImportar_Click(object sender, EventArgs e)
         {
             string respuesta;
-            bool primeraFilaHeaders = this.chckBoxPrimeraFilaHeaders.Checked;
-            ControladorExcel lcl_con_excel = new ControladorExcel();
-            if (TypeModelo == typeof(ModeloValorArticulo))
-            {
-                lcl_con_excel.esValorVenta = esValorVenta;
-            }
-            if (lcl_con_excel.importarDatos(filePath, TypeModelo, this.getIndicesDeAtributos(), primeraFilaHeaders, out respuesta))
+
+            if (this.importarDatos(out respuesta))
             {
                 MessageBox.Show(respuesta, "Éxito");
             }
             else
             {
-                MessageBox.Show(respuesta, "Error");
+                MessageBox.Show(respuesta, "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
         private void btnBuscarArchivo_Click(object sender, EventArgs e)
