@@ -197,7 +197,7 @@ namespace Controladores
             return respuesta;  
         }
 
-        public bool modificarValores(ModeloArticuloProveedores p_mod_articuloProveedor, string p_tipoValorArticulo)
+        public bool modificarValorArticulo(ModeloArticuloProveedores p_mod_articuloProveedor, string p_tipoValorArticulo)
         {
             CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();
             bool respuesta = false;
@@ -227,6 +227,22 @@ namespace Controladores
                 errorActual = ex.Message;
             }
             return respuesta;
+        }
+
+        public bool modificarValoresArticulos(List<object> p_lst_articulosProveedores, string p_tipoValorArticulo)
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                foreach (ModeloArticuloProveedores ap in p_lst_articulosProveedores)
+                {
+                    if (!this.modificarValorArticulo(ap, p_tipoValorArticulo))
+                    {
+                        return false;
+                    }
+                }
+                scope.Complete();
+            }
+            return true;
         }
     }
 }

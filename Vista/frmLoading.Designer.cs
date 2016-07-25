@@ -28,60 +28,57 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlBase = new System.Windows.Forms.Panel();
             this.lblMensaje = new MaterialSkin.Controls.MaterialLabel();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.pnlBase.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // pnlBase
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.lblMensaje, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 63);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(318, 112);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.pnlBase.AutoSize = true;
+            this.pnlBase.Controls.Add(this.lblMensaje);
+            this.pnlBase.Location = new System.Drawing.Point(12, 67);
+            this.pnlBase.MinimumSize = new System.Drawing.Size(110, 0);
+            this.pnlBase.Name = "pnlBase";
+            this.pnlBase.Size = new System.Drawing.Size(310, 43);
+            this.pnlBase.TabIndex = 2;
             // 
             // lblMensaje
             // 
-            this.lblMensaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblMensaje.AutoSize = true;
             this.lblMensaje.BackColor = System.Drawing.Color.White;
             this.lblMensaje.Depth = 0;
+            this.lblMensaje.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMensaje.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblMensaje.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblMensaje.Location = new System.Drawing.Point(3, 46);
+            this.lblMensaje.Location = new System.Drawing.Point(0, 0);
+            this.lblMensaje.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMensaje.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(312, 19);
+            this.lblMensaje.Size = new System.Drawing.Size(310, 43);
             this.lblMensaje.TabIndex = 0;
             this.lblMensaje.Text = "Procesando operación";
             this.lblMensaje.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmLoading
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(318, 175);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(314, 119);
+            this.Controls.Add(this.pnlBase);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmLoading";
             this.Text = "Procesando...";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLoading_FormClosing);
+            this.pnlBase.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private MaterialSkin.Controls.MaterialLabel lblMensaje;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel pnlBase;
 
 
     }

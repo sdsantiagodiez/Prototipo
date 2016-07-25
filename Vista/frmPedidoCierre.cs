@@ -27,7 +27,7 @@ namespace Vista
         ModeloPedido glb_mod_pedidoOriginalDevolucion;
         List<TipoDocumento> glb_lst_tiposDocumentos;
         ControladorPedido controlador;
-        CheckBox chckBoxClienteGenerico;
+        MaterialCheckBox chckBoxClienteGenerico;
         ContextMenu cntxMenuLineasPedido;
         #region ModoFormulario
         public const string ModoFormularioPedidoCliente = "Pedido Cliente";
@@ -70,10 +70,10 @@ namespace Vista
         private frmPedidoCierre()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            //var materialSkinManager = MaterialSkinManager.Instance;
+            //materialSkinManager.AddFormToManage(this);
+            //materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            //materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             dgvArticulosVenta.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
             dgvArticulosVenta.EnableHeadersVisualStyles = false; 
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -318,8 +318,10 @@ namespace Vista
             this.lblCAE.Visible = 
                 this.txtBoxCAE.Visible = true;
 
-            chckBoxClienteGenerico = new CheckBox();
+            chckBoxClienteGenerico = new MaterialCheckBox();
             chckBoxClienteGenerico.Anchor = AnchorStyles.Left;
+            
+            chckBoxClienteGenerico.AutoSize = false;
             chckBoxClienteGenerico.Text = "Cliente Genérico";
 
             chckBoxClienteGenerico.CheckedChanged += clienteGenerico_CheckedChanged;

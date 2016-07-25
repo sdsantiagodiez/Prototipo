@@ -14,12 +14,14 @@ namespace Controladores
 {
     public class ControladorExcel:Controlador
     {
+        #region Atributos
         Excel._Worksheet glb_hojaTrabajo;
         System.Data.DataTable glb_dataTable;
         ControladorAlta glb_con_alta = new ControladorAlta();
         ControladorModificacion glb_con_modificacion = new ControladorModificacion();
         int i = 0;
         public static string filasNoGravadas = "Las siguientes filas no fueron gravadas: ";
+        #endregion
 
         #region Exportar
         public bool ExportarAExcel(Type p_type, string p_direccionDeArchivo)
@@ -342,6 +344,8 @@ namespace Controladores
         #endregion
 
         #region Importar
+        public bool esValorVenta;
+
         public static DataTable getPreviewDeArchivo(string p_path, Type T)
         {
             int cantidadAtributos = 0;
@@ -349,7 +353,6 @@ namespace Controladores
             if (T == typeof(ModeloArticuloProveedores))
             {
                 cantidadAtributos = 10;
-
             }
             else if (T == typeof(ModeloArticulos))
             {
@@ -363,6 +366,10 @@ namespace Controladores
             {
                 cantidadAtributos = 3;
             }
+            else if (T == typeof(ModeloValorArticulo))
+            {
+                cantidadAtributos = 3;
+            }
 
             return ControladorExcel.getPreviewDeArchivo(p_path, cantidadAtributos);
         }
@@ -373,32 +380,37 @@ namespace Controladores
             {
                 lcl_dt_dataPreview.Columns.Add();
             }
-
-            Excel.Application app = new Excel.Application();
-            Excel.Workbook workBook = app.Workbooks.Open(p_path, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
-
-            Excel.Worksheet workSheet = (Excel.Worksheet)workBook.ActiveSheet;
-            DataRow row;
-
-            for (int rowIndex = 1; 
-                    (
-                        ((Excel.Range)workSheet.Cells[rowIndex, 1]).Value2 != null ||
-                        ((Excel.Range)workSheet.Cells[rowIndex, 2]).Value2 != null ||
-                        ((Excel.Range)workSheet.Cells[rowIndex, 3]).Value2 != null ||
-                        ((Excel.Range)workSheet.Cells[rowIndex, 4]).Value2 != null 
-                    )
-                    && rowIndex < 50; rowIndex++)
+            try
             {
-                row = lcl_dt_dataPreview.NewRow();
+                Excel.Application app = new Excel.Application();
+                Excel.Workbook workBook = app.Workbooks.Open(p_path, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+                Excel.Worksheet workSheet = (Excel.Worksheet)workBook.ActiveSheet;
 
-                foreach (DataColumn c in lcl_dt_dataPreview.Columns)
+                DataRow row;
+
+                for (int rowIndex = 1; 
+                        (
+                            ((Excel.Range)workSheet.Cells[rowIndex, 1]).Value2 != null ||
+                            ((Excel.Range)workSheet.Cells[rowIndex, 2]).Value2 != null ||
+                            ((Excel.Range)workSheet.Cells[rowIndex, 3]).Value2 != null ||
+                            ((Excel.Range)workSheet.Cells[rowIndex, 4]).Value2 != null 
+                        )
+                        && rowIndex < 50; rowIndex++)
                 {
-                    row[c.Ordinal] = Convert.ToString((workSheet.Cells[rowIndex, c.Ordinal + 1] as Excel.Range).Value);
-                }
-                lcl_dt_dataPreview.Rows.Add(row);
-            }
-            app.Workbooks.Close();
+                    row = lcl_dt_dataPreview.NewRow();
 
+                    foreach (DataColumn c in lcl_dt_dataPreview.Columns)
+                    {
+                        row[c.Ordinal] = Convert.ToString((workSheet.Cells[rowIndex, c.Ordinal + 1] as Excel.Range).Value);
+                    }
+                    lcl_dt_dataPreview.Rows.Add(row);
+                }
+                app.Workbooks.Close();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
             return lcl_dt_dataPreview;
         }
 
@@ -447,6 +459,10 @@ namespace Controladores
             else if (T == typeof(ModeloProveedor))
             {
                 return this.importarDatos_getDataTable_Proveedor();
+            }
+            else if (T == typeof(ModeloValorArticulo))
+            {
+                return this.importarDatos_getDataTable_ValorArticuloProveedor();
             }
 
             return null;
@@ -498,6 +514,16 @@ namespace Controladores
             lcl_dataTable.Columns.Add("cuit");
             lcl_dataTable.Columns.Add("razonSocial");
             lcl_dataTable.Columns.Add("observaciones");
+
+            return lcl_dataTable;
+        }
+        private DataTable importarDatos_getDataTable_ValorArticuloProveedor()
+        {
+            DataTable lcl_dataTable = new DataTable();
+
+            lcl_dataTable.Columns.Add("codigoOriginal");
+            lcl_dataTable.Columns.Add("codigoArticuloProveedor");
+            lcl_dataTable.Columns.Add("valor");
 
             return lcl_dataTable;
         }
@@ -554,7 +580,19 @@ namespace Controladores
             {
                 return false;
             }
-            
+
+            if (T == typeof(ModeloValorArticulo))
+            {
+                string aux;
+                if (esValorVenta)
+                { aux = LibreriaClasesCompartidas.Constantes.TipoValorArticulo.Venta; }
+                else
+                { aux = LibreriaClasesCompartidas.Constantes.TipoValorArticulo.Compra; }
+
+                ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
+                return lcl_con_modificacion.modificarValoresArticulos(lcl_lst_datos, aux);
+            }
+
             ControladorAlta lcl_con_alta = new ControladorAlta();
 
             return  lcl_con_alta.agregar(lcl_lst_datos);
@@ -579,6 +617,10 @@ namespace Controladores
             else if (T == typeof(ModeloProveedor))
             {
                 lcl_ienum_objeto = this.importarDatos_getModelosProveedores(p_dataTable);
+            }
+            else if (T == typeof(ModeloValorArticulo))
+            {
+                lcl_ienum_objeto = this.importarDatos_getModelosValoresArticulosProveedores(p_dataTable);
             }
             else
             {
@@ -689,350 +731,44 @@ namespace Controladores
 
             return lcl_lst_mod_proveedores;
         }
+        private List<ModeloArticuloProveedores> importarDatos_getModelosValoresArticulosProveedores(DataTable p_dataTable)
+        {
+            //ver si agregar a una lista diferente los que tienen precios null. Considerar la conexión a base de datos posterior
+            List<ModeloArticuloProveedores> lcl_lst_mod_articulosProveedores = new List<ModeloArticuloProveedores>();
+            List<ModeloArticuloProveedores> lcl_lst_mod_articulosProveedores_noAgregados = new List<ModeloArticuloProveedores>();
+            ModeloArticuloProveedores lcl_mod_articuloProveedore;
+            decimal dec_aux;
+            decimal? dec_nullable_aux;
+            foreach (DataRow row in p_dataTable.Rows)
+            {
+                lcl_mod_articuloProveedore = new ModeloArticuloProveedores();
+
+                lcl_mod_articuloProveedore.codigoOriginal  = row["codigoOriginal"].ToString();
+                lcl_mod_articuloProveedore.codigoArticuloProveedor = row["codigoArticuloProveedor"].ToString();
+                
+                if(Decimal.TryParse(string.IsNullOrWhiteSpace(row["valor"].ToString()) ? null : row["valor"].ToString(), out dec_aux))
+                { dec_nullable_aux = dec_aux; }
+                else
+                { 
+                    dec_nullable_aux = null;
+                    lcl_lst_mod_articulosProveedores_noAgregados.Add(lcl_mod_articuloProveedore);
+                    continue;
+                }
+
+                if (esValorVenta)
+                {
+                    lcl_mod_articuloProveedore.valorVenta.valorArticulo = dec_nullable_aux;
+                }
+                else
+                {
+                    lcl_mod_articuloProveedore.valorCompra.valorArticulo = dec_nullable_aux;
+                }
+
+                lcl_lst_mod_articulosProveedores.Add(lcl_mod_articuloProveedore);
+            }
+
+            return lcl_lst_mod_articulosProveedores;
+        }
         #endregion
-
-
-        private DataTable deExcel(string p_path)
-        {
-            Excel.Application app = new Excel.Application();
-            Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Open(p_path, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
-
-            Excel.Worksheet workSheet = (Excel.Worksheet)workBook.ActiveSheet;
-
-            int rowIndex = 2;
-
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Col1");
-            dt.Columns.Add("Col2");
-            dt.Columns.Add("Col3");
-            dt.Columns.Add("Col4");
-            dt.Columns.Add("Col5");
-            dt.Columns.Add("Col6");
-            dt.Columns.Add("Col7");
-            dt.Columns.Add("Col8");
-            dt.Columns.Add("Col9");
-            dt.Columns.Add("Col10");
-
-            DataRow row;
-
-            while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 1]).Value2 != null)
-            {
-                row = dt.NewRow();
-                row[0] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 1]).Value2);
-                row[1] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 2]).Value2);
-                row[2] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 3]).Value2);
-                row[3] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 4]).Value2);
-                row[4] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 5]).Value2);
-                row[5] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 6]).Value2);
-                row[6] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 7]).Value2);
-                row[7] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 8]).Value2);
-                row[8] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 9]).Value2);
-                row[9] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 10]).Value2);
-
-                rowIndex++;
-                dt.Rows.Add(row);
-            }
-            app.Workbooks.Close();
-            return dt;
-        }
-        public string ImportarDeExcel(string p_path, Type p_typeOf)
-        {
-            DataTable p_dataTable = this.deExcel(p_path);
-            string message = "";
-
-            if (p_typeOf == typeof(ModeloArticuloProveedores))
-            {
-                message= (addArticuloProveedor(this.completaModeloArticuloProveedor(p_dataTable)));
-                    
-            }
-            else if (p_typeOf == typeof(ModeloArticulos))
-            {
-                message = (addArticulo(this.completaModeloArticulo(p_dataTable)));
-            }
-            else if (p_typeOf == typeof(ModeloCliente))
-            {
-                message=(addCliente(this.completaModeloCliente(p_dataTable)));
-            }
-            else if (p_typeOf == typeof(ModeloProveedor))
-            {
-                message=(addProveedor(this.completaModeloProveedor(p_dataTable)));
-            }
-            //else if (p_typeOf == typeof(ModeloDescuentoArticuloProveedor))
-            //{
-            //    message=(addDescuento(this.completaModeloDescuento(p_dataTable)));
-            //}
-            else { message = "Se ha producido un error en la importación."; };
-                
-            return message;
-        }
-        public string ImportarDeExcel(string p_path, Type p_typeOf, string p_tipoValor)
-        {
-            DataTable p_dataTable = this.deExcel(p_path);
-            string message = "";
-            if (p_typeOf == typeof(ModeloValorArticulo) && p_tipoValor == Constantes.TipoValorArticulo.Compra)
-            {
-                message = (addValor(this.completaModeloValorArticuloProveedor(p_dataTable,p_tipoValor),p_tipoValor));
-
-            }
-            else if (p_typeOf == typeof(ModeloValorArticulo) && p_tipoValor == Constantes.TipoValorArticulo.Venta)
-            {
-                message = (addValor(this.completaModeloValorArticuloProveedor(p_dataTable,p_tipoValor),p_tipoValor));
-            }
-            else { message = "Se ha producido un error en la importación."; };
-
-            return message;
-            
-        }
-
-        private bool camposVacios(int[] p_index, DataRow p_row)
-        {
-            foreach (int i in p_index)
-            {
-                if (p_row[i].ToString() != "")
-                return false;
-            }
-            return true;
-        }
-
-        private List<ModeloArticuloProveedores> completaModeloArticuloProveedor(DataTable p_dataTable)
-        {
-            List<ModeloArticuloProveedores> lcl_lst_mod_artPro = new List<ModeloArticuloProveedores>();
-            int[] obligatorios ={0,1,2,3,5,6,8,9};// campos obligatorios del excel
-            string filasError ="";
-            int filas=1;
-
-            foreach (DataRow row in p_dataTable.Rows)
-            {
-                filas++;
-                if (camposVacios(obligatorios, row))
-                {
-                    filasError += filasError + " " + filas.ToString() + ", ";
-                }
-                else
-                {
-                    ModeloArticuloProveedores lcl_mod_artPro = new ModeloArticuloProveedores();
-                    lcl_mod_artPro.codigoOriginal = row[0].ToString();
-                    lcl_mod_artPro.codigoArticuloProveedor = row[1].ToString();
-                    lcl_mod_artPro.codigoEntidad = Convert.ToInt32(row[2].ToString());
-                    lcl_mod_artPro.descripcionArticuloProveedor = row[3].ToString();
-                    lcl_mod_artPro.observacionesArticuloProveedor = row[4].ToString();
-                    lcl_mod_artPro.stockMinimo = Convert.ToInt32(row[5].ToString());
-                    lcl_mod_artPro.stockActual = Convert.ToInt32(row[6].ToString());
-                    lcl_mod_artPro.ubicacion = row[7].ToString();
-                    lcl_mod_artPro.valorCompra.valorArticulo = Convert.ToDecimal(row[8].ToString());
-                    lcl_mod_artPro.valorVenta.valorArticulo = Convert.ToDecimal(row[9].ToString());
-
-                    lcl_lst_mod_artPro.Add(lcl_mod_artPro);
-                }
-            }
-
-            return lcl_lst_mod_artPro;
-        }
-        private List<ModeloArticuloProveedores> completaModeloValorArticuloProveedor(DataTable p_dataTable, string p_tipoValorArticulo)
-        {
-            List<ModeloArticuloProveedores> lcl_lst_mod_artPro = new List<ModeloArticuloProveedores>();
-            int[] obligatorios = { 0, 1, 2, 3};// campos obligatorios del excel
-            string filasError = "";
-            int filas = 1;
-
-            foreach (DataRow row in p_dataTable.Rows)
-            {
-                filas++;
-                if (camposVacios(obligatorios, row))
-                {
-                    filasError += filasError + " " + filas.ToString() + ", ";
-                }
-                else
-                {
-                    ModeloArticuloProveedores lcl_mod_artPro = new ModeloArticuloProveedores();
-                    lcl_mod_artPro.codigoOriginal = row[0].ToString();
-                    lcl_mod_artPro.codigoArticuloProveedor = row[1].ToString();
-                    if(p_tipoValorArticulo == Constantes.TipoValorArticulo.Compra)
-                    {lcl_mod_artPro.valorCompra.valorArticulo = Convert.ToDecimal(row[2].ToString());}
-                    else
-                    {lcl_mod_artPro.valorVenta.valorArticulo = Convert.ToDecimal(row[2].ToString());}
-
-                    lcl_lst_mod_artPro.Add(lcl_mod_artPro);
-                }
-            }
-
-            return lcl_lst_mod_artPro;
-        }
-        private List<ModeloArticulos> completaModeloArticulo(DataTable p_dataTable)
-        {
-            List<ModeloArticulos> lcl_lst_mod_art = new List<ModeloArticulos>();
-            int[] obligatorios = { 1,2 };// campos obligatorios del excel
-            string filasError = "";
-            int filas = 1;
-
-            foreach (DataRow row in p_dataTable.Rows)
-            {
-                filas++;
-                if (camposVacios(obligatorios, row))
-                {
-                    filasError += filasError + " " + filas.ToString() + ", ";
-                }
-                else
-                {
-                    ModeloArticulos lcl_mod_art = new ModeloArticulos();
-                    lcl_mod_art.codigoOriginal = row[0].ToString();
-                    lcl_mod_art.descripcion = row[1].ToString();
-                    lcl_mod_art.modelos = row[2].ToString();
-                    lcl_mod_art.observaciones = row[3].ToString();
-
-                    lcl_lst_mod_art.Add(lcl_mod_art);
-                }
-            }
-            return lcl_lst_mod_art;
-        }
-        private List<ModeloEntidad> completaModeloCliente(DataTable p_dataTable)
-        {
-            List<ModeloEntidad> lcl_lst_mod_cli = new List<ModeloEntidad>();
-            int[] obligatorios = { 2, 3, 4 };// campos obligatorios del excel
-            string filasError = "";
-            int filas = 1;
-
-            foreach (DataRow row in p_dataTable.Rows)
-            {
-                filas++;
-                if (camposVacios(obligatorios, row))
-                {
-                    filasError += filasError + " " + filas.ToString() + ", ";
-                }
-                else
-                {
-
-                    ModeloEntidad lcl_mod_cli = new ModeloCliente();
-                        
-                    lcl_mod_cli.cuit = row[0].ToString();
-                    lcl_mod_cli.observaciones = row[1].ToString();
-                    (lcl_mod_cli as ModeloCliente).dni = row[2].ToString();
-                    (lcl_mod_cli as ModeloCliente).nombre = row[3].ToString();
-                    (lcl_mod_cli as ModeloCliente).apellido = row[4].ToString();
-                        
-                    lcl_lst_mod_cli.Add(lcl_mod_cli);
-                }
-            }
-
-            return lcl_lst_mod_cli;
-        }
-        private List<ModeloEntidad> completaModeloProveedor(DataTable p_dataTable)
-        {
-            List<ModeloEntidad> lcl_lst_mod_pro = new List<ModeloEntidad>();
-            int[] obligatorios = { 0, 2 };// campos obligatorios del excel
-            string filasError = "";
-            int filas = 1;
-
-            foreach (DataRow row in p_dataTable.Rows)
-            {
-                filas++;
-                if (camposVacios(obligatorios, row))
-                {
-                    filasError += filasError + " " + filas.ToString() + ", ";
-                }
-                else
-                {
-                    ModeloEntidad lcl_mod_pro = new ModeloProveedor();
-                        
-                    lcl_mod_pro.cuit = row[0].ToString();
-                    lcl_mod_pro.observaciones = row[1].ToString();
-                    (lcl_mod_pro as ModeloProveedor).razonSocial = row[2].ToString();
-
-
-                    lcl_lst_mod_pro.Add(lcl_mod_pro);
-                }
-            }
-
-            return lcl_lst_mod_pro;
-        }
-        private List<ModeloDescuentoArticuloProveedor> completaModeloDescuento(DataTable p_dataTable)
-        {
-            List<ModeloDescuentoArticuloProveedor> lcl_lst_mod_desArt = new List<ModeloDescuentoArticuloProveedor>();
-
-            foreach (DataRow row in p_dataTable.Rows)
-            {
-                ModeloDescuentoArticuloProveedor lcl_mod_desArt = new ModeloDescuentoArticuloProveedor();
-                    
-                lcl_mod_desArt.codigoOriginalArticulo = row[0].ToString();
-                lcl_mod_desArt.codigoArticuloProveedor = row[1].ToString();
-                lcl_mod_desArt.fechaVigenciaDesde = Convert.ToDateTime(row[2].ToString());
-                lcl_mod_desArt.fechaVigenciaHasta = Convert.ToDateTime(row[3].ToString());
-                lcl_mod_desArt.porcentaje = Convert.ToDecimal(row[4].ToString());
-                lcl_mod_desArt.descripcion = row[5].ToString();
-
-                lcl_lst_mod_desArt.Add(lcl_mod_desArt);
-            }
-
-            return lcl_lst_mod_desArt;
-        }
-
-        private string addArticuloProveedor(List<ModeloArticuloProveedores> p_lst_mod_artPro)
-        {
-
-            foreach (ModeloArticuloProveedores modArt in p_lst_mod_artPro)
-            {
-                i = (glb_con_alta.agregar(modArt)==true)? i+1:i;
-            }
-            return "Se agregaron " + i + " ArtículoProveedor.";
-        }
-        private string addArticulo(List<ModeloArticulos> p_lst_mod_art)
-        {
-
-            //int i = 0;
-            foreach (ModeloArticulos modArt in p_lst_mod_art)
-            {
-                i = (glb_con_alta.agregar(modArt) == true) ? i+1 : i;
-            }
-            return "Se agregaron " + i + " Artículos.";
-        }
-        private string addCliente(List<ModeloEntidad> p_lst_mod_cli)
-        {
-            ModeloEntidad lcl_aux_cli = new ModeloCliente();
-            int i = 0;
-            //foreach (ModeloCliente modCli in p_lst_mod_cli) // No se puede utilizar metodos que utilicen referencias en foreach
-            //  {
-                // i = (glb_con_alta.agregar(ref modCli) == true) ? i++ : i;
-            //  }
-            for (int j = 0; j < p_lst_mod_cli.Count; j++)
-            {
-                lcl_aux_cli = p_lst_mod_cli[j] as ModeloCliente;
-                i = (glb_con_alta.agregar(lcl_aux_cli) == true) ? i+1 : i;
-            }
-                
-            return "Se agregaron " + i + " Clientes.";
-        }
-        private string addProveedor(List<ModeloEntidad> p_lst_mod_pro)
-        {
-            ModeloEntidad lcl_aux_pro = new ModeloProveedor();
-            int i = 0;
-            // foreach (ModeloEntidad modPro in p_lst_mod_pro) // No se puede utilizar metodos que utilicen referencias en foreach
-            //{
-                //    i = (glb_con_alta.agregar(ref modPro) == true) ? i++ : i;
-            // }
-            for (int j = 0; j < p_lst_mod_pro.Count; j++)
-            {
-                lcl_aux_pro = p_lst_mod_pro[j] as ModeloProveedor;
-                i = (glb_con_alta.agregar(lcl_aux_pro) == true) ? i+1 : i;
-            }
-            return "Se agregaron " + i + " Proveedores.";
-        }
-        //private string addDescuento(List<ModeloDescuentoArticuloProveedor> p_lst_mod_desc)
-        //{
-        //    int i = 0;
-        //    foreach (ModeloDescuentoArticuloProveedor modDes in p_lst_mod_desc)
-        //    {
-        //         i = (glb_con_alta.agregar(modDes) == true) ? i+1 : i;
-        //    }
-        //    return "Se agregaron " + i + " Descuentos.";
-        //}
-        private string addValor(List<ModeloArticuloProveedores> p_lst_mod_valArt, string p_tipoValor)
-        {
-            int i = 0;
-            foreach (ModeloArticuloProveedores modArt in p_lst_mod_valArt)
-            {
-                    i = (glb_con_modificacion.modificarValores(modArt,p_tipoValor) == true) ? i+1 : i;
-            }
-            return "Se actualizaron " + i + " precios.";
-        }
     }
 }

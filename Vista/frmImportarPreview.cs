@@ -19,6 +19,7 @@ namespace Vista
         DataGridView dgvPreview;
         List<ComboBoxItem> glb_lst_atributos;
         string filePath;
+        bool esValorVenta;
         
         #region Constructores
         private frmImportarPreview()
@@ -33,6 +34,16 @@ namespace Vista
             inicializarDgvReview();
             inicializarSeleccionDeColumnas(T);
             this.habilitarImportar(false);
+        }
+        /// <summary>
+        /// Para importación de precios actualizados de compra o venta de artículos
+        /// </summary>
+        /// <param name="T"></param>
+        /// <param name="esValorVenta">true si es venta, false si es compra</param>
+        public frmImportarPreview(Type T, bool p_esValorVenta) : this(T)
+        {
+            esValorVenta = p_esValorVenta;
+            this.inicializarTituloForm(T);
         }
         #endregion
 
@@ -54,6 +65,8 @@ namespace Vista
             this.dgvPreview = new DataGridView();
             this.dgvPreview.CellValueChanged += new DataGridViewCellEventHandler(dgvPreview_CellValueChanged);
             this.dgvPreview.CurrentCellDirtyStateChanged += new EventHandler(dgvPreview_CurrentCellDirtyStateChanged);
+            this.dgvPreview.CellBeginEdit += this.dgvPreview_CellBeginEdit;
+            this.dgvPreview.CellEnter += this.dgvPreview_CellEnter;
             this.dgvPreview.ColumnHeadersVisible = false;
             this.dgvPreview.Dock = DockStyle.Fill;
             this.dgvPreview.AutoGenerateColumns = false;
@@ -110,6 +123,18 @@ namespace Vista
             {
                 titulo += "Proveedores";
             }
+            else if (T == typeof(ModeloValorArticulo))
+            {
+                titulo = "Actualizar Precios de ";
+                if (esValorVenta)
+                {
+                    titulo += "Venta";
+                }
+                else
+                {
+                    titulo += "Compra";
+                }
+            }
             else
             {
                 titulo += "Archivo";
@@ -129,25 +154,30 @@ namespace Vista
         {
             filePath = null;
             OpenFileDialog lcl_ofd = new OpenFileDialog();
-            lcl_ofd.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+            lcl_ofd.Filter = "Excel Files|*.xls;*.xlsx";
             lcl_ofd.FilterIndex = 1;
             lcl_ofd.Multiselect = false;
             if (lcl_ofd.ShowDialog() == DialogResult.OK)    
             {
                 if (lcl_ofd.CheckPathExists && lcl_ofd.CheckFileExists)
                 {
-                    filePath = lcl_ofd.FileName;
-                    this.txtBoxDireccionArchivo.Text = filePath;
-                    this.habilitarImportar(true);
-                }
-                else
-                {
-                    this.habilitarImportar(false);
+                    filePath = lcl_ofd.FileName;   
                 }
             }
             if (!string.IsNullOrWhiteSpace(filePath))
             {
-                this.cargarDatosPreview(Controladores.ControladorExcel.getPreviewDeArchivo(filePath, TypeModelo));
+                DataTable dt_preview = Controladores.ControladorExcel.getPreviewDeArchivo(filePath, TypeModelo);
+                if (dt_preview == null)
+                {
+                    this.habilitarImportar(false);
+                    MessageBox.Show("No se ha podido leer archivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    this.txtBoxDireccionArchivo.Text = filePath;
+                    this.habilitarImportar(true);
+                    this.cargarDatosPreview(dt_preview);
+                }
             }
         }
 
@@ -240,6 +270,10 @@ namespace Vista
             {
                 lcl_lst_atributos.AddRange(this.getAtributosProveedor());
             }
+            else if (T == typeof(ModeloValorArticulo))
+            {
+                lcl_lst_atributos.AddRange(this.getAtributosValorArticulo());
+            }
 
             return  lcl_lst_atributos;
         }
@@ -290,6 +324,15 @@ namespace Vista
             
             return lcl_lst_atributos;
         }
+        private List<ComboBoxItem> getAtributosValorArticulo()
+        {
+            List<ComboBoxItem> lcl_lst_valorArticulo = new List<ComboBoxItem>();
+            lcl_lst_valorArticulo.Add(new ComboBoxItem() { Name = "Código Original*", Value = 0 });
+            lcl_lst_valorArticulo.Add(new ComboBoxItem() { Name = "Código Artículo Proveedor*", Value = 1 });
+            lcl_lst_valorArticulo.Add(new ComboBoxItem() { Name = "Precio*", Value = 2 });
+
+            return lcl_lst_valorArticulo;
+        }
         #endregion
 
         #endregion
@@ -334,6 +377,29 @@ namespace Vista
                 dgvPreview.Invalidate();
             }
         }
+        /// <summary>
+        /// Permite edición solo en los comboBox del datagridview y no en las celdas de preview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvPreview_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.RowIndex != 0) e.Cancel = true;
+        }
+        /// <summary>
+        /// Permite expandir el comboBox de un solo click en vez de dos por defecto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvPreview_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == 0 && e.ColumnIndex != -1) 
+            {
+                this.dgvPreview.BeginEdit(true);
+
+                ((ComboBox)this.dgvPreview.EditingControl).DroppedDown = true;
+            }
+        }
         #endregion
         
         #region Button
@@ -342,6 +408,10 @@ namespace Vista
             string respuesta;
             bool primeraFilaHeaders = this.chckBoxPrimeraFilaHeaders.Checked;
             ControladorExcel lcl_con_excel = new ControladorExcel();
+            if (TypeModelo == typeof(ModeloValorArticulo))
+            {
+                lcl_con_excel.esValorVenta = esValorVenta;
+            }
             if (lcl_con_excel.importarDatos(filePath, TypeModelo, this.getIndicesDeAtributos(), primeraFilaHeaders, out respuesta))
             {
                 MessageBox.Show(respuesta, "Éxito");

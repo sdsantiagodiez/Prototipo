@@ -208,6 +208,7 @@ namespace Vista
             }
             else if (glb_form.GetType() == typeof(frmImportarPreview))
             {
+                glb_form.Close();
                 return true;    //lo cerramos por mas de que ya esté abierto porque puede haber importación de distintos tipos de modelos y no lo detecta
             }
             else
@@ -419,10 +420,6 @@ namespace Vista
             this.exportarDatos(typeof(ModeloProveedor));
         }
 
-        private void descuentosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.exportarDatos(typeof(ModeloDescuentoArticuloProveedor));
-        }
         #endregion
 
         private void artículoImportToolStripMenuItem_Click(object sender, EventArgs e)
@@ -470,25 +467,28 @@ namespace Vista
             this.agregarFormulario(glb_form);
         }
 
-        private void articuloProveedorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void descuentosImportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("proximamente");
-        }
-
-
         private void preciosParaVentaImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("proximamente");
+            if (!this.validarAgregarFormulario(typeof(frmImportarPreview)))
+            {
+                return;
+            }
+
+            glb_form = new frmImportarPreview(typeof(ModeloValorArticulo),true);
+
+            this.agregarFormulario(glb_form);
         }
 
         private void preciosParaCompraImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("proximamente");
+            if (!this.validarAgregarFormulario(typeof(frmImportarPreview)))
+            {
+                return;
+            }
+
+            glb_form = new frmImportarPreview(typeof(ModeloValorArticulo), false);
+
+            this.agregarFormulario(glb_form);
         }
 
         private void toolStripbtnReimpresion_Click(object sender, EventArgs e)
