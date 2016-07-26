@@ -11,9 +11,7 @@ using Modelos;
 using Controladores;
 using Reportes;
 using LibreriaClasesCompartidas;
-using MaterialSkin;
-using MaterialSkin.Animations;
-using MaterialSkin.Controls;
+
 
 
 namespace Vista
@@ -27,7 +25,7 @@ namespace Vista
         ModeloPedido glb_mod_pedidoOriginalDevolucion;
         List<TipoDocumento> glb_lst_tiposDocumentos;
         ControladorPedido controlador;
-        MaterialCheckBox chckBoxClienteGenerico;
+        MaterialSkin.Controls.MaterialCheckBox chckBoxClienteGenerico;
         ContextMenu cntxMenuLineasPedido;
         #region ModoFormulario
         public const string ModoFormularioPedidoCliente = "Pedido Cliente";
@@ -78,8 +76,6 @@ namespace Vista
             dgvArticulosVenta.EnableHeadersVisualStyles = false; 
             this.StartPosition = FormStartPosition.CenterScreen;
             this.inicializarControles();
-
-
         }
         /// <summary>
         /// Inicializa formulario de acuerdo al codigoTipoPedido asignado al pedido
@@ -318,10 +314,8 @@ namespace Vista
             this.lblCAE.Visible = 
                 this.txtBoxCAE.Visible = true;
 
-            chckBoxClienteGenerico = new MaterialCheckBox();
-            chckBoxClienteGenerico.Anchor = AnchorStyles.Left;
-            
-            chckBoxClienteGenerico.AutoSize = false;
+            chckBoxClienteGenerico = new MaterialSkin.Controls.MaterialCheckBox();
+            chckBoxClienteGenerico.Dock = DockStyle.Fill;
             chckBoxClienteGenerico.Text = "Cliente Genérico";
 
             chckBoxClienteGenerico.CheckedChanged += clienteGenerico_CheckedChanged;
