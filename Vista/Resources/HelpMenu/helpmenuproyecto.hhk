@@ -43,18 +43,6 @@
 </UL>
 <UL>
 	<LI><OBJECT type="text/sitemap">
-	<param name="Name" value="Precio de Compra">
-	<param name="Local" value="nuevopreciodecompra.html">
-	</OBJECT>
-</UL>
-<UL>
-	<LI><OBJECT type="text/sitemap">
-	<param name="Name" value="Precio de Venta">
-	<param name="Local" value="nuevopreciodeventa.html">
-	</OBJECT>
-</UL>
-<UL>
-	<LI><OBJECT type="text/sitemap">
 	<param name="Name" value="Saldos de Stock">
 	<param name="Local" value="saldosdestock.html">
 	</OBJECT>
@@ -87,12 +75,6 @@
 	<LI><OBJECT type="text/sitemap">
 	<param name="Name" value="Agregar artículo a pedido de Venta">
 	<param name="Local" value="agregarunartículoalpedido.html">
-	</OBJECT>
-</UL>
-<UL>
-	<LI><OBJECT type="text/sitemap">
-	<param name="Name" value="Cierre de pedido de Venta">
-	<param name="Local" value="cierredepedidodeventa.html">
 	</OBJECT>
 </UL>
 <UL>

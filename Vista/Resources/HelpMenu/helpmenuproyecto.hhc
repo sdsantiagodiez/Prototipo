@@ -25,8 +25,6 @@
 </UL>
 <LI>	<OBJECT type="text/sitemap">	<param name="Name" value="Inventario">	<PARAM name="ImageNumber" value="0">	</OBJECT>
 <UL>
-<LI>	<OBJECT type="text/sitemap">	<PARAM name="Name" value="Nuevo precio de compra">	<PARAM name="Local" value="nuevopreciodecompra.html">	<PARAM name="ImageNumber" value="0">	</OBJECT>
-<LI>	<OBJECT type="text/sitemap">	<PARAM name="Name" value="Nuevo precio de venta">	<PARAM name="Local" value="nuevopreciodeventa.html">	<PARAM name="ImageNumber" value="0">	</OBJECT>
 <LI>	<OBJECT type="text/sitemap">	<PARAM name="Name" value="Saldos de stock">	<PARAM name="Local" value="saldosdestock.html">	<PARAM name="ImageNumber" value="0">	</OBJECT>
 </UL>
 <LI>	<OBJECT type="text/sitemap">	<param name="Name" value="Manejo de Datos">	<PARAM name="ImageNumber" value="0">	</OBJECT>
@@ -49,7 +47,6 @@
 <LI>	<OBJECT type="text/sitemap">	<param name="Name" value="Ventas">	<PARAM name="ImageNumber" value="0">	</OBJECT>
 <UL>
 <LI>	<OBJECT type="text/sitemap">	<PARAM name="Name" value="Agregar un artículo al pedido de Venta">	<PARAM name="Local" value="agregarunartículoalpedido.html">	<PARAM name="ImageNumber" value="0">	</OBJECT>
-<LI>	<OBJECT type="text/sitemap">	<PARAM name="Name" value="Cierre de pedido de Venta">	<PARAM name="Local" value="cierredepedidodeventa.html">	<PARAM name="ImageNumber" value="0">	</OBJECT>
 <LI>	<OBJECT type="text/sitemap">	<PARAM name="Name" value="Facturación Masiva">	<PARAM name="Local" value="facturacionmasiva.html">	<PARAM name="ImageNumber" value="0">	</OBJECT>
 <LI>	<OBJECT type="text/sitemap">	<PARAM name="Name" value="Ingreso de Pedido de Venta">	<PARAM name="Local" value="ingresodepedidodeventa.html">	<PARAM name="ImageNumber" value="0">	</OBJECT>
 <LI>	<OBJECT type="text/sitemap">	<PARAM name="Name" value="Reimpresion de Comprobantes">	<PARAM name="Local" value="reimpresiondecomprobantes.html">	<PARAM name="ImageNumber" value="0">	</OBJECT>
