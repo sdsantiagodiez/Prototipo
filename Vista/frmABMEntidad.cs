@@ -16,8 +16,8 @@ namespace Vista
     public partial class frmABMEntidad : Vista.frmABMBase
     {
         #region Atributos
-        private string _tipoEntidadSeleccionada;
-        private string tipoEntidadSeleccionada
+        public string _tipoEntidadSeleccionada;
+        public string tipoEntidadSeleccionada
         {
             get { return _tipoEntidadSeleccionada; }
             set 

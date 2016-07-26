@@ -600,26 +600,51 @@ namespace Vista
             { this.mostrarManual(glb_form.GetType()); }
         }
         private void mostrarManual(Type p_ventanaActiva)
-        {
+        { 
             string topic = "";
             if (p_ventanaActiva == typeof(frmABMArticulo))
             { topic = "abmarticulo"; }
             else if (p_ventanaActiva == typeof(frmABMDescuentos))
             { topic = "abmdescuento"; }
             else if (p_ventanaActiva == typeof(frmABMEntidad))
-            { topic = "abmcliente"; }
+            {
+                if ((glb_form as frmABMEntidad).tipoEntidadSeleccionada == Constantes.TiposEntidad.TiposPersona.Cliente)
+                { topic = "abmcliente"; }
+                else if ((glb_form as frmABMEntidad).tipoEntidadSeleccionada == Constantes.TiposEntidad.TiposPersona.ContactoProveedor)
+                { topic = "abmcontactoproveedor"; }
+                else if ((glb_form as frmABMEntidad).tipoEntidadSeleccionada == Constantes.TiposEntidad.TiposPersona.Usuario)
+                { topic = "abmusuario"; }
+                else
+                { topic = "abmproveedor"; }
+            }
             else if (p_ventanaActiva == typeof(frmFacturacionMasiva))
             { topic = "facturacionmasiva"; }
             else if (p_ventanaActiva == typeof(frmPedidoCierre))
-            { topic = "cierredepedidodeventa"; }
+            {
+                if ((glb_form as frmPedidoCierre).modoFormulario == "Pedido Cliente")
+                { topic = "cierredepedidodeventa"; }
+                else if ((glb_form as frmPedidoCierre).modoFormulario == "Pedido a Proveedor(es)")
+                { topic = "altapedido"; }
+                else { topic = "cerrardevolucion"; }
+            }
             else if (p_ventanaActiva == typeof(frmPedidoDevolucion))
             { topic = "agregarunadevolucion"; }
             else if (p_ventanaActiva == typeof(frmPedidoNuevo))
-            { topic = "agregarunarticuloalpedido"; }
+            {
+                if ((glb_form as frmPedidoNuevo).controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+                { topic = "agregarunarticuloalpedido"; }
+                else { topic = "agregarunarticuloalpedidoaproveedor"; }
+            }
             else if (p_ventanaActiva == typeof(frmReimpresion))
             { topic = "reimpresiondecomprobantes"; }
             else if (p_ventanaActiva == typeof(frmReporteSeleccion))
-            { topic = "reportesdeventas"; }
+            {
+                if ((glb_form as frmReporteSeleccion).tabControl.SelectedTab == (glb_form as frmReporteSeleccion).tabVentas)
+                { topic = "reportesdeventas"; }
+                else if ((glb_form as frmReporteSeleccion).tabControl.SelectedTab == (glb_form as frmReporteSeleccion).tabPedidos)
+                { topic = "reportesdecompras"; }
+                else { topic = "reportesdeinventario"; }
+            }
             else if (p_ventanaActiva == typeof(frmImportarPreview))
             { topic = "importacion"; }
             else
