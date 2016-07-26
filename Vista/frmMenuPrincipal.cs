@@ -622,7 +622,7 @@ namespace Vista
             else if (p_ventanaActiva == typeof(frmPedidoCierre))
             {
                 if ((glb_form as frmPedidoCierre).modoFormulario == "Pedido Cliente")
-                { topic = "cierredepedidodeventa"; }
+                { topic = "ingresodepedidodeventa"; }
                 else if ((glb_form as frmPedidoCierre).modoFormulario == "Pedido a Proveedor(es)")
                 { topic = "altapedido"; }
                 else { topic = "cerrardevolucion"; }
