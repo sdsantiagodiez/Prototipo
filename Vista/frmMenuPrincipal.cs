@@ -592,16 +592,19 @@ namespace Vista
         {
             if (glb_form == null)
             { 
-                 string lcl_dir_help = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName; 
-            lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\helpmenuproyecto.chm";
-            Help.ShowHelp(this, lcl_dir_help, HelpNavigator.TableOfContents);
+                string lcl_dir_help = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName; 
+                //lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\helpmenuproyecto.chm";
+                lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\NUEVO\\help.chm";
+                Help.ShowHelp(this, lcl_dir_help, HelpNavigator.TableOfContents);
+                //Help.ShowHelp(this, "C:\\Users\\Martin\\Desktop\\HELPS NUEVOS\\helpmenuproyecto.chm", HelpNavigator.Topic, "4_MANEJODEDATOS.htm");
             }
             else
             { this.mostrarManual(glb_form.GetType()); }
         }
         private void mostrarManual(Type p_ventanaActiva)
         { 
-            string topic = "";
+            //CON AYUDA VIEJA
+            /*string topic = "";
             if (p_ventanaActiva == typeof(frmABMArticulo))
             { topic = "abmarticulo"; }
             else if (p_ventanaActiva == typeof(frmABMDescuentos))
@@ -653,7 +656,38 @@ namespace Vista
             string lcl_dir_help = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName; 
             lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\helpmenuproyecto.chm";
 
-            Help.ShowHelp(glb_form, lcl_dir_help, HelpNavigator.Topic, topic + ".html");
+            Help.ShowHelp(glb_form, lcl_dir_help, HelpNavigator.Topic, topic + ".html");*/
+
+            //CON AYUDA NUEVA
+            string topic = "";
+            if (p_ventanaActiva == typeof(frmABMArticulo))
+            { topic = "1_ALTASBAJASYMODIFICACIONES"; }
+            else if (p_ventanaActiva == typeof(frmABMDescuentos))
+            { topic = "1_ALTASBAJASYMODIFICACIONES"; }
+            else if (p_ventanaActiva == typeof(frmABMEntidad))
+            { topic = "1_ALTASBAJASYMODIFICACIONES"; }
+            else if (p_ventanaActiva == typeof(frmFacturacionMasiva))
+            { topic = "7_VENTAS"; }
+            else if (p_ventanaActiva == typeof(frmPedidoCierre))
+            { topic = "7_VENTAS"; }
+            else if (p_ventanaActiva == typeof(frmPedidoDevolucion))
+            { topic = "2_DEVOLUCIONES"; }
+            else if (p_ventanaActiva == typeof(frmPedidoNuevo))
+            { topic = "2_VENTAS";  }
+            else if (p_ventanaActiva == typeof(frmReimpresion))
+            { topic = "7_VENTAS"; }
+            else if (p_ventanaActiva == typeof(frmReporteSeleccion))
+            { topic = "6_REPORTES"; }
+            else if (p_ventanaActiva == typeof(frmImportarPreview))
+            { topic = "4_MANEJODEDATOS"; }
+            else
+            { topic = "3_INVENTARIO"; }
+
+            string lcl_dir_help = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\NUEVO\\help.chm";
+
+            Help.ShowHelp(glb_form, lcl_dir_help, HelpNavigator.Topic, topic + ".htm");
+
         }
 
         
