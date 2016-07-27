@@ -40,9 +40,8 @@
             this.toolStripbtnPedidoCliente = new System.Windows.Forms.ToolStripButton();
             this.toolStripbtnPedidoProveedor = new System.Windows.Forms.ToolStripButton();
             this.tlsbtnDevolucion = new System.Windows.Forms.ToolStripButton();
-            this.toolStripbtnFacturacion = new System.Windows.Forms.ToolStripButton();
             this.toolStripbtnReportes = new System.Windows.Forms.ToolStripButton();
-            this.toolStripbtnReimpresion = new System.Windows.Forms.ToolStripButton();
+            this.toolStripbtnGestionPedidos = new System.Windows.Forms.ToolStripButton();
             this.toolStripbtnABM = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmi_ABMentidades = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_ABMarticulos = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,6 +101,10 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ayudaToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tblLayoutPanelPrincipal_Contenedor.SuspendLayout();
             this.tblLayoutPanelMenu.SuspendLayout();
@@ -184,12 +187,15 @@
             this.tlsMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tlsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripbtnPedidoCliente,
-            this.toolStripbtnPedidoProveedor,
             this.tlsbtnDevolucion,
-            this.toolStripbtnFacturacion,
-            this.toolStripbtnReportes,
-            this.toolStripbtnReimpresion,
-            this.toolStripbtnABM});
+            this.toolStripSeparator3,
+            this.toolStripbtnPedidoProveedor,
+            this.toolStripSeparator4,
+            this.toolStripbtnGestionPedidos,
+            this.toolStripSeparator5,
+            this.toolStripbtnABM,
+            this.toolStripSeparator6,
+            this.toolStripbtnReportes});
             this.tlsMenu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.tlsMenu.Location = new System.Drawing.Point(0, 0);
             this.tlsMenu.Name = "tlsMenu";
@@ -204,7 +210,7 @@
             this.toolStripbtnPedidoCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripbtnPedidoCliente.Name = "toolStripbtnPedidoCliente";
             this.toolStripbtnPedidoCliente.Size = new System.Drawing.Size(255, 24);
-            this.toolStripbtnPedidoCliente.Text = "Pedidos Clientes";
+            this.toolStripbtnPedidoCliente.Text = "Pedido Cliente";
             this.toolStripbtnPedidoCliente.Click += new System.EventHandler(this.toolStripbtnPedidoCliente_Click);
             // 
             // toolStripbtnPedidoProveedor
@@ -215,7 +221,7 @@
             this.toolStripbtnPedidoProveedor.Name = "toolStripbtnPedidoProveedor";
             this.toolStripbtnPedidoProveedor.Size = new System.Drawing.Size(255, 24);
             this.toolStripbtnPedidoProveedor.Tag = "";
-            this.toolStripbtnPedidoProveedor.Text = "Pedidos Proveedores";
+            this.toolStripbtnPedidoProveedor.Text = "Pedido a Proveedores";
             this.toolStripbtnPedidoProveedor.Click += new System.EventHandler(this.toolStripbtnPedidoProveedor_Click);
             // 
             // tlsbtnDevolucion
@@ -225,18 +231,8 @@
             this.tlsbtnDevolucion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlsbtnDevolucion.Name = "tlsbtnDevolucion";
             this.tlsbtnDevolucion.Size = new System.Drawing.Size(255, 24);
-            this.tlsbtnDevolucion.Text = "Devoluciones Clientes";
+            this.tlsbtnDevolucion.Text = "Devolución Cliente";
             this.tlsbtnDevolucion.Click += new System.EventHandler(this.tlsbtnDevolucion_Click);
-            // 
-            // toolStripbtnFacturacion
-            // 
-            this.toolStripbtnFacturacion.Image = ((System.Drawing.Image)(resources.GetObject("toolStripbtnFacturacion.Image")));
-            this.toolStripbtnFacturacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripbtnFacturacion.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripbtnFacturacion.Name = "toolStripbtnFacturacion";
-            this.toolStripbtnFacturacion.Size = new System.Drawing.Size(255, 24);
-            this.toolStripbtnFacturacion.Text = "Facturación Pendiente";
-            this.toolStripbtnFacturacion.Click += new System.EventHandler(this.toolStripbtnFacturacion_Click);
             // 
             // toolStripbtnReportes
             // 
@@ -249,16 +245,16 @@
             this.toolStripbtnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolStripbtnReportes.Click += new System.EventHandler(this.toolStripbtnReportes_Click);
             // 
-            // toolStripbtnReimpresion
+            // toolStripbtnGestionPedidos
             // 
-            this.toolStripbtnReimpresion.Image = ((System.Drawing.Image)(resources.GetObject("toolStripbtnReimpresion.Image")));
-            this.toolStripbtnReimpresion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripbtnReimpresion.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripbtnReimpresion.Name = "toolStripbtnReimpresion";
-            this.toolStripbtnReimpresion.Size = new System.Drawing.Size(255, 24);
-            this.toolStripbtnReimpresion.Text = "Reimpresión Comprobantes";
-            this.toolStripbtnReimpresion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolStripbtnReimpresion.Click += new System.EventHandler(this.toolStripbtnReimpresion_Click);
+            this.toolStripbtnGestionPedidos.Image = ((System.Drawing.Image)(resources.GetObject("toolStripbtnGestionPedidos.Image")));
+            this.toolStripbtnGestionPedidos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripbtnGestionPedidos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripbtnGestionPedidos.Name = "toolStripbtnGestionPedidos";
+            this.toolStripbtnGestionPedidos.Size = new System.Drawing.Size(255, 24);
+            this.toolStripbtnGestionPedidos.Text = "Administración de Pedidos";
+            this.toolStripbtnGestionPedidos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolStripbtnGestionPedidos.Click += new System.EventHandler(this.toolStripbtnGestionPedidos_Click);
             // 
             // toolStripbtnABM
             // 
@@ -276,21 +272,21 @@
             // tsmi_ABMentidades
             // 
             this.tsmi_ABMentidades.Name = "tsmi_ABMentidades";
-            this.tsmi_ABMentidades.Size = new System.Drawing.Size(160, 26);
+            this.tsmi_ABMentidades.Size = new System.Drawing.Size(181, 26);
             this.tsmi_ABMentidades.Text = "Entidades";
             this.tsmi_ABMentidades.Click += new System.EventHandler(this.tsmi_ABMentidades_Click);
             // 
             // tsmi_ABMarticulos
             // 
             this.tsmi_ABMarticulos.Name = "tsmi_ABMarticulos";
-            this.tsmi_ABMarticulos.Size = new System.Drawing.Size(160, 26);
+            this.tsmi_ABMarticulos.Size = new System.Drawing.Size(181, 26);
             this.tsmi_ABMarticulos.Text = "Artículos";
             this.tsmi_ABMarticulos.Click += new System.EventHandler(this.tsmi_ABMarticulos_Click);
             // 
             // tsmi_ABMdescuentos
             // 
             this.tsmi_ABMdescuentos.Name = "tsmi_ABMdescuentos";
-            this.tsmi_ABMdescuentos.Size = new System.Drawing.Size(160, 26);
+            this.tsmi_ABMdescuentos.Size = new System.Drawing.Size(181, 26);
             this.tsmi_ABMdescuentos.Text = "Descuentos";
             this.tsmi_ABMdescuentos.Click += new System.EventHandler(this.tsmi_ABMdescuentos_Click);
             // 
@@ -773,6 +769,26 @@
             this.splitter1.TabIndex = 39;
             this.splitter1.TabStop = false;
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(255, 6);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(255, 6);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(255, 6);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(255, 6);
+            // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -781,7 +797,7 @@
             this.ClientSize = new System.Drawing.Size(1379, 762);
             this.Controls.Add(this.tblLayoutPanelPrincipal);
             this.Controls.Add(this.splitter1);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmMenuPrincipal";
             this.Text = "Menú Principal";
             this.tblLayoutPanelPrincipal.ResumeLayout(false);
@@ -836,7 +852,6 @@
         public System.Windows.Forms.ToolStripButton toolStripbtnReportes;
         private System.Windows.Forms.ToolStripButton toolStripbtnPedidoCliente;
         private System.Windows.Forms.ToolStripButton toolStripbtnPedidoProveedor;
-        private System.Windows.Forms.ToolStripButton toolStripbtnFacturacion;
         private System.Windows.Forms.ToolStripButton tlsbtnDevolucion;
         private System.Windows.Forms.Panel pnlContenedorForm;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelMenu;
@@ -867,7 +882,7 @@
         private System.Windows.Forms.ToolStripMenuItem artículoImportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientesImportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem proveedorImportToolStripMenuItem;
-        public System.Windows.Forms.ToolStripButton toolStripbtnReimpresion;
+        public System.Windows.Forms.ToolStripButton toolStripbtnGestionPedidos;
         private System.Windows.Forms.ToolStripMenuItem baseDeDatosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem backUpToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
@@ -875,5 +890,9 @@
         private System.Windows.Forms.ToolStripMenuItem actualizarPreciosDeArtículosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preciosDeVentaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preciosDeCompraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
     }
 }

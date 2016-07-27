@@ -29,6 +29,9 @@ namespace Vista
             this.inicializarForm();
             this.MinimizeBox = true;
             this.MaximizeBox = true;
+
+            //frmPedidoGestion p = new frmPedidoGestion();
+            //p.ShowDialog();
         }
 
         public frmMenuPrincipal(ModeloUsuario usuarioActual) : this()
@@ -491,14 +494,14 @@ namespace Vista
             this.agregarFormulario(glb_form);
         }
 
-        private void toolStripbtnReimpresion_Click(object sender, EventArgs e)
+        private void toolStripbtnGestionPedidos_Click(object sender, EventArgs e)
         {
-            if (!this.validarAgregarFormulario(typeof(frmReimpresion)))
+            if (!this.validarAgregarFormulario(typeof(frmPedidoGestion)))
             {
                 return;
             }
 
-            glb_form = new frmReimpresion();
+            glb_form = new frmPedidoGestion();
             this.agregarFormulario(glb_form);
         }
 

@@ -187,7 +187,7 @@ namespace Vista
 
         private void inicializarControles()
         {
-            this.Text = "Entidades";
+            this.Text = "Gestión de Entidades";
            
             this.inicializarTextBoxes();
             this.inicializarComboBox();

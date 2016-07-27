@@ -27,8 +27,8 @@ namespace Datos
             lcl_mod_pedido.montoTotal = (p_drPedidos["monto_total"] != DBNull.Value) ? (decimal)p_drPedidos["monto_total"] : 0;
             lcl_mod_pedido.observaciones = (p_drPedidos["observaciones"] != DBNull.Value) ? (string)p_drPedidos["observaciones"] : null;
 
-            lcl_mod_pedido.descuentos.descuento_monto_1 = (decimal)p_drPedidos["descuento_1_monto"];
-            lcl_mod_pedido.descuentos.descuento_monto_2 = (decimal)p_drPedidos["descuento_2_monto"];
+            lcl_mod_pedido.descuentos.descuento_monto_1 = (p_drPedidos["descuento_1_monto"] != DBNull.Value) ? (decimal)p_drPedidos["descuento_1_monto"] : 0;
+            lcl_mod_pedido.descuentos.descuento_monto_2 = (p_drPedidos["descuento_2_monto"] != DBNull.Value) ? (decimal)p_drPedidos["descuento_2_monto"] : 0;
 
             #region Datos Pedidos_Personas
             if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
@@ -107,7 +107,7 @@ namespace Datos
                     string fechaQuery = this.parametroBusqueda("@fecha", "fecha", "=");
 
                     string cae = String.IsNullOrWhiteSpace(p_mod_pedido.CAE)  ? null : p_mod_pedido.CAE;
-                    p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.CAE, "@cae"));
+                    p_comando.Parameters.Add(this.instanciarParametro(cae, "@cae"));
                     string caeQuery = this.parametroBusqueda("@cae", "cae", "=");
 
                     return numeroPedidoQuery + " AND " + codigoTipoPedidoQuery + " AND " + fechaQuery;
@@ -115,7 +115,57 @@ namespace Datos
                     return base.getCondicionBusqueda(p_parametroBusqueda);
             }
         }
+        private string getCondicionBusqueda(ModeloPedido p_mod_pedido, List<DateTime> p_periodo, List<int> p_codigosComprobantes, bool p_clienteGenerico, bool? p_facturadoElectronicament,ref SqlCommand p_comando)
+        {
+            int? numeroPedido = p_mod_pedido.numeroPedido == 0 ? null : (int?)p_mod_pedido.numeroPedido;
+            p_comando.Parameters.Add(this.instanciarParametro(numeroPedido, "@numero_pedido"));
+            string numeroPedidoQuery = this.parametroBusqueda("@numero_pedido", "numero_pedido", "=");
 
+            string cae = String.IsNullOrWhiteSpace(p_mod_pedido.CAE) ? null : p_mod_pedido.CAE;
+            p_comando.Parameters.Add(this.instanciarParametro(cae, "@cae"));
+            string caeQuery = this.parametroBusqueda("@cae", "cae", "=");
+
+            string numeroDocumento = String.IsNullOrWhiteSpace(p_mod_pedido.documentoComprador.numero) ? null : p_mod_pedido.CAE;
+            p_comando.Parameters.Add(this.instanciarParametro(numeroDocumento, "@numero_documento"));
+            string numeroDocumentoQuery = this.parametroBusqueda("@numero_documento", "numero_documento_entidad", "=");
+
+            int? codigoTipoPedido = p_mod_pedido.codigoTipoPedido == 0 ? null : (int?)p_mod_pedido.codigoTipoPedido;
+            p_comando.Parameters.Add(this.instanciarParametro(codigoTipoPedido, "@codigo_tipo_pedido"));
+            string codigoTipoPedidoQuery = this.parametroBusqueda("@codigo_tipo_pedido", "codigo_tipo_pedido", "=");
+
+            p_comando.Parameters.Add(this.instanciarParametro(p_periodo[0], "@fecha_desde"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_periodo[1], "@fecha_hasta"));
+            string periodoQuery = " fecha BETWEEN @fecha_desde AND @fecha_hasta ";
+
+            string numeroEntidadQuery = p_clienteGenerico ? " AND (codigo_entidad = 106242) " : "";//106242 CLIENTE GENERICO ACTUAL -> MODIFICAR en base de datos
+
+            string facturadoElectronicamenteQuery = "";
+            if (p_facturadoElectronicament != null)
+            {
+                string facturadoElectronicamente = p_facturadoElectronicament == true ? "A" : null;
+                p_comando.Parameters.Add(this.instanciarParametro(facturadoElectronicamente, "@aprobado_afip"));
+                facturadoElectronicamenteQuery = " AND " + this.parametroBusqueda("@aprobado_afip", "aprobado_afip", "=");
+            }
+
+            string codigoComprobanteQuery = "";
+            if (p_codigosComprobantes.Count > 0)
+            {
+                codigoComprobanteQuery += " AND ( ";
+                for (int i= 0; i< p_codigosComprobantes.Count; i++)
+                {
+                    codigoComprobanteQuery += " codigo_comprobante = "+p_codigosComprobantes[i].ToString()+" ";
+                    if (i + 1 < p_codigosComprobantes.Count)
+                    {
+                        codigoComprobanteQuery += " OR ";
+                    }
+                }
+                codigoComprobanteQuery += " ) ";
+            }
+
+            return " ( " + numeroPedidoQuery + " AND " + caeQuery + " AND " + numeroDocumentoQuery +
+                " AND " + codigoTipoPedidoQuery + " AND " + periodoQuery + numeroEntidadQuery + 
+                facturadoElectronicamenteQuery + codigoComprobanteQuery + " ) ";
+        }
         public List<ModeloPedido> buscarPedido(ModeloPedido p_mod_pedido, string p_parametroBusqueda)
         {
             //Creo la conexion y la abro
@@ -248,6 +298,62 @@ namespace Datos
             comando.Connection.Close();
 
             return lcl_lst_mod_pedido;
+        }
+
+        public List<ModeloPedido> buscar(ModeloPedido p_mod_pedido, List<DateTime> p_periodo,List<int> p_codigosComprobantes, bool p_clienteGenerico, bool? p_facturadoElectronicamente)
+        {
+            SqlCommand comando = Conexion.crearComando();            
+            string querySQL = this.getCondicionBusqueda(p_mod_pedido,p_periodo, p_codigosComprobantes, p_clienteGenerico, p_facturadoElectronicamente, ref comando);
+            comando.CommandText =
+                 "SELECT  [numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
+                "        [codigo_entidad], " +
+                "        [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],  " +
+                "           [descuento_1_monto],[descuento_2_monto] "+
+                "    FROM  " +
+                "    (  " +
+                "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
+                "                Pedidos_Personas.[codigo_entidad], " +
+                "                [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], " +
+                "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante], "+
+                "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto] " +
+                "            FROM pedidos, Pedidos_Personas  " +
+                "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido  " +
+                "        )  " +
+                "    UNION  " +
+                "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
+                "                Pedidos_Proveedores.[codigo_entidad], " +
+                "                NULL as [numero_comprobante],NULL as [cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
+                "                NULL as [codigo_documento],NULL as [numero_documento_entidad],NULL as [codigo_comprobante], " +
+                "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto] " +
+                "            FROM pedidos, Pedidos_Proveedores  " +
+                "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  " +
+                "        )  " +
+                "    ) as tbl " +
+                "   WHERE " + querySQL;
+
+            comando.Connection.Open();
+            SqlDataReader drPedidos = comando.ExecuteReader();
+
+            List<ModeloPedido> lcl_mod_pedidosEncontrados = new List<ModeloPedido>();
+            ModeloPedido lcl_mod_pedido = new ModeloPedido();
+
+            CatalogoLineasPedidos lcl_cat_lineasPedidos = new CatalogoLineasPedidos();
+            ModeloLineaPedido lcl_mod_lineaPedido = null;
+            while (drPedidos.Read())
+            {
+                lcl_mod_pedido = new ModeloPedido();
+                lcl_mod_pedido = this.leerDatosPedido(drPedidos);
+
+                lcl_mod_lineaPedido = new ModeloLineaPedido();
+                lcl_mod_lineaPedido.numeroPedido = lcl_mod_pedido.numeroPedido;
+                lcl_mod_pedido.addLineaPedidoList(lcl_cat_lineasPedidos.buscarLineasPedido(lcl_mod_lineaPedido, Constantes.ParametrosBusqueda.LineasPedidos.NumeroPedido));
+
+                lcl_mod_pedidosEncontrados.Add(lcl_mod_pedido);
+            }
+            drPedidos.Dispose();
+            comando.Connection.Close();
+
+            return lcl_mod_pedidosEncontrados;
         }
 
         public ModeloPedido getOne(int p_numeroPedido)

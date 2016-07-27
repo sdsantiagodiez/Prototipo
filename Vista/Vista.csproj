@@ -113,6 +113,12 @@
     <Compile Include="frmMaterialSkinBase.Designer.cs">
       <DependentUpon>frmMaterialSkinBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPedidoGestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPedidoGestion.Designer.cs">
+      <DependentUpon>frmPedidoGestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPedidoCierre_EditarLineaPedido.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMaterialSkinBase.resx">
       <DependentUpon>frmMaterialSkinBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPedidoGestion.resx">
+      <DependentUpon>frmPedidoGestion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPedidoCierre_EditarLineaPedido.resx">
       <DependentUpon>frmPedidoCierre_EditarLineaPedido.cs</DependentUpon>

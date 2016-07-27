@@ -35,7 +35,7 @@ namespace Vista
         {
             InitializeComponent();
             this.inicializarModoFormularioInicio();
-            this.Text = "Artículo";
+            this.Text = "Gestión de Artículos";
             this.pathimagen.Text = "";
 
             this.inicializarControles();

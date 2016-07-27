@@ -183,6 +183,16 @@ namespace LibreriaClasesCompartidas
             TipoPedidoProveedor=2
         }
 
+        public enum TipoPedido
+        {
+            [System.ComponentModel.Description("Pedido a Proveedor")]
+            PedidoProveedor = 1,
+            [System.ComponentModel.Description("Pedido de Cliente")]
+            PedidoCliente = 2,
+            [System.ComponentModel.Description("Pedido de Cliente Genérico")]
+            PedidoClienteGenerico = 3
+        }
+
         public enum FormaDePago
         {
             Contado =1,

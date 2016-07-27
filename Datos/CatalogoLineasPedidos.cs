@@ -26,10 +26,10 @@ namespace Datos
             lcl_mod_lineaPedido.cantidadArticulos = (int)p_drLineasPedidos["cantidad"];
             lcl_mod_lineaPedido.valorUnitario = (decimal)p_drLineasPedidos["valor_unitario"];
             lcl_mod_lineaPedido.valorParcial = (decimal)p_drLineasPedidos["valor_parcial"];
-            
-            lcl_mod_lineaPedido.valorParcialSinDescuento = (decimal)p_drLineasPedidos["valor_parcial_sin_descuento"];
-            lcl_mod_lineaPedido.descuentoTotalMonto = (decimal)p_drLineasPedidos["descuento_total_monto"];
-            lcl_mod_lineaPedido.descuentoTotalPorcentaje = (decimal)p_drLineasPedidos["descuento_total_porcentaje"];
+
+            lcl_mod_lineaPedido.valorParcialSinDescuento = (p_drLineasPedidos["valor_parcial_sin_descuento"] != DBNull.Value) ? (decimal)p_drLineasPedidos["valor_parcial_sin_descuento"] : 0;
+            lcl_mod_lineaPedido.descuentoTotalMonto = (p_drLineasPedidos["descuento_total_monto"] != DBNull.Value) ? (decimal)p_drLineasPedidos["descuento_total_monto"] : 0;
+            lcl_mod_lineaPedido.descuentoTotalPorcentaje = (p_drLineasPedidos["descuento_total_porcentaje"] != DBNull.Value) ? (decimal)p_drLineasPedidos["descuento_total_porcentaje"] : 0;
             
             return lcl_mod_lineaPedido;
         }
@@ -302,16 +302,16 @@ namespace Datos
             lcl_mod_descuentoLP.codigoOriginalArticulo = (string)p_drDescuentoLP["codigo_original"];
             lcl_mod_descuentoLP.codigoArticuloProveedor = (string)p_drDescuentoLP["codigo_articulo_proveedor"];
             lcl_mod_descuentoLP.codigoDescuento = (int)p_drDescuentoLP["numero_descuento"];
-            lcl_mod_descuentoLP.descripcion = (string)p_drDescuentoLP["descripcion_descuento"];
-            lcl_mod_descuentoLP.porcentaje= (decimal)p_drDescuentoLP["porcentaje_descuento"];
+            lcl_mod_descuentoLP.descripcion = (p_drDescuentoLP["descripcion_descuento"] != DBNull.Value) ? (string)p_drDescuentoLP["descripcion_descuento"] : null;
+            lcl_mod_descuentoLP.porcentaje = (decimal)p_drDescuentoLP["porcentaje_descuento"];
             lcl_mod_descuentoLP.montoDescontadoSobreTotal = (decimal)p_drDescuentoLP["monto_a_descontar"];
             return lcl_mod_descuentoLP;
         }
         public void getDescuentos(ModeloLineaPedido p_mod_lineaPedido)
         {
             string query =
-                       "SELECT " +
-                        "   numero_pedido, codigo_original, codigo_articulo_proveedor, numero_descuento, descripcion_descuento " +
+                        "SELECT " +
+                        "   numero_pedido, codigo_original, codigo_articulo_proveedor, numero_descuento, descripcion_descuento, " +
                         "   porcentaje_descuento, monto_a_descontar"+
                         "   FROM [descuentos_lineas_pedido] " +
                         "   WHERE (codigo_original = @codigo_original AND codigo_articulo_proveedor = @codigo_articulo_proveedor "+

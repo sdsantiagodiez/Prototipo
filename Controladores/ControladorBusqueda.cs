@@ -141,6 +141,16 @@ namespace Controladores
             CatalogoEntidades lcl_cat_entidades = new CatalogoEntidades();
             return lcl_cat_entidades.getTiposDocumentos();
         }
+        /// <summary>
+        /// Retorna todos los pedidos de la base de datos
+        /// </summary>
+        /// <returns>Lista de Pedidos</returns>
+        public List<ModeloPedido> getPedidos()
+        {
+            CatalogoPedidos lcl_cat_articulos = new CatalogoPedidos();
+
+            return lcl_cat_articulos.buscarPedido(null, Constantes.ParametrosBusqueda.All);
+        }
         #endregion
 
         #region buscar(object)
@@ -223,25 +233,13 @@ namespace Controladores
         /// </summary>
         /// <param name="p_mod_pedido"></param>
         /// <returns>Lista de pedidos</returns>
-        public static List<ModeloPedido> buscarPedido(ModeloPedido p_mod_pedido)
+        public static List<ModeloPedido> buscar(ModeloPedido p_mod_pedido)
         {//sin uso
             CatalogoPedidos lcl_cat_articulos = new CatalogoPedidos();
 
             return lcl_cat_articulos.buscarPedido(p_mod_pedido, Constantes.ParametrosBusqueda.Any);
         }
-        public static List<ModeloPedido> buscar(ModeloPedido p_mod_pedido)
-        {
-            CatalogoPedidos lcl_cat_pedidos = new CatalogoPedidos();
-            if (p_mod_pedido.tipoComprobante == 1)
-            {
-                return lcl_cat_pedidos.getAllTipo(Constantes.CodigosTiposPedidos.TipoPedidoPersona);
-            }
-            else 
-            {
-                return lcl_cat_pedidos.getAllTipo(Constantes.CodigosTiposPedidos.TipoPedidoProveedor);
-            }
-            
-        }
+    
         /// <summary>
         /// Retorna líneas pedidos en base a los valores inicializados en los atributos del modelo
         /// </summary>
@@ -538,110 +536,75 @@ namespace Controladores
 
         #endregion
 
-
-        #region Sin uso?
-
-        #region Provincia
-        /// <summary>
-        /// Retorna provincias en base a los valores inicializados en los atributos del modelo
-        /// </summary>
-        /// <param name="p_mod_provincia"></param>
-        /// <returns>Lista de provincias</returns>
-        public ModeloProvincia buscarProvincia(ModeloProvincia p_mod_provincia)
+        public static List<ModeloPedido> buscar(ModeloPedido p_mod_pedido, List<DateTime> p_periodo, List<Constantes.TipoComprobanteCompra> p_tipoCompra,
+                                        List<Constantes.TipoComprobanteVenta> p_tipoVenta, List<Constantes.TipoComprobanteDevolucion> p_tipoDevolucion,
+                                        List<Constantes.TipoPedido> p_tipoPedido, bool? p_facturadoElectronicamente)
         {
-            CatalogoProvincias lcl_cat_provincias = new CatalogoProvincias();
+            bool clienteGenerico = ControladorBusqueda.getTipoPedido(p_tipoPedido, p_mod_pedido);
 
-            return lcl_cat_provincias.getOne(p_mod_provincia.codigo);
-        }
-        #endregion
-       
-        #region Paises
-        /// <summary>
-        /// Retorna paises en base a los valores inicializados en los atributos del modelo
-        /// </summary>
-        /// <param name="p_mod_pais"></param>
-        /// <returns>Lista de Países</returns>
-        public ModeloPais buscarPaises(ModeloPais p_mod_pais)
-        {
-            CatalogoPaises lcl_cat_paises = new CatalogoPaises();
-            return lcl_cat_paises.getOne(p_mod_pais.codigo);
-        }
-        #endregion
-       
-        #region Domicilios
-        /// <summary>
-        /// Retorna domicilios en base a los valores inicializados en los atributos del modelo
-        /// </summary>
-        /// <param name="p_mod_domicilio"></param>
-        /// <returns>Lista de domicilios</returns>
-        public List<ModeloDomicilio> buscarDomicilios(ModeloDomicilio p_mod_domicilio)
-        {
-            CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
+            List<int> lcl_lst_codigosComprobantes = ControladorBusqueda.getCodigosComprobantes(p_tipoCompra, p_tipoVenta, p_tipoDevolucion);
 
-            return lcl_cat_domicilios.getDomicilios(p_mod_domicilio.codigoDomicilio);
+            CatalogoPedidos lcl_cat_pedido = new CatalogoPedidos();
+            return lcl_cat_pedido.buscar(p_mod_pedido,p_periodo,lcl_lst_codigosComprobantes,clienteGenerico,p_facturadoElectronicamente);
         }
 
-        #endregion
-
-        #region Mails
-        /// <summary>
-        /// Retorna mails en base a los valores inicializados en los atributos del modelo
-        /// </summary>
-        /// <param name="p_mod_mails"></param>
-        /// <returns>Lista de Mails</returns>
-        public List<ModeloMail> buscarMails(ModeloMail p_mod_mails)
+        private static List<int> getCodigosComprobantes(List<Constantes.TipoComprobanteCompra> p_tipoCompra, List<Constantes.TipoComprobanteVenta> p_tipoVenta, List<Constantes.TipoComprobanteDevolucion> p_tipoDevolucion)
         {
-            CatalogoMails lcl_cat_mails = new CatalogoMails();
+            List<int> lcl_lst_codigosComprobantes = new List<int>();
 
-            return lcl_cat_mails.getMails(p_mod_mails.codigoMail);
+            if (p_tipoCompra.Count > 0)
+            {
+                lcl_lst_codigosComprobantes.Add(0);//código de comprobante para pedidos a proveedor
+            }
+
+            foreach (var item in p_tipoVenta)
+            {
+                lcl_lst_codigosComprobantes.Add(ControladorPedidoCliente.getCodigoComprobante(item , 1));//Responsable inscripto
+                lcl_lst_codigosComprobantes.Add(ControladorPedidoCliente.getCodigoComprobante(item, 2));//Responsable inscripto
+            }
+
+            foreach (var item in p_tipoDevolucion)
+            {
+                lcl_lst_codigosComprobantes.Add(ControladorPedidoCliente.getCodigoComprobante(item, 1));//Responsable inscripto
+                lcl_lst_codigosComprobantes.Add(ControladorPedidoCliente.getCodigoComprobante(item, 2));//Responsable inscripto
+            }
+
+            return lcl_lst_codigosComprobantes.Distinct().ToList(); //remueve items repetidos y deja uno, los 0 para aquellos codigos de comprobante que no se facturan por afip
         }
-
-        #endregion
-
-        #region Telefonos
-        /// <summary>
-        /// Retorna teléfonos en base a los valores inicializados en los atributos del modelo
-        /// </summary>
-        /// <param name="p_mod_telefonos"></param>
-        /// <returns>Lista de teléfonos</returns>
-        public List<ModeloTelefono> buscarTelefonos(ModeloTelefono p_mod_telefonos)
+        private static bool getTipoPedido(List<Constantes.TipoPedido> p_tipoPedido, ModeloPedido p_mod_pedido)
         {
-            CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
+            bool generico = false;
+            if (p_tipoPedido.Count >= 3 || p_tipoPedido.Count <= 0)
+            {
+                generico = true;
+                p_mod_pedido.codigoTipoPedido = 0;
+            }
+            else
+            {//entra cuando hay 1 o 2 tiposPedidos seleccionados
+                foreach (Constantes.TipoPedido p in p_tipoPedido)
+                {
+                    if (p.Equals(Constantes.TipoPedido.PedidoProveedor)
+                        && p_mod_pedido.codigoTipoPedido == 0)
+                    {
+                        p_mod_pedido.codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoProveedor;
+                    }
+                    else if ((p.Equals(Constantes.TipoPedido.PedidoCliente) || p.Equals(Constantes.TipoPedido.PedidoClienteGenerico))
+                        && (p_mod_pedido.codigoTipoPedido == 0 || p_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona))
+                    {
+                        p_mod_pedido.codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoPersona;
+                    }
+                    else
+                    {
+                        p_mod_pedido.codigoTipoPedido = 0;
+                    }
+                    if (p.Equals(Constantes.TipoPedido.PedidoClienteGenerico))
+                    {
+                        generico = true;
+                    }
+                }
+            }
 
-            return lcl_cat_telefonos.getTelefonos(p_mod_telefonos.codigoTelefono);
+            return generico;
         }
-
-        #endregion
-
-        #region Pedidos
-        /// <summary>
-        /// Retorna todos los pedidos de la base de datos
-        /// </summary>
-        /// <returns>Lista de Pedidos</returns>
-        public List<ModeloPedido> getPedidos()
-        {
-            CatalogoPedidos lcl_cat_articulos = new CatalogoPedidos();
-
-            return lcl_cat_articulos.buscarPedido(null, Constantes.ParametrosBusqueda.All);
-        }
-        #endregion
-
-        #endregion
-
-        #region Roles
-        /// <summary>
-        /// Retorna roles en base a los valores inicializados en los atributos del modelo
-        /// </summary>
-        /// <param name="p_mod_rol"></param>
-        /// <returns>Lista de provincias</returns>
-        public List<ModeloRoles> buscar(ModeloRoles p_mod_rol)
-        {
-            CatalogoRoles lcl_cat_roles = new CatalogoRoles();
-
-            return lcl_cat_roles.buscar(p_mod_rol, Constantes.ParametrosBusqueda.Any);
-        }
-        #endregion
-        
-
     }
 }
