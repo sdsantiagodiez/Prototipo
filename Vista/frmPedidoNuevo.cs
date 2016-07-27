@@ -67,27 +67,40 @@ namespace Vista
        
         #region Métodos
         #region Inicialización
-        public override void inicializarForm(int x, int y)
+        //public override void inicializarForm(int x, int y)
+        //{
+        //    if (Width - 3 > 1100)
+        //    {
+        //        this.tblLayoutPanelPrincipal.Width = 1100;   //Máximo
+        //    }
+        //    else
+        //    {
+        //        this.tblLayoutPanelPrincipal.Width = Width - 3; //un margen derecho de 3
+        //    }
+        //}
+        public override void inicializarForm(int ventanaAncho, int ventanaAlto)
         {
-            if (Width - 3 > 1100)
-            {
-                this.tblLayoutPanelPrincipal.Width = 1100;   //Máximo
-            }
-            else
-            {
-                this.tblLayoutPanelPrincipal.Width = Width - 3; //un margen derecho de 3
-            }
-            if (Height < 560)
+            this.tblLayoutPanelPrincipal.Width = ventanaAncho - 20; //un margen derecho de 20 para que se vea scrollbar
+            this.pnlBase.Width = ventanaAncho - 3;  //un márgen derecho de 3
+            this.pnlBase.Height = ventanaAlto - 60; //un márgen arriba para que se vea título
+            if (pnlBase.Height < 560)
             {
                 this.tblLayoutPanelPrincipal.Height = 560;  //Mínimo
+
+                this.pnlBase.AutoScroll = true;
+                ScrollBar vScrollBar = new VScrollBar();
+                vScrollBar.Dock = DockStyle.Right;
+                vScrollBar.Scroll += (sender, e) => { pnlBase.VerticalScroll.Value = vScrollBar.Value; };
+                pnlBase.Controls.Add(vScrollBar);
             }
             else
             {
-                this.tblLayoutPanelPrincipal.Height = Height - 60; // 60 pixeles para que se vea título de ventana principal
+                this.tblLayoutPanelPrincipal.Height = pnlBase.Height; ; // 60 pixeles para que se vea título de ventana principal
             }
 
-            int x_ = Convert.ToInt16(Math.Round(Convert.ToDouble((Width - this.tblLayoutPanelPrincipal.Width) / 2)));
-            this.tblLayoutPanelPrincipal.Location = new Point(x_, 60);
+            int x = Convert.ToInt16(Math.Round(Convert.ToDouble((Width - this.tblLayoutPanelPrincipal.Width) / 2)));
+            this.tblLayoutPanelPrincipal.Location = new Point(10, 0);
+            this.pnlBase.Location = new Point(0, 65);
         }
         private void inicializarControles()
         {

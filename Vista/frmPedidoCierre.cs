@@ -1226,10 +1226,13 @@ namespace Vista
             {
                 return;
             }
-            
-            if (this.imprimirpedido())
+            if (this.guardarPedido())
             {
-                MessageBox.Show("Operación exitosa", "Éxito", MessageBoxButtons.OK);
+                if (this.imprimirpedido())
+                {
+                    MessageBox.Show("Operación exitosa", "Éxito", MessageBoxButtons.OK);
+                }
+                this.inicializarPedidoCerrado();
             }
         }
 
@@ -1239,7 +1242,11 @@ namespace Vista
             {
                 return;
             }
-            this.guardarPedido();
+            if (this.guardarPedido())
+            {
+                this.inicializarPedidoCerrado();
+            }
+            
         }
         private void btnFacturaElectronica_Click(object sender, EventArgs e)
         {
