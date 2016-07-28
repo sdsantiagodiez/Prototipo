@@ -89,17 +89,11 @@
     <Compile Include="frmABMEntidadDatosAdicionalesUsuario.Designer.cs">
       <DependentUpon>frmABMEntidadDatosAdicionalesUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmFacturacionMasiva.cs">
+    <Compile Include="frmImportar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFacturacionMasiva.Designer.cs">
-      <DependentUpon>frmFacturacionMasiva.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmImportarPreview.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmImportarPreview.Designer.cs">
-      <DependentUpon>frmImportarPreview.cs</DependentUpon>
+    <Compile Include="frmImportar.Designer.cs">
+      <DependentUpon>frmImportar.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLoading.cs">
       <SubType>Form</SubType>
@@ -167,12 +161,6 @@
     <Compile Include="frmPedidoNuevo_editarCantidad.Designer.cs">
       <DependentUpon>frmPedidoNuevo_editarCantidad.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmReimpresion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmReimpresion.Designer.cs">
-      <DependentUpon>frmReimpresion.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmPreferenciasFacturacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,11 +206,8 @@
     <EmbeddedResource Include="frmABMEntidadDatosAdicionalesUsuario.resx">
       <DependentUpon>frmABMEntidadDatosAdicionalesUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFacturacionMasiva.resx">
-      <DependentUpon>frmFacturacionMasiva.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmImportarPreview.resx">
-      <DependentUpon>frmImportarPreview.cs</DependentUpon>
+    <EmbeddedResource Include="frmImportar.resx">
+      <DependentUpon>frmImportar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLoading.resx">
       <DependentUpon>frmLoading.cs</DependentUpon>
@@ -256,9 +241,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPedidoNuevo_editarCantidad.resx">
       <DependentUpon>frmPedidoNuevo_editarCantidad.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmReimpresion.resx">
-      <DependentUpon>frmReimpresion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPreferenciasFacturacion.resx">
       <DependentUpon>frmPreferenciasFacturacion.cs</DependentUpon>

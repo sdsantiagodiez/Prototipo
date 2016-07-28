@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class frmImportarPreview
+    partial class frmImportar
     {
         /// <summary>
         /// Required designer variable.

@@ -209,7 +209,7 @@ namespace Vista
                 //Mensaje para confirmar que si cierre se pierde el progreso hecho en el form 
                 return true;
             }
-            else if (glb_form.GetType() == typeof(frmImportarPreview))
+            else if (glb_form.GetType() == typeof(frmImportar))
             {
                 glb_form.Close();
                 return true;    //lo cerramos por mas de que ya esté abierto porque puede haber importación de distintos tipos de modelos y no lo detecta
@@ -341,16 +341,7 @@ namespace Vista
             (glb_form as frmPedidoDevolucion).IniciarDevolucionPedido += evento_iniciarDevolverPedido;
         }
 
-        private void toolStripbtnFacturacion_Click(object sender, EventArgs e)
-        {
-            if (!this.validarAgregarFormulario(typeof(frmFacturacionMasiva)))
-            {
-                return;
-            }
 
-            glb_form = new frmFacturacionMasiva();
-            this.agregarFormulario(glb_form);
-        }
 
         private void toolStripbtnReportes_Click(object sender, EventArgs e)
         {
@@ -427,69 +418,69 @@ namespace Vista
 
         private void artículoImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!this.validarAgregarFormulario(typeof(frmImportarPreview)))
+            if (!this.validarAgregarFormulario(typeof(frmImportar)))
             {
                 return;
             }
 
-            glb_form = new frmImportarPreview(typeof(ModeloArticulos));
+            glb_form = new frmImportar(typeof(ModeloArticulos));
 
             this.agregarFormulario(glb_form);
         }
         private void artículoProveedorImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!this.validarAgregarFormulario(typeof(frmImportarPreview)))
+            if (!this.validarAgregarFormulario(typeof(frmImportar)))
             {
                 return;
             }
 
-            glb_form = new frmImportarPreview(typeof(ModeloArticuloProveedores));
+            glb_form = new frmImportar(typeof(ModeloArticuloProveedores));
 
             this.agregarFormulario(glb_form);
         }
         private void clientesImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!this.validarAgregarFormulario(typeof(frmImportarPreview)))
+            if (!this.validarAgregarFormulario(typeof(frmImportar)))
             {
                 return;
             }
 
-            glb_form = new frmImportarPreview(typeof(ModeloCliente));
+            glb_form = new frmImportar(typeof(ModeloCliente));
 
             this.agregarFormulario(glb_form);
         }
         private void proveedorImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!this.validarAgregarFormulario(typeof(frmImportarPreview)))
+            if (!this.validarAgregarFormulario(typeof(frmImportar)))
             {
                 return;
             }
 
-            glb_form = new frmImportarPreview(typeof(ModeloProveedor));
+            glb_form = new frmImportar(typeof(ModeloProveedor));
 
             this.agregarFormulario(glb_form);
         }
 
         private void preciosParaVentaImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!this.validarAgregarFormulario(typeof(frmImportarPreview)))
+            if (!this.validarAgregarFormulario(typeof(frmImportar)))
             {
                 return;
             }
 
-            glb_form = new frmImportarPreview(typeof(ModeloValorArticulo),true);
+            glb_form = new frmImportar(typeof(ModeloValorArticulo),true);
 
             this.agregarFormulario(glb_form);
         }
 
         private void preciosParaCompraImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!this.validarAgregarFormulario(typeof(frmImportarPreview)))
+            if (!this.validarAgregarFormulario(typeof(frmImportar)))
             {
                 return;
             }
 
-            glb_form = new frmImportarPreview(typeof(ModeloValorArticulo), false);
+            glb_form = new frmImportar(typeof(ModeloValorArticulo), false);
 
             this.agregarFormulario(glb_form);
         }
@@ -670,7 +661,7 @@ namespace Vista
             { topic = "1_ALTASBAJASYMODIFICACIONES"; }
             else if (p_ventanaActiva == typeof(frmABMEntidad))
             { topic = "1_ALTASBAJASYMODIFICACIONES"; }
-            else if (p_ventanaActiva == typeof(frmFacturacionMasiva))
+            else if (p_ventanaActiva == typeof(frmPedidoGestion))
             { topic = "7_VENTAS"; }
             else if (p_ventanaActiva == typeof(frmPedidoCierre))
             { topic = "7_VENTAS"; }
@@ -678,11 +669,9 @@ namespace Vista
             { topic = "2_DEVOLUCIONES"; }
             else if (p_ventanaActiva == typeof(frmPedidoNuevo))
             { topic = "2_VENTAS";  }
-            else if (p_ventanaActiva == typeof(frmReimpresion))
-            { topic = "7_VENTAS"; }
             else if (p_ventanaActiva == typeof(frmReporteSeleccion))
             { topic = "6_REPORTES"; }
-            else if (p_ventanaActiva == typeof(frmImportarPreview))
+            else if (p_ventanaActiva == typeof(frmImportar))
             { topic = "4_MANEJODEDATOS"; }
             else
             { topic = "3_INVENTARIO"; }

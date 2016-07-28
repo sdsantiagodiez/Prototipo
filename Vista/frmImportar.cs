@@ -13,7 +13,7 @@ using Controladores;
 
 namespace Vista
 {
-    public partial class frmImportarPreview : frmMaterialSkinBase
+    public partial class frmImportar : frmMaterialSkinBase
     {
         #region Atributos
         Type TypeModelo;
@@ -24,11 +24,11 @@ namespace Vista
         #endregion
 
         #region Constructores
-        private frmImportarPreview()
+        private frmImportar()
         {
             InitializeComponent();
         }
-        public frmImportarPreview(Type T) : this()
+        public frmImportar(Type T) : this()
         {
             TypeModelo = T;
             
@@ -42,7 +42,7 @@ namespace Vista
         /// </summary>
         /// <param name="T"></param>
         /// <param name="esValorVenta">true si es venta, false si es compra</param>
-        public frmImportarPreview(Type T, bool p_esValorVenta) : this(T)
+        public frmImportar(Type T, bool p_esValorVenta) : this(T)
         {
             esValorVenta = p_esValorVenta;
             this.inicializarTituloForm(T);
