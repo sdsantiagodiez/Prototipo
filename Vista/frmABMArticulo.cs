@@ -422,6 +422,7 @@ namespace Vista
             lcl_mod_articuloProveedores.ubicacion = txtBoxUbicacion.Text;
             lcl_mod_articuloProveedores.stockActual = Convert.ToInt32(nmrcUpDownStockActual.Value);
             lcl_mod_articuloProveedores.stockMinimo = Convert.ToInt32(nmrcUpDownStockMinimo.Value);
+            lcl_mod_articuloProveedores.descripcionArticuloProveedor = txtBoxDescripcionArticuloProveedor.Text;
             if (LibreriaClasesCompartidas.Validar.validarInputNumerico(txtBoxPrecioCompra.Text.ToString(), LibreriaClasesCompartidas.Constantes.Numericos.Decimal))
             {
                 lcl_mod_articuloProveedores.valorCompra.valorArticulo = Convert.ToDecimal(txtBoxPrecioCompra.Text);
@@ -471,14 +472,15 @@ namespace Vista
             this.cmbBoxProveedores.SelectedValue = ControladorBusqueda.getOne(new ModeloProveedor() { codigo = p_mod_articuloProveedor.codigoEntidad }, Constantes.ParametrosBusqueda.Entidades.CodigoEntidad) as ModeloProveedor;
             txtBoxCodigoArticulo.Text = p_mod_articuloProveedor.codigoArticuloProveedor;
             txtBoxUbicacion.Text = p_mod_articuloProveedor.ubicacion;
+            txtBoxDescripcionArticuloProveedor.Text = p_mod_articuloProveedor.descripcionArticuloProveedor;
             nmrcUpDownStockActual.Value = Convert.ToInt32(p_mod_articuloProveedor.stockActual);
             nmrcUpDownStockActual.Text = nmrcUpDownStockActual.Value.ToString();
             nmrcUpDownStockMinimo.Value = Convert.ToInt32(p_mod_articuloProveedor.stockMinimo);
             nmrcUpDownStockMinimo.Text = nmrcUpDownStockMinimo.Value.ToString();
             txtBoxPrecioCompra.Text = p_mod_articuloProveedor.valorCompra.valorArticulo.ToString();
             txtBoxPrecioVenta.Text = p_mod_articuloProveedor.valorVenta.valorArticulo.ToString();
-
-            rchTextBoxObservaciones.Text = p_mod_articuloProveedor.observacionesArticuloProveedor;
+            rchTextBoxObservaciones_ArticuloProveedor.Text = p_mod_articuloProveedor.observacionesArticuloProveedor;
+            rchTextBoxObservaciones.Text = p_mod_articuloProveedor.observaciones;
         }
         private void actualizarDataGridView()
         {

@@ -80,6 +80,8 @@
             this.epPrecioCompra = new System.Windows.Forms.ErrorProvider(this.components);
             this.epPrecioVenta = new System.Windows.Forms.ErrorProvider(this.components);
             this.epUbicacion = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lbldescripcionArticuloProveedor = new System.Windows.Forms.Label();
+            this.txtBoxDescripcionArticuloProveedor = new MaterialSkin.Controls.MaterialSingleLineTextField();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
             this.grpBoxObservaciones.SuspendLayout();
             this.tblLayoutPanelDatosArticulo.SuspendLayout();
@@ -539,7 +541,7 @@
             this.tblLayoutPanelArticulosProveedores_Datos_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelArticulosProveedores_Datos_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tblLayoutPanelArticulosProveedores_Datos_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelArticulosProveedores_Datos_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tblLayoutPanelArticulosProveedores_Datos_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.txtBoxCodigoArticulo, 1, 0);
             this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.lblCodigoArticulo, 0, 0);
             this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.lblUbicacion, 0, 3);
@@ -554,6 +556,8 @@
             this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.nmrcUpDownStockActual, 4, 1);
             this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.lblStockMinimo, 0, 1);
             this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.nmrcUpDownStockMinimo, 1, 1);
+            this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.lbldescripcionArticuloProveedor, 3, 3);
+            this.tblLayoutPanelArticulosProveedores_Datos_1.Controls.Add(this.txtBoxDescripcionArticuloProveedor, 4, 3);
             this.tblLayoutPanelArticulosProveedores_Datos_1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelArticulosProveedores_Datos_1.Location = new System.Drawing.Point(2, 8);
             this.tblLayoutPanelArticulosProveedores_Datos_1.Margin = new System.Windows.Forms.Padding(2, 8, 2, 2);
@@ -768,6 +772,33 @@
             // 
             this.epUbicacion.ContainerControl = this;
             // 
+            // lbldescripcionArticuloProveedor
+            // 
+            this.lbldescripcionArticuloProveedor.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lbldescripcionArticuloProveedor.AutoSize = true;
+            this.lbldescripcionArticuloProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbldescripcionArticuloProveedor.Location = new System.Drawing.Point(267, 103);
+            this.lbldescripcionArticuloProveedor.Name = "lbldescripcionArticuloProveedor";
+            this.lbldescripcionArticuloProveedor.Size = new System.Drawing.Size(87, 18);
+            this.lbldescripcionArticuloProveedor.TabIndex = 21;
+            this.lbldescripcionArticuloProveedor.Text = "Descripcion";
+            // 
+            // txtBoxDescripcionArticuloProveedor
+            // 
+            this.txtBoxDescripcionArticuloProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxDescripcionArticuloProveedor.Depth = 0;
+            this.txtBoxDescripcionArticuloProveedor.Hint = "";
+            this.txtBoxDescripcionArticuloProveedor.Location = new System.Drawing.Point(360, 100);
+            this.txtBoxDescripcionArticuloProveedor.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxDescripcionArticuloProveedor.Name = "txtBoxDescripcionArticuloProveedor";
+            this.txtBoxDescripcionArticuloProveedor.PasswordChar = '\0';
+            this.txtBoxDescripcionArticuloProveedor.SelectedText = "";
+            this.txtBoxDescripcionArticuloProveedor.SelectionLength = 0;
+            this.txtBoxDescripcionArticuloProveedor.SelectionStart = 0;
+            this.txtBoxDescripcionArticuloProveedor.Size = new System.Drawing.Size(86, 23);
+            this.txtBoxDescripcionArticuloProveedor.TabIndex = 22;
+            this.txtBoxDescripcionArticuloProveedor.UseSystemPasswordChar = false;
+            // 
             // frmABMArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -865,5 +896,7 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnAgregaImagen;
         private System.Windows.Forms.PictureBox picBoxImagen;
         private System.Windows.Forms.Label pathimagen;
+        private System.Windows.Forms.Label lbldescripcionArticuloProveedor;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxDescripcionArticuloProveedor;
     }
 }
