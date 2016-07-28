@@ -93,7 +93,7 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.manualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verAyudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tlsMenuRapido = new System.Windows.Forms.ToolStrip();
             this.cortarToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.copiarToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -319,7 +319,6 @@
             this.btnSalir.TabIndex = 29;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // tblLayoutPanelPrincipal_Bottom
             // 
@@ -659,7 +658,7 @@
             this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.acercaDeToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.manualToolStripMenuItem});
+            this.verAyudaToolStripMenuItem});
             this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(63, 33);
             this.ayudaToolStripMenuItem.Text = "Ayuda";
@@ -667,20 +666,19 @@
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.acercaDeToolStripMenuItem.Text = "Acerca de";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(148, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 6);
             // 
-            // manualToolStripMenuItem
+            // verAyudaToolStripMenuItem
             // 
-            this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
-            this.manualToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
-            this.manualToolStripMenuItem.Text = "Ver Ayuda";
-            this.manualToolStripMenuItem.Click += new System.EventHandler(this.manualToolStripMenuItem_Click);
+            this.verAyudaToolStripMenuItem.Name = "verAyudaToolStripMenuItem";
+            this.verAyudaToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.verAyudaToolStripMenuItem.Text = "Ver Ayuda";
             // 
             // tlsMenuRapido
             // 
@@ -760,6 +758,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmMenuPrincipal";
             this.Text = "Menú Principal";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMenuPrincipal_FormClosing);
             this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.tblLayoutPanelPrincipal.PerformLayout();
             this.tblLayoutPanelPrincipal_Contenedor.ResumeLayout(false);
@@ -813,7 +812,7 @@
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelMenu;
         private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem manualToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verAyudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cuentaDeUsuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;

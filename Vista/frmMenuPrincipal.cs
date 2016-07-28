@@ -30,7 +30,7 @@ namespace Vista
             this.MinimizeBox = true;
             this.MaximizeBox = true;
 
-            this.inicializarFuncionesDeTexto();
+            this.inicializarEventos();
         }
 
         public frmMenuPrincipal(ModeloUsuario usuarioActual) : this()
@@ -81,7 +81,17 @@ namespace Vista
             }
             return true;
         }
+        
+        private void inicializarEventos()
+        {
+            this.btnSalir.Click += (s, e) => { this.Close(); };
+            this.salirToolStripMenuItem.Click += (s, e) => { this.Close(); };
 
+            this.ayudaToolStripButton.Click += this.mostrarManualDeAyuda;
+            this.verAyudaToolStripMenuItem.Click += this.mostrarManualDeAyuda;
+
+            this.inicializarFuncionesDeTexto();
+        }
         private void inicializarFuncionesDeTexto()
         {
             this.copiarToolStripButton.Click += this.copiarTextoEnControl;
@@ -97,6 +107,7 @@ namespace Vista
             this.eliminarToolStripMenuItem.Click += this.eliminarTodoTextoEnControl;
             this.deshacerToolStripMenuItem.Click += this.deshacerTextoEnControl;
         }
+
         private void inicializarModoAdmin(bool inicializar)
         {
             this.inicializarModoABM(inicializar);
@@ -236,13 +247,6 @@ namespace Vista
         #endregion
 
         #region Eventos
-
-        #region Button
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        #endregion
 
         #region Timer
         private void timerFechaHora_Tick(object sender, EventArgs e)
@@ -598,11 +602,11 @@ namespace Vista
             lcl_frm_loading.ShowDialog();  
         }
 
-        private void manualToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mostrarManualDeAyuda(object sender, EventArgs e)
         {
             if (glb_form == null)
-            { 
-                string lcl_dir_help = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName; 
+            {
+                string lcl_dir_help = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
                 //lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\helpmenuproyecto.chm";
                 lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\NUEVO\\help.chm";
                 Help.ShowHelp(this, lcl_dir_help, HelpNavigator.TableOfContents);
@@ -818,6 +822,19 @@ namespace Vista
                 {
                     (c as RichTextBox).Undo();
                 }
+            }
+        }
+
+        private void frmMenuPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Validar que se puede cerrar
+            if (MessageBox.Show("¿Esta seguro que desea cerrar la aplicación?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                //hacer cosas que haya que hacer antes de cerrar. Guardar log de usuario, algo
+            }
+            else
+            {
+                e.Cancel = true;
             }
         }
     }
