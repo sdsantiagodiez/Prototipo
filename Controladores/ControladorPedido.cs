@@ -362,18 +362,15 @@ namespace Controladores
         #endregion
        
         #region Cliente Genérico
-        const int codigoClienteGenerico = 106242;
         public void asignarClienteGenerico()
         {
-            //codigo cliente genérico actual 106242
-            //cuando se haga de nuevo la base, cambiar a algo más representativo como el 100000 o algo
             ModeloCliente lcl_mod_cliente = new ModeloCliente();
-            lcl_mod_cliente.codigo = codigoClienteGenerico;
+            lcl_mod_cliente.codigo = CatalogoPedidos.codigoClienteGenerico;
             pedidoActual.entidad = lcl_mod_cliente;
         }
         public bool esClienteGenerico()
         {
-            return this.pedidoActual.entidad.codigo == codigoClienteGenerico ||
+            return this.pedidoActual.entidad.codigo == CatalogoPedidos.codigoClienteGenerico ||
                 this.pedidoActual.entidad.codigo == 0;
 
         }
@@ -383,7 +380,7 @@ namespace Controladores
             {
                 return true;
             }
-            return p_mod_cliente.codigo == codigoClienteGenerico ||
+            return p_mod_cliente.codigo == CatalogoPedidos.codigoClienteGenerico ||
                 p_mod_cliente.codigo == 0;
         }
         #endregion

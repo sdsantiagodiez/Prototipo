@@ -502,6 +502,7 @@ namespace Vista
             }
 
             glb_form = new frmPedidoGestion();
+            (glb_form as frmPedidoGestion).verDetallesPedido += evento_agregarFormEmergente;
             this.agregarFormulario(glb_form);
         }
 

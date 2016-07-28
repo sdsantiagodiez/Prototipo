@@ -540,7 +540,7 @@ namespace Controladores
                                         List<Constantes.TipoComprobanteVenta> p_tipoVenta, List<Constantes.TipoComprobanteDevolucion> p_tipoDevolucion,
                                         List<Constantes.TipoPedido> p_tipoPedido, bool? p_facturadoElectronicamente)
         {
-            bool clienteGenerico = ControladorBusqueda.getTipoPedido(p_tipoPedido, p_mod_pedido);
+            bool? clienteGenerico = ControladorBusqueda.getTipoPedido(p_tipoPedido, p_mod_pedido);
 
             List<int> lcl_lst_codigosComprobantes = ControladorBusqueda.getCodigosComprobantes(p_tipoCompra, p_tipoVenta, p_tipoDevolucion);
 
@@ -571,22 +571,35 @@ namespace Controladores
 
             return lcl_lst_codigosComprobantes.Distinct().ToList(); //remueve items repetidos y deja uno, los 0 para aquellos codigos de comprobante que no se facturan por afip
         }
-        private static bool getTipoPedido(List<Constantes.TipoPedido> p_tipoPedido, ModeloPedido p_mod_pedido)
+        /// <summary>
+        /// Inicializa codigoTipoPedido en pedido pasado como parámetro y devuelve si se considera cliente genérico
+        /// </summary>
+        /// <param name="p_tipoPedido"></param>
+        /// <param name="p_mod_pedido"></param>
+        /// <returns>Genérico: null -> no se considera; true -> solo genéricos; false -> excluye genéricos</returns>
+        private static bool? getTipoPedido(List<Constantes.TipoPedido> p_tipoPedido, ModeloPedido p_mod_pedido)
         {
-            bool generico = false;
+            bool? generico = null;
             if (p_tipoPedido.Count >= 3 || p_tipoPedido.Count <= 0)
             {
-                generico = true;
+                generico = null;
                 p_mod_pedido.codigoTipoPedido = 0;
             }
-            else
+            else if (p_tipoPedido.Contains(Constantes.TipoPedido.PedidoCliente) && p_tipoPedido.Contains(Constantes.TipoPedido.PedidoClienteGenerico))
+            {//2 seleccionados
+                generico = null;
+                p_mod_pedido.codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoPersona;
+            }
+            else 
             {//entra cuando hay 1 o 2 tiposPedidos seleccionados
+                
                 foreach (Constantes.TipoPedido p in p_tipoPedido)
                 {
                     if (p.Equals(Constantes.TipoPedido.PedidoProveedor)
                         && p_mod_pedido.codigoTipoPedido == 0)
                     {
                         p_mod_pedido.codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoProveedor;
+
                     }
                     else if ((p.Equals(Constantes.TipoPedido.PedidoCliente) || p.Equals(Constantes.TipoPedido.PedidoClienteGenerico))
                         && (p_mod_pedido.codigoTipoPedido == 0 || p_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona))

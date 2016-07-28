@@ -31,6 +31,7 @@ namespace Vista
         public const string ModoFormularioPedidoCliente = "Pedido Cliente";
         public const string ModoFormularioPedidoProveedor = "Pedido a Proveedor(es)";
         public const string ModoFormularioDevolucionCliente = "Devolución Cliente";
+
         private string _modoFormulario;
         public string modoFormulario
         {
@@ -125,6 +126,19 @@ namespace Vista
                     break;
             }
         }
+        public frmPedidoCierre(ModeloPedido p_mod_pedido, bool p_deshabilitarControles) : this(p_mod_pedido)
+        {
+            if (p_deshabilitarControles)
+            {
+                
+                this.inicializarPedidoCerrado();
+                this.Text = "Detalles de Pedido";
+                if (p_mod_pedido.aprobadoAFIP != "A")
+                {
+                    this.habilitarControl(this.btnFacturaElectronica);
+                }
+            }
+        }
         /// <summary>
         /// Para realizar devoluciones
         /// </summary>
@@ -205,7 +219,6 @@ namespace Vista
         {
             this.inicializarPedidoCerrado();
             this.habilitarControl(this.btnGuardar);
-
         }
  
         private void inicializarControles()
@@ -1226,14 +1239,14 @@ namespace Vista
             {
                 return;
             }
-            if (this.guardarPedido())
-            {
+            //if (this.guardarPedido())
+            //{
                 if (this.imprimirpedido())
                 {
                     MessageBox.Show("Operación exitosa", "Éxito", MessageBoxButtons.OK);
                 }
                 this.inicializarPedidoCerrado();
-            }
+            //}
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
