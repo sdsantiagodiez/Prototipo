@@ -40,7 +40,7 @@
             // 
             // ModeloReporteEncabezadoFacturaBindingSource
             // 
-            this.ModeloReporteEncabezadoFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezadoFactura);
+            this.ModeloReporteEncabezadoFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezadoComprobante);
             // 
             // contenedorLote
             // 
@@ -60,7 +60,7 @@
             // modeloReporteDetalleFacturaBindingSource
             // 
             this.modeloReporteDetalleFacturaBindingSource.DataMember = "detalleFactura";
-            this.modeloReporteDetalleFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezadoFactura);
+            this.modeloReporteDetalleFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezadoComprobante);
             // 
             // frmImpresionLoteFacturas
             // 

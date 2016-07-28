@@ -197,6 +197,16 @@ namespace Controladores
             return respuesta;  
         }
 
+        public bool modificar(ModeloPedido p_mod_pedido)
+        {
+            return true;
+        }
+        public static bool actualizarAprobacionAFIP(ModeloPedido p_mod_pedido)
+        {
+            CatalogoPedidos lcl_cat_pedidos = new CatalogoPedidos();
+            return lcl_cat_pedidos.updateAprobadoAFIP(p_mod_pedido);
+        }
+        
         public bool modificarValorArticulo(ModeloArticuloProveedores p_mod_articuloProveedor, string p_tipoValorArticulo)
         {
             CatalogoArticuloProveedores lcl_cat_articuloProveedores = new CatalogoArticuloProveedores();

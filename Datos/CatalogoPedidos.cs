@@ -974,14 +974,11 @@ namespace Datos
 
         public bool update(ModeloPedido p_mod_pedido)
         {
-            //Creo la conexion y la abro
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
 
             //crea SQL command
             SqlCommand comando = new SqlCommand();
-
             comando.Connection = ConexionSQL;
-
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
@@ -1014,6 +1011,38 @@ namespace Datos
             decimal descuento_total_porcentaje = descuento_total_monto / p_mod_pedido.montoTotal;
             comando.Parameters.Add(this.instanciarParametro(descuento_total_monto, "@descuento_total_monto"));
             comando.Parameters.Add(this.instanciarParametro(descuento_total_porcentaje, "@descuento_total_porcentaje"));
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool updateAprobadoAFIP(ModeloPedido p_mod_pedido)
+        {
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText =
+                "UPDATE [pedidos] " +
+                "SET aprobado_afip=@aprobado_afip " +
+                "WHERE [pedidos].numero_pedido=@numero_pedido";
+
+            //Indica los parametros
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.aprobadoAFIP, "@aprobado_afip"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();

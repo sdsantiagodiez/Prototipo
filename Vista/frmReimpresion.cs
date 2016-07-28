@@ -96,8 +96,9 @@ namespace Vista
         public bool imprimir()
         {
             this.comprobantesAReimprimir();
-            Controladores.ControladorReportes lcl_con_reporte = new ControladorReportes();
-            lcl_con_reporte.ImpresionLoteFacturas(glb_lst_mod_pedido,"0").ShowDialog();
+
+            (new Reportes.frmImpresionLoteFacturas(glb_lst_mod_pedido)).ShowDialog();
+
             return true;
         }
         #endregion

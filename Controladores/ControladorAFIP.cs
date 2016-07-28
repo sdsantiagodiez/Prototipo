@@ -98,6 +98,31 @@ namespace Controladores
             errorActual = respuesta;
             return false;
         }
+
+        public bool facturar(List<ModeloPedido> p_lst_mod_pedido)
+        {
+            Controladores.ControladorModificacion lcl_con_modificacion = new Controladores.ControladorModificacion();
+            foreach (ModeloPedido p in p_lst_mod_pedido)
+            {
+                if (!this.facturar(p))
+                {
+                    errorActual = "No se ha podido facturar electronicamente el pedido: "+p.numeroPedido.ToString()+". Se ha abortado la operación. " + System.Environment.NewLine + errorActual;
+                    
+                    return false;
+                }
+                else
+                {
+                    if (!Controladores.ControladorModificacion.actualizarAprobacionAFIP(p))
+                    {
+                        errorActual = "No se ha podido guardar los cambios del pedido " + p.numeroPedido.ToString() + " en la base de datos. Se ha abortado la operación. ";
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// Agrega valores de items a factura electrónica. Se podría mejorar la parte de obtener iva
         /// </summary>

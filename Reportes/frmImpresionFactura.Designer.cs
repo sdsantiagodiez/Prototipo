@@ -40,7 +40,7 @@
             // 
             // ModeloReporteEncabezadoFacturaBindingSource
             // 
-            this.ModeloReporteEncabezadoFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezadoFactura);
+            this.ModeloReporteEncabezadoFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezadoComprobante);
             // 
             // modeloReporteDetalleFacturaBindingSource
             // 

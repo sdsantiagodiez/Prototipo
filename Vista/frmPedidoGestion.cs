@@ -490,22 +490,52 @@ namespace Vista
                     return false;
                 }
             }
-
+            
             return true;
         }
         private void facturar()
         { 
+            glb_lst_pedidosSeleccionados = this.getPedidosSeleccionados();
+            if (glb_lst_pedidosSeleccionados.Count < 1)
+            {
+                MessageBox.Show("Debe seleccionar un pedido para facturar. Inténtelo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+            if(!this.validarFacturar(glb_lst_pedidosSeleccionados))
+            {
+                MessageBox.Show("Ha surgido un error al intentar facturar pedidos. Inténtelo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+            
+            Controladores.ControladorAFIP lcl_con_afip = new Controladores.ControladorAFIP();
+            if (!lcl_con_afip.validarConexion() || !lcl_con_afip.facturar(glb_lst_pedidosSeleccionados))
+            {
+                MessageBox.Show(lcl_con_afip.errorActual, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
         #endregion
 
         #region Impresión
         private bool validarImprimir(List<ModeloPedido> p_lst_pedidosSeleccionados)
         {
-            return true;
+            return p_lst_pedidosSeleccionados.Count > 0;
         }
         private void imprimir()
         {
+            glb_lst_pedidosSeleccionados = this.getPedidosSeleccionados();
+            if (glb_lst_pedidosSeleccionados.Count < 1)
+            {
+                MessageBox.Show("Debe seleccionar un pedido para imprimir. Inténtelo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+            if (!this.validarImprimir(glb_lst_pedidosSeleccionados))
+            {
+                MessageBox.Show("Ha surgido un error al intentar imprimir. Inténtelo nuevamente.","Error",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
+                return;
+            }
 
+            (new Reportes.frmImpresionLoteFacturas(this.glb_lst_pedidosSeleccionados)).ShowDialog();
         }
         #endregion
 
@@ -521,6 +551,12 @@ namespace Vista
         }
         private void verDetalles()
         {
+            glb_lst_pedidosSeleccionados = this.getPedidosSeleccionados();
+            if (!this.validarVerDetalles(glb_lst_pedidosSeleccionados))
+            {
+                return;
+            }
+            
             frmPedidoCierre lcl_frm_pedidoCierreVerDetalles = new frmPedidoCierre(glb_lst_pedidosSeleccionados[0], true);
             cerrarVentana = false;
             this.verDetallesPedido(lcl_frm_pedidoCierreVerDetalles, new EventArgs());

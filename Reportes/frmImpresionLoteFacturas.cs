@@ -23,16 +23,12 @@ namespace Reportes
             InitializeComponent();
         }
 
-        public frmImpresionLoteFacturas(List<ModeloReporteEncabezadoFactura> p_lst_mod_EncFac, string p_tipoComprobante)
+        public frmImpresionLoteFacturas(List<ModeloPedido> p_lst_pedidos) : this()
         {
-            InitializeComponent();
-            foreach (ModeloReporteEncabezadoFactura mod in p_lst_mod_EncFac)
+            ModeloReporteEncabezadoComprobante lcl_mod_encabezadoComprobante;
+            foreach (ModeloPedido pedido in p_lst_pedidos)
             {
-                Warning[] warnings;
-                string[] streamids;
-                string mimeType;
-                string encoding;
-                string extension;
+                lcl_mod_encabezadoComprobante = new ModeloReporteEncabezadoComprobante(pedido);
 
                 ModeloReporteEncabezadoFacturaBindingSource.Clear();
                 modeloReporteDetalleFacturaBindingSource.Clear();
@@ -42,51 +38,50 @@ namespace Reportes
 
                 //ModeloReporteEncabezadoFacturaBindingSource.DataSource = mod;
                 //modeloReporteDetalleFacturaBindingSource.DataSource = mod.detalleFactura;
-                modeloReporteDetalleFacturaBindingSource.DataSource=mod;
-                modeloReporteDetalleFacturaBindingSource.DataSource=mod.detalleFactura;
-
-
+                modeloReporteDetalleFacturaBindingSource.DataSource=lcl_mod_encabezadoComprobante;
+                modeloReporteDetalleFacturaBindingSource.DataSource=lcl_mod_encabezadoComprobante.detalleFactura;
 
                 this.contenedorLote.LocalReport.DataSources.Clear();
                 this.contenedorLote.LocalReport.DataSources.Add(new ReportDataSource("DSFactura", ModeloReporteEncabezadoFacturaBindingSource));
                 this.contenedorLote.LocalReport.DataSources.Add(new ReportDataSource("DSDetalleFactura", modeloReporteDetalleFacturaBindingSource));
 
-                if (String.Equals(p_tipoComprobante, "1"))
+                switch (pedido.tipoComprobante)
                 {
-                    this.contenedorLote.LocalReport.ReportEmbeddedResource = "Reportes.FacturaA.rdlc";
-                }
-                else if (String.Equals(p_tipoComprobante, "6"))
-                {
-                    this.contenedorLote.LocalReport.ReportEmbeddedResource = "Reportes.FacturaB.rdlc";
-                }
-                else if (String.Equals(p_tipoComprobante, "3"))
-                {
-                    this.contenedorLote.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoA.rdlc";
-                }
-                else if (String.Equals(p_tipoComprobante, "8"))
-                {
-                    this.contenedorLote.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoB.rdlc";
-                }
-                else if (String.Equals(p_tipoComprobante, "0"))
-                {
-                    this.contenedorLote.LocalReport.ReportEmbeddedResource = "Reportes.Pedido.rdlc";
+                    case 1:
+                        this.contenedorLote.LocalReport.ReportEmbeddedResource = "Reportes.FacturaA.rdlc";
+                        break;
+                    case 6:
+                        this.contenedorLote.LocalReport.ReportEmbeddedResource = "Reportes.FacturaB.rdlc";
+                        break;
+                    case 3:
+                        this.contenedorLote.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoA.rdlc";
+                        break;
+                    case 8:
+                        this.contenedorLote.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoB.rdlc";
+                        break;
+                    default:
+                        this.contenedorLote.LocalReport.ReportEmbeddedResource = "Reportes.Pedido.rdlc";
+                        break;
                 }
                 
                 this.contenedorLote.LocalReport.Refresh();
                 this.contenedorLote.RefreshReport();
+
+                Warning[] warnings;
+                string[] streamids;
+                string mimeType;
+                string encoding;
+                string extension;
                 byte[] bytes = contenedorLote.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamids, out warnings);
                 
-                FileStream fs = new FileStream(@"c:\users\lopejmar\desktop\Pedido "+ mod.Remito +".pdf", FileMode.Create);
+                FileStream fs = new FileStream(@"c:\users\Santiago\desktop\Pedido "+pedido.numeroPedido.ToString()+".pdf", FileMode.Create);
                 fs.Write(bytes, 0, bytes.Length);
                 fs.Close();
-
-                
             }
         }
 
         private void frmImpresionLoteFacturas_Load(object sender, EventArgs e)
         {
-
             this.contenedorLote.RefreshReport();
         }
     }

@@ -25,7 +25,7 @@ namespace Vista
             this.contenedorFactura.RefreshReport();
         }
 
-        public frmImpresionFactura(ModeloReporteEncabezadoFactura p_modEncabezado, string tipoComprobante)
+        public frmImpresionFactura(ModeloReporteEncabezadoComprobante p_modEncabezado, string tipoComprobante)
         {
             InitializeComponent();
             ModeloReporteEncabezadoFacturaBindingSource.Clear();
