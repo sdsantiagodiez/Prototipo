@@ -12,6 +12,7 @@ namespace Datos
 {
     public class CatalogoPedidos : Catalogo
     {
+        public static int codigoClienteGenerico = 106242;
         private ModeloPedido leerDatosPedido(SqlDataReader p_drPedidos)
         {
             ModeloPedido lcl_mod_pedido = new ModeloPedido();
@@ -115,7 +116,7 @@ namespace Datos
                     return base.getCondicionBusqueda(p_parametroBusqueda);
             }
         }
-        private string getCondicionBusqueda(ModeloPedido p_mod_pedido, List<DateTime> p_periodo, List<int> p_codigosComprobantes, bool p_clienteGenerico, bool? p_facturadoElectronicament,ref SqlCommand p_comando)
+        private string getCondicionBusqueda(ModeloPedido p_mod_pedido, List<DateTime> p_periodo, List<int> p_codigosComprobantes, bool? p_clienteGenerico, bool? p_facturadoElectronicament,ref SqlCommand p_comando)
         {
             int? numeroPedido = p_mod_pedido.numeroPedido == 0 ? null : (int?)p_mod_pedido.numeroPedido;
             p_comando.Parameters.Add(this.instanciarParametro(numeroPedido, "@numero_pedido"));
@@ -137,14 +138,25 @@ namespace Datos
             p_comando.Parameters.Add(this.instanciarParametro(p_periodo[1], "@fecha_hasta"));
             string periodoQuery = " fecha BETWEEN @fecha_desde AND @fecha_hasta ";
 
-            string numeroEntidadQuery = p_clienteGenerico ? " AND (codigo_entidad = 106242) " : "";//106242 CLIENTE GENERICO ACTUAL -> MODIFICAR en base de datos
+            string numeroEntidadQuery = "";
+            if (p_clienteGenerico != null)
+            {
+                string comparador = p_clienteGenerico == true? " = ":" <> ";
+                
+                numeroEntidadQuery = " AND (codigo_entidad " + comparador + CatalogoPedidos.codigoClienteGenerico.ToString() + ") ";
+            }
 
             string facturadoElectronicamenteQuery = "";
             if (p_facturadoElectronicament != null)
             {
-                string facturadoElectronicamente = p_facturadoElectronicament == true ? "A" : null;
-                p_comando.Parameters.Add(this.instanciarParametro(facturadoElectronicamente, "@aprobado_afip"));
-                facturadoElectronicamenteQuery = " AND " + this.parametroBusqueda("@aprobado_afip", "aprobado_afip", "=");
+                if (p_facturadoElectronicament == true)
+                {
+                    facturadoElectronicamenteQuery = " AND (aprobado_afip = 'A' ) ";
+                }
+                else
+                {
+                    facturadoElectronicamenteQuery = " AND (aprobado_afip <> 'A' OR aprobado_afip IS NULL) ";   
+                }
             }
 
             string codigoComprobanteQuery = "";
@@ -300,7 +312,7 @@ namespace Datos
             return lcl_lst_mod_pedido;
         }
 
-        public List<ModeloPedido> buscar(ModeloPedido p_mod_pedido, List<DateTime> p_periodo,List<int> p_codigosComprobantes, bool p_clienteGenerico, bool? p_facturadoElectronicamente)
+        public List<ModeloPedido> buscar(ModeloPedido p_mod_pedido, List<DateTime> p_periodo,List<int> p_codigosComprobantes, bool? p_clienteGenerico, bool? p_facturadoElectronicamente)
         {
             SqlCommand comando = Conexion.crearComando();            
             string querySQL = this.getCondicionBusqueda(p_mod_pedido,p_periodo, p_codigosComprobantes, p_clienteGenerico, p_facturadoElectronicamente, ref comando);

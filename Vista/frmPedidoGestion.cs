@@ -16,6 +16,10 @@ namespace Vista
     {
         #region Atributos
         List<ModeloPedido> glb_lst_pedidosEncontrados;
+        List<ModeloPedido> glb_lst_pedidosSeleccionados;
+        MaterialSkin.Controls.MaterialContextMenuStrip cntxMenuResultadoBusqueda;
+        public EventHandler verDetallesPedido;
+        bool cerrarVentana = true;//cuando se abre un pedido para ver detalle y se cierra desde la X arriba a la derecha, como que sigue cliqueando y cierra este form que esta abajo
         #endregion
 
         #region Constructores
@@ -24,6 +28,7 @@ namespace Vista
             InitializeComponent();
 
             glb_lst_pedidosEncontrados = new List<ModeloPedido>();
+            glb_lst_pedidosSeleccionados = new List<ModeloPedido>();
             this.inicializarControles();
         }
         #endregion
@@ -165,8 +170,29 @@ namespace Vista
         }
 
         private void inicializarContextMenu()
-        { 
-
+        {
+            this.cntxMenuResultadoBusqueda = new MaterialSkin.Controls.MaterialContextMenuStrip();
+            this.cntxMenuResultadoBusqueda.Items.Add("Ver Detalles");
+            this.cntxMenuResultadoBusqueda.Items[0].Click += (s, e) =>
+            {
+                this.verDetalles();
+            };
+            this.cntxMenuResultadoBusqueda.Items.Add("Facturar Electrónicamente");
+            this.cntxMenuResultadoBusqueda.Items[1].Click += (s, e) =>
+            {
+                this.facturar();
+            };
+            this.cntxMenuResultadoBusqueda.Items.Add("Imprimir");
+            this.cntxMenuResultadoBusqueda.Items[2].Click += (s, e) =>
+            {
+                this.imprimir();
+            };
+        }
+        private void inicializarContextMenu(bool p_verDetalles, bool p_facturar, bool p_imprimir)
+        {
+            this.cntxMenuResultadoBusqueda.Items[0].Enabled = p_verDetalles;
+            this.cntxMenuResultadoBusqueda.Items[1].Enabled = p_facturar;
+            this.cntxMenuResultadoBusqueda.Items[2].Enabled = p_imprimir;
         }
         private void inicializarBotones()
         {
@@ -178,10 +204,7 @@ namespace Vista
 
         private void inicializarDataGridView()
         {
-            this.grpBoxResultadoBusqueda.Controls.Clear();
-            this.dgvResultadoBusqueda = new DataGridView();
-            this.grpBoxResultadoBusqueda.Controls.Add(this.dgvResultadoBusqueda);
-            //this.dgvResultadoBusqueda.MouseDown += this.dgvResultadoBusqueda_MouseDown;
+            this.dgvResultadoBusqueda.MouseDown += this.dgvResultadoBusqueda_MouseDown;
 
             this.dgvResultadoBusqueda.Dock = DockStyle.Fill;
             this.dgvResultadoBusqueda.AutoGenerateColumns = false;
@@ -417,6 +440,17 @@ namespace Vista
             
             return lcl_lst;
         }
+
+        private List<ModeloPedido> getPedidosSeleccionados()
+        {
+            List<ModeloPedido> lcl_lst_pedidosSeleccionados = new List<ModeloPedido>();
+            foreach (DataGridViewRow row in this.dgvResultadoBusqueda.SelectedRows)
+            {
+                lcl_lst_pedidosSeleccionados.Add(glb_lst_pedidosEncontrados[row.Index]);
+            }
+
+            return lcl_lst_pedidosSeleccionados;
+        }
         #endregion
 
         #region Búsqueda
@@ -445,12 +479,30 @@ namespace Vista
         #endregion
 
         #region Facturación
+        private bool validarFacturar(List<ModeloPedido> p_lst_pedidosSeleccionados)
+        {
+            foreach (ModeloPedido p in p_lst_pedidosSeleccionados)
+            {
+                if (p.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor || //pedidos de proveedor no se facturan
+                    p.aprobadoAFIP == "A" ||        //ya facturado
+                    p.tipoComprobante == 0 || p.tipoComprobante > 1000) //comprobante que no se factura
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
         private void facturar()
         { 
         }
         #endregion
 
         #region Impresión
+        private bool validarImprimir(List<ModeloPedido> p_lst_pedidosSeleccionados)
+        {
+            return true;
+        }
         private void imprimir()
         {
 
@@ -458,23 +510,81 @@ namespace Vista
         #endregion
 
         #region Ver detalles de pedido
+        private bool validarVerDetalles(List<ModeloPedido> p_lst_pedidosSeleccionados)
+        {
+            if (p_lst_pedidosSeleccionados.Count != 1)
+            {
+                return false;
+            }
+
+            return true;
+        }
         private void verDetalles()
         {
- 
+            frmPedidoCierre lcl_frm_pedidoCierreVerDetalles = new frmPedidoCierre(glb_lst_pedidosSeleccionados[0], true);
+            cerrarVentana = false;
+            this.verDetallesPedido(lcl_frm_pedidoCierreVerDetalles, new EventArgs());
         }
         #endregion
+
+        
 
         #endregion
 
         #region Eventos
-        
-        #region DataGridView
 
+        #region DataGridView
+        private void dgvResultadoBusqueda_SelectionChanged(object sender, EventArgs e)
+        {
+            glb_lst_pedidosSeleccionados = this.getPedidosSeleccionados();
+            this.btnFacturar.Enabled = this.validarFacturar(glb_lst_pedidosSeleccionados);
+            this.btnImprimir.Enabled = this.validarImprimir(glb_lst_pedidosSeleccionados);
+            this.btnVerDetalles.Enabled = this.validarVerDetalles(glb_lst_pedidosSeleccionados);
+
+            this.inicializarContextMenu(this.validarVerDetalles(glb_lst_pedidosSeleccionados), 
+                                        this.validarFacturar(glb_lst_pedidosSeleccionados),
+                                        this.validarImprimir(glb_lst_pedidosSeleccionados));
+        }
+
+        private void dgvResultadoBusqueda_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                int currentMouseOverRow = this.dgvResultadoBusqueda.HitTest(e.X, e.Y).RowIndex;
+                if (currentMouseOverRow >= 0)
+                {
+                    if ((ModifierKeys & Keys.Control) != Keys.Control
+                        && this.dgvResultadoBusqueda.Rows[currentMouseOverRow].Selected != true)
+                    {//si selected == true significa que puede haber más elementos seleccionados anteriormente y no hay que perder selección
+                        this.dgvResultadoBusqueda.ClearSelection();
+                    }
+                    this.dgvResultadoBusqueda.Rows[currentMouseOverRow].Selected = true;
+
+                    this.cntxMenuResultadoBusqueda.Show(this.dgvResultadoBusqueda, new Point(e.X, e.Y));
+                }
+            }
+
+        }
         #endregion
 
         #region CheckedListBox
 
         #endregion
+
+        #region DateTimePickers
+        private void dtpDesde_ValueChanged(object sender, EventArgs e)
+        {
+            this.dtpHasta.MinDate = this.dtpDesde.Value.Date;
+        }
+        #endregion
+
+        private void frmPedidoGestion_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!cerrarVentana)
+            {
+                e.Cancel = cerrarVentana = true;    //previene que se cierre la ventana cuando se vuelve de verDetalle en frmPedidoCierre
+            }
+        }
 
         #endregion
     }

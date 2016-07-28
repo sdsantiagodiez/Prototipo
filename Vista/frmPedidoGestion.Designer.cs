@@ -126,6 +126,7 @@
             this.dgvResultadoBusqueda.RowTemplate.Height = 24;
             this.dgvResultadoBusqueda.Size = new System.Drawing.Size(1389, 311);
             this.dgvResultadoBusqueda.TabIndex = 3;
+            this.dgvResultadoBusqueda.SelectionChanged += new System.EventHandler(this.dgvResultadoBusqueda_SelectionChanged);
             // 
             // tblLayoutPanelParametrosBusqueda
             // 
@@ -270,6 +271,7 @@
             this.dtpDesde.Name = "dtpDesde";
             this.dtpDesde.Size = new System.Drawing.Size(149, 22);
             this.dtpDesde.TabIndex = 0;
+            this.dtpDesde.ValueChanged += new System.EventHandler(this.dtpDesde_ValueChanged);
             // 
             // dtpHasta
             // 
@@ -587,14 +589,15 @@
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             // 
-            // frmPedido
+            // frmPedidoGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1460, 875);
             this.Controls.Add(this.pnlBase);
-            this.Name = "frmPedido";
+            this.Name = "frmPedidoGestion";
             this.Text = "frmPedido";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPedidoGestion_FormClosing);
             this.pnlBase.ResumeLayout(false);
             this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.grpBoxResultadoBusqueda.ResumeLayout(false);
