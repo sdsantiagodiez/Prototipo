@@ -38,14 +38,18 @@
             this.tblLayoutPanelMenu = new System.Windows.Forms.TableLayoutPanel();
             this.tlsMenu = new System.Windows.Forms.ToolStrip();
             this.toolStripbtnPedidoCliente = new System.Windows.Forms.ToolStripButton();
-            this.toolStripbtnPedidoProveedor = new System.Windows.Forms.ToolStripButton();
             this.tlsbtnDevolucion = new System.Windows.Forms.ToolStripButton();
-            this.toolStripbtnReportes = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripbtnPedidoProveedor = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripbtnGestionPedidos = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripbtnABM = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmi_ABMentidades = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_ABMarticulos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_ABMdescuentos = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripbtnReportes = new System.Windows.Forms.ToolStripButton();
             this.btnSalir = new MaterialSkin.Controls.MaterialRaisedButton();
             this.tblLayoutPanelPrincipal_Bottom = new System.Windows.Forms.TableLayoutPanel();
             this.lblHoraLog = new MaterialSkin.Controls.MaterialLabel();
@@ -91,20 +95,12 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.manualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tlsMenuRapido = new System.Windows.Forms.ToolStrip();
-            this.abrirToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.guardarToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.imprimirToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.cortarToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.copiarToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.pegarToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ayudaToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tblLayoutPanelPrincipal_Contenedor.SuspendLayout();
             this.tblLayoutPanelMenu.SuspendLayout();
@@ -213,6 +209,21 @@
             this.toolStripbtnPedidoCliente.Text = "Pedido Cliente";
             this.toolStripbtnPedidoCliente.Click += new System.EventHandler(this.toolStripbtnPedidoCliente_Click);
             // 
+            // tlsbtnDevolucion
+            // 
+            this.tlsbtnDevolucion.Image = ((System.Drawing.Image)(resources.GetObject("tlsbtnDevolucion.Image")));
+            this.tlsbtnDevolucion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsbtnDevolucion.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsbtnDevolucion.Name = "tlsbtnDevolucion";
+            this.tlsbtnDevolucion.Size = new System.Drawing.Size(255, 24);
+            this.tlsbtnDevolucion.Text = "Devolución Cliente";
+            this.tlsbtnDevolucion.Click += new System.EventHandler(this.tlsbtnDevolucion_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(255, 6);
+            // 
             // toolStripbtnPedidoProveedor
             // 
             this.toolStripbtnPedidoProveedor.Image = ((System.Drawing.Image)(resources.GetObject("toolStripbtnPedidoProveedor.Image")));
@@ -224,26 +235,10 @@
             this.toolStripbtnPedidoProveedor.Text = "Pedido a Proveedores";
             this.toolStripbtnPedidoProveedor.Click += new System.EventHandler(this.toolStripbtnPedidoProveedor_Click);
             // 
-            // tlsbtnDevolucion
+            // toolStripSeparator4
             // 
-            this.tlsbtnDevolucion.Image = ((System.Drawing.Image)(resources.GetObject("tlsbtnDevolucion.Image")));
-            this.tlsbtnDevolucion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tlsbtnDevolucion.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tlsbtnDevolucion.Name = "tlsbtnDevolucion";
-            this.tlsbtnDevolucion.Size = new System.Drawing.Size(255, 24);
-            this.tlsbtnDevolucion.Text = "Devolución Cliente";
-            this.tlsbtnDevolucion.Click += new System.EventHandler(this.tlsbtnDevolucion_Click);
-            // 
-            // toolStripbtnReportes
-            // 
-            this.toolStripbtnReportes.Image = ((System.Drawing.Image)(resources.GetObject("toolStripbtnReportes.Image")));
-            this.toolStripbtnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripbtnReportes.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripbtnReportes.Name = "toolStripbtnReportes";
-            this.toolStripbtnReportes.Size = new System.Drawing.Size(255, 24);
-            this.toolStripbtnReportes.Text = "Emisión de Reportes";
-            this.toolStripbtnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolStripbtnReportes.Click += new System.EventHandler(this.toolStripbtnReportes_Click);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(255, 6);
             // 
             // toolStripbtnGestionPedidos
             // 
@@ -255,6 +250,11 @@
             this.toolStripbtnGestionPedidos.Text = "Administración de Pedidos";
             this.toolStripbtnGestionPedidos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolStripbtnGestionPedidos.Click += new System.EventHandler(this.toolStripbtnGestionPedidos_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(255, 6);
             // 
             // toolStripbtnABM
             // 
@@ -272,23 +272,39 @@
             // tsmi_ABMentidades
             // 
             this.tsmi_ABMentidades.Name = "tsmi_ABMentidades";
-            this.tsmi_ABMentidades.Size = new System.Drawing.Size(181, 26);
+            this.tsmi_ABMentidades.Size = new System.Drawing.Size(160, 26);
             this.tsmi_ABMentidades.Text = "Entidades";
             this.tsmi_ABMentidades.Click += new System.EventHandler(this.tsmi_ABMentidades_Click);
             // 
             // tsmi_ABMarticulos
             // 
             this.tsmi_ABMarticulos.Name = "tsmi_ABMarticulos";
-            this.tsmi_ABMarticulos.Size = new System.Drawing.Size(181, 26);
+            this.tsmi_ABMarticulos.Size = new System.Drawing.Size(160, 26);
             this.tsmi_ABMarticulos.Text = "Artículos";
             this.tsmi_ABMarticulos.Click += new System.EventHandler(this.tsmi_ABMarticulos_Click);
             // 
             // tsmi_ABMdescuentos
             // 
             this.tsmi_ABMdescuentos.Name = "tsmi_ABMdescuentos";
-            this.tsmi_ABMdescuentos.Size = new System.Drawing.Size(181, 26);
+            this.tsmi_ABMdescuentos.Size = new System.Drawing.Size(160, 26);
             this.tsmi_ABMdescuentos.Text = "Descuentos";
             this.tsmi_ABMdescuentos.Click += new System.EventHandler(this.tsmi_ABMdescuentos_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(255, 6);
+            // 
+            // toolStripbtnReportes
+            // 
+            this.toolStripbtnReportes.Image = ((System.Drawing.Image)(resources.GetObject("toolStripbtnReportes.Image")));
+            this.toolStripbtnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripbtnReportes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripbtnReportes.Name = "toolStripbtnReportes";
+            this.toolStripbtnReportes.Size = new System.Drawing.Size(255, 24);
+            this.toolStripbtnReportes.Text = "Emisión de Reportes";
+            this.toolStripbtnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolStripbtnReportes.Click += new System.EventHandler(this.toolStripbtnReportes_Click);
             // 
             // btnSalir
             // 
@@ -671,10 +687,6 @@
             this.tlsMenuRapido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlsMenuRapido.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tlsMenuRapido.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.abrirToolStripButton,
-            this.guardarToolStripButton,
-            this.imprimirToolStripButton,
-            this.toolStripSeparator,
             this.cortarToolStripButton,
             this.copiarToolStripButton,
             this.pegarToolStripButton,
@@ -686,38 +698,6 @@
             this.tlsMenuRapido.Stretch = true;
             this.tlsMenuRapido.TabIndex = 3;
             this.tlsMenuRapido.Text = "toolStrip";
-            // 
-            // abrirToolStripButton
-            // 
-            this.abrirToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.abrirToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("abrirToolStripButton.Image")));
-            this.abrirToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.abrirToolStripButton.Name = "abrirToolStripButton";
-            this.abrirToolStripButton.Size = new System.Drawing.Size(24, 34);
-            this.abrirToolStripButton.Text = "&Abrir";
-            // 
-            // guardarToolStripButton
-            // 
-            this.guardarToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.guardarToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("guardarToolStripButton.Image")));
-            this.guardarToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.guardarToolStripButton.Name = "guardarToolStripButton";
-            this.guardarToolStripButton.Size = new System.Drawing.Size(24, 34);
-            this.guardarToolStripButton.Text = "&Guardar";
-            // 
-            // imprimirToolStripButton
-            // 
-            this.imprimirToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.imprimirToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("imprimirToolStripButton.Image")));
-            this.imprimirToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.imprimirToolStripButton.Name = "imprimirToolStripButton";
-            this.imprimirToolStripButton.Size = new System.Drawing.Size(24, 34);
-            this.imprimirToolStripButton.Text = "&Imprimir";
-            // 
-            // toolStripSeparator
-            // 
-            this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(6, 37);
             // 
             // cortarToolStripButton
             // 
@@ -769,26 +749,6 @@
             this.splitter1.TabIndex = 39;
             this.splitter1.TabStop = false;
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(255, 6);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(255, 6);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(255, 6);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(255, 6);
-            // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -822,10 +782,6 @@
         private System.Windows.Forms.Timer timerFechaHora;
         private System.Windows.Forms.FontDialog fontDialog1;
         private System.Windows.Forms.ToolStrip tlsMenuRapido;
-        private System.Windows.Forms.ToolStripButton abrirToolStripButton;
-        private System.Windows.Forms.ToolStripButton guardarToolStripButton;
-        private System.Windows.Forms.ToolStripButton imprimirToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripButton cortarToolStripButton;
         private System.Windows.Forms.ToolStripButton copiarToolStripButton;
         private System.Windows.Forms.ToolStripButton pegarToolStripButton;

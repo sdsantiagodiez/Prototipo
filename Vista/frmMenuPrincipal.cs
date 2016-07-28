@@ -30,8 +30,7 @@ namespace Vista
             this.MinimizeBox = true;
             this.MaximizeBox = true;
 
-            //frmPedidoGestion p = new frmPedidoGestion();
-            //p.ShowDialog();
+            this.inicializarFuncionesDeTexto();
         }
 
         public frmMenuPrincipal(ModeloUsuario usuarioActual) : this()
@@ -83,6 +82,21 @@ namespace Vista
             return true;
         }
 
+        private void inicializarFuncionesDeTexto()
+        {
+            this.copiarToolStripButton.Click += this.copiarTextoEnControl;
+            this.copiarToolStripMenuItem.Click += this.copiarTextoEnControl;
+
+            this.cortarToolStripButton.Click += this.cortarTextoEnControl;
+            this.cortarToolStripMenuItem.Click += this.cortarTextoEnControl;
+
+            this.pegarToolStripButton.Click += this.pegarTextoEnControl;
+            this.pegarToolStripMenuItem.Click += this.pegarTextoEnControl;
+
+            this.seleccionarTodoToolStripMenuItem.Click += this.seleccionarTodoTextoEnControl;
+            this.eliminarToolStripMenuItem.Click += this.eliminarTodoTextoEnControl;
+            this.deshacerToolStripMenuItem.Click += this.deshacerTextoEnControl;
+        }
         private void inicializarModoAdmin(bool inicializar)
         {
             this.inicializarModoABM(inicializar);
@@ -280,14 +294,15 @@ namespace Vista
         {
             if (!this.validarAgregarFormulario(typeof(frmPedidoCierre)))
             {
-                if ((glb_form as frmPedidoCierre).getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+                if (currentFormLocked)
                 {
                     return;
                 }
-                else if (currentFormLocked)
+                else if ((glb_form as frmPedidoCierre).getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
                 {
                     return;
                 }
+                
             }
 
             if (glb_form != null && glb_form.GetType() == typeof(frmPedidoCierre) && (glb_form as frmPedidoCierre).getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
@@ -308,11 +323,11 @@ namespace Vista
         {
             if (!this.validarAgregarFormulario(typeof(frmPedidoCierre)))
             {
-                if ((glb_form as frmPedidoCierre).getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
+                if (currentFormLocked)
                 {
                     return;
                 }
-                else if (currentFormLocked)
+                else if ((glb_form as frmPedidoCierre).getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
                 {
                     return;
                 }
@@ -683,19 +698,128 @@ namespace Vista
 
         }
 
-        
+        private void copiarTextoEnControl(object sender, EventArgs e)
+        {
+            if ((this.ActiveControl as Form) == null)
+            {
+                return;
+            }
+            Control c = (this.ActiveControl as Form).ActiveControl;
 
-        
+            if (c is TextBox)
+            {
+                if ((c as TextBox).SelectedText != "")
+                {
+                    (c as TextBox).Copy();
+                }
+            }
+            else if (c is RichTextBox)
+            {
+                if ((c as RichTextBox).SelectedText != "")
+                {
+                    (c as RichTextBox).Copy();
+                }
+            }
+        }
+        private void cortarTextoEnControl(object sender, EventArgs e)
+        {
+            if ((this.ActiveControl as Form) == null)
+            {
+                return;
+            }
+            Control c = (this.ActiveControl as Form).ActiveControl;
+            
+            if (c is TextBox)
+            {
+                if ((c as TextBox).SelectedText != "")
+                {
+                    (c as TextBox).Cut();
+                }
+                
+            }
+            else if (c is RichTextBox)
+            {
+                if ((c as RichTextBox).SelectedText != "")
+                {
+                    (c as RichTextBox).Cut();
+                }
+            }
+        }
+        private void pegarTextoEnControl(object sender, EventArgs e)
+        {
+            if ((this.ActiveControl as Form) == null)
+            {
+                return;
+            }
+            Control c = (this.ActiveControl as Form).ActiveControl;
 
-        
+            if (c is TextBox)
+            {
+                ((TextBox)c).Paste();
+            }
+            else if (c is RichTextBox)
+            {
+                ((RichTextBox)c).Paste();
+            }
+        }
+        private void seleccionarTodoTextoEnControl(object sender, EventArgs e)
+        {
+            if ((this.ActiveControl as Form) == null)
+            {
+                return;
+            }
+            Control c = (this.ActiveControl as Form).ActiveControl;
 
-        
+            if (c is TextBox)
+            {
+                (c as TextBox).SelectAll();
+            }
+            else if (c is RichTextBox)
+            {
+                (c as RichTextBox).SelectAll();
+            }
+        }
+        private void eliminarTodoTextoEnControl(object sender, EventArgs e)
+        {
+            if ((this.ActiveControl as Form) == null)
+            {
+                return;
+            }
+            Control c = (this.ActiveControl as Form).ActiveControl;
 
-        
+            if (c is TextBox)
+            {
+                (c as TextBox).Text = "";
+            }
+            else if (c is RichTextBox)
+            {
+                (c as RichTextBox).Text = "";
+            }
+        }
+        private void deshacerTextoEnControl(object sender, EventArgs e)
+        {
+            if ((this.ActiveControl as Form) == null)
+            {
+                return;
+            }
+            Control c = (this.ActiveControl as Form).ActiveControl;
 
-        
-
-    
+            if (c is TextBox)
+            {
+                if ((c as TextBox).CanUndo)
+                {
+                    (c as TextBox).Undo();
+                }
+                
+            }
+            else if (c is RichTextBox)
+            {
+                if ((c as RichTextBox).CanUndo)
+                {
+                    (c as RichTextBox).Undo();
+                }
+            }
+        }
     }
 
     
