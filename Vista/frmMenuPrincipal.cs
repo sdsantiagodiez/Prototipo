@@ -43,6 +43,7 @@ namespace Vista
             {
                 MessageBox.Show("El usuario actual no posee roles asignados. Contacte al administrador.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
+            this.actualizarColores();
         }
         #endregion
 
@@ -151,6 +152,43 @@ namespace Vista
             this.tblLayoutPanelPrincipal.Location = new Point(3, 60);
             this.tblLayoutPanelPrincipal.Height = Height - 60; // 60 pixeles para que se vea título de ventana principal
             this.tblLayoutPanelPrincipal.Width = Width -3; //un margen derecho de 3
+        }
+        /// <summary>
+        /// Actualiza color de tableLayout que se encuentra al bottom del form
+        /// </summary>
+        public override void actualizarColores()
+        {
+            /*
+             * códigos de colores extraídos de: https://www.materialui.co/colors
+             */
+            if(this.tblLayoutPanelPrincipal_Bottom == null)
+            { return; }
+            base.actualizarColores();
+            
+            switch (Properties.Settings.Default.color_scheme)
+            {
+                case 0:
+                    this.tblLayoutPanelPrincipal_Bottom.BackColor = Color.FromArgb(0, 188, 212);    //Cyan500
+                    break;
+                case 1:
+                    this.tblLayoutPanelPrincipal_Bottom.BackColor = Color.FromArgb(30,136,229);   //Blue600
+                    break;
+                case 2:
+                    this.tblLayoutPanelPrincipal_Bottom.BackColor = Color.FromArgb(55,71,79);    //BlueGrey800
+                    break;
+                case 3:
+                    this.tblLayoutPanelPrincipal_Bottom.BackColor = Color.FromArgb(63,81,181);   //Indigo500
+                    break;
+                case 4:
+                    this.tblLayoutPanelPrincipal_Bottom.BackColor = Color.FromArgb(67,160,71);  //Green600
+                    break;
+                case 5:
+                    this.tblLayoutPanelPrincipal_Bottom.BackColor = Color.FromArgb(255,193,7);   //Amber500
+                    break;
+                case 6:
+                    this.tblLayoutPanelPrincipal_Bottom.BackColor = Color.FromArgb(121,85,72);   //Brown500
+                    break;
+            }
         }
         #endregion
 
@@ -850,6 +888,22 @@ namespace Vista
         }
         #endregion
 
+        private void opcionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!this.validarAgregarFormulario(typeof(frmOpciones)))
+            {
+                return;
+            }
+
+            glb_form = new frmOpciones();
+            this.agregarFormulario(glb_form);
+
+            (glb_form as frmOpciones).ActualizarColoresEvent += this.actualizarColores;
+        }
+        private void actualizarColores(object sender, EventArgs e)
+        {
+            this.actualizarColores();
+        }
         #endregion
     }    
 }

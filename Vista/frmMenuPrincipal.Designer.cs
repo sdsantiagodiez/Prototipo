@@ -345,7 +345,7 @@
             // 
             this.lblHoraLog.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblHoraLog.AutoSize = true;
-            this.lblHoraLog.BackColor = System.Drawing.Color.DarkGray;
+            this.lblHoraLog.BackColor = System.Drawing.Color.Transparent;
             this.lblHoraLog.Depth = 0;
             this.lblHoraLog.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblHoraLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -361,7 +361,7 @@
             // 
             this.lblNombreUsuario.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblNombreUsuario.AutoSize = true;
-            this.lblNombreUsuario.BackColor = System.Drawing.Color.DarkGray;
+            this.lblNombreUsuario.BackColor = System.Drawing.Color.Transparent;
             this.lblNombreUsuario.Depth = 0;
             this.lblNombreUsuario.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblNombreUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -377,7 +377,7 @@
             // 
             this.lblFechaLog.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblFechaLog.AutoSize = true;
-            this.lblFechaLog.BackColor = System.Drawing.Color.DarkGray;
+            this.lblFechaLog.BackColor = System.Drawing.Color.Transparent;
             this.lblFechaLog.Depth = 0;
             this.lblFechaLog.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblFechaLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -652,6 +652,7 @@
             this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
             this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
             this.opcionesToolStripMenuItem.Text = "Opciones";
+            this.opcionesToolStripMenuItem.Click += new System.EventHandler(this.opcionesToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -666,18 +667,18 @@
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
             this.acercaDeToolStripMenuItem.Text = "Acerca de";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(148, 6);
             // 
             // verAyudaToolStripMenuItem
             // 
             this.verAyudaToolStripMenuItem.Name = "verAyudaToolStripMenuItem";
-            this.verAyudaToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.verAyudaToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
             this.verAyudaToolStripMenuItem.Text = "Ver Ayuda";
             // 
             // tlsMenuRapido

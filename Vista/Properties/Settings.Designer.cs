@@ -22,5 +22,17 @@ namespace Vista.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int color_scheme {
+            get {
+                return ((int)(this["color_scheme"]));
+            }
+            set {
+                this["color_scheme"] = value;
+            }
+        }
     }
 }
