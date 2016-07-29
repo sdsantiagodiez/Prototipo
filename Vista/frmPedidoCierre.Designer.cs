@@ -578,7 +578,7 @@
             this.tblLayoutPanelPedido.ColumnCount = 3;
             this.tblLayoutPanelPedido.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.07116F));
             this.tblLayoutPanelPedido.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.92884F));
-            this.tblLayoutPanelPedido.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.tblLayoutPanelPedido.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tblLayoutPanelPedido.Controls.Add(this.lblCAE, 0, 4);
             this.tblLayoutPanelPedido.Controls.Add(this.lblNumeroPedido, 0, 0);
             this.tblLayoutPanelPedido.Controls.Add(this.lblTipoComprobante, 0, 1);
@@ -606,7 +606,7 @@
             // 
             this.lblCAE.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCAE.AutoSize = true;
-            this.lblCAE.Location = new System.Drawing.Point(80, 154);
+            this.lblCAE.Location = new System.Drawing.Point(79, 154);
             this.lblCAE.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCAE.Name = "lblCAE";
             this.lblCAE.Size = new System.Drawing.Size(39, 17);
@@ -618,7 +618,7 @@
             // 
             this.lblNumeroPedido.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNumeroPedido.AutoSize = true;
-            this.lblNumeroPedido.Location = new System.Drawing.Point(57, 9);
+            this.lblNumeroPedido.Location = new System.Drawing.Point(56, 9);
             this.lblNumeroPedido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNumeroPedido.Name = "lblNumeroPedido";
             this.lblNumeroPedido.Size = new System.Drawing.Size(62, 17);
@@ -629,7 +629,7 @@
             // 
             this.lblTipoComprobante.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblTipoComprobante.AutoSize = true;
-            this.lblTipoComprobante.Location = new System.Drawing.Point(79, 45);
+            this.lblTipoComprobante.Location = new System.Drawing.Point(78, 45);
             this.lblTipoComprobante.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTipoComprobante.Name = "lblTipoComprobante";
             this.lblTipoComprobante.Size = new System.Drawing.Size(40, 17);
@@ -640,17 +640,17 @@
             // 
             this.cmbBoxTipoComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxTipoComprobante.FormattingEnabled = true;
-            this.cmbBoxTipoComprobante.Location = new System.Drawing.Point(127, 42);
+            this.cmbBoxTipoComprobante.Location = new System.Drawing.Point(126, 42);
             this.cmbBoxTipoComprobante.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxTipoComprobante.Name = "cmbBoxTipoComprobante";
-            this.cmbBoxTipoComprobante.Size = new System.Drawing.Size(155, 24);
+            this.cmbBoxTipoComprobante.Size = new System.Drawing.Size(154, 24);
             this.cmbBoxTipoComprobante.TabIndex = 10;
             // 
             // lblFormaPago
             // 
             this.lblFormaPago.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblFormaPago.AutoSize = true;
-            this.lblFormaPago.Location = new System.Drawing.Point(10, 81);
+            this.lblFormaPago.Location = new System.Drawing.Point(9, 81);
             this.lblFormaPago.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFormaPago.Name = "lblFormaPago";
             this.lblFormaPago.Size = new System.Drawing.Size(109, 17);
@@ -664,17 +664,17 @@
             this.cmbBoxFormaPago.Items.AddRange(new object[] {
             "Contado",
             "Tarjeta"});
-            this.cmbBoxFormaPago.Location = new System.Drawing.Point(127, 78);
+            this.cmbBoxFormaPago.Location = new System.Drawing.Point(126, 78);
             this.cmbBoxFormaPago.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxFormaPago.Name = "cmbBoxFormaPago";
-            this.cmbBoxFormaPago.Size = new System.Drawing.Size(155, 24);
+            this.cmbBoxFormaPago.Size = new System.Drawing.Size(154, 24);
             this.cmbBoxFormaPago.TabIndex = 9;
             // 
             // lblFecha
             // 
             this.lblFecha.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(68, 117);
+            this.lblFecha.Location = new System.Drawing.Point(67, 117);
             this.lblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(51, 17);
@@ -685,10 +685,10 @@
             // 
             this.dtpFechaPedido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpFechaPedido.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaPedido.Location = new System.Drawing.Point(127, 115);
+            this.dtpFechaPedido.Location = new System.Drawing.Point(126, 115);
             this.dtpFechaPedido.Margin = new System.Windows.Forms.Padding(4);
             this.dtpFechaPedido.Name = "dtpFechaPedido";
-            this.dtpFechaPedido.Size = new System.Drawing.Size(155, 22);
+            this.dtpFechaPedido.Size = new System.Drawing.Size(154, 22);
             this.dtpFechaPedido.TabIndex = 11;
             // 
             // txtBoxNumeroPedido
@@ -696,7 +696,7 @@
             this.txtBoxNumeroPedido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxNumeroPedido.Depth = 0;
             this.txtBoxNumeroPedido.Hint = "";
-            this.txtBoxNumeroPedido.Location = new System.Drawing.Point(127, 4);
+            this.txtBoxNumeroPedido.Location = new System.Drawing.Point(126, 4);
             this.txtBoxNumeroPedido.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxNumeroPedido.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxNumeroPedido.Name = "txtBoxNumeroPedido";
@@ -704,7 +704,7 @@
             this.txtBoxNumeroPedido.SelectedText = "";
             this.txtBoxNumeroPedido.SelectionLength = 0;
             this.txtBoxNumeroPedido.SelectionStart = 0;
-            this.txtBoxNumeroPedido.Size = new System.Drawing.Size(155, 28);
+            this.txtBoxNumeroPedido.Size = new System.Drawing.Size(154, 28);
             this.txtBoxNumeroPedido.TabIndex = 14;
             this.txtBoxNumeroPedido.UseSystemPasswordChar = false;
             this.txtBoxNumeroPedido.Leave += new System.EventHandler(this.txtBoxNumeroPedido_Leave);
@@ -714,7 +714,7 @@
             this.txtBoxCAE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCAE.Depth = 0;
             this.txtBoxCAE.Hint = "";
-            this.txtBoxCAE.Location = new System.Drawing.Point(127, 148);
+            this.txtBoxCAE.Location = new System.Drawing.Point(126, 148);
             this.txtBoxCAE.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxCAE.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCAE.Name = "txtBoxCAE";
@@ -722,7 +722,7 @@
             this.txtBoxCAE.SelectedText = "";
             this.txtBoxCAE.SelectionLength = 0;
             this.txtBoxCAE.SelectionStart = 0;
-            this.txtBoxCAE.Size = new System.Drawing.Size(155, 28);
+            this.txtBoxCAE.Size = new System.Drawing.Size(154, 28);
             this.txtBoxCAE.TabIndex = 15;
             this.txtBoxCAE.UseSystemPasswordChar = false;
             this.txtBoxCAE.Leave += new System.EventHandler(this.txtBoxCAE_Leave);

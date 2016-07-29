@@ -72,22 +72,16 @@
     <Compile Include="FormReportes.Designer.cs">
       <DependentUpon>FormReportes.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmImpresionFactura.cs">
+    <Compile Include="frmImpresionComprobante.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmImpresionFactura.Designer.cs">
-      <DependentUpon>frmImpresionFactura.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmImpresionLoteFacturas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmImpresionLoteFacturas.Designer.cs">
-      <DependentUpon>frmImpresionLoteFacturas.cs</DependentUpon>
+    <Compile Include="frmImpresionComprobante.designer.cs">
+      <DependentUpon>frmImpresionComprobante.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmImpresionLoteFacturas.resx">
-      <DependentUpon>frmImpresionLoteFacturas.cs</DependentUpon>
+    <EmbeddedResource Include="frmImpresionComprobante.resx">
+      <DependentUpon>frmImpresionComprobante.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NCreditoA.rdlc" />
     <EmbeddedResource Include="NCreditoB.rdlc" />
@@ -95,9 +89,6 @@
     <EmbeddedResource Include="FacturaA.rdlc" />
     <EmbeddedResource Include="FormReportes.resx">
       <DependentUpon>FormReportes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmImpresionFactura.resx">
-      <DependentUpon>frmImpresionFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PedidosEntreFechas.rdlc" />
     <EmbeddedResource Include="DescuentoAFecha.rdlc" />
@@ -112,6 +103,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Pedido.rdlc" />
     <None Include="i2of5txt.ttf" />

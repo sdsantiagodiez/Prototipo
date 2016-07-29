@@ -95,7 +95,6 @@
             this.tblLayoutPanelPrincipal.Controls.Add(this.tblLayoutPanelParametrosBusqueda, 0, 0);
             this.tblLayoutPanelPrincipal.Controls.Add(this.tblLayoutPanelBotones, 0, 3);
             this.tblLayoutPanelPrincipal.Controls.Add(this.btnBuscar, 0, 1);
-            this.tblLayoutPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 0);
             this.tblLayoutPanelPrincipal.Name = "tblLayoutPanelPrincipal";
             this.tblLayoutPanelPrincipal.RowCount = 4;
@@ -103,7 +102,7 @@
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(1401, 718);
+            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(1401, 521);
             this.tblLayoutPanelPrincipal.TabIndex = 0;
             // 
             // grpBoxResultadoBusqueda
@@ -112,7 +111,7 @@
             this.grpBoxResultadoBusqueda.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxResultadoBusqueda.Location = new System.Drawing.Point(3, 318);
             this.grpBoxResultadoBusqueda.Name = "grpBoxResultadoBusqueda";
-            this.grpBoxResultadoBusqueda.Size = new System.Drawing.Size(1395, 332);
+            this.grpBoxResultadoBusqueda.Size = new System.Drawing.Size(1395, 135);
             this.grpBoxResultadoBusqueda.TabIndex = 1;
             this.grpBoxResultadoBusqueda.TabStop = false;
             this.grpBoxResultadoBusqueda.Text = "Resultado Búsqueda";
@@ -124,7 +123,7 @@
             this.dgvResultadoBusqueda.Location = new System.Drawing.Point(3, 18);
             this.dgvResultadoBusqueda.Name = "dgvResultadoBusqueda";
             this.dgvResultadoBusqueda.RowTemplate.Height = 24;
-            this.dgvResultadoBusqueda.Size = new System.Drawing.Size(1389, 311);
+            this.dgvResultadoBusqueda.Size = new System.Drawing.Size(1389, 114);
             this.dgvResultadoBusqueda.TabIndex = 3;
             this.dgvResultadoBusqueda.SelectionChanged += new System.EventHandler(this.dgvResultadoBusqueda_SelectionChanged);
             // 
@@ -317,7 +316,7 @@
             this.tblLayoutPanelParametrosBusqueda_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.27554F));
             this.tblLayoutPanelParametrosBusqueda_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tblLayoutPanelParametrosBusqueda_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.66873F));
-            this.tblLayoutPanelParametrosBusqueda_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tblLayoutPanelParametrosBusqueda_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 205F));
             this.tblLayoutPanelParametrosBusqueda_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.05573F));
             this.tblLayoutPanelParametrosBusqueda_1.Controls.Add(this.lblNumeroPedido, 0, 0);
             this.tblLayoutPanelParametrosBusqueda_1.Controls.Add(this.lblNombre, 0, 1);
@@ -375,7 +374,7 @@
             this.lblCAE.Depth = 0;
             this.lblCAE.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblCAE.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCAE.Location = new System.Drawing.Point(559, 10);
+            this.lblCAE.Location = new System.Drawing.Point(557, 10);
             this.lblCAE.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCAE.Name = "lblCAE";
             this.lblCAE.Size = new System.Drawing.Size(50, 24);
@@ -389,7 +388,7 @@
             this.lblApellido.Depth = 0;
             this.lblApellido.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblApellido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblApellido.Location = new System.Drawing.Point(529, 54);
+            this.lblApellido.Location = new System.Drawing.Point(527, 54);
             this.lblApellido.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(80, 24);
@@ -403,7 +402,7 @@
             this.lblNumeroDocumento.Depth = 0;
             this.lblNumeroDocumento.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblNumeroDocumento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblNumeroDocumento.Location = new System.Drawing.Point(887, 10);
+            this.lblNumeroDocumento.Location = new System.Drawing.Point(889, 10);
             this.lblNumeroDocumento.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblNumeroDocumento.Name = "lblNumeroDocumento";
             this.lblNumeroDocumento.Size = new System.Drawing.Size(185, 24);
@@ -417,7 +416,7 @@
             this.lblRazonSocial.Depth = 0;
             this.lblRazonSocial.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblRazonSocial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblRazonSocial.Location = new System.Drawing.Point(948, 54);
+            this.lblRazonSocial.Location = new System.Drawing.Point(950, 54);
             this.lblRazonSocial.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblRazonSocial.Name = "lblRazonSocial";
             this.lblRazonSocial.Size = new System.Drawing.Size(124, 24);
@@ -436,7 +435,7 @@
             this.txtBoxNumeroPedido.SelectedText = "";
             this.txtBoxNumeroPedido.SelectionLength = 0;
             this.txtBoxNumeroPedido.SelectionStart = 0;
-            this.txtBoxNumeroPedido.Size = new System.Drawing.Size(336, 28);
+            this.txtBoxNumeroPedido.Size = new System.Drawing.Size(334, 28);
             this.txtBoxNumeroPedido.TabIndex = 6;
             this.txtBoxNumeroPedido.UseSystemPasswordChar = false;
             // 
@@ -452,7 +451,7 @@
             this.txtBoxNombre.SelectedText = "";
             this.txtBoxNombre.SelectionLength = 0;
             this.txtBoxNombre.SelectionStart = 0;
-            this.txtBoxNombre.Size = new System.Drawing.Size(336, 28);
+            this.txtBoxNombre.Size = new System.Drawing.Size(334, 28);
             this.txtBoxNombre.TabIndex = 7;
             this.txtBoxNombre.UseSystemPasswordChar = false;
             // 
@@ -461,14 +460,14 @@
             this.txtBoxCAE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCAE.Depth = 0;
             this.txtBoxCAE.Hint = "";
-            this.txtBoxCAE.Location = new System.Drawing.Point(615, 8);
+            this.txtBoxCAE.Location = new System.Drawing.Point(613, 8);
             this.txtBoxCAE.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCAE.Name = "txtBoxCAE";
             this.txtBoxCAE.PasswordChar = '\0';
             this.txtBoxCAE.SelectedText = "";
             this.txtBoxCAE.SelectionLength = 0;
             this.txtBoxCAE.SelectionStart = 0;
-            this.txtBoxCAE.Size = new System.Drawing.Size(257, 28);
+            this.txtBoxCAE.Size = new System.Drawing.Size(256, 28);
             this.txtBoxCAE.TabIndex = 8;
             this.txtBoxCAE.UseSystemPasswordChar = false;
             // 
@@ -477,14 +476,14 @@
             this.txtBoxApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxApellido.Depth = 0;
             this.txtBoxApellido.Hint = "";
-            this.txtBoxApellido.Location = new System.Drawing.Point(615, 52);
+            this.txtBoxApellido.Location = new System.Drawing.Point(613, 52);
             this.txtBoxApellido.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxApellido.Name = "txtBoxApellido";
             this.txtBoxApellido.PasswordChar = '\0';
             this.txtBoxApellido.SelectedText = "";
             this.txtBoxApellido.SelectionLength = 0;
             this.txtBoxApellido.SelectionStart = 0;
-            this.txtBoxApellido.Size = new System.Drawing.Size(257, 28);
+            this.txtBoxApellido.Size = new System.Drawing.Size(256, 28);
             this.txtBoxApellido.TabIndex = 9;
             this.txtBoxApellido.UseSystemPasswordChar = false;
             // 
@@ -493,14 +492,14 @@
             this.txtBoxRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxRazonSocial.Depth = 0;
             this.txtBoxRazonSocial.Hint = "";
-            this.txtBoxRazonSocial.Location = new System.Drawing.Point(1078, 52);
+            this.txtBoxRazonSocial.Location = new System.Drawing.Point(1080, 52);
             this.txtBoxRazonSocial.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
             this.txtBoxRazonSocial.PasswordChar = '\0';
             this.txtBoxRazonSocial.SelectedText = "";
             this.txtBoxRazonSocial.SelectionLength = 0;
             this.txtBoxRazonSocial.SelectionStart = 0;
-            this.txtBoxRazonSocial.Size = new System.Drawing.Size(308, 28);
+            this.txtBoxRazonSocial.Size = new System.Drawing.Size(306, 28);
             this.txtBoxRazonSocial.TabIndex = 10;
             this.txtBoxRazonSocial.UseSystemPasswordChar = false;
             // 
@@ -509,14 +508,14 @@
             this.txtBoxNumeroDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxNumeroDocumento.Depth = 0;
             this.txtBoxNumeroDocumento.Hint = "";
-            this.txtBoxNumeroDocumento.Location = new System.Drawing.Point(1078, 8);
+            this.txtBoxNumeroDocumento.Location = new System.Drawing.Point(1080, 8);
             this.txtBoxNumeroDocumento.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxNumeroDocumento.Name = "txtBoxNumeroDocumento";
             this.txtBoxNumeroDocumento.PasswordChar = '\0';
             this.txtBoxNumeroDocumento.SelectedText = "";
             this.txtBoxNumeroDocumento.SelectionLength = 0;
             this.txtBoxNumeroDocumento.SelectionStart = 0;
-            this.txtBoxNumeroDocumento.Size = new System.Drawing.Size(308, 28);
+            this.txtBoxNumeroDocumento.Size = new System.Drawing.Size(306, 28);
             this.txtBoxNumeroDocumento.TabIndex = 11;
             this.txtBoxNumeroDocumento.UseSystemPasswordChar = false;
             // 
@@ -530,7 +529,7 @@
             this.tblLayoutPanelBotones.Controls.Add(this.btnVerDetalles, 1, 0);
             this.tblLayoutPanelBotones.Controls.Add(this.btnFacturar, 2, 0);
             this.tblLayoutPanelBotones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelBotones.Location = new System.Drawing.Point(3, 656);
+            this.tblLayoutPanelBotones.Location = new System.Drawing.Point(3, 459);
             this.tblLayoutPanelBotones.Name = "tblLayoutPanelBotones";
             this.tblLayoutPanelBotones.RowCount = 1;
             this.tblLayoutPanelBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));

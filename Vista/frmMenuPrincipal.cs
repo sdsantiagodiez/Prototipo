@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+//using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using LibreriaClasesCompartidas;
@@ -154,52 +154,7 @@ namespace Vista
         }
         #endregion
 
-        private void exportarDatos(Type T)
-        {
-            FolderBrowserDialog lcl_fbd = new FolderBrowserDialog();
-            lcl_fbd.Description = "Destino de Datos a Exportar";
-
-            if (lcl_fbd.ShowDialog() == DialogResult.OK)
-            {
-                string direccionDeArchivo = lcl_fbd.SelectedPath;
-                bool exito = false;
-                ControladorExcel lcl_con_excel = new ControladorExcel();
-                
-                frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Realizando exportación de datos.");
-                frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
-                
-                BackgroundWorker bw = new BackgroundWorker();
-                bw.DoWork += (s, e) =>
-                {
-                    exito = lcl_con_excel.ExportarAExcel(T,direccionDeArchivo);
-                };
-                bw.RunWorkerCompleted += (s, e) =>
-                {
-                    lcl_frm_loading.Hide();
-
-                    if(exito)
-                    {
-                        MessageBox.Show(lcl_con_excel.errorActual,"Éxito",MessageBoxButtons.OK);
-                    }
-                    else
-                    {
-                        System.Windows.Forms.DialogResult dialogResult = MessageBox.Show(lcl_con_excel.errorActual,"Error",MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
-                        if (dialogResult == System.Windows.Forms.DialogResult.Retry)
-                        {
-                            this.exportarDatos(T);
-                        }
-                    }
-                };
-
-                bw.RunWorkerAsync();
-                lcl_frm_loading.ShowDialog();  
-            }
-            else
-            {
-                return;
-            }
-        }
-
+        #region Auxiliares para agregar forms
         private void agregarFormulario(Form p_form)
         {
             Type T = p_form.GetType();
@@ -217,7 +172,6 @@ namespace Vista
                 }    
             }
         }
-
         private bool validarAgregarFormulario(Type T)
         {
             if (currentFormLocked)
@@ -246,6 +200,8 @@ namespace Vista
         }
         #endregion
 
+        #endregion
+
         #region Eventos
 
         #region Timer
@@ -256,7 +212,7 @@ namespace Vista
         }
         #endregion
 
-        #region ToolStripMenuItem
+        #region ABMs
         private void tsmi_ABMentidades_Click(object sender, EventArgs e)
         {
             if ( !this.validarAgregarFormulario(typeof(frmABMEntidad)))
@@ -278,7 +234,6 @@ namespace Vista
             glb_form = new frmABMArticulo();
             this.agregarFormulario(glb_form);
         }
-
         private void tsmi_ABMdescuentos_Click(object sender, EventArgs e)
         {
             if (!this.validarAgregarFormulario(typeof(frmABMDescuentos)))
@@ -292,8 +247,8 @@ namespace Vista
             (glb_form as frmABMDescuentos).abrirDescuentosArticuloProveedor += evento_agregarFormEmergente;
         }
         #endregion
-   
-        #region toolStripButton
+
+        #region Pedidos
         private void toolStripbtnPedidoCliente_Click(object sender, EventArgs e)
         {
             if (!this.validarAgregarFormulario(typeof(frmPedidoCierre)))
@@ -306,15 +261,15 @@ namespace Vista
                 {
                     return;
                 }
-                
+
             }
 
             if (glb_form != null && glb_form.GetType() == typeof(frmPedidoCierre) && (glb_form as frmPedidoCierre).getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
             {
                 glb_form.Close();
             }
-            
-            glb_form = new frmPedidoCierre(new ModeloPedido() {codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoPersona });
+
+            glb_form = new frmPedidoCierre(new ModeloPedido() { codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoPersona });
             this.agregarFormulario(glb_form);
 
             (glb_form as frmPedidoCierre).AgregarLineaPedido += evento_agregarFormEmergente;
@@ -322,7 +277,6 @@ namespace Vista
             (glb_form as frmPedidoCierre).MostrarDetallesArticulo += evento_agregarFormEmergente;
 
         }
-
         private void toolStripbtnPedidoProveedor_Click(object sender, EventArgs e)
         {
             if (!this.validarAgregarFormulario(typeof(frmPedidoCierre)))
@@ -340,14 +294,13 @@ namespace Vista
             {
                 glb_form.Close();
             }
-            
+
             glb_form = new frmPedidoCierre(new ModeloPedido() { codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoProveedor });
             this.agregarFormulario(glb_form);
 
             (glb_form as frmPedidoCierre).AgregarLineaPedido += evento_agregarFormEmergente;
             (glb_form as frmPedidoCierre).MostrarDetallesArticulo += evento_agregarFormEmergente;
         }
-
         private void tlsbtnDevolucion_Click(object sender, EventArgs e)
         {
             if (!this.validarAgregarFormulario(typeof(frmPedidoDevolucion)))
@@ -359,9 +312,20 @@ namespace Vista
             this.agregarFormulario(glb_form);
             (glb_form as frmPedidoDevolucion).IniciarDevolucionPedido += evento_iniciarDevolverPedido;
         }
+        private void toolStripbtnGestionPedidos_Click(object sender, EventArgs e)
+        {
+            if (!this.validarAgregarFormulario(typeof(frmPedidoGestion)))
+            {
+                return;
+            }
 
+            glb_form = new frmPedidoGestion();
+            (glb_form as frmPedidoGestion).verDetallesPedido += evento_agregarFormEmergente;
+            this.agregarFormulario(glb_form);
+        }
+        #endregion
 
-
+        #region Reportes
         private void toolStripbtnReportes_Click(object sender, EventArgs e)
         {
             if (!this.validarAgregarFormulario(typeof(frmReporteSeleccion)))
@@ -373,7 +337,8 @@ namespace Vista
             this.agregarFormulario(glb_form);
         }
         #endregion
- 
+
+        #region Auxiliares para agregar forms
         /// <summary>
         /// Forms nacidas de formularios principales que ocupan todo el panel principal. Ej: frmPedidoNuevo en frmPedidoCierre para agregar lineas
         /// </summary>
@@ -390,7 +355,6 @@ namespace Vista
             }
             this.currentFormLocked = true;
         }
-
         public void evento_cerrarFormEmergente(object sender, EventArgs e)
         {
             this.currentFormLocked = false;
@@ -412,7 +376,54 @@ namespace Vista
         }
         #endregion
 
-        #region ToolStripMenuItem Exportar
+        #region Exportar, importar, BackUp y restauración de base de datos
+      
+        #region Exportar
+        private void exportarDatos(Type T)
+        {
+            FolderBrowserDialog lcl_fbd = new FolderBrowserDialog();
+            lcl_fbd.Description = "Destino de Datos a Exportar";
+
+            if (lcl_fbd.ShowDialog() == DialogResult.OK)
+            {
+                string direccionDeArchivo = lcl_fbd.SelectedPath;
+                bool exito = false;
+                ControladorExcel lcl_con_excel = new ControladorExcel();
+
+                frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Realizando exportación de datos.");
+                frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
+
+                BackgroundWorker bw = new BackgroundWorker();
+                bw.DoWork += (s, e) =>
+                {
+                    exito = lcl_con_excel.ExportarAExcel(T, direccionDeArchivo);
+                };
+                bw.RunWorkerCompleted += (s, e) =>
+                {
+                    lcl_frm_loading.Hide();
+
+                    if (exito)
+                    {
+                        MessageBox.Show(lcl_con_excel.errorActual, "Éxito", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        System.Windows.Forms.DialogResult dialogResult = MessageBox.Show(lcl_con_excel.errorActual, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                        if (dialogResult == System.Windows.Forms.DialogResult.Retry)
+                        {
+                            this.exportarDatos(T);
+                        }
+                    }
+                };
+
+                bw.RunWorkerAsync();
+                lcl_frm_loading.ShowDialog();
+            }
+            else
+            {
+                return;
+            }
+        }
         private void articuloProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.exportarDatos(typeof(ModeloArticuloProveedores));
@@ -432,9 +443,9 @@ namespace Vista
         {
             this.exportarDatos(typeof(ModeloProveedor));
         }
-
         #endregion
-
+       
+        #region Importar
         private void artículoImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!this.validarAgregarFormulario(typeof(frmImportar)))
@@ -487,7 +498,7 @@ namespace Vista
                 return;
             }
 
-            glb_form = new frmImportar(typeof(ModeloValorArticulo),true);
+            glb_form = new frmImportar(typeof(ModeloValorArticulo), true);
 
             this.agregarFormulario(glb_form);
         }
@@ -503,24 +514,14 @@ namespace Vista
 
             this.agregarFormulario(glb_form);
         }
+        #endregion
 
-        private void toolStripbtnGestionPedidos_Click(object sender, EventArgs e)
-        {
-            if (!this.validarAgregarFormulario(typeof(frmPedidoGestion)))
-            {
-                return;
-            }
-
-            glb_form = new frmPedidoGestion();
-            (glb_form as frmPedidoGestion).verDetallesPedido += evento_agregarFormEmergente;
-            this.agregarFormulario(glb_form);
-        }
-
+        #region BackUp base de datos
         private void backUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog lcl_fbd = new FolderBrowserDialog();
             lcl_fbd.Description = "Destino de Archivo de Respaldo de Base de Datos";
-            lcl_fbd.SelectedPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName +"\\Datos";
+            lcl_fbd.SelectedPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Datos";
             string folderLocation;
             if (lcl_fbd.ShowDialog() == DialogResult.OK)
             {
@@ -535,22 +536,24 @@ namespace Vista
                 };
                 bw.RunWorkerCompleted += (s, ev) =>
                 {
-                lcl_frm_loading.Hide();
-                if (exitoBackUp)
-                { MessageBox.Show("El BackUp se realizó correctamente.", "Back Up OK", MessageBoxButtons.OK, MessageBoxIcon.Information); }
-                else
-                { MessageBox.Show("Error al realizar el BackUp.", "Back Up Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                    lcl_frm_loading.Hide();
+                    if (exitoBackUp)
+                    { MessageBox.Show("El BackUp se realizó correctamente.", "Back Up OK", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                    else
+                    { MessageBox.Show("Error al realizar el BackUp.", "Back Up Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 };
 
                 bw.RunWorkerAsync();
-                lcl_frm_loading.ShowDialog(); 
+                lcl_frm_loading.ShowDialog();
             }
             else
             {
                 return;
             }
         }
+        #endregion
 
+        #region Restaurar Base de datos
         private void restaurarBaseDeDatosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string filePath = null;
@@ -575,7 +578,7 @@ namespace Vista
         {
             bool exito = false;
             ControladorBD lcl_con_bd = new ControladorBD();
-            
+
             frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Realizando restauración de base de datos.");
             frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
 
@@ -599,9 +602,13 @@ namespace Vista
             };
 
             bw.RunWorkerAsync();
-            lcl_frm_loading.ShowDialog();  
+            lcl_frm_loading.ShowDialog();
         }
+        #endregion
 
+        #endregion
+
+        #region Manual de Ayuda
         private void mostrarManualDeAyuda(object sender, EventArgs e)
         {
             if (glb_form == null)
@@ -701,7 +708,9 @@ namespace Vista
             Help.ShowHelp(glb_form, lcl_dir_help, HelpNavigator.Topic, topic + ".htm");
 
         }
+        #endregion
 
+        #region Funciones de texto
         private void copiarTextoEnControl(object sender, EventArgs e)
         {
             if ((this.ActiveControl as Form) == null)
@@ -824,7 +833,9 @@ namespace Vista
                 }
             }
         }
+        #endregion
 
+        #region Eventos propios de frmMenuPrincipal
         private void frmMenuPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Validar que se puede cerrar
@@ -837,7 +848,8 @@ namespace Vista
                 e.Cancel = true;
             }
         }
-    }
+        #endregion
 
-    
+        #endregion
+    }    
 }

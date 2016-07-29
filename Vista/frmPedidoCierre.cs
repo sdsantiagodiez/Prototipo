@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using Controladores;
-using Reportes;
 using LibreriaClasesCompartidas;
 
 
@@ -956,16 +955,14 @@ namespace Vista
 
         private bool imprimirFactura()
         {            
-            Controladores.ControladorReportes lcl_con_reporte = new ControladorReportes();
-            lcl_con_reporte.ImpresionFacturas(controlador.pedidoActual).ShowDialog();
+            new Reportes.frmImpresionComprobante(controlador.pedidoActual).ShowDialog();
             
             return true;
         }
         private bool imprimirpedido()
         {
-            ControladorReportes lcl_con_reporte = new ControladorReportes();
             this.controlador.pedidoActual.tipoComprobante = 0;// Seteamos el tipo de comprobante en 0 para que sea remito
-            lcl_con_reporte.ImpresionFacturas(controlador.pedidoActual).ShowDialog();
+            new Reportes.frmImpresionComprobante(controlador.pedidoActual).ShowDialog();
             return true;
         }
         private bool guardarPedido()

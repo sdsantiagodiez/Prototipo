@@ -108,26 +108,26 @@ namespace Vista
         public override void inicializarForm(int ventanaAncho, int ventanaAlto)
         {
             this.tblLayoutPanelPrincipal.Width = ventanaAncho - 20; //un margen derecho de 20 para que se vea scrollbar
-            this.pnlBase.Width = ventanaAncho - 3;  //un márgen derecho de 3
+            this.pnlBase.Width = ventanaAncho;  //un márgen derecho de 3
             this.pnlBase.Height = ventanaAlto - 60; //un márgen arriba para que se vea título
             if (pnlBase.Height < 800)
             {
                 this.tblLayoutPanelPrincipal.Height = 800;  //Mínimo
-                
+                this.tblLayoutPanelPrincipal.Width = ventanaAncho - 30; //un margen derecho de 30 para que se vea scrollbar
                 this.pnlBase.AutoScroll = true;
-                ScrollBar vScrollBar = new VScrollBar();
-                vScrollBar.Dock = DockStyle.Right;
-                vScrollBar.Scroll += (sender, e) => { pnlBase.VerticalScroll.Value = vScrollBar.Value; };
-                pnlBase.Controls.Add(vScrollBar);
+                //ScrollBar vScrollBar = new VScrollBar();
+                //vScrollBar.Dock = DockStyle.Right;
+                //vScrollBar.Scroll += (sender, e) => { pnlBase.VerticalScroll.Value = vScrollBar.Value; };
+                //pnlBase.Controls.Add(vScrollBar);
             }
             else
             {
                 this.tblLayoutPanelPrincipal.Height = pnlBase.Height; ; // 60 pixeles para que se vea título de ventana principal
             }
 
-            int x = Convert.ToInt16(Math.Round(Convert.ToDouble((Width - this.tblLayoutPanelPrincipal.Width) / 2) ));
+            int x = Convert.ToInt16(Math.Round(Convert.ToDouble((Width - this.tblLayoutPanelPrincipal.Width) / 2)));
             this.tblLayoutPanelPrincipal.Location = new Point(10, 0);
-            this.pnlBase.Location = new Point(0,65);
+            this.pnlBase.Location = new Point(0, 60);
         }
         
         public override void inicializarModoFormularioInicio()
@@ -1670,6 +1670,7 @@ namespace Vista
         }
 
         #endregion           
+
 
         
     }

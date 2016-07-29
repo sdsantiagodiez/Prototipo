@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Datos;
 using Modelos;
 using Reportes;
-using Vista;
 using System.Windows;
 using LibreriaClasesCompartidas;
 
@@ -124,8 +123,6 @@ namespace Controladores
 
             return lcl_frm_reporte;
 
-
-
         }
 
         public FormReportes ReporteTop10Articulos(DateTime p_fechaInicio, DateTime p_fechaFin)
@@ -137,16 +134,12 @@ namespace Controladores
             FormReportes lcl_frm_reporte = new FormReportes(lcl_mod_ReporteEncabezadoTop10Articulos,"Top 10 Articulos");
 
             return lcl_frm_reporte;
-            
-
         }
         public FormReportes ReporteEmitePedido(ModeloPedido p_modeloPedido, ModeloPersonas p_modeloPersona)
         {
-
             FormReportes lcl_frm_reporte = new FormReportes(p_modeloPedido, p_modeloPersona);
 
             return lcl_frm_reporte;
-            
 
         }
 
@@ -177,18 +170,15 @@ namespace Controladores
             return lcl_frm_reporte;
         }
 
-        public frmImpresionFactura ImpresionFacturas(ModeloPedido p_mod_pedido)
+        public frmImpresionComprobante ImpresionFacturas(ModeloPedido p_mod_pedido)
         {
-
-            frmImpresionFactura lcl_frm_factura = new frmImpresionFactura(new ModeloReporteEncabezadoComprobante(p_mod_pedido), p_mod_pedido.tipoComprobante.ToString());
+            frmImpresionComprobante lcl_frm_factura = new frmImpresionComprobante(p_mod_pedido);
             return lcl_frm_factura;
         }
 
-        public bool ComprobanteAprobado(ModeloPedido p_mod_pedido)
+        private bool ComprobanteAprobado(ModeloPedido p_mod_pedido)
         {
-            if (p_mod_pedido.aprobadoAFIP == "A")
-            { return true; }
-            else { return false; } 
+            return (p_mod_pedido.aprobadoAFIP == "A");
         }
     }
 }

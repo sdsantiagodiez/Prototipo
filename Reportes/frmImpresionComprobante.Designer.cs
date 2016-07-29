@@ -1,6 +1,6 @@
 ﻿namespace Reportes
 {
-    partial class frmImpresionLoteFacturas
+    partial class frmImpresionComprobante
     {
         /// <summary>
         /// Required designer variable.
@@ -32,8 +32,8 @@
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.ModeloReporteEncabezadoFacturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.contenedorLote = new Microsoft.Reporting.WinForms.ReportViewer();
             this.modeloReporteDetalleFacturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.contenedorComprobante = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteEncabezadoFacturaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modeloReporteDetalleFacturaBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -42,36 +42,36 @@
             // 
             this.ModeloReporteEncabezadoFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezadoComprobante);
             // 
-            // contenedorLote
+            // modeloReporteDetalleFacturaBindingSource
             // 
-            this.contenedorLote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.modeloReporteDetalleFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteDetalleComprobante);
+            // 
+            // contenedorComprobante
+            // 
+            this.contenedorComprobante.Dock = System.Windows.Forms.DockStyle.Fill;
             reportDataSource1.Name = "DSFactura";
             reportDataSource1.Value = this.ModeloReporteEncabezadoFacturaBindingSource;
             reportDataSource2.Name = "DSDetalleFactura";
             reportDataSource2.Value = this.ModeloReporteEncabezadoFacturaBindingSource;
-            this.contenedorLote.LocalReport.DataSources.Add(reportDataSource1);
-            this.contenedorLote.LocalReport.DataSources.Add(reportDataSource2);
-            this.contenedorLote.LocalReport.ReportEmbeddedResource = "Reportes.FacturaA.rdlc";
-            this.contenedorLote.Location = new System.Drawing.Point(0, 0);
-            this.contenedorLote.Name = "contenedorLote";
-            this.contenedorLote.Size = new System.Drawing.Size(792, 489);
-            this.contenedorLote.TabIndex = 0;
+            this.contenedorComprobante.LocalReport.DataSources.Add(reportDataSource1);
+            this.contenedorComprobante.LocalReport.DataSources.Add(reportDataSource2);
+            this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.FacturaA.rdlc";
+            this.contenedorComprobante.Location = new System.Drawing.Point(0, 0);
+            this.contenedorComprobante.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.contenedorComprobante.Name = "contenedorComprobante";
+            this.contenedorComprobante.Size = new System.Drawing.Size(1103, 679);
+            this.contenedorComprobante.TabIndex = 0;
             // 
-            // modeloReporteDetalleFacturaBindingSource
+            // frmImpresionComprobante
             // 
-            this.modeloReporteDetalleFacturaBindingSource.DataMember = "detalleFactura";
-            this.modeloReporteDetalleFacturaBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezadoComprobante);
-            // 
-            // frmImpresionLoteFacturas
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 489);
-            this.Controls.Add(this.contenedorLote);
-            this.MaximizeBox = false;
-            this.Name = "frmImpresionLoteFacturas";
-            this.Text = "frmImpresionLoteFacturas";
-            this.Load += new System.EventHandler(this.frmImpresionLoteFacturas_Load);
+            this.ClientSize = new System.Drawing.Size(1103, 679);
+            this.Controls.Add(this.contenedorComprobante);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "frmImpresionComprobante";
+            this.Text = "frmImpresionFactura";
+            this.Load += new System.EventHandler(this.frmImpresionFactura_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteEncabezadoFacturaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modeloReporteDetalleFacturaBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -80,7 +80,7 @@
 
         #endregion
 
-        private Microsoft.Reporting.WinForms.ReportViewer contenedorLote;
+        private Microsoft.Reporting.WinForms.ReportViewer contenedorComprobante;
         private System.Windows.Forms.BindingSource ModeloReporteEncabezadoFacturaBindingSource;
         private System.Windows.Forms.BindingSource modeloReporteDetalleFacturaBindingSource;
     }

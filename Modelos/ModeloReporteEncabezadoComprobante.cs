@@ -9,7 +9,7 @@ namespace Modelos
     public class ModeloReporteEncabezadoComprobante
     {
 
-        public List<ModeloReporteDetalleFactura> detalleFactura {get;set;}
+        public List<ModeloReporteDetalleComprobante> detalleFactura {get;set;}
         public string Comprador_RazonSocial { get; set; }
         public string Comprador_Domicilio { get; set; }
         public string Comprador_Cuit { get; set; }
@@ -27,14 +27,12 @@ namespace Modelos
         public DateTime FechaVencimiento { get; set; }
         public string CondicionVenta { get; set; }
 
-        public ModeloReporteEncabezadoComprobante()
-        { }
-
-        public ModeloReporteEncabezadoComprobante(ModeloPedido p_mod_pedido) : this()
+        public ModeloReporteEncabezadoComprobante(ModeloPedido p_mod_pedido) 
         {
             // Carga en modelo Reportepedido Que hacemos si no esta aprobado, donde validamos?
+            // Si no esta aprobado por afip, imprimimos igual
             
-            this.detalleFactura = new List<ModeloReporteDetalleFactura>();
+            this.detalleFactura = new List<ModeloReporteDetalleComprobante>();
             this.CAINumero = p_mod_pedido.CAE;
             this.Alicuota = Convert.ToDecimal(p_mod_pedido.alicuota.iva.porcentaje);
             this.CentroEmisor = "0001";//p_mod_pedido.numeroComprobante;
@@ -50,17 +48,9 @@ namespace Modelos
             this.Comprador_RazonSocial = p_mod_pedido.entidad.ToString();
             //lcl_mod_Factura.ConceptosNoGravados = p_mod_pedido.
             this.CondicionVenta = (p_mod_pedido.formasDePago == null) ? p_mod_pedido.formasDePago[0].forma.ToString() : null;
-            for (int i = 0; i < p_mod_pedido.lineasPedido.Count; i++)
+            foreach (ModeloLineaPedido lp in p_mod_pedido.lineasPedido)
             {
-                ModeloReporteDetalleFactura lcl_mod_detalle = new ModeloReporteDetalleFactura();
-                lcl_mod_detalle.Cantidad = p_mod_pedido.lineasPedido[i].cantidadArticulos;
-                lcl_mod_detalle.CodigoArticulo = p_mod_pedido.lineasPedido[i].articulo.codigoArticuloProveedor;
-                lcl_mod_detalle.Descripcion = p_mod_pedido.lineasPedido[i].articulo.descripcion;
-                lcl_mod_detalle.PrecioUnitario = p_mod_pedido.lineasPedido[i].valorUnitario;
-                lcl_mod_detalle.Precio = p_mod_pedido.lineasPedido[i].valorParcial;
-                lcl_mod_detalle.Descuento = p_mod_pedido.lineasPedido[i].getDescuento();
-
-                this.detalleFactura.Add(lcl_mod_detalle);
+                this.detalleFactura.Add(new ModeloReporteDetalleComprobante(lp));
             }
 
             this.FechaComprobante = p_mod_pedido.fecha;
@@ -68,8 +58,7 @@ namespace Modelos
             this.IVAComprobante = p_mod_pedido.alicuota.monto;
             this.Remito = p_mod_pedido.numeroPedido.ToString();
             this.SubtotalComprobante = p_mod_pedido.montoSubTotal;
-            this.TotalComprobante = p_mod_pedido.montoTotal;
-            
+            this.TotalComprobante = p_mod_pedido.montoTotal;  
         }
     }
 }

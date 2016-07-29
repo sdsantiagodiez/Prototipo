@@ -161,12 +161,6 @@
     <Compile Include="frmPedidoNuevo_editarCantidad.Designer.cs">
       <DependentUpon>frmPedidoNuevo_editarCantidad.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPreferenciasFacturacion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmPreferenciasFacturacion.Designer.cs">
-      <DependentUpon>frmPreferenciasFacturacion.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmReporteSeleccion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,12 +172,6 @@
     </Compile>
     <Compile Include="frmResultadoBusqueda.Designer.cs">
       <DependentUpon>frmResultadoBusqueda.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmSeleccion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmSeleccion.Designer.cs">
-      <DependentUpon>frmSeleccion.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -242,17 +230,11 @@
     <EmbeddedResource Include="frmPedidoNuevo_editarCantidad.resx">
       <DependentUpon>frmPedidoNuevo_editarCantidad.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPreferenciasFacturacion.resx">
-      <DependentUpon>frmPreferenciasFacturacion.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmReporteSeleccion.resx">
       <DependentUpon>frmReporteSeleccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmResultadoBusqueda.resx">
       <DependentUpon>frmResultadoBusqueda.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmSeleccion.resx">
-      <DependentUpon>frmSeleccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
