@@ -1262,7 +1262,7 @@ namespace Vista
         }
         #endregion
 
-        #region Eventos
+         #region Eventos
 
         #region RadioButton
         private void radioButtonCliente_CheckedChanged(object sender, EventArgs e)
