@@ -15,53 +15,57 @@ namespace Reportes
 {
     public partial class frmImpresionComprobante : Form
     {
-        /// <summary>
-        /// Se tiene que cambiar a la carpeta de cada uno. Más adelante agrego algo más dinámico 
-        /// </summary>
-        string path = "c:\\users\\Santiago\\desktop\\Pedido ";
+        #region Atributos
+        public EventHandler CerrarForm;
+        string folderPathPedidosClientes;
+        string folderPathPedidosProveedores;
+        #endregion
 
         #region Constructores
-        private frmImpresionComprobante()
+        public frmImpresionComprobante()
         {
             InitializeComponent();
         }
-        
-        /// <summary>
-        /// Inicializa form con un comprobante a imprimir
-        /// </summary>
-        /// <param name="p_modEncabezado"></param>
-        /// <param name="tipoComprobante"></param>
-        public  frmImpresionComprobante(ModeloPedido p_pedido) : this()
+        public frmImpresionComprobante(string p_folderPathClientes, string p_folderPathProveedores) : this()
         {
-            if (p_pedido == null)
-            {
-                return;
-            }
-            this.mostrarComprobante(p_pedido);
-
-            this.guardarComprobante(p_pedido, path);
-        }
-       
-        /// <summary>
-        /// Inicializa form con múltiples comprobantes a imprimir
-        /// </summary>
-        /// <param name="p_lst_pedidos"></param>
-        public frmImpresionComprobante(List<ModeloPedido> p_lst_pedidos) : this()
-        {
-            if (p_lst_pedidos.Count < 1)
-            {
-                return;
-            }
-            foreach (ModeloPedido pedido in p_lst_pedidos)
-            {
-                this.mostrarComprobante(pedido);
-
-                this.guardarComprobante(pedido, path);
-            }
+            folderPathPedidosClientes = p_folderPathClientes;
+            folderPathPedidosProveedores = p_folderPathProveedores;
         }
         
         #endregion
 
+
+        public bool generarComprobante(ModeloPedido p_pedido)
+        {
+            if (p_pedido == null)
+            {
+                return false;
+            }
+            try
+            {
+                this.mostrarComprobante(p_pedido);
+            }
+            catch (Exception ex)
+            {
+                string p = ex.Message;
+            }
+            this.guardarComprobante(p_pedido);
+
+            return true;
+        }
+
+        public bool generarComprobante(List<ModeloPedido> p_lst_pedidos)
+        {
+            if (p_lst_pedidos.Count < 1)
+            {
+                return false;
+            }
+            foreach (ModeloPedido pedido in p_lst_pedidos)
+            {
+                this.generarComprobante(pedido);
+            }
+            return true;
+        }
         #region Métodos
 
         private void mostrarComprobante(ModeloPedido p_pedido)
@@ -73,29 +77,42 @@ namespace Reportes
             this.iniciarReportEmbeddedResource(p_pedido.tipoComprobante);
 
             this.contenedorComprobante.LocalReport.Refresh();
+            
             this.contenedorComprobante.RefreshReport();
+           
         }
 
         private void iniciarReportEmbeddedResource(int p_tipoComprobante)
         {
+            //lo que esta comentado es un intento de mover frmImpresionComprobante a el proyecto Vista y cargar los archivos rdlc desde alli
+            //string rdlcFile = "";
             switch (p_tipoComprobante)
             {
                 case 1:
                     this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.FacturaA.rdlc";
+                    //rdlcFile = "Reportes.FacturaA.rdlc";
                     break;
                 case 6:
                     this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.FacturaB.rdlc";
+                    //rdlcFile = "Reportes.FacturaB.rdlc";
                     break;
                 case 3:
                     this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoA.rdlc";
+                    //rdlcFile = "Reportes.NCreditoA.rdlc";
                     break;
                 case 8:
                     this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoB.rdlc";
+                    //rdlcFile = "Reportes.NCreditoB.rdlc";
                     break;
                 default:
                     this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.Pedido.rdlc";
+                    //rdlcFile = "Reportes.Pedido.rdlc";
                     break;
             }
+            //System.Reflection.Assembly assembly = System.Reflection.Assembly.LoadFrom("Reportes.dll");
+            //var stream = assembly.GetManifestResourceStream(rdlcFile);
+            
+            //this.contenedorComprobante.LocalReport.LoadReportDefinition(stream);
         }
 
         private void iniciarDataSources(ModeloReporteEncabezadoComprobante p_encabezado)
@@ -117,7 +134,7 @@ namespace Reportes
             //modeloReporteDetalleFacturaBindingSource.DataSource = mod.detalleFactura;
         }
 
-        private bool guardarComprobante(ModeloPedido p_pedido,string p_path)
+        private bool guardarComprobante(ModeloPedido p_pedido)
         {
             try
             {
@@ -128,7 +145,7 @@ namespace Reportes
                 string extension;
                 byte[] bytes = contenedorComprobante.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamids, out warnings);
 
-                FileStream fs = new FileStream(p_path + p_pedido.numeroPedido.ToString() + ".pdf", FileMode.Create);
+                FileStream fs = new FileStream(this.getFileName(p_pedido), FileMode.Create);
                 fs.Write(bytes, 0, bytes.Length);
                 fs.Close();
             }
@@ -139,6 +156,31 @@ namespace Reportes
 
             return true;
         }
+
+        private string getFileName(ModeloPedido p_pedido)
+        {
+            string folderPath;
+            if (p_pedido.codigoTipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            {
+                folderPath = this.folderPathPedidosClientes + "\\";
+            }
+            else
+            {
+                folderPath = this.folderPathPedidosProveedores + "\\";
+            }
+
+            //Pedido_(0|1)_(numeroPedido).pdf   //0|1 si es tipoPedidoCliente o tipoPedidoProveedor
+            string tipoPedido = p_pedido.codigoTipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona ? "CLI" : "PROV";
+
+            string fileName_aux = folderPath + "Pedido_" + tipoPedido + "_" + p_pedido.numeroPedido.ToString();
+            string fileName = fileName_aux + ".pdf";
+            for (int i = 0; System.IO.File.Exists(fileName); i++)
+            {
+                fileName = fileName_aux + "(" + i.ToString() + ")" + ".pdf";
+            }
+            return fileName;
+        }
+        
         #endregion
 
         #region Eventos

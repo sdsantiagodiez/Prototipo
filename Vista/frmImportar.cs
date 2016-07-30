@@ -36,6 +36,7 @@ namespace Vista
             inicializarDgvReview();
             inicializarSeleccionDeColumnas(T);
             this.habilitarImportar(false);
+            this.txtBoxDireccionArchivo.ReadOnly = true;
         }
         /// <summary>
         /// Para importación de precios actualizados de compra o venta de artículos

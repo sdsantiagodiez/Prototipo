@@ -188,6 +188,13 @@ namespace Vista
                 case 6:
                     this.tblLayoutPanelPrincipal_Bottom.BackColor = Color.FromArgb(121,85,72);   //Brown500
                     break;
+                default:
+                    //en caso que no sea ninguno de los preestablecidos, lo seteamos en 0
+                    this.tblLayoutPanelPrincipal_Bottom.BackColor = Color.FromArgb(0, 188, 212);    //Cyan500
+                    Properties.Settings.Default.color_scheme = 0;
+                    Properties.Settings.Default.Save();
+                    break;
+
             }
         }
         #endregion
@@ -206,6 +213,15 @@ namespace Vista
                     this.pnlContenedorForm.Controls.Add(p_form);
                     p_form.Show();
                     (p_form as frmMaterialSkinBase).inicializarForm(this.pnlContenedorForm.Width, this.pnlContenedorForm.Height);
+                    return;
+                }
+                else if (t == typeof(Reportes.frmImpresionComprobante))
+                {
+                    p_form.TopLevel = false;
+                    p_form.Dock = DockStyle.Fill;
+                    this.pnlContenedorForm.Controls.Add(p_form);
+                    p_form.Show();
+                    //(p_form as frmMaterialSkinBase).inicializarForm(this.pnlContenedorForm.Width, this.pnlContenedorForm.Height);
                     return;
                 }    
             }
@@ -299,7 +315,6 @@ namespace Vista
                 {
                     return;
                 }
-
             }
 
             if (glb_form != null && glb_form.GetType() == typeof(frmPedidoCierre) && (glb_form as frmPedidoCierre).getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
@@ -313,6 +328,7 @@ namespace Vista
             (glb_form as frmPedidoCierre).AgregarLineaPedido += evento_agregarFormEmergente;
             (glb_form as frmPedidoCierre).BuscarCliente += evento_agregarFormEmergente;
             (glb_form as frmPedidoCierre).MostrarDetallesArticulo += evento_agregarFormEmergente;
+            (glb_form as frmPedidoCierre).MostrarComprobante += evento_agregarFormEmergente;
 
         }
         private void toolStripbtnPedidoProveedor_Click(object sender, EventArgs e)
@@ -359,6 +375,7 @@ namespace Vista
 
             glb_form = new frmPedidoGestion();
             (glb_form as frmPedidoGestion).verDetallesPedido += evento_agregarFormEmergente;
+            (glb_form as frmPedidoGestion).MostrarComprobante += evento_agregarFormEmergente;
             this.agregarFormulario(glb_form);
         }
         #endregion
@@ -385,8 +402,16 @@ namespace Vista
         public void evento_agregarFormEmergente(object sender, EventArgs e)
         {
             this.agregarFormulario(sender as Form);
-            (sender as frmMaterialSkinBase).BringToFront();
-            (sender as frmMaterialSkinBase).CerrarForm += evento_cerrarFormEmergente;
+            if (sender.GetType() == typeof(Reportes.frmImpresionComprobante))
+            {
+                (sender as Reportes.frmImpresionComprobante).BringToFront();
+                (sender as Reportes.frmImpresionComprobante).CerrarForm += evento_cerrarFormEmergente;
+            }
+            else
+            {
+                (sender as frmMaterialSkinBase).BringToFront();
+                (sender as frmMaterialSkinBase).CerrarForm += evento_cerrarFormEmergente;
+            }
             if (sender.GetType() == typeof(frmPedidoDevolucion))
             {
                 (sender as frmPedidoDevolucion).ContinuarDevolucionPedido += this.evento_continuarDevolverPedido;

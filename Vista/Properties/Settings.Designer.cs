@@ -34,5 +34,41 @@ namespace Vista.Properties {
                 this["color_scheme"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string carpetaPedidosProveedores {
+            get {
+                return ((string)(this["carpetaPedidosProveedores"]));
+            }
+            set {
+                this["carpetaPedidosProveedores"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string carpetaPedidosClientes {
+            get {
+                return ((string)(this["carpetaPedidosClientes"]));
+            }
+            set {
+                this["carpetaPedidosClientes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string carpetaReportes {
+            get {
+                return ((string)(this["carpetaReportes"]));
+            }
+            set {
+                this["carpetaReportes"] = value;
+            }
+        }
     }
 }

@@ -59,6 +59,13 @@ namespace Vista
                 case 6:
                     materialSkinManager.ColorScheme = new ColorScheme(Primary.Brown500, Primary.Brown700, Primary.Brown200, Accent.Pink400, TextShade.WHITE);
                     break;
+                default:
+                    //en caso que no sea ninguno de los preestablecidos, lo seteamos en 0
+                    materialSkinManager.ColorScheme = new ColorScheme(Primary.Cyan500, Primary.Cyan700, Primary.Cyan200, Accent.Red200, TextShade.WHITE);
+                    Properties.Settings.Default.color_scheme = 0;
+                    Properties.Settings.Default.Save();
+                    break;
+
             }
         }
 

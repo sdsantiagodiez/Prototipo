@@ -21,6 +21,7 @@ namespace Vista
         public event EventHandler AgregarLineaPedido;
         public event EventHandler BuscarCliente;
         public event EventHandler MostrarDetallesArticulo;
+        public event EventHandler MostrarComprobante;
         ModeloPedido glb_mod_pedidoOriginalDevolucion;
         List<TipoDocumento> glb_lst_tiposDocumentos;
         ControladorPedido controlador;
@@ -953,18 +954,36 @@ namespace Vista
 
         #region Otros
 
-        private bool imprimirFactura()
-        {            
-            new Reportes.frmImpresionComprobante(controlador.pedidoActual).ShowDialog();
-            
-            return true;
-        }
-        private bool imprimirpedido()
+        private void imprimirpedido()
         {
-            this.controlador.pedidoActual.tipoComprobante = 0;// Seteamos el tipo de comprobante en 0 para que sea remito
-            new Reportes.frmImpresionComprobante(controlador.pedidoActual).ShowDialog();
-            return true;
+            Reportes.frmImpresionComprobante lcl_frm_comprobante = new Reportes.frmImpresionComprobante(Properties.Settings.Default.carpetaPedidosClientes, Properties.Settings.Default.carpetaPedidosProveedores);
+
+            frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Guardando pedido en formato PDF.", "Guardando Comprobante");
+            bool exito = false;
+            BackgroundWorker bw = new BackgroundWorker();
+            bw.DoWork += (s, e) =>
+            {
+                exito = lcl_frm_comprobante.generarComprobante(controlador.pedidoActual);
+            };
+            bw.RunWorkerCompleted += (s, e) =>
+            {
+                lcl_frm_loading.DialogResult = System.Windows.Forms.DialogResult.OK;
+                    
+            };
+            bw.RunWorkerAsync();
+
+            lcl_frm_loading.ShowDialog();
+            if (exito)
+            {
+                this.MostrarComprobante(lcl_frm_comprobante, new EventArgs());
+            }
         }
+        //private void imprimirpedido()
+        //{
+        //    this.controlador.pedidoActual.tipoComprobante = 0;// Seteamos el tipo de comprobante en 0 para que sea remito
+        //    new Reportes.frmImpresionComprobante(controlador.pedidoActual,Properties.Settings.Default["carpetaPedidosProveedores"].ToString()).ShowDialog();
+
+        //}
         private bool guardarPedido()
         {
             DialogResult dialogResult = new DialogResult();  
@@ -1236,14 +1255,7 @@ namespace Vista
             {
                 return;
             }
-            //if (this.guardarPedido())
-            //{
-                if (this.imprimirpedido())
-                {
-                    MessageBox.Show("Operación exitosa", "Éxito", MessageBoxButtons.OK);
-                }
-                this.inicializarPedidoCerrado();
-            //}
+            this.imprimirpedido();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -1276,8 +1288,7 @@ namespace Vista
                 }
                 if(DialogResult.OK==(MessageBox.Show("¿Desea imprimir la Factura?", "Impresión de Factura Electrónica",MessageBoxButtons.OKCancel)))
                 {
-                    if (this.imprimirFactura())
-                    { MessageBox.Show("Operación exitosa", "Éxito", MessageBoxButtons.OK); }
+                    this.imprimirpedido();
                 }
             }
             

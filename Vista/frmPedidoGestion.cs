@@ -19,6 +19,7 @@ namespace Vista
         List<ModeloPedido> glb_lst_pedidosSeleccionados;
         MaterialSkin.Controls.MaterialContextMenuStrip cntxMenuResultadoBusqueda;
         public EventHandler verDetallesPedido;
+        public EventHandler MostrarComprobante;
         bool cerrarVentana = true;//cuando se abre un pedido para ver detalle y se cierra desde la X arriba a la derecha, como que sigue cliqueando y cierra este form que esta abajo
         #endregion
 
@@ -535,7 +536,27 @@ namespace Vista
                 return;
             }
 
-            (new Reportes.frmImpresionComprobante(this.glb_lst_pedidosSeleccionados)).ShowDialog();
+            Reportes.frmImpresionComprobante lcl_frm_comprobante = new Reportes.frmImpresionComprobante(Properties.Settings.Default.carpetaPedidosClientes, Properties.Settings.Default.carpetaPedidosProveedores);
+
+            frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Guardando pedido en formato PDF.", "Guardando Comprobante");
+            bool exito = false;
+            BackgroundWorker bw = new BackgroundWorker();
+            bw.DoWork += (s, e) =>
+            {
+                exito = lcl_frm_comprobante.generarComprobante(glb_lst_pedidosSeleccionados);
+            };
+            bw.RunWorkerCompleted += (s, e) =>
+            {
+                lcl_frm_loading.DialogResult = System.Windows.Forms.DialogResult.OK;
+
+            };
+            bw.RunWorkerAsync();
+
+            lcl_frm_loading.ShowDialog();
+            if (exito)
+            {
+                this.MostrarComprobante(lcl_frm_comprobante, new EventArgs());
+            }
         }
         #endregion
 

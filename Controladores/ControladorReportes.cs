@@ -170,12 +170,6 @@ namespace Controladores
             return lcl_frm_reporte;
         }
 
-        public frmImpresionComprobante ImpresionFacturas(ModeloPedido p_mod_pedido)
-        {
-            frmImpresionComprobante lcl_frm_factura = new frmImpresionComprobante(p_mod_pedido);
-            return lcl_frm_factura;
-        }
-
         private bool ComprobanteAprobado(ModeloPedido p_mod_pedido)
         {
             return (p_mod_pedido.aprobadoAFIP == "A");
