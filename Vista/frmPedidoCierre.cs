@@ -4,14 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using Controladores;
 using LibreriaClasesCompartidas;
-
-
 
 namespace Vista
 {
@@ -1286,7 +1284,7 @@ namespace Vista
                 {
                     this.inicializarPedidoFacturado();
                 }
-                if(DialogResult.OK==(MessageBox.Show("¿Desea imprimir la Factura?", "Impresión de Factura Electrónica",MessageBoxButtons.OKCancel)))
+                if(DialogResult.Yes==(MessageBox.Show("¿Desea imprimir la Factura?", "Impresión de Factura Electrónica",MessageBoxButtons.YesNo)))
                 {
                     this.imprimirpedido();
                 }

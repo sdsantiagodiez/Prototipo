@@ -22,5 +22,41 @@ namespace Controladores.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string afip_certificado {
+            get {
+                return ((string)(this["afip_certificado"]));
+            }
+            set {
+                this["afip_certificado"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string afip_contrasenia {
+            get {
+                return ((string)(this["afip_contrasenia"]));
+            }
+            set {
+                this["afip_contrasenia"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string afip_cuitEmisor {
+            get {
+                return ((string)(this["afip_cuitEmisor"]));
+            }
+            set {
+                this["afip_cuitEmisor"] = value;
+            }
+        }
     }
 }

@@ -44,6 +44,7 @@ namespace Vista
                 MessageBox.Show("El usuario actual no posee roles asignados. Contacte al administrador.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             this.actualizarColores();
+            ControladorAFIP.Iniciar();
         }
         #endregion
 
@@ -629,7 +630,6 @@ namespace Vista
                 if (lcl_ofd.CheckPathExists && lcl_ofd.CheckFileExists)
                 {
                     filePath = lcl_ofd.FileName;
-
                 }
             }
             if (!string.IsNullOrWhiteSpace(filePath))

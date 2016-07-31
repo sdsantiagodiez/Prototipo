@@ -60,13 +60,19 @@ namespace Vista
         }
         private void inicializarTextBoxes()
         {
-            this.txtBoxCarpetaPedidosClientes.ReadOnly = true;
-            this.txtBoxCarpetaPedidosProveedores.ReadOnly = true;
-            this.txtBoxCarpetaReportes.ReadOnly = true;
+            this.txtBoxCarpetaPedidosClientes.ReadOnly = 
+                this.txtBoxCarpetaPedidosProveedores.ReadOnly = 
+                this.txtBoxCarpetaReportes.ReadOnly = 
+                this.txtBoxCertificado.ReadOnly = true;
 
-            this.txtBoxCarpetaPedidosClientes.Text = Properties.Settings.Default["carpetaPedidosClientes"].ToString();
-            this.txtBoxCarpetaPedidosProveedores.Text = Properties.Settings.Default["carpetaPedidosProveedores"].ToString();
-            this.txtBoxCarpetaReportes.Text = Properties.Settings.Default["carpetaReportes"].ToString();
+            this.txtBoxCarpetaPedidosClientes.Text = Properties.Settings.Default.carpetaPedidosClientes;
+            this.txtBoxCarpetaPedidosProveedores.Text = Properties.Settings.Default.carpetaPedidosProveedores;
+            this.txtBoxCarpetaReportes.Text = Properties.Settings.Default.carpetaReportes;
+            
+            this.txtBoxCertificado.Text = Controladores.ControladorAFIP.CertificadoPath;
+            this.txtBoxContrasenia.Text = Controladores.ControladorAFIP.PasswordCertificado;
+            this.txtBoxCUIT.Text = Controladores.ControladorAFIP.CuitEmisor;
+
         }
         private void inicializarButtons()
         {
@@ -163,5 +169,45 @@ namespace Vista
             this.actualizarColores();
         }
         #endregion
+
+        private void btnCertificado_Click(object sender, EventArgs e)
+        {
+            string filePath = this.getFilePath("Certificado|*.pfx");
+            if (!string.IsNullOrWhiteSpace(filePath))
+            {
+                Controladores.ControladorAFIP.CertificadoPath = filePath;
+                this.txtBoxCertificado.Text = filePath;
+            }
+        }
+        private string getFilePath(string p_filtros)
+        {
+            OpenFileDialog lcl_ofd = new OpenFileDialog();
+            lcl_ofd.Filter = p_filtros;
+            lcl_ofd.FilterIndex = 1;
+            lcl_ofd.Multiselect = false;
+            if (lcl_ofd.ShowDialog() == DialogResult.OK)
+            {
+                if (lcl_ofd.CheckPathExists && lcl_ofd.CheckFileExists)
+                {
+                    return lcl_ofd.FileName;
+                }
+            }
+            return null;
+        }
+
+        private void frmOpciones_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Controladores.ControladorAFIP.CuitEmisor = this.txtBoxCUIT.Text;
+            Controladores.ControladorAFIP.PasswordCertificado = this.txtBoxContrasenia.Text;
+
+            if (!Controladores.ControladorAFIP.GuardarCambios())
+            {
+                if (MessageBox.Show("Los datos ingresados para facturación electrónica no son validos. Si continua, los cambios no se guardarán." + System.Environment.NewLine +
+                    "¿Continuar?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == System.Windows.Forms.DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
     }
 }

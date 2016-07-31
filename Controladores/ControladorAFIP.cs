@@ -10,27 +10,78 @@ namespace Controladores
 {
     public class ControladorAFIP : Controlador
     {
+        #region Atributos
         string afipFolderPath;
-        string certificadoPath;
-        string passwordCertificado;
-        string cuitEmisor;
         string ticketPath;
+        //PasswordCertificado = "prueba123";
+        //CuitEmisor = "20356445393"; //Debe ser el mismo cuit que el que está en el certificado
+        public static string CertificadoPath;
+        public static string PasswordCertificado;
+        public static string CuitEmisor;
+        #endregion
 
+        #region Constructores
         public ControladorAFIP()
         {
             afipFolderPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\AFIP";
-            certificadoPath = afipFolderPath + @"\certificado.pfx";
-            passwordCertificado = "prueba123";
-            cuitEmisor = "20356445393"; //Debe ser el mismo cuit que el que está en el certificado
+            
             ticketPath = afipFolderPath + @"\ticket.txt";
         }
-    
+        #endregion
+
+        #region Métodos
+
+        #region Static
+        /// <summary>
+        /// Carga atributos config en clase
+        /// </summary>
+        public static void Iniciar()
+        {
+            CertificadoPath = Properties.Settings.Default.afip_certificado;
+            PasswordCertificado = Properties.Settings.Default.afip_contrasenia;
+            CuitEmisor = Properties.Settings.Default.afip_cuitEmisor;
+        }
+        /// <summary>
+        /// Valida los datos ingresados de certificado, password y cuit para poder facturar
+        /// </summary>
+        /// <returns></returns>
+        public static bool Validar()
+        {
+            if (String.IsNullOrWhiteSpace(CertificadoPath) ||
+                String.IsNullOrWhiteSpace(PasswordCertificado) ||
+                String.IsNullOrWhiteSpace(CuitEmisor))
+            {
+                return false;
+            }
+        
+            return true;
+        }
+
+        /// <summary>
+        /// Valida y Guarda cambios en los atributos de la clase
+        /// </summary>
+        /// <returns></returns>
+        public static bool GuardarCambios()
+        {
+            if (!Validar())
+            {
+                return false;
+            }
+
+            Properties.Settings.Default.afip_certificado = CertificadoPath;
+            Properties.Settings.Default.afip_contrasenia = PasswordCertificado;
+            Properties.Settings.Default.afip_cuitEmisor = CuitEmisor;
+            Properties.Settings.Default.Save();
+            return true;
+        }
+        #endregion
+
         public bool facturar(ModeloPedido p_mod_pedido)
         {
             string respuesta ;
             WSAFIPFE.Factura fe = new WSAFIPFE.Factura();
-            bool bResultado = fe.iniciar(0, cuitEmisor, certificadoPath, ""); //0 modo homologación, 1 en producción. Sólo usar 0
-            if (bResultado)
+
+            if (fe.iniciar(0, CuitEmisor, CertificadoPath, ""))
             {   
                 if (this.getTicketAcceso(fe))
                 {
@@ -55,8 +106,7 @@ namespace Controladores
                     fe.ArchivoXMLRecibido = afipFolderPath + @"\XML\recibido.xml";
                     fe.ArchivoXMLEnviado = afipFolderPath + @"\XML\enviado.xml";
 
-                    bResultado = fe.F1CAESolicitar();
-                    if (bResultado)
+                    if (fe.F1CAESolicitar())
                     {
                         respuesta = "Resultado verdadero ";
                         if(fe.F1RespuestaResultado == "A")
@@ -199,7 +249,7 @@ namespace Controladores
         public bool validarConexion()
         {
             WSAFIPFE.Factura fe = new WSAFIPFE.Factura();
-            if (fe.iniciar(0, cuitEmisor, certificadoPath, "") )//0 modo homologación, 1 en producción. Sólo usar 0
+            if (fe.iniciar(0, CuitEmisor, CertificadoPath, "") )//0 modo homologación, 1 en producción. Sólo usar 0
             {
                 if (!this.getTicketAcceso(fe))
                 {
@@ -250,7 +300,7 @@ namespace Controladores
             }
             else
             {
-                p_facturaElectronica.ArchivoCertificadoPassword = passwordCertificado;
+                p_facturaElectronica.ArchivoCertificadoPassword = PasswordCertificado;
                 bResultado = p_facturaElectronica.f1ObtenerTicketAcceso();
                 this.guardarTicketAcceso(p_facturaElectronica);
             }
@@ -291,5 +341,6 @@ namespace Controladores
             }
             return "Código Error: "+ codigoError.ToString() + Environment.NewLine + mensajeError;
         }
+        #endregion
     }
 }

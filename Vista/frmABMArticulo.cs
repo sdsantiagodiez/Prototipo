@@ -833,13 +833,16 @@ namespace Vista
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
-            DialogResult dialog = MessageBox.Show("Esta seguro que desea quitar la imagen?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialog == DialogResult.Yes)
+            if (System.IO.File.Exists(this.glb_mod_articulo.imagen))
             {
-                System.IO.File.Delete(this.glb_mod_articulo.imagen);
-                this.glb_mod_articulo.imagen = null;
-                this.picBoxImagen.Image = null;
-                this.pathimagen.Text=null;
+                DialogResult dialog = MessageBox.Show("Esta seguro que desea quitar la imagen?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialog == DialogResult.Yes)
+                {
+                    System.IO.File.Delete(this.glb_mod_articulo.imagen);
+                    this.glb_mod_articulo.imagen = null;
+                    this.picBoxImagen.Image = null;
+                    this.pathimagen.Text = null;
+                }
             }
         }
 
@@ -855,21 +858,18 @@ namespace Vista
             {
                 if (this.glb_mod_articulo.imagen != null)
                 {
-                    //SI TIENE ASOCIADA UNA IMAGEN LA BORRA
-                    System.IO.File.Delete(glb_mod_articulo.imagen);
-                    
+                    System.IO.File.Delete(glb_mod_articulo.imagen); //SI TIENE ASOCIADA UNA IMAGEN LA BORRA
                 }
                 
-                    imagePath = imagePath + glb_mod_articulo.codigoOriginal + ".jpg";
-                // por las dudas borra un archivo con el mismo nombre
-                    if (System.IO.File.Exists(imagePath))
-                    { System.IO.File.Delete(imagePath); }
+                imagePath = imagePath + glb_mod_articulo.codigoOriginal + ".jpg";
 
-                    System.IO.File.Copy(image_dialog.FileName, imagePath);
-                    picBoxImagen.Image = Image.FromFile(imagePath);
-                    this.glb_mod_articulo.imagen = imagePath;
-                    this.pathimagen.Text = imagePath;
-                
+                if (System.IO.File.Exists(imagePath))// por las dudas borra un archivo con el mismo nombre
+                { System.IO.File.Delete(imagePath); }
+
+                System.IO.File.Copy(image_dialog.FileName, imagePath);
+                picBoxImagen.Image = Image.FromFile(imagePath);
+                this.glb_mod_articulo.imagen = imagePath;
+                this.pathimagen.Text = imagePath;
             }
 
         }
