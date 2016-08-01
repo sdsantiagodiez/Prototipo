@@ -206,6 +206,8 @@ namespace Vista
             radioButtonCliente.Checked = true;
 
             this.inicializarControlesTipoEntidadPersona();
+
+            this.txtBoxRazonSocial.Enabled = true;
         }
         private void inicializarControlesTipoEntidadUsuario()
         {
@@ -531,7 +533,7 @@ namespace Vista
             p_mod_entidad.telefonos = this.cargarDatosControlEnListTelefono();
             p_mod_entidad.mails = this.cargarDatosControlEnListMail();
             p_mod_entidad.observaciones = rchTextBoxObservaciones.Text;
-            p_mod_entidad.activo = chbxActivo.Checked;
+            //p_mod_entidad.activo = chbxActivo.Checked;
             
         }
         private void cargarDatosControlEnProveedor(ref ModeloProveedor p_mod_proveedor)
@@ -543,6 +545,11 @@ namespace Vista
             p_mod_persona.dni = txtBoxDNI.Text;
             p_mod_persona.apellido = txtBoxApellido.Text;
             p_mod_persona.nombre = txtBoxNombre.Text;
+
+            if (p_mod_persona.GetType() == typeof(ModeloCliente))
+            {
+                (p_mod_persona as ModeloCliente).razonSocial = this.txtBoxRazonSocial.Text;
+            }
         }
 
         /// <summary>
@@ -743,7 +750,7 @@ namespace Vista
         {
             txtBoxCodigoEntidad.Text = p_mod_entidad.codigo.ToString();
             txtBoxCUIT.Text = p_mod_entidad.cuit != null ? p_mod_entidad.cuit : "";
-            chbxActivo.Checked = p_mod_entidad.activo;
+            //chbxActivo.Checked = p_mod_entidad.activo;
 
             this.cargarDatosDomicilioEnDataGridViewDomicilio(p_mod_entidad.domicilios);
             this.cargarDatosTelefonoEnDataGridViewTelefono(p_mod_entidad.telefonos);
@@ -760,6 +767,12 @@ namespace Vista
             txtBoxDNI.Text = p_mod_persona.dni != null ? p_mod_persona.dni : "";
             txtBoxNombre.Text = p_mod_persona.nombre != null ? p_mod_persona.nombre : "";
             txtBoxApellido.Text = p_mod_persona.apellido != null ? p_mod_persona.apellido : "";
+
+            if (p_mod_persona.GetType() == typeof(ModeloCliente))
+            {
+                txtBoxRazonSocial.Text = (p_mod_persona as ModeloCliente).razonSocial != null ? (p_mod_persona as ModeloCliente).razonSocial : "";
+            }
+
         }
 
         #region DataGridViews

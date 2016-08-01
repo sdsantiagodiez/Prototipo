@@ -10,12 +10,18 @@ namespace Modelos
     [Serializable]
     public class ModeloCliente: ModeloPersonas
     {
-        #region Getters/Setters
+        #region Atributos
         int _codigoTipoResponsable;
         int codigoTipoResponsable
         {
             get { return _codigoTipoResponsable; }
             set { _codigoTipoResponsable = value; }
+        }
+        string _razonSocial;
+        public string razonSocial
+        {
+            get { return _razonSocial; }
+            set { this._razonSocial = this.convertirString(value); }
         }
         #endregion
 
@@ -66,7 +72,7 @@ namespace Modelos
 
         public bool Equals(ModeloCliente p_mod_cliente)
         {
-            return true;
+            return this.razonSocial.Equals(p_mod_cliente.razonSocial);
         }
         #endregion
     }

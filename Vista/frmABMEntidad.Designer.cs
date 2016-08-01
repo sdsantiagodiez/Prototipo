@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxTipoEntidad = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelTipoEntidad = new System.Windows.Forms.TableLayoutPanel();
@@ -54,7 +54,6 @@
             this.txtBoxDNI = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBoxCodigoEntidad = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBoxCUIT = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.chbxActivo = new System.Windows.Forms.CheckBox();
             this.grpBoxDomicilio = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelDomicilioDatos = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelDomicilio = new System.Windows.Forms.TableLayoutPanel();
@@ -219,7 +218,7 @@
             this.tblLayoutPanelTipoEntidad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelTipoEntidad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tblLayoutPanelTipoEntidad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
-            this.tblLayoutPanelTipoEntidad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 267F));
+            this.tblLayoutPanelTipoEntidad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 230F));
             this.tblLayoutPanelTipoEntidad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tblLayoutPanelTipoEntidad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelTipoEntidad.Controls.Add(this.radioButtonCliente, 1, 0);
@@ -241,7 +240,7 @@
             this.radioButtonCliente.AutoSize = true;
             this.radioButtonCliente.Depth = 0;
             this.radioButtonCliente.Font = new System.Drawing.Font("Roboto", 10F);
-            this.radioButtonCliente.Location = new System.Drawing.Point(151, 1);
+            this.radioButtonCliente.Location = new System.Drawing.Point(169, 1);
             this.radioButtonCliente.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonCliente.MouseLocation = new System.Drawing.Point(-1, -1);
             this.radioButtonCliente.MouseState = MaterialSkin.MouseState.HOVER;
@@ -260,7 +259,7 @@
             this.radioButtonProveedor.AutoSize = true;
             this.radioButtonProveedor.Depth = 0;
             this.radioButtonProveedor.Font = new System.Drawing.Font("Roboto", 10F);
-            this.radioButtonProveedor.Location = new System.Drawing.Point(271, 1);
+            this.radioButtonProveedor.Location = new System.Drawing.Point(289, 1);
             this.radioButtonProveedor.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonProveedor.MouseLocation = new System.Drawing.Point(-1, -1);
             this.radioButtonProveedor.MouseState = MaterialSkin.MouseState.HOVER;
@@ -279,13 +278,13 @@
             this.radioButtonContactoProveedor.AutoSize = true;
             this.radioButtonContactoProveedor.Depth = 0;
             this.radioButtonContactoProveedor.Font = new System.Drawing.Font("Roboto", 10F);
-            this.radioButtonContactoProveedor.Location = new System.Drawing.Point(431, 1);
+            this.radioButtonContactoProveedor.Location = new System.Drawing.Point(449, 1);
             this.radioButtonContactoProveedor.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonContactoProveedor.MouseLocation = new System.Drawing.Point(-1, -1);
             this.radioButtonContactoProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             this.radioButtonContactoProveedor.Name = "radioButtonContactoProveedor";
             this.radioButtonContactoProveedor.Ripple = true;
-            this.radioButtonContactoProveedor.Size = new System.Drawing.Size(267, 30);
+            this.radioButtonContactoProveedor.Size = new System.Drawing.Size(230, 30);
             this.radioButtonContactoProveedor.TabIndex = 7;
             this.radioButtonContactoProveedor.TabStop = true;
             this.radioButtonContactoProveedor.Text = "Contacto Proveedor";
@@ -298,7 +297,7 @@
             this.radioButtonUsuario.AutoSize = true;
             this.radioButtonUsuario.Depth = 0;
             this.radioButtonUsuario.Font = new System.Drawing.Font("Roboto", 10F);
-            this.radioButtonUsuario.Location = new System.Drawing.Point(698, 1);
+            this.radioButtonUsuario.Location = new System.Drawing.Point(679, 1);
             this.radioButtonUsuario.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonUsuario.MouseLocation = new System.Drawing.Point(-1, -1);
             this.radioButtonUsuario.MouseState = MaterialSkin.MouseState.HOVER;
@@ -351,11 +350,10 @@
             // 
             // tblLayoutPanelDatosPersonales
             // 
-            this.tblLayoutPanelDatosPersonales.ColumnCount = 2;
+            this.tblLayoutPanelDatosPersonales.ColumnCount = 1;
             this.tblLayoutPanelDatosPersonales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelDatosPersonales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tblLayoutPanelDatosPersonales.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblLayoutPanelDatosPersonales.Controls.Add(this.tblLayoutPanelDatosEntidad, 0, 0);
-            this.tblLayoutPanelDatosPersonales.Controls.Add(this.chbxActivo, 1, 0);
             this.tblLayoutPanelDatosPersonales.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelDatosPersonales.Location = new System.Drawing.Point(4, 26);
             this.tblLayoutPanelDatosPersonales.Margin = new System.Windows.Forms.Padding(4);
@@ -393,7 +391,7 @@
             this.tblLayoutPanelDatosEntidad.RowCount = 2;
             this.tblLayoutPanelDatosEntidad.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelDatosEntidad.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelDatosEntidad.Size = new System.Drawing.Size(863, 84);
+            this.tblLayoutPanelDatosEntidad.Size = new System.Drawing.Size(963, 84);
             this.tblLayoutPanelDatosEntidad.TabIndex = 6;
             // 
             // txtBoxApellido
@@ -401,15 +399,15 @@
             this.txtBoxApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxApellido.Depth = 0;
             this.txtBoxApellido.Hint = "";
-            this.txtBoxApellido.Location = new System.Drawing.Point(366, 49);
-            this.txtBoxApellido.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxApellido.Location = new System.Drawing.Point(399, 49);
+            this.txtBoxApellido.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.txtBoxApellido.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxApellido.Name = "txtBoxApellido";
             this.txtBoxApellido.PasswordChar = '\0';
             this.txtBoxApellido.SelectedText = "";
             this.txtBoxApellido.SelectionLength = 0;
             this.txtBoxApellido.SelectionStart = 0;
-            this.txtBoxApellido.Size = new System.Drawing.Size(172, 28);
+            this.txtBoxApellido.Size = new System.Drawing.Size(189, 28);
             this.txtBoxApellido.TabIndex = 17;
             this.txtBoxApellido.UseSystemPasswordChar = false;
             this.txtBoxApellido.Leave += new System.EventHandler(this.txtBoxApellido_Leave);
@@ -419,7 +417,7 @@
             this.lblApellido.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblApellido.AutoSize = true;
             this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellido.Location = new System.Drawing.Point(285, 53);
+            this.lblApellido.Location = new System.Drawing.Point(318, 53);
             this.lblApellido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(73, 20);
@@ -443,7 +441,7 @@
             this.lblRazonSocial.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblRazonSocial.AutoSize = true;
             this.lblRazonSocial.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRazonSocial.Location = new System.Drawing.Point(565, 53);
+            this.lblRazonSocial.Location = new System.Drawing.Point(631, 53);
             this.lblRazonSocial.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRazonSocial.Name = "lblRazonSocial";
             this.lblRazonSocial.Size = new System.Drawing.Size(113, 20);
@@ -456,14 +454,14 @@
             this.txtBoxNombre.Depth = 0;
             this.txtBoxNombre.Hint = "";
             this.txtBoxNombre.Location = new System.Drawing.Point(95, 49);
-            this.txtBoxNombre.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxNombre.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.txtBoxNombre.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxNombre.Name = "txtBoxNombre";
             this.txtBoxNombre.PasswordChar = '\0';
             this.txtBoxNombre.SelectedText = "";
             this.txtBoxNombre.SelectionLength = 0;
             this.txtBoxNombre.SelectionStart = 0;
-            this.txtBoxNombre.Size = new System.Drawing.Size(172, 28);
+            this.txtBoxNombre.Size = new System.Drawing.Size(189, 28);
             this.txtBoxNombre.TabIndex = 18;
             this.txtBoxNombre.UseSystemPasswordChar = false;
             this.txtBoxNombre.Leave += new System.EventHandler(this.txtBoxNombre_Leave);
@@ -473,7 +471,7 @@
             this.lblDNI.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDNI.AutoSize = true;
             this.lblDNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDNI.Location = new System.Drawing.Point(635, 11);
+            this.lblDNI.Location = new System.Drawing.Point(701, 11);
             this.lblDNI.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDNI.Name = "lblDNI";
             this.lblDNI.Size = new System.Drawing.Size(43, 20);
@@ -485,15 +483,15 @@
             this.txtBoxRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxRazonSocial.Depth = 0;
             this.txtBoxRazonSocial.Hint = "";
-            this.txtBoxRazonSocial.Location = new System.Drawing.Point(686, 49);
-            this.txtBoxRazonSocial.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxRazonSocial.Location = new System.Drawing.Point(752, 49);
+            this.txtBoxRazonSocial.Margin = new System.Windows.Forms.Padding(4, 4, 35, 4);
             this.txtBoxRazonSocial.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
             this.txtBoxRazonSocial.PasswordChar = '\0';
             this.txtBoxRazonSocial.SelectedText = "";
             this.txtBoxRazonSocial.SelectionLength = 0;
             this.txtBoxRazonSocial.SelectionStart = 0;
-            this.txtBoxRazonSocial.Size = new System.Drawing.Size(173, 28);
+            this.txtBoxRazonSocial.Size = new System.Drawing.Size(176, 28);
             this.txtBoxRazonSocial.TabIndex = 16;
             this.txtBoxRazonSocial.UseSystemPasswordChar = false;
             this.txtBoxRazonSocial.Leave += new System.EventHandler(this.txtBoxRazonSocial_Leave);
@@ -515,7 +513,7 @@
             this.lblCUIT.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCUIT.AutoSize = true;
             this.lblCUIT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCUIT.Location = new System.Drawing.Point(306, 11);
+            this.lblCUIT.Location = new System.Drawing.Point(339, 11);
             this.lblCUIT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCUIT.Name = "lblCUIT";
             this.lblCUIT.Size = new System.Drawing.Size(52, 20);
@@ -527,15 +525,15 @@
             this.txtBoxDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxDNI.Depth = 0;
             this.txtBoxDNI.Hint = "";
-            this.txtBoxDNI.Location = new System.Drawing.Point(686, 7);
-            this.txtBoxDNI.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxDNI.Location = new System.Drawing.Point(752, 7);
+            this.txtBoxDNI.Margin = new System.Windows.Forms.Padding(4, 4, 35, 4);
             this.txtBoxDNI.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDNI.Name = "txtBoxDNI";
             this.txtBoxDNI.PasswordChar = '\0';
             this.txtBoxDNI.SelectedText = "";
             this.txtBoxDNI.SelectionLength = 0;
             this.txtBoxDNI.SelectionStart = 0;
-            this.txtBoxDNI.Size = new System.Drawing.Size(173, 28);
+            this.txtBoxDNI.Size = new System.Drawing.Size(176, 28);
             this.txtBoxDNI.TabIndex = 15;
             this.txtBoxDNI.UseSystemPasswordChar = false;
             this.txtBoxDNI.Leave += new System.EventHandler(this.txtBoxDNI_Leave);
@@ -546,14 +544,14 @@
             this.txtBoxCodigoEntidad.Depth = 0;
             this.txtBoxCodigoEntidad.Hint = "";
             this.txtBoxCodigoEntidad.Location = new System.Drawing.Point(95, 7);
-            this.txtBoxCodigoEntidad.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxCodigoEntidad.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.txtBoxCodigoEntidad.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCodigoEntidad.Name = "txtBoxCodigoEntidad";
             this.txtBoxCodigoEntidad.PasswordChar = '\0';
             this.txtBoxCodigoEntidad.SelectedText = "";
             this.txtBoxCodigoEntidad.SelectionLength = 0;
             this.txtBoxCodigoEntidad.SelectionStart = 0;
-            this.txtBoxCodigoEntidad.Size = new System.Drawing.Size(172, 28);
+            this.txtBoxCodigoEntidad.Size = new System.Drawing.Size(189, 28);
             this.txtBoxCodigoEntidad.TabIndex = 13;
             this.txtBoxCodigoEntidad.UseSystemPasswordChar = false;
             this.txtBoxCodigoEntidad.Leave += new System.EventHandler(this.txtBoxCodigoEntidad_Leave);
@@ -563,30 +561,18 @@
             this.txtBoxCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCUIT.Depth = 0;
             this.txtBoxCUIT.Hint = "";
-            this.txtBoxCUIT.Location = new System.Drawing.Point(366, 7);
-            this.txtBoxCUIT.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxCUIT.Location = new System.Drawing.Point(399, 7);
+            this.txtBoxCUIT.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.txtBoxCUIT.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCUIT.Name = "txtBoxCUIT";
             this.txtBoxCUIT.PasswordChar = '\0';
             this.txtBoxCUIT.SelectedText = "";
             this.txtBoxCUIT.SelectionLength = 0;
             this.txtBoxCUIT.SelectionStart = 0;
-            this.txtBoxCUIT.Size = new System.Drawing.Size(172, 28);
+            this.txtBoxCUIT.Size = new System.Drawing.Size(189, 28);
             this.txtBoxCUIT.TabIndex = 14;
             this.txtBoxCUIT.UseSystemPasswordChar = false;
             this.txtBoxCUIT.Leave += new System.EventHandler(this.txtBoxCUIT_Leave);
-            // 
-            // chbxActivo
-            // 
-            this.chbxActivo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.chbxActivo.AutoSize = true;
-            this.chbxActivo.Location = new System.Drawing.Point(873, 30);
-            this.chbxActivo.Margin = new System.Windows.Forms.Padding(4);
-            this.chbxActivo.Name = "chbxActivo";
-            this.chbxActivo.Size = new System.Drawing.Size(83, 28);
-            this.chbxActivo.TabIndex = 19;
-            this.chbxActivo.Text = "Activo";
-            this.chbxActivo.UseVisualStyleBackColor = true;
             // 
             // grpBoxDomicilio
             // 
@@ -684,33 +670,33 @@
             this.txtBoxCalle.Depth = 0;
             this.txtBoxCalle.Hint = "";
             this.txtBoxCalle.Location = new System.Drawing.Point(95, 5);
-            this.txtBoxCalle.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxCalle.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.txtBoxCalle.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCalle.Name = "txtBoxCalle";
             this.txtBoxCalle.PasswordChar = '\0';
             this.txtBoxCalle.SelectedText = "";
             this.txtBoxCalle.SelectionLength = 0;
             this.txtBoxCalle.SelectionStart = 0;
-            this.txtBoxCalle.Size = new System.Drawing.Size(515, 28);
+            this.txtBoxCalle.Size = new System.Drawing.Size(499, 28);
             this.txtBoxCalle.TabIndex = 19;
             this.txtBoxCalle.UseSystemPasswordChar = false;
             this.txtBoxCalle.Leave += new System.EventHandler(this.txtBoxCalle_Leave);
             // 
             // txtBoxNumeroDomicilio
             // 
-            this.txtBoxNumeroDomicilio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxNumeroDomicilio.Depth = 0;
+            this.txtBoxNumeroDomicilio.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtBoxNumeroDomicilio.Hint = "";
-            this.txtBoxNumeroDomicilio.Location = new System.Drawing.Point(767, 5);
-            this.txtBoxNumeroDomicilio.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxNumeroDomicilio.Location = new System.Drawing.Point(766, 3);
+            this.txtBoxNumeroDomicilio.Margin = new System.Windows.Forms.Padding(3, 3, 70, 3);
             this.txtBoxNumeroDomicilio.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxNumeroDomicilio.Name = "txtBoxNumeroDomicilio";
             this.txtBoxNumeroDomicilio.PasswordChar = '\0';
             this.txtBoxNumeroDomicilio.SelectedText = "";
             this.txtBoxNumeroDomicilio.SelectionLength = 0;
             this.txtBoxNumeroDomicilio.SelectionStart = 0;
-            this.txtBoxNumeroDomicilio.Size = new System.Drawing.Size(192, 28);
-            this.txtBoxNumeroDomicilio.TabIndex = 21;
+            this.txtBoxNumeroDomicilio.Size = new System.Drawing.Size(127, 28);
+            this.txtBoxNumeroDomicilio.TabIndex = 20;
             this.txtBoxNumeroDomicilio.UseSystemPasswordChar = false;
             this.txtBoxNumeroDomicilio.Leave += new System.EventHandler(this.txtBoxNumeroDomicilio_Leave);
             // 
@@ -749,10 +735,10 @@
             // 
             this.cmbBoxPais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxPais.FormattingEnabled = true;
-            this.cmbBoxPais.Location = new System.Drawing.Point(767, 50);
-            this.cmbBoxPais.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbBoxPais.Location = new System.Drawing.Point(767, 47);
+            this.cmbBoxPais.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
             this.cmbBoxPais.Name = "cmbBoxPais";
-            this.cmbBoxPais.Size = new System.Drawing.Size(192, 32);
+            this.cmbBoxPais.Size = new System.Drawing.Size(156, 32);
             this.cmbBoxPais.TabIndex = 17;
             this.cmbBoxPais.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxPais_SelectionChangeCommitted);
             // 
@@ -772,7 +758,7 @@
             // 
             this.cmbBoxProvincia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxProvincia.FormattingEnabled = true;
-            this.cmbBoxProvincia.Location = new System.Drawing.Point(409, 50);
+            this.cmbBoxProvincia.Location = new System.Drawing.Point(409, 47);
             this.cmbBoxProvincia.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(201, 32);
@@ -832,14 +818,14 @@
             this.txtBoxPiso.Depth = 0;
             this.txtBoxPiso.Hint = "";
             this.txtBoxPiso.Location = new System.Drawing.Point(95, 5);
-            this.txtBoxPiso.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxPiso.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.txtBoxPiso.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxPiso.Name = "txtBoxPiso";
             this.txtBoxPiso.PasswordChar = '\0';
             this.txtBoxPiso.SelectedText = "";
             this.txtBoxPiso.SelectionLength = 0;
             this.txtBoxPiso.SelectionStart = 0;
-            this.txtBoxPiso.Size = new System.Drawing.Size(201, 28);
+            this.txtBoxPiso.Size = new System.Drawing.Size(185, 28);
             this.txtBoxPiso.TabIndex = 23;
             this.txtBoxPiso.UseSystemPasswordChar = false;
             this.txtBoxPiso.Leave += new System.EventHandler(this.txtBoxPiso_Leave);
@@ -850,14 +836,14 @@
             this.txtBoxCiudad.Depth = 0;
             this.txtBoxCiudad.Hint = "";
             this.txtBoxCiudad.Location = new System.Drawing.Point(95, 49);
-            this.txtBoxCiudad.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxCiudad.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.txtBoxCiudad.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCiudad.Name = "txtBoxCiudad";
             this.txtBoxCiudad.PasswordChar = '\0';
             this.txtBoxCiudad.SelectedText = "";
             this.txtBoxCiudad.SelectionLength = 0;
             this.txtBoxCiudad.SelectionStart = 0;
-            this.txtBoxCiudad.Size = new System.Drawing.Size(201, 28);
+            this.txtBoxCiudad.Size = new System.Drawing.Size(185, 28);
             this.txtBoxCiudad.TabIndex = 20;
             this.txtBoxCiudad.UseSystemPasswordChar = false;
             this.txtBoxCiudad.Leave += new System.EventHandler(this.txtBoxCiudad_Leave);
@@ -880,14 +866,14 @@
             this.txtBoxDepartamento.Depth = 0;
             this.txtBoxDepartamento.Hint = "";
             this.txtBoxDepartamento.Location = new System.Drawing.Point(409, 5);
-            this.txtBoxDepartamento.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxDepartamento.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.txtBoxDepartamento.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDepartamento.Name = "txtBoxDepartamento";
             this.txtBoxDepartamento.PasswordChar = '\0';
             this.txtBoxDepartamento.SelectedText = "";
             this.txtBoxDepartamento.SelectionLength = 0;
             this.txtBoxDepartamento.SelectionStart = 0;
-            this.txtBoxDepartamento.Size = new System.Drawing.Size(201, 28);
+            this.txtBoxDepartamento.Size = new System.Drawing.Size(185, 28);
             this.txtBoxDepartamento.TabIndex = 24;
             this.txtBoxDepartamento.UseSystemPasswordChar = false;
             this.txtBoxDepartamento.Leave += new System.EventHandler(this.txtBoxDepartamento_Leave);
@@ -898,14 +884,14 @@
             this.txtBoxCodigoPostal.Depth = 0;
             this.txtBoxCodigoPostal.Hint = "";
             this.txtBoxCodigoPostal.Location = new System.Drawing.Point(767, 5);
-            this.txtBoxCodigoPostal.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxCodigoPostal.Margin = new System.Windows.Forms.Padding(4, 4, 50, 4);
             this.txtBoxCodigoPostal.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCodigoPostal.Name = "txtBoxCodigoPostal";
             this.txtBoxCodigoPostal.PasswordChar = '\0';
             this.txtBoxCodigoPostal.SelectedText = "";
             this.txtBoxCodigoPostal.SelectionLength = 0;
             this.txtBoxCodigoPostal.SelectionStart = 0;
-            this.txtBoxCodigoPostal.Size = new System.Drawing.Size(192, 28);
+            this.txtBoxCodigoPostal.Size = new System.Drawing.Size(146, 28);
             this.txtBoxCodigoPostal.TabIndex = 22;
             this.txtBoxCodigoPostal.UseSystemPasswordChar = false;
             this.txtBoxCodigoPostal.Leave += new System.EventHandler(this.txtBoxCodigoPostal_Leave);
@@ -931,14 +917,14 @@
             this.dataGridViewDomicilio.AllowUserToAddRows = false;
             this.dataGridViewDomicilio.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewDomicilio.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewDomicilio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewDomicilio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewDomicilio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDomicilio.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoDomicilio,
@@ -1269,7 +1255,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(4, 11);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(4, 14);
             this.cmbBoxTipoTelefono.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(72, 32);
@@ -1281,14 +1267,14 @@
             this.txtBoxTelefono.Depth = 0;
             this.txtBoxTelefono.Hint = "";
             this.txtBoxTelefono.Location = new System.Drawing.Point(175, 13);
-            this.txtBoxTelefono.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxTelefono.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
             this.txtBoxTelefono.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxTelefono.Name = "txtBoxTelefono";
             this.txtBoxTelefono.PasswordChar = '\0';
             this.txtBoxTelefono.SelectedText = "";
             this.txtBoxTelefono.SelectionLength = 0;
             this.txtBoxTelefono.SelectionStart = 0;
-            this.txtBoxTelefono.Size = new System.Drawing.Size(254, 28);
+            this.txtBoxTelefono.Size = new System.Drawing.Size(218, 28);
             this.txtBoxTelefono.TabIndex = 24;
             this.txtBoxTelefono.UseSystemPasswordChar = false;
             this.txtBoxTelefono.Leave += new System.EventHandler(this.txtBoxTelefono_Leave);
@@ -1327,14 +1313,14 @@
             this.txtBoxMail.Depth = 0;
             this.txtBoxMail.Hint = "";
             this.txtBoxMail.Location = new System.Drawing.Point(121, 13);
-            this.txtBoxMail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxMail.Margin = new System.Windows.Forms.Padding(4, 4, 60, 4);
             this.txtBoxMail.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxMail.Name = "txtBoxMail";
             this.txtBoxMail.PasswordChar = '\0';
             this.txtBoxMail.SelectedText = "";
             this.txtBoxMail.SelectionLength = 0;
             this.txtBoxMail.SelectionStart = 0;
-            this.txtBoxMail.Size = new System.Drawing.Size(395, 28);
+            this.txtBoxMail.Size = new System.Drawing.Size(339, 28);
             this.txtBoxMail.TabIndex = 10;
             this.txtBoxMail.UseSystemPasswordChar = false;
             this.txtBoxMail.Leave += new System.EventHandler(this.txtBoxMail_Leave);
@@ -1541,7 +1527,6 @@
             this.grpBoxObservaciones.ResumeLayout(false);
             this.grpBoxDatosPersonales.ResumeLayout(false);
             this.tblLayoutPanelDatosPersonales.ResumeLayout(false);
-            this.tblLayoutPanelDatosPersonales.PerformLayout();
             this.tblLayoutPanelDatosEntidad.ResumeLayout(false);
             this.tblLayoutPanelDatosEntidad.PerformLayout();
             this.grpBoxDomicilio.ResumeLayout(false);
@@ -1661,7 +1646,6 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxNombre;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxCalle;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxCiudad;
-        private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxNumeroDomicilio;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxCodigoPostal;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxPiso;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxDepartamento;
@@ -1675,7 +1659,6 @@
         private MaterialSkin.Controls.MaterialFlatButton btnAgregarMail;
         private MaterialSkin.Controls.MaterialFlatButton btnQuitarMail;
         private System.Windows.Forms.Panel pnlBase;
-        private System.Windows.Forms.CheckBox chbxActivo;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDatosEntidad;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDomicilio;
         private System.Windows.Forms.TableLayoutPanel tblLayourPanelDomicilio_1;
@@ -1694,5 +1677,6 @@
         private System.Windows.Forms.ErrorProvider epCiudad;
         private System.Windows.Forms.ErrorProvider epMail;
         private System.Windows.Forms.ErrorProvider epNumeroTelefono;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxNumeroDomicilio;
     }
 }

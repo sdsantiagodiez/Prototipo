@@ -57,7 +57,7 @@
             this.contenedorComprobante.LocalReport.DataSources.Add(reportDataSource2);
             this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.FacturaA.rdlc";
             this.contenedorComprobante.Location = new System.Drawing.Point(0, 0);
-            this.contenedorComprobante.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.contenedorComprobante.Margin = new System.Windows.Forms.Padding(4);
             this.contenedorComprobante.Name = "contenedorComprobante";
             this.contenedorComprobante.Size = new System.Drawing.Size(1103, 679);
             this.contenedorComprobante.TabIndex = 0;
@@ -68,7 +68,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1103, 679);
             this.Controls.Add(this.contenedorComprobante);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmImpresionComprobante";
             this.Text = "frmImpresionFactura";
             this.Load += new System.EventHandler(this.frmImpresionFactura_Load);

@@ -39,6 +39,9 @@
             this.lblRazonSocialSeleccionado = new System.Windows.Forms.Label();
             this.lblCodigoSeleccionado = new System.Windows.Forms.Label();
             this.lblCUITSeleccionado = new System.Windows.Forms.Label();
+            this.txtBoxCodigoSeleccionado = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxCUITSeleccionado = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxRazonSocialSeleccionado = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.cmbBoxProveedores = new System.Windows.Forms.ComboBox();
             this.epCodigo = new System.Windows.Forms.ErrorProvider(this.components);
             this.epCUIT = new System.Windows.Forms.ErrorProvider(this.components);
@@ -46,9 +49,6 @@
             this.epCodigoSeleccionado = new System.Windows.Forms.ErrorProvider(this.components);
             this.epCUITSeleccionado = new System.Windows.Forms.ErrorProvider(this.components);
             this.epRazonSocialSeleccionado = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtBoxCodigoSeleccionado = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxCUITSeleccionado = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.txtBoxRazonSocialSeleccionado = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.grpBoxContactoProveedor.SuspendLayout();
             this.tableLayoutPanelContactoProveedorSeleccionar.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
@@ -217,40 +217,6 @@
             this.lblCUITSeleccionado.TabIndex = 8;
             this.lblCUITSeleccionado.Text = "CUIT:";
             // 
-            // cmbBoxProveedores
-            // 
-            this.cmbBoxProveedores.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cmbBoxProveedores.FormattingEnabled = true;
-            this.cmbBoxProveedores.Location = new System.Drawing.Point(131, 12);
-            this.cmbBoxProveedores.Name = "cmbBoxProveedores";
-            this.cmbBoxProveedores.Size = new System.Drawing.Size(238, 32);
-            this.cmbBoxProveedores.TabIndex = 15;
-            this.cmbBoxProveedores.SelectedValueChanged += new System.EventHandler(this.cmbBoxProveedores_SelectedValueChanged);
-            // 
-            // epCodigo
-            // 
-            this.epCodigo.ContainerControl = this;
-            // 
-            // epCUIT
-            // 
-            this.epCUIT.ContainerControl = this;
-            // 
-            // epRazonSocial
-            // 
-            this.epRazonSocial.ContainerControl = this;
-            // 
-            // epCodigoSeleccionado
-            // 
-            this.epCodigoSeleccionado.ContainerControl = this;
-            // 
-            // epCUITSeleccionado
-            // 
-            this.epCUITSeleccionado.ContainerControl = this;
-            // 
-            // epRazonSocialSeleccionado
-            // 
-            this.epRazonSocialSeleccionado.ContainerControl = this;
-            // 
             // txtBoxCodigoSeleccionado
             // 
             this.txtBoxCodigoSeleccionado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -301,6 +267,40 @@
             this.txtBoxRazonSocialSeleccionado.TabIndex = 15;
             this.txtBoxRazonSocialSeleccionado.UseSystemPasswordChar = false;
             this.txtBoxRazonSocialSeleccionado.Leave += new System.EventHandler(this.txtBoxRazonSocialSeleccionado_Leave);
+            // 
+            // cmbBoxProveedores
+            // 
+            this.cmbBoxProveedores.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmbBoxProveedores.FormattingEnabled = true;
+            this.cmbBoxProveedores.Location = new System.Drawing.Point(131, 16);
+            this.cmbBoxProveedores.Name = "cmbBoxProveedores";
+            this.cmbBoxProveedores.Size = new System.Drawing.Size(238, 32);
+            this.cmbBoxProveedores.TabIndex = 15;
+            this.cmbBoxProveedores.SelectedValueChanged += new System.EventHandler(this.cmbBoxProveedores_SelectedValueChanged);
+            // 
+            // epCodigo
+            // 
+            this.epCodigo.ContainerControl = this;
+            // 
+            // epCUIT
+            // 
+            this.epCUIT.ContainerControl = this;
+            // 
+            // epRazonSocial
+            // 
+            this.epRazonSocial.ContainerControl = this;
+            // 
+            // epCodigoSeleccionado
+            // 
+            this.epCodigoSeleccionado.ContainerControl = this;
+            // 
+            // epCUITSeleccionado
+            // 
+            this.epCUITSeleccionado.ContainerControl = this;
+            // 
+            // epRazonSocialSeleccionado
+            // 
+            this.epRazonSocialSeleccionado.ContainerControl = this;
             // 
             // frmABMEntidadDatosAdicionalesContactoProveedor
             // 

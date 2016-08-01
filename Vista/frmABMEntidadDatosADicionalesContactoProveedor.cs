@@ -45,7 +45,7 @@ namespace Vista
         private void inicializarFormulario()
         {
             this.StartPosition = FormStartPosition.CenterParent;
-            //txtBoxCodigoSeleccionado.ReadOnly = txtBoxCUITSeleccionado.ReadOnly = txtBoxRazonSocialSeleccionado.ReadOnly = true;
+            txtBoxCodigoSeleccionado.Enabled = txtBoxCUITSeleccionado.Enabled = txtBoxRazonSocialSeleccionado.Enabled = false;
             this.inicializarCmbBoxProveedores();
         }
         private void inicializarCmbBoxProveedores()
@@ -133,6 +133,10 @@ namespace Vista
 
         private void cmbBoxProveedores_SelectedValueChanged(object sender, EventArgs e)
         {
+            if (this.contactoProveedor == null)
+            {
+                return;
+            }
             if ((sender as ComboBox).SelectedValue as ModeloProveedor != null)
             {
                 this.contactoProveedor.proveedor = (sender as ComboBox).SelectedValue as ModeloProveedor;

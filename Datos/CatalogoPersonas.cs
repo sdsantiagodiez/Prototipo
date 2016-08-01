@@ -200,14 +200,23 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "INSERT INTO [Personas]([codigo_entidad],[dni],[nombre],[apellido],[tipo_persona]) " +
-                "VALUES (@codigo_entidad, @dni, @nombre, @apellido, @tipo_persona)";
+                "INSERT INTO [Personas]([codigo_entidad],[dni],[nombre],[apellido],[tipo_persona],[razon_social]) " +
+                "VALUES (@codigo_entidad, @dni, @nombre, @apellido, @tipo_persona,@razon_social)";
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.codigo, "@codigo_entidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.dni, "@dni"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.nombre, "@nombre"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.apellido, "@apellido"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.tipoPersona, "@tipo_persona"));
+
+            if (p_mod_persona.GetType() == typeof(ModeloCliente))
+            {
+                comando.Parameters.Add(this.instanciarParametro((p_mod_persona as ModeloCliente).razonSocial, "@razon_social"));
+            }
+            else
+            {
+                comando.Parameters.Add(this.instanciarParametro((string)null, "@razon_social"));
+            }
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
@@ -240,13 +249,23 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText = 
-                "UPDATE [personas] SET [dni]=@dni,[nombre]=@nombre, [apellido]=@apellido "+
+                "UPDATE [personas] SET [dni]=@dni,[nombre]=@nombre, [apellido]=@apellido, [razon_social]=@razon_social "+
                 "WHERE [Personas].codigo_entidad=@codigo_entidad";
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.codigo, "@codigo_entidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.dni, "@dni"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.nombre, "@nombre"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.apellido, "@apellido"));
+
+            if (p_mod_persona.GetType() == typeof(ModeloCliente))
+            {
+                comando.Parameters.Add(this.instanciarParametro((p_mod_persona as ModeloCliente).razonSocial, "@razon_social"));
+            }
+            else
+            {
+                comando.Parameters.Add(this.instanciarParametro((string)null, "@razon_social"));
+            }
+
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();           

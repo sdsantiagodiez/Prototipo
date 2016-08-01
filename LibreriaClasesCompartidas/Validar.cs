@@ -244,6 +244,10 @@ namespace LibreriaClasesCompartidas
                 {
                     return false;
                 }
+                catch (ArgumentException)
+                {
+                    return false;
+                }
             }
 
             if (string.IsNullOrWhiteSpace(p_string))

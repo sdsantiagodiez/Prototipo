@@ -15,6 +15,7 @@ namespace Datos
         new private  ModeloCliente leerDatosPersonas(SqlDataReader p_drClientes)
         {
             ModeloCliente lcl_mod_cliente =  new ModeloCliente(base.leerDatosPersonas(p_drClientes));
+            lcl_mod_cliente.razonSocial = (p_drClientes["razon_social"] != DBNull.Value) ? (string)p_drClientes["razon_social"] : null;
             return lcl_mod_cliente;
         }
 
@@ -30,6 +31,18 @@ namespace Datos
         {
             switch (p_parametroBusqueda)
             {
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Clientes.RazonSocial:
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_cliente.razonSocial), "@razon_social"));
+                    return " razon_social LIKE @razon_social ";
+                case Constantes.ParametrosBusqueda.Any:
+                    string queryBase = base.getCondicionBusqueda(p_mod_cliente, p_parametroBusqueda, ref p_comando);
+
+                    string razonSocial = String.IsNullOrWhiteSpace(p_mod_cliente.razonSocial) ? null : p_mod_cliente.razonSocial;
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(razonSocial), "@razon_social"));
+                    string razonSocialQuery = " (@razon_social is null OR razon_social LIKE @razon_social) ";
+
+                    return queryBase + " AND " + razonSocialQuery;
+                    
                 default:
                     //Prueba condiciones de atributos propios de modeloPersona
                     return base.getCondicionBusqueda(p_mod_cliente, p_parametroBusqueda, ref p_comando);
@@ -69,7 +82,7 @@ namespace Datos
 
             comando.CommandText =
                 "SELECT [personas].codigo_entidad,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
-                "[personas].nombre,[personas].apellido,[personas].tipo_persona, [entidades].activo " +
+                "[personas].nombre,[personas].apellido,[personas].tipo_persona, [entidades].activo, [personas].razon_social " +
                     "FROM [personas] " +
                     "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad " +
                     "WHERE [personas].tipo_persona = '" + Constantes.TiposEntidad.TiposPersona.Cliente + "' AND " + querySQL;
@@ -96,8 +109,28 @@ namespace Datos
 
             return lcl_lst_mod_clientes;
         }
-               
 
+        /// <summary>
+        /// Busca cliente de acuerdo a código de entidad
+        /// </summary>
+        /// <param name="p_codigoEntidad">codigo entidad del cliente a buscar</param>
+        /// <returns>ModeloCliente si encuentra, null si no encuentra resultado</returns>
+        public override ModeloEntidad getOne(int p_codigoEntidad)
+        {
+            ModeloCliente lcl_mod_cliente = new ModeloCliente();
+            List<ModeloCliente> lcl_lst_mod_cliente = new List<ModeloCliente>();
+            lcl_mod_cliente.codigo = p_codigoEntidad;
+            lcl_lst_mod_cliente = this.buscarCliente(lcl_mod_cliente, Constantes.ParametrosBusqueda.Entidades.Personas.CodigoEntidad);
+
+            if (lcl_lst_mod_cliente.Count > 0)
+            {
+                return lcl_lst_mod_cliente[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
         #endregion
 
         #region Alta/Baja/Modificación

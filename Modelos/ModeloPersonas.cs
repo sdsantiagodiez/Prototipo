@@ -13,32 +13,12 @@ namespace Modelos
     /// </summary>
     public class ModeloPersonas : ModeloEntidad
     {
-        #region Constructores
-        public ModeloPersonas()
-        {
-            this.tipoEntidad = Constantes.TiposEntidad.Persona;
-        }
-
-        public ModeloPersonas(ModeloEntidad p_mod_entidad) : base(p_mod_entidad) 
-        {
-            this.tipoEntidad = Constantes.TiposEntidad.Persona;
-        }
-
-        public ModeloPersonas(ModeloPersonas p_mod_persona) : this(p_mod_persona as ModeloEntidad)
-        {
-            dni = p_mod_persona.dni;
-            nombre = p_mod_persona.nombre;
-            apellido = p_mod_persona.apellido;
-            tipoPersona = p_mod_persona.tipoPersona;
-        }
-        #endregion
-
-        #region Getters/Setters
+        #region Atributos
         string _dni;
-        public string dni 
+        public string dni
         {
-            get{return _dni;}
-            set { this._dni = validarDNI(value) ? normalizarDNI(value) : null; } 
+            get { return _dni; }
+            set { this._dni = validarDNI(value) ? normalizarDNI(value) : null; }
         }
         string _nombre;
         public string nombre
@@ -62,6 +42,26 @@ namespace Modelos
             set { _tipoPersona = validarTipoPersona(value) ? value : null; }
         }
 
+        #endregion
+
+        #region Constructores
+        public ModeloPersonas()
+        {
+            this.tipoEntidad = Constantes.TiposEntidad.Persona;
+        }
+
+        public ModeloPersonas(ModeloEntidad p_mod_entidad) : base(p_mod_entidad) 
+        {
+            this.tipoEntidad = Constantes.TiposEntidad.Persona;
+        }
+
+        public ModeloPersonas(ModeloPersonas p_mod_persona) : this(p_mod_persona as ModeloEntidad)
+        {
+            dni = p_mod_persona.dni;
+            nombre = p_mod_persona.nombre;
+            apellido = p_mod_persona.apellido;
+            tipoPersona = p_mod_persona.tipoPersona;
+        }
         #endregion
 
         #region Validación

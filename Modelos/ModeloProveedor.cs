@@ -26,7 +26,7 @@ namespace Modelos
         }
        #endregion
 
-       #region Getters/Setters
+       #region Atributos
         string _razonSocial;
         public string razonSocial
         {

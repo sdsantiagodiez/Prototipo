@@ -58,6 +58,11 @@ namespace LibreriaClasesCompartidas
                         public const string Cuit_Proveedor = "cuit proveedor";
                         public const string RazonSocial_Proveedor = "razonSocial proveedor";
                     }
+
+                    public static class Clientes
+                    {
+                        public const string RazonSocial = "razon_social";
+                    }
                     
                 }
                 public static class Proveedores

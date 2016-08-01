@@ -88,12 +88,8 @@ namespace Vista
 
             dataGridViewResultadoBusqueda.Columns.Add("razonSocial", "Razón Social");
             dataGridViewResultadoBusqueda.Columns[i].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("direccion", "Domicilio");
-            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("ciudad", "Ciudad Domicilio");
-            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("provincia", "Provincia Domicilio");
-            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+
+            this.inicializarDataGridViewResultadosBusqueda_Domicilio();
         }
         private void inicializarDataGridViewResultadoBusqueda_Personas()
         {
@@ -106,12 +102,6 @@ namespace Vista
             dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
             dataGridViewResultadoBusqueda.Columns.Add("nombre", "Nombre");
             dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("direccion", "Domicilio");
-            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("ciudad", "Ciudad Domicilio");
-            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("provincia", "Provincia Domicilio");
-            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
         }
         private void inicializarDataGridViewResultadoBusqueda_Usuario()
         {
@@ -120,6 +110,8 @@ namespace Vista
 
             dataGridViewResultadoBusqueda.Columns.Add("Usuario", "usuario");
             dataGridViewResultadoBusqueda.Columns[i].FillWeight = 1;
+
+            this.inicializarDataGridViewResultadosBusqueda_Domicilio();
         }
         private void inicializarDataGridViewResultadoBusqueda_ContactoProveedor()
         {
@@ -128,10 +120,28 @@ namespace Vista
 
             dataGridViewResultadoBusqueda.Columns.Add("razon_social_proveedor", "Proveedor");
             dataGridViewResultadoBusqueda.Columns[i].FillWeight = 1;
+
+            this.inicializarDataGridViewResultadosBusqueda_Domicilio();
         }
         private void inicializarDataGridViewResultadoBusqueda_Cliente()
         {
             this.inicializarDataGridViewResultadoBusqueda_Personas();
+            int i = dataGridViewResultadoBusqueda.Columns.Count;
+            dataGridViewResultadoBusqueda.Columns.Add("razon_social_cliente", "Razon Social");
+            dataGridViewResultadoBusqueda.Columns[i].FillWeight = 1;
+
+            this.inicializarDataGridViewResultadosBusqueda_Domicilio();
+        }
+        private void inicializarDataGridViewResultadosBusqueda_Domicilio()
+        {
+            int i = dataGridViewResultadoBusqueda.Columns.Count;
+
+            dataGridViewResultadoBusqueda.Columns.Add("direccion", "Domicilio");
+            dataGridViewResultadoBusqueda.Columns[i].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("ciudad", "Ciudad Domicilio");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("provincia", "Provincia Domicilio");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
         }
 
         private void inicializarDataGridViewResultadoBusqueda_Articulos()
@@ -191,6 +201,8 @@ namespace Vista
             dataGridViewResultadoBusqueda.Columns.Add("nombre_entidad", "Nombre Cliente");
             dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
             dataGridViewResultadoBusqueda.Columns.Add("apellido_entidad", "Apellido Cliente");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("razon_social_cliente", "Razón Social Cliente");
             dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
             dataGridViewResultadoBusqueda.Columns.Add("monto_total", "Monto");
             dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
@@ -433,6 +445,7 @@ namespace Vista
         private void cargarDatosClienteEnRow(ModeloCliente p_mod_cliente, ref DataGridViewRow row)
         {
             row.Cells["tipo"].Value = p_mod_cliente.tipoPersona;
+            row.Cells["razon_social_cliente"].Value = p_mod_cliente.razonSocial;
         }
         private void cargarDatosPedidoEnRow(ModeloPedido p_mod_pedido, ref DataGridViewRow row)
         {
@@ -442,6 +455,7 @@ namespace Vista
             //Aca pasa null cuando los clientes son genericos
             row.Cells["nombre_entidad"].Value = (p_mod_pedido.entidad as ModeloCliente).nombre ;
             row.Cells["apellido_entidad"].Value = (p_mod_pedido.entidad as ModeloCliente).apellido;
+            row.Cells["razon_social_cliente"].Value = (p_mod_pedido.entidad as ModeloCliente).razonSocial;
             row.Cells["monto_total"].Value = p_mod_pedido.montoTotal;
         }
         private DataGridView popularDataGridViewResultadoBusqueda(List<ModeloPedido> p_lst_mod_pedido)
