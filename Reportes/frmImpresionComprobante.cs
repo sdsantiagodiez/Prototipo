@@ -75,6 +75,8 @@ namespace Reportes
 
         private void mostrarComprobante(ModeloPedido p_pedido)
         {
+            //this.contenedorComprobante.Reset();
+
             ModeloReporteEncabezadoComprobante lcl_mod_encabezadoComprobante = new ModeloReporteEncabezadoComprobante(p_pedido);
 
             this.iniciarDataSources(lcl_mod_encabezadoComprobante);
@@ -114,6 +116,7 @@ namespace Reportes
                     //rdlcFile = "Reportes.Pedido.rdlc";
                     break;
             }
+            
             //System.Reflection.Assembly assembly = System.Reflection.Assembly.LoadFrom("Reportes.dll");
             //var stream = assembly.GetManifestResourceStream(rdlcFile);
             
@@ -199,7 +202,7 @@ namespace Reportes
         private string getFileName(ModeloPedido p_pedido)
         {
             string folderPath;
-            if (p_pedido.codigoTipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            if (p_pedido.codigoTipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona)
             {
                 folderPath = this.folderPathPedidosClientes + "\\";
             }
@@ -209,7 +212,7 @@ namespace Reportes
             }
 
             //Pedido_(0|1)_(numeroPedido).pdf   //0|1 si es tipoPedidoCliente o tipoPedidoProveedor
-            string tipoPedido = p_pedido.codigoTipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona ? "CLI" : "PROV";
+            string tipoPedido = p_pedido.codigoTipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona ? "CLI" : "PROV";
 
             string fileName_aux = folderPath + "Pedido_" + tipoPedido + "_" + p_pedido.numeroPedido.ToString();
             string fileName = fileName_aux + ".pdf";

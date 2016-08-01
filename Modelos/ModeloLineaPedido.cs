@@ -210,14 +210,14 @@ namespace Modelos
             //Sólo considera que la linea sea de venta de artículo y no para una compra a proveedor
             switch (p_tipoPedido)
             {
-                case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona:
+                case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona:
                     this.valorUnitario = Convert.ToDecimal(p_mod_articuloProveedor.valorVenta.valorArticulo);
                     break;
-                case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor:
+                case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Proveedor:
                     this.valorUnitario = Convert.ToDecimal(p_mod_articuloProveedor.valorCompra.valorArticulo);
                     break;
             }
-            if(p_tipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona && p_mod_articuloProveedor.tieneDescuentosVigentes())
+            if(p_tipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona && p_mod_articuloProveedor.tieneDescuentosVigentes())
             {
                 this.addDescuento(new ModeloDescuentoLineaPedido(p_mod_articuloProveedor.getDescuentoVigente()));
                 

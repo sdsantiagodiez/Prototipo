@@ -84,10 +84,10 @@ namespace Vista
         {
             switch (p_mod_pedido.codigoTipoPedido)
             {
-                case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona:
+                case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona:
                     this.inicializarCierrePedidoCliente(p_mod_pedido);
                     break;
-                case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor: 
+                case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Proveedor: 
                     this.inicializarCierrePedidosProveedores(p_mod_pedido);
                     break;
                 default:
@@ -107,15 +107,15 @@ namespace Vista
             switch (p_modoFormulario)
             {
                 case ModoFormularioPedidoCliente:
-                    p_mod_pedido.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona;
+                    p_mod_pedido.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona;
                     this.inicializarCierrePedidoCliente(p_mod_pedido);
                     break;
                 case ModoFormularioDevolucionCliente:
-                    p_mod_pedido.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona;
+                    p_mod_pedido.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona;
                     this.inicializarDevolucionPedidoCliente(p_mod_pedido);
                     break;
                 case ModoFormularioPedidoProveedor:
-                    p_mod_pedido.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor;
+                    p_mod_pedido.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Proveedor;
                     this.inicializarCierrePedidosProveedores(p_mod_pedido);
                     break;
                 default :
@@ -760,7 +760,7 @@ namespace Vista
             //incluido todo lo monetario en controlador.pedidoActual, entidad si es pedido a proveedor,
             //y forma(s) de pago
             ModeloPedido lcl_mod_pedido = controlador.pedidoActual;
-            if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.Persona)
             {
                 lcl_mod_pedido.entidad = this.cargarControlEnCliente();
                 lcl_mod_pedido.documentoComprador = this.cargarControlEnDocumento();
@@ -850,7 +850,7 @@ namespace Vista
             }
             else if (modoFormulario == ModoFormularioPedidoProveedor)
             {
-                tipoComprobante = 0;
+                tipoComprobante = (int)Constantes.TipoComprobanteCompra.Pedido_Proveedor;
             }
             return tipoComprobante;
         }
@@ -1052,11 +1052,11 @@ namespace Vista
         {
             if (controlador.GetType() == typeof(ControladorPedidoCliente))
             {
-                return Constantes.CodigosTiposPedidos.TipoPedidoPersona;
+                return Constantes.CodigosTiposPedidos.Persona;
             }
             else
             {
-                return Constantes.CodigosTiposPedidos.TipoPedidoProveedor;
+                return Constantes.CodigosTiposPedidos.Proveedor;
             }
         }
         #endregion
@@ -1234,7 +1234,7 @@ namespace Vista
         }
         private void cmbBoxTipoComprobante_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.getCodigoTipoComprobante() != 0)
+            if (this.getCodigoTipoComprobante() < 1000)
             {
                 this.btnFacturaElectronica.Enabled = true;
             }

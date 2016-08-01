@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+//using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.Windows.Forms;
 using LibreriaClasesCompartidas;
 using Modelos;
@@ -71,6 +71,7 @@ namespace Vista
             this.inicializarContextMenu();
             this.inicializarBotones();
             this.inicializarDataGridView();
+            this.inicializarPeriodos();
         }
         private void inicializarCheckListBox()
         {
@@ -97,10 +98,10 @@ namespace Vista
             var enums_venta = Enum.GetValues(typeof(Constantes.TipoComprobanteVenta)).Cast<Constantes.TipoComprobanteVenta>();
             foreach (var e in enums_venta)
             {
-                if (e == Constantes.TipoComprobanteVenta.Otro)
-                {
-                    continue;
-                }
+                //if (e == Constantes.TipoComprobanteVenta.Otro)
+                //{
+                //    continue;
+                //}
                 lcl_lst_tiposComprobantes.Add(new ComboBoxItem()
                 {
                     Name = Constantes.GetDescription<Constantes.TipoComprobanteVenta>((Constantes.TipoComprobanteVenta)e),
@@ -202,7 +203,10 @@ namespace Vista
             this.btnImprimir.Click += (s, e) => { this.imprimir(); };
             this.btnVerDetalles.Click += (s, e) => { this.verDetalles(); };
         }
-
+        private void inicializarPeriodos()
+        {
+            this.chckBoxPeriodos.Checked = true;
+        }
         private void inicializarDataGridView()
         {
             this.dgvResultadoBusqueda.MouseDown += this.dgvResultadoBusqueda_MouseDown;
@@ -258,7 +262,7 @@ namespace Vista
 
                 row.Cells["dgvKey"].Value = rowIndex;
 
-                row.Cells["tipoPedido"].Value = p.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona? "PER":"PROV";
+                row.Cells["tipoPedido"].Value = p.codigoTipoPedido.GetDescription();
                 row.Cells["numeroPedido"].Value = p.numeroPedido;
                 row.Cells["fecha"].Value = p.fecha;
                 row.Cells["tipoComprobante"].Value = p.tipoComprobante;
@@ -335,10 +339,10 @@ namespace Vista
             var enums_compra = Enum.GetValues(typeof(Constantes.TipoComprobanteCompra)).Cast<Constantes.TipoComprobanteCompra>();
             foreach (var e in enums_compra)
             {
-                if (e == Constantes.TipoComprobanteCompra.Otro)
-                {
-                    continue;
-                }
+                //if (e == Constantes.TipoComprobanteCompra.Otro)
+                //{
+                //    continue;
+                //}
                 foreach (ComboBoxItem item in this.chckdListBoxTipoComprobante.CheckedItems)
                 {
                     if(item.Value.Equals(e))
@@ -434,6 +438,10 @@ namespace Vista
         }
         private List<DateTime> getPeriodoSeleccionado()
         {
+            if (this.chckBoxPeriodos.Checked)
+            {
+                return null;
+            }
             List<DateTime> lcl_lst = new List<DateTime>();
             
             lcl_lst.Add(this.dtpDesde.Value);
@@ -444,6 +452,7 @@ namespace Vista
 
         private List<ModeloPedido> getPedidosSeleccionados()
         {
+            
             List<ModeloPedido> lcl_lst_pedidosSeleccionados = new List<ModeloPedido>();
             foreach (DataGridViewRow row in this.dgvResultadoBusqueda.SelectedRows)
             {
@@ -464,17 +473,32 @@ namespace Vista
                 return;
             }
 
-            glb_lst_pedidosEncontrados = Controladores.ControladorBusqueda.buscar(lcl_mod_pedidoBusqueda, this.getPeriodoSeleccionado(), this.getTiposComprobanteCompraSeleccionados(),
-                this.getTiposComprobanteVentaSeleccionados(), this.getTiposComprobanteDevolucionSeleccionados(), this.getTiposPedidosSeleccionados(), this.getFacturadoElectronicamenteSeleccionado());
-
+            this.buscar_mostrarMensajeEspera(lcl_mod_pedidoBusqueda);
+        
             if (glb_lst_pedidosEncontrados.Count < 1)
             {
                 MessageBox.Show("No se hay encontrado coincidencias.", "Resultado Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
-            else
+            
+            this.cargarModelosPedidosEnDataGridView(glb_lst_pedidosEncontrados);
+        }
+        private void buscar_mostrarMensajeEspera(ModeloPedido p_pedido)
+        {
+            BackgroundWorker bw = new BackgroundWorker();
+            frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Realizando búsqueda.");
+
+            bw.DoWork += (s, e) =>
             {
-                this.cargarModelosPedidosEnDataGridView(glb_lst_pedidosEncontrados);
-            }
+                glb_lst_pedidosEncontrados = Controladores.ControladorBusqueda.buscar(p_pedido, this.getPeriodoSeleccionado(), this.getTiposComprobanteCompraSeleccionados(),
+                this.getTiposComprobanteVentaSeleccionados(), this.getTiposComprobanteDevolucionSeleccionados(), this.getTiposPedidosSeleccionados(), this.getFacturadoElectronicamenteSeleccionado());
+            };
+            bw.RunWorkerCompleted += (s, e) =>
+            {
+                lcl_frm_loading.DialogResult = DialogResult.OK;
+            };
+
+            bw.RunWorkerAsync();
+            lcl_frm_loading.ShowDialog(); 
         }
         
         #endregion
@@ -484,7 +508,7 @@ namespace Vista
         {
             foreach (ModeloPedido p in p_lst_pedidosSeleccionados)
             {
-                if (p.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor || //pedidos de proveedor no se facturan
+                if (p.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor || //pedidos de proveedor no se facturan
                     p.aprobadoAFIP == "A" ||        //ya facturado
                     p.tipoComprobante == 0 || p.tipoComprobante > 1000) //comprobante que no se factura
                 {
@@ -644,5 +668,13 @@ namespace Vista
         }
 
         #endregion
+
+        private void chckBoxPeriodos_CheckedChanged(object sender, EventArgs e)
+        {
+            bool check = (sender as MaterialSkin.Controls.MaterialCheckBox).Checked;
+            
+            this.dtpDesde.Enabled = !check;
+            this.dtpHasta.Enabled = !check;
+        }
     }
 }

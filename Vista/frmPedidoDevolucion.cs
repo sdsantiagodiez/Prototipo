@@ -41,7 +41,7 @@ namespace Vista
             dgvArticulosDevolucion.EnableHeadersVisualStyles = false;
             dgvArticulosDevolucion.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
             this.inicializarControles();
-            this.controlador = new ControladorPedido(Constantes.CodigosTiposPedidos.TipoPedidoPersona);
+            this.controlador = new ControladorPedido(Constantes.CodigosTiposPedidos.Persona);
         }
         /// <summary>
         /// Inicializa pedido del que se extraerán artículos a devolución
