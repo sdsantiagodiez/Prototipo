@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+//using System.ComponentModel;
+//using System.Data;
+//using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using LibreriaClasesCompartidas;
@@ -32,9 +32,6 @@ namespace Vista
 
             this.inicializarFormulario();
             contactoProveedor = new ModeloContactoProveedor();
-
-            txtBoxCUIT.KeyPress += this.valorCUIT;
-            //txtBoxCUIT.MaxLength = ModeloEntidad.CUIT.longitud;
         }
         public frmABMEntidadDatosAdicionalesContactoProveedor(ModeloContactoProveedor p_mod_contactoProveedor) : this()
         {
@@ -49,6 +46,32 @@ namespace Vista
         {
             this.StartPosition = FormStartPosition.CenterParent;
             //txtBoxCodigoSeleccionado.ReadOnly = txtBoxCUITSeleccionado.ReadOnly = txtBoxRazonSocialSeleccionado.ReadOnly = true;
+            this.inicializarCmbBoxProveedores();
+        }
+        private void inicializarCmbBoxProveedores()
+        {
+            List<ModeloProveedor> lcl_lst_mod_proveedores = Controladores.ControladorBusqueda.getProveedores().OrderBy(x => x.razonSocial).ToList();
+            var dataSource = new List<ComboBoxItem>();
+
+            for (int i = 0; i < lcl_lst_mod_proveedores.Count; i++)
+            {
+                dataSource.Add(new ComboBoxItem()
+                {
+                    Name = lcl_lst_mod_proveedores[i].razonSocial,
+                    Value = lcl_lst_mod_proveedores[i]
+                });
+            }
+            if (dataSource.Count < 1)
+            {
+                dataSource.Add(new ComboBoxItem() { Name = "--No existen proveedores--", Value = null });
+                this.cmbBoxProveedores.Enabled = false;
+            }
+            else
+            {
+                dataSource.Insert(0, new ComboBoxItem() { Name = "--Seleccionar--", Value = null });
+            }
+            this.cmbBoxProveedores.DataSource = dataSource;
+            base.inicializarCmbBox(this.cmbBoxProveedores);
         }
         #endregion
 
@@ -66,44 +89,28 @@ namespace Vista
         #region Modelo -> Controles
         private void cargarDatosProveedorEnControles()
         {
-            txtBoxCodigoSeleccionado.Text = contactoProveedor.proveedor.codigo.ToString();
-            txtBoxCUITSeleccionado.Text = contactoProveedor.proveedor.cuit;
-            txtBoxRazonSocialSeleccionado.Text = contactoProveedor.proveedor.razonSocial;
+            if (contactoProveedor.proveedor != null)
+            {
+                this.cmbBoxProveedores.SelectedValue = contactoProveedor.proveedor;
+            }
+        }
+        private void cargarProveedorEnTextBox(ModeloProveedor p_proveedor)
+        {
+            if (p_proveedor != null)
+            {
+                txtBoxCodigoSeleccionado.Text = p_proveedor.codigo.ToString();
+                txtBoxCUITSeleccionado.Text = p_proveedor.cuit;
+                txtBoxRazonSocialSeleccionado.Text = p_proveedor.razonSocial;
+            }
         }
         #endregion
 
         #region Controles -> Modelo
-        private void cargarDatosEnModeloProveedor(ref ModeloProveedor lcl_mod_proveedor)
-        {
-            if (LibreriaClasesCompartidas.Validar.validarInputNumerico(txtBoxCodigo.Text.ToString(),LibreriaClasesCompartidas.Constantes.Numericos.Entero))
-            {
-                lcl_mod_proveedor.codigo = Convert.ToInt32(txtBoxCodigo.Text);
-            }
-            else
-            {
-                lcl_mod_proveedor.codigo = 0;
-            }
 
-            lcl_mod_proveedor.cuit = txtBoxCUIT.Text;
-            lcl_mod_proveedor.razonSocial = txtBoxRazonSocial.Text;
-        }
         #endregion
         #endregion
 
         #region Eventos
-
-        private void btnSeleccionarProveedor_Click(object sender, EventArgs e)
-        {
-            frmResultadoBusqueda glb_frm_resultadoBusqueda = new frmResultadoBusqueda();
-            ModeloProveedor lcl_mod_proveedorSeleccionado = new ModeloProveedor();
-            this.cargarDatosEnModeloProveedor(ref lcl_mod_proveedorSeleccionado);
-            glb_frm_resultadoBusqueda.mostrarBusqueda(lcl_mod_proveedorSeleccionado);
-            if (glb_frm_resultadoBusqueda.modeloSeleccionado != null)
-            {
-                contactoProveedor.proveedor = glb_frm_resultadoBusqueda.modeloSeleccionado as ModeloProveedor;
-                this.cargarDatosProveedorEnControles();
-            }
-        }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -123,80 +130,23 @@ namespace Vista
             this.contactoProveedor = null;
             this.Close();
         }
-        /// <summary>
-        /// Diferente al valorCUIT de frmABMEntidad. No permite ingreso de guión, pero los ingresa el sistema automaticamente
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void valorCUIT(object sender, KeyPressEventArgs e)
-        {
-            // solo 0-9 y borrar 
-            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 ))
-            {
-                e.Handled = true;
-                return;
-            }
-            
-            if ((sender as TextBox).Text.Length == 2 || (sender as TextBox).Text.Length == 11)
-            {
-                if (e.KeyChar != 8)
-                {
-                    (sender as TextBox).Text +=  "-"+e.KeyChar;
-                    e.Handled = true;
-                    (sender as TextBox).SelectionStart = (sender as TextBox).Text.Length;
-                }
-                
-            }
-            
-        }
 
+        private void cmbBoxProveedores_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if ((sender as ComboBox).SelectedValue as ModeloProveedor != null)
+            {
+                this.contactoProveedor.proveedor = (sender as ComboBox).SelectedValue as ModeloProveedor;
+                this.cargarProveedorEnTextBox(this.contactoProveedor.proveedor);
+            }
+            else
+            {
+                this.contactoProveedor.proveedor = null;
+                this.cargarProveedorEnTextBox(new ModeloProveedor());
+            }
+        }
         #endregion
 
         #region Validaciones
-        private void txtBoxCodigo_Leave(object sender, EventArgs e)
-        {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigo.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad);
-            if (!respuesta)
-            {
-                epCodigo.Icon = Properties.Resources.error;
-                epCodigo.SetError(txtBoxCodigo, "Código no válido");
-            }
-            else
-            {
-                epCodigo.Icon = Properties.Resources.success;
-                epCodigo.SetError(txtBoxCodigo, "OK");
-            }
-        }
-
-        private void txtBoxCUIT_Leave(object sender, EventArgs e)
-        {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCUIT.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit);
-            if (!respuesta)
-            {
-                epCUIT.Icon = Properties.Resources.error;
-                epCUIT.SetError(txtBoxCUIT, "CUIT no válido");
-            }
-            else
-            {
-                epCUIT.Icon = Properties.Resources.success;
-                epCUIT.SetError(txtBoxCUIT, "OK");
-            }
-        }
-
-        private void txtBoxRazonSocial_Leave(object sender, EventArgs e)
-        {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
-            if (!respuesta)
-            {
-                epRazonSocial.Icon = Properties.Resources.error;
-                epRazonSocial.SetError(txtBoxRazonSocial, "Razón Social no válida");
-            }
-            else
-            {
-                epRazonSocial.Icon = Properties.Resources.success;
-                epRazonSocial.SetError(txtBoxRazonSocial, "OK");
-            }
-        }
 
         private void txtBoxCodigoSeleccionado_Leave(object sender, EventArgs e)
         {
@@ -242,7 +192,9 @@ namespace Vista
                 epRazonSocialSeleccionado.SetError(txtBoxRazonSocialSeleccionado, "OK");
             }
         }
-#endregion
+        #endregion
+
+       
        
     }
 }
