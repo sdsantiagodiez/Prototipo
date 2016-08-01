@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Modelos;
 using Microsoft.Reporting.WinForms;
 using System.IO;
+using iTextSharp.text.pdf;
 
 namespace Reportes
 {
@@ -19,6 +20,8 @@ namespace Reportes
         public EventHandler CerrarForm;
         string folderPathPedidosClientes;
         string folderPathPedidosProveedores;
+        FileStream destinationDocumentStream;
+        List<string> PDFSaAgregar = new List<string>();
         #endregion
 
         #region Constructores
@@ -60,10 +63,12 @@ namespace Reportes
             {
                 return false;
             }
+            this.documentoComprobantes(p_lst_pedidos);
             foreach (ModeloPedido pedido in p_lst_pedidos)
             {
                 this.generarComprobante(pedido);
             }
+            agregarAPDF(PDFSaAgregar, destinationDocumentStream);
             return true;
         }
         #region Métodos
@@ -145,9 +150,12 @@ namespace Reportes
                 string extension;
                 byte[] bytes = contenedorComprobante.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamids, out warnings);
 
-                FileStream fs = new FileStream(this.getFileName(p_pedido), FileMode.Create);
+                string pathnombre_archivo = this.getFileName(p_pedido);
+                FileStream fs = new FileStream(pathnombre_archivo, FileMode.Create);
                 fs.Write(bytes, 0, bytes.Length);
                 fs.Close();
+                this.PDFSaAgregar.Add(pathnombre_archivo);
+                //agregarAPDF(pathnombre_archivo, destinationDocumentStream);
             }
             catch (Exception ex)
             {
@@ -155,6 +163,37 @@ namespace Reportes
             }
 
             return true;
+        }
+
+        private void documentoComprobantes(List<ModeloPedido> p_lst_mod_Pedidos)
+        {
+            string todayNow = DateTime.Today.Year.ToString() + DateTime.Today.Month.ToString() + DateTime.Today.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".pdf";
+            if (p_lst_mod_Pedidos[0].codigoTipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            {
+                destinationDocumentStream = new FileStream(folderPathPedidosClientes + "\\PedidosCli_" + todayNow, FileMode.Create);
+            }
+            else
+            {
+                destinationDocumentStream = new FileStream(folderPathPedidosProveedores + "\\PedidosPro_" + todayNow, FileMode.Create);
+            }
+
+        }
+
+        private static void agregarAPDF(List<string> PDFPathAgregar, FileStream destinationDocumentStream)
+        {
+
+        var pdfConcat = new PdfConcatenate(destinationDocumentStream);
+        foreach (string s in PDFPathAgregar)
+        {
+            var sourceDocumentStream = new FileStream(s, FileMode.Open, FileAccess.Read, 0);
+
+            var pdfReader = new PdfReader(sourceDocumentStream);
+            pdfReader.SelectPages("1");
+            pdfConcat.AddPages(pdfReader);
+            pdfReader.Close();
+        }
+        
+        pdfConcat.Close();
         }
 
         private string getFileName(ModeloPedido p_pedido)
