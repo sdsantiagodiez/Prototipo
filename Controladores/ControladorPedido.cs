@@ -385,33 +385,6 @@ namespace Controladores
         }
         #endregion
 
-        #region Últimos Comprobantes
-        public string UltimoComprobante(string p_tipoComprobante)
-        {
-            string ultimoComprobante = "";
-
-            CatalogoPedidos lcl_cat_pedidos = new CatalogoPedidos();
-            ultimoComprobante = lcl_cat_pedidos.getUltimoComprobante(p_tipoComprobante);
-
-            return ultimoComprobante;
-        }
-
-        #endregion
-
-        #region Pedidos sin Facurar
-        public List<ModeloPedido> getPedidosSFacturar(string[] p_tipoComprobante)
-        {
-            CatalogoPedidos lcl_cat_ped = new CatalogoPedidos();
-
-            return lcl_cat_ped.getComprobantesNoFacturados(p_tipoComprobante);
-        }
-        #endregion
-        public List<ModeloPedido> getPedidosDesdeHasta(int p_numeroDesde, int p_numeroHasta)
-        {
-            CatalogoPedidos lcl_cat_ped = new CatalogoPedidos();
-
-            return lcl_cat_ped.getComprobantesDesdeHasta(p_numeroDesde,p_numeroHasta);
-        }
         #endregion
     }
 }

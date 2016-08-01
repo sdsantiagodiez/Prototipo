@@ -171,7 +171,7 @@ namespace Reportes
         private void documentoComprobantes(List<ModeloPedido> p_lst_mod_Pedidos)
         {
             string todayNow = DateTime.Today.Year.ToString() + DateTime.Today.Month.ToString() + DateTime.Today.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".pdf";
-            if (p_lst_mod_Pedidos[0].codigoTipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            if (p_lst_mod_Pedidos[0].codigoTipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona)
             {
                 destinationDocumentStream = new FileStream(folderPathPedidosClientes + "\\PedidosCli_" + todayNow, FileMode.Create);
             }

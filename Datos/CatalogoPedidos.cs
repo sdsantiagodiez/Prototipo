@@ -38,7 +38,8 @@ namespace Datos
             lcl_mod_pedido.CAE = (p_drPedidos["cae"] != DBNull.Value) ? (string)p_drPedidos["cae"] : null; ;
             lcl_mod_pedido.aprobadoAFIP = (p_drPedidos["aprobado_afip"] != DBNull.Value) ? (string)p_drPedidos["aprobado_afip"] : null; ;
             (lcl_mod_pedido.entidad as ModeloCliente).nombre = (p_drPedidos["nombre_entidad"] != DBNull.Value) ? (string)p_drPedidos["nombre_entidad"] : null; ;
-            (lcl_mod_pedido.entidad as ModeloCliente).apellido = (p_drPedidos["apellido_entidad"] != DBNull.Value) ? (string)p_drPedidos["apellido_entidad"] : null; ;
+            (lcl_mod_pedido.entidad as ModeloCliente).apellido = (p_drPedidos["apellido_entidad"] != DBNull.Value) ? (string)p_drPedidos["apellido_entidad"] : null;
+            (lcl_mod_pedido.entidad as ModeloCliente).razonSocial = (p_drPedidos["razon_social_entidad"] != DBNull.Value) ? (string)p_drPedidos["razon_social_entidad"] : null; ;
             lcl_mod_pedido.documentoComprador.tipo.codigo = (p_drPedidos["codigo_documento"] != DBNull.Value) ? (int)p_drPedidos["codigo_documento"] : 0; ;
             lcl_mod_pedido.documentoComprador.numero = (p_drPedidos["numero_documento_entidad"] != DBNull.Value) ? (string)p_drPedidos["numero_documento_entidad"] : null; ;
             lcl_mod_pedido.tipoComprobante = (p_drPedidos["codigo_comprobante"] != DBNull.Value) ? (int)p_drPedidos["codigo_comprobante"] : 0; ;
@@ -195,12 +196,12 @@ namespace Datos
 
             comando.CommandText =
                 "SELECT  [numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
-                "        [codigo_entidad], "+
+                "        [codigo_entidad], [razon_social_entidad], "+
                 "        [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante]  "+
                 "    FROM  "+
                 "    (  "+
                 "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
-                "                Pedidos_Personas.[codigo_entidad], "+
+                "                Pedidos_Personas.[codigo_entidad], Pedidos_Personas.[razon_social_entidad], "+
 	            "                [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], "+
 	            "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante] "+
                 "            FROM pedidos, Pedidos_Personas  "+
@@ -208,7 +209,7 @@ namespace Datos
                 "        )  "+
                 "    UNION  "+
                 "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
-                "                Pedidos_Proveedores.[codigo_entidad], "+
+                "                Pedidos_Proveedores.[codigo_entidad], NULL as [razon_social_entidad], "+
 	            "                NULL as [numero_comprobante],NULL as [cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], "+
 	            "                NULL as [codigo_documento],NULL as [numero_documento_entidad],NULL as [codigo_comprobante] "+
                 "            FROM pedidos, Pedidos_Proveedores  "+
@@ -244,91 +245,19 @@ namespace Datos
             return lcl_lst_mod_pedido;
         }
 
-        public List<ModeloPedido> buscarPedido(ModeloPedido p_mod_pedido,Constantes.CodigosTiposPedidos p_tipoPedido, string p_parametroBusqueda)
-        {
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
-
-            string querySQL = this.getCondicionBusqueda(p_mod_pedido, p_parametroBusqueda, ref comando);
-            int tipo = 0;
-            switch(p_tipoPedido){
-                case Constantes.CodigosTiposPedidos.Persona:
-                    tipo = 1;
-                    break;
-                case Constantes.CodigosTiposPedidos.Proveedor:
-                    tipo = 2;
-                    break;
-                default:tipo=0;break;
-            }
-
-            comando.CommandText =
-                "SELECT  [numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
-                "        [codigo_entidad], " +
-                "        [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante]  " +
-                "    FROM  " +
-                "    (  " +
-                "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
-                "                Pedidos_Personas.[codigo_entidad], " +
-                "                [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], " +
-                "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante] " +
-                "            FROM pedidos, Pedidos_Personas  " +
-                "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido  " +
-                "        )  " +
-                "    UNION  " +
-                "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
-                "                Pedidos_Proveedores.[codigo_entidad], " +
-                "                NULL as [numero_comprobante],NULL as [cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
-                "                NULL as [codigo_documento],NULL as [numero_documento_entidad],NULL as [codigo_comprobante] " +
-                "            FROM pedidos, Pedidos_Proveedores  " +
-                "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  " +
-                "        )  " +
-                "    ) as tbl " +
-                "   WHERE codigo_tipo_pedido ="+tipo+" AND " + querySQL;
-
-            comando.Connection.Open();
-
-            SqlDataReader drPedidos = comando.ExecuteReader();
-
-            List<ModeloPedido> lcl_lst_mod_pedido = new List<ModeloPedido>();
-            ModeloPedido lcl_mod_pedido = new ModeloPedido();
-
-            CatalogoLineasPedidos lcl_cat_lineasPedidos = new CatalogoLineasPedidos();
-            ModeloLineaPedido lcl_mod_lineaPedido = null;
-            while (drPedidos.Read())
-            {
-
-                lcl_mod_pedido = new ModeloPedido();
-                lcl_mod_pedido = this.leerDatosPedido(drPedidos);
-
-                lcl_mod_lineaPedido = new ModeloLineaPedido();
-                lcl_mod_lineaPedido.numeroPedido = lcl_mod_pedido.numeroPedido;
-                lcl_mod_pedido.addLineaPedidoList(lcl_cat_lineasPedidos.buscarLineasPedido(lcl_mod_lineaPedido, Constantes.ParametrosBusqueda.LineasPedidos.NumeroPedido));
-
-                lcl_lst_mod_pedido.Add(lcl_mod_pedido);
-            }
-            drPedidos.Dispose();
-            comando.Connection.Close();
-
-            return lcl_lst_mod_pedido;
-        }
-
         public List<ModeloPedido> buscar(ModeloPedido p_mod_pedido, List<DateTime> p_periodo,List<int> p_codigosComprobantes, bool? p_clienteGenerico, bool? p_facturadoElectronicamente)
         {
             SqlCommand comando = Conexion.crearComando();            
             string querySQL = this.getCondicionBusqueda(p_mod_pedido,p_periodo, p_codigosComprobantes, p_clienteGenerico, p_facturadoElectronicamente, ref comando);
             comando.CommandText =
                  "SELECT  [numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
-                "        [codigo_entidad], " +
+                "        [codigo_entidad],[razon_social_entidad], " +
                 "        [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],  " +
                 "           [descuento_1_monto],[descuento_2_monto] "+
                 "    FROM  " +
                 "    (  " +
                 "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
-                "                Pedidos_Personas.[codigo_entidad], " +
+                "                Pedidos_Personas.[codigo_entidad],Pedidos_Personas.[razon_social_entidad], " +
                 "                [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], " +
                 "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante], "+
                 "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto] " +
@@ -337,7 +266,7 @@ namespace Datos
                 "        )  " +
                 "    UNION  " +
                 "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
-                "                Pedidos_Proveedores.[codigo_entidad], " +
+                "                Pedidos_Proveedores.[codigo_entidad], NULL as [razon_social_entidad]," +
                 "                NULL as [numero_comprobante],NULL as [cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
                 "                NULL as [codigo_documento],NULL as [numero_documento_entidad],NULL as [codigo_comprobante], " +
                 "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto] " +
@@ -392,155 +321,6 @@ namespace Datos
         public List<ModeloPedido> getAll()
         {
             return this.buscarPedido(null, Constantes.ParametrosBusqueda.All);
-        }
-        public List<ModeloPedido> getAllTipo(Constantes.CodigosTiposPedidos p_tipoPedido)
-        {
-            return this.buscarPedido(null, p_tipoPedido, Constantes.ParametrosBusqueda.All);
-        }
-
-        public string getUltimoComprobante(string p_tipoComprobante)
-        {
-            string rta = "";
-
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                "SELECT ISNULL(MAX(numero_comprobante),0) as UltimoComprobante from Pedidos_Personas WHERE codigo_comprobante=@codigo_comprobante";
-
-            comando.Parameters.Add(new SqlParameter("@codigo_comprobante", SqlDbType.NVarChar));
-            comando.Parameters["@codigo_comprobante"].Value = p_tipoComprobante;
-            
-
-            comando.Connection.Open();
-
-            SqlDataReader drUltimoComprobante = comando.ExecuteReader();
-            drUltimoComprobante.Read();
-            rta = (string)drUltimoComprobante["UltimoComprobante"];
-              
-            
-            drUltimoComprobante.Close();
-
-            comando.Connection.Close();
-            if (rta == null)
-            {return "0"; }
-            else {return rta;}
-
-        }
-
-        public List<ModeloPedido> getComprobantesNoFacturados(string[] p_tipoComprobante)
-        {
-            List<ModeloPedido> lcl_lst_mod_ped = new List<ModeloPedido>();
-            
-
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                "SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
-                "                Pedidos_Personas.[codigo_entidad], " +
-                "                [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], " +
-                "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante] " +
-                "            FROM pedidos, Pedidos_Personas  " +
-                "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido AND Pedidos_Personas.cae Is NULL "+
-                "                   AND (codigo_comprobante=@tipo1 OR codigo_comprobante=@tipo2 OR codigo_comprobante=@tipo3"+
-                "                       OR codigo_comprobante=@tipo4) ";
-
-            comando.Parameters.Add(new SqlParameter("@tipo1", SqlDbType.NVarChar));
-            comando.Parameters["@tipo1"].Value = p_tipoComprobante[0];
-            comando.Parameters.Add(new SqlParameter("@tipo2", SqlDbType.NVarChar));
-            comando.Parameters["@tipo2"].Value = p_tipoComprobante[1];
-            comando.Parameters.Add(new SqlParameter("@tipo3", SqlDbType.NVarChar));
-            comando.Parameters["@tipo3"].Value = p_tipoComprobante[2];
-            comando.Parameters.Add(new SqlParameter("@tipo4", SqlDbType.NVarChar));
-            comando.Parameters["@tipo4"].Value = p_tipoComprobante[3];
-
-            comando.Connection.Open();
-
-            SqlDataReader drPedidoSinCAE = comando.ExecuteReader();
-
-            while (drPedidoSinCAE.Read())
-            { 
-                ModeloPedido lcl_mod_ped = new ModeloPedido();
-                lcl_mod_ped = leerDatosPedido(drPedidoSinCAE);
-
-                lcl_lst_mod_ped.Add(lcl_mod_ped);
-            }
-            
-            drPedidoSinCAE.Close();
-
-            comando.Connection.Close();
-            return lcl_lst_mod_ped;
-
-        }
-
-        public List<ModeloPedido> getComprobantesDesdeHasta(int p_numDesde, int p_numHasta)
-        {
-            List<ModeloPedido> lcl_lst_mod_ped = new List<ModeloPedido>();
-            ModeloLineaPedido lcl_mod_lineaPedido = new ModeloLineaPedido();
-            CatalogoLineasPedidos lcl_cat_lineasPedidos = new CatalogoLineasPedidos();
-
-
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                "SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
-                "                Pedidos_Personas.[codigo_entidad], " +
-                "                [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], " +
-                "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante] " +
-                "            FROM pedidos, Pedidos_Personas  " +
-                "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido " +
-                "                   AND pedidos.numero_pedido>=@num_desde AND pedidos.numero_pedido<=@num_hasta ";
-
-            comando.Parameters.Add(new SqlParameter("@num_desde", SqlDbType.Int));
-            comando.Parameters["@num_desde"].Value = p_numDesde;
-            comando.Parameters.Add(new SqlParameter("@num_hasta", SqlDbType.Int));
-            comando.Parameters["@num_hasta"].Value = p_numHasta;
-            
-
-            comando.Connection.Open();
-
-            SqlDataReader drPedido = comando.ExecuteReader();
-
-            while (drPedido.Read())
-            {
-                ModeloPedido lcl_mod_ped = new ModeloPedido();
-                lcl_mod_ped = leerDatosPedido(drPedido);
-
-                lcl_mod_lineaPedido = new ModeloLineaPedido();
-                lcl_mod_lineaPedido.numeroPedido = lcl_mod_ped.numeroPedido;
-                lcl_mod_ped.addLineaPedidoList(lcl_cat_lineasPedidos.buscarLineasPedido(lcl_mod_lineaPedido, Constantes.ParametrosBusqueda.LineasPedidos.NumeroPedido));
-
-                lcl_lst_mod_ped.Add(lcl_mod_ped);
-            }
-
-            drPedido.Close();
-
-            comando.Connection.Close();
-            return lcl_lst_mod_ped;
-
         }
 
         #endregion
@@ -946,10 +726,10 @@ namespace Datos
         private int addPedidoCliente(SqlCommand p_comando,ModeloPedido p_mod_pedido)
         {
             p_comando.CommandText =
-           "INSERT INTO  Pedidos_Personas  (numero_pedido,numero_comprobante,cae,aprobado_afip,codigo_entidad,nombre_entidad,apellido_entidad,codigo_documento,"+
-           "    numero_documento_entidad,codigo_comprobante) " +
-           "    VALUES( @numeroPedidoActual,@numero_comprobante,@cae,@aprobado_afip,@codigo_entidad,@nombre_entidad,@apellido_entidad,@codigo_documento,"+
-           "        @numero_documento_entidad,@codigo_comprobante) ";
+           "INSERT INTO  Pedidos_Personas  (numero_pedido,numero_comprobante,cae,aprobado_afip,codigo_entidad,nombre_entidad,apellido_entidad,"+
+           "    razon_social_entidad,codigo_documento,numero_documento_entidad,codigo_comprobante) " +
+           "    VALUES( @numeroPedidoActual,@numero_comprobante,@cae,@aprobado_afip,@codigo_entidad,@nombre_entidad,@apellido_entidad,"+
+           "    @razon_social_entidad,@codigo_documento,@numero_documento_entidad,@codigo_comprobante) ";
             
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numeroPedidoActual"));
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroComprobante, "@numero_comprobante"));
@@ -958,6 +738,7 @@ namespace Datos
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.entidad.codigo, "@codigo_entidad"));
             p_comando.Parameters.Add(this.instanciarParametro((p_mod_pedido.entidad as ModeloCliente).nombre, "@nombre_entidad"));
             p_comando.Parameters.Add(this.instanciarParametro((p_mod_pedido.entidad as ModeloCliente).apellido, "@apellido_entidad"));
+            p_comando.Parameters.Add(this.instanciarParametro((p_mod_pedido.entidad as ModeloCliente).razonSocial, "@razon_social_entidad"));
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.documentoComprador.tipo.codigo, "@codigo_documento"));
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.documentoComprador.numero, "@numero_documento_entidad"));
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.tipoComprobante, "@codigo_comprobante"));

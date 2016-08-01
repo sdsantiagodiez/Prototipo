@@ -563,6 +563,7 @@ namespace Vista
             this.chckBoxClienteGenerico.Checked = (controlador as ControladorPedidoCliente).esClienteGenerico();
             this.txtBoxApellido.Text = p_mod_cliente.apellido;
             this.txtBoxNombre.Text = p_mod_cliente.nombre;
+            this.txtBoxRazonSocial.Text = p_mod_cliente.razonSocial;
         }
         private void cargarProveedorEnControles(ModeloProveedor p_mod_proveedor)
         {
@@ -783,6 +784,7 @@ namespace Vista
             {
                 (lcl_mod_entidad as ModeloCliente).nombre = this.txtBoxNombre.Text;
                 (lcl_mod_entidad as ModeloCliente).apellido = this.txtBoxApellido.Text;
+                (lcl_mod_entidad as ModeloCliente).razonSocial = this.txtBoxRazonSocial.Text;
             }
             return lcl_mod_entidad;
         }
