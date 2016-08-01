@@ -41,7 +41,7 @@ namespace Vista
         {
             controlador = new ControladorPedido(p_codigoTipoPedido);
 
-            if (controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            if (controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Persona)
             {
                 this.chckBoxPermitirStockNegativo.Visible = true;
                 this.chckBoxPermitirStockNegativo.Checked = false;
@@ -234,7 +234,7 @@ namespace Vista
                 respuesta = false;
             }
             //verifico stock    //proveedor no valida stock
-            else if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona
+            else if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.Persona
                 && this.glb_mod_articuloSeleccionadoBusqueda.stockActual < Convert.ToInt32(this.nmrcUpDownCantidad.Value)
                 && !this.chckBoxPermitirStockNegativo.Checked)
             {
@@ -321,11 +321,11 @@ namespace Vista
             this.lblDescripcionVar.Text = p_mod_articuloProveedor.descripcionArticuloProveedor;
             //
             //TODO modificadores de precio segun metodo de pago
-            if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.Persona)
             {
                 this.lblPrecioVar.Text = Convert.ToString(p_mod_articuloProveedor.valorVenta.valorArticulo);
             }
-            else if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
+            else if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.Proveedor)
             {
                 this.lblPrecioVar.Text = Convert.ToString(p_mod_articuloProveedor.valorCompra.valorArticulo);
             }

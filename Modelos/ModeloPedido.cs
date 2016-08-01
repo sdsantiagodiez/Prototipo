@@ -130,10 +130,10 @@ namespace Modelos
             {
                 switch (value)
                 {
-                    case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona:
+                    case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona:
                         this.entidad = new ModeloCliente();
                         break;
-                    case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor:
+                    case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Proveedor:
                         this.entidad = new ModeloProveedor();
                         break;
                 }
@@ -187,11 +187,11 @@ namespace Modelos
         {
             if(p_mod_entidad.GetType() == typeof(ModeloProveedor))
             {
-                this.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor;
+                this.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Proveedor;
             }
             else if (p_mod_entidad.GetType() == typeof(ModeloCliente))
             {
-                this.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona;
+                this.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona;
             }
             this.entidad = p_mod_entidad;
 

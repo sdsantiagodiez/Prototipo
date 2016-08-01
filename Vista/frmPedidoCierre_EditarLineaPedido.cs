@@ -35,12 +35,12 @@ namespace Vista
         {
             glb_mod_lineaActual = p_mod_lineaPedido;
             this.cargarLineaEnControl(p_mod_lineaPedido);
-            if (p_tipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            if (p_tipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona)
             {
                 this.inicializarDataGridView();
                 this.cargarDescuentosEnControl(p_mod_lineaPedido.descuentos);
             }
-            else if (p_tipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
+            else if (p_tipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Proveedor)
             {
                 this.grpBoxDescuentos.Enabled = false;
                 this.checkBoxStockNegativo.Visible = false;
@@ -52,7 +52,7 @@ namespace Vista
         /// </summary>
         /// <param name="p_mod_lineaPedidoActual"></param>
         /// <param name="p_mod_lineaPedidoOriginal"></param>
-        public frmPedidoCierre_EditarLineaPedido(Modelos.ModeloLineaPedido p_mod_lineaPedidoActual,Modelos.ModeloLineaPedido p_mod_lineaPedidoOriginal) : this(p_mod_lineaPedidoActual,LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+        public frmPedidoCierre_EditarLineaPedido(Modelos.ModeloLineaPedido p_mod_lineaPedidoActual,Modelos.ModeloLineaPedido p_mod_lineaPedidoOriginal) : this(p_mod_lineaPedidoActual,LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona)
         {
             this.nmrcUpDownCantidad.Maximum = p_mod_lineaPedidoOriginal.cantidadArticulos;
             this.checkBoxStockNegativo.Visible = false;

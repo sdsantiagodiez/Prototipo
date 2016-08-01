@@ -31,7 +31,7 @@ namespace Controladores
             
             if (String.Equals(p_var_razonSocial, "") == false && (p_date_fechaFin > p_date_fechaInicio || p_date_fechaFin <= DateTime.Today))
             {
-                glb_lst_mod_pedidos = ControladorBusqueda.buscar(new ModeloPedido() { codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoProveedor}, Constantes.ParametrosBusqueda.Pedidos.Tipo);
+                glb_lst_mod_pedidos = ControladorBusqueda.buscar(new ModeloPedido() { codigoTipoPedido = Constantes.CodigosTiposPedidos.Proveedor}, Constantes.ParametrosBusqueda.Pedidos.Tipo);
                 
                 foreach (string RSocial in p_var_razonSocial)
                 {

@@ -173,7 +173,7 @@ namespace Controladores
             set { this._pedidosProveedores = value; }
         }
 
-        public ControladorPedidoProveedor() : base(Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
+        public ControladorPedidoProveedor() : base(Constantes.CodigosTiposPedidos.Proveedor)
         {
             //Cada pedido se identifica por el proveedor
         }
@@ -221,7 +221,7 @@ namespace Controladores
     }
     public class ControladorPedidoCliente : ControladorPedido
     {
-        public ControladorPedidoCliente() : base(Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+        public ControladorPedidoCliente() : base(Constantes.CodigosTiposPedidos.Persona)
         {
  
         }
@@ -273,7 +273,7 @@ namespace Controladores
                     codigoTipoComprobante = p_codigoTipoResponsable == 1 ? 5 : 10; //5=A,10=B
                     break;
                 default :
-                    codigoTipoComprobante = 0;//No se asigna. No hay código para tal (presupuesto, reserva, otro)
+                    codigoTipoComprobante = (int)p_tipoComprobante;
                     break;
             }
             return codigoTipoComprobante;

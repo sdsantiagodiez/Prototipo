@@ -552,15 +552,25 @@ namespace Controladores
         {
             List<int> lcl_lst_codigosComprobantes = new List<int>();
 
-            if (p_tipoCompra.Count > 0)
+            foreach (var item in p_tipoCompra)
             {
-                lcl_lst_codigosComprobantes.Add(0);//código de comprobante para pedidos a proveedor
+                if ((int)item >= 1000)
+                {
+                    lcl_lst_codigosComprobantes.Add((int)item);
+                }
             }
 
             foreach (var item in p_tipoVenta)
             {
-                lcl_lst_codigosComprobantes.Add(ControladorPedidoCliente.getCodigoComprobante(item , 1));//Responsable inscripto
-                lcl_lst_codigosComprobantes.Add(ControladorPedidoCliente.getCodigoComprobante(item, 2));//Responsable inscripto
+                if ((int)item < 1000)
+                {
+                    lcl_lst_codigosComprobantes.Add(ControladorPedidoCliente.getCodigoComprobante(item, 1));//Responsable inscripto
+                    lcl_lst_codigosComprobantes.Add(ControladorPedidoCliente.getCodigoComprobante(item, 2));//Responsable inscripto
+                }
+                else
+                {
+                    lcl_lst_codigosComprobantes.Add((int)item);
+                }
             }
 
             foreach (var item in p_tipoDevolucion)
@@ -588,7 +598,7 @@ namespace Controladores
             else if (p_tipoPedido.Contains(Constantes.TipoPedido.PedidoCliente) && p_tipoPedido.Contains(Constantes.TipoPedido.PedidoClienteGenerico))
             {//2 seleccionados
                 generico = null;
-                p_mod_pedido.codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoPersona;
+                p_mod_pedido.codigoTipoPedido = Constantes.CodigosTiposPedidos.Persona;
             }
             else 
             {//entra cuando hay 1 o 2 tiposPedidos seleccionados
@@ -598,13 +608,13 @@ namespace Controladores
                     if (p.Equals(Constantes.TipoPedido.PedidoProveedor)
                         && p_mod_pedido.codigoTipoPedido == 0)
                     {
-                        p_mod_pedido.codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoProveedor;
+                        p_mod_pedido.codigoTipoPedido = Constantes.CodigosTiposPedidos.Proveedor;
 
                     }
                     else if ((p.Equals(Constantes.TipoPedido.PedidoCliente) || p.Equals(Constantes.TipoPedido.PedidoClienteGenerico))
-                        && (p_mod_pedido.codigoTipoPedido == 0 || p_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona))
+                        && (p_mod_pedido.codigoTipoPedido == 0 || p_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.Persona))
                     {
-                        p_mod_pedido.codigoTipoPedido = Constantes.CodigosTiposPedidos.TipoPedidoPersona;
+                        p_mod_pedido.codigoTipoPedido = Constantes.CodigosTiposPedidos.Persona;
                     }
                     else
                     {

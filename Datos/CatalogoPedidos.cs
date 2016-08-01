@@ -32,7 +32,7 @@ namespace Datos
             lcl_mod_pedido.descuentos.descuento_monto_2 = (p_drPedidos["descuento_2_monto"] != DBNull.Value) ? (decimal)p_drPedidos["descuento_2_monto"] : 0;
 
             #region Datos Pedidos_Personas
-            if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.Persona)
             {
             lcl_mod_pedido.numeroComprobante = (p_drPedidos["numero_comprobante"] != DBNull.Value) ? (string)p_drPedidos["numero_comprobante"] : null; ;
             lcl_mod_pedido.CAE = (p_drPedidos["cae"] != DBNull.Value) ? (string)p_drPedidos["cae"] : null; ;
@@ -134,9 +134,13 @@ namespace Datos
             p_comando.Parameters.Add(this.instanciarParametro(codigoTipoPedido, "@codigo_tipo_pedido"));
             string codigoTipoPedidoQuery = this.parametroBusqueda("@codigo_tipo_pedido", "codigo_tipo_pedido", "=");
 
-            p_comando.Parameters.Add(this.instanciarParametro(p_periodo[0], "@fecha_desde"));
-            p_comando.Parameters.Add(this.instanciarParametro(p_periodo[1], "@fecha_hasta"));
-            string periodoQuery = " fecha BETWEEN @fecha_desde AND @fecha_hasta ";
+            string periodoQuery = "";
+            if (p_periodo != null)
+            {
+                p_comando.Parameters.Add(this.instanciarParametro(p_periodo[0], "@fecha_desde"));
+                p_comando.Parameters.Add(this.instanciarParametro(p_periodo[1], "@fecha_hasta"));
+                periodoQuery = " AND fecha BETWEEN @fecha_desde AND @fecha_hasta ";
+            }
 
             string numeroEntidadQuery = "";
             if (p_clienteGenerico != null)
@@ -175,7 +179,7 @@ namespace Datos
             }
 
             return " ( " + numeroPedidoQuery + " AND " + caeQuery + " AND " + numeroDocumentoQuery +
-                " AND " + codigoTipoPedidoQuery + " AND " + periodoQuery + numeroEntidadQuery + 
+                " AND " + codigoTipoPedidoQuery +  periodoQuery + numeroEntidadQuery + 
                 facturadoElectronicamenteQuery + codigoComprobanteQuery + " ) ";
         }
         public List<ModeloPedido> buscarPedido(ModeloPedido p_mod_pedido, string p_parametroBusqueda)
@@ -252,10 +256,10 @@ namespace Datos
             string querySQL = this.getCondicionBusqueda(p_mod_pedido, p_parametroBusqueda, ref comando);
             int tipo = 0;
             switch(p_tipoPedido){
-                case Constantes.CodigosTiposPedidos.TipoPedidoPersona:
+                case Constantes.CodigosTiposPedidos.Persona:
                     tipo = 1;
                     break;
-                case Constantes.CodigosTiposPedidos.TipoPedidoProveedor:
+                case Constantes.CodigosTiposPedidos.Proveedor:
                     tipo = 2;
                     break;
                 default:tipo=0;break;
@@ -853,9 +857,9 @@ namespace Datos
         {
             switch (p_mod_pedido.codigoTipoPedido)
             {
-                case Constantes.CodigosTiposPedidos.TipoPedidoPersona:
+                case Constantes.CodigosTiposPedidos.Persona:
                     return " Pedidos_Personas ";
-                case Constantes.CodigosTiposPedidos.TipoPedidoProveedor:
+                case Constantes.CodigosTiposPedidos.Proveedor:
                     return " Pedidos_Proveedores ";
                 default:
                     return "";
@@ -912,11 +916,11 @@ namespace Datos
             p_mod_pedido.numeroPedido = Convert.ToInt32(nuevoNumeroPedido);
             int rowsAffected;
 
-            if (p_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
+            if (p_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.Persona)
             {
                 rowsAffected = this.addPedidoCliente(comando,p_mod_pedido);
             }
-            else if (p_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
+            else if (p_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor)
             {
                 rowsAffected = this.addPedidoProveedor(comando, p_mod_pedido);
             }

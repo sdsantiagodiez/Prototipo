@@ -46,6 +46,7 @@
             this.dtpHasta = new System.Windows.Forms.DateTimePicker();
             this.lblFechaDesde = new MaterialSkin.Controls.MaterialLabel();
             this.lblFechaHasta = new MaterialSkin.Controls.MaterialLabel();
+            this.chckBoxPeriodos = new MaterialSkin.Controls.MaterialCheckBox();
             this.tblLayoutPanelParametrosBusqueda_1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblNumeroPedido = new MaterialSkin.Controls.MaterialLabel();
             this.lblNombre = new MaterialSkin.Controls.MaterialLabel();
@@ -247,16 +248,18 @@
             // tblLayoutPanelEntreFechas
             // 
             this.tblLayoutPanelEntreFechas.ColumnCount = 2;
-            this.tblLayoutPanelEntreFechas.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.61303F));
-            this.tblLayoutPanelEntreFechas.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.38697F));
-            this.tblLayoutPanelEntreFechas.Controls.Add(this.dtpDesde, 1, 0);
-            this.tblLayoutPanelEntreFechas.Controls.Add(this.dtpHasta, 1, 1);
-            this.tblLayoutPanelEntreFechas.Controls.Add(this.lblFechaDesde, 0, 0);
-            this.tblLayoutPanelEntreFechas.Controls.Add(this.lblFechaHasta, 0, 1);
+            this.tblLayoutPanelEntreFechas.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
+            this.tblLayoutPanelEntreFechas.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelEntreFechas.Controls.Add(this.dtpDesde, 1, 1);
+            this.tblLayoutPanelEntreFechas.Controls.Add(this.dtpHasta, 1, 2);
+            this.tblLayoutPanelEntreFechas.Controls.Add(this.lblFechaDesde, 0, 1);
+            this.tblLayoutPanelEntreFechas.Controls.Add(this.lblFechaHasta, 0, 2);
+            this.tblLayoutPanelEntreFechas.Controls.Add(this.chckBoxPeriodos, 1, 0);
             this.tblLayoutPanelEntreFechas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelEntreFechas.Location = new System.Drawing.Point(3, 18);
             this.tblLayoutPanelEntreFechas.Name = "tblLayoutPanelEntreFechas";
-            this.tblLayoutPanelEntreFechas.RowCount = 2;
+            this.tblLayoutPanelEntreFechas.RowCount = 3;
+            this.tblLayoutPanelEntreFechas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tblLayoutPanelEntreFechas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelEntreFechas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelEntreFechas.Size = new System.Drawing.Size(261, 117);
@@ -264,21 +267,21 @@
             // 
             // dtpDesde
             // 
-            this.dtpDesde.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.dtpDesde.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDesde.Location = new System.Drawing.Point(109, 18);
+            this.dtpDesde.Location = new System.Drawing.Point(92, 48);
             this.dtpDesde.Name = "dtpDesde";
-            this.dtpDesde.Size = new System.Drawing.Size(149, 22);
+            this.dtpDesde.Size = new System.Drawing.Size(166, 22);
             this.dtpDesde.TabIndex = 0;
             this.dtpDesde.ValueChanged += new System.EventHandler(this.dtpDesde_ValueChanged);
             // 
             // dtpHasta
             // 
-            this.dtpHasta.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.dtpHasta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpHasta.Location = new System.Drawing.Point(109, 76);
+            this.dtpHasta.Location = new System.Drawing.Point(92, 86);
             this.dtpHasta.Name = "dtpHasta";
-            this.dtpHasta.Size = new System.Drawing.Size(149, 22);
+            this.dtpHasta.Size = new System.Drawing.Size(166, 22);
             this.dtpHasta.TabIndex = 1;
             // 
             // lblFechaDesde
@@ -288,7 +291,7 @@
             this.lblFechaDesde.Depth = 0;
             this.lblFechaDesde.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblFechaDesde.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblFechaDesde.Location = new System.Drawing.Point(35, 17);
+            this.lblFechaDesde.Location = new System.Drawing.Point(18, 47);
             this.lblFechaDesde.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblFechaDesde.Name = "lblFechaDesde";
             this.lblFechaDesde.Size = new System.Drawing.Size(68, 24);
@@ -302,12 +305,30 @@
             this.lblFechaHasta.Depth = 0;
             this.lblFechaHasta.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblFechaHasta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblFechaHasta.Location = new System.Drawing.Point(28, 75);
+            this.lblFechaHasta.Location = new System.Drawing.Point(11, 85);
             this.lblFechaHasta.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblFechaHasta.Name = "lblFechaHasta";
             this.lblFechaHasta.Size = new System.Drawing.Size(75, 24);
             this.lblFechaHasta.TabIndex = 3;
             this.lblFechaHasta.Text = "y hasta:";
+            // 
+            // chckBoxPeriodos
+            // 
+            this.chckBoxPeriodos.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.chckBoxPeriodos.AutoSize = true;
+            this.chckBoxPeriodos.Depth = 0;
+            this.chckBoxPeriodos.Font = new System.Drawing.Font("Roboto", 10F);
+            this.chckBoxPeriodos.Location = new System.Drawing.Point(135, 5);
+            this.chckBoxPeriodos.Margin = new System.Windows.Forms.Padding(0);
+            this.chckBoxPeriodos.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chckBoxPeriodos.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chckBoxPeriodos.Name = "chckBoxPeriodos";
+            this.chckBoxPeriodos.Ripple = true;
+            this.chckBoxPeriodos.Size = new System.Drawing.Size(80, 30);
+            this.chckBoxPeriodos.TabIndex = 4;
+            this.chckBoxPeriodos.Text = "Todos";
+            this.chckBoxPeriodos.UseVisualStyleBackColor = true;
+            this.chckBoxPeriodos.CheckedChanged += new System.EventHandler(this.chckBoxPeriodos_CheckedChanged);
             // 
             // tblLayoutPanelParametrosBusqueda_1
             // 
@@ -654,5 +675,6 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnBuscar;
         private System.Windows.Forms.DataGridView dgvResultadoBusqueda;
         private System.Windows.Forms.GroupBox grpBoxResultadoBusqueda;
+        private MaterialSkin.Controls.MaterialCheckBox chckBoxPeriodos;
     }
 }

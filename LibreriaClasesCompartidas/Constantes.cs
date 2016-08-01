@@ -179,8 +179,10 @@ namespace LibreriaClasesCompartidas
 
         public enum CodigosTiposPedidos 
         {
-            TipoPedidoPersona=1,
-            TipoPedidoProveedor=2
+            [System.ComponentModel.Description("PER")]
+            Persona=1,
+            [System.ComponentModel.Description("PROV")]
+            Proveedor=2
         }
 
         public enum TipoPedido
@@ -212,10 +214,10 @@ namespace LibreriaClasesCompartidas
             Recibo =2,
             [System.ComponentModel.Description("Nota de Venta al Contado")]
             NotaVentaAlContado = 3,
-            Presupuesto = 4,
-            Reserva=5,
+            Presupuesto = 1001,
+            Reserva=1002,
             
-            Otro = 30
+            Otro = 3001
         }
 
         public enum TipoComprobanteDevolucion
@@ -228,9 +230,9 @@ namespace LibreriaClasesCompartidas
         public enum TipoComprobanteCompra
         {
             [System.ComponentModel.Description("Pedido a Proveedor")]
-            Pedido_Proveedor = 1,
+            Pedido_Proveedor = 2001,
             
-            Otro = 30
+            Otro = 3001
         }
         
         public static string GetDescription<T>(this T enumerationValue)

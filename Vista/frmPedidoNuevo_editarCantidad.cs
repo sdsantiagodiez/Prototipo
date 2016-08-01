@@ -29,7 +29,7 @@ namespace Vista
         {
             this.lineaPedidoActual = p_mod_lineaPedido;
             this.cargarLineaPedidoEnControles(p_mod_lineaPedido);
-            if (p_tipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.TipoPedidoProveedor)
+            if (p_tipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Proveedor)
             {
                 this.chckBoxPermitirStockNegativo.Visible = false;
                 this.chckBoxPermitirStockNegativo.Checked = true;
