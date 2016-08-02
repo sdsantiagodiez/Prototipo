@@ -417,6 +417,10 @@ namespace Vista
             {
                 (sender as frmPedidoDevolucion).ContinuarDevolucionPedido += this.evento_continuarDevolverPedido;
             }
+            if (sender.GetType() == typeof(frmPedidoNuevo))
+            {
+                (sender as frmPedidoNuevo).MostrarDetallesArticulo += this.evento_agregarFormEmergente;
+            }
             this.currentFormLocked = true;
         }
         public void evento_cerrarFormEmergente(object sender, EventArgs e)
