@@ -91,6 +91,14 @@ namespace Controladores
                     return false;
                 }
             }
+            else if (T == typeof(ModeloPedido))
+            {
+                if (!this.agregar(p_object as ModeloPedido))
+                {
+                    mensaje = "Ha ocurrido un error al guardar pedidos";
+                    return false;
+                }
+            }
             else
             {
                 return false;
@@ -292,7 +300,7 @@ namespace Controladores
         /// </summary>
         /// <param name="p_mod_pedido"></param>
         /// <returns>true si se ha insertado, false y excepción si ha habido fallo</returns>
-        public bool agregar(ref ModeloPedido p_mod_pedido)
+        public bool agregar(ModeloPedido p_mod_pedido)
         {
             CatalogoPedidos lcl_cat_pedidos = new CatalogoPedidos();
             if (!p_mod_pedido.validar())

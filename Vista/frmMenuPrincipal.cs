@@ -355,6 +355,7 @@ namespace Vista
 
             (glb_form as frmPedidoCierre).AgregarLineaPedido += evento_agregarFormEmergente;
             (glb_form as frmPedidoCierre).MostrarDetallesArticulo += evento_agregarFormEmergente;
+            (glb_form as frmPedidoCierre).MostrarComprobante += evento_agregarFormEmergente;
         }
         private void tlsbtnDevolucion_Click(object sender, EventArgs e)
         {

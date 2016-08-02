@@ -740,5 +740,11 @@ namespace Vista
             }
             return respuesta;
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Ignore;
+            this.Close();
+        }
     }
 }

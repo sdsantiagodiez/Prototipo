@@ -696,14 +696,12 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.descuentos.descuento_porcentaje_1, "@descuento_1_porcentaje"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.descuentos.descuento_monto_2, "@descuento_2_monto"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.descuentos.descuento_porcentaje_2, "@descuento_2_porcentaje"));
-            decimal descuento_lineas_monto = p_mod_pedido.getDescuentoLineas();
-            decimal descuento_lineas_porcentaje = descuento_lineas_monto / p_mod_pedido.montoTotal;
-            comando.Parameters.Add(this.instanciarParametro(descuento_lineas_monto, "@descuento_lineas_monto"));
-            comando.Parameters.Add(this.instanciarParametro(descuento_lineas_porcentaje, "@descuento_lineas_porcentaje"));
-            decimal descuento_total_monto = p_mod_pedido.getDescuentoTotal();
-            decimal descuento_total_porcentaje = descuento_total_monto / p_mod_pedido.montoTotal;
-            comando.Parameters.Add(this.instanciarParametro(descuento_total_monto, "@descuento_total_monto"));
-            comando.Parameters.Add(this.instanciarParametro(descuento_total_porcentaje, "@descuento_total_porcentaje"));
+            
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.getDescuentoLineas(), "@descuento_lineas_monto"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.getDescuentoLineasPorcentaje(), "@descuento_lineas_porcentaje"));
+            
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.getDescuentoTotal(), "@descuento_total_monto"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.getDescuentoTotalPorcentaje(), "@descuento_total_porcentaje"));
 
             comando.Connection.Open();
             //falta agregar domicilio, mail y telefono de facturacion

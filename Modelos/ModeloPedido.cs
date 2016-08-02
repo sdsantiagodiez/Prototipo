@@ -180,6 +180,7 @@ namespace Modelos
             this.descuentos = new ModeloDescuentoPedido();
             this.descuentos.asignarMontoTotal(this.getTotalSinDescuento());
             this.formasDePago = new List<FormaPago>();
+            this.addFormaPago(new FormaPago() { forma = LibreriaClasesCompartidas.Constantes.FormaDePago.Contado, restante = true });
             this.entidad = new ModeloEntidad();
         }
 
@@ -266,7 +267,14 @@ namespace Modelos
             }
             return descuento;
         }
-
+        public decimal getDescuentoLineasPorcentaje()
+        {
+            if(this.montoTotal == 0)
+            {
+                return 0;
+            }
+            return this.getDescuentoLineas() / this.montoTotal;
+        }
         public decimal getDescuentoTotal()
         {
             return 
@@ -274,6 +282,15 @@ namespace Modelos
                 this.descuentos.descuento_total_monto +
                 //VER si correspondería sacar la seña a un método diferente
                 this.senia;
+        }
+        public decimal getDescuentoTotalPorcentaje()
+        {
+            if (this.montoTotal == 0)
+            {
+                return 0;
+            }
+
+            return this.getDescuentoTotal() / this.montoTotal;
         }
         public decimal getTotalSinDescuento()
         {
@@ -317,7 +334,7 @@ namespace Modelos
             this.alicuota.monto = Math.Round(this.alicuota.monto, 2);
             return this.alicuota.monto;
         }
-        private void actualizarMontos()
+        public void actualizarMontos()
         {
             this.getTotal();
             this.getSubTotal();
