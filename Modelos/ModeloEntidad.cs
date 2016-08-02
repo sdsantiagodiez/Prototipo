@@ -10,63 +10,42 @@ namespace Modelos
     [Serializable]
     public class ModeloEntidad : Modelo
     {
-        #region Constructores
-        public ModeloEntidad()
-        {
-            this.mails = new List<ModeloMail>();
-            this.domicilios = new List<ModeloDomicilio>();
-            this.telefonos = new List<ModeloTelefono>();
-            _cuit = new CUIT();
-        }
-
-        public ModeloEntidad(ModeloEntidad p_mod_entidad) : this()
-        {
-            this.codigo = p_mod_entidad.codigo;
-            this.cuit = p_mod_entidad.cuit;
-            this.domicilios = p_mod_entidad.domicilios;
-            this.mails = p_mod_entidad.mails;
-            this.mails = p_mod_entidad.mails;
-            this.observaciones = p_mod_entidad.observaciones;
-            this.telefonos = p_mod_entidad.telefonos; 
-        }
-        #endregion
-
-        #region Getters/Setters
+        #region Atributos
         int _codigo;
         public int codigo
         {
             get { return _codigo; }
             set { this._codigo = value; }
         }
-        
+
         private CUIT _cuit;
         public string cuit
         {
             get { return _cuit.numeroCUIT; }
             set { this._cuit.numeroCUIT = value; }
         }
-        
+
         List<ModeloDomicilio> _domicilios;
         public List<ModeloDomicilio> domicilios
         {
             get { return _domicilios; }
-            set { this._domicilios = value;}
+            set { this._domicilios = value; }
         }
-        
+
         List<ModeloTelefono> _telefonos;
         public List<ModeloTelefono> telefonos
         {
             get { return _telefonos; }
             set { this._telefonos = value; }
         }
-        
+
         List<ModeloMail> _mails;
         public List<ModeloMail> mails
         {
             get { return _mails; }
             set { this._mails = value; }
         }
-        
+
         string _observaciones;
         public string observaciones
         {
@@ -87,6 +66,27 @@ namespace Modelos
             set { this._activo = value; }
         }
         #endregion
+
+        #region Constructores
+        public ModeloEntidad()
+        {
+            this.mails = new List<ModeloMail>();
+            this.domicilios = new List<ModeloDomicilio>();
+            this.telefonos = new List<ModeloTelefono>();
+            _cuit = new CUIT();
+        }
+
+        public ModeloEntidad(ModeloEntidad p_mod_entidad) : this()
+        {
+            this.codigo = p_mod_entidad.codigo;
+            this.cuit = p_mod_entidad.cuit;
+            this.domicilios = p_mod_entidad.domicilios;
+            this.mails = p_mod_entidad.mails;
+            this.mails = p_mod_entidad.mails;
+            this.observaciones = p_mod_entidad.observaciones;
+            this.telefonos = p_mod_entidad.telefonos; 
+        }
+        #endregion 
         
         #region Validación
         public bool validar()
@@ -183,6 +183,7 @@ namespace Modelos
                 && this.Equals(this.activo,p_mod_entidad.activo);
         }
         #endregion
+ 
         [Serializable]
         public class CUIT
         {
@@ -268,5 +269,12 @@ namespace Modelos
                 return cuit.Replace(" ", string.Empty).Replace("-", string.Empty);
             }
         }
+
+        #region ToString()
+        public override string ToString()
+        {
+            return null;
+        }
+        #endregion
     }
 }

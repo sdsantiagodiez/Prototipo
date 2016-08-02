@@ -165,5 +165,7 @@ namespace Modelos
                 && this.Equals(this.tipoPersona,p_mod_persona.tipoPersona);
         }
         #endregion
+
+
     }
 }

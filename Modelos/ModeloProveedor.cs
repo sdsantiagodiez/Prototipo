@@ -51,6 +51,11 @@ namespace Modelos
             return false;
         }
         #endregion
+
+        public override string ToString()
+        {
+            return razonSocial;
+        }
         
        #region Equals
         public override bool Equals(object p_objeto)

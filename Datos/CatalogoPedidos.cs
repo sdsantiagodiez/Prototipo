@@ -21,8 +21,8 @@ namespace Datos
             lcl_mod_pedido.fecha = (DateTime)p_drPedidos["fecha"];
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
-            lcl_mod_pedido.entidad.codigo = (int)p_drPedidos["codigo_entidad"];
             lcl_mod_pedido.codigoTipoPedido = (Constantes.CodigosTiposPedidos)p_drPedidos["codigo_tipo_pedido"];
+            lcl_mod_pedido.entidad.codigo = (int)p_drPedidos["codigo_entidad"];
             lcl_mod_pedido.alicuota.monto = (p_drPedidos["alicuota"] != DBNull.Value) ? (decimal)p_drPedidos["alicuota"] : 0;
             lcl_mod_pedido.montoSubTotal = (p_drPedidos["monto_subtotal"] != DBNull.Value) ? (decimal)p_drPedidos["monto_subtotal"] : 0;
             lcl_mod_pedido.montoTotal = (p_drPedidos["monto_total"] != DBNull.Value) ? (decimal)p_drPedidos["monto_total"] : 0;
@@ -34,15 +34,19 @@ namespace Datos
             #region Datos Pedidos_Personas
             if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.Persona)
             {
-            lcl_mod_pedido.numeroComprobante = (p_drPedidos["numero_comprobante"] != DBNull.Value) ? (string)p_drPedidos["numero_comprobante"] : null; ;
-            lcl_mod_pedido.CAE = (p_drPedidos["cae"] != DBNull.Value) ? (string)p_drPedidos["cae"] : null; ;
-            lcl_mod_pedido.aprobadoAFIP = (p_drPedidos["aprobado_afip"] != DBNull.Value) ? (string)p_drPedidos["aprobado_afip"] : null; ;
-            (lcl_mod_pedido.entidad as ModeloCliente).nombre = (p_drPedidos["nombre_entidad"] != DBNull.Value) ? (string)p_drPedidos["nombre_entidad"] : null; ;
-            (lcl_mod_pedido.entidad as ModeloCliente).apellido = (p_drPedidos["apellido_entidad"] != DBNull.Value) ? (string)p_drPedidos["apellido_entidad"] : null;
-            (lcl_mod_pedido.entidad as ModeloCliente).razonSocial = (p_drPedidos["razon_social_entidad"] != DBNull.Value) ? (string)p_drPedidos["razon_social_entidad"] : null; ;
-            lcl_mod_pedido.documentoComprador.tipo.codigo = (p_drPedidos["codigo_documento"] != DBNull.Value) ? (int)p_drPedidos["codigo_documento"] : 0; ;
-            lcl_mod_pedido.documentoComprador.numero = (p_drPedidos["numero_documento_entidad"] != DBNull.Value) ? (string)p_drPedidos["numero_documento_entidad"] : null; ;
-            lcl_mod_pedido.tipoComprobante = (p_drPedidos["codigo_comprobante"] != DBNull.Value) ? (int)p_drPedidos["codigo_comprobante"] : 0; ;
+                lcl_mod_pedido.numeroComprobante = (p_drPedidos["numero_comprobante"] != DBNull.Value) ? (string)p_drPedidos["numero_comprobante"] : null; 
+                lcl_mod_pedido.CAE = (p_drPedidos["cae"] != DBNull.Value) ? (string)p_drPedidos["cae"] : null; 
+                lcl_mod_pedido.aprobadoAFIP = (p_drPedidos["aprobado_afip"] != DBNull.Value) ? (string)p_drPedidos["aprobado_afip"] : null; 
+                (lcl_mod_pedido.entidad as ModeloCliente).nombre = (p_drPedidos["nombre_entidad"] != DBNull.Value) ? (string)p_drPedidos["nombre_entidad"] : null; 
+                (lcl_mod_pedido.entidad as ModeloCliente).apellido = (p_drPedidos["apellido_entidad"] != DBNull.Value) ? (string)p_drPedidos["apellido_entidad"] : null;
+                (lcl_mod_pedido.entidad as ModeloCliente).razonSocial = (p_drPedidos["razon_social_entidad"] != DBNull.Value) ? (string)p_drPedidos["razon_social_entidad"] : null; 
+                lcl_mod_pedido.documentoComprador.tipo.codigo = (p_drPedidos["codigo_documento"] != DBNull.Value) ? (int)p_drPedidos["codigo_documento"] : 0; 
+                lcl_mod_pedido.documentoComprador.numero = (p_drPedidos["numero_documento_entidad"] != DBNull.Value) ? (string)p_drPedidos["numero_documento_entidad"] : null; 
+                lcl_mod_pedido.tipoComprobante = (p_drPedidos["codigo_comprobante"] != DBNull.Value) ? (int)p_drPedidos["codigo_comprobante"] : 0; 
+            }
+            else
+            {
+                lcl_mod_pedido.tipoComprobante = 2001;
             }
             #endregion
 
@@ -242,6 +246,15 @@ namespace Datos
             drPedidos.Dispose();
             comando.Connection.Close();
 
+            CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
+            foreach (ModeloPedido p in lcl_lst_mod_pedido)
+            {
+                if (p.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor)
+                {
+                    p.entidad = lcl_cat_proveedores.getOne(p.entidad.codigo);
+                }
+            }
+
             return lcl_lst_mod_pedido;
         }
 
@@ -297,6 +310,15 @@ namespace Datos
             }
             drPedidos.Dispose();
             comando.Connection.Close();
+
+            CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
+            foreach (ModeloPedido p in lcl_mod_pedidosEncontrados)
+            {
+                if (p.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor)
+                {
+                    p.entidad = lcl_cat_proveedores.getOne(p.entidad.codigo);
+                }
+            }
 
             return lcl_mod_pedidosEncontrados;
         }

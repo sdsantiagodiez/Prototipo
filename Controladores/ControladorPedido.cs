@@ -103,11 +103,6 @@ namespace Controladores
             return true;
         }
 
-        //public bool cerrarPedido()
-        //{
-            
-        //    return true;
-        //}
         public bool guardarPedido()
         {
             ControladorAlta lcl_con_alta = new ControladorAlta();
@@ -160,7 +155,44 @@ namespace Controladores
         public void removeLineasPedidos()
         {
             this.pedidoActual.removeAllLineaPedido();
-        }        
+        }
+
+        public static string getNombreComprobante(int codigoComprobante)
+        {
+            switch (codigoComprobante)
+            {
+                case 1:
+                    return "Factura A";
+                case 2:
+                    return "Nota de Débito A";
+                case 3:
+                    return "Nota de Crédito A";
+                case 4:
+                    return "Recibo A";
+                case 5:
+                    return "Nota de Venta al Contado A";
+                case 6:
+                    return "Factura B";
+                case 7:
+                    return "Nota de Débito B";
+                case 8:
+                    return "Nota de Crédito B";
+                case 9:
+                    return "Recibo B";
+                case 10:
+                    return "Nota de Venta al Contado B";
+                case 88:
+                    return "Remito Electrónico";
+                case (int)Constantes.TipoComprobanteCompra.Pedido_Proveedor:
+                    return Constantes.TipoComprobanteCompra.Pedido_Proveedor.GetDescription();
+                case (int)Constantes.TipoComprobanteVenta.Presupuesto:
+                    return Constantes.TipoComprobanteVenta.Presupuesto.GetDescription();
+                case (int)Constantes.TipoComprobanteVenta.Reserva:
+                    return Constantes.TipoComprobanteVenta.Reserva.GetDescription();
+                default:
+                    return "Otro";
+            }
+        }
         #endregion
     }
 

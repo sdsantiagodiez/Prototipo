@@ -56,6 +56,23 @@ namespace Modelos
         }
         #endregion
 
+        public override string ToString()
+        {
+            string str_base = base.ToString();
+            if (String.IsNullOrWhiteSpace(str_base))
+            {
+                return razonSocial;
+            }
+            if (String.IsNullOrWhiteSpace(razonSocial))
+            {
+                return str_base;
+            }
+            else
+            {
+                return razonSocial + ", " + str_base;
+            }
+        }
+
         #region Equals
         public override bool Equals(object p_objeto)
         {

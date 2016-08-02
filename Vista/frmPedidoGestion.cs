@@ -265,16 +265,30 @@ namespace Vista
                 row.Cells["tipoPedido"].Value = p.codigoTipoPedido.GetDescription();
                 row.Cells["numeroPedido"].Value = p.numeroPedido;
                 row.Cells["fecha"].Value = p.fecha;
-                row.Cells["tipoComprobante"].Value = p.tipoComprobante;
-                row.Cells["codigoEntidad"].Value = p.entidad.codigo;
+                row.Cells["tipoComprobante"].Value = Controladores.ControladorPedido.getNombreComprobante(p.tipoComprobante);
+                row.Cells["codigoEntidad"].Value = p.entidad.codigo.ToString();
                 row.Cells["numeroDocumentoEntidad"].Value = p.documentoComprador.numero;
-                row.Cells["nombreEntidad"].Value = "proximamente";
+                
+                row.Cells["nombreEntidad"].Value = this.getNombreEntidad(p);
                 row.Cells["montoTotal"].Value = p.montoTotal;
                 row.Cells["cae"].Value = p.CAE;
                 row.Cells["facturadoElectronicamente"].Value = p.aprobadoAFIP == "A"? "Sí" : "No";
             }
             this.dgvResultadoBusqueda.AutoResizeColumns();
         }
+        private string getNombreEntidad(ModeloPedido p_pedido)
+        {
+            
+            if (p_pedido.entidad.tipoEntidad == Constantes.TiposEntidad.Persona)
+            {
+                return (p_pedido.entidad as ModeloCliente).ToString();
+            }
+            else
+            {
+                return (p_pedido.entidad as ModeloProveedor).ToString(); 
+            }
+        }
+
         #endregion
 
         #region Controles -> Modelo
