@@ -341,13 +341,36 @@ namespace Vista
         /// <summary>
         /// Muestra cuadro de resultado de búsqueda de la clase buscada o mensaje de error en caso de que no se haya podido mostrar
         /// </summary>
-        private void buscar()
+        private void buscar(object sender, EventArgs e)
         {
-            this.articuloProveedorSeleccionado = false;//para habilitar ingresar datos en codigo articulo proveedor para nueva entidad
-            //if algo buscar articulo proveedor
-            this.buscarArticulo();
-            this.glb_mod_articuloProveedor = new ModeloArticuloProveedores(glb_mod_articulo);
-            this.buscarArticulosProveedores();
+            if (!string.IsNullOrWhiteSpace(txtBoxCodigoOriginal.Text.ToString()))
+            {
+                this.txtBoxCodigoOriginal_Leave(sender, e);
+            }
+            if (!string.IsNullOrWhiteSpace(txtBoxDescripcion.Text.ToString()))
+            {
+                this.txtBoxDescripcion_Leave(sender, e);
+            }
+            if (!string.IsNullOrWhiteSpace(txtBoxModelo.Text.ToString()))
+            {
+                this.txtBoxModelo_Leave(sender, e);
+            }
+            if (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)]
+                || glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)]
+                || glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)])
+            {
+                this.articuloProveedorSeleccionado = false;//para habilitar ingresar datos en codigo articulo proveedor para nueva entidad
+                //if algo buscar articulo proveedor
+                this.buscarArticulo();
+                this.glb_mod_articuloProveedor = new ModeloArticuloProveedores(glb_mod_articulo);
+                this.buscarArticulosProveedores();
+            }
+            if (string.IsNullOrWhiteSpace(txtBoxCodigoOriginal.Text.ToString())
+                & string.IsNullOrWhiteSpace(txtBoxDescripcion.Text.ToString())
+                & string.IsNullOrWhiteSpace(txtBoxModelo.Text.ToString()))
+            {
+                MessageBox.Show("Por favor ingrese al menos uno de los campos antes de realizar una búsqueda");
+            }
         }
         private void buscarArticulo()
         {
@@ -632,7 +655,7 @@ namespace Vista
 
         override public void toolStripMenuItemBuscar_Click(object sender, EventArgs e)
         {
-            this.buscar();
+            this.buscar(sender,e);
         }
         #endregion
         

@@ -288,15 +288,49 @@ namespace Vista
             #region btnAgregar
             this.btnAgregarDomicilio.Click += (s, e) =>
                 {
-                    this.agregarDomicilioEntidad();
+                    if (cmbBoxPais.SelectedValue == null)
+                    {
+                        MessageBox.Show("Debe seleccionar un País.");
+                    }
+                    else if (cmbBoxProvincia.SelectedValue == null)
+                    {
+                        MessageBox.Show("Debe seleccionar una Provincia.");
+                    }
+                    else if(validarInputs(s,e,Constantes.ParametrosBusqueda.Domicilios.CodigoDomicilio))
+                    {
+                        this.agregarDomicilioEntidad();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Por favor verifique que los campos hayan sido ingresados correctamente");
+                    }
+                    
                 };
             this.btnAgregarMail.Click += (s, e) =>
             {
-                this.agregarMailEntidad();
+                if (validarInputs(s, e, Constantes.ParametrosBusqueda.Mails.CodigoMail))
+                {
+                    this.agregarMailEntidad();
+                }
+                else
+                {
+                    MessageBox.Show("Por favor ingrese una dirección de correo válida");
+                }
             };
             this.btnAgregarTelefono.Click += (s, e) =>
             {
-                this.agregarTelefonoEntidad();
+                if (cmbBoxTipoTelefono.SelectedValue == null)
+                {
+                    MessageBox.Show("Debe seleccionar un tipo de teléfono para el número indicado");
+                } 
+                else if (validarInputs(s, e, Constantes.ParametrosBusqueda.Telefonos.CodigoTelefono))
+                {
+                    this.agregarTelefonoEntidad();
+                }
+                else
+                {
+                    MessageBox.Show("Por favor ingrese un teléfono válido");
+                }
             };
             #endregion
 
@@ -409,7 +443,7 @@ namespace Vista
         {
             if (!this.validarEntidad(glb_mod_entidadActual))
             {
-                MessageBox.Show(errorActual, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                MessageBox.Show(errorActual, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -437,18 +471,59 @@ namespace Vista
         /// <summary>
         /// Muestra cuadro de resultado de búsqueda de la clase buscada o mensaje de error en caso de que no se haya podido mostrar
         /// </summary>
-        private void buscar()
+        private void buscar(object sender, EventArgs e)
         {
-            if (this.validarBusqueda())
+            if (this.validarTipoEntidad())
             {
-                this.buscarEntidad();
+                if (!string.IsNullOrWhiteSpace(txtBoxCodigoEntidad.Text.ToString()))
+                {
+                    this.txtBoxCodigoEntidad_Leave(sender, e);
+                }
+                if (!string.IsNullOrWhiteSpace(txtBoxCUIT.Text.ToString()))
+                {
+                    this.txtBoxCUIT_Leave(sender, e);
+                }
+                if (!string.IsNullOrWhiteSpace(txtBoxDNI.Text.ToString()))
+                {
+                    this.txtBoxDNI_Leave(sender, e);
+                }
+                if (!string.IsNullOrWhiteSpace(txtBoxNombre.Text.ToString()))
+                {
+                    this.txtBoxNombre_Leave(sender, e);
+                }
+                if (!string.IsNullOrWhiteSpace(txtBoxApellido.Text.ToString()))
+                {
+                    this.txtBoxApellido_Leave(sender, e);
+                }
+                if (!string.IsNullOrWhiteSpace(txtBoxRazonSocial.Text.ToString()))
+                {
+                    this.txtBoxRazonSocial_Leave(sender, e);
+                }
+                if (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.CodigoEntidad)]
+                    || glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)]
+                    || glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)]
+                    || glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)]
+                    || glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)]
+                    || glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)])
+                {
+                    this.buscarEntidad();
+                }
+                if (string.IsNullOrWhiteSpace(txtBoxCodigoEntidad.Text.ToString())
+                    & string.IsNullOrWhiteSpace(txtBoxCUIT.Text.ToString())
+                    & string.IsNullOrWhiteSpace(txtBoxDNI.Text.ToString())
+                    & string.IsNullOrWhiteSpace(txtBoxNombre.Text.ToString())
+                    & string.IsNullOrWhiteSpace(txtBoxApellido.Text.ToString())
+                    & string.IsNullOrWhiteSpace(txtBoxRazonSocial.Text.ToString()))
+                {
+                    MessageBox.Show("Por favor ingrese al menos uno de los campos antes de realizar una búsqueda");
+                }
             }
         }
         /// <summary>
         /// Valida parámetros de búsqueda. Muestra mensaje de error en caso de parámetro no válido
         /// </summary>
         /// <returns>true si todos los parámetros son válidos, false caso contrario</returns>
-        private bool validarBusqueda()
+        private bool validarTipoEntidad()
         {
             if (this.tipoEntidadSeleccionada == null)
             {
@@ -591,8 +666,8 @@ namespace Vista
         /// <returns></returns>
         private ModeloDomicilio cargarDatosControlEnDomicilio()
         {
-            if (this.validarDomicilio())
-            {
+            //if (this.validarDomicilio())
+            //{
                 ModeloDomicilio lcl_mod_domicilio = new ModeloDomicilio();
 
                 lcl_mod_domicilio.calle = txtBoxCalle.Text;
@@ -607,11 +682,11 @@ namespace Vista
                 lcl_mod_domicilio.pais.pais = cmbBoxPais.Text;
 
                 return lcl_mod_domicilio;
-            }
-            else
-            {
-                return null;
-            }
+            //}
+            //else
+            //{
+            //    return null;
+            //}
             
         }
         private List<ModeloTelefono> cargarDatosControlEnListTelefono()
@@ -635,17 +710,17 @@ namespace Vista
         }
         private ModeloTelefono cargarDatosControlEnTelefono()
         {
-            if (this.validarTelefono())
-            {
+            //if (this.validarTelefono())
+            //{
                 ModeloTelefono lcl_mod_telefono = new ModeloTelefono();
                 lcl_mod_telefono.numero = txtBoxTelefono.Text;
                 lcl_mod_telefono.tipo = cmbBoxTipoTelefono.SelectedValue.ToString();
                 return lcl_mod_telefono;
-            }
-            else
-            {
-                return null;
-            }
+            //}
+            //else
+            //{
+            //    return null;
+            //}
         }
         private List<ModeloMail> cargarDatosControlEnListMail()
         {
@@ -667,16 +742,16 @@ namespace Vista
         }
         private ModeloMail cargarDatosControlEnMail()
         {
-            if (this.validarMail())
-            {
+            //if (this.validarMail())
+            //{
                 ModeloMail lcl_mod_mail = new ModeloMail();
                 lcl_mod_mail.mail = txtBoxMail.Text;
                 return lcl_mod_mail;
-            }
-            else
-            {
-                return null;
-            }
+            //}
+            //else
+            //{
+            //    return null;
+            //}
         }
 
         private ModeloEntidad getDatosAdicionales(ModeloUsuario p_mod_usuario)
@@ -945,9 +1020,38 @@ namespace Vista
             }
             return index;
         }
-
-        private bool validarInputs(object sender, EventArgs e)
+        
+        private bool validarInputs(object sender, EventArgs e, string sector)
         {
+            bool lcl_respuesta = new bool();
+            switch(sector)
+            {
+                case Constantes.ParametrosBusqueda.Domicilios.CodigoDomicilio:
+                    txtBoxCalle_Leave(sender, e);
+                    txtBoxNumeroDomicilio_Leave(sender, e);
+                    txtBoxPiso_Leave(sender, e);
+                    txtBoxDepartamento_Leave(sender, e);
+                    txtBoxCodigoPostal_Leave(sender, e);
+                    txtBoxCiudad_Leave(sender, e);
+                    lcl_respuesta = (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)]
+                        & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)]
+                        & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Piso)]
+                        & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Departamento)]
+                        & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.CodigoPostal)]
+                        & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)]);
+                    break;
+                case Constantes.ParametrosBusqueda.Mails.CodigoMail:
+                    txtBoxMail_Leave(sender, e);
+                    lcl_respuesta = glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Mails.Mail)];
+                    break;
+                case Constantes.ParametrosBusqueda.Telefonos.CodigoTelefono:
+                    txtBoxTelefono_Leave(sender, e);
+                    lcl_respuesta = glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)];
+                    break;
+                default:
+                    lcl_respuesta = false;
+                    break;
+            }
             txtBoxApellido_Leave(sender, e);
             txtBoxCalle_Leave(sender, e);
             txtBoxCiudad_Leave(sender, e);
@@ -962,14 +1066,9 @@ namespace Vista
             txtBoxPiso_Leave(sender, e);
             txtBoxRazonSocial_Leave(sender, e);
             txtBoxTelefono_Leave(sender, e);
-            return (glb_lst_respuestasValidaciones[0] & glb_lst_respuestasValidaciones[1] & glb_lst_respuestasValidaciones[2]
-                 & glb_lst_respuestasValidaciones[3] & glb_lst_respuestasValidaciones[4] & glb_lst_respuestasValidaciones[5]
-                 & glb_lst_respuestasValidaciones[6] & glb_lst_respuestasValidaciones[7] & glb_lst_respuestasValidaciones[8]
-                 & glb_lst_respuestasValidaciones[9] & glb_lst_respuestasValidaciones[10] & glb_lst_respuestasValidaciones[11]
-                 & glb_lst_respuestasValidaciones[12] & glb_lst_respuestasValidaciones[13]);
-            
+            return lcl_respuesta;
         }
-        
+
         private bool validarDomicilio()
         {
             if (cmbBoxPais.SelectedValue == null)
@@ -1013,11 +1112,12 @@ namespace Vista
         private bool validarTelefono()
         {
             //False si el capo esta vacio. Completar
-            if(!ModeloTelefono.validarNumero(txtBoxTelefono.Text))
+            if (!ModeloTelefono.validarNumero(txtBoxTelefono.Text))
             {
                 errorActual = "El número de teléfono ingresado no es válido";
                 return false;
-            } else if(cmbBoxTipoTelefono.SelectedValue == null)
+            }
+            else if (cmbBoxTipoTelefono.SelectedValue == null)
             {
                 errorActual = "Debe seleccionar un tipo de teléfono para el número indicado";
                 return false;
@@ -1091,7 +1191,7 @@ namespace Vista
                 errorProviderActual.SetError(txtBoxNombre, "Este campo es obligatorio. No puede permanecer vacío.");
                 return false;
             }
-            errorProviderActual.SetError(txtBoxNombre,"");
+            errorProviderActual.SetError(txtBoxNombre, "");
             return true;
         }
         private bool validarApellido()
@@ -1101,7 +1201,7 @@ namespace Vista
                 errorProviderActual.SetError(txtBoxApellido, "Este campo es obligatorio. No puede permanecer vacío.");
                 return false;
             }
-            errorProviderActual.SetError(txtBoxApellido,"");
+            errorProviderActual.SetError(txtBoxApellido, "");
             return true;
         }
         private bool validarDNI()
@@ -1111,7 +1211,7 @@ namespace Vista
                 errorProviderActual.SetError(txtBoxDNI, "Este campo es obligatorio. No puede permanecer vacío o contener caracteres no numéricos.");
                 return false;
             }
-            errorProviderActual.SetError(txtBoxDNI,"");
+            errorProviderActual.SetError(txtBoxDNI, "");
             return true;
         }
         private bool validarEntidad(ModeloEntidad p_mod_entidad)
@@ -1141,7 +1241,7 @@ namespace Vista
                 validez = false;
             if (!this.validarDNI())
                 validez = false;
-            
+
             if (validez)
             {
                 switch (p_mod_persona.tipoPersona)
@@ -1381,7 +1481,7 @@ namespace Vista
 
         override public void toolStripMenuItemBuscar_Click(object sender, EventArgs e)
         {
-            this.buscar();
+            this.buscar(sender,e);
         }
         #endregion
 
