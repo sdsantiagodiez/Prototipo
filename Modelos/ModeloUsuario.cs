@@ -40,14 +40,14 @@ namespace Modelos
         public string usuario
         {
             get { return _usuario; }
-            set { this._usuario = value; }
+            set { this._usuario = validarUsuario(value) ? value : null; }
         }
         string _contrasenia;
         public string contrasenia
         {
             get { return _contrasenia; }
             //set { this._contrasenia = validarContrasenia(value)?value:null; }
-            set { this._contrasenia = value; }
+            set { this._contrasenia = validarContrasenia(value) ? value : null; }
         }
         List<ModeloRoles> _roles;
         public List<ModeloRoles> roles
@@ -60,12 +60,40 @@ namespace Modelos
         #region Validación
         new public bool validar()
         {
-            return base.validar() & this.validarRoles();
+            return base.validar()
+                && validarUsuario(this.usuario)
+                && validarContrasenia(this.contrasenia)
+                && this.validarRoles();
+        }
+
+        public static bool validarUsuario(string p_usuario)
+        {
+            if (!string.IsNullOrWhiteSpace(p_usuario))
+            {
+                return !System.Text.RegularExpressions.Regex.IsMatch(p_usuario, "[^0-9a-zA-Z_]");
+            }
+            return false;
+
+        }
+        public static bool validarContrasenia(string p_contrasenia)
+        {
+            if (!String.IsNullOrWhiteSpace(p_contrasenia))
+            {
+                return p_contrasenia.Length >= 8;
+            }
+            return false;
         }
         public bool validarRoles()
         {
             if (_roles.Count > 0)
             {
+                //foreach (ModeloRoles rol in _roles)
+                //{
+                //    if (!rol.validar())
+                //    {
+                //        return false;
+                //    }
+                //}
                 return true;
             }
             //Usuario debe tener por lo menos 1 rol asignado
@@ -73,6 +101,7 @@ namespace Modelos
 
         }
         #endregion
+
 
         #region Equals
         public override bool Equals(object p_objeto)
