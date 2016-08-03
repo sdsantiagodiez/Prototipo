@@ -125,56 +125,6 @@ namespace Modelos
         }
         #endregion
 
-        #region Validaciones
-
-        public bool validar()
-        {
-            return this.validarCodigoOriginal()
-                && this.validarCodigoArticuloProveedor() 
-                && this.validarValores() 
-                && this.validarStock() 
-                && this.validarCodEntidad()
-                && this.validarRazonSocialProv() 
-                && this.validarUbicacion();
-        }
-
-        private bool validarUbicacion()
-        {
-            return true;
-        }
-
-        private bool validarRazonSocialProv()
-        {
-            return true;
-        }
-
-        private bool validarCodEntidad()
-        {
-            return true;
-        }
-
-        private bool validarStock()
-        {
-            return true;
-        }
-
-        private bool validarValores()
-        {
-            return true;
-        }
-
-        private bool validarCodigoArticuloProveedor()
-        {
-            return true;
-        }
-
-        private bool validarCodigoOriginal()
-        {
-            return true;
-        }
-
-        #endregion
-
         #region Descuentos
         private bool existeDescuento(ModeloDescuentoArticuloProveedor p_mod_descuento)
         {

@@ -52,16 +52,16 @@ namespace Vista
         #region TextBox
         private void valorUsername(object sender, KeyPressEventArgs e)
         {
-            if (!ModeloUsuario.validarUsuario(e.KeyChar.ToString()) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-                errorProviderActual.SetError((sender as TextBox), "Caracter no válido. Solo se permite letras, números y '_'.");
-                return;
-            }
-            if (ModeloUsuario.validarUsuario((sender as TextBox).Text))
-            {
-                errorProviderActual.SetError((sender as TextBox), "");
-            }
+            //if (!ModeloUsuario.validarUsuario(e.KeyChar.ToString()) && e.KeyChar != '\b')
+            //{
+            //    e.Handled = true;
+            //    errorProviderActual.SetError((sender as TextBox), "Caracter no válido. Solo se permite letras, números y '_'.");
+            //    return;
+            //}
+            //if (ModeloUsuario.validarUsuario((sender as TextBox).Text))
+            //{
+            //    errorProviderActual.SetError((sender as TextBox), "");
+            //}
         }
         #endregion
         

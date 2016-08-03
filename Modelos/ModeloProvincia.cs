@@ -26,24 +26,7 @@ namespace Modelos
         public string codigoPais
         {
             get { return _codigoPais; }
-            set { _codigoPais = ModeloPais.validarCodigo(value) ? value : null; }
-        }
-        #endregion
-
-        #region Validación
-        public bool validar()
-        {
-            return this.validarCodigo()
-                && ModeloPais.validarCodigo(this.codigoPais)
-                && validarProvincia(this.provincia);
-        }
-        public bool validarCodigo()
-        {
-            return !string.IsNullOrWhiteSpace(this.codigoPais);
-        }
-        public static bool validarProvincia(string p_provincia)
-        {
-            return !string.IsNullOrWhiteSpace(p_provincia);
+            set { _codigoPais = value; }
         }
         #endregion
 

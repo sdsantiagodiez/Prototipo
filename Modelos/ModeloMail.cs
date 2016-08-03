@@ -20,29 +20,7 @@ namespace Modelos
         public string mail 
         {
             get { return _mail; }
-            set { this._mail = validarMail(value) ? value : null; }
-        }
-        #endregion
-
-        #region Validación
-        public bool validar()
-        {
-            return validarMail(this.mail);
-        }
-        
-        //Validación básica (xxx@xxx.xxx)
-        //No detecta signos como #, ?, etc.
-        public static bool validarMail(string p_mail)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(p_mail);
-                return addr.Address == p_mail;
-            }
-            catch
-            {
-                return false;
-            }
+            set { this._mail = value; }
         }
         #endregion
 

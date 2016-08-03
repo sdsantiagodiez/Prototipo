@@ -37,20 +37,10 @@ namespace Modelos
         #region Validación
         public bool validar()
         {
-            return validarCodigo(this.codigoTelefono.ToString())
-                && validarNumero(this.numero)
-                && validarTipo(this.tipo);
+            return validarTipo(this.tipo);
         }
 
-        public bool validarCodigo(string p_codigo)
-        {
-            int aux;
-            return int.TryParse(p_codigo, out aux);
-        }
-        public static bool validarNumero(string p_numero)
-        {
-            return !string.IsNullOrWhiteSpace(p_numero);
-        }
+        
         public static bool validarTipo(string p_tipo)
         {
             return p_tipo == Constantes.TipoTelefono.Celular ||

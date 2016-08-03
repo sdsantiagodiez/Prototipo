@@ -14,7 +14,7 @@ namespace Modelos
        public string codigoOriginal 
        {
            get { return _codigoOriginal; }
-           set { this._codigoOriginal = validarCodigoOriginal(value) ? value : null; }
+           set { this._codigoOriginal = value; }
        }
        
        string _descripcion;
@@ -43,20 +43,6 @@ namespace Modelos
            get { return _imagen; }
            set { this._imagen = !string.IsNullOrWhiteSpace(value) ? value : null; }
        }
-       #endregion
-
-       #region Validación
-
-       public bool validar()
-       {
-           return validarCodigoOriginal(this.codigoOriginal);
-       }
-
-       public static bool validarCodigoOriginal(string p_codigoOriginal)
-       {
-           return !string.IsNullOrWhiteSpace(p_codigoOriginal);
-       }
-
        #endregion
 
        #region Equals

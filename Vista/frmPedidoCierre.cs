@@ -886,42 +886,42 @@ namespace Vista
 
         private bool validarMail()
         {
-            if (!this.vacioMail())
-            {
-                if (!ModeloMail.validarMail(this.txtBoxMail.Text))
-                {
-                    MessageBox.Show("La dirección de mail ingresada no es válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
+            //if (!this.vacioMail())
+            //{
+            //    if (!ModeloMail.validarMail(this.txtBoxMail.Text))
+            //    {
+            //        MessageBox.Show("La dirección de mail ingresada no es válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        return false;
+            //    }
+            //}
             return true;
         }
         private bool validarDomicilio()
         {
-            if (!this.vacioDomicilio())
-            {
-                if (!ModeloDomicilio.validarCalle(txtBoxCalle.Text))
-                {
-                    MessageBox.Show("Revise el campo calle del domicilio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
+            //if (!this.vacioDomicilio())
+            //{
+            //    if (!ModeloDomicilio.validarCalle(txtBoxCalle.Text))
+            //    {
+            //        MessageBox.Show("Revise el campo calle del domicilio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        return false;
+            //    }
+            //}
             return true;
         }
         private bool validarTelefono()
         {
             if (!this.vacioTelefono())
             {
-                if (!ModeloTelefono.validarNumero(this.txtBoxTelefono.Text))
-                {
-                    MessageBox.Show("El número de teléfono ingresado no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //if (!ModeloTelefono.validarNumero(this.txtBoxTelefono.Text))
+                //{
+                //    MessageBox.Show("El número de teléfono ingresado no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    return false;
+                //}
+                //else if (!ModeloTelefono.validarTipo(this.cmbBoxTipoTelefono.SelectedValue.ToString()))
+                //{
+                //    MessageBox.Show("Debe seleccionar un tipo de teléfono.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
-                }
-                else if (!ModeloTelefono.validarTipo(this.cmbBoxTipoTelefono.SelectedValue.ToString()))
-                {
-                    MessageBox.Show("Debe seleccionar un tipo de teléfono.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
+                //}
             }
             return true;
         }

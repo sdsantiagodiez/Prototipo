@@ -403,35 +403,11 @@ namespace Vista
             }
         }
         
-        private bool validarParametrosBusqueda()
-        {
-            //No hay parametros a validar
-            return true;
-        }
-
-        private bool validarDescuento()
-        {
-            return this.validarFechasDescuento() && this.validarPorcentajeDescuento();
-            
-        }
         private bool validarFechasDescuento()
         {
             DateTime lcl_dt_desde = this.dtpFechaDesdeDescuento.Value.Date;
             DateTime lcl_dt_hasta = this.dtpFechaHastaDescuento.Value.Date;
             return lcl_dt_desde >= lcl_dt_hasta;
-        }
-        private bool validarPorcentajeDescuento()
-        {
-            ModeloDescuento lcl_mod_descuentoTEMP = new ModeloDescuento();
-            if (this.txtBoxPorcentajeDescuento.Enabled)
-            {
-                if (!lcl_mod_descuentoTEMP.asignarPorcentaje(this.txtBoxPorcentajeDescuento.Text))
-                {
-                    MessageBox.Show("Porcentaje personalizado no válido");  //Que sea errorProvider
-                    return false;
-                }
-            }
-            return true;
         }
 
         private bool validarAgregarDescuento(List<ModeloArticuloProveedores> p_lst_mod_articuloProveedor, ModeloDescuentoArticuloProveedor p_mod_descuento)
@@ -468,10 +444,6 @@ namespace Vista
         #region Controles -> Modelo
         private ModeloArticuloProveedores cargarControlesEnArticuloProveedor()
         {
-            if (!this.validarParametrosBusqueda())
-            {
-                return null;
-            }
             ModeloArticuloProveedores lcl_mod_articuloProveedor = new ModeloArticuloProveedores();
 
             lcl_mod_articuloProveedor.codigoOriginal = this.txtBoxCodigoOriginal.Text;
@@ -485,22 +457,18 @@ namespace Vista
         }
         private ModeloDescuentoArticuloProveedor cargarControlesEnDescuento()
         {
-            if (!this.validarDescuento())
+            if (!this.validarFechasDescuento())
             {
                 return null;
             }
             ModeloDescuentoArticuloProveedor lcl_mod_descuento = new ModeloDescuentoArticuloProveedor();
             if (this.cmbBoxPorcentajeDescuento.SelectedValue == null)
             {
-                 if(!lcl_mod_descuento.asignarPorcentaje(this.txtBoxPorcentajeDescuento.Text))
-                 {
-                     MessageBox.Show("Porcentaje personalizado no válido");
-                     return null;
-                 }
-                 lcl_mod_descuento.codigoDescuento = 0;
-                 lcl_mod_descuento.descripcion = String.IsNullOrWhiteSpace(this.txtBoxDescripcionDescuento.Text)? 
-                                                    lcl_mod_descuento.ToString() + "%": 
-                                                    this.txtBoxDescripcionDescuento.Text;
+                lcl_mod_descuento.asignarPorcentaje(this.txtBoxPorcentajeDescuento.Text);
+                lcl_mod_descuento.codigoDescuento = 0;
+                lcl_mod_descuento.descripcion = String.IsNullOrWhiteSpace(this.txtBoxDescripcionDescuento.Text)? 
+                                                lcl_mod_descuento.ToString() + "%": 
+                                                this.txtBoxDescripcionDescuento.Text;
             }
             else
             {

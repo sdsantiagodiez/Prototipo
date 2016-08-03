@@ -103,11 +103,12 @@ namespace Vista
             {
                 errorProviderActual.SetError(txtBoxUsuario, "Este campo es obligatorio. No puede permanecer vacío.");
                 return false;
-            } else if (!ModeloUsuario.validarUsuario(txtBoxUsuario.Text))
-            {
-                errorProviderActual.SetError(txtBoxUsuario, "Ha ingresado caracteres no válidos. No se permiten caracteres especiales o espacios, a excepción de '_'");
-                return false;
-            }
+            } 
+            //else if (!ModeloUsuario.validarUsuario(txtBoxUsuario.Text))
+            //{
+            //    errorProviderActual.SetError(txtBoxUsuario, "Ha ingresado caracteres no válidos. No se permiten caracteres especiales o espacios, a excepción de '_'");
+            //    return false;
+            //}
             errorProviderActual.SetError(txtBoxUsuario, "");
             return true;
         }
@@ -123,11 +124,12 @@ namespace Vista
                 return true;
             }
 
-            if (!ModeloUsuario.validarContrasenia(txtBoxContraseña.Text))
-            {
-                errorProviderActual.SetError(txtBoxContraseña, "La contraseña ingresada no es válida. Debe tener por lo mínimo 8 caracteres.");
-                return false;
-            } else if (txtBoxContraseña.Text != txtBoxConfirmarContraseña.Text)
+            //if (!ModeloUsuario.validarContrasenia(txtBoxContraseña.Text))
+            //{
+            //    errorProviderActual.SetError(txtBoxContraseña, "La contraseña ingresada no es válida. Debe tener por lo mínimo 8 caracteres.");
+            //    return false;
+            //} else 
+                if (txtBoxContraseña.Text != txtBoxConfirmarContraseña.Text)
             {
                 errorProviderActual.SetError(txtBoxConfirmarContraseña, "Las contraseñas no coinciden.");
                 return false;
@@ -217,16 +219,16 @@ namespace Vista
 
         private void valorUsername(object sender, KeyPressEventArgs e)
         {
-            if (!ModeloUsuario.validarUsuario(e.KeyChar.ToString()) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-                errorProviderActual.SetError((sender as TextBox), "Caracter no válido. Solo se permite letras, números y '_'.");
-                return;
-            }
-            if (ModeloUsuario.validarUsuario((sender as TextBox).Text))
-            {
-                errorProviderActual.SetError((sender as TextBox), "");
-            }
+            //if (!ModeloUsuario.validarUsuario(e.KeyChar.ToString()) && e.KeyChar != '\b')
+            //{
+            //    e.Handled = true;
+            //    errorProviderActual.SetError((sender as TextBox), "Caracter no válido. Solo se permite letras, números y '_'.");
+            //    return;
+            //}
+            //if (ModeloUsuario.validarUsuario((sender as TextBox).Text))
+            //{
+            //    errorProviderActual.SetError((sender as TextBox), "");
+            //}
         }
 
         private void chckBoxMostrarContraseña_CheckedChanged(object sender, EventArgs e)

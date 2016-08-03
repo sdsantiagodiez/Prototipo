@@ -25,24 +25,6 @@ namespace Modelos
             set { this._descripcion = value; }
         }
         #endregion
-        
-        #region Validación
-        public bool validar()
-        {
-            return this.validarCodigo() 
-                && this.validarDescripcion();
-        }
-
-        public bool validarDescripcion()
-        {
-            return true;
-        }
-        
-        public bool validarCodigo()
-        {
-            return true;
-        }
-        #endregion
 
         #region Equals
         public override bool Equals(object p_objeto)
