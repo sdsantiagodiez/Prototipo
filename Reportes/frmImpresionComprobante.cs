@@ -22,6 +22,7 @@ namespace Reportes
         string folderPathPedidosProveedores;
         FileStream destinationDocumentStream;
         List<string> PDFSaAgregar = new List<string>();
+        string pathFinalPDFS = "";
         #endregion
 
         #region Constructores
@@ -68,7 +69,22 @@ namespace Reportes
             {
                 this.generarComprobante(pedido);
             }
-            agregarAPDF(PDFSaAgregar, destinationDocumentStream);
+                agregarAPDF(PDFSaAgregar, destinationDocumentStream);
+
+                //System.Diagnostics.Process p = new System.Diagnostics.Process(); // se abre un proceso para abrir el archivo PDF
+                //p.StartInfo.FileName = pathFinalPDFS;
+                //p.Start();
+
+
+                axAcroPDF.Dock = System.Windows.Forms.DockStyle.Fill;
+                axAcroPDF.Visible = true;
+                axAcroPDF.Parent = this;
+
+                axAcroPDF.LoadFile(pathFinalPDFS);//Carga el archivo para mostrar una vista previa del PDF generado.
+                //axAcroPDF.Dispose();
+            
+            
+                       
             return true;
         }
         #region Métodos
@@ -173,11 +189,13 @@ namespace Reportes
             string todayNow = DateTime.Today.Year.ToString() + DateTime.Today.Month.ToString() + DateTime.Today.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".pdf";
             if (p_lst_mod_Pedidos[0].codigoTipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona)
             {
-                destinationDocumentStream = new FileStream(folderPathPedidosClientes + "\\PedidosCli_" + todayNow, FileMode.Create);
+                pathFinalPDFS = folderPathPedidosClientes + "\\PedidosCli_" + todayNow;
+                destinationDocumentStream = new FileStream(pathFinalPDFS, FileMode.Create);
             }
             else
             {
-                destinationDocumentStream = new FileStream(folderPathPedidosProveedores + "\\PedidosPro_" + todayNow, FileMode.Create);
+                pathFinalPDFS= folderPathPedidosProveedores + "\\PedidosPro_" + todayNow;
+                destinationDocumentStream = new FileStream(pathFinalPDFS, FileMode.Create);
             }
 
         }
@@ -230,6 +248,13 @@ namespace Reportes
         {
             this.contenedorComprobante.RefreshReport();
         }
+        private void frmImpresionComprobante_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.axAcroPDF.Dispose();
+        }
         #endregion
+
+        
     }
+    
 }

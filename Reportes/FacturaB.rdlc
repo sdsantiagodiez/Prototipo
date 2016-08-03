@@ -1330,40 +1330,6 @@
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="Subtotal">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=First(Fields!SubtotalComprobante.Value, "DSFactura")</Value>
-                  <Style>
-                    <Format>'$' 0.00;('$' 0.00)</Format>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Left</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Subtotal</rd:DefaultName>
-          <Top>0.55246cm</Top>
-          <Left>2.07097cm</Left>
-          <Height>0.6cm</Height>
-          <Width>2.15604cm</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-            <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
-          </Style>
-        </Textbox>
         <Textbox Name="Total">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
@@ -1387,7 +1353,6 @@
           <Left>17.01239cm</Left>
           <Height>0.6cm</Height>
           <Width>2.46788cm</Width>
-          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1397,109 +1362,6 @@
             <PaddingTop>2pt</PaddingTop>
             <PaddingBottom>2pt</PaddingBottom>
             <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
-          </Style>
-        </Textbox>
-        <Textbox Name="Iva">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=First(Fields!IVAComprobante.Value, "DSFactura")</Value>
-                  <Style>
-                    <Format>'$' 0.00;('$' 0.00);'-'</Format>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Left</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Iva</rd:DefaultName>
-          <Top>0.55246cm</Top>
-          <Left>6.8917cm</Left>
-          <Height>0.6cm</Height>
-          <Width>2.26188cm</Width>
-          <ZIndex>2</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-            <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox7">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Neto:</Value>
-                  <Style>
-                    <FontFamily>Tahoma</FontFamily>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Right</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.55246cm</Top>
-          <Left>0.62048cm</Left>
-          <Height>0.6cm</Height>
-          <Width>1.2741cm</Width>
-          <ZIndex>3</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <BackgroundColor>LightGrey</BackgroundColor>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox8">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>IVA   21%:</Value>
-                  <Style>
-                    <FontFamily>Tahoma</FontFamily>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Right</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.55246cm</Top>
-          <Left>4.74448cm</Left>
-          <Height>0.6cm</Height>
-          <Width>1.97083cm</Width>
-          <ZIndex>4</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <BackgroundColor>LightGrey</BackgroundColor>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
         <Textbox Name="Textbox9">
@@ -1524,7 +1386,7 @@
           <Left>14.46829cm</Left>
           <Height>0.6cm</Height>
           <Width>2.36771cm</Width>
-          <ZIndex>5</ZIndex>
+          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1540,7 +1402,7 @@
           <Top>1.46786cm</Top>
           <Height>0cm</Height>
           <Width>20.02104cm</Width>
-          <ZIndex>6</ZIndex>
+          <ZIndex>2</ZIndex>
           <Style>
             <Border>
               <Style>Solid</Style>
@@ -1550,7 +1412,7 @@
         <Line Name="Line3">
           <Height>1.46786cm</Height>
           <Width>0cm</Width>
-          <ZIndex>7</ZIndex>
+          <ZIndex>3</ZIndex>
           <Style>
             <Border>
               <Style>Solid</Style>
@@ -1578,7 +1440,7 @@
           <Left>10.12514cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.8175cm</Width>
-          <ZIndex>8</ZIndex>
+          <ZIndex>4</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1612,7 +1474,7 @@
           <Left>10.50122cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.44142cm</Width>
-          <ZIndex>9</ZIndex>
+          <ZIndex>5</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1646,7 +1508,7 @@
           <Left>7.47521cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.5cm</Width>
-          <ZIndex>10</ZIndex>
+          <ZIndex>6</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1680,79 +1542,12 @@
           <Left>7.48558cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.86571cm</Width>
-          <ZIndex>11</ZIndex>
+          <ZIndex>7</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
             </Border>
             <VerticalAlign>Middle</VerticalAlign>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="ConceptosNGravados">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=First(Fields!ConceptosNoGravados.Value, "DSFactura")</Value>
-                  <Style>
-                    <Format>'$' 0.00;('$' 0.00);'-'</Format>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Left</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <Top>0.55246cm</Top>
-          <Left>11.79768cm</Left>
-          <Height>0.6cm</Height>
-          <Width>2.33823cm</Width>
-          <ZIndex>12</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-            <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox14">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>No Gravado:</Value>
-                  <Style>
-                    <FontFamily>Tahoma</FontFamily>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Right</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.55246cm</Top>
-          <Left>9.57109cm</Left>
-          <Height>0.6cm</Height>
-          <Width>2.0502cm</Width>
-          <ZIndex>13</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <BackgroundColor>LightGrey</BackgroundColor>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
@@ -1779,7 +1574,7 @@
           <Left>13.84839cm</Left>
           <Height>1.09417cm</Height>
           <Width>5.7405cm</Width>
-          <ZIndex>14</ZIndex>
+          <ZIndex>8</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
