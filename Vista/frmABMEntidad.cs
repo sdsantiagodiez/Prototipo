@@ -1081,11 +1081,11 @@ namespace Vista
                 errorActual = "Debe seleccionar una Provincia.";
                 return false;
             }
-            else if (!ModeloDomicilio.validarCalle(txtBoxCalle.Text))
-            {
-                errorActual = "Por favor, revise el campo calle.";
-                return false;
-            }
+            //else if (!ModeloDomicilio.validarCalle(txtBoxCalle.Text))
+            //{
+            //    errorActual = "Por favor, revise el campo calle.";
+            //    return false;
+            //}
 
             return true;
         }
@@ -1112,12 +1112,13 @@ namespace Vista
         private bool validarTelefono()
         {
             //False si el capo esta vacio. Completar
-            if (!ModeloTelefono.validarNumero(txtBoxTelefono.Text))
-            {
-                errorActual = "El número de teléfono ingresado no es válido";
-                return false;
-            }
-            else if (cmbBoxTipoTelefono.SelectedValue == null)
+            //if (!ModeloTelefono.validarNumero(txtBoxTelefono.Text))
+            //{
+            //    errorActual = "El número de teléfono ingresado no es válido";
+            //    return false;
+            //}
+            //else 
+                if (cmbBoxTipoTelefono.SelectedValue == null)
             {
                 errorActual = "Debe seleccionar un tipo de teléfono para el número indicado";
                 return false;
@@ -1146,11 +1147,11 @@ namespace Vista
         }
         private bool validarMail()
         {
-            if (!ModeloMail.validarMail(txtBoxMail.Text))
-            {
-                errorActual = "La dirección de correo electrónico ingresada no es válida.";
-                return false;
-            }
+            //if (!ModeloMail.validarMail(txtBoxMail.Text))
+            //{
+            //    errorActual = "La dirección de correo electrónico ingresada no es válida.";
+            //    return false;
+            //}
             return true;
         }
         private bool validarMailExiste()
@@ -1206,12 +1207,12 @@ namespace Vista
         }
         private bool validarDNI()
         {
-            if (!ModeloPersonas.validarDNI(txtBoxDNI.Text))
-            {
-                errorProviderActual.SetError(txtBoxDNI, "Este campo es obligatorio. No puede permanecer vacío o contener caracteres no numéricos.");
-                return false;
-            }
-            errorProviderActual.SetError(txtBoxDNI, "");
+            //if (!ModeloPersonas.validarDNI(txtBoxDNI.Text))
+            //{
+            //    errorProviderActual.SetError(txtBoxDNI, "Este campo es obligatorio. No puede permanecer vacío o contener caracteres no numéricos.");
+            //    return false;
+            //}
+            //errorProviderActual.SetError(txtBoxDNI, "");
             return true;
         }
         private bool validarEntidad(ModeloEntidad p_mod_entidad)

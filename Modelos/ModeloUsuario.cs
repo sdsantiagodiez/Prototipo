@@ -40,14 +40,14 @@ namespace Modelos
         public string usuario
         {
             get { return _usuario; }
-            set { this._usuario = validarUsuario(value) ? value : null; }
+            set { this._usuario = value; }
         }
         string _contrasenia;
         public string contrasenia
         {
             get { return _contrasenia; }
             //set { this._contrasenia = validarContrasenia(value)?value:null; }
-            set { this._contrasenia = validarContrasenia(value)?value:null; }
+            set { this._contrasenia = value; }
         }
         List<ModeloRoles> _roles;
         public List<ModeloRoles> roles
@@ -60,40 +60,12 @@ namespace Modelos
         #region Validación
         new public bool validar()
         {
-            return base.validar() 
-                && validarUsuario(this.usuario) 
-                && validarContrasenia(this.contrasenia) 
-                && this.validarRoles();
-        }
-
-        public static bool validarUsuario(string p_usuario)
-        {
-            if (!string.IsNullOrWhiteSpace(p_usuario))
-            {
-                return !System.Text.RegularExpressions.Regex.IsMatch(p_usuario, "[^0-9a-zA-Z_]");
-            }
-            return false;
-            
-        }
-        public static bool validarContrasenia(string p_contrasenia)
-        {
-            if (!String.IsNullOrWhiteSpace(p_contrasenia))
-            {
-                return p_contrasenia.Length >= 8;
-            }
-            return false;
+            return base.validar() & this.validarRoles();
         }
         public bool validarRoles()
         {
             if (_roles.Count > 0)
             {
-                foreach (ModeloRoles rol in _roles)
-                {
-                    if (!rol.validar())
-                    {
-                        return false;
-                    }
-                }
                 return true;
             }
             //Usuario debe tener por lo menos 1 rol asignado
@@ -130,13 +102,9 @@ namespace Modelos
         /// </summary>
         public void asignarContraseña(string p_contrasenia)
         {
-            if (ModeloUsuario.validarContrasenia(p_contrasenia))
-            {
-                byte[] data = System.Text.Encoding.ASCII.GetBytes(p_contrasenia);
-                data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-                this.contrasenia = System.Text.Encoding.ASCII.GetString(data);
-            }
-
+            byte[] data = System.Text.Encoding.ASCII.GetBytes(p_contrasenia);
+            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+            this.contrasenia = System.Text.Encoding.ASCII.GetString(data);
         }
         #endregion
     }

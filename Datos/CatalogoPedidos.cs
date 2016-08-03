@@ -200,12 +200,12 @@ namespace Datos
 
             comando.CommandText =
                 "SELECT  [numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
-                "        [codigo_entidad], [razon_social_entidad], "+
+                "        [codigo_entidad], [razon_social_entidad],[descuento_1_monto],[descuento_2_monto], " +
                 "        [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante]  "+
                 "    FROM  "+
                 "    (  "+
                 "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
-                "                Pedidos_Personas.[codigo_entidad], Pedidos_Personas.[razon_social_entidad], "+
+                "                Pedidos_Personas.[codigo_entidad], Pedidos_Personas.[razon_social_entidad],[descuento_1_monto],[descuento_2_monto], " +
 	            "                [numero_comprobante],[cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], "+
 	            "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante] "+
                 "            FROM pedidos, Pedidos_Personas  "+
@@ -213,7 +213,7 @@ namespace Datos
                 "        )  "+
                 "    UNION  "+
                 "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
-                "                Pedidos_Proveedores.[codigo_entidad], NULL as [razon_social_entidad], "+
+                "                Pedidos_Proveedores.[codigo_entidad], NULL as [razon_social_entidad],[descuento_1_monto],[descuento_2_monto], " +
 	            "                NULL as [numero_comprobante],NULL as [cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], "+
 	            "                NULL as [codigo_documento],NULL as [numero_documento_entidad],NULL as [codigo_comprobante] "+
                 "            FROM pedidos, Pedidos_Proveedores  "+
@@ -696,14 +696,12 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.descuentos.descuento_porcentaje_1, "@descuento_1_porcentaje"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.descuentos.descuento_monto_2, "@descuento_2_monto"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.descuentos.descuento_porcentaje_2, "@descuento_2_porcentaje"));
-            decimal descuento_lineas_monto = p_mod_pedido.getDescuentoLineas();
-            decimal descuento_lineas_porcentaje = descuento_lineas_monto / p_mod_pedido.montoTotal;
-            comando.Parameters.Add(this.instanciarParametro(descuento_lineas_monto, "@descuento_lineas_monto"));
-            comando.Parameters.Add(this.instanciarParametro(descuento_lineas_porcentaje, "@descuento_lineas_porcentaje"));
-            decimal descuento_total_monto = p_mod_pedido.getDescuentoTotal();
-            decimal descuento_total_porcentaje = descuento_total_monto / p_mod_pedido.montoTotal;
-            comando.Parameters.Add(this.instanciarParametro(descuento_total_monto, "@descuento_total_monto"));
-            comando.Parameters.Add(this.instanciarParametro(descuento_total_porcentaje, "@descuento_total_porcentaje"));
+            
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.getDescuentoLineas(), "@descuento_lineas_monto"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.getDescuentoLineasPorcentaje(), "@descuento_lineas_porcentaje"));
+            
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.getDescuentoTotal(), "@descuento_total_monto"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.getDescuentoTotalPorcentaje(), "@descuento_total_porcentaje"));
 
             comando.Connection.Open();
             //falta agregar domicilio, mail y telefono de facturacion

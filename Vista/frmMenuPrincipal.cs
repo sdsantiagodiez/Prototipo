@@ -355,6 +355,7 @@ namespace Vista
 
             (glb_form as frmPedidoCierre).AgregarLineaPedido += evento_agregarFormEmergente;
             (glb_form as frmPedidoCierre).MostrarDetallesArticulo += evento_agregarFormEmergente;
+            (glb_form as frmPedidoCierre).MostrarComprobante += evento_agregarFormEmergente;
         }
         private void tlsbtnDevolucion_Click(object sender, EventArgs e)
         {
@@ -416,6 +417,10 @@ namespace Vista
             if (sender.GetType() == typeof(frmPedidoDevolucion))
             {
                 (sender as frmPedidoDevolucion).ContinuarDevolucionPedido += this.evento_continuarDevolverPedido;
+            }
+            if (sender.GetType() == typeof(frmPedidoNuevo))
+            {
+                (sender as frmPedidoNuevo).MostrarDetallesArticulo += this.evento_agregarFormEmergente;
             }
             this.currentFormLocked = true;
         }

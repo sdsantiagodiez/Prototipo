@@ -16,7 +16,7 @@ namespace Vista
     public partial class frmPedidoNuevo : frmMaterialSkinBase
     {
         #region Atributos
-        
+        public event EventHandler MostrarDetallesArticulo;
         ModeloArticuloProveedores glb_mod_articuloSeleccionadoBusqueda;
         public ControladorPedido controlador;
         ContextMenu cntxMenuResultadoBusqueda;
@@ -67,17 +67,6 @@ namespace Vista
        
         #region Métodos
         #region Inicialización
-        //public override void inicializarForm(int x, int y)
-        //{
-        //    if (Width - 3 > 1100)
-        //    {
-        //        this.tblLayoutPanelPrincipal.Width = 1100;   //Máximo
-        //    }
-        //    else
-        //    {
-        //        this.tblLayoutPanelPrincipal.Width = Width - 3; //un margen derecho de 3
-        //    }
-        //}
         public override void inicializarForm(int ventanaAncho, int ventanaAlto)
         {
             this.tblLayoutPanelPrincipal.Width = ventanaAncho - 20; //un margen derecho de 20 para que se vea scrollbar
@@ -129,40 +118,50 @@ namespace Vista
 
             #region ContextMenu
             cntxMenuResultadoBusqueda = new ContextMenu();
-            cntxMenuResultadoBusqueda.MenuItems.Add("Agregar 1");
+            cntxMenuResultadoBusqueda.MenuItems.Add("Ver Detalles Artículo");
             cntxMenuResultadoBusqueda.MenuItems[0].Click += (s,e)=>
                 {
-                    this.agregarArticuloProveedorAPedido(glb_mod_articuloSeleccionadoBusqueda,1, this.chckBoxPermitirStockNegativo.Checked);
+                    this.verDetallesArticulo(glb_mod_articuloSeleccionadoBusqueda);
                 };
+            cntxMenuResultadoBusqueda.MenuItems.Add("Agregar 1");
+            cntxMenuResultadoBusqueda.MenuItems[1].Click += (s, e) =>
+            {
+                this.agregarArticuloProveedorAPedido(glb_mod_articuloSeleccionadoBusqueda, 1, this.chckBoxPermitirStockNegativo.Checked);
+            };
             cntxMenuResultadoBusqueda.MenuItems.Add("Agregar 2");
-            cntxMenuResultadoBusqueda.MenuItems[1].Click += (s,e)=>
+            cntxMenuResultadoBusqueda.MenuItems[2].Click += (s,e)=>
                 {
                     this.agregarArticuloProveedorAPedido(glb_mod_articuloSeleccionadoBusqueda,2, this.chckBoxPermitirStockNegativo.Checked);
                 };
             cntxMenuResultadoBusqueda.MenuItems.Add("Agregar 5");
-            cntxMenuResultadoBusqueda.MenuItems[2].Click += (s,e)=>
+            cntxMenuResultadoBusqueda.MenuItems[3].Click += (s,e)=>
                 {
                     this.agregarArticuloProveedorAPedido(glb_mod_articuloSeleccionadoBusqueda,5, this.chckBoxPermitirStockNegativo.Checked);
                 };
             cntxMenuResultadoBusqueda.MenuItems.Add("Agregar 10");
-            cntxMenuResultadoBusqueda.MenuItems[3].Click += (s, e) =>
+            cntxMenuResultadoBusqueda.MenuItems[4].Click += (s, e) =>
                 {
                     this.agregarArticuloProveedorAPedido(glb_mod_articuloSeleccionadoBusqueda, 10, this.chckBoxPermitirStockNegativo.Checked);
                 };
             
             cntxMenuLineasPedidos = new ContextMenu();
-            cntxMenuLineasPedidos.MenuItems.Add("Editar Cantidad");
+            cntxMenuLineasPedidos.MenuItems.Add("Ver Detalles Artículo");
             cntxMenuLineasPedidos.MenuItems[0].Click += (s, e) =>
+            {
+                this.verDetallesArticulo(null);
+            };
+            cntxMenuLineasPedidos.MenuItems.Add("Editar Cantidad");
+            cntxMenuLineasPedidos.MenuItems[1].Click += (s, e) =>
             {
                 this.editarCantidadArticulosEnLineaPedido();
             };
             cntxMenuLineasPedidos.MenuItems.Add("Quitar seleccionado");
-            cntxMenuLineasPedidos.MenuItems[1].Click += (s, e) =>
+            cntxMenuLineasPedidos.MenuItems[2].Click += (s, e) =>
                 {
                     this.eliminarArticuloProveedorDePedido();
                 };
             cntxMenuLineasPedidos.MenuItems.Add("Quitar todos"); 
-            cntxMenuLineasPedidos.MenuItems[2].Click += (s, e) =>
+            cntxMenuLineasPedidos.MenuItems[3].Click += (s, e) =>
                 {
                     this.eliminarArticuloProveedorDePedidoTodos();
                 };
@@ -192,21 +191,23 @@ namespace Vista
             if (this.dgvArticulosEnPedido.SelectedRows.Count > 1)
             {
                 this.cntxMenuLineasPedidos.MenuItems[0].Visible = false;
-                this.cntxMenuLineasPedidos.MenuItems[1].Text = "Quitar seleccionados";
+                this.cntxMenuLineasPedidos.MenuItems[1].Visible = false;
+                this.cntxMenuLineasPedidos.MenuItems[2].Text = "Quitar seleccionados";
                 if (this.dgvArticulosEnPedido.SelectedRows.Count == this.controlador.pedidoActual.lineasPedido.Count)
                 {
-                    this.cntxMenuLineasPedidos.MenuItems[1].Visible = false;
+                    this.cntxMenuLineasPedidos.MenuItems[2].Visible = false;
                 }
                 else
                 {
-                    this.cntxMenuLineasPedidos.MenuItems[1].Visible = true;
+                    this.cntxMenuLineasPedidos.MenuItems[2].Visible = true;
                 }
             }
             else
             {
                 this.cntxMenuLineasPedidos.MenuItems[0].Visible = true;
                 this.cntxMenuLineasPedidos.MenuItems[1].Visible = true;
-                this.cntxMenuLineasPedidos.MenuItems[1].Text = "Quitar seleccionado";
+                this.cntxMenuLineasPedidos.MenuItems[2].Visible = true;
+                this.cntxMenuLineasPedidos.MenuItems[2].Text = "Quitar seleccionado";
             }
         }
         #endregion
@@ -343,8 +344,41 @@ namespace Vista
         {
             this.lblTotalVar.Text = "$ "+String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", controlador.getTotal());
 
-            this.dgvArticulosEnPedido.DataSource = null;
-            this.dgvArticulosEnPedido.DataSource = controlador.pedidoActual.lineasPedido;
+            this.cargarLineasPedidosEnControles(controlador.pedidoActual.lineasPedido);
+        }
+        private void cargarLineasPedidosEnControles(List<ModeloLineaPedido> p_lst_lineas)
+        {
+            DataTable lineas = new DataTable();
+            lineas.Columns.Add("indice");
+            lineas.Columns.Add("codigoOriginal");
+            lineas.Columns.Add("codigoArticuloProveedor");
+            lineas.Columns.Add("descripcion");
+            lineas.Columns.Add("cantidad");
+            lineas.Columns.Add("valorUnitario");
+            lineas.Columns.Add("descuento");
+            lineas.Columns.Add("valorParcialSinDescuento");
+            lineas.Columns.Add("valorParcialConDescuento");
+            int i = 0;
+            foreach (ModeloLineaPedido l in p_lst_lineas)
+            {
+                var row = lineas.NewRow();
+                row["indice"] = i.ToString();
+                i++;
+                row["codigoOriginal"] = l.articulo.codigoOriginal;
+                row["codigoArticuloProveedor"] = l.articulo.codigoArticuloProveedor;
+                row["descripcion"] = l.articulo.descripcion;
+                row["cantidad"] = l.cantidadArticulos;
+                row["valorUnitario"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.valorUnitario);
+                row["descuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getDescuento());
+                //row["descuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.descuentoLinea.PorcentajeDescuento);
+                row["valorParcialSinDescuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getValorParcialSinDescuentos());
+                //row["valorParcialConDescuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getValorParcial());
+                row["valorParcialConDescuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getValorParcialConDescuento());
+
+                lineas.Rows.Add(row);
+            }
+
+            this.dgvArticulosEnPedido.DataSource = lineas;
         }
         #endregion
 
@@ -581,6 +615,7 @@ namespace Vista
                     //int i = Convert.ToInt32(this.dgvArticulosEnPedido.Rows[currentMouseOverRow].Cells["indice"].Value);
                     //asigno el articulo a la variable articuloSeleccionadoBusqueda en caso de que se decida agregarlo al pedido
                     int i = this.dgvArticulosEnPedido.SelectedRows[0].Index;
+                    this.dgvArticulosEnPedido.CurrentCell = this.dgvArticulosEnPedido[1, i];
                     this.glb_mod_articuloSeleccionadoBusqueda = controlador.pedidoActual.lineasPedido[i].articulo;
                     
                     cargarArticuloProveedorDetallesEnControles(this.glb_mod_articuloSeleccionadoBusqueda);
@@ -588,6 +623,40 @@ namespace Vista
                     this.cntxMenuLineasPedidos.Show(dgvArticulosEnPedido, new Point(e.X, e.Y));
                 }
             }
+        }
+        /// <summary>
+        /// Muestra ventana con todos los detalles del artículo proveedor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void evento_verDetalleArticulo(object sender, EventArgs e)
+        {
+            if (this.dgvArticulosEnPedido.CurrentRow == null)
+            {
+                MessageBox.Show("No hay artículo seleccionada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int i = Convert.ToInt32(this.dgvArticulosEnPedido.CurrentRow.Cells["indiceDGV"].Value);
+
+            frmABMArticulo lcl_frm_articuloProveedor = new frmABMArticulo(controlador.pedidoActual.lineasPedido[i].articulo, frmABMArticulo.ModoFormularioVisualizarEntidad);
+            MostrarDetallesArticulo(lcl_frm_articuloProveedor, e);
+        }
+        private void verDetallesArticulo(ModeloArticuloProveedores p_articuloProveedor)
+        {
+            if (p_articuloProveedor == null)
+            {
+                if (this.dgvArticulosEnPedido.CurrentRow == null)
+                {
+                    MessageBox.Show("No hay artículo seleccionada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int i = Convert.ToInt32(this.dgvArticulosEnPedido.CurrentRow.Cells["indiceDGV"].Value);
+                p_articuloProveedor = controlador.pedidoActual.lineasPedido[i].articulo;
+            }
+            
+            MostrarDetallesArticulo(new frmABMArticulo(p_articuloProveedor, frmABMArticulo.ModoFormularioVisualizarEntidad), new EventArgs());
         }
         #endregion
 
@@ -670,6 +739,12 @@ namespace Vista
                 epDescripcionParcial.SetError(txtDescripcionParcial, "OK");
             }
             return respuesta;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Ignore;
+            this.Close();
         }
     }
 }

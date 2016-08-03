@@ -14,7 +14,7 @@ namespace Modelos
         public string codigo
         {
             get { return _codigo; }
-            set { this._codigo = validarCodigo(value) ? value : null; }
+            set { this._codigo = value; }
         }
         string _pais;
         public string pais
@@ -22,22 +22,6 @@ namespace Modelos
             get { return _pais; }
             set { _pais = this.convertirString(value);
             }
-        }
-        #endregion
-
-        #region Validación
-        public bool validar()
-        {
-            return validarCodigo(this.codigo) 
-                && validarPais(this.pais);
-        }
-        public static bool validarCodigo(string p_codigo)
-        {
-            return !string.IsNullOrWhiteSpace(p_codigo);
-        }
-        public static bool validarPais(string p_pais)
-        {
-            return !string.IsNullOrWhiteSpace(p_pais);
         }
         #endregion
 

@@ -107,7 +107,7 @@ namespace Controladores
         {
             ControladorAlta lcl_con_alta = new ControladorAlta();
             
-            if (!lcl_con_alta.agregar(ref _pedidoActual))
+            if (!lcl_con_alta.agregar(_pedidoActual))
             {
                 errorActual = lcl_con_alta.errorActual;
                 return false;
@@ -207,6 +207,8 @@ namespace Controladores
 
         public ControladorPedidoProveedor() : base(Constantes.CodigosTiposPedidos.Proveedor)
         {
+            pedidosProveedores = new List<ModeloPedido>();
+            pedidosProveedores.Add(this.getPedidoGlobal());
             //Cada pedido se identifica por el proveedor
         }
         
@@ -217,18 +219,18 @@ namespace Controladores
         /// <returns></returns>
         public List<ModeloPedido> getPedidosProveedores(ModeloPedido p_mod_pedido)
         {
-            List<ModeloPedido> p_lst_mod_pedidos = new List<ModeloPedido>();
-
+            List<ModeloPedido> lcl_lst_mod_pedidos = new List<ModeloPedido>();
+            
             bool lineaAgregada= false;
-            foreach (ModeloLineaPedido linea in p_mod_pedido.lineasPedido)
+            foreach (ModeloLineaPedido lp in p_mod_pedido.lineasPedido)
             {
                 lineaAgregada = false;
-                foreach(ModeloPedido pedido in p_lst_mod_pedidos)
+                foreach (ModeloPedido pedido in lcl_lst_mod_pedidos)
                 {
-                    if (linea.articulo.codigoEntidad == pedido.entidad.codigo)
+                    if (lp.articulo.codigoEntidad == pedido.entidad.codigo)
                     {
                         //Se agrega linea al pedido que tenga como entidad al proveedor del articulo proveedor y se marca la bandera
-                        pedido.lineasPedido.Add(linea);
+                        pedido.lineasPedido.Add(lp);
                         lineaAgregada = true;   
                         break;
                     }
@@ -237,19 +239,49 @@ namespace Controladores
                 if (!lineaAgregada)
                 {
                     ModeloEntidad p_mod_entidadAuxiliar = new ModeloProveedor();
-                    p_mod_entidadAuxiliar.codigo = linea.articulo.codigoEntidad;
+                    p_mod_entidadAuxiliar.codigo = lp.articulo.codigoEntidad;
                     //Se crea pedido con proveedor como entidad del pedido 
                     ModeloPedido p_mod_pedidoAuxiliar = new ModeloPedido(ControladorBusqueda.getOne(p_mod_entidadAuxiliar, Constantes.ParametrosBusqueda.One));
-                    p_mod_pedidoAuxiliar.lineasPedido.Add(linea);
-                    
-                    p_lst_mod_pedidos.Add(p_mod_pedidoAuxiliar);
+                    p_mod_pedidoAuxiliar.lineasPedido.Add(lp);
+
+                    lcl_lst_mod_pedidos.Add(p_mod_pedidoAuxiliar);
                 }
             }
-
-            this.pedidosProveedores = p_lst_mod_pedidos;
-            return p_lst_mod_pedidos;
+            this.pedidosProveedores = lcl_lst_mod_pedidos;
+            this.pedidosProveedores.Insert(0, this.getPedidoGlobal());
+            return lcl_lst_mod_pedidos;
         }
 
+        public ModeloPedido getPedidoGlobal()
+        {
+            ModeloPedido lcl_mod_pedidoGlobalProveedores = new ModeloPedido() { codigoTipoPedido = Constantes.CodigosTiposPedidos.Proveedor};
+            if (pedidosProveedores.Count > 0)
+            {
+                //Si es mayor a 0, puede que el pedido global ya se le haya asignado alguna forma de pago. Si es menor a 0, todavia no se asigno
+                lcl_mod_pedidoGlobalProveedores.formasDePago = pedidosProveedores[0].formasDePago ;
+            }
+            
+            
+            for (int i = 1; i < pedidosProveedores.Count;i++ )
+            {
+                lcl_mod_pedidoGlobalProveedores.addLineaPedidoList(pedidosProveedores[i].lineasPedido);
+            }
+            return lcl_mod_pedidoGlobalProveedores;
+        }
+
+        public bool guardarPedidos()
+        {
+            List<object> lcl_lst_pedidos_a_guardar = new List<object>();
+            //obviamos el indice 0 porque ahí estan todos los pedidos
+            for(int i=1;i < pedidosProveedores.Count; i++)
+            {
+                pedidosProveedores[i].actualizarMontos();
+                pedidosProveedores[i].formasDePago = pedidosProveedores[0].formasDePago;
+                lcl_lst_pedidos_a_guardar.Add(pedidosProveedores[i]);
+            }
+            ControladorAlta lcl_con_alta = new ControladorAlta();
+            return lcl_con_alta.agregar(lcl_lst_pedidos_a_guardar);
+        }
     }
     public class ControladorPedidoCliente : ControladorPedido
     {

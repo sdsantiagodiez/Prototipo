@@ -92,51 +92,14 @@ namespace Modelos
         #region Validación
         public bool validar()
         {
-            return validarCodigo(this.codigoDomicilio.ToString())
-                && validarCalle(this.calle)
-                && validarNumero(this.numero)
-                && validarPiso(this.piso)
-                && validarDepartamento(this.departamento)
-                && validarCiudad(this.ciudad)
-                && validarCodigoPostal(this.codigoPostal)
-                && this.validarProvincia(this.provincia)
-                && this.validarPais(this.pais);
+            return this.validarProvincia(this.provincia) & this.validarPais(this.pais);
         }
-        public bool validarCodigo(string p_codigo)
-        {
-            int aux;
-            return int.TryParse(p_codigo,out aux);
-        }
-        public static bool validarCalle(string p_calle)
-        {
-            return !string.IsNullOrWhiteSpace(p_calle);
-        }
-        public static bool validarNumero(string p_numero)
-        {
-            //se permite vacío para calles sin número (S/N)
-            return true;
-        }
-        public static bool validarPiso(string p_piso)
-        {
-            return true;
-        }
-        public static bool validarDepartamento(string p_departamento)
-        {
-            return true;
-        }
-        public static bool validarCiudad(string p_ciudad)
-        {
-            return true;
-        }
-        public static bool validarCodigoPostal(string p_codigoPostal)
-        {
-            return true;
-        }
+
         public bool validarProvincia(ModeloProvincia p_mod_provincia)
         {
             //Debería estar inicializada por el constructor
             if (p_mod_provincia != null)
-                return p_mod_provincia.validar();
+                return true;
             else
                 return false;
         }
@@ -144,7 +107,7 @@ namespace Modelos
         {
             //Debería estar inicializado por el constructor
             if (p_mod_pais != null)
-                return p_mod_pais.validar();
+                return true;
             else
                 return false;
         }

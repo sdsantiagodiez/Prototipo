@@ -91,19 +91,12 @@ namespace Modelos
         #region Validación
         public bool validar()
         {
-            return this.validarCodigo() 
-                && this.validarCUIT() 
-                && this.validarObservaciones() 
+            return this.validarCUIT() 
                 && this.validarTelefonos()
                 && this.validarDomicilios()
-                && this.validarMails()
                 && this.validarTipoEntidad(tipoEntidad);
         }
 
-        public bool validarCodigo()
-        {
-            return true;
-        }
         /// <summary>
         /// Permite null. Pero si no es null, debe apegarse al formato de CUIT
         /// </summary>
@@ -116,10 +109,7 @@ namespace Modelos
             }
             return true;
         }
-        public bool validarObservaciones()
-        {
-            return true;
-        }
+
         public bool validarTipoEntidad(string p_tipoEntidad)
         {
             return p_tipoEntidad == LibreriaClasesCompartidas.Constantes.TiposEntidad.Persona ||
@@ -150,17 +140,7 @@ namespace Modelos
 
             return true;
         }
-        public bool validarMails()
-        {
-            foreach(ModeloMail m in mails)
-            {
-                if(!m.validar())
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+        
         #endregion
 
         #region Equals
@@ -238,22 +218,18 @@ namespace Modelos
             /// <returns>True si el CUIT es válido y False si no.</returns>
             public static bool ValidarCuit(string cuit)
             {
-                if (cuit != null && !System.Text.RegularExpressions.Regex.IsMatch(cuit, "[^0-9 -]"))
+                //Quito los guiones, el cuit resultante debe tener 11 caracteres.
+                cuit = cuit.Replace("-", string.Empty);
+                if (cuit.Length != 11)
                 {
-                    //Quito los guiones, el cuit resultante debe tener 11 caracteres.
-                    cuit = cuit.Replace("-", string.Empty);
-                    if (cuit.Length != 11)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        int calculado = CalcularDigitoCuit(cuit);
-                        int digito = int.Parse(cuit.Substring(10));
-                        return calculado == digito;
-                    }
+                    return false;
                 }
-                return false;
+                else
+                {
+                    int calculado = CalcularDigitoCuit(cuit);
+                    int digito = int.Parse(cuit.Substring(10));
+                    return calculado == digito;
+                }
             }
             /// <summary>
             /// elimina caracteres no numéricos de cuit.EJ 20-37594224-1 -> 20375942241

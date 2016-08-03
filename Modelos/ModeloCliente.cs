@@ -45,17 +45,6 @@ namespace Modelos
         }
         #endregion
 
-        #region Validación
-        new public bool validar()
-        {
-            return base.validar() && this.validarCodigoTipoResponsable(this.codigoTipoResponsable);
-        }
-        private bool validarCodigoTipoResponsable(int p_codigo)
-        {
-            return p_codigo > 0 && p_codigo < 15;
-        }
-        #endregion
-
         public override string ToString()
         {
             string str_base = base.ToString();

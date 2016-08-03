@@ -151,8 +151,6 @@
             this.epApellido = new System.Windows.Forms.ErrorProvider(this.components);
             this.epNombre = new System.Windows.Forms.ErrorProvider(this.components);
             this.epRazonSocial = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epNumeroPedido = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epCAE = new System.Windows.Forms.ErrorProvider(this.components);
             this.epCalle = new System.Windows.Forms.ErrorProvider(this.components);
             this.epNumeroDomicilio = new System.Windows.Forms.ErrorProvider(this.components);
             this.epPiso = new System.Windows.Forms.ErrorProvider(this.components);
@@ -198,8 +196,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.epApellido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epRazonSocial)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epNumeroPedido)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCAE)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epCalle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epNumeroDomicilio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epPiso)).BeginInit();
@@ -349,14 +345,14 @@
             this.txtBoxRazonSocial.Depth = 0;
             this.txtBoxRazonSocial.Hint = "";
             this.txtBoxRazonSocial.Location = new System.Drawing.Point(114, 4);
-            this.txtBoxRazonSocial.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxRazonSocial.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
             this.txtBoxRazonSocial.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
             this.txtBoxRazonSocial.PasswordChar = '\0';
             this.txtBoxRazonSocial.SelectedText = "";
             this.txtBoxRazonSocial.SelectionLength = 0;
             this.txtBoxRazonSocial.SelectionStart = 0;
-            this.txtBoxRazonSocial.Size = new System.Drawing.Size(503, 28);
+            this.txtBoxRazonSocial.Size = new System.Drawing.Size(467, 28);
             this.txtBoxRazonSocial.TabIndex = 14;
             this.txtBoxRazonSocial.UseSystemPasswordChar = false;
             this.txtBoxRazonSocial.Leave += new System.EventHandler(this.txtBoxRazonSocial_Leave);
@@ -488,7 +484,7 @@
             // 
             this.cmbBoxTipoDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxTipoDocumento.FormattingEnabled = true;
-            this.cmbBoxTipoDocumento.Location = new System.Drawing.Point(104, 5);
+            this.cmbBoxTipoDocumento.Location = new System.Drawing.Point(104, 6);
             this.cmbBoxTipoDocumento.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.cmbBoxTipoDocumento.Name = "cmbBoxTipoDocumento";
             this.cmbBoxTipoDocumento.Size = new System.Drawing.Size(187, 24);
@@ -576,10 +572,9 @@
             // 
             // tblLayoutPanelPedido
             // 
-            this.tblLayoutPanelPedido.ColumnCount = 3;
+            this.tblLayoutPanelPedido.ColumnCount = 2;
             this.tblLayoutPanelPedido.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.07116F));
             this.tblLayoutPanelPedido.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.92884F));
-            this.tblLayoutPanelPedido.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tblLayoutPanelPedido.Controls.Add(this.lblCAE, 0, 4);
             this.tblLayoutPanelPedido.Controls.Add(this.lblNumeroPedido, 0, 0);
             this.tblLayoutPanelPedido.Controls.Add(this.lblTipoComprobante, 0, 1);
@@ -607,7 +602,7 @@
             // 
             this.lblCAE.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCAE.AutoSize = true;
-            this.lblCAE.Location = new System.Drawing.Point(77, 154);
+            this.lblCAE.Location = new System.Drawing.Point(104, 154);
             this.lblCAE.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCAE.Name = "lblCAE";
             this.lblCAE.Size = new System.Drawing.Size(39, 17);
@@ -619,7 +614,7 @@
             // 
             this.lblNumeroPedido.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNumeroPedido.AutoSize = true;
-            this.lblNumeroPedido.Location = new System.Drawing.Point(54, 9);
+            this.lblNumeroPedido.Location = new System.Drawing.Point(81, 9);
             this.lblNumeroPedido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNumeroPedido.Name = "lblNumeroPedido";
             this.lblNumeroPedido.Size = new System.Drawing.Size(62, 17);
@@ -630,7 +625,7 @@
             // 
             this.lblTipoComprobante.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblTipoComprobante.AutoSize = true;
-            this.lblTipoComprobante.Location = new System.Drawing.Point(76, 45);
+            this.lblTipoComprobante.Location = new System.Drawing.Point(103, 45);
             this.lblTipoComprobante.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTipoComprobante.Name = "lblTipoComprobante";
             this.lblTipoComprobante.Size = new System.Drawing.Size(40, 17);
@@ -641,10 +636,10 @@
             // 
             this.cmbBoxTipoComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxTipoComprobante.FormattingEnabled = true;
-            this.cmbBoxTipoComprobante.Location = new System.Drawing.Point(124, 41);
+            this.cmbBoxTipoComprobante.Location = new System.Drawing.Point(151, 42);
             this.cmbBoxTipoComprobante.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxTipoComprobante.Name = "cmbBoxTipoComprobante";
-            this.cmbBoxTipoComprobante.Size = new System.Drawing.Size(151, 24);
+            this.cmbBoxTipoComprobante.Size = new System.Drawing.Size(187, 24);
             this.cmbBoxTipoComprobante.TabIndex = 10;
             this.cmbBoxTipoComprobante.SelectedIndexChanged += new System.EventHandler(this.cmbBoxTipoComprobante_SelectedIndexChanged);
             // 
@@ -652,7 +647,7 @@
             // 
             this.lblFormaPago.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblFormaPago.AutoSize = true;
-            this.lblFormaPago.Location = new System.Drawing.Point(7, 81);
+            this.lblFormaPago.Location = new System.Drawing.Point(34, 81);
             this.lblFormaPago.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFormaPago.Name = "lblFormaPago";
             this.lblFormaPago.Size = new System.Drawing.Size(109, 17);
@@ -666,10 +661,10 @@
             this.cmbBoxFormaPago.Items.AddRange(new object[] {
             "Contado",
             "Tarjeta"});
-            this.cmbBoxFormaPago.Location = new System.Drawing.Point(124, 77);
+            this.cmbBoxFormaPago.Location = new System.Drawing.Point(151, 78);
             this.cmbBoxFormaPago.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxFormaPago.Name = "cmbBoxFormaPago";
-            this.cmbBoxFormaPago.Size = new System.Drawing.Size(151, 24);
+            this.cmbBoxFormaPago.Size = new System.Drawing.Size(187, 24);
             this.cmbBoxFormaPago.TabIndex = 9;
             this.cmbBoxFormaPago.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxFormaPago_SelectionChangeCommitted);
             // 
@@ -677,7 +672,7 @@
             // 
             this.lblFecha.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(65, 117);
+            this.lblFecha.Location = new System.Drawing.Point(92, 117);
             this.lblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(51, 17);
@@ -688,10 +683,10 @@
             // 
             this.dtpFechaPedido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpFechaPedido.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaPedido.Location = new System.Drawing.Point(124, 115);
+            this.dtpFechaPedido.Location = new System.Drawing.Point(151, 115);
             this.dtpFechaPedido.Margin = new System.Windows.Forms.Padding(4);
             this.dtpFechaPedido.Name = "dtpFechaPedido";
-            this.dtpFechaPedido.Size = new System.Drawing.Size(151, 22);
+            this.dtpFechaPedido.Size = new System.Drawing.Size(187, 22);
             this.dtpFechaPedido.TabIndex = 11;
             // 
             // txtBoxNumeroPedido
@@ -699,7 +694,7 @@
             this.txtBoxNumeroPedido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxNumeroPedido.Depth = 0;
             this.txtBoxNumeroPedido.Hint = "";
-            this.txtBoxNumeroPedido.Location = new System.Drawing.Point(124, 4);
+            this.txtBoxNumeroPedido.Location = new System.Drawing.Point(151, 4);
             this.txtBoxNumeroPedido.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxNumeroPedido.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxNumeroPedido.Name = "txtBoxNumeroPedido";
@@ -707,17 +702,16 @@
             this.txtBoxNumeroPedido.SelectedText = "";
             this.txtBoxNumeroPedido.SelectionLength = 0;
             this.txtBoxNumeroPedido.SelectionStart = 0;
-            this.txtBoxNumeroPedido.Size = new System.Drawing.Size(151, 28);
+            this.txtBoxNumeroPedido.Size = new System.Drawing.Size(187, 28);
             this.txtBoxNumeroPedido.TabIndex = 14;
             this.txtBoxNumeroPedido.UseSystemPasswordChar = false;
-            this.txtBoxNumeroPedido.Leave += new System.EventHandler(this.txtBoxNumeroPedido_Leave);
             // 
             // txtBoxCAE
             // 
             this.txtBoxCAE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCAE.Depth = 0;
             this.txtBoxCAE.Hint = "";
-            this.txtBoxCAE.Location = new System.Drawing.Point(124, 148);
+            this.txtBoxCAE.Location = new System.Drawing.Point(151, 148);
             this.txtBoxCAE.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxCAE.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCAE.Name = "txtBoxCAE";
@@ -725,10 +719,9 @@
             this.txtBoxCAE.SelectedText = "";
             this.txtBoxCAE.SelectionLength = 0;
             this.txtBoxCAE.SelectionStart = 0;
-            this.txtBoxCAE.Size = new System.Drawing.Size(151, 28);
+            this.txtBoxCAE.Size = new System.Drawing.Size(187, 28);
             this.txtBoxCAE.TabIndex = 15;
             this.txtBoxCAE.UseSystemPasswordChar = false;
-            this.txtBoxCAE.Leave += new System.EventHandler(this.txtBoxCAE_Leave);
             // 
             // tbPageDomicilioFacturacion
             // 
@@ -917,7 +910,7 @@
             // 
             this.cmbBoxPais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxPais.FormattingEnabled = true;
-            this.cmbBoxPais.Location = new System.Drawing.Point(1121, 49);
+            this.cmbBoxPais.Location = new System.Drawing.Point(1121, 50);
             this.cmbBoxPais.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxPais.Name = "cmbBoxPais";
             this.cmbBoxPais.Size = new System.Drawing.Size(192, 24);
@@ -939,7 +932,7 @@
             // 
             this.cmbBoxProvincia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxProvincia.FormattingEnabled = true;
-            this.cmbBoxProvincia.Location = new System.Drawing.Point(586, 49);
+            this.cmbBoxProvincia.Location = new System.Drawing.Point(586, 50);
             this.cmbBoxProvincia.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(378, 24);
@@ -1165,7 +1158,7 @@
             // 
             this.cmbBoxMails.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbBoxMails.FormattingEnabled = true;
-            this.cmbBoxMails.Location = new System.Drawing.Point(176, 106);
+            this.cmbBoxMails.Location = new System.Drawing.Point(176, 107);
             this.cmbBoxMails.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxMails.Name = "cmbBoxMails";
             this.cmbBoxMails.Size = new System.Drawing.Size(160, 24);
@@ -1227,7 +1220,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(54, 19);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(54, 18);
             this.cmbBoxTipoTelefono.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(141, 24);
@@ -1839,18 +1832,18 @@
             // 
             // tblLayoutPanelBotones
             // 
-            this.tblLayoutPanelBotones.ColumnCount = 6;
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.92601F));
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.12567F));
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.97054F));
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.97778F));
+            this.tblLayoutPanelBotones.ColumnCount = 5;
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17F));
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17F));
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblLayoutPanelBotones.Controls.Add(this.cmbBoxPedidosProveedores, 0, 0);
             this.tblLayoutPanelBotones.Controls.Add(this.btnImprimir, 1, 0);
             this.tblLayoutPanelBotones.Controls.Add(this.btnGuardar, 2, 0);
             this.tblLayoutPanelBotones.Controls.Add(this.btnFacturaElectronica, 3, 0);
-            this.tblLayoutPanelBotones.Controls.Add(this.btnSalir, 5, 0);
+            this.tblLayoutPanelBotones.Controls.Add(this.btnSalir, 4, 0);
             this.tblLayoutPanelBotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelBotones.Location = new System.Drawing.Point(4, 629);
             this.tblLayoutPanelBotones.Margin = new System.Windows.Forms.Padding(4);
@@ -1864,10 +1857,10 @@
             // 
             this.cmbBoxPedidosProveedores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxPedidosProveedores.FormattingEnabled = true;
-            this.cmbBoxPedidosProveedores.Location = new System.Drawing.Point(13, 18);
+            this.cmbBoxPedidosProveedores.Location = new System.Drawing.Point(13, 19);
             this.cmbBoxPedidosProveedores.Margin = new System.Windows.Forms.Padding(13, 4, 13, 4);
             this.cmbBoxPedidosProveedores.Name = "cmbBoxPedidosProveedores";
-            this.cmbBoxPedidosProveedores.Size = new System.Drawing.Size(349, 24);
+            this.cmbBoxPedidosProveedores.Size = new System.Drawing.Size(310, 24);
             this.cmbBoxPedidosProveedores.TabIndex = 5;
             this.cmbBoxPedidosProveedores.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxPedidosProveedores_SelectionChangeCommitted);
             // 
@@ -1877,7 +1870,7 @@
             this.btnImprimir.AutoSize = true;
             this.btnImprimir.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnImprimir.Depth = 0;
-            this.btnImprimir.Location = new System.Drawing.Point(389, 13);
+            this.btnImprimir.Location = new System.Drawing.Point(405, 13);
             this.btnImprimir.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.btnImprimir.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnImprimir.Name = "btnImprimir";
@@ -1894,7 +1887,7 @@
             this.btnGuardar.AutoSize = true;
             this.btnGuardar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnGuardar.Depth = 0;
-            this.btnGuardar.Location = new System.Drawing.Point(570, 13);
+            this.btnGuardar.Location = new System.Drawing.Point(626, 13);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.btnGuardar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnGuardar.Name = "btnGuardar";
@@ -1911,7 +1904,7 @@
             this.btnFacturaElectronica.AutoSize = true;
             this.btnFacturaElectronica.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnFacturaElectronica.Depth = 0;
-            this.btnFacturaElectronica.Location = new System.Drawing.Point(809, 13);
+            this.btnFacturaElectronica.Location = new System.Drawing.Point(843, 13);
             this.btnFacturaElectronica.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.btnFacturaElectronica.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnFacturaElectronica.Name = "btnFacturaElectronica";
@@ -1955,14 +1948,6 @@
             // epRazonSocial
             // 
             this.epRazonSocial.ContainerControl = this;
-            // 
-            // epNumeroPedido
-            // 
-            this.epNumeroPedido.ContainerControl = this;
-            // 
-            // epCAE
-            // 
-            this.epCAE.ContainerControl = this;
             // 
             // epCalle
             // 
@@ -2061,8 +2046,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.epApellido)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epNombre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epRazonSocial)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epNumeroPedido)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCAE)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epCalle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epNumeroDomicilio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epPiso)).EndInit();
@@ -2191,8 +2174,6 @@
         private System.Windows.Forms.ErrorProvider epApellido;
         private System.Windows.Forms.ErrorProvider epNombre;
         private System.Windows.Forms.ErrorProvider epRazonSocial;
-        private System.Windows.Forms.ErrorProvider epNumeroPedido;
-        private System.Windows.Forms.ErrorProvider epCAE;
         private System.Windows.Forms.ErrorProvider epCalle;
         private System.Windows.Forms.ErrorProvider epNumeroDomicilio;
         private System.Windows.Forms.ErrorProvider epPiso;

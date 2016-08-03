@@ -41,7 +41,7 @@ namespace Vista
                 {
                     case ModoFormularioPedidoCliente:
                         this.inicializarControlesCliente();
-                        this.Text = "Cierre Pedido de Cliente";
+                        this.Text = "Pedido de Cliente";
                         break;
                     case ModoFormularioDevolucionCliente:
                         this.inicializarControlesCliente();
@@ -49,7 +49,7 @@ namespace Vista
                         break;
                     case ModoFormularioPedidoProveedor:
                         this.inicializarControlesProveedor();
-                        this.Text = "Cierre Pedido a Proveedores";
+                        this.Text = "Pedido a Proveedores";
                         break;
                     default:
                         break;
@@ -128,7 +128,6 @@ namespace Vista
         {
             if (p_deshabilitarControles)
             {
-                
                 this.inicializarPedidoCerrado();
                 this.Text = "Detalles de Pedido";
                 if (p_mod_pedido.aprobadoAFIP != "A")
@@ -185,12 +184,7 @@ namespace Vista
         {
             modoFormulario = ModoFormularioPedidoProveedor;
             this.controlador = new ControladorPedidoProveedor();
-            List<ModeloPedido> lcl_lst_mod_pedidos = (controlador as ControladorPedidoProveedor).getPedidosProveedores(p_mod_pedido);
-            this.inicializarComboBoxPedidosProveedores(lcl_lst_mod_pedidos);
-            if (lcl_lst_mod_pedidos.Count > 0)
-            {
-                this.cargarPedidoEnControles(lcl_lst_mod_pedidos[0]);
-            }
+            this.actualizarPedidosProveedores(p_mod_pedido);
         }
         private void inicializarDevolucionPedidoCliente(ModeloPedido p_mod_pedido)
         {
@@ -246,6 +240,7 @@ namespace Vista
         }
         private void inicializarTextBoxes()
         {
+            txtBoxCAE.Enabled =
             txtBoxNumeroPedido.Enabled =
             txtBoxIVAPorcentaje.Enabled =
             txtBoxDescuentoLineas.Enabled =
@@ -370,26 +365,33 @@ namespace Vista
                 };
 
             this.cmbBoxTipoComprobante.DataSource = Enum.GetValues(typeof(Constantes.TipoComprobanteCompra));
+            this.cmbBoxTipoComprobante.DropDownWidth = this.getDropDownWidth(this.cmbBoxTipoComprobante) + 25;
+            this.cmbBoxTipoComprobante.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         private void inicializarComboBoxPedidosProveedores(List<ModeloPedido> p_mod_pedidos)
         {
             var dataSource = new List<ComboBoxItem>();
-            for (int i = 0; i < p_mod_pedidos.Count; i++)
+            dataSource.Add(new ComboBoxItem()
+            {
+                Name = "Todos",
+                Value = (controlador as ControladorPedidoProveedor).getPedidoGlobal()
+            });
+            for (int i = 1; i < p_mod_pedidos.Count; i++)
             {
                 dataSource.Add(new ComboBoxItem()
                 {
                     Name = "Pedido a " + (p_mod_pedidos[i].entidad as ModeloProveedor).razonSocial +
-                        " (" + (i + 1).ToString() + " de " + p_mod_pedidos.Count.ToString() + ")",
+                        " (" + i.ToString() + " de " + (p_mod_pedidos.Count -1).ToString() + ")",
                     Value = p_mod_pedidos[i]
                 });
-                //dataSource.Add(new ComboBoxItem() { Name = "Pedido "+(i+1).ToString()+" de "+lcl_lst_pedidosProveedor.Count.ToString(), Value = lcl_lst_pedidosProveedor[i] });
             }
             this.cmbBoxPedidosProveedores.DataSource = dataSource;
-            if (dataSource.Count < 1)
-            {
-                this.cmbBoxPedidosProveedores.Enabled = false;
-                return;
-            }
+            //if (dataSource.Count < 1)
+            //{
+            //    this.cmbBoxPedidosProveedores.Enabled = false;
+            //    return;
+            //}
+            //this.cmbBoxPedidosProveedores.Enabled = true;
             
             this.cmbBoxPedidosProveedores.DropDownWidth = this.getDropDownWidth(this.cmbBoxPedidosProveedores);
             this.cmbBoxPedidosProveedores.DisplayMember = "Name";
@@ -412,6 +414,15 @@ namespace Vista
                 cntxMenuLineasPedido.MenuItems[1].Visible = true;
                 cntxMenuLineasPedido.MenuItems[2].Text = "Editar linea";
                 cntxMenuLineasPedido.MenuItems[3].Text = "Eliminar linea";
+            }
+        }
+        private void actualizarPedidosProveedores(ModeloPedido p_mod_pedido)
+        {
+            List<ModeloPedido> lcl_lst_mod_pedidos = (controlador as ControladorPedidoProveedor).getPedidosProveedores(p_mod_pedido);
+            this.inicializarComboBoxPedidosProveedores(lcl_lst_mod_pedidos);
+            if (lcl_lst_mod_pedidos.Count > 0)
+            {
+                this.cargarPedidoEnControles((controlador as ControladorPedidoProveedor).getPedidoGlobal());
             }
         }
 
@@ -567,6 +578,10 @@ namespace Vista
         }
         private void cargarProveedorEnControles(ModeloProveedor p_mod_proveedor)
         {
+            if (p_mod_proveedor.codigo == 0)
+            {
+                return;
+            }
             this.txtBoxRazonSocial.Text = p_mod_proveedor.razonSocial;
             
             this.cargarContactosProveedorEnControles(
@@ -871,42 +886,42 @@ namespace Vista
 
         private bool validarMail()
         {
-            if (!this.vacioMail())
-            {
-                if (!ModeloMail.validarMail(this.txtBoxMail.Text))
-                {
-                    MessageBox.Show("La dirección de mail ingresada no es válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
+            //if (!this.vacioMail())
+            //{
+            //    if (!ModeloMail.validarMail(this.txtBoxMail.Text))
+            //    {
+            //        MessageBox.Show("La dirección de mail ingresada no es válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        return false;
+            //    }
+            //}
             return true;
         }
         private bool validarDomicilio()
         {
-            if (!this.vacioDomicilio())
-            {
-                if (!ModeloDomicilio.validarCalle(txtBoxCalle.Text))
-                {
-                    MessageBox.Show("Revise el campo calle del domicilio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
+            //if (!this.vacioDomicilio())
+            //{
+            //    if (!ModeloDomicilio.validarCalle(txtBoxCalle.Text))
+            //    {
+            //        MessageBox.Show("Revise el campo calle del domicilio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        return false;
+            //    }
+            //}
             return true;
         }
         private bool validarTelefono()
         {
             if (!this.vacioTelefono())
             {
-                if (!ModeloTelefono.validarNumero(this.txtBoxTelefono.Text))
-                {
-                    MessageBox.Show("El número de teléfono ingresado no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //if (!ModeloTelefono.validarNumero(this.txtBoxTelefono.Text))
+                //{
+                //    MessageBox.Show("El número de teléfono ingresado no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    return false;
+                //}
+                //else if (!ModeloTelefono.validarTipo(this.cmbBoxTipoTelefono.SelectedValue.ToString()))
+                //{
+                //    MessageBox.Show("Debe seleccionar un tipo de teléfono.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
-                }
-                else if (!ModeloTelefono.validarTipo(this.cmbBoxTipoTelefono.SelectedValue.ToString()))
-                {
-                    MessageBox.Show("Debe seleccionar un tipo de teléfono.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
+                //}
             }
             return true;
         }
@@ -963,12 +978,20 @@ namespace Vista
             BackgroundWorker bw = new BackgroundWorker();
             bw.DoWork += (s, e) =>
             {
-                exito = lcl_frm_comprobante.generarComprobante(controlador.pedidoActual);
+                if (controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor)
+                {
+                    //Imprime lote de pedidos a proveedor
+                    exito = lcl_frm_comprobante.generarComprobante((controlador as ControladorPedidoProveedor).getPedidosProveedores(controlador.pedidoActual));
+                }
+                else
+                {
+                    exito = lcl_frm_comprobante.generarComprobante(controlador.pedidoActual);
+                }
+                
             };
             bw.RunWorkerCompleted += (s, e) =>
             {
                 lcl_frm_loading.DialogResult = System.Windows.Forms.DialogResult.OK;
-                    
             };
             bw.RunWorkerAsync();
 
@@ -978,18 +1001,17 @@ namespace Vista
                 this.MostrarComprobante(lcl_frm_comprobante, new EventArgs());
             }
         }
-        //private void imprimirpedido()
-        //{
-        //    this.controlador.pedidoActual.tipoComprobante = 0;// Seteamos el tipo de comprobante en 0 para que sea remito
-        //    new Reportes.frmImpresionComprobante(controlador.pedidoActual,Properties.Settings.Default["carpetaPedidosProveedores"].ToString()).ShowDialog();
 
-        //}
         private bool guardarPedido()
         {
             DialogResult dialogResult = new DialogResult();  
             do
             {
-                if (!controlador.guardarPedido())
+                //se fija si hay que guardar un pedido cliente o lote de pedidos a proveedor
+                bool guardado = (this.controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor &&
+                    this.cmbBoxPedidosProveedores.SelectedIndex == 0)? (controlador as ControladorPedidoProveedor).guardarPedidos():controlador.guardarPedido();
+                
+                if (!guardado)
                 {
                     dialogResult = MessageBox.Show(controlador.errorActual, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                     if (dialogResult == System.Windows.Forms.DialogResult.Cancel)
@@ -1183,7 +1205,7 @@ namespace Vista
         private void cmbBoxPedidosProveedores_SelectionChangeCommitted(object sender, EventArgs e)
         {
             var pedido = (ModeloPedido)cmbBoxPedidosProveedores.SelectedValue;
-            
+
             this.cargarPedidoEnControles(pedido);
         }
         private void cmbBoxDomicilios_SelectionChangeCommitted(object sender, EventArgs e)
@@ -1264,6 +1286,7 @@ namespace Vista
             {
                 return;
             }
+            
             if (this.guardarPedido())
             {
                 this.inicializarPedidoCerrado();
@@ -1445,7 +1468,15 @@ namespace Vista
         public void evento_agregarLinea(object sender, EventArgs e)
         {
             pedidoAgregarLineas = new ModeloPedido();
-            pedidoAgregarLineas = ObjectCopier.Clone(controlador.pedidoActual);
+            if (controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor)
+            {
+                pedidoAgregarLineas = ObjectCopier.Clone((controlador as ControladorPedidoProveedor).getPedidoGlobal());
+            }
+            else
+            {
+                pedidoAgregarLineas = ObjectCopier.Clone(controlador.pedidoActual);
+            }
+            
             Form lcl_frm_agregarArticulos;
             if (modoFormulario == ModoFormularioDevolucionCliente)
             {
@@ -1468,6 +1499,10 @@ namespace Vista
             {
                 controlador.pedidoActual.removeAllLineaPedido();
                 controlador.pedidoActual.addLineaPedidoList(pedidoAgregarLineas.lineasPedido);
+                if(controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor)
+                {
+                    this.actualizarPedidosProveedores(controlador.pedidoActual);
+                }
                 //controlador.pedidoActual.lineasPedido = lcl_mod_pedido.lineasPedido;
                 this.cargarDatosPedidoEnControles(controlador.pedidoActual);
                 this.cargarLineasEnControles(controlador.pedidoActual);
@@ -1493,6 +1528,12 @@ namespace Vista
             MostrarDetallesArticulo(lcl_frm_articuloProveedor, e);
         }
         #endregion
+        
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         #endregion
 
         #region Validaciones
@@ -1553,36 +1594,6 @@ namespace Vista
             {
                 epRazonSocial.Icon = Properties.Resources.success;
                 epRazonSocial.SetError(txtBoxRazonSocial, "OK");
-            }
-        }
-
-        private void txtBoxNumeroPedido_Leave(object sender, EventArgs e)
-        {
-            bool respuesta = Validar.validarInputNumerico(txtBoxNumeroPedido.Text.ToString(),Constantes.Numericos.EnteroPositivoSinCero);
-            if (!respuesta)
-            {
-                epNumeroPedido.Icon = Properties.Resources.error;
-                epNumeroPedido.SetError(txtBoxNumeroPedido, "Número de Pedido no válido");
-            }
-            else
-            {
-                epNumeroPedido.Icon = Properties.Resources.success;
-                epNumeroPedido.SetError(txtBoxNumeroPedido, "OK");
-            }
-        }
-
-        private void txtBoxCAE_Leave(object sender, EventArgs e)
-        {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCAE.Text.ToString(), Constantes.ParametrosBusqueda.Pedidos.CAE);
-            if (!respuesta)
-            {
-                epCAE.Icon = Properties.Resources.error;
-                epCAE.SetError(txtBoxCAE, "CAE no válido");
-            }
-            else
-            {
-                epCAE.Icon = Properties.Resources.success;
-                epCAE.SetError(txtBoxCAE, "OK");
             }
         }
 
@@ -1737,9 +1748,6 @@ namespace Vista
         }
         #endregion
 
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        
     }
 }

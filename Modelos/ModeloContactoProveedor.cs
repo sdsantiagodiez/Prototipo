@@ -43,17 +43,11 @@ namespace Modelos
         public ModeloProveedor proveedor
         {
             get { return _proveedor; }
-            set { _proveedor = this.validarProveedor(value) ? value : null; }
+           set { _proveedor = this.validarProveedor(value) ? value : null; }
         }
         #endregion
 
         #region Validación
-        new public bool validar()
-        {
-            return base.validar() 
-                && this.validarProveedor(proveedor);
-        }
-
         public bool validarProveedor(ModeloProveedor p_mod_proveedor)
         {
             if (p_mod_proveedor != null)
