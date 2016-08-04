@@ -18,7 +18,7 @@ namespace Modelos
         public string dni
         {
             get { return _dni; }
-            set { this._dni = normalizarDNI(value); }
+            set { this._dni = validarDNI(value) ? normalizarDNI(value) : null; }
         }
         string _nombre;
         public string nombre
@@ -75,6 +75,15 @@ namespace Modelos
                 && validarNombre(this.nombre) 
                 && validarApellido(this.apellido) 
                 && this.validarTipoPersona(this.tipoPersona);
+        }
+         public static bool validarDNI(string p_dni)
+        {
+            p_dni = Modelo.convertString(p_dni);
+            if (p_dni != null && !System.Text.RegularExpressions.Regex.IsMatch(p_dni, @"[^0-9\.]"))
+            {
+                return true;
+            }
+            return false;
         }
 
         public static bool validarApellido(string p_apellido)

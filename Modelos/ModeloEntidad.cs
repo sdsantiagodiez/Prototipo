@@ -218,18 +218,22 @@ namespace Modelos
             /// <returns>True si el CUIT es válido y False si no.</returns>
             public static bool ValidarCuit(string cuit)
             {
-                //Quito los guiones, el cuit resultante debe tener 11 caracteres.
-                cuit = cuit.Replace("-", string.Empty);
-                if (cuit.Length != 11)
+                if (cuit != null && !System.Text.RegularExpressions.Regex.IsMatch(cuit, "[^0-9 -]"))
                 {
-                    return false;
+                    //Quito los guiones, el cuit resultante debe tener 11 caracteres.
+                    cuit = cuit.Replace("-", string.Empty);
+                    if (cuit.Length != 11)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        int calculado = CalcularDigitoCuit(cuit);
+                        int digito = int.Parse(cuit.Substring(10));
+                        return calculado == digito;
+                    }
                 }
-                else
-                {
-                    int calculado = CalcularDigitoCuit(cuit);
-                    int digito = int.Parse(cuit.Substring(10));
-                    return calculado == digito;
-                }
+                return false;
             }
             /// <summary>
             /// elimina caracteres no numéricos de cuit.EJ 20-37594224-1 -> 20375942241

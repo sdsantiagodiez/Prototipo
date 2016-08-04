@@ -465,7 +465,7 @@ namespace Vista
                 BackgroundWorker bw = new BackgroundWorker();
                 bw.DoWork += (s, e) =>
                 {
-                    exito = lcl_con_excel.ExportarAExcel(T, direccionDeArchivo);
+                    exito = lcl_con_excel.Exportar(T, direccionDeArchivo);
                 };
                 bw.RunWorkerCompleted += (s, e) =>
                 {

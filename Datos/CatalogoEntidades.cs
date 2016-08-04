@@ -19,6 +19,7 @@ namespace Datos
 
         protected ModeloEntidad leerDatosEntidades(SqlDataReader p_drEntidades)
         {
+            
             ModeloEntidad lcl_mod_entidad = new ModeloEntidad();
 
             lcl_mod_entidad.codigo = (int)p_drEntidades["codigo_entidad"];
