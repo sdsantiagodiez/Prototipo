@@ -240,6 +240,11 @@ namespace Reportes
             }
             return fileName;
         }
+
+        public void estadoAcrobatPDF(bool estado)
+        {
+            this.axAcroPDF.Visible = estado;
+        }
         
         #endregion
 

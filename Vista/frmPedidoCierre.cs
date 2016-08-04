@@ -972,7 +972,7 @@ namespace Vista
         private void imprimirpedido()
         {
             Reportes.frmImpresionComprobante lcl_frm_comprobante = new Reportes.frmImpresionComprobante(Properties.Settings.Default.carpetaPedidosClientes, Properties.Settings.Default.carpetaPedidosProveedores);
-
+            lcl_frm_comprobante.estadoAcrobatPDF(false);
             frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Guardando pedido en formato PDF.", "Guardando Comprobante");
             bool exito = false;
             BackgroundWorker bw = new BackgroundWorker();
