@@ -19,6 +19,7 @@ namespace Vista
         #region Atributos
         ErrorProvider errorProviderActual;
         private ModeloUsuario _usuario;
+        List<bool> glb_lst_respuestasValidaciones;
         public ModeloUsuario usuario
         {
             get { return _usuario; }
@@ -45,6 +46,11 @@ namespace Vista
             errorProviderActual = new ErrorProvider();
             usuario = new ModeloUsuario();
             txtBoxUsuario.KeyPress += this.valorUsername;
+            glb_lst_respuestasValidaciones = new List<bool>();
+            for (int i = 0; i < 3; i++)
+            {
+                glb_lst_respuestasValidaciones.Add(false);
+            }
         }
 
         public frmABMEntidadDatosAdicionalesUsuario(ModeloUsuario p_mod_usuario)
@@ -89,54 +95,96 @@ namespace Vista
         #endregion
 
         #region Validación
-        private bool validarDatosIngresados()
+        private int getIndex(string p_inputName)
         {
-            //Se separa para permitir que primero se muestren ErrorProviders, y luego error en roles
-            bool validez = this.validarUsuario();
-            validez = this.validarContraseña() && validez;
-            return validez && this.validarRoles();
-        }
-    
-        private bool validarUsuario()
-        {
-            if (string.IsNullOrWhiteSpace(txtBoxUsuario.Text))
+            int index;
+            switch (p_inputName)
             {
-                errorProviderActual.SetError(txtBoxUsuario, "Este campo es obligatorio. No puede permanecer vacío.");
-                return false;
-            } 
-            //else if (!ModeloUsuario.validarUsuario(txtBoxUsuario.Text))
-            //{
-            //    errorProviderActual.SetError(txtBoxUsuario, "Ha ingresado caracteres no válidos. No se permiten caracteres especiales o espacios, a excepción de '_'");
-            //    return false;
-            //}
-            errorProviderActual.SetError(txtBoxUsuario, "");
-            return true;
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario:
+                    index = 0;
+                    break;
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia:
+                    index = 1;
+                    break;
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "2":
+                    index = 1;
+                    break;
+                default:
+                    index = 0;
+                    break;
+            }
+            return index;
         }
-        private bool validarContraseña()
+
+        private bool validarInputs(object sender, EventArgs e)
         {
-            errorProviderActual.SetError(txtBoxContraseña, "");
-            errorProviderActual.SetError(txtBoxConfirmarContraseña, "");
-            
+            txtBoxUsuario_Leave(sender, e);
+
             if (string.IsNullOrWhiteSpace(txtBoxContraseña.Text) && usuario.contrasenia != null)
             {
                 //Sucede en caso de modificación, donde se habilita el campo contraseña para ser modificado, pero puede no ser modificado.
                 //De esta forma, no aparecen errores y se puede cerrar la ventana con Aceptar en caso de que se haya cambiado algo
-                return true;
+                return (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario)]) & validarRoles();
             }
-
-            //if (!ModeloUsuario.validarContrasenia(txtBoxContraseña.Text))
-            //{
-            //    errorProviderActual.SetError(txtBoxContraseña, "La contraseña ingresada no es válida. Debe tener por lo mínimo 8 caracteres.");
-            //    return false;
-            //} else 
-                if (txtBoxContraseña.Text != txtBoxConfirmarContraseña.Text)
+            else
             {
-                errorProviderActual.SetError(txtBoxConfirmarContraseña, "Las contraseñas no coinciden.");
-                return false;
+                txtBoxContraseña_Leave(sender, e);
+                txtBoxConfirmarContraseña_Leave(sender, e);
+                return (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario)]
+                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia)]
+                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "2")]
+                & validarRoles());
             }
-            
-            return true;
         }
+
+        //private bool validarContraseñaYRoles()
+        //{
+        //    //Se separa para permitir que primero se muestren ErrorProviders, y luego error en roles
+        //    bool validez;// = this.validarUsuario();
+        //    validez = this.validarContraseña(); //&& validez;
+        //    return validez && this.validarRoles();
+        //}
+    
+        //private bool validarUsuario()
+        //{
+        //    if (string.IsNullOrWhiteSpace(txtBoxUsuario.Text))
+        //    {
+        //        errorProviderActual.SetError(txtBoxUsuario, "Este campo es obligatorio. No puede permanecer vacío.");
+        //        return false;
+        //    } 
+        //    //else if (!ModeloUsuario.validarUsuario(txtBoxUsuario.Text))
+        //    //{
+        //    //    errorProviderActual.SetError(txtBoxUsuario, "Ha ingresado caracteres no válidos. No se permiten caracteres especiales o espacios, a excepción de '_'");
+        //    //    return false;
+        //    //}
+        //    errorProviderActual.SetError(txtBoxUsuario, "");
+        //    return true;
+        //}
+        //private bool validarContraseña()
+        //{
+        //    errorProviderActual.SetError(txtBoxContraseña, "");
+        //    errorProviderActual.SetError(txtBoxConfirmarContraseña, "");
+            
+        //    if (string.IsNullOrWhiteSpace(txtBoxContraseña.Text) && usuario.contrasenia != null)
+        //    {
+        //        //Sucede en caso de modificación, donde se habilita el campo contraseña para ser modificado, pero puede no ser modificado.
+        //        //De esta forma, no aparecen errores y se puede cerrar la ventana con Aceptar en caso de que se haya cambiado algo
+        //        return true;
+        //    }
+
+        //    //if (!ModeloUsuario.validarContrasenia(txtBoxContraseña.Text))
+        //    //{
+        //    //    errorProviderActual.SetError(txtBoxContraseña, "La contraseña ingresada no es válida. Debe tener por lo mínimo 8 caracteres.");
+        //    //    return false;
+        //    //} else 
+        //        if (txtBoxContraseña.Text != txtBoxConfirmarContraseña.Text)
+        //    {
+        //        errorProviderActual.SetError(txtBoxConfirmarContraseña, "Las contraseñas no coinciden.");
+        //        return false;
+        //    }
+            
+        //    return true;
+        //}
         private bool validarRoles()
         {
             this.cargarDatosControlRoles();
@@ -197,10 +245,68 @@ namespace Vista
         #endregion
         
         #region Eventos
+        #region TextBoxs
+        private void txtBoxUsuario_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxUsuario.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario);
+            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario)] = respuesta;
+            if (!respuesta)
+            {
+                epUsuario.Icon = Properties.Resources.error;
+                epUsuario.SetError(txtBoxUsuario, "Usuario no válido");
+            }
+            else
+            {
+                epUsuario.Icon = Properties.Resources.success;
+                epUsuario.SetError(txtBoxUsuario, "OK");
+            }
+        }
+
+        private void txtBoxContraseña_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxContraseña.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
+            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia)] = respuesta;
+            if (!respuesta)
+            {
+                epContraseña.Icon = Properties.Resources.error;
+                epContraseña.SetError(txtBoxContraseña, "Contraseña no válida");
+            }
+            else
+            {
+                epContraseña.Icon = Properties.Resources.success;
+                epContraseña.SetError(txtBoxContraseña, "OK");
+            }
+        }
+
+        private void txtBoxConfirmarContraseña_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxConfirmarContraseña.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
+            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "2")] = respuesta;
+            if (!respuesta)
+            {
+                epContraseña.Icon = Properties.Resources.error;
+                epContraseña.SetError(txtBoxConfirmarContraseña, "Contraseña no válida");
+            }
+            else
+            {
+                if (string.Equals(txtBoxContraseña.Text.ToString(), txtBoxConfirmarContraseña.Text.ToString()))
+                {
+                    epContraseña.Icon = Properties.Resources.success;
+                    epContraseña.SetError(txtBoxConfirmarContraseña, "OK");
+                }
+                else
+                {
+                    epContraseña.Icon = Properties.Resources.error;
+                    epContraseña.SetError(txtBoxConfirmarContraseña, "Las contraseñas no coinciden");
+                }
+            }
+        }
+        #endregion
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             //Si validación falla, el método de validación mostrará los mensajes de error correspondientes
-            if (this.validarDatosIngresados())
+            if (this.validarInputs(sender,e))
             {
                 this.cargarControlesEnUsuario();
                 this.Close();
@@ -237,58 +343,7 @@ namespace Vista
         }
         #endregion
 
-        private void txtBoxUsuario_Leave(object sender, EventArgs e)
-        {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxUsuario.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario);
-            if (!respuesta)
-            {
-                epUsuario.Icon = Properties.Resources.error;
-                epUsuario.SetError(txtBoxUsuario, "Usuario no válido");
-            }
-            else
-            {
-                epUsuario.Icon = Properties.Resources.success;
-                epUsuario.SetError(txtBoxUsuario, "OK");
-            }
-        }
-
-        private void txtBoxContraseña_Leave(object sender, EventArgs e)
-        {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxContraseña.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
-            if (!respuesta)
-            {
-                epContraseña.Icon = Properties.Resources.error;
-                epContraseña.SetError(txtBoxContraseña, "Contraseña no válida");
-            }
-            else
-            {
-                epContraseña.Icon = Properties.Resources.success;
-                epContraseña.SetError(txtBoxContraseña, "OK");
-            }
-        }
-
-        private void txtBoxConfirmarContraseña_Leave(object sender, EventArgs e)
-        {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxConfirmarContraseña.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
-            if (!respuesta)
-            {
-                epContraseña.Icon = Properties.Resources.error;
-                epContraseña.SetError(txtBoxConfirmarContraseña, "Contraseña no válida");
-            }
-            else
-            {
-                if (string.Equals(txtBoxContraseña.Text.ToString(), txtBoxConfirmarContraseña.Text.ToString()))
-                {
-                    epContraseña.Icon = Properties.Resources.success;
-                    epContraseña.SetError(txtBoxConfirmarContraseña, "OK");
-                }
-                else
-                {
-                    epContraseña.Icon = Properties.Resources.error;
-                    epContraseña.SetError(txtBoxConfirmarContraseña, "Las contraseñas no coinciden");
-                }
-            }
-        }
+        
         
     }
 }

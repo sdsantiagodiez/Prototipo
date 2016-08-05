@@ -17,6 +17,7 @@ namespace Vista
     {
         #region Atributos
         private ModeloContactoProveedor _contactoProveedor;
+        List<bool> glb_lst_respuestasValidaciones;
         public ModeloContactoProveedor contactoProveedor
         
         {
@@ -47,6 +48,11 @@ namespace Vista
             this.StartPosition = FormStartPosition.CenterParent;
             txtBoxCodigoSeleccionado.Enabled = txtBoxCUITSeleccionado.Enabled = txtBoxRazonSocialSeleccionado.Enabled = false;
             this.inicializarCmbBoxProveedores();
+            glb_lst_respuestasValidaciones = new List<bool>();
+            for (int i = 0; i < 3; i++)
+            {
+                glb_lst_respuestasValidaciones.Add(false);
+            }
         }
         private void inicializarCmbBoxProveedores()
         {
@@ -76,6 +82,37 @@ namespace Vista
         #endregion
 
         #region Validación
+        private int getIndex(string p_inputName)
+        {
+            int index;
+            switch (p_inputName)
+            {
+                case Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad:
+                    index = 0;
+                    break;
+                case Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit:
+                    index = 1;
+                    break;
+                case Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial:
+                    index = 2;
+                    break;
+                default:
+                    index = 0;
+                    break;
+            }
+            return index;
+        }
+
+        private bool validarInputs(object sender, EventArgs e)
+        {
+            txtBoxCodigoSeleccionado_Leave(sender, e);
+            txtBoxCUITSeleccionado_Leave(sender, e);
+            txtBoxRazonSocialSeleccionado_Leave(sender, e);
+                return (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad)]
+                    & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit)]
+                    & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)]);
+        }
+
         private bool validar()
         {
             if (contactoProveedor.proveedor != null)
@@ -114,13 +151,13 @@ namespace Vista
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (this.validar())
+            if (this.validar() & this.validarInputs(sender,e))
             {
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un Proveedor para el Contacto de Proveedor actual.","Error",MessageBoxButtons.OK);
+                MessageBox.Show("Asegurese de seleccionar un Proveedor para el Contacto de Proveedor actual y de ingresar los datos correctamente","Error",MessageBoxButtons.OK);
             }
             
         }
@@ -148,13 +185,12 @@ namespace Vista
                 this.cargarProveedorEnTextBox(new ModeloProveedor());
             }
         }
-        #endregion
 
-        #region Validaciones
-
+        #region TextBoxs
         private void txtBoxCodigoSeleccionado_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoSeleccionado.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad);
+            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad)] = respuesta;
             if (!respuesta)
             {
                 epCodigoSeleccionado.Icon = Properties.Resources.error;
@@ -170,6 +206,7 @@ namespace Vista
         private void txtBoxCUITSeleccionado_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCUITSeleccionado.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit);
+            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit)] = respuesta;
             if (!respuesta)
             {
                 epCUITSeleccionado.Icon = Properties.Resources.error;
@@ -185,6 +222,7 @@ namespace Vista
         private void txtBoxRazonSocialSeleccionado_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocialSeleccionado.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
+            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = respuesta;
             if (!respuesta)
             {
                 epRazonSocialSeleccionado.Icon = Properties.Resources.error;
@@ -197,8 +235,6 @@ namespace Vista
             }
         }
         #endregion
-
-       
-       
+        #endregion
     }
 }
