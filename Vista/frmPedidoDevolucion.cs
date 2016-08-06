@@ -21,6 +21,7 @@ namespace Vista
         public ModeloPedido glb_mod_pedidoOriginal;
         ModeloLineaPedido glb_mod_lineaPedidoActual;
         public ControladorPedido controlador;
+        private bool glb_respuesta = false;
         ContextMenu cntxMenuResultadoBusqueda;
         ContextMenu cntxMenuLineasPedidos;
         //se usa para evitar mostrar mensaje de confirmación cuando se cierra la ventana y se selecciona continuar
@@ -94,8 +95,6 @@ namespace Vista
         }
         private void inicializarControles()
         {
-            this.txtCAE.Leave += (s, e) => { this.txtCAE_Leave(); };
-
             #region DataGridView
             //dgvArticulosPedido
             //Cambiar a multiSelect
@@ -525,7 +524,8 @@ namespace Vista
         #region Eventos
         private void lblLupa_Click(object sender, EventArgs e)
         {
-            if (txtCAE_Leave())
+            txtCAE_Leave(sender, e);
+            if (glb_respuesta)
             {
                 //Buscar Pedido por CAE
             ModeloPedido lcl_mod_pedido = ControladorBusqueda.getOne(new ModeloPedido() { CAE = this.txtCAE.Text}, Constantes.ParametrosBusqueda.Pedidos.CAE);
@@ -672,10 +672,10 @@ namespace Vista
         }
         #endregion   
 
-        private bool txtCAE_Leave()
+        private void txtCAE_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtCAE.Text.ToString(), Constantes.ParametrosBusqueda.Pedidos.CAE);
-            if (!respuesta)
+            glb_respuesta = Validar.validarInputNoNumerico(txtCAE.Text.ToString(), Constantes.ParametrosBusqueda.Pedidos.CAE);
+            if (!glb_respuesta)
             {
                 epCAE.Icon = Properties.Resources.error;
                 epCAE.SetError(txtCAE, "CAE No Válido");
@@ -685,7 +685,6 @@ namespace Vista
                 epCAE.Icon = Properties.Resources.success;
                 epCAE.SetError(txtCAE, "OK");
             }
-            return respuesta;
         }
     }
 }

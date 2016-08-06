@@ -15,6 +15,7 @@ namespace Vista
     public partial class frmPedidoCierre_FormasDePago : frmMaterialSkinBase
     {
         private ModeloPedido pedidoActual;
+        private bool glb_respuesta = false;
        
         #region Constructores
         public frmPedidoCierre_FormasDePago()
@@ -120,17 +121,21 @@ namespace Vista
         #region Button
         private void btnAgrearFormaPago_Click(object sender, EventArgs e)
         {
-            FormaPago lcl_formaPago = new FormaPago();
-            lcl_formaPago.forma = (Constantes.FormaDePago)this.cmbBoxFormaPago.SelectedItem;
-            lcl_formaPago.monto = Convert.ToDecimal(this.txtBoxMonto.Text);
-            pedidoActual.addFormaPago(lcl_formaPago);
-            if (pedidoActual.addFormaPago(lcl_formaPago))
+            txtBoxMonto_Leave(sender, e);
+            if (glb_respuesta)
             {
-                this.cargarPedidoEnControles(pedidoActual);
-            }
-            else
-            {
-                MessageBox.Show("El ingreso del monto actual supera el monto total del pedido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                FormaPago lcl_formaPago = new FormaPago();
+                lcl_formaPago.forma = (Constantes.FormaDePago)this.cmbBoxFormaPago.SelectedItem;
+                lcl_formaPago.monto = Convert.ToDecimal(this.txtBoxMonto.Text);
+                pedidoActual.addFormaPago(lcl_formaPago);
+                if (pedidoActual.addFormaPago(lcl_formaPago))
+                {
+                    this.cargarPedidoEnControles(pedidoActual);
+                }
+                else
+                {
+                    MessageBox.Show("El ingreso del monto actual supera el monto total del pedido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
         }
 
@@ -168,11 +173,11 @@ namespace Vista
 
         private void txtBoxMonto_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNumerico(txtBoxMonto.Text.ToString(),Constantes.Numericos.DecimalPositivo);
-            if (!respuesta)
+            glb_respuesta = Validar.validarInputNumerico(txtBoxMonto.Text.ToString(),Constantes.Numericos.DecimalPositivo);
+            if (!glb_respuesta)
             {
                 epMonto.Icon = Properties.Resources.error;
-                epMonto.SetError(txtBoxMonto, "CAE No Válido");
+                epMonto.SetError(txtBoxMonto, "Monto de Pago No Válido");
             }
             else
             {

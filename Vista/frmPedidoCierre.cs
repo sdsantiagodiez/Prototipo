@@ -21,6 +21,7 @@ namespace Vista
         public event EventHandler MostrarDetallesArticulo;
         public event EventHandler MostrarComprobante;
         ModeloPedido glb_mod_pedidoOriginalDevolucion;
+        List<bool> glb_lst_respuestasValidaciones;
         List<TipoDocumento> glb_lst_tiposDocumentos;
         ControladorPedido controlador;
         MaterialSkin.Controls.MaterialCheckBox chckBoxClienteGenerico;
@@ -75,6 +76,11 @@ namespace Vista
             dgvArticulosVenta.EnableHeadersVisualStyles = false; 
             this.StartPosition = FormStartPosition.CenterScreen;
             this.inicializarControles();
+            glb_lst_respuestasValidaciones = new List<bool>();
+            for (int i = 0; i < 8; i++)
+            {
+                glb_lst_respuestasValidaciones.Add(false);
+            }
         }
         /// <summary>
         /// Inicializa formulario de acuerdo al codigoTipoPedido asignado al pedido
@@ -767,9 +773,9 @@ namespace Vista
         #endregion
         
         #region Controles -> Modelo
-        private ModeloPedido cargarControlEnPedido()
+        private ModeloPedido cargarControlEnPedido(object sender, EventArgs e)
         {
-            if (!this.validarPedido())
+            if (!this.validarPedido(sender,e))
             {
                 return null;
             }
@@ -874,57 +880,73 @@ namespace Vista
         #endregion
 
         #region Validaciones
-        private bool validarPedido()
+        private int getIndex(string p_inputName)
+        {
+            int index;
+            switch (p_inputName)
+            {
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Cuit:
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Dni:
+                    index = 0;
+                    break;
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Nombre:
+                    index = 1;
+                    break;
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Apellido:
+                    index = 2;
+                    break;
+                case Constantes.ParametrosBusqueda.Domicilios.Calle:
+                    index = 3;
+                    break;
+                case Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio:
+                    index = 4;
+                    break;
+                case Constantes.ParametrosBusqueda.Domicilios.Ciudad:
+                    index = 5;
+                    break;
+                case Constantes.ParametrosBusqueda.Mails.Mail:
+                    index = 6;
+                    break;
+                case Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono:
+                    index = 7;
+                    break;
+                default:
+                    index = 0;
+                    break;
+            }
+            return index;
+        }
+
+        private bool validarInputs(object sender, EventArgs e)
+        {
+            txtBoxNumeroDocumento_Leave(sender, e);
+            txtBoxNombre_Leave(sender, e);
+            txtBoxApellido_Leave(sender, e);
+            txtBoxCalle_Leave(sender, e);
+            txtBoxNumeroDomicilio_Leave(sender, e);
+            txtBoxCiudad_Leave(sender, e);
+            txtBoxMail_Leave(sender, e);
+            txtBoxTelefono_Leave(sender, e);
+
+            return (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Cuit)]
+                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)]
+                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)]
+                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)]
+                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)]
+                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)]
+                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Mails.Mail)]
+                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)]);
+        }
+        private bool validarPedido(object sender, EventArgs e)
         {
             if (controlador.pedidoActual.lineasPedido.Count == 0)
             {
                 MessageBox.Show("No existen líneas en el pedido actual", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            return this.validarDocumento() && this.validarTelefono() && this.validarDomicilio() && this.validarMail();
+            return validarInputs(sender,e);
         }
 
-        private bool validarMail()
-        {
-            //if (!this.vacioMail())
-            //{
-            //    if (!ModeloMail.validarMail(this.txtBoxMail.Text))
-            //    {
-            //        MessageBox.Show("La dirección de mail ingresada no es válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        return false;
-            //    }
-            //}
-            return true;
-        }
-        private bool validarDomicilio()
-        {
-            //if (!this.vacioDomicilio())
-            //{
-            //    if (!ModeloDomicilio.validarCalle(txtBoxCalle.Text))
-            //    {
-            //        MessageBox.Show("Revise el campo calle del domicilio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        return false;
-            //    }
-            //}
-            return true;
-        }
-        private bool validarTelefono()
-        {
-            if (!this.vacioTelefono())
-            {
-                //if (!ModeloTelefono.validarNumero(this.txtBoxTelefono.Text))
-                //{
-                //    MessageBox.Show("El número de teléfono ingresado no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    return false;
-                //}
-                //else if (!ModeloTelefono.validarTipo(this.cmbBoxTipoTelefono.SelectedValue.ToString()))
-                //{
-                //    MessageBox.Show("Debe seleccionar un tipo de teléfono.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                //}
-            }
-            return true;
-        }
         private bool vacioMail()
         {
             if (String.IsNullOrWhiteSpace(this.txtBoxMail.Text))
@@ -951,19 +973,7 @@ namespace Vista
             else
                 return false;
         }
-        private bool validarDocumento()
-        {
-            if(this.cmbBoxTipoDocumento.SelectedValue == this.glb_lst_tiposDocumentos.SingleOrDefault(x => x.codigo == 80))
-            {
-                //Validamos CUIT en caso de seleccionado como opción de documento
-                if(!ModeloEntidad.CUIT.ValidarCuit(this.txtBoxNumeroDocumento.Text))
-                {
-                    MessageBox.Show("CUIT no válido");
-                    return false;
-                }
-            }
-            return true;
-        }
+        
         
         #endregion
 
@@ -1273,7 +1283,7 @@ namespace Vista
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            if (this.cargarControlEnPedido() == null)
+            if (this.cargarControlEnPedido(sender,e) == null)
             {
                 return;
             }
@@ -1282,7 +1292,7 @@ namespace Vista
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (this.cargarControlEnPedido() == null)
+            if (this.cargarControlEnPedido(sender,e) == null)
             {
                 return;
             }
@@ -1295,7 +1305,7 @@ namespace Vista
         }
         private void btnFacturaElectronica_Click(object sender, EventArgs e)
         {
-            if (this.cargarControlEnPedido() == null)
+            if (this.cargarControlEnPedido(sender,e) == null)
             {
                 return;
             }
@@ -1539,7 +1549,9 @@ namespace Vista
         #region Validaciones
         private void txtBoxNumeroDocumento_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxNumeroDocumento.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
+            bool respuesta = (Validar.validarInputNoNumerico(txtBoxNumeroDocumento.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni)
+                || Validar.validarInputNoNumerico(txtBoxNumeroDocumento.Text.ToString(),Constantes.ParametrosBusqueda.Entidades.Personas.Cuit));
+            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Cuit)] = respuesta;
             if (!respuesta)
             {
                 epNumeroDocumento.Icon = Properties.Resources.error;
@@ -1555,6 +1567,7 @@ namespace Vista
         private void txtBoxApellido_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxApellido.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Apellido);
+            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)] = respuesta;
             if (!respuesta)
             {
                 epApellido.Icon = Properties.Resources.error;
@@ -1570,6 +1583,7 @@ namespace Vista
         private void txtBoxNombre_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxNombre.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Nombre);
+            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)] = respuesta;
             if (!respuesta)
             {
                 epNombre.Icon = Properties.Resources.error;
@@ -1600,6 +1614,7 @@ namespace Vista
         private void txtBoxCalle_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCalle.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Calle);
+            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)] = respuesta;
             if (!respuesta)
             {
                 epCalle.Icon = Properties.Resources.error;
@@ -1615,6 +1630,7 @@ namespace Vista
         private void txtBoxNumeroDomicilio_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxNumeroDomicilio.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio);
+            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)] = respuesta;
             if (!respuesta)
             {
                 epNumeroDomicilio.Icon = Properties.Resources.error;
@@ -1660,6 +1676,7 @@ namespace Vista
         private void txtBoxCiudad_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCiudad.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Ciudad);
+            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)] = respuesta;
             if (!respuesta)
             {
                 epCiudad.Icon = Properties.Resources.error;
@@ -1690,6 +1707,7 @@ namespace Vista
         private void txtBoxMail_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxMail.Text.ToString(), Constantes.ParametrosBusqueda.Mails.Mail);
+            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Mails.Mail)] = respuesta;
             if (!respuesta)
             {
                 epMail.Icon = Properties.Resources.error;
@@ -1705,6 +1723,7 @@ namespace Vista
         private void txtBoxTelefono_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxTelefono.Text.ToString(), Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono);
+            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)] = respuesta;
             if (!respuesta)
             {
                 epNumeroTelefono.Icon = Properties.Resources.error;

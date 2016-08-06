@@ -116,9 +116,10 @@
             // pnlBase
             // 
             this.pnlBase.Controls.Add(this.tblLayoutPanelPrincipal);
-            this.pnlBase.Location = new System.Drawing.Point(23, 75);
+            this.pnlBase.Location = new System.Drawing.Point(17, 61);
+            this.pnlBase.Margin = new System.Windows.Forms.Padding(2);
             this.pnlBase.Name = "pnlBase";
-            this.pnlBase.Size = new System.Drawing.Size(1048, 595);
+            this.pnlBase.Size = new System.Drawing.Size(786, 483);
             this.pnlBase.TabIndex = 3;
             // 
             // tblLayoutPanelPrincipal
@@ -130,24 +131,23 @@
             this.tblLayoutPanelPrincipal.Controls.Add(this.tblLayoutPanelArticulos, 0, 0);
             this.tblLayoutPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 0);
-            this.tblLayoutPanelPrincipal.Margin = new System.Windows.Forms.Padding(4);
             this.tblLayoutPanelPrincipal.Name = "tblLayoutPanelPrincipal";
             this.tblLayoutPanelPrincipal.RowCount = 2;
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
-            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(1048, 595);
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(786, 483);
             this.tblLayoutPanelPrincipal.TabIndex = 2;
             // 
             // tblLayoutPanelBotones
             // 
             this.tblLayoutPanelBotones.ColumnCount = 6;
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
-            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tblLayoutPanelBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
             this.tblLayoutPanelBotones.Controls.Add(this.lblTotal, 1, 0);
             this.tblLayoutPanelBotones.Controls.Add(this.btnCancelar, 0, 0);
             this.tblLayoutPanelBotones.Controls.Add(this.lblTotalVar, 2, 0);
@@ -155,12 +155,11 @@
             this.tblLayoutPanelBotones.Controls.Add(this.btnQuitarTodos, 4, 0);
             this.tblLayoutPanelBotones.Controls.Add(this.btnSiguiente, 5, 0);
             this.tblLayoutPanelBotones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelBotones.Location = new System.Drawing.Point(4, 525);
-            this.tblLayoutPanelBotones.Margin = new System.Windows.Forms.Padding(4);
+            this.tblLayoutPanelBotones.Location = new System.Drawing.Point(3, 426);
             this.tblLayoutPanelBotones.Name = "tblLayoutPanelBotones";
             this.tblLayoutPanelBotones.RowCount = 1;
             this.tblLayoutPanelBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelBotones.Size = new System.Drawing.Size(1040, 66);
+            this.tblLayoutPanelBotones.Size = new System.Drawing.Size(780, 54);
             this.tblLayoutPanelBotones.TabIndex = 0;
             // 
             // lblTotal
@@ -168,10 +167,9 @@
             this.lblTotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(134, 21);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotal.Location = new System.Drawing.Point(96, 18);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(62, 24);
+            this.lblTotal.Size = new System.Drawing.Size(51, 18);
             this.lblTotal.TabIndex = 9;
             this.lblTotal.Text = "Total:";
             // 
@@ -182,12 +180,12 @@
             this.btnCancelar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnCancelar.Depth = 0;
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(5, 15);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.btnCancelar.Location = new System.Drawing.Point(4, 9);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Primary = false;
-            this.btnCancelar.Size = new System.Drawing.Size(110, 36);
+            this.btnCancelar.Size = new System.Drawing.Size(82, 36);
             this.btnCancelar.TabIndex = 14;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -198,10 +196,9 @@
             this.lblTotalVar.AutoSize = true;
             this.lblTotalVar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalVar.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblTotalVar.Location = new System.Drawing.Point(250, 23);
-            this.lblTotalVar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotalVar.Location = new System.Drawing.Point(187, 19);
             this.lblTotalVar.Name = "lblTotalVar";
-            this.lblTotalVar.Size = new System.Drawing.Size(19, 20);
+            this.lblTotalVar.Size = new System.Drawing.Size(16, 16);
             this.lblTotalVar.TabIndex = 10;
             this.lblTotalVar.Text = "0";
             // 
@@ -211,12 +208,12 @@
             this.btnQuitar.AutoSize = true;
             this.btnQuitar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnQuitar.Depth = 0;
-            this.btnQuitar.Location = new System.Drawing.Point(325, 15);
-            this.btnQuitar.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.btnQuitar.Location = new System.Drawing.Point(244, 9);
+            this.btnQuitar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnQuitar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Primary = false;
-            this.btnQuitar.Size = new System.Drawing.Size(150, 36);
+            this.btnQuitar.Size = new System.Drawing.Size(112, 36);
             this.btnQuitar.TabIndex = 15;
             this.btnQuitar.Text = "Quitar Seleccionado";
             this.btnQuitar.UseVisualStyleBackColor = true;
@@ -227,12 +224,12 @@
             this.btnQuitarTodos.AutoSize = true;
             this.btnQuitarTodos.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnQuitarTodos.Depth = 0;
-            this.btnQuitarTodos.Location = new System.Drawing.Point(485, 15);
-            this.btnQuitarTodos.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.btnQuitarTodos.Location = new System.Drawing.Point(364, 9);
+            this.btnQuitarTodos.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnQuitarTodos.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnQuitarTodos.Name = "btnQuitarTodos";
             this.btnQuitarTodos.Primary = false;
-            this.btnQuitarTodos.Size = new System.Drawing.Size(150, 36);
+            this.btnQuitarTodos.Size = new System.Drawing.Size(112, 36);
             this.btnQuitarTodos.TabIndex = 16;
             this.btnQuitarTodos.Text = "Quitar Todo";
             this.btnQuitarTodos.UseVisualStyleBackColor = true;
@@ -243,12 +240,12 @@
             this.btnSiguiente.AutoSize = true;
             this.btnSiguiente.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnSiguiente.Depth = 0;
-            this.btnSiguiente.Location = new System.Drawing.Point(913, 15);
-            this.btnSiguiente.Margin = new System.Windows.Forms.Padding(5, 7, 16, 7);
+            this.btnSiguiente.Location = new System.Drawing.Point(678, 9);
+            this.btnSiguiente.Margin = new System.Windows.Forms.Padding(4, 6, 12, 6);
             this.btnSiguiente.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Primary = false;
-            this.btnSiguiente.Size = new System.Drawing.Size(111, 36);
+            this.btnSiguiente.Size = new System.Drawing.Size(90, 36);
             this.btnSiguiente.TabIndex = 17;
             this.btnSiguiente.Text = "Siguiente >";
             this.btnSiguiente.UseVisualStyleBackColor = true;
@@ -258,27 +255,24 @@
             // 
             this.tblLayoutPanelArticulos.ColumnCount = 2;
             this.tblLayoutPanelArticulos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelArticulos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 380F));
+            this.tblLayoutPanelArticulos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 285F));
             this.tblLayoutPanelArticulos.Controls.Add(this.gbxDetalleArticuloSeleccionado, 1, 0);
             this.tblLayoutPanelArticulos.Controls.Add(this.tblLayoutPanelDataGrids, 0, 0);
             this.tblLayoutPanelArticulos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelArticulos.Location = new System.Drawing.Point(4, 4);
-            this.tblLayoutPanelArticulos.Margin = new System.Windows.Forms.Padding(4);
+            this.tblLayoutPanelArticulos.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelArticulos.Name = "tblLayoutPanelArticulos";
             this.tblLayoutPanelArticulos.RowCount = 1;
             this.tblLayoutPanelArticulos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelArticulos.Size = new System.Drawing.Size(1040, 513);
+            this.tblLayoutPanelArticulos.Size = new System.Drawing.Size(780, 417);
             this.tblLayoutPanelArticulos.TabIndex = 1;
             // 
             // gbxDetalleArticuloSeleccionado
             // 
             this.gbxDetalleArticuloSeleccionado.Controls.Add(this.tblLayoutPanelDetalleArticulo);
             this.gbxDetalleArticuloSeleccionado.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbxDetalleArticuloSeleccionado.Location = new System.Drawing.Point(664, 4);
-            this.gbxDetalleArticuloSeleccionado.Margin = new System.Windows.Forms.Padding(4);
+            this.gbxDetalleArticuloSeleccionado.Location = new System.Drawing.Point(498, 3);
             this.gbxDetalleArticuloSeleccionado.Name = "gbxDetalleArticuloSeleccionado";
-            this.gbxDetalleArticuloSeleccionado.Padding = new System.Windows.Forms.Padding(4);
-            this.gbxDetalleArticuloSeleccionado.Size = new System.Drawing.Size(372, 505);
+            this.gbxDetalleArticuloSeleccionado.Size = new System.Drawing.Size(279, 411);
             this.gbxDetalleArticuloSeleccionado.TabIndex = 25;
             this.gbxDetalleArticuloSeleccionado.TabStop = false;
             this.gbxDetalleArticuloSeleccionado.Text = "Detalle Artículo Seleccionado";
@@ -290,13 +284,12 @@
             this.tblLayoutPanelDetalleArticulo.Controls.Add(this.tblLayoutPanelDetallesArticuloOpciones, 0, 1);
             this.tblLayoutPanelDetalleArticulo.Controls.Add(this.tlpDetalles, 0, 0);
             this.tblLayoutPanelDetalleArticulo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelDetalleArticulo.Location = new System.Drawing.Point(4, 19);
-            this.tblLayoutPanelDetalleArticulo.Margin = new System.Windows.Forms.Padding(4);
+            this.tblLayoutPanelDetalleArticulo.Location = new System.Drawing.Point(3, 16);
             this.tblLayoutPanelDetalleArticulo.Name = "tblLayoutPanelDetalleArticulo";
             this.tblLayoutPanelDetalleArticulo.RowCount = 2;
             this.tblLayoutPanelDetalleArticulo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.8866F));
             this.tblLayoutPanelDetalleArticulo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.1134F));
-            this.tblLayoutPanelDetalleArticulo.Size = new System.Drawing.Size(364, 482);
+            this.tblLayoutPanelDetalleArticulo.Size = new System.Drawing.Size(273, 392);
             this.tblLayoutPanelDetalleArticulo.TabIndex = 26;
             // 
             // tblLayoutPanelDetallesArticuloOpciones
@@ -305,30 +298,28 @@
             this.tblLayoutPanelDetallesArticuloOpciones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelDetallesArticuloOpciones.Controls.Add(this.tblLayoutPanelDetalleArticuloBotones, 0, 0);
             this.tblLayoutPanelDetallesArticuloOpciones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelDetallesArticuloOpciones.Location = new System.Drawing.Point(4, 403);
-            this.tblLayoutPanelDetallesArticuloOpciones.Margin = new System.Windows.Forms.Padding(4);
+            this.tblLayoutPanelDetallesArticuloOpciones.Location = new System.Drawing.Point(3, 327);
             this.tblLayoutPanelDetallesArticuloOpciones.Name = "tblLayoutPanelDetallesArticuloOpciones";
             this.tblLayoutPanelDetallesArticuloOpciones.RowCount = 1;
             this.tblLayoutPanelDetallesArticuloOpciones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
-            this.tblLayoutPanelDetallesArticuloOpciones.Size = new System.Drawing.Size(356, 75);
+            this.tblLayoutPanelDetallesArticuloOpciones.Size = new System.Drawing.Size(267, 62);
             this.tblLayoutPanelDetallesArticuloOpciones.TabIndex = 27;
             // 
             // tblLayoutPanelDetalleArticuloBotones
             // 
             this.tblLayoutPanelDetalleArticuloBotones.ColumnCount = 3;
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
             this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163F));
+            this.tblLayoutPanelDetalleArticuloBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.lblCantidad, 0, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.nmrcUpDownCantidad, 1, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Controls.Add(this.btnAgregar, 2, 0);
             this.tblLayoutPanelDetalleArticuloBotones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelDetalleArticuloBotones.Location = new System.Drawing.Point(4, 4);
-            this.tblLayoutPanelDetalleArticuloBotones.Margin = new System.Windows.Forms.Padding(4);
+            this.tblLayoutPanelDetalleArticuloBotones.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelDetalleArticuloBotones.Name = "tblLayoutPanelDetalleArticuloBotones";
             this.tblLayoutPanelDetalleArticuloBotones.RowCount = 1;
             this.tblLayoutPanelDetalleArticuloBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelDetalleArticuloBotones.Size = new System.Drawing.Size(348, 67);
+            this.tblLayoutPanelDetalleArticuloBotones.Size = new System.Drawing.Size(261, 56);
             this.tblLayoutPanelDetalleArticuloBotones.TabIndex = 2;
             // 
             // lblCantidad
@@ -338,26 +329,24 @@
             this.lblCantidad.Depth = 0;
             this.lblCantidad.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblCantidad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCantidad.Location = new System.Drawing.Point(4, 21);
-            this.lblCantidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCantidad.Location = new System.Drawing.Point(3, 18);
             this.lblCantidad.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCantidad.Name = "lblCantidad";
-            this.lblCantidad.Size = new System.Drawing.Size(102, 24);
+            this.lblCantidad.Size = new System.Drawing.Size(76, 19);
             this.lblCantidad.TabIndex = 12;
             this.lblCantidad.Text = "Cantidad:";
             // 
             // nmrcUpDownCantidad
             // 
             this.nmrcUpDownCantidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(114, 22);
-            this.nmrcUpDownCantidad.Margin = new System.Windows.Forms.Padding(4);
+            this.nmrcUpDownCantidad.Location = new System.Drawing.Point(85, 18);
             this.nmrcUpDownCantidad.Maximum = new decimal(new int[] {
             99999999,
             0,
             0,
             0});
             this.nmrcUpDownCantidad.Name = "nmrcUpDownCantidad";
-            this.nmrcUpDownCantidad.Size = new System.Drawing.Size(60, 22);
+            this.nmrcUpDownCantidad.Size = new System.Drawing.Size(46, 20);
             this.nmrcUpDownCantidad.TabIndex = 2;
             this.nmrcUpDownCantidad.Value = new decimal(new int[] {
             1,
@@ -372,12 +361,12 @@
             this.btnAgregar.AutoSize = true;
             this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAgregar.Depth = 0;
-            this.btnAgregar.Location = new System.Drawing.Point(190, 15);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.btnAgregar.Location = new System.Drawing.Point(143, 10);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Primary = false;
-            this.btnAgregar.Size = new System.Drawing.Size(153, 36);
+            this.btnAgregar.Size = new System.Drawing.Size(114, 36);
             this.btnAgregar.TabIndex = 10;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -385,7 +374,7 @@
             // tlpDetalles
             // 
             this.tlpDetalles.ColumnCount = 2;
-            this.tlpDetalles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
+            this.tlpDetalles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
             this.tlpDetalles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpDetalles.Controls.Add(this.lblProveedorVar, 1, 2);
             this.tlpDetalles.Controls.Add(this.lblObservacionesVar, 1, 8);
@@ -406,8 +395,7 @@
             this.tlpDetalles.Controls.Add(this.lblFechaActualizacion, 0, 7);
             this.tlpDetalles.Controls.Add(this.lblProveedor, 0, 2);
             this.tlpDetalles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpDetalles.Location = new System.Drawing.Point(4, 4);
-            this.tlpDetalles.Margin = new System.Windows.Forms.Padding(4);
+            this.tlpDetalles.Location = new System.Drawing.Point(3, 3);
             this.tlpDetalles.Name = "tlpDetalles";
             this.tlpDetalles.RowCount = 9;
             this.tlpDetalles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
@@ -419,27 +407,25 @@
             this.tlpDetalles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
             this.tlpDetalles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tlpDetalles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28F));
-            this.tlpDetalles.Size = new System.Drawing.Size(356, 391);
+            this.tlpDetalles.Size = new System.Drawing.Size(267, 318);
             this.tlpDetalles.TabIndex = 1;
             // 
             // lblProveedorVar
             // 
             this.lblProveedorVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblProveedorVar.AutoSize = true;
-            this.lblProveedorVar.Location = new System.Drawing.Point(121, 69);
-            this.lblProveedorVar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProveedorVar.Location = new System.Drawing.Point(91, 56);
             this.lblProveedorVar.Name = "lblProveedorVar";
-            this.lblProveedorVar.Size = new System.Drawing.Size(241, 17);
+            this.lblProveedorVar.Size = new System.Drawing.Size(181, 13);
             this.lblProveedorVar.TabIndex = 19;
             this.lblProveedorVar.Text = "Seleccione Artículo";
             // 
             // lblObservacionesVar
             // 
             this.lblObservacionesVar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblObservacionesVar.Location = new System.Drawing.Point(121, 279);
-            this.lblObservacionesVar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblObservacionesVar.Location = new System.Drawing.Point(91, 225);
             this.lblObservacionesVar.Name = "lblObservacionesVar";
-            this.lblObservacionesVar.Size = new System.Drawing.Size(241, 112);
+            this.lblObservacionesVar.Size = new System.Drawing.Size(181, 93);
             this.lblObservacionesVar.TabIndex = 17;
             this.lblObservacionesVar.Text = "Seleccione Artículo";
             this.lblObservacionesVar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -448,10 +434,9 @@
             // 
             this.lblObservaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblObservaciones.AutoSize = true;
-            this.lblObservaciones.Location = new System.Drawing.Point(4, 326);
-            this.lblObservaciones.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblObservaciones.Location = new System.Drawing.Point(3, 265);
             this.lblObservaciones.Name = "lblObservaciones";
-            this.lblObservaciones.Size = new System.Drawing.Size(109, 17);
+            this.lblObservaciones.Size = new System.Drawing.Size(82, 13);
             this.lblObservaciones.TabIndex = 16;
             this.lblObservaciones.Text = "Observaciones:";
             // 
@@ -459,10 +444,9 @@
             // 
             this.lblFechaActualizacionVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFechaActualizacionVar.AutoSize = true;
-            this.lblFechaActualizacionVar.Location = new System.Drawing.Point(121, 251);
-            this.lblFechaActualizacionVar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFechaActualizacionVar.Location = new System.Drawing.Point(91, 203);
             this.lblFechaActualizacionVar.Name = "lblFechaActualizacionVar";
-            this.lblFechaActualizacionVar.Size = new System.Drawing.Size(241, 17);
+            this.lblFechaActualizacionVar.Size = new System.Drawing.Size(181, 13);
             this.lblFechaActualizacionVar.TabIndex = 15;
             this.lblFechaActualizacionVar.Text = "Seleccione Artículo";
             // 
@@ -470,10 +454,9 @@
             // 
             this.lblCodigoOriginalVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCodigoOriginalVar.AutoSize = true;
-            this.lblCodigoOriginalVar.Location = new System.Drawing.Point(121, 7);
-            this.lblCodigoOriginalVar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigoOriginalVar.Location = new System.Drawing.Point(91, 6);
             this.lblCodigoOriginalVar.Name = "lblCodigoOriginalVar";
-            this.lblCodigoOriginalVar.Size = new System.Drawing.Size(241, 17);
+            this.lblCodigoOriginalVar.Size = new System.Drawing.Size(181, 13);
             this.lblCodigoOriginalVar.TabIndex = 13;
             this.lblCodigoOriginalVar.Text = "Seleccione Artículo";
             // 
@@ -481,10 +464,9 @@
             // 
             this.lblExistenciaVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblExistenciaVar.AutoSize = true;
-            this.lblExistenciaVar.Location = new System.Drawing.Point(121, 216);
-            this.lblExistenciaVar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblExistenciaVar.Location = new System.Drawing.Point(91, 175);
             this.lblExistenciaVar.Name = "lblExistenciaVar";
-            this.lblExistenciaVar.Size = new System.Drawing.Size(241, 17);
+            this.lblExistenciaVar.Size = new System.Drawing.Size(181, 13);
             this.lblExistenciaVar.TabIndex = 11;
             this.lblExistenciaVar.Text = "Seleccione Artículo";
             // 
@@ -492,10 +474,9 @@
             // 
             this.lblExistencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblExistencia.AutoSize = true;
-            this.lblExistencia.Location = new System.Drawing.Point(4, 216);
-            this.lblExistencia.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblExistencia.Location = new System.Drawing.Point(3, 175);
             this.lblExistencia.Name = "lblExistencia";
-            this.lblExistencia.Size = new System.Drawing.Size(109, 17);
+            this.lblExistencia.Size = new System.Drawing.Size(82, 13);
             this.lblExistencia.TabIndex = 10;
             this.lblExistencia.Text = "Existencia:";
             // 
@@ -503,10 +484,9 @@
             // 
             this.lblUbicacionVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUbicacionVar.AutoSize = true;
-            this.lblUbicacionVar.Location = new System.Drawing.Point(121, 185);
-            this.lblUbicacionVar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUbicacionVar.Location = new System.Drawing.Point(91, 150);
             this.lblUbicacionVar.Name = "lblUbicacionVar";
-            this.lblUbicacionVar.Size = new System.Drawing.Size(241, 17);
+            this.lblUbicacionVar.Size = new System.Drawing.Size(181, 13);
             this.lblUbicacionVar.TabIndex = 9;
             this.lblUbicacionVar.Text = "Seleccione Artículo";
             // 
@@ -514,10 +494,9 @@
             // 
             this.lblUbicacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUbicacion.AutoSize = true;
-            this.lblUbicacion.Location = new System.Drawing.Point(4, 185);
-            this.lblUbicacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUbicacion.Location = new System.Drawing.Point(3, 150);
             this.lblUbicacion.Name = "lblUbicacion";
-            this.lblUbicacion.Size = new System.Drawing.Size(109, 17);
+            this.lblUbicacion.Size = new System.Drawing.Size(82, 13);
             this.lblUbicacion.TabIndex = 8;
             this.lblUbicacion.Text = "Ubicación:";
             // 
@@ -525,10 +504,9 @@
             // 
             this.lblPrecioActualVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPrecioActualVar.AutoSize = true;
-            this.lblPrecioActualVar.Location = new System.Drawing.Point(121, 154);
-            this.lblPrecioActualVar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPrecioActualVar.Location = new System.Drawing.Point(91, 125);
             this.lblPrecioActualVar.Name = "lblPrecioActualVar";
-            this.lblPrecioActualVar.Size = new System.Drawing.Size(241, 17);
+            this.lblPrecioActualVar.Size = new System.Drawing.Size(181, 13);
             this.lblPrecioActualVar.TabIndex = 5;
             this.lblPrecioActualVar.Text = "Seleccione Artículo";
             // 
@@ -536,20 +514,18 @@
             // 
             this.lblPrecioActual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPrecioActual.AutoSize = true;
-            this.lblPrecioActual.Location = new System.Drawing.Point(4, 154);
-            this.lblPrecioActual.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPrecioActual.Location = new System.Drawing.Point(3, 125);
             this.lblPrecioActual.Name = "lblPrecioActual";
-            this.lblPrecioActual.Size = new System.Drawing.Size(109, 17);
+            this.lblPrecioActual.Size = new System.Drawing.Size(82, 13);
             this.lblPrecioActual.TabIndex = 4;
             this.lblPrecioActual.Text = "Precio Actual:";
             // 
             // lblDescripcionVar
             // 
             this.lblDescripcionVar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDescripcionVar.Location = new System.Drawing.Point(121, 93);
-            this.lblDescripcionVar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDescripcionVar.Location = new System.Drawing.Point(91, 75);
             this.lblDescripcionVar.Name = "lblDescripcionVar";
-            this.lblDescripcionVar.Size = new System.Drawing.Size(241, 54);
+            this.lblDescripcionVar.Size = new System.Drawing.Size(181, 44);
             this.lblDescripcionVar.TabIndex = 3;
             this.lblDescripcionVar.Text = "Seleccione Artículo";
             this.lblDescripcionVar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -558,10 +534,9 @@
             // 
             this.lblDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(4, 111);
-            this.lblDescripcion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDescripcion.Location = new System.Drawing.Point(3, 90);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(109, 17);
+            this.lblDescripcion.Size = new System.Drawing.Size(82, 13);
             this.lblDescripcion.TabIndex = 2;
             this.lblDescripcion.Text = "Descripción:";
             // 
@@ -569,10 +544,9 @@
             // 
             this.lblCodigoProveedorVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCodigoProveedorVar.AutoSize = true;
-            this.lblCodigoProveedorVar.Location = new System.Drawing.Point(121, 38);
-            this.lblCodigoProveedorVar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigoProveedorVar.Location = new System.Drawing.Point(91, 31);
             this.lblCodigoProveedorVar.Name = "lblCodigoProveedorVar";
-            this.lblCodigoProveedorVar.Size = new System.Drawing.Size(241, 17);
+            this.lblCodigoProveedorVar.Size = new System.Drawing.Size(181, 13);
             this.lblCodigoProveedorVar.TabIndex = 0;
             this.lblCodigoProveedorVar.Text = "Seleccione Artículo";
             // 
@@ -580,10 +554,9 @@
             // 
             this.lblCodigoProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCodigoProveedor.AutoSize = true;
-            this.lblCodigoProveedor.Location = new System.Drawing.Point(4, 31);
-            this.lblCodigoProveedor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigoProveedor.Location = new System.Drawing.Point(3, 25);
             this.lblCodigoProveedor.Name = "lblCodigoProveedor";
-            this.lblCodigoProveedor.Size = new System.Drawing.Size(109, 31);
+            this.lblCodigoProveedor.Size = new System.Drawing.Size(82, 25);
             this.lblCodigoProveedor.TabIndex = 1;
             this.lblCodigoProveedor.Text = "Código Proveedor:";
             // 
@@ -591,10 +564,9 @@
             // 
             this.lblCodigoOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCodigoOriginal.AutoSize = true;
-            this.lblCodigoOriginal.Location = new System.Drawing.Point(4, 7);
-            this.lblCodigoOriginal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigoOriginal.Location = new System.Drawing.Point(3, 6);
             this.lblCodigoOriginal.Name = "lblCodigoOriginal";
-            this.lblCodigoOriginal.Size = new System.Drawing.Size(109, 17);
+            this.lblCodigoOriginal.Size = new System.Drawing.Size(82, 13);
             this.lblCodigoOriginal.TabIndex = 12;
             this.lblCodigoOriginal.Text = "Código Original:";
             // 
@@ -602,10 +574,9 @@
             // 
             this.lblFechaActualizacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFechaActualizacion.AutoSize = true;
-            this.lblFechaActualizacion.Location = new System.Drawing.Point(4, 242);
-            this.lblFechaActualizacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFechaActualizacion.Location = new System.Drawing.Point(3, 196);
             this.lblFechaActualizacion.Name = "lblFechaActualizacion";
-            this.lblFechaActualizacion.Size = new System.Drawing.Size(109, 34);
+            this.lblFechaActualizacion.Size = new System.Drawing.Size(82, 26);
             this.lblFechaActualizacion.TabIndex = 14;
             this.lblFechaActualizacion.Text = "Fecha última actualización:";
             // 
@@ -613,10 +584,9 @@
             // 
             this.lblProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblProveedor.AutoSize = true;
-            this.lblProveedor.Location = new System.Drawing.Point(4, 69);
-            this.lblProveedor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProveedor.Location = new System.Drawing.Point(3, 56);
             this.lblProveedor.Name = "lblProveedor";
-            this.lblProveedor.Size = new System.Drawing.Size(109, 17);
+            this.lblProveedor.Size = new System.Drawing.Size(82, 13);
             this.lblProveedor.TabIndex = 18;
             this.lblProveedor.Text = "Proveedor:";
             // 
@@ -627,13 +597,12 @@
             this.tblLayoutPanelDataGrids.Controls.Add(this.gbxArticulosPedido, 0, 0);
             this.tblLayoutPanelDataGrids.Controls.Add(this.gbxArticulosDevolucion, 0, 1);
             this.tblLayoutPanelDataGrids.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelDataGrids.Location = new System.Drawing.Point(4, 4);
-            this.tblLayoutPanelDataGrids.Margin = new System.Windows.Forms.Padding(4);
+            this.tblLayoutPanelDataGrids.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelDataGrids.Name = "tblLayoutPanelDataGrids";
             this.tblLayoutPanelDataGrids.RowCount = 2;
             this.tblLayoutPanelDataGrids.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelDataGrids.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelDataGrids.Size = new System.Drawing.Size(652, 505);
+            this.tblLayoutPanelDataGrids.Size = new System.Drawing.Size(489, 411);
             this.tblLayoutPanelDataGrids.TabIndex = 25;
             // 
             // gbxArticulosPedido
@@ -641,11 +610,9 @@
             this.gbxArticulosPedido.Controls.Add(this.tblLayoutPanelBuscarPedido);
             this.gbxArticulosPedido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbxArticulosPedido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxArticulosPedido.Location = new System.Drawing.Point(4, 4);
-            this.gbxArticulosPedido.Margin = new System.Windows.Forms.Padding(4);
+            this.gbxArticulosPedido.Location = new System.Drawing.Point(3, 3);
             this.gbxArticulosPedido.Name = "gbxArticulosPedido";
-            this.gbxArticulosPedido.Padding = new System.Windows.Forms.Padding(4);
-            this.gbxArticulosPedido.Size = new System.Drawing.Size(644, 244);
+            this.gbxArticulosPedido.Size = new System.Drawing.Size(483, 199);
             this.gbxArticulosPedido.TabIndex = 23;
             this.gbxArticulosPedido.TabStop = false;
             this.gbxArticulosPedido.Text = "Artículos del Pedido";
@@ -657,13 +624,12 @@
             this.tblLayoutPanelBuscarPedido.Controls.Add(this.dgvArticulosPedido, 0, 1);
             this.tblLayoutPanelBuscarPedido.Controls.Add(this.tblLayoutPanelCuadroBusqueda, 0, 0);
             this.tblLayoutPanelBuscarPedido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelBuscarPedido.Location = new System.Drawing.Point(4, 23);
-            this.tblLayoutPanelBuscarPedido.Margin = new System.Windows.Forms.Padding(4);
+            this.tblLayoutPanelBuscarPedido.Location = new System.Drawing.Point(3, 19);
             this.tblLayoutPanelBuscarPedido.Name = "tblLayoutPanelBuscarPedido";
             this.tblLayoutPanelBuscarPedido.RowCount = 2;
-            this.tblLayoutPanelBuscarPedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tblLayoutPanelBuscarPedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
             this.tblLayoutPanelBuscarPedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelBuscarPedido.Size = new System.Drawing.Size(636, 217);
+            this.tblLayoutPanelBuscarPedido.Size = new System.Drawing.Size(477, 177);
             this.tblLayoutPanelBuscarPedido.TabIndex = 0;
             // 
             // dgvArticulosPedido
@@ -685,13 +651,12 @@
             this.valorParcialSinDescuento,
             this.valorParcialConDescuento});
             this.dgvArticulosPedido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvArticulosPedido.Location = new System.Drawing.Point(4, 64);
-            this.dgvArticulosPedido.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvArticulosPedido.Location = new System.Drawing.Point(3, 52);
             this.dgvArticulosPedido.Name = "dgvArticulosPedido";
             this.dgvArticulosPedido.ReadOnly = true;
             this.dgvArticulosPedido.RowHeadersVisible = false;
             this.dgvArticulosPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulosPedido.Size = new System.Drawing.Size(628, 149);
+            this.dgvArticulosPedido.Size = new System.Drawing.Size(471, 122);
             this.dgvArticulosPedido.TabIndex = 9;
             this.dgvArticulosPedido.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulosPedido_CellClick);
             this.dgvArticulosPedido.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvArticulosPedido_MouseDown);
@@ -763,20 +728,19 @@
             // tblLayoutPanelCuadroBusqueda
             // 
             this.tblLayoutPanelCuadroBusqueda.ColumnCount = 4;
-            this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
-            this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tblLayoutPanelCuadroBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tblLayoutPanelCuadroBusqueda.Controls.Add(this.lblCAE, 0, 0);
             this.tblLayoutPanelCuadroBusqueda.Controls.Add(this.lblLupa, 3, 0);
             this.tblLayoutPanelCuadroBusqueda.Controls.Add(this.txtCAE, 1, 0);
             this.tblLayoutPanelCuadroBusqueda.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelCuadroBusqueda.Location = new System.Drawing.Point(4, 4);
-            this.tblLayoutPanelCuadroBusqueda.Margin = new System.Windows.Forms.Padding(4);
+            this.tblLayoutPanelCuadroBusqueda.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelCuadroBusqueda.Name = "tblLayoutPanelCuadroBusqueda";
             this.tblLayoutPanelCuadroBusqueda.RowCount = 1;
             this.tblLayoutPanelCuadroBusqueda.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelCuadroBusqueda.Size = new System.Drawing.Size(628, 52);
+            this.tblLayoutPanelCuadroBusqueda.Size = new System.Drawing.Size(471, 43);
             this.tblLayoutPanelCuadroBusqueda.TabIndex = 0;
             // 
             // lblCAE
@@ -784,10 +748,9 @@
             this.lblCAE.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCAE.AutoSize = true;
             this.lblCAE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCAE.Location = new System.Drawing.Point(19, 16);
-            this.lblCAE.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCAE.Location = new System.Drawing.Point(12, 13);
             this.lblCAE.Name = "lblCAE";
-            this.lblCAE.Size = new System.Drawing.Size(48, 20);
+            this.lblCAE.Size = new System.Drawing.Size(38, 16);
             this.lblCAE.TabIndex = 5;
             this.lblCAE.Text = "CAE:";
             // 
@@ -795,10 +758,9 @@
             // 
             this.lblLupa.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblLupa.Image = ((System.Drawing.Image)(resources.GetObject("lblLupa.Image")));
-            this.lblLupa.Location = new System.Drawing.Point(579, 6);
-            this.lblLupa.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLupa.Location = new System.Drawing.Point(434, 5);
             this.lblLupa.Name = "lblLupa";
-            this.lblLupa.Size = new System.Drawing.Size(43, 39);
+            this.lblLupa.Size = new System.Drawing.Size(32, 32);
             this.lblLupa.TabIndex = 8;
             this.lblLupa.Click += new System.EventHandler(this.lblLupa_Click);
             // 
@@ -807,15 +769,14 @@
             this.txtCAE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCAE.Depth = 0;
             this.txtCAE.Hint = "";
-            this.txtCAE.Location = new System.Drawing.Point(75, 12);
-            this.txtCAE.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCAE.Location = new System.Drawing.Point(56, 10);
             this.txtCAE.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtCAE.Name = "txtCAE";
             this.txtCAE.PasswordChar = '\0';
             this.txtCAE.SelectedText = "";
             this.txtCAE.SelectionLength = 0;
             this.txtCAE.SelectionStart = 0;
-            this.txtCAE.Size = new System.Drawing.Size(463, 28);
+            this.txtCAE.Size = new System.Drawing.Size(347, 23);
             this.txtCAE.TabIndex = 9;
             this.txtCAE.UseSystemPasswordChar = false;
             this.txtCAE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCAE_KeyPress);
@@ -825,11 +786,9 @@
             this.gbxArticulosDevolucion.Controls.Add(this.dgvArticulosDevolucion);
             this.gbxArticulosDevolucion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbxArticulosDevolucion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxArticulosDevolucion.Location = new System.Drawing.Point(4, 256);
-            this.gbxArticulosDevolucion.Margin = new System.Windows.Forms.Padding(4);
+            this.gbxArticulosDevolucion.Location = new System.Drawing.Point(3, 208);
             this.gbxArticulosDevolucion.Name = "gbxArticulosDevolucion";
-            this.gbxArticulosDevolucion.Padding = new System.Windows.Forms.Padding(4);
-            this.gbxArticulosDevolucion.Size = new System.Drawing.Size(644, 245);
+            this.gbxArticulosDevolucion.Size = new System.Drawing.Size(483, 200);
             this.gbxArticulosDevolucion.TabIndex = 22;
             this.gbxArticulosDevolucion.TabStop = false;
             this.gbxArticulosDevolucion.Text = "Artículos a Devolver";
@@ -850,13 +809,12 @@
             this.vUnitario,
             this.vParcial});
             this.dgvArticulosDevolucion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvArticulosDevolucion.Location = new System.Drawing.Point(4, 23);
-            this.dgvArticulosDevolucion.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvArticulosDevolucion.Location = new System.Drawing.Point(3, 18);
             this.dgvArticulosDevolucion.Name = "dgvArticulosDevolucion";
             this.dgvArticulosDevolucion.ReadOnly = true;
             this.dgvArticulosDevolucion.RowHeadersVisible = false;
             this.dgvArticulosDevolucion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulosDevolucion.Size = new System.Drawing.Size(636, 218);
+            this.dgvArticulosDevolucion.Size = new System.Drawing.Size(477, 179);
             this.dgvArticulosDevolucion.TabIndex = 5;
             this.dgvArticulosDevolucion.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulosDevolucion_CellClick);
             this.dgvArticulosDevolucion.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvArticulosDevolucion_MouseDown);
@@ -917,11 +875,11 @@
             // 
             // frmPedidoDevolucion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1199, 783);
+            this.ClientSize = new System.Drawing.Size(899, 634);
             this.Controls.Add(this.pnlBase);
-            this.Margin = new System.Windows.Forms.Padding(5);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPedidoDevolucion";
             this.Text = "Devolución";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPedidoDevolucion_FormClosing);

@@ -17,6 +17,7 @@ namespace Vista
     {
         #region Atributos
         public event EventHandler MostrarDetallesArticulo;
+        private bool glb_respuesta = false;
         ModeloArticuloProveedores glb_mod_articuloSeleccionadoBusqueda;
         public ControladorPedido controlador;
         ContextMenu cntxMenuResultadoBusqueda;
@@ -665,7 +666,8 @@ namespace Vista
         #region Labels, txtBox y numericUpDown
         private void lblLupa_Click(object sender, EventArgs e)
         {
-            if(txtDescripcionParcial_Leave())
+            txtDescripcionParcial_Leave();
+            if(glb_respuesta)
             {
                 List<ModeloArticuloProveedores> lcl_lst_articulosProveedoresEncontrados = this.buscarArticuloProveedor();
                 if (lcl_lst_articulosProveedoresEncontrados != null)
@@ -725,10 +727,10 @@ namespace Vista
 
         #endregion                   
 
-        private bool txtDescripcionParcial_Leave()
+        private void txtDescripcionParcial_Leave()
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtDescripcionParcial.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
-            if (!respuesta)
+            glb_respuesta = Validar.validarInputNoNumerico(txtDescripcionParcial.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
+            if (!glb_respuesta)
             {
                 epDescripcionParcial.Icon = Properties.Resources.error;
                 epDescripcionParcial.SetError(txtDescripcionParcial, "Descripción parcial no válida");
@@ -738,7 +740,6 @@ namespace Vista
                 epDescripcionParcial.Icon = Properties.Resources.success;
                 epDescripcionParcial.SetError(txtDescripcionParcial, "OK");
             }
-            return respuesta;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
