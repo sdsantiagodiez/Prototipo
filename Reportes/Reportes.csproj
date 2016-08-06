@@ -94,6 +94,7 @@
     <EmbeddedResource Include="FormReportes.resx">
       <DependentUpon>FormReportes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presupuesto.rdlc" />
     <EmbeddedResource Include="PedidosEntreFechas.rdlc" />
     <EmbeddedResource Include="DescuentoAFecha.rdlc" />
     <EmbeddedResource Include="StockInventario.rdlc" />
