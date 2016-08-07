@@ -654,21 +654,21 @@ namespace Vista
 
         private void frmPedidoDevolucion_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //if (continuarPedido)
-            //{
-            //    e.Cancel = false;
-            //    return;
-            //}
-            //DialogResult lcl_dialogResult = MessageBox.Show("¿Desea cerrar la ventana actual?", "Confirmación", MessageBoxButtons.YesNo);
-            //if (lcl_dialogResult == DialogResult.Yes)
-            //{
-            //    this.DialogResult = System.Windows.Forms.DialogResult.Ignore;
-            //    e.Cancel = false;
-            //}
-            //else
-            //{
-            //    e.Cancel = true;
-            //}
+            if (continuarDevolucion)
+            {
+                e.Cancel = false;
+                return;
+            }
+            DialogResult lcl_dialogResult = MessageBox.Show("¿Desea cerrar la ventana actual?", "Confirmación", MessageBoxButtons.YesNo);
+            if (lcl_dialogResult == DialogResult.Yes)
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.Ignore;
+                e.Cancel = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
         #endregion   
 
@@ -685,6 +685,12 @@ namespace Vista
                 epCAE.Icon = Properties.Resources.success;
                 epCAE.SetError(txtCAE, "OK");
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Ignore;
+            this.Close();
         }
     }
 }

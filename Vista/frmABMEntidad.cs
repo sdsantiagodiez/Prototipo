@@ -507,8 +507,8 @@ namespace Vista
                     || glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)])
                 {
                     this.buscarEntidad();
-                }
-                if (string.IsNullOrWhiteSpace(txtBoxCodigoEntidad.Text.ToString())
+                } 
+                else if (string.IsNullOrWhiteSpace(txtBoxCodigoEntidad.Text.ToString())
                     & string.IsNullOrWhiteSpace(txtBoxCUIT.Text.ToString())
                     & string.IsNullOrWhiteSpace(txtBoxDNI.Text.ToString())
                     & string.IsNullOrWhiteSpace(txtBoxNombre.Text.ToString())
@@ -1029,15 +1029,9 @@ namespace Vista
                 case Constantes.ParametrosBusqueda.Domicilios.CodigoDomicilio:
                     txtBoxCalle_Leave(sender, e);
                     txtBoxNumeroDomicilio_Leave(sender, e);
-                    txtBoxPiso_Leave(sender, e);
-                    txtBoxDepartamento_Leave(sender, e);
-                    txtBoxCodigoPostal_Leave(sender, e);
                     txtBoxCiudad_Leave(sender, e);
                     lcl_respuesta = (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)]
                         & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)]
-                        & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Piso)]
-                        & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Departamento)]
-                        & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.CodigoPostal)]
                         & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)]);
                     break;
                 case Constantes.ParametrosBusqueda.Mails.CodigoMail:
@@ -1052,20 +1046,20 @@ namespace Vista
                     lcl_respuesta = false;
                     break;
             }
-            txtBoxApellido_Leave(sender, e);
-            txtBoxCalle_Leave(sender, e);
-            txtBoxCiudad_Leave(sender, e);
-            txtBoxCodigoEntidad_Leave(sender, e);
-            txtBoxCodigoPostal_Leave(sender, e);
-            txtBoxCUIT_Leave(sender, e);
-            txtBoxDepartamento_Leave(sender, e);
-            txtBoxDNI_Leave(sender, e);
-            txtBoxMail_Leave(sender, e);
-            txtBoxNombre_Leave(sender, e);
-            txtBoxNumeroDomicilio_Leave(sender, e);
-            txtBoxPiso_Leave(sender, e);
-            txtBoxRazonSocial_Leave(sender, e);
-            txtBoxTelefono_Leave(sender, e);
+            //txtBoxApellido_Leave(sender, e);
+            //txtBoxCalle_Leave(sender, e);
+            //txtBoxCiudad_Leave(sender, e);
+            //txtBoxCodigoEntidad_Leave(sender, e);
+            //txtBoxCodigoPostal_Leave(sender, e);
+            //txtBoxCUIT_Leave(sender, e);
+            //txtBoxDepartamento_Leave(sender, e);
+            //txtBoxDNI_Leave(sender, e);
+            //txtBoxMail_Leave(sender, e);
+            //txtBoxNombre_Leave(sender, e);
+            //txtBoxNumeroDomicilio_Leave(sender, e);
+            //txtBoxPiso_Leave(sender, e);
+            //txtBoxRazonSocial_Leave(sender, e);
+            //txtBoxTelefono_Leave(sender, e);
             return lcl_respuesta;
         }
 

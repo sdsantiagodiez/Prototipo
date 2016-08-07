@@ -939,12 +939,18 @@ namespace Vista
         }
         private bool validarPedido(object sender, EventArgs e)
         {
+            bool lcl_inputs = new bool();
             if (controlador.pedidoActual.lineasPedido.Count == 0)
             {
                 MessageBox.Show("No existen líneas en el pedido actual", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            return validarInputs(sender,e);
+            lcl_inputs = validarInputs(sender, e);
+            if (!lcl_inputs)
+            {
+                MessageBox.Show("Por favor complete todos los campos obligatorios de manera correcta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return lcl_inputs;
         }
 
         private bool vacioMail()
