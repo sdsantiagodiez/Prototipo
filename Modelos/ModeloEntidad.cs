@@ -218,7 +218,7 @@ namespace Modelos
             /// <returns>True si el CUIT es válido y False si no.</returns>
             public static bool ValidarCuit(string cuit)
             {
-                if (cuit != null && !System.Text.RegularExpressions.Regex.IsMatch(cuit, "[^0-9 -]"))
+                if (cuit != null && LibreriaClasesCompartidas.Validar.validarInputNoNumerico(cuit,LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Cuit))
                 {
                     //Quito los guiones, el cuit resultante debe tener 11 caracteres.
                     cuit = cuit.Replace("-", string.Empty);

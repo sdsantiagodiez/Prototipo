@@ -14,7 +14,7 @@ namespace LibreriaClasesCompartidas
         /* puede sea necesario pasarlos a unicode, octal, u otros                                        */
         /*************************************************************************************************/
 
-        public static bool validarInputNumerico(string p_numero, string p_opcion)
+        public static bool validarInputNumerico(string p_inputNumerico, string p_opcion)
         {
             bool resultado;
             decimal numeroDecimal;
@@ -24,17 +24,10 @@ namespace LibreriaClasesCompartidas
                 case Constantes.Numericos.Descuento:
                     try
                     {
-                        resultado = int.TryParse(p_numero, out numeroEntero);
-                        if (numeroEntero >0 )
+                        resultado = int.TryParse(p_inputNumerico, out numeroEntero);
+                        if (numeroEntero >0 & numeroEntero<=100 )
                         {
-                            if (numeroEntero <= 100)
-                            {
-                                resultado = true;
-                            }
-                            else
-                            {
                                 resultado = false;
-                            }
                         }
                         else
                         {
@@ -49,7 +42,7 @@ namespace LibreriaClasesCompartidas
                 case Constantes.Numericos.Porcentual:
                     try
                     {
-                        resultado=Decimal.TryParse(p_numero,out numeroDecimal) ;
+                        resultado=Decimal.TryParse(p_inputNumerico,out numeroDecimal) ;
                         if (numeroDecimal <= 1)
                         {
                             resultado = true;
@@ -67,7 +60,7 @@ namespace LibreriaClasesCompartidas
                 case Constantes.Numericos.EnteroPositivoSinCero:
                     try
                     {
-                        resultado = int.TryParse(p_numero, out numeroEntero);
+                        resultado = int.TryParse(p_inputNumerico, out numeroEntero);
                         if (numeroEntero > 0)
                         {
                             resultado = true;
@@ -85,7 +78,7 @@ namespace LibreriaClasesCompartidas
                 case Constantes.Numericos.Entero:
                     try
                     {
-                        resultado = int.TryParse(p_numero, out numeroEntero);
+                        resultado = int.TryParse(p_inputNumerico, out numeroEntero);
                     }
                     catch (FormatException)
                     {
@@ -95,7 +88,7 @@ namespace LibreriaClasesCompartidas
                 case Constantes.Numericos.Decimal:
                     try
                     {
-                        resultado = Decimal.TryParse(p_numero, out numeroDecimal);
+                        resultado = Decimal.TryParse(p_inputNumerico, out numeroDecimal);
                     }
                     catch(FormatException)
                     {
@@ -105,7 +98,7 @@ namespace LibreriaClasesCompartidas
                 case Constantes.Numericos.EnteroPositivo:
                     try
                     {
-                        resultado = int.TryParse(p_numero, out numeroEntero);
+                        resultado = int.TryParse(p_inputNumerico, out numeroEntero);
                         if(numeroEntero>=0)
                         {
                             resultado = true;
@@ -123,7 +116,7 @@ namespace LibreriaClasesCompartidas
                 case Constantes.Numericos.DecimalPositivo:
                     try
                     {
-                        resultado = Decimal.TryParse(p_numero, out numeroDecimal);
+                        resultado = Decimal.TryParse(p_inputNumerico, out numeroDecimal);
                         if(numeroDecimal>0)
                         {
                             resultado = true;
@@ -145,7 +138,7 @@ namespace LibreriaClasesCompartidas
             return resultado;
         }
 
-        public static bool validarInputNoNumerico(string p_string, string p_opcion)
+        public static bool validarInputNoNumerico(string p_input, string p_opcion)
         {
             string especial = "";
             Regex lcl_patron = new Regex(@"^.*$");
@@ -194,7 +187,7 @@ namespace LibreriaClasesCompartidas
                     break;
                 case Constantes.ParametrosBusqueda.Entidades.Personas.Dni:
                     // Admite exactamente 8 dígitos
-                    lcl_patron = new Regex(@"^\d{8}$");
+                    lcl_patron = new Regex(@"^\d{2}\.\d{3}\.\d{3}$");
                     break;
                 case Constantes.ParametrosBusqueda.Pedidos.Fecha:
                     especial = Constantes.ParametrosBusqueda.Pedidos.Fecha;
@@ -230,13 +223,13 @@ namespace LibreriaClasesCompartidas
 
             if (String.Equals(especial, Constantes.ParametrosBusqueda.Pedidos.Fecha))
             {
-                return DateTime.TryParse(p_string, out fecha);
+                return DateTime.TryParse(p_input, out fecha);
             }
             else if (String.Equals(especial, Constantes.ParametrosBusqueda.Mails.Mail))
             {
                 try
                 {
-                    System.Net.Mail.MailAddress m = new System.Net.Mail.MailAddress(p_string);
+                    System.Net.Mail.MailAddress m = new System.Net.Mail.MailAddress(p_input);
 
                     return true;
                 }
@@ -250,13 +243,13 @@ namespace LibreriaClasesCompartidas
                 }
             }
 
-            if (string.IsNullOrWhiteSpace(p_string))
+            if (string.IsNullOrWhiteSpace(p_input))
             {
                 return false;
             }
             else
             {
-                return lcl_patron.IsMatch(p_string);
+                return lcl_patron.IsMatch(p_input);
             }
                 
         }
