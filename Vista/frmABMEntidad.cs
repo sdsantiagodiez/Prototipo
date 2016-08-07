@@ -1139,15 +1139,7 @@ namespace Vista
             }
             return true;
         }
-        private bool validarMail()
-        {
-            //if (!ModeloMail.validarMail(txtBoxMail.Text))
-            //{
-            //    errorActual = "La dirección de correo electrónico ingresada no es válida.";
-            //    return false;
-            //}
-            return true;
-        }
+ 
         private bool validarMailExiste()
         {
             List<ModeloMail> lcl_lst_mod_mailsActuales = this.cargarDatosControlEnListMail();
@@ -1173,40 +1165,40 @@ namespace Vista
         {
             if (!string.IsNullOrWhiteSpace(txtBoxCUIT.Text) && !ModeloEntidad.CUIT.ValidarCuit(txtBoxCUIT.Text))
             {
-                errorProviderActual.SetError(txtBoxCUIT, "CUIT no válido.");
+                epCUIT.Icon = Properties.Resources.error;
+                epCUIT.SetError(txtBoxCUIT, "CUIT no válido");
                 return false;
             }
-            errorProviderActual.SetError(txtBoxCUIT, "");
             return true;
         }
         private bool validarNombre()
         {
             if (!ModeloPersonas.validarNombre(txtBoxNombre.Text))
             {
-                errorProviderActual.SetError(txtBoxNombre, "Este campo es obligatorio. No puede permanecer vacío.");
+                epNombre.Icon = Properties.Resources.error;
+                epNombre.SetError(txtBoxNombre, "Este campo es obligatorio. No puede permanecer vacío.");
                 return false;
             }
-            errorProviderActual.SetError(txtBoxNombre, "");
             return true;
         }
         private bool validarApellido()
         {
             if (!ModeloPersonas.validarApellido(txtBoxApellido.Text))
             {
-                errorProviderActual.SetError(txtBoxApellido, "Este campo es obligatorio. No puede permanecer vacío.");
+                epApellido.Icon = Properties.Resources.error;
+                epApellido.SetError(txtBoxApellido, "Este campo es obligatorio. No puede permanecer vacío.");
                 return false;
             }
-            errorProviderActual.SetError(txtBoxApellido, "");
             return true;
         }
         private bool validarDNI()
         {
-            //if (!ModeloPersonas.validarDNI(txtBoxDNI.Text))
-            //{
-            //    errorProviderActual.SetError(txtBoxDNI, "Este campo es obligatorio. No puede permanecer vacío o contener caracteres no numéricos.");
-            //    return false;
-            //}
-            //errorProviderActual.SetError(txtBoxDNI, "");
+            if (!ModeloPersonas.validarDNI(txtBoxDNI.Text))
+            {
+                epDNI.Icon = Properties.Resources.error;
+                epDNI.SetError(txtBoxDNI,"Este campo es obligatorio. No puede permanecer vacío o contener caracteres no numéricos.");
+                return false;
+            }
             return true;
         }
         private bool validarEntidad(ModeloEntidad p_mod_entidad)
@@ -1281,10 +1273,10 @@ namespace Vista
         {
             if (!ModeloProveedor.validarRazonSocial(txtBoxRazonSocial.Text))
             {
-                errorProviderActual.SetError(txtBoxRazonSocial, "Este campo es obligatorio. No puede permanecer vacío.");
+                epRazonSocial.Icon = Properties.Resources.error;
+                epRazonSocial.SetError(txtBoxRazonSocial, "Este campo es obligatorio. No puede permanecer vacío.");
                 return false;
             }
-            errorProviderActual.SetError(txtBoxRazonSocial, "");
             return true;
         }
         private bool validarProveedor(ModeloProveedor p_mod_proveedor)

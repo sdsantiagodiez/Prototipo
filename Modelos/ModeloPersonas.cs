@@ -79,7 +79,7 @@ namespace Modelos
          public static bool validarDNI(string p_dni)
         {
             p_dni = Modelo.convertString(p_dni);
-            if (p_dni != null && !System.Text.RegularExpressions.Regex.IsMatch(p_dni, @"[^0-9\.]"))
+            if (p_dni != null && LibreriaClasesCompartidas.Validar.validarInputNoNumerico(p_dni,LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Personas.Dni))
             {
                 return true;
             }
