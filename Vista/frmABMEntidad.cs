@@ -243,7 +243,7 @@ namespace Vista
             //Populo combobox de paises
             List<ModeloPais> lcl_lst_mod_paises = ControladorBusqueda.getPaises();
             this.cmbBoxPais.DataSource = lcl_lst_mod_paises.OrderBy(i => i.pais).ToList();
-            this.cmbBoxPais.DropDownWidth = this.getDropDownWidth(this.cmbBoxPais);
+            this.cmbBoxPais.DropDownWidth = getDropDownWidth(this.cmbBoxPais);
             this.cmbBoxPais.DisplayMember = "pais";
             this.cmbBoxPais.ValueMember = "codigo";
             this.cmbBoxPais.SelectedItem = null;
@@ -951,7 +951,7 @@ namespace Vista
         private void cargarDatosProvinciasEnCmbBoxProvincia(List<ModeloProvincia> p_lst_mod_provincias)
         {
             this.cmbBoxProvincia.DataSource = p_lst_mod_provincias.OrderBy(i => i.provincia).ToList();
-            this.cmbBoxProvincia.DropDownWidth = this.getDropDownWidth(this.cmbBoxProvincia);
+            this.cmbBoxProvincia.DropDownWidth = getDropDownWidth(this.cmbBoxProvincia);
             this.cmbBoxProvincia.SelectedItem = null;
         }
         private void cargaDatosPaisesEnCmbBoxPais(List<ModeloPais> p_lst_mod_paises)
@@ -1349,7 +1349,7 @@ namespace Vista
         }
         #endregion
 
-         #region Eventos
+        #region Eventos
 
         #region RadioButton
         private void radioButtonCliente_CheckedChanged(object sender, EventArgs e)

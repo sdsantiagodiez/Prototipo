@@ -111,9 +111,9 @@ namespace Vista
             }
         }
 
-        protected int getDropDownWidth(ComboBox p_comboBox)
+        public static int getDropDownWidth(ComboBox p_comboBox)
         {
-            int maxWidth = 0, temp = 0;
+            int maxWidth = 1, temp = 0;
             foreach (var obj in p_comboBox.Items)
             {
                 temp = TextRenderer.MeasureText(obj.ToString(), p_comboBox.Font).Width;
@@ -125,12 +125,55 @@ namespace Vista
             return maxWidth;
         }
 
-        protected void inicializarCmbBox(ComboBox p_comboBox)
+        public static void inicializarCmbBox(ComboBox p_comboBox)
         {
-            p_comboBox.DropDownWidth = this.getDropDownWidth(p_comboBox);
+            p_comboBox.DropDownWidth = getDropDownWidth(p_comboBox);
             p_comboBox.DisplayMember = "Name";
             p_comboBox.ValueMember = "Value";
             p_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+        /// <summary>
+        /// Limpia todos los controles que se encuentren dentro del control enviado como parámetro
+        /// </summary>
+        /// <param name="p_ctr_control"></param>
+        public void quitarTextoEnControles(Control p_ctr_control)
+        {
+            foreach (Control c in p_ctr_control.Controls)
+            {
+                if (c is TextBox)
+                {
+                    ((TextBox)c).Clear();
+                }
+                else if (c is ListView)
+                {
+                    ((ListView)c).Items.Clear();
+                }
+                else if (c is DataGridView)
+                {
+                    ((DataGridView)c).Rows.Clear();
+                }
+                else if (c is ComboBox)
+                {
+                    ((ComboBox)c).SelectedIndex = -1;
+                }
+                else if (c is RichTextBox)
+                {
+                    ((RichTextBox)c).Clear();
+                }
+                else if (c is RadioButton)
+                {
+                    ((RadioButton)c).Checked = false;
+                }
+                else if (c is PictureBox)
+                {
+                    ((PictureBox)c).Image = null;
+                }
+                else
+                {
+                    //control que puede contener una colección de controles (groupBox por ejemplo)
+                    quitarTextoEnControles(c);
+                }
+            }
         }
     }
     

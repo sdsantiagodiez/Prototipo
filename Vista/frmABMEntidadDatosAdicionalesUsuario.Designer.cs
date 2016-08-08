@@ -91,7 +91,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.74095F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.25905F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel1.Controls.Add(this.lblUsuario, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblContraseña, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblConfirmarContraseña, 0, 2);
@@ -155,7 +155,7 @@
             this.txtBoxUsuario.SelectedText = "";
             this.txtBoxUsuario.SelectionLength = 0;
             this.txtBoxUsuario.SelectionStart = 0;
-            this.txtBoxUsuario.Size = new System.Drawing.Size(261, 23);
+            this.txtBoxUsuario.Size = new System.Drawing.Size(260, 23);
             this.txtBoxUsuario.TabIndex = 13;
             this.txtBoxUsuario.UseSystemPasswordChar = false;
             this.txtBoxUsuario.Leave += new System.EventHandler(this.txtBoxUsuario_Leave);
@@ -172,7 +172,7 @@
             this.txtBoxContraseña.SelectedText = "";
             this.txtBoxContraseña.SelectionLength = 0;
             this.txtBoxContraseña.SelectionStart = 0;
-            this.txtBoxContraseña.Size = new System.Drawing.Size(261, 23);
+            this.txtBoxContraseña.Size = new System.Drawing.Size(260, 23);
             this.txtBoxContraseña.TabIndex = 14;
             this.txtBoxContraseña.UseSystemPasswordChar = false;
             this.txtBoxContraseña.Leave += new System.EventHandler(this.txtBoxContraseña_Leave);
@@ -189,7 +189,7 @@
             this.txtBoxConfirmarContraseña.SelectedText = "";
             this.txtBoxConfirmarContraseña.SelectionLength = 0;
             this.txtBoxConfirmarContraseña.SelectionStart = 0;
-            this.txtBoxConfirmarContraseña.Size = new System.Drawing.Size(261, 23);
+            this.txtBoxConfirmarContraseña.Size = new System.Drawing.Size(260, 23);
             this.txtBoxConfirmarContraseña.TabIndex = 15;
             this.txtBoxConfirmarContraseña.UseSystemPasswordChar = false;
             this.txtBoxConfirmarContraseña.Leave += new System.EventHandler(this.txtBoxConfirmarContraseña_Leave);
@@ -200,7 +200,7 @@
             this.chckBoxMostrarContraseña.AutoSize = true;
             this.chckBoxMostrarContraseña.Depth = 0;
             this.chckBoxMostrarContraseña.Font = new System.Drawing.Font("Roboto", 10F);
-            this.chckBoxMostrarContraseña.Location = new System.Drawing.Point(154, 125);
+            this.chckBoxMostrarContraseña.Location = new System.Drawing.Point(153, 125);
             this.chckBoxMostrarContraseña.Margin = new System.Windows.Forms.Padding(0);
             this.chckBoxMostrarContraseña.MouseLocation = new System.Drawing.Point(-1, -1);
             this.chckBoxMostrarContraseña.MouseState = MaterialSkin.MouseState.HOVER;
@@ -227,7 +227,7 @@
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
             this.tableLayoutPanel2.Controls.Add(this.materialFlatButton1, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnModificar, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnAceptar, 0, 0);
@@ -309,7 +309,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(404, 473);
             this.Controls.Add(this.grpBoxDatosUsuario);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmABMEntidadDatosAdicionalesUsuario";
             this.Text = "Datos Adicionales de Usuario";
             this.grpBoxDatosUsuario.ResumeLayout(false);

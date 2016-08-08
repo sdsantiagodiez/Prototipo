@@ -352,7 +352,7 @@ namespace Vista
 
                 this.cmbBoxTipoComprobante.DataSource = Enum.GetValues(typeof(Constantes.TipoComprobanteVenta));
             }
-            this.cmbBoxTipoComprobante.DropDownWidth = this.getDropDownWidth(this.cmbBoxTipoComprobante)+25;
+            this.cmbBoxTipoComprobante.DropDownWidth = getDropDownWidth(this.cmbBoxTipoComprobante)+25;
             this.cmbBoxTipoComprobante.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         private void inicializarControlesProveedor()
@@ -371,7 +371,7 @@ namespace Vista
                 };
 
             this.cmbBoxTipoComprobante.DataSource = Enum.GetValues(typeof(Constantes.TipoComprobanteCompra));
-            this.cmbBoxTipoComprobante.DropDownWidth = this.getDropDownWidth(this.cmbBoxTipoComprobante) + 25;
+            this.cmbBoxTipoComprobante.DropDownWidth = getDropDownWidth(this.cmbBoxTipoComprobante) + 25;
             this.cmbBoxTipoComprobante.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         private void inicializarComboBoxPedidosProveedores(List<ModeloPedido> p_mod_pedidos)
@@ -399,7 +399,7 @@ namespace Vista
             //}
             //this.cmbBoxPedidosProveedores.Enabled = true;
             
-            this.cmbBoxPedidosProveedores.DropDownWidth = this.getDropDownWidth(this.cmbBoxPedidosProveedores);
+            this.cmbBoxPedidosProveedores.DropDownWidth = getDropDownWidth(this.cmbBoxPedidosProveedores);
             this.cmbBoxPedidosProveedores.DisplayMember = "Name";
             this.cmbBoxPedidosProveedores.ValueMember = "Value";
             this.cmbBoxPedidosProveedores.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -542,7 +542,7 @@ namespace Vista
             
             dataSource.Add(new ComboBoxItem() { Name = "Otro", Value = null });
             this.cmbBoxDomicilios.DataSource = dataSource;
-            this.cmbBoxDomicilios.DropDownWidth = this.getDropDownWidth(this.cmbBoxDomicilios);
+            this.cmbBoxDomicilios.DropDownWidth = getDropDownWidth(this.cmbBoxDomicilios);
             this.cmbBoxDomicilios.SelectedIndex = 0;
             this.cargarDomicilioEnControles(cmbBoxDomicilios.SelectedValue as ModeloDomicilio);
             #endregion
@@ -556,7 +556,7 @@ namespace Vista
             }   
             dataSource.Add(new ComboBoxItem() { Name = "Otro", Value = null });
             this.cmbBoxMails.DataSource = dataSource;
-            this.cmbBoxMails.DropDownWidth = this.getDropDownWidth(this.cmbBoxMails);
+            this.cmbBoxMails.DropDownWidth = getDropDownWidth(this.cmbBoxMails);
             this.cmbBoxMails.SelectedIndex = 0;
             this.cargarMailEnControles(cmbBoxMails.SelectedValue as ModeloMail);
             #endregion
@@ -570,7 +570,7 @@ namespace Vista
             }
             dataSource.Add(new ComboBoxItem() { Name = "Otro", Value = null });
             this.cmbBoxTelefonos.DataSource = dataSource;
-            this.cmbBoxTelefonos.DropDownWidth = this.getDropDownWidth(this.cmbBoxTelefonos);
+            this.cmbBoxTelefonos.DropDownWidth = getDropDownWidth(this.cmbBoxTelefonos);
             this.cmbBoxTelefonos.SelectedIndex = 0;
             this.cargarTelefonoEnControles(this.cmbBoxTelefonos.SelectedValue as ModeloTelefono);
             #endregion
@@ -610,7 +610,7 @@ namespace Vista
                 dataSource.Add(new ComboBoxItem() { Name = "No asignar", Value = null });
             }
             this.cmbBoxContactoProveedor.DataSource = dataSource;
-            this.cmbBoxContactoProveedor.DropDownWidth= this.getDropDownWidth(this.cmbBoxContactoProveedor);
+            this.cmbBoxContactoProveedor.DropDownWidth= getDropDownWidth(this.cmbBoxContactoProveedor);
         }
         private void cargarDocumentoEnControles(ModeloPedido p_mod_pedido)
         {
@@ -745,7 +745,7 @@ namespace Vista
                 dataSource.Add(new ComboBoxItem() { Name = tiposDocumentos[i].descripcion, Value = tiposDocumentos[i] });
             }
             this.cmbBoxTipoDocumento.DataSource = dataSource;
-            this.cmbBoxTipoDocumento.DropDownWidth = this.getDropDownWidth(this.cmbBoxTipoDocumento);
+            this.cmbBoxTipoDocumento.DropDownWidth = getDropDownWidth(this.cmbBoxTipoDocumento);
         }
         private void cargarPaisesEnControles(List<ModeloPais> p_lst_mod_paises)
         {
@@ -756,7 +756,7 @@ namespace Vista
                 dataSource.Add(new ComboBoxItem() { Name = paises[i].pais, Value = paises[i] });
             }
             this.cmbBoxPais.DataSource = dataSource;
-            this.cmbBoxPais.DropDownWidth = this.getDropDownWidth(this.cmbBoxPais);
+            this.cmbBoxPais.DropDownWidth = getDropDownWidth(this.cmbBoxPais);
             
         }
         private void cargarProvinciasEnControles(List<ModeloProvincia> p_lst_mod_provincias)
@@ -768,7 +768,7 @@ namespace Vista
                 dataSource.Add(new ComboBoxItem() {Name = provincias[i].provincia, Value = provincias[i]} );
             }
             this.cmbBoxProvincia.DataSource = dataSource;
-            this.cmbBoxProvincia.DropDownWidth = this.getDropDownWidth(this.cmbBoxProvincia);
+            this.cmbBoxProvincia.DropDownWidth = getDropDownWidth(this.cmbBoxProvincia);
         }
         #endregion
         
@@ -988,7 +988,7 @@ namespace Vista
         private void imprimirpedido()
         {
             Reportes.frmImpresionComprobante lcl_frm_comprobante = new Reportes.frmImpresionComprobante(Properties.Settings.Default.carpetaPedidosClientes, Properties.Settings.Default.carpetaPedidosProveedores);
-            lcl_frm_comprobante.estadoAcrobatPDF(false);
+            lcl_frm_comprobante.estadoAcrobatPDF(false);          
             frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Guardando pedido en formato PDF.", "Guardando Comprobante");
             bool exito = false;
             BackgroundWorker bw = new BackgroundWorker();

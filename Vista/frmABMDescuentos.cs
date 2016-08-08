@@ -203,7 +203,7 @@ namespace Vista
                 return;
             }
 
-            base.inicializarCmbBox(this.cmbBoxProveedores);
+            inicializarCmbBox(this.cmbBoxProveedores);
         }
         private void inicializarCmbBoxPorcentajeDescuento()
         {
@@ -225,7 +225,7 @@ namespace Vista
             });
             this.cmbBoxPorcentajeDescuento.DataSource = dataSource;
 
-            base.inicializarCmbBox(this.cmbBoxPorcentajeDescuento);
+            inicializarCmbBox(this.cmbBoxPorcentajeDescuento);
         }
         private void inicializarDataGridView()
         {

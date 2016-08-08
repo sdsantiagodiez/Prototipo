@@ -19,10 +19,11 @@ namespace Vista
         #region Atributos
         Form glb_form;
         bool currentFormLocked;
+        ModeloUsuario UsuarioActual;
         #endregion
 
         #region Constructores
-        public frmMenuPrincipal()
+        private frmMenuPrincipal()
         {
             InitializeComponent();
 
@@ -33,11 +34,12 @@ namespace Vista
             this.inicializarEventos();
         }
 
-        public frmMenuPrincipal(ModeloUsuario usuarioActual) : this()
+        public frmMenuPrincipal(ModeloUsuario p_usuarioActual) : this()
         {
-            if (this.inicializarModoFormulario(usuarioActual))
+            UsuarioActual = p_usuarioActual;
+            if (this.inicializarModoFormulario(p_usuarioActual))
             {
-                lblNombreUsuario.Text = usuarioActual.usuario ;
+                lblNombreUsuario.Text = p_usuarioActual.usuario ;
             }
             else 
             {
@@ -147,8 +149,8 @@ namespace Vista
             this.StartPosition = FormStartPosition.CenterScreen;
             Width = Screen.PrimaryScreen.WorkingArea.Width;
             Height = Screen.PrimaryScreen.WorkingArea.Height;
-            //Width = 1280;
-            //Height = 1024;
+            //Width = 800;
+            //Height = 600;
             
             this.tblLayoutPanelPrincipal.Location = new Point(3, 60);
             this.tblLayoutPanelPrincipal.Height = Height - 60; // 60 pixeles para que se vea título de ventana principal
@@ -931,10 +933,23 @@ namespace Vista
 
             (glb_form as frmOpciones).ActualizarColoresEvent += this.actualizarColores;
         }
+        private void cuentaDeUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!this.validarAgregarFormulario(typeof(frmOpcionesUsuario)))
+            {
+                return;
+            }
+
+            glb_form = new frmOpcionesUsuario(UsuarioActual);
+
+            this.agregarFormulario(glb_form);
+        }
         private void actualizarColores(object sender, EventArgs e)
         {
             this.actualizarColores();
         }
         #endregion
+
+      
     }    
 }

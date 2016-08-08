@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controlDomicilio.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controlDomicilio.Designer.cs">
+      <DependentUpon>controlDomicilio.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmABMArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,12 @@
     </Compile>
     <Compile Include="frmOpciones.Designer.cs">
       <DependentUpon>frmOpciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOpcionesUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOpcionesUsuario.Designer.cs">
+      <DependentUpon>frmOpcionesUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPedidoGestion.cs">
       <SubType>Form</SubType>
@@ -181,6 +193,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="controlDomicilio.resx">
+      <DependentUpon>controlDomicilio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmABMArticulo.resx">
       <DependentUpon>frmABMArticulo.cs</DependentUpon>
     </EmbeddedResource>
@@ -211,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmOpciones.resx">
       <DependentUpon>frmOpciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOpcionesUsuario.resx">
+      <DependentUpon>frmOpcionesUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPedidoGestion.resx">
       <DependentUpon>frmPedidoGestion.cs</DependentUpon>

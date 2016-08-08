@@ -71,57 +71,7 @@ namespace Vista
         #endregion
 
         #region Métodos
-        /// <summary>
-        /// Limpia todos los controles que se encuentren dentro del control enviado como parámetro
-        /// </summary>
-        /// <param name="p_ctr_control"></param>
-        public void quitarTextoEnControles(Control p_ctr_control)
-        {
-            //se utiliza para que si el control no esta en ninguno de los if's,
-            //entonces se mete en un control que puede contener una colección de controles
-            bool bandera;
-            foreach (Control c in p_ctr_control.Controls)
-            {
-                bandera = true;
-                if (c is TextBox)
-                {
-                    ((TextBox)c).Clear(); bandera = false;
-                }
-
-                if (c is ListView)
-                {
-
-                    ((ListView)c).Items.Clear(); bandera = false;
-                }
-
-                if (c is DataGridView)
-                {
-                    ((DataGridView)c).Rows.Clear(); bandera = false;
-                }
-
-                if (c is ComboBox)
-                {
-                    ((ComboBox)c).SelectedIndex = -1; bandera = false;
-                }
-
-                if (c is RichTextBox)
-                {
-                    ((RichTextBox)c).Clear(); bandera = false;
-                }
-
-                if (c is RadioButton)
-                {
-                    ((RadioButton)c).Checked = false; bandera = false;
-                }
-                if (c is PictureBox)
-                {
-                    ((PictureBox)c).Image=null; bandera = false;
-                }
-
-                if (bandera)
-                    quitarTextoEnControles(c);
-            }
-        }
+        
 
         virtual public void inicializarModoFormularioInicio()
         {
