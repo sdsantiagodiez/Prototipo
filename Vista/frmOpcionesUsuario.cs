@@ -28,6 +28,7 @@ namespace Vista
         public frmOpcionesUsuario(ModeloUsuario p_usuario) : this()
         {
             this.cargarUsuarioEnControles(p_usuario);
+
         }
         #endregion
 
@@ -61,9 +62,17 @@ namespace Vista
    
         private void inicializarControles()
         {
+            this.inicializarDomicilio();
             this.inicializarDataGridViews();
             this.inicializarContextMenu();
             this.inicializarBotones();
+            this.inicializarCmbBoxTipoTelefonos();
+        }
+        private void inicializarDomicilio()
+        {
+            this.cDomicilio = new controlDomicilio();
+            cDomicilio.Dock = DockStyle.Fill;
+            this.tblLayoutPanelDomicilioDatos.Controls.Add(cDomicilio, 0, 0);
         }
         private void inicializarDataGridViews()
         {
@@ -117,13 +126,74 @@ namespace Vista
             };
             #endregion
         }
+        private void inicializarCmbBoxTipoTelefonos()
+        {
+            //Creo lista Tipos de teléfono
+            var dataSource = new List<ComboBoxItem>();
+            dataSource.Add(new ComboBoxItem() { Name = "Fijo", Value = LibreriaClasesCompartidas.Constantes.TipoTelefono.Fijo });
+            dataSource.Add(new ComboBoxItem() { Name = "Celular", Value = LibreriaClasesCompartidas.Constantes.TipoTelefono.Celular });
+            dataSource.Add(new ComboBoxItem() { Name = "Fax", Value = LibreriaClasesCompartidas.Constantes.TipoTelefono.Fax });
 
+            this.cmbBoxTipoTelefono.DataSource = dataSource;
+            this.cmbBoxTipoTelefono.DisplayMember = "Name";
+            this.cmbBoxTipoTelefono.ValueMember = "Value";
+
+            //Lo hago read only
+            this.cmbBoxTipoTelefono.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
         #endregion
      
         #region Controles -> Modelos
         private void cargarDatosControlEnUsuario(ref ModeloUsuario p_mod_usuario)
         {
+            this.cargarDatosControlPersonales(ref p_mod_usuario);
+            this.cargarDatosControlContraseña(ref p_mod_usuario);
             this.cargarDatosControlDeContacto(ref p_mod_usuario);
+        }
+        private void cargarDatosControlPersonales(ref ModeloUsuario p_mod_usuario)
+        {
+            if (this.validarDatosPersonales())
+            {
+                p_mod_usuario.nombre = this.txtBoxNombre.Text;
+                p_mod_usuario.apellido = this.txtBoxApellido.Text;
+                p_mod_usuario.dni = this.txtBoxDNI.Text;
+                p_mod_usuario.cuit = this.txtBoxCUIT.Text;
+            }
+            else
+            {
+                //Mensaje de error
+            }
+        }
+        private bool validarDatosPersonales()
+        {
+            return true;
+        }
+        private void cargarDatosControlContraseña(ref ModeloUsuario p_mod_usuario)
+        {
+            if (this.validarHayCambioDeContraseña())
+            {
+                if (this.validarNuevaContraseña())
+                {
+                    p_mod_usuario.asignarContraseña(this.txtBoxContraseñaNueva.Text);
+                }
+                else
+                {
+                    //Mensaje de error
+                }
+            }
+        }
+        private bool validarHayCambioDeContraseña()
+        {
+            return String.IsNullOrWhiteSpace(this.txtBoxContraseñaActual.Text) ||
+                    String.IsNullOrWhiteSpace(this.txtBoxContraseñaNueva.Text) ||
+                    String.IsNullOrWhiteSpace(this.txtBoxContraseñaNuevaRepetir.Text);
+        }
+        private bool validarNuevaContraseña()
+        {
+            //Contraseña actual == a contraseña del usuario
+            //Contraseña nueva valida como contraseña
+            //Contraseña nueva == ContraseñaNuevaRepetir 
+            return true;
         }
         private void cargarDatosControlDeContacto(ref ModeloUsuario p_mod_usuario)
         {
@@ -191,17 +261,17 @@ namespace Vista
         }
         private ModeloTelefono cargarDatosControlEnTelefono()
         {
-            //if (this.validarTelefono())
-            //{
-            ModeloTelefono lcl_mod_telefono = new ModeloTelefono();
-            lcl_mod_telefono.numero = txtBoxTelefono.Text;
-            lcl_mod_telefono.tipo = cmbBoxTipoTelefono.SelectedValue.ToString();
-            return lcl_mod_telefono;
-            //}
-            //else
-            //{
-            //    return null;
-            //}
+            if (this.validarTelefono())
+            {
+                ModeloTelefono lcl_mod_telefono = new ModeloTelefono();
+                lcl_mod_telefono.numero = txtBoxTelefono.Text;
+                lcl_mod_telefono.tipo = cmbBoxTipoTelefono.SelectedValue.ToString();
+                return lcl_mod_telefono;
+            }
+            else
+            {
+                return null;
+            }
         }
         private List<ModeloMail> cargarDatosControlEnListMail()
         {
@@ -239,9 +309,19 @@ namespace Vista
         #region Modelos -> Controles
         private void cargarUsuarioEnControles(ModeloUsuario p_mod_usuario)
         {
+            this.cargarDatosPersonalesEnControles(p_mod_usuario);
+
             this.cargarDatosDomicilioEnDataGridViewDomicilio(p_mod_usuario.domicilios);
             this.cargarDatosTelefonoEnDataGridViewTelefono(p_mod_usuario.telefonos);
             this.cargarDatosMailEnDataGridViewMail(p_mod_usuario.mails);
+        }
+
+        private void cargarDatosPersonalesEnControles(ModeloUsuario p_mod_usuario)
+        {
+            this.txtBoxNombre.Text = p_mod_usuario.nombre;
+            this.txtBoxApellido.Text = p_mod_usuario.apellido;
+            this.txtBoxDNI.Text = p_mod_usuario.dni;
+            this.txtBoxCUIT.Text = p_mod_usuario.cuit;
         }
 
         #region DataGridViews
@@ -340,9 +420,7 @@ namespace Vista
             this.cargarDatosMailEnDataGridViewMail(lcl_lst_mod_mail);
         }
         #endregion
-        
-   
-        
+
         #endregion
 
         #region Validación
@@ -367,6 +445,7 @@ namespace Vista
             }
             return false;
         }
+        
         private bool validarTelefono()
         {
             //False si el capo esta vacio. Completar
@@ -403,6 +482,7 @@ namespace Vista
             }
             return true;
         }
+        
         private bool validarMail()
         {
             //if (!ModeloMail.validarMail(txtBoxMail.Text))
@@ -433,6 +513,11 @@ namespace Vista
             return true;
         }
         #endregion
+
+        private void guardarCambios()
+        {
+            
+        }
 
         private void actualizarContextMenu(DataGridView p_dgvActual)
         {
@@ -530,7 +615,10 @@ namespace Vista
         }
         #endregion
 
-
+        private void btnGuardarCambios_Click(object sender, EventArgs e)
+        {
+            this.guardarCambios();
+        }
 
         #endregion
     }
