@@ -683,7 +683,7 @@ namespace Vista
             {
                 string lcl_dir_help = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
                 //lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\helpmenuproyecto.chm";
-                lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\NUEVO\\help.chm";
+                lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\help.chm";
                 Help.ShowHelp(this, lcl_dir_help, HelpNavigator.TableOfContents);
                 //Help.ShowHelp(this, "C:\\Users\\Martin\\Desktop\\HELPS NUEVOS\\helpmenuproyecto.chm", HelpNavigator.Topic, "4_MANEJODEDATOS.htm");
             }
@@ -693,62 +693,63 @@ namespace Vista
         private void mostrarManual(Type p_ventanaActiva)
         { 
             //CON AYUDA VIEJA
-            /*string topic = "";
+            string topic = "";
             if (p_ventanaActiva == typeof(frmABMArticulo))
-            { topic = "abmarticulo"; }
+            { topic = "1_ALTASBAJASYMODIFICACIONES"; }
             else if (p_ventanaActiva == typeof(frmABMDescuentos))
-            { topic = "abmdescuento"; }
+            { topic = "1_ALTASBAJASYMODIFICACIONES"; }
             else if (p_ventanaActiva == typeof(frmABMEntidad))
             {
                 if ((glb_form as frmABMEntidad).tipoEntidadSeleccionada == Constantes.TiposEntidad.TiposPersona.Cliente)
-                { topic = "abmcliente"; }
+                { topic = "3_CLIENTES"; }
                 else if ((glb_form as frmABMEntidad).tipoEntidadSeleccionada == Constantes.TiposEntidad.TiposPersona.ContactoProveedor)
-                { topic = "abmcontactoproveedor"; }
+                { topic = "4_CONTACTODEPROVEEDOR"; }
                 else if ((glb_form as frmABMEntidad).tipoEntidadSeleccionada == Constantes.TiposEntidad.TiposPersona.Usuario)
-                { topic = "abmusuario"; }
+                { topic = "6_USUARIO"; }
                 else
-                { topic = "abmproveedor"; }
+                { topic = "5_PROVEEDOR"; }
             }
-            else if (p_ventanaActiva == typeof(frmFacturacionMasiva))
-            { topic = "facturacionmasiva"; }
+            else if (p_ventanaActiva == typeof(frmPedidoGestion))
+            { topic = "7_ADMINISTRADORDEPEDIDOS"; }
             else if (p_ventanaActiva == typeof(frmPedidoCierre))
             {
                 if ((glb_form as frmPedidoCierre).modoFormulario == "Pedido Cliente")
-                { topic = "ingresodepedidodeventa"; }
+                { topic = "32_PEDIDODECLIENTE-VENTAS"; }
                 else if ((glb_form as frmPedidoCierre).modoFormulario == "Pedido a Proveedor(es)")
-                { topic = "altapedido"; }
-                else { topic = "cerrardevolucion"; }
+                { topic = "25_PEDIDOAPROVEEDORES-COMPRAS"; }
+                else { topic = "14_CERRARUNADEVOLUCIN"; }
             }
             else if (p_ventanaActiva == typeof(frmPedidoDevolucion))
-            { topic = "agregarunadevolucion"; }
+            { topic = "12_DEVOLUCIONES"; }
             else if (p_ventanaActiva == typeof(frmPedidoNuevo))
             {
-                if ((glb_form as frmPedidoNuevo).controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.TipoPedidoPersona)
-                { topic = "agregarunarticuloalpedido"; }
-                else { topic = "agregarunarticuloalpedidoaproveedor"; }
+                if ((glb_form as frmPedidoNuevo).controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Persona)
+                { topic = "34_AGREGARUNARTCULOALPEDIDODEVENTA"; }
+                else { topic = "27_AGREGARUNARTCULOALPEDIDODEPROVEEDOR"; }
             }
-            else if (p_ventanaActiva == typeof(frmReimpresion))
-            { topic = "reimpresiondecomprobantes"; }
+            
             else if (p_ventanaActiva == typeof(frmReporteSeleccion))
             {
                 if ((glb_form as frmReporteSeleccion).tabControl.SelectedTab == (glb_form as frmReporteSeleccion).tabVentas)
-                { topic = "reportesdeventas"; }
+                { topic = "31_REPORTESDEVENTAS"; }
                 else if ((glb_form as frmReporteSeleccion).tabControl.SelectedTab == (glb_form as frmReporteSeleccion).tabPedidos)
-                { topic = "reportesdecompras"; }
-                else { topic = "reportesdeinventario"; }
+                { topic = "27_AGREGARUNARTCULOALPEDIDODEPROVEEDOR"; }
+                else { topic = "30_REPORTESDEINVENTARIO"; }
             }
-            else if (p_ventanaActiva == typeof(frmImportarPreview))
-            { topic = "importacion"; }
+            else if (p_ventanaActiva == typeof(frmImportar))
+            { topic = "17_MANEJODEDATOS"; }
+            else if (p_ventanaActiva == typeof(frmOpciones))
+            { topic = "21_OPCIONESGENERALES"; }
             else
-            { topic = "abmarticulo"; }
+            { topic = "1_ALTASBAJASYMODIFICACIONES"; }
             
             string lcl_dir_help = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName; 
-            lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\helpmenuproyecto.chm";
+            lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\help.chm";
 
-            Help.ShowHelp(glb_form, lcl_dir_help, HelpNavigator.Topic, topic + ".html");*/
+            Help.ShowHelp(glb_form, lcl_dir_help, HelpNavigator.Topic, topic + ".htm");
 
             //CON AYUDA NUEVA
-            string topic = "";
+           /* string topic = "";
             if (p_ventanaActiva == typeof(frmABMArticulo))
             { topic = "1_ALTASBAJASYMODIFICACIONES"; }
             else if (p_ventanaActiva == typeof(frmABMDescuentos))
@@ -774,7 +775,7 @@ namespace Vista
             lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\NUEVO\\help.chm";
 
             Help.ShowHelp(glb_form, lcl_dir_help, HelpNavigator.Topic, topic + ".htm");
-
+            */
         }
         #endregion
 

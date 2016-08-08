@@ -1,3 +1,0 @@
-1.	Debemos definir el tipo de comprobante   a reimprimir.
-2.	Luego completamos el lote de comprobantes, indicando la numeración desde/hasta. Si se desea buscar el comprobante, se debe dar clic en el botón 
-3.	Una vez completado lo anterior, dar en el botón. En caso de cancelar la operación debe dar clic en el botón.
