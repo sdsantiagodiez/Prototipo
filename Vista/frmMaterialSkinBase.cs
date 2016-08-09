@@ -136,7 +136,7 @@ namespace Vista
         /// Limpia todos los controles que se encuentren dentro del control enviado como parámetro
         /// </summary>
         /// <param name="p_ctr_control"></param>
-        public void quitarTextoEnControles(Control p_ctr_control)
+        public static void quitarTextoEnControles(Control p_ctr_control)
         {
             foreach (Control c in p_ctr_control.Controls)
             {
