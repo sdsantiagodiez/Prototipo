@@ -1117,7 +1117,7 @@ namespace Vista
         private void valorNumeroDocumento(object sender, KeyPressEventArgs e)
         {
             // solo 0-9 y borrar 
-            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8))
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))  //46 es el punto
             {
                 e.Handled = true;
                 return;
