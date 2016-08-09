@@ -44,8 +44,9 @@ namespace Vista
             this.glb_mod_articuloProveedorSeleccionado = null;
         }
 
-        public frmABMDescuentos(ModeloArticuloProveedores p_mod_articuloProveedor) : this()
+        public frmABMDescuentos(ModeloArticuloProveedores p_mod_articuloProveedor) 
         {
+            InitializeComponent();
             if(p_mod_articuloProveedor == null)
             {
                 MessageBox.Show("Error: No hay artículo seleccionado");
@@ -90,11 +91,13 @@ namespace Vista
         {
             this.Text = "Gestión de Descuentos de Artículo Seleccionado";
             this.chckBoxDescuentosActivos.Visible = false;
-
+            
             this.inicializarBotonesArticuloProveedorSeleccionado();
             this.inicializarTextBoxArticuloProveedorSeleccionado();
             this.inicializarDataGridViewDescuentosArticuloProveedorSeleccionado();
             this.inicializarContextMenuArticuloProveedorSeleccionado();
+            
+            this.inicializarControles_Compartidos();
         }
         private void inicializarBotonesArticuloProveedorSeleccionado()
         {
@@ -123,7 +126,7 @@ namespace Vista
             this.dgvResultadoBusqueda.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.dgvResultadoBusqueda.RowHeadersVisible = false;
             this.dgvResultadoBusqueda.AllowUserToAddRows = false;
-            this.dgvResultadoBusqueda.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvResultadoBusqueda.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
             this.dgvResultadoBusqueda.Columns.Add("dgvKey", "KEY");
             this.dgvResultadoBusqueda.Columns[0].FillWeight = 1;
@@ -134,6 +137,7 @@ namespace Vista
             this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
             this.dgvResultadoBusqueda.Columns.Add("descripcionDescuento", "Descripción");
             this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
+            this.dgvResultadoBusqueda.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             this.dgvResultadoBusqueda.Columns.Add("porcentajeDescuento", "Porcentaje");
             this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
             this.dgvResultadoBusqueda.Columns.Add("fechaVigenciaDesdeDescuento", "Vigencia Desde");
@@ -155,16 +159,8 @@ namespace Vista
             };
         }
 
-        private void inicializarControles()
+        private void inicializarControles_Compartidos()
         {
-            this.Text = "Gestión de Descuentos de Artículos";
-            this.inicializarBotones();
-            this.inicializarCmbBoxProveedores();
-            this.inicializarCmbBoxPorcentajeDescuento();
-            this.inicializarDataGridView();
-            this.inicializarDateTimePickers();
-            this.inicializarPorcentajePersonalizado(false);
-            this.inicializarContextMenu();
             glb_lst_respuestasValidaciones = new List<bool>();
             for (int i = 0; i < 4; i++)
             {
@@ -172,6 +168,26 @@ namespace Vista
             }
             glb_lst_respuestasValidaciones.Add(true);
             glb_lst_respuestasValidaciones.Add(true);
+
+            this.inicializarCmbBoxProveedores();
+            this.inicializarCmbBoxPorcentajeDescuento();
+            //this.inicializarDataGridView();
+            this.inicializarDateTimePickers();
+            this.inicializarPorcentajePersonalizado(false);
+            //this.inicializarContextMenu();
+            
+        }
+        private void inicializarControles()
+        {
+            this.Text = "Gestión de Descuentos de Artículos";
+            this.inicializarControles_Compartidos();
+            
+            this.inicializarBotones();
+
+            this.inicializarDataGridView();
+
+            this.inicializarContextMenu();
+            
         }
         private void inicializarBotones()
         {

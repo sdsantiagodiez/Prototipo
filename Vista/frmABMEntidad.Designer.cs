@@ -95,6 +95,7 @@
             this.epCiudad = new System.Windows.Forms.ErrorProvider(this.components);
             this.epMail = new System.Windows.Forms.ErrorProvider(this.components);
             this.epNumeroTelefono = new System.Windows.Forms.ErrorProvider(this.components);
+            this.pnlObservaciones = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.grpBoxTipoEntidad.SuspendLayout();
@@ -128,6 +129,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.epCiudad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epMail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epNumeroTelefono)).BeginInit();
+            this.pnlObservaciones.SuspendLayout();
             this.SuspendLayout();
             // 
             // tblLayoutPanelPrincipal
@@ -263,7 +265,7 @@
             // 
             // grpBoxObservaciones
             // 
-            this.grpBoxObservaciones.Controls.Add(this.rchTextBoxObservaciones);
+            this.grpBoxObservaciones.Controls.Add(this.pnlObservaciones);
             this.grpBoxObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxObservaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBoxObservaciones.Location = new System.Drawing.Point(3, 549);
@@ -276,9 +278,10 @@
             // rchTextBoxObservaciones
             // 
             this.rchTextBoxObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rchTextBoxObservaciones.Location = new System.Drawing.Point(3, 20);
+            this.rchTextBoxObservaciones.Location = new System.Drawing.Point(10, 10);
+            this.rchTextBoxObservaciones.Margin = new System.Windows.Forms.Padding(0);
             this.rchTextBoxObservaciones.Name = "rchTextBoxObservaciones";
-            this.rchTextBoxObservaciones.Size = new System.Drawing.Size(727, 53);
+            this.rchTextBoxObservaciones.Size = new System.Drawing.Size(707, 33);
             this.rchTextBoxObservaciones.TabIndex = 25;
             this.rchTextBoxObservaciones.Text = "";
             // 
@@ -949,12 +952,23 @@
             // 
             this.epNumeroTelefono.ContainerControl = this;
             // 
+            // pnlObservaciones
+            // 
+            this.pnlObservaciones.Controls.Add(this.rchTextBoxObservaciones);
+            this.pnlObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlObservaciones.Location = new System.Drawing.Point(3, 20);
+            this.pnlObservaciones.Margin = new System.Windows.Forms.Padding(20);
+            this.pnlObservaciones.Name = "pnlObservaciones";
+            this.pnlObservaciones.Padding = new System.Windows.Forms.Padding(10);
+            this.pnlObservaciones.Size = new System.Drawing.Size(727, 53);
+            this.pnlObservaciones.TabIndex = 26;
+            // 
             // frmABMEntidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(972, 634);
+            this.ClientSize = new System.Drawing.Size(972, 873);
             this.Controls.Add(this.pnlBase);
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmABMEntidad";
@@ -1000,6 +1014,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.epCiudad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epMail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epNumeroTelefono)).EndInit();
+            this.pnlObservaciones.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1073,5 +1088,6 @@
         private System.Windows.Forms.ErrorProvider epCiudad;
         private System.Windows.Forms.ErrorProvider epMail;
         private System.Windows.Forms.ErrorProvider epNumeroTelefono;
+        private System.Windows.Forms.Panel pnlObservaciones;
     }
 }

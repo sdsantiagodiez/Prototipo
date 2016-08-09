@@ -85,6 +85,7 @@
             this.cmbBoxTelefonos = new System.Windows.Forms.ComboBox();
             this.tabPageObservaciones = new System.Windows.Forms.TabPage();
             this.grpBoxObservacionesPedido = new System.Windows.Forms.GroupBox();
+            this.pnlObservaciones = new System.Windows.Forms.Panel();
             this.rchTextBoxObservacionesPedido = new System.Windows.Forms.RichTextBox();
             this.gbxArticulos = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelLineasPedidos = new System.Windows.Forms.TableLayoutPanel();
@@ -164,6 +165,7 @@
             this.tblLayoutPanelTelefono.SuspendLayout();
             this.tabPageObservaciones.SuspendLayout();
             this.grpBoxObservacionesPedido.SuspendLayout();
+            this.pnlObservaciones.SuspendLayout();
             this.gbxArticulos.SuspendLayout();
             this.tblLayoutPanelLineasPedidos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosVenta)).BeginInit();
@@ -946,7 +948,7 @@
             // 
             // grpBoxObservacionesPedido
             // 
-            this.grpBoxObservacionesPedido.Controls.Add(this.rchTextBoxObservacionesPedido);
+            this.grpBoxObservacionesPedido.Controls.Add(this.pnlObservaciones);
             this.grpBoxObservacionesPedido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxObservacionesPedido.Location = new System.Drawing.Point(3, 3);
             this.grpBoxObservacionesPedido.Margin = new System.Windows.Forms.Padding(2);
@@ -957,13 +959,24 @@
             this.grpBoxObservacionesPedido.TabStop = false;
             this.grpBoxObservacionesPedido.Text = "Observaciones del Pedido";
             // 
+            // pnlObservaciones
+            // 
+            this.pnlObservaciones.Controls.Add(this.rchTextBoxObservacionesPedido);
+            this.pnlObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlObservaciones.Location = new System.Drawing.Point(2, 15);
+            this.pnlObservaciones.Margin = new System.Windows.Forms.Padding(10);
+            this.pnlObservaciones.Name = "pnlObservaciones";
+            this.pnlObservaciones.Padding = new System.Windows.Forms.Padding(10);
+            this.pnlObservaciones.Size = new System.Drawing.Size(991, 135);
+            this.pnlObservaciones.TabIndex = 3;
+            // 
             // rchTextBoxObservacionesPedido
             // 
             this.rchTextBoxObservacionesPedido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rchTextBoxObservacionesPedido.Location = new System.Drawing.Point(2, 15);
-            this.rchTextBoxObservacionesPedido.Margin = new System.Windows.Forms.Padding(10);
+            this.rchTextBoxObservacionesPedido.Location = new System.Drawing.Point(10, 10);
+            this.rchTextBoxObservacionesPedido.Margin = new System.Windows.Forms.Padding(20);
             this.rchTextBoxObservacionesPedido.Name = "rchTextBoxObservacionesPedido";
-            this.rchTextBoxObservacionesPedido.Size = new System.Drawing.Size(991, 135);
+            this.rchTextBoxObservacionesPedido.Size = new System.Drawing.Size(971, 115);
             this.rchTextBoxObservacionesPedido.TabIndex = 2;
             this.rchTextBoxObservacionesPedido.Text = "";
             // 
@@ -1657,6 +1670,7 @@
             this.tblLayoutPanelTelefono.PerformLayout();
             this.tabPageObservaciones.ResumeLayout(false);
             this.grpBoxObservacionesPedido.ResumeLayout(false);
+            this.pnlObservaciones.ResumeLayout(false);
             this.gbxArticulos.ResumeLayout(false);
             this.tblLayoutPanelLineasPedidos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosVenta)).EndInit();
@@ -1799,5 +1813,6 @@
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelCorreoElectronico;
         private System.Windows.Forms.GroupBox grpBoxTelefono;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelNumeroTelefono;
+        private System.Windows.Forms.Panel pnlObservaciones;
     }
 }
