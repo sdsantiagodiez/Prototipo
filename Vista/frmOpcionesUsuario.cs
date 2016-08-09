@@ -17,6 +17,7 @@ namespace Vista
         ContextMenu cntxtMenuDataGridViews;
         string errorActual;
         ControlDomicilios glb_con_domicilios;
+        ModeloUsuario glb_usuarioActual;
         #endregion
         
         #region Constructores
@@ -28,6 +29,7 @@ namespace Vista
         }
         public frmOpcionesUsuario(ModeloUsuario p_usuario) : this()
         {
+            glb_usuarioActual = p_usuario;
             this.cargarUsuarioEnControles(p_usuario);
 
         }
@@ -137,25 +139,50 @@ namespace Vista
         #endregion
      
         #region Controles -> Modelos
-        private void cargarDatosControlEnUsuario(ref ModeloUsuario p_mod_usuario)
+        private ModeloUsuario cargarDatosControlEnUsuario()
         {
-            this.cargarDatosControlPersonales(ref p_mod_usuario);
-            this.cargarDatosControlContraseña(ref p_mod_usuario);
-            this.cargarDatosControlDeContacto(ref p_mod_usuario);
-        }
-        private void cargarDatosControlPersonales(ref ModeloUsuario p_mod_usuario)
-        {
-            if (this.validarDatosPersonales())
+            string mensaje;
+            if (this.validar_cargarDatosControlEnUsuario(out mensaje))
             {
-                p_mod_usuario.nombre = this.txtBoxNombre.Text;
-                p_mod_usuario.apellido = this.txtBoxApellido.Text;
-                p_mod_usuario.dni = this.txtBoxDNI.Text;
-                p_mod_usuario.cuit = this.txtBoxCUIT.Text;
+                ModeloUsuario lcl_mod_usuario = new ModeloUsuario();
+                this.cargarDatosControlPersonales(ref lcl_mod_usuario);
+                this.cargarDatosControlContraseña(ref lcl_mod_usuario);
+                this.cargarDatosControlDeContacto(ref lcl_mod_usuario);
+                return lcl_mod_usuario;
             }
             else
             {
-                //Mensaje de error
+                MessageBox.Show(mensaje,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return null;
             }
+            
+        }
+        private bool validar_cargarDatosControlEnUsuario(out string p_mensajeError)
+        {
+            p_mensajeError = null;
+            if (this.validarHayCambioDeContraseña())
+            {
+                if (!this.validarNuevaContraseña(out p_mensajeError))
+                {
+                    return false;
+                }
+            }
+
+            if (!this.validarDatosPersonales())
+            {
+                p_mensajeError = "Error al cargar datos personales";
+                return false;
+            }
+
+            return true;
+        }
+        private void cargarDatosControlPersonales(ref ModeloUsuario p_mod_usuario)
+        {
+            p_mod_usuario.nombre = this.txtBoxNombre.Text;
+            p_mod_usuario.apellido = this.txtBoxApellido.Text;
+            p_mod_usuario.dni = this.txtBoxDNI.Text;
+            p_mod_usuario.cuit = this.txtBoxCUIT.Text;
+
         }
         private bool validarDatosPersonales()
         {
@@ -163,29 +190,42 @@ namespace Vista
         }
         private void cargarDatosControlContraseña(ref ModeloUsuario p_mod_usuario)
         {
-            if (this.validarHayCambioDeContraseña())
+            if (!this.validarHayCambioDeContraseña())
             {
-                if (this.validarNuevaContraseña())
-                {
-                    p_mod_usuario.asignarContraseña(this.txtBoxContraseñaNueva.Text);
-                }
-                else
-                {
-                    //Mensaje de error
-                }
+                return;
             }
+            p_mod_usuario.asignarContraseña(this.txtBoxContraseñaNueva.Text);
         }
         private bool validarHayCambioDeContraseña()
         {
-            return String.IsNullOrWhiteSpace(this.txtBoxContraseñaActual.Text) ||
-                    String.IsNullOrWhiteSpace(this.txtBoxContraseñaNueva.Text) ||
-                    String.IsNullOrWhiteSpace(this.txtBoxContraseñaNuevaRepetir.Text);
+            return !String.IsNullOrWhiteSpace(this.txtBoxContraseñaActual.Text) ||
+                    !String.IsNullOrWhiteSpace(this.txtBoxContraseñaNueva.Text) ||
+                    !String.IsNullOrWhiteSpace(this.txtBoxContraseñaNuevaRepetir.Text);
         }
-        private bool validarNuevaContraseña()
+        private bool validarNuevaContraseña(out string p_mensajeError)
         {
-            //Contraseña actual == a contraseña del usuario
-            //Contraseña nueva valida como contraseña
-            //Contraseña nueva == ContraseñaNuevaRepetir 
+            ModeloUsuario lcl_usuarioTemp = new ModeloUsuario();
+            lcl_usuarioTemp.asignarContraseña(this.txtBoxContraseñaActual.Text);
+
+            if (!glb_usuarioActual.contrasenia.Equals(lcl_usuarioTemp.contrasenia))
+            {
+                p_mensajeError = "La contraseña actual ingresada no es válida";
+                return false;
+            }
+
+            if (!ModeloUsuario.validarContrasenia(this.txtBoxContraseñaNueva.Text))
+            {
+                p_mensajeError = "La contraseña nueva no es válida";
+                return false;
+            }
+
+            if (!this.txtBoxContraseñaNueva.Text.Equals(this.txtBoxContraseñaNuevaRepetir.Text))
+            {
+                p_mensajeError = "La confirmación de contraseña no coincide con la nueva contraseña";
+                return false;
+            }
+
+            p_mensajeError = null;
             return true;
         }
         private void cargarDatosControlDeContacto(ref ModeloUsuario p_mod_usuario)
@@ -422,7 +462,23 @@ namespace Vista
 
         private void guardarCambios()
         {
+            ModeloUsuario lcl_mod_usuario = this.cargarDatosControlEnUsuario();
+            if (lcl_mod_usuario == null)
+            {
+                return;
+            }
             
+            Controladores.ControladorModificacion lcl_con_modificacion = new Controladores.ControladorModificacion();
+
+            if (lcl_con_modificacion.modificar(lcl_mod_usuario))
+            {
+                glb_usuarioActual = lcl_mod_usuario;
+                MessageBox.Show("Cambios guardados exitosamente", "Éxito", MessageBoxButtons.OK);
+            }
+            else
+            {
+                MessageBox.Show(lcl_con_modificacion.errorActual,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
 
         private void actualizarContextMenu(DataGridView p_dgvActual)

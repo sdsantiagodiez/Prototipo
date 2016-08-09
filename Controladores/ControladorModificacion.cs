@@ -49,6 +49,11 @@ namespace Controladores
             try
             {
                 ModeloEntidad lcl_m = lcl_catalogo.getOne(p_mod_entidad.codigo);
+                if (lcl_m == null)//en el caso que no exista la entidad que se esta buscando
+                {
+                    errorActual = "Ha surgido un error inesperado";
+                    return false;
+                }
                 using (TransactionScope scope = new TransactionScope())
                 {
                     respuesta = lcl_catalogo.update(lcl_m,p_mod_entidad);

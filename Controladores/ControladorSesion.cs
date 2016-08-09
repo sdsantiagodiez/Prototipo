@@ -22,6 +22,17 @@ namespace Controladores
                 lcl_mod_usuario.nombre = "Usuario";
                 lcl_mod_usuario.apellido = "Test";
                 lcl_mod_usuario.usuario = "test_username";
+                lcl_mod_usuario.dni = "30.123.456";
+                lcl_mod_usuario.asignarContraseña("contraseña");
+
+                lcl_mod_usuario.domicilios.Add(new ModeloDomicilio()
+                {
+                    calle = "Calle",
+                    numero = "1",
+                    ciudad = "Rosario",
+                    provincia = new ModeloProvincia() { provincia = "Buenos Aires", codigo = "AR-B", codigoPais = "AR", },
+                    pais = new ModeloPais() { pais = "Argentina",codigo ="AR"}
+                });
 
                 lcl_mod_usuario.roles.Add(lcl_mod_rol_1);
 
