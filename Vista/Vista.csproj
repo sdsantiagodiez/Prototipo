@@ -53,11 +53,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="controlDomicilio.cs">
+    <Compile Include="ControlDomicilio.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="controlDomicilio.Designer.cs">
-      <DependentUpon>controlDomicilio.cs</DependentUpon>
+    <Compile Include="ControlDomicilio.Designer.cs">
+      <DependentUpon>ControlDomicilio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlDomicilios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlDomicilios.Designer.cs">
+      <DependentUpon>ControlDomicilios.cs</DependentUpon>
     </Compile>
     <Compile Include="frmABMArticulo.cs">
       <SubType>Form</SubType>
@@ -193,8 +199,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="controlDomicilio.resx">
-      <DependentUpon>controlDomicilio.cs</DependentUpon>
+    <EmbeddedResource Include="ControlDomicilio.resx">
+      <DependentUpon>ControlDomicilio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlDomicilios.resx">
+      <DependentUpon>ControlDomicilios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmABMArticulo.resx">
       <DependentUpon>frmABMArticulo.cs</DependentUpon>

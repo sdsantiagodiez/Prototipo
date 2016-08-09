@@ -51,7 +51,7 @@ namespace Vista
                 }
             }
         }
-        
+        ControlDomicilios glb_con_domicilios;
         public ModeloEntidad glb_mod_entidadActual;
         List<bool> glb_lst_respuestasValidaciones;
 
@@ -66,8 +66,6 @@ namespace Vista
             dataGridViewTelefono.EnableHeadersVisualStyles = false;
             dataGridViewMail.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
             dataGridViewMail.EnableHeadersVisualStyles = false;
-            dataGridViewDomicilio.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
-            dataGridViewDomicilio.EnableHeadersVisualStyles = false;
             
             this.inicializarControles();
             modoFormulario = ModoFormularioInicio;
@@ -149,7 +147,7 @@ namespace Vista
 
             btnDatosAdicionales.Enabled = false;
             
-            base.quitarTextoEnControles(this);
+            quitarTextoEnControles(this);
 
             this.tipoEntidadSeleccionada = Constantes.TiposEntidad.TiposPersona.Cliente;
         }
@@ -166,7 +164,7 @@ namespace Vista
 
             btnDatosAdicionales.Enabled = true;
             string lcl_tipoEntidad = this.tipoEntidadSeleccionada;
-            base.quitarTextoEnControles(this);
+            quitarTextoEnControles(this);
             this.tipoEntidadSeleccionada = lcl_tipoEntidad;
         }
         public override void inicializarModoFormularioSeleccionado()
@@ -196,10 +194,15 @@ namespace Vista
             this.Text = "Gestión de Entidades";
            
             this.inicializarTextBoxes();
-            this.inicializarComboBox();
+            this.inicializarComboBoxTipoTelefono();
             this.inicializarContextMenu();
             this.inicializarBotones();
             this.inicializarDataGridViews();
+
+            this.glb_con_domicilios = new ControlDomicilios();
+            this.grpBoxDomicilio.Controls.Add(glb_con_domicilios);
+            glb_con_domicilios.Dock = DockStyle.Fill;
+            
         }
         private void inicializarControlesTipoEntidadCliente()
         {
@@ -238,21 +241,8 @@ namespace Vista
             txtBoxDNI.Text = txtBoxApellido.Text = txtBoxNombre.Text = null;
         }
 
-        private void inicializarComboBox()
+        private void inicializarComboBoxTipoTelefono()
         {
-            //Populo combobox de paises
-            List<ModeloPais> lcl_lst_mod_paises = ControladorBusqueda.getPaises();
-            this.cmbBoxPais.DataSource = lcl_lst_mod_paises.OrderBy(i => i.pais).ToList();
-            this.cmbBoxPais.DropDownWidth = getDropDownWidth(this.cmbBoxPais);
-            this.cmbBoxPais.DisplayMember = "pais";
-            this.cmbBoxPais.ValueMember = "codigo";
-            this.cmbBoxPais.SelectedItem = null;
-
-            //combobox de provincias
-            this.cmbBoxProvincia.DisplayMember = "provincia";
-            this.cmbBoxProvincia.ValueMember = "codigo";
-            this.cmbBoxProvincia.SelectedItem = null;
-
             //Creo lista Tipos de teléfono
             var dataSource = new List<ComboBoxItem>();
             dataSource.Add(new ComboBoxItem() { Name = "Fijo", Value = Constantes.TipoTelefono.Fijo });
@@ -261,13 +251,8 @@ namespace Vista
 
             //Binding de telefonos
             this.cmbBoxTipoTelefono.DataSource = dataSource;
-            this.cmbBoxTipoTelefono.DisplayMember = "Name";
-            this.cmbBoxTipoTelefono.ValueMember = "Value";
 
-            //Lo hago read only
-            this.cmbBoxPais.DropDownStyle =
-                this.cmbBoxProvincia.DropDownStyle = 
-                this.cmbBoxTipoTelefono.DropDownStyle = ComboBoxStyle.DropDownList;
+            inicializarCmbBox(this.cmbBoxTipoTelefono);
         }
         private void inicializarContextMenu()
         {
@@ -286,26 +271,6 @@ namespace Vista
         private void inicializarBotones()
         {
             #region btnAgregar
-            this.btnAgregarDomicilio.Click += (s, e) =>
-                {
-                    if (cmbBoxPais.SelectedValue == null)
-                    {
-                        MessageBox.Show("Debe seleccionar un País.");
-                    }
-                    else if (cmbBoxProvincia.SelectedValue == null)
-                    {
-                        MessageBox.Show("Debe seleccionar una Provincia.");
-                    }
-                    else if(validarInputs(s,e,Constantes.ParametrosBusqueda.Domicilios.CodigoDomicilio))
-                    {
-                        this.agregarDomicilioEntidad();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Por favor verifique que los campos hayan sido ingresados correctamente");
-                    }
-                    
-                };
             this.btnAgregarMail.Click += (s, e) =>
             {
                 if (validarInputs(s, e, Constantes.ParametrosBusqueda.Mails.CodigoMail))
@@ -335,10 +300,6 @@ namespace Vista
             #endregion
 
             #region btnQuitar
-            this.btnQuitarDomicilio.Click += (s, e) =>
-                {
-                    this.quitarObjetoDataGridViewSeleccionado(this.dataGridViewDomicilio);
-                };
             this.btnQuitarMail.Click += (s, e) =>
                 {
                     this.quitarObjetoDataGridViewSeleccionado(this.dataGridViewMail);
@@ -351,7 +312,6 @@ namespace Vista
         }
         private void inicializarDataGridViews()
         {
-            this.dataGridViewDomicilio.MouseDown += this.dataGridView_MouseDown;
             this.dataGridViewMail.MouseDown += this.dataGridView_MouseDown;
             this.dataGridViewTelefono.MouseDown += this.dataGridView_MouseDown;
         }
@@ -424,7 +384,7 @@ namespace Vista
             {
                 MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
                 this.inicializarModoFormularioInicio();
-                this.quitarTextoEnControles(this);
+                quitarTextoEnControles(this);
             }
             else
             {
@@ -552,7 +512,7 @@ namespace Vista
                     if (this.modoFormulario != ModoFormularioClientePedido)
                     {
                         this.modoFormulario = ModoFormularioSeleccionado;
-                        this.quitarTextoEnControles(this);
+                        quitarTextoEnControles(this);
                         glb_mod_entidadActual = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad;
                         this.cargarEntidadEnControles(glb_mod_entidadActual);
                     }
@@ -633,61 +593,7 @@ namespace Vista
         /// <returns></returns>
         private List<ModeloDomicilio> cargarDatosControlEnListDomicilio()
         {
-            List<ModeloDomicilio> lcl_lst_mod_domicilios = new List<ModeloDomicilio>();
-            ModeloDomicilio lcl_mod_domicilio;
-           
-            foreach (DataGridViewRow row in dataGridViewDomicilio.Rows)
-            {
-                lcl_mod_domicilio = new ModeloDomicilio();
-
-                int codigoDomicilio;
-                Int32.TryParse(row.Cells["codigoDomicilio"].Value.ToString(), out codigoDomicilio);
-                lcl_mod_domicilio.codigoDomicilio = codigoDomicilio;
-
-                lcl_mod_domicilio.calle = row.Cells["calle"].Value.ToString();
-                lcl_mod_domicilio.numero = row.Cells["numero"].Value.ToString();
-                lcl_mod_domicilio.piso = row.Cells["piso"].Value.ToString();
-                lcl_mod_domicilio.departamento = row.Cells["departamento"].Value.ToString();
-                lcl_mod_domicilio.codigoPostal = row.Cells["codigoPostal"].Value.ToString();
-                lcl_mod_domicilio.ciudad = row.Cells["ciudad"].Value.ToString();
-                lcl_mod_domicilio.provincia.provincia = row.Cells["provincia"].Value.ToString();
-                lcl_mod_domicilio.pais.pais = row.Cells["pais"].Value.ToString();
-                lcl_mod_domicilio.provincia.codigo = row.Cells["codigoProvincia"].Value.ToString();
-                lcl_mod_domicilio.pais.codigo = row.Cells["codigoPais"].Value.ToString();
-
-                lcl_lst_mod_domicilios.Add(lcl_mod_domicilio);
-            }
-
-            return lcl_lst_mod_domicilios;
-        }
-        /// <summary>
-        /// Toma los datos de textBoxes y comboBoxes antes de agregar a DataGridView
-        /// </summary>
-        /// <returns></returns>
-        private ModeloDomicilio cargarDatosControlEnDomicilio()
-        {
-            //if (this.validarDomicilio())
-            //{
-                ModeloDomicilio lcl_mod_domicilio = new ModeloDomicilio();
-
-                lcl_mod_domicilio.calle = txtBoxCalle.Text;
-                lcl_mod_domicilio.numero = txtBoxNumeroDomicilio.Text;
-                lcl_mod_domicilio.piso = txtBoxPiso.Text;
-                lcl_mod_domicilio.departamento = txtBoxDepartamento.Text;
-                lcl_mod_domicilio.codigoPostal = txtBoxCodigoPostal.Text;
-                lcl_mod_domicilio.ciudad = txtBoxCiudad.Text;
-                lcl_mod_domicilio.provincia.codigo = cmbBoxProvincia.SelectedValue.ToString();
-                lcl_mod_domicilio.provincia.provincia = cmbBoxProvincia.Text;
-                lcl_mod_domicilio.pais.codigo = cmbBoxPais.SelectedValue.ToString();
-                lcl_mod_domicilio.pais.pais = cmbBoxPais.Text;
-
-                return lcl_mod_domicilio;
-            //}
-            //else
-            //{
-            //    return null;
-            //}
-            
+            return this.glb_con_domicilios.getDomicilios();
         }
         private List<ModeloTelefono> cargarDatosControlEnListTelefono()
         {
@@ -797,7 +703,7 @@ namespace Vista
             lcl_frm.mostrarBusqueda();
             if (lcl_frm.modeloSeleccionado != null)
             {
-                this.quitarTextoEnControles(this);
+                quitarTextoEnControles(this);
                 this.tipoEntidadSeleccionada = LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor;
                 this.cargarEntidadEnControles(lcl_frm.modeloSeleccionado as ModeloContactoProveedor);
                 return lcl_frm.modeloSeleccionado as ModeloContactoProveedor;
@@ -857,26 +763,7 @@ namespace Vista
         /// <param name="p_lst_mod_domicilio"></param>
         private void cargarDatosDomicilioEnDataGridViewDomicilio(List<ModeloDomicilio> p_lst_mod_domicilio)
         {
-            int rowIndex;
-            DataGridViewRow row;
-
-            foreach (ModeloDomicilio mDomicilio in p_lst_mod_domicilio)
-            {
-                rowIndex = this.dataGridViewDomicilio.Rows.Add();
-                row = this.dataGridViewDomicilio.Rows[rowIndex];
-
-                row.Cells["codigoDomicilio"].Value = mDomicilio.codigoDomicilio;
-                row.Cells["calle"].Value = mDomicilio.calle != null ? mDomicilio.calle : "";
-                row.Cells["numero"].Value = mDomicilio.numero != null ? mDomicilio.numero : "";
-                row.Cells["piso"].Value = mDomicilio.piso != null ? mDomicilio.piso : "";
-                row.Cells["departamento"].Value = mDomicilio.departamento != null ? mDomicilio.departamento : "";
-                row.Cells["codigoPostal"].Value = mDomicilio.codigoPostal != null ? mDomicilio.codigoPostal : "";
-                row.Cells["ciudad"].Value = mDomicilio.ciudad != null ? mDomicilio.ciudad : "";
-                row.Cells["codigoProvincia"].Value = mDomicilio.provincia.codigo != null ? mDomicilio.provincia.codigo : "";
-                row.Cells["provincia"].Value = mDomicilio.provincia.provincia != null ? mDomicilio.provincia.provincia : "";
-                row.Cells["codigoPais"].Value = mDomicilio.pais.codigo != null ? mDomicilio.pais.codigo : "";
-                row.Cells["pais"].Value = mDomicilio.pais.pais != null ? mDomicilio.pais.pais : "";
-            }
+            this.glb_con_domicilios.setDomicilios(p_lst_mod_domicilio);
         }
         /// <summary>
         /// Agrega un objeto domicilio al dataGrid
@@ -946,21 +833,7 @@ namespace Vista
             this.cargarDatosMailEnDataGridViewMail(lcl_lst_mod_mail);
         }
         #endregion
-        
-        #region ComboBox
-        private void cargarDatosProvinciasEnCmbBoxProvincia(List<ModeloProvincia> p_lst_mod_provincias)
-        {
-            this.cmbBoxProvincia.DataSource = p_lst_mod_provincias.OrderBy(i => i.provincia).ToList();
-            this.cmbBoxProvincia.DropDownWidth = getDropDownWidth(this.cmbBoxProvincia);
-            this.cmbBoxProvincia.SelectedItem = null;
-        }
-        private void cargaDatosPaisesEnCmbBoxPais(List<ModeloPais> p_lst_mod_paises)
-        {
-            this.cmbBoxPais.DataSource = p_lst_mod_paises;
-            this.cmbBoxPais.SelectedItem = null;
-        }
-        #endregion
-        
+                
         #endregion
 
         #region Validación
@@ -1027,9 +900,9 @@ namespace Vista
             switch(sector)
             {
                 case Constantes.ParametrosBusqueda.Domicilios.CodigoDomicilio:
-                    txtBoxCalle_Leave(sender, e);
-                    txtBoxNumeroDomicilio_Leave(sender, e);
-                    txtBoxCiudad_Leave(sender, e);
+                    //txtBoxCalle_Leave(sender, e);
+                    //txtBoxNumeroDomicilio_Leave(sender, e);
+                    //txtBoxCiudad_Leave(sender, e);
                     lcl_respuesta = (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)]
                         & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)]
                         & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)]);
@@ -1063,46 +936,6 @@ namespace Vista
             return lcl_respuesta;
         }
 
-        private bool validarDomicilio()
-        {
-            if (cmbBoxPais.SelectedValue == null)
-            {
-                errorActual = "Debe seleccionar un País.";
-                return false;
-            }
-            else if (cmbBoxProvincia.SelectedValue == null)
-            {
-                errorActual = "Debe seleccionar una Provincia.";
-                return false;
-            }
-            //else if (!ModeloDomicilio.validarCalle(txtBoxCalle.Text))
-            //{
-            //    errorActual = "Por favor, revise el campo calle.";
-            //    return false;
-            //}
-
-            return true;
-        }
-        private bool validarDomicilioExiste()
-        {
-            List<ModeloDomicilio> lcl_lst_mod_domiciliosActuales = this.cargarDatosControlEnListDomicilio();
-            ModeloDomicilio lcl_mod_domicilioActual = this.cargarDatosControlEnDomicilio();
-            if (lcl_mod_domicilioActual != null)
-            {
-                foreach (ModeloDomicilio d in lcl_lst_mod_domiciliosActuales)
-                {
-                    //se igualan los codigos en caso que el objeto de la lista tenga codigo (traido de base de datos), 
-                    //y de true usando Equals en caso de que el resto de las variables sean iguales
-                    lcl_mod_domicilioActual.codigoDomicilio = d.codigoDomicilio;
-                    if (lcl_mod_domicilioActual.Equals(d))
-                    {
-                        errorActual = "El domicilio ya está ingresado.";
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
         private bool validarTelefono()
         {
             //False si el capo esta vacio. Completar
@@ -1291,20 +1124,6 @@ namespace Vista
 
         #endregion
 
-        private void agregarDomicilioEntidad()
-        {
-            ModeloDomicilio lcl_mod_domicilioActual = this.cargarDatosControlEnDomicilio();
-            if (this.validarDomicilioExiste() && lcl_mod_domicilioActual != null)
-            {
-                this.cargarDatosDomicilioEnDataGridViewDomicilio(lcl_mod_domicilioActual);
-
-                this.quitarTextoEnControles(tblLayoutPanelDomicilio);
-            }
-            else
-            {
-                MessageBox.Show(errorActual, "Error", MessageBoxButtons.OK);
-            }
-        }
         private void agregarMailEntidad()
         {
             ModeloMail lcl_mod_mailActual = this.cargarDatosControlEnMail();
@@ -1312,7 +1131,7 @@ namespace Vista
             {
                 this.cargarDatosMailEnDataGridViewMail(lcl_mod_mailActual);
 
-                this.quitarTextoEnControles(tblLayoutPanelMail);
+                quitarTextoEnControles(tblLayoutPanelMail);
             }
             else
             {
@@ -1326,7 +1145,7 @@ namespace Vista
             {
                 this.cargarDatosTelefonoEnDataGridViewTelefono(lcl_mod_telefonoActual);
 
-                this.quitarTextoEnControles(tblLayoutPanelTelefono);
+                quitarTextoEnControles(tblLayoutPanelTelefono);
             }
             else
             {
@@ -1426,7 +1245,7 @@ namespace Vista
 
         override public void toolStripMenuItemLimpiarCampos_Click(object sender, EventArgs e)
         {
-            base.quitarTextoEnControles(this);
+            quitarTextoEnControles(this);
             this.modoFormulario = ModoFormularioInicio;
         }
 
@@ -1469,26 +1288,6 @@ namespace Vista
         override public void toolStripMenuItemBuscar_Click(object sender, EventArgs e)
         {
             this.buscar(sender,e);
-        }
-        #endregion
-
-        #region ComboBox
-        private void cmbBoxPais_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            ModeloProvincia lcl_mod_provincia = new ModeloProvincia();
-            //Inserto codigoPais del país seleccionado en el comboBox
-            lcl_mod_provincia.codigoPais = this.cmbBoxPais.SelectedValue.ToString();
-            //this.cmbBoxProvincia.DataSource = provincias;
-            List<ModeloProvincia> lcl_lst_mod_provincias = ControladorBusqueda.getProvincias();
-            List<ModeloProvincia> provincias = new List<ModeloProvincia>();
-            foreach (ModeloProvincia p in lcl_lst_mod_provincias)
-            {
-                if (p.codigoPais == lcl_mod_provincia.codigoPais)
-                {
-                    provincias.Add(p);
-                }
-            }
-            this.cargarDatosProvinciasEnCmbBoxProvincia(provincias);
         }
         #endregion
 
@@ -1589,101 +1388,7 @@ namespace Vista
             }
         }
 
-        private void txtBoxCalle_Leave(object sender, EventArgs e)
-        {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCalle.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Calle);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)] = respuesta;
-            if (!respuesta)
-            {
-                epCalle.Icon = Properties.Resources.error;
-                epCalle.SetError(txtBoxCalle, "Calle no válida");
-            }
-            else
-            {
-                epCalle.Icon = Properties.Resources.success;
-                epCalle.SetError(txtBoxCalle, "OK");
-            }
-        }
-
-        private void txtBoxNumeroDomicilio_Leave(object sender, EventArgs e)
-        {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxNumeroDomicilio.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)] = respuesta;
-            if (!respuesta)
-            {
-                epNumeroDomicilio.Icon = Properties.Resources.error;
-                epNumeroDomicilio.SetError(txtBoxNumeroDomicilio, "Número de Domicilio no válido");
-            }
-            else
-            {
-                epNumeroDomicilio.Icon = Properties.Resources.success;
-                epNumeroDomicilio.SetError(txtBoxNumeroDomicilio, "OK");
-            }
-        }
-
-        private void txtBoxPiso_Leave(object sender, EventArgs e)
-        {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxPiso.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Piso);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Piso)] = respuesta;
-            if (!respuesta)
-            {
-                epPiso.Icon = Properties.Resources.error;
-                epPiso.SetError(txtBoxPiso, "Piso no válido");
-            }
-            else
-            {
-                epPiso.Icon = Properties.Resources.success;
-                epPiso.SetError(txtBoxPiso, "OK");
-            }
-        }
-
-        private void txtBoxDepartamento_Leave(object sender, EventArgs e)
-        {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxDepartamento.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Departamento);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Departamento)] = respuesta;
-            if (!respuesta)
-            {
-                epDepartamento.Icon = Properties.Resources.error;
-                epDepartamento.SetError(txtBoxDepartamento, "Departamento no válido");
-            }
-            else
-            {
-                epDepartamento.Icon = Properties.Resources.success;
-                epDepartamento.SetError(txtBoxDepartamento, "OK");
-            }
-        }
-
-        private void txtBoxCodigoPostal_Leave(object sender, EventArgs e)
-        {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoPostal.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.CodigoPostal);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.CodigoPostal)] = respuesta;
-            if (!respuesta)
-            {
-                epCodigoPostal.Icon = Properties.Resources.error;
-                epCodigoPostal.SetError(txtBoxCodigoPostal, "Código Postal no válido");
-            }
-            else
-            {
-                epCodigoPostal.Icon = Properties.Resources.success;
-                epCodigoPostal.SetError(txtBoxCodigoPostal, "OK");
-            }
-        }
-
-        private void txtBoxCiudad_Leave(object sender, EventArgs e)
-        {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCiudad.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Ciudad);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)] = respuesta;
-            if (!respuesta)
-            {
-                epCiudad.Icon = Properties.Resources.error;
-                epCiudad.SetError(txtBoxCiudad, "Ciudad no válida");
-            }
-            else
-            {
-                epCiudad.Icon = Properties.Resources.success;
-                epCiudad.SetError(txtBoxCiudad, "OK");
-            }
-        }
+   
 
         private void txtBoxMail_Leave(object sender, EventArgs e)
         {
