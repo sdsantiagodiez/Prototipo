@@ -16,6 +16,7 @@ namespace Vista
         #region Atributos
         ContextMenu cntxtMenuDataGridViews;
         string errorActual;
+        ControlDomicilios glb_con_domicilios;
         #endregion
         
         #region Constructores
@@ -70,13 +71,13 @@ namespace Vista
         }
         private void inicializarDomicilio()
         {
-            this.cDomicilio = new controlDomicilio();
-            cDomicilio.Dock = DockStyle.Fill;
-            this.tblLayoutPanelDomicilioDatos.Controls.Add(cDomicilio, 0, 0);
+            glb_con_domicilios = new ControlDomicilios();
+            this.grpBoxDomicilio.Controls.Add(glb_con_domicilios);
+            glb_con_domicilios.Dock = DockStyle.Fill;
         }
         private void inicializarDataGridViews()
         {
-            this.dataGridViewDomicilio.MouseDown += this.dataGridView_MouseDown;
+            
             this.dataGridViewMail.MouseDown += this.dataGridView_MouseDown;
             this.dataGridViewTelefono.MouseDown += this.dataGridView_MouseDown;
         }
@@ -97,10 +98,6 @@ namespace Vista
         private void inicializarBotones()
         {
             #region btnAgregar
-            this.btnAgregarDomicilio.Click += (s, e) =>
-            {
-                this.agregarDomicilioEntidad();
-            };
             this.btnAgregarMail.Click += (s, e) =>
             {
                 this.agregarMailEntidad();
@@ -112,10 +109,6 @@ namespace Vista
             #endregion
 
             #region btnQuitar
-            this.btnQuitarDomicilio.Click += (s, e) =>
-            {
-                this.quitarObjetoDataGridViewSeleccionado(this.dataGridViewDomicilio);
-            };
             this.btnQuitarMail.Click += (s, e) =>
             {
                 this.quitarObjetoDataGridViewSeleccionado(this.dataGridViewMail);
@@ -197,44 +190,11 @@ namespace Vista
         }
         private void cargarDatosControlDeContacto(ref ModeloUsuario p_mod_usuario)
         {
-            p_mod_usuario.domicilios = this.cargarDatosControlEnListDomicilio();
+            p_mod_usuario.domicilios = this.glb_con_domicilios.getDomicilios();
             p_mod_usuario.telefonos = this.cargarDatosControlEnListTelefono();
             p_mod_usuario.mails = this.cargarDatosControlEnListMail();
         }
-        /// <summary>
-        /// Toma los datos del control DataGridView
-        /// </summary>
-        /// <returns></returns>
-        private List<ModeloDomicilio> cargarDatosControlEnListDomicilio()
-        {
-            List<ModeloDomicilio> lcl_lst_mod_domicilios = new List<ModeloDomicilio>();
-            ModeloDomicilio lcl_mod_domicilio;
-
-            foreach (DataGridViewRow row in dataGridViewDomicilio.Rows)
-            {
-                lcl_mod_domicilio = new ModeloDomicilio();
-
-                int codigoDomicilio;
-                Int32.TryParse(row.Cells["codigoDomicilio"].Value.ToString(), out codigoDomicilio);
-                lcl_mod_domicilio.codigoDomicilio = codigoDomicilio;
-
-                lcl_mod_domicilio.calle = row.Cells["calle"].Value.ToString();
-                lcl_mod_domicilio.numero = row.Cells["numero"].Value.ToString();
-                lcl_mod_domicilio.piso = row.Cells["piso"].Value.ToString();
-                lcl_mod_domicilio.departamento = row.Cells["departamento"].Value.ToString();
-                lcl_mod_domicilio.codigoPostal = row.Cells["codigoPostal"].Value.ToString();
-                lcl_mod_domicilio.ciudad = row.Cells["ciudad"].Value.ToString();
-                lcl_mod_domicilio.provincia.provincia = row.Cells["provincia"].Value.ToString();
-                lcl_mod_domicilio.pais.pais = row.Cells["pais"].Value.ToString();
-                lcl_mod_domicilio.provincia.codigo = row.Cells["codigoProvincia"].Value.ToString();
-                lcl_mod_domicilio.pais.codigo = row.Cells["codigoPais"].Value.ToString();
-                lcl_mod_domicilio.provincia.codigoPais = lcl_mod_domicilio.pais.codigo;
-
-                lcl_lst_mod_domicilios.Add(lcl_mod_domicilio);
-            }
-
-            return lcl_lst_mod_domicilios;
-        }
+     
         /// <summary>
         /// Toma los datos de textBoxes y comboBoxes antes de agregar a DataGridView
         /// </summary>
@@ -311,7 +271,7 @@ namespace Vista
         {
             this.cargarDatosPersonalesEnControles(p_mod_usuario);
 
-            this.cargarDatosDomicilioEnDataGridViewDomicilio(p_mod_usuario.domicilios);
+            this.glb_con_domicilios.setDomicilios(p_mod_usuario.domicilios);
             this.cargarDatosTelefonoEnDataGridViewTelefono(p_mod_usuario.telefonos);
             this.cargarDatosMailEnDataGridViewMail(p_mod_usuario.mails);
         }
@@ -325,43 +285,8 @@ namespace Vista
         }
 
         #region DataGridViews
-        /// <summary>
-        /// Agrega una lista de objetos domicilios al dataGrid
-        /// </summary>
-        /// <param name="p_lst_mod_domicilio"></param>
-        private void cargarDatosDomicilioEnDataGridViewDomicilio(List<ModeloDomicilio> p_lst_mod_domicilio)
-        {
-            int rowIndex;
-            DataGridViewRow row;
-
-            foreach (ModeloDomicilio mDomicilio in p_lst_mod_domicilio)
-            {
-                rowIndex = this.dataGridViewDomicilio.Rows.Add();
-                row = this.dataGridViewDomicilio.Rows[rowIndex];
-
-                row.Cells["codigoDomicilio"].Value = mDomicilio.codigoDomicilio;
-                row.Cells["calle"].Value = mDomicilio.calle != null ? mDomicilio.calle : "";
-                row.Cells["numero"].Value = mDomicilio.numero != null ? mDomicilio.numero : "";
-                row.Cells["piso"].Value = mDomicilio.piso != null ? mDomicilio.piso : "";
-                row.Cells["departamento"].Value = mDomicilio.departamento != null ? mDomicilio.departamento : "";
-                row.Cells["codigoPostal"].Value = mDomicilio.codigoPostal != null ? mDomicilio.codigoPostal : "";
-                row.Cells["ciudad"].Value = mDomicilio.ciudad != null ? mDomicilio.ciudad : "";
-                row.Cells["codigoProvincia"].Value = mDomicilio.provincia.codigo != null ? mDomicilio.provincia.codigo : "";
-                row.Cells["provincia"].Value = mDomicilio.provincia.provincia != null ? mDomicilio.provincia.provincia : "";
-                row.Cells["codigoPais"].Value = mDomicilio.pais.codigo != null ? mDomicilio.pais.codigo : "";
-                row.Cells["pais"].Value = mDomicilio.pais.pais != null ? mDomicilio.pais.pais : "";
-            }
-        }
-        /// <summary>
-        /// Agrega un objeto domicilio al dataGrid
-        /// </summary>
-        /// <param name="p_mod_domicilio"></param>
-        private void cargarDatosDomicilioEnDataGridViewDomicilio(ModeloDomicilio p_mod_domicilio)
-        {
-            List<ModeloDomicilio> lcl_lst_mod_domicilio = new List<ModeloDomicilio>();
-            lcl_lst_mod_domicilio.Add(p_mod_domicilio);
-            this.cargarDatosDomicilioEnDataGridViewDomicilio(lcl_lst_mod_domicilio);
-        }
+       
+        
         /// <summary>
         /// Agrega una lista de objetos telefono al dataGrid
         /// </summary>
@@ -425,26 +350,7 @@ namespace Vista
 
         #region Validación
        
-        private bool validarDomicilioExiste(ModeloDomicilio p_domicilio)
-        {
-            List<ModeloDomicilio> lcl_lst_mod_domiciliosActuales = this.cargarDatosControlEnListDomicilio();
-            
-            if (p_domicilio != null)
-            {
-                foreach (ModeloDomicilio d in lcl_lst_mod_domiciliosActuales)
-                {
-                    //se igualan los codigos en caso que el objeto de la lista tenga codigo (traido de base de datos), 
-                    //y de true usando Equals en caso de que el resto de las variables sean iguales
-                    p_domicilio.codigoDomicilio = d.codigoDomicilio;
-                    if (p_domicilio.Equals(d))
-                    {
-                        errorActual = "El domicilio ya está ingresado.";
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
+      
         
         private bool validarTelefono()
         {
@@ -531,23 +437,7 @@ namespace Vista
                 this.cntxtMenuDataGridViews.MenuItems[0].Text = "Quitar seleccionado";
             }
         }
-        private void agregarDomicilioEntidad()
-        {
-            ModeloDomicilio lcl_mod_domicilioActual = this.cDomicilio.GetDomicilio();
-            if (lcl_mod_domicilioActual == null)
-            {
-                //domicilio no válido. Se mostrarían los errorProviders
-                return;
-            }
-            if(this.validarDomicilioExiste(lcl_mod_domicilioActual))
-            {
-                MessageBox.Show(errorActual, "Error", MessageBoxButtons.OK);
-                return;
-            }
-
-            this.cargarDatosDomicilioEnDataGridViewDomicilio(lcl_mod_domicilioActual);
-            this.quitarTextoEnControles(this.cDomicilio);
-        }
+     
         private void agregarMailEntidad()
         {
             ModeloMail lcl_mod_mailActual = this.cargarDatosControlEnMail();
@@ -555,7 +445,7 @@ namespace Vista
             {
                 this.cargarDatosMailEnDataGridViewMail(lcl_mod_mailActual);
 
-                this.quitarTextoEnControles(tblLayoutPanelMail);
+                quitarTextoEnControles(tblLayoutPanelMail);
             }
             else
             {
@@ -569,7 +459,7 @@ namespace Vista
             {
                 this.cargarDatosTelefonoEnDataGridViewTelefono(lcl_mod_telefonoActual);
 
-                this.quitarTextoEnControles(tblLayoutPanelTelefono);
+                quitarTextoEnControles(tblLayoutPanelTelefono);
             }
             else
             {

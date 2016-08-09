@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class controlDomicilio
+    partial class ControlDomicilio
     {
         /// <summary> 
         /// Required designer variable.
