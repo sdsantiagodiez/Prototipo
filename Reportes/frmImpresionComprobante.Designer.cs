@@ -83,6 +83,7 @@
             this.Name = "frmImpresionComprobante";
             this.Text = "frmImpresionFactura";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmImpresionComprobante_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmImpresionComprobante_FormClosed);
             this.Load += new System.EventHandler(this.frmImpresionFactura_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteEncabezadoFacturaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modeloReporteDetalleFacturaBindingSource)).EndInit();

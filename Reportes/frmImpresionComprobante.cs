@@ -55,6 +55,7 @@ namespace Reportes
             }
             this.guardarComprobante(p_pedido);
 
+
             return true;
         }
 
@@ -74,7 +75,7 @@ namespace Reportes
                 //System.Diagnostics.Process p = new System.Diagnostics.Process(); // se abre un proceso para abrir el archivo PDF
                 //p.StartInfo.FileName = pathFinalPDFS;
                 //p.Start();
-
+                //System.Diagnostics.Process.Start(pathFinalPDFS);     //abre aplicación PDF   
 
                 axAcroPDF.Dock = System.Windows.Forms.DockStyle.Fill;
                 axAcroPDF.Visible = true;
@@ -82,9 +83,9 @@ namespace Reportes
 
                 axAcroPDF.LoadFile(pathFinalPDFS);//Carga el archivo para mostrar una vista previa del PDF generado.
                 //axAcroPDF.Dispose();
-            
-            
-                       
+
+
+                
             return true;
         }
         #region Métodos
@@ -258,6 +259,14 @@ namespace Reportes
             this.axAcroPDF.Dispose();
         }
         #endregion
+
+        private void frmImpresionComprobante_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (CerrarForm != null)
+            {
+                this.CerrarForm(sender, e);
+            }
+        }
 
         
     }

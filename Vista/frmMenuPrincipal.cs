@@ -1,5 +1,5 @@
 ﻿using System;
-//using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel;
 //using System.Data;
 using System.Drawing;
@@ -11,14 +11,20 @@ using Modelos;
 using LibreriaClasesCompartidas;
 using Controladores;
 
+using System.Reflection;
+
 
 namespace Vista
 {
     public partial class frmMenuPrincipal : frmMaterialSkinBase
     {
         #region Atributos
+        List<Form> glb_lst_formsActivos;
         Form glb_form;
-        bool currentFormLocked;
+        bool currentFormLocked
+        { 
+            get { return glb_lst_formsActivos.Count >1;} 
+        }
         ModeloUsuario UsuarioActual;
         #endregion
 
@@ -32,6 +38,7 @@ namespace Vista
             this.MaximizeBox = true;
 
             this.inicializarEventos();
+            glb_lst_formsActivos = new List<Form>();
         }
 
         public frmMenuPrincipal(ModeloUsuario p_usuarioActual) : this()
@@ -206,7 +213,7 @@ namespace Vista
         private void agregarFormulario(Form p_form)
         {
             Type T = p_form.GetType();
-            glb_form.FormClosing += (s, p) => { this.glb_form = new Form(); };//Permite abrir el mismo tipo de formulario recién cerrado.
+            //glb_form.FormClosing += (s, p) => { this.glb_form = new Form(); };//Permite abrir el mismo tipo de formulario recién cerrado.   //se crea evento por cada form agregada(revisar)
             foreach (Type t in T.Assembly.GetTypes())
             {//Chequea si hereda de frmMaterialSkinBase
                 if (t == typeof(frmMaterialSkinBase))
@@ -216,6 +223,8 @@ namespace Vista
                     this.pnlContenedorForm.Controls.Add(p_form);
                     p_form.Show();
                     (p_form as frmMaterialSkinBase).inicializarForm(this.pnlContenedorForm.Width, this.pnlContenedorForm.Height);
+
+                    glb_lst_formsActivos.Add(p_form);
                     return;
                 }
                 else if (t == typeof(Reportes.frmImpresionComprobante))
@@ -225,6 +234,7 @@ namespace Vista
                     this.pnlContenedorForm.Controls.Add(p_form);
                     p_form.Show();
                     //(p_form as frmMaterialSkinBase).inicializarForm(this.pnlContenedorForm.Width, this.pnlContenedorForm.Height);
+                    glb_lst_formsActivos.Add(p_form);
                     return;
                 }    
             }
@@ -239,24 +249,39 @@ namespace Vista
             {
                 return true;
             }
-            else if (glb_form.GetType() != T)
+            else if (glb_form.GetType() != T ||                     //Si son distintos tipos de formularios
+                    this.pnlContenedorForm.Controls.Count == 0 ||   //En caso de que el glb_form se cerro y frmMenuPrincipal no se entero
+                    glb_form.GetType() == typeof(frmImportar))      //Hay distintos tipos de importar (articulos, clientes, etc) bajo el mismo type de formulario
             {
-                glb_form.Close();
+                this.cerrarFormActual(glb_form);
                 //Mensaje para confirmar que si cierre se pierde el progreso hecho en el form 
                 return true;
             }
-            else if (glb_form.GetType() == typeof(frmImportar))
-            {
-                glb_form.Close();
-                return true;    //lo cerramos por mas de que ya esté abierto porque puede haber importación de distintos tipos de modelos y no lo detecta
-            }
+            //else if ()
+            //{
+            //    this.cerrarFormActual(glb_form);
+            //    return true;    //lo cerramos por mas de que ya esté abierto porque puede haber importación de distintos tipos de modelos y no lo detecta
+            //}
             else
             {
                 return false;
             }
         }
-        #endregion
 
+        private void cerrarFormActual(Form p_form)
+        {
+            if (p_form == glb_form)
+            {
+                glb_lst_formsActivos.Remove(glb_form);
+                glb_form.DialogResult = System.Windows.Forms.DialogResult.OK;
+                glb_form.Close();
+                glb_form = new Form();
+                return;
+            }
+            glb_lst_formsActivos.Remove(p_form);
+        }
+        #endregion
+        
         #endregion
 
         #region Eventos
@@ -322,7 +347,7 @@ namespace Vista
 
             if (glb_form != null && glb_form.GetType() == typeof(frmPedidoCierre) && (glb_form as frmPedidoCierre).getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.Proveedor)
             {
-                glb_form.Close();
+                this.cerrarFormActual(glb_form);
             }
 
             glb_form = new frmPedidoCierre(new ModeloPedido() { codigoTipoPedido = Constantes.CodigosTiposPedidos.Persona });
@@ -349,7 +374,7 @@ namespace Vista
             }
             if (glb_form != null && glb_form.GetType() == typeof(frmPedidoCierre) && (glb_form as frmPedidoCierre).getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.Persona)
             {
-                glb_form.Close();
+                this.cerrarFormActual(glb_form);
             }
 
             glb_form = new frmPedidoCierre(new ModeloPedido() { codigoTipoPedido = Constantes.CodigosTiposPedidos.Proveedor });
@@ -424,16 +449,21 @@ namespace Vista
             {
                 (sender as frmPedidoNuevo).MostrarDetallesArticulo += this.evento_agregarFormEmergente;
             }
-            this.currentFormLocked = true;
+            if (sender.GetType() == typeof(frmPedidoCierre))
+            {
+                (sender as frmPedidoCierre).MostrarComprobante += this.evento_agregarFormEmergente;
+            }
+            //this.currentFormLocked = true;
         }
+        
         public void evento_cerrarFormEmergente(object sender, EventArgs e)
         {
-            this.currentFormLocked = false;
+            this.cerrarFormActual(sender as Form);
         }
 
         public void evento_iniciarDevolverPedido(object sender, EventArgs e)
         {
-            glb_form.Close();
+            this.cerrarFormActual(glb_form);
             glb_form = new frmPedidoCierre((sender as frmPedidoDevolucion).controlador.pedidoActual, (sender as frmPedidoDevolucion).glb_mod_pedidoOriginal);
             this.agregarFormulario(glb_form);
 
@@ -443,7 +473,7 @@ namespace Vista
         public void evento_continuarDevolverPedido(object sender, EventArgs e)
         {
             glb_form = new frmPedidoCierre((sender as frmPedidoDevolucion).controlador.pedidoActual, (sender as frmPedidoDevolucion).glb_mod_pedidoOriginal);
-            (sender as Form).Close();
+            this.cerrarFormActual(sender as Form);
         }
         #endregion
 
