@@ -104,9 +104,21 @@
     <EmbeddedResource Include="Pedido.rdlc" />
     <None Include="i2of5txt.ttf" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Modelos.Alicuota.datasource" />
+    <None Include="Properties\DataSources\Modelos.Documento.datasource" />
+    <None Include="Properties\DataSources\Modelos.FormaPago.datasource" />
+    <None Include="Properties\DataSources\Modelos.IVA.datasource" />
+    <None Include="Properties\DataSources\Modelos.Modelo.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloArticuloProveedores.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloArticulos.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloCliente.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloContactoProveedor.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloDescuento.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloDescuentoArticuloProveedor.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloDescuentoLineaPedido.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloDescuentoPedido.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloDomicilio.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloEntidad+CUIT.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloEntidad.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloLineaPedido.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloMail.datasource" />
@@ -115,8 +127,10 @@
     <None Include="Properties\DataSources\Modelos.ModeloPersonas.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloProveedor.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloProvincia.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloReporteDetalleComprobante.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteDetalleFactura.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteEncabezado.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloReporteEncabezadoComprobante.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteEncabezadoFactura.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReportePedidoEntreFechas.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteStock.datasource" />
@@ -124,7 +138,9 @@
     <None Include="Properties\DataSources\Modelos.ModeloReporteVentaEntreFechas1.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloRoles.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloTelefono.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloUsuario.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloValorArticulo.datasource" />
+    <None Include="Properties\DataSources\Modelos.TipoDocumento.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

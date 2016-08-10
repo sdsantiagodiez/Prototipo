@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Modelos
 {       //ver getDescuentoTotal()
@@ -169,6 +170,14 @@ namespace Modelos
             get { return _senia; }
             set { _senia = value; }
         }
+
+        DateTime _vencimientoCAE;
+        public DateTime VencimientoCAE
+        {
+            get { return _vencimientoCAE; }
+            set { _vencimientoCAE = value; }
+        }
+
         #endregion
 
         public ModeloPedido()
@@ -524,7 +533,9 @@ namespace Modelos
         public int codigoBarra()
         {
             
-            string [] codigo_barra = {this.entidad.cuit.ToString() + this.tipoComprobante.ToString() + "CentroEmisor" + this.CAE + "VtoCAE"};
+            string fec_vto = this.VencimientoCAE.ToString("yyyyMMdd", System.Globalization.CultureInfo.GetCultureInfo("en-US"));
+
+            string [] codigo_barra = {this.entidad.cuit.ToString() + this.tipoComprobante.ToString() + "0001" + this.CAE + fec_vto};
             String.Concat(codigo_barra);
 
             int codigo_barra_con_verificador = this.calculaVerificador(codigo_barra);

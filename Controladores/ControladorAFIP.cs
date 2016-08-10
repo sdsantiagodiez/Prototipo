@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WSAFIPFE;
 using Modelos;
+using System.Globalization;
 
 namespace Controladores
 {
@@ -240,6 +241,7 @@ namespace Controladores
             p_mod_pedido.aprobadoAFIP = p_facturaElectronica.F1RespuestaDetalleResultado;
             p_mod_pedido.CAE = p_facturaElectronica.F1RespuestaDetalleCae;
             p_mod_pedido.numeroComprobante = p_facturaElectronica.F1RespuestaDetalleCbteDesdeS;
+            p_mod_pedido.VencimientoCAE = DateTime.ParseExact(p_facturaElectronica.F1RespuestaDetalleCAEFchVto,"yyyyMMdd",CultureInfo.InvariantCulture,DateTimeStyles.None);
         }
 
         /// <summary>

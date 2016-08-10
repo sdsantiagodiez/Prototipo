@@ -1492,7 +1492,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>C.A.I.:</Value>
+                  <Value>C.A.E.:</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                   </Style>
@@ -1560,7 +1560,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>="*" &amp; First(Fields!CAINumero.Value, "DSFactura") &amp; "*"</Value>
+                  <Value>="*" &amp; First(Fields!CodigodeBarras.Value, "DSFactura") &amp; "*"</Value>
                   <Style>
                     <FontFamily>I2OF5TXT</FontFamily>
                     <FontSize>24pt</FontSize>
@@ -1630,6 +1630,10 @@
           <DataField>CentroEmisor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CodigodeBarras">
+          <DataField>CodigodeBarras</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="Comprador_Cuit">
           <DataField>Comprador_Cuit</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1685,8 +1689,8 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloReporteEncabezadoFactura</rd:TableName>
-        <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezadoFactura, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ModeloReporteEncabezadoComprobante</rd:TableName>
+        <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezadoComprobante, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
     <DataSet Name="DSDetalleFactura">
@@ -1707,6 +1711,10 @@
           <DataField>Descripcion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Descuento">
+          <DataField>Descuento</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="Precio">
           <DataField>Precio</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -1718,9 +1726,9 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloReporteEncabezadoFactura</rd:TableName>
+        <rd:TableName>ModeloReporteEncabezadoComprobante</rd:TableName>
         <rd:ObjectDataSourceSelectMethod>detalleFactura</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezadoFactura, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezadoComprobante, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
