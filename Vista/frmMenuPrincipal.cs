@@ -227,7 +227,7 @@ namespace Vista
                     glb_lst_formsActivos.Add(p_form);
                     return;
                 }
-                else if (t == typeof(Reportes.frmImpresionComprobante))
+                else if (t == typeof(frmImpresionComprobante))
                 {
                     p_form.TopLevel = false;
                     p_form.Dock = DockStyle.Fill;
@@ -270,6 +270,7 @@ namespace Vista
 
         private void cerrarFormActual(Form p_form)
         {
+            System.Threading.Thread.Sleep(100); //Agregando este tiempo entre cierres de ventanas permite que no se cierre sin querer una ventana que estaba debajo
             if (p_form == glb_form)
             {
                 glb_lst_formsActivos.Remove(glb_form);
@@ -431,10 +432,10 @@ namespace Vista
         public void evento_agregarFormEmergente(object sender, EventArgs e)
         {
             this.agregarFormulario(sender as Form);
-            if (sender.GetType() == typeof(Reportes.frmImpresionComprobante))
+            if (sender.GetType() == typeof(frmImpresionComprobante))
             {
-                (sender as Reportes.frmImpresionComprobante).BringToFront();
-                (sender as Reportes.frmImpresionComprobante).CerrarForm += evento_cerrarFormEmergente;
+                (sender as frmImpresionComprobante).BringToFront();
+                (sender as frmImpresionComprobante).CerrarForm += evento_cerrarFormEmergente;
             }
             else
             {
@@ -974,12 +975,11 @@ namespace Vista
 
             this.agregarFormulario(glb_form);
         }
+        
         private void actualizarColores(object sender, EventArgs e)
         {
             this.actualizarColores();
         }
         #endregion
-
-      
     }    
 }

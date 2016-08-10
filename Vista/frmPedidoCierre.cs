@@ -905,8 +905,9 @@ namespace Vista
 
         private void imprimirpedido()
         {
-            Reportes.frmImpresionComprobante lcl_frm_comprobante = new Reportes.frmImpresionComprobante(Properties.Settings.Default.carpetaPedidosClientes, Properties.Settings.Default.carpetaPedidosProveedores);
-            lcl_frm_comprobante.estadoAcrobatPDF(false);          
+            frmImpresionComprobante lcl_frm_comprobante = new frmImpresionComprobante(Properties.Settings.Default.carpetaPedidosClientes, Properties.Settings.Default.carpetaPedidosProveedores);
+            this.MostrarComprobante(lcl_frm_comprobante, new EventArgs());
+            //lcl_frm_comprobante.estadoAcrobatPDF(false);          
             frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Guardando pedido en formato PDF.", "Guardando Comprobante");
             bool exito = false;
             BackgroundWorker bw = new BackgroundWorker();
@@ -930,10 +931,6 @@ namespace Vista
             bw.RunWorkerAsync();
 
             lcl_frm_loading.ShowDialog();
-            if (exito)
-            {
-                this.MostrarComprobante(lcl_frm_comprobante, new EventArgs());
-            }
         }
 
         private bool guardarPedido()

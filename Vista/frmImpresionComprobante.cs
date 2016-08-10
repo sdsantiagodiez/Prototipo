@@ -10,11 +10,11 @@ using System.Windows.Forms;
 using Modelos;
 using Microsoft.Reporting.WinForms;
 using System.IO;
-using iTextSharp.text.pdf;
+//using iTextSharp.text.pdf;
 
-namespace Reportes
+namespace Vista
 {
-    public partial class frmImpresionComprobante : Form
+    public partial class frmImpresionComprobante : frmMaterialSkinBase
     {
         #region Atributos
         public EventHandler CerrarForm;
@@ -29,6 +29,8 @@ namespace Reportes
         public frmImpresionComprobante()
         {
             InitializeComponent();
+            this.Text = "Visualización";
+            
         }
         public frmImpresionComprobante(string p_folderPathClientes, string p_folderPathProveedores) : this()
         {
@@ -38,7 +40,13 @@ namespace Reportes
         
         #endregion
 
-
+        public override void inicializarForm(int ventanaAncho, int ventanaAlto)
+        {
+            this.contenedorComprobante.Width = ventanaAncho;
+            this.contenedorComprobante.Height = ventanaAlto-60;
+            this.contenedorComprobante.Location = new System.Drawing.Point(0, 60);
+            
+        }
         public bool generarComprobante(ModeloPedido p_pedido)
         {
             if (p_pedido == null)
@@ -70,19 +78,19 @@ namespace Reportes
             {
                 this.generarComprobante(pedido);
             }
-                agregarAPDF(PDFSaAgregar, destinationDocumentStream);
+                //agregarAPDF(PDFSaAgregar, destinationDocumentStream);
 
-                //System.Diagnostics.Process p = new System.Diagnostics.Process(); // se abre un proceso para abrir el archivo PDF
-                //p.StartInfo.FileName = pathFinalPDFS;
-                //p.Start();
-                //System.Diagnostics.Process.Start(pathFinalPDFS);     //abre aplicación PDF   
+                ////System.Diagnostics.Process p = new System.Diagnostics.Process(); // se abre un proceso para abrir el archivo PDF
+                ////p.StartInfo.FileName = pathFinalPDFS;
+                ////p.Start();
+                ////System.Diagnostics.Process.Start(pathFinalPDFS);     //abre aplicación PDF   
 
-                axAcroPDF.Dock = System.Windows.Forms.DockStyle.Fill;
-                axAcroPDF.Visible = true;
-                axAcroPDF.Parent = this;
+                //axAcroPDF.Dock = System.Windows.Forms.DockStyle.Fill;
+                //axAcroPDF.Visible = true;
+                //axAcroPDF.Parent = this;
 
-                axAcroPDF.LoadFile(pathFinalPDFS);//Carga el archivo para mostrar una vista previa del PDF generado.
-                //axAcroPDF.Dispose();
+                //axAcroPDF.LoadFile(pathFinalPDFS);//Carga el archivo para mostrar una vista previa del PDF generado.
+                ////axAcroPDF.Dispose();
 
 
                 
@@ -92,7 +100,7 @@ namespace Reportes
 
         private void mostrarComprobante(ModeloPedido p_pedido)
         {
-            //this.contenedorComprobante.Reset();
+            SafeInvoke(this.contenedorComprobante, this.contenedorComprobante.Reset);
 
             ModeloReporteEncabezadoComprobante lcl_mod_encabezadoComprobante = new ModeloReporteEncabezadoComprobante(p_pedido);
 
@@ -102,42 +110,70 @@ namespace Reportes
 
             this.contenedorComprobante.LocalReport.Refresh();
             
-            this.contenedorComprobante.RefreshReport();
+            //this.contenedorComprobante.RefreshReport();
+            SafeInvoke(this.contenedorComprobante, this.contenedorComprobante.RefreshReport);
            
         }
+        public  void SafeInvoke(Control uiElement, Action updater)
+        {
+            if (uiElement == null)
+            {
+                throw new ArgumentNullException("uiElement");
+            }
+
+            if (uiElement.IsDisposed)
+            {
+                throw new ObjectDisposedException("Control is already disposed.");
+            }
+
+            if (uiElement.InvokeRequired)
+            {
+                uiElement.Invoke((Action)delegate { SafeInvoke(uiElement, updater); });
+            }
+            //else if(!this.IsHandleCreated)
+            //{
+            //    var x = this.Handle;
+            //    this.SafeInvoke(uiElement, updater);
+            //}
+            else
+            {
+                updater();
+            }
+        }
+
 
         private void iniciarReportEmbeddedResource(int p_tipoComprobante)
         {
             //lo que esta comentado es un intento de mover frmImpresionComprobante a el proyecto Vista y cargar los archivos rdlc desde alli
-            //string rdlcFile = "";
+            string rdlcFile = "";
             switch (p_tipoComprobante)
             {
                 case 1:
-                    this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.FacturaA.rdlc";
-                    //rdlcFile = "Reportes.FacturaA.rdlc";
+                    //this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.FacturaA.rdlc";
+                    rdlcFile = "Reportes.FacturaA.rdlc";
                     break;
                 case 6:
-                    this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.FacturaB.rdlc";
-                    //rdlcFile = "Reportes.FacturaB.rdlc";
+                    //this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.FacturaB.rdlc";
+                    rdlcFile = "Reportes.FacturaB.rdlc";
                     break;
                 case 3:
-                    this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoA.rdlc";
-                    //rdlcFile = "Reportes.NCreditoA.rdlc";
+                    //this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoA.rdlc";
+                    rdlcFile = "Reportes.NCreditoA.rdlc";
                     break;
                 case 8:
-                    this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoB.rdlc";
-                    //rdlcFile = "Reportes.NCreditoB.rdlc";
+                    //this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoB.rdlc";
+                    rdlcFile = "Reportes.NCreditoB.rdlc";
                     break;
                 default:
-                    this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.Pedido.rdlc";
-                    //rdlcFile = "Reportes.Pedido.rdlc";
+                    //this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.Pedido.rdlc";
+                    rdlcFile = "Reportes.Pedido.rdlc";
                     break;
             }
             
-            //System.Reflection.Assembly assembly = System.Reflection.Assembly.LoadFrom("Reportes.dll");
-            //var stream = assembly.GetManifestResourceStream(rdlcFile);
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.LoadFrom("Reportes.dll");
+            var stream = assembly.GetManifestResourceStream(rdlcFile);
             
-            //this.contenedorComprobante.LocalReport.LoadReportDefinition(stream);
+            this.contenedorComprobante.LocalReport.LoadReportDefinition(stream);
         }
 
         private void iniciarDataSources(ModeloReporteEncabezadoComprobante p_encabezado)
@@ -204,18 +240,18 @@ namespace Reportes
         private static void agregarAPDF(List<string> PDFPathAgregar, FileStream destinationDocumentStream)
         {
 
-        var pdfConcat = new PdfConcatenate(destinationDocumentStream);
-        foreach (string s in PDFPathAgregar)
-        {
-            var sourceDocumentStream = new FileStream(s, FileMode.Open, FileAccess.Read, 0);
+        //var pdfConcat = new PdfConcatenate(destinationDocumentStream);
+        //foreach (string s in PDFPathAgregar)
+        //{
+        //    var sourceDocumentStream = new FileStream(s, FileMode.Open, FileAccess.Read, 0);
 
-            var pdfReader = new PdfReader(sourceDocumentStream);
-            pdfReader.SelectPages("1");
-            pdfConcat.AddPages(pdfReader);
-            pdfReader.Close();
-        }
+        //    var pdfReader = new PdfReader(sourceDocumentStream);
+        //    pdfReader.SelectPages("1");
+        //    pdfConcat.AddPages(pdfReader);
+        ////    pdfReader.Close();
+        //    }
         
-        pdfConcat.Close();
+        //pdfConcat.Close();
         }
 
         private string getFileName(ModeloPedido p_pedido)
@@ -242,10 +278,10 @@ namespace Reportes
             return fileName;
         }
 
-        public void estadoAcrobatPDF(bool estado)
-        {
-            this.axAcroPDF.Visible = estado;
-        }
+        //public void estadoAcrobatPDF(bool estado)
+        //{
+        //    this.axAcroPDF.Visible = estado;
+        //}
         
         #endregion
 
@@ -256,7 +292,7 @@ namespace Reportes
         }
         private void frmImpresionComprobante_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.axAcroPDF.Dispose();
+            //this.axAcroPDF.Dispose();
         }
         #endregion
 

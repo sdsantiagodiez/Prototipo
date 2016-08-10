@@ -512,7 +512,7 @@ namespace Vista
             };
 
             bw.RunWorkerAsync();
-            lcl_frm_loading.ShowDialog(); 
+            lcl_frm_loading.ShowDialog();
         }
         
         #endregion
@@ -574,7 +574,8 @@ namespace Vista
                 return;
             }
 
-            Reportes.frmImpresionComprobante lcl_frm_comprobante = new Reportes.frmImpresionComprobante(Properties.Settings.Default.carpetaPedidosClientes, Properties.Settings.Default.carpetaPedidosProveedores);
+            frmImpresionComprobante lcl_frm_comprobante = new frmImpresionComprobante(Properties.Settings.Default.carpetaPedidosClientes, Properties.Settings.Default.carpetaPedidosProveedores);
+            this.MostrarComprobante(lcl_frm_comprobante, new EventArgs());
 
             frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Guardando pedido en formato PDF.", "Guardando Comprobante");
             bool exito = false;
@@ -586,15 +587,10 @@ namespace Vista
             bw.RunWorkerCompleted += (s, e) =>
             {
                 lcl_frm_loading.DialogResult = System.Windows.Forms.DialogResult.OK;
-
             };
             bw.RunWorkerAsync();
 
             lcl_frm_loading.ShowDialog();
-            if (exito)
-            {
-                this.MostrarComprobante(lcl_frm_comprobante, new EventArgs());
-            }
         }
         #endregion
 

@@ -107,6 +107,12 @@
     <Compile Include="frmImportar.Designer.cs">
       <DependentUpon>frmImportar.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmImpresionComprobante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpresionComprobante.Designer.cs">
+      <DependentUpon>frmImpresionComprobante.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLoading.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmImportar.resx">
       <DependentUpon>frmImportar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImpresionComprobante.resx">
+      <DependentUpon>frmImpresionComprobante.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLoading.resx">
       <DependentUpon>frmLoading.cs</DependentUpon>
