@@ -9,7 +9,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using Modelos;
 using Microsoft.Reporting.WinForms;
-using System.IO;
+//using System.IO;
 //using iTextSharp.text.pdf;
 
 namespace Vista
@@ -17,12 +17,10 @@ namespace Vista
     public partial class frmImpresionComprobante : frmMaterialSkinBase
     {
         #region Atributos
+        Controladores.ControladorPDF glb_controladorPDF;
         public EventHandler CerrarForm;
         string folderPathPedidosClientes;
-        string folderPathPedidosProveedores;
-        FileStream destinationDocumentStream;
-        List<string> PDFSaAgregar = new List<string>();
-        string pathFinalPDFS = "";
+        string folderPathPedidosProveedores;        
         #endregion
 
         #region Constructores
@@ -30,6 +28,7 @@ namespace Vista
         {
             InitializeComponent();
             this.Text = "Visualización";
+            glb_controladorPDF = new Controladores.ControladorPDF();
             
         }
         public frmImpresionComprobante(string p_folderPathClientes, string p_folderPathProveedores) : this()
@@ -73,27 +72,27 @@ namespace Vista
             {
                 return false;
             }
-            this.documentoComprobantes(p_lst_pedidos);
+
             foreach (ModeloPedido pedido in p_lst_pedidos)
             {
                 this.generarComprobante(pedido);
             }
-                //agregarAPDF(PDFSaAgregar, destinationDocumentStream);
 
-                ////System.Diagnostics.Process p = new System.Diagnostics.Process(); // se abre un proceso para abrir el archivo PDF
-                ////p.StartInfo.FileName = pathFinalPDFS;
-                ////p.Start();
-                ////System.Diagnostics.Process.Start(pathFinalPDFS);     //abre aplicación PDF   
+            string destino = this.getFileName(p_lst_pedidos);
+            glb_controladorPDF.concatenarPDFs(destino);
 
-                //axAcroPDF.Dock = System.Windows.Forms.DockStyle.Fill;
-                //axAcroPDF.Visible = true;
-                //axAcroPDF.Parent = this;
+            ////System.Diagnostics.Process p = new System.Diagnostics.Process(); // se abre un proceso para abrir el archivo PDF
+            ////p.StartInfo.FileName = pathFinalPDFS;
+            ////p.Start();
+            ////System.Diagnostics.Process.Start(pathFinalPDFS);     //abre aplicación PDF   
 
-                //axAcroPDF.LoadFile(pathFinalPDFS);//Carga el archivo para mostrar una vista previa del PDF generado.
-                ////axAcroPDF.Dispose();
+            //axAcroPDF.Dock = System.Windows.Forms.DockStyle.Fill;
+            //axAcroPDF.Visible = true;
+            //axAcroPDF.Parent = this;
 
+            //axAcroPDF.LoadFile(pathFinalPDFS);//Carga el archivo para mostrar una vista previa del PDF generado.
+            ////axAcroPDF.Dispose();
 
-                
             return true;
         }
         #region Métodos
@@ -110,7 +109,6 @@ namespace Vista
 
             this.contenedorComprobante.LocalReport.Refresh();
             
-            //this.contenedorComprobante.RefreshReport();
             SafeInvoke(this.contenedorComprobante, this.contenedorComprobante.RefreshReport);
            
         }
@@ -206,12 +204,8 @@ namespace Vista
                 string extension;
                 byte[] bytes = contenedorComprobante.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamids, out warnings);
 
-                string pathnombre_archivo = this.getFileName(p_pedido);
-                FileStream fs = new FileStream(pathnombre_archivo, FileMode.Create);
-                fs.Write(bytes, 0, bytes.Length);
-                fs.Close();
-                this.PDFSaAgregar.Add(pathnombre_archivo);
-                //agregarAPDF(pathnombre_archivo, destinationDocumentStream);
+                glb_controladorPDF.crearPDF(bytes,this.getFileName(p_pedido));
+                
             }
             catch (Exception ex)
             {
@@ -219,39 +213,6 @@ namespace Vista
             }
 
             return true;
-        }
-
-        private void documentoComprobantes(List<ModeloPedido> p_lst_mod_Pedidos)
-        {
-            string todayNow = DateTime.Today.Year.ToString() + DateTime.Today.Month.ToString() + DateTime.Today.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".pdf";
-            if (p_lst_mod_Pedidos[0].codigoTipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona)
-            {
-                pathFinalPDFS = folderPathPedidosClientes + "\\PedidosCli_" + todayNow;
-                destinationDocumentStream = new FileStream(pathFinalPDFS, FileMode.Create);
-            }
-            else
-            {
-                pathFinalPDFS= folderPathPedidosProveedores + "\\PedidosPro_" + todayNow;
-                destinationDocumentStream = new FileStream(pathFinalPDFS, FileMode.Create);
-            }
-
-        }
-
-        private static void agregarAPDF(List<string> PDFPathAgregar, FileStream destinationDocumentStream)
-        {
-
-        //var pdfConcat = new PdfConcatenate(destinationDocumentStream);
-        //foreach (string s in PDFPathAgregar)
-        //{
-        //    var sourceDocumentStream = new FileStream(s, FileMode.Open, FileAccess.Read, 0);
-
-        //    var pdfReader = new PdfReader(sourceDocumentStream);
-        //    pdfReader.SelectPages("1");
-        //    pdfConcat.AddPages(pdfReader);
-        ////    pdfReader.Close();
-        //    }
-        
-        //pdfConcat.Close();
         }
 
         private string getFileName(ModeloPedido p_pedido)
@@ -269,7 +230,7 @@ namespace Vista
             //Pedido_(0|1)_(numeroPedido).pdf   //0|1 si es tipoPedidoCliente o tipoPedidoProveedor
             string tipoPedido = p_pedido.codigoTipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona ? "CLI" : "PROV";
 
-            string fileName_aux = folderPath + "Pedido_" + tipoPedido + "_" + p_pedido.numeroPedido.ToString();
+            string fileName_aux = folderPath + "Pedido_" + tipoPedido + "_" + p_pedido.numeroPedido.ToString().PadLeft(10, '0');
             string fileName = fileName_aux + ".pdf";
             for (int i = 0; System.IO.File.Exists(fileName); i++)
             {
@@ -278,6 +239,47 @@ namespace Vista
             return fileName;
         }
 
+        private string getFileName(List<ModeloPedido> p_lst_pedidos)
+        {
+            bool soloPedidosProveedores = true;
+            bool soloPedidosClientes = true;
+            foreach (ModeloPedido p in p_lst_pedidos)
+            {
+                if (p.codigoTipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona)
+                {
+                    soloPedidosProveedores = false;
+                }
+                else
+                {
+                    soloPedidosClientes = false;
+                }
+            }
+            
+            string folderPath;
+
+            if (!soloPedidosClientes && !soloPedidosProveedores)
+            {
+                folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)+"\\"+"Pedidos_";
+            }
+            else
+            {
+                if (soloPedidosClientes)
+                {
+                    folderPath = this.folderPathPedidosClientes + "\\" + "Pedidos_CLI_";
+                }
+                else
+                {
+                    folderPath = this.folderPathPedidosProveedores + "\\" + "Pedidos_PROV_";
+                }
+            }
+            folderPath += DateTime.Now.Year + DateTime.Now.Month.ToString().PadLeft(2, '0') + DateTime.Now.Day.ToString().PadLeft(2, '0'); 
+            string fileName = folderPath + ".pdf";
+            for (int i = 0; System.IO.File.Exists(fileName); i++)
+            {
+                fileName = folderPath + "(" + i.ToString() + ")" + ".pdf";
+            }
+            return fileName;
+        }
         //public void estadoAcrobatPDF(bool estado)
         //{
         //    this.axAcroPDF.Visible = estado;
@@ -294,7 +296,7 @@ namespace Vista
         {
             //this.axAcroPDF.Dispose();
         }
-        #endregion
+        #endregion        
 
         private void frmImpresionComprobante_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -303,8 +305,6 @@ namespace Vista
                 this.CerrarForm(sender, e);
             }
         }
-
-        
     }
     
 }

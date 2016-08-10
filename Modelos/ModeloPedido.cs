@@ -532,7 +532,7 @@ namespace Modelos
 
         public int codigoBarra()
         {
-            
+            return 0;
             string fec_vto = this.VencimientoCAE.ToString("yyyyMMdd", System.Globalization.CultureInfo.GetCultureInfo("en-US"));
 
             string [] codigo_barra = {this.entidad.cuit.ToString() + this.tipoComprobante.ToString() + "0001" + this.CAE + fec_vto};

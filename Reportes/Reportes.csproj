@@ -50,10 +50,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="itextsharp, Version=5.5.9.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\iTextSharp.5.5.9\lib\itextsharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System" />
@@ -103,7 +99,6 @@
     </Compile>
     <EmbeddedResource Include="Pedido.rdlc" />
     <None Include="i2of5txt.ttf" />
-    <None Include="packages.config" />
     <None Include="Properties\DataSources\Modelos.Alicuota.datasource" />
     <None Include="Properties\DataSources\Modelos.Documento.datasource" />
     <None Include="Properties\DataSources\Modelos.FormaPago.datasource" />

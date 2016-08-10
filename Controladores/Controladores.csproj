@@ -55,6 +55,7 @@
     <Compile Include="ControladorBusqueda.cs" />
     <Compile Include="ControladorExcel.cs" />
     <Compile Include="ControladorModificacion.cs" />
+    <Compile Include="ControladorPDF.cs" />
     <Compile Include="ControladorPedido.cs" />
     <Compile Include="ControladorReportes.cs" />
     <Compile Include="ControladorSesion.cs" />
