@@ -521,6 +521,42 @@ namespace Modelos
             return true;
         }
 
+        public int codigoBarra()
+        {
+            
+            string [] codigo_barra = {this.entidad.cuit.ToString() + this.tipoComprobante.ToString() + "CentroEmisor" + this.CAE + "VtoCAE"};
+            String.Concat(codigo_barra);
+
+            int codigo_barra_con_verificador = this.calculaVerificador(codigo_barra);
+            
+
+            return codigo_barra_con_verificador;
+        }
+
+        public int calculaVerificador(string [] codigo_barra)
+        {   int pares=0;
+            int impares=0;
+
+            for (int i = 0; i > 39; i++)
+            {
+                if ((i % 2) == 0)
+                { pares = pares + Convert.ToInt32(codigo_barra[i]); }
+                else
+                { impares = impares + Convert.ToInt32(codigo_barra[i]); }
+            }
+            
+            long total = pares + (impares*3);
+            string verificador = "";
+
+            if ((total % 10) == 0)
+            { verificador = "0"; }
+            else
+            { verificador = (10 - total % 10).ToString(); }
+
+            codigo_barra[39] = verificador;
+                return Convert.ToInt32(codigo_barra);
+        }
+
         #region Equals
         public override bool Equals(object p_objeto)
         {
