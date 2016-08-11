@@ -274,7 +274,9 @@ namespace Vista
                 row.Cells["nombreEntidad"].Value = this.getNombreEntidad(p);
                 row.Cells["montoTotal"].Value = p.montoTotal;
                 row.Cells["cae"].Value = p.CAE;
-                row.Cells["vencimiento_cae"].Value = p.VencimientoCAE;
+                if (p.CAE == null) { row.Cells["vencimiento_cae"].Value = null; }
+                else
+                { row.Cells["vencimiento_cae"].Value = p.VencimientoCAE.ToShortDateString(); }
                 row.Cells["facturadoElectronicamente"].Value = p.aprobadoAFIP == "A"? "Sí" : "No";
             }
             this.dgvResultadoBusqueda.AutoResizeColumns();
