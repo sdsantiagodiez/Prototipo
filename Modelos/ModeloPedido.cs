@@ -532,7 +532,7 @@ namespace Modelos
             return true;
         }
 
-        public int codigoBarra()
+        public long codigoBarra()
         {
             //return 0;
             string fec_vto = this.VencimientoCAE.ToString("yyyyMMdd", System.Globalization.CultureInfo.GetCultureInfo("en-US"));
@@ -540,22 +540,24 @@ namespace Modelos
             string [] codigo_barra = { ModeloPedido.cuitEmisor + this.tipoComprobante.ToString("00") + "0001" + this.CAE + fec_vto};
             String.Concat(codigo_barra);
 
-            int codigo_barra_con_verificador = this.calculaVerificador(codigo_barra);
+            long codigo_barra_con_verificador = this.calculaVerificador(codigo_barra);
             
 
             return codigo_barra_con_verificador;
         }
 
-        public int calculaVerificador(string [] codigo_barra)
+        public long calculaVerificador(string [] codigo_barra)
         {   int pares=0;
             int impares=0;
 
-            for (int i = 0; i > 39; i++)
+            for (int i = 0; i < 39; i++)
             {
                 if ((i % 2) == 0)
-                { pares = pares + Convert.ToInt32(codigo_barra[i]); }
+                {
+                    string pa ="1123";
+                    pares = pares + Convert.ToInt32(codigo_barra[0].Substring(i,1)); }
                 else
-                { impares = impares + Convert.ToInt32(codigo_barra[i]); }
+                { impares = impares + Convert.ToInt32(codigo_barra[0].Substring(i, 1)); }
             }
             
             long total = pares + (impares*3);
@@ -566,8 +568,9 @@ namespace Modelos
             else
             { verificador = (10 - total % 10).ToString(); }
 
-            codigo_barra[39] = verificador;
-                return Convert.ToInt32(codigo_barra);
+            codigo_barra[0] = codigo_barra[0] + verificador;
+            long codigoCompleto = Convert.ToInt64(codigo_barra[0]);
+            return codigoCompleto;
         }
 
         #region Equals

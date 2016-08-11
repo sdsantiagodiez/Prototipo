@@ -26,7 +26,7 @@ namespace Modelos
         public string CAINumero { get; set; }
         public DateTime FechaVencimiento { get; set; }
         public string CondicionVenta { get; set; }
-        public int CodigodeBarras { get; set; }
+        public long CodigodeBarras { get; set; }
 
         public ModeloReporteEncabezadoComprobante(ModeloPedido p_mod_pedido) 
         {
