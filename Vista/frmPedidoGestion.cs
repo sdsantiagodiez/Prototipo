@@ -244,6 +244,8 @@ namespace Vista
             this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
             this.dgvResultadoBusqueda.Columns.Add("cae", "CAE");
             this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
+            this.dgvResultadoBusqueda.Columns.Add("vencimiento_cae", "VencimientoCAE");
+            this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
             this.dgvResultadoBusqueda.Columns.Add("facturadoElectronicamente", "Facturado AFIP");
             this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
         }
@@ -272,6 +274,7 @@ namespace Vista
                 row.Cells["nombreEntidad"].Value = this.getNombreEntidad(p);
                 row.Cells["montoTotal"].Value = p.montoTotal;
                 row.Cells["cae"].Value = p.CAE;
+                row.Cells["vencimiento_cae"].Value = p.VencimientoCAE;
                 row.Cells["facturadoElectronicamente"].Value = p.aprobadoAFIP == "A"? "Sí" : "No";
             }
             this.dgvResultadoBusqueda.AutoResizeColumns();
