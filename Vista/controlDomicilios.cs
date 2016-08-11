@@ -44,7 +44,7 @@ namespace Vista
         {
             this.btnAgregarDomicilio.Click += (s, e) =>
             {
-                this.agregarDomicilioEntidad();
+                this.agregarDomicilioEntidad(s,e);
             };
 
             this.btnQuitarDomicilio.Click += (s, e) =>
@@ -128,9 +128,9 @@ namespace Vista
             }
             return false;
         }
-        private void agregarDomicilioEntidad()
+        private void agregarDomicilioEntidad(object sender, EventArgs e)
         {
-            ModeloDomicilio lcl_mod_domicilioActual = this.cDomicilio.GetDomicilio();
+            ModeloDomicilio lcl_mod_domicilioActual = this.cDomicilio.GetDomicilio(sender,e);
             if (lcl_mod_domicilioActual == null)
             {
                 //domicilio no válido. Se mostrarían los errorProviders

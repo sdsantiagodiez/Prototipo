@@ -187,7 +187,7 @@ namespace LibreriaClasesCompartidas
                     break;
                 case Constantes.ParametrosBusqueda.Entidades.Personas.Dni:
                     // Admite exactamente 8 dígitos
-                    lcl_patron = new Regex(@"^\d{2}\.\d{3}\.\d{3}$");
+                    lcl_patron = new Regex(@"^\d{1,2}\.\d{3}\.\d{3}$");
                     break;
                 case Constantes.ParametrosBusqueda.Pedidos.Fecha:
                     especial = Constantes.ParametrosBusqueda.Pedidos.Fecha;
@@ -197,8 +197,8 @@ namespace LibreriaClasesCompartidas
                     lcl_patron = new Regex(@"^\d{1,2}$");
                     break;
                 case Constantes.ParametrosBusqueda.Domicilios.Departamento:
-                    // Admite alfanuméricos minimo 1, máximo 3
-                    lcl_patron = new Regex(@"^\w{1,3}$");
+                    // Admite 0 a 1 letras, seguida de 1 a 2 números
+                    lcl_patron = new Regex(@"^[a-zA-Z]?\d{1,2}$");
                     break;
                 case Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono:
                     // Admite el siguiente patron: "+" opcional  + 10 a 13 dígitos

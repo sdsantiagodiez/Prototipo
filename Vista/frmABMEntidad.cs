@@ -899,14 +899,6 @@ namespace Vista
             bool lcl_respuesta = new bool();
             switch(sector)
             {
-                case Constantes.ParametrosBusqueda.Domicilios.CodigoDomicilio:
-                    //txtBoxCalle_Leave(sender, e);
-                    //txtBoxNumeroDomicilio_Leave(sender, e);
-                    //txtBoxCiudad_Leave(sender, e);
-                    lcl_respuesta = (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)]
-                        & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)]
-                        & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)]);
-                    break;
                 case Constantes.ParametrosBusqueda.Mails.CodigoMail:
                     txtBoxMail_Leave(sender, e);
                     lcl_respuesta = glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Mails.Mail)];
@@ -1374,17 +1366,39 @@ namespace Vista
 
         private void txtBoxRazonSocial_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = respuesta;
-            if (!respuesta)
+            if (!string.IsNullOrEmpty(txtBoxRazonSocial.Text))
             {
-                epRazonSocial.Icon = Properties.Resources.error;
-                epRazonSocial.SetError(txtBoxRazonSocial, "Razón Social no válida");
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = respuesta;
+                if (!respuesta)
+                {
+                    epRazonSocial.Icon = Properties.Resources.error;
+                    epRazonSocial.SetError(txtBoxRazonSocial, "Razón Social no válida");
+                }
+                else
+                {
+                    epRazonSocial.Icon = Properties.Resources.success;
+                    epRazonSocial.SetError(txtBoxRazonSocial, "OK");
+                }
             }
-            else
+        }
+
+        private void txtBoxRazonSocial_Leave(object sender, EventArgs e, ModeloEntidad p_mod_entidad)
+        {
+            if(p_mod_entidad.GetType() == typeof(ModeloProveedor))
             {
-                epRazonSocial.Icon = Properties.Resources.success;
-                epRazonSocial.SetError(txtBoxRazonSocial, "OK");
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = respuesta;
+                if (!respuesta)
+                {
+                    epRazonSocial.Icon = Properties.Resources.error;
+                    epRazonSocial.SetError(txtBoxRazonSocial, "Razón Social no válida");
+                }
+                else
+                {
+                    epRazonSocial.Icon = Properties.Resources.success;
+                    epRazonSocial.SetError(txtBoxRazonSocial, "OK");
+                }
             }
         }
 

@@ -14,10 +14,13 @@ namespace Vista
 {
     public partial class ControlDomicilio : UserControl
     {
+        List<bool> glb_lst_respuestasValidaciones;
+
         public ControlDomicilio()
         {
             InitializeComponent();
             this.inicializarControles();
+            this.inicializarValidaciones();
         }
 
         private void inicializarControles()
@@ -48,13 +51,21 @@ namespace Vista
 
             frmMaterialSkinBase.inicializarCmbBox(this.cmbBoxProvincia);
         }
+        private void inicializarValidaciones()
+        {
+            glb_lst_respuestasValidaciones = new List<bool>();
+            for (int i = 0; i < 6; i++)
+            {
+                glb_lst_respuestasValidaciones.Add(false);
+            }
+        }
         /// <summary>
         /// Toma los datos de textBoxes y comboBoxes antes de agregar a DataGridView
         /// </summary>
         /// <returns></returns>
-        public ModeloDomicilio GetDomicilio()
+        public ModeloDomicilio GetDomicilio(object sender, EventArgs e)
         {
-            if (!this.validarDomicilio())
+            if (!this.validarDomicilio(sender,e))
             {
                 return null;
                 
@@ -97,20 +108,7 @@ namespace Vista
             this.cmbBoxProvincia.SelectedValue = p_mod_domicilio.provincia;
             return true;
         }
-        private bool validarDomicilio()
-        {
-            if (this.cmbBoxPais.SelectedValue == null || this.cmbBoxProvincia.SelectedValue == null)
-            {
-                return false;
-            }
-
-            if (!Validar.validarInputNoNumerico(this.txtBoxCalle.Text, Constantes.ParametrosBusqueda.Domicilios.Calle))
-            {
-                return false;
-            }
-
-            return true;
-        }
+        
         private void actualizarCmbBoxProvincias()
         {
             ModeloPais lcl_mod_paisActual = this.cmbBoxPais.SelectedValue as ModeloPais;
@@ -151,103 +149,171 @@ namespace Vista
         #endregion
 
         #region Leave
-        //private void txtBoxCalle_Leave(object sender, EventArgs e)
-        //{
-        //    bool respuesta = Validar.validarInputNoNumerico(txtBoxCalle.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Calle);
-        //    glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)] = respuesta;
-        //    if (!respuesta)
-        //    {
-        //        epCalle.Icon = Properties.Resources.error;
-        //        epCalle.SetError(txtBoxCalle, "Calle no válida");
-        //    }
-        //    else
-        //    {
-        //        epCalle.Icon = Properties.Resources.success;
-        //        epCalle.SetError(txtBoxCalle, "OK");
-        //    }
-        //}
+        private void txtBoxCalle_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCalle.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Calle);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)] = respuesta;
+            if (!respuesta)
+            {
+                epCalle.Icon = Properties.Resources.error;
+                epCalle.SetError(txtBoxCalle, "Calle no válida");
+            }
+            else
+            {
+                epCalle.Icon = Properties.Resources.success;
+                epCalle.SetError(txtBoxCalle, "OK");
+            }
+        }
 
-        //private void txtBoxNumeroDomicilio_Leave(object sender, EventArgs e)
-        //{
-        //    bool respuesta = Validar.validarInputNoNumerico(txtBoxNumeroDomicilio.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio);
-        //    glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)] = respuesta;
-        //    if (!respuesta)
-        //    {
-        //        epNumeroDomicilio.Icon = Properties.Resources.error;
-        //        epNumeroDomicilio.SetError(txtBoxNumeroDomicilio, "Número de Domicilio no válido");
-        //    }
-        //    else
-        //    {
-        //        epNumeroDomicilio.Icon = Properties.Resources.success;
-        //        epNumeroDomicilio.SetError(txtBoxNumeroDomicilio, "OK");
-        //    }
-        //}
+        private void txtBoxNumeroDomicilio_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNumerico(txtBoxNumeroDomicilio.Text.ToString(), Constantes.Numericos.EnteroPositivoSinCero);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)] = respuesta;
+            if (!respuesta)
+            {
+                epNumeroDomicilio.Icon = Properties.Resources.error;
+                epNumeroDomicilio.SetError(txtBoxNumeroDomicilio, "Número de Domicilio no válido");
+            }
+            else
+            {
+                epNumeroDomicilio.Icon = Properties.Resources.success;
+                epNumeroDomicilio.SetError(txtBoxNumeroDomicilio, "OK");
+            }
+        }
 
-        //private void txtBoxPiso_Leave(object sender, EventArgs e)
-        //{
-        //    bool respuesta = Validar.validarInputNoNumerico(txtBoxPiso.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Piso);
-        //    glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Piso)] = respuesta;
-        //    if (!respuesta)
-        //    {
-        //        epPiso.Icon = Properties.Resources.error;
-        //        epPiso.SetError(txtBoxPiso, "Piso no válido");
-        //    }
-        //    else
-        //    {
-        //        epPiso.Icon = Properties.Resources.success;
-        //        epPiso.SetError(txtBoxPiso, "OK");
-        //    }
-        //}
+        private void txtBoxPiso_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtBoxPiso.Text))
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxPiso.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Piso);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Piso)] = respuesta;
+                if (!respuesta)
+                {
+                    epPiso.Icon = Properties.Resources.error;
+                    epPiso.SetError(txtBoxPiso, "Piso no válido");
+                }
+                else
+                {
+                    epPiso.Icon = Properties.Resources.success;
+                    epPiso.SetError(txtBoxPiso, "OK");
+                }
+            }
+        }
 
-        //private void txtBoxDepartamento_Leave(object sender, EventArgs e)
-        //{
-        //    bool respuesta = Validar.validarInputNoNumerico(txtBoxDepartamento.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Departamento);
-        //    glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Departamento)] = respuesta;
-        //    if (!respuesta)
-        //    {
-        //        epDepartamento.Icon = Properties.Resources.error;
-        //        epDepartamento.SetError(txtBoxDepartamento, "Departamento no válido");
-        //    }
-        //    else
-        //    {
-        //        epDepartamento.Icon = Properties.Resources.success;
-        //        epDepartamento.SetError(txtBoxDepartamento, "OK");
-        //    }
-        //}
+        private void txtBoxDepartamento_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtBoxDepartamento.Text))
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxDepartamento.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Departamento);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Departamento)] = respuesta;
+                if (!respuesta)
+                {
+                    epDepartamento.Icon = Properties.Resources.error;
+                    epDepartamento.SetError(txtBoxDepartamento, "Departamento no válido");
+                }
+                else
+                {
+                    epDepartamento.Icon = Properties.Resources.success;
+                    epDepartamento.SetError(txtBoxDepartamento, "OK");
+                }
+            }
+        }
 
-        //private void txtBoxCodigoPostal_Leave(object sender, EventArgs e)
-        //{
-        //    bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoPostal.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.CodigoPostal);
-        //    glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.CodigoPostal)] = respuesta;
-        //    if (!respuesta)
-        //    {
-        //        epCodigoPostal.Icon = Properties.Resources.error;
-        //        epCodigoPostal.SetError(txtBoxCodigoPostal, "Código Postal no válido");
-        //    }
-        //    else
-        //    {
-        //        epCodigoPostal.Icon = Properties.Resources.success;
-        //        epCodigoPostal.SetError(txtBoxCodigoPostal, "OK");
-        //    }
-        //}
+        private void txtBoxCodigoPostal_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtBoxCodigoPostal.Text))
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoPostal.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.CodigoPostal);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.CodigoPostal)] = respuesta;
+                if (!respuesta)
+                {
+                    epCodigoPostal.Icon = Properties.Resources.error;
+                    epCodigoPostal.SetError(txtBoxCodigoPostal, "Código Postal no válido");
+                }
+                else
+                {
+                    epCodigoPostal.Icon = Properties.Resources.success;
+                    epCodigoPostal.SetError(txtBoxCodigoPostal, "OK");
+                }
+            }
+        }
 
-        //private void txtBoxCiudad_Leave(object sender, EventArgs e)
-        //{
-        //    bool respuesta = Validar.validarInputNoNumerico(txtBoxCiudad.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Ciudad);
-        //    glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)] = respuesta;
-        //    if (!respuesta)
-        //    {
-        //        epCiudad.Icon = Properties.Resources.error;
-        //        epCiudad.SetError(txtBoxCiudad, "Ciudad no válida");
-        //    }
-        //    else
-        //    {
-        //        epCiudad.Icon = Properties.Resources.success;
-        //        epCiudad.SetError(txtBoxCiudad, "OK");
-        //    }
-        //}
+        private void txtBoxCiudad_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCiudad.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Ciudad);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)] = respuesta;
+            if (!respuesta)
+            {
+                epCiudad.Icon = Properties.Resources.error;
+                epCiudad.SetError(txtBoxCiudad, "Ciudad no válida");
+            }
+            else
+            {
+                epCiudad.Icon = Properties.Resources.success;
+                epCiudad.SetError(txtBoxCiudad, "OK");
+            }
+        }
         #endregion
 
         #endregion
+
+        #region Validaciones
+         private int getIndex(string p_inputName)
+        {
+            int index;
+            switch (p_inputName)
+            {
+                case Constantes.ParametrosBusqueda.Domicilios.Calle:
+                    index = 0;
+                    break;
+                case Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio:
+                    index = 1;
+                    break;
+                case Constantes.ParametrosBusqueda.Domicilios.Piso:
+                    index = 2;
+                    break;
+                case Constantes.ParametrosBusqueda.Domicilios.Departamento:
+                    index = 3;
+                    break;
+                case Constantes.ParametrosBusqueda.Domicilios.CodigoPostal:
+                    index = 4;
+                    break;
+                case Constantes.ParametrosBusqueda.Domicilios.Ciudad:
+                    index = 5;
+                    break;
+                default:
+                    index = 0;
+                    break;
+            }
+            return index;
+        }
+         private bool validarDomicilio(object sender, EventArgs e)
+         {
+             if (this.cmbBoxPais.SelectedValue == null || this.cmbBoxProvincia.SelectedValue == null)
+             {
+                 MessageBox.Show("Debe Seleccionar un País y una Provincia");
+                 return false;
+             }
+
+             if (!this.validarInputs(sender,e))
+             {
+                 MessageBox.Show("Por favor asegúrese de que los campos obligatorios hayan sido completados correctamente");
+                 return false;
+             }
+
+             return true;
+         }
+
+         private bool validarInputs(object sender, EventArgs e)
+         {
+            txtBoxCalle_Leave(sender, e);
+            txtBoxNumeroDomicilio_Leave(sender, e);
+            txtBoxCiudad_Leave(sender, e);
+            return (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)]
+                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)]
+                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)]);
+         }
+        #endregion
+
     }
 }

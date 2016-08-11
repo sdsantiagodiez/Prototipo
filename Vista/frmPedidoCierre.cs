@@ -720,7 +720,7 @@ namespace Vista
             }
 
             lcl_mod_pedido.tipoComprobante = this.getCodigoTipoComprobante();
-            lcl_mod_pedido.domicilioDeFacturacion = this.cargarControlEnDomicilio();
+            lcl_mod_pedido.domicilioDeFacturacion = this.cargarControlEnDomicilio(sender,e);
             lcl_mod_pedido.mailContacto = this.cargarControlEnMail();
             lcl_mod_pedido.telefonoContacto = this.cargarControlEnTelefono();
             lcl_mod_pedido.observaciones = this.rchTextBoxObservacionesPedido.Text;
@@ -751,9 +751,9 @@ namespace Vista
         {
             return (ModeloContactoProveedor)this.cmbBoxContactoProveedor.SelectedValue;
         }
-        private ModeloDomicilio cargarControlEnDomicilio()
+        private ModeloDomicilio cargarControlEnDomicilio(object sender, EventArgs e)
         {
-            return this.glb_con_domicilio.GetDomicilio();
+            return this.glb_con_domicilio.GetDomicilio(sender,e);
         }
         private ModeloTelefono cargarControlEnTelefono()
         {

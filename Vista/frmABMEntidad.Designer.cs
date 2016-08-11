@@ -37,6 +37,7 @@
             this.radioButtonContactoProveedor = new MaterialSkin.Controls.MaterialRadioButton();
             this.radioButtonUsuario = new MaterialSkin.Controls.MaterialRadioButton();
             this.grpBoxObservaciones = new System.Windows.Forms.GroupBox();
+            this.pnlObservaciones = new System.Windows.Forms.Panel();
             this.rchTextBoxObservaciones = new System.Windows.Forms.RichTextBox();
             this.grpBoxDatosPersonales = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelDatosPersonales = new System.Windows.Forms.TableLayoutPanel();
@@ -87,20 +88,14 @@
             this.epNombre = new System.Windows.Forms.ErrorProvider(this.components);
             this.epApellido = new System.Windows.Forms.ErrorProvider(this.components);
             this.epRazonSocial = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epCalle = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epNumeroDomicilio = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epPiso = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epDepartamento = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epCodigoPostal = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epCiudad = new System.Windows.Forms.ErrorProvider(this.components);
             this.epMail = new System.Windows.Forms.ErrorProvider(this.components);
             this.epNumeroTelefono = new System.Windows.Forms.ErrorProvider(this.components);
-            this.pnlObservaciones = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.grpBoxTipoEntidad.SuspendLayout();
             this.tblLayoutPanelTipoEntidad.SuspendLayout();
             this.grpBoxObservaciones.SuspendLayout();
+            this.pnlObservaciones.SuspendLayout();
             this.grpBoxDatosPersonales.SuspendLayout();
             this.tblLayoutPanelDatosPersonales.SuspendLayout();
             this.tblLayoutPanelDatosEntidad.SuspendLayout();
@@ -121,15 +116,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.epNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epApellido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epRazonSocial)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCalle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epNumeroDomicilio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epPiso)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epDepartamento)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCodigoPostal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCiudad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epMail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epNumeroTelefono)).BeginInit();
-            this.pnlObservaciones.SuspendLayout();
             this.SuspendLayout();
             // 
             // tblLayoutPanelPrincipal
@@ -274,6 +262,17 @@
             this.grpBoxObservaciones.TabIndex = 6;
             this.grpBoxObservaciones.TabStop = false;
             this.grpBoxObservaciones.Text = "Observaciones";
+            // 
+            // pnlObservaciones
+            // 
+            this.pnlObservaciones.Controls.Add(this.rchTextBoxObservaciones);
+            this.pnlObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlObservaciones.Location = new System.Drawing.Point(3, 20);
+            this.pnlObservaciones.Margin = new System.Windows.Forms.Padding(20);
+            this.pnlObservaciones.Name = "pnlObservaciones";
+            this.pnlObservaciones.Padding = new System.Windows.Forms.Padding(10);
+            this.pnlObservaciones.Size = new System.Drawing.Size(727, 53);
+            this.pnlObservaciones.TabIndex = 26;
             // 
             // rchTextBoxObservaciones
             // 
@@ -920,30 +919,6 @@
             // 
             this.epRazonSocial.ContainerControl = this;
             // 
-            // epCalle
-            // 
-            this.epCalle.ContainerControl = this;
-            // 
-            // epNumeroDomicilio
-            // 
-            this.epNumeroDomicilio.ContainerControl = this;
-            // 
-            // epPiso
-            // 
-            this.epPiso.ContainerControl = this;
-            // 
-            // epDepartamento
-            // 
-            this.epDepartamento.ContainerControl = this;
-            // 
-            // epCodigoPostal
-            // 
-            this.epCodigoPostal.ContainerControl = this;
-            // 
-            // epCiudad
-            // 
-            this.epCiudad.ContainerControl = this;
-            // 
             // epMail
             // 
             this.epMail.ContainerControl = this;
@@ -952,23 +927,12 @@
             // 
             this.epNumeroTelefono.ContainerControl = this;
             // 
-            // pnlObservaciones
-            // 
-            this.pnlObservaciones.Controls.Add(this.rchTextBoxObservaciones);
-            this.pnlObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlObservaciones.Location = new System.Drawing.Point(3, 20);
-            this.pnlObservaciones.Margin = new System.Windows.Forms.Padding(20);
-            this.pnlObservaciones.Name = "pnlObservaciones";
-            this.pnlObservaciones.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlObservaciones.Size = new System.Drawing.Size(727, 53);
-            this.pnlObservaciones.TabIndex = 26;
-            // 
             // frmABMEntidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(972, 873);
+            this.ClientSize = new System.Drawing.Size(972, 780);
             this.Controls.Add(this.pnlBase);
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmABMEntidad";
@@ -981,6 +945,7 @@
             this.tblLayoutPanelTipoEntidad.ResumeLayout(false);
             this.tblLayoutPanelTipoEntidad.PerformLayout();
             this.grpBoxObservaciones.ResumeLayout(false);
+            this.pnlObservaciones.ResumeLayout(false);
             this.grpBoxDatosPersonales.ResumeLayout(false);
             this.tblLayoutPanelDatosPersonales.ResumeLayout(false);
             this.tblLayoutPanelDatosEntidad.ResumeLayout(false);
@@ -1006,15 +971,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.epNombre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epApellido)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epRazonSocial)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCalle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epNumeroDomicilio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epPiso)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epDepartamento)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCodigoPostal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCiudad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epMail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epNumeroTelefono)).EndInit();
-            this.pnlObservaciones.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1080,12 +1038,6 @@
         private System.Windows.Forms.ErrorProvider epNombre;
         private System.Windows.Forms.ErrorProvider epApellido;
         private System.Windows.Forms.ErrorProvider epRazonSocial;
-        private System.Windows.Forms.ErrorProvider epCalle;
-        private System.Windows.Forms.ErrorProvider epNumeroDomicilio;
-        private System.Windows.Forms.ErrorProvider epPiso;
-        private System.Windows.Forms.ErrorProvider epDepartamento;
-        private System.Windows.Forms.ErrorProvider epCodigoPostal;
-        private System.Windows.Forms.ErrorProvider epCiudad;
         private System.Windows.Forms.ErrorProvider epMail;
         private System.Windows.Forms.ErrorProvider epNumeroTelefono;
         private System.Windows.Forms.Panel pnlObservaciones;
