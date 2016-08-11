@@ -532,30 +532,31 @@ namespace Modelos
             return true;
         }
 
-        public int codigoBarra()
+        public string getCodigoBarraCAE()
         {
-            //return 0;
-            string fec_vto = this.VencimientoCAE.ToString("yyyyMMdd", System.Globalization.CultureInfo.GetCultureInfo("en-US"));
+            if (this.CAE == null)
+                return "0";//o retornar null. ver como afecta el modelo que lo recibe
 
-            string [] codigo_barra = { ModeloPedido.cuitEmisor + this.tipoComprobante.ToString("00") + "0001" + this.CAE + fec_vto};
-            String.Concat(codigo_barra);
+            string fechaVencimientoCAE = this.VencimientoCAE.ToString("yyyyMMdd", System.Globalization.CultureInfo.GetCultureInfo("en-US"));
 
-            int codigo_barra_con_verificador = this.calculaVerificador(codigo_barra);
-            
+            string codigoBarraCAE = ModeloPedido.cuitEmisor + this.tipoComprobante.ToString().PadRight(2,'0') + "0001" + this.CAE + fechaVencimientoCAE;
 
-            return codigo_barra_con_verificador;
+            codigoBarraCAE += this.getVerificadorCodigoBarraCAE(codigoBarraCAE.ToCharArray());
+
+            return codigoBarraCAE;
         }
 
-        public int calculaVerificador(string [] codigo_barra)
-        {   int pares=0;
+        public char getVerificadorCodigoBarraCAE(char [] p_codigoDeBarra)
+        {   
+            int pares=0;
             int impares=0;
 
-            for (int i = 0; i > 39; i++)
+            for (int i = 0; i < p_codigoDeBarra.Length; i++)
             {
                 if ((i % 2) == 0)
-                { pares = pares + Convert.ToInt32(codigo_barra[i]); }
+                { pares += Convert.ToInt32(p_codigoDeBarra[i]); }
                 else
-                { impares = impares + Convert.ToInt32(codigo_barra[i]); }
+                { impares += Convert.ToInt32(p_codigoDeBarra[i]); }
             }
             
             long total = pares + (impares*3);
@@ -566,8 +567,7 @@ namespace Modelos
             else
             { verificador = (10 - total % 10).ToString(); }
 
-            codigo_barra[39] = verificador;
-                return Convert.ToInt32(codigo_barra);
+            return Convert.ToChar(verificador);
         }
 
         #region Equals
