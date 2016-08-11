@@ -1068,7 +1068,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>30-50331781-4</Value>
+                  <Value>=First(Fields!CuitEmisor.Value, "DSFactura")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -1831,7 +1831,7 @@
         </Field>
         <Field Name="CodigodeBarras">
           <DataField>CodigodeBarras</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Comprador_Cuit">
           <DataField>Comprador_Cuit</DataField>
@@ -1855,6 +1855,10 @@
         </Field>
         <Field Name="CondicionVenta">
           <DataField>CondicionVenta</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CuitEmisor">
+          <DataField>CuitEmisor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="FechaComprobante">

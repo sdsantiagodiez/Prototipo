@@ -27,6 +27,7 @@ namespace Modelos
         public DateTime FechaVencimiento { get; set; }
         public string CondicionVenta { get; set; }
         public string CodigodeBarras { get; set; }
+        public string CuitEmisor { get; set; }
 
         public ModeloReporteEncabezadoComprobante(ModeloPedido p_mod_pedido) 
         {
@@ -37,6 +38,7 @@ namespace Modelos
             this.CAINumero = p_mod_pedido.CAE;
             this.CodigodeBarras = p_mod_pedido.getCodigoBarraCAE();
             this.Alicuota = Convert.ToDecimal(p_mod_pedido.alicuota.iva.porcentaje);
+            this.CuitEmisor = ModeloPedido.cuitEmisor;
             this.CentroEmisor = "0001";//p_mod_pedido.numeroComprobante;
             this.NumeroComprobante = p_mod_pedido.numeroComprobante;
             this.Comprador_Cuit = p_mod_pedido.entidad.cuit;
