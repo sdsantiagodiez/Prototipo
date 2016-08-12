@@ -450,7 +450,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <RepeatColumnHeaders>true</RepeatColumnHeaders>
-        <DataSetName>DSInformeTop10Articulos</DataSetName>
+        <DataSetName>dsDetalleReporte</DataSetName>
         <Top>0.8448cm</Top>
         <Left>0.53166cm</Left>
         <Height>1.2cm</Height>
@@ -617,7 +617,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!FechaDesde.Value, "DSInformeEncabezado")</Value>
+                  <Value>=First(Fields!FechaDesde.Value, "dsEncabezadoReporte")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -676,7 +676,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Informe TOP 10 Artículos</Value>
+                  <Value>Informe Artículos Más Vendidos</Value>
                   <Style>
                     <FontFamily>Arial Black</FontFamily>
                     <FontSize>11pt</FontSize>
@@ -690,9 +690,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>1.27678cm</Top>
-          <Left>8.32586cm</Left>
-          <Height>0.6cm</Height>
-          <Width>5.90587cm</Width>
+          <Left>8.74919cm</Left>
+          <Height>1.34083cm</Height>
+          <Width>4.75872cm</Width>
           <ZIndex>7</ZIndex>
           <Style>
             <Border>
@@ -807,7 +807,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!FechaHasta.Value, "DSInformeEncabezado")</Value>
+                  <Value>=First(Fields!FechaHasta.Value, "dsEncabezadoReporte")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -853,7 +853,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!MontoTotal.Value, "DSInformeEncabezado")</Value>
+                  <Value>=First(Fields!MontoTotal.Value, "dsEncabezadoReporte")</Value>
                   <Style>
                     <FontSize>12pt</FontSize>
                     <Format>'$'0.00;('$'0.00)</Format>
@@ -942,7 +942,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DSInformeTop10Articulos">
+    <DataSet Name="dsDetalleReporte">
       <Query>
         <DataSourceName>Modelos</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -976,7 +976,7 @@
         <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezado, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="DSInformeEncabezado">
+    <DataSet Name="dsEncabezadoReporte">
       <Query>
         <DataSourceName>Modelos</DataSourceName>
         <CommandText>/* Local Query */</CommandText>

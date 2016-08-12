@@ -349,59 +349,36 @@ namespace Datos
         #endregion
 
         #region Reportes
-        public ModeloReporteEncabezado getPedidosEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin, int p_CodigoProveedor)
+        private ModeloReporteEncabezado getDatosReporte(SqlCommand comando, List<DateTime> p_periodos, ModeloEntidad p_entidad)
         {
-          
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                "SELECT Entidades.codigo AS codigo_proveedor, Proveedores.razon_social as razon_social," +
-                "COUNT(pedidos.numero_pedido) as cantidad_pedidos,SUM(cantidad) as cantidad_articulos," +
-                "SUM(Lineas_Pedidos.valor_parcial) as monto_total FROM Pedidos" +
-                "INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido" +
-                "INNER JOIN Pedidos_Proveedores ON Pedidos_Proveedores.numero_pedido= Pedidos.numero_pedido" +
-                "INNER JOIN Entidades ON Entidades.codigo= Pedidos_Proveedores.codigo_entidad" +
-                "INNER JOIN Proveedores ON Proveedores.codigo_entidad= Entidades.codigo" +
-                "WHERE Pedidos.fecha>= @fecha_desde AND Pedidos.fecha<=@fecha_hasta AND Entidades.codigo=@codigo_proveedor " +
-                "GROUP BY Entidades.codigo, Proveedores.razon_social";
-
-            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Date));
-            comando.Parameters["@fecha_desde"].Value = p_FechaInicio;
-            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Date));
-            comando.Parameters["@fecha_hasta"].Value = P_FechaFin;
-            comando.Parameters.Add(new SqlParameter("@codigo_proveedor", SqlDbType.Int));
-            comando.Parameters["@codigo_proveedor"].Value = p_CodigoProveedor;
-
+            comando.Parameters.Add(this.instanciarParametro(p_periodos[0], "@fecha_desde"));
+            comando.Parameters.Add(this.instanciarParametro(p_periodos[1], "@fecha_hasta"));
+            comando.Parameters.Add(this.instanciarParametro(p_entidad.codigo, "@codigo_entidad"));
             comando.Connection.Open();
-
             SqlDataReader drPedidosEntreFechas = comando.ExecuteReader();
 
-            ModeloReporteEncabezado lcl_mod_ReporteEncabezado = new ModeloReporteEncabezado();
-            int i =0;
-            lcl_mod_ReporteEncabezado.FechaDesde = p_FechaInicio;
-            lcl_mod_ReporteEncabezado.FechaHasta = P_FechaFin;
-            lcl_mod_ReporteEncabezado.PersonaDesde = p_CodigoProveedor.ToString();
-            lcl_mod_ReporteEncabezado.PersonaHasta = p_CodigoProveedor.ToString();
-            lcl_mod_ReporteEncabezado.FechaInforme = DateTime.Today;
-            
-                
+            ModeloReporteEncabezado lcl_mod_ReporteEncabezado = new ModeloReporteEncabezado()
+            {
+                FechaDesde = p_periodos[0],
+                FechaHasta = p_periodos[1],
+                PersonaDesde = p_entidad.codigo.ToString(),
+                PersonaHasta = p_entidad.codigo.ToString(),
+                FechaInforme = DateTime.Today
+            };
+
+            ModeloReporteDetalle_Pedidos lcl_mod_detalle = new ModeloReporteDetalle_Pedidos();
             while (drPedidosEntreFechas.Read())
             {
-                lcl_mod_ReporteEncabezado.detallePedido[i].codProveedor = (string)drPedidosEntreFechas["codigo_proveedor"];
-                lcl_mod_ReporteEncabezado.detallePedido[i].razonSocial = (string)drPedidosEntreFechas["razon_social"];
-                lcl_mod_ReporteEncabezado.detallePedido[i].CantidadArticulos = (int)drPedidosEntreFechas["cantidad_articulos"];
-                lcl_mod_ReporteEncabezado.detallePedido[i].CantidadPedidos = (int)drPedidosEntreFechas["cantidad_pedidos"];
-                lcl_mod_ReporteEncabezado.detallePedido[i].MontoTotal = (decimal)drPedidosEntreFechas["monto_total"];
-                lcl_mod_ReporteEncabezado.MontoTotal = lcl_mod_ReporteEncabezado.MontoTotal + lcl_mod_ReporteEncabezado.detallePedido[i].MontoTotal;
-                i++;
+                lcl_mod_detalle = new ModeloReporteDetalle_Pedidos();
+
+                lcl_mod_detalle.codigoEntidad = (int)drPedidosEntreFechas["codigo_entidad"];
+                lcl_mod_detalle.descripcionEntidad = (string)drPedidosEntreFechas["descripcion_entidad"];
+                lcl_mod_detalle.cantidadArticulos = (int)drPedidosEntreFechas["cantidad_articulos"];
+                lcl_mod_detalle.cantidadPedidos = (int)drPedidosEntreFechas["cantidad_pedidos"];
+                lcl_mod_detalle.montoTotal = (decimal)drPedidosEntreFechas["monto_total"];
+
+                lcl_mod_ReporteEncabezado.detallePedido.Add(lcl_mod_detalle);
+                lcl_mod_ReporteEncabezado.MontoTotal += lcl_mod_detalle.montoTotal;
             }
             drPedidosEntreFechas.Close();
 
@@ -409,246 +386,192 @@ namespace Datos
 
             return lcl_mod_ReporteEncabezado;
         }
-
-        public ModeloReporteEncabezado getPedidosEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin)
+        private string getQueryReportePedidos(Constantes.Reportes.Clientes p_reporte, ModeloEntidad p_entidad, int p_cantidad)
         {
-            
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                "SELECT Entidades.codigo AS codigo_proveedor, Proveedores.razon_social as razon_social, "+
-                "COUNT(pedidos.numero_pedido) as cantidad_pedidos,SUM(cantidad) as cantidad_articulos, "+
-                "SUM(Lineas_Pedidos.valor_parcial) as monto_total FROM Pedidos "+
-                "INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido "+
-                "INNER JOIN Pedidos_Proveedores ON Pedidos_Proveedores.numero_pedido= Pedidos.numero_pedido "+
-                "INNER JOIN Entidades ON Entidades.codigo= Pedidos_Proveedores.codigo_entidad "+
-                "INNER JOIN Proveedores ON Proveedores.codigo_entidad= Entidades.codigo "+
-                "WHERE Pedidos.fecha>= @fecha_desde AND Pedidos.fecha<=@fecha_hasta " +
-                "GROUP BY Entidades.codigo, Proveedores.razon_social";
-
-            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Date));
-            comando.Parameters["@fecha_desde"].Value = p_FechaInicio;
-            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Date));
-            comando.Parameters["@fecha_hasta"].Value = P_FechaFin;
-           
-            comando.Connection.Open();
-
-            SqlDataReader drPedidosEntreFechas = comando.ExecuteReader();
-
-            ModeloReporteEncabezado lcl_mod_ReporteEncabezado = new ModeloReporteEncabezado();
-            lcl_mod_ReporteEncabezado.detallePedido = new List<ModeloReportePedidoEntreFechas>();
-            
-            lcl_mod_ReporteEncabezado.FechaDesde = p_FechaInicio;
-            lcl_mod_ReporteEncabezado.FechaHasta = P_FechaFin;
-            lcl_mod_ReporteEncabezado.PersonaDesde = "000000000";
-            lcl_mod_ReporteEncabezado.PersonaHasta = "999999999";
-            lcl_mod_ReporteEncabezado.FechaInforme = DateTime.Today;
-
-            ModeloReportePedidoEntreFechas lcl_mod_det;
-            while (drPedidosEntreFechas.Read())
+            string entidadQuery = "";
+            string topCantidadQuery = "";
+            if (p_entidad != null && p_entidad.codigo != 0)
             {
-                lcl_mod_det = new ModeloReportePedidoEntreFechas();
-
-                lcl_mod_det.codProveedor = Convert.ToString((int)drPedidosEntreFechas["codigo_proveedor"]);
-                lcl_mod_det.razonSocial = (string)drPedidosEntreFechas["razon_social"];
-                lcl_mod_det.CantidadArticulos = (int)drPedidosEntreFechas["cantidad_articulos"];
-                lcl_mod_det.CantidadPedidos = (int)drPedidosEntreFechas["cantidad_pedidos"];
-                lcl_mod_det.MontoTotal = (decimal)drPedidosEntreFechas["monto_total"];
-                lcl_mod_ReporteEncabezado.MontoTotal = lcl_mod_ReporteEncabezado.MontoTotal + lcl_mod_det.MontoTotal;
-
-                lcl_mod_ReporteEncabezado.detallePedido.Add(lcl_mod_det);
-
+                entidadQuery = " AND Entidades.codigo=@codigo_entidad ";
             }
-            drPedidosEntreFechas.Close();
+            else
+            {
+                if (p_cantidad > 0)
+                {
+                    topCantidadQuery = " TOP " + p_cantidad.ToString() + " ";
+                }
+            }
+            string query =
+                "SELECT " + topCantidadQuery +
+                "   Entidades.codigo AS codigo_entidad, " +
+                "   CASE WHEN Personas.razon_social is null THEN CONCAT(Personas.apellido, ', ', Personas.nombre) ELSE Personas.razon_social END as descripcion_entidad," +//ponemos la razon social del cliente, si existe
+                "   COUNT(pedidos.numero_pedido) as cantidad_pedidos,SUM(cantidad) as cantidad_articulos," +
+                "   SUM(Lineas_Pedidos.valor_parcial) as monto_total " +
+                "FROM Pedidos " +
+                "   INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido " +
+                "   INNER JOIN Pedidos_Personas ON Pedidos_Personas.numero_pedido= Pedidos.numero_pedido " +
+                "   INNER JOIN Entidades ON Entidades.codigo= Pedidos_Personas.codigo_entidad " +
+                "   INNER JOIN Personas ON Personas.codigo_entidad= Entidades.codigo " +
+                "WHERE Pedidos.fecha BETWEEN  @fecha_desde AND @fecha_hasta " +
+                entidadQuery +
+                "GROUP BY Entidades.codigo, Personas.apellido, personas.nombre, Personas.razon_social";
 
-            comando.Connection.Close();
+            string frecuenciaPedidos = " COUNT(pedidos.numero_pedido) DESC ";
+            string montoPedidos = " SUM(Lineas_Pedidos.valor_parcial) DESC ";
+            switch (p_reporte)
+            {
+                case Constantes.Reportes.Clientes.FrecuenciaDePedidos:
+                    query += " ORDER BY " + frecuenciaPedidos + "," + montoPedidos;  //por si hay valores iguales en frecuencia, ordenamos por cantidad
+                    break;
+                case Constantes.Reportes.Clientes.MontoTotalDePedidos:
+                    query += " ORDER BY " + montoPedidos + "," + frecuenciaPedidos;
+                    break;
+                case Constantes.Reportes.Clientes.PedidosMasElevados:
+                    break;
+                default:
+                    break;
+            }
+            return query;
+        }
+        public ModeloReporteEncabezado getReporte(Constantes.Reportes.Clientes p_reporte, List<DateTime> p_periodos, ModeloEntidad p_entidad, int p_cantidad)
+        {
+            SqlCommand comando = Conexion.crearComando();
 
-            return lcl_mod_ReporteEncabezado;
+            comando.CommandText = this.getQueryReportePedidos(p_reporte, p_entidad, p_cantidad);
+
+            return this.getDatosReporte(comando, p_periodos, p_entidad);
+        }
+        private string getQueryReportePedidos(Constantes.Reportes.Proveedores p_reporte, ModeloEntidad p_entidad, int p_cantidad)
+        {
+            string entidadQuery = "";
+            string topCantidadQuery = "";
+            if (p_entidad != null && p_entidad.codigo != 0)
+            {
+                entidadQuery = " AND Entidades.codigo=@codigo_entidad ";
+            }
+            else
+            {
+                if (p_cantidad > 0)
+                {
+                    topCantidadQuery = " TOP " + p_cantidad.ToString() + " ";
+                }
+            }
+
+            string query =
+            "SELECT " + topCantidadQuery +
+            "   Entidades.codigo AS codigo_entidad, Proveedores.razon_social as descripcion_entidad," +
+            "   COUNT(pedidos.numero_pedido) as cantidad_pedidos,SUM(cantidad) as cantidad_articulos," +
+            "   SUM(Lineas_Pedidos.valor_parcial) as monto_total " +
+            "FROM Pedidos " +
+            "   INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido " +
+            "   INNER JOIN Pedidos_Proveedores ON Pedidos_Proveedores.numero_pedido= Pedidos.numero_pedido " +
+            "   INNER JOIN Entidades ON Entidades.codigo= Pedidos_Proveedores.codigo_entidad " +
+            "   INNER JOIN Proveedores ON Proveedores.codigo_entidad= Entidades.codigo " +
+            "WHERE Pedidos.fecha BETWEEN  @fecha_desde AND @fecha_hasta " +
+            entidadQuery +
+            "GROUP BY Entidades.codigo, Proveedores.razon_social ";
+
+            string frecuenciaPedidos = " COUNT(pedidos.numero_pedido) DESC ";
+            string montoPedidos = " SUM(Lineas_Pedidos.valor_parcial) DESC ";
+            switch (p_reporte)
+            {
+                case Constantes.Reportes.Proveedores.FrecuenciaDePedidos:
+                    query += " ORDER BY "+frecuenciaPedidos+","+montoPedidos ;  //por si hay valores iguales en frecuencia, ordenamos por cantidad
+                    break;
+                case Constantes.Reportes.Proveedores.MontoTotalDePedidos:
+                    query += " ORDER BY " + montoPedidos + "," + frecuenciaPedidos;
+                    break;
+                case Constantes.Reportes.Proveedores.PedidosMasElevados:
+                    break;
+                default:
+                    break;
+            }
+            return query;
+        }
+        public ModeloReporteEncabezado getReporte(Constantes.Reportes.Proveedores p_reporte, List<DateTime> p_periodos, ModeloEntidad p_entidad, int p_cantidad)
+        {
+            SqlCommand comando = Conexion.crearComando();
+
+            comando.CommandText = this.getQueryReportePedidos(p_reporte, p_entidad, p_cantidad);
+
+            return this.getDatosReporte(comando, p_periodos, p_entidad);
         }
 
-        public ModeloReporteEncabezado getVentaEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin, int p_CodigoCliente)
+        private ModeloReporteEncabezado getDatosReporte(SqlCommand comando,List<DateTime> p_periodos)
         {
-            
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                "SELECT Entidades.codigo AS codigo_cliente, CONCAT(Personas.apellido, ', ', Personas.nombre) as nombre_cliente,"+
-                "COUNT(pedidos.numero_pedido) as cantidad_ventas,SUM(cantidad) as cantidad_articulos,"+
-                "SUM(Lineas_Pedidos.valor_parcial) as monto_ventas FROM Pedidos"+
-                "INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido"+
-                "INNER JOIN Pedidos_Personas ON Pedidos_Personas.numero_pedido= Pedidos.numero_pedido"+
-                "INNER JOIN Entidades ON Entidades.codigo= Pedidos_Personas.codigo_entidad"+
-                "INNER JOIN Personas ON Personas.codigo_entidad= Entidades.codigo"+
-                "WHERE Pedidos.fecha>= @fecha_desde AND Pedidos.fecha<=@fecha_hasta AND Entidades.Codigo=@codigo_cliente" +
-                "GROUP BY Entidades.codigo, Personas.apellido, personas.nombre";
-
-            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Date));
-            comando.Parameters["@fecha_desde"].Value = p_FechaInicio;
-            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Date));//No estoy seguro de que pueda hacer bien la comparacion
-            comando.Parameters["@fecha_hasta"].Value = P_FechaFin;
-            comando.Parameters.Add(new SqlParameter("@codigo_cliente", SqlDbType.Int));
-            comando.Parameters["@codigo_cliente"].Value = p_CodigoCliente;
-
-            comando.Connection.Open();
-
-            SqlDataReader drVentasEntreFechas = comando.ExecuteReader();
-
-            ModeloReporteEncabezado lcl_mod_ReporteEncabezadoVentaEntreFechas = new ModeloReporteEncabezado();
-
-            lcl_mod_ReporteEncabezadoVentaEntreFechas.FechaDesde = p_FechaInicio;
-            lcl_mod_ReporteEncabezadoVentaEntreFechas.FechaHasta = P_FechaFin;
-            lcl_mod_ReporteEncabezadoVentaEntreFechas.PersonaDesde = p_CodigoCliente.ToString();
-            lcl_mod_ReporteEncabezadoVentaEntreFechas.PersonaHasta = p_CodigoCliente.ToString();
-            lcl_mod_ReporteEncabezadoVentaEntreFechas.FechaInforme = DateTime.Today;
-            int i = 0;
-            while (drVentasEntreFechas.Read())
+            ModeloReporteEncabezado lcl_mod_ReporteEncabezadoArticulos = new ModeloReporteEncabezado();
+            if (p_periodos != null && p_periodos.Count == 2)
             {
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].codigo_cliente = (int)drVentasEntreFechas["codigo_cliente"];
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].nombre_cliente = (string)drVentasEntreFechas["nombre_cliente"];
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].cantidad_ventas = (int)drVentasEntreFechas["cantidad_ventas"];
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].cantidad_articulos = (int)drVentasEntreFechas["cantidad_articulos"];
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].monto_ventas = (decimal)drVentasEntreFechas["monto_ventas"];
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.MontoTotal = lcl_mod_ReporteEncabezadoVentaEntreFechas.MontoTotal + lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta[i].monto_ventas;
-                i++;
+                comando.Parameters.Add(this.instanciarParametro(p_periodos[0], "@fecha_desde"));
+                comando.Parameters.Add(this.instanciarParametro(p_periodos[1], "@fecha_hasta"));
+
+                lcl_mod_ReporteEncabezadoArticulos.FechaDesde = p_periodos[0];
+                lcl_mod_ReporteEncabezadoArticulos.FechaHasta = p_periodos[1];
             }
-            drVentasEntreFechas.Close();
-
-            comando.Connection.Close();
-
-            return lcl_mod_ReporteEncabezadoVentaEntreFechas;
-        }
-        public ModeloReporteEncabezado getVentaEntreFechas(DateTime p_FechaInicio, DateTime P_FechaFin)
-        {
-           
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                "SELECT Entidades.codigo AS codigo_cliente, CONCAT(Personas.apellido, ', ', Personas.nombre) as nombre_cliente, " +
-                "COUNT(DISTINCT pedidos.numero_pedido) as cantidad_ventas,SUM(cantidad) as cantidad_articulos, " +
-                "SUM(Lineas_Pedidos.valor_parcial) as monto_ventas FROM Pedidos " +
-                "INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido " +
-                "INNER JOIN Pedidos_Personas ON Pedidos_Personas.numero_pedido= Pedidos.numero_pedido " +
-                "INNER JOIN Entidades ON Entidades.codigo= Pedidos_Personas.codigo_entidad " +
-                "INNER JOIN Personas ON Personas.codigo_entidad= Entidades.codigo " +
-                "WHERE Pedidos.fecha>= @fecha_desde AND Pedidos.fecha<=@fecha_hasta " +
-                "GROUP BY Entidades.codigo, Personas.apellido, personas.nombre ";
-
-            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Date));
-            comando.Parameters["@fecha_desde"].Value = p_FechaInicio;
-            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Date));
-            comando.Parameters["@fecha_hasta"].Value = P_FechaFin;
-           
-            comando.Connection.Open();
-
-            SqlDataReader drVentasEntreFechas = comando.ExecuteReader();
-
-            ModeloReporteEncabezado lcl_mod_ReporteEncabezadoVentaEntreFechas = new ModeloReporteEncabezado();
-            lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta = new List<ModeloReporteVentaEntreFechas>();
-
-            lcl_mod_ReporteEncabezadoVentaEntreFechas.FechaDesde = p_FechaInicio;
-            lcl_mod_ReporteEncabezadoVentaEntreFechas.FechaHasta = P_FechaFin;
-            lcl_mod_ReporteEncabezadoVentaEntreFechas.PersonaDesde = "00000000";
-            lcl_mod_ReporteEncabezadoVentaEntreFechas.PersonaHasta = "99999999";
-            lcl_mod_ReporteEncabezadoVentaEntreFechas.FechaInforme = DateTime.Today;
-           
-            while (drVentasEntreFechas.Read())
-            {
-                ModeloReporteVentaEntreFechas lcl_var_modeloEFechas = new ModeloReporteVentaEntreFechas();
-                lcl_var_modeloEFechas.codigo_cliente = (int)drVentasEntreFechas["codigo_cliente"];
-                lcl_var_modeloEFechas.nombre_cliente = (string)drVentasEntreFechas["nombre_cliente"];
-                lcl_var_modeloEFechas.cantidad_ventas = (int)drVentasEntreFechas["cantidad_ventas"];
-                lcl_var_modeloEFechas.cantidad_articulos = (int)drVentasEntreFechas["cantidad_articulos"];
-                lcl_var_modeloEFechas.monto_ventas = (decimal)drVentasEntreFechas["monto_ventas"];
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.MontoTotal = lcl_mod_ReporteEncabezadoVentaEntreFechas.MontoTotal + lcl_var_modeloEFechas.monto_ventas;
-                lcl_mod_ReporteEncabezadoVentaEntreFechas.detalleVenta.Add(lcl_var_modeloEFechas);
-   
-            }
-            drVentasEntreFechas.Close();
-
-            comando.Connection.Close();
-
-            return lcl_mod_ReporteEncabezadoVentaEntreFechas;
-        }
-
-        public ModeloReporteEncabezado getTop10Articulos(DateTime p_FechaInicio, DateTime P_FechaFin)
-        {
-
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
-
-            comando.CommandText =
-                " SELECT Articulos.codigo_original AS codigo_articulo,SUM(CANTIDAD) AS cantidad_articulos, "+
-				"AVG(valor_unitario) AS precio_promedio,COUNT(DISTINCT PEDIDOS.numero_pedido) AS cantidad_ventas " +
-				"FROM Pedidos  "+
-                "INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido "+
-                "INNER JOIN Articulos ON Articulos.codigo_original=Lineas_Pedidos.codigo_original "+
-                "WHERE Pedidos.fecha>= @fecha_desde AND Pedidos.fecha<=@fecha_hasta " +
-                "GROUP BY Articulos.codigo_original";
-
-            comando.Parameters.Add(new SqlParameter("@fecha_desde", SqlDbType.Date));
-            comando.Parameters["@fecha_desde"].Value = p_FechaInicio;
-            comando.Parameters.Add(new SqlParameter("@fecha_hasta", SqlDbType.Date));
-            comando.Parameters["@fecha_hasta"].Value = P_FechaFin;
 
             comando.Connection.Open();
 
             SqlDataReader drTop10Articulos = comando.ExecuteReader();
-            
-            ModeloReporteEncabezado lcl_mod_ReporteEncabezadoTop10Articulos = new ModeloReporteEncabezado();
 
-            lcl_mod_ReporteEncabezadoTop10Articulos.detalleArticulos = new List<ModeloReporteTop10Articulos>();
-            
-            lcl_mod_ReporteEncabezadoTop10Articulos.FechaDesde = p_FechaInicio;
-            lcl_mod_ReporteEncabezadoTop10Articulos.FechaHasta = P_FechaFin;
-            
+            ModeloReporteDetalle_Articulos lcl_var_TopArticulos;
             while (drTop10Articulos.Read())
             {
-                ModeloReporteTop10Articulos lcl_var_Top10Articulos = new ModeloReporteTop10Articulos();
-                lcl_var_Top10Articulos.cantidadArticulos = (int)drTop10Articulos["cantidad_articulos"];
-                lcl_var_Top10Articulos.cantidadDeVentas= (int)drTop10Articulos["cantidad_ventas"];
-                lcl_var_Top10Articulos.codigoArticulo = (string)drTop10Articulos["codigo_articulo"];
-                lcl_var_Top10Articulos.precioPromedioVenta = (decimal)drTop10Articulos["precio_promedio"];
+                lcl_var_TopArticulos = new ModeloReporteDetalle_Articulos();
+                lcl_var_TopArticulos.cantidadArticulos = (int)drTop10Articulos["cantidad_articulos"];
+                lcl_var_TopArticulos.cantidadDeVentas = (int)drTop10Articulos["cantidad_ventas"];
+                lcl_var_TopArticulos.codigoArticulo = (string)drTop10Articulos["codigo_articulo"];
+                lcl_var_TopArticulos.precioPromedioVenta = (decimal)drTop10Articulos["precio_promedio"];
 
-                lcl_mod_ReporteEncabezadoTop10Articulos.MontoTotal = lcl_mod_ReporteEncabezadoTop10Articulos.MontoTotal+(lcl_var_Top10Articulos.cantidadArticulos*lcl_var_Top10Articulos.precioPromedioVenta);
-                lcl_mod_ReporteEncabezadoTop10Articulos.detalleArticulos.Add(lcl_var_Top10Articulos);
+                lcl_mod_ReporteEncabezadoArticulos.MontoTotal += (lcl_var_TopArticulos.cantidadArticulos * lcl_var_TopArticulos.precioPromedioVenta);
+                lcl_mod_ReporteEncabezadoArticulos.detalleArticulos.Add(lcl_var_TopArticulos);
             }
             drTop10Articulos.Close();
 
             comando.Connection.Close();
 
-            return lcl_mod_ReporteEncabezadoTop10Articulos;
+            return lcl_mod_ReporteEncabezadoArticulos;
         }
+        private string getQueryReporteArticulos(Constantes.Reportes.Articulos p_reporte, int p_cantidad)
+        {
+            string topCantidadQuery = "";
+            if (p_cantidad > 0)
+            {
+                topCantidadQuery = " TOP " + p_cantidad.ToString() + " ";
+            }
+
+            string query = "";
+            switch (p_reporte)
+            {
+                case Constantes.Reportes.Articulos.ArticulosMasVendidos:
+                    query =
+                        "SELECT " + topCantidadQuery +
+                        "Articulos.codigo_original AS codigo_articulo,SUM(CANTIDAD) AS cantidad_articulos, " +
+                        "AVG(valor_unitario) AS precio_promedio,COUNT(DISTINCT PEDIDOS.numero_pedido) AS cantidad_ventas " +
+                        "FROM Pedidos  " +
+                        "INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido " +
+                        "INNER JOIN Articulos ON Articulos.codigo_original=Lineas_Pedidos.codigo_original " +
+                        "WHERE Pedidos.fecha BETWEEN @fecha_desde AND @fecha_hasta " +
+                        "   AND Pedidos.codigo_tipo_pedido = "+((int)Constantes.CodigosTiposPedidos.Persona).ToString()+" "+
+                        "GROUP BY Articulos.codigo_original "+
+                        "ORDER BY COUNT(DISTINCT PEDIDOS.numero_pedido) DESC ";
+                    break;
+                case Constantes.Reportes.Articulos.DescuentosVigentes:
+                    break;
+                case Constantes.Reportes.Articulos.InformeStock:
+                    break;
+            }
+            
+            return query;
+        }
+        public ModeloReporteEncabezado getReporte(Constantes.Reportes.Articulos p_reporte, List<DateTime> p_periodos, int p_cantidad)
+        {
+            SqlCommand comando = Conexion.crearComando();
+
+            comando.CommandText = this.getQueryReporteArticulos(p_reporte, p_cantidad);
+
+            return this.getDatosReporte(comando,p_periodos);
+        }
+      
         #endregion
 
         #region Alta/Baja/Modificación
@@ -670,10 +593,7 @@ namespace Datos
         }
         public bool add(ref ModeloPedido p_mod_pedido)
         {
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ConexionSQL;
-            comando.CommandType = CommandType.Text;
+            SqlCommand comando = Conexion.crearComando(); 
 
             comando.CommandText =
             "INSERT INTO [pedidos](codigo_tipo_pedido,fecha,alicuota,monto_subtotal,monto_total,observaciones, "+

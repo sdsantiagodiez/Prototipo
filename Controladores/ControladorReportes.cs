@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Datos;
 using Modelos;
-using Reportes;
 using System.Windows;
 using LibreriaClasesCompartidas;
 
@@ -13,166 +12,62 @@ namespace Controladores
 {
     public class ControladorReportes
     {
-        public static CatalogoProveedores glb_con_proveedores = new CatalogoProveedores();
-        public static CatalogoPedidos glb_con_pedidos = new CatalogoPedidos();
-        public static CatalogoArticuloProveedores glb_cat_artP = new CatalogoArticuloProveedores();
-        public static List<ModeloPedido> glb_lst_mod_pedidos = new List<ModeloPedido>();
-        decimal glb_var_MaxMontoTotal = 0;
-        decimal glb_var_MontoTotalProveedor = 0;
-        int glb_var_CantidadTotalArticulos = 0;
-        public ModeloReportePedidoEntreFechas glb_mod_pedidoentrefechas = new ModeloReportePedidoEntreFechas();
-        public ModeloReporteVentaEntreFechas glb_mod_ventaentrefechas = new ModeloReporteVentaEntreFechas();
-        public ModeloReporteTop10Articulos glb_mod_Top10Articulos = new ModeloReporteTop10Articulos();
-
-
-        public string crearReporte(String[] p_var_razonSocial, DateTime p_date_fechaInicio, DateTime p_date_fechaFin)
+        public ModeloReporteEncabezado getEncabezado(Constantes.Reportes.Clientes p_reporte, List<DateTime> p_periodo, ModeloCliente p_cliente, int p_cantidad)
         {
-            string lcl_var_respuesta="";
+            CatalogoPedidos lcl_cat_pedidos = new CatalogoPedidos();
+
+            return lcl_cat_pedidos.getReporte(p_reporte, p_periodo, p_cliente, p_cantidad);
+        }
+
+        public ModeloReporteEncabezado getEncabezado(Constantes.Reportes.Proveedores p_reporte, List<DateTime> p_periodo, ModeloProveedor p_proveedor, int p_cantidad)
+        {
+            CatalogoPedidos lcl_cat_pedidos = new CatalogoPedidos();
+
+            return lcl_cat_pedidos.getReporte(p_reporte, p_periodo, p_proveedor, p_cantidad);
+        }
+
+        public ModeloReporteEncabezado getEncabezado(Constantes.Reportes.Articulos p_reporte, List<DateTime> p_periodo, int p_cantidad)
+        {
+            CatalogoPedidos lcl_cat_pedidos = new CatalogoPedidos();
+            switch (p_reporte)
+            {
+                case Constantes.Reportes.Articulos.ArticulosMasVendidos:
+                    return lcl_cat_pedidos.getReporte(p_reporte,p_periodo,p_cantidad);
+                case Constantes.Reportes.Articulos.DescuentosVigentes:
+                    return this.getReporteDescuentosVigentes(DateTime.Today);
+                case Constantes.Reportes.Articulos.InformeStock:
+                    return this.getReporteStock();
+                default:
+                    return null;
+            }
+        }
+
+        private ModeloReporteEncabezado getReporteDescuentosVigentes(DateTime p_fechaVigencia)
+        {
+            ModeloReporteEncabezado lcl_mod_reporteEncabezado = new ModeloReporteEncabezado();
             
-            if (String.Equals(p_var_razonSocial, "") == false && (p_date_fechaFin > p_date_fechaInicio || p_date_fechaFin <= DateTime.Today))
-            {
-                glb_lst_mod_pedidos = ControladorBusqueda.buscar(new ModeloPedido() { codigoTipoPedido = Constantes.CodigosTiposPedidos.Proveedor}, Constantes.ParametrosBusqueda.Pedidos.Tipo);
-                
-                foreach (string RSocial in p_var_razonSocial)
-                {
-                    foreach (ModeloPedido pedido in glb_lst_mod_pedidos) 
-                    {
-                        ModeloProveedor lcl_mod_proveedor = new ModeloProveedor();
-                        ModeloPedido lcl_mod_pedido = ControladorBusqueda.buscar(new ModeloPedido(){numeroPedido = pedido.numeroPedido},Constantes.ParametrosBusqueda.Pedidos.NumeroPedido )[0];
-                        if(pedido != null)
-                        {
-                            lcl_mod_proveedor = new ModeloProveedor(lcl_mod_pedido.entidad);
-                        }
-                        if (lcl_mod_proveedor.razonSocial == RSocial)
-                        {
-                            if (Convert.ToDateTime(pedido.fecha) >= p_date_fechaInicio && Convert.ToDateTime(pedido.fecha) <= p_date_fechaFin)
-                            {
-                                glb_var_MaxMontoTotal = (pedido.montoTotal>glb_var_MaxMontoTotal)? pedido.montoTotal : glb_var_MaxMontoTotal ;
-                                glb_var_MontoTotalProveedor = glb_var_MontoTotalProveedor + pedido.montoTotal;
-                                foreach (ModeloLineaPedido lcl_mod_lineapedido in pedido.lineasPedido)
-                                {
-                                    glb_var_CantidadTotalArticulos = glb_var_CantidadTotalArticulos + lcl_mod_lineapedido.cantidadArticulos;
-                                }
-                            }
-
-                        }
-
-                    }
-
-                }
-                /*Hecho para un solo proveedor*/
-                string detalleProveedores = p_var_razonSocial + Convert.ToString(glb_var_MontoTotalProveedor) + Convert.ToString(glb_var_MaxMontoTotal) + Convert.ToString(glb_var_CantidadTotalArticulos);
-                lcl_var_respuesta = "Fecha Inicio:" + Convert.ToString(p_date_fechaInicio) + "Fecha Fin:" + Convert.ToString(p_date_fechaFin) + detalleProveedores;
-            }
-            else
-            {
-                if (String.Equals(p_var_razonSocial, ""))
-                {
-                    lcl_var_respuesta = "Debe seleccionar al menos 1 proveedor";
-                }
-                else
-                {
-                    lcl_var_respuesta = "Fechas no válidas";
-                }
-            }
-        return lcl_var_respuesta;
-        }
-
-        public List<string> iniciarReporte()
-        {
-            List<string> lcl_var_respuesta = null;
-            List<ModeloProveedor> lcl_mod_proveedor = glb_con_proveedores.getAll();
-
-            foreach(ModeloProveedor prov in lcl_mod_proveedor)
-            {
-                string proveedor = prov.cuit + ", " + prov.razonSocial;
-                lcl_var_respuesta.Add(proveedor);
-            }
-
-            return lcl_var_respuesta;
-        }
-
-        public FormReportes ReportePedidoEntreFechas(DateTime p_fechaInicio, DateTime p_fechaFin, int p_codProveedor) 
-        {
-            ModeloReporteEncabezado lcl_mod_ReporteEncabezado = new ModeloReporteEncabezado();
-            if (p_codProveedor == 0)// indica que son todos los proveedores
-            {
-                lcl_mod_ReporteEncabezado = glb_con_pedidos.getPedidosEntreFechas(p_fechaInicio, p_fechaFin);
-            }
-            else
-            {
-                lcl_mod_ReporteEncabezado = glb_con_pedidos.getPedidosEntreFechas(p_fechaInicio, p_fechaFin, p_codProveedor);
-            }
-             FormReportes lcl_frm_reporte = new FormReportes(lcl_mod_ReporteEncabezado,"PedidoEntreFechas");
-                                   
-            return lcl_frm_reporte;
-        
-        }
-        public FormReportes ReporteVentaEntreFechas(DateTime p_fechaInicio, DateTime p_fechaFin, int p_codCliente)
-        {
-            ModeloReporteEncabezado lcl_mod_ReporteEncabezado = new ModeloReporteEncabezado();
-            if (p_codCliente == 0)// indica que son todos los clientes
-            {
-                lcl_mod_ReporteEncabezado = glb_con_pedidos.getVentaEntreFechas(p_fechaInicio, p_fechaFin);
-            }
-            else
-            {
-                lcl_mod_ReporteEncabezado = glb_con_pedidos.getVentaEntreFechas(p_fechaInicio, p_fechaFin, p_codCliente);
-            }
-            FormReportes lcl_frm_reporte = new FormReportes(lcl_mod_ReporteEncabezado, "VentaEntreFechas");
-
-            return lcl_frm_reporte;
-
-        }
-
-        public FormReportes ReporteTop10Articulos(DateTime p_fechaInicio, DateTime p_fechaFin)
-        {
-            ModeloReporteEncabezado lcl_mod_ReporteEncabezadoTop10Articulos = new ModeloReporteEncabezado();
-
-            lcl_mod_ReporteEncabezadoTop10Articulos = glb_con_pedidos.getTop10Articulos(p_fechaInicio, p_fechaFin);
-
-            FormReportes lcl_frm_reporte = new FormReportes(lcl_mod_ReporteEncabezadoTop10Articulos,"Top 10 Articulos");
-
-            return lcl_frm_reporte;
-        }
-        public FormReportes ReporteEmitePedido(ModeloPedido p_modeloPedido, ModeloPersonas p_modeloPersona)
-        {
-            FormReportes lcl_frm_reporte = new FormReportes(p_modeloPedido, p_modeloPersona);
-
-            return lcl_frm_reporte;
-
-        }
-
-        public FormReportes StockInventario()
-        {
-            List<ModeloArticuloProveedores> lcl_lst_mod_artP = new List<ModeloArticuloProveedores>();
-            ModeloArticuloProveedores lcl_mod_artP = new ModeloArticuloProveedores();
-            ControladorPedido lcl_con_ped = new ControladorPedido();
-            int Cantidad = lcl_con_ped.buscarArticulos("descripcionArticuloProveedor", "%");
-            lcl_lst_mod_artP = lcl_con_ped.resultadoBusquedaArticulosProveedores;
-            //lcl_lst_mod_artP=glb_cat_artP.buscar(lcl_mod_artP,Constantes.ParametrosBusqueda.ArticulosProveedores.Descripcion);
-            FormReportes lcl_frm_reporte = new FormReportes(lcl_lst_mod_artP);
-            return lcl_frm_reporte;
-        }
-
-        public FormReportes DescuentosVigentes(DateTime p_fecha)
-        {
-            List<ModeloArticuloProveedores> lcl_lst_articulosProveedoresConDescuentosVigentes = new List<ModeloArticuloProveedores>();
+            ModeloDescuento lcl_mod_descuentoAP;
             foreach (ModeloArticuloProveedores ap in ControladorBusqueda.getArticulosProveedores())
             {
-                if (ap.getDescuentoVigente(p_fecha) != null)
+                lcl_mod_descuentoAP = new ModeloDescuento();    //modeloDescuento en vez de ModeloDescuentoArticuloProveedor????
+                lcl_mod_descuentoAP = ap.getDescuentoVigente(p_fechaVigencia);
+                if (lcl_mod_descuentoAP != null)
                 {
-                    lcl_lst_articulosProveedoresConDescuentosVigentes.Add(ap);
+                    lcl_mod_reporteEncabezado.detalleArticulosDescuentos.Add(new ModeloReporteDetalle_ArticulosDescuentos(ap, lcl_mod_descuentoAP));
                 }
             }
-
-            FormReportes lcl_frm_reporte = new FormReportes(lcl_lst_articulosProveedoresConDescuentosVigentes,"descuento");
-            return lcl_frm_reporte;
+            return lcl_mod_reporteEncabezado;
         }
-
-        private bool ComprobanteAprobado(ModeloPedido p_mod_pedido)
+        private ModeloReporteEncabezado getReporteStock()
         {
-            return (p_mod_pedido.aprobadoAFIP == "A");
+            ModeloReporteEncabezado lcl_mod_reporteEncabezado = new ModeloReporteEncabezado();
+            
+            foreach (ModeloArticuloProveedores ap in ControladorBusqueda.getArticulosProveedores())
+            {
+                lcl_mod_reporteEncabezado.detalleArticulosDescuentos.Add(new ModeloReporteDetalle_ArticulosDescuentos(ap));
+            }
+
+            return lcl_mod_reporteEncabezado;
         }
     }
 }

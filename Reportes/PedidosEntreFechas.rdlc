@@ -262,14 +262,14 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="codProveedor">
+                    <Textbox Name="codigoEntidad">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!codProveedor.Value</Value>
+                              <Value>=Fields!codigoEntidad.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -280,7 +280,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>codProveedor</rd:DefaultName>
+                      <rd:DefaultName>codigoEntidad</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -296,14 +296,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="razonSocial">
+                    <Textbox Name="descripcionEntidad">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!razonSocial.Value</Value>
+                              <Value>=Fields!descripcionEntidad.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -314,7 +314,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>razonSocial</rd:DefaultName>
+                      <rd:DefaultName>descripcionEntidad</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -329,14 +329,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="CantidadPedidos">
+                    <Textbox Name="cantidadPedidos">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!CantidadPedidos.Value</Value>
+                              <Value>=Fields!cantidadPedidos.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -347,7 +347,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>CantidadPedidos</rd:DefaultName>
+                      <rd:DefaultName>cantidadPedidos</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -362,14 +362,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="CantidadArticulos">
+                    <Textbox Name="cantidadArticulos">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!CantidadArticulos.Value</Value>
+                              <Value>=Fields!cantidadArticulos.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -380,7 +380,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>CantidadArticulos</rd:DefaultName>
+                      <rd:DefaultName>cantidadArticulos</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -395,14 +395,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="MontoTotal">
+                    <Textbox Name="montoTotal">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!MontoTotal.Value</Value>
+                              <Value>=Fields!montoTotal.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <Format>'$' 0.00;('$' 0.00)</Format>
@@ -410,11 +410,11 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>MontoTotal</rd:DefaultName>
+                      <rd:DefaultName>montoTotal</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -452,11 +452,11 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <RepeatColumnHeaders>true</RepeatColumnHeaders>
-        <DataSetName>DSInformePedidos</DataSetName>
+        <DataSetName>dsDetalleReporte</DataSetName>
         <Top>0.64382cm</Top>
         <Left>0.88506cm</Left>
         <Height>1.2cm</Height>
-        <Width>18.46448cm</Width>
+        <Width>18.46447cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -551,7 +551,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!FechaInforme.Value, "DSInformePedidoEncabezado")</Value>
+                  <Value>=First(Fields!FechaInforme.Value, "dsEncabezadoReporte")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -654,7 +654,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!FechaDesde.Value, "DSInformePedidoEncabezado")</Value>
+                  <Value>=First(Fields!FechaDesde.Value, "dsEncabezadoReporte")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -687,7 +687,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!PersonaDesde.Value, "DSInformePedidoEncabezado")</Value>
+                  <Value>=First(Fields!PersonaDesde.Value, "dsEncabezadoReporte")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -876,7 +876,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!FechaHasta.Value, "DSInformePedidoEncabezado")</Value>
+                  <Value>=First(Fields!FechaHasta.Value, "dsEncabezadoReporte")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -942,7 +942,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!PersonaHasta.Value, "DSInformePedidoEncabezado")</Value>
+                  <Value>=First(Fields!PersonaHasta.Value, "dsEncabezadoReporte")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -988,7 +988,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!MontoTotal.Value, "DSInformePedidoEncabezado")</Value>
+                  <Value>=First(Fields!MontoTotal.Value, "dsEncabezadoReporte")</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -1073,31 +1073,31 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DSInformePedidos">
+    <DataSet Name="dsDetalleReporte">
       <Query>
         <DataSourceName>Modelos</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="CantidadArticulos">
-          <DataField>CantidadArticulos</DataField>
+        <Field Name="cantidadArticulos">
+          <DataField>cantidadArticulos</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="CantidadPedidos">
-          <DataField>CantidadPedidos</DataField>
+        <Field Name="cantidadPedidos">
+          <DataField>cantidadPedidos</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="codProveedor">
-          <DataField>codProveedor</DataField>
+        <Field Name="codigoEntidad">
+          <DataField>codigoEntidad</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="descripcionEntidad">
+          <DataField>descripcionEntidad</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="MontoTotal">
-          <DataField>MontoTotal</DataField>
-          <rd:TypeName>System.Single</rd:TypeName>
-        </Field>
-        <Field Name="razonSocial">
-          <DataField>razonSocial</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="montoTotal">
+          <DataField>montoTotal</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
@@ -1107,7 +1107,7 @@
         <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezado, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="DSInformePedidoEncabezado">
+    <DataSet Name="dsEncabezadoReporte">
       <Query>
         <DataSourceName>Modelos</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -1127,7 +1127,7 @@
         </Field>
         <Field Name="MontoTotal">
           <DataField>MontoTotal</DataField>
-          <rd:TypeName>System.Single</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="PersonaDesde">
           <DataField>PersonaDesde</DataField>

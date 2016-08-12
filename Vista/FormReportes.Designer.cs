@@ -1,4 +1,4 @@
-﻿namespace Reportes
+﻿namespace Vista
 {
     partial class FormReportes
     {
@@ -29,44 +29,41 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.ModeloReporteEncabezadoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ModeloReportePedidoEntreFechasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ReporteBase = new Microsoft.Reporting.WinForms.ReportViewer();
             this.ModeloReporteClienteDomicilio = new System.Windows.Forms.BindingSource(this.components);
             this.ModeloReporteClienteMail = new System.Windows.Forms.BindingSource(this.components);
             this.ModeloReporteClienteTelefono = new System.Windows.Forms.BindingSource(this.components);
+            this.detallePedidoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ModeloReportePedidoEntreFechasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteEncabezadoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ModeloReportePedidoEntreFechasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteClienteDomicilio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteClienteMail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteClienteTelefono)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.detallePedidoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModeloReportePedidoEntreFechasBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // ModeloReporteEncabezadoBindingSource
             // 
             this.ModeloReporteEncabezadoBindingSource.DataSource = typeof(Modelos.ModeloReporteEncabezado);
             // 
-            // ModeloReportePedidoEntreFechasBindingSource
-            // 
-            this.ModeloReportePedidoEntreFechasBindingSource.DataSource = typeof(Modelos.ModeloReporteVentaEntreFechas);
-            // 
             // ReporteBase
             // 
             this.ReporteBase.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "DSInformeVentas";
-            reportDataSource1.Value = null;
-            reportDataSource2.Name = "DSInformeVentaEncabezado";
-            reportDataSource2.Value = this.ModeloReporteEncabezadoBindingSource;
-            this.ReporteBase.LocalReport.DataSources.Add(reportDataSource1);
-            this.ReporteBase.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource3.Name = "DSInformeVentas";
+            reportDataSource3.Value = null;
+            reportDataSource4.Name = "DSInformeVentaEncabezado";
+            reportDataSource4.Value = this.ModeloReporteEncabezadoBindingSource;
+            this.ReporteBase.LocalReport.DataSources.Add(reportDataSource3);
+            this.ReporteBase.LocalReport.DataSources.Add(reportDataSource4);
             this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.VentasEntreFechas.rdlc";
             this.ReporteBase.Location = new System.Drawing.Point(0, 0);
             this.ReporteBase.Name = "ReporteBase";
             this.ReporteBase.Size = new System.Drawing.Size(827, 552);
             this.ReporteBase.TabIndex = 0;
-            this.ReporteBase.Load += new System.EventHandler(this.ReporteBase_Load);
             // 
             // ModeloReporteClienteDomicilio
             // 
@@ -80,6 +77,15 @@
             // 
             this.ModeloReporteClienteTelefono.DataSource = typeof(Modelos.ModeloTelefono);
             // 
+            // detallePedidoBindingSource
+            // 
+            this.detallePedidoBindingSource.DataMember = "detallePedido";
+            this.detallePedidoBindingSource.DataSource = this.ModeloReporteEncabezadoBindingSource;
+            // 
+            // ModeloReportePedidoEntreFechasBindingSource
+            // 
+            this.ModeloReportePedidoEntreFechasBindingSource.DataSource = typeof(Modelos.ModeloReporteDetalle);
+            // 
             // FormReportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -88,12 +94,12 @@
             this.Controls.Add(this.ReporteBase);
             this.Name = "FormReportes";
             this.Text = "FormReportes";
-            this.Load += new System.EventHandler(this.FormReportes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteEncabezadoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ModeloReportePedidoEntreFechasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteClienteDomicilio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteClienteMail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteClienteTelefono)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.detallePedidoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModeloReportePedidoEntreFechasBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -101,10 +107,11 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer ReporteBase;
-        private System.Windows.Forms.BindingSource ModeloReportePedidoEntreFechasBindingSource;
         private System.Windows.Forms.BindingSource ModeloReporteEncabezadoBindingSource;
         private System.Windows.Forms.BindingSource ModeloReporteClienteDomicilio;
         private System.Windows.Forms.BindingSource ModeloReporteClienteMail;
         private System.Windows.Forms.BindingSource ModeloReporteClienteTelefono;
+        private System.Windows.Forms.BindingSource detallePedidoBindingSource;
+        private System.Windows.Forms.BindingSource ModeloReportePedidoEntreFechasBindingSource;
     }
 }

@@ -65,6 +65,12 @@
     <Compile Include="ControlDomicilios.Designer.cs">
       <DependentUpon>ControlDomicilios.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportes.Designer.cs">
+      <DependentUpon>FormReportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmABMArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     <EmbeddedResource Include="ControlDomicilios.resx">
       <DependentUpon>ControlDomicilios.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReportes.resx">
+      <DependentUpon>FormReportes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmABMArticulo.resx">
       <DependentUpon>frmABMArticulo.cs</DependentUpon>
     </EmbeddedResource>
@@ -293,6 +302,7 @@
     </Compile>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Modelos.ModeloReporteDetalle.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteDetalleFactura.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteEncabezadoFactura.datasource" />
     <None Include="Properties\Settings.settings">

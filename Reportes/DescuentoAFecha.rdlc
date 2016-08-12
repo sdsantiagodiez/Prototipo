@@ -422,13 +422,13 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="fDesde_descuento">
+                    <Textbox Name="fechaVigenciaDescuento_Desde">
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!fDesde_descuento.Value</Value>
+                              <Value>=Fields!fechaVigenciaDescuento_Desde.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <Format>d</Format>
@@ -440,7 +440,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>fDesde_descuento</rd:DefaultName>
+                      <rd:DefaultName>fechaVigenciaDescuento_Desde</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -455,13 +455,13 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="fHasta_descuento">
+                    <Textbox Name="fechaVigenciaDescuento_Hasta">
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!fHasta_descuento.Value</Value>
+                              <Value>=Fields!fechaVigenciaDescuento_Hasta.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <Format>d</Format>
@@ -473,7 +473,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>fHasta_descuento</rd:DefaultName>
+                      <rd:DefaultName>fechaVigenciaDescuento_Hasta</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -521,13 +521,13 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="precioVenta">
+                    <Textbox Name="valorVentaSinDescuento">
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!precioVenta.Value</Value>
+                              <Value>=Fields!valorVentaSinDescuento.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <Format>'$' 0.00;('$' 0.00)</Format>
@@ -539,7 +539,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>precioVenta</rd:DefaultName>
+                      <rd:DefaultName>valorVentaSinDescuento</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -555,13 +555,13 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox12">
+                    <Textbox Name="valorVentaConDescuento">
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!precioVenta.Value-(Fields!precioVenta.Value*Fields!descuento.Value)</Value>
+                              <Value>=Fields!valorVentaConDescuento.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <Format>'$' 0.00;('$' 0.00)</Format>
@@ -573,7 +573,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox12</rd:DefaultName>
+                      <rd:DefaultName>valorVentaConDescuento</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -585,7 +585,6 @@
                         <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -616,7 +615,7 @@
         <RepeatColumnHeaders>true</RepeatColumnHeaders>
         <RepeatRowHeaders>true</RepeatRowHeaders>
         <FixedRowHeaders>true</FixedRowHeaders>
-        <DataSetName>DSDetalleDescuento</DataSetName>
+        <DataSetName>dsDetalleReporte</DataSetName>
         <Top>0.8448cm</Top>
         <Left>0.50668cm</Left>
         <Height>1.2cm</Height>
@@ -895,7 +894,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DSDetalleDescuento">
+    <DataSet Name="dsDetalleReporte">
       <Query>
         <DataSourceName>Modelos</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -905,35 +904,47 @@
           <DataField>codigoArticulo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="codigoArticuloProveedor">
+          <DataField>codigoArticuloProveedor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="descripcionArticulo">
           <DataField>descripcionArticulo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="descripcionArticuloProveedor">
+          <DataField>descripcionArticuloProveedor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="descuento">
           <DataField>descuento</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="fDesde_descuento">
-          <DataField>fDesde_descuento</DataField>
+        <Field Name="fechaVigenciaDescuento_Desde">
+          <DataField>fechaVigenciaDescuento_Desde</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="fHasta_descuento">
-          <DataField>fHasta_descuento</DataField>
+        <Field Name="fechaVigenciaDescuento_Hasta">
+          <DataField>fechaVigenciaDescuento_Hasta</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="precioVenta">
-          <DataField>precioVenta</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="stockActual">
           <DataField>stockActual</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="valorVentaConDescuento">
+          <DataField>valorVentaConDescuento</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="valorVentaSinDescuento">
+          <DataField>valorVentaSinDescuento</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloReporteStock</rd:TableName>
-        <rd:ObjectDataSourceType>Modelos.ModeloReporteStock, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ModeloReporteDetalle_ArticulosDescuentos</rd:TableName>
+        <rd:ObjectDataSourceType>Modelos.ModeloReporteDetalle_ArticulosDescuentos, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

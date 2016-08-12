@@ -310,6 +310,70 @@ namespace LibreriaClasesCompartidas
             public const bool Activo = true;
             public const bool Inactivo = false;
         }
+
+        public static class Reportes
+        {
+            public enum TipoReporte
+            {
+                [System.ComponentModel.Description("Reporte de Clientes")]
+                Clientes = 1,
+                [System.ComponentModel.Description("Reporte de Proveedores")]
+                Proveedores = 2,
+                [System.ComponentModel.Description("Reporte de Artículos")]
+                Articulos = 3
+            }
+
+            public enum Clientes
+            {
+                /// <summary>
+                /// Cantidad de pedidos realizados por un cliente en un período determinado
+                /// Ordenado por cantidad de pedidos de mayor a menor y agrupados por cliente
+                /// </summary>
+                [System.ComponentModel.Description("Frecuencia de pedidos por cliente")]
+                FrecuenciaDePedidos = 1,
+                /// <summary>
+                /// Suma del total gastado en pedidos por cliente en un período determinado 
+                /// Ordenado por sumatoria de montos totales y agrupado por cliente
+                /// </summary>
+                [System.ComponentModel.Description("Monto acumulado de pedidos por cliente")]
+                MontoTotalDePedidos = 2,
+                /// <summary>
+                /// Pedidos cuyo monto total es el más elevado en un período determinado
+                /// Ordenado por monto total y NO agrupado por clientes. Lista de pedidos simplemente
+                /// </summary>
+                [System.ComponentModel.Description("Pedidos más elevados")]
+                PedidosMasElevados = 3
+            }
+            public enum Proveedores
+            {
+                /// <summary>
+                /// Cantidad de pedidos realizados a un proveedor en un período determinado
+                /// </summary>
+                [System.ComponentModel.Description("Frecuencia de pedidos por proveedor")]
+                FrecuenciaDePedidos = 1,
+                /// <summary>
+                /// Suma del total gastado en pedidos a proveedor en un período determinado 
+                /// </summary>
+                [System.ComponentModel.Description("Monto acumulado de pedidos por proveedor")]
+                MontoTotalDePedidos = 2,
+                /// <summary>
+                /// Pedidos cuyo monto total es el más elevado en un período determinado
+                /// </summary>
+                [System.ComponentModel.Description("Pedidos más elevados")]
+                PedidosMasElevados = 3
+            }
+
+            public enum Articulos
+            {
+                [System.ComponentModel.Description("Más vendidos")]
+                ArticulosMasVendidos = 1,
+                [System.ComponentModel.Description("Descuentos vigentes")]
+                DescuentosVigentes = 2,
+                [System.ComponentModel.Description("Informe de stock")]
+                InformeStock = 3
+                
+            }
+        }
     }
     
 }

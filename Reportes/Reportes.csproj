@@ -66,21 +66,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormReportes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormReportes.Designer.cs">
-      <DependentUpon>FormReportes.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="NCreditoA.rdlc" />
     <EmbeddedResource Include="NCreditoB.rdlc" />
     <EmbeddedResource Include="FacturaB.rdlc" />
     <EmbeddedResource Include="FacturaA.rdlc" />
-    <EmbeddedResource Include="FormReportes.resx">
-      <DependentUpon>FormReportes.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presupuesto.rdlc" />
     <EmbeddedResource Include="PedidosEntreFechas.rdlc" />
     <EmbeddedResource Include="DescuentoAFecha.rdlc" />
@@ -124,6 +115,7 @@
     <None Include="Properties\DataSources\Modelos.ModeloProvincia.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteDetalleComprobante.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteDetalleFactura.datasource" />
+    <None Include="Properties\DataSources\Modelos.ModeloReporteDetalle_ArticulosDescuentos.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteEncabezado.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteEncabezadoComprobante.datasource" />
     <None Include="Properties\DataSources\Modelos.ModeloReporteEncabezadoFactura.datasource" />

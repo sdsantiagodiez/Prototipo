@@ -47,13 +47,9 @@
     <Compile Include="ModeloEntidad.cs" />
     <Compile Include="ModeloPais.cs" />
     <Compile Include="ModeloProvincia.cs" />
+    <Compile Include="ModeloReporte.cs" />
     <Compile Include="ModeloReporteDetalleComprobante.cs" />
-    <Compile Include="ModeloReporteEncabezado.cs" />
     <Compile Include="ModeloReporteEncabezadoComprobante.cs" />
-    <Compile Include="ModeloReportePedidoEntreFechas.cs" />
-    <Compile Include="ModeloReporteStock.cs" />
-    <Compile Include="ModeloReporteTop10Articulos.cs" />
-    <Compile Include="ModeloReporteVentaEntreFechas.cs" />
     <Compile Include="ModeloTelefono.cs" />
     <Compile Include="ModeloUsuario.cs" />
     <Compile Include="ModeloValorArticulo.cs" />

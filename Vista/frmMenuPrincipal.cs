@@ -764,9 +764,9 @@ namespace Vista
             
             else if (p_ventanaActiva == typeof(frmReporteSeleccion))
             {
-                if ((glb_form as frmReporteSeleccion).tabControl.SelectedTab == (glb_form as frmReporteSeleccion).tabVentas)
+                if ((glb_form as frmReporteSeleccion).tabControl.SelectedTab == (glb_form as frmReporteSeleccion).tabProveedores)
                 { topic = "31_REPORTESDEVENTAS"; }
-                else if ((glb_form as frmReporteSeleccion).tabControl.SelectedTab == (glb_form as frmReporteSeleccion).tabPedidos)
+                else if ((glb_form as frmReporteSeleccion).tabControl.SelectedTab == (glb_form as frmReporteSeleccion).tabClientes)
                 { topic = "27_AGREGARUNARTCULOALPEDIDODEPROVEEDOR"; }
                 else { topic = "30_REPORTESDEINVENTARIO"; }
             }

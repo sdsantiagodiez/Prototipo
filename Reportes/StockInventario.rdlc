@@ -291,7 +291,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -451,7 +450,7 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>DSDetalleStock</DataSetName>
+        <DataSetName>dsDetalleReporte</DataSetName>
         <SortExpressions>
           <SortExpression>
             <Value>=Fields!codigoArticulo.Value</Value>
@@ -734,7 +733,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DSDetalleStock">
+    <DataSet Name="dsDetalleReporte">
       <Query>
         <DataSourceName>Modelos</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -747,6 +746,18 @@
         <Field Name="descripcionArticulo">
           <DataField>descripcionArticulo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="descuento">
+          <DataField>descuento</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="fDesde_descuento">
+          <DataField>fDesde_descuento</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="fHasta_descuento">
+          <DataField>fHasta_descuento</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="precioVenta">
           <DataField>precioVenta</DataField>
