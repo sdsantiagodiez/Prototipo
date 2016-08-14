@@ -205,7 +205,11 @@ namespace Vista
             switch (p_tipoReporte)
             {
                 case Constantes.Reportes.TipoReporte.Clientes:
-                    return Convert.ToInt32(this.nmrcUpDown_Clientes.Value);
+                    if (!this.rdButtonTodos_Clientes.Checked)
+                    {
+                        return Convert.ToInt32(this.nmrcUpDown_Clientes.Value);
+                    }
+                    break;
                 case Constantes.Reportes.TipoReporte.Proveedores:
                     if (!this.rdButtonTodos_Proveedores.Checked)
                     {
@@ -227,12 +231,12 @@ namespace Vista
         {
             switch (p_tipoReporte)
             {
-                case Constantes.Reportes.TipoReporte.Clientes:
-                    return this.rdButtonParticular_Clientes.Checked;
                 case Constantes.Reportes.TipoReporte.Proveedores:
                     return this.rdButtonParticular_Proveedores.Checked;
+                case Constantes.Reportes.TipoReporte.Clientes:
+                    
                 case Constantes.Reportes.TipoReporte.Articulos:
-                    return false;
+                    
                 default:
                     return false;
             }

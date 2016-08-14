@@ -101,9 +101,9 @@ namespace Vista
                 case Constantes.Reportes.Clientes.MontoTotalDePedidos:
                     rdlcFile = "Reportes.VentasEntreFechas.rdlc";
                     break;
-                case Constantes.Reportes.Clientes.PedidosMasElevados:
-                    //rdlcFile = "Reportes.PedidoMasElevado.rdlc";  //NO CREadO
-                    break;
+                //case Constantes.Reportes.Clientes.PedidosMasElevados:
+                //    //rdlcFile = "Reportes.PedidoMasElevado.rdlc";  //NO CREadO
+                //    break;
             }
 
             this.loadReportDefinition(rdlcFile);
@@ -119,8 +119,8 @@ namespace Vista
                 case Constantes.Reportes.Proveedores.MontoTotalDePedidos:
                     rdlcFile = "Reportes.PedidosEntreFechas.rdlc";
                     break;
-                case Constantes.Reportes.Proveedores.PedidosMasElevados:
-                    //rdlcFile = "Reportes.PedidoMasElevado.rdlc";    //NO CREADO
+                //case Constantes.Reportes.Proveedores.PedidosMasElevados:
+                //    //rdlcFile = "Reportes.PedidoMasElevado.rdlc";    //NO CREADO
                     break;
             }
 
@@ -165,8 +165,8 @@ namespace Vista
                     this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsEncabezadoReporte", ModeloReporteEncabezadoBindingSource));
                     this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsDetalleReporte", ModeloReportePedidoEntreFechasBindingSource));
                     break;
-                case Constantes.Reportes.Clientes.PedidosMasElevados:
-                    break;
+                //case Constantes.Reportes.Clientes.PedidosMasElevados:
+                //    break;
                 default :
                     break;
             }
@@ -182,8 +182,8 @@ namespace Vista
                     this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsEncabezadoReporte", ModeloReporteEncabezadoBindingSource));
                     this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsDetalleReporte", ModeloReportePedidoEntreFechasBindingSource));
                     break;
-                case Constantes.Reportes.Proveedores.PedidosMasElevados:
-                    break;
+                //case Constantes.Reportes.Proveedores.PedidosMasElevados:
+                //    break;
                 default :
                     break;
             }

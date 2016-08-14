@@ -169,11 +169,12 @@ namespace Vista
             }
             if (!string.IsNullOrWhiteSpace(filePath))
             {
-                DataTable dt_preview = Controladores.ControladorExcel.getPreviewDeArchivo(filePath, TypeModelo);
-                if (dt_preview == null)
+                string mensajeError;
+                DataTable dt_preview = Controladores.ControladorExcel.getPreviewDeArchivo(filePath, TypeModelo, out mensajeError);
+                if (dt_preview.Rows.Count < 1)
                 {
                     this.habilitarImportar(false);
-                    MessageBox.Show("No se ha podido leer archivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(mensajeError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {

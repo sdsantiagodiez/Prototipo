@@ -623,8 +623,6 @@ namespace Vista
         }
         #endregion
 
-        
-
         #endregion
 
         #region Eventos

@@ -291,7 +291,10 @@ namespace Datos
                 "   WHERE " + querySQL;
 
             comando.Connection.Open();
-            SqlDataReader drPedidos = comando.ExecuteReader();
+            try
+            {
+                SqlDataReader drPedidos = comando.ExecuteReader();
+            
 
             List<ModeloPedido> lcl_mod_pedidosEncontrados = new List<ModeloPedido>();
             ModeloPedido lcl_mod_pedido = new ModeloPedido();
@@ -322,6 +325,11 @@ namespace Datos
             }
 
             return lcl_mod_pedidosEncontrados;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public ModeloPedido getOne(int p_numeroPedido)
@@ -426,8 +434,8 @@ namespace Datos
                 case Constantes.Reportes.Clientes.MontoTotalDePedidos:
                     query += " ORDER BY " + montoPedidos + "," + frecuenciaPedidos;
                     break;
-                case Constantes.Reportes.Clientes.PedidosMasElevados:
-                    break;
+                //case Constantes.Reportes.Clientes.PedidosMasElevados:
+                //    break;
                 default:
                     break;
             }
@@ -481,8 +489,8 @@ namespace Datos
                 case Constantes.Reportes.Proveedores.MontoTotalDePedidos:
                     query += " ORDER BY " + montoPedidos + "," + frecuenciaPedidos;
                     break;
-                case Constantes.Reportes.Proveedores.PedidosMasElevados:
-                    break;
+                //case Constantes.Reportes.Proveedores.PedidosMasElevados:
+                //    break;
                 default:
                     break;
             }
@@ -817,7 +825,5 @@ namespace Datos
             }
         }
         #endregion
-
-
     }
 }

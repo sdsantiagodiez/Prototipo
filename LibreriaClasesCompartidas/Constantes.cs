@@ -336,13 +336,13 @@ namespace LibreriaClasesCompartidas
                 /// Ordenado por sumatoria de montos totales y agrupado por cliente
                 /// </summary>
                 [System.ComponentModel.Description("Monto acumulado de pedidos por cliente")]
-                MontoTotalDePedidos = 2,
-                /// <summary>
-                /// Pedidos cuyo monto total es el más elevado en un período determinado
-                /// Ordenado por monto total y NO agrupado por clientes. Lista de pedidos simplemente
-                /// </summary>
-                [System.ComponentModel.Description("Pedidos más elevados")]
-                PedidosMasElevados = 3
+                MontoTotalDePedidos = 2
+                ///// <summary>
+                ///// Pedidos cuyo monto total es el más elevado en un período determinado
+                ///// Ordenado por monto total y NO agrupado por clientes. Lista de pedidos simplemente
+                ///// </summary>
+                //[System.ComponentModel.Description("Pedidos más elevados")]
+                //PedidosMasElevados = 3
             }
             public enum Proveedores
             {
@@ -355,12 +355,12 @@ namespace LibreriaClasesCompartidas
                 /// Suma del total gastado en pedidos a proveedor en un período determinado 
                 /// </summary>
                 [System.ComponentModel.Description("Monto acumulado de pedidos por proveedor")]
-                MontoTotalDePedidos = 2,
-                /// <summary>
-                /// Pedidos cuyo monto total es el más elevado en un período determinado
-                /// </summary>
-                [System.ComponentModel.Description("Pedidos más elevados")]
-                PedidosMasElevados = 3
+                MontoTotalDePedidos = 2
+                ///// <summary>
+                ///// Pedidos cuyo monto total es el más elevado en un período determinado
+                ///// </summary>
+                //[System.ComponentModel.Description("Pedidos más elevados")]
+                //PedidosMasElevados = 3
             }
 
             public enum Articulos

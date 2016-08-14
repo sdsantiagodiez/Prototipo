@@ -72,7 +72,7 @@ namespace Datos
             }
             return true;
         }
-        public bool leerExcel(string p_path, List<int?> p_indiceAtributo, ref DataTable p_dataTable, bool p_primeraRowHeaders)
+        public bool leerExcel(string p_path, List<int?> p_indiceAtributos, ref DataTable p_dataTable, bool p_primeraRowHeaders)
         {
             try
             {
@@ -93,12 +93,16 @@ namespace Datos
                     {
                         DataRow tempRow = p_dataTable.NewRow();
 
-                        for (int i = 0; i < p_indiceAtributo.Count; i++) // row.Descendants<Cell>().Count(); i++)
+                        int cantidadCeldasEnRowActual = row.Descendants<Cell>().Count();
+                        for (int i = 0; i < row.Descendants<Cell>().Count(); i++) // < p_indiceAtributos.Count ; i++)
                         {
-                            if (p_indiceAtributo[i] == null)
+                            int indiceRealExcel = ConvertColumnNameToNumber(GetColumnName(row.Descendants<Cell>().ElementAt(i).CellReference));
+
+                            indiceAux = Convert.ToInt32(p_indiceAtributos[indiceRealExcel]);
+                            if (p_indiceAtributos[indiceRealExcel] == null)
                             { continue; }
-                            indiceAux = Convert.ToInt32(p_indiceAtributo[i]);
-                            tempRow[i] = this.getCellValue(spreadSheetDocument, row.Descendants<Cell>().ElementAt(indiceAux));
+
+                            tempRow[indiceAux] = this.getCellValue(spreadSheetDocument, row.Descendants<Cell>().ElementAt(i));
                         }
 
                         p_dataTable.Rows.Add(tempRow);
@@ -110,8 +114,9 @@ namespace Datos
                     p_dataTable.Rows.RemoveAt(0); //quitamos headers de atributos
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                errorActual = ex.Message;
                 return false;
             }
             return true;
@@ -119,38 +124,92 @@ namespace Datos
         public DataTable leerExcel_preview(string p_path, int p_cantidadDeColumnas)
         {
             DataTable lcl_dt_preview = new DataTable();
-
-            using (SpreadsheetDocument spreadSheetDocument = SpreadsheetDocument.Open(p_path, false))
+            try
             {
-                #region Inicialización de workbook
-                WorkbookPart workbookPart = spreadSheetDocument.WorkbookPart;
-                IEnumerable<Sheet> sheets = spreadSheetDocument.WorkbookPart.Workbook.GetFirstChild<Sheets>().Elements<Sheet>();
-                string relationshipId = sheets.First().Id.Value;
-                WorksheetPart worksheetPart = (WorksheetPart)spreadSheetDocument.WorkbookPart.GetPartById(relationshipId);
-                Worksheet workSheet = worksheetPart.Worksheet;
-                SheetData sheetData = workSheet.GetFirstChild<SheetData>();
-                IEnumerable<Row> rows = sheetData.Descendants<Row>();
-                #endregion
-                
-                for (int i= 0; i< p_cantidadDeColumnas; i++) //Crea columnas de dataTablePreview
+                using (SpreadsheetDocument spreadSheetDocument = SpreadsheetDocument.Open(p_path, false))
                 {
-                    lcl_dt_preview.Columns.Add();
-                }
+                    #region Inicialización de workbook
+                    WorkbookPart workbookPart = spreadSheetDocument.WorkbookPart;
+                    IEnumerable<Sheet> sheets = spreadSheetDocument.WorkbookPart.Workbook.GetFirstChild<Sheets>().Elements<Sheet>();
+                    string relationshipId = sheets.First().Id.Value;
+                    WorksheetPart worksheetPart = (WorksheetPart)spreadSheetDocument.WorkbookPart.GetPartById(relationshipId);
+                    Worksheet workSheet = worksheetPart.Worksheet;
+                    SheetData sheetData = workSheet.GetFirstChild<SheetData>();
+                    IEnumerable<Row> rows = sheetData.Descendants<Row>();
+                    #endregion
 
-                foreach (Row row in rows)   //Lee las rows del archivo y las pasa al dataTablePreview
-                {
-                    DataRow tempRow = lcl_dt_preview.NewRow();
-
-                    for (int i = 0; i < row.Descendants<Cell>().Count() && i < p_cantidadDeColumnas; i++)
+                    for (int i = 0; i < p_cantidadDeColumnas; i++) //Crea columnas de dataTablePreview
                     {
-                        tempRow[i] = this.getCellValue(spreadSheetDocument, row.Descendants<Cell>().ElementAt(i));
+                        lcl_dt_preview.Columns.Add();
                     }
 
-                    lcl_dt_preview.Rows.Add(tempRow);
+                    foreach (Row row in rows)   //Lee las rows del archivo y las pasa al dataTablePreview
+                    {
+                        DataRow tempRow = lcl_dt_preview.NewRow();
+
+                        for (int i = 0; i < row.Descendants<Cell>().Count() && i < p_cantidadDeColumnas; i++)
+                        {
+                            /*
+                             * indiceRealExcel muestra la relacion correcta del indice columna en excel. Ejemplo: {A,B,C,D,E}->{0,1,2,3,4}
+                             * Sin el método excel saltea las columnas sin valor, obteniendo menos indices de los que realmente hay
+                             */
+                            int indiceRealExcel = ConvertColumnNameToNumber(GetColumnName(row.Descendants<Cell>().ElementAt(i).CellReference));
+                            tempRow[indiceRealExcel] = this.getCellValue(spreadSheetDocument, row.Descendants<Cell>().ElementAt(i));
+                        }
+
+                        lcl_dt_preview.Rows.Add(tempRow);
+                    }
+                    if (lcl_dt_preview.Rows.Count < 1)
+                    {
+                        errorActual = "El archivo seleccionado esta vacío.";
+                    }
                 }
             }
-
+            catch (Exception ex)
+            {
+                errorActual = "No se ha podido leer el archivo seleccionado. "+ex.Message;
+            }
+            
             return lcl_dt_preview;
+
+        }
+        /// <summary>
+        /// Given a cell name, parses the specified cell to get the column name.
+        /// </summary>
+        /// <param name="cellReference">Address of the cell (ie. B2)</param>
+        /// <returns>Column Name (ie. B)</returns>
+        public static string GetColumnName(string cellReference)
+        {
+            // Match the column name portion of the cell name.
+            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("[A-Za-z]+");
+
+            return regex.Match(cellReference).Value;
+        }
+        /// <summary>
+        /// Given just the column name (no row index),
+        /// it will return the zero based column index.
+        /// </summary>
+        /// <param name="columnName">Column Name (ie. A or AB)</param>
+        /// <returns>Zero based index if the conversion was successful</returns>
+        /// <exception cref="ArgumentException">thrown if the given string
+        /// contains characters other than uppercase letters</exception>
+        private static int ConvertColumnNameToNumber(string columnName)
+        {
+            System.Text.RegularExpressions.Regex alpha = new System.Text.RegularExpressions.Regex("^[A-Z]+$");
+            if (!alpha.IsMatch(columnName)) throw new ArgumentException();
+
+            char[] colLetters = columnName.ToCharArray();
+            Array.Reverse(colLetters);
+
+            int convertedValue = 0;
+            for (int i = 0; i < colLetters.Length; i++)
+            {
+                char letter = colLetters[i];
+                int current = i == 0 ? letter - 65 : letter - 64; // ASCII 'A' = 65
+                convertedValue += current * (int)Math.Pow(26, i);
+            }
+
+            return convertedValue;
         }
         private string getCellValue(SpreadsheetDocument document, Cell cell)
         {

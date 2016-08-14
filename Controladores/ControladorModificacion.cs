@@ -248,12 +248,15 @@ namespace Controladores
         {
             using (TransactionScope scope = new TransactionScope())
             {
+                int i = 1;
                 foreach (ModeloArticuloProveedores ap in p_lst_articulosProveedores)
                 {
                     if (!this.modificarValorArticulo(ap, p_tipoValorArticulo))
                     {
+                        errorActual = "No se han podido realizar la actualización. Error al agregar a la base de datos el valor de artículo ubicado en la fila "+i.ToString()+". Verifique que el artículo exista en la base de datos y que los valores ingresados sean correctos.";
                         return false;
                     }
+                    i++;
                 }
                 scope.Complete();
             }

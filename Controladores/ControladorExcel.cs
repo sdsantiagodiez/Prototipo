@@ -188,7 +188,7 @@ namespace Controladores
         public bool esValorVenta;
         #endregion
 
-        public static DataTable getPreviewDeArchivo(string p_path, Type T)
+        public static DataTable getPreviewDeArchivo(string p_path, Type T, out string p_mensajeError)
         {
             int cantidadAtributos = 0;
 
@@ -213,7 +213,9 @@ namespace Controladores
                 cantidadAtributos = 3;
             }
             Datos.ConexionOpenXML lcl_con_excel = new Datos.ConexionOpenXML();
-            return lcl_con_excel.leerExcel_preview(p_path, cantidadAtributos);
+            DataTable lcl_dt_preview = lcl_con_excel.leerExcel_preview(p_path, cantidadAtributos);
+            p_mensajeError = lcl_con_excel.errorActual;
+            return lcl_dt_preview;
         }
 
         public bool importarDatos(string p_path, Type T, List<int?> p_indiceAtributo, bool p_primeraRowHeaders, out string p_respuesta)
@@ -230,13 +232,13 @@ namespace Controladores
             Datos.ConexionOpenXML ExcelReader = new Datos.ConexionOpenXML();
             if (!ExcelReader.leerExcel(p_path, p_indiceAtributo, ref lcl_dataTable, p_primeraRowHeaders))
             {
-                p_respuesta = "Ha surgido un problema al leer los datos del archivo.";
+                p_respuesta = "Ha surgido un problema al leer los datos del archivo."+" "+errorActual;
                 return false;
             }
 
             if (!this.importarDatos_agregarABaseDeDatos(T, lcl_dataTable))
             {
-                p_respuesta = "Ha surgido un problema al agregar datos a la base de datos.";
+                p_respuesta = errorActual;//"Ha surgido un problema al agregar datos a la base de datos.";
                 return false;
             }
 
@@ -261,7 +263,12 @@ namespace Controladores
                 { aux = LibreriaClasesCompartidas.Constantes.TipoValorArticulo.Compra; }
 
                 ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
-                return lcl_con_modificacion.modificarValoresArticulos(lcl_lst_datos, aux);
+                if (!lcl_con_modificacion.modificarValoresArticulos(lcl_lst_datos, aux))
+                {
+                    errorActual = lcl_con_modificacion.errorActual;
+                    return false;
+                }
+                return true;
             }
 
             ControladorAlta lcl_con_alta = new ControladorAlta();
@@ -425,8 +432,8 @@ namespace Controladores
                 else
                 { 
                     dec_nullable_aux = null;
-                    lcl_lst_mod_articulosProveedores_noAgregados.Add(lcl_mod_articuloProveedore);
-                    continue;
+                    //lcl_lst_mod_articulosProveedores_noAgregados.Add(lcl_mod_articuloProveedore);
+                    //continue;
                 }
 
                 if (esValorVenta)
