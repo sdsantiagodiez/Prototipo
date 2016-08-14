@@ -254,9 +254,9 @@ namespace Vista
                     this.pnlContenedorForm.Controls.Count == 0 ||   //En caso de que el glb_form se cerro y frmMenuPrincipal no se entero
                     glb_form.GetType() == typeof(frmImportar))      //Hay distintos tipos de importar (articulos, clientes, etc) bajo el mismo type de formulario
             {
-                this.cerrarFormActual(glb_form);
+                return this.cerrarFormActual(glb_form);
                 //Mensaje para confirmar que si cierre se pierde el progreso hecho en el form 
-                return true;
+                //return true;
             }
             //else if ()
             //{
@@ -269,18 +269,25 @@ namespace Vista
             }
         }
 
-        private void cerrarFormActual(Form p_form)
+        private bool cerrarFormActual(Form p_form)
         {
             System.Threading.Thread.Sleep(100); //Agregando este tiempo entre cierres de ventanas permite que no se cierre sin querer una ventana que estaba debajo
             if (p_form == glb_form)
             {
-                glb_lst_formsActivos.Remove(glb_form);
+                
                 glb_form.DialogResult = System.Windows.Forms.DialogResult.OK;
                 glb_form.Close();
-                glb_form = new Form();
-                return;
+                if(glb_form.DialogResult != System.Windows.Forms.DialogResult.Cancel)   //En caso de que se agregue mensaje de confirmación cerrar ventana
+                {
+                    glb_lst_formsActivos.Remove(glb_form);
+                    glb_form = new Form();
+                    return true;
+                }
+                
+                return false;
             }
             glb_lst_formsActivos.Remove(p_form);
+            return true;
         }
         #endregion
         
@@ -341,7 +348,7 @@ namespace Vista
                 {
                     return;
                 }
-                else if ((glb_form as frmPedidoCierre).getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.Persona)
+                else if (glb_form.GetType() != typeof(frmPedidoCierre) || (glb_form as frmPedidoCierre).getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.Persona)//En caso de que se agregue mensaje de confirmación cerrar ventana
                 {
                     return;
                 }
@@ -369,7 +376,7 @@ namespace Vista
                 {
                     return;
                 }
-                else if ((glb_form as frmPedidoCierre).getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.Proveedor)
+                else if (glb_form.GetType() != typeof(frmPedidoCierre) || (glb_form as frmPedidoCierre).getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.Proveedor)//En caso de que se agregue mensaje de confirmación cerrar ventana
                 {
                     return;
                 }

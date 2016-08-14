@@ -102,7 +102,7 @@ namespace Datos
                             if (p_indiceAtributos[indiceRealExcel] == null)
                             { continue; }
 
-                            tempRow[indiceAux] = this.getCellValue(spreadSheetDocument, row.Descendants<Cell>().ElementAt(i));
+                            tempRow[indiceAux] = GetCellValue(spreadSheetDocument, row.Descendants<Cell>().ElementAt(i));
                         }
 
                         p_dataTable.Rows.Add(tempRow);
@@ -154,7 +154,7 @@ namespace Datos
                              * Sin el método excel saltea las columnas sin valor, obteniendo menos indices de los que realmente hay
                              */
                             int indiceRealExcel = ConvertColumnNameToNumber(GetColumnName(row.Descendants<Cell>().ElementAt(i).CellReference));
-                            tempRow[indiceRealExcel] = this.getCellValue(spreadSheetDocument, row.Descendants<Cell>().ElementAt(i));
+                            tempRow[indiceRealExcel] = GetCellValue(spreadSheetDocument, row.Descendants<Cell>().ElementAt(i));
                         }
 
                         lcl_dt_preview.Rows.Add(tempRow);
@@ -211,7 +211,7 @@ namespace Datos
 
             return convertedValue;
         }
-        private string getCellValue(SpreadsheetDocument document, Cell cell)
+        private static string GetCellValue(SpreadsheetDocument document, Cell cell)
         {
             SharedStringTablePart stringTablePart = document.WorkbookPart.SharedStringTablePart;
             if (cell.CellValue == null)
