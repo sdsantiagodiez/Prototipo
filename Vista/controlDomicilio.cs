@@ -65,7 +65,7 @@ namespace Vista
         /// <returns></returns>
         public ModeloDomicilio GetDomicilio(object sender, EventArgs e)
         {
-            if (!this.validarDomicilio(sender,e))
+            if (!this.validarDomicilio(sender,e,"entidad"))
             {
                 return null;
                 
@@ -287,7 +287,7 @@ namespace Vista
             }
             return index;
         }
-         private bool validarDomicilio(object sender, EventArgs e)
+         public bool validarDomicilio(object sender, EventArgs e,string p_fuente)
          {
              if (this.cmbBoxPais.SelectedValue == null || this.cmbBoxProvincia.SelectedValue == null)
              {
@@ -297,8 +297,11 @@ namespace Vista
 
              if (!this.validarInputs(sender,e))
              {
-                 MessageBox.Show("Por favor asegúrese de que los campos obligatorios hayan sido completados correctamente");
-                 return false;
+                 if (string.Equals(p_fuente, "entidad"))
+                 {
+                     MessageBox.Show("Por favor asegúrese de que los campos obligatorios hayan sido completados correctamente");
+                 }
+                     return false;
              }
 
              return true;
