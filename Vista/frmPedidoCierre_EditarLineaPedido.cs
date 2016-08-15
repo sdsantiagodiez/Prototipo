@@ -34,11 +34,13 @@ namespace Vista
         public frmPedidoCierre_EditarLineaPedido(Modelos.ModeloLineaPedido p_mod_lineaPedido,LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos p_tipoPedido) : this()
         {
             glb_mod_lineaActual = p_mod_lineaPedido;
+            
             this.cargarLineaEnControl(p_mod_lineaPedido);
             if (p_tipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona)
             {
                 this.inicializarDataGridView();
                 this.cargarDescuentosEnControl(p_mod_lineaPedido.descuentos);
+                this.nmrcUpDownCantidad.Maximum = p_mod_lineaPedido.articulo.stockActual ?? default(int);
             }
             else if (p_tipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Proveedor)
             {
