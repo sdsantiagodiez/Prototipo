@@ -123,8 +123,10 @@ namespace Vista
         {
             decimal descuento;
             decimal porcentaje = 0;
+            Decimal.TryParse(this.txtBoxDescuentoNeto.Text.Replace("$", ""), out descuento);
+            Decimal.TryParse(this.txtBoxDescuentoPorcentaje.Text.Replace("%", "").Replace(".", ",").Trim(), out porcentaje);
             if (!Decimal.TryParse(this.txtBoxDescuentoNeto.Text.Replace("$", ""), out descuento) &&
-                !Decimal.TryParse(this.txtBoxDescuentoPorcentaje.Text.Replace("%", "").Replace(".", ","), out porcentaje))
+                !Decimal.TryParse(this.txtBoxDescuentoPorcentaje.Text.Replace("%", "").Replace(".", ",").Trim(), out porcentaje))
             {
                 MessageBox.Show("Los datos ingresados para nuevo descuento no son válidos");
                 return;
@@ -132,6 +134,11 @@ namespace Vista
             if (descuento == 0 && porcentaje == 0)
             {
                 MessageBox.Show("Los descuentos no pueden ser cero");
+                return;
+            }
+            if(descuento > this.glb_mod_lineaActual.getValorParcialSinDescuentos())
+            {
+                MessageBox.Show("El descuento no puede ser superior al valor parcial de los elementos.");
                 return;
             }
             porcentaje = porcentaje / 100;

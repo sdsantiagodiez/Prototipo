@@ -133,12 +133,6 @@
             this.epApellido = new System.Windows.Forms.ErrorProvider(this.components);
             this.epNombre = new System.Windows.Forms.ErrorProvider(this.components);
             this.epRazonSocial = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epCalle = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epNumeroDomicilio = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epPiso = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epDepartamento = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epCiudad = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epCodigoPostal = new System.Windows.Forms.ErrorProvider(this.components);
             this.epMail = new System.Windows.Forms.ErrorProvider(this.components);
             this.epNumeroTelefono = new System.Windows.Forms.ErrorProvider(this.components);
             this.epIvaPorcentaje = new System.Windows.Forms.ErrorProvider(this.components);
@@ -176,12 +170,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.epApellido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epRazonSocial)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCalle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epNumeroDomicilio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epPiso)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epDepartamento)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCiudad)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCodigoPostal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epMail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epNumeroTelefono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epIvaPorcentaje)).BeginInit();
@@ -772,9 +760,10 @@
             // 
             // tblLayoutPanelMail
             // 
-            this.tblLayoutPanelMail.ColumnCount = 2;
+            this.tblLayoutPanelMail.ColumnCount = 3;
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0578F));
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.9422F));
+            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tblLayoutPanelMail.Controls.Add(this.lblMail, 0, 0);
             this.tblLayoutPanelMail.Controls.Add(this.txtBoxMail, 1, 0);
             this.tblLayoutPanelMail.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -791,7 +780,7 @@
             this.lblMail.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblMail.AutoSize = true;
             this.lblMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblMail.Location = new System.Drawing.Point(13, 19);
+            this.lblMail.Location = new System.Drawing.Point(5, 19);
             this.lblMail.Name = "lblMail";
             this.lblMail.Size = new System.Drawing.Size(97, 13);
             this.lblMail.TabIndex = 9;
@@ -802,14 +791,14 @@
             this.txtBoxMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxMail.Depth = 0;
             this.txtBoxMail.Hint = "";
-            this.txtBoxMail.Location = new System.Drawing.Point(116, 14);
+            this.txtBoxMail.Location = new System.Drawing.Point(108, 14);
             this.txtBoxMail.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxMail.Name = "txtBoxMail";
             this.txtBoxMail.PasswordChar = '\0';
             this.txtBoxMail.SelectedText = "";
             this.txtBoxMail.SelectionLength = 0;
             this.txtBoxMail.SelectionStart = 0;
-            this.txtBoxMail.Size = new System.Drawing.Size(259, 23);
+            this.txtBoxMail.Size = new System.Drawing.Size(238, 23);
             this.txtBoxMail.TabIndex = 10;
             this.txtBoxMail.UseSystemPasswordChar = false;
             this.txtBoxMail.Leave += new System.EventHandler(this.txtBoxMail_Leave);
@@ -855,11 +844,12 @@
             // 
             // tblLayoutPanelTelefono
             // 
-            this.tblLayoutPanelTelefono.ColumnCount = 4;
+            this.tblLayoutPanelTelefono.ColumnCount = 5;
             this.tblLayoutPanelTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tblLayoutPanelTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tblLayoutPanelTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tblLayoutPanelTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tblLayoutPanelTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelTelefono.Controls.Add(this.cmbBoxTipoTelefono, 1, 0);
             this.tblLayoutPanelTelefono.Controls.Add(this.lblTipoTelefono, 0, 0);
             this.tblLayoutPanelTelefono.Controls.Add(this.lblNumeroTelefono, 2, 0);
@@ -869,7 +859,7 @@
             this.tblLayoutPanelTelefono.Margin = new System.Windows.Forms.Padding(3, 8, 3, 3);
             this.tblLayoutPanelTelefono.Name = "tblLayoutPanelTelefono";
             this.tblLayoutPanelTelefono.RowCount = 1;
-            this.tblLayoutPanelTelefono.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelTelefono.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelTelefono.Size = new System.Drawing.Size(378, 51);
             this.tblLayoutPanelTelefono.TabIndex = 3;
             // 
@@ -883,7 +873,7 @@
             "FAX"});
             this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(41, 15);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
-            this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(106, 21);
+            this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(96, 21);
             this.cmbBoxTipoTelefono.TabIndex = 24;
             // 
             // lblTipoTelefono
@@ -902,7 +892,7 @@
             this.lblNumeroTelefono.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNumeroTelefono.AutoSize = true;
             this.lblNumeroTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblNumeroTelefono.Location = new System.Drawing.Point(160, 19);
+            this.lblNumeroTelefono.Location = new System.Drawing.Point(150, 19);
             this.lblNumeroTelefono.Name = "lblNumeroTelefono";
             this.lblNumeroTelefono.Size = new System.Drawing.Size(47, 13);
             this.lblNumeroTelefono.TabIndex = 25;
@@ -913,14 +903,14 @@
             this.txtBoxTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxTelefono.Depth = 0;
             this.txtBoxTelefono.Hint = "";
-            this.txtBoxTelefono.Location = new System.Drawing.Point(213, 14);
+            this.txtBoxTelefono.Location = new System.Drawing.Point(203, 14);
             this.txtBoxTelefono.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxTelefono.Name = "txtBoxTelefono";
             this.txtBoxTelefono.PasswordChar = '\0';
             this.txtBoxTelefono.SelectedText = "";
             this.txtBoxTelefono.SelectionLength = 0;
             this.txtBoxTelefono.SelectionStart = 0;
-            this.txtBoxTelefono.Size = new System.Drawing.Size(162, 23);
+            this.txtBoxTelefono.Size = new System.Drawing.Size(147, 23);
             this.txtBoxTelefono.TabIndex = 28;
             this.txtBoxTelefono.UseSystemPasswordChar = false;
             this.txtBoxTelefono.Leave += new System.EventHandler(this.txtBoxTelefono_Leave);
@@ -1591,30 +1581,6 @@
             // 
             this.epRazonSocial.ContainerControl = this;
             // 
-            // epCalle
-            // 
-            this.epCalle.ContainerControl = this;
-            // 
-            // epNumeroDomicilio
-            // 
-            this.epNumeroDomicilio.ContainerControl = this;
-            // 
-            // epPiso
-            // 
-            this.epPiso.ContainerControl = this;
-            // 
-            // epDepartamento
-            // 
-            this.epDepartamento.ContainerControl = this;
-            // 
-            // epCiudad
-            // 
-            this.epCiudad.ContainerControl = this;
-            // 
-            // epCodigoPostal
-            // 
-            this.epCodigoPostal.ContainerControl = this;
-            // 
             // epMail
             // 
             this.epMail.ContainerControl = this;
@@ -1684,12 +1650,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.epApellido)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epNombre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epRazonSocial)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCalle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epNumeroDomicilio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epPiso)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epDepartamento)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCiudad)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCodigoPostal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epMail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epNumeroTelefono)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epIvaPorcentaje)).EndInit();
@@ -1796,12 +1756,6 @@
         private System.Windows.Forms.ErrorProvider epApellido;
         private System.Windows.Forms.ErrorProvider epNombre;
         private System.Windows.Forms.ErrorProvider epRazonSocial;
-        private System.Windows.Forms.ErrorProvider epCalle;
-        private System.Windows.Forms.ErrorProvider epNumeroDomicilio;
-        private System.Windows.Forms.ErrorProvider epPiso;
-        private System.Windows.Forms.ErrorProvider epDepartamento;
-        private System.Windows.Forms.ErrorProvider epCiudad;
-        private System.Windows.Forms.ErrorProvider epCodigoPostal;
         private System.Windows.Forms.ErrorProvider epMail;
         private System.Windows.Forms.ErrorProvider epNumeroTelefono;
         private System.Windows.Forms.ErrorProvider epIvaPorcentaje;

@@ -840,6 +840,7 @@ namespace Vista
             txtBoxNumeroDocumento_Leave(sender, e);
             txtBoxNombre_Leave(sender, e);
             txtBoxApellido_Leave(sender, e);
+
             txtBoxMail_Leave(sender, e);
             txtBoxTelefono_Leave(sender, e);
 

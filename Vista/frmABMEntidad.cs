@@ -1382,26 +1382,6 @@ namespace Vista
                 }
             }
         }
-
-        private void txtBoxRazonSocial_Leave(object sender, EventArgs e, ModeloEntidad p_mod_entidad)
-        {
-            if(p_mod_entidad.GetType() == typeof(ModeloProveedor))
-            {
-                bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
-                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = respuesta;
-                if (!respuesta)
-                {
-                    epRazonSocial.Icon = Properties.Resources.error;
-                    epRazonSocial.SetError(txtBoxRazonSocial, "Razón Social no válida");
-                }
-                else
-                {
-                    epRazonSocial.Icon = Properties.Resources.success;
-                    epRazonSocial.SetError(txtBoxRazonSocial, "OK");
-                }
-            }
-        }
-
    
 
         private void txtBoxMail_Leave(object sender, EventArgs e)

@@ -133,7 +133,7 @@ namespace Vista
             ModeloDomicilio lcl_mod_domicilioActual = this.cDomicilio.GetDomicilio(sender,e);
             if (lcl_mod_domicilioActual == null)
             {
-                //domicilio no válido. Se mostrarían los errorProviders
+                //MessageBox.Show("Domicilio");
                 return;
             }
             if (this.validarDomicilioExiste(lcl_mod_domicilioActual))
