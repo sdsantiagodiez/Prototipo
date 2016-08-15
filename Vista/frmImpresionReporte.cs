@@ -15,9 +15,9 @@ using Controladores;
 
 namespace Vista
 {
-    public partial class FormReportes : Form
+    public partial class frmImpresionReporte : Form
     {
-        public FormReportes()
+        public frmImpresionReporte()
         {
             InitializeComponent();
         }

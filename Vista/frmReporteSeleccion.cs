@@ -144,12 +144,12 @@ namespace Vista
         #region Mostrar Reporte
         private void mostrarReporte(Constantes.Reportes.TipoReporte p_tipoReporte)
         {
-            FormReportes lcl_frm_reporte = new FormReportes();
+            frmImpresionReporte lcl_frm_reporte = new frmImpresionReporte();
 
             this.mostrarReporte(lcl_frm_reporte, p_tipoReporte);
             lcl_frm_reporte.ShowDialog();
         }
-        private void mostrarReporte(FormReportes p_frm_reporte, Constantes.Reportes.TipoReporte p_tipoReporte)
+        private void mostrarReporte(frmImpresionReporte p_frm_reporte, Constantes.Reportes.TipoReporte p_tipoReporte)
         {
             List <DateTime> periodo = this.getPeriodo(p_tipoReporte);
 

@@ -65,11 +65,11 @@
     <Compile Include="ControlDomicilios.Designer.cs">
       <DependentUpon>ControlDomicilios.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormReportes.cs">
+    <Compile Include="frmImpresionReporte.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormReportes.Designer.cs">
-      <DependentUpon>FormReportes.cs</DependentUpon>
+    <Compile Include="frmImpresionReporte.Designer.cs">
+      <DependentUpon>frmImpresionReporte.cs</DependentUpon>
     </Compile>
     <Compile Include="frmABMArticulo.cs">
       <SubType>Form</SubType>
@@ -217,8 +217,8 @@
     <EmbeddedResource Include="ControlDomicilios.resx">
       <DependentUpon>ControlDomicilios.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormReportes.resx">
-      <DependentUpon>FormReportes.cs</DependentUpon>
+    <EmbeddedResource Include="frmImpresionReporte.resx">
+      <DependentUpon>frmImpresionReporte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmABMArticulo.resx">
       <DependentUpon>frmABMArticulo.cs</DependentUpon>

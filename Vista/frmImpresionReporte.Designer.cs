@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class FormReportes
+    partial class frmImpresionReporte
     {
         /// <summary>
         /// Required designer variable.
