@@ -840,18 +840,13 @@ namespace Vista
             txtBoxNumeroDocumento_Leave(sender, e);
             txtBoxNombre_Leave(sender, e);
             txtBoxApellido_Leave(sender, e);
-            //txtBoxCalle_Leave(sender, e);
-            //txtBoxNumeroDomicilio_Leave(sender, e);
-            //txtBoxCiudad_Leave(sender, e);
             txtBoxMail_Leave(sender, e);
             txtBoxTelefono_Leave(sender, e);
 
             return (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Cuit)]
                 & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)]
                 & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)]
-                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)]
-                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)]
-                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)]
+                & glb_con_domicilio.validar()
                 & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Mails.Mail)]
                 & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)]);
         }
