@@ -14,63 +14,81 @@ namespace Datos
     public class ConexionOpenXML
     {
         public string errorActual = "";
+        private static List<char> Letters = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ' };
         public bool escribirExcel(DataTable table, string p_direccionDeArchivo)
         {
-            using (var workbook = SpreadsheetDocument.Create(p_direccionDeArchivo, SpreadsheetDocumentType.Workbook))
+            try
             {
-                #region Inicialización de workbook
-                var workbookPart = workbook.AddWorkbookPart();
-                workbook.WorkbookPart.Workbook = new DocumentFormat.OpenXml.Spreadsheet.Workbook();
-                workbook.WorkbookPart.Workbook.Sheets = new DocumentFormat.OpenXml.Spreadsheet.Sheets();
-                var sheetPart = workbook.WorkbookPart.AddNewPart<WorksheetPart>();
-                var sheetData = new DocumentFormat.OpenXml.Spreadsheet.SheetData();
-                sheetPart.Worksheet = new DocumentFormat.OpenXml.Spreadsheet.Worksheet(sheetData);
-                DocumentFormat.OpenXml.Spreadsheet.Sheets sheets = workbook.WorkbookPart.Workbook.GetFirstChild<DocumentFormat.OpenXml.Spreadsheet.Sheets>();
-                string relationshipId = workbook.WorkbookPart.GetIdOfPart(sheetPart);
-                uint sheetId = 1;
-                DocumentFormat.OpenXml.Spreadsheet.Sheet sheet = new DocumentFormat.OpenXml.Spreadsheet.Sheet() { Id = relationshipId, SheetId = sheetId, Name = "Export"};
-                sheets.Append(sheet);
-                #endregion
-
-                #region Inserta nombre de atributo en columna
-                DocumentFormat.OpenXml.Spreadsheet.Row headerRow = new DocumentFormat.OpenXml.Spreadsheet.Row();
-
-                List<String> columns = new List<string>();
-                foreach (DataColumn column in table.Columns)
+                using (var workbook = SpreadsheetDocument.Create(p_direccionDeArchivo, SpreadsheetDocumentType.Workbook))
                 {
-                    columns.Add(column.ColumnName);
+                    #region Inicialización de workbook
+                    var workbookPart = workbook.AddWorkbookPart();
+                    workbook.WorkbookPart.Workbook = new DocumentFormat.OpenXml.Spreadsheet.Workbook();
+                    workbook.WorkbookPart.Workbook.Sheets = new DocumentFormat.OpenXml.Spreadsheet.Sheets();
+                    var sheetPart = workbook.WorkbookPart.AddNewPart<WorksheetPart>();
+                    var sheetData = new DocumentFormat.OpenXml.Spreadsheet.SheetData();
+                    sheetPart.Worksheet = new DocumentFormat.OpenXml.Spreadsheet.Worksheet(sheetData);
+                    DocumentFormat.OpenXml.Spreadsheet.Sheets sheets = workbook.WorkbookPart.Workbook.GetFirstChild<DocumentFormat.OpenXml.Spreadsheet.Sheets>();
+                    string relationshipId = workbook.WorkbookPart.GetIdOfPart(sheetPart);
+                    uint sheetId = 1;
+                    DocumentFormat.OpenXml.Spreadsheet.Sheet sheet = new DocumentFormat.OpenXml.Spreadsheet.Sheet() { Id = relationshipId, SheetId = sheetId, Name = "Export" };
+                    sheets.Append(sheet);
+                    #endregion
 
-                    DocumentFormat.OpenXml.Spreadsheet.Cell cell = new DocumentFormat.OpenXml.Spreadsheet.Cell();
-                    cell.DataType = DocumentFormat.OpenXml.Spreadsheet.CellValues.String;
-                    cell.CellValue = new DocumentFormat.OpenXml.Spreadsheet.CellValue(column.ColumnName); 
-                    //cell.DataType = DocumentFormat.OpenXml.Spreadsheet.CellValues.InlineString;
-                    //cell.InlineString = new InlineString() { Text = new Text(column.ColumnName) };
-                    
-                    headerRow.AppendChild(cell);
-                }
+                    #region Inserta nombre de atributo en columna
+                    DocumentFormat.OpenXml.Spreadsheet.Row headerRow = new DocumentFormat.OpenXml.Spreadsheet.Row();
 
-                sheetData.AppendChild(headerRow);
-                #endregion
-
-                #region Inserta Datos
-                foreach (DataRow row in table.Rows)
-                {
-                    DocumentFormat.OpenXml.Spreadsheet.Row newRow = new DocumentFormat.OpenXml.Spreadsheet.Row();
-                    foreach (String col in columns)
+                    List<String> columns = new List<string>();
+                    int rowNumber = 1;
+                    int columnIndex = 0;
+                    foreach (DataColumn column in table.Columns)
                     {
+                        columns.Add(column.ColumnName);
+
                         DocumentFormat.OpenXml.Spreadsheet.Cell cell = new DocumentFormat.OpenXml.Spreadsheet.Cell();
                         cell.DataType = DocumentFormat.OpenXml.Spreadsheet.CellValues.String;
-                        cell.CellValue = new DocumentFormat.OpenXml.Spreadsheet.CellValue(row[col].ToString());
+                        cell.CellValue = new DocumentFormat.OpenXml.Spreadsheet.CellValue(column.ColumnName);
                         //cell.DataType = DocumentFormat.OpenXml.Spreadsheet.CellValues.InlineString;
-                        //cell.InlineString = new InlineString() { Text = new Text(row[col].ToString()) };
-                        newRow.AppendChild(cell);
+                        //cell.InlineString = new InlineString() { Text = new Text(column.ColumnName) };
+
+                        cell.CellReference = Letters[columnIndex] + rowNumber.ToString();
+                        headerRow.AppendChild(cell);
+                        string v = cell.CellReference.Value;
+                        columnIndex++;
                     }
 
-                    sheetData.AppendChild(newRow);
+                    sheetData.AppendChild(headerRow);
+                    #endregion
+
+                    #region Inserta Datos
+                    foreach (DataRow row in table.Rows)
+                    {
+                        rowNumber++;
+                        columnIndex = 0;
+                        DocumentFormat.OpenXml.Spreadsheet.Row newRow = new DocumentFormat.OpenXml.Spreadsheet.Row();
+                        foreach (String col in columns)
+                        {
+                            DocumentFormat.OpenXml.Spreadsheet.Cell cell = new DocumentFormat.OpenXml.Spreadsheet.Cell();
+                            cell.DataType = DocumentFormat.OpenXml.Spreadsheet.CellValues.String;
+                            cell.CellValue = new DocumentFormat.OpenXml.Spreadsheet.CellValue(row[col].ToString());
+                            //cell.DataType = DocumentFormat.OpenXml.Spreadsheet.CellValues.InlineString;
+                            //cell.InlineString = new InlineString() { Text = new Text(row[col].ToString()) };
+                            cell.CellReference = Letters[columnIndex] + rowNumber.ToString();
+                            newRow.AppendChild(cell);
+
+                            columnIndex++;
+                        }
+
+                        sheetData.AppendChild(newRow);
+                    }
+                    #endregion
                 }
-                #endregion
+                return true;
             }
-            return true;
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
         public bool leerExcel(string p_path, List<int?> p_indiceAtributos, ref DataTable p_dataTable, bool p_primeraRowHeaders)
         {
