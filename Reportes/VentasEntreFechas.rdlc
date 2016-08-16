@@ -417,7 +417,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!cantidadPedidos.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>#,0;(#,0)</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -448,7 +450,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!cantidadArticulos.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>#,0;(#,0)</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -480,7 +484,7 @@
                             <TextRun>
                               <Value>=Fields!montoTotal.Value</Value>
                               <Style>
-                                <Format>'$' 0.00;('$' 0.00)</Format>
+                                <Format>'$' #,0.00;('$' #,0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1071,7 +1075,7 @@
                   <Value>=First(Fields!MontoTotal.Value, "dsEncabezadoReporte")</Value>
                   <Style>
                     <FontSize>11pt</FontSize>
-                    <Format>'$'0.00;('$'0.00)</Format>
+                    <Format>'$' #,0.00;('$' #,0.00)</Format>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1089,26 +1093,6 @@
             <Border>
               <Style>Solid</Style>
             </Border>
-            <TopBorder>
-              <Color>Black</Color>
-              <Style>Solid</Style>
-              <Width>1pt</Width>
-            </TopBorder>
-            <BottomBorder>
-              <Color>Black</Color>
-              <Style>Solid</Style>
-              <Width>1pt</Width>
-            </BottomBorder>
-            <LeftBorder>
-              <Color>Black</Color>
-              <Style>Solid</Style>
-              <Width>1pt</Width>
-            </LeftBorder>
-            <RightBorder>
-              <Color>Black</Color>
-              <Style>Solid</Style>
-              <Width>1pt</Width>
-            </RightBorder>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>

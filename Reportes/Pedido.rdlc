@@ -248,6 +248,7 @@
                               <Value>=Fields!Cantidad.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>#,0;(#,0)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -268,6 +269,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -347,7 +349,7 @@
                               <Value>=Fields!PrecioUnitario.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <Format>'$' 0.00;('$' 0.00)</Format>
+                                <Format>'$' #,0.00;('$' #,0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -368,7 +370,6 @@
                         <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -415,7 +416,7 @@
                               <Value>=Fields!Precio.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <Format>'$' 0.00;('$' 0.00)</Format>
+                                <Format>'$' #,0.00;('$' #,0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1179,7 +1180,7 @@
                 <TextRun>
                   <Value>=First(Fields!TotalComprobante.Value, "DSFactura")</Value>
                   <Style>
-                    <Format>'$' 0.00;('$' 0.00)</Format>
+                    <Format>'$' #,0.00;('$' #,0.00)</Format>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1192,7 +1193,7 @@
           <Top>0.49954cm</Top>
           <Left>16.40136cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.12392cm</Width>
+          <Width>2.44547cm</Width>
           <Style>
             <Border>
               <Style>Solid</Style>

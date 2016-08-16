@@ -425,6 +425,7 @@
                               <Value>=Fields!cantidadPedidos.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>#,0;(#,0)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -444,6 +445,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -458,6 +460,7 @@
                               <Value>=Fields!cantidadArticulos.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>#,0;(#,0)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -491,7 +494,7 @@
                               <Value>=Fields!montoTotal.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <Format>'$' 0.00;('$' 0.00)</Format>
+                                <Format>'$' #,0.00;('$' #,0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1082,6 +1085,7 @@
                   <Value>=First(Fields!MontoTotal.Value, "dsEncabezadoReporte")</Value>
                   <Style>
                     <FontSize>11pt</FontSize>
+                    <Format>#,0;(#,0)</Format>
                   </Style>
                 </TextRun>
               </TextRuns>

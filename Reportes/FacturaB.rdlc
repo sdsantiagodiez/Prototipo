@@ -257,6 +257,7 @@
                               <Value>=Fields!Cantidad.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>#,0;(#,0)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -275,6 +276,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -353,6 +355,7 @@
                               <Value>=Fields!PrecioUnitario.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>'$' #,0.00;('$' #,0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -369,6 +372,7 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -385,6 +389,7 @@
                               <Value>=Fields!Precio.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>'$' #,0.00;('$' #,0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -401,6 +406,7 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -1339,7 +1345,7 @@
                 <TextRun>
                   <Value>=First(Fields!TotalComprobante.Value, "DSFactura")</Value>
                   <Style>
-                    <Format>'$' 0.00;('$' 0.00)</Format>
+                    <Format>'$' #,0.00;('$' #,0.00)</Format>
                   </Style>
                 </TextRun>
               </TextRuns>
