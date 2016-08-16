@@ -78,7 +78,7 @@ namespace Modelos
 
         public bool Equals(ModeloCliente p_mod_cliente)
         {
-            return this.razonSocial.Equals(p_mod_cliente.razonSocial);
+            return string.Equals(this.razonSocial,p_mod_cliente.razonSocial);
         }
         #endregion
     }

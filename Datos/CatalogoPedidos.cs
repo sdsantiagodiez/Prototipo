@@ -143,8 +143,8 @@ namespace Datos
             string periodoQuery = "";
             if (p_periodo != null)
             {
-                p_comando.Parameters.Add(this.instanciarParametro(p_periodo[0], "@fecha_desde"));
-                p_comando.Parameters.Add(this.instanciarParametro(p_periodo[1], "@fecha_hasta"));
+                p_comando.Parameters.Add(this.instanciarParametro(p_periodo[0].Date, "@fecha_desde"));
+                p_comando.Parameters.Add(this.instanciarParametro(p_periodo[1].Date, "@fecha_hasta"));
                 periodoQuery = " AND fecha BETWEEN @fecha_desde AND @fecha_hasta ";
             }
 
@@ -359,8 +359,8 @@ namespace Datos
         #region Reportes
         private ModeloReporteEncabezado getDatosReporte(SqlCommand comando, List<DateTime> p_periodos, ModeloEntidad p_entidad)
         {
-            comando.Parameters.Add(this.instanciarParametro(p_periodos[0], "@fecha_desde"));
-            comando.Parameters.Add(this.instanciarParametro(p_periodos[1], "@fecha_hasta"));
+            comando.Parameters.Add(this.instanciarParametro(p_periodos[0].Date, "@fecha_desde"));
+            comando.Parameters.Add(this.instanciarParametro(p_periodos[1].Date, "@fecha_hasta"));
             comando.Parameters.Add(this.instanciarParametro(p_entidad.codigo, "@codigo_entidad"));
             comando.Connection.Open();
             SqlDataReader drPedidosEntreFechas = comando.ExecuteReader();
@@ -510,8 +510,8 @@ namespace Datos
             ModeloReporteEncabezado lcl_mod_ReporteEncabezadoArticulos = new ModeloReporteEncabezado();
             if (p_periodos != null && p_periodos.Count == 2)
             {
-                comando.Parameters.Add(this.instanciarParametro(p_periodos[0], "@fecha_desde"));
-                comando.Parameters.Add(this.instanciarParametro(p_periodos[1], "@fecha_hasta"));
+                comando.Parameters.Add(this.instanciarParametro(p_periodos[0].Date, "@fecha_desde"));
+                comando.Parameters.Add(this.instanciarParametro(p_periodos[1].Date, "@fecha_hasta"));
 
                 lcl_mod_ReporteEncabezadoArticulos.FechaDesde = p_periodos[0];
                 lcl_mod_ReporteEncabezadoArticulos.FechaHasta = p_periodos[1];

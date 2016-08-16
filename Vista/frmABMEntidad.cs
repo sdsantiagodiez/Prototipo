@@ -356,7 +356,8 @@ namespace Vista
                 MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
                 if (this.modoFormulario != ModoFormularioClientePedido)
                 {
-                    this.inicializarModoFormularioSeleccionado();    
+                    this.inicializarModoFormularioSeleccionado();
+                    this.cargarEntidadEnControles(glb_mod_entidadActual);
                 }
                 else
                 {
@@ -741,6 +742,7 @@ namespace Vista
         }
         private void cargarDatosProveedorEnControles(ModeloProveedor p_mod_proveedor)
         {
+            this.radioButtonProveedor.Checked = true;
             txtBoxRazonSocial.Text = p_mod_proveedor.razonSocial != null ? p_mod_proveedor.razonSocial : "";
         }
         private void cargarDatosPersonaEnControles(ModeloPersonas p_mod_persona)
@@ -749,9 +751,19 @@ namespace Vista
             txtBoxNombre.Text = p_mod_persona.nombre != null ? p_mod_persona.nombre : "";
             txtBoxApellido.Text = p_mod_persona.apellido != null ? p_mod_persona.apellido : "";
 
-            if (p_mod_persona.GetType() == typeof(ModeloCliente))
+            Type T = p_mod_persona.GetType();
+            if (T == typeof(ModeloCliente))
             {
+                this.radioButtonCliente.Checked = true;
                 txtBoxRazonSocial.Text = (p_mod_persona as ModeloCliente).razonSocial != null ? (p_mod_persona as ModeloCliente).razonSocial : "";
+            }
+            else if (T == typeof(ModeloUsuario))
+            {
+                this.radioButtonUsuario.Checked = true;
+            }
+            else if (T == typeof(ModeloContactoProveedor))
+            {
+                this.radioButtonContactoProveedor.Checked = true;
             }
 
         }
