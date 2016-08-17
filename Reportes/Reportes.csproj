@@ -72,6 +72,7 @@
     <EmbeddedResource Include="NCreditoB.rdlc" />
     <EmbeddedResource Include="FacturaB.rdlc" />
     <EmbeddedResource Include="FacturaA.rdlc" />
+    <EmbeddedResource Include="OrdenCompra.rdlc" />
     <EmbeddedResource Include="Presupuesto.rdlc" />
     <EmbeddedResource Include="PedidosEntreFechas.rdlc" />
     <EmbeddedResource Include="DescuentoAFecha.rdlc" />

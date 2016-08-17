@@ -162,6 +162,14 @@ namespace Vista
                     //this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoB.rdlc";
                     rdlcFile = "Reportes.NCreditoB.rdlc";
                     break;
+                case 2001:
+                    //this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoB.rdlc";
+                    rdlcFile = "Reportes.OrdenCompra.rdlc";
+                    break;
+                case 1001:
+                    //this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.NCreditoB.rdlc";
+                    rdlcFile = "Reportes.Presupuesto.rdlc";
+                    break;
                 default:
                     //this.contenedorComprobante.LocalReport.ReportEmbeddedResource = "Reportes.Pedido.rdlc";
                     rdlcFile = "Reportes.Pedido.rdlc";
