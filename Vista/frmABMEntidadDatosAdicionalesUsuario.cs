@@ -320,6 +320,7 @@ namespace Vista
         private void btnModificar_Click(object sender, EventArgs e)
         {
             this.modoUsuarioNuevo = true;
+            this.txtBoxUsuario.Enabled = false;
         }
 
         private void valorUsername(object sender, KeyPressEventArgs e)
