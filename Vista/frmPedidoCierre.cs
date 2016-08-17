@@ -744,7 +744,7 @@ namespace Vista
         {
             Documento lcl_documento = new Documento();
             lcl_documento.tipo = this.cmbBoxTipoDocumento.SelectedValue as TipoDocumento;
-            lcl_documento.numero = this.txtBoxNumeroDocumento.Text; //"20111111112" ejemplo
+            lcl_documento.numero = ModeloEntidad.CUIT.GetCuitNumerico(this.txtBoxNumeroDocumento.Text); //"20111111112" ejemplo
             return lcl_documento;
         }
         private ModeloContactoProveedor cargarControlEnContactoProveedor()
