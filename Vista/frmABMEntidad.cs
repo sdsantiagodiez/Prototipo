@@ -432,33 +432,33 @@ namespace Vista
         /// <summary>
         /// Muestra cuadro de resultado de búsqueda de la clase buscada o mensaje de error en caso de que no se haya podido mostrar
         /// </summary>
-        private void buscar(object sender, EventArgs e)
+        private void buscar()
         {
             if (this.validarTipoEntidad())
             {
                 if (!string.IsNullOrWhiteSpace(txtBoxCodigoEntidad.Text.ToString()))
                 {
-                    this.txtBoxCodigoEntidad_Leave(sender, e);
+                    this.txtBoxCodigoEntidad_Leave(new object(), new EventArgs());
                 }
                 if (!string.IsNullOrWhiteSpace(txtBoxCUIT.Text.ToString()))
                 {
-                    this.txtBoxCUIT_Leave(sender, e);
+                    this.txtBoxCUIT_Leave(new object(), new EventArgs());
                 }
                 if (!string.IsNullOrWhiteSpace(txtBoxDNI.Text.ToString()))
                 {
-                    this.txtBoxDNI_Leave(sender, e);
+                    this.txtBoxDNI_Leave(new object(), new EventArgs());
                 }
                 if (!string.IsNullOrWhiteSpace(txtBoxNombre.Text.ToString()))
                 {
-                    this.txtBoxNombre_Leave(sender, e);
+                    this.txtBoxNombre_Leave(new object(), new EventArgs());
                 }
                 if (!string.IsNullOrWhiteSpace(txtBoxApellido.Text.ToString()))
                 {
-                    this.txtBoxApellido_Leave(sender, e);
+                    this.txtBoxApellido_Leave(new object(), new EventArgs());
                 }
                 if (!string.IsNullOrWhiteSpace(txtBoxRazonSocial.Text.ToString()))
                 {
-                    this.txtBoxRazonSocial_Leave(sender, e);
+                    this.txtBoxRazonSocial_Leave(new object(), new EventArgs());
                 }
                 if (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.CodigoEntidad)]
                     || glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)]
@@ -514,8 +514,10 @@ namespace Vista
                     {
                         this.modoFormulario = ModoFormularioSeleccionado;
                         quitarTextoEnControles(this);
+                        
+                        //Se asigna despues de cargarEntidadEnControles porque el método inicializa a glb_mod_entidadActual en los radioButtons check changed
+                        this.cargarEntidadEnControles(lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad);
                         glb_mod_entidadActual = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad;
-                        this.cargarEntidadEnControles(glb_mod_entidadActual);
                     }
                     else
                     {
@@ -524,7 +526,6 @@ namespace Vista
                     }
                 }
             };
-            
             
             this.cargarDatosControlEnEntidadActual(ref glb_mod_entidadActual);
 
@@ -1291,7 +1292,7 @@ namespace Vista
 
         override public void toolStripMenuItemBuscar_Click(object sender, EventArgs e)
         {
-            this.buscar(sender,e);
+            this.buscar();
         }
         #endregion
 

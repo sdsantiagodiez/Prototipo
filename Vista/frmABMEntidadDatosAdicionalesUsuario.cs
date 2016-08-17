@@ -67,7 +67,6 @@ namespace Vista
         private void inicializarFormulario()
         {
             //no permitir al usuario modificar dimensiones de ventan
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             modoUsuarioNuevo = true;
