@@ -35,7 +35,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Cantidad</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -66,6 +69,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -78,7 +82,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Codigo Articulo</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -109,6 +116,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -121,7 +129,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Descripcion</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -152,6 +163,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -164,7 +176,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Precio Unitario</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -195,6 +210,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -207,7 +223,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Precio</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -238,6 +257,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -276,7 +296,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -446,7 +465,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>4.25222in</Height>
+    <Height>3.25222in</Height>
     <Style>
       <Border>
         <Style>Solid</Style>
@@ -456,7 +475,7 @@
   <Width>7.89272in</Width>
   <Page>
     <PageHeader>
-      <Height>6.45583cm</Height>
+      <Height>6.29708cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -467,7 +486,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>Cod.01</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -499,7 +520,7 @@
                 <TextRun>
                   <Value>Mundo Renault</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -532,7 +553,7 @@
                   <Value>=First(Fields!CentroEmisor.Value, "DSFactura")</Value>
                   <Style>
                     <FontFamily>arial</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -566,7 +587,7 @@
                 <TextRun>
                   <Value>=First(Fields!NumeroComprobante.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>
@@ -601,7 +622,7 @@
                   <Value>Fecha:</Value>
                   <Style>
                     <FontFamily>arial</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -634,7 +655,7 @@
                 <TextRun>
                   <Value>=First(Fields!FechaComprobante.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Format>dd/MM/yyyy</Format>
                     <Language>es-AR</Language>
@@ -670,7 +691,7 @@
                   <Value>Cliente:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -704,7 +725,7 @@
                   <Value>IVA:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -738,7 +759,7 @@
                   <Value>CUIT:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -772,7 +793,7 @@
                   <Value>Cond.Venta:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -805,7 +826,7 @@
                 <TextRun>
                   <Value>=First(Fields!Comprador_IVAResponsableI.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>
@@ -837,7 +858,7 @@
                 <TextRun>
                   <Value>=First(Fields!CondicionVenta.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>
@@ -869,7 +890,7 @@
                 <TextRun>
                   <Value>=First(Fields!Comprador_Cuit.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>
@@ -901,7 +922,7 @@
                 <TextRun>
                   <Value>=First(Fields!Comprador_RazonSocial.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>
@@ -1039,7 +1060,7 @@
                 <TextRun>
                   <Value>Cuit:</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1072,7 +1093,7 @@
                 <TextRun>
                   <Value>=First(Fields!CuitEmisor.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -1104,7 +1125,7 @@
                 <TextRun>
                   <Value>Inicio Actividades:</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1137,7 +1158,7 @@
                 <TextRun>
                   <Value>01/06/1999</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -1168,7 +1189,7 @@
                 <TextRun>
                   <Value>Av. Pellegrini 3151 - Rosario, Santa Fe</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -1200,7 +1221,7 @@
                 <TextRun>
                   <Value>Tel. 0341- 4353535</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -1232,7 +1253,7 @@
                   <Value>Direccion:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1265,7 +1286,7 @@
                 <TextRun>
                   <Value>=First(Fields!Comprador_Domicilio.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>
@@ -1298,7 +1319,7 @@
                   <Value>-</Value>
                   <Style>
                     <FontFamily>arial</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1332,7 +1353,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>2.9989cm</Height>
+      <Height>4.63932cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1345,6 +1366,7 @@
                 <TextRun>
                   <Value>=First(Fields!SubtotalComprobante.Value, "DSFactura")</Value>
                   <Style>
+                    <FontSize>8pt</FontSize>
                     <Format>'$' 0.00;('$' 0.00)</Format>
                   </Style>
                 </TextRun>
@@ -1355,14 +1377,34 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Subtotal</rd:DefaultName>
-          <Top>0.526cm</Top>
+          <Top>0.2085cm</Top>
           <Left>2.07097cm</Left>
           <Height>0.6cm</Height>
           <Width>2.20896cm</Width>
           <Style>
             <Border>
-              <Style>None</Style>
+              <Style>Solid</Style>
             </Border>
+            <TopBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </TopBorder>
+            <BottomBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </BottomBorder>
+            <LeftBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </LeftBorder>
+            <RightBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </RightBorder>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
@@ -1379,6 +1421,7 @@
                 <TextRun>
                   <Value>=First(Fields!TotalComprobante.Value, "DSFactura")</Value>
                   <Style>
+                    <FontSize>8pt</FontSize>
                     <Format>'$' 0.00;('$' 0.00)</Format>
                   </Style>
                 </TextRun>
@@ -1389,15 +1432,35 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Total</rd:DefaultName>
-          <Top>0.55246cm</Top>
+          <Top>0.23496cm</Top>
           <Left>17.28293cm</Left>
           <Height>0.6cm</Height>
           <Width>2.20896cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
-              <Style>None</Style>
+              <Style>Solid</Style>
             </Border>
+            <TopBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </TopBorder>
+            <BottomBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </BottomBorder>
+            <LeftBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </LeftBorder>
+            <RightBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </RightBorder>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
@@ -1414,6 +1477,7 @@
                 <TextRun>
                   <Value>=First(Fields!IVAComprobante.Value, "DSFactura")</Value>
                   <Style>
+                    <FontSize>8pt</FontSize>
                     <Format>'$' 0.00;('$' 0.00);'-'</Format>
                   </Style>
                 </TextRun>
@@ -1424,15 +1488,35 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Iva</rd:DefaultName>
-          <Top>0.526cm</Top>
+          <Top>0.2085cm</Top>
           <Left>6.81233cm</Left>
           <Height>0.6cm</Height>
           <Width>2.20896cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
-              <Style>None</Style>
+              <Style>Solid</Style>
             </Border>
+            <TopBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </TopBorder>
+            <BottomBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </BottomBorder>
+            <LeftBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </LeftBorder>
+            <RightBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </RightBorder>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
@@ -1449,6 +1533,7 @@
                   <Value>Neto:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1458,7 +1543,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.55246cm</Top>
+          <Top>0.23496cm</Top>
           <Left>0.62048cm</Left>
           <Height>0.6cm</Height>
           <Width>1.2741cm</Width>
@@ -1483,6 +1568,7 @@
                   <Value>IVA   21%:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1492,7 +1578,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.55246cm</Top>
+          <Top>0.23496cm</Top>
           <Left>4.66511cm</Left>
           <Height>0.6cm</Height>
           <Width>1.97083cm</Width>
@@ -1517,6 +1603,7 @@
                   <Value>Total:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1526,7 +1613,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.55246cm</Top>
+          <Top>0.23496cm</Top>
           <Left>14.73883cm</Left>
           <Height>0.6cm</Height>
           <Width>2.36771cm</Width>
@@ -1543,7 +1630,7 @@
           </Style>
         </Textbox>
         <Line Name="Line2">
-          <Top>1.46786cm</Top>
+          <Top>2.73786cm</Top>
           <Height>0cm</Height>
           <Width>20.0475cm</Width>
           <ZIndex>6</ZIndex>
@@ -1571,7 +1658,7 @@
                 <TextRun>
                   <Value>=First(Fields!CAINumero.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1580,8 +1667,8 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <Top>1.57369cm</Top>
-          <Left>9.44759cm</Left>
+          <Top>2.84369cm</Top>
+          <Left>7.22509cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.8175cm</Width>
           <ZIndex>8</ZIndex>
@@ -1604,7 +1691,7 @@
                 <TextRun>
                   <Value>=First(Fields!FechaVencimiento.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <Format>dd/MM/yy</Format>
                   </Style>
                 </TextRun>
@@ -1614,8 +1701,8 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <Top>2.16487cm</Top>
-          <Left>9.82367cm</Left>
+          <Top>3.43487cm</Top>
+          <Left>7.60117cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.44142cm</Width>
           <ZIndex>9</ZIndex>
@@ -1638,7 +1725,7 @@
                 <TextRun>
                   <Value>C.A.E.:</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1648,8 +1735,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
-          <Top>1.57369cm</Top>
-          <Left>6.79766cm</Left>
+          <Top>2.84369cm</Top>
+          <Left>4.57516cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.5cm</Width>
           <ZIndex>10</ZIndex>
@@ -1672,7 +1759,7 @@
                 <TextRun>
                   <Value>FECHA DE VTO.:</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1682,8 +1769,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
-          <Top>2.19133cm</Top>
-          <Left>6.83449cm</Left>
+          <Top>3.46133cm</Top>
+          <Left>4.61199cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.86571cm</Width>
           <ZIndex>11</ZIndex>
@@ -1706,6 +1793,7 @@
                 <TextRun>
                   <Value>=First(Fields!ConceptosNoGravados.Value, "DSFactura")</Value>
                   <Style>
+                    <FontSize>8pt</FontSize>
                     <Format>'$' 0.00;('$' 0.00);'-'</Format>
                   </Style>
                 </TextRun>
@@ -1715,15 +1803,35 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <Top>0.526cm</Top>
+          <Top>0.2085cm</Top>
           <Left>11.80805cm</Left>
           <Height>0.6cm</Height>
           <Width>2.20896cm</Width>
           <ZIndex>12</ZIndex>
           <Style>
             <Border>
-              <Style>None</Style>
+              <Style>Solid</Style>
             </Border>
+            <TopBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </TopBorder>
+            <BottomBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </BottomBorder>
+            <LeftBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </LeftBorder>
+            <RightBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </RightBorder>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
@@ -1740,6 +1848,7 @@
                   <Value>No Gravado:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1749,7 +1858,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.55246cm</Top>
+          <Top>0.23496cm</Top>
           <Left>9.58146cm</Left>
           <Height>0.6cm</Height>
           <Width>2.0502cm</Width>
@@ -1765,31 +1874,116 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
-        <Textbox Name="TxtCAICode">
+        <Textbox Name="TxtCAICode2">
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>="*" &amp; First(Fields!CodigodeBarras.Value, "DSFactura") &amp; "*"</Value>
+                  <Value>=First(Fields!CodigodeBarras.Value, "DSFactura")</Value>
                   <Style>
-                    <FontFamily>I2OF5TXT</FontFamily>
+                    <FontFamily>3 of 9 Barcode</FontFamily>
                     <FontSize>24pt</FontSize>
+                    <Format>0;(0)</Format>
                   </Style>
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
-          <Top>1.61779cm</Top>
-          <Left>13.16047cm</Left>
-          <Height>1.09417cm</Height>
-          <Width>6.19911cm</Width>
+          <Top>2.91425cm</Top>
+          <Left>10.56831cm</Left>
+          <Height>0.82959cm</Height>
+          <Width>8.81775cm</Width>
           <ZIndex>14</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
             </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox18">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!CodigodeBarras.Value, "DSFactura")</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox14</rd:DefaultName>
+          <Top>3.84939cm</Top>
+          <Left>10.56831cm</Left>
+          <Height>0.54709cm</Height>
+          <Width>8.81775cm</Width>
+          <ZIndex>15</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <VerticalAlign>Middle</VerticalAlign>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Line Name="Line4">
+          <Top>1.16872cm</Top>
+          <Left>0cm</Left>
+          <Height>0cm</Height>
+          <Width>20.0475cm</Width>
+          <ZIndex>16</ZIndex>
+          <Style>
+            <Border>
+              <Style>Solid</Style>
+            </Border>
+          </Style>
+        </Line>
+        <Textbox Name="Textbox20">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>="SON: PESOS " &amp;First(Fields!TotalComprobanteLetras.Value, "DSFactura")</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox14</rd:DefaultName>
+          <Top>1.67129cm</Top>
+          <Left>2.07097cm</Left>
+          <Height>0.47653cm</Height>
+          <Width>14.83999cm</Width>
+          <ZIndex>17</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <VerticalAlign>Middle</VerticalAlign>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
@@ -1900,6 +2094,10 @@
         <Field Name="TotalComprobante">
           <DataField>TotalComprobante</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TotalComprobanteLetras">
+          <DataField>TotalComprobanteLetras</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>

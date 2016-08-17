@@ -90,7 +90,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Pedido.rdlc" />
-    <None Include="i2of5txt.ttf" />
+    <None Include="3of9.ttf" />
     <None Include="Properties\DataSources\Modelos.Alicuota.datasource" />
     <None Include="Properties\DataSources\Modelos.Documento.datasource" />
     <None Include="Properties\DataSources\Modelos.FormaPago.datasource" />

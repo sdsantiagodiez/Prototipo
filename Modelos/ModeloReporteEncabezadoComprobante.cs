@@ -23,6 +23,7 @@ namespace Modelos
         public decimal ConceptosNoGravados { get; set; }
         public decimal Alicuota { get; set; }
         public decimal TotalComprobante { get; set; }
+        public string TotalComprobanteLetras { get; set; }
         public string CAINumero { get; set; }
         public DateTime FechaVencimiento { get; set; }
         public string CondicionVenta { get; set; }
@@ -62,7 +63,8 @@ namespace Modelos
             this.IVAComprobante = p_mod_pedido.alicuota.monto;
             this.Remito = p_mod_pedido.numeroPedido.ToString();
             this.SubtotalComprobante = p_mod_pedido.montoSubTotal;
-            this.TotalComprobante = p_mod_pedido.montoTotal;  
+            this.TotalComprobante = p_mod_pedido.montoTotal;
+            this.TotalComprobanteLetras = LibreriaClasesCompartidas.Transformar.NumeroALetras(p_mod_pedido.montoTotal.ToString());
         }
     }
 }

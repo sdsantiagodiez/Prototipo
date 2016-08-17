@@ -40,6 +40,7 @@
                               <Value>Cantidad</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -53,6 +54,16 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <LeftBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </LeftBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -74,6 +85,7 @@
                               <Value>Codigo</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -87,6 +99,11 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -107,6 +124,7 @@
                               <Value>Descripcion</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -120,6 +138,11 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -141,6 +164,7 @@
                               <Value>Precio U.</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -154,6 +178,11 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -175,6 +204,7 @@
                               <Value>Desc.</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -188,6 +218,11 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -209,6 +244,7 @@
                               <Value>Precio Total</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -222,6 +258,16 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <RightBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </RightBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -269,7 +315,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -499,7 +544,7 @@
                 <TextRun>
                   <Value>Mundo Renault</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -668,7 +713,7 @@
                   <Value>Cliente:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -702,7 +747,7 @@
                   <Value>CUIT/DNI:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -736,7 +781,7 @@
                   <Value>Domicilio:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -769,7 +814,7 @@
                 <TextRun>
                   <Value>=First(Fields!Comprador_Domicilio.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>
@@ -801,7 +846,7 @@
                 <TextRun>
                   <Value>=First(Fields!Comprador_RazonSocial.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>
@@ -940,7 +985,7 @@
                 <TextRun>
                   <Value>Av. Pellegrini 3151 - Rosario, Santa Fe</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -972,7 +1017,7 @@
                 <TextRun>
                   <Value>Tel. 0341-4353535</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -1004,7 +1049,7 @@
                   <Value>Mail:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1037,7 +1082,7 @@
                 <TextRun>
                   <Value EvaluationMode="Constant" />
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>
@@ -1070,7 +1115,7 @@
                   <Value>Telefono:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1103,7 +1148,7 @@
                 <TextRun>
                   <Value />
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>
@@ -1135,7 +1180,7 @@
                 <TextRun>
                   <Value>=First(Fields!Comprador_Cuit.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>

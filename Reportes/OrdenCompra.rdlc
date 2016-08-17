@@ -40,6 +40,7 @@
                               <Value>Cantidad</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -54,19 +55,10 @@
                           <Style>None</Style>
                         </Border>
                         <TopBorder>
-                          <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
                         </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </BottomBorder>
                         <LeftBorder>
-                          <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
                         </LeftBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -75,6 +67,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -89,6 +82,7 @@
                               <Value>Codigo</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -103,15 +97,8 @@
                           <Style>None</Style>
                         </Border>
                         <TopBorder>
-                          <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
                         </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </BottomBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -119,6 +106,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -132,6 +120,7 @@
                               <Value>Descripcion</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -146,15 +135,8 @@
                           <Style>None</Style>
                         </Border>
                         <TopBorder>
-                          <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
                         </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </BottomBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -162,6 +144,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -176,6 +159,7 @@
                               <Value>Precio U.</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -190,15 +174,8 @@
                           <Style>None</Style>
                         </Border>
                         <TopBorder>
-                          <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
                         </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </BottomBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -206,6 +183,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -220,6 +198,7 @@
                               <Value>Desc.</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -234,15 +213,8 @@
                           <Style>None</Style>
                         </Border>
                         <TopBorder>
-                          <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
                         </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </BottomBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -250,6 +222,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -264,6 +237,7 @@
                               <Value>Precio Total</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -278,19 +252,10 @@
                           <Style>None</Style>
                         </Border>
                         <TopBorder>
-                          <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
                         </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </BottomBorder>
                         <RightBorder>
-                          <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
                         </RightBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -299,6 +264,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>

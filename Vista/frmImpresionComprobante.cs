@@ -99,6 +99,7 @@ namespace Vista
 
         private void mostrarComprobante(ModeloPedido p_pedido)
         {
+            
             SafeInvoke(this.contenedorComprobante, this.contenedorComprobante.Reset);
 
             ModeloReporteEncabezadoComprobante lcl_mod_encabezadoComprobante = new ModeloReporteEncabezadoComprobante(p_pedido);
