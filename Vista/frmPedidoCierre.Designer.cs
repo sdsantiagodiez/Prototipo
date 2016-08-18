@@ -321,6 +321,7 @@
             this.txtBoxRazonSocial.Size = new System.Drawing.Size(350, 23);
             this.txtBoxRazonSocial.TabIndex = 14;
             this.txtBoxRazonSocial.UseSystemPasswordChar = false;
+            this.txtBoxRazonSocial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxRazonSocial_KeyPress);
             this.txtBoxRazonSocial.Leave += new System.EventHandler(this.txtBoxRazonSocial_Leave);
             // 
             // grpBoxObservaciones
@@ -401,6 +402,7 @@
             this.cmbBoxContactoProveedor.Size = new System.Drawing.Size(141, 21);
             this.cmbBoxContactoProveedor.TabIndex = 22;
             this.cmbBoxContactoProveedor.Visible = false;
+            this.cmbBoxContactoProveedor.SelectedValueChanged += new System.EventHandler(this.cmbBoxContactoProveedor_SelectedValueChanged);
             // 
             // lblContactoProveedor
             // 
@@ -488,6 +490,7 @@
             this.txtBoxNumeroDocumento.Size = new System.Drawing.Size(153, 23);
             this.txtBoxNumeroDocumento.TabIndex = 24;
             this.txtBoxNumeroDocumento.UseSystemPasswordChar = false;
+            this.txtBoxNumeroDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxNumeroDocumento_KeyPress);
             this.txtBoxNumeroDocumento.Leave += new System.EventHandler(this.txtBoxNumeroDocumento_Leave);
             // 
             // txtBoxApellido
@@ -505,6 +508,7 @@
             this.txtBoxApellido.Size = new System.Drawing.Size(153, 23);
             this.txtBoxApellido.TabIndex = 25;
             this.txtBoxApellido.UseSystemPasswordChar = false;
+            this.txtBoxApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxApellido_KeyPress);
             this.txtBoxApellido.Leave += new System.EventHandler(this.txtBoxApellido_Leave);
             // 
             // txtBoxNombre
@@ -522,6 +526,7 @@
             this.txtBoxNombre.Size = new System.Drawing.Size(153, 23);
             this.txtBoxNombre.TabIndex = 26;
             this.txtBoxNombre.UseSystemPasswordChar = false;
+            this.txtBoxNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxNombre_KeyPress);
             this.txtBoxNombre.Leave += new System.EventHandler(this.txtBoxNombre_Leave);
             // 
             // tblLayoutPanelPedido
@@ -763,7 +768,7 @@
             this.tblLayoutPanelMail.ColumnCount = 3;
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0578F));
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.9422F));
-            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tblLayoutPanelMail.Controls.Add(this.lblMail, 0, 0);
             this.tblLayoutPanelMail.Controls.Add(this.txtBoxMail, 1, 0);
             this.tblLayoutPanelMail.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -780,9 +785,9 @@
             this.lblMail.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblMail.AutoSize = true;
             this.lblMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblMail.Location = new System.Drawing.Point(5, 19);
+            this.lblMail.Location = new System.Drawing.Point(35, 12);
             this.lblMail.Name = "lblMail";
-            this.lblMail.Size = new System.Drawing.Size(97, 13);
+            this.lblMail.Size = new System.Drawing.Size(63, 26);
             this.lblMail.TabIndex = 9;
             this.lblMail.Text = "Correo Electrónico:";
             // 
@@ -791,14 +796,14 @@
             this.txtBoxMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxMail.Depth = 0;
             this.txtBoxMail.Hint = "";
-            this.txtBoxMail.Location = new System.Drawing.Point(108, 14);
+            this.txtBoxMail.Location = new System.Drawing.Point(104, 14);
             this.txtBoxMail.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxMail.Name = "txtBoxMail";
             this.txtBoxMail.PasswordChar = '\0';
             this.txtBoxMail.SelectedText = "";
             this.txtBoxMail.SelectionLength = 0;
             this.txtBoxMail.SelectionStart = 0;
-            this.txtBoxMail.Size = new System.Drawing.Size(238, 23);
+            this.txtBoxMail.Size = new System.Drawing.Size(230, 23);
             this.txtBoxMail.TabIndex = 10;
             this.txtBoxMail.UseSystemPasswordChar = false;
             this.txtBoxMail.Leave += new System.EventHandler(this.txtBoxMail_Leave);
@@ -913,6 +918,7 @@
             this.txtBoxTelefono.Size = new System.Drawing.Size(147, 23);
             this.txtBoxTelefono.TabIndex = 28;
             this.txtBoxTelefono.UseSystemPasswordChar = false;
+            this.txtBoxTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxTelefono_KeyPress);
             this.txtBoxTelefono.Leave += new System.EventHandler(this.txtBoxTelefono_Leave);
             // 
             // cmbBoxTelefonos
