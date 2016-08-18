@@ -175,6 +175,16 @@ namespace Vista
                 }
             }
         }
+
+        protected void valorNumericoTeclado(object sender, KeyPressEventArgs e)
+        {
+            // solo 0-9 y borrar 
+            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8)
+            {
+                e.Handled = true;
+                return;
+            }
+        }
     }
     
     //clase para llenar combo box categoria a buscar

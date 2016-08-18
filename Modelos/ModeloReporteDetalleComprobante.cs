@@ -24,5 +24,14 @@ namespace Modelos
             this.Precio = p_lineaPedido.valorParcial;
             this.Descuento = p_lineaPedido.descuentoTotalMonto;
         }
+
+        //public ModeloReporteDetalleComprobante(ModeloArticuloProveedores p_articuloProveedorDescuento,ModeloDescuentoLineaPedido p_descuentoLP)
+        //{
+        //    Descripcion = "Descuento de " + p_descuentoLP.porcentaje.ToString() + "en " + p_articuloProveedorDescuento.descripcion;
+        //    Cantidad = 1;
+        //    CodigoArticulo = p_articuloProveedorDescuento.codigoArticuloProveedor;
+        //    Precio = -p_descuentoLP.montoTotal;
+        //    PrecioUnitario = p_descuentoLP.montoTotal;
+        //}
     }
 }

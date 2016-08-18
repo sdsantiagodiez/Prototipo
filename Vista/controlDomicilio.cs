@@ -198,6 +198,10 @@ namespace Vista
                     epPiso.SetError(txtBoxPiso, "OK");
                 }
             }
+            else
+            {
+                epPiso.SetError(txtBoxPiso, null);
+            }
         }
 
         private void txtBoxDepartamento_Leave(object sender, EventArgs e)
@@ -217,6 +221,10 @@ namespace Vista
                     epDepartamento.SetError(txtBoxDepartamento, "OK");
                 }
             }
+            else
+            {
+                epDepartamento.SetError(txtBoxDepartamento, null);
+            }
         }
 
         private void txtBoxCodigoPostal_Leave(object sender, EventArgs e)
@@ -235,6 +243,10 @@ namespace Vista
                     epCodigoPostal.Icon = Properties.Resources.success;
                     epCodigoPostal.SetError(txtBoxCodigoPostal, "OK");
                 }
+            }
+            else
+            {
+                epCodigoPostal.SetError(this.txtBoxCodigoPostal, null);
             }
         }
 
@@ -258,7 +270,7 @@ namespace Vista
         #endregion
 
         #region Validaciones
-         private int getIndex(string p_inputName)
+        private int getIndex(string p_inputName)
         {
             int index;
             switch (p_inputName)
@@ -287,35 +299,49 @@ namespace Vista
             }
             return index;
         }
-         public bool validar()
-         {
-             return this.validarDomicilio(new object(), new EventArgs());
-         }
-         public bool validarDomicilio(object sender, EventArgs e)
-         {
-             if (this.cmbBoxPais.SelectedValue == null || this.cmbBoxProvincia.SelectedValue == null)
-             {
-                 MessageBox.Show("Debe Seleccionar un País y una Provincia");
-                 return false;
-             }
+        public bool validar()
+        {
+            return this.validarDomicilio();
+        }
+        public bool validarDomicilio()
+        {
+            if (this.cmbBoxPais.SelectedValue == null || this.cmbBoxProvincia.SelectedValue == null)
+            {
+                MessageBox.Show("Debe Seleccionar un País y una Provincia");
+                return false;
+            }
 
-             if (!this.validarInputs(sender,e))
-             {
-                 return false;
-             }
+            if (!this.validarInputs())
+            {
+                return false;
+            }
 
-             return true;
-         }
-
-         private bool validarInputs(object sender, EventArgs e)
-         {
-            txtBoxCalle_Leave(sender, e);
-            txtBoxNumeroDomicilio_Leave(sender, e);
-            txtBoxCiudad_Leave(sender, e);
+            return true;
+        }
+        public bool domicilioVacio()
+        {
+            string todosLosCampos = this.txtBoxCalle.Text + this.txtBoxNumeroDomicilio.Text + this.txtBoxPiso.Text + this.txtBoxDepartamento.Text +
+                            this.txtBoxCiudad.Text + this.txtBoxCodigoPostal.Text;
+            return String.IsNullOrWhiteSpace(todosLosCampos);
+        }
+        public void clearErrorProviders()
+        {
+            epCalle.SetError(this.txtBoxCalle, null);
+            epNumeroDomicilio.SetError(this.txtBoxNumeroDomicilio, null);
+            epDepartamento.SetError(this.txtBoxDepartamento, null);
+            epPiso.SetError(this.txtBoxPiso,null);
+            epCiudad.SetError(this.txtBoxCiudad, null);
+            epCodigoPostal.SetError(this.txtBoxCodigoPostal,null);
+        }
+        private bool validarInputs()
+        {
+            txtBoxCalle_Leave(new object(),new EventArgs());
+            txtBoxNumeroDomicilio_Leave(new object(), new EventArgs());
+            txtBoxCiudad_Leave(new object(), new EventArgs());
             return (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)]
                 & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)]
                 & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)]);
-         }
+        }
         #endregion
 
     }

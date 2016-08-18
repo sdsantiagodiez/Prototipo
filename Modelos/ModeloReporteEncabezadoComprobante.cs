@@ -56,7 +56,16 @@ namespace Modelos
             foreach (ModeloLineaPedido lp in p_mod_pedido.lineasPedido)
             {
                 this.detalleFactura.Add(new ModeloReporteDetalleComprobante(lp));
+                //if (lp.descuentos.Count > 0)
+                //{
+                //    foreach (ModeloDescuentoLineaPedido d in lp.descuentos)
+                //    {
+                //        this.detalleFactura.Add(new ModeloReporteDetalleComprobante(lp.articulo,d));
+                //    }
+                //}
             }
+
+
 
             this.FechaComprobante = p_mod_pedido.fecha;
             this.FechaVencimiento = p_mod_pedido.VencimientoCAE;

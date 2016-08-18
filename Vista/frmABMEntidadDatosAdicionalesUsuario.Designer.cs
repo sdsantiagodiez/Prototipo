@@ -91,7 +91,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.74095F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.25905F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.Controls.Add(this.lblUsuario, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblContraseña, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblConfirmarContraseña, 0, 2);
@@ -155,7 +155,7 @@
             this.txtBoxUsuario.SelectedText = "";
             this.txtBoxUsuario.SelectionLength = 0;
             this.txtBoxUsuario.SelectionStart = 0;
-            this.txtBoxUsuario.Size = new System.Drawing.Size(258, 23);
+            this.txtBoxUsuario.Size = new System.Drawing.Size(257, 23);
             this.txtBoxUsuario.TabIndex = 13;
             this.txtBoxUsuario.UseSystemPasswordChar = false;
             this.txtBoxUsuario.Leave += new System.EventHandler(this.txtBoxUsuario_Leave);
@@ -172,7 +172,7 @@
             this.txtBoxContraseña.SelectedText = "";
             this.txtBoxContraseña.SelectionLength = 0;
             this.txtBoxContraseña.SelectionStart = 0;
-            this.txtBoxContraseña.Size = new System.Drawing.Size(258, 23);
+            this.txtBoxContraseña.Size = new System.Drawing.Size(257, 23);
             this.txtBoxContraseña.TabIndex = 14;
             this.txtBoxContraseña.UseSystemPasswordChar = false;
             this.txtBoxContraseña.Leave += new System.EventHandler(this.txtBoxContraseña_Leave);
@@ -189,7 +189,7 @@
             this.txtBoxConfirmarContraseña.SelectedText = "";
             this.txtBoxConfirmarContraseña.SelectionLength = 0;
             this.txtBoxConfirmarContraseña.SelectionStart = 0;
-            this.txtBoxConfirmarContraseña.Size = new System.Drawing.Size(258, 23);
+            this.txtBoxConfirmarContraseña.Size = new System.Drawing.Size(257, 23);
             this.txtBoxConfirmarContraseña.TabIndex = 15;
             this.txtBoxConfirmarContraseña.UseSystemPasswordChar = false;
             this.txtBoxConfirmarContraseña.Leave += new System.EventHandler(this.txtBoxConfirmarContraseña_Leave);
