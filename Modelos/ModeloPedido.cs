@@ -84,6 +84,13 @@ namespace Modelos
             get { return _montoSubTotal; }
             set { this._montoSubTotal = value>0?value:0; }
         }
+
+        string _estado;
+        public string estado
+        {
+            get { return _estado; }
+            set { _estado = value; }
+        }
         
         //Puede ser un proveedor o un cliente persona
         ModeloEntidad _entidad;

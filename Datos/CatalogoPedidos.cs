@@ -27,7 +27,7 @@ namespace Datos
             lcl_mod_pedido.montoSubTotal = (p_drPedidos["monto_subtotal"] != DBNull.Value) ? (decimal)p_drPedidos["monto_subtotal"] : 0;
             lcl_mod_pedido.montoTotal = (p_drPedidos["monto_total"] != DBNull.Value) ? (decimal)p_drPedidos["monto_total"] : 0;
             lcl_mod_pedido.observaciones = (p_drPedidos["observaciones"] != DBNull.Value) ? (string)p_drPedidos["observaciones"] : null;
-
+            
             lcl_mod_pedido.descuentos.descuento_monto_1 = (p_drPedidos["descuento_1_monto"] != DBNull.Value) ? (decimal)p_drPedidos["descuento_1_monto"] : 0;
             lcl_mod_pedido.descuentos.descuento_monto_2 = (p_drPedidos["descuento_2_monto"] != DBNull.Value) ? (decimal)p_drPedidos["descuento_2_monto"] : 0;
 
@@ -43,7 +43,8 @@ namespace Datos
                 (lcl_mod_pedido.entidad as ModeloCliente).razonSocial = (p_drPedidos["razon_social_entidad"] != DBNull.Value) ? (string)p_drPedidos["razon_social_entidad"] : null; 
                 lcl_mod_pedido.documentoComprador.tipo.codigo = (p_drPedidos["codigo_documento"] != DBNull.Value) ? (int)p_drPedidos["codigo_documento"] : 0; 
                 lcl_mod_pedido.documentoComprador.numero = (p_drPedidos["numero_documento_entidad"] != DBNull.Value) ? (string)p_drPedidos["numero_documento_entidad"] : null; 
-                lcl_mod_pedido.tipoComprobante = (p_drPedidos["codigo_comprobante"] != DBNull.Value) ? (int)p_drPedidos["codigo_comprobante"] : 0; 
+                lcl_mod_pedido.tipoComprobante = (p_drPedidos["codigo_comprobante"] != DBNull.Value) ? (int)p_drPedidos["codigo_comprobante"] : 0;
+                lcl_mod_pedido.estado = (p_drPedidos["estado"] != DBNull.Value) ? (string)p_drPedidos["estado"] : "C";
             }
             else
             {
@@ -202,13 +203,13 @@ namespace Datos
             comando.CommandText =
                 "SELECT  [numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
                 "        [codigo_entidad], [razon_social_entidad],[descuento_1_monto],[descuento_2_monto], " +
-                "        [numero_comprobante],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante]  " +
+                "        [numero_comprobante],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],[estado]  " +
                 "    FROM  "+
                 "    (  "+
                 "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
                 "                Pedidos_Personas.[codigo_entidad], Pedidos_Personas.[razon_social_entidad],[descuento_1_monto],[descuento_2_monto], " +
 	            "                [numero_comprobante],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], "+
-	            "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante] "+
+	            "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante],[estado] "+
                 "            FROM pedidos, Pedidos_Personas  "+
                 "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido  "+
                 "        )  "+
@@ -216,7 +217,7 @@ namespace Datos
                 "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
                 "                Pedidos_Proveedores.[codigo_entidad], NULL as [razon_social_entidad],[descuento_1_monto],[descuento_2_monto], " +
                 "                NULL as [numero_comprobante],NULL as [cae], NULL as [vencimiento_cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
-	            "                NULL as [codigo_documento],NULL as [numero_documento_entidad],NULL as [codigo_comprobante] "+
+                "                NULL as [codigo_documento],NULL as [numero_documento_entidad],NULL as [codigo_comprobante],NULL as [estado] " +
                 "            FROM pedidos, Pedidos_Proveedores  "+
                 "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  "+
                 "        )  "+
@@ -267,14 +268,14 @@ namespace Datos
                  "SELECT  [numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
                 "        [codigo_entidad],[razon_social_entidad], " +
                 "        [numero_comprobante],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],  " +
-                "           [descuento_1_monto],[descuento_2_monto] "+
+                "           [descuento_1_monto],[descuento_2_monto],[estado] " +
                 "    FROM  " +
                 "    (  " +
                 "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
                 "                Pedidos_Personas.[codigo_entidad],Pedidos_Personas.[razon_social_entidad], " +
                 "                [numero_comprobante],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], " +
                 "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante], "+
-                "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto] " +
+                "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto],[estado] " +
                 "            FROM pedidos, Pedidos_Personas  " +
                 "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido  " +
                 "        )  " +
@@ -283,7 +284,7 @@ namespace Datos
                 "                Pedidos_Proveedores.[codigo_entidad], NULL as [razon_social_entidad]," +
                 "                NULL as [numero_comprobante],NULL as [cae],NULL as [vencimiento_cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
                 "                NULL as [codigo_documento],NULL as [numero_documento_entidad],NULL as [codigo_comprobante], " +
-                "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto] " +
+                "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto], NULL as [estado] " +
                 "            FROM pedidos, Pedidos_Proveedores  " +
                 "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  " +
                 "        )  " +
@@ -676,9 +677,9 @@ namespace Datos
         {
             p_comando.CommandText =
            "INSERT INTO  Pedidos_Personas  (numero_pedido,numero_comprobante,cae,vencimiento_cae,aprobado_afip,codigo_entidad,nombre_entidad,apellido_entidad,"+
-           "    razon_social_entidad,codigo_documento,numero_documento_entidad,codigo_comprobante) " +
+           "    razon_social_entidad,codigo_documento,numero_documento_entidad,codigo_comprobante, estado) " +
            "    VALUES( @numeroPedidoActual,@numero_comprobante,@cae,@vto_cae,@aprobado_afip,@codigo_entidad,@nombre_entidad,@apellido_entidad," +
-           "    @razon_social_entidad,@codigo_documento,@numero_documento_entidad,@codigo_comprobante) ";
+           "    @razon_social_entidad,@codigo_documento,@numero_documento_entidad,@codigo_comprobante, @estado) ";
             
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numeroPedidoActual"));
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroComprobante, "@numero_comprobante"));
@@ -692,6 +693,7 @@ namespace Datos
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.documentoComprador.tipo.codigo, "@codigo_documento"));
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.documentoComprador.numero, "@numero_documento_entidad"));
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.tipoComprobante, "@codigo_comprobante"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.estado, "@estado"));
             
 
             return p_comando.ExecuteNonQuery();
@@ -778,6 +780,39 @@ namespace Datos
 
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.aprobadoAFIP, "@aprobado_afip"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numero_pedido"));
+
+            comando.Connection.Open();
+            int rowaffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        public bool updatePedidoEstado(ModeloPedido p_mod_pedido)
+        {
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText =
+                "UPDATE [pedidos_personas] " +
+                "SET estado=@estado " +
+                "WHERE [pedidos_personas].numero_pedido=@numero_pedido";
+
+            //Indica los parametros
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.estado, "@estado"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numero_pedido"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
