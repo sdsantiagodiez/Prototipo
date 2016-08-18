@@ -43,7 +43,7 @@ namespace Modelos
             this.CentroEmisor = "0001";//p_mod_pedido.numeroComprobante;
             this.NumeroComprobante = p_mod_pedido.numeroComprobante;
             this.Comprador_Cuit = p_mod_pedido.entidad.cuit;
-            //lcl_mod_Factura.Comprador_IVAResponsableI = p_mod_pedido.documentoComprador.tipo.descripcion;
+            this.Comprador_IVAResponsableI = this.defineSituacionIVA(p_mod_pedido.entidad.situacionIVA);
             if (p_mod_pedido.domicilioDeFacturacion == null)
             { this.Comprador_Domicilio = ""; }
             else
@@ -74,6 +74,19 @@ namespace Modelos
             this.SubtotalComprobante = p_mod_pedido.montoSubTotal;
             this.TotalComprobante = p_mod_pedido.montoTotal;
             this.TotalComprobanteLetras = LibreriaClasesCompartidas.Transformar.NumeroALetras(p_mod_pedido.montoTotal.ToString());
+        }
+
+        public string defineSituacionIVA(int p_situacionIVA)
+        { string situacion ="";
+        switch (p_situacionIVA)
+        {
+            case 6: situacion = "Consumidor Final"; break;
+            case 5: situacion = "Monotributista"; break;
+            case 1: situacion = "Responsable Inscripto"; break;
+            default: situacion = "Consumidor Final"; break;
+        }
+
+        return situacion;
         }
     }
 }

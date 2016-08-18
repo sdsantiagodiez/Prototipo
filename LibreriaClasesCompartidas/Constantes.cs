@@ -239,7 +239,16 @@ namespace LibreriaClasesCompartidas
             
             Otro = 3001
         }
-        
+        public enum SituacionIVA
+        {
+            [System.ComponentModel.Description("Responsable Inscripto")]
+            Responsable_Inscripto = 1,
+            [System.ComponentModel.Description("Monotributo")]
+            Monotributo = 6,
+            [System.ComponentModel.Description("Consumidor Final")]
+            Consumidor_Final = 5,
+
+        }
         public static string GetDescription<T>(this T enumerationValue)
              where T : struct
         {
@@ -373,6 +382,7 @@ namespace LibreriaClasesCompartidas
                 InformeStock = 3
                 
             }
+           
         }
     }
     

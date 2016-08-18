@@ -65,6 +65,12 @@ namespace Modelos
             get { return _activo; }
             set { this._activo = value; }
         }
+        int _situacionIVA;
+        public int situacionIVA 
+        {
+            get { return _situacionIVA; }
+            set { _situacionIVA = value; }
+        }
         #endregion
 
         #region Constructores
@@ -84,7 +90,8 @@ namespace Modelos
             this.mails = p_mod_entidad.mails;
             this.mails = p_mod_entidad.mails;
             this.observaciones = p_mod_entidad.observaciones;
-            this.telefonos = p_mod_entidad.telefonos; 
+            this.telefonos = p_mod_entidad.telefonos;
+            this.situacionIVA = p_mod_entidad.situacionIVA;
         }
         #endregion 
         
