@@ -113,7 +113,8 @@ namespace Datos
                 "SELECT * FROM ("+
                 "SELECT per_1.codigo_entidad,e_1.tipo_entidad,e_1.cuit,e_1.observaciones,per_1.dni," +
                 "per_1.nombre,per_1.apellido,per_1.tipo_persona, pro.codigo_entidad as codigo_proveedor,pro.razon_social as razon_social_proveedor, " +
-                "e_2.cuit as cuit_proveedor, e_1.activo " +
+                "e_2.cuit as cuit_proveedor, e_1.activo, " +
+                "   e_1.situacion_iva " +
                     "FROM personas per_1 " +
                     "INNER JOIN [entidades] e_1 on e_1.codigo = per_1.codigo_entidad " +
                     "INNER JOIN [Contactos_Proveedores] cp on cp.codigo_contacto = e_1.codigo  " +

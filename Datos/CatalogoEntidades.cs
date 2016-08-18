@@ -308,7 +308,7 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "UPDATE [entidades] SET [cuit]=@cuit, [observaciones]=@observaciones,[tipo_entidad]=@tipo_entidad,[activo]=@activo " +
+                "UPDATE [entidades] SET [cuit]=@cuit, [observaciones]=@observaciones,[tipo_entidad]=@tipo_entidad,[activo]=@activo, " +
                 " situacion_iva=@situacion_iva WHERE [entidades].codigo=@codigo_entidad";
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_entidad.codigo, "@codigo_entidad"));

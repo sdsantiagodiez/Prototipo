@@ -91,7 +91,7 @@ namespace Datos
             
             comando.CommandText =
                 "SELECT [proveedores].codigo_entidad,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[proveedores].razon_social, "+
-                "   [entidades].activo " +
+                "   [entidades].activo, [entidades].situacion_iva " +
                 "   FROM [proveedores] " +
                 "   INNER JOIN [entidades] on [entidades].codigo = [proveedores].codigo_entidad " +
                 "   WHERE " + querySQL;

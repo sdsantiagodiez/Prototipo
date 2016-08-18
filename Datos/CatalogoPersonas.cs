@@ -119,7 +119,8 @@ namespace Datos
             
             comando.CommandText =
                 "SELECT [entidades].codigo as codigo_entidad,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
-                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia, [entidades].activo  " +
+                "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia, [entidades].activo, "+
+                "   [entidades].situacion_iva " +
                     "FROM [personas] " +
                     "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad " +
                     "WHERE " + querySQL;
