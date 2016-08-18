@@ -185,7 +185,8 @@ namespace Controladores
             p_facturaElectronica.f1IndiceItem = 0;
             p_facturaElectronica.F1DetalleIvaId = p_mod_pedido.alicuota.iva.codigo;//5=codigo correspondiente a iva de 21%
             p_facturaElectronica.F1DetalleIvaBaseImp = Math.Round((double)Math.Round(p_mod_pedido.montoTotal) / (1 + (p_mod_pedido.alicuota.iva.porcentaje / 100)), 2);
-            p_facturaElectronica.F1DetalleIvaImporte = Math.Round(Math.Round((double)Math.Round(p_mod_pedido.montoTotal), 2) - p_facturaElectronica.F1DetalleIvaBaseImp, 2);
+            p_facturaElectronica.F1DetalleIvaBaseImp = Math.Round((double)p_mod_pedido.montoSubTotal, 2);
+            p_facturaElectronica.F1DetalleIvaImporte = Math.Round((double)p_mod_pedido.alicuota.monto, 2);
 
             //Se usaría un for() para cada iva distinto que haya para los productos o servicios. Como solo tratamos con productos de 21%, no lo usamos
             //int cantidadItems = p_mod_pedido.lineasPedido.Count;
@@ -241,7 +242,7 @@ namespace Controladores
             p_mod_pedido.aprobadoAFIP = p_facturaElectronica.F1RespuestaDetalleResultado;
             p_mod_pedido.CAE = p_facturaElectronica.F1RespuestaDetalleCae;
             p_mod_pedido.numeroComprobante = p_facturaElectronica.F1RespuestaDetalleCbteDesdeS;
-            p_mod_pedido.VencimientoCAE = DateTime.ParseExact(p_facturaElectronica.F1RespuestaDetalleCAEFchVto,"yyyyMMdd",CultureInfo.InvariantCulture,DateTimeStyles.None);
+            p_mod_pedido.VencimientoCAE = DateTime.ParseExact(p_facturaElectronica.F1RespuestaDetalleCAEFchVto!=""?p_facturaElectronica.F1RespuestaDetalleCAEFchVto:"20200101","yyyyMMdd",CultureInfo.InvariantCulture,DateTimeStyles.None);
         }
 
         /// <summary>
