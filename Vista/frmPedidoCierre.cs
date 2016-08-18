@@ -1110,7 +1110,7 @@ namespace Vista
         private void valorNumeroDocumento(object sender, KeyPressEventArgs e)
         {
             // solo 0-9 y borrar 
-            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))  //46 es el punto
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46 & e.KeyChar!= 45))  //46 es el punto, 45 el guión medio
             {
                 e.Handled = true;
                 return;
@@ -1129,6 +1129,10 @@ namespace Vista
         #endregion
         
         #region ComboBox
+        private void cmbBoxTipoDocumento_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            txtBoxNumeroDocumento_Leave(sender, e);
+        }
         private void cmbBoxPedidosProveedores_SelectionChangeCommitted(object sender, EventArgs e)
         {
             var pedido = (ModeloPedido)cmbBoxPedidosProveedores.SelectedValue;
@@ -1282,10 +1286,12 @@ namespace Vista
                 //Si es responsable inscripto, sólo se puede usar CUIT para facturación electrónica
                 this.cmbBoxTipoDocumento.SelectedValue = glb_lst_tiposDocumentos.SingleOrDefault(x => x.codigo == 80);
                 this.cmbBoxTipoDocumento.Enabled = false;
+                this.txtBoxNumeroDocumento_Leave(new object() ,new EventArgs());
             }
             else
             {
                 this.cmbBoxTipoDocumento.Enabled = true;
+                this.txtBoxNumeroDocumento_Leave(new object(), new EventArgs());
             }
         }
         #endregion
@@ -1466,18 +1472,43 @@ namespace Vista
         #region Validaciones
         private void txtBoxNumeroDocumento_Leave(object sender, EventArgs e)
         {
-            bool respuesta = (Validar.validarInputNoNumerico(txtBoxNumeroDocumento.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni)
-                || Validar.validarInputNoNumerico(txtBoxNumeroDocumento.Text.ToString(),Constantes.ParametrosBusqueda.Entidades.Personas.Cuit));
-            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Cuit)] = respuesta;
-            if (!respuesta)
+            int index=0;
+            for(int i =0; i< glb_lst_tiposDocumentos.Count();i++)
             {
-                epNumeroDocumento.Icon = Properties.Resources.error;
-                epNumeroDocumento.SetError(txtBoxNumeroDocumento, "Numero de Documento no válido");
+                if (glb_lst_tiposDocumentos[i].codigo == 80)
+                {
+                    index = i;
+                }
+            }
+            if (this.chckBoxResponsableInscripto.Checked || cmbBoxTipoDocumento.SelectedValue == glb_lst_tiposDocumentos[index])
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxNumeroDocumento.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Cuit);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Cuit)] = respuesta;
+                if (!respuesta)
+                {
+                    epNumeroDocumento.Icon = Properties.Resources.error;
+                    epNumeroDocumento.SetError(txtBoxNumeroDocumento, "CUIT no válido");
+                }
+                else
+                {
+                    epNumeroDocumento.Icon = Properties.Resources.success;
+                    epNumeroDocumento.SetError(txtBoxNumeroDocumento, "OK");
+                }
             }
             else
             {
-                epNumeroDocumento.Icon = Properties.Resources.success;
-                epNumeroDocumento.SetError(txtBoxNumeroDocumento, "OK");
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxNumeroDocumento.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Cuit)] = respuesta;
+                if (!respuesta)
+                {
+                    epNumeroDocumento.Icon = Properties.Resources.error;
+                    epNumeroDocumento.SetError(txtBoxNumeroDocumento, "DNI no válido");
+                }
+                else
+                {
+                    epNumeroDocumento.Icon = Properties.Resources.success;
+                    epNumeroDocumento.SetError(txtBoxNumeroDocumento, "OK");
+                }
             }
         }
 
@@ -1589,8 +1620,7 @@ namespace Vista
                 epIvaMonto.SetError(txtBoxIVAMonto, "OK");
             }
         }
-        #endregion
+        #endregion        
 
-        
     }
 }
