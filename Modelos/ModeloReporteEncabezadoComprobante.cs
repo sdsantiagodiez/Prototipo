@@ -42,7 +42,7 @@ namespace Modelos
             this.CuitEmisor = ModeloPedido.cuitEmisor;
             this.CentroEmisor = "0001";//p_mod_pedido.numeroComprobante;
             this.NumeroComprobante = p_mod_pedido.numeroComprobante;
-            this.Comprador_Cuit = p_mod_pedido.entidad.cuit;
+            this.Comprador_Cuit = (p_mod_pedido.entidad.cuit != null )? p_mod_pedido.entidad.cuit:p_mod_pedido.documentoComprador.numero;
             this.Comprador_IVAResponsableI = this.defineSituacionIVA(p_mod_pedido.entidad.situacionIVA);
             if (p_mod_pedido.domicilioDeFacturacion == null)
             { this.Comprador_Domicilio = ""; }
@@ -52,7 +52,9 @@ namespace Modelos
             }
             this.Comprador_RazonSocial = p_mod_pedido.entidad.ToString();
             //lcl_mod_Factura.ConceptosNoGravados = p_mod_pedido.
-            this.CondicionVenta = (p_mod_pedido.formasDePago == null) ? p_mod_pedido.formasDePago[0].forma.ToString() : null;
+            this.CondicionVenta = (p_mod_pedido.formasDePago != null) ? p_mod_pedido.formasDePago[0].forma.ToString() : null;
+                       
+            
             foreach (ModeloLineaPedido lp in p_mod_pedido.lineasPedido)
             {
                 this.detalleFactura.Add(new ModeloReporteDetalleComprobante(lp));
@@ -64,7 +66,10 @@ namespace Modelos
                 //    }
                 //}
             }
-
+            if (p_mod_pedido.descuentos.descuento_total_monto > 0)
+            {
+                this.detalleFactura.Add((this.agregaLineaDescuentoGlobal(p_mod_pedido.descuentos.descuento_total_monto)));
+            }
 
 
             this.FechaComprobante = p_mod_pedido.fecha;
@@ -87,6 +92,12 @@ namespace Modelos
         }
 
         return situacion;
+        }
+        public ModeloReporteDetalleComprobante agregaLineaDescuentoGlobal(decimal p_montoDescuento)
+        {
+           ModeloReporteDetalleComprobante lcl_mod_detalle_descuento = new ModeloReporteDetalleComprobante(new ModeloLineaPedido(p_montoDescuento));
+
+            return lcl_mod_detalle_descuento;
         }
     }
 }

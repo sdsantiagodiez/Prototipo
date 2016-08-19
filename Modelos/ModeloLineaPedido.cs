@@ -101,6 +101,13 @@ namespace Modelos
         {
             this.addArticulo(p_mod_articuloProveedor, p_cantidad, p_tipoPedido);   
         }
+        public ModeloLineaPedido(decimal p_montoDescuento):this()
+        {
+            this.articulo.descripcionArticuloProveedor = "Descuento";
+            this.cantidadArticulos=1;
+            this.valorUnitario = p_montoDescuento *-1;
+            this.valorParcial = p_montoDescuento *-1;
+        }
         #endregion
 
         #region Métodos

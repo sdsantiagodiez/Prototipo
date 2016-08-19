@@ -369,7 +369,7 @@
                               <Value>=Fields!PrecioUnitario.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <Format>'$' #,0.00;('$' #,0.00)</Format>
+                                <Format>'$' #,0.00;'$' -#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -403,7 +403,7 @@
                               <Value>=Fields!Precio.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <Format>'$' #,0.00;('$' #,0.00)</Format>
+                                <Format>'$' #,0.00;'$' -#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -423,6 +423,7 @@
                         <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -1644,7 +1645,7 @@
           </Style>
         </Textbox>
         <Line Name="Line4">
-          <Top>1.40904cm</Top>
+          <Top>1.09154cm</Top>
           <Height>0cm</Height>
           <Width>20.02104cm</Width>
           <ZIndex>10</ZIndex>
@@ -1674,7 +1675,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
-          <Top>1.80577cm</Top>
+          <Top>1.48827cm</Top>
           <Left>2.59052cm</Left>
           <Height>0.47653cm</Height>
           <Width>14.83999cm</Width>
