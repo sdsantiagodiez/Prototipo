@@ -394,7 +394,7 @@
                               <Value>=Fields!PrecioUnitario.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <Format>'$' #,0.00;('$' #,0.00)</Format>
+                                <Format>'$' #,0.00;'$' -#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -415,6 +415,7 @@
                         <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -458,10 +459,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Precio.Value</Value>
+                              <Value>=Fields!PrecioUnitario.Value*Fields!Cantidad.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <Format>'$' #,0.00;('$' #,0.00)</Format>
+                                <Format>'$' #,0.00;'$' -#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -494,7 +495,11 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
-            <TablixMember />
+            <TablixMember>
+              <Visibility>
+                <Hidden>true</Hidden>
+              </Visibility>
+            </TablixMember>
             <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>

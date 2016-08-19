@@ -112,8 +112,8 @@ namespace Modelos
         {
             this.articulo.descripcionArticuloProveedor = "Descuento - "+ p_motivoDescuento+" Articulo:"+p_codigoArticulo;
             this.cantidadArticulos = 1;
-            this.valorUnitario = p_montoDescuento * -1;
-            this.valorParcial = p_montoDescuento * -1;
+            this.valorUnitario = Math.Round(p_montoDescuento * -1,2);
+            this.valorParcial = Math.Round(p_montoDescuento * -1,2);
         }
         #endregion
 
