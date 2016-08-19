@@ -393,13 +393,12 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Precio">
-                      <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Precio.Value/1.21</Value>
+                              <Value>=(Fields!PrecioUnitario.Value*Fields!Cantidad.Value)/1.21</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <Format>'$' #,0.00</Format>

@@ -58,13 +58,18 @@ namespace Modelos
             foreach (ModeloLineaPedido lp in p_mod_pedido.lineasPedido)
             {
                 this.detalleFactura.Add(new ModeloReporteDetalleComprobante(lp));
-                //if (lp.descuentos.Count > 0)
-                //{
-                //    foreach (ModeloDescuentoLineaPedido d in lp.descuentos)
-                //    {
-                //        this.detalleFactura.Add(new ModeloReporteDetalleComprobante(lp.articulo,d));
-                //    }
-                //}
+                if (lp.descuentos.Count > 0)
+                {
+                    decimal monto = 0;
+                    string motivos = "";
+                    foreach (ModeloDescuentoLineaPedido d in lp.descuentos)
+                    {
+                        motivos = motivos + " - " + d.descripcion;
+                        monto = monto + d.montoDescontadoSobreTotal;
+                       // this.detalleFactura.Add(new ModeloReporteDetalleComprobante(lp.articulo,d));
+                    }
+                    this.detalleFactura.Add(new ModeloReporteDetalleComprobante(new ModeloLineaPedido(monto,motivos,lp.articulo.codigoArticuloProveedor)));
+                }
             }
             if (p_mod_pedido.descuentos.descuento_total_monto > 0)
             {
@@ -85,8 +90,8 @@ namespace Modelos
         { string situacion ="";
         switch (p_situacionIVA)
         {
-            case 6: situacion = "Consumidor Final"; break;
-            case 5: situacion = "Monotributista"; break;
+            case 5: situacion = "Consumidor Final"; break;
+            case 6: situacion = "Monotributista"; break;
             case 1: situacion = "Responsable Inscripto"; break;
             default: situacion = "Consumidor Final"; break;
         }

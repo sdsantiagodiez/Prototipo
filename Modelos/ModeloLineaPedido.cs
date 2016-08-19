@@ -108,6 +108,13 @@ namespace Modelos
             this.valorUnitario = p_montoDescuento *-1;
             this.valorParcial = p_montoDescuento *-1;
         }
+        public ModeloLineaPedido(decimal p_montoDescuento, string p_motivoDescuento, string p_codigoArticulo): this()
+        {
+            this.articulo.descripcionArticuloProveedor = "Descuento - "+ p_motivoDescuento+" Articulo:"+p_codigoArticulo;
+            this.cantidadArticulos = 1;
+            this.valorUnitario = p_montoDescuento * -1;
+            this.valorParcial = p_montoDescuento * -1;
+        }
         #endregion
 
         #region Métodos

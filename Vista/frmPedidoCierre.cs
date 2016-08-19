@@ -789,6 +789,8 @@ namespace Vista
             {
                 tipoComprobante = ControladorPedidoCliente.getCodigoComprobante((Constantes.TipoComprobanteVenta)this.cmbBoxTipoComprobante.SelectedValue,
                                                                                                 Convert.ToInt16(chckBoxResponsableInscripto.Checked));
+              //  tipoComprobante = ControladorPedidoCliente.getCodigoComprobante((Constantes.TipoComprobanteVenta)this.cmbBoxTipoComprobante.SelectedValue,//Situacion de IVA una vez cargados en la BD
+              //                                             (controlador.pedidoActual.entidad.situacionIVA== null)?controlador.pedidoActual.entidad.situacionIVA: Convert.ToInt16(chckBoxResponsableInscripto.Checked));
             }
             else if (modoFormulario == ModoFormularioPedidoProveedor)
             {
