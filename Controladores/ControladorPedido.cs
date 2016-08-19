@@ -145,7 +145,7 @@ namespace Controladores
         /// Remueve la seleccionada
         /// </summary>
         /// <param name="p_lineaPedido"></param>
-        public void removeLineaPedido(ModeloLineaPedido p_lineaPedido)
+        public virtual void removeLineaPedido(ModeloLineaPedido p_lineaPedido)
         {
             this.pedidoActual.removeLineaPedido(p_lineaPedido);
         }
@@ -156,7 +156,10 @@ namespace Controladores
         {
             this.pedidoActual.removeAllLineaPedido();
         }
-
+        public virtual void updateLineaPedido(ModeloLineaPedido p_lineaPedido)
+        {
+            this.pedidoActual.updateLineaPedido(p_lineaPedido);
+        }
         public static string getNombreComprobante(int codigoComprobante)
         {
             switch (codigoComprobante)
@@ -211,6 +214,23 @@ namespace Controladores
             pedidosProveedores.Add(this.getPedidoGlobal());
             //Cada pedido se identifica por el proveedor
         }
+
+        public override void removeLineaPedido(ModeloLineaPedido p_lineaPedido)
+        {
+            bool esPedidoGlobal = pedidoActual.Equals(pedidosProveedores[0]);
+            
+            base.removeLineaPedido(p_lineaPedido);
+            
+            this.getPedidosProveedores(esPedidoGlobal? pedidoActual: getPedidoGlobal());
+        }
+        public override void updateLineaPedido(ModeloLineaPedido p_lineaPedido)
+        {
+            bool esPedidoGlobal = pedidoActual.entidad.Equals(pedidosProveedores[0].entidad);
+
+            base.updateLineaPedido(p_lineaPedido);
+
+            this.getPedidosProveedores(esPedidoGlobal ? pedidoActual : getPedidoGlobal());
+        }
         
         /// <summary>
         /// Retorna multiples pedidos (e inicializa propiedad pedidosProveedores) de acuerdo al proveedor de cada articulo en las lineas de pedido
@@ -248,7 +268,9 @@ namespace Controladores
                 }
             }
             this.pedidosProveedores = lcl_lst_mod_pedidos;
-            this.pedidosProveedores.Insert(0, this.getPedidoGlobal());
+            
+            this.pedidosProveedores.Insert(0, new ModeloPedido());
+            this.pedidosProveedores[0] = this.getPedidoGlobal();
             return lcl_lst_mod_pedidos;
         }
 
@@ -281,6 +303,20 @@ namespace Controladores
             }
             ControladorAlta lcl_con_alta = new ControladorAlta();
             return lcl_con_alta.agregar(lcl_lst_pedidos_a_guardar);
+        }
+        public int getIndice(ModeloPedido p_pedido)
+        {
+            int indice = 0;
+            for (int i = 0; i < pedidosProveedores.Count; i++)
+            {
+                if (p_pedido.entidad.Equals(pedidosProveedores[i].entidad))
+                {
+                    indice = i;
+                    break;
+                }
+            }
+            
+            return indice;
         }
     }
     public class ControladorPedidoCliente : ControladorPedido
