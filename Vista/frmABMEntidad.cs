@@ -147,7 +147,7 @@ namespace Vista
 
             btnDatosAdicionales.Enabled = false;
             
-            quitarTextoEnControles(this);
+            QuitarTextoEnControles(this);
 
             this.tipoEntidadSeleccionada = Constantes.TiposEntidad.TiposPersona.Cliente;
         }
@@ -164,7 +164,7 @@ namespace Vista
 
             btnDatosAdicionales.Enabled = true;
             string lcl_tipoEntidad = this.tipoEntidadSeleccionada;
-            quitarTextoEnControles(this);
+            QuitarTextoEnControles(this);
             this.tipoEntidadSeleccionada = lcl_tipoEntidad;
         }
         public override void inicializarModoFormularioSeleccionado()
@@ -252,7 +252,7 @@ namespace Vista
             //Binding de telefonos
             this.cmbBoxTipoTelefono.DataSource = dataSource;
 
-            inicializarCmbBox(this.cmbBoxTipoTelefono);
+            InicializarCmbBox(this.cmbBoxTipoTelefono);
         }
         private void inicializarContextMenu()
         {
@@ -385,7 +385,7 @@ namespace Vista
             {
                 MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
                 this.inicializarModoFormularioInicio();
-                quitarTextoEnControles(this);
+                QuitarTextoEnControles(this);
             }
             else
             {
@@ -513,7 +513,7 @@ namespace Vista
                     if (this.modoFormulario != ModoFormularioClientePedido)
                     {
                         this.modoFormulario = ModoFormularioSeleccionado;
-                        quitarTextoEnControles(this);
+                        QuitarTextoEnControles(this);
                         
                         //Se asigna despues de cargarEntidadEnControles porque el método inicializa a glb_mod_entidadActual en los radioButtons check changed
                         this.cargarEntidadEnControles(lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloEntidad);
@@ -705,7 +705,7 @@ namespace Vista
             lcl_frm.mostrarBusqueda();
             if (lcl_frm.modeloSeleccionado != null)
             {
-                quitarTextoEnControles(this);
+                QuitarTextoEnControles(this);
                 this.tipoEntidadSeleccionada = LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor;
                 this.cargarEntidadEnControles(lcl_frm.modeloSeleccionado as ModeloContactoProveedor);
                 return lcl_frm.modeloSeleccionado as ModeloContactoProveedor;
@@ -1136,7 +1136,7 @@ namespace Vista
             {
                 this.cargarDatosMailEnDataGridViewMail(lcl_mod_mailActual);
 
-                quitarTextoEnControles(tblLayoutPanelMail);
+                QuitarTextoEnControles(tblLayoutPanelMail);
             }
             else
             {
@@ -1150,7 +1150,7 @@ namespace Vista
             {
                 this.cargarDatosTelefonoEnDataGridViewTelefono(lcl_mod_telefonoActual);
 
-                quitarTextoEnControles(tblLayoutPanelTelefono);
+                QuitarTextoEnControles(tblLayoutPanelTelefono);
             }
             else
             {
@@ -1250,7 +1250,7 @@ namespace Vista
 
         override public void toolStripMenuItemLimpiarCampos_Click(object sender, EventArgs e)
         {
-            quitarTextoEnControles(this);
+            QuitarTextoEnControles(this);
             this.modoFormulario = ModoFormularioInicio;
         }
 

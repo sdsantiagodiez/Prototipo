@@ -129,14 +129,6 @@
             this.btnGuardar = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnFacturaElectronica = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnSalir = new MaterialSkin.Controls.MaterialFlatButton();
-            this.epNumeroDocumento = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epApellido = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epNombre = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epRazonSocial = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epMail = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epNumeroTelefono = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epIvaPorcentaje = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epIvaMonto = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.modeloLineaPedidoBindingSource)).BeginInit();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tbControlPrincipal.SuspendLayout();
@@ -166,14 +158,6 @@
             this.tblLayoutPanelLineasPedidosBotones.SuspendLayout();
             this.tblLayoutPanelValoresPedido.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epNumeroDocumento)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epApellido)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epNombre)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epRazonSocial)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epMail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epNumeroTelefono)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epIvaPorcentaje)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epIvaMonto)).BeginInit();
             this.SuspendLayout();
             // 
             // modeloLineaPedidoBindingSource
@@ -565,7 +549,6 @@
             this.lblCAE.Size = new System.Drawing.Size(31, 13);
             this.lblCAE.TabIndex = 12;
             this.lblCAE.Text = "CAE:";
-            this.lblCAE.Visible = false;
             // 
             // lblNumeroPedido
             // 
@@ -768,7 +751,7 @@
             this.tblLayoutPanelMail.ColumnCount = 3;
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0578F));
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.9422F));
-            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tblLayoutPanelMail.Controls.Add(this.lblMail, 0, 0);
             this.tblLayoutPanelMail.Controls.Add(this.txtBoxMail, 1, 0);
             this.tblLayoutPanelMail.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -785,7 +768,7 @@
             this.lblMail.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblMail.AutoSize = true;
             this.lblMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblMail.Location = new System.Drawing.Point(34, 12);
+            this.lblMail.Location = new System.Drawing.Point(32, 12);
             this.lblMail.Name = "lblMail";
             this.lblMail.Size = new System.Drawing.Size(63, 26);
             this.lblMail.TabIndex = 9;
@@ -796,14 +779,14 @@
             this.txtBoxMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxMail.Depth = 0;
             this.txtBoxMail.Hint = "";
-            this.txtBoxMail.Location = new System.Drawing.Point(103, 14);
+            this.txtBoxMail.Location = new System.Drawing.Point(101, 14);
             this.txtBoxMail.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxMail.Name = "txtBoxMail";
             this.txtBoxMail.PasswordChar = '\0';
             this.txtBoxMail.SelectedText = "";
             this.txtBoxMail.SelectionLength = 0;
             this.txtBoxMail.SelectionStart = 0;
-            this.txtBoxMail.Size = new System.Drawing.Size(227, 23);
+            this.txtBoxMail.Size = new System.Drawing.Size(222, 23);
             this.txtBoxMail.TabIndex = 10;
             this.txtBoxMail.UseSystemPasswordChar = false;
             this.txtBoxMail.Leave += new System.EventHandler(this.txtBoxMail_Leave);
@@ -1501,6 +1484,8 @@
             this.cmbBoxPedidosProveedores.Size = new System.Drawing.Size(232, 21);
             this.cmbBoxPedidosProveedores.TabIndex = 5;
             this.cmbBoxPedidosProveedores.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxPedidosProveedores_SelectionChangeCommitted);
+            this.cmbBoxPedidosProveedores.Click += new System.EventHandler(this.cmbBoxPedidosProveedores_Click);
+            this.cmbBoxPedidosProveedores.Enter += new System.EventHandler(this.cmbBoxPedidosProveedores_Enter);
             // 
             // btnImprimir
             // 
@@ -1571,38 +1556,6 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // epNumeroDocumento
-            // 
-            this.epNumeroDocumento.ContainerControl = this;
-            // 
-            // epApellido
-            // 
-            this.epApellido.ContainerControl = this;
-            // 
-            // epNombre
-            // 
-            this.epNombre.ContainerControl = this;
-            // 
-            // epRazonSocial
-            // 
-            this.epRazonSocial.ContainerControl = this;
-            // 
-            // epMail
-            // 
-            this.epMail.ContainerControl = this;
-            // 
-            // epNumeroTelefono
-            // 
-            this.epNumeroTelefono.ContainerControl = this;
-            // 
-            // epIvaPorcentaje
-            // 
-            this.epIvaPorcentaje.ContainerControl = this;
-            // 
-            // epIvaMonto
-            // 
-            this.epIvaMonto.ContainerControl = this;
-            // 
             // frmPedidoCierre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1652,14 +1605,6 @@
             this.tblLayoutPanelValoresPedido.PerformLayout();
             this.tblLayoutPanelBotones.ResumeLayout(false);
             this.tblLayoutPanelBotones.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epNumeroDocumento)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epApellido)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epNombre)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epRazonSocial)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epMail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epNumeroTelefono)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epIvaPorcentaje)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epIvaMonto)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1758,14 +1703,6 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxCAE;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxMail;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxTelefono;
-        private System.Windows.Forms.ErrorProvider epNumeroDocumento;
-        private System.Windows.Forms.ErrorProvider epApellido;
-        private System.Windows.Forms.ErrorProvider epNombre;
-        private System.Windows.Forms.ErrorProvider epRazonSocial;
-        private System.Windows.Forms.ErrorProvider epMail;
-        private System.Windows.Forms.ErrorProvider epNumeroTelefono;
-        private System.Windows.Forms.ErrorProvider epIvaPorcentaje;
-        private System.Windows.Forms.ErrorProvider epIvaMonto;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDatosEntidadMiddle;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelRazonSocial;
         private System.Windows.Forms.GroupBox grpBoxObservacionesPedido;

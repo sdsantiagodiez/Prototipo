@@ -337,18 +337,27 @@ namespace Vista
 
                 this.cmbBoxTipoComprobante.DataSource = Enum.GetValues(typeof(Constantes.TipoComprobanteVenta));
             }
-            this.cmbBoxTipoComprobante.DropDownWidth = getDropDownWidth(this.cmbBoxTipoComprobante)+25;
+            this.cmbBoxTipoComprobante.DropDownWidth = GetDropDownWidth(this.cmbBoxTipoComprobante)+25;
             this.cmbBoxTipoComprobante.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         private void inicializarControlesProveedor()
         {
+
             this.txtBoxNombre.Enabled =
             this.txtBoxApellido.Enabled =
             this.txtBoxRazonSocial.Enabled =
             this.txtBoxNumeroDocumento.Enabled =
-            this.cmbBoxTipoDocumento.Enabled = false;
+            this.cmbBoxTipoDocumento.Enabled =
+            this.txtBoxSenia.Enabled =
+            this.txtBoxDescuento1Monto.Enabled =
+            this.txtBoxDescuento1Porcentaje.Enabled =
+            this.txtBoxDescuento2Monto.Enabled =
+            this.txtBoxDescuento2Porcentaje.Enabled =
+            false;
 
             this.cmbBoxPedidosProveedores.Visible = true;
+            this.lblCAE.Visible =
+                this.txtBoxCAE.Visible =
             this.btnFacturaElectronica.Visible = false;
 
             this.lblContactoProveedor.Visible = true;
@@ -363,7 +372,7 @@ namespace Vista
                 };
 
             this.cmbBoxTipoComprobante.DataSource = Enum.GetValues(typeof(Constantes.TipoComprobanteCompra));
-            this.cmbBoxTipoComprobante.DropDownWidth = getDropDownWidth(this.cmbBoxTipoComprobante) + 25;
+            this.cmbBoxTipoComprobante.DropDownWidth = GetDropDownWidth(this.cmbBoxTipoComprobante) + 25;
             this.cmbBoxTipoComprobante.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         private void inicializarComboBoxPedidosProveedores(List<ModeloPedido> p_mod_pedidos)
@@ -390,7 +399,7 @@ namespace Vista
             //    return;
             //}
             //this.cmbBoxPedidosProveedores.Enabled = true;
-            inicializarCmbBox(this.cmbBoxPedidosProveedores);
+            InicializarCmbBox(this.cmbBoxPedidosProveedores);
         }
         
         private void actualizarContextMenuStrip()
@@ -516,7 +525,7 @@ namespace Vista
             
             dataSource.Add(new ComboBoxItem() { Name = "Otro", Value = null });
             this.cmbBoxDomicilios.DataSource = dataSource;
-            this.cmbBoxDomicilios.DropDownWidth = getDropDownWidth(this.cmbBoxDomicilios);
+            this.cmbBoxDomicilios.DropDownWidth = GetDropDownWidth(this.cmbBoxDomicilios);
             this.cmbBoxDomicilios.SelectedIndex = 0;
             this.cargarDomicilioEnControles(cmbBoxDomicilios.SelectedValue as ModeloDomicilio);
             #endregion
@@ -530,7 +539,7 @@ namespace Vista
             }   
             dataSource.Add(new ComboBoxItem() { Name = "Otro", Value = null });
             this.cmbBoxMails.DataSource = dataSource;
-            this.cmbBoxMails.DropDownWidth = getDropDownWidth(this.cmbBoxMails);
+            this.cmbBoxMails.DropDownWidth = GetDropDownWidth(this.cmbBoxMails);
             this.cmbBoxMails.SelectedIndex = 0;
             this.cargarMailEnControles(cmbBoxMails.SelectedValue as ModeloMail);
             #endregion
@@ -544,7 +553,7 @@ namespace Vista
             }
             dataSource.Add(new ComboBoxItem() { Name = "Otro", Value = null });
             this.cmbBoxTelefonos.DataSource = dataSource;
-            this.cmbBoxTelefonos.DropDownWidth = getDropDownWidth(this.cmbBoxTelefonos);
+            this.cmbBoxTelefonos.DropDownWidth = GetDropDownWidth(this.cmbBoxTelefonos);
             this.cmbBoxTelefonos.SelectedIndex = 0;
             this.cargarTelefonoEnControles(this.cmbBoxTelefonos.SelectedValue as ModeloTelefono);
             #endregion
@@ -584,7 +593,7 @@ namespace Vista
                 dataSource.Add(new ComboBoxItem() { Name = "No asignar", Value = null });
             }
             this.cmbBoxContactoProveedor.DataSource = dataSource;
-            this.cmbBoxContactoProveedor.DropDownWidth= getDropDownWidth(this.cmbBoxContactoProveedor);
+            this.cmbBoxContactoProveedor.DropDownWidth= GetDropDownWidth(this.cmbBoxContactoProveedor);
 
             this.cmbBoxContactoProveedor.Enabled = this.cmbBoxContactoProveedor.Items.Count < 2? false:true;
         }
@@ -704,7 +713,7 @@ namespace Vista
                 dataSource.Add(new ComboBoxItem() { Name = tiposDocumentos[i].descripcion, Value = tiposDocumentos[i] });
             }
             this.cmbBoxTipoDocumento.DataSource = dataSource;
-            this.cmbBoxTipoDocumento.DropDownWidth = getDropDownWidth(this.cmbBoxTipoDocumento);
+            this.cmbBoxTipoDocumento.DropDownWidth = GetDropDownWidth(this.cmbBoxTipoDocumento);
         }
         #endregion
         
@@ -725,7 +734,7 @@ namespace Vista
             }
 
             lcl_mod_pedido.tipoComprobante = this.getCodigoTipoComprobante();
-            lcl_mod_pedido.domicilioDeFacturacion = this.cargarControlEnDomicilio(new object(), new EventArgs());
+            lcl_mod_pedido.domicilioDeFacturacion = this.cargarControlEnDomicilio();
             lcl_mod_pedido.mailContacto = this.cargarControlEnMail();
             lcl_mod_pedido.telefonoContacto = this.cargarControlEnTelefono();
             lcl_mod_pedido.observaciones = this.rchTextBoxObservacionesPedido.Text;
@@ -756,9 +765,9 @@ namespace Vista
         {
             return (ModeloContactoProveedor)this.cmbBoxContactoProveedor.SelectedValue;
         }
-        private ModeloDomicilio cargarControlEnDomicilio(object sender, EventArgs e)
+        private ModeloDomicilio cargarControlEnDomicilio()
         {
-            return this.glb_con_domicilio.GetDomicilio(sender,e);
+            return this.glb_con_domicilio.GetDomicilio();
         }
         private ModeloTelefono cargarControlEnTelefono()
         {
@@ -911,6 +920,10 @@ namespace Vista
                 MessageBox.Show("No existen líneas en el pedido actual", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+            if (controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor)
+            {
+                return true;    //No hay campos para validar en pedido a proveedor
+            }
             lcl_inputs = validarInputs();
             if (!lcl_inputs)
             {
@@ -921,18 +934,12 @@ namespace Vista
 
         private bool vacioMail()
         {
-            if (String.IsNullOrWhiteSpace(this.txtBoxMail.Text))
-                return true;
-            else
-                return false;
+            return String.IsNullOrWhiteSpace(this.txtBoxMail.Text);
         }
         
         private bool vacioTelefono()
         {
-            if (String.IsNullOrWhiteSpace(this.txtBoxTelefono.Text))
-                return true;
-            else
-                return false;
+            return String.IsNullOrWhiteSpace(this.txtBoxTelefono.Text);
         }
         
         
@@ -1186,11 +1193,67 @@ namespace Vista
         #endregion
         
         #region ComboBox
+        private bool validarPedidoProveedor()
+        {
+            string mensaje = "";
+            bool valido = true;
+
+            this.txtBoxTelefono_Leave(new object(), new EventArgs());
+            this.txtBoxMail_Leave(new object(),new EventArgs());
+            
+            if (!validarDomicilio() || 
+                !glb_array_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Mails.Mail)] ||
+                !glb_array_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)])
+            {
+                valido = false;
+                mensaje = "Revise los campos del ";
+                if(!validarDomicilio())
+                {
+                    mensaje +="domicilio";
+                }
+                else if(!glb_array_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Mails.Mail)])
+                {
+                    mensaje +="mail";
+                }
+                else if(!glb_array_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)])
+                {
+                    mensaje +="teléfono";
+                }
+                mensaje += " ingresado";
+            }
+            
+            if (!valido)
+            {
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return valido;
+        }
         private void cmbBoxPedidosProveedores_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            if (!validarPedidoProveedor())//se valida el proveedor seleccionado anteriormente para si cambiar o no la selección
+            {
+                this.cmbBoxPedidosProveedores.SelectedIndex = indiceAnteriorCmbBoxPedidosProveedores;
+                return;
+            }
+
+            if (indiceAnteriorCmbBoxPedidosProveedores != 0)
+            {
+                (controlador as ControladorPedidoProveedor).pedidosProveedores[indiceAnteriorCmbBoxPedidosProveedores].mailContacto = cargarControlEnMail();
+                (controlador as ControladorPedidoProveedor).pedidosProveedores[indiceAnteriorCmbBoxPedidosProveedores].telefonoContacto = cargarControlEnTelefono();
+                (controlador as ControladorPedidoProveedor).pedidosProveedores[indiceAnteriorCmbBoxPedidosProveedores].domicilioDeFacturacion = cargarControlEnDomicilio();
+                (controlador as ControladorPedidoProveedor).pedidosProveedores[indiceAnteriorCmbBoxPedidosProveedores].observaciones = rchTextBoxObservacionesPedido.Text;
+                //cargar ContactoProveedor
+                //Domicilio, telefono,mail,observaciones,forma de pago
+            }
+
             var pedido = (ModeloPedido)cmbBoxPedidosProveedores.SelectedValue;
 
             this.cargarPedidoEnControles(pedido);
+
+            bool pedidoGlobalSeleccionado = this.cmbBoxPedidosProveedores.SelectedIndex == 0;
+            this.btnGuardar.Enabled =
+                this.btnImprimir.Enabled = pedidoGlobalSeleccionado; //Si esta seleccionado el pedidoGlobal, permitimos imprimir y guardar todo. No se permite individualmente
         }
         private void cmbBoxDomicilios_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -1554,11 +1617,6 @@ namespace Vista
         #endregion
 
         #region Validaciones
-        private void setErrorProvider(Control p_control, ErrorProvider p_errorProvider, bool p_valido, string p_mensaje)
-        {
-            p_errorProvider.Icon = p_valido ? Properties.Resources.success : Properties.Resources.error;
-            p_errorProvider.SetError(p_control, p_mensaje);
-        }
         private void txtBoxNumeroDocumento_Leave(object sender, EventArgs e)
         {
             bool respuesta = (this.cmbBoxTipoDocumento.SelectedValue as TipoDocumento).codigo == 80? //80 codigo de CUIT
@@ -1568,8 +1626,8 @@ namespace Vista
             glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Cuit)] = respuesta;
 
             string mensaje = respuesta ? "OK" : "Número de Documento no válido";
-            
-            this.setErrorProvider(this.txtBoxNumeroDocumento, epNumeroDocumento, respuesta, mensaje);
+
+            this.setErrorProvider(this.txtBoxNumeroDocumento, respuesta, mensaje);
         }
 
         private void txtBoxApellido_Leave(object sender, EventArgs e)
@@ -1585,14 +1643,14 @@ namespace Vista
             else
             {
                 mensaje = "OK";
-                epRazonSocial.SetError(this.txtBoxRazonSocial, null);//Quitamos el ep en razon social si se estaba mostrando
+                this.setErrorProvider(this.txtBoxRazonSocial,true, null);//Quitamos el ep en razon social si se estaba mostrando
 
                 if (!this.chckBoxResponsableInscripto.Checked)
                 {
                     this.setCuitOnly(false);
                 }
             }
-            this.setErrorProvider(this.txtBoxApellido, epApellido, respuesta, mensaje);
+            this.setErrorProvider(this.txtBoxApellido, respuesta, mensaje);
         }
 
         private void txtBoxNombre_Leave(object sender, EventArgs e)
@@ -1608,15 +1666,15 @@ namespace Vista
             else
             {
                 mensaje = "OK";
-                epRazonSocial.SetError(this.txtBoxRazonSocial, null);//Quitamos el ep en razon social si se estaba mostrando
+                this.setErrorProvider(this.txtBoxRazonSocial, true, null);//Quitamos el ep en razon social si se estaba mostrando
                 
                 if (!this.chckBoxResponsableInscripto.Checked)
                 {
                     this.setCuitOnly(false);
                 }
             }
-            
-            this.setErrorProvider(this.txtBoxNombre, epNombre, respuesta, mensaje);
+
+            this.setErrorProvider(this.txtBoxNombre, respuesta, mensaje);
         }
        
 
@@ -1633,13 +1691,12 @@ namespace Vista
             else
             {
                 mensaje = "OK";
-                epApellido.SetError(this.txtBoxApellido, null);//Quitamos el ep en nombre y apellido si se estaba mostrando porque ya tenemos razon social vailda
-                epNombre.SetError(this.txtBoxNombre, null);
+                this.setErrorProvider(this.txtBoxApellido,true, null);//Quitamos el ep en nombre y apellido si se estaba mostrando porque ya tenemos razon social vailda
+                this.setErrorProvider(this.txtBoxNombre, true, null);
 
                 this.setCuitOnly(true);
             }
-
-            this.setErrorProvider(this.txtBoxRazonSocial, epRazonSocial, respuesta, mensaje);
+            this.setErrorProvider(this.txtBoxRazonSocial, respuesta, mensaje);
         }
 
         private void txtBoxMail_Leave(object sender, EventArgs e)
@@ -1647,7 +1704,7 @@ namespace Vista
             if (this.vacioMail())
             {
                 glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Mails.Mail)] = true;
-                epMail.SetError(txtBoxMail, null);
+                this.setErrorProvider(txtBoxMail,true, null);
                 return;
             }
 
@@ -1655,7 +1712,7 @@ namespace Vista
             glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Mails.Mail)] = respuesta;
 
             string mensaje = respuesta ? "OK" : "Mail no válido";
-            this.setErrorProvider(this.txtBoxMail, this.epMail, respuesta, mensaje);
+            this.setErrorProvider(this.txtBoxMail, respuesta, mensaje);
         }
 
         private void txtBoxTelefono_Leave(object sender, EventArgs e)
@@ -1663,7 +1720,7 @@ namespace Vista
             if (this.vacioTelefono())
             {
                 glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)] = true;
-                epNumeroTelefono.SetError(txtBoxTelefono, null);
+                this.setErrorProvider(this.txtBoxTelefono, true, null);
                 return;
             }
             
@@ -1671,7 +1728,7 @@ namespace Vista
             glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)] = respuesta;
 
             string mensaje = respuesta ? "OK" : "Telefono no válido";
-            this.setErrorProvider(this.txtBoxTelefono, this.epNumeroTelefono, respuesta, mensaje);
+            this.setErrorProvider(this.txtBoxTelefono, respuesta, mensaje);
         }
 
         private void txtBoxIVAPorcentaje_Leave(object sender, EventArgs e)
@@ -1679,7 +1736,7 @@ namespace Vista
             bool respuesta = Validar.validarInputNoNumerico(txtBoxIVAPorcentaje.Text.ToString(), Constantes.Numericos.Porcentual);
 
             string mensaje = respuesta ? "OK" : "Porcentaje no válido";
-            this.setErrorProvider(this.txtBoxIVAPorcentaje, this.epIvaPorcentaje, respuesta, mensaje);
+            this.setErrorProvider(this.txtBoxIVAMonto, true, null);
         }
 
         private void txtBoxIVAMonto_Leave(object sender, EventArgs e)
@@ -1687,7 +1744,7 @@ namespace Vista
             bool respuesta = Validar.validarInputNoNumerico(txtBoxIVAMonto.Text.ToString(), Constantes.Numericos.EnteroPositivo);
 
             string mensaje = respuesta ? "OK" : "Monto no válido";
-            this.setErrorProvider(this.txtBoxIVAMonto, this.epIvaMonto, respuesta, mensaje);
+            this.setErrorProvider(this.txtBoxIVAMonto, respuesta, mensaje);
         }
         #endregion        
 
@@ -1695,7 +1752,7 @@ namespace Vista
         {
             if (!String.IsNullOrWhiteSpace(this.txtBoxRazonSocial.Text))
             {
-                this.setErrorProvider(this.txtBoxApellido,epApellido,false,"Debe vaciar el campo razón social para completar este campo");
+                this.setErrorProvider(this.txtBoxApellido,false,"Debe vaciar el campo razón social para completar este campo");
                 e.Handled = true;
             }
         }
@@ -1704,7 +1761,7 @@ namespace Vista
         {
             if (!String.IsNullOrWhiteSpace(this.txtBoxRazonSocial.Text))
             {
-                this.setErrorProvider(this.txtBoxNombre, epNombre, false, "Debe vaciar el campo razón social para completar este campo");
+                this.setErrorProvider(this.txtBoxNombre,false,"Debe vaciar el campo razón social para completar este campo");
                 e.Handled = true;
             }
         }
@@ -1714,8 +1771,7 @@ namespace Vista
             if (!String.IsNullOrWhiteSpace(this.txtBoxNombre.Text)||!String.IsNullOrWhiteSpace(this.txtBoxApellido.Text))
             {
                 string campoVaciar = !String.IsNullOrWhiteSpace(this.txtBoxApellido.Text)?"apellido":"nombre";
-                
-                this.setErrorProvider(this.txtBoxRazonSocial, epRazonSocial, false, "Debe vaciar el campo " + campoVaciar + " para completar este campo");
+                this.setErrorProvider(this.txtBoxRazonSocial, false, "Debe vaciar el campo " + campoVaciar + " para completar este campo");
                 e.Handled = true;
             } 
         }
@@ -1733,6 +1789,24 @@ namespace Vista
                 this.txtBoxNombre.Text = lcl_mod_contacto.nombre;
                 this.txtBoxApellido.Text = lcl_mod_contacto.apellido;
             }
+        }
+        /// <summary>
+        /// guarda el indice del pedido seleccionado antes de cambiar la selección
+        /// </summary>
+        private int indiceAnteriorCmbBoxPedidosProveedores;
+        /// <summary>
+        /// Guarda indice anterior en caso que haya que volver a ese pedido
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmbBoxPedidosProveedores_Enter(object sender, EventArgs e)
+        {
+            //indiceAnteriorCmbBoxPedidosProveedores = this.cmbBoxPedidosProveedores.SelectedIndex;
+        }
+
+        private void cmbBoxPedidosProveedores_Click(object sender, EventArgs e)
+        {
+            indiceAnteriorCmbBoxPedidosProveedores = this.cmbBoxPedidosProveedores.SelectedIndex;
         }
     }
 }

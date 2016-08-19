@@ -158,7 +158,7 @@ namespace Vista
                 dataSource.Insert(0, new ComboBoxItem() { Name = "--Seleccionar--", Value = null });
             }
             this.cmbBoxProveedores.DataSource = dataSource;
-            inicializarCmbBox(this.cmbBoxProveedores);
+            InicializarCmbBox(this.cmbBoxProveedores);
         }
         #endregion
 
@@ -208,7 +208,7 @@ namespace Vista
             {
                 MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
                 this.inicializarModoFormularioInicio();
-                quitarTextoEnControles(this);
+                QuitarTextoEnControles(this);
             }
             else
             {
@@ -292,7 +292,7 @@ namespace Vista
             ControladorBaja lcl_con_baja = new ControladorBaja();
             if (lcl_con_baja.eliminar(glb_mod_articuloProveedor))
             {
-                quitarTextoEnControles(this.tblLayoutPanelArticulosProveedores);
+                QuitarTextoEnControles(this.tblLayoutPanelArticulosProveedores);
                 this.glb_lst_mod_articulosProveedores.Remove(glb_mod_articuloProveedor);
                 this.actualizarDataGridView();
                 MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
@@ -622,7 +622,7 @@ namespace Vista
         override public void toolStripMenuItemLimpiarCampos_Click(object sender, EventArgs e)
         {
             this.modoFormulario = ModoFormularioInicio;
-            quitarTextoEnControles(this);
+            QuitarTextoEnControles(this);
         }
 
         override public void toolStripMenuItemEliminar_Click(object sender, EventArgs e)

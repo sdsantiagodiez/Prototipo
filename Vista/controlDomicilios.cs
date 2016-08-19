@@ -44,7 +44,7 @@ namespace Vista
         {
             this.btnAgregarDomicilio.Click += (s, e) =>
             {
-                this.agregarDomicilioEntidad(s,e);
+                this.agregarDomicilioEntidad();
             };
 
             this.btnQuitarDomicilio.Click += (s, e) =>
@@ -65,6 +65,10 @@ namespace Vista
             {
                 this.quitarObjetoDataGridViewTodos(((s as MenuItem).Parent as ContextMenu).SourceControl as DataGridView);
             };
+        }
+        public void clearErrorProviders()
+        {
+            this.cDomicilio.clearErrorProviders();
         }
         public List<ModeloDomicilio> getDomicilios()
         {
@@ -128,9 +132,9 @@ namespace Vista
             }
             return false;
         }
-        private void agregarDomicilioEntidad(object sender, EventArgs e)
+        private void agregarDomicilioEntidad()
         {
-            ModeloDomicilio lcl_mod_domicilioActual = this.cDomicilio.GetDomicilio(sender,e);
+            ModeloDomicilio lcl_mod_domicilioActual = this.cDomicilio.GetDomicilio();
             if (lcl_mod_domicilioActual == null)
             {
                 //MessageBox.Show("Domicilio");
@@ -143,7 +147,7 @@ namespace Vista
             }
 
             this.cargarDatosDomicilioEnDataGridViewDomicilio(lcl_mod_domicilioActual);
-            frmMaterialSkinBase.quitarTextoEnControles(this.cDomicilio);
+            frmMaterialSkinBase.QuitarTextoEnControles(this.cDomicilio);
         }
         /// <summary>
         /// Agrega un objeto domicilio al dataGrid

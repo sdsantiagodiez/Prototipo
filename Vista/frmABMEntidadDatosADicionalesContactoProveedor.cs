@@ -77,7 +77,7 @@ namespace Vista
                 dataSource.Insert(0, new ComboBoxItem() { Name = "--Seleccionar--", Value = null });
             }
             this.cmbBoxProveedores.DataSource = dataSource;
-            inicializarCmbBox(this.cmbBoxProveedores);
+            InicializarCmbBox(this.cmbBoxProveedores);
         }
         #endregion
 

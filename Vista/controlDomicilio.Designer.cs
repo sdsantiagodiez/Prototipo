@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tblLayoutPanelDomicilio = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayourPanelDomicilio_1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblNumero = new System.Windows.Forms.Label();
@@ -48,21 +47,9 @@
             this.lblCodigoPostal = new System.Windows.Forms.Label();
             this.txtBoxDepartamento = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBoxCodigoPostal = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.epCalle = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epNumeroDomicilio = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epCiudad = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epPiso = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epDepartamento = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epCodigoPostal = new System.Windows.Forms.ErrorProvider(this.components);
             this.tblLayoutPanelDomicilio.SuspendLayout();
             this.tblLayourPanelDomicilio_1.SuspendLayout();
             this.tblLayoutPanelDomicilio_2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epCalle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epNumeroDomicilio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCiudad)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epPiso)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epDepartamento)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCodigoPostal)).BeginInit();
             this.SuspendLayout();
             // 
             // tblLayoutPanelDomicilio
@@ -358,30 +345,6 @@
             this.txtBoxCodigoPostal.UseSystemPasswordChar = false;
             this.txtBoxCodigoPostal.Leave += new System.EventHandler(this.txtBoxCodigoPostal_Leave);
             // 
-            // epCalle
-            // 
-            this.epCalle.ContainerControl = this;
-            // 
-            // epNumeroDomicilio
-            // 
-            this.epNumeroDomicilio.ContainerControl = this;
-            // 
-            // epCiudad
-            // 
-            this.epCiudad.ContainerControl = this;
-            // 
-            // epPiso
-            // 
-            this.epPiso.ContainerControl = this;
-            // 
-            // epDepartamento
-            // 
-            this.epDepartamento.ContainerControl = this;
-            // 
-            // epCodigoPostal
-            // 
-            this.epCodigoPostal.ContainerControl = this;
-            // 
             // ControlDomicilio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -395,12 +358,6 @@
             this.tblLayourPanelDomicilio_1.PerformLayout();
             this.tblLayoutPanelDomicilio_2.ResumeLayout(false);
             this.tblLayoutPanelDomicilio_2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epCalle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epNumeroDomicilio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCiudad)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epPiso)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epDepartamento)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCodigoPostal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -427,12 +384,6 @@
         private System.Windows.Forms.Label lblCodigoPostal;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxDepartamento;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxCodigoPostal;
-        private System.Windows.Forms.ErrorProvider epCalle;
-        private System.Windows.Forms.ErrorProvider epNumeroDomicilio;
-        private System.Windows.Forms.ErrorProvider epCiudad;
-        private System.Windows.Forms.ErrorProvider epPiso;
-        private System.Windows.Forms.ErrorProvider epDepartamento;
-        private System.Windows.Forms.ErrorProvider epCodigoPostal;
 
     }
 }

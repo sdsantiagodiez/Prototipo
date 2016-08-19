@@ -15,6 +15,9 @@ namespace Vista
 {
     public partial class frmMaterialSkinBase : MaterialForm
     {
+        ErrorProvider epGood = new ErrorProvider();
+        ErrorProvider epBad = new ErrorProvider();
+
         public event EventHandler CerrarForm;
 
         MaterialSkinManager materialSkinManager;
@@ -32,6 +35,9 @@ namespace Vista
             
             this.MinimizeBox = false;
             this.MaximizeBox = false;
+
+            epGood.Icon = Properties.Resources.success;
+            epBad.Icon = Properties.Resources.error;
         }
 
         public virtual void actualizarColores()
@@ -111,7 +117,7 @@ namespace Vista
             }
         }
 
-        public static int getDropDownWidth(ComboBox p_comboBox)
+        public static int GetDropDownWidth(ComboBox p_comboBox)
         {
             int maxWidth = 1, temp = 0;
             foreach (var obj in p_comboBox.Items)
@@ -124,10 +130,32 @@ namespace Vista
             }
             return maxWidth;
         }
-
-        public static void inicializarCmbBox(ComboBox p_comboBox)
+        protected void clearErrorProviders()
         {
-            p_comboBox.DropDownWidth = getDropDownWidth(p_comboBox);
+            this.getErrorProvider(true).Clear();
+            this.getErrorProvider(false).Clear();
+        }
+        protected void setErrorProvider(Control p_control, bool p_exito, string p_mensaje)
+        {
+            this.getErrorProvider(p_exito).SetError(p_control, p_mensaje);
+
+            this.getErrorProvider(!p_exito).SetError(p_control, null);
+        }
+        protected ErrorProvider getErrorProvider(bool exito)
+        {
+            if (exito)
+            {
+                return epGood;
+            }
+            else
+            {
+                return epBad;
+            }
+        }
+
+        public static void InicializarCmbBox(ComboBox p_comboBox)
+        {
+            p_comboBox.DropDownWidth = GetDropDownWidth(p_comboBox);
             p_comboBox.DisplayMember = "Name";
             p_comboBox.ValueMember = "Value";
             p_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -136,7 +164,7 @@ namespace Vista
         /// Limpia todos los controles que se encuentren dentro del control enviado como parámetro
         /// </summary>
         /// <param name="p_ctr_control"></param>
-        public static void quitarTextoEnControles(Control p_ctr_control)
+        public static void QuitarTextoEnControles(Control p_ctr_control)
         {
             foreach (Control c in p_ctr_control.Controls)
             {
@@ -171,7 +199,7 @@ namespace Vista
                 else
                 {
                     //control que puede contener una colección de controles (groupBox por ejemplo)
-                    quitarTextoEnControles(c);
+                    QuitarTextoEnControles(c);
                 }
             }
         }
@@ -184,6 +212,12 @@ namespace Vista
                 e.Handled = true;
                 return;
             }
+        }
+
+        public static void SetErrorProvider(Control p_control, ErrorProvider p_errorProvider, bool p_valido, string p_mensaje)
+        {
+            p_errorProvider.Icon = p_valido ? Properties.Resources.success : Properties.Resources.error;
+            p_errorProvider.SetError(p_control, p_mensaje);
         }
     }
     

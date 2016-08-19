@@ -136,7 +136,7 @@ namespace Vista
                 return;
             }
 
-            inicializarCmbBox(this.cmbBoxProveedores);
+            InicializarCmbBox(this.cmbBoxProveedores);
             this.cmbBoxProveedores.Enabled = false;
         }
         #endregion

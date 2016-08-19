@@ -14,6 +14,9 @@ namespace Vista
 {
     public partial class ControlDomicilio : UserControl
     {
+        ErrorProvider epGood = new ErrorProvider();
+        ErrorProvider epBad = new ErrorProvider();
+
         List<bool> glb_lst_respuestasValidaciones;
 
         public ControlDomicilio()
@@ -27,6 +30,8 @@ namespace Vista
         {
             this.inicializarCmbBoxPaises();
             this.inicializarCmbBoxProvincias();
+            epGood.Icon = Properties.Resources.success;
+            epBad.Icon = Properties.Resources.error;
         }
         private void inicializarCmbBoxPaises()
         {
@@ -39,7 +44,7 @@ namespace Vista
             }
 
             this.cmbBoxPais.DataSource = lcl_lst_cmbBoxItems;
-            frmMaterialSkinBase.inicializarCmbBox(this.cmbBoxPais);
+            frmMaterialSkinBase.InicializarCmbBox(this.cmbBoxPais);
             //this.cmbBoxPais.SelectedItem = ;
         }
         private void inicializarCmbBoxProvincias()
@@ -49,7 +54,7 @@ namespace Vista
                 this.actualizarCmbBoxProvincias();
             }
 
-            frmMaterialSkinBase.inicializarCmbBox(this.cmbBoxProvincia);
+            frmMaterialSkinBase.InicializarCmbBox(this.cmbBoxProvincia);
         }
         private void inicializarValidaciones()
         {
@@ -63,7 +68,7 @@ namespace Vista
         /// Toma los datos de textBoxes y comboBoxes antes de agregar a DataGridView
         /// </summary>
         /// <returns></returns>
-        public ModeloDomicilio GetDomicilio(object sender, EventArgs e)
+        public ModeloDomicilio GetDomicilio()
         {
             if (!this.validar())
             {
@@ -108,7 +113,30 @@ namespace Vista
             this.cmbBoxProvincia.SelectedValue = p_mod_domicilio.provincia;
             return true;
         }
-        
+        #region ErrorProviders
+        public void clearErrorProviders()
+        {
+            this.getErrorProvider(true).Clear();
+            this.getErrorProvider(false).Clear();
+        }
+        private void setErrorProvider(Control p_control, bool p_exito, string p_mensaje)
+        {
+            this.getErrorProvider(p_exito).SetError(p_control, p_mensaje);
+
+            this.getErrorProvider(!p_exito).SetError(p_control, null);
+        }
+        private ErrorProvider getErrorProvider(bool exito)
+        {
+            if (exito)
+            {
+                return epGood;
+            }
+            else
+            {
+                return epBad;
+            }
+        }
+        #endregion
         private void actualizarCmbBoxProvincias()
         {
             ModeloPais lcl_mod_paisActual = this.cmbBoxPais.SelectedValue as ModeloPais;
@@ -132,7 +160,7 @@ namespace Vista
             }
             this.cmbBoxProvincia.DataSource = lcl_lst_cmbBoxItems;
 
-            this.cmbBoxProvincia.DropDownWidth = frmMaterialSkinBase.getDropDownWidth(this.cmbBoxProvincia);
+            this.cmbBoxProvincia.DropDownWidth = frmMaterialSkinBase.GetDropDownWidth(this.cmbBoxProvincia);
             if (this.cmbBoxProvincia.Items.Count > 0)
             {
                 this.cmbBoxProvincia.SelectedIndex = 0;
@@ -153,117 +181,82 @@ namespace Vista
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCalle.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Calle);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)] = respuesta;
-            if (!respuesta)
-            {
-                epCalle.Icon = Properties.Resources.error;
-                epCalle.SetError(txtBoxCalle, "Calle no válida");
-            }
-            else
-            {
-                epCalle.Icon = Properties.Resources.success;
-                epCalle.SetError(txtBoxCalle, "OK");
-            }
+
+            string mensaje = respuesta ? "OK" : "Calle no válida";
+            //if (String.IsNullOrWhiteSpace(this.txtBoxCalle.Text))
+            //{
+            //    mensaje = null;
+            //}
+            this.setErrorProvider(this.txtBoxCalle,respuesta, mensaje);
+            
         }
 
         private void txtBoxNumeroDomicilio_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNumerico(txtBoxNumeroDomicilio.Text.ToString(), Constantes.Numericos.EnteroPositivoSinCero);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)] = respuesta;
-            if (!respuesta)
-            {
-                epNumeroDomicilio.Icon = Properties.Resources.error;
-                epNumeroDomicilio.SetError(txtBoxNumeroDomicilio, "Número de Domicilio no válido");
-            }
-            else
-            {
-                epNumeroDomicilio.Icon = Properties.Resources.success;
-                epNumeroDomicilio.SetError(txtBoxNumeroDomicilio, "OK");
-            }
+
+            string mensaje = respuesta ? "OK" : "Número de Domicilio no válido";
+            //if (String.IsNullOrWhiteSpace(this.txtBoxNumeroDomicilio.Text))
+            //{
+            //    mensaje = null;
+            //}
+            this.setErrorProvider(this.txtBoxNumeroDomicilio, respuesta, mensaje);
+            
         }
 
         private void txtBoxPiso_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtBoxPiso.Text))
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxPiso.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Piso);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Piso)] = respuesta;
+                
+            string mensaje = respuesta ? "OK":"Piso no válido";
+            if (String.IsNullOrWhiteSpace(this.txtBoxPiso.Text))
             {
-                bool respuesta = Validar.validarInputNoNumerico(txtBoxPiso.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Piso);
-                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Piso)] = respuesta;
-                if (!respuesta)
-                {
-                    epPiso.Icon = Properties.Resources.error;
-                    epPiso.SetError(txtBoxPiso, "Piso no válido");
-                }
-                else
-                {
-                    epPiso.Icon = Properties.Resources.success;
-                    epPiso.SetError(txtBoxPiso, "OK");
-                }
+                mensaje = null;
             }
-            else
-            {
-                epPiso.SetError(txtBoxPiso, null);
-            }
+
+            this.setErrorProvider(this.txtBoxPiso, respuesta, mensaje);
         }
 
         private void txtBoxDepartamento_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtBoxDepartamento.Text))
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxDepartamento.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Departamento);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Departamento)] = respuesta;
+            string mensaje = respuesta? "OK": "Departamento no válido";
+            if(String.IsNullOrWhiteSpace(this.txtBoxDepartamento.Text))
             {
-                bool respuesta = Validar.validarInputNoNumerico(txtBoxDepartamento.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Departamento);
-                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Departamento)] = respuesta;
-                if (!respuesta)
-                {
-                    epDepartamento.Icon = Properties.Resources.error;
-                    epDepartamento.SetError(txtBoxDepartamento, "Departamento no válido");
-                }
-                else
-                {
-                    epDepartamento.Icon = Properties.Resources.success;
-                    epDepartamento.SetError(txtBoxDepartamento, "OK");
-                }
+                mensaje = null;
             }
-            else
-            {
-                epDepartamento.SetError(txtBoxDepartamento, null);
-            }
+
+            this.setErrorProvider(this.txtBoxDepartamento, respuesta, mensaje);
         }
 
         private void txtBoxCodigoPostal_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtBoxCodigoPostal.Text))
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoPostal.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.CodigoPostal);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.CodigoPostal)] = respuesta;
+            string mensaje = respuesta ? "OK" : "Código Postal no válido";
+
+            if (String.IsNullOrWhiteSpace(this.txtBoxCodigoPostal.Text))
             {
-                bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoPostal.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.CodigoPostal);
-                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.CodigoPostal)] = respuesta;
-                if (!respuesta)
-                {
-                    epCodigoPostal.Icon = Properties.Resources.error;
-                    epCodigoPostal.SetError(txtBoxCodigoPostal, "Código Postal no válido");
-                }
-                else
-                {
-                    epCodigoPostal.Icon = Properties.Resources.success;
-                    epCodigoPostal.SetError(txtBoxCodigoPostal, "OK");
-                }
+                mensaje = null;
             }
-            else
-            {
-                epCodigoPostal.SetError(this.txtBoxCodigoPostal, null);
-            }
+
+            this.setErrorProvider(this.txtBoxCodigoPostal, respuesta, mensaje);
         }
 
         private void txtBoxCiudad_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCiudad.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Ciudad);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)] = respuesta;
-            if (!respuesta)
-            {
-                epCiudad.Icon = Properties.Resources.error;
-                epCiudad.SetError(txtBoxCiudad, "Ciudad no válida");
-            }
-            else
-            {
-                epCiudad.Icon = Properties.Resources.success;
-                epCiudad.SetError(txtBoxCiudad, "OK");
-            }
+            string mensaje = respuesta?"OK":"Ciudad no válida";
+            //if (String.IsNullOrWhiteSpace(this.txtBoxCiudad.Text))
+            //{
+            //    mensaje = null;
+            //}
+
+            this.setErrorProvider(this.txtBoxCiudad, respuesta, mensaje);
         }
         #endregion
 
@@ -323,15 +316,6 @@ namespace Vista
             string todosLosCampos = this.txtBoxCalle.Text + this.txtBoxNumeroDomicilio.Text + this.txtBoxPiso.Text + this.txtBoxDepartamento.Text +
                             this.txtBoxCiudad.Text + this.txtBoxCodigoPostal.Text;
             return String.IsNullOrWhiteSpace(todosLosCampos);
-        }
-        public void clearErrorProviders()
-        {
-            epCalle.SetError(this.txtBoxCalle, null);
-            epNumeroDomicilio.SetError(this.txtBoxNumeroDomicilio, null);
-            epDepartamento.SetError(this.txtBoxDepartamento, null);
-            epPiso.SetError(this.txtBoxPiso,null);
-            epCiudad.SetError(this.txtBoxCiudad, null);
-            epCodigoPostal.SetError(this.txtBoxCodigoPostal,null);
         }
         private bool validarInputs()
         {

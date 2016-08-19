@@ -501,7 +501,7 @@ namespace Vista
             {
                 this.cargarDatosMailEnDataGridViewMail(lcl_mod_mailActual);
 
-                quitarTextoEnControles(tblLayoutPanelMail);
+                QuitarTextoEnControles(tblLayoutPanelMail);
             }
             else
             {
@@ -515,7 +515,7 @@ namespace Vista
             {
                 this.cargarDatosTelefonoEnDataGridViewTelefono(lcl_mod_telefonoActual);
 
-                quitarTextoEnControles(tblLayoutPanelTelefono);
+                QuitarTextoEnControles(tblLayoutPanelTelefono);
             }
             else
             {
