@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using Modelos;
 using Microsoft.Reporting.WinForms;
+using LibreriaClasesCompartidas;
 //using System.IO;
 //using iTextSharp.text.pdf;
 
@@ -106,7 +107,8 @@ namespace Vista
 
             this.iniciarDataSources(lcl_mod_encabezadoComprobante);
 
-            this.iniciarReportEmbeddedResource(p_pedido.tipoComprobante);
+            //this.iniciarReportEmbeddedResource(p_pedido.tipoComprobante);
+            this.iniciarReportEmbeddedResource(p_pedido.tipoComprobante,p_pedido.entidad.situacionIVA);
 
             this.contenedorComprobante.LocalReport.Refresh();
             
@@ -180,6 +182,45 @@ namespace Vista
             System.Reflection.Assembly assembly = System.Reflection.Assembly.LoadFrom("Reportes.dll");
             var stream = assembly.GetManifestResourceStream(rdlcFile);
             
+            this.contenedorComprobante.LocalReport.LoadReportDefinition(stream);
+        }
+        private void iniciarReportEmbeddedResource(int p_tipoComprobante, int p_situacionIVA)
+        {
+            //este metodo tiene tambien en cuenta la situacion de iva del cliente. Es una doble verificacion.
+            string rdlcFile = "";
+            if (p_tipoComprobante == 1 && p_situacionIVA == (int)LibreriaClasesCompartidas.Constantes.SituacionIVA.Responsable_Inscripto )
+            {
+                    rdlcFile = "Reportes.FacturaA.rdlc";
+            }
+            else if (p_tipoComprobante == 3 && p_situacionIVA == (int)LibreriaClasesCompartidas.Constantes.SituacionIVA.Responsable_Inscripto)
+            {
+                    rdlcFile = "Reportes.NCreditoA.rdlc";
+            }
+            else if (p_tipoComprobante == 6 && (p_situacionIVA == (int)LibreriaClasesCompartidas.Constantes.SituacionIVA.Monotributo || p_situacionIVA == (int)LibreriaClasesCompartidas.Constantes.SituacionIVA.Consumidor_Final))
+            {                 
+                    rdlcFile = "Reportes.FacturaB.rdlc";
+            }
+            else if (p_tipoComprobante == 8 && (p_situacionIVA == (int)LibreriaClasesCompartidas.Constantes.SituacionIVA.Monotributo || p_situacionIVA == (int)LibreriaClasesCompartidas.Constantes.SituacionIVA.Consumidor_Final))    
+            {
+                    rdlcFile = "Reportes.NCreditoB.rdlc";
+            }
+            else if (p_tipoComprobante == 2001)
+            {
+                    rdlcFile = "Reportes.OrdenCompra.rdlc";
+            }
+            else if (p_tipoComprobante == 1001)
+            {
+                    rdlcFile = "Reportes.Presupuesto.rdlc";
+            }
+            else
+            {
+                    rdlcFile = "Reportes.Pedido.rdlc";
+            }
+            
+
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.LoadFrom("Reportes.dll");
+            var stream = assembly.GetManifestResourceStream(rdlcFile);
+
             this.contenedorComprobante.LocalReport.LoadReportDefinition(stream);
         }
 
