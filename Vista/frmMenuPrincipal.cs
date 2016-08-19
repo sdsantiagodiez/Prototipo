@@ -271,7 +271,7 @@ namespace Vista
 
         private bool cerrarFormActual(Form p_form)
         {
-            System.Threading.Thread.Sleep(100); //Agregando este tiempo entre cierres de ventanas permite que no se cierre sin querer una ventana que estaba debajo
+            System.Threading.Thread.Sleep(300); //Agregando este tiempo entre cierres de ventanas permite que no se cierre sin querer una ventana que estaba debajo
             if (p_form == glb_form)
             {
                 

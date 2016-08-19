@@ -410,6 +410,10 @@ namespace Vista
                 cntxMenuLineasPedido.MenuItems[3].Text = "Eliminar linea";
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p_mod_pedido">pedido global que contiene a los distintos pedidos a proveedores</param>
         private void actualizarPedidosProveedores(ModeloPedido p_mod_pedido)
         {
             List<ModeloPedido> lcl_lst_mod_pedidos = (controlador as ControladorPedidoProveedor).getPedidosProveedores(p_mod_pedido);
@@ -1407,11 +1411,18 @@ namespace Vista
             if (lcl_frm_editarLinea.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 controlador.pedidoActual.lineasPedido[i] = (lcl_frm_editarLinea as frmPedidoCierre_EditarLineaPedido).getLineaPedido();
-                this.controlador.pedidoActual.updateLineaPedido(controlador.pedidoActual.lineasPedido[i]);
-
+                this.controlador.updateLineaPedido(controlador.pedidoActual.lineasPedido[i]);
+                
                 this.cargarDatosPedidoEnControles(this.controlador.pedidoActual);
                 this.cargarLineasEnControles(this.controlador.pedidoActual);
                 //this.cargarPedidoEnControles(controlador.pedidoActual);
+                if (controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor)
+                {
+                    ModeloPedido p_actual = ObjectCopier.Clone(controlador.pedidoActual);
+                    this.actualizarPedidosProveedores((controlador as ControladorPedidoProveedor).getPedidoGlobal());
+                    this.cmbBoxPedidosProveedores.SelectedIndex = (controlador as ControladorPedidoProveedor).getIndice(p_actual);
+                    cmbBoxPedidosProveedores_SelectionChangeCommitted(new object(), new EventArgs());
+                }
             }
         }
 
@@ -1450,11 +1461,19 @@ namespace Vista
             {
                 foreach (ModeloLineaPedido lp in lcl_lst_lineasPedidosEliminar)
                 {
-                    controlador.pedidoActual.removeLineaPedido(lp);
+                    controlador.removeLineaPedido(lp);
                 }
+                
                 this.cargarDatosPedidoEnControles(this.controlador.pedidoActual);
                 this.cargarLineasEnControles(this.controlador.pedidoActual);
                 //this.cargarPedidoEnControles(controlador.pedidoActual);
+                if (controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor)
+                {
+                    ModeloPedido p_actual = ObjectCopier.Clone(controlador.pedidoActual);
+                    this.actualizarPedidosProveedores((controlador as ControladorPedidoProveedor).getPedidoGlobal());
+                    this.cmbBoxPedidosProveedores.SelectedIndex = (controlador as ControladorPedidoProveedor).getIndice(p_actual);
+                    cmbBoxPedidosProveedores_SelectionChangeCommitted(new object(), new EventArgs());
+                }
             }
         }
         ModeloPedido pedidoAgregarLineas;
