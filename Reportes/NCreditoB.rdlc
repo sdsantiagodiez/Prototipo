@@ -360,7 +360,6 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="PrecioUnitario">
-                      <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -369,7 +368,7 @@
                               <Value>=Fields!PrecioUnitario.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <Format>'$' #,0.00;('$' #,0.00)</Format>
+                                <Format>'$' #,0.00;'$' -#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -394,7 +393,6 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Precio">
-                      <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -403,7 +401,7 @@
                               <Value>=Fields!Precio.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <Format>'$' #,0.00;('$' #,0.00)</Format>
+                                <Format>'$' #,0.00;'$' -#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -423,6 +421,7 @@
                         <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
