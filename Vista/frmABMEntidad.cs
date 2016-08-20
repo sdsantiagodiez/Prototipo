@@ -1301,16 +1301,16 @@ namespace Vista
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoEntidad.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.CodigoEntidad);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.CodigoEntidad)] = respuesta;
-            if (!respuesta)
-            {
-                epCodigoEntidad.Icon = Properties.Resources.error;
-                epCodigoEntidad.SetError(txtBoxCodigoEntidad, "Código de Entidad no válido");
-            }
-            else
-            {
-                epCodigoEntidad.Icon = Properties.Resources.success;
-                epCodigoEntidad.SetError(txtBoxCodigoEntidad, "OK");
-            }
+            //if (!respuesta)
+            //{
+            //    epCodigoEntidad.Icon = Properties.Resources.error;
+            //    epCodigoEntidad.SetError(txtBoxCodigoEntidad, "Código de Entidad no válido");
+            //}
+            //else
+            //{
+            //    epCodigoEntidad.Icon = Properties.Resources.success;
+            //    epCodigoEntidad.SetError(txtBoxCodigoEntidad, "OK");
+            //}            
         }
 
         private void txtBoxCUIT_Leave(object sender, EventArgs e)

@@ -52,6 +52,27 @@ namespace Datos
             }
             #endregion
 
+            #region Datos adicionales (Domicilio, teléfono, mail)
+            lcl_mod_pedido.mailContacto = new ModeloMail() { mail = (p_drPedidos["mail"] != DBNull.Value) ? (string)p_drPedidos["mail"] : null };
+            lcl_mod_pedido.telefonoContacto = new ModeloTelefono() 
+            {
+                tipo = (p_drPedidos["tipo"] != DBNull.Value) ? (string)p_drPedidos["tipo"] : null,
+                numero = (p_drPedidos["numero_telefono"] != DBNull.Value) ? (string)p_drPedidos["numero_telefono"] : null
+            };
+            lcl_mod_pedido.domicilioDeFacturacion = new ModeloDomicilio()
+            {
+                calle = (p_drPedidos["calle"] != DBNull.Value) ? (string)p_drPedidos["calle"] : null,
+                numero = (p_drPedidos["numero_domicilio"] != DBNull.Value) ? (string)p_drPedidos["numero_domicilio"] : null,
+                piso = (p_drPedidos["piso"] != DBNull.Value) ? (string)p_drPedidos["piso"] : null,
+                departamento = (p_drPedidos["departamento"] != DBNull.Value) ? (string)p_drPedidos["departamento"] : null,
+                ciudad = (p_drPedidos["ciudad"] != DBNull.Value) ? (string)p_drPedidos["ciudad"] : null,
+                codigoPostal = (p_drPedidos["codigo_postal"] != DBNull.Value) ? (string)p_drPedidos["codigo_postal"] : null,
+                provincia = new ModeloProvincia() 
+                {
+                    codigo = (p_drPedidos["codigo_provincia"] != DBNull.Value) ? (string)p_drPedidos["codigo_provincia"] : null
+                }
+            };
+            #endregion
             return lcl_mod_pedido;
         }
 
@@ -91,7 +112,7 @@ namespace Datos
             {
                 case Constantes.ParametrosBusqueda.Pedidos.NumeroPedido:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numero_pedido"));
-                    return " numero_pedido = @numero_pedido ";
+                    return " tbl.numero_pedido = @numero_pedido ";
                 case Constantes.ParametrosBusqueda.Pedidos.CAE:
                     p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.CAE, "@cae"));
                     return " cae = @cae ";
@@ -127,7 +148,7 @@ namespace Datos
         {
             int? numeroPedido = p_mod_pedido.numeroPedido == 0 ? null : (int?)p_mod_pedido.numeroPedido;
             p_comando.Parameters.Add(this.instanciarParametro(numeroPedido, "@numero_pedido"));
-            string numeroPedidoQuery = this.parametroBusqueda("@numero_pedido", "numero_pedido", "=");
+            string numeroPedidoQuery = this.parametroBusqueda("@numero_pedido", "tbl.numero_pedido", "=");
 
             string cae = String.IsNullOrWhiteSpace(p_mod_pedido.CAE) ? null : p_mod_pedido.CAE;
             p_comando.Parameters.Add(this.instanciarParametro(cae, "@cae"));
@@ -201,9 +222,12 @@ namespace Datos
             string querySQL = this.getCondicionBusqueda(p_mod_pedido, p_parametroBusqueda, ref comando);
 
             comando.CommandText =
-                "SELECT  [numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
+                "SELECT  tbl.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
                 "        [codigo_entidad], [razon_social_entidad],[descuento_1_monto],[descuento_2_monto], " +
-                "        [numero_comprobante],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],[estado]  " +
+                "        [numero_comprobante],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],[estado],  " +
+                "       mail.mail, "+
+		        "       telefono.tipo,telefono.numero as numero_telefono,  "+
+		        "       domicilio.calle,domicilio.numero as numero_domicilio,domicilio.piso,domicilio.departamento,domicilio.ciudad,domicilio.codigo_postal,domicilio.codigo_provincia "+
                 "    FROM  "+
                 "    (  "+
                 "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
@@ -222,6 +246,12 @@ namespace Datos
                 "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  "+
                 "        )  "+
                 "    ) as tbl " +
+                "inner join Mails_Pedido mail "+
+                "on mail.numero_pedido = tbl.numero_pedido " +
+	            "inner join Telefonos_Pedido telefono "+
+                "on telefono.numero_pedido = tbl.numero_pedido " +
+	            "inner join Domicilios_Pedido domicilio "+
+                "on domicilio.numero_pedido = tbl.numero_pedido " +
                 "   WHERE " + querySQL ;
 
             comando.Connection.Open();
@@ -265,10 +295,13 @@ namespace Datos
             SqlCommand comando = Conexion.crearComando();            
             string querySQL = this.getCondicionBusqueda(p_mod_pedido,p_periodo, p_codigosComprobantes, p_clienteGenerico, p_facturadoElectronicamente, ref comando);
             comando.CommandText =
-                 "SELECT  [numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
+                 "SELECT  tbl.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
                 "        [codigo_entidad],[razon_social_entidad], " +
                 "        [numero_comprobante],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],  " +
-                "           [descuento_1_monto],[descuento_2_monto],[estado] " +
+                "           [descuento_1_monto],[descuento_2_monto],[estado], " +
+                "       mail.mail, " +
+                "       telefono.tipo,telefono.numero as numero_telefono,  " +
+                "       domicilio.calle,domicilio.numero as numero_domicilio,domicilio.piso,domicilio.departamento,domicilio.ciudad,domicilio.codigo_postal,domicilio.codigo_provincia " +
                 "    FROM  " +
                 "    (  " +
                 "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
@@ -289,6 +322,12 @@ namespace Datos
                 "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  " +
                 "        )  " +
                 "    ) as tbl " +
+                "inner join Mails_Pedido mail " +
+                "on mail.numero_pedido = tbl.numero_pedido " +
+                "inner join Telefonos_Pedido telefono " +
+                "on telefono.numero_pedido = tbl.numero_pedido " +
+                "inner join Domicilios_Pedido domicilio " +
+                "on domicilio.numero_pedido = tbl.numero_pedido " +
                 "   WHERE " + querySQL;
 
             comando.Connection.Open();
@@ -297,39 +336,39 @@ namespace Datos
                 SqlDataReader drPedidos = comando.ExecuteReader();
             
 
-            List<ModeloPedido> lcl_mod_pedidosEncontrados = new List<ModeloPedido>();
-            ModeloPedido lcl_mod_pedido = new ModeloPedido();
+                List<ModeloPedido> lcl_mod_pedidosEncontrados = new List<ModeloPedido>();
+                ModeloPedido lcl_mod_pedido = new ModeloPedido();
 
-            CatalogoLineasPedidos lcl_cat_lineasPedidos = new CatalogoLineasPedidos();
-            ModeloLineaPedido lcl_mod_lineaPedido = null;
-            while (drPedidos.Read())
-            {
-                lcl_mod_pedido = new ModeloPedido();
-                lcl_mod_pedido = this.leerDatosPedido(drPedidos);
-
-                lcl_mod_lineaPedido = new ModeloLineaPedido();
-                lcl_mod_lineaPedido.numeroPedido = lcl_mod_pedido.numeroPedido;
-                lcl_mod_pedido.addLineaPedidoList(lcl_cat_lineasPedidos.buscarLineasPedido(lcl_mod_lineaPedido, Constantes.ParametrosBusqueda.LineasPedidos.NumeroPedido));
-
-                lcl_mod_pedidosEncontrados.Add(lcl_mod_pedido);
-            }
-            drPedidos.Dispose();
-            comando.Connection.Close();
-
-            CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
-            foreach (ModeloPedido p in lcl_mod_pedidosEncontrados)
-            {
-                if (p.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor)
+                CatalogoLineasPedidos lcl_cat_lineasPedidos = new CatalogoLineasPedidos();
+                ModeloLineaPedido lcl_mod_lineaPedido = null;
+                while (drPedidos.Read())
                 {
-                    p.entidad = lcl_cat_proveedores.getOne(p.entidad.codigo);
-                }
-            }
+                    lcl_mod_pedido = new ModeloPedido();
+                    lcl_mod_pedido = this.leerDatosPedido(drPedidos);
 
-            return lcl_mod_pedidosEncontrados;
+                    lcl_mod_lineaPedido = new ModeloLineaPedido();
+                    lcl_mod_lineaPedido.numeroPedido = lcl_mod_pedido.numeroPedido;
+                    lcl_mod_pedido.addLineaPedidoList(lcl_cat_lineasPedidos.buscarLineasPedido(lcl_mod_lineaPedido, Constantes.ParametrosBusqueda.LineasPedidos.NumeroPedido));
+
+                    lcl_mod_pedidosEncontrados.Add(lcl_mod_pedido);
+                }
+                drPedidos.Dispose();
+                comando.Connection.Close();
+
+                CatalogoProveedores lcl_cat_proveedores = new CatalogoProveedores();
+                foreach (ModeloPedido p in lcl_mod_pedidosEncontrados)
+                {
+                    if (p.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor)
+                    {
+                        p.entidad = lcl_cat_proveedores.getOne(p.entidad.codigo);
+                    }
+                }
+
+                return lcl_mod_pedidosEncontrados;
             }
             catch (Exception ex)
             {
-                return null;
+                return new List<ModeloPedido>();
             }
         }
 
@@ -660,8 +699,10 @@ namespace Datos
                 throw new Exception("Ha ocurrido un error al intentar registrar el Pedido actual. No se ha detectado el tipo de pedido.");
             }
 
+            bool datosAdicionalesAgregados = this.addPedido_DatosAdicionales(comando, p_mod_pedido);
             comando.Connection.Close();
-            if (rowsAffected == 1)
+            
+            if (rowsAffected == 1 && datosAdicionalesAgregados)
             {
                 return true;
             }
@@ -671,6 +712,56 @@ namespace Datos
                 throw new Exception("Ha ocurrido un error al intentar registrar el Pedido actual.");
             }
             
+            
+        }
+
+        private bool addPedido_DatosAdicionales(SqlCommand p_comando, ModeloPedido p_mod_pedido)
+        {
+            int rowsAffected = 0;
+
+            if (p_mod_pedido.domicilioDeFacturacion == null)
+            {
+                p_mod_pedido.domicilioDeFacturacion = new ModeloDomicilio();
+                //p_mod_pedido.domicilioDeFacturacion.provincia = new ModeloProvincia();
+            }
+            p_comando.CommandText =
+                "INSERT INTO Domicilios_Pedido "+
+                "   (numero_pedido,calle,numero,piso,departamento,ciudad,codigo_postal,codigo_provincia) "+
+                "   VALUES (@numero_pedido,@calle,@numero,@piso,@departamento,@ciudad,@codigo_postal,@codigo_provincia) ";
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numero_pedido"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.domicilioDeFacturacion.calle, "@calle"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.domicilioDeFacturacion.numero, "@numero"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.domicilioDeFacturacion.piso, "@piso"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.domicilioDeFacturacion.departamento, "@departamento"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.domicilioDeFacturacion.ciudad, "@ciudad"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.domicilioDeFacturacion.codigoPostal, "@codigo_postal"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.domicilioDeFacturacion.provincia.codigo, "@codigo_provincia"));
+            rowsAffected += p_comando.ExecuteNonQuery();
+
+            if (p_mod_pedido.mailContacto == null)
+            {
+                p_mod_pedido.mailContacto = new ModeloMail();
+            }
+            p_comando.CommandText =
+                "INSERT INTO Mails_Pedido " +
+                "   (numero_pedido,mail) " +
+                "   VALUES (@numero_pedido,@mail)";
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.mailContacto.mail, "@mail"));
+            rowsAffected += p_comando.ExecuteNonQuery();
+
+            if (p_mod_pedido.telefonoContacto == null)
+            {
+                p_mod_pedido.telefonoContacto = new ModeloTelefono();
+            }
+            p_comando.CommandText =
+                "INSERT INTO Telefonos_pedido "+
+                "   (numero_pedido,numero,tipo)"+
+                "   VALUES(@numero_pedido,@numero_telefono,@tipo_telefono)";
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.telefonoContacto.numero,"@numero_telefono"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.telefonoContacto.tipo,"@tipo_telefono"));
+            rowsAffected += p_comando.ExecuteNonQuery();
+
+            return rowsAffected == 3;
         }
 
         private int addPedidoCliente(SqlCommand p_comando,ModeloPedido p_mod_pedido)

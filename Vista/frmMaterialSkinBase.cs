@@ -152,6 +152,7 @@ namespace Vista
                 return epBad;
             }
         }
+        
 
         public static void InicializarCmbBox(ComboBox p_comboBox)
         {
@@ -213,12 +214,8 @@ namespace Vista
                 return;
             }
         }
+        
 
-        public static void SetErrorProvider(Control p_control, ErrorProvider p_errorProvider, bool p_valido, string p_mensaje)
-        {
-            p_errorProvider.Icon = p_valido ? Properties.Resources.success : Properties.Resources.error;
-            p_errorProvider.SetError(p_control, p_mensaje);
-        }
     }
     
     //clase para llenar combo box categoria a buscar

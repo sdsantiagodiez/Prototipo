@@ -184,6 +184,7 @@ namespace Vista
             modoFormulario = ModoFormularioPedidoProveedor;
             this.controlador = new ControladorPedidoProveedor();
             this.actualizarPedidosProveedores(p_mod_pedido);
+            this.actualizarFormasDePago();
         }
         private void inicializarDevolucionPedidoCliente(ModeloPedido p_mod_pedido)
         {
@@ -276,6 +277,7 @@ namespace Vista
             //Binding de telefonos
             this.cmbBoxTipoTelefono.DataSource = dataSource;
 
+
             this.cmbBoxFormaPago.DataSource = Enum.GetValues(typeof(Constantes.FormaDePago));
             this.cmbBoxFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cmbBoxFormaPago.FormattingEnabled = true;
@@ -303,6 +305,18 @@ namespace Vista
                 this.cmbBoxMails.DropDownStyle = ComboBoxStyle.DropDownList;
 
             this.cmbBoxTipoDocumento.SelectedValueChanged += this.txtBoxNumeroDocumento_Leave;
+        }
+        private void actualizarFormasDePago()
+        {
+            List<Constantes.FormaDePago> formasDePago =  Enum.GetValues(typeof(Constantes.FormaDePago)).OfType<Constantes.FormaDePago>().ToList();
+
+            if(controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor)
+            {
+                formasDePago.Remove(Constantes.FormaDePago.Multiple);
+            }
+
+            this.cmbBoxFormaPago.DataSource = null;
+            this.cmbBoxFormaPago.DataSource = formasDePago;
         }
         private void inicializarControlesCliente()
         {
@@ -342,7 +356,6 @@ namespace Vista
         }
         private void inicializarControlesProveedor()
         {
-
             this.txtBoxNombre.Enabled =
             this.txtBoxApellido.Enabled =
             this.txtBoxRazonSocial.Enabled =
@@ -374,6 +387,8 @@ namespace Vista
             this.cmbBoxTipoComprobante.DataSource = Enum.GetValues(typeof(Constantes.TipoComprobanteCompra));
             this.cmbBoxTipoComprobante.DropDownWidth = GetDropDownWidth(this.cmbBoxTipoComprobante) + 25;
             this.cmbBoxTipoComprobante.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            this.cmbBoxTipoComprobante.Enabled = false;
         }
         private void inicializarComboBoxPedidosProveedores(List<ModeloPedido> p_mod_pedidos)
         {
@@ -393,13 +408,24 @@ namespace Vista
                 });
             }
             this.cmbBoxPedidosProveedores.DataSource = dataSource;
-            //if (dataSource.Count < 1)
-            //{
-            //    this.cmbBoxPedidosProveedores.Enabled = false;
-            //    return;
-            //}
-            //this.cmbBoxPedidosProveedores.Enabled = true;
+
             InicializarCmbBox(this.cmbBoxPedidosProveedores);
+            this.actualizarControlesPedidoProveedores();
+        }
+        private void actualizarControlesPedidoProveedores()
+        {
+            //Si esta seleccionado el pedidoGlobal, permitimos imprimir y guardar todo. No se permite individualmente
+            bool pedidoGlobalSeleccionado = this.cmbBoxPedidosProveedores.SelectedIndex == 0;
+            this.btnGuardar.Enabled =
+                this.btnImprimir.Enabled =
+                pedidoGlobalSeleccionado;
+            this.glb_con_domicilio.Enabled =
+                this.txtBoxMail.Enabled =
+                this.txtBoxTelefono.Enabled =
+                this.grpBoxObservacionesPedido.Enabled =
+                this.cmbBoxFormaPago.Enabled=
+                this.dtpFechaPedido.Enabled =
+                !pedidoGlobalSeleccionado;
         }
         
         private void actualizarContextMenuStrip()
@@ -1244,17 +1270,20 @@ namespace Vista
                 (controlador as ControladorPedidoProveedor).pedidosProveedores[indiceAnteriorCmbBoxPedidosProveedores].domicilioDeFacturacion = cargarControlEnDomicilio();
                 (controlador as ControladorPedidoProveedor).pedidosProveedores[indiceAnteriorCmbBoxPedidosProveedores].observaciones = rchTextBoxObservacionesPedido.Text;
                 //cargar ContactoProveedor
-                //Domicilio, telefono,mail,observaciones,forma de pago
+                //forma de pago
             }
 
             var pedido = (ModeloPedido)cmbBoxPedidosProveedores.SelectedValue;
 
             this.cargarPedidoEnControles(pedido);
+            //Se quitan errorProviders para el cambio de proveedor
+            this.glb_con_domicilio.clearErrorProviders();
+            this.setErrorProvider(this.txtBoxMail, true, null);
+            this.setErrorProvider(this.txtBoxTelefono, true, null);
 
-            bool pedidoGlobalSeleccionado = this.cmbBoxPedidosProveedores.SelectedIndex == 0;
-            this.btnGuardar.Enabled =
-                this.btnImprimir.Enabled = pedidoGlobalSeleccionado; //Si esta seleccionado el pedidoGlobal, permitimos imprimir y guardar todo. No se permite individualmente
+            this.actualizarControlesPedidoProveedores();
         }
+        
         private void cmbBoxDomicilios_SelectionChangeCommitted(object sender, EventArgs e)
         {
             var domicilio = (ModeloDomicilio)cmbBoxDomicilios.SelectedValue;
@@ -1799,11 +1828,6 @@ namespace Vista
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cmbBoxPedidosProveedores_Enter(object sender, EventArgs e)
-        {
-            //indiceAnteriorCmbBoxPedidosProveedores = this.cmbBoxPedidosProveedores.SelectedIndex;
-        }
-
         private void cmbBoxPedidosProveedores_Click(object sender, EventArgs e)
         {
             indiceAnteriorCmbBoxPedidosProveedores = this.cmbBoxPedidosProveedores.SelectedIndex;

@@ -282,9 +282,9 @@
             this.lblRazonSocial.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblRazonSocial.AutoSize = true;
             this.lblRazonSocial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblRazonSocial.Location = new System.Drawing.Point(6, 6);
+            this.lblRazonSocial.Location = new System.Drawing.Point(29, 0);
             this.lblRazonSocial.Name = "lblRazonSocial";
-            this.lblRazonSocial.Size = new System.Drawing.Size(73, 13);
+            this.lblRazonSocial.Size = new System.Drawing.Size(50, 26);
             this.lblRazonSocial.TabIndex = 11;
             this.lblRazonSocial.Text = "Razón Social:";
             this.lblRazonSocial.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -302,7 +302,7 @@
             this.txtBoxRazonSocial.SelectedText = "";
             this.txtBoxRazonSocial.SelectionLength = 0;
             this.txtBoxRazonSocial.SelectionStart = 0;
-            this.txtBoxRazonSocial.Size = new System.Drawing.Size(350, 23);
+            this.txtBoxRazonSocial.Size = new System.Drawing.Size(350, 28);
             this.txtBoxRazonSocial.TabIndex = 14;
             this.txtBoxRazonSocial.UseSystemPasswordChar = false;
             this.txtBoxRazonSocial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxRazonSocial_KeyPress);
@@ -335,13 +335,13 @@
             this.chckBoxResponsableInscripto.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chckBoxResponsableInscripto.Depth = 0;
             this.chckBoxResponsableInscripto.Font = new System.Drawing.Font("Roboto", 10F);
-            this.chckBoxResponsableInscripto.Location = new System.Drawing.Point(151, 120);
+            this.chckBoxResponsableInscripto.Location = new System.Drawing.Point(134, 120);
             this.chckBoxResponsableInscripto.Margin = new System.Windows.Forms.Padding(0);
             this.chckBoxResponsableInscripto.MouseLocation = new System.Drawing.Point(-1, -1);
             this.chckBoxResponsableInscripto.MouseState = MaterialSkin.MouseState.HOVER;
             this.chckBoxResponsableInscripto.Name = "chckBoxResponsableInscripto";
             this.chckBoxResponsableInscripto.Ripple = true;
-            this.chckBoxResponsableInscripto.Size = new System.Drawing.Size(166, 28);
+            this.chckBoxResponsableInscripto.Size = new System.Drawing.Size(201, 28);
             this.chckBoxResponsableInscripto.TabIndex = 15;
             this.chckBoxResponsableInscripto.Text = "Responsable Inscripto";
             this.chckBoxResponsableInscripto.UseVisualStyleBackColor = true;
@@ -379,7 +379,7 @@
             // 
             this.cmbBoxContactoProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxContactoProveedor.FormattingEnabled = true;
-            this.cmbBoxContactoProveedor.Location = new System.Drawing.Point(78, 120);
+            this.cmbBoxContactoProveedor.Location = new System.Drawing.Point(78, 119);
             this.cmbBoxContactoProveedor.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.cmbBoxContactoProveedor.MinimumSize = new System.Drawing.Size(97, 0);
             this.cmbBoxContactoProveedor.Name = "cmbBoxContactoProveedor";
@@ -393,9 +393,9 @@
             this.lblContactoProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblContactoProveedor.AutoSize = true;
             this.lblContactoProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblContactoProveedor.Location = new System.Drawing.Point(3, 124);
+            this.lblContactoProveedor.Location = new System.Drawing.Point(3, 122);
             this.lblContactoProveedor.Name = "lblContactoProveedor";
-            this.lblContactoProveedor.Size = new System.Drawing.Size(69, 13);
+            this.lblContactoProveedor.Size = new System.Drawing.Size(69, 17);
             this.lblContactoProveedor.TabIndex = 21;
             this.lblContactoProveedor.Text = "Contacto:";
             this.lblContactoProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -406,9 +406,9 @@
             this.lblApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblApellido.AutoSize = true;
             this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblApellido.Location = new System.Drawing.Point(3, 66);
+            this.lblApellido.Location = new System.Drawing.Point(3, 64);
             this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(69, 13);
+            this.lblApellido.Size = new System.Drawing.Size(69, 17);
             this.lblApellido.TabIndex = 19;
             this.lblApellido.Text = "Apellido:";
             this.lblApellido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -418,9 +418,9 @@
             this.lblTipoDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTipoDocumento.AutoSize = true;
             this.lblTipoDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblTipoDocumento.Location = new System.Drawing.Point(3, 1);
+            this.lblTipoDocumento.Location = new System.Drawing.Point(3, 0);
             this.lblTipoDocumento.Name = "lblTipoDocumento";
-            this.lblTipoDocumento.Size = new System.Drawing.Size(69, 26);
+            this.lblTipoDocumento.Size = new System.Drawing.Size(69, 29);
             this.lblTipoDocumento.TabIndex = 13;
             this.lblTipoDocumento.Text = "Tipo Documento:";
             this.lblTipoDocumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -429,7 +429,7 @@
             // 
             this.cmbBoxTipoDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxTipoDocumento.FormattingEnabled = true;
-            this.cmbBoxTipoDocumento.Location = new System.Drawing.Point(78, 4);
+            this.cmbBoxTipoDocumento.Location = new System.Drawing.Point(78, 3);
             this.cmbBoxTipoDocumento.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.cmbBoxTipoDocumento.Name = "cmbBoxTipoDocumento";
             this.cmbBoxTipoDocumento.Size = new System.Drawing.Size(141, 21);
@@ -440,9 +440,9 @@
             this.lblNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblNombre.Location = new System.Drawing.Point(3, 95);
+            this.lblNombre.Location = new System.Drawing.Point(3, 93);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(69, 13);
+            this.lblNombre.Size = new System.Drawing.Size(69, 17);
             this.lblNombre.TabIndex = 17;
             this.lblNombre.Text = "Nombre:";
             this.lblNombre.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -452,9 +452,9 @@
             this.lblNumeroDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNumeroDocumento.AutoSize = true;
             this.lblNumeroDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblNumeroDocumento.Location = new System.Drawing.Point(3, 30);
+            this.lblNumeroDocumento.Location = new System.Drawing.Point(3, 29);
             this.lblNumeroDocumento.Name = "lblNumeroDocumento";
-            this.lblNumeroDocumento.Size = new System.Drawing.Size(69, 26);
+            this.lblNumeroDocumento.Size = new System.Drawing.Size(69, 29);
             this.lblNumeroDocumento.TabIndex = 15;
             this.lblNumeroDocumento.Text = "Número Documento:";
             this.lblNumeroDocumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -471,7 +471,7 @@
             this.txtBoxNumeroDocumento.SelectedText = "";
             this.txtBoxNumeroDocumento.SelectionLength = 0;
             this.txtBoxNumeroDocumento.SelectionStart = 0;
-            this.txtBoxNumeroDocumento.Size = new System.Drawing.Size(153, 23);
+            this.txtBoxNumeroDocumento.Size = new System.Drawing.Size(153, 28);
             this.txtBoxNumeroDocumento.TabIndex = 24;
             this.txtBoxNumeroDocumento.UseSystemPasswordChar = false;
             this.txtBoxNumeroDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxNumeroDocumento_KeyPress);
@@ -489,7 +489,7 @@
             this.txtBoxApellido.SelectedText = "";
             this.txtBoxApellido.SelectionLength = 0;
             this.txtBoxApellido.SelectionStart = 0;
-            this.txtBoxApellido.Size = new System.Drawing.Size(153, 23);
+            this.txtBoxApellido.Size = new System.Drawing.Size(153, 28);
             this.txtBoxApellido.TabIndex = 25;
             this.txtBoxApellido.UseSystemPasswordChar = false;
             this.txtBoxApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxApellido_KeyPress);
@@ -507,7 +507,7 @@
             this.txtBoxNombre.SelectedText = "";
             this.txtBoxNombre.SelectionLength = 0;
             this.txtBoxNombre.SelectionStart = 0;
-            this.txtBoxNombre.Size = new System.Drawing.Size(153, 23);
+            this.txtBoxNombre.Size = new System.Drawing.Size(153, 28);
             this.txtBoxNombre.TabIndex = 26;
             this.txtBoxNombre.UseSystemPasswordChar = false;
             this.txtBoxNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxNombre_KeyPress);
@@ -544,9 +544,9 @@
             // 
             this.lblCAE.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCAE.AutoSize = true;
-            this.lblCAE.Location = new System.Drawing.Point(76, 124);
+            this.lblCAE.Location = new System.Drawing.Point(74, 123);
             this.lblCAE.Name = "lblCAE";
-            this.lblCAE.Size = new System.Drawing.Size(31, 13);
+            this.lblCAE.Size = new System.Drawing.Size(33, 15);
             this.lblCAE.TabIndex = 12;
             this.lblCAE.Text = "CAE:";
             // 
@@ -554,9 +554,9 @@
             // 
             this.lblNumeroPedido.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNumeroPedido.AutoSize = true;
-            this.lblNumeroPedido.Location = new System.Drawing.Point(60, 8);
+            this.lblNumeroPedido.Location = new System.Drawing.Point(52, 7);
             this.lblNumeroPedido.Name = "lblNumeroPedido";
-            this.lblNumeroPedido.Size = new System.Drawing.Size(47, 13);
+            this.lblNumeroPedido.Size = new System.Drawing.Size(55, 15);
             this.lblNumeroPedido.TabIndex = 0;
             this.lblNumeroPedido.Text = "Número:";
             // 
@@ -564,9 +564,9 @@
             // 
             this.lblTipoComprobante.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblTipoComprobante.AutoSize = true;
-            this.lblTipoComprobante.Location = new System.Drawing.Point(76, 37);
+            this.lblTipoComprobante.Location = new System.Drawing.Point(73, 36);
             this.lblTipoComprobante.Name = "lblTipoComprobante";
-            this.lblTipoComprobante.Size = new System.Drawing.Size(31, 13);
+            this.lblTipoComprobante.Size = new System.Drawing.Size(34, 15);
             this.lblTipoComprobante.TabIndex = 1;
             this.lblTipoComprobante.Text = "Tipo:";
             // 
@@ -574,7 +574,7 @@
             // 
             this.cmbBoxTipoComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxTipoComprobante.FormattingEnabled = true;
-            this.cmbBoxTipoComprobante.Location = new System.Drawing.Point(113, 33);
+            this.cmbBoxTipoComprobante.Location = new System.Drawing.Point(113, 32);
             this.cmbBoxTipoComprobante.Name = "cmbBoxTipoComprobante";
             this.cmbBoxTipoComprobante.Size = new System.Drawing.Size(140, 21);
             this.cmbBoxTipoComprobante.TabIndex = 10;
@@ -584,9 +584,9 @@
             // 
             this.lblFormaPago.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblFormaPago.AutoSize = true;
-            this.lblFormaPago.Location = new System.Drawing.Point(25, 66);
+            this.lblFormaPago.Location = new System.Drawing.Point(12, 65);
             this.lblFormaPago.Name = "lblFormaPago";
-            this.lblFormaPago.Size = new System.Drawing.Size(82, 13);
+            this.lblFormaPago.Size = new System.Drawing.Size(95, 15);
             this.lblFormaPago.TabIndex = 2;
             this.lblFormaPago.Text = "Forma de Pago:";
             // 
@@ -597,7 +597,7 @@
             this.cmbBoxFormaPago.Items.AddRange(new object[] {
             "Contado",
             "Tarjeta"});
-            this.cmbBoxFormaPago.Location = new System.Drawing.Point(113, 62);
+            this.cmbBoxFormaPago.Location = new System.Drawing.Point(113, 61);
             this.cmbBoxFormaPago.Name = "cmbBoxFormaPago";
             this.cmbBoxFormaPago.Size = new System.Drawing.Size(140, 21);
             this.cmbBoxFormaPago.TabIndex = 9;
@@ -607,9 +607,9 @@
             // 
             this.lblFecha.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(67, 95);
+            this.lblFecha.Location = new System.Drawing.Point(63, 94);
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(40, 13);
+            this.lblFecha.Size = new System.Drawing.Size(44, 15);
             this.lblFecha.TabIndex = 3;
             this.lblFecha.Text = "Fecha:";
             // 
@@ -634,7 +634,7 @@
             this.txtBoxNumeroPedido.SelectedText = "";
             this.txtBoxNumeroPedido.SelectionLength = 0;
             this.txtBoxNumeroPedido.SelectionStart = 0;
-            this.txtBoxNumeroPedido.Size = new System.Drawing.Size(140, 23);
+            this.txtBoxNumeroPedido.Size = new System.Drawing.Size(140, 28);
             this.txtBoxNumeroPedido.TabIndex = 14;
             this.txtBoxNumeroPedido.UseSystemPasswordChar = false;
             // 
@@ -650,7 +650,7 @@
             this.txtBoxCAE.SelectedText = "";
             this.txtBoxCAE.SelectionLength = 0;
             this.txtBoxCAE.SelectionStart = 0;
-            this.txtBoxCAE.Size = new System.Drawing.Size(140, 23);
+            this.txtBoxCAE.Size = new System.Drawing.Size(140, 28);
             this.txtBoxCAE.TabIndex = 15;
             this.txtBoxCAE.UseSystemPasswordChar = false;
             // 
@@ -751,7 +751,7 @@
             this.tblLayoutPanelMail.ColumnCount = 3;
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0578F));
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.9422F));
-            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
             this.tblLayoutPanelMail.Controls.Add(this.lblMail, 0, 0);
             this.tblLayoutPanelMail.Controls.Add(this.txtBoxMail, 1, 0);
             this.tblLayoutPanelMail.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -768,9 +768,9 @@
             this.lblMail.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblMail.AutoSize = true;
             this.lblMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblMail.Location = new System.Drawing.Point(31, 12);
+            this.lblMail.Location = new System.Drawing.Point(12, 8);
             this.lblMail.Name = "lblMail";
-            this.lblMail.Size = new System.Drawing.Size(63, 26);
+            this.lblMail.Size = new System.Drawing.Size(82, 34);
             this.lblMail.TabIndex = 9;
             this.lblMail.Text = "Correo Electrónico:";
             // 
@@ -779,14 +779,14 @@
             this.txtBoxMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxMail.Depth = 0;
             this.txtBoxMail.Hint = "";
-            this.txtBoxMail.Location = new System.Drawing.Point(100, 14);
+            this.txtBoxMail.Location = new System.Drawing.Point(100, 11);
             this.txtBoxMail.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxMail.Name = "txtBoxMail";
             this.txtBoxMail.PasswordChar = '\0';
             this.txtBoxMail.SelectedText = "";
             this.txtBoxMail.SelectionLength = 0;
             this.txtBoxMail.SelectionStart = 0;
-            this.txtBoxMail.Size = new System.Drawing.Size(222, 23);
+            this.txtBoxMail.Size = new System.Drawing.Size(221, 28);
             this.txtBoxMail.TabIndex = 10;
             this.txtBoxMail.UseSystemPasswordChar = false;
             this.txtBoxMail.Leave += new System.EventHandler(this.txtBoxMail_Leave);
@@ -795,7 +795,7 @@
             // 
             this.cmbBoxMails.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbBoxMails.FormattingEnabled = true;
-            this.cmbBoxMails.Location = new System.Drawing.Point(131, 86);
+            this.cmbBoxMails.Location = new System.Drawing.Point(131, 85);
             this.cmbBoxMails.Name = "cmbBoxMails";
             this.cmbBoxMails.Size = new System.Drawing.Size(121, 21);
             this.cmbBoxMails.TabIndex = 4;
@@ -859,7 +859,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(41, 15);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(41, 14);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(96, 21);
             this.cmbBoxTipoTelefono.TabIndex = 24;
@@ -869,9 +869,9 @@
             this.lblTipoTelefono.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblTipoTelefono.AutoSize = true;
             this.lblTipoTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblTipoTelefono.Location = new System.Drawing.Point(4, 19);
+            this.lblTipoTelefono.Location = new System.Drawing.Point(7, 8);
             this.lblTipoTelefono.Name = "lblTipoTelefono";
-            this.lblTipoTelefono.Size = new System.Drawing.Size(31, 13);
+            this.lblTipoTelefono.Size = new System.Drawing.Size(28, 34);
             this.lblTipoTelefono.TabIndex = 27;
             this.lblTipoTelefono.Text = "Tipo:";
             // 
@@ -880,9 +880,9 @@
             this.lblNumeroTelefono.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNumeroTelefono.AutoSize = true;
             this.lblNumeroTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblNumeroTelefono.Location = new System.Drawing.Point(150, 19);
+            this.lblNumeroTelefono.Location = new System.Drawing.Point(147, 8);
             this.lblNumeroTelefono.Name = "lblNumeroTelefono";
-            this.lblNumeroTelefono.Size = new System.Drawing.Size(47, 13);
+            this.lblNumeroTelefono.Size = new System.Drawing.Size(50, 34);
             this.lblNumeroTelefono.TabIndex = 25;
             this.lblNumeroTelefono.Text = "Número:";
             // 
@@ -891,14 +891,14 @@
             this.txtBoxTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxTelefono.Depth = 0;
             this.txtBoxTelefono.Hint = "";
-            this.txtBoxTelefono.Location = new System.Drawing.Point(203, 14);
+            this.txtBoxTelefono.Location = new System.Drawing.Point(203, 11);
             this.txtBoxTelefono.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxTelefono.Name = "txtBoxTelefono";
             this.txtBoxTelefono.PasswordChar = '\0';
             this.txtBoxTelefono.SelectedText = "";
             this.txtBoxTelefono.SelectionLength = 0;
             this.txtBoxTelefono.SelectionStart = 0;
-            this.txtBoxTelefono.Size = new System.Drawing.Size(147, 23);
+            this.txtBoxTelefono.Size = new System.Drawing.Size(147, 28);
             this.txtBoxTelefono.TabIndex = 28;
             this.txtBoxTelefono.UseSystemPasswordChar = false;
             this.txtBoxTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxTelefono_KeyPress);
@@ -980,12 +980,12 @@
             this.tblLayoutPanelLineasPedidos.Controls.Add(this.dgvArticulosVenta, 0, 0);
             this.tblLayoutPanelLineasPedidos.Controls.Add(this.tblLayoutPanelLineasPedidosBotones, 0, 1);
             this.tblLayoutPanelLineasPedidos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelLineasPedidos.Location = new System.Drawing.Point(3, 18);
+            this.tblLayoutPanelLineasPedidos.Location = new System.Drawing.Point(3, 22);
             this.tblLayoutPanelLineasPedidos.Name = "tblLayoutPanelLineasPedidos";
             this.tblLayoutPanelLineasPedidos.RowCount = 2;
             this.tblLayoutPanelLineasPedidos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelLineasPedidos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tblLayoutPanelLineasPedidos.Size = new System.Drawing.Size(1003, 172);
+            this.tblLayoutPanelLineasPedidos.Size = new System.Drawing.Size(1003, 168);
             this.tblLayoutPanelLineasPedidos.TabIndex = 6;
             // 
             // dgvArticulosVenta
@@ -1013,7 +1013,7 @@
             this.dgvArticulosVenta.ReadOnly = true;
             this.dgvArticulosVenta.RowHeadersVisible = false;
             this.dgvArticulosVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulosVenta.Size = new System.Drawing.Size(997, 127);
+            this.dgvArticulosVenta.Size = new System.Drawing.Size(997, 123);
             this.dgvArticulosVenta.TabIndex = 5;
             this.dgvArticulosVenta.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvArticulosVenta_MouseDown);
             // 
@@ -1091,7 +1091,7 @@
             this.tblLayoutPanelLineasPedidosBotones.Controls.Add(this.btnEditar, 1, 0);
             this.tblLayoutPanelLineasPedidosBotones.Controls.Add(this.btnEliminar, 2, 0);
             this.tblLayoutPanelLineasPedidosBotones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelLineasPedidosBotones.Location = new System.Drawing.Point(3, 136);
+            this.tblLayoutPanelLineasPedidosBotones.Location = new System.Drawing.Point(3, 132);
             this.tblLayoutPanelLineasPedidosBotones.Name = "tblLayoutPanelLineasPedidosBotones";
             this.tblLayoutPanelLineasPedidosBotones.RowCount = 1;
             this.tblLayoutPanelLineasPedidosBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1104,12 +1104,12 @@
             this.btnAgregar.AutoSize = true;
             this.btnAgregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAgregar.Depth = 0;
-            this.btnAgregar.Location = new System.Drawing.Point(360, 6);
+            this.btnAgregar.Location = new System.Drawing.Point(344, 6);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAgregar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Primary = false;
-            this.btnAgregar.Size = new System.Drawing.Size(74, 21);
+            this.btnAgregar.Size = new System.Drawing.Size(90, 21);
             this.btnAgregar.TabIndex = 5;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -1120,12 +1120,12 @@
             this.btnEditar.AutoSize = true;
             this.btnEditar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnEditar.Depth = 0;
-            this.btnEditar.Location = new System.Drawing.Point(468, 6);
+            this.btnEditar.Location = new System.Drawing.Point(462, 6);
             this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnEditar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Primary = false;
-            this.btnEditar.Size = new System.Drawing.Size(59, 21);
+            this.btnEditar.Size = new System.Drawing.Size(71, 21);
             this.btnEditar.TabIndex = 6;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -1140,7 +1140,7 @@
             this.btnEliminar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Primary = false;
-            this.btnEliminar.Size = new System.Drawing.Size(74, 21);
+            this.btnEliminar.Size = new System.Drawing.Size(91, 21);
             this.btnEliminar.TabIndex = 0;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -1192,9 +1192,9 @@
             // 
             this.lblIVA.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblIVA.AutoSize = true;
-            this.lblIVA.Location = new System.Drawing.Point(27, 11);
+            this.lblIVA.Location = new System.Drawing.Point(27, 10);
             this.lblIVA.Name = "lblIVA";
-            this.lblIVA.Size = new System.Drawing.Size(27, 13);
+            this.lblIVA.Size = new System.Drawing.Size(27, 15);
             this.lblIVA.TabIndex = 0;
             this.lblIVA.Text = "IVA:";
             // 
@@ -1202,9 +1202,9 @@
             // 
             this.lblSubtotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblSubtotal.AutoSize = true;
-            this.lblSubtotal.Location = new System.Drawing.Point(826, 11);
+            this.lblSubtotal.Location = new System.Drawing.Point(820, 10);
             this.lblSubtotal.Name = "lblSubtotal";
-            this.lblSubtotal.Size = new System.Drawing.Size(49, 13);
+            this.lblSubtotal.Size = new System.Drawing.Size(55, 15);
             this.lblSubtotal.TabIndex = 6;
             this.lblSubtotal.Text = "Subtotal:";
             // 
@@ -1212,9 +1212,9 @@
             // 
             this.lblTotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(830, 48);
+            this.lblTotal.Location = new System.Drawing.Point(828, 47);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(45, 13);
+            this.lblTotal.Size = new System.Drawing.Size(47, 15);
             this.lblTotal.TabIndex = 7;
             this.lblTotal.Text = "TOTAL:";
             // 
@@ -1222,9 +1222,9 @@
             // 
             this.lblDescuentoLineas.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDescuentoLineas.AutoSize = true;
-            this.lblDescuentoLineas.Location = new System.Drawing.Point(569, 11);
+            this.lblDescuentoLineas.Location = new System.Drawing.Point(598, 3);
             this.lblDescuentoLineas.Name = "lblDescuentoLineas";
-            this.lblDescuentoLineas.Size = new System.Drawing.Size(98, 13);
+            this.lblDescuentoLineas.Size = new System.Drawing.Size(69, 30);
             this.lblDescuentoLineas.TabIndex = 4;
             this.lblDescuentoLineas.Text = "Descuento Líneas:";
             // 
@@ -1232,9 +1232,9 @@
             // 
             this.lblDescuentoTotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDescuentoTotal.AutoSize = true;
-            this.lblDescuentoTotal.Location = new System.Drawing.Point(578, 48);
+            this.lblDescuentoTotal.Location = new System.Drawing.Point(568, 47);
             this.lblDescuentoTotal.Name = "lblDescuentoTotal";
-            this.lblDescuentoTotal.Size = new System.Drawing.Size(89, 13);
+            this.lblDescuentoTotal.Size = new System.Drawing.Size(99, 15);
             this.lblDescuentoTotal.TabIndex = 5;
             this.lblDescuentoTotal.Text = "Descuento Total:";
             // 
@@ -1242,9 +1242,9 @@
             // 
             this.lblDescuentoPorcentual.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDescuentoPorcentual.AutoSize = true;
-            this.lblDescuentoPorcentual.Location = new System.Drawing.Point(301, 11);
+            this.lblDescuentoPorcentual.Location = new System.Drawing.Point(293, 10);
             this.lblDescuentoPorcentual.Name = "lblDescuentoPorcentual";
-            this.lblDescuentoPorcentual.Size = new System.Drawing.Size(71, 13);
+            this.lblDescuentoPorcentual.Size = new System.Drawing.Size(79, 15);
             this.lblDescuentoPorcentual.TabIndex = 2;
             this.lblDescuentoPorcentual.Text = "Descuento 1:";
             this.lblDescuentoPorcentual.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1253,9 +1253,9 @@
             // 
             this.lblDescuentoNeto.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDescuentoNeto.AutoSize = true;
-            this.lblDescuentoNeto.Location = new System.Drawing.Point(301, 48);
+            this.lblDescuentoNeto.Location = new System.Drawing.Point(293, 47);
             this.lblDescuentoNeto.Name = "lblDescuentoNeto";
-            this.lblDescuentoNeto.Size = new System.Drawing.Size(71, 13);
+            this.lblDescuentoNeto.Size = new System.Drawing.Size(79, 15);
             this.lblDescuentoNeto.TabIndex = 3;
             this.lblDescuentoNeto.Text = "Descuento 2:";
             // 
@@ -1263,9 +1263,9 @@
             // 
             this.lblSenia.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblSenia.AutoSize = true;
-            this.lblSenia.Location = new System.Drawing.Point(76, 48);
+            this.lblSenia.Location = new System.Drawing.Point(72, 47);
             this.lblSenia.Name = "lblSenia";
-            this.lblSenia.Size = new System.Drawing.Size(38, 13);
+            this.lblSenia.Size = new System.Drawing.Size(42, 15);
             this.lblSenia.TabIndex = 1;
             this.lblSenia.Text = "Seña: ";
             // 
@@ -1274,14 +1274,14 @@
             this.txtBoxIVAPorcentaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxIVAPorcentaje.Depth = 0;
             this.txtBoxIVAPorcentaje.Hint = "";
-            this.txtBoxIVAPorcentaje.Location = new System.Drawing.Point(60, 6);
+            this.txtBoxIVAPorcentaje.Location = new System.Drawing.Point(60, 4);
             this.txtBoxIVAPorcentaje.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxIVAPorcentaje.Name = "txtBoxIVAPorcentaje";
             this.txtBoxIVAPorcentaje.PasswordChar = '\0';
             this.txtBoxIVAPorcentaje.SelectedText = "";
             this.txtBoxIVAPorcentaje.SelectionLength = 0;
             this.txtBoxIVAPorcentaje.SelectionStart = 0;
-            this.txtBoxIVAPorcentaje.Size = new System.Drawing.Size(54, 23);
+            this.txtBoxIVAPorcentaje.Size = new System.Drawing.Size(54, 28);
             this.txtBoxIVAPorcentaje.TabIndex = 19;
             this.txtBoxIVAPorcentaje.UseSystemPasswordChar = false;
             this.txtBoxIVAPorcentaje.Leave += new System.EventHandler(this.txtBoxIVAPorcentaje_Leave);
@@ -1291,14 +1291,14 @@
             this.txtBoxIVAMonto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxIVAMonto.Depth = 0;
             this.txtBoxIVAMonto.Hint = "";
-            this.txtBoxIVAMonto.Location = new System.Drawing.Point(120, 6);
+            this.txtBoxIVAMonto.Location = new System.Drawing.Point(120, 4);
             this.txtBoxIVAMonto.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxIVAMonto.Name = "txtBoxIVAMonto";
             this.txtBoxIVAMonto.PasswordChar = '\0';
             this.txtBoxIVAMonto.SelectedText = "";
             this.txtBoxIVAMonto.SelectionLength = 0;
             this.txtBoxIVAMonto.SelectionStart = 0;
-            this.txtBoxIVAMonto.Size = new System.Drawing.Size(140, 23);
+            this.txtBoxIVAMonto.Size = new System.Drawing.Size(140, 28);
             this.txtBoxIVAMonto.TabIndex = 20;
             this.txtBoxIVAMonto.UseSystemPasswordChar = false;
             this.txtBoxIVAMonto.Leave += new System.EventHandler(this.txtBoxIVAMonto_Leave);
@@ -1308,14 +1308,14 @@
             this.txtBoxSenia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxSenia.Depth = 0;
             this.txtBoxSenia.Hint = "";
-            this.txtBoxSenia.Location = new System.Drawing.Point(120, 43);
+            this.txtBoxSenia.Location = new System.Drawing.Point(120, 40);
             this.txtBoxSenia.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxSenia.Name = "txtBoxSenia";
             this.txtBoxSenia.PasswordChar = '\0';
             this.txtBoxSenia.SelectedText = "";
             this.txtBoxSenia.SelectionLength = 0;
             this.txtBoxSenia.SelectionStart = 0;
-            this.txtBoxSenia.Size = new System.Drawing.Size(140, 23);
+            this.txtBoxSenia.Size = new System.Drawing.Size(140, 28);
             this.txtBoxSenia.TabIndex = 21;
             this.txtBoxSenia.UseSystemPasswordChar = false;
             this.txtBoxSenia.Leave += new System.EventHandler(this.txtBoxSenia_Leave);
@@ -1325,14 +1325,14 @@
             this.txtBoxDescuento1Porcentaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxDescuento1Porcentaje.Depth = 0;
             this.txtBoxDescuento1Porcentaje.Hint = "";
-            this.txtBoxDescuento1Porcentaje.Location = new System.Drawing.Point(378, 6);
+            this.txtBoxDescuento1Porcentaje.Location = new System.Drawing.Point(378, 4);
             this.txtBoxDescuento1Porcentaje.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDescuento1Porcentaje.Name = "txtBoxDescuento1Porcentaje";
             this.txtBoxDescuento1Porcentaje.PasswordChar = '\0';
             this.txtBoxDescuento1Porcentaje.SelectedText = "";
             this.txtBoxDescuento1Porcentaje.SelectionLength = 0;
             this.txtBoxDescuento1Porcentaje.SelectionStart = 0;
-            this.txtBoxDescuento1Porcentaje.Size = new System.Drawing.Size(68, 23);
+            this.txtBoxDescuento1Porcentaje.Size = new System.Drawing.Size(68, 28);
             this.txtBoxDescuento1Porcentaje.TabIndex = 22;
             this.txtBoxDescuento1Porcentaje.UseSystemPasswordChar = false;
             this.txtBoxDescuento1Porcentaje.Leave += new System.EventHandler(this.txtBoxDescuento1Porcentaje_Leave);
@@ -1342,14 +1342,14 @@
             this.txtBoxDescuento1Monto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxDescuento1Monto.Depth = 0;
             this.txtBoxDescuento1Monto.Hint = "";
-            this.txtBoxDescuento1Monto.Location = new System.Drawing.Point(452, 6);
+            this.txtBoxDescuento1Monto.Location = new System.Drawing.Point(452, 4);
             this.txtBoxDescuento1Monto.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDescuento1Monto.Name = "txtBoxDescuento1Monto";
             this.txtBoxDescuento1Monto.PasswordChar = '\0';
             this.txtBoxDescuento1Monto.SelectedText = "";
             this.txtBoxDescuento1Monto.SelectionLength = 0;
             this.txtBoxDescuento1Monto.SelectionStart = 0;
-            this.txtBoxDescuento1Monto.Size = new System.Drawing.Size(106, 23);
+            this.txtBoxDescuento1Monto.Size = new System.Drawing.Size(106, 28);
             this.txtBoxDescuento1Monto.TabIndex = 23;
             this.txtBoxDescuento1Monto.UseSystemPasswordChar = false;
             this.txtBoxDescuento1Monto.Leave += new System.EventHandler(this.txtBoxDescuento1Monto_Leave);
@@ -1359,14 +1359,14 @@
             this.txtBoxDescuento2Porcentaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxDescuento2Porcentaje.Depth = 0;
             this.txtBoxDescuento2Porcentaje.Hint = "";
-            this.txtBoxDescuento2Porcentaje.Location = new System.Drawing.Point(378, 43);
+            this.txtBoxDescuento2Porcentaje.Location = new System.Drawing.Point(378, 40);
             this.txtBoxDescuento2Porcentaje.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDescuento2Porcentaje.Name = "txtBoxDescuento2Porcentaje";
             this.txtBoxDescuento2Porcentaje.PasswordChar = '\0';
             this.txtBoxDescuento2Porcentaje.SelectedText = "";
             this.txtBoxDescuento2Porcentaje.SelectionLength = 0;
             this.txtBoxDescuento2Porcentaje.SelectionStart = 0;
-            this.txtBoxDescuento2Porcentaje.Size = new System.Drawing.Size(68, 23);
+            this.txtBoxDescuento2Porcentaje.Size = new System.Drawing.Size(68, 28);
             this.txtBoxDescuento2Porcentaje.TabIndex = 24;
             this.txtBoxDescuento2Porcentaje.UseSystemPasswordChar = false;
             this.txtBoxDescuento2Porcentaje.Leave += new System.EventHandler(this.txtBoxDescuento2Porcentaje_Leave);
@@ -1376,14 +1376,14 @@
             this.txtBoxDescuento2Monto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxDescuento2Monto.Depth = 0;
             this.txtBoxDescuento2Monto.Hint = "";
-            this.txtBoxDescuento2Monto.Location = new System.Drawing.Point(452, 43);
+            this.txtBoxDescuento2Monto.Location = new System.Drawing.Point(452, 40);
             this.txtBoxDescuento2Monto.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDescuento2Monto.Name = "txtBoxDescuento2Monto";
             this.txtBoxDescuento2Monto.PasswordChar = '\0';
             this.txtBoxDescuento2Monto.SelectedText = "";
             this.txtBoxDescuento2Monto.SelectionLength = 0;
             this.txtBoxDescuento2Monto.SelectionStart = 0;
-            this.txtBoxDescuento2Monto.Size = new System.Drawing.Size(106, 23);
+            this.txtBoxDescuento2Monto.Size = new System.Drawing.Size(106, 28);
             this.txtBoxDescuento2Monto.TabIndex = 25;
             this.txtBoxDescuento2Monto.UseSystemPasswordChar = false;
             this.txtBoxDescuento2Monto.Leave += new System.EventHandler(this.txtBoxDescuento2Monto_Leave);
@@ -1393,14 +1393,14 @@
             this.txtBoxDescuentoLineas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxDescuentoLineas.Depth = 0;
             this.txtBoxDescuentoLineas.Hint = "";
-            this.txtBoxDescuentoLineas.Location = new System.Drawing.Point(673, 6);
+            this.txtBoxDescuentoLineas.Location = new System.Drawing.Point(673, 4);
             this.txtBoxDescuentoLineas.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDescuentoLineas.Name = "txtBoxDescuentoLineas";
             this.txtBoxDescuentoLineas.PasswordChar = '\0';
             this.txtBoxDescuentoLineas.SelectedText = "";
             this.txtBoxDescuentoLineas.SelectionLength = 0;
             this.txtBoxDescuentoLineas.SelectionStart = 0;
-            this.txtBoxDescuentoLineas.Size = new System.Drawing.Size(110, 23);
+            this.txtBoxDescuentoLineas.Size = new System.Drawing.Size(110, 28);
             this.txtBoxDescuentoLineas.TabIndex = 26;
             this.txtBoxDescuentoLineas.UseSystemPasswordChar = false;
             // 
@@ -1409,14 +1409,14 @@
             this.txtBoxDescuentoTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxDescuentoTotal.Depth = 0;
             this.txtBoxDescuentoTotal.Hint = "";
-            this.txtBoxDescuentoTotal.Location = new System.Drawing.Point(673, 43);
+            this.txtBoxDescuentoTotal.Location = new System.Drawing.Point(673, 40);
             this.txtBoxDescuentoTotal.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDescuentoTotal.Name = "txtBoxDescuentoTotal";
             this.txtBoxDescuentoTotal.PasswordChar = '\0';
             this.txtBoxDescuentoTotal.SelectedText = "";
             this.txtBoxDescuentoTotal.SelectionLength = 0;
             this.txtBoxDescuentoTotal.SelectionStart = 0;
-            this.txtBoxDescuentoTotal.Size = new System.Drawing.Size(110, 23);
+            this.txtBoxDescuentoTotal.Size = new System.Drawing.Size(110, 28);
             this.txtBoxDescuentoTotal.TabIndex = 27;
             this.txtBoxDescuentoTotal.UseSystemPasswordChar = false;
             // 
@@ -1425,14 +1425,14 @@
             this.txtBoxSubtotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxSubtotal.Depth = 0;
             this.txtBoxSubtotal.Hint = "";
-            this.txtBoxSubtotal.Location = new System.Drawing.Point(881, 6);
+            this.txtBoxSubtotal.Location = new System.Drawing.Point(881, 4);
             this.txtBoxSubtotal.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxSubtotal.Name = "txtBoxSubtotal";
             this.txtBoxSubtotal.PasswordChar = '\0';
             this.txtBoxSubtotal.SelectedText = "";
             this.txtBoxSubtotal.SelectionLength = 0;
             this.txtBoxSubtotal.SelectionStart = 0;
-            this.txtBoxSubtotal.Size = new System.Drawing.Size(125, 23);
+            this.txtBoxSubtotal.Size = new System.Drawing.Size(125, 28);
             this.txtBoxSubtotal.TabIndex = 28;
             this.txtBoxSubtotal.UseSystemPasswordChar = false;
             // 
@@ -1441,14 +1441,14 @@
             this.txtBoxTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxTotal.Depth = 0;
             this.txtBoxTotal.Hint = "";
-            this.txtBoxTotal.Location = new System.Drawing.Point(881, 43);
+            this.txtBoxTotal.Location = new System.Drawing.Point(881, 40);
             this.txtBoxTotal.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxTotal.Name = "txtBoxTotal";
             this.txtBoxTotal.PasswordChar = '\0';
             this.txtBoxTotal.SelectedText = "";
             this.txtBoxTotal.SelectionLength = 0;
             this.txtBoxTotal.SelectionStart = 0;
-            this.txtBoxTotal.Size = new System.Drawing.Size(125, 23);
+            this.txtBoxTotal.Size = new System.Drawing.Size(125, 28);
             this.txtBoxTotal.TabIndex = 29;
             this.txtBoxTotal.UseSystemPasswordChar = false;
             // 
@@ -1478,14 +1478,13 @@
             // 
             this.cmbBoxPedidosProveedores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxPedidosProveedores.FormattingEnabled = true;
-            this.cmbBoxPedidosProveedores.Location = new System.Drawing.Point(10, 15);
+            this.cmbBoxPedidosProveedores.Location = new System.Drawing.Point(10, 14);
             this.cmbBoxPedidosProveedores.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbBoxPedidosProveedores.Name = "cmbBoxPedidosProveedores";
             this.cmbBoxPedidosProveedores.Size = new System.Drawing.Size(232, 21);
             this.cmbBoxPedidosProveedores.TabIndex = 5;
             this.cmbBoxPedidosProveedores.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxPedidosProveedores_SelectionChangeCommitted);
             this.cmbBoxPedidosProveedores.Click += new System.EventHandler(this.cmbBoxPedidosProveedores_Click);
-            this.cmbBoxPedidosProveedores.Enter += new System.EventHandler(this.cmbBoxPedidosProveedores_Enter);
             // 
             // btnImprimir
             // 
@@ -1493,12 +1492,12 @@
             this.btnImprimir.AutoSize = true;
             this.btnImprimir.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnImprimir.Depth = 0;
-            this.btnImprimir.Location = new System.Drawing.Point(300, 7);
+            this.btnImprimir.Location = new System.Drawing.Point(292, 7);
             this.btnImprimir.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnImprimir.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Primary = false;
-            this.btnImprimir.Size = new System.Drawing.Size(74, 36);
+            this.btnImprimir.Size = new System.Drawing.Size(90, 36);
             this.btnImprimir.TabIndex = 8;
             this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.UseVisualStyleBackColor = true;
@@ -1510,12 +1509,12 @@
             this.btnGuardar.AutoSize = true;
             this.btnGuardar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnGuardar.Depth = 0;
-            this.btnGuardar.Location = new System.Drawing.Point(466, 7);
+            this.btnGuardar.Location = new System.Drawing.Point(458, 7);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnGuardar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Primary = false;
-            this.btnGuardar.Size = new System.Drawing.Size(75, 36);
+            this.btnGuardar.Size = new System.Drawing.Size(91, 36);
             this.btnGuardar.TabIndex = 9;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -1527,12 +1526,12 @@
             this.btnFacturaElectronica.AutoSize = true;
             this.btnFacturaElectronica.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnFacturaElectronica.Depth = 0;
-            this.btnFacturaElectronica.Location = new System.Drawing.Point(629, 7);
+            this.btnFacturaElectronica.Location = new System.Drawing.Point(619, 7);
             this.btnFacturaElectronica.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnFacturaElectronica.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnFacturaElectronica.Name = "btnFacturaElectronica";
             this.btnFacturaElectronica.Primary = false;
-            this.btnFacturaElectronica.Size = new System.Drawing.Size(81, 36);
+            this.btnFacturaElectronica.Size = new System.Drawing.Size(100, 36);
             this.btnFacturaElectronica.TabIndex = 10;
             this.btnFacturaElectronica.Text = "Facturar";
             this.btnFacturaElectronica.UseVisualStyleBackColor = true;
@@ -1545,12 +1544,12 @@
             this.btnSalir.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnSalir.Depth = 0;
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(950, 7);
+            this.btnSalir.Location = new System.Drawing.Point(939, 7);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 6, 10, 6);
             this.btnSalir.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Primary = false;
-            this.btnSalir.Size = new System.Drawing.Size(49, 36);
+            this.btnSalir.Size = new System.Drawing.Size(60, 36);
             this.btnSalir.TabIndex = 11;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
