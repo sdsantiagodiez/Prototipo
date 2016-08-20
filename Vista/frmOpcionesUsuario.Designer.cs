@@ -82,6 +82,7 @@
             this.codigoMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpBoxDomicilio = new System.Windows.Forms.GroupBox();
+            this.tbEstiloVisual = new System.Windows.Forms.TabPage();
             this.pnlBase.SuspendLayout();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tbControlPrincipal.SuspendLayout();
@@ -162,6 +163,7 @@
             // 
             this.tbControlPrincipal.Controls.Add(this.tbPageDatosGenerales);
             this.tbControlPrincipal.Controls.Add(this.tbPageDatosContacto);
+            this.tbControlPrincipal.Controls.Add(this.tbEstiloVisual);
             this.tbControlPrincipal.Depth = 0;
             this.tbControlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbControlPrincipal.Location = new System.Drawing.Point(3, 43);
@@ -854,6 +856,16 @@
             this.grpBoxDomicilio.TabStop = false;
             this.grpBoxDomicilio.Text = "Domicilio";
             // 
+            // tbEstiloVisual
+            // 
+            this.tbEstiloVisual.BackColor = System.Drawing.Color.White;
+            this.tbEstiloVisual.Location = new System.Drawing.Point(4, 22);
+            this.tbEstiloVisual.Name = "tbEstiloVisual";
+            this.tbEstiloVisual.Padding = new System.Windows.Forms.Padding(3);
+            this.tbEstiloVisual.Size = new System.Drawing.Size(727, 393);
+            this.tbEstiloVisual.TabIndex = 2;
+            this.tbEstiloVisual.Text = "Estilo Visual";
+            // 
             // frmOpcionesUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -952,5 +964,6 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxContraseñaActual;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxContraseñaNueva;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxContraseñaNuevaRepetir;
+        private System.Windows.Forms.TabPage tbEstiloVisual;
     }
 }

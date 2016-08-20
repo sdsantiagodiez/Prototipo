@@ -184,12 +184,12 @@ namespace Datos
 
         public override bool add(ModeloPersonas p_mod_persona)
         {
-            return this.addUsuario(p_mod_persona as ModeloUsuario);
+            return this.add(p_mod_persona as ModeloUsuario);
         }
 
         public bool add(ModeloUsuario p_mod_usuario)
         {
-            if (this.add(p_mod_usuario) && this.addRoles(p_mod_usuario))
+            if (this.addUsuario(p_mod_usuario) && this.addRoles(p_mod_usuario))
             {
                 return true;
             }

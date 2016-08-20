@@ -41,9 +41,68 @@ namespace Vista
             glb_lst_formsActivos = new List<Form>();
         }
 
+        private void inicializarOpciones()
+        {
+            this.toolStripbtnABM.Enabled =
+            this.toolStripbtnGestionPedidos.Enabled =
+            this.toolStripbtnPedidoCliente.Enabled =
+            this.toolStripbtnPedidoProveedor.Enabled =
+            this.tlsbtnDevolucion.Enabled =
+            this.toolStripbtnReportes.Enabled = false;
+
+            this.exportarDatosToolStripMenuItem.Enabled = 
+            this.importarDatosToolStripMenuItem.Enabled =
+            this.baseDeDatosToolStripMenuItem.Enabled =
+            this.opcionesToolStripMenuItem.Enabled =
+            false;
+
+
+            if (!object.Equals(this.UsuarioActual, null))
+            {
+                foreach (ModeloRoles rol in this.UsuarioActual.roles)
+                {
+                    switch (rol.codigo)
+                    {
+                        case 1:
+                            this.toolStripbtnABM.Enabled =
+                            this.toolStripbtnGestionPedidos.Enabled =
+                            this.toolStripbtnPedidoCliente.Enabled =
+                            this.toolStripbtnPedidoProveedor.Enabled =
+                            this.tlsbtnDevolucion.Enabled =
+                            this.toolStripbtnReportes.Enabled = true;
+
+                            this.exportarDatosToolStripMenuItem.Enabled =
+                            this.importarDatosToolStripMenuItem.Enabled =
+                            this.baseDeDatosToolStripMenuItem.Enabled =
+                            this.opcionesToolStripMenuItem.Enabled = true;
+                            break;
+                        case 2:
+                            this.toolStripbtnReportes.Enabled = true;
+                            break;
+                        case 3:
+                            this.toolStripbtnABM.Enabled = true;
+
+                            this.exportarDatosToolStripMenuItem.Enabled =
+                            this.importarDatosToolStripMenuItem.Enabled =
+                            this.opcionesToolStripMenuItem.Enabled = true;
+                            break;
+                        case 4:
+                            this.toolStripbtnGestionPedidos.Enabled =
+                            this.toolStripbtnPedidoCliente.Enabled =
+                            this.toolStripbtnPedidoProveedor.Enabled =
+                            this.tlsbtnDevolucion.Enabled = true;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
         public frmMenuPrincipal(ModeloUsuario p_usuarioActual) : this()
         {
             UsuarioActual = p_usuarioActual;
+            this.inicializarOpciones();
             if (this.inicializarModoFormulario(p_usuarioActual))
             {
                 lblNombreUsuario.Text = p_usuarioActual.usuario ;
