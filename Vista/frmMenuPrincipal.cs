@@ -53,7 +53,7 @@ namespace Vista
             this.exportarDatosToolStripMenuItem.Enabled = 
             this.importarDatosToolStripMenuItem.Enabled =
             this.baseDeDatosToolStripMenuItem.Enabled =
-            this.opcionesToolStripMenuItem.Enabled =
+            this.configuracionToolStripMenuItem.Enabled =
             false;
 
 
@@ -74,7 +74,7 @@ namespace Vista
                             this.exportarDatosToolStripMenuItem.Enabled =
                             this.importarDatosToolStripMenuItem.Enabled =
                             this.baseDeDatosToolStripMenuItem.Enabled =
-                            this.opcionesToolStripMenuItem.Enabled = true;
+                            this.configuracionToolStripMenuItem.Enabled = true;
                             break;
                         case 2:
                             this.toolStripbtnReportes.Enabled = true;
@@ -84,7 +84,7 @@ namespace Vista
 
                             this.exportarDatosToolStripMenuItem.Enabled =
                             this.importarDatosToolStripMenuItem.Enabled =
-                            this.opcionesToolStripMenuItem.Enabled = true;
+                            this.configuracionToolStripMenuItem.Enabled = true;
                             break;
                         case 4:
                             this.toolStripbtnGestionPedidos.Enabled =
@@ -838,7 +838,7 @@ namespace Vista
             }
             else if (p_ventanaActiva == typeof(frmImportar))
             { topic = "17_MANEJODEDATOS"; }
-            else if (p_ventanaActiva == typeof(frmOpciones))
+            else if (p_ventanaActiva == typeof(frmConfiguracion))
             { topic = "21_OPCIONESGENERALES"; }
             else
             { topic = "1_ALTASBAJASYMODIFICACIONES"; }
@@ -1019,19 +1019,17 @@ namespace Vista
         }
         #endregion
 
-        private void opcionesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void configuracionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!this.validarAgregarFormulario(typeof(frmOpciones)))
+            if (!this.validarAgregarFormulario(typeof(frmConfiguracion)))
             {
                 return;
             }
 
-            glb_form = new frmOpciones();
+            glb_form = new frmConfiguracion();
             this.agregarFormulario(glb_form);
-
-            (glb_form as frmOpciones).ActualizarColoresEvent += this.actualizarColores;
         }
-        private void cuentaDeUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        private void opcionesDeUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!this.validarAgregarFormulario(typeof(frmOpcionesUsuario)))
             {
@@ -1041,6 +1039,8 @@ namespace Vista
             glb_form = new frmOpcionesUsuario(UsuarioActual);
 
             this.agregarFormulario(glb_form);
+
+            (glb_form as frmOpcionesUsuario).ActualizarColoresEvent += this.actualizarColores;
         }
         
         private void actualizarColores(object sender, EventArgs e)

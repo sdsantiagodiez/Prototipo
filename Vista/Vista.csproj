@@ -131,11 +131,11 @@
     <Compile Include="frmMaterialSkinBase.Designer.cs">
       <DependentUpon>frmMaterialSkinBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmOpciones.cs">
+    <Compile Include="frmConfiguracion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmOpciones.Designer.cs">
-      <DependentUpon>frmOpciones.cs</DependentUpon>
+    <Compile Include="frmConfiguracion.Designer.cs">
+      <DependentUpon>frmConfiguracion.cs</DependentUpon>
     </Compile>
     <Compile Include="frmOpcionesUsuario.cs">
       <SubType>Form</SubType>
@@ -251,8 +251,8 @@
     <EmbeddedResource Include="frmMaterialSkinBase.resx">
       <DependentUpon>frmMaterialSkinBase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmOpciones.resx">
-      <DependentUpon>frmOpciones.cs</DependentUpon>
+    <EmbeddedResource Include="frmConfiguracion.resx">
+      <DependentUpon>frmConfiguracion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmOpcionesUsuario.resx">
       <DependentUpon>frmOpcionesUsuario.cs</DependentUpon>

@@ -57,7 +57,7 @@
             this.lblFechaLog = new MaterialSkin.Controls.MaterialLabel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cuentaDeUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.opcionesDeUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,7 +89,7 @@
             this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restaurarBaseDeDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configuracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -402,29 +402,29 @@
             // archivoToolStripMenuItem
             // 
             this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cuentaDeUsuarioToolStripMenuItem,
+            this.opcionesDeUsuarioToolStripMenuItem,
             this.toolStripMenuItem5,
             this.salirToolStripMenuItem});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
             this.archivoToolStripMenuItem.Size = new System.Drawing.Size(55, 26);
             this.archivoToolStripMenuItem.Text = "Archivo";
             // 
-            // cuentaDeUsuarioToolStripMenuItem
+            // opcionesDeUsuarioToolStripMenuItem
             // 
-            this.cuentaDeUsuarioToolStripMenuItem.Name = "cuentaDeUsuarioToolStripMenuItem";
-            this.cuentaDeUsuarioToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.cuentaDeUsuarioToolStripMenuItem.Text = "Cuenta de Usuario";
-            this.cuentaDeUsuarioToolStripMenuItem.Click += new System.EventHandler(this.cuentaDeUsuarioToolStripMenuItem_Click);
+            this.opcionesDeUsuarioToolStripMenuItem.Name = "opcionesDeUsuarioToolStripMenuItem";
+            this.opcionesDeUsuarioToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.opcionesDeUsuarioToolStripMenuItem.Text = "Opciones de Usuario";
+            this.opcionesDeUsuarioToolStripMenuItem.Click += new System.EventHandler(this.opcionesDeUsuarioToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(160, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(169, 6);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             // 
             // editarToolStripMenuItem
@@ -502,7 +502,7 @@
             this.toolStripMenuItem6,
             this.baseDeDatosToolStripMenuItem,
             this.toolStripSeparator2,
-            this.opcionesToolStripMenuItem});
+            this.configuracionToolStripMenuItem});
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
             this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
             this.herramientasToolStripMenuItem.Text = "Herramientas";
@@ -642,12 +642,12 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
-            // opcionesToolStripMenuItem
+            // configuracionToolStripMenuItem
             // 
-            this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
-            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.opcionesToolStripMenuItem.Text = "Opciones";
-            this.opcionesToolStripMenuItem.Click += new System.EventHandler(this.opcionesToolStripMenuItem_Click);
+            this.configuracionToolStripMenuItem.Name = "configuracionToolStripMenuItem";
+            this.configuracionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.configuracionToolStripMenuItem.Text = "Configuración";
+            this.configuracionToolStripMenuItem.Click += new System.EventHandler(this.configuracionToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -808,7 +808,7 @@
         private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem verAyudaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cuentaDeUsuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem opcionesDeUsuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deshacerToolStripMenuItem;
@@ -823,7 +823,7 @@
         private System.Windows.Forms.ToolStripMenuItem exportarDatosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importarDatosToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
-        private System.Windows.Forms.ToolStripMenuItem opcionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem configuracionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem articuloProveedoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem artículosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;

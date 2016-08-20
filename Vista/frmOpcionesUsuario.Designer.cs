@@ -83,6 +83,10 @@
             this.mail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpBoxDomicilio = new System.Windows.Forms.GroupBox();
             this.tbEstiloVisual = new System.Windows.Forms.TabPage();
+            this.tblLayoutPanelEstiloVisual = new System.Windows.Forms.TableLayoutPanel();
+            this.grpBoxEstiloVisual = new System.Windows.Forms.GroupBox();
+            this.tblLayoutPanelDiseño = new System.Windows.Forms.TableLayoutPanel();
+            this.btnCambiarColores = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlBase.SuspendLayout();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tbControlPrincipal.SuspendLayout();
@@ -105,6 +109,10 @@
             this.tblLayoutPanelMailLista.SuspendLayout();
             this.tblLayoutPanelMailListaAgregarQuitar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMail)).BeginInit();
+            this.tbEstiloVisual.SuspendLayout();
+            this.tblLayoutPanelEstiloVisual.SuspendLayout();
+            this.grpBoxEstiloVisual.SuspendLayout();
+            this.tblLayoutPanelDiseño.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlBase
@@ -172,6 +180,7 @@
             this.tbControlPrincipal.SelectedIndex = 0;
             this.tbControlPrincipal.Size = new System.Drawing.Size(735, 419);
             this.tbControlPrincipal.TabIndex = 2;
+            this.tbControlPrincipal.SelectedIndexChanged += new System.EventHandler(this.tbControlPrincipal_SelectedIndexChanged);
             // 
             // tbPageDatosGenerales
             // 
@@ -682,7 +691,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 9);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 11);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxTipoTelefono.TabIndex = 23;
@@ -858,13 +867,73 @@
             // 
             // tbEstiloVisual
             // 
-            this.tbEstiloVisual.BackColor = System.Drawing.Color.White;
+            this.tbEstiloVisual.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.tbEstiloVisual.Controls.Add(this.tblLayoutPanelEstiloVisual);
             this.tbEstiloVisual.Location = new System.Drawing.Point(4, 22);
             this.tbEstiloVisual.Name = "tbEstiloVisual";
             this.tbEstiloVisual.Padding = new System.Windows.Forms.Padding(3);
             this.tbEstiloVisual.Size = new System.Drawing.Size(727, 393);
             this.tbEstiloVisual.TabIndex = 2;
             this.tbEstiloVisual.Text = "Estilo Visual";
+            // 
+            // tblLayoutPanelEstiloVisual
+            // 
+            this.tblLayoutPanelEstiloVisual.ColumnCount = 3;
+            this.tblLayoutPanelEstiloVisual.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelEstiloVisual.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 450F));
+            this.tblLayoutPanelEstiloVisual.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelEstiloVisual.Controls.Add(this.grpBoxEstiloVisual, 1, 1);
+            this.tblLayoutPanelEstiloVisual.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblLayoutPanelEstiloVisual.Location = new System.Drawing.Point(3, 3);
+            this.tblLayoutPanelEstiloVisual.Name = "tblLayoutPanelEstiloVisual";
+            this.tblLayoutPanelEstiloVisual.RowCount = 3;
+            this.tblLayoutPanelEstiloVisual.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelEstiloVisual.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tblLayoutPanelEstiloVisual.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelEstiloVisual.Size = new System.Drawing.Size(721, 387);
+            this.tblLayoutPanelEstiloVisual.TabIndex = 0;
+            // 
+            // grpBoxEstiloVisual
+            // 
+            this.grpBoxEstiloVisual.Controls.Add(this.tblLayoutPanelDiseño);
+            this.grpBoxEstiloVisual.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpBoxEstiloVisual.Location = new System.Drawing.Point(137, 135);
+            this.grpBoxEstiloVisual.Margin = new System.Windows.Forms.Padding(2);
+            this.grpBoxEstiloVisual.Name = "grpBoxEstiloVisual";
+            this.grpBoxEstiloVisual.Padding = new System.Windows.Forms.Padding(2);
+            this.grpBoxEstiloVisual.Size = new System.Drawing.Size(446, 116);
+            this.grpBoxEstiloVisual.TabIndex = 2;
+            this.grpBoxEstiloVisual.TabStop = false;
+            this.grpBoxEstiloVisual.Text = "Estilo Visual";
+            // 
+            // tblLayoutPanelDiseño
+            // 
+            this.tblLayoutPanelDiseño.ColumnCount = 1;
+            this.tblLayoutPanelDiseño.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelDiseño.Controls.Add(this.btnCambiarColores, 0, 0);
+            this.tblLayoutPanelDiseño.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblLayoutPanelDiseño.Location = new System.Drawing.Point(2, 15);
+            this.tblLayoutPanelDiseño.Margin = new System.Windows.Forms.Padding(2);
+            this.tblLayoutPanelDiseño.Name = "tblLayoutPanelDiseño";
+            this.tblLayoutPanelDiseño.RowCount = 1;
+            this.tblLayoutPanelDiseño.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelDiseño.Size = new System.Drawing.Size(442, 99);
+            this.tblLayoutPanelDiseño.TabIndex = 0;
+            // 
+            // btnCambiarColores
+            // 
+            this.btnCambiarColores.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCambiarColores.Depth = 0;
+            this.btnCambiarColores.Location = new System.Drawing.Point(165, 29);
+            this.btnCambiarColores.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCambiarColores.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCambiarColores.Name = "btnCambiarColores";
+            this.btnCambiarColores.Primary = true;
+            this.btnCambiarColores.Size = new System.Drawing.Size(112, 41);
+            this.btnCambiarColores.TabIndex = 1;
+            this.btnCambiarColores.Text = "Cambiar Colores";
+            this.btnCambiarColores.UseVisualStyleBackColor = true;
+            this.btnCambiarColores.Click += new System.EventHandler(this.btnCambiarColores_Click);
             // 
             // frmOpcionesUsuario
             // 
@@ -903,6 +972,10 @@
             this.tblLayoutPanelMailListaAgregarQuitar.ResumeLayout(false);
             this.tblLayoutPanelMailListaAgregarQuitar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMail)).EndInit();
+            this.tbEstiloVisual.ResumeLayout(false);
+            this.tblLayoutPanelEstiloVisual.ResumeLayout(false);
+            this.grpBoxEstiloVisual.ResumeLayout(false);
+            this.tblLayoutPanelDiseño.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -965,5 +1038,9 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxContraseñaNueva;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxContraseñaNuevaRepetir;
         private System.Windows.Forms.TabPage tbEstiloVisual;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelEstiloVisual;
+        private System.Windows.Forms.GroupBox grpBoxEstiloVisual;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDiseño;
+        private MaterialSkin.Controls.MaterialRaisedButton btnCambiarColores;
     }
 }

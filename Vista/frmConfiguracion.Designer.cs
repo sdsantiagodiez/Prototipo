@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class frmOpciones
+    partial class frmConfiguracion
     {
         /// <summary>
         /// Required designer variable.
@@ -30,9 +30,6 @@
         {
             this.pnlBase = new System.Windows.Forms.Panel();
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
-            this.grpBoxEstiloVisual = new System.Windows.Forms.GroupBox();
-            this.tblLayoutPanelDiseño = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCambiarColores = new MaterialSkin.Controls.MaterialRaisedButton();
             this.grpBoxDestinoAlmacenamiento = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelAlmacenamientoArchivos = new System.Windows.Forms.TableLayoutPanel();
             this.txtBoxCarpetaReportes = new System.Windows.Forms.TextBox();
@@ -55,8 +52,6 @@
             this.txtBoxCUIT = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.pnlBase.SuspendLayout();
             this.tblLayoutPanelPrincipal.SuspendLayout();
-            this.grpBoxEstiloVisual.SuspendLayout();
-            this.tblLayoutPanelDiseño.SuspendLayout();
             this.grpBoxDestinoAlmacenamiento.SuspendLayout();
             this.tblLayoutPanelAlmacenamientoArchivos.SuspendLayout();
             this.grpBoxFacturacionElectronica.SuspendLayout();
@@ -78,67 +73,24 @@
             this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 450F));
             this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxEstiloVisual, 1, 0);
-            this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxDestinoAlmacenamiento, 1, 1);
-            this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxFacturacionElectronica, 1, 2);
+            this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxDestinoAlmacenamiento, 1, 0);
+            this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxFacturacionElectronica, 1, 1);
             this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(15, 12);
             this.tblLayoutPanelPrincipal.Margin = new System.Windows.Forms.Padding(2);
             this.tblLayoutPanelPrincipal.Name = "tblLayoutPanelPrincipal";
-            this.tblLayoutPanelPrincipal.RowCount = 4;
-            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 122F));
+            this.tblLayoutPanelPrincipal.RowCount = 3;
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 203F));
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 202F));
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(870, 558);
             this.tblLayoutPanelPrincipal.TabIndex = 0;
-            // 
-            // grpBoxEstiloVisual
-            // 
-            this.grpBoxEstiloVisual.Controls.Add(this.tblLayoutPanelDiseño);
-            this.grpBoxEstiloVisual.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpBoxEstiloVisual.Location = new System.Drawing.Point(212, 2);
-            this.grpBoxEstiloVisual.Margin = new System.Windows.Forms.Padding(2);
-            this.grpBoxEstiloVisual.Name = "grpBoxEstiloVisual";
-            this.grpBoxEstiloVisual.Padding = new System.Windows.Forms.Padding(2);
-            this.grpBoxEstiloVisual.Size = new System.Drawing.Size(446, 118);
-            this.grpBoxEstiloVisual.TabIndex = 1;
-            this.grpBoxEstiloVisual.TabStop = false;
-            this.grpBoxEstiloVisual.Text = "Estilo Visual";
-            // 
-            // tblLayoutPanelDiseño
-            // 
-            this.tblLayoutPanelDiseño.ColumnCount = 1;
-            this.tblLayoutPanelDiseño.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelDiseño.Controls.Add(this.btnCambiarColores, 0, 0);
-            this.tblLayoutPanelDiseño.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelDiseño.Location = new System.Drawing.Point(2, 15);
-            this.tblLayoutPanelDiseño.Margin = new System.Windows.Forms.Padding(2);
-            this.tblLayoutPanelDiseño.Name = "tblLayoutPanelDiseño";
-            this.tblLayoutPanelDiseño.RowCount = 1;
-            this.tblLayoutPanelDiseño.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelDiseño.Size = new System.Drawing.Size(442, 101);
-            this.tblLayoutPanelDiseño.TabIndex = 0;
-            // 
-            // btnCambiarColores
-            // 
-            this.btnCambiarColores.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCambiarColores.Depth = 0;
-            this.btnCambiarColores.Location = new System.Drawing.Point(165, 30);
-            this.btnCambiarColores.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCambiarColores.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnCambiarColores.Name = "btnCambiarColores";
-            this.btnCambiarColores.Primary = true;
-            this.btnCambiarColores.Size = new System.Drawing.Size(112, 41);
-            this.btnCambiarColores.TabIndex = 1;
-            this.btnCambiarColores.Text = "Cambiar Colores";
-            this.btnCambiarColores.UseVisualStyleBackColor = true;
-            this.btnCambiarColores.Click += new System.EventHandler(this.btnCambiarColores_Click);
             // 
             // grpBoxDestinoAlmacenamiento
             // 
             this.grpBoxDestinoAlmacenamiento.Controls.Add(this.tblLayoutPanelAlmacenamientoArchivos);
             this.grpBoxDestinoAlmacenamiento.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpBoxDestinoAlmacenamiento.Location = new System.Drawing.Point(212, 124);
+            this.grpBoxDestinoAlmacenamiento.Location = new System.Drawing.Point(212, 2);
             this.grpBoxDestinoAlmacenamiento.Margin = new System.Windows.Forms.Padding(2);
             this.grpBoxDestinoAlmacenamiento.Name = "grpBoxDestinoAlmacenamiento";
             this.grpBoxDestinoAlmacenamiento.Padding = new System.Windows.Forms.Padding(2);
@@ -282,7 +234,7 @@
             // 
             this.grpBoxFacturacionElectronica.Controls.Add(this.tblLayoutPanelFacturacionElectronica);
             this.grpBoxFacturacionElectronica.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpBoxFacturacionElectronica.Location = new System.Drawing.Point(212, 327);
+            this.grpBoxFacturacionElectronica.Location = new System.Drawing.Point(212, 205);
             this.grpBoxFacturacionElectronica.Margin = new System.Windows.Forms.Padding(2);
             this.grpBoxFacturacionElectronica.Name = "grpBoxFacturacionElectronica";
             this.grpBoxFacturacionElectronica.Padding = new System.Windows.Forms.Padding(2);
@@ -420,14 +372,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(943, 634);
             this.Controls.Add(this.pnlBase);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmOpciones";
             this.Text = "frmOpciones";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmOpciones_FormClosing);
             this.pnlBase.ResumeLayout(false);
             this.tblLayoutPanelPrincipal.ResumeLayout(false);
-            this.grpBoxEstiloVisual.ResumeLayout(false);
-            this.tblLayoutPanelDiseño.ResumeLayout(false);
             this.grpBoxDestinoAlmacenamiento.ResumeLayout(false);
             this.tblLayoutPanelAlmacenamientoArchivos.ResumeLayout(false);
             this.tblLayoutPanelAlmacenamientoArchivos.PerformLayout();
@@ -442,9 +392,6 @@
 
         private System.Windows.Forms.Panel pnlBase;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelPrincipal;
-        private System.Windows.Forms.GroupBox grpBoxEstiloVisual;
-        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDiseño;
-        private MaterialSkin.Controls.MaterialRaisedButton btnCambiarColores;
         private System.Windows.Forms.GroupBox grpBoxDestinoAlmacenamiento;
         private System.Windows.Forms.GroupBox grpBoxFacturacionElectronica;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelAlmacenamientoArchivos;

@@ -18,6 +18,7 @@ namespace Vista
         string errorActual;
         ControlDomicilios glb_con_domicilios;
         ModeloUsuario glb_usuarioActual;
+        public EventHandler ActualizarColoresEvent;
         #endregion
         
         #region Constructores
@@ -565,7 +566,50 @@ namespace Vista
         {
             this.guardarCambios();
         }
-
         #endregion
+
+        private void btnCambiarColores_Click(object sender, EventArgs e)
+        {
+            //le damos toda la vuelta
+            switch (Properties.Settings.Default.color_scheme)
+            {
+                case 0:
+                    Properties.Settings.Default.color_scheme = 1;
+                    break;
+                case 1:
+                    Properties.Settings.Default.color_scheme = 2;
+                    break;
+                case 2:
+                    Properties.Settings.Default.color_scheme = 3;
+                    break;
+                case 3:
+                    Properties.Settings.Default.color_scheme = 4;
+                    break;
+                case 4:
+                    Properties.Settings.Default.color_scheme = 5;
+                    break;
+                case 5:
+                    Properties.Settings.Default.color_scheme = 6;
+                    break;
+                case 6:
+                    Properties.Settings.Default.color_scheme = 0;
+                    break;
+            }
+            Properties.Settings.Default.Save();
+            this.ActualizarColoresEvent(new object(), new EventArgs());
+            this.actualizarColores();
+        }
+
+        private void tbControlPrincipal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(tbControlPrincipal.SelectedTab == tbControlPrincipal.TabPages["tbEstiloVisual"])
+            {
+                btnGuardarCambios.Visible = false;
+            }
+            else
+            {
+                btnGuardarCambios.Visible = true;
+            }
+        }
     }
 }
