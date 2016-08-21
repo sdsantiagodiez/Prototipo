@@ -15,16 +15,13 @@ namespace Vista
 {
     public partial class frmLogIn : frmMaterialSkinBase
     {
-        ErrorProvider errorProviderActual;
         public ModeloUsuario usuarioActual;
 
         public frmLogIn()
         {
             InitializeComponent();
-            
             this.StartPosition = FormStartPosition.CenterScreen;
             txtBoxUsuario.KeyPress += this.valorUsername;
-            errorProviderActual = new ErrorProvider();
         }
 
         #region Eventos
@@ -63,8 +60,23 @@ namespace Vista
             //    errorProviderActual.SetError((sender as TextBox), "");
             //}
         }
+        private void txtBoxUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.btnLogIn_Click(sender, e);
+            }
+        }
+
         #endregion
-        
+
+        private void txtBoxContrasenia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.btnLogIn_Click(sender, e);
+            }
+        }
         #endregion
     }
 }

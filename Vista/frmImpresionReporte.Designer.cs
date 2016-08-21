@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.ModeloReporteEncabezadoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ReporteBase = new Microsoft.Reporting.WinForms.ReportViewer();
             this.ModeloReporteClienteDomicilio = new System.Windows.Forms.BindingSource(this.components);
@@ -53,12 +53,12 @@
             // ReporteBase
             // 
             this.ReporteBase.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource3.Name = "DSInformeVentas";
-            reportDataSource3.Value = null;
-            reportDataSource4.Name = "DSInformeVentaEncabezado";
-            reportDataSource4.Value = this.ModeloReporteEncabezadoBindingSource;
-            this.ReporteBase.LocalReport.DataSources.Add(reportDataSource3);
-            this.ReporteBase.LocalReport.DataSources.Add(reportDataSource4);
+            reportDataSource1.Name = "DSInformeVentas";
+            reportDataSource1.Value = null;
+            reportDataSource2.Name = "DSInformeVentaEncabezado";
+            reportDataSource2.Value = this.ModeloReporteEncabezadoBindingSource;
+            this.ReporteBase.LocalReport.DataSources.Add(reportDataSource1);
+            this.ReporteBase.LocalReport.DataSources.Add(reportDataSource2);
             this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.VentasEntreFechas.rdlc";
             this.ReporteBase.Location = new System.Drawing.Point(0, 0);
             this.ReporteBase.Name = "ReporteBase";
@@ -86,13 +86,13 @@
             // 
             this.ModeloReportePedidoEntreFechasBindingSource.DataSource = typeof(Modelos.ModeloReporteDetalle);
             // 
-            // FormReportes
+            // frmImpresionReporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 552);
             this.Controls.Add(this.ReporteBase);
-            this.Name = "FormReportes";
+            this.Name = "frmImpresionReporte";
             this.Text = "FormReportes";
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteEncabezadoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModeloReporteClienteDomicilio)).EndInit();

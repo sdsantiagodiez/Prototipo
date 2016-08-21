@@ -664,111 +664,55 @@ namespace Vista
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoOriginal.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)]=respuesta;
-            if (!respuesta)
-            {
-                epCodigoOriginal.Icon = Properties.Resources.error;
-                epCodigoOriginal.SetError(txtBoxCodigoOriginal, "Código Original no válido");
-            }
-            else
-            {
-                epCodigoOriginal.Icon = Properties.Resources.success;
-                epCodigoOriginal.SetError(txtBoxCodigoOriginal, "OK");
-                glb_banderaCodigoOriginal = true;
-            }
+            string lcl_mensaje = respuesta ? "OK" : "Código Orignal no válido";
+            this.setErrorProvider(txtBoxCodigoOriginal, respuesta, lcl_mensaje);
+            if (respuesta) { glb_banderaCodigoOriginal = true; }
         }
 
         private void txtBoxDescripcion_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxDescripcion.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)] = respuesta;
-            if (!respuesta)
-            {
-                epDescripcion.Icon = Properties.Resources.error;
-                epDescripcion.SetError(txtBoxDescripcion, "Descripción no válida");
-            }
-            else
-            {
-                epDescripcion.Icon = Properties.Resources.success;
-                epDescripcion.SetError(txtBoxDescripcion, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "Descripción no válida";
+            this.setErrorProvider(txtBoxDescripcion, respuesta, lcl_mensaje);
         }
 
         private void txtBoxModelo_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxModelo.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)] = respuesta;
-            if (!respuesta)
-            {
-                epModelo.Icon = Properties.Resources.error;
-                epModelo.SetError(txtBoxModelo, "Modelo no válido");
-            }
-            else
-            {
-                epModelo.Icon = Properties.Resources.success;
-                epModelo.SetError(txtBoxModelo, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "Modelo no válido";
+            this.setErrorProvider(txtBoxModelo, respuesta, lcl_mensaje);
         }
         private void txtBoxCodigoArticulo_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoArticulo.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor)] = respuesta;
-            if (!respuesta)
-            {
-                epCodigoArticulo.Icon = Properties.Resources.error;
-                epCodigoArticulo.SetError(txtBoxCodigoArticulo, "Código Artículo Proveedor no válido");
-            }
-            else
-            {
-                epCodigoArticulo.Icon = Properties.Resources.success;
-                epCodigoArticulo.SetError(txtBoxCodigoArticulo, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "Código Artículo Proveedor no válido";
+            this.setErrorProvider(txtBoxCodigoArticulo, respuesta, lcl_mensaje);
         }
         private void txtBoxPrecioCompra_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNumerico(txtBoxPrecioCompra.Text.ToString(), Constantes.Numericos.DecimalPositivo);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.TipoValorArticulo.Compra)] = respuesta;
-            if (!respuesta)
-            {
-                epPrecioCompra.Icon = Properties.Resources.error;
-                epPrecioCompra.SetError(txtBoxPrecioCompra, "Precio no válido");
-            }
-            else
-            {
-                epPrecioCompra.Icon = Properties.Resources.success;
-                epPrecioCompra.SetError(txtBoxPrecioCompra, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "Precio no válido";
+            this.setErrorProvider(txtBoxPrecioCompra, respuesta, lcl_mensaje);
         }
 
         private void txtBoxPrecioVenta_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNumerico(txtBoxPrecioVenta.Text.ToString(), Constantes.Numericos.DecimalPositivo);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.TipoValorArticulo.Venta)] = respuesta;
-            if (!respuesta)
-            {
-                epPrecioVenta.Icon = Properties.Resources.error;
-                epPrecioVenta.SetError(txtBoxPrecioVenta, "Precio no válido");
-            }
-            else
-            {
-                epPrecioVenta.Icon = Properties.Resources.success;
-                epPrecioVenta.SetError(txtBoxPrecioVenta, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "Precio no válido";
+            this.setErrorProvider(txtBoxPrecioVenta, respuesta, lcl_mensaje);
         }
 
         private void txtBoxUbicacion_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxUbicacion.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion)] = respuesta;
-            if (!respuesta)
-            {
-                epUbicacion.Icon = Properties.Resources.error;
-                epUbicacion.SetError(txtBoxUbicacion, "Ubicación no válida");
-            }
-            else
-            {
-                epUbicacion.Icon = Properties.Resources.success;
-                epUbicacion.SetError(txtBoxUbicacion, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "Ubicación no válido";
+            this.setErrorProvider(txtBoxUbicacion, respuesta, lcl_mensaje);
         }
         #endregion
        

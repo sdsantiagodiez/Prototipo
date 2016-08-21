@@ -249,32 +249,16 @@ namespace Vista
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxUsuario.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario);
             glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario)] = respuesta;
-            if (!respuesta)
-            {
-                epUsuario.Icon = Properties.Resources.error;
-                epUsuario.SetError(txtBoxUsuario, "Usuario no válido");
-            }
-            else
-            {
-                epUsuario.Icon = Properties.Resources.success;
-                epUsuario.SetError(txtBoxUsuario, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "Usuario no válido";
+            this.setErrorProvider(txtBoxUsuario, respuesta, lcl_mensaje);
         }
 
         private void txtBoxContraseña_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxContraseña.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
             glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia)] = respuesta;
-            if (!respuesta)
-            {
-                epContraseña.Icon = Properties.Resources.error;
-                epContraseña.SetError(txtBoxContraseña, "Contraseña no válida");
-            }
-            else
-            {
-                epContraseña.Icon = Properties.Resources.success;
-                epContraseña.SetError(txtBoxContraseña, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "Contraseña no válida";
+            this.setErrorProvider(txtBoxContraseña, respuesta, lcl_mensaje);
         }
 
         private void txtBoxConfirmarContraseña_Leave(object sender, EventArgs e)
@@ -283,20 +267,17 @@ namespace Vista
             glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "2")] = respuesta;
             if (!respuesta)
             {
-                epContraseña.Icon = Properties.Resources.error;
-                epContraseña.SetError(txtBoxConfirmarContraseña, "Contraseña no válida");
+                this.setErrorProvider(txtBoxConfirmarContraseña, false, "Contraseña no válida");
             }
             else
             {
                 if (string.Equals(txtBoxContraseña.Text.ToString(), txtBoxConfirmarContraseña.Text.ToString()))
                 {
-                    epContraseña.Icon = Properties.Resources.success;
-                    epContraseña.SetError(txtBoxConfirmarContraseña, "OK");
+                    this.setErrorProvider(txtBoxConfirmarContraseña, true, "OK");
                 }
                 else
                 {
-                    epContraseña.Icon = Properties.Resources.error;
-                    epContraseña.SetError(txtBoxConfirmarContraseña, "Las contraseñas no coinciden");
+                    this.setErrorProvider(txtBoxConfirmarContraseña, false, "Las contraseñas no coinciden");
                 }
             }
         }

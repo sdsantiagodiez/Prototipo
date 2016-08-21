@@ -191,48 +191,24 @@ namespace Vista
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoSeleccionado.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad);
             glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad)] = respuesta;
-            if (!respuesta)
-            {
-                epCodigoSeleccionado.Icon = Properties.Resources.error;
-                epCodigoSeleccionado.SetError(txtBoxCodigoSeleccionado, "Código no válido");
-            }
-            else
-            {
-                epCodigoSeleccionado.Icon = Properties.Resources.success;
-                epCodigoSeleccionado.SetError(txtBoxCodigoSeleccionado, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "Código no válido";
+            this.setErrorProvider(txtBoxCodigoSeleccionado, respuesta, lcl_mensaje);
         }
 
         private void txtBoxCUITSeleccionado_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCUITSeleccionado.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit);
             glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit)] = respuesta;
-            if (!respuesta)
-            {
-                epCUITSeleccionado.Icon = Properties.Resources.error;
-                epCUITSeleccionado.SetError(txtBoxCUITSeleccionado, "CUIT no válido");
-            }
-            else
-            {
-                epCUITSeleccionado.Icon = Properties.Resources.success;
-                epCUITSeleccionado.SetError(txtBoxCUITSeleccionado, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "CUIT no válido";
+            this.setErrorProvider(txtBoxCUITSeleccionado, respuesta, lcl_mensaje);
         }
 
         private void txtBoxRazonSocialSeleccionado_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocialSeleccionado.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
             glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = respuesta;
-            if (!respuesta)
-            {
-                epRazonSocialSeleccionado.Icon = Properties.Resources.error;
-                epRazonSocialSeleccionado.SetError(txtBoxRazonSocialSeleccionado, "Razón Social no válida");
-            }
-            else
-            {
-                epRazonSocialSeleccionado.Icon = Properties.Resources.success;
-                epRazonSocialSeleccionado.SetError(txtBoxRazonSocialSeleccionado, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "Razón Social no válida";
+            this.setErrorProvider(txtBoxRazonSocialSeleccionado, respuesta, lcl_mensaje);
         }
         #endregion
         #endregion

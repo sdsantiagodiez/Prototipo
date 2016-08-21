@@ -174,16 +174,8 @@ namespace Vista
         private void txtBoxMonto_Leave(object sender, EventArgs e)
         {
             glb_respuesta = Validar.validarInputNumerico(txtBoxMonto.Text.ToString(),Constantes.Numericos.DecimalPositivo);
-            if (!glb_respuesta)
-            {
-                epMonto.Icon = Properties.Resources.error;
-                epMonto.SetError(txtBoxMonto, "Monto de Pago No Válido");
-            }
-            else
-            {
-                epMonto.Icon = Properties.Resources.success;
-                epMonto.SetError(txtBoxMonto, "OK");
-            }
+            string lcl_mensaje = glb_respuesta ? "OK" : "Monto de pago no válido";
+            this.setErrorProvider(this.txtBoxMonto, glb_respuesta, lcl_mensaje);
         }
         #endregion
     }

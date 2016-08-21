@@ -730,16 +730,8 @@ namespace Vista
         private void txtDescripcionParcial_Leave()
         {
             glb_respuesta = Validar.validarInputNoNumerico(txtDescripcionParcial.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
-            if (!glb_respuesta)
-            {
-                epDescripcionParcial.Icon = Properties.Resources.error;
-                epDescripcionParcial.SetError(txtDescripcionParcial, "Descripción parcial no válida");
-            }
-            else
-            {
-                epDescripcionParcial.Icon = Properties.Resources.success;
-                epDescripcionParcial.SetError(txtDescripcionParcial, "OK");
-            }
+            string lcl_mensaje = glb_respuesta ? "OK" : "Descripción no válida";
+            this.setErrorProvider(txtDescripcionParcial, glb_respuesta, lcl_mensaje);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

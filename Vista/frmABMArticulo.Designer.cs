@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.grpBoxObservaciones = new System.Windows.Forms.GroupBox();
             this.rchTextBoxObservaciones = new System.Windows.Forms.RichTextBox();
             this.tblLayoutPanelDatosArticulo = new System.Windows.Forms.TableLayoutPanel();
@@ -38,9 +37,6 @@
             this.txtBoxCodigoOriginal = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBoxDescripcion = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBoxModelo = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.epCodigoOriginal = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epDescripcion = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epModelo = new System.Windows.Forms.ErrorProvider(this.components);
             this.pnlBase = new System.Windows.Forms.Panel();
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxArticulo = new System.Windows.Forms.GroupBox();
@@ -76,18 +72,10 @@
             this.nmrcUpDownStockActual = new System.Windows.Forms.NumericUpDown();
             this.lblStockMinimo = new System.Windows.Forms.Label();
             this.nmrcUpDownStockMinimo = new System.Windows.Forms.NumericUpDown();
-            this.epCodigoArticulo = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epPrecioCompra = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epPrecioVenta = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epUbicacion = new System.Windows.Forms.ErrorProvider(this.components);
             this.lbldescripcionArticuloProveedor = new System.Windows.Forms.Label();
             this.txtBoxDescripcionArticuloProveedor = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).BeginInit();
             this.grpBoxObservaciones.SuspendLayout();
             this.tblLayoutPanelDatosArticulo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epCodigoOriginal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epDescripcion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epModelo)).BeginInit();
             this.pnlBase.SuspendLayout();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.grpBoxArticulo.SuspendLayout();
@@ -104,10 +92,6 @@
             this.tblLayoutPanelArticulosProveedores_Datos_1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownStockActual)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownStockMinimo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCodigoArticulo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epPrecioCompra)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epPrecioVenta)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epUbicacion)).BeginInit();
             this.SuspendLayout();
             // 
             // grpBoxObservaciones
@@ -239,18 +223,6 @@
             this.txtBoxModelo.TabIndex = 8;
             this.txtBoxModelo.UseSystemPasswordChar = false;
             this.txtBoxModelo.Leave += new System.EventHandler(this.txtBoxModelo_Leave);
-            // 
-            // epCodigoOriginal
-            // 
-            this.epCodigoOriginal.ContainerControl = this;
-            // 
-            // epDescripcion
-            // 
-            this.epDescripcion.ContainerControl = this;
-            // 
-            // epModelo
-            // 
-            this.epModelo.ContainerControl = this;
             // 
             // pnlBase
             // 
@@ -756,22 +728,6 @@
             this.nmrcUpDownStockMinimo.Size = new System.Drawing.Size(69, 20);
             this.nmrcUpDownStockMinimo.TabIndex = 12;
             // 
-            // epCodigoArticulo
-            // 
-            this.epCodigoArticulo.ContainerControl = this;
-            // 
-            // epPrecioCompra
-            // 
-            this.epPrecioCompra.ContainerControl = this;
-            // 
-            // epPrecioVenta
-            // 
-            this.epPrecioVenta.ContainerControl = this;
-            // 
-            // epUbicacion
-            // 
-            this.epUbicacion.ContainerControl = this;
-            // 
             // lbldescripcionArticuloProveedor
             // 
             this.lbldescripcionArticuloProveedor.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -809,13 +765,9 @@
             this.Name = "frmABMArticulo";
             this.Text = "Artículo";
             this.Controls.SetChildIndex(this.pnlBase, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderActual)).EndInit();
             this.grpBoxObservaciones.ResumeLayout(false);
             this.tblLayoutPanelDatosArticulo.ResumeLayout(false);
             this.tblLayoutPanelDatosArticulo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epCodigoOriginal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epDescripcion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epModelo)).EndInit();
             this.pnlBase.ResumeLayout(false);
             this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.grpBoxArticulo.ResumeLayout(false);
@@ -834,10 +786,6 @@
             this.tblLayoutPanelArticulosProveedores_Datos_1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownStockActual)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrcUpDownStockMinimo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCodigoArticulo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epPrecioCompra)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epPrecioVenta)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epUbicacion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -854,9 +802,6 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxCodigoOriginal;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxDescripcion;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxModelo;
-        private System.Windows.Forms.ErrorProvider epCodigoOriginal;
-        private System.Windows.Forms.ErrorProvider epDescripcion;
-        private System.Windows.Forms.ErrorProvider epModelo;
         private System.Windows.Forms.Panel pnlBase;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelPrincipal;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelArticulosProveedores_Base;
@@ -883,10 +828,6 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxCodigoArticulo;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private System.Windows.Forms.ComboBox cmbBoxProveedores;
-        private System.Windows.Forms.ErrorProvider epCodigoArticulo;
-        private System.Windows.Forms.ErrorProvider epPrecioCompra;
-        private System.Windows.Forms.ErrorProvider epPrecioVenta;
-        private System.Windows.Forms.ErrorProvider epUbicacion;
         private MaterialSkin.Controls.MaterialRaisedButton btnEliminarArticuloProveedor;
         private MaterialSkin.Controls.MaterialRaisedButton btnEditarArticuloProveedor;
         private MaterialSkin.Controls.MaterialRaisedButton btnAgregarArticuloProveedor;

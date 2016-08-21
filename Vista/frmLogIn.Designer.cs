@@ -46,7 +46,7 @@
             this.lblUsuario.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(65, 19);
-            this.lblUsuario.TabIndex = 5;
+            this.lblUsuario.TabIndex = 3;
             this.lblUsuario.Text = "Usuario:";
             // 
             // lblContrasenia
@@ -60,7 +60,7 @@
             this.lblContrasenia.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblContrasenia.Name = "lblContrasenia";
             this.lblContrasenia.Size = new System.Drawing.Size(90, 19);
-            this.lblContrasenia.TabIndex = 6;
+            this.lblContrasenia.TabIndex = 4;
             this.lblContrasenia.Text = "Contraseña:";
             // 
             // btnLogIn
@@ -74,7 +74,7 @@
             this.btnLogIn.Name = "btnLogIn";
             this.btnLogIn.Primary = false;
             this.btnLogIn.Size = new System.Drawing.Size(55, 36);
-            this.btnLogIn.TabIndex = 7;
+            this.btnLogIn.TabIndex = 2;
             this.btnLogIn.Text = "Log In";
             this.btnLogIn.UseVisualStyleBackColor = true;
             this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
@@ -93,8 +93,9 @@
             this.txtBoxUsuario.SelectionLength = 0;
             this.txtBoxUsuario.SelectionStart = 0;
             this.txtBoxUsuario.Size = new System.Drawing.Size(134, 23);
-            this.txtBoxUsuario.TabIndex = 8;
+            this.txtBoxUsuario.TabIndex = 0;
             this.txtBoxUsuario.UseSystemPasswordChar = false;
+            this.txtBoxUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxUsuario_KeyPress);
             // 
             // txtBoxContrasenia
             // 
@@ -110,8 +111,9 @@
             this.txtBoxContrasenia.SelectionLength = 0;
             this.txtBoxContrasenia.SelectionStart = 0;
             this.txtBoxContrasenia.Size = new System.Drawing.Size(134, 23);
-            this.txtBoxContrasenia.TabIndex = 9;
+            this.txtBoxContrasenia.TabIndex = 1;
             this.txtBoxContrasenia.UseSystemPasswordChar = true;
+            this.txtBoxContrasenia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxContrasenia_KeyPress);
             // 
             // frmLogIn
             // 
@@ -123,8 +125,6 @@
             this.Controls.Add(this.btnLogIn);
             this.Controls.Add(this.lblContrasenia);
             this.Controls.Add(this.lblUsuario);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmLogIn";
             this.Text = "Ingreso al Sistema";
             this.ResumeLayout(false);

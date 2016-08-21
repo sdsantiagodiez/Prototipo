@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.tblLayoutPanelBotones = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancelar = new MaterialSkin.Controls.MaterialFlatButton();
@@ -49,7 +48,6 @@
             this.tblLayoutPanelFormaPagoBotones = new System.Windows.Forms.TableLayoutPanel();
             this.btnAgrearFormaPago = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnQuitarFormaPago = new MaterialSkin.Controls.MaterialFlatButton();
-            this.epMonto = new System.Windows.Forms.ErrorProvider(this.components);
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
             this.tblLayoutPanelDescuentos.SuspendLayout();
@@ -60,7 +58,6 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tblLayoutPanelFormaPago.SuspendLayout();
             this.tblLayoutPanelFormaPagoBotones.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epMonto)).BeginInit();
             this.SuspendLayout();
             // 
             // tblLayoutPanelPrincipal
@@ -358,10 +355,6 @@
             this.btnQuitarFormaPago.UseVisualStyleBackColor = true;
             this.btnQuitarFormaPago.Click += new System.EventHandler(this.btnQuitarFormaPago_Click);
             // 
-            // epMonto
-            // 
-            this.epMonto.ContainerControl = this;
-            // 
             // frmPedidoCierre_FormasDePago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -385,7 +378,6 @@
             this.tblLayoutPanelFormaPago.PerformLayout();
             this.tblLayoutPanelFormaPagoBotones.ResumeLayout(false);
             this.tblLayoutPanelFormaPagoBotones.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epMonto)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -412,6 +404,5 @@
         private MaterialSkin.Controls.MaterialFlatButton btnCancelar;
         private MaterialSkin.Controls.MaterialFlatButton btnGuardar;
         private MaterialSkin.Controls.MaterialFlatButton btnQuitarFormaPago;
-        private System.Windows.Forms.ErrorProvider epMonto;
     }
 }

@@ -677,16 +677,8 @@ namespace Vista
         private void txtCAE_Leave(object sender, EventArgs e)
         {
             glb_respuesta = Validar.validarInputNoNumerico(txtCAE.Text.ToString(), Constantes.ParametrosBusqueda.Pedidos.CAE);
-            if (!glb_respuesta)
-            {
-                epCAE.Icon = Properties.Resources.error;
-                epCAE.SetError(txtCAE, "CAE No Válido");
-            }
-            else
-            {
-                epCAE.Icon = Properties.Resources.success;
-                epCAE.SetError(txtCAE, "OK");
-            }
+            string lcl_mensaje = glb_respuesta ? "OK" : "CAE inválido";
+            this.setErrorProvider(txtCAE, glb_respuesta, lcl_mensaje);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

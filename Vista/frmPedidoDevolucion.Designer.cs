@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidoDevolucion));
             this.pnlBase = new System.Windows.Forms.Panel();
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
@@ -92,7 +91,6 @@
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vParcial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.epCAE = new System.Windows.Forms.ErrorProvider(this.components);
             this.pnlBase.SuspendLayout();
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tblLayoutPanelBotones.SuspendLayout();
@@ -110,7 +108,6 @@
             this.tblLayoutPanelCuadroBusqueda.SuspendLayout();
             this.gbxArticulosDevolucion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosDevolucion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCAE)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlBase
@@ -870,10 +867,6 @@
             this.vParcial.Name = "vParcial";
             this.vParcial.ReadOnly = true;
             // 
-            // epCAE
-            // 
-            this.epCAE.ContainerControl = this;
-            // 
             // frmPedidoDevolucion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -905,7 +898,6 @@
             this.tblLayoutPanelCuadroBusqueda.PerformLayout();
             this.gbxArticulosDevolucion.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosDevolucion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epCAE)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -972,7 +964,6 @@
         private MaterialSkin.Controls.MaterialFlatButton btnQuitarTodos;
         private MaterialSkin.Controls.MaterialFlatButton btnSiguiente;
         private MaterialSkin.Controls.MaterialFlatButton btnAgregar;
-        private System.Windows.Forms.ErrorProvider epCAE;
         private System.Windows.Forms.Panel pnlBase;
         private MaterialSkin.Controls.MaterialLabel lblCantidad;
     }

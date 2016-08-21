@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.grpBoxDatosUsuario = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelDatosUsuario = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -44,16 +43,10 @@
             this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnModificar = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnAceptar = new MaterialSkin.Controls.MaterialFlatButton();
-            this.epUsuario = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epContraseña = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epConfirmarContraseña = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpBoxDatosUsuario.SuspendLayout();
             this.tblLayoutPanelDatosUsuario.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epUsuario)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epContraseña)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epConfirmarContraseña)).BeginInit();
             this.SuspendLayout();
             // 
             // grpBoxDatosUsuario
@@ -91,7 +84,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.74095F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.25905F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel1.Controls.Add(this.lblUsuario, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblContraseña, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblConfirmarContraseña, 0, 2);
@@ -155,7 +148,7 @@
             this.txtBoxUsuario.SelectedText = "";
             this.txtBoxUsuario.SelectionLength = 0;
             this.txtBoxUsuario.SelectionStart = 0;
-            this.txtBoxUsuario.Size = new System.Drawing.Size(257, 23);
+            this.txtBoxUsuario.Size = new System.Drawing.Size(256, 23);
             this.txtBoxUsuario.TabIndex = 13;
             this.txtBoxUsuario.UseSystemPasswordChar = false;
             this.txtBoxUsuario.Leave += new System.EventHandler(this.txtBoxUsuario_Leave);
@@ -172,7 +165,7 @@
             this.txtBoxContraseña.SelectedText = "";
             this.txtBoxContraseña.SelectionLength = 0;
             this.txtBoxContraseña.SelectionStart = 0;
-            this.txtBoxContraseña.Size = new System.Drawing.Size(257, 23);
+            this.txtBoxContraseña.Size = new System.Drawing.Size(256, 23);
             this.txtBoxContraseña.TabIndex = 14;
             this.txtBoxContraseña.UseSystemPasswordChar = false;
             this.txtBoxContraseña.Leave += new System.EventHandler(this.txtBoxContraseña_Leave);
@@ -189,7 +182,7 @@
             this.txtBoxConfirmarContraseña.SelectedText = "";
             this.txtBoxConfirmarContraseña.SelectionLength = 0;
             this.txtBoxConfirmarContraseña.SelectionStart = 0;
-            this.txtBoxConfirmarContraseña.Size = new System.Drawing.Size(257, 23);
+            this.txtBoxConfirmarContraseña.Size = new System.Drawing.Size(256, 23);
             this.txtBoxConfirmarContraseña.TabIndex = 15;
             this.txtBoxConfirmarContraseña.UseSystemPasswordChar = false;
             this.txtBoxConfirmarContraseña.Leave += new System.EventHandler(this.txtBoxConfirmarContraseña_Leave);
@@ -200,7 +193,7 @@
             this.chckBoxMostrarContraseña.AutoSize = true;
             this.chckBoxMostrarContraseña.Depth = 0;
             this.chckBoxMostrarContraseña.Font = new System.Drawing.Font("Roboto", 10F);
-            this.chckBoxMostrarContraseña.Location = new System.Drawing.Point(151, 125);
+            this.chckBoxMostrarContraseña.Location = new System.Drawing.Point(150, 125);
             this.chckBoxMostrarContraseña.Margin = new System.Windows.Forms.Padding(0);
             this.chckBoxMostrarContraseña.MouseLocation = new System.Drawing.Point(-1, -1);
             this.chckBoxMostrarContraseña.MouseState = MaterialSkin.MouseState.HOVER;
@@ -291,18 +284,6 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // epUsuario
-            // 
-            this.epUsuario.ContainerControl = this;
-            // 
-            // epContraseña
-            // 
-            this.epContraseña.ContainerControl = this;
-            // 
-            // epConfirmarContraseña
-            // 
-            this.epConfirmarContraseña.ContainerControl = this;
-            // 
             // frmABMEntidadDatosAdicionalesUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -318,9 +299,6 @@
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epUsuario)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epContraseña)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epConfirmarContraseña)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -342,8 +320,5 @@
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
         private MaterialSkin.Controls.MaterialFlatButton btnModificar;
         private MaterialSkin.Controls.MaterialFlatButton btnAceptar;
-        private System.Windows.Forms.ErrorProvider epUsuario;
-        private System.Windows.Forms.ErrorProvider epContraseña;
-        private System.Windows.Forms.ErrorProvider epConfirmarContraseña;
     }
 }

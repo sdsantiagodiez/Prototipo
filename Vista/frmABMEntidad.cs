@@ -27,22 +27,18 @@ namespace Vista
                 {
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor:
                         this.inicializarControlesTipoEntidadProveedor();
-                        this.inicializarErrorProvider(this.tblLayoutPanelDatosPersonales);
                         glb_mod_entidadActual = new ModeloProveedor();
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente:
                         this.inicializarControlesTipoEntidadCliente();
-                        this.inicializarErrorProvider(this.tblLayoutPanelDatosPersonales);
                         glb_mod_entidadActual = new ModeloCliente();
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario:
                         this.inicializarControlesTipoEntidadUsuario();
-                        this.inicializarErrorProvider(this.tblLayoutPanelDatosPersonales);
                         glb_mod_entidadActual = new ModeloUsuario();
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor:
                         this.inicializarControlesTipoEntidadContactoProveedor();
-                        this.inicializarErrorProvider(this.tblLayoutPanelDatosPersonales);
                         glb_mod_entidadActual = new ModeloContactoProveedor();
                         break;
                     default:
@@ -1003,8 +999,7 @@ namespace Vista
         {
             if (!string.IsNullOrWhiteSpace(txtBoxCUIT.Text) && !ModeloEntidad.CUIT.ValidarCuit(txtBoxCUIT.Text))
             {
-                epCUIT.Icon = Properties.Resources.error;
-                epCUIT.SetError(txtBoxCUIT, "CUIT no válido");
+                this.setErrorProvider(this.txtBoxCUIT, false, "CUIT no válido");
                 return false;
             }
             return true;
@@ -1013,8 +1008,7 @@ namespace Vista
         {
             if (!ModeloPersonas.validarNombre(txtBoxNombre.Text))
             {
-                epNombre.Icon = Properties.Resources.error;
-                epNombre.SetError(txtBoxNombre, "Este campo es obligatorio. No puede permanecer vacío.");
+                this.setErrorProvider(this.txtBoxNombre, false, "Este campo es obligatorio. No puede permanecer vacío.");
                 return false;
             }
             return true;
@@ -1023,8 +1017,7 @@ namespace Vista
         {
             if (!ModeloPersonas.validarApellido(txtBoxApellido.Text))
             {
-                epApellido.Icon = Properties.Resources.error;
-                epApellido.SetError(txtBoxApellido, "Este campo es obligatorio. No puede permanecer vacío.");
+                this.setErrorProvider(this.txtBoxApellido, false, "Este campo es obligatorio. No puede permanecer vacío.");
                 return false;
             }
             return true;
@@ -1033,8 +1026,7 @@ namespace Vista
         {
             if (!ModeloPersonas.validarDNI(txtBoxDNI.Text))
             {
-                epDNI.Icon = Properties.Resources.error;
-                epDNI.SetError(txtBoxDNI,"Este campo es obligatorio. No puede permanecer vacío o contener caracteres no numéricos.");
+                this.setErrorProvider(this.txtBoxDNI,false,"Este campo es obligatorio. No puede permanecer vacío o contener caracteres no numéricos.");
                 return false;
             }
             return true;
@@ -1111,8 +1103,7 @@ namespace Vista
         {
             if (!ModeloProveedor.validarRazonSocial(txtBoxRazonSocial.Text))
             {
-                epRazonSocial.Icon = Properties.Resources.error;
-                epRazonSocial.SetError(txtBoxRazonSocial, "Este campo es obligatorio. No puede permanecer vacío.");
+                this.setErrorProvider(this.txtBoxRazonSocial, false, "Este campo es obligatorio. No puede permanecer vacío.");
                 return false;
             }
             return true;
@@ -1317,64 +1308,32 @@ namespace Vista
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCUIT.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Cuit);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
-            if (!respuesta)
-            {
-                epCUIT.Icon = Properties.Resources.error;
-                epCUIT.SetError(txtBoxCUIT, "CUIT no válido");
-            }
-            else
-            {
-                epCUIT.Icon = Properties.Resources.success;
-                epCUIT.SetError(txtBoxCUIT, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "CUIT no válido";
+            this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
         }
 
         private void txtBoxDNI_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxDNI.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = respuesta;
-            if (!respuesta)
-            {
-                epDNI.Icon = Properties.Resources.error;
-                epDNI.SetError(txtBoxDNI, "DNI no válido");
-            }
-            else
-            {
-                epDNI.Icon = Properties.Resources.success;
-                epDNI.SetError(txtBoxDNI, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "DNI no válido";
+            this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
         }
 
         private void txtBoxNombre_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxNombre.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Nombre);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)] = respuesta;
-            if (!respuesta)
-            {
-                epNombre.Icon = Properties.Resources.error;
-                epNombre.SetError(txtBoxNombre, "Nombre no válido");
-            }
-            else
-            {
-                epNombre.Icon = Properties.Resources.success;
-                epNombre.SetError(txtBoxNombre, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "Nombre no válido";
+            this.setErrorProvider(this.txtBoxNombre, respuesta, lcl_mensaje);
         }
 
         private void txtBoxApellido_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxApellido.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Apellido);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)] = respuesta;
-            if (!respuesta)
-            {
-                epApellido.Icon = Properties.Resources.error;
-                epApellido.SetError(txtBoxApellido, "Apellido no válido");
-            }
-            else
-            {
-                epApellido.Icon = Properties.Resources.success;
-                epApellido.SetError(txtBoxApellido, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "Apellido no válido";
+            this.setErrorProvider(this.txtBoxApellido, respuesta, lcl_mensaje);
         }
 
         private void txtBoxRazonSocial_Leave(object sender, EventArgs e)
@@ -1383,16 +1342,8 @@ namespace Vista
             {
                 bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
                 glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = respuesta;
-                if (!respuesta)
-                {
-                    epRazonSocial.Icon = Properties.Resources.error;
-                    epRazonSocial.SetError(txtBoxRazonSocial, "Razón Social no válida");
-                }
-                else
-                {
-                    epRazonSocial.Icon = Properties.Resources.success;
-                    epRazonSocial.SetError(txtBoxRazonSocial, "OK");
-                }
+                string lcl_mensaje = respuesta ? "OK" : "Razon Social no válida";
+                this.setErrorProvider(this.txtBoxRazonSocial, respuesta, lcl_mensaje);
             }
         }
    
@@ -1401,38 +1352,22 @@ namespace Vista
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxMail.Text.ToString(), Constantes.ParametrosBusqueda.Mails.Mail);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Mails.Mail)] = respuesta;
-            if (!respuesta)
-            {
-                epMail.Icon = Properties.Resources.error;
-                epMail.SetError(txtBoxMail, "Mail no válido");
-            }
-            else
-            {
-                epMail.Icon = Properties.Resources.success;
-                epMail.SetError(txtBoxMail, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "Mail no válido";
+            this.setErrorProvider(this.txtBoxMail, respuesta, lcl_mensaje);
         }
 
         private void txtBoxTelefono_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxTelefono.Text.ToString(), Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)] = respuesta;
-            if (!respuesta)
-            {
-                epNumeroTelefono.Icon = Properties.Resources.error;
-                epNumeroTelefono.SetError(txtBoxTelefono, "Número de Teléfono no válido");
-            }
-            else
-            {
-                epNumeroTelefono.Icon = Properties.Resources.success;
-                epNumeroTelefono.SetError(txtBoxTelefono, "OK");
-            }
+            string lcl_mensaje = respuesta ? "OK" : "Numero de Teléfono no válido";
+            this.setErrorProvider(this.txtBoxTelefono, respuesta, lcl_mensaje);
         }
         
         private void valorCUIT(object sender, KeyPressEventArgs e)
         {
-            // solo 0-9 y borrar 
-            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8))
+            // solo 0-9 y borrar y - (char 45)
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 45))
             {
                 e.Handled = true;
                 return;
@@ -1452,8 +1387,8 @@ namespace Vista
 
         private void valorDNI(object sender, KeyPressEventArgs e)
         {
-            // solo 0-9, borrar y '.' para cada mil
-            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != '.'))
+            // solo 0-9, borrar y '.' para cada mil (char 46)
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
                 return;

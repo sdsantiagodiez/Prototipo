@@ -15,8 +15,6 @@ namespace Vista
         #region Atributos
         protected string errorActual;
 
-        protected ErrorProvider errorProviderActual;
-
         public const string ModoFormularioInicio = "Inicia formulario solo con opcion busqueda";
         public const string ModoFormularioNuevo = "Nueva clase";
         public const string ModoFormularioSeleccionado = "Clase seleccionada de resultado de busqueda";
@@ -65,7 +63,6 @@ namespace Vista
             InitializeComponent();
             
             this.StartPosition = FormStartPosition.CenterScreen;
-            errorProviderActual = new ErrorProvider();
             //this.inicializarModoFormularioInicio();
         }
         #endregion
@@ -157,17 +154,6 @@ namespace Vista
                 true;
         }
 
-        /// <summary>
-        /// Elimina icono de error al lado del control
-        /// </summary>
-        /// <param name="c">Control que contiene los textboxes con errorProviders asignados</param>
-        protected void inicializarErrorProvider(Control c)
-        {
-            foreach (TextBox t in c.Controls.OfType<TextBox>())
-            {
-                errorProviderActual.SetError(t, "");
-            }
-        }
 
         #endregion
 
