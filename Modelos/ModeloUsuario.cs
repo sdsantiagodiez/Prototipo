@@ -131,9 +131,14 @@ namespace Modelos
         /// </summary>
         public void asignarContraseña(string p_contrasenia)
         {
+            this.contrasenia = encriptarContraseña(p_contrasenia);
+        }
+
+        public static string encriptarContraseña (string p_contrasenia)
+        {
             byte[] data = System.Text.Encoding.ASCII.GetBytes(p_contrasenia);
             data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-            this.contrasenia = System.Text.Encoding.ASCII.GetString(data);
+            return System.Text.Encoding.ASCII.GetString(data);
         }
         #endregion
     }

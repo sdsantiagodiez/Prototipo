@@ -103,8 +103,6 @@ namespace Vista
                     index = 0;
                     break;
                 case Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia:
-                    index = 1;
-                    break;
                 case Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "2":
                     index = 1;
                     break;

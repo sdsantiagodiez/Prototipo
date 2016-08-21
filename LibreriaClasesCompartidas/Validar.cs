@@ -164,12 +164,14 @@ namespace LibreriaClasesCompartidas
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.razonSocialProveedor:
                 case Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial:
                 case Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.RazonSocial_Proveedor:
-                case Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia:
                 case Constantes.ParametrosBusqueda.Articulos.Observaciones:
                 case Constantes.ParametrosBusqueda.Pedidos.Observaciones:
                 case Constantes.ParametrosBusqueda.Entidades.Observaciones:
                 //Admite cualquier caracter, sin restricción de repeticiones de los mismos
                     lcl_patron = new Regex(@"^.+$");
+                    break;
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia:
+                    lcl_patron = new Regex(@"^.{8,}$");
                     break;
                 case Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario:
                     // Admite alfanuméricos, al menos uno en la cadena

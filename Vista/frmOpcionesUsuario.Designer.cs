@@ -271,6 +271,7 @@
             this.txtBoxCUIT.Size = new System.Drawing.Size(301, 23);
             this.txtBoxCUIT.TabIndex = 16;
             this.txtBoxCUIT.UseSystemPasswordChar = false;
+            this.txtBoxCUIT.Leave += new System.EventHandler(this.txtBoxCUIT_Leave);
             // 
             // lblDNI
             // 
@@ -299,6 +300,7 @@
             this.txtBoxDNI.Size = new System.Drawing.Size(290, 23);
             this.txtBoxDNI.TabIndex = 18;
             this.txtBoxDNI.UseSystemPasswordChar = false;
+            this.txtBoxDNI.Leave += new System.EventHandler(this.txtBoxDNI_Leave);
             // 
             // txtBoxNombre
             // 
@@ -316,6 +318,7 @@
             this.txtBoxNombre.Size = new System.Drawing.Size(301, 23);
             this.txtBoxNombre.TabIndex = 19;
             this.txtBoxNombre.UseSystemPasswordChar = false;
+            this.txtBoxNombre.Leave += new System.EventHandler(this.txtBoxNombre_Leave);
             // 
             // lblNombre
             // 
@@ -355,6 +358,7 @@
             this.txtBoxApellido.Size = new System.Drawing.Size(301, 23);
             this.txtBoxApellido.TabIndex = 22;
             this.txtBoxApellido.UseSystemPasswordChar = false;
+            this.txtBoxApellido.Leave += new System.EventHandler(this.txtBoxApellido_Leave);
             // 
             // grpBoxContraseña
             // 
@@ -441,6 +445,7 @@
             this.txtBoxContraseñaActual.Size = new System.Drawing.Size(301, 23);
             this.txtBoxContraseñaActual.TabIndex = 20;
             this.txtBoxContraseñaActual.UseSystemPasswordChar = false;
+            this.txtBoxContraseñaActual.Leave += new System.EventHandler(this.txtBoxContraseñaActual_Leave);
             // 
             // txtBoxContraseñaNueva
             // 
@@ -458,6 +463,7 @@
             this.txtBoxContraseñaNueva.Size = new System.Drawing.Size(301, 23);
             this.txtBoxContraseñaNueva.TabIndex = 21;
             this.txtBoxContraseñaNueva.UseSystemPasswordChar = false;
+            this.txtBoxContraseñaNueva.Leave += new System.EventHandler(this.txtBoxContraseñaNueva_Leave);
             // 
             // txtBoxContraseñaNuevaRepetir
             // 
@@ -475,6 +481,7 @@
             this.txtBoxContraseñaNuevaRepetir.Size = new System.Drawing.Size(301, 23);
             this.txtBoxContraseñaNuevaRepetir.TabIndex = 22;
             this.txtBoxContraseñaNuevaRepetir.UseSystemPasswordChar = false;
+            this.txtBoxContraseñaNuevaRepetir.Leave += new System.EventHandler(this.txtBoxContraseñaNuevaRepetir_Leave);
             // 
             // tbPageDatosContacto
             // 
@@ -691,7 +698,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 11);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 9);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxTipoTelefono.TabIndex = 23;
@@ -712,6 +719,7 @@
             this.txtBoxTelefono.Size = new System.Drawing.Size(156, 23);
             this.txtBoxTelefono.TabIndex = 24;
             this.txtBoxTelefono.UseSystemPasswordChar = false;
+            this.txtBoxTelefono.Leave += new System.EventHandler(this.txtBoxTelefono_Leave);
             // 
             // tblLayoutPanelMail
             // 
@@ -755,6 +763,7 @@
             this.txtBoxMail.Size = new System.Drawing.Size(244, 23);
             this.txtBoxMail.TabIndex = 10;
             this.txtBoxMail.UseSystemPasswordChar = false;
+            this.txtBoxMail.Leave += new System.EventHandler(this.txtBoxMail_Leave);
             // 
             // tblLayoutPanelMailLista
             // 

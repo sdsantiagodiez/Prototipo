@@ -997,7 +997,7 @@ namespace Vista
 
         private bool validarCUIT()
         {
-            if (!string.IsNullOrWhiteSpace(txtBoxCUIT.Text) && !ModeloEntidad.CUIT.ValidarCuit(txtBoxCUIT.Text))
+            if (string.IsNullOrWhiteSpace(txtBoxCUIT.Text) || !ModeloEntidad.CUIT.ValidarCuit(txtBoxCUIT.Text))
             {
                 this.setErrorProvider(this.txtBoxCUIT, false, "CUIT no válido");
                 return false;

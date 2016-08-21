@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
+using LibreriaClasesCompartidas;
 
 namespace Vista
 {
@@ -19,6 +20,7 @@ namespace Vista
         ControlDomicilios glb_con_domicilios;
         ModeloUsuario glb_usuarioActual;
         public EventHandler ActualizarColoresEvent;
+        List<bool> glb_lst_respuestasValidaciones;
         #endregion
         
         #region Constructores
@@ -27,6 +29,11 @@ namespace Vista
             InitializeComponent();
             this.inicializarControles();
             this.Text = "Opciones de Usuario";
+            glb_lst_respuestasValidaciones = new List<bool>();
+            for (int i = 0; i < 7; i++)
+            {
+                glb_lst_respuestasValidaciones.Add(false);
+            }
         }
         public frmOpcionesUsuario(ModeloUsuario p_usuario) : this()
         {
@@ -71,6 +78,7 @@ namespace Vista
             this.inicializarContextMenu();
             this.inicializarBotones();
             this.inicializarCmbBoxTipoTelefonos();
+            this.inicializarTextBoxes();
         }
         private void inicializarDomicilio()
         {
@@ -103,11 +111,29 @@ namespace Vista
             #region btnAgregar
             this.btnAgregarMail.Click += (s, e) =>
             {
-                this.agregarMailEntidad();
+                if (validarInputs(s, e, Constantes.ParametrosBusqueda.Mails.CodigoMail))
+                {
+                    this.agregarMailEntidad();
+                }
+                else
+                {
+                    MessageBox.Show("Por favor ingrese una dirección de correo válida");
+                }
             };
             this.btnAgregarTelefono.Click += (s, e) =>
             {
-                this.agregarTelefonoEntidad();
+                if (cmbBoxTipoTelefono.SelectedValue == null)
+                {
+                    MessageBox.Show("Debe seleccionar un tipo de teléfono para el número indicado");
+                }
+                else if (validarInputs(s, e, Constantes.ParametrosBusqueda.Telefonos.CodigoTelefono))
+                {
+                    this.agregarTelefonoEntidad();
+                }
+                else
+                {
+                    MessageBox.Show("Por favor ingrese un teléfono válido");
+                }
             };
             #endregion
 
@@ -136,6 +162,11 @@ namespace Vista
 
             //Lo hago read only
             this.cmbBoxTipoTelefono.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+        private void inicializarTextBoxes()
+        {
+            txtBoxContraseñaNueva.KeyPress += this.permitirCambio;
+            txtBoxContraseñaNuevaRepetir.KeyPress += this.permitirCambio;
         }
         #endregion
      
@@ -390,7 +421,86 @@ namespace Vista
         #endregion
 
         #region Validación
-       
+
+        private int getIndex(string p_inputName)
+        {
+            int index;
+            switch (p_inputName)
+            {
+                case Constantes.ParametrosBusqueda.Entidades.Cuit:
+                    index = 0;
+                    break;
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Dni:
+                    index = 1;
+                    break;
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Nombre:
+                    index = 2;
+                    break;
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Apellido:
+                    index = 3;
+                    break;
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia:
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "2":
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "3":
+                    index = 4;
+                    break;
+                case Constantes.ParametrosBusqueda.Mails.Mail:
+                    index = 5;
+                    break;
+                case Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono:
+                    index = 6;
+                    break;
+                default:
+                    index = 0;
+                    break;
+            }
+            return index;
+        }
+
+        private bool validarInputs(object sender, EventArgs e, string sector)
+        {
+            bool lcl_respuesta = new bool();
+            switch (sector)
+            {
+                case Constantes.ParametrosBusqueda.Entidades.Personas.CodigoEntidad:
+                    txtBoxCUIT_Leave(sender, e);
+                    txtBoxDNI_Leave(sender, e);
+                    txtBoxNombre_Leave(sender, e);
+                    txtBoxApellido_Leave(sender, e);
+                    lcl_respuesta= (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Cuit)]
+                        && glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)]
+                        && glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)]
+                        && glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)]);
+                    break;
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia:
+                    txtBoxContraseñaActual_Leave(sender, e);
+                    txtBoxContraseñaNueva_Leave(sender, e);
+                    txtBoxContraseñaNuevaRepetir_Leave(sender, e);
+                    if (string.IsNullOrWhiteSpace(txtBoxContraseñaActual.Text))
+                    {
+                        lcl_respuesta = true;
+                    }
+                    else
+                    {
+                        lcl_respuesta = (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia)]
+                            && glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "2")]
+                            && glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "3")]);
+                    }
+                    break;
+                case Constantes.ParametrosBusqueda.Mails.CodigoMail:
+                    txtBoxMail_Leave(sender, e);
+                    lcl_respuesta = glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Mails.Mail)];
+                    break;
+                case Constantes.ParametrosBusqueda.Telefonos.CodigoTelefono:
+                    txtBoxTelefono_Leave(sender, e);
+                    lcl_respuesta = glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)];
+                    break;
+                default:
+                    lcl_respuesta = false;
+                    break;
+            }
+            return lcl_respuesta;
+        }
       
         
         private bool validarTelefono()
@@ -468,17 +578,21 @@ namespace Vista
             {
                 return;
             }
-            
-            Controladores.ControladorModificacion lcl_con_modificacion = new Controladores.ControladorModificacion();
 
-            if (lcl_con_modificacion.modificar(lcl_mod_usuario))
+            if (validarInputs(new object(), new EventArgs(), Constantes.ParametrosBusqueda.Entidades.Personas.CodigoEntidad)
+            && validarInputs(new object(), new EventArgs(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia))
             {
-                glb_usuarioActual = lcl_mod_usuario;
-                MessageBox.Show("Cambios guardados exitosamente", "Éxito", MessageBoxButtons.OK);
-            }
-            else
-            {
-                MessageBox.Show(lcl_con_modificacion.errorActual,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                Controladores.ControladorModificacion lcl_con_modificacion = new Controladores.ControladorModificacion();
+
+                if (lcl_con_modificacion.modificar(lcl_mod_usuario))
+                {
+                    glb_usuarioActual = lcl_mod_usuario;
+                    MessageBox.Show("Cambios guardados exitosamente", "Éxito", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show(lcl_con_modificacion.errorActual, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -562,11 +676,125 @@ namespace Vista
         }
         #endregion
 
+        #region TextBoxs
+        private void txtBoxCUIT_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxCUIT.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Cuit);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
+            string lcl_mensaje = respuesta ? "OK" : "CUIT no válido";
+            this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
+        }
+
+        private void txtBoxDNI_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxDNI.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = respuesta;
+            string lcl_mensaje = respuesta ? "OK" : "DNI no válido";
+            this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
+
+        }
+
+        private void txtBoxNombre_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxNombre.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Nombre);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)] = respuesta;
+            string lcl_mensaje = respuesta ? "OK" : "Nombre no válido";
+            this.setErrorProvider(this.txtBoxNombre, respuesta, lcl_mensaje);
+        }
+
+        private void txtBoxApellido_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxApellido.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Apellido);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)] = respuesta;
+            string lcl_mensaje = respuesta ? "OK" : "Apellido no válido";
+            this.setErrorProvider(this.txtBoxApellido, respuesta, lcl_mensaje);
+        }
+
+        private void txtBoxContraseñaActual_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtBoxContraseñaActual.Text))
+            {
+                string lcl_contrasenia = ModeloUsuario.encriptarContraseña(txtBoxContraseñaActual.Text);
+                bool respuesta = string.Equals(lcl_contrasenia, glb_usuarioActual.contrasenia);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia)] = respuesta;
+                string lcl_mensaje = respuesta ? "OK" : "Contraseña incorrecta";
+                this.setErrorProvider(txtBoxContraseñaActual, respuesta, lcl_mensaje);
+            }
+            else
+            { txtBoxContraseñaActual.Text = ""; }
+        }
+
+        private void txtBoxContraseñaNueva_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtBoxContraseñaNueva.Text))
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxContraseñaNueva.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "2")] = respuesta;
+                string lcl_mensaje = respuesta ? "OK" : "Contraseña no válida";
+                this.setErrorProvider(txtBoxContraseñaNueva, respuesta, lcl_mensaje);
+            }
+            else
+            { txtBoxContraseñaNueva.Text = ""; }
+        }
+
+        private void txtBoxContraseñaNuevaRepetir_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtBoxContraseñaNuevaRepetir.Text))
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxContraseñaNuevaRepetir.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "3")] = respuesta;
+                if (!respuesta)
+                {
+                    this.setErrorProvider(txtBoxContraseñaNuevaRepetir, false, "Contraseña no válida");
+                }
+                else
+                {
+                    if (string.Equals(txtBoxContraseñaNueva.Text.ToString(), txtBoxContraseñaNuevaRepetir.Text.ToString()))
+                    {
+                        this.setErrorProvider(txtBoxContraseñaNuevaRepetir, true, "OK");
+                    }
+                    else
+                    {
+                        this.setErrorProvider(txtBoxContraseñaNuevaRepetir, false, "Las contraseñas no coinciden");
+                    }
+                }
+            }
+            else
+            { txtBoxContraseñaNuevaRepetir.Text = ""; }
+        }
+
+        private void txtBoxMail_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxMail.Text.ToString(), Constantes.ParametrosBusqueda.Mails.Mail);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Mails.Mail)] = respuesta;
+            string lcl_mensaje = respuesta ? "OK" : "Mail no válido";
+            this.setErrorProvider(this.txtBoxMail, respuesta, lcl_mensaje);
+        }
+
+        private void txtBoxTelefono_Leave(object sender, EventArgs e)
+        {
+            bool respuesta = Validar.validarInputNoNumerico(txtBoxTelefono.Text.ToString(), Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono);
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)] = respuesta;
+            string lcl_mensaje = respuesta ? "OK" : "Numero de Teléfono no válido";
+            this.setErrorProvider(this.txtBoxTelefono, respuesta, lcl_mensaje);
+        }
+
+        private void permitirCambio(object sender, KeyPressEventArgs e)
+        {
+            if(!glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia)])
+            {
+                e.Handled = true;
+                return;
+            }
+        }
+        #endregion
+
+        #region Buttons
         private void btnGuardarCambios_Click(object sender, EventArgs e)
         {
             this.guardarCambios();
         }
-        #endregion
+        
 
         private void btnCambiarColores_Click(object sender, EventArgs e)
         {
@@ -599,7 +827,9 @@ namespace Vista
             this.ActualizarColoresEvent(new object(), new EventArgs());
             this.actualizarColores();
         }
+        #endregion
 
+        #region Tabs
         private void tbControlPrincipal_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(tbControlPrincipal.SelectedTab == tbControlPrincipal.TabPages["tbEstiloVisual"])
@@ -611,5 +841,7 @@ namespace Vista
                 btnGuardarCambios.Visible = true;
             }
         }
+        #endregion
+        #endregion
     }
 }
