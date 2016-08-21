@@ -144,7 +144,7 @@ namespace Datos
                     return base.getCondicionBusqueda(p_parametroBusqueda);
             }
         }
-        private string getCondicionBusqueda(ModeloPedido p_mod_pedido, List<DateTime> p_periodo, List<int> p_codigosComprobantes, bool? p_clienteGenerico, bool? p_facturadoElectronicament,ref SqlCommand p_comando)
+        private string getCondicionBusqueda(ModeloPedido p_mod_pedido, List<DateTime> p_periodo, List<int> p_codigosComprobantes, bool? p_clienteGenerico, bool? p_facturadoElectronicamente,ref SqlCommand p_comando)
         {
             int? numeroPedido = p_mod_pedido.numeroPedido == 0 ? null : (int?)p_mod_pedido.numeroPedido;
             p_comando.Parameters.Add(this.instanciarParametro(numeroPedido, "@numero_pedido"));
@@ -154,7 +154,7 @@ namespace Datos
             p_comando.Parameters.Add(this.instanciarParametro(cae, "@cae"));
             string caeQuery = this.parametroBusqueda("@cae", "cae", "=");
 
-            string numeroDocumento = String.IsNullOrWhiteSpace(p_mod_pedido.documentoComprador.numero) ? null : p_mod_pedido.CAE;
+            string numeroDocumento = String.IsNullOrWhiteSpace(p_mod_pedido.documentoComprador.numero) ? null : p_mod_pedido.documentoComprador.numero;
             p_comando.Parameters.Add(this.instanciarParametro(numeroDocumento, "@numero_documento"));
             string numeroDocumentoQuery = this.parametroBusqueda("@numero_documento", "numero_documento_entidad", "=");
 
@@ -179,16 +179,9 @@ namespace Datos
             }
 
             string facturadoElectronicamenteQuery = "";
-            if (p_facturadoElectronicament != null)
+            if (p_facturadoElectronicamente != null)
             {
-                if (p_facturadoElectronicament == true)
-                {
-                    facturadoElectronicamenteQuery = " AND (aprobado_afip = 'A' ) ";
-                }
-                else
-                {
-                    facturadoElectronicamenteQuery = " AND (aprobado_afip <> 'A' OR aprobado_afip IS NULL) ";   
-                }
+                facturadoElectronicamenteQuery = p_facturadoElectronicamente == true? " AND (aprobado_afip = 'A' ) " : " AND (aprobado_afip <> 'A' OR aprobado_afip IS NULL) ";   
             }
 
             string codigoComprobanteQuery = "";
@@ -205,8 +198,33 @@ namespace Datos
                 }
                 codigoComprobanteQuery += " ) ";
             }
+            string nombreEntidad;
+            string apellidoEntidad;
+            string razonSocialEntidad;
+            if (p_mod_pedido.entidad.GetType() == typeof(ModeloProveedor))
+            {
+                nombreEntidad = null;
+                apellidoEntidad = null;
+                razonSocialEntidad = String.IsNullOrWhiteSpace((p_mod_pedido.entidad as ModeloProveedor).razonSocial)?null:(p_mod_pedido.entidad as ModeloProveedor).razonSocial;
+            }
+            else
+            {
+                nombreEntidad = String.IsNullOrWhiteSpace((p_mod_pedido.entidad as ModeloCliente).nombre) ? null : (p_mod_pedido.entidad as ModeloCliente).nombre;
+                apellidoEntidad = String.IsNullOrWhiteSpace((p_mod_pedido.entidad as ModeloCliente).apellido) ? null : (p_mod_pedido.entidad as ModeloCliente).apellido;
+                razonSocialEntidad = String.IsNullOrWhiteSpace((p_mod_pedido.entidad as ModeloCliente).razonSocial) ? null : (p_mod_pedido.entidad as ModeloCliente).razonSocial;
+            }
+
+            p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(nombreEntidad), "@nombre_entidad"));
+            string nombreEntidadQuery = this.parametroBusqueda("@nombre_entidad", "nombre_entidad", "LIKE");
+            
+            p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(apellidoEntidad), "@apellido_entidad"));
+            string apellidoEntidadQuery = this.parametroBusqueda("@apellido_entidad", "apellido_entidad", "LIKE");
+
+            p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(razonSocialEntidad), "@razon_social_entidad"));
+            string razonSocialEntidadQuery = this.parametroBusqueda("@razon_social_entidad", "razon_social_entidad", "LIKE");
 
             return " ( " + numeroPedidoQuery + " AND " + caeQuery + " AND " + numeroDocumentoQuery +
+                " AND " + nombreEntidadQuery + " AND " + apellidoEntidadQuery + " AND " + razonSocialEntidadQuery +
                 " AND " + codigoTipoPedidoQuery +  periodoQuery + numeroEntidadQuery + 
                 facturadoElectronicamenteQuery + codigoComprobanteQuery + " ) ";
         }
@@ -321,13 +339,15 @@ namespace Datos
                 "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido  " +
                 "        )  " +
                 "    UNION  " +
-                "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
-                "                Pedidos_Proveedores.[codigo_entidad], NULL as [razon_social_entidad]," +
+                "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],Pedidos.[observaciones], " +
+                "                Pedidos_Proveedores.[codigo_entidad], Proveedores.razon_social as [razon_social_entidad]," +
                 "                NULL as [numero_comprobante],NULL as [cae],NULL as [vencimiento_cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
-                "                NULL as [codigo_documento],NULL as [numero_documento_entidad],NULL as [codigo_comprobante], " +
+                "                NULL as [codigo_documento],Entidades.cuit as [numero_documento_entidad],NULL as [codigo_comprobante], " +
                 "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto], NULL as [estado] " +
-                "            FROM pedidos, Pedidos_Proveedores  " +
+                "            FROM pedidos, Pedidos_Proveedores, Proveedores, Entidades    " +
                 "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  " +
+                "                   AND Pedidos_Proveedores.codigo_entidad= Proveedores.codigo_entidad" +
+                "                   AND Proveedores.codigo_entidad = Entidades.codigo "+
                 "        )  " +
                 "    ) as tbl " +
                 "inner join Mails_Pedido mail " +

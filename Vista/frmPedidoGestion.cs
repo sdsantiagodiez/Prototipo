@@ -329,27 +329,18 @@ namespace Vista
                 int.TryParse(this.txtBoxNumeroPedido.Text, out aux);
                 lcl_mod_pedido.numeroPedido = aux;
             }
-            if (!String.IsNullOrWhiteSpace(this.txtBoxCAE.Text))
+            lcl_mod_pedido.CAE = !String.IsNullOrWhiteSpace(this.txtBoxCAE.Text)? this.txtBoxCAE.Text:null;
+            
+            lcl_mod_pedido.documentoComprador.numero = !String.IsNullOrWhiteSpace(this.txtBoxNumeroDocumento.Text)?this.txtBoxNumeroDocumento.Text: null;
+            
+            //usamos cliente porque permite nombre, apellido y razón social
+            lcl_mod_pedido.entidad = new ModeloCliente()
             {
-                lcl_mod_pedido.CAE = this.txtBoxCAE.Text;
-            }
-            if (!String.IsNullOrWhiteSpace(this.txtBoxNumeroDocumento.Text))
-            {
-                lcl_mod_pedido.documentoComprador.numero = this.txtBoxNumeroDocumento.Text;
-            }
-            if (!String.IsNullOrWhiteSpace(this.txtBoxNombre.Text))
-            {
-                //lcl_mod_pedido. = this.txtBoxNombre.Text;
-            }
-            if (!String.IsNullOrWhiteSpace(this.txtBoxApellido.Text))
-            {
-                //lcl_mod_pedido. = this.txtBoxApellido.Text;
-            }
-            if (!String.IsNullOrWhiteSpace(this.txtBoxRazonSocial.Text))
-            {
-                //lcl_mod_pedido. = this.txtBoxRazonSocial.Text;
-            }
-
+                nombre = !String.IsNullOrWhiteSpace(this.txtBoxNombre.Text) ? this.txtBoxNombre.Text : null,
+                apellido = !String.IsNullOrWhiteSpace(this.txtBoxApellido.Text) ? this.txtBoxApellido.Text : null,
+                razonSocial = !String.IsNullOrWhiteSpace(this.txtBoxRazonSocial.Text) ? this.txtBoxRazonSocial.Text : null
+            };
+            
             return lcl_mod_pedido;
         }
         private List<Constantes.TipoComprobanteCompra> getTiposComprobanteCompraSeleccionados()

@@ -614,15 +614,13 @@ namespace Controladores
                         && (p_mod_pedido.codigoTipoPedido == 0 || p_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.Persona))
                     {
                         p_mod_pedido.codigoTipoPedido = Constantes.CodigosTiposPedidos.Persona;
+                        generico = p.Equals(Constantes.TipoPedido.PedidoClienteGenerico);
                     }
                     else
                     {
                         p_mod_pedido.codigoTipoPedido = 0;
                     }
-                    if (p.Equals(Constantes.TipoPedido.PedidoClienteGenerico))
-                    {
-                        generico = true;
-                    }
+                    
                 }
             }
 
