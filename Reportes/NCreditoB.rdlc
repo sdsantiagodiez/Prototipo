@@ -421,7 +421,6 @@
                         <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -748,7 +747,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>CUIT:</Value>
+                  <Value>CUIT/DNI:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
                     <FontSize>8pt</FontSize>
@@ -762,9 +761,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>4.60085cm</Top>
-          <Left>13.04688cm</Left>
+          <Left>12.41659cm</Left>
           <Height>0.6cm</Height>
-          <Width>1.26118cm</Width>
+          <Width>1.89147cm</Width>
           <ZIndex>8</ZIndex>
           <Style>
             <Border>
@@ -1431,6 +1430,7 @@
           </Style>
         </Line>
         <Line Name="Line3">
+          <Top>0cm</Top>
           <Height>1.46786cm</Height>
           <Width>0cm</Width>
           <ZIndex>3</ZIndex>

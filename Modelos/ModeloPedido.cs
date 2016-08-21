@@ -207,6 +207,7 @@ namespace Modelos
             if(p_mod_entidad.GetType() == typeof(ModeloProveedor))
             {
                 this.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Proveedor;
+                this.tipoComprobante = 2001;
             }
             else if (p_mod_entidad.GetType() == typeof(ModeloCliente))
             {

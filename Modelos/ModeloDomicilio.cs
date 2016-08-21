@@ -76,6 +76,12 @@ namespace Modelos
         public override string ToString()
         {
             string normalizado = this.calle + " " + this.numero;
+            
+            if(String.IsNullOrWhiteSpace(normalizado))
+            {
+                return "Sin Domicilio";
+            }
+            
             if (!string.IsNullOrWhiteSpace(this.piso))
             {
                 normalizado += ", " + this.piso;

@@ -269,7 +269,7 @@ namespace Vista
                 row.Cells["fecha"].Value = p.fecha;
                 row.Cells["tipoComprobante"].Value = Controladores.ControladorPedido.getNombreComprobante(p.tipoComprobante);
                 row.Cells["codigoEntidad"].Value = p.entidad.codigo.ToString();
-                row.Cells["numeroDocumentoEntidad"].Value = p.documentoComprador.numero;
+                row.Cells["numeroDocumentoEntidad"].Value = p.codigoTipoPedido == Constantes.CodigosTiposPedidos.Persona ? p.documentoComprador.numero : p.entidad.cuit;
                 
                 row.Cells["nombreEntidad"].Value = this.getNombreEntidad(p);
                 row.Cells["montoTotal"].Value = p.montoTotal;

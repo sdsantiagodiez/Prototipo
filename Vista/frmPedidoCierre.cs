@@ -134,6 +134,8 @@ namespace Vista
                     this.habilitarControl(this.btnFacturaElectronica);
                 }
             }
+
+            this.glb_con_domicilio.clearErrorProviders();
         }
         /// <summary>
         /// Para realizar devoluciones
@@ -185,6 +187,17 @@ namespace Vista
             this.controlador = new ControladorPedidoProveedor();
             this.actualizarPedidosProveedores(p_mod_pedido);
             this.actualizarFormasDePago();
+
+            if ((controlador as ControladorPedidoProveedor).pedidosProveedores.Count > 1)
+            {
+                //quiere decir que estamos viendo un pedido ya hecho desde al gestor de pedidos
+                (controlador as ControladorPedidoProveedor).pedidosProveedores[1].domicilioDeFacturacion = p_mod_pedido.domicilioDeFacturacion;
+                (controlador as ControladorPedidoProveedor).pedidosProveedores[1].mailContacto = p_mod_pedido.mailContacto;
+                (controlador as ControladorPedidoProveedor).pedidosProveedores[1].telefonoContacto = p_mod_pedido.telefonoContacto;
+                this.cmbBoxPedidosProveedores.DataSource = null;
+                this.cmbBoxPedidosProveedores.DataSource = new List<ComboBoxItem>(){ new ComboBoxItem(){Name =(p_mod_pedido.entidad as ModeloProveedor).razonSocial,Value = p_mod_pedido}};
+                cmbBoxPedidosProveedores_SelectionChangeCommitted(new object(), new EventArgs());
+            }
         }
         private void inicializarDevolucionPedidoCliente(ModeloPedido p_mod_pedido)
         {
@@ -270,7 +283,7 @@ namespace Vista
 
             //Creo lista Tipos de teléfono
             var dataSource = new List<ComboBoxItem>();
-            dataSource.Add(new ComboBoxItem() { Name = "Sin Teléfono", Value = "" });
+           // dataSource.Add(new ComboBoxItem() { Name = "Sin Teléfono", Value = "" });
             dataSource.Add(new ComboBoxItem() { Name = "Fijo", Value = Constantes.TipoTelefono.Fijo });
             dataSource.Add(new ComboBoxItem() { Name = "Celular", Value = Constantes.TipoTelefono.Celular });
             dataSource.Add(new ComboBoxItem() { Name = "Fax", Value = Constantes.TipoTelefono.Fax });
@@ -415,7 +428,7 @@ namespace Vista
         private void actualizarControlesPedidoProveedores()
         {
             //Si esta seleccionado el pedidoGlobal, permitimos imprimir y guardar todo. No se permite individualmente
-            bool pedidoGlobalSeleccionado = this.cmbBoxPedidosProveedores.SelectedIndex == 0;
+            bool pedidoGlobalSeleccionado = (this.cmbBoxPedidosProveedores.SelectedItem as ComboBoxItem).Name == "Todos";
             this.btnGuardar.Enabled =
                 this.btnImprimir.Enabled =
                 pedidoGlobalSeleccionado;
@@ -457,6 +470,7 @@ namespace Vista
             {
                 this.cargarPedidoEnControles((controlador as ControladorPedidoProveedor).getPedidoGlobal());
             }
+
         }
 
         private void habilitarControl(Control p_control)
@@ -666,10 +680,10 @@ namespace Vista
         }
         private void cargarTelefonoEnControles(ModeloTelefono p_mod_telefono)
         {
-            if (p_mod_telefono == null)
+            if (p_mod_telefono == null || p_mod_telefono.tipo == null)
             {
                 this.txtBoxTelefono.Text = "";
-                this.cmbBoxTipoTelefono.SelectedValue = "";
+                this.cmbBoxTipoTelefono.SelectedIndex  = 0;
                 return;
             }
 
@@ -784,7 +798,8 @@ namespace Vista
         {
             Documento lcl_documento = new Documento();
             lcl_documento.tipo = this.cmbBoxTipoDocumento.SelectedValue as TipoDocumento;
-            lcl_documento.numero = ModeloEntidad.CUIT.GetCuitNumerico(this.txtBoxNumeroDocumento.Text); //"20111111112" ejemplo
+            lcl_documento.numero = lcl_documento.tipo.codigo == 80?ModeloEntidad.CUIT.GetCuitNumerico(this.txtBoxNumeroDocumento.Text):this.txtBoxNumeroDocumento.Text.Replace(".","");
+            
             return lcl_documento;
         }
         private ModeloContactoProveedor cargarControlEnContactoProveedor()
@@ -793,6 +808,10 @@ namespace Vista
         }
         private ModeloDomicilio cargarControlEnDomicilio()
         {
+            if (this.glb_con_domicilio.domicilioVacio())
+            {
+                return null;
+            }
             return this.glb_con_domicilio.GetDomicilio();
         }
         private ModeloTelefono cargarControlEnTelefono()
@@ -923,19 +942,14 @@ namespace Vista
         private bool validarDomicilio()
         {
             //Permite ingreso de domicilio vacío o directamente uno totalmente válido
-            if (glb_con_domicilio.validar())
-            {
-                return true;
-            }
-            else if (glb_con_domicilio.domicilioVacio())
+            
+            if (glb_con_domicilio.domicilioVacio())
             {
                 glb_con_domicilio.clearErrorProviders();
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return glb_con_domicilio.validar();
 
         }
         private bool validarPedido()
@@ -986,7 +1000,9 @@ namespace Vista
                 if (controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor)
                 {
                     //Imprime lote de pedidos a proveedor
-                    exito = lcl_frm_comprobante.generarComprobante((controlador as ControladorPedidoProveedor).getPedidosProveedores(controlador.pedidoActual));
+                    List<ModeloPedido> lcl_lst_pedidosProveedoresImprimir = (controlador as ControladorPedidoProveedor).getPedidosProveedores(controlador.pedidoActual);
+                    lcl_lst_pedidosProveedoresImprimir.RemoveAt(0);//Se quita el pedido global que abarca todos los pedidos
+                    exito = lcl_frm_comprobante.generarComprobante(lcl_lst_pedidosProveedoresImprimir);
                 }
                 else
                 {

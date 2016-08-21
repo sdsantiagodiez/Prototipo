@@ -285,11 +285,19 @@ namespace Datos
                 {
                     p.entidad = lcl_cat_proveedores.getOne(p.entidad.codigo);
                 }
+                this.getProvincia(p);
             }
 
             return lcl_lst_mod_pedido;
         }
-
+        private void getProvincia(ModeloPedido p_pedido)
+        {
+            if (p_pedido.domicilioDeFacturacion.provincia.codigo == null)
+                return;
+            CatalogoProvincias lcl_cat_provincias = new CatalogoProvincias();
+            p_pedido.domicilioDeFacturacion.provincia = new CatalogoProvincias().getOne(p_pedido.domicilioDeFacturacion.provincia.codigo);
+            p_pedido.domicilioDeFacturacion.pais = new CatalogoPaises().getOne(p_pedido.domicilioDeFacturacion.provincia.codigoPais);
+        }
         public List<ModeloPedido> buscar(ModeloPedido p_mod_pedido, List<DateTime> p_periodo,List<int> p_codigosComprobantes, bool? p_clienteGenerico, bool? p_facturadoElectronicamente)
         {
             SqlCommand comando = Conexion.crearComando();            
@@ -362,6 +370,7 @@ namespace Datos
                     {
                         p.entidad = lcl_cat_proveedores.getOne(p.entidad.codigo);
                     }
+                    this.getProvincia(p);
                 }
 
                 return lcl_mod_pedidosEncontrados;
@@ -865,13 +874,17 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "UPDATE [pedidos] " +
-                "SET aprobado_afip=@aprobado_afip " +
-                "WHERE [pedidos].numero_pedido=@numero_pedido";
+                "UPDATE [pedidos_Personas] " +
+                "SET aprobado_afip=@aprobado_afip, " +
+                "   cae=@cae,"+
+                "   vencimiento_cae=@vencimiento_cae " +
+                "WHERE [pedidos_Personas].numero_pedido=@numero_pedido";
 
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.aprobadoAFIP, "@aprobado_afip"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numero_pedido"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.CAE,"@cae"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.VencimientoCAE.Date,"@vencimiento_cae"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();

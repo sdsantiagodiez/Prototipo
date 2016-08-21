@@ -268,6 +268,10 @@ namespace Controladores
                 }
             }
             this.pedidosProveedores = lcl_lst_mod_pedidos;
+            foreach (ModeloPedido p in this.pedidosProveedores)
+            {
+                p.actualizarMontos();
+            }
             
             this.pedidosProveedores.Insert(0, new ModeloPedido());
             this.pedidosProveedores[0] = this.getPedidoGlobal();

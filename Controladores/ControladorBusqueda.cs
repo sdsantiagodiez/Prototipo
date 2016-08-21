@@ -544,8 +544,7 @@ namespace Controladores
 
             List<int> lcl_lst_codigosComprobantes = ControladorBusqueda.getCodigosComprobantes(p_tipoCompra, p_tipoVenta, p_tipoDevolucion);
 
-            CatalogoPedidos lcl_cat_pedido = new CatalogoPedidos();
-            return lcl_cat_pedido.buscar(p_mod_pedido,p_periodo,lcl_lst_codigosComprobantes,clienteGenerico,p_facturadoElectronicamente);
+            return new CatalogoPedidos().buscar(p_mod_pedido, p_periodo, lcl_lst_codigosComprobantes, clienteGenerico, p_facturadoElectronicamente);
         }
 
         private static List<int> getCodigosComprobantes(List<Constantes.TipoComprobanteCompra> p_tipoCompra, List<Constantes.TipoComprobanteVenta> p_tipoVenta, List<Constantes.TipoComprobanteDevolucion> p_tipoDevolucion)
