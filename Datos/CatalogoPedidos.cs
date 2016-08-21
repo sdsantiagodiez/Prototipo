@@ -877,7 +877,8 @@ namespace Datos
                 "UPDATE [pedidos_Personas] " +
                 "SET aprobado_afip=@aprobado_afip, " +
                 "   cae=@cae,"+
-                "   vencimiento_cae=@vencimiento_cae " +
+                "   vencimiento_cae=@vencimiento_cae," +
+                "   numero_comprobante=@numero_comprobante  " +
                 "WHERE [pedidos_Personas].numero_pedido=@numero_pedido";
 
             //Indica los parametros
@@ -885,6 +886,7 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numero_pedido"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.CAE,"@cae"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.VencimientoCAE.Date,"@vencimiento_cae"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroComprobante, "@numero_comprobante"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();

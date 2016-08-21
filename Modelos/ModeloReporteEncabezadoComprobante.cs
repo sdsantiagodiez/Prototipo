@@ -41,7 +41,7 @@ namespace Modelos
             this.Alicuota = Convert.ToDecimal(p_mod_pedido.alicuota.iva.porcentaje);
             this.CuitEmisor = ModeloPedido.cuitEmisor;
             this.CentroEmisor = "0001";//p_mod_pedido.numeroComprobante;
-            this.NumeroComprobante = p_mod_pedido.numeroComprobante;
+            this.NumeroComprobante = (p_mod_pedido.numeroComprobante!=null)?p_mod_pedido.numeroComprobante.PadLeft(8, '0'):null;
             this.Comprador_Cuit = (p_mod_pedido.entidad.cuit != null )? p_mod_pedido.entidad.cuit:p_mod_pedido.documentoComprador.numero;
             this.Comprador_IVAResponsableI = this.defineSituacionIVA(p_mod_pedido.entidad.situacionIVA);
             if (p_mod_pedido.domicilioDeFacturacion == null)
@@ -80,7 +80,7 @@ namespace Modelos
             this.FechaComprobante = p_mod_pedido.fecha;
             this.FechaVencimiento = p_mod_pedido.VencimientoCAE;
             this.IVAComprobante = p_mod_pedido.alicuota.monto;
-            this.Remito = p_mod_pedido.numeroPedido.ToString();
+            this.Remito = p_mod_pedido.numeroPedido.ToString().PadLeft(8,'0');
             this.SubtotalComprobante = p_mod_pedido.montoSubTotal;
             this.TotalComprobante = p_mod_pedido.montoTotal;
             this.TotalComprobanteLetras = LibreriaClasesCompartidas.Transformar.NumeroALetras(p_mod_pedido.montoTotal.ToString());
@@ -104,5 +104,6 @@ namespace Modelos
 
             return lcl_mod_detalle_descuento;
         }
+      
     }
 }

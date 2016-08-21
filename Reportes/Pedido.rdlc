@@ -415,7 +415,6 @@
                         <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -592,7 +591,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>1.6914cm</Top>
-          <Left>14.88751cm</Left>
+          <Left>13.61751cm</Left>
           <Height>0.50286cm</Height>
           <Width>1.60042cm</Width>
           <ZIndex>1</ZIndex>
@@ -612,7 +611,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!Remito.Value, "DSFactura")</Value>
+                  <Value>="0001 - "+First(Fields!Remito.Value, "DSFactura")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -626,9 +625,9 @@
             </Paragraph>
           </Paragraphs>
           <Top>1.6914cm</Top>
-          <Left>16.66432cm</Left>
+          <Left>15.39432cm</Left>
           <Height>0.50286cm</Height>
-          <Width>2.18251cm</Width>
+          <Width>3.45251cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -660,7 +659,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>2.37065cm</Top>
-          <Left>14.88751cm</Left>
+          <Left>13.61751cm</Left>
           <Height>0.50286cm</Height>
           <Width>1.60042cm</Width>
           <ZIndex>3</ZIndex>
@@ -695,9 +694,9 @@
             </Paragraph>
           </Paragraphs>
           <Top>2.37065cm</Top>
-          <Left>16.66432cm</Left>
+          <Left>15.39432cm</Left>
           <Height>0.50286cm</Height>
-          <Width>2.18251cm</Width>
+          <Width>3.45251cm</Width>
           <ZIndex>4</ZIndex>
           <Style>
             <Border>
