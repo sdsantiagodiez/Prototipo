@@ -1366,20 +1366,31 @@ namespace Vista
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("El/La" + cmbBoxTipoComprobante.Text 
-            +" no esta guardado en la base de datos. Desea guardar antes de imprimir?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+            if (controlador.pedidoActual.numeroPedido == 0)
             {
+                DialogResult dialogResult = MessageBox.Show("El/La " + cmbBoxTipoComprobante.Text
+                + " no esta guardado en la base de datos. Desea guardar antes de imprimir?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+                {
 
+                    if (this.cargarControlEnPedido() == null)
+                    {
+                        return;
+                    }
+                    if (this.guardarPedido())
+                    {
+                        this.inicializarPedidoCerrado();
+                    }
+
+                }
+               
+            }
+            else
+            {
                 if (this.cargarControlEnPedido() == null)
                 {
                     return;
                 }
-                if (this.guardarPedido())
-                {
-                    this.inicializarPedidoCerrado();
-                }
-                                
             }
             this.imprimirpedido();
         }

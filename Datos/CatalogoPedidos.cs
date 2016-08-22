@@ -22,7 +22,7 @@ namespace Datos
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
             lcl_mod_pedido.codigoTipoPedido = (Constantes.CodigosTiposPedidos)p_drPedidos["codigo_tipo_pedido"];
-            lcl_mod_pedido.numeroComprobanteTipo = (p_drPedidos["numero_pedido_tipo"] != DBNull.Value)?(string)p_drPedidos["numero_pedido_tipo"]:null;
+            lcl_mod_pedido.numeroComprobanteTipo = (p_drPedidos["numero_pedido_tipo"] != DBNull.Value)?(int)p_drPedidos["numero_pedido_tipo"]:0;
             lcl_mod_pedido.entidad.codigo = (int)p_drPedidos["codigo_entidad"];
             lcl_mod_pedido.alicuota.monto = (p_drPedidos["alicuota"] != DBNull.Value) ? (decimal)p_drPedidos["alicuota"] : 0;
             lcl_mod_pedido.montoSubTotal = (p_drPedidos["monto_subtotal"] != DBNull.Value) ? (decimal)p_drPedidos["monto_subtotal"] : 0;
@@ -701,6 +701,8 @@ namespace Datos
         }
         public bool add(ref ModeloPedido p_mod_pedido)
         {
+            //asigno el ultimo numero de pedido
+            p_mod_pedido.numeroComprobanteTipo= this.getUltimoNumero((int)p_mod_pedido.codigoTipoPedido);
             
             SqlCommand comando = Conexion.crearComando(); 
 
@@ -715,7 +717,7 @@ namespace Datos
 
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
-            comando.Parameters.Add(this.instanciarParametro(this.getUltimoNumero((int)p_mod_pedido.codigoTipoPedido), "@numero_pedido_tipo"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroComprobanteTipo, "@numero_pedido_tipo"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.fecha, "@fecha"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.alicuota.monto, "@alicuota"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.montoSubTotal, "@monto_subtotal"));
