@@ -326,7 +326,7 @@ namespace Datos
                 "        [codigo_entidad],[razon_social_entidad], " +
                 "        [numero_comprobante],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],  " +
                 "           [descuento_1_monto],[descuento_2_monto],[estado], " +
-                "       mail.mail, " +
+                "       mail.mail, numero_pedido_tipo, " +
                 "       telefono.tipo,telefono.numero as numero_telefono,  " +
                 "       domicilio.calle,domicilio.numero as numero_domicilio,domicilio.piso,domicilio.departamento,domicilio.ciudad,domicilio.codigo_postal,domicilio.codigo_provincia " +
                 "    FROM  " +
@@ -335,7 +335,7 @@ namespace Datos
                 "                Pedidos_Personas.[codigo_entidad],Pedidos_Personas.[razon_social_entidad], " +
                 "                [numero_comprobante],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], " +
                 "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante], "+
-                "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto],[estado] " +
+                "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto],[estado],[numero_pedido_tipo] " +
                 "            FROM pedidos, Pedidos_Personas  " +
                 "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido  " +
                 "        )  " +
@@ -344,7 +344,7 @@ namespace Datos
                 "                Pedidos_Proveedores.[codigo_entidad], Proveedores.razon_social as [razon_social_entidad]," +
                 "                NULL as [numero_comprobante],NULL as [cae],NULL as [vencimiento_cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
                 "                NULL as [codigo_documento],Entidades.cuit as [numero_documento_entidad],NULL as [codigo_comprobante], " +
-                "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto], NULL as [estado] " +
+                "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto], NULL as [estado],[numero_pedido_tipo] " +
                 "            FROM pedidos, Pedidos_Proveedores, Proveedores, Entidades    " +
                 "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  " +
                 "                   AND Pedidos_Proveedores.codigo_entidad= Proveedores.codigo_entidad" +
