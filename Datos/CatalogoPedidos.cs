@@ -22,6 +22,7 @@ namespace Datos
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
             lcl_mod_pedido.codigoTipoPedido = (Constantes.CodigosTiposPedidos)p_drPedidos["codigo_tipo_pedido"];
+            lcl_mod_pedido.numeroComprobanteTipo = (p_drPedidos["numero_pedido_tipo"] != DBNull.Value)?(string)p_drPedidos["numero_pedido_tipo"]:null;
             lcl_mod_pedido.entidad.codigo = (int)p_drPedidos["codigo_entidad"];
             lcl_mod_pedido.alicuota.monto = (p_drPedidos["alicuota"] != DBNull.Value) ? (decimal)p_drPedidos["alicuota"] : 0;
             lcl_mod_pedido.montoSubTotal = (p_drPedidos["monto_subtotal"] != DBNull.Value) ? (decimal)p_drPedidos["monto_subtotal"] : 0;
@@ -243,7 +244,7 @@ namespace Datos
                 "SELECT  tbl.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
                 "        [codigo_entidad], [razon_social_entidad],[descuento_1_monto],[descuento_2_monto], " +
                 "        [numero_comprobante],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],[estado],  " +
-                "       mail.mail, "+
+                "       mail.mail, numero_pedido_tipo, " +
 		        "       telefono.tipo,telefono.numero as numero_telefono,  "+
 		        "       domicilio.calle,domicilio.numero as numero_domicilio,domicilio.piso,domicilio.departamento,domicilio.ciudad,domicilio.codigo_postal,domicilio.codigo_provincia "+
                 "    FROM  "+
@@ -251,7 +252,7 @@ namespace Datos
                 "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
                 "                Pedidos_Personas.[codigo_entidad], Pedidos_Personas.[razon_social_entidad],[descuento_1_monto],[descuento_2_monto], " +
 	            "                [numero_comprobante],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], "+
-	            "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante],[estado] "+
+                "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante],[estado],[numero_pedido_tipo] " +
                 "            FROM pedidos, Pedidos_Personas  "+
                 "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido  "+
                 "        )  "+
@@ -259,7 +260,7 @@ namespace Datos
                 "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
                 "                Pedidos_Proveedores.[codigo_entidad], NULL as [razon_social_entidad],[descuento_1_monto],[descuento_2_monto], " +
                 "                NULL as [numero_comprobante],NULL as [cae], NULL as [vencimiento_cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
-                "                NULL as [codigo_documento],NULL as [numero_documento_entidad],NULL as [codigo_comprobante],NULL as [estado] " +
+                "                NULL as [codigo_documento],NULL as [numero_documento_entidad],NULL as [codigo_comprobante],NULL as [estado],[numero_pedido_tipo] " +
                 "            FROM pedidos, Pedidos_Proveedores  "+
                 "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  "+
                 "        )  "+
@@ -421,6 +422,36 @@ namespace Datos
         public List<ModeloPedido> getAll()
         {
             return this.buscarPedido(null, Constantes.ParametrosBusqueda.All);
+        }
+
+        public int getUltimoNumero(int p_codigo_tipo_pedido)
+        {
+            int numero = 0;
+            SqlConnection ConexionSQL = Datos.Conexion.crearConexion();
+
+            //crea SQL command
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ConexionSQL;
+            comando.CommandType = CommandType.Text;
+
+            comando.CommandText =
+                "SELECT MAX(numero_pedido_tipo) as Mayor " +
+                "FROM [Pedidos] WHERE codigo_tipo_pedido=@codigo_tipo_pedido ";
+                
+            //Indica los parametros
+            comando.Parameters.Add(this.instanciarParametro(p_codigo_tipo_pedido, "@codigo_tipo_pedido"));
+            
+            comando.Connection.Open();
+            SqlDataReader drPedidos = comando.ExecuteReader();
+            while (drPedidos.Read())
+            {
+                numero = (int)drPedidos["Mayor"]; ;
+            }
+            comando.Connection.Close();
+
+            return numero+1;
+            
+
         }
 
         #endregion
@@ -670,19 +701,21 @@ namespace Datos
         }
         public bool add(ref ModeloPedido p_mod_pedido)
         {
+            
             SqlCommand comando = Conexion.crearComando(); 
 
             comando.CommandText =
             "INSERT INTO [pedidos](codigo_tipo_pedido,fecha,alicuota,monto_subtotal,monto_total,observaciones, "+
-            "   senia, descuento_1_monto, descuento_1_porcentaje, descuento_2_monto, descuento_2_porcentaje, "+
+            "   senia, descuento_1_monto, descuento_1_porcentaje, descuento_2_monto, descuento_2_porcentaje,numero_pedido_tipo, "+
             "   descuento_lineas_monto, descuento_lineas_porcentaje, descuento_total_monto, descuento_total_porcentaje) " +
             "   OUTPUT INSERTED.NUMERO_PEDIDO " +
             "   VALUES (@codigo_tipo_pedido,@fecha, @alicuota,@monto_subtotal,@monto_total, @observaciones, "+
-            "   @senia, @descuento_1_monto, @descuento_1_porcentaje, @descuento_2_monto, @descuento_2_porcentaje, " +
+            "   @senia, @descuento_1_monto, @descuento_1_porcentaje, @descuento_2_monto, @descuento_2_porcentaje,@numero_pedido_tipo, " +
             "   @descuento_lineas_monto, @descuento_lineas_porcentaje, @descuento_total_monto, @descuento_total_porcentaje) ";
 
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
+            comando.Parameters.Add(this.instanciarParametro(this.getUltimoNumero((int)p_mod_pedido.codigoTipoPedido), "@numero_pedido_tipo"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.fecha, "@fecha"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.alicuota.monto, "@alicuota"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.montoSubTotal, "@monto_subtotal"));

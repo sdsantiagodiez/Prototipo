@@ -21,6 +21,12 @@ namespace Modelos
                 this.insertarNumeroPedidoEnLineas(value);
             }
         }
+        string _numeroComprobanteTipo;
+        public string numeroComprobanteTipo
+        {
+            get { return _numeroComprobanteTipo; }
+            set { _numeroComprobanteTipo = value; }
+        }
 
         string _numeroComprobante;
         public string numeroComprobante

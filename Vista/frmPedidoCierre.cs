@@ -1366,9 +1366,20 @@ namespace Vista
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            if (this.cargarControlEnPedido() == null)
+            DialogResult dialogResult = MessageBox.Show("El/La" + cmbBoxTipoComprobante.Text 
+            +" no esta guardado en la base de datos. Desea guardar antes de imprimir?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
             {
-                return;
+
+                if (this.cargarControlEnPedido() == null)
+                {
+                    return;
+                }
+                if (this.guardarPedido())
+                {
+                    this.inicializarPedidoCerrado();
+                }
+                                
             }
             this.imprimirpedido();
         }
@@ -1392,16 +1403,17 @@ namespace Vista
             {
                 return;
             }
-            if (this.facturarAFIP())
+            if (this.guardarPedido())
             {
-                if (this.guardarPedido())
-                {
-                    this.inicializarPedidoCerrado();
-                }
-                else
+                if (this.facturarAFIP())
                 {
                     this.inicializarPedidoFacturado();
                 }
+                else
+                {
+                    this.inicializarPedidoCerrado();
+                }  
+               
                 if(DialogResult.Yes==(MessageBox.Show("¿Desea imprimir la Factura?", "Impresión de Factura Electrónica",MessageBoxButtons.YesNo)))
                 {
                     this.imprimirpedido();
