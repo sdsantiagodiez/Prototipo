@@ -279,7 +279,7 @@ namespace Vista
                 if (p.CAE == null) { row.Cells["vencimiento_cae"].Value = null; }
                 else
                 { row.Cells["vencimiento_cae"].Value = p.VencimientoCAE.ToShortDateString();
-                    row.Cells["numComprobanteAFIP"].Value = (p.numeroComprobante != null)?Controladores.ControladorPedido.getNombreComprobante(p.tipoComprobante) + "0001-" + p.numeroComprobante.PadLeft(8, '0'):"";
+                    row.Cells["numComprobanteAFIP"].Value = (p.numeroComprobanteAFIP != null)?Controladores.ControladorPedido.getNombreComprobante(p.tipoComprobante) + "0001-" + p.numeroComprobanteAFIP.PadLeft(8, '0'):"";
                 }
                 row.Cells["facturadoElectronicamente"].Value = p.aprobadoAFIP == "A"? "Sí" : "No";
             }

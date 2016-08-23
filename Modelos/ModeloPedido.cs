@@ -21,18 +21,18 @@ namespace Modelos
                 this.insertarNumeroPedidoEnLineas(value);
             }
         }
-        int _numeroComprobanteTipo;
-        public int numeroComprobanteTipo
-        {
-            get { return _numeroComprobanteTipo; }
-            set { _numeroComprobanteTipo = value; }
-        }
-
-        string _numeroComprobante;
-        public string numeroComprobante
+        int _numeroComprobante;
+        public int numeroComprobante
         {
             get { return _numeroComprobante; }
             set { _numeroComprobante = value; }
+        }
+
+        string _numeroComprobanteAFIP;
+        public string numeroComprobanteAFIP
+        {
+            get { return _numeroComprobanteAFIP; }
+            set { _numeroComprobanteAFIP = value; }
         }
 
         string _CAE;

@@ -1414,15 +1414,15 @@ namespace Vista
             {
                 return;
             }
-            if (this.guardarPedido())
+            if (this.facturarAFIP())
             {
-                if (this.facturarAFIP())
+                if (this.guardarPedido())
                 {
-                    this.inicializarPedidoFacturado();
+                    this.inicializarPedidoCerrado();
                 }
                 else
                 {
-                    this.inicializarPedidoCerrado();
+                    this.inicializarPedidoFacturado();
                 }  
                
                 if(DialogResult.Yes==(MessageBox.Show("¿Desea imprimir la Factura?", "Impresión de Factura Electrónica",MessageBoxButtons.YesNo)))

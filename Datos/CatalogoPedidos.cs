@@ -22,7 +22,7 @@ namespace Datos
             //Si algún valor esta null en Base de datos, se asigna null en el objeto
             //Caso contrario hay una string, y se asigna string
             lcl_mod_pedido.codigoTipoPedido = (Constantes.CodigosTiposPedidos)p_drPedidos["codigo_tipo_pedido"];
-            lcl_mod_pedido.numeroComprobanteTipo = (p_drPedidos["numero_comprobante"] != DBNull.Value)?(int)p_drPedidos["numero_comprobante"]:0;
+            lcl_mod_pedido.numeroComprobante = (p_drPedidos["numero_comprobante"] != DBNull.Value)?(int)p_drPedidos["numero_comprobante"]:0;
             lcl_mod_pedido.tipoComprobante = (p_drPedidos["codigo_comprobante"] != DBNull.Value) ? (int)p_drPedidos["codigo_comprobante"] : 0;
             lcl_mod_pedido.entidad.codigo = (int)p_drPedidos["codigo_entidad"];
             lcl_mod_pedido.alicuota.monto = (p_drPedidos["alicuota"] != DBNull.Value) ? (decimal)p_drPedidos["alicuota"] : 0;
@@ -36,7 +36,7 @@ namespace Datos
             #region Datos Pedidos_Personas
             if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.Persona)
             {
-                lcl_mod_pedido.numeroComprobante = (p_drPedidos["numero_comprobante_AFIP"] != DBNull.Value) ? (string)p_drPedidos["numero_comprobante_AFIP"] : null; 
+                lcl_mod_pedido.numeroComprobanteAFIP = (p_drPedidos["numero_comprobante_AFIP"] != DBNull.Value) ? (string)p_drPedidos["numero_comprobante_AFIP"] : null; 
                 lcl_mod_pedido.CAE = (p_drPedidos["cae"] != DBNull.Value) ? (string)p_drPedidos["cae"] : null;
                 lcl_mod_pedido.VencimientoCAE = (p_drPedidos["vencimiento_cae"] != DBNull.Value) ? (DateTime)p_drPedidos["vencimiento_cae"] : DateTime.Now;
                 lcl_mod_pedido.aprobadoAFIP = (p_drPedidos["aprobado_afip"] != DBNull.Value) ? (string)p_drPedidos["aprobado_afip"] : null; 
@@ -703,7 +703,7 @@ namespace Datos
         public bool add(ref ModeloPedido p_mod_pedido)
         {
             //asigno el ultimo numero de pedido
-            p_mod_pedido.numeroComprobanteTipo= this.getUltimoNumero((int)p_mod_pedido.codigoTipoPedido);
+            p_mod_pedido.numeroComprobante= this.getUltimoNumero((int)p_mod_pedido.codigoTipoPedido);
             
             SqlCommand comando = Conexion.crearComando(); 
 
@@ -718,7 +718,7 @@ namespace Datos
 
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroComprobanteTipo, "@numero_comprobante"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroComprobante, "@numero_comprobante"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.tipoComprobante, "@codigo_comprobante"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.fecha, "@fecha"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.alicuota.monto, "@alicuota"));
@@ -839,7 +839,7 @@ namespace Datos
            "    @razon_social_entidad,@codigo_documento,@numero_documento_entidad, @estado) ";
             
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numeroPedidoActual"));
-            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroComprobante, "@numero_comprobante_AFIP"));
+            p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroComprobanteAFIP, "@numero_comprobante_AFIP"));
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.CAE, "@cae"));
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.VencimientoCAE, "@vto_cae"));
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.aprobadoAFIP, "@aprobado_afip"));
@@ -943,7 +943,7 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numero_pedido"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.CAE,"@cae"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.VencimientoCAE.Date,"@vencimiento_cae"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroComprobante, "@numero_comprobante_AFIP"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroComprobanteAFIP, "@numero_comprobante_AFIP"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();

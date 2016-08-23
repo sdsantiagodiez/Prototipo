@@ -130,7 +130,7 @@ namespace Controladores
                         ControladorAFIP.cargarRespuestaEnPedido(fe, p_mod_pedido);
                         respuesta += Environment.NewLine + "Resultado detallado comprobante: " + p_mod_pedido.aprobadoAFIP;
                         respuesta += Environment.NewLine + "CAE comprobante: " + p_mod_pedido.CAE;
-                        respuesta += Environment.NewLine + "Número comprobante:" + p_mod_pedido.numeroComprobante;
+                        respuesta += Environment.NewLine + "Número comprobante:" + p_mod_pedido.numeroComprobanteAFIP;
                         respuesta += Environment.NewLine + "Error detallado comprobante: " + fe.F1RespuestaDetalleObservacionMsg1;
 
                         respuesta = this.getError(fe);
@@ -241,7 +241,7 @@ namespace Controladores
         {
             p_mod_pedido.aprobadoAFIP = p_facturaElectronica.F1RespuestaDetalleResultado;
             p_mod_pedido.CAE = p_facturaElectronica.F1RespuestaDetalleCae;
-            p_mod_pedido.numeroComprobante = p_facturaElectronica.F1RespuestaDetalleCbteDesdeS;
+            p_mod_pedido.numeroComprobanteAFIP = p_facturaElectronica.F1RespuestaDetalleCbteDesdeS;
             p_mod_pedido.VencimientoCAE = DateTime.ParseExact(p_facturaElectronica.F1RespuestaDetalleCAEFchVto!=""?p_facturaElectronica.F1RespuestaDetalleCAEFchVto:"20200101","yyyyMMdd",CultureInfo.InvariantCulture,DateTimeStyles.None);
         }
 
