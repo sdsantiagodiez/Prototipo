@@ -244,6 +244,8 @@ namespace Vista
             this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
             this.dgvResultadoBusqueda.Columns.Add("cae", "CAE");
             this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
+            this.dgvResultadoBusqueda.Columns.Add("numComprobanteAFIP", "Numero Comprobante AFIP");
+            this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
             this.dgvResultadoBusqueda.Columns.Add("vencimiento_cae", "VencimientoCAE");
             this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
             this.dgvResultadoBusqueda.Columns.Add("facturadoElectronicamente", "Facturado AFIP");
@@ -276,7 +278,9 @@ namespace Vista
                 row.Cells["cae"].Value = p.CAE;
                 if (p.CAE == null) { row.Cells["vencimiento_cae"].Value = null; }
                 else
-                { row.Cells["vencimiento_cae"].Value = p.VencimientoCAE.ToShortDateString(); }
+                { row.Cells["vencimiento_cae"].Value = p.VencimientoCAE.ToShortDateString();
+                row.Cells["numComprobanteAFIP"].Value = Controladores.ControladorPedido.getNombreComprobante(p.tipoComprobante)+"0001-" p.numeroComprobante.PadLeft(8, '0');
+                }
                 row.Cells["facturadoElectronicamente"].Value = p.aprobadoAFIP == "A"? "Sí" : "No";
             }
             this.dgvResultadoBusqueda.AutoResizeColumns();
