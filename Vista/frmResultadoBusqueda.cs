@@ -524,6 +524,7 @@ namespace Vista
             row.Cells["fechaActualizacion"].Value = p_mod_articuloProveedor.fechaActualizacion;
             row.Cells["descuentosVigentes"].Value = p_mod_articuloProveedor.tieneDescuentosVigentes()? "Sí":"No";
         }
+
         #endregion
         
         #region Búsqueda

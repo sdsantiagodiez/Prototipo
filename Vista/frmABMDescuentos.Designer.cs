@@ -45,7 +45,6 @@
             this.txtBoxDescripcion = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.lblCodigoArticuloProveedor = new MaterialSkin.Controls.MaterialLabel();
             this.txtBoxCodigoArticuloProveedor = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.chckBoxDescuentosActivos = new MaterialSkin.Controls.MaterialCheckBox();
             this.grpBoxDescuento = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelParametrosDescuento = new System.Windows.Forms.TableLayoutPanel();
             this.txtBoxPorcentajeDescuento = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -137,7 +136,7 @@
             this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.lblCodigoOriginal, 0, 0);
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.lblModelo, 3, 1);
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.txtBoxCodigoOriginal, 1, 0);
@@ -149,7 +148,6 @@
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.txtBoxDescripcion, 1, 1);
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.lblCodigoArticuloProveedor, 3, 0);
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.txtBoxCodigoArticuloProveedor, 4, 0);
-            this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.chckBoxDescuentosActivos, 7, 1);
             this.tblLayoutPanelParametrosBusqueda.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelParametrosBusqueda.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelParametrosBusqueda.Name = "tblLayoutPanelParametrosBusqueda";
@@ -181,7 +179,7 @@
             this.lblModelo.Depth = 0;
             this.lblModelo.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblModelo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblModelo.Location = new System.Drawing.Point(311, 53);
+            this.lblModelo.Location = new System.Drawing.Point(309, 53);
             this.lblModelo.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblModelo.Name = "lblModelo";
             this.lblModelo.Size = new System.Drawing.Size(64, 19);
@@ -201,7 +199,7 @@
             this.txtBoxCodigoOriginal.SelectedText = "";
             this.txtBoxCodigoOriginal.SelectionLength = 0;
             this.txtBoxCodigoOriginal.SelectionStart = 0;
-            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(96, 23);
+            this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(94, 23);
             this.txtBoxCodigoOriginal.TabIndex = 7;
             this.txtBoxCodigoOriginal.UseSystemPasswordChar = false;
             this.txtBoxCodigoOriginal.Leave += new System.EventHandler(this.txtBoxCodigoOriginal_Leave);
@@ -211,7 +209,7 @@
             this.txtBoxModelo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxModelo.Depth = 0;
             this.txtBoxModelo.Hint = "";
-            this.txtBoxModelo.Location = new System.Drawing.Point(381, 51);
+            this.txtBoxModelo.Location = new System.Drawing.Point(379, 51);
             this.txtBoxModelo.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.txtBoxModelo.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxModelo.Name = "txtBoxModelo";
@@ -219,7 +217,7 @@
             this.txtBoxModelo.SelectedText = "";
             this.txtBoxModelo.SelectionLength = 0;
             this.txtBoxModelo.SelectionStart = 0;
-            this.txtBoxModelo.Size = new System.Drawing.Size(95, 23);
+            this.txtBoxModelo.Size = new System.Drawing.Size(94, 23);
             this.txtBoxModelo.TabIndex = 9;
             this.txtBoxModelo.UseSystemPasswordChar = false;
             this.txtBoxModelo.Leave += new System.EventHandler(this.txtBoxModelo_Leave);
@@ -228,12 +226,12 @@
             // 
             this.btnBuscar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBuscar.Depth = 0;
-            this.btnBuscar.Location = new System.Drawing.Point(636, 87);
+            this.btnBuscar.Location = new System.Drawing.Point(633, 87);
             this.btnBuscar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnBuscar.Primary = true;
-            this.btnBuscar.Size = new System.Drawing.Size(103, 36);
+            this.btnBuscar.Size = new System.Drawing.Size(101, 36);
             this.btnBuscar.TabIndex = 6;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -245,7 +243,7 @@
             this.lblProveedor.Depth = 0;
             this.lblProveedor.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblProveedor.Location = new System.Drawing.Point(549, 11);
+            this.lblProveedor.Location = new System.Drawing.Point(546, 11);
             this.lblProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblProveedor.Name = "lblProveedor";
             this.lblProveedor.Size = new System.Drawing.Size(81, 19);
@@ -256,10 +254,10 @@
             // 
             this.cmbBoxProveedores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxProveedores.FormattingEnabled = true;
-            this.cmbBoxProveedores.Location = new System.Drawing.Point(636, 10);
+            this.cmbBoxProveedores.Location = new System.Drawing.Point(633, 10);
             this.cmbBoxProveedores.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.cmbBoxProveedores.Name = "cmbBoxProveedores";
-            this.cmbBoxProveedores.Size = new System.Drawing.Size(96, 21);
+            this.cmbBoxProveedores.Size = new System.Drawing.Size(94, 21);
             this.cmbBoxProveedores.TabIndex = 10;
             // 
             // lblDescripcion
@@ -289,7 +287,7 @@
             this.txtBoxDescripcion.SelectedText = "";
             this.txtBoxDescripcion.SelectionLength = 0;
             this.txtBoxDescripcion.SelectionStart = 0;
-            this.txtBoxDescripcion.Size = new System.Drawing.Size(96, 23);
+            this.txtBoxDescripcion.Size = new System.Drawing.Size(94, 23);
             this.txtBoxDescripcion.TabIndex = 8;
             this.txtBoxDescripcion.UseSystemPasswordChar = false;
             this.txtBoxDescripcion.Leave += new System.EventHandler(this.txtBoxDescripcion_Leave);
@@ -301,7 +299,7 @@
             this.lblCodigoArticuloProveedor.Depth = 0;
             this.lblCodigoArticuloProveedor.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblCodigoArticuloProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCodigoArticuloProveedor.Location = new System.Drawing.Point(261, 2);
+            this.lblCodigoArticuloProveedor.Location = new System.Drawing.Point(259, 2);
             this.lblCodigoArticuloProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCodigoArticuloProveedor.Name = "lblCodigoArticuloProveedor";
             this.lblCodigoArticuloProveedor.Size = new System.Drawing.Size(114, 38);
@@ -314,7 +312,7 @@
             this.txtBoxCodigoArticuloProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCodigoArticuloProveedor.Depth = 0;
             this.txtBoxCodigoArticuloProveedor.Hint = "";
-            this.txtBoxCodigoArticuloProveedor.Location = new System.Drawing.Point(381, 9);
+            this.txtBoxCodigoArticuloProveedor.Location = new System.Drawing.Point(379, 9);
             this.txtBoxCodigoArticuloProveedor.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.txtBoxCodigoArticuloProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCodigoArticuloProveedor.Name = "txtBoxCodigoArticuloProveedor";
@@ -322,27 +320,10 @@
             this.txtBoxCodigoArticuloProveedor.SelectedText = "";
             this.txtBoxCodigoArticuloProveedor.SelectionLength = 0;
             this.txtBoxCodigoArticuloProveedor.SelectionStart = 0;
-            this.txtBoxCodigoArticuloProveedor.Size = new System.Drawing.Size(95, 23);
+            this.txtBoxCodigoArticuloProveedor.Size = new System.Drawing.Size(94, 23);
             this.txtBoxCodigoArticuloProveedor.TabIndex = 6;
             this.txtBoxCodigoArticuloProveedor.UseSystemPasswordChar = false;
             this.txtBoxCodigoArticuloProveedor.Leave += new System.EventHandler(this.txtBoxCodigoArticuloProveedor_Leave);
-            // 
-            // chckBoxDescuentosActivos
-            // 
-            this.chckBoxDescuentosActivos.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.chckBoxDescuentosActivos.AutoSize = true;
-            this.chckBoxDescuentosActivos.Depth = 0;
-            this.chckBoxDescuentosActivos.Font = new System.Drawing.Font("Roboto", 10F);
-            this.chckBoxDescuentosActivos.Location = new System.Drawing.Point(633, 42);
-            this.chckBoxDescuentosActivos.Margin = new System.Windows.Forms.Padding(0);
-            this.chckBoxDescuentosActivos.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.chckBoxDescuentosActivos.MouseState = MaterialSkin.MouseState.HOVER;
-            this.chckBoxDescuentosActivos.Name = "chckBoxDescuentosActivos";
-            this.chckBoxDescuentosActivos.Ripple = true;
-            this.chckBoxDescuentosActivos.Size = new System.Drawing.Size(109, 30);
-            this.chckBoxDescuentosActivos.TabIndex = 4;
-            this.chckBoxDescuentosActivos.Text = "Tiene Descuentos Vigentes";
-            this.chckBoxDescuentosActivos.UseVisualStyleBackColor = true;
             // 
             // grpBoxDescuento
             // 
@@ -365,7 +346,7 @@
             this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tblLayoutPanelParametrosDescuento.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tblLayoutPanelParametrosDescuento.Controls.Add(this.txtBoxPorcentajeDescuento, 1, 1);
             this.tblLayoutPanelParametrosDescuento.Controls.Add(this.lblFechaHastaDescuento, 3, 1);
             this.tblLayoutPanelParametrosDescuento.Controls.Add(this.dtpFechaHastaDescuento, 4, 1);
@@ -400,6 +381,7 @@
             this.txtBoxPorcentajeDescuento.Size = new System.Drawing.Size(113, 23);
             this.txtBoxPorcentajeDescuento.TabIndex = 5;
             this.txtBoxPorcentajeDescuento.UseSystemPasswordChar = false;
+            this.txtBoxPorcentajeDescuento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxPorcentajeDescuento_KeyPress);
             this.txtBoxPorcentajeDescuento.Leave += new System.EventHandler(this.txtBoxPorcentajeDescuento_Leave);
             // 
             // lblFechaHastaDescuento
@@ -525,7 +507,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 544);
             this.Controls.Add(this.pnlBase);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmABMDescuentos";
             this.Text = "frmABMDescuentos";
             this.pnlBase.ResumeLayout(false);
@@ -555,7 +537,6 @@
         private MaterialSkin.Controls.MaterialLabel lblCodigoArticuloProveedor;
         private MaterialSkin.Controls.MaterialLabel lblDescripcion;
         private MaterialSkin.Controls.MaterialLabel lblModelo;
-        private MaterialSkin.Controls.MaterialCheckBox chckBoxDescuentosActivos;
         private MaterialSkin.Controls.MaterialLabel lblProveedor;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxCodigoArticuloProveedor;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxCodigoOriginal;

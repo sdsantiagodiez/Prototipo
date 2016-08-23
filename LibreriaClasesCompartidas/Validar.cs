@@ -24,10 +24,10 @@ namespace LibreriaClasesCompartidas
                 case Constantes.Numericos.Descuento:
                     try
                     {
-                        resultado = int.TryParse(p_inputNumerico, out numeroEntero);
-                        if (numeroEntero >0 & numeroEntero<=100 )
+                        resultado = Decimal.TryParse(p_inputNumerico, out numeroDecimal);
+                        if (numeroDecimal > 0 & numeroDecimal <= 100)
                         {
-                                resultado = false;
+                                resultado = true;
                         }
                         else
                         {

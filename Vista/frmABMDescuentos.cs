@@ -90,7 +90,6 @@ namespace Vista
         private void inicializarControlesArticuloProveedorSeleccionado()
         {
             this.Text = "Gestión de Descuentos de Artículo Seleccionado";
-            this.chckBoxDescuentosActivos.Visible = false;
             
             this.inicializarBotonesArticuloProveedorSeleccionado();
             this.inicializarTextBoxArticuloProveedorSeleccionado();
@@ -191,7 +190,7 @@ namespace Vista
         }
         private void inicializarBotones()
         {
-            this.btnBuscar.Click += (s, e) => { this.buscar(s,e); };
+            this.btnBuscar.Click += (s, e) => { this.buscar(); };
         }
         private void inicializarCmbBoxProveedores()
         {
@@ -468,6 +467,11 @@ namespace Vista
             lcl_mod_articuloProveedor.descripcionArticuloProveedor = this.txtBoxModelo.Text;
             //FALTA chckboxTieneDescuento
 
+            if (this.cmbBoxProveedores.SelectedValue != null)
+            {
+                lcl_mod_articuloProveedor.codigoEntidad = (this.cmbBoxProveedores.SelectedValue as ModeloProveedor).codigo;
+            }
+
             return lcl_mod_articuloProveedor;
 
         }
@@ -578,23 +582,28 @@ namespace Vista
 
         #region Búsqueda
 
-        private void buscar(object sender, EventArgs e)
+        private void buscar()
         {
-            if(!string.IsNullOrWhiteSpace(txtBoxCodigoOriginal.Text.ToString())){
-                this.txtBoxCodigoOriginal_Leave(sender, e);
-            }
-            if (!string.IsNullOrWhiteSpace(txtBoxCodigoArticuloProveedor.Text.ToString()))
-            {
-                this.txtBoxCodigoArticuloProveedor_Leave(sender, e);
-            }
-            if (!string.IsNullOrWhiteSpace(txtBoxDescripcion.Text.ToString()))
-            {
-                this.txtBoxDescripcion_Leave(sender, e);
-            }
-            if(!string.IsNullOrWhiteSpace(txtBoxModelo.Text.ToString()))
-            {
-                this.txtBoxModelo_Leave(sender, e);
-            }
+            this.txtBoxCodigoOriginal_Leave(new object(), new EventArgs());
+            this.txtBoxCodigoArticuloProveedor_Leave(new object(), new EventArgs());
+            this.txtBoxDescripcion_Leave(new object(), new EventArgs());
+            this.txtBoxModelo_Leave(new object(), new EventArgs());
+
+            //if(!string.IsNullOrWhiteSpace(txtBoxCodigoOriginal.Text.ToString())){
+            //    this.txtBoxCodigoOriginal_Leave(new object(), new EventArgs());
+            //}
+            //if (!string.IsNullOrWhiteSpace(txtBoxCodigoArticuloProveedor.Text.ToString()))
+            //{
+            //    this.txtBoxCodigoArticuloProveedor_Leave(new object(), new EventArgs());
+            //}
+            //if (!string.IsNullOrWhiteSpace(txtBoxDescripcion.Text.ToString()))
+            //{
+            //    this.txtBoxDescripcion_Leave(new object(), new EventArgs());
+            //}
+            //if(!string.IsNullOrWhiteSpace(txtBoxModelo.Text.ToString()))
+            //{
+            //    this.txtBoxModelo_Leave(new object(), new EventArgs());
+            //}
             if(glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor)]
                 || glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)]
                 || glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)]
@@ -606,18 +615,33 @@ namespace Vista
                     this.buscarArticulosProveedores(lcl_mod_articuloProveedor);
                 }
             }
-            if (string.IsNullOrWhiteSpace(txtBoxCodigoOriginal.Text.ToString())
-                & string.IsNullOrWhiteSpace(txtBoxCodigoArticuloProveedor.Text.ToString())
-                & string.IsNullOrWhiteSpace(txtBoxDescripcion.Text.ToString())
-                & string.IsNullOrWhiteSpace(txtBoxModelo.Text.ToString()))
-            {
-                MessageBox.Show("Por favor ingrese al menos uno de los campos antes de realizar una búsqueda");
-            }
+            //if (string.IsNullOrWhiteSpace(txtBoxCodigoOriginal.Text.ToString())
+            //    & string.IsNullOrWhiteSpace(txtBoxCodigoArticuloProveedor.Text.ToString())
+            //    & string.IsNullOrWhiteSpace(txtBoxDescripcion.Text.ToString())
+            //    & string.IsNullOrWhiteSpace(txtBoxModelo.Text.ToString())
+            //    & this.cmbBoxProveedores.SelectedValue == null)
+            //{
+            //    MessageBox.Show("Por favor ingrese al menos uno de los campos antes de realizar una búsqueda");
+            //}
         }
 
         private void buscarArticulosProveedores(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
-            frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda(p_mod_articuloProveedor);
+            BackgroundWorker bw = new BackgroundWorker();
+            frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Realizando búsqueda.");
+            frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda();
+            bw.DoWork += (s, e) =>
+            {
+                lcl_frm_resultadoBusqueda.hacerBusqueda(p_mod_articuloProveedor);
+            };
+            bw.RunWorkerCompleted += (s, e) =>
+            {
+                lcl_frm_loading.DialogResult = System.Windows.Forms.DialogResult.OK;
+            };
+
+            bw.RunWorkerAsync();
+            lcl_frm_loading.ShowDialog(); 
+
             if (lcl_frm_resultadoBusqueda.dataGridViewResultadoBusqueda.Rows.Count < 1)
             {
                 MessageBox.Show("No se encontraron resultados con los parámetros ingresados.");
@@ -626,6 +650,7 @@ namespace Vista
             this.grpBoxResultadoBusqueda.Controls.Clear();
             this.dgvResultadoBusqueda = new DataGridView();
             this.dgvResultadoBusqueda = lcl_frm_resultadoBusqueda.dataGridViewResultadoBusqueda;
+            this.dgvResultadoBusqueda.DataSource = lcl_frm_resultadoBusqueda.dataGridViewResultadoBusqueda.DataSource;
             this.dgvResultadoBusqueda.MouseDown += this.dgvResultadoBusqueda_MouseDown;
             this.glb_lst_articulosProveedoresEncontrados = lcl_frm_resultadoBusqueda.glb_lst_objetos.Cast<ModeloArticuloProveedores>().ToList();
             this.grpBoxResultadoBusqueda.Controls.Add(this.dgvResultadoBusqueda);
@@ -925,6 +950,11 @@ namespace Vista
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoOriginal.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)] = respuesta;
             string lcl_mensaje = respuesta ? "OK" : "Código Orignal no válido";
+            if (String.IsNullOrWhiteSpace(this.txtBoxCodigoOriginal.Text))
+            {
+                lcl_mensaje = null;
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)] = true;
+            }
             this.setErrorProvider(txtBoxCodigoOriginal, respuesta, lcl_mensaje);
         }
 
@@ -933,6 +963,11 @@ namespace Vista
             bool respuesta = Validar.validarInputNoNumerico(txtBoxDescripcion.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)] = respuesta;
             string lcl_mensaje = respuesta ? "OK" : "Descripción no válida";
+            if (String.IsNullOrWhiteSpace(this.txtBoxDescripcion.Text))
+            {
+                lcl_mensaje = null;
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)] = true;
+            }
             this.setErrorProvider(txtBoxDescripcion, respuesta, lcl_mensaje);
         }
 
@@ -941,6 +976,11 @@ namespace Vista
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoArticuloProveedor.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor)] = respuesta;
             string lcl_mensaje = respuesta ? "OK" : "Código Artículo Proveedor no válido";
+            if (String.IsNullOrWhiteSpace(this.txtBoxCodigoArticuloProveedor.Text))
+            {
+                lcl_mensaje = null;
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor)] = true;
+            }
             this.setErrorProvider(txtBoxCodigoArticuloProveedor, respuesta, lcl_mensaje);
         }
 
@@ -949,12 +989,18 @@ namespace Vista
             bool respuesta = Validar.validarInputNoNumerico(txtBoxModelo.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)] = respuesta;
             string lcl_mensaje = respuesta ? "OK" : "Modelo no válido";
+            if (String.IsNullOrWhiteSpace(this.txtBoxModelo.Text))
+            {
+                lcl_mensaje = null;
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)] = true;
+            }
             this.setErrorProvider(txtBoxModelo, respuesta, lcl_mensaje);
         }
 
         private void txtBoxPorcentajeDescuento_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNumerico(txtBoxPorcentajeDescuento.Text.ToString(), Constantes.Numericos.Descuento);
+            bool respuesta = new ModeloDescuento().asignarPorcentaje(this.txtBoxPorcentajeDescuento.Text);
+                //= Validar.validarInputNumerico(txtBoxPorcentajeDescuento.Text.ToString(), Constantes.Numericos.Descuento);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Descuentos.Porcentaje)] = respuesta;
             string lcl_mensaje = respuesta ? "OK" : "Porcentaje no válido";
             this.setErrorProvider(txtBoxPorcentajeDescuento, respuesta, lcl_mensaje);
@@ -968,6 +1014,32 @@ namespace Vista
             this.setErrorProvider(txtBoxDescripcionDescuento, respuesta, lcl_mensaje);
         }
         #endregion
+
+        private void txtBoxPorcentajeDescuento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            this.valorNumericoTeclado(sender, e);
+            if (!e.Handled)
+            {
+                return;//quiere decir que se ingreso un número en el evento anterior
+            }
+            else
+            {
+                e.Handled = false;//Volvemos a setear en caso que no haya sido un número el keyPress
+            }
+            //Admitimos además de numéricos también puntos y comas
+            if (e.KeyChar == ',' || e.KeyChar == '.')
+            {
+                if (this.txtBoxPorcentajeDescuento.Text.Where(x => x == ',').Count() == 1)
+                {
+                    e.Handled = true;
+                }
+                e.KeyChar = ',';
+            }
+            else
+            {
+                e.Handled = true;
+            }            
+        }
         #endregion
     }
 }
