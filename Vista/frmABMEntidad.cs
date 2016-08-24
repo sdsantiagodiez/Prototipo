@@ -1006,30 +1006,66 @@ namespace Vista
         }
         private bool validarNombre()
         {
-            if (!ModeloPersonas.validarNombre(txtBoxNombre.Text))
+            if (string.Equals(tipoEntidadSeleccionada, LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor))
             {
-                this.setErrorProvider(this.txtBoxNombre, false, "Este campo es obligatorio. No puede permanecer vacío.");
-                return false;
+                return true;
             }
-            return true;
+            else if (string.Equals(tipoEntidadSeleccionada, LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente)
+                && !string.IsNullOrWhiteSpace(txtBoxRazonSocial.Text))
+            {
+                return true;
+            }
+            else 
+            {
+                if (!ModeloPersonas.validarNombre(txtBoxNombre.Text))
+                {
+                    this.setErrorProvider(this.txtBoxNombre, false, "Este campo es obligatorio. No puede permanecer vacío.");
+                    return false;
+                }
+                return true;
+            }
         }
         private bool validarApellido()
         {
-            if (!ModeloPersonas.validarApellido(txtBoxApellido.Text))
+            if (string.Equals(tipoEntidadSeleccionada, LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor))
             {
-                this.setErrorProvider(this.txtBoxApellido, false, "Este campo es obligatorio. No puede permanecer vacío.");
-                return false;
+                return true;
             }
-            return true;
+            else if (string.Equals(tipoEntidadSeleccionada, LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente)
+            && !string.IsNullOrWhiteSpace(txtBoxRazonSocial.Text))
+            {
+                return true;
+            }
+            else
+            {
+                if (!ModeloPersonas.validarApellido(txtBoxApellido.Text))
+                {
+                    this.setErrorProvider(this.txtBoxApellido, false, "Este campo es obligatorio. No puede permanecer vacío.");
+                    return false;
+                }
+                return true;
+            }
         }
         private bool validarDNI()
         {
-            if (!ModeloPersonas.validarDNI(txtBoxDNI.Text))
+            if (string.Equals(tipoEntidadSeleccionada, LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor))
             {
-                this.setErrorProvider(this.txtBoxDNI,false,"Este campo es obligatorio. No puede permanecer vacío o contener caracteres no numéricos.");
-                return false;
+                return true;
             }
-            return true;
+            else if (string.Equals(tipoEntidadSeleccionada, LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente)
+            && !string.IsNullOrWhiteSpace(txtBoxRazonSocial.Text))
+            {
+                return true;
+            }
+            else
+            {
+                if (!ModeloPersonas.validarDNI(txtBoxDNI.Text))
+                {
+                    this.setErrorProvider(this.txtBoxDNI, false, "Este campo es obligatorio. No puede permanecer vacío o contener caracteres no numéricos.");
+                    return false;
+                }
+                return true;
+            }
         }
         private bool validarEntidad(ModeloEntidad p_mod_entidad)
         {
@@ -1078,7 +1114,16 @@ namespace Vista
         }
         private bool validarCliente(ModeloPersonas p_mod_cliente)
         {
-            return true;
+            if( !string.IsNullOrWhiteSpace(txtBoxDNI.Text)
+                || !string.IsNullOrWhiteSpace(txtBoxNombre.Text)
+                || !string.IsNullOrWhiteSpace(txtBoxApellido.Text))
+            {
+                return true;   
+            }
+            else
+            {
+                return validarRazonSocial();
+            }
         }
         private bool validarUsuario(ModeloPersonas p_mod_usuario)
         {
@@ -1192,6 +1237,15 @@ namespace Vista
             if (radioButtonProveedor.Checked == true)
             {
                 this.tipoEntidadSeleccionada = LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor;
+                txtBoxDNI.Text = "";
+                txtBoxDNI.Enabled = false;
+                this.clearOneErrorProvider(txtBoxDNI);
+                txtBoxApellido.Text = "";
+                txtBoxApellido.Enabled = false;
+                this.clearOneErrorProvider(txtBoxApellido);
+                txtBoxNombre.Text = "";
+                txtBoxNombre.Enabled = false;
+                this.clearOneErrorProvider(txtBoxNombre);
             }
         }
         private void radioButtonContactoProveedor_CheckedChanged(object sender, EventArgs e)
@@ -1314,6 +1368,7 @@ namespace Vista
 
         private void txtBoxDNI_Leave(object sender, EventArgs e)
         {
+            //realizo validación
             bool respuesta = Validar.validarInputNoNumerico(txtBoxDNI.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = respuesta;
             string lcl_mensaje = respuesta ? "OK" : "DNI no válido";
@@ -1322,6 +1377,7 @@ namespace Vista
 
         private void txtBoxNombre_Leave(object sender, EventArgs e)
         {
+            //realizo validación
             bool respuesta = Validar.validarInputNoNumerico(txtBoxNombre.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Nombre);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)] = respuesta;
             string lcl_mensaje = respuesta ? "OK" : "Nombre no válido";
@@ -1330,6 +1386,7 @@ namespace Vista
 
         private void txtBoxApellido_Leave(object sender, EventArgs e)
         {
+            //realizo validación
             bool respuesta = Validar.validarInputNoNumerico(txtBoxApellido.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Apellido);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)] = respuesta;
             string lcl_mensaje = respuesta ? "OK" : "Apellido no válido";
@@ -1340,6 +1397,7 @@ namespace Vista
         {
             if (!string.IsNullOrEmpty(txtBoxRazonSocial.Text))
             {
+                //realizo validación
                 bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
                 glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = respuesta;
                 string lcl_mensaje = respuesta ? "OK" : "Razon Social no válida";
@@ -1363,7 +1421,51 @@ namespace Vista
             string lcl_mensaje = respuesta ? "OK" : "Numero de Teléfono no válido";
             this.setErrorProvider(this.txtBoxTelefono, respuesta, lcl_mensaje);
         }
-        
+
+        private void txtBoxRazonSocial_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //si es un cliente borro dni,nombre y apellido
+            if (string.Equals(tipoEntidadSeleccionada, LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente))
+            {
+                txtBoxDNI.Text = "";
+                this.clearOneErrorProvider(txtBoxDNI);
+                txtBoxNombre.Text = "";
+                this.clearOneErrorProvider(txtBoxNombre);
+                txtBoxApellido.Text = "";
+                this.clearOneErrorProvider(txtBoxApellido);
+            }
+        }
+
+        private void txtBoxDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //si es un cliente borro razón social
+            if (string.Equals(tipoEntidadSeleccionada, LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente))
+            {
+                txtBoxRazonSocial.Text = "";
+                this.clearOneErrorProvider(txtBoxRazonSocial);
+            }
+        }
+
+        private void txtBoxNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //si es un cliente borro razón social
+            if (string.Equals(tipoEntidadSeleccionada, LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente))
+            {
+                txtBoxRazonSocial.Text = "";
+                this.clearOneErrorProvider(txtBoxRazonSocial);
+            }
+        }
+
+        private void txtBoxApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //si es un cliente borro razón social
+            if (string.Equals(tipoEntidadSeleccionada, LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente))
+            {
+                txtBoxRazonSocial.Text = "";
+                this.clearOneErrorProvider(txtBoxRazonSocial);
+            }
+        }
+
         private void valorCUIT(object sender, KeyPressEventArgs e)
         {
             // solo 0-9 y borrar y - (char 45)
@@ -1418,7 +1520,5 @@ namespace Vista
 
         #endregion           
 
-
-        
     }
 }

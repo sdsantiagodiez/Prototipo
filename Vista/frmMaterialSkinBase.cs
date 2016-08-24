@@ -135,6 +135,13 @@ namespace Vista
             this.getErrorProvider(true).Clear();
             this.getErrorProvider(false).Clear();
         }
+        
+        protected void clearOneErrorProvider(Control p_control)
+        {
+            this.getErrorProvider(true).SetError(p_control,null);
+            this.getErrorProvider(false).SetError(p_control, null);
+        }
+
         protected void setErrorProvider(Control p_control, bool p_exito, string p_mensaje)
         {
             this.getErrorProvider(p_exito).SetError(p_control, p_mensaje);

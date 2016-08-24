@@ -339,6 +339,7 @@
             this.txtBoxApellido.Size = new System.Drawing.Size(142, 23);
             this.txtBoxApellido.TabIndex = 17;
             this.txtBoxApellido.UseSystemPasswordChar = false;
+            this.txtBoxApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxApellido_KeyPress);
             this.txtBoxApellido.Leave += new System.EventHandler(this.txtBoxApellido_Leave);
             // 
             // lblApellido
@@ -390,6 +391,7 @@
             this.txtBoxNombre.Size = new System.Drawing.Size(142, 23);
             this.txtBoxNombre.TabIndex = 18;
             this.txtBoxNombre.UseSystemPasswordChar = false;
+            this.txtBoxNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxNombre_KeyPress);
             this.txtBoxNombre.Leave += new System.EventHandler(this.txtBoxNombre_Leave);
             // 
             // lblDNI
@@ -419,6 +421,7 @@
             this.txtBoxRazonSocial.Size = new System.Drawing.Size(133, 23);
             this.txtBoxRazonSocial.TabIndex = 16;
             this.txtBoxRazonSocial.UseSystemPasswordChar = false;
+            this.txtBoxRazonSocial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxRazonSocial_KeyPress);
             this.txtBoxRazonSocial.Leave += new System.EventHandler(this.txtBoxRazonSocial_Leave);
             // 
             // lblCodigo
@@ -436,12 +439,12 @@
             // 
             this.lblCUIT.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCUIT.AutoSize = true;
-            this.lblCUIT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCUIT.Location = new System.Drawing.Point(250, 8);
+            this.lblCUIT.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCUIT.Location = new System.Drawing.Point(235, 10);
             this.lblCUIT.Name = "lblCUIT";
-            this.lblCUIT.Size = new System.Drawing.Size(43, 17);
+            this.lblCUIT.Size = new System.Drawing.Size(58, 13);
             this.lblCUIT.TabIndex = 4;
-            this.lblCUIT.Text = "CUIT:";
+            this.lblCUIT.Text = "CUIT/CUIL:";
             // 
             // txtBoxDNI
             // 
@@ -459,6 +462,7 @@
             this.txtBoxDNI.Size = new System.Drawing.Size(133, 23);
             this.txtBoxDNI.TabIndex = 15;
             this.txtBoxDNI.UseSystemPasswordChar = false;
+            this.txtBoxDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxDNI_KeyPress);
             this.txtBoxDNI.Leave += new System.EventHandler(this.txtBoxDNI_Leave);
             // 
             // txtBoxCodigoEntidad
