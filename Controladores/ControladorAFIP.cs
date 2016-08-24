@@ -210,7 +210,7 @@ namespace Controladores
 
             p_facturaElectronica.F1DetalleDocTipo = p_mod_pedido.documentoComprador.tipo.codigo; 
             p_facturaElectronica.F1DetalleDocNro = p_mod_pedido.documentoComprador.numero;
-            p_facturaElectronica.F1DetalleCbteFch = p_mod_pedido.fecha.ToString("yyyyMMdd"); //DateTime.Today.ToString("yyyyMMdd");
+            p_facturaElectronica.F1DetalleCbteFch = DateTime.Today.ToString("yyyyMMdd"); //p_mod_pedido.fecha.ToString("yyyyMMdd"); 
             p_facturaElectronica.F1DetalleImpTotal = (double)Math.Round(p_mod_pedido.montoTotal,2);
             p_facturaElectronica.F1DetalleImpTotalConc = 0;
             p_facturaElectronica.F1DetalleImpNeto = (double)Math.Round(p_mod_pedido.montoSubTotal,2);
