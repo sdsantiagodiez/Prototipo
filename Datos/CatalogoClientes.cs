@@ -16,6 +16,7 @@ namespace Datos
         {
             ModeloCliente lcl_mod_cliente =  new ModeloCliente(base.leerDatosPersonas(p_drClientes));
             lcl_mod_cliente.razonSocial = (p_drClientes["razon_social"] != DBNull.Value) ? (string)p_drClientes["razon_social"] : null;
+            lcl_mod_cliente.situacionIVA = (p_drClientes["codigo_tipo_responsable"] != DBNull.Value) ? (int)p_drClientes["codigo_tipo_responsable"] : 0;
             return lcl_mod_cliente;
         }
 
@@ -83,7 +84,7 @@ namespace Datos
             comando.CommandText =
                 "SELECT [personas].codigo_entidad,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
                 "[personas].nombre,[personas].apellido,[personas].tipo_persona, [entidades].activo, [personas].razon_social, " +
-                "   [entidades].situacion_iva " +
+                "   [entidades].situacion_iva, [personas].codigo_tipo_responsable " +
                     "FROM [personas] " +
                     "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad " +
                     "WHERE [personas].tipo_persona = '" + Constantes.TiposEntidad.TiposPersona.Cliente + "' AND " + querySQL;

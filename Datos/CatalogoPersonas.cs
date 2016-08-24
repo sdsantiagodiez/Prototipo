@@ -201,8 +201,8 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "INSERT INTO [Personas]([codigo_entidad],[dni],[nombre],[apellido],[tipo_persona],[razon_social]) " +
-                "VALUES (@codigo_entidad, @dni, @nombre, @apellido, @tipo_persona,@razon_social)";
+                "INSERT INTO [Personas]([codigo_entidad],[dni],[nombre],[apellido],[tipo_persona],[razon_social],[codigo_tipo_responsable]) " +
+                "VALUES (@codigo_entidad, @dni, @nombre, @apellido, @tipo_persona,@razon_social, @codigo_tipo_responsable)";
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.codigo, "@codigo_entidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.dni, "@dni"));
@@ -210,13 +210,16 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.apellido, "@apellido"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.tipoPersona, "@tipo_persona"));
 
+
             if (p_mod_persona.GetType() == typeof(ModeloCliente))
             {
                 comando.Parameters.Add(this.instanciarParametro((p_mod_persona as ModeloCliente).razonSocial, "@razon_social"));
+                comando.Parameters.Add(this.instanciarParametro((p_mod_persona as ModeloCliente).codigoTipoResponsable, "@codigo_tipo_responsable"));
             }
             else
             {
                 comando.Parameters.Add(this.instanciarParametro((string)null, "@razon_social"));
+                comando.Parameters.Add(this.instanciarParametro((string)null, "@codigo_tipo_responsable"));
             }
 
             comando.Connection.Open();
@@ -249,22 +252,24 @@ namespace Datos
             SqlCommand comando = new SqlCommand();
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
-            comando.CommandText = 
-                "UPDATE [personas] SET [dni]=@dni,[nombre]=@nombre, [apellido]=@apellido, [razon_social]=@razon_social "+
+            comando.CommandText =
+                "UPDATE [personas] SET [dni]=@dni,[nombre]=@nombre, [apellido]=@apellido, [razon_social]=@razon_social, [codigo_tipo_responsable]=@codigo_tipo_responsable " +
                 "WHERE [Personas].codigo_entidad=@codigo_entidad";
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.codigo, "@codigo_entidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.dni, "@dni"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.nombre, "@nombre"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.apellido, "@apellido"));
-
+            
             if (p_mod_persona.GetType() == typeof(ModeloCliente))
             {
                 comando.Parameters.Add(this.instanciarParametro((p_mod_persona as ModeloCliente).razonSocial, "@razon_social"));
+                comando.Parameters.Add(this.instanciarParametro((p_mod_persona as ModeloCliente).codigoTipoResponsable, "@codigo_tipo_responsable"));
             }
             else
             {
                 comando.Parameters.Add(this.instanciarParametro((string)null, "@razon_social"));
+                comando.Parameters.Add(this.instanciarParametro((string)null, "@codigo_tipo_responsable"));
             }
 
 

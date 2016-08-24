@@ -23,6 +23,7 @@ namespace Datos
             ModeloProveedor lcl_mod_proveedor = new ModeloProveedor(this.leerDatosEntidades(p_drProveedores));
 
             lcl_mod_proveedor.razonSocial = (p_drProveedores["razon_social"] != DBNull.Value) ? (string)p_drProveedores["razon_social"] : null;
+            lcl_mod_proveedor.codigoTipoResponsable = (p_drProveedores["codigo_tipo_responsable"] != DBNull.Value) ? (int)p_drProveedores["codigo_tipo_responsable"] : 0;
             
             return lcl_mod_proveedor;
         }
@@ -91,7 +92,7 @@ namespace Datos
             
             comando.CommandText =
                 "SELECT [proveedores].codigo_entidad,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[proveedores].razon_social, "+
-                "   [entidades].activo, [entidades].situacion_iva " +
+                "   [entidades].activo, [entidades].situacion_iva, [proveedores].codigo_tipo_responsable " +
                 "   FROM [proveedores] " +
                 "   INNER JOIN [entidades] on [entidades].codigo = [proveedores].codigo_entidad " +
                 "   WHERE " + querySQL;
@@ -174,11 +175,12 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "INSERT INTO [Proveedores] ([codigo_entidad], [razon_social]) "+
-                "VALUES (@codigo_entidad, @razon_social)";
+                "INSERT INTO [Proveedores] ([codigo_entidad], [razon_social],[codigo_tipo_responsable]) " +
+                "VALUES (@codigo_entidad, @razon_social, @codigo_tipo_responsable)";
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.codigo, "@codigo_entidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.razonSocial, "@razon_social"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.codigoTipoResponsable, "@codigo_tipo_responsable"));
                 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
@@ -226,11 +228,12 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "UPDATE [Proveedores] SET [razon_social]=@razon_social " +
+                "UPDATE [Proveedores] SET [razon_social]=@razon_social, [codigo_tipo_responsable]=@codigo_tipo_responsable " +
                 "WHERE [Proveedores].codigo_entidad=@codigo_entidad";
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.codigo, "@codigo_entidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.razonSocial, "@razon_social"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_proveedor.codigoTipoResponsable, "@codigo_tipo_responsable"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
