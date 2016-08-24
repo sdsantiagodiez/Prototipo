@@ -13,11 +13,13 @@ namespace Modelos
        public ModeloProveedor()
         {
             this.tipoEntidad = LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor;
+            codigoTipoResponsable = 1;
         }
 
        public ModeloProveedor(ModeloEntidad p_mod_entidad) : base(p_mod_entidad)
         {
             this.tipoEntidad = LibreriaClasesCompartidas.Constantes.TiposEntidad.Proveedor;
+            codigoTipoResponsable = 1;
         }
 
        public ModeloProveedor(ModeloProveedor p_mod_proveedor) : this(p_mod_proveedor as ModeloEntidad)
@@ -27,6 +29,12 @@ namespace Modelos
        #endregion
 
        #region Atributos
+       int _codigoTipoResponsable;
+       public int codigoTipoResponsable
+       {
+           get { return _codigoTipoResponsable; }
+           set { _codigoTipoResponsable = value; }
+       }
         string _razonSocial;
         public string razonSocial
         {

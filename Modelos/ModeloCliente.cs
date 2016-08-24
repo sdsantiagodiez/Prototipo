@@ -12,7 +12,7 @@ namespace Modelos
     {
         #region Atributos
         int _codigoTipoResponsable;
-        int codigoTipoResponsable
+        public int codigoTipoResponsable
         {
             get { return _codigoTipoResponsable; }
             set { _codigoTipoResponsable = value; }

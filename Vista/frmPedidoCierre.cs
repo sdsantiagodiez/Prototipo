@@ -290,6 +290,14 @@ namespace Vista
             //Binding de telefonos
             this.cmbBoxTipoTelefono.DataSource = dataSource;
 
+            this.cmbBoxTipoResponsable.DataSource = Enum.GetValues(typeof(Constantes.SituacionIVA));
+            this.cmbBoxTipoResponsable.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cmbBoxTipoResponsable.FormattingEnabled = true;
+            this.cmbBoxTipoResponsable.Format += delegate(object sender, ListControlConvertEventArgs e)
+            {
+                e.Value = Constantes.GetDescription<Constantes.SituacionIVA>((Constantes.SituacionIVA)e.Value);
+            };
+            this.cmbBoxTipoResponsable.SelectedIndex = 1;
 
             this.cmbBoxFormaPago.DataSource = Enum.GetValues(typeof(Constantes.FormaDePago));
             this.cmbBoxFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -317,7 +325,7 @@ namespace Vista
                 this.cmbBoxTelefonos.DropDownStyle = 
                 this.cmbBoxMails.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            this.cmbBoxTipoDocumento.SelectedValueChanged += this.txtBoxNumeroDocumento_Leave;
+            //this.cmbBoxTipoDocumento.SelectedValueChanged += this.txtBoxNumeroDocumento_Leave;
         }
         private void actualizarFormasDePago()
         {
@@ -379,6 +387,7 @@ namespace Vista
             this.txtBoxDescuento1Porcentaje.Enabled =
             this.txtBoxDescuento2Monto.Enabled =
             this.txtBoxDescuento2Porcentaje.Enabled =
+            this.cmbBoxTipoResponsable.Enabled =
             false;
 
             this.cmbBoxPedidosProveedores.Visible = true;
@@ -603,6 +612,8 @@ namespace Vista
             this.chckBoxClienteGenerico.Checked = (controlador as ControladorPedidoCliente).esClienteGenerico();
             this.txtBoxApellido.Text = p_mod_cliente.apellido;
             this.txtBoxNombre.Text = p_mod_cliente.nombre;
+
+            this.cmbBoxTipoResponsable.SelectedItem = (Constantes.SituacionIVA)p_mod_cliente.codigoTipoResponsable;
             this.txtBoxRazonSocial.Text = p_mod_cliente.razonSocial;
         }
         private void cargarProveedorEnControles(ModeloProveedor p_mod_proveedor)
@@ -612,7 +623,9 @@ namespace Vista
             {
                 lcl_lst_contactosProveedor = ControladorBusqueda.buscar(new ModeloContactoProveedor() { proveedor = p_mod_proveedor }, Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.CodigoEntidad_Proveedor);
             }
-            
+
+            this.cmbBoxTipoResponsable.SelectedItem = (Constantes.SituacionIVA)p_mod_proveedor.codigoTipoResponsable;
+
             this.txtBoxRazonSocial.Text = p_mod_proveedor.razonSocial;
             
             this.cargarContactosProveedorEnControles(lcl_lst_contactosProveedor);
@@ -791,6 +804,7 @@ namespace Vista
                 (lcl_mod_entidad as ModeloCliente).nombre = this.txtBoxNombre.Text;
                 (lcl_mod_entidad as ModeloCliente).apellido = this.txtBoxApellido.Text;
                 (lcl_mod_entidad as ModeloCliente).razonSocial = this.txtBoxRazonSocial.Text;
+                (lcl_mod_entidad as ModeloCliente).codigoTipoResponsable = (int)this.cmbBoxTipoResponsable.SelectedValue;
             }
             return lcl_mod_entidad;
         }
@@ -841,12 +855,12 @@ namespace Vista
             if (modoFormulario == ModoFormularioDevolucionCliente)
             {
                 tipoComprobante = ControladorPedidoCliente.getCodigoComprobante((Constantes.TipoComprobanteDevolucion)this.cmbBoxTipoComprobante.SelectedValue,
-                                                                                                Convert.ToInt16(chckBoxResponsableInscripto.Checked));
+                                                                                                (int)this.cmbBoxTipoResponsable.SelectedValue);
             }
             else if (modoFormulario == ModoFormularioPedidoCliente)
             {
                 tipoComprobante = ControladorPedidoCliente.getCodigoComprobante((Constantes.TipoComprobanteVenta)this.cmbBoxTipoComprobante.SelectedValue,
-                                                                                                Convert.ToInt16(chckBoxResponsableInscripto.Checked));
+                                                                                                (int)this.cmbBoxTipoResponsable.SelectedValue);
               //  tipoComprobante = ControladorPedidoCliente.getCodigoComprobante((Constantes.TipoComprobanteVenta)this.cmbBoxTipoComprobante.SelectedValue,//Situacion de IVA una vez cargados en la BD
               //                                             (controlador.pedidoActual.entidad.situacionIVA== null)?controlador.pedidoActual.entidad.situacionIVA: Convert.ToInt16(chckBoxResponsableInscripto.Checked));
             }
@@ -1466,14 +1480,7 @@ namespace Vista
             }
         }
 
-        private void chckBoxResponsableInscripto_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.glb_array_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)])
-            {
-                return;
-            }
-            this.setCuitOnly((sender as CheckBox).Checked);
-        }
+      
         #endregion
 
         private void setCuitOnly(bool p_soloPermitirCuit)
@@ -1713,7 +1720,7 @@ namespace Vista
                 mensaje = "OK";
                 this.setErrorProvider(this.txtBoxRazonSocial,true, null);//Quitamos el ep en razon social si se estaba mostrando
 
-                if (!this.chckBoxResponsableInscripto.Checked)
+                if ((int)this.cmbBoxTipoResponsable.SelectedValue != 1)
                 {
                     this.setCuitOnly(false);
                 }
@@ -1736,7 +1743,7 @@ namespace Vista
                 mensaje = "OK";
                 this.setErrorProvider(this.txtBoxRazonSocial, true, null);//Quitamos el ep en razon social si se estaba mostrando
                 
-                if (!this.chckBoxResponsableInscripto.Checked)
+                if ((int)this.cmbBoxTipoResponsable.SelectedValue != 1)
                 {
                     this.setCuitOnly(false);
                 }
@@ -1870,6 +1877,30 @@ namespace Vista
         private void cmbBoxPedidosProveedores_Click(object sender, EventArgs e)
         {
             indiceAnteriorCmbBoxPedidosProveedores = this.cmbBoxPedidosProveedores.SelectedIndex;
+        }
+
+        private void cmbBoxTipoResponsable_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (this.glb_array_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)])
+            {
+                return;
+            }
+            this.setCuitOnly((int)this.cmbBoxTipoResponsable.SelectedValue == 1);
+        }
+
+        private void cmbBoxTipoDocumento_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.txtBoxNumeroDocumento_Leave(new object(), new EventArgs());
+            }
+            catch (NullReferenceException ex)//hay algo que no esta inicializado en el método leave al momento de inicializar el método SelectedValueChanged. Despues no se usa esto
+            { 
+            }
+            if (String.IsNullOrWhiteSpace(this.txtBoxNumeroDocumento.Text))
+            {
+                this.setErrorProvider(this.txtBoxNumeroDocumento, false, null);//Quitamos errorProvider cuando cambiamos de tipo y esta vacío
+            }
         }
     }
 }

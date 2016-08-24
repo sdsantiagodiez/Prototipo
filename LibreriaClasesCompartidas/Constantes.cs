@@ -246,8 +246,7 @@ namespace LibreriaClasesCompartidas
             [System.ComponentModel.Description("Monotributo")]
             Monotributo = 6,
             [System.ComponentModel.Description("Consumidor Final")]
-            Consumidor_Final = 5,
-
+            Consumidor_Final = 5
         }
         public static string GetDescription<T>(this T enumerationValue)
              where T : struct
