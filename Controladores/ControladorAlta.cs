@@ -363,20 +363,28 @@ namespace Controladores
 
                     lcl_mod_articuloProveedores = ControladorBusqueda.getOne(lcl_mod_articuloProveedores, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.One);
                     //Si no se encuentra artículo tira excepción de índice
-                    lcl_mod_articuloProveedores.stockActual = lcl_mod_articuloProveedores.stockActual - lp.cantidadArticulos;
-                    //Excepcion si stock negativo y no esta permitido
-                    if (lcl_mod_articuloProveedores.stockActual < 0 && !lp.permitirStockNegativo)
+                    if (p_mod_pedido.tipoComprobante != 8 && p_mod_pedido.tipoComprobante != 3)//Se agrega para que cuando sea devolucion no baje Stock.
                     {
-                        errorActual = "La cantidad solicitada es mayor al stock actual para el artículo " + lcl_mod_articuloProveedores.descripcionArticuloProveedor+", "+
-                                        lcl_mod_articuloProveedores.codigoArticuloProveedor;
-                        return false;
-                    }
-                    //Si hay error al modificar la base de datos agregando linea o modificando stock
-                    if (!lcl_con_modificacion.modificar(lcl_mod_articuloProveedores))
-                    {
-                        errorActual = "Error al modificar stock en la base de datos de artículo " + lcl_mod_articuloProveedores.descripcionArticuloProveedor + ", " +
-                                        lcl_mod_articuloProveedores.codigoArticuloProveedor;
-                        return false;
+                            if (p_mod_pedido.tipoComprobante != 2001)
+                            { lcl_mod_articuloProveedores.stockActual = lcl_mod_articuloProveedores.stockActual - lp.cantidadArticulos;
+                                //Excepcion si stock negativo y no esta permitido    
+                                if (lcl_mod_articuloProveedores.stockActual < 0 && !lp.permitirStockNegativo)
+                                    {
+                                        errorActual = "La cantidad solicitada es mayor al stock actual para el artículo " + lcl_mod_articuloProveedores.descripcionArticuloProveedor + ", " +
+                                                        lcl_mod_articuloProveedores.codigoArticuloProveedor;
+                                        return false;
+                                    }
+                            }
+                            else
+                            { lcl_mod_articuloProveedores.stockActual = lcl_mod_articuloProveedores.stockActual + lp.cantidadArticulos; }
+
+                        //Si hay error al modificar la base de datos agregando linea o modificando stock
+                        if (!lcl_con_modificacion.modificar(lcl_mod_articuloProveedores))
+                        {
+                            errorActual = "Error al modificar stock en la base de datos de artículo " + lcl_mod_articuloProveedores.descripcionArticuloProveedor + ", " +
+                                            lcl_mod_articuloProveedores.codigoArticuloProveedor;
+                            return false;
+                        }
                     }
                 }
             }
