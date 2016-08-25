@@ -439,12 +439,12 @@
             // 
             this.lblCUIT.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCUIT.AutoSize = true;
-            this.lblCUIT.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCUIT.Location = new System.Drawing.Point(235, 10);
+            this.lblCUIT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblCUIT.Location = new System.Drawing.Point(250, 8);
             this.lblCUIT.Name = "lblCUIT";
-            this.lblCUIT.Size = new System.Drawing.Size(58, 13);
+            this.lblCUIT.Size = new System.Drawing.Size(43, 17);
             this.lblCUIT.TabIndex = 4;
-            this.lblCUIT.Text = "CUIT/CUIL:";
+            this.lblCUIT.Text = "CUIT:";
             // 
             // txtBoxDNI
             // 

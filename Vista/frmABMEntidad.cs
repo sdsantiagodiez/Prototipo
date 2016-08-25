@@ -699,18 +699,16 @@ namespace Vista
         /// <returns></returns>
         private ModeloEntidad getDatosAdicionales(ModeloProveedor p_mod_proveedor)
         {
-            ModeloContactoProveedor lcl_mod_contactoProveedor = new ModeloContactoProveedor();
-            lcl_mod_contactoProveedor.proveedor = p_mod_proveedor;
-            frmResultadoBusqueda lcl_frm = new frmResultadoBusqueda(lcl_mod_contactoProveedor, "Contactos de Proveedor de proveedor: " + p_mod_proveedor.razonSocial);
-            lcl_frm.mostrarBusqueda();
-            if (lcl_frm.modeloSeleccionado != null)
-            {
-                QuitarTextoEnControles(this);
-                this.tipoEntidadSeleccionada = LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor;
-                this.cargarEntidadEnControles(lcl_frm.modeloSeleccionado as ModeloContactoProveedor);
-                return lcl_frm.modeloSeleccionado as ModeloContactoProveedor;
-            }
-            return null;
+            Form lcl_frm_datosAdicionales = new frmABMEntidad_DatosAdicionalesProveedor(p_mod_proveedor);
+            lcl_frm_datosAdicionales.ShowDialog();
+            return p_mod_proveedor;
+        }
+
+        private ModeloEntidad getDatosAdicionales(ModeloCliente p_mod_cliente)
+        {
+            Form lcl_frm_datosAdicionales = new frmABMEntidad_DatosAdicionalesCliente(p_mod_cliente);
+            lcl_frm_datosAdicionales.ShowDialog();
+            return (lcl_frm_datosAdicionales as frmABMEntidad_DatosAdicionalesCliente).ClienteActual ;
         }
         #endregion
 
@@ -1229,10 +1227,11 @@ namespace Vista
             if (radioButtonUsuario.Checked == true)
             {
                 tipoEntidadSeleccionada = LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario;
+                this.lblCUIT.Text = "CUIL";
             }
             else
             {
-                
+                this.lblCUIT.Text = "CUIT";
             }
 
         }
@@ -1285,8 +1284,9 @@ namespace Vista
             }
             else 
             {
-                MessageBox.Show("No hay datos adicionales para mostrar", "Datos Adicionales", MessageBoxButtons.OK);
+                lcl_mod_entidad = this.getDatosAdicionales(glb_mod_entidadActual as ModeloCliente);
             }
+
             if (lcl_mod_entidad != null)
             {
                 glb_mod_entidadActual = lcl_mod_entidad;

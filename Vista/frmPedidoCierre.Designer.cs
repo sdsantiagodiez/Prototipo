@@ -43,13 +43,13 @@
             this.tblLayoutPanelEntidadDatos = new System.Windows.Forms.TableLayoutPanel();
             this.cmbBoxContactoProveedor = new System.Windows.Forms.ComboBox();
             this.lblContactoProveedor = new System.Windows.Forms.Label();
-            this.txtBoxNombre = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.lblNombre = new System.Windows.Forms.Label();
-            this.cmbBoxTipoDocumento = new System.Windows.Forms.ComboBox();
-            this.txtBoxNumeroDocumento = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.lblTipoResponsable = new System.Windows.Forms.Label();
             this.cmbBoxTipoResponsable = new System.Windows.Forms.ComboBox();
+            this.lblTipoResponsable = new System.Windows.Forms.Label();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.txtBoxNombre = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.cmbBoxTipoDocumento = new System.Windows.Forms.ComboBox();
             this.lblApellido = new System.Windows.Forms.Label();
+            this.txtBoxNumeroDocumento = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBoxApellido = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.tblLayoutPanelPedido = new System.Windows.Forms.TableLayoutPanel();
             this.lblCAE = new System.Windows.Forms.Label();
@@ -377,6 +377,38 @@
             this.lblContactoProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblContactoProveedor.Visible = false;
             // 
+            // cmbBoxTipoResponsable
+            // 
+            this.cmbBoxTipoResponsable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbBoxTipoResponsable.FormattingEnabled = true;
+            this.cmbBoxTipoResponsable.Location = new System.Drawing.Point(78, 4);
+            this.cmbBoxTipoResponsable.Name = "cmbBoxTipoResponsable";
+            this.cmbBoxTipoResponsable.Size = new System.Drawing.Size(153, 21);
+            this.cmbBoxTipoResponsable.TabIndex = 16;
+            this.cmbBoxTipoResponsable.SelectedValueChanged += new System.EventHandler(this.cmbBoxTipoResponsable_SelectedValueChanged);
+            // 
+            // lblTipoResponsable
+            // 
+            this.lblTipoResponsable.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblTipoResponsable.AutoSize = true;
+            this.lblTipoResponsable.Location = new System.Drawing.Point(3, 0);
+            this.lblTipoResponsable.Name = "lblTipoResponsable";
+            this.lblTipoResponsable.Size = new System.Drawing.Size(69, 29);
+            this.lblTipoResponsable.TabIndex = 15;
+            this.lblTipoResponsable.Text = "Tipo Responsable:";
+            // 
+            // lblNombre
+            // 
+            this.lblNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.lblNombre.Location = new System.Drawing.Point(3, 95);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(69, 13);
+            this.lblNombre.TabIndex = 17;
+            this.lblNombre.Text = "Nombre:";
+            this.lblNombre.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // txtBoxNombre
             // 
             this.txtBoxNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -395,18 +427,6 @@
             this.txtBoxNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxNombre_KeyPress);
             this.txtBoxNombre.Leave += new System.EventHandler(this.txtBoxNombre_Leave);
             // 
-            // lblNombre
-            // 
-            this.lblNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblNombre.Location = new System.Drawing.Point(3, 95);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(69, 13);
-            this.lblNombre.TabIndex = 17;
-            this.lblNombre.Text = "Nombre:";
-            this.lblNombre.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // cmbBoxTipoDocumento
             // 
             this.cmbBoxTipoDocumento.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -416,6 +436,18 @@
             this.cmbBoxTipoDocumento.Size = new System.Drawing.Size(52, 21);
             this.cmbBoxTipoDocumento.TabIndex = 23;
             this.cmbBoxTipoDocumento.SelectedValueChanged += new System.EventHandler(this.cmbBoxTipoDocumento_SelectedValueChanged);
+            // 
+            // lblApellido
+            // 
+            this.lblApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblApellido.AutoSize = true;
+            this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.lblApellido.Location = new System.Drawing.Point(3, 66);
+            this.lblApellido.Name = "lblApellido";
+            this.lblApellido.Size = new System.Drawing.Size(69, 13);
+            this.lblApellido.TabIndex = 19;
+            this.lblApellido.Text = "Apellido:";
+            this.lblApellido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtBoxNumeroDocumento
             // 
@@ -434,38 +466,6 @@
             this.txtBoxNumeroDocumento.UseSystemPasswordChar = false;
             this.txtBoxNumeroDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxNumeroDocumento_KeyPress);
             this.txtBoxNumeroDocumento.Leave += new System.EventHandler(this.txtBoxNumeroDocumento_Leave);
-            // 
-            // lblTipoResponsable
-            // 
-            this.lblTipoResponsable.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblTipoResponsable.AutoSize = true;
-            this.lblTipoResponsable.Location = new System.Drawing.Point(3, 0);
-            this.lblTipoResponsable.Name = "lblTipoResponsable";
-            this.lblTipoResponsable.Size = new System.Drawing.Size(69, 29);
-            this.lblTipoResponsable.TabIndex = 15;
-            this.lblTipoResponsable.Text = "Tipo Responsable:";
-            // 
-            // cmbBoxTipoResponsable
-            // 
-            this.cmbBoxTipoResponsable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbBoxTipoResponsable.FormattingEnabled = true;
-            this.cmbBoxTipoResponsable.Location = new System.Drawing.Point(78, 4);
-            this.cmbBoxTipoResponsable.Name = "cmbBoxTipoResponsable";
-            this.cmbBoxTipoResponsable.Size = new System.Drawing.Size(153, 21);
-            this.cmbBoxTipoResponsable.TabIndex = 16;
-            this.cmbBoxTipoResponsable.SelectedValueChanged += new System.EventHandler(this.cmbBoxTipoResponsable_SelectedValueChanged);
-            // 
-            // lblApellido
-            // 
-            this.lblApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblApellido.AutoSize = true;
-            this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblApellido.Location = new System.Drawing.Point(3, 66);
-            this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(69, 13);
-            this.lblApellido.TabIndex = 19;
-            this.lblApellido.Text = "Apellido:";
-            this.lblApellido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtBoxApellido
             // 
@@ -723,7 +723,7 @@
             this.tblLayoutPanelMail.ColumnCount = 3;
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0578F));
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.9422F));
-            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
+            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tblLayoutPanelMail.Controls.Add(this.lblMail, 0, 0);
             this.tblLayoutPanelMail.Controls.Add(this.txtBoxMail, 1, 0);
             this.tblLayoutPanelMail.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -740,7 +740,7 @@
             this.lblMail.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblMail.AutoSize = true;
             this.lblMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblMail.Location = new System.Drawing.Point(29, 12);
+            this.lblMail.Location = new System.Drawing.Point(28, 12);
             this.lblMail.Name = "lblMail";
             this.lblMail.Size = new System.Drawing.Size(63, 26);
             this.lblMail.TabIndex = 9;
@@ -751,7 +751,7 @@
             this.txtBoxMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxMail.Depth = 0;
             this.txtBoxMail.Hint = "";
-            this.txtBoxMail.Location = new System.Drawing.Point(98, 14);
+            this.txtBoxMail.Location = new System.Drawing.Point(97, 14);
             this.txtBoxMail.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxMail.Name = "txtBoxMail";
             this.txtBoxMail.PasswordChar = '\0';

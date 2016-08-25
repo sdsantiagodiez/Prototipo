@@ -65,6 +65,18 @@
     <Compile Include="ControlDomicilios.Designer.cs">
       <DependentUpon>ControlDomicilios.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmABMEntidad_DatosAdicionalesCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmABMEntidad_DatosAdicionalesCliente.Designer.cs">
+      <DependentUpon>frmABMEntidad_DatosAdicionalesCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmABMEntidad_DatosAdicionalesProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmABMEntidad_DatosAdicionalesProveedor.Designer.cs">
+      <DependentUpon>frmABMEntidad_DatosAdicionalesProveedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmImpresionReporte.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,6 +228,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ControlDomicilios.resx">
       <DependentUpon>ControlDomicilios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmABMEntidad_DatosAdicionalesCliente.resx">
+      <DependentUpon>frmABMEntidad_DatosAdicionalesCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmABMEntidad_DatosAdicionalesProveedor.resx">
+      <DependentUpon>frmABMEntidad_DatosAdicionalesProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmImpresionReporte.resx">
       <DependentUpon>frmImpresionReporte.cs</DependentUpon>

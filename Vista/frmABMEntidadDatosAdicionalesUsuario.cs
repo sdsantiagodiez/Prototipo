@@ -17,7 +17,6 @@ namespace Vista
     public partial class frmABMEntidadDatosAdicionalesUsuario : frmMaterialSkinBase
     {
         #region Atributos
-        ErrorProvider errorProviderActual;
         private ModeloUsuario _usuario;
         List<bool> glb_lst_respuestasValidaciones;
         public ModeloUsuario usuario
@@ -43,7 +42,6 @@ namespace Vista
             InitializeComponent();
 
             this.inicializarFormulario();
-            errorProviderActual = new ErrorProvider();
             usuario = new ModeloUsuario();
             txtBoxUsuario.KeyPress += this.valorUsername;
             glb_lst_respuestasValidaciones = new List<bool>();
