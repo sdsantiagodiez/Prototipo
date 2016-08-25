@@ -47,6 +47,7 @@ namespace Datos
                 lcl_mod_pedido.documentoComprador.numero = (p_drPedidos["numero_documento_entidad"] != DBNull.Value) ? (string)p_drPedidos["numero_documento_entidad"] : null; 
                 //lcl_mod_pedido.tipoComprobante = (p_drPedidos["codigo_comprobante"] != DBNull.Value) ? (int)p_drPedidos["codigo_comprobante"] : 0;
                 lcl_mod_pedido.estado = (p_drPedidos["estado"] != DBNull.Value) ? (string)p_drPedidos["estado"] : "C";
+                (lcl_mod_pedido.entidad as ModeloCliente).codigoTipoResponsable = (p_drPedidos["codigo_tipo_responsable"] != DBNull.Value) ? (int?)p_drPedidos["codigo_tipo_responsable"] : null;
             }
             else
             {
@@ -326,7 +327,7 @@ namespace Datos
                  "SELECT  tbl.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
                 "        [codigo_entidad],[razon_social_entidad], " +
                 "        [numero_comprobante_afip],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],  " +
-                "           [descuento_1_monto],[descuento_2_monto],[estado], " +
+                "           [descuento_1_monto],[descuento_2_monto],[estado], codigo_tipo_responsable, " +
                 "       mail.mail, numero_comprobante, " +
                 "       telefono.tipo,telefono.numero as numero_telefono,  " +
                 "       domicilio.calle,domicilio.numero as numero_domicilio,domicilio.piso,domicilio.departamento,domicilio.ciudad,domicilio.codigo_postal,domicilio.codigo_provincia " +
@@ -336,7 +337,8 @@ namespace Datos
                 "                Pedidos_Personas.[codigo_entidad],Pedidos_Personas.[razon_social_entidad], " +
                 "                [numero_comprobante_AFIP],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], " +
                 "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante], "+
-                "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto],[estado],[numero_comprobante] " +
+                "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto],[estado],[numero_comprobante], " +
+                "               pedidos_personas.codigo_tipo_responsable "+
                 "            FROM pedidos, Pedidos_Personas  " +
                 "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido  " +
                 "        )  " +
@@ -345,7 +347,8 @@ namespace Datos
                 "                Pedidos_Proveedores.[codigo_entidad], Proveedores.razon_social as [razon_social_entidad]," +
                 "                null as [numero_comprobante_AFIP],NULL as [cae],NULL as [vencimiento_cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
                 "                NULL as [codigo_documento],Entidades.cuit as [numero_documento_entidad],[codigo_comprobante], " +
-                "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto], NULL as [estado],[numero_comprobante] " +
+                "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto], NULL as [estado],[numero_comprobante], " +
+                "               entidades.codigo_tipo_responsable "+
                 "            FROM pedidos, Pedidos_Proveedores, Proveedores, Entidades    " +
                 "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  " +
                 "                   AND Pedidos_Proveedores.codigo_entidad= Proveedores.codigo_entidad" +
@@ -834,9 +837,9 @@ namespace Datos
         {
             p_comando.CommandText =
            "INSERT INTO  Pedidos_Personas  (numero_pedido,numero_comprobante_AFIP,cae,vencimiento_cae,aprobado_afip,codigo_entidad,nombre_entidad,apellido_entidad,"+
-           "    razon_social_entidad,codigo_documento,numero_documento_entidad, estado) " +
+           "    razon_social_entidad,codigo_documento,numero_documento_entidad, estado,codigo_tipo_responsable) " +
            "    VALUES( @numeroPedidoActual,@numero_comprobante_AFIP,@cae,@vto_cae,@aprobado_afip,@codigo_entidad,@nombre_entidad,@apellido_entidad," +
-           "    @razon_social_entidad,@codigo_documento,@numero_documento_entidad, @estado) ";
+           "    @razon_social_entidad,@codigo_documento,@numero_documento_entidad, @estado,@codigo_tipo_responsable) ";
             
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numeroPedidoActual"));
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroComprobanteAFIP, "@numero_comprobante_AFIP"));
@@ -849,6 +852,7 @@ namespace Datos
             p_comando.Parameters.Add(this.instanciarParametro((p_mod_pedido.entidad as ModeloCliente).razonSocial, "@razon_social_entidad"));
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.documentoComprador.tipo.codigo, "@codigo_documento"));
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.documentoComprador.numero, "@numero_documento_entidad"));
+            p_comando.Parameters.Add(this.instanciarParametro((p_mod_pedido.entidad as ModeloCliente).codigoTipoResponsable,"@codigo_tipo_responsable"));
             //p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.tipoComprobante, "@codigo_comprobante"));
             p_comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.estado, "@estado"));
             

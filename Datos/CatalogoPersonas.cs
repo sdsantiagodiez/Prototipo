@@ -120,7 +120,7 @@ namespace Datos
             comando.CommandText =
                 "SELECT [entidades].codigo as codigo_entidad,[entidades].tipo_entidad,[entidades].cuit,[entidades].observaciones,[personas].dni," +
                 "[personas].nombre,[personas].apellido,[personas].tipo_persona,[personas].usuario, [personas].contrasenia, [entidades].activo, "+
-                "   [entidades].situacion_iva " +
+                "   [entidades].codigo_tipo_responsable " +
                     "FROM [personas] " +
                     "INNER JOIN [entidades] on [entidades].codigo = [personas].codigo_entidad " +
                     "WHERE " + querySQL;
@@ -201,8 +201,8 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "INSERT INTO [Personas]([codigo_entidad],[dni],[nombre],[apellido],[tipo_persona],[razon_social],[codigo_tipo_responsable]) " +
-                "VALUES (@codigo_entidad, @dni, @nombre, @apellido, @tipo_persona,@razon_social, @codigo_tipo_responsable)";
+                "INSERT INTO [Personas]([codigo_entidad],[dni],[nombre],[apellido],[tipo_persona],[razon_social]) " +
+                "VALUES (@codigo_entidad, @dni, @nombre, @apellido, @tipo_persona,@razon_social)";
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.codigo, "@codigo_entidad"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.dni, "@dni"));
@@ -210,17 +210,8 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.apellido, "@apellido"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.tipoPersona, "@tipo_persona"));
 
-
-            if (p_mod_persona.GetType() == typeof(ModeloCliente))
-            {
-                comando.Parameters.Add(this.instanciarParametro((p_mod_persona as ModeloCliente).razonSocial, "@razon_social"));
-                comando.Parameters.Add(this.instanciarParametro((p_mod_persona as ModeloCliente).codigoTipoResponsable, "@codigo_tipo_responsable"));
-            }
-            else
-            {
-                comando.Parameters.Add(this.instanciarParametro((string)null, "@razon_social"));
-                comando.Parameters.Add(this.instanciarParametro((string)null, "@codigo_tipo_responsable"));
-            }
+            string razonSocial = p_mod_persona.GetType() == typeof(ModeloCliente)? (p_mod_persona as ModeloCliente).razonSocial:null;
+            comando.Parameters.Add(this.instanciarParametro(razonSocial, "@razon_social"));
 
             comando.Connection.Open();
             int rowaffected = comando.ExecuteNonQuery();
@@ -253,7 +244,7 @@ namespace Datos
             comando.Connection = ConexionSQL;
             comando.CommandType = CommandType.Text;
             comando.CommandText =
-                "UPDATE [personas] SET [dni]=@dni,[nombre]=@nombre, [apellido]=@apellido, [razon_social]=@razon_social, [codigo_tipo_responsable]=@codigo_tipo_responsable " +
+                "UPDATE [personas] SET [dni]=@dni,[nombre]=@nombre, [apellido]=@apellido, [razon_social]=@razon_social " +
                 "WHERE [Personas].codigo_entidad=@codigo_entidad";
 
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.codigo, "@codigo_entidad"));
@@ -261,16 +252,8 @@ namespace Datos
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.nombre, "@nombre"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_persona.apellido, "@apellido"));
             
-            if (p_mod_persona.GetType() == typeof(ModeloCliente))
-            {
-                comando.Parameters.Add(this.instanciarParametro((p_mod_persona as ModeloCliente).razonSocial, "@razon_social"));
-                comando.Parameters.Add(this.instanciarParametro((p_mod_persona as ModeloCliente).codigoTipoResponsable, "@codigo_tipo_responsable"));
-            }
-            else
-            {
-                comando.Parameters.Add(this.instanciarParametro((string)null, "@razon_social"));
-                comando.Parameters.Add(this.instanciarParametro((string)null, "@codigo_tipo_responsable"));
-            }
+            string razonSocial = p_mod_persona.GetType() == typeof(ModeloCliente)? (p_mod_persona as ModeloCliente).razonSocial:null;
+            comando.Parameters.Add(this.instanciarParametro(razonSocial, "@razon_social"));
 
 
             comando.Connection.Open();

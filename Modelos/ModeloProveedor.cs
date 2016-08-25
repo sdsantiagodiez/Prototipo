@@ -29,12 +29,6 @@ namespace Modelos
        #endregion
 
        #region Atributos
-       int _codigoTipoResponsable;
-       public int codigoTipoResponsable
-       {
-           get { return _codigoTipoResponsable; }
-           set { _codigoTipoResponsable = value; }
-       }
         string _razonSocial;
         public string razonSocial
         {
