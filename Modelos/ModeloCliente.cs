@@ -29,13 +29,19 @@ namespace Modelos
         public ModeloCliente(ModeloEntidad p_mod_entidad) : base(p_mod_entidad)
         {
             this.tipoPersona = Constantes.TiposEntidad.TiposPersona.Cliente;
-            codigoTipoResponsable = 5;//Consumidor Final por defecto
+            if (p_mod_entidad.codigoTipoResponsable == null)
+            {
+                codigoTipoResponsable = 5;//Consumidor Final por defecto
+            }
         }
 
         public ModeloCliente(ModeloPersonas p_mod_persona) : base(p_mod_persona)
         {
             this.tipoPersona = Constantes.TiposEntidad.TiposPersona.Cliente;
-            codigoTipoResponsable = 5;//Consumidor Final por defecto
+            if (p_mod_persona.codigoTipoResponsable == null)
+            {
+                codigoTipoResponsable = 5;//Consumidor Final por defecto
+            }
         }
         #endregion
 
