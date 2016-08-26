@@ -110,7 +110,7 @@ namespace Vista
                     this.inicializarCierrePedidoCliente(p_mod_pedido);
                     break;
                 case ModoFormularioDevolucionCliente:
-                    p_mod_pedido.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona;
+                   // p_mod_pedido.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona;
                     this.inicializarDevolucionPedidoCliente(p_mod_pedido);
                     break;
                 case ModoFormularioPedidoProveedor:
@@ -144,7 +144,7 @@ namespace Vista
         /// <param name="p_mod_pedidoOriginal"></param>
         public frmPedidoCierre(ModeloPedido p_mod_pedidoDevolucion, ModeloPedido p_mod_pedidoOriginal) : this(p_mod_pedidoDevolucion, ModoFormularioDevolucionCliente)
         {
-            glb_mod_pedidoOriginalDevolucion = p_mod_pedidoOriginal;
+         this.controlador.pedidoDevuelto= glb_mod_pedidoOriginalDevolucion = p_mod_pedidoOriginal;
         }
         #endregion
 

@@ -342,6 +342,43 @@ namespace Controladores
             return respuesta;
         }
 
+        public bool agregarDevolucion(ModeloPedido p_mod_pedido, ModeloPedido p_mod_pedido_devuelto)
+        {
+            CatalogoPedidos lcl_cat_pedidos = new CatalogoPedidos();
+            
+            bool respuesta = false;
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    respuesta = lcl_cat_pedidos.addDevolucion(p_mod_pedido,p_mod_pedido_devuelto);
+                    if (!respuesta)
+                    {
+                        throw new Exception(errorActual);
+                    }
+                    scope.Complete();
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                errorActual = "TransactionAbortedException Message: " + ex.Message;
+            }
+            catch (ApplicationException ex)
+            {
+                errorActual = "ApplicationException Message: " + ex.Message;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                errorActual = "SQLexception Message: " + ex.Message;
+            }
+            catch (Exception ex)
+            {
+                errorActual = ex.Message;
+            }
+
+            return respuesta;
+        }
+
         private bool agregarLineasPedido(ModeloPedido p_mod_pedido)
         {
             foreach (ModeloLineaPedido lp in p_mod_pedido.lineasPedido)

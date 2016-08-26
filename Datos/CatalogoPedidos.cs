@@ -870,6 +870,34 @@ namespace Datos
             return p_comando.ExecuteNonQuery();
         }
 
+        public bool addDevolucion(ModeloPedido p_mod_pedido, ModeloPedido p_mod_pedidoDevuelto)
+        {
+            SqlCommand comando = Conexion.crearComando();
+
+            comando.CommandText =
+            "INSERT INTO Pedidos_Devolucion (numero_pedido_compra,numero_pedido_devolucion) " +
+            "VALUES (@numero_pedido_compra,@numero_pedido_devolucion) ";
+
+            //Indica los parametros
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numero_pedido_compra"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedidoDevuelto.numeroPedido, "@numero_pedido_devolucion"));
+            
+            comando.Connection.Open();
+            //falta agregar domicilio, mail y telefono de facturacion
+            int? rowaffected = (int?)comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            if (rowaffected == null)
+            {
+                //return false?
+                throw new Exception("Ha ocurrido un error al intentar registrar el Pedido actual.");
+            }
+            else
+            { return true; }
+            
+
+            
+        }
         public bool update(ModeloPedido p_mod_pedido)
         {
             SqlConnection ConexionSQL = Datos.Conexion.crearConexion();

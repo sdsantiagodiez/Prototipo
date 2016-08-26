@@ -28,6 +28,13 @@ namespace Controladores
             set { _pedidoActual = value; }
         }
 
+        private ModeloPedido _pedidoDevuelto;
+        public ModeloPedido pedidoDevuelto
+        {
+            get { return _pedidoDevuelto; }
+            set { _pedidoDevuelto = value; }
+        }
+
         public ModeloEntidad entidadActual
         {
             get { return this.pedidoActual.entidad; }
@@ -111,6 +118,15 @@ namespace Controladores
             {
                 errorActual = lcl_con_alta.errorActual;
                 return false;
+            }
+            if (_pedidoActual.tipoComprobante == 3 || _pedidoActual.tipoComprobante == 3)
+            {
+                if (!lcl_con_alta.agregarDevolucion(_pedidoActual,_pedidoDevuelto))
+                {
+                    errorActual = lcl_con_alta.errorActual;
+                    return false;
+                }
+
             }
 
             return true;
