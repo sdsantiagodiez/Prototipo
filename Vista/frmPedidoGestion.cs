@@ -578,6 +578,33 @@ namespace Vista
                 MessageBox.Show("Ha surgido un error al intentar imprimir. Inténtelo nuevamente.","Error",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
                 return;
             }
+            if (string.IsNullOrEmpty(Properties.Settings.Default.carpetaPedidosClientes) && string.IsNullOrEmpty(Properties.Settings.Default.carpetaPedidosProveedores))
+            {
+                MessageBox.Show("Actualmente no se encuentran configurados los directorios para guardar los comprobantes, por lo que se guardarán en su escritorio. Diríjase a \"Configuraciones\" para modificar el lugar de guardado de los mismos.");
+                string lcl_comprobantePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Comprobantes";
+                System.IO.Directory.CreateDirectory(lcl_comprobantePath + "\\Clientes");
+                System.IO.Directory.CreateDirectory(lcl_comprobantePath + "\\Proveedores");
+                Properties.Settings.Default.carpetaPedidosClientes = lcl_comprobantePath + "\\Clientes";
+                Properties.Settings.Default.carpetaPedidosProveedores = lcl_comprobantePath + "\\Proveedores";
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                if(string.IsNullOrEmpty(Properties.Settings.Default.carpetaPedidosClientes))
+                {
+                    MessageBox.Show("Actualmente no se encuentra configurado el directorio para guardar los comprobantes de pedido a cliente, por lo que se guardarán en su escritorio. Diríjase a \"Configuraciones\" para modificar el lugar de guardado de los mismos.");
+                    string lcl_comprobantePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Comprobantes\\Clientes";
+                    Properties.Settings.Default.carpetaPedidosClientes = lcl_comprobantePath;
+                    Properties.Settings.Default.Save();
+                }
+                if(string.IsNullOrEmpty(Properties.Settings.Default.carpetaPedidosProveedores))
+                {
+                    MessageBox.Show("Actualmente no se encuentra configurado el directorio para guardar los comprobantes de pedido a proveedores, por lo que se guardarán en su escritorio. Diríjase a \"Configuraciones\" para modificar el lugar de guardado de los mismos.");
+                    string lcl_comprobantePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Comprobantes\\Proveedores";
+                    Properties.Settings.Default.carpetaPedidosProveedores = lcl_comprobantePath;
+                    Properties.Settings.Default.Save();
+                }
+            }
 
             frmImpresionComprobante lcl_frm_comprobante = new frmImpresionComprobante(Properties.Settings.Default.carpetaPedidosClientes, Properties.Settings.Default.carpetaPedidosProveedores);
             this.MostrarComprobante(lcl_frm_comprobante, new EventArgs());

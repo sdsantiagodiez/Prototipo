@@ -1006,6 +1006,32 @@ namespace Vista
 
         private void imprimirpedido()
         {
+            string lcl_comprobantePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Comprobantes";
+            switch (this.controlador.pedidoActual.codigoTipoPedido)
+            {
+                case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona:
+                    if (string.IsNullOrEmpty(Properties.Settings.Default.carpetaPedidosClientes))
+                    {
+                        MessageBox.Show("Actualmente no se encuentra configurado el directorio para guardar los comprobantes de pedido a cliente, por lo que se guardarán en su escritorio. Diríjase a \"Configuraciones\" para modificar el lugar de guardado de los mismos.");
+                        lcl_comprobantePath = lcl_comprobantePath + "\\Clientes";
+                        System.IO.Directory.CreateDirectory(lcl_comprobantePath);
+                        Properties.Settings.Default.carpetaPedidosClientes = lcl_comprobantePath;
+                        Properties.Settings.Default.Save();
+                    }
+                    break;
+                case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Proveedor:
+                    if (string.IsNullOrEmpty(Properties.Settings.Default.carpetaPedidosProveedores))
+                    {
+                        MessageBox.Show("Actualmente no se encuentra configurado el directorio para guardar los comprobantes de pedido a proveedores, por lo que se guardarán en su escritorio. Diríjase a \"Configuraciones\" para modificar el lugar de guardado de los mismos.");
+                        lcl_comprobantePath = lcl_comprobantePath + "\\Proveedores";
+                        System.IO.Directory.CreateDirectory(lcl_comprobantePath);
+                        Properties.Settings.Default.carpetaPedidosProveedores = lcl_comprobantePath;
+                        Properties.Settings.Default.Save();
+                    }
+                    break;
+                default:
+                    break;
+            }
             frmImpresionComprobante lcl_frm_comprobante = new frmImpresionComprobante(Properties.Settings.Default.carpetaPedidosClientes, Properties.Settings.Default.carpetaPedidosProveedores);
             this.MostrarComprobante(lcl_frm_comprobante, new EventArgs());
             //lcl_frm_comprobante.estadoAcrobatPDF(false);          
