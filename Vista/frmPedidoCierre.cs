@@ -21,7 +21,6 @@ namespace Vista
         public event EventHandler BuscarCliente;
         public event EventHandler MostrarDetallesArticulo;
         public event EventHandler MostrarComprobante;
-        ModeloPedido glb_mod_pedidoOriginalDevolucion;
         bool[] glb_array_respuestasValidaciones = new bool[9];
         List<TipoDocumento> glb_lst_tiposDocumentos;
         ControladorPedido controlador;
@@ -110,7 +109,7 @@ namespace Vista
                     this.inicializarCierrePedidoCliente(p_mod_pedido);
                     break;
                 case ModoFormularioDevolucionCliente:
-                   // p_mod_pedido.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona;
+                    p_mod_pedido.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona;
                     this.inicializarDevolucionPedidoCliente(p_mod_pedido);
                     break;
                 case ModoFormularioPedidoProveedor:
@@ -144,7 +143,11 @@ namespace Vista
         /// <param name="p_mod_pedidoOriginal"></param>
         public frmPedidoCierre(ModeloPedido p_mod_pedidoDevolucion, ModeloPedido p_mod_pedidoOriginal) : this(p_mod_pedidoDevolucion, ModoFormularioDevolucionCliente)
         {
-         this.controlador.pedidoDevuelto= glb_mod_pedidoOriginalDevolucion = p_mod_pedidoOriginal;
+            if (!this.controlador.iniciarDevolucion(p_mod_pedidoOriginal))
+            {
+                MessageBox.Show("El pedido seleccionado ya tiene una devolución realizada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                this.Close();
+            }
         }
         #endregion
 
@@ -1538,7 +1541,7 @@ namespace Vista
             Form lcl_frm_editarLinea;
             if (modoFormulario == ModoFormularioDevolucionCliente)
             {
-                ModeloLineaPedido lcl_mod_lineaPedidoOriginal = glb_mod_pedidoOriginalDevolucion.getLineaPedido(lcl_mod_lineaPedido.articulo);
+                ModeloLineaPedido lcl_mod_lineaPedidoOriginal = (controlador as ControladorPedidoCliente).pedidoDevuelto.getLineaPedido(lcl_mod_lineaPedido.articulo);
                 lcl_frm_editarLinea = new frmPedidoCierre_EditarLineaPedido(lcl_mod_lineaPedido, lcl_mod_lineaPedidoOriginal);
             }
             else
@@ -1635,7 +1638,7 @@ namespace Vista
             Form lcl_frm_agregarArticulos;
             if (modoFormulario == ModoFormularioDevolucionCliente)
             {
-                lcl_frm_agregarArticulos = new frmPedidoDevolucion(glb_mod_pedidoOriginalDevolucion, pedidoAgregarLineas);
+                lcl_frm_agregarArticulos = new frmPedidoDevolucion((controlador as ControladorPedidoCliente).pedidoDevuelto, pedidoAgregarLineas);
                 (lcl_frm_agregarArticulos as frmPedidoDevolucion).CerrarForm += this.evento_agregarLineaClosed;
             }
             else

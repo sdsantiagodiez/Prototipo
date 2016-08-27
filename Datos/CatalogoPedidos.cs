@@ -246,25 +246,31 @@ namespace Datos
                 "SELECT  tbl.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
                 "        [codigo_entidad], [razon_social_entidad],[descuento_1_monto],[descuento_2_monto], " +
                 "        [numero_comprobante_AFIP],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],[estado],  " +
-                "       mail.mail, numero_comprobante, " +
+                "       codigo_tipo_responsable,mail.mail, numero_comprobante, " +
 		        "       telefono.tipo,telefono.numero as numero_telefono,  "+
 		        "       domicilio.calle,domicilio.numero as numero_domicilio,domicilio.piso,domicilio.departamento,domicilio.ciudad,domicilio.codigo_postal,domicilio.codigo_provincia "+
                 "    FROM  "+
                 "    (  "+
-                "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
-                "                Pedidos_Personas.[codigo_entidad], Pedidos_Personas.[razon_social_entidad],[descuento_1_monto],[descuento_2_monto], " +
+                "(SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
+                "                Pedidos_Personas.[codigo_entidad], Pedidos_Personas.[razon_social_entidad], "+
 	            "                [numero_comprobante_AFIP],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], "+
-                "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante],[estado],[numero_comprobante] " +
-                "            FROM pedidos, Pedidos_Personas  "+
-                "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido  "+
+                "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante], "+
+                "               [descuento_1_monto],[descuento_2_monto], [estado],[numero_comprobante], "+
+				"			   pedidos_personas.codigo_tipo_responsable "+
+                "            FROM pedidos, Pedidos_Personas "+
+                "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido "+
                 "        )  "+
                 "    UNION  "+
-                "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
-                "                Pedidos_Proveedores.[codigo_entidad], NULL as [razon_social_entidad],[descuento_1_monto],[descuento_2_monto], " +
-                "                null as [numero_comprobante_AFIP],NULL as [cae], NULL as [vencimiento_cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
-                "                NULL as [codigo_documento],NULL as [numero_documento_entidad],[codigo_comprobante],NULL as [estado],[numero_comprobante] " +
-                "            FROM pedidos, Pedidos_Proveedores  "+
-                "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  "+
+                  "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],Pedidos.[observaciones], " +
+                "                Pedidos_Proveedores.[codigo_entidad], Proveedores.razon_social as [razon_social_entidad]," +
+                "                null as [numero_comprobante_AFIP],NULL as [cae],NULL as [vencimiento_cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
+                "                NULL as [codigo_documento],Entidades.cuit as [numero_documento_entidad],[codigo_comprobante], " +
+                "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto], NULL as [estado],[numero_comprobante], " +
+                "               entidades.codigo_tipo_responsable " +
+                "            FROM pedidos, Pedidos_Proveedores, Proveedores, Entidades    " +
+                "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  " +
+                "                   AND Pedidos_Proveedores.codigo_entidad= Proveedores.codigo_entidad" +
+                "                   AND Proveedores.codigo_entidad = Entidades.codigo " +
                 "        )  "+
                 "    ) as tbl " +
                 "inner join Mails_Pedido mail "+
@@ -421,6 +427,29 @@ namespace Datos
             {
                 return null;
             }
+        }
+
+        public ModeloPedido getDevolucionDePedido(ModeloPedido p_pedidoCompra)
+        {
+            SqlCommand comando = Conexion.crearComando();
+            comando.CommandText =
+                "Select numero_pedido_devolucion "+
+                "   FROM Pedidos_Devolucion "+
+                "   WHERE @numero_pedido_compra = numero_pedido_compra ";
+            comando.Parameters.Add(this.instanciarParametro(p_pedidoCompra.numeroPedido,"@numero_pedido_compra"));
+
+            comando.Connection.Open();
+
+            SqlDataReader drDevolucion = comando.ExecuteReader();
+            int? numeroPedidoDevolucion = null;
+            while (drDevolucion.Read())
+            {
+                numeroPedidoDevolucion = (int)drDevolucion["numero_pedido_devolucion"];
+            }
+            drDevolucion.Dispose();
+            comando.Connection.Close();
+
+            return numeroPedidoDevolucion != null ? this.getOne((int)numeroPedidoDevolucion) : null;
         }
 
         public List<ModeloPedido> getAll()
@@ -879,8 +908,8 @@ namespace Datos
             "VALUES (@numero_pedido_compra,@numero_pedido_devolucion) ";
 
             //Indica los parametros
-            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numero_pedido_compra"));
-            comando.Parameters.Add(this.instanciarParametro(p_mod_pedidoDevuelto.numeroPedido, "@numero_pedido_devolucion"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedidoDevuelto.numeroPedido, "@numero_pedido_compra"));
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido, "@numero_pedido_devolucion"));
             
             comando.Connection.Open();
             //falta agregar domicilio, mail y telefono de facturacion

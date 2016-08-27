@@ -28,12 +28,7 @@ namespace Controladores
             set { _pedidoActual = value; }
         }
 
-        private ModeloPedido _pedidoDevuelto;
-        public ModeloPedido pedidoDevuelto
-        {
-            get { return _pedidoDevuelto; }
-            set { _pedidoDevuelto = value; }
-        }
+
 
         public ModeloEntidad entidadActual
         {
@@ -89,6 +84,14 @@ namespace Controladores
         }
         #endregion
 
+        public virtual bool iniciarDevolucion(ModeloPedido p_pedido)
+        {
+            return false;
+        }
+        public virtual bool validarIniciarDevolucion(ModeloPedido p_pedido)
+        {
+            return false;
+        }
         private bool validarFormaDePago()
         {
             if (this.pedidoActual.formasDePago.Count == 1)
@@ -110,7 +113,7 @@ namespace Controladores
             return true;
         }
 
-        public bool guardarPedido()
+        public virtual bool guardarPedido()
         {
             ControladorAlta lcl_con_alta = new ControladorAlta();
             
@@ -118,15 +121,6 @@ namespace Controladores
             {
                 errorActual = lcl_con_alta.errorActual;
                 return false;
-            }
-            if (_pedidoActual.tipoComprobante == 3 || _pedidoActual.tipoComprobante == 3)
-            {
-                if (!lcl_con_alta.agregarDevolucion(_pedidoActual,_pedidoDevuelto))
-                {
-                    errorActual = lcl_con_alta.errorActual;
-                    return false;
-                }
-
             }
 
             return true;
@@ -247,7 +241,8 @@ namespace Controladores
 
             this.getPedidosProveedores(esPedidoGlobal ? pedidoActual : getPedidoGlobal());
         }
-        
+      
+
         /// <summary>
         /// Retorna multiples pedidos (e inicializa propiedad pedidosProveedores) de acuerdo al proveedor de cada articulo en las lineas de pedido
         /// </summary>
@@ -341,13 +336,63 @@ namespace Controladores
     }
     public class ControladorPedidoCliente : ControladorPedido
     {
+        private ModeloPedido _pedidoDevuelto;
+        public ModeloPedido pedidoDevuelto
+        {
+            get { return _pedidoDevuelto; }
+            set { _pedidoDevuelto = value; }
+        }
+
         public ControladorPedidoCliente() : base(Constantes.CodigosTiposPedidos.Persona)
         {
  
         }
 
         #region Métodos
-        
+        #region Devolución
+        public override bool guardarPedido()
+        {
+            if (!base.guardarPedido())
+            {
+                return false;
+            }
+            
+            if (pedidoActual.tipoComprobante == 3 || pedidoActual.tipoComprobante == 8)
+            {
+                ControladorAlta lcl_con_alta = new ControladorAlta();
+                if (!lcl_con_alta.agregarDevolucion(pedidoActual, pedidoDevuelto))
+                {
+                    errorActual = lcl_con_alta.errorActual;
+                    return false;
+                }
+            }
+
+            return true;
+
+        }
+        public override bool iniciarDevolucion(ModeloPedido p_pedido)
+        {
+            if (!this.validarIniciarDevolucion(p_pedido))
+            {
+                return false;
+            }
+
+            pedidoDevuelto = p_pedido;
+
+            return true;
+        }
+        public override bool validarIniciarDevolucion(ModeloPedido p_pedido)
+        {
+            if (p_pedido.tipoComprobante == 3 || p_pedido.tipoComprobante == 8)
+            {
+                //no se permite devolución de un comprobante de Nota de crédito
+                return false;
+            }
+            //Si el pedido todavía no tiene devolución correspondiente, retorna null el método del catálogo
+            return (new CatalogoPedidos().getDevolucionDePedido(p_pedido) == null) ? true : false;
+        }
+        #endregion
+
         #region Facturación AFIP
         /// <summary>
         /// Devuelvo codigoTipoComprobante de AFIP de acuerdo a los parámetros

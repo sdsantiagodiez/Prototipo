@@ -42,7 +42,7 @@ namespace Vista
             dgvArticulosDevolucion.EnableHeadersVisualStyles = false;
             dgvArticulosDevolucion.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
             this.inicializarControles();
-            this.controlador = new ControladorPedido(Constantes.CodigosTiposPedidos.Persona);
+            this.controlador = new ControladorPedidoCliente();// (Constantes.CodigosTiposPedidos.Persona);
         }
         /// <summary>
         /// Inicializa pedido del que se extraerán artículos a devolución
@@ -528,16 +528,21 @@ namespace Vista
             if (glb_respuesta)
             {
                 //Buscar Pedido por CAE
-            ModeloPedido lcl_mod_pedido = ControladorBusqueda.getOne(new ModeloPedido() { CAE = this.txtCAE.Text}, Constantes.ParametrosBusqueda.Pedidos.CAE);
+                ModeloPedido lcl_mod_pedido = ControladorBusqueda.getOne(new ModeloPedido() { CAE = this.txtCAE.Text}, Constantes.ParametrosBusqueda.Pedidos.CAE);
 
-            if (lcl_mod_pedido != null)
-            {
-                this.inicializarPedidoOriginal(lcl_mod_pedido);
-            }
-            else
-            {
-                MessageBox.Show("No se encontraron coincidencias.","Resultado Búsqueda",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
-            }
+                if (lcl_mod_pedido != null)
+                {
+                    if (!controlador.validarIniciarDevolucion(lcl_mod_pedido))
+                    {
+                        MessageBox.Show("El pedido seleccionado ya tiene una devolución realizada","Error",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
+                        return;
+                    }
+                    this.inicializarPedidoOriginal(lcl_mod_pedido);
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron coincidencias.","Resultado Búsqueda",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
+                }
             }
         }
 
