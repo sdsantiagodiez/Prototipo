@@ -540,6 +540,11 @@ namespace Vista
                 MessageBox.Show("Debe seleccionar un pedido para facturar. Inténtelo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
+            if (string.IsNullOrEmpty(Controladores.ControladorAFIP.CertificadoPath))
+            {
+                MessageBox.Show("Debe especificar un certificado en el panel de configuraciones para poder facturar electrónicamente");
+                return;
+            }
             if(!this.validarFacturar(glb_lst_pedidosSeleccionados))
             {
                 MessageBox.Show("Ha surgido un error al intentar facturar pedidos. Inténtelo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);

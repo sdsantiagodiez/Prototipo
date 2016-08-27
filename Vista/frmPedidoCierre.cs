@@ -1071,6 +1071,11 @@ namespace Vista
                 //no factura si comprobante no lo requiere (presupuesto, reserva, otro)
                 return true;
             }
+            if (string.IsNullOrEmpty(Controladores.ControladorAFIP.CertificadoPath))
+            {
+                MessageBox.Show("Debe especificar un certificado en el panel de configuraciones para poder facturar electrónicamente");
+                return false;
+            }
 
             bool respuesta = false;
             BackgroundWorker bw = new BackgroundWorker();
@@ -1492,7 +1497,7 @@ namespace Vista
             {
                 //Si es responsable inscripto, sólo se puede usar CUIT para facturación electrónica
                 //También si se ingresa razonSocial
-                this.cmbBoxTipoDocumento.SelectedValue = glb_lst_tiposDocumentos.SingleOrDefault(x => x.codigo == 80);
+                this.cmbBoxTipoDocumento.SelectedItem = glb_lst_tiposDocumentos.SingleOrDefault(x => x.codigo == 80);
                 this.cmbBoxTipoDocumento.Enabled = false;
             }
             else
