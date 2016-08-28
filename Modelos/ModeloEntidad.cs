@@ -160,14 +160,16 @@ namespace Modelos
 
         public virtual bool Equals(ModeloEntidad p_mod_entidad)
         {
-            return this.Equals(this.codigo, p_mod_entidad.codigo) 
-                && this.Equals(this.cuit, p_mod_entidad.cuit) 
+            return this.Equals(this.codigo, p_mod_entidad.codigo)
+                && this.Equals(this.cuit, p_mod_entidad.cuit)
                 && this.Equals(this.observaciones, p_mod_entidad.observaciones)
                 && this.Equals(this.tipoEntidad, p_mod_entidad.tipoEntidad)
                 && this.Equals(this.mails, p_mod_entidad.mails)
                 && this.Equals(this.telefonos, p_mod_entidad.telefonos)
                 && this.Equals(this.domicilios, p_mod_entidad.domicilios)
-                && this.Equals(this.activo,p_mod_entidad.activo);
+                && this.Equals(this.activo, p_mod_entidad.activo)
+                && this.Equals(this.codigoTipoResponsable, p_mod_entidad.codigoTipoResponsable);
+
         }
         #endregion
  

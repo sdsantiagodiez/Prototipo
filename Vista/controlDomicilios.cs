@@ -130,6 +130,7 @@ namespace Vista
                     }
                 }
             }
+            p_domicilio.codigoDomicilio = 0;
             return false;
         }
         private void agregarDomicilioEntidad()
