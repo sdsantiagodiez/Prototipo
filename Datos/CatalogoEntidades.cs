@@ -183,7 +183,8 @@ namespace Datos
             comando.Connection.Close();
 
             if (nuevoCodigoEntidad != null)
-            { 
+            {
+                p_mod_entidad.codigo = (int)nuevoCodigoEntidad;
                 this.actualizarMails(p_mod_entidad);
                 this.actualizarTelefonos(p_mod_entidad);
                 this.actualizarDomicilio(p_mod_entidad);
