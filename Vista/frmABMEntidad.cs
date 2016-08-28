@@ -1440,49 +1440,89 @@ namespace Vista
 
         private void txtBoxNombre_Leave(object sender, EventArgs e)
         {
-            //realizo validación
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxNombre.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Nombre);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Nombre no válido";
-            this.setErrorProvider(this.txtBoxNombre, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxNombre.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Nombre, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxNombre, false, lcl_mensaje);
+            }
+            else
+            {
+                //realizo validación
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxNombre.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Nombre);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Nombre no válido";
+                this.setErrorProvider(this.txtBoxNombre, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxApellido_Leave(object sender, EventArgs e)
         {
-            //realizo validación
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxApellido.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Apellido);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Apellido no válido";
-            this.setErrorProvider(this.txtBoxApellido, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxApellido.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Apellido, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxApellido, false, lcl_mensaje);
+            }
+            else
+            {
+                //realizo validación
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxApellido.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Apellido);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Apellido no válido";
+                this.setErrorProvider(this.txtBoxApellido, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxRazonSocial_Leave(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtBoxRazonSocial.Text))
             {
-                //realizo validación
-                bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
-                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = respuesta;
-                string lcl_mensaje = respuesta ? "OK" : "Razon Social no válida";
-                this.setErrorProvider(this.txtBoxRazonSocial, respuesta, lcl_mensaje);
+                string lcl_mensaje;
+                if (!Validar.validarLongitud(txtBoxRazonSocial.Text, Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial, out lcl_mensaje))
+                {
+                    this.setErrorProvider(txtBoxRazonSocial, false, lcl_mensaje);
+                }
+                else
+                {
+                    //realizo validación
+                    bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
+                    glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = respuesta;
+                    lcl_mensaje = respuesta ? "OK" : "Razon Social no válida";
+                    this.setErrorProvider(this.txtBoxRazonSocial, respuesta, lcl_mensaje);
+                }
             }
         }
    
 
         private void txtBoxMail_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxMail.Text.ToString(), Constantes.ParametrosBusqueda.Mails.Mail);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Mails.Mail)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Mail no válido";
-            this.setErrorProvider(this.txtBoxMail, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxMail.Text, Constantes.ParametrosBusqueda.Mails.Mail, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxMail, false, lcl_mensaje);
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxMail.Text.ToString(), Constantes.ParametrosBusqueda.Mails.Mail);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Mails.Mail)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Mail no válido";
+                this.setErrorProvider(this.txtBoxMail, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxTelefono_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxTelefono.Text.ToString(), Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Numero de Teléfono no válido";
-            this.setErrorProvider(this.txtBoxTelefono, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxTelefono.Text, Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxTelefono, false, lcl_mensaje);
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxTelefono.Text.ToString(), Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Numero de Teléfono no válido";
+                this.setErrorProvider(this.txtBoxTelefono, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxRazonSocial_KeyPress(object sender, KeyPressEventArgs e)

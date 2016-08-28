@@ -662,34 +662,66 @@ namespace Vista
         #region TextBoxes
         private void txtBoxCodigoOriginal_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoOriginal.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)]=respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Código Orignal no válido";
-            this.setErrorProvider(txtBoxCodigoOriginal, respuesta, lcl_mensaje);
-            if (respuesta) { glb_banderaCodigoOriginal = true; }
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxCodigoOriginal.Text, Constantes.ParametrosBusqueda.Articulos.CodigoOriginal, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxCodigoOriginal, false, lcl_mensaje);
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoOriginal.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.CodigoOriginal);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Código Orignal no válido";
+                this.setErrorProvider(txtBoxCodigoOriginal, respuesta, lcl_mensaje);
+                if (respuesta) { glb_banderaCodigoOriginal = true; }
+            }
         }
 
         private void txtBoxDescripcion_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxDescripcion.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Descripción no válida";
-            this.setErrorProvider(txtBoxDescripcion, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxDescripcion.Text, Constantes.ParametrosBusqueda.Articulos.Descripcion, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxDescripcion, false, lcl_mensaje);
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxDescripcion.Text.ToString(), Constantes.ParametrosBusqueda.Articulos.Descripcion);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Descripción no válida";
+                this.setErrorProvider(txtBoxDescripcion, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxModelo_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxModelo.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Modelo no válido";
-            this.setErrorProvider(txtBoxModelo, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxModelo.Text, Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxModelo, false, lcl_mensaje);
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxModelo.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Modelo no válido";
+                this.setErrorProvider(txtBoxModelo, respuesta, lcl_mensaje);
+            }
         }
         private void txtBoxCodigoArticulo_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoArticulo.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Código Artículo Proveedor no válido";
-            this.setErrorProvider(txtBoxCodigoArticulo, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxCodigoArticulo.Text, Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxCodigoArticulo, false, lcl_mensaje);
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoArticulo.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Código Artículo Proveedor no válido";
+                this.setErrorProvider(txtBoxCodigoArticulo, respuesta, lcl_mensaje);
+            }
         }
         private void txtBoxPrecioCompra_Leave(object sender, EventArgs e)
         {
@@ -709,10 +741,18 @@ namespace Vista
 
         private void txtBoxUbicacion_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxUbicacion.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Ubicación no válido";
-            this.setErrorProvider(txtBoxUbicacion, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxUbicacion.Text, Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxUbicacion, false, lcl_mensaje);
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxUbicacion.Text.ToString(), Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Ubicación no válido";
+                this.setErrorProvider(txtBoxUbicacion, respuesta, lcl_mensaje);
+            }
         }
         #endregion
        

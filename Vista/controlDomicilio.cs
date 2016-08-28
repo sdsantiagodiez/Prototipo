@@ -179,84 +179,128 @@ namespace Vista
         #region Leave
         private void txtBoxCalle_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCalle.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Calle);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)] = respuesta;
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxCalle.Text, Constantes.ParametrosBusqueda.Domicilios.Calle, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxCalle, false, lcl_mensaje);
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxCalle.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Calle);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)] = respuesta;
 
-            string mensaje = respuesta ? "OK" : "Calle no válida";
-            //if (String.IsNullOrWhiteSpace(this.txtBoxCalle.Text))
-            //{
-            //    mensaje = null;
-            //}
-            this.setErrorProvider(this.txtBoxCalle,respuesta, mensaje);
+                lcl_mensaje = respuesta ? "OK" : "Calle no válida";
+                //if (String.IsNullOrWhiteSpace(this.txtBoxCalle.Text))
+                //{
+                //    mensaje = null;
+                //}
+                this.setErrorProvider(this.txtBoxCalle, respuesta, lcl_mensaje);
+            }
             
         }
 
         private void txtBoxNumeroDomicilio_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNumerico(txtBoxNumeroDomicilio.Text.ToString(), Constantes.Numericos.EnteroPositivoSinCero);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)] = respuesta;
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxNumeroDomicilio.Text, Constantes.Numericos.EnteroPositivoSinCero, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxNumeroDomicilio, false, lcl_mensaje);
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNumerico(txtBoxNumeroDomicilio.Text.ToString(), Constantes.Numericos.EnteroPositivoSinCero);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)] = respuesta;
 
-            string mensaje = respuesta ? "OK" : "Número de Domicilio no válido";
-            //if (String.IsNullOrWhiteSpace(this.txtBoxNumeroDomicilio.Text))
-            //{
-            //    mensaje = null;
-            //}
-            this.setErrorProvider(this.txtBoxNumeroDomicilio, respuesta, mensaje);
+                lcl_mensaje = respuesta ? "OK" : "Número de Domicilio no válido";
+                //if (String.IsNullOrWhiteSpace(this.txtBoxNumeroDomicilio.Text))
+                //{
+                //    mensaje = null;
+                //}
+                this.setErrorProvider(this.txtBoxNumeroDomicilio, respuesta, lcl_mensaje);
+            }
             
         }
 
         private void txtBoxPiso_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxPiso.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Piso);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Piso)] = respuesta;
-                
-            string mensaje = respuesta ? "OK":"Piso no válido";
-            if (String.IsNullOrWhiteSpace(this.txtBoxPiso.Text))
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxPiso.Text, Constantes.ParametrosBusqueda.Domicilios.Piso, out lcl_mensaje))
             {
-                mensaje = null;
+                this.setErrorProvider(txtBoxPiso, false, lcl_mensaje);
             }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxPiso.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Piso);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Piso)] = respuesta;
 
-            this.setErrorProvider(this.txtBoxPiso, respuesta, mensaje);
-        }
+                lcl_mensaje = respuesta ? "OK" : "Piso no válido";
+                if (String.IsNullOrWhiteSpace(this.txtBoxPiso.Text))
+                {
+                    lcl_mensaje = null;
+                }
+                this.setErrorProvider(this.txtBoxPiso, respuesta, lcl_mensaje);
+            }
+    }
 
         private void txtBoxDepartamento_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxDepartamento.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Departamento);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Departamento)] = respuesta;
-            string mensaje = respuesta? "OK": "Departamento no válido";
-            if(String.IsNullOrWhiteSpace(this.txtBoxDepartamento.Text))
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxDepartamento.Text, Constantes.ParametrosBusqueda.Domicilios.Departamento, out lcl_mensaje))
             {
-                mensaje = null;
+                this.setErrorProvider(txtBoxDepartamento, false, lcl_mensaje);
             }
-
-            this.setErrorProvider(this.txtBoxDepartamento, respuesta, mensaje);
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxDepartamento.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Departamento);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Departamento)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Departamento no válido";
+                if (String.IsNullOrWhiteSpace(this.txtBoxDepartamento.Text))
+                {
+                    lcl_mensaje = null;
+                }
+                this.setErrorProvider(this.txtBoxDepartamento, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxCodigoPostal_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoPostal.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.CodigoPostal);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.CodigoPostal)] = respuesta;
-            string mensaje = respuesta ? "OK" : "Código Postal no válido";
-
-            if (String.IsNullOrWhiteSpace(this.txtBoxCodigoPostal.Text))
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxCodigoPostal.Text, Constantes.ParametrosBusqueda.Domicilios.CodigoPostal, out lcl_mensaje))
             {
-                mensaje = null;
+                this.setErrorProvider(txtBoxCodigoPostal, false, lcl_mensaje);
             }
-
-            this.setErrorProvider(this.txtBoxCodigoPostal, respuesta, mensaje);
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoPostal.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.CodigoPostal);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.CodigoPostal)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Código Postal no válido";
+                if (String.IsNullOrWhiteSpace(this.txtBoxCodigoPostal.Text))
+                {
+                    lcl_mensaje = null;
+                }
+                this.setErrorProvider(this.txtBoxCodigoPostal, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxCiudad_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCiudad.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Ciudad);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)] = respuesta;
-            string mensaje = respuesta?"OK":"Ciudad no válida";
-            //if (String.IsNullOrWhiteSpace(this.txtBoxCiudad.Text))
-            //{
-            //    mensaje = null;
-            //}
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxCiudad.Text, Constantes.ParametrosBusqueda.Domicilios.Ciudad, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxCiudad, false, lcl_mensaje);
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxCiudad.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.Ciudad);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Ciudad no válida";
+                //if (String.IsNullOrWhiteSpace(this.txtBoxCiudad.Text))
+                //{
+                //    mensaje = null;
+                //}
 
-            this.setErrorProvider(this.txtBoxCiudad, respuesta, mensaje);
+                this.setErrorProvider(this.txtBoxCiudad, respuesta, lcl_mensaje);
+            }
         }
         #endregion
 

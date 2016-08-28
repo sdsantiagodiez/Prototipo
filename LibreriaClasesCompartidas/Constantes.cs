@@ -78,6 +78,7 @@ namespace LibreriaClasesCompartidas
             public static class Roles
             {
                 public const string codigoRol = "codigoRol";
+                public const string descripcion = "descripcionRol";
             }
             public static class Articulos
             {

@@ -167,6 +167,7 @@ namespace LibreriaClasesCompartidas
                 case Constantes.ParametrosBusqueda.Articulos.Observaciones:
                 case Constantes.ParametrosBusqueda.Pedidos.Observaciones:
                 case Constantes.ParametrosBusqueda.Entidades.Observaciones:
+                case Constantes.ParametrosBusqueda.Roles.descripcion:
                 //Admite cualquier caracter, sin restricción de repeticiones de los mismos
                     lcl_patron = new Regex(@"^.+$");
                     break;
@@ -213,6 +214,7 @@ namespace LibreriaClasesCompartidas
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo:
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion:
                 case Constantes.ParametrosBusqueda.Domicilios.Calle:
+                case Constantes.ParametrosBusqueda.Domicilios.Ciudad:
                     //Admite Alfanumericos con espacios
                     lcl_patron = new Regex(@"^[\w\s]+$");
                     break;
@@ -254,6 +256,78 @@ namespace LibreriaClasesCompartidas
                 return lcl_patron.IsMatch(p_input);
             }
                 
+        }
+
+        public static int getLongitud (string p_opcion)
+        {
+            int lcl_length;
+            switch (p_opcion)
+            {
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Dni:
+                    lcl_length = 15;
+                    break;
+                case Constantes.ParametrosBusqueda.Entidades.Cuit:
+                case Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.Cuit_Proveedor:
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Nombre:
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Apellido:
+                case Constantes.ParametrosBusqueda.Pedidos.CAE:
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario:
+                case Constantes.ParametrosBusqueda.Roles.descripcion:
+                case Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono:
+                    lcl_length = 30;
+                    break;
+                case Constantes.ParametrosBusqueda.Articulos.CodigoOriginal:
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor:
+                case Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia:
+                    lcl_length = 50;
+                    break;
+                case Constantes.ParametrosBusqueda.Domicilios.Calle:
+                case Constantes.ParametrosBusqueda.Domicilios.Piso:
+                case Constantes.ParametrosBusqueda.Domicilios.Departamento:
+                case Constantes.ParametrosBusqueda.Domicilios.Ciudad:
+                case Constantes.ParametrosBusqueda.Domicilios.CodigoPostal:
+                case Constantes.ParametrosBusqueda.Mails.Mail:
+                    lcl_length = 60;
+                    break;
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo:
+                    lcl_length = 80;
+                    break;
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion:
+                    lcl_length = 100;
+                    break;
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.razonSocialProveedor:
+                case Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial:
+                case Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.RazonSocial_Proveedor:
+                    lcl_length = 150;
+                    break;
+                case Constantes.ParametrosBusqueda.Articulos.Descripcion:
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.DescripcionArticuloProveedor:
+                case Constantes.ParametrosBusqueda.Descuentos.Descripcion:
+                case Constantes.ParametrosBusqueda.Pedidos.Observaciones:
+                    lcl_length = 300;
+                    break;
+                case Constantes.ParametrosBusqueda.Articulos.Observaciones: 
+                case Constantes.ParametrosBusqueda.Entidades.Observaciones:
+                    lcl_length = 8000;
+                    break;
+                default:
+                    lcl_length = 15;
+                    break;
+            }
+            return lcl_length;
+        }
+
+        public static bool validarLongitud(string p_input, string p_opcion, out string mensaje) 
+        {
+            int lcl_long = getLongitud(p_opcion);
+            if ( p_input.Length > lcl_long)
+            {
+                mensaje = "La longitud máxima es " +  lcl_long.ToString() + " caracteres";
+                return false;
+            }
+            mensaje = "OK";
+            return true;
+            
         }
     }
 }
