@@ -20,6 +20,7 @@ namespace Vista
         ControlDomicilios glb_con_domicilios;
         ModeloUsuario glb_usuarioActual;
         public EventHandler ActualizarColoresEvent;
+        public EventHandler ActualizarUsuario;
         List<bool> glb_lst_respuestasValidaciones;
         #endregion
         
@@ -176,10 +177,20 @@ namespace Vista
             string mensaje;
             if (this.validar_cargarDatosControlEnUsuario(out mensaje))
             {
-                ModeloUsuario lcl_mod_usuario = new ModeloUsuario();
+                ModeloUsuario lcl_mod_usuario = new ModeloUsuario()
+                {
+                    codigo = glb_usuarioActual.codigo,
+                    roles = glb_usuarioActual.roles,
+                    usuario = glb_usuarioActual.usuario,
+                    observaciones = glb_usuarioActual.observaciones
+                };
+                lcl_mod_usuario.setContraseñaEncriptada(glb_usuarioActual.contrasenia);
+
                 this.cargarDatosControlPersonales(ref lcl_mod_usuario);
                 this.cargarDatosControlContraseña(ref lcl_mod_usuario);
                 this.cargarDatosControlDeContacto(ref lcl_mod_usuario);
+
+
                 return lcl_mod_usuario;
             }
             else
@@ -578,6 +589,7 @@ namespace Vista
             {
                 return;
             }
+            
 
             if (validarInputs(new object(), new EventArgs(), Constantes.ParametrosBusqueda.Entidades.Personas.CodigoEntidad)
             && validarInputs(new object(), new EventArgs(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia))
@@ -586,8 +598,9 @@ namespace Vista
 
                 if (lcl_con_modificacion.modificar(lcl_mod_usuario))
                 {
-                    glb_usuarioActual = lcl_mod_usuario;
+                    glb_usuarioActual = new ModeloUsuario(lcl_mod_usuario);
                     MessageBox.Show("Cambios guardados exitosamente", "Éxito", MessageBoxButtons.OK);
+                    this.ActualizarUsuario(glb_usuarioActual, new EventArgs());
                 }
                 else
                 {

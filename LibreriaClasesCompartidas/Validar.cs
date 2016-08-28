@@ -137,7 +137,7 @@ namespace LibreriaClasesCompartidas
             }
             return resultado;
         }
-
+     
         public static bool validarInputNoNumerico(string p_input, string p_opcion)
         {
             string especial = "";

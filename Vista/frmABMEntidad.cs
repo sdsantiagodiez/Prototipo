@@ -1315,7 +1315,26 @@ namespace Vista
 
         override public void toolStripMenuItemEliminar_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("¿Está seguro que desea eliminar el "+tipoEntidadSeleccionada+" seleccionado?", "Atención", MessageBoxButtons.YesNo);
+            string entidad;
+            switch (tipoEntidadSeleccionada)
+            {
+                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor:
+                    entidad = "Proveedor";
+                    break;
+                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente:
+                    entidad = "Cliente";
+                    break;
+                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario:
+                    entidad = "Usuario";
+                    break;
+                case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor:
+                    entidad = "Contacto de Proveedor";
+                    break;
+                default:
+                    entidad = "";
+                    break;
+            }
+            DialogResult dialogResult = MessageBox.Show("¿Está seguro que desea eliminar el "+entidad+" seleccionado?", "Atención", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 this.baja();

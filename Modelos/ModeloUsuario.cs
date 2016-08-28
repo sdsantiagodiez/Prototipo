@@ -56,7 +56,10 @@ namespace Modelos
             set { this._roles = value; }
         }
         #endregion
-
+        public void setContraseñaEncriptada(string p_contraseña)
+        {
+            _contrasenia = p_contraseña;
+        }
         #region Validación
         new public bool validar()
         {

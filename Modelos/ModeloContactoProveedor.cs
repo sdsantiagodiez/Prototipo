@@ -58,6 +58,11 @@ namespace Modelos
         }
         #endregion
 
+        public void asignarProveedor(ModeloProveedor p_proveedor)
+        {
+            _proveedor = new ModeloProveedor(p_proveedor);
+        }
+
         #region Equals
         public override bool Equals(object p_objeto)
         {

@@ -144,7 +144,27 @@ namespace Datos
 
             return lcl_lst_mod_contactoProveedor;
         }
-               
+        /// <summary>
+        /// Busca usuario de acuerdo a código de entidad
+        /// </summary>
+        /// <param name="p_codigoEntidad">codigo entidad del usuario a buscar</param>
+        /// <returns>ModeloUsuario si encuentra, null si no encuentra resultado</returns>
+        public override ModeloEntidad getOne(int p_codigoEntidad)
+        {
+            ModeloContactoProveedor lcl_mod_contactoProveedor = new ModeloContactoProveedor();
+            List<ModeloContactoProveedor> lcl_lst_mod_contactoProveedores = new List<ModeloContactoProveedor>();
+            lcl_mod_contactoProveedor.codigo = p_codigoEntidad;
+            lcl_lst_mod_contactoProveedores = this.buscarContactoProveedor(lcl_mod_contactoProveedor, Constantes.ParametrosBusqueda.Entidades.Personas.CodigoEntidad);
+
+            if (lcl_lst_mod_contactoProveedores.Count > 0)
+            {
+                return lcl_lst_mod_contactoProveedores[0];
+            }
+            else
+            {
+                return null;
+            }
+        }  
         #endregion
 
         #region Alta/Baja/Modificación

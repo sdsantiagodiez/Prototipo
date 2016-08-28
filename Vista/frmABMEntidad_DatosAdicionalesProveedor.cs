@@ -64,7 +64,7 @@ namespace Vista
             this.cmbBoxTipoResponsable.SelectedItem = (Constantes.SituacionIVA)p_proveedor.codigoTipoResponsable;
 
             ModeloContactoProveedor lcl_mod_contactoProveedor = new ModeloContactoProveedor();
-            lcl_mod_contactoProveedor.proveedor = new ModeloProveedor(p_proveedor);
+            lcl_mod_contactoProveedor.asignarProveedor(p_proveedor);// .proveedor = new ModeloProveedor(p_proveedor);
             frmResultadoBusqueda lcl_frm = new frmResultadoBusqueda(lcl_mod_contactoProveedor);
 
             this.grpBoxContactosProveedor.Controls.Add(lcl_frm.dataGridViewResultadoBusqueda);

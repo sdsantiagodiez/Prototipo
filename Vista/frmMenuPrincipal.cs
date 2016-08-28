@@ -1041,8 +1041,13 @@ namespace Vista
             this.agregarFormulario(glb_form);
 
             (glb_form as frmOpcionesUsuario).ActualizarColoresEvent += this.actualizarColores;
+            (glb_form as frmOpcionesUsuario).ActualizarUsuario += this.actualizarUsuario;
         }
-        
+
+        private void actualizarUsuario(object sender, EventArgs e)
+        {
+            UsuarioActual = (sender as ModeloUsuario);
+        }
         private void actualizarColores(object sender, EventArgs e)
         {
             this.actualizarColores();
