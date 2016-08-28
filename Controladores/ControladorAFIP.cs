@@ -66,6 +66,10 @@ namespace Controladores
         {
             if (!Validar())
             {
+                //Restauramos los valores válidos
+                CertificadoPath = Properties.Settings.Default.afip_certificado;
+                PasswordCertificado = Properties.Settings.Default.afip_contrasenia;
+                CuitEmisor = Properties.Settings.Default.afip_cuitEmisor;
                 return false;
             }
 
