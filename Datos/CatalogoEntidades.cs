@@ -145,26 +145,9 @@ namespace Datos
 
         protected void getDatosAdicionales(ModeloEntidad p_mod_entidad)
         {
-            p_mod_entidad.mails = this.getMails(p_mod_entidad.codigo);
-            p_mod_entidad.telefonos = this.getTelefonos(p_mod_entidad.codigo);
-            p_mod_entidad.domicilios = this.getDomicilios(p_mod_entidad.codigo);
-        }
-        private List<ModeloMail> getMails(int p_codigoEntidad)
-        {
-            CatalogoMails lcl_cat_mails = new CatalogoMails();
-            return lcl_cat_mails.getMails(p_codigoEntidad);
-        }
-
-        private List<ModeloDomicilio> getDomicilios(int p_codigoEntidad)
-        {
-            CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
-            return lcl_cat_domicilios.getDomicilios(p_codigoEntidad);
-        }
-
-        private List<ModeloTelefono> getTelefonos(int p_codigoEntidad)
-        {
-            CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
-            return lcl_cat_telefonos.getTelefonos(p_codigoEntidad);
+            p_mod_entidad.mails = new CatalogoMails().getMails(p_mod_entidad.codigo);
+            p_mod_entidad.telefonos = new CatalogoTelefonos().getTelefonos(p_mod_entidad.codigo);
+            p_mod_entidad.domicilios = new CatalogoDomicilios().getDomicilios(p_mod_entidad.codigo);
         }
         #endregion
 
@@ -201,24 +184,9 @@ namespace Datos
 
             if (nuevoCodigoEntidad != null)
             { 
-                p_mod_entidad.codigo = Convert.ToInt32(nuevoCodigoEntidad);
-                List<ModeloMail> lcl_lst_mails = p_mod_entidad.mails;
-                foreach (ModeloMail m in lcl_lst_mails)
-                {
-                    this.agregarNuevoMail(m, Convert.ToInt32(p_mod_entidad.codigo));
-                }
-
-                List<ModeloTelefono> lcl_lst_telefonos = p_mod_entidad.telefonos;
-                foreach (ModeloTelefono t in lcl_lst_telefonos)
-                {
-                    this.agregarNuevoTelefono(t, Convert.ToInt32(p_mod_entidad.codigo));
-                }
-
-                List<ModeloDomicilio> lcl_lst_domicilios = p_mod_entidad.domicilios;
-                foreach (ModeloDomicilio d in lcl_lst_domicilios)
-                {
-                    this.agregarNuevoDomicilio(d, Convert.ToInt32(p_mod_entidad.codigo));
-                }
+                this.actualizarMails(p_mod_entidad);
+                this.actualizarTelefonos(p_mod_entidad);
+                this.actualizarDomicilio(p_mod_entidad);
 
                 return true;
             }
@@ -228,84 +196,9 @@ namespace Datos
             }
         }
 
-        #region ABM Mails
-        public bool agregarNuevoMail(ModeloMail p_mod_mail, int p_codigoEntidad)
-        {
-            CatalogoMails lcl_cat_mails = new CatalogoMails();
-            if (lcl_cat_mails.add(p_mod_mail, p_codigoEntidad))
-            {
-                return true;
-            }
-            throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar entidad. Inconveniente con mail.");
-            
-        }
-        public bool bajaMail(ModeloMail p_mod_mail)
-        {
-            CatalogoMails lcl_cat_mails = new CatalogoMails();
-            return lcl_cat_mails.remove(p_mod_mail);
-        }
-        public bool actualizarMail(ModeloMail p_mod_mail)
-        {
-            CatalogoMails lcl_cat_mails = new CatalogoMails();
-            return lcl_cat_mails.update(p_mod_mail);
-        }
-        #endregion
-        #region ABM Domicilios
-        public bool agregarNuevoDomicilio(ModeloDomicilio p_mod_domicilio, int p_codigoEntidad)
-        {
-            CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
-            if(lcl_cat_domicilios.add(p_mod_domicilio, p_codigoEntidad))
-            {
-                return true;
-            }
-            throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar entidad. Inconveniente con domicilio.");
-        }
-        public bool bajaDomicilio(ModeloDomicilio p_mod_domicilio)
-        {
-            CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
-            return lcl_cat_domicilios.remove(p_mod_domicilio);
-        }
-        public bool actualizarDomicilio(ModeloDomicilio p_mod_domicilio)
-        {
-            CatalogoDomicilios lcl_cat_domicilios = new CatalogoDomicilios();
-            return lcl_cat_domicilios.update(p_mod_domicilio);
-        }
-        #endregion
-        #region ABM Teléfonos
-        public bool agregarNuevoTelefono(ModeloTelefono p_mod_telefono, int p_codigoEntidad)
-        {
-            CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
-            if(lcl_cat_telefonos.add(p_mod_telefono, p_codigoEntidad))
-            {
-                return true;
-            }
-            throw new Exception("Ha ocurrido un error en la base de datos. No se ha podido registrar entidad. Inconveniente con telefono.");
-        }
-
-        public bool bajaTelefono(ModeloTelefono p_mod_telefono)
-        {
-            CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
-            return lcl_cat_telefonos.remove(p_mod_telefono);
-        }
-        public bool actualizarTelefono(ModeloTelefono p_mod_telefono)
-        {
-            CatalogoTelefonos lcl_cat_telefonos = new CatalogoTelefonos();
-            return lcl_cat_telefonos.update(p_mod_telefono);
-        }
-
-        #endregion
-
         protected bool updateEntidad(ModeloEntidad p_mod_entidad)
         {
-            //Creo la conexion y la abro
-            SqlConnection ConexionSQL = Conexion.crearConexion();
-
-            //crea SQL command
-            SqlCommand comando = new SqlCommand();
-
-            comando.Connection = ConexionSQL;
-
-            comando.CommandType = CommandType.Text;
+            SqlCommand comando = Conexion.crearComando();
 
             comando.CommandText =
                 "UPDATE [entidades] SET [cuit]=@cuit, [observaciones]=@observaciones,[tipo_entidad]=@tipo_entidad,[activo]=@activo, " +
@@ -322,24 +215,10 @@ namespace Datos
             int rowaffected = comando.ExecuteNonQuery();
             comando.Connection.Close();
 
-            List<ModeloMail> lcl_lst_mod_mails = p_mod_entidad.mails;
-            foreach (ModeloMail m in lcl_lst_mod_mails)
-            {
-                this.actualizarMail(m);
-            }
-
-            List<ModeloTelefono> lcl_lst_mod_telefonos = p_mod_entidad.telefonos;
-            foreach (ModeloTelefono t in lcl_lst_mod_telefonos)
-            {
-                this.actualizarTelefono(t);
-            }
-
-            List<ModeloDomicilio> lcl_lst_mod_domicilios = p_mod_entidad.domicilios;
-            foreach (ModeloDomicilio d in lcl_lst_mod_domicilios)
-            {
-                this.actualizarDomicilio(d);
-            }
-
+            this.actualizarMails(p_mod_entidad);
+            this.actualizarTelefonos(p_mod_entidad);
+            this.actualizarDomicilio(p_mod_entidad);
+            
             if (rowaffected != 0)
             {
                 return true;
@@ -394,6 +273,146 @@ namespace Datos
                 return false;
             }
         }
+
+        #region Mails, Teléfonos y Domicilios
+        public bool actualizarMails(ModeloEntidad p_entidad)
+        {
+            CatalogoMails catalogo = new CatalogoMails();
+            List<ModeloMail> mailsBaseDeDatos = catalogo.getMails(p_entidad.codigo);
+            List<ModeloMail> mailsActuales = p_entidad.mails;
+            List<ModeloMail> mailsAgregados = new List<ModeloMail>();
+
+            foreach (ModeloMail m_bd in mailsBaseDeDatos)
+            {
+                bool esEliminacion = true;
+                foreach (ModeloMail m_actual in mailsActuales)
+                {
+                    if (m_actual.codigoMail == 0 && !mailsAgregados.Exists(x => x.Equals(m_actual)))
+                    {
+                        catalogo.add(m_actual, p_entidad.codigo);
+                        mailsAgregados.Add(m_actual);
+                        continue;
+                    }
+                    if (m_actual.codigoMail == m_bd.codigoMail)
+                    {//Si son iguales puede ser que se haya modificado o dejado como estaba
+                        if (!m_bd.Equals(m_actual))
+                        {
+                            catalogo.update(m_actual);
+                        }
+                        esEliminacion = false;
+                        continue;
+                    }
+                }
+                if (esEliminacion)
+                {
+                    catalogo.remove(m_bd);
+                }
+            }
+
+            if (mailsBaseDeDatos.Count == 0 && mailsActuales.Count > 0)
+            {//si es 0 no entra en el loop anterior
+                foreach (ModeloMail m in mailsActuales)
+                {
+                    catalogo.add(m, p_entidad.codigo);
+                }
+            }
+
+            return true;
+
+        }
+
+        public bool actualizarDomicilio(ModeloEntidad p_entidad)
+        {
+            CatalogoDomicilios catalogo = new CatalogoDomicilios();
+            List<ModeloDomicilio> domiciliosBaseDeDatos = catalogo.getDomicilios(p_entidad.codigo);
+            List<ModeloDomicilio> domiciliosActuales = p_entidad.domicilios;
+            List<ModeloDomicilio> domiciliosAgregados = new List<ModeloDomicilio>();
+
+            foreach (ModeloDomicilio d_bd in domiciliosBaseDeDatos)
+            {
+                bool esEliminacion = true;
+                foreach (ModeloDomicilio d_actual in domiciliosActuales)
+                {
+                    if (d_actual.codigoDomicilio == 0 && !domiciliosAgregados.Exists(x => x.Equals(d_actual)))
+                    {
+                        catalogo.add(d_actual, p_entidad.codigo);
+                        domiciliosAgregados.Add(d_actual);
+                        break;
+                    }
+                    if (d_actual.codigoDomicilio == d_bd.codigoDomicilio)
+                    {//Si son iguales puede ser que se haya modificado o dejado como estaba
+                        if (!d_bd.Equals(d_actual))
+                        {
+                            catalogo.update(d_actual);
+                        }
+                        esEliminacion = false;
+                        continue; ;
+                    }
+                }
+                if (esEliminacion)
+                {
+                    catalogo.remove(d_bd);
+                }
+            }
+
+            if (domiciliosBaseDeDatos.Count == 0 && domiciliosActuales.Count > 0)
+            {//si es 0 no entra en el loop anterior
+                foreach (ModeloDomicilio d in domiciliosActuales)
+                {
+                    catalogo.add(d, p_entidad.codigo);
+                }
+            }
+
+            return true;
+
+        }
+
+        public bool actualizarTelefonos(ModeloEntidad p_entidad)
+        {
+            CatalogoTelefonos catalogo = new CatalogoTelefonos();
+            List<ModeloTelefono> telefonosBaseDeDatos = catalogo.getTelefonos(p_entidad.codigo);
+            List<ModeloTelefono> telefonosActuales = p_entidad.telefonos;
+            List<ModeloTelefono> telefonosAgregados = new List<ModeloTelefono>();
+
+            foreach (ModeloTelefono t_bd in telefonosBaseDeDatos)
+            {
+                bool esEliminacion = true;
+                foreach (ModeloTelefono t_actual in telefonosActuales)
+                {
+                    if (t_actual.codigoTelefono == 0 && !telefonosAgregados.Exists(x=> x.Equals(t_actual)))
+                    {
+                        catalogo.add(t_actual, p_entidad.codigo);
+                        telefonosAgregados.Add(t_actual);
+                        continue;
+                    }
+                    if (t_actual.codigoTelefono == t_bd.codigoTelefono)
+                    {//Si son iguales puede ser que se haya modificado o dejado como estaba
+                        if (!t_bd.Equals(t_actual))
+                        {
+                            catalogo.update(t_actual);
+                        }
+                        esEliminacion = false;
+                        continue;
+                    }
+                }
+                if (esEliminacion)
+                {
+                    catalogo.remove(t_bd);
+                }
+            }
+
+            if (telefonosBaseDeDatos.Count == 0 && telefonosActuales.Count > 0)
+            {//si es 0 no entra en el loop anterior
+                foreach (ModeloTelefono d in telefonosActuales)
+                {
+                    catalogo.add(d, p_entidad.codigo);
+                }
+            }
+
+            return true;
+
+        }
+        #endregion
 
         #endregion
     }
