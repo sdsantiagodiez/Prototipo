@@ -290,14 +290,14 @@
             this.txtBoxDNI.Depth = 0;
             this.txtBoxDNI.Hint = "";
             this.txtBoxDNI.Location = new System.Drawing.Point(123, 57);
-            this.txtBoxDNI.Margin = new System.Windows.Forms.Padding(3, 3, 26, 3);
+            this.txtBoxDNI.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.txtBoxDNI.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDNI.Name = "txtBoxDNI";
             this.txtBoxDNI.PasswordChar = '\0';
             this.txtBoxDNI.SelectedText = "";
             this.txtBoxDNI.SelectionLength = 0;
             this.txtBoxDNI.SelectionStart = 0;
-            this.txtBoxDNI.Size = new System.Drawing.Size(290, 23);
+            this.txtBoxDNI.Size = new System.Drawing.Size(301, 23);
             this.txtBoxDNI.TabIndex = 18;
             this.txtBoxDNI.UseSystemPasswordChar = false;
             this.txtBoxDNI.Leave += new System.EventHandler(this.txtBoxDNI_Leave);
@@ -698,7 +698,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 9);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 11);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxTipoTelefono.TabIndex = 23;

@@ -166,6 +166,9 @@ namespace Vista
         }
         private void inicializarTextBoxes()
         {
+            this.txtBoxCUIT.KeyPress += this.valorCUIT;
+            this.txtBoxDNI.KeyPress += this.valorDNI;
+
             txtBoxContraseñaNueva.KeyPress += this.permitirCambio;
             txtBoxContraseñaNuevaRepetir.KeyPress += this.permitirCambio;
         }
@@ -690,21 +693,131 @@ namespace Vista
         #endregion
 
         #region TextBoxs
+        private void valorCUIT(object sender, KeyPressEventArgs e)
+        {
+            // solo 0-9 y borrar y - (char 45)
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 45))
+            {
+                e.Handled = true;
+                return;
+            }
+            //inserta guión luego del caracter 2 y 11
+            if ((sender as TextBox).Text.Length == 2 || (sender as TextBox).Text.Length == 11)
+            {
+                if (e.KeyChar != 8)
+                {
+                    (sender as TextBox).Text += "-" + e.KeyChar;
+                    e.Handled = true;
+                    (sender as TextBox).SelectionStart = (sender as TextBox).Text.Length;
+                }
+
+            }
+        }
+
+        private void valorDNI(object sender, KeyPressEventArgs e)
+        {
+            this.valorNumericoTeclado(sender, e);
+            if (!e.Handled)
+            {
+                return;//quiere decir que se ingreso un número en el evento anterior
+            }
+            else
+            {
+                e.Handled = false;//Volvemos a setear en caso que no haya sido un número el keyPress
+            }
+
+            //Admitimos además de numéricos también puntos según corresponda
+            int keyCharSeparador = 46;//46: '.'
+
+            if (e.KeyChar != keyCharSeparador)
+            {
+                e.Handled = true;
+                return;
+            }
+        }
+        private bool validarCUIT()
+        {
+            if (string.IsNullOrWhiteSpace(txtBoxCUIT.Text) || !ModeloEntidad.CUIT.ValidarCuit(txtBoxCUIT.Text))
+            {
+                this.setErrorProvider(this.txtBoxCUIT, false, "CUIT no válido");
+                return false;
+            }
+            return true;
+        }
         private void txtBoxCUIT_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCUIT.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Cuit);
+            bool respuesta = this.validarCUIT();//Validar.validarInputNoNumerico(txtBoxCUIT.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Cuit);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "CUIT no válido";
-            this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (respuesta)
+            {
+                if (!string.IsNullOrWhiteSpace(txtBoxDNI.Text))
+                {
+                    if (string.Equals(txtBoxCUIT.Text.Substring(3, txtBoxDNI.Text.Replace(".", string.Empty).Length), txtBoxDNI.Text.Replace(".", string.Empty)))
+                    {
+                        lcl_mensaje = "OK";
+                        this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
+                    }
+                    else
+                    {
+                        lcl_mensaje = "CUIT no coincide con DNI";
+                        respuesta = false;
+                        glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
+                        this.setErrorProvider(this.txtBoxCUIT, false, lcl_mensaje);
+                    }
+                }
+                else
+                {
+                    lcl_mensaje = "OK";
+                    this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
+                }
+            }
+            else
+            {
+                lcl_mensaje = "CUIT no válido";
+                if (String.IsNullOrWhiteSpace(this.txtBoxCUIT.Text))
+                {
+                    lcl_mensaje = null;
+                }
+
+                this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxDNI_Leave(object sender, EventArgs e)
         {
+            //realizo validación
             bool respuesta = Validar.validarInputNoNumerico(txtBoxDNI.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "DNI no válido";
-            this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
-
+            string lcl_mensaje;
+            if (respuesta)
+            {
+                if (!string.IsNullOrWhiteSpace(txtBoxCUIT.Text))
+                {
+                    if (string.Equals(txtBoxCUIT.Text.Substring(3, txtBoxDNI.Text.Replace(".", string.Empty).Length), txtBoxDNI.Text.Replace(".", string.Empty)))
+                    {
+                        lcl_mensaje = "OK";
+                        this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
+                    }
+                    else
+                    {
+                        lcl_mensaje = "DNI no coincide con CUIT";
+                        respuesta = false;
+                        glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = respuesta;
+                        this.setErrorProvider(this.txtBoxDNI, false, lcl_mensaje);
+                    }
+                }
+                else
+                {
+                    lcl_mensaje = "OK";
+                    this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
+                }
+            }
+            else
+            {
+                lcl_mensaje = "DNI no válido";
+                this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxNombre_Leave(object sender, EventArgs e)

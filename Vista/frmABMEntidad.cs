@@ -314,9 +314,7 @@ namespace Vista
         private void inicializarTextBoxes()
         {
             txtBoxCUIT.KeyPress += this.valorCUIT;
-            //txtBoxCUIT.MaxLength = ModeloEntidad.CUIT.longitud;
             txtBoxDNI.KeyPress += this.valorDNI;
-            //txtBoxDNI.MaxLength = 10;
         }
 
         private void actualizarContextMenu(DataGridView p_dgvActual)
@@ -1611,8 +1609,20 @@ namespace Vista
 
         private void valorDNI(object sender, KeyPressEventArgs e)
         {
-            // solo 0-9, borrar y '.' para cada mil (char 46)
-            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
+            this.valorNumericoTeclado(sender, e);
+            if (!e.Handled)
+            {
+                return;//quiere decir que se ingreso un número en el evento anterior
+            }
+            else
+            {
+                e.Handled = false;//Volvemos a setear en caso que no haya sido un número el keyPress
+            }
+
+            //Admitimos además de numéricos también puntos según corresponda
+            int keyCharSeparador = 46;//46: '.'
+
+            if (e.KeyChar != keyCharSeparador)
             {
                 e.Handled = true;
                 return;
