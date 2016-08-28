@@ -364,6 +364,7 @@ namespace Modelos
             this.getTotal();
             this.getSubTotal();
             this.getIVAMonto();
+            this.actualizarMontoFormaPagoRestante();
         }
         #region Agregar, Bajar y Actualizar lineas de pedido
         /// <summary>
@@ -440,9 +441,22 @@ namespace Modelos
 
         private bool actualizarMontoFormaPagoRestante()
         {
+            FormaPago lcl_formaPagoRestante = new FormaPago();
+            foreach (FormaPago fp in this.formasDePago)
+            {
+                if (fp.restante)
+                {
+                    lcl_formaPagoRestante = fp;
+                    break;
+                }
+
+            }
+
             decimal valor = this.getMontoFormaPagoRestante();
             if (valor < 0)
             {
+                formasDePago = new List<FormaPago>();
+                this.addFormaPago(lcl_formaPagoRestante);
                 // no se puede porque se ha asignado más monto del que se debe pagar
                 return false;
             }

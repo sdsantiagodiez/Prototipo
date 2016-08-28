@@ -33,6 +33,9 @@ namespace Datos
             lcl_mod_pedido.descuentos.descuento_monto_1 = (p_drPedidos["descuento_1_monto"] != DBNull.Value) ? (decimal)p_drPedidos["descuento_1_monto"] : 0;
             lcl_mod_pedido.descuentos.descuento_monto_2 = (p_drPedidos["descuento_2_monto"] != DBNull.Value) ? (decimal)p_drPedidos["descuento_2_monto"] : 0;
 
+            int codigoFormaPago = (p_drPedidos["codigo_forma_pago"] != DBNull.Value) ? (int)p_drPedidos["codigo_forma_pago"] : 1;
+            lcl_mod_pedido.addFormaPago(new FormaPago() { forma = (Constantes.FormaDePago)codigoFormaPago,restante = true});
+
             #region Datos Pedidos_Personas
             if (lcl_mod_pedido.codigoTipoPedido == Constantes.CodigosTiposPedidos.Persona)
             {
@@ -246,8 +249,8 @@ namespace Datos
                 "SELECT  tbl.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
                 "        [codigo_entidad], [razon_social_entidad],[descuento_1_monto],[descuento_2_monto], " +
                 "        [numero_comprobante_AFIP],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],[estado],  " +
-                "       codigo_tipo_responsable,mail.mail, numero_comprobante, " +
-		        "       telefono.tipo,telefono.numero as numero_telefono,  "+
+                "       codigo_tipo_responsable, codigo_forma_pago, "+
+                "       mail.mail, numero_comprobante, telefono.tipo,telefono.numero as numero_telefono,  "+
 		        "       domicilio.calle,domicilio.numero as numero_domicilio,domicilio.piso,domicilio.departamento,domicilio.ciudad,domicilio.codigo_postal,domicilio.codigo_provincia "+
                 "    FROM  "+
                 "    (  "+
@@ -256,7 +259,7 @@ namespace Datos
 	            "                [numero_comprobante_AFIP],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], "+
                 "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante], "+
                 "               [descuento_1_monto],[descuento_2_monto], [estado],[numero_comprobante], "+
-				"			   pedidos_personas.codigo_tipo_responsable "+
+                "			   pedidos_personas.codigo_tipo_responsable, codigo_forma_pago " +
                 "            FROM pedidos, Pedidos_Personas "+
                 "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido "+
                 "        )  "+
@@ -266,7 +269,7 @@ namespace Datos
                 "                null as [numero_comprobante_AFIP],NULL as [cae],NULL as [vencimiento_cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
                 "                NULL as [codigo_documento],Entidades.cuit as [numero_documento_entidad],[codigo_comprobante], " +
                 "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto], NULL as [estado],[numero_comprobante], " +
-                "               entidades.codigo_tipo_responsable " +
+                "               entidades.codigo_tipo_responsable, codigo_forma_pago " +
                 "            FROM pedidos, Pedidos_Proveedores, Proveedores, Entidades    " +
                 "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  " +
                 "                   AND Pedidos_Proveedores.codigo_entidad= Proveedores.codigo_entidad" +
@@ -331,9 +334,9 @@ namespace Datos
             string querySQL = this.getCondicionBusqueda(p_mod_pedido,p_periodo, p_codigosComprobantes, p_clienteGenerico, p_facturadoElectronicamente, ref comando);
             comando.CommandText =
                  "SELECT  tbl.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
-                "        [codigo_entidad],[razon_social_entidad], " +
-                "        [numero_comprobante_afip],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],  " +
-                "           [descuento_1_monto],[descuento_2_monto],[estado], codigo_tipo_responsable, " +
+                "       [codigo_entidad],[razon_social_entidad], " +
+                "       [numero_comprobante_afip],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],  " +
+                "       [descuento_1_monto],[descuento_2_monto],[estado], codigo_tipo_responsable, codigo_forma_pago,  " +
                 "       mail.mail, numero_comprobante, " +
                 "       telefono.tipo,telefono.numero as numero_telefono,  " +
                 "       domicilio.calle,domicilio.numero as numero_domicilio,domicilio.piso,domicilio.departamento,domicilio.ciudad,domicilio.codigo_postal,domicilio.codigo_provincia " +
@@ -344,7 +347,7 @@ namespace Datos
                 "                [numero_comprobante_AFIP],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], " +
                 "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante], "+
                 "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto],[estado],[numero_comprobante], " +
-                "               pedidos_personas.codigo_tipo_responsable "+
+                "               pedidos_personas.codigo_tipo_responsable, codigo_forma_pago " +
                 "            FROM pedidos, Pedidos_Personas  " +
                 "            WHERE pedidos.numero_pedido = Pedidos_Personas.numero_pedido  " +
                 "        )  " +
@@ -354,7 +357,7 @@ namespace Datos
                 "                null as [numero_comprobante_AFIP],NULL as [cae],NULL as [vencimiento_cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
                 "                NULL as [codigo_documento],Entidades.cuit as [numero_documento_entidad],[codigo_comprobante], " +
                 "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto], NULL as [estado],[numero_comprobante], " +
-                "               entidades.codigo_tipo_responsable "+
+                "               entidades.codigo_tipo_responsable, codigo_forma_pago " +
                 "            FROM pedidos, Pedidos_Proveedores, Proveedores, Entidades    " +
                 "            WHERE pedidos.numero_pedido = pedidos_proveedores.numero_pedido  " +
                 "                   AND Pedidos_Proveedores.codigo_entidad= Proveedores.codigo_entidad" +
@@ -742,11 +745,11 @@ namespace Datos
             comando.CommandText =
             "INSERT INTO [pedidos](codigo_tipo_pedido,fecha,alicuota,monto_subtotal,monto_total,observaciones,codigo_comprobante, "+
             "   senia, descuento_1_monto, descuento_1_porcentaje, descuento_2_monto, descuento_2_porcentaje,numero_comprobante, "+
-            "   descuento_lineas_monto, descuento_lineas_porcentaje, descuento_total_monto, descuento_total_porcentaje) " +
+            "   descuento_lineas_monto, descuento_lineas_porcentaje, descuento_total_monto, descuento_total_porcentaje,codigo_forma_pago) " +
             "   OUTPUT INSERTED.NUMERO_PEDIDO " +
             "   VALUES (@codigo_tipo_pedido,@fecha, @alicuota,@monto_subtotal,@monto_total, @observaciones,@codigo_comprobante, " +
             "   @senia, @descuento_1_monto, @descuento_1_porcentaje, @descuento_2_monto, @descuento_2_porcentaje,@numero_comprobante, " +
-            "   @descuento_lineas_monto, @descuento_lineas_porcentaje, @descuento_total_monto, @descuento_total_porcentaje) ";
+            "   @descuento_lineas_monto, @descuento_lineas_porcentaje, @descuento_total_monto, @descuento_total_porcentaje,@codigo_forma_pago) ";
 
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
@@ -769,9 +772,11 @@ namespace Datos
             
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.getDescuentoTotal(), "@descuento_total_monto"));
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.getDescuentoTotalPorcentaje(), "@descuento_total_porcentaje"));
-
+            //Si tiene muchas formas de pago, asignamos Múltiple. Si no, asignamos la única que hay
+            //Se pierde el registro de cuanto corresponde a cada forma. Total, cuando vemos los detalles no podemos ver esa información
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.formasDePago.Count>1?6:(int)p_mod_pedido.formasDePago[0].forma,"@codigo_forma_pago"));
+            
             comando.Connection.Open();
-            //falta agregar domicilio, mail y telefono de facturacion
             int? nuevoNumeroPedido = (int?)comando.ExecuteScalar();
 
             if (nuevoNumeroPedido == null)

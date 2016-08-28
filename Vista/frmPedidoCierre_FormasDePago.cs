@@ -127,7 +127,6 @@ namespace Vista
                 FormaPago lcl_formaPago = new FormaPago();
                 lcl_formaPago.forma = (Constantes.FormaDePago)this.cmbBoxFormaPago.SelectedItem;
                 lcl_formaPago.monto = Convert.ToDecimal(this.txtBoxMonto.Text);
-                pedidoActual.addFormaPago(lcl_formaPago);
                 if (pedidoActual.addFormaPago(lcl_formaPago))
                 {
                     this.cargarPedidoEnControles(pedidoActual);

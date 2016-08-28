@@ -269,7 +269,7 @@ namespace Vista
             #region btnAgregar
             this.btnAgregarMail.Click += (s, e) =>
             {
-                if (validarInputs(s, e, Constantes.ParametrosBusqueda.Mails.CodigoMail))
+                if (validarInputs(Constantes.ParametrosBusqueda.Mails.CodigoMail))
                 {
                     this.agregarMailEntidad();
                 }
@@ -284,7 +284,7 @@ namespace Vista
                 {
                     MessageBox.Show("Debe seleccionar un tipo de teléfono para el número indicado");
                 } 
-                else if (validarInputs(s, e, Constantes.ParametrosBusqueda.Telefonos.CodigoTelefono))
+                else if (validarInputs(Constantes.ParametrosBusqueda.Telefonos.CodigoTelefono))
                 {
                     this.agregarTelefonoEntidad();
                 }
@@ -351,6 +351,7 @@ namespace Vista
             {
                 MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
                 this.clearErrorProviders();
+                this.glb_con_domicilios.clearErrorProviders();
                 if (this.modoFormulario != ModoFormularioClientePedido)
                 {
                     this.inicializarModoFormularioSeleccionado();
@@ -382,6 +383,7 @@ namespace Vista
             {
                 MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
                 this.clearErrorProviders();
+                this.glb_con_domicilios.clearErrorProviders();
                 this.inicializarModoFormularioInicio();
                 QuitarTextoEnControles(this);
             }
@@ -412,6 +414,7 @@ namespace Vista
             {
                 MessageBox.Show("Modificación exitosa", "Éxito", MessageBoxButtons.OK);
                 this.clearErrorProviders();
+                this.glb_con_domicilios.clearErrorProviders();
             }
             else
             {
@@ -525,6 +528,7 @@ namespace Vista
                     }
                 }
                 this.clearErrorProviders();
+                this.glb_con_domicilios.clearErrorProviders();
             };
             
             this.cargarDatosControlEnEntidadActual(ref glb_mod_entidadActual);
@@ -905,17 +909,17 @@ namespace Vista
             return index;
         }
         
-        private bool validarInputs(object sender, EventArgs e, string sector)
+        private bool validarInputs(string sector)
         {
             bool lcl_respuesta = new bool();
             switch(sector)
             {
                 case Constantes.ParametrosBusqueda.Mails.CodigoMail:
-                    txtBoxMail_Leave(sender, e);
+                    txtBoxMail_Leave(new object(),new EventArgs());
                     lcl_respuesta = glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Mails.Mail)];
                     break;
                 case Constantes.ParametrosBusqueda.Telefonos.CodigoTelefono:
-                    txtBoxTelefono_Leave(sender, e);
+                    txtBoxTelefono_Leave(new object(), new EventArgs());
                     lcl_respuesta = glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)];
                     break;
                 default:
@@ -1138,7 +1142,7 @@ namespace Vista
         }
         private bool validarContactoProveedor(ModeloPersonas p_mod_contactoProveedor)
         {
-            if ((p_mod_contactoProveedor as ModeloContactoProveedor).proveedor == null)
+            if ((p_mod_contactoProveedor as ModeloContactoProveedor).proveedor == null )//|| !(p_mod_contactoProveedor as ModeloContactoProveedor).proveedor.validar())
             {
                 errorActual = "Seleccione 'Datos Adicionales' para asignar un Proveedor al Contacto de Proveedor actual.";
                 return false;
@@ -1250,6 +1254,10 @@ namespace Vista
                 txtBoxNombre.Enabled = false;
                 this.clearOneErrorProvider(txtBoxNombre);
             }
+            else if (!radioButtonCliente.Checked)
+            {
+                this.clearOneErrorProvider(this.txtBoxRazonSocial);
+            }
         }
         private void radioButtonContactoProveedor_CheckedChanged(object sender, EventArgs e)
         {    
@@ -1301,6 +1309,8 @@ namespace Vista
         {
             QuitarTextoEnControles(this);
             this.modoFormulario = ModoFormularioInicio;
+            this.clearErrorProviders();
+            this.glb_con_domicilios.clearErrorProviders();
         }
 
         override public void toolStripMenuItemEliminar_Click(object sender, EventArgs e)
@@ -1349,58 +1359,45 @@ namespace Vista
         private void txtBoxCodigoEntidad_Leave(object sender, EventArgs e)
         {
             bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoEntidad.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.CodigoEntidad);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.CodigoEntidad)] = respuesta;
-            //if (!respuesta)
-            //{
-            //    epCodigoEntidad.Icon = Properties.Resources.error;
-            //    epCodigoEntidad.SetError(txtBoxCodigoEntidad, "Código de Entidad no válido");
-            //}
-            //else
-            //{
-            //    epCodigoEntidad.Icon = Properties.Resources.success;
-            //    epCodigoEntidad.SetError(txtBoxCodigoEntidad, "OK");
-            //}            
+            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.CodigoEntidad)] = respuesta;      
         }
 
         private void txtBoxCUIT_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCUIT.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Cuit);
+            bool respuesta = this.validarCUIT();//Validar.validarInputNoNumerico(txtBoxCUIT.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Cuit);
             glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
             string lcl_mensaje;
             if (respuesta)
             {
-                if (validarCUIT())
+                if (!string.IsNullOrWhiteSpace(txtBoxDNI.Text))
                 {
-                    if (!string.IsNullOrWhiteSpace(txtBoxDNI.Text))
-                    {
-                        if (string.Equals(txtBoxCUIT.Text.Substring(3, txtBoxDNI.Text.Replace(".", string.Empty).Length), txtBoxDNI.Text.Replace(".", string.Empty)))
-                        {
-                            lcl_mensaje = "OK";
-                            this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
-                        }
-                        else
-                        {
-                            lcl_mensaje = "CUIT no coincide con DNI";
-                            respuesta = false;
-                            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
-                            this.setErrorProvider(this.txtBoxCUIT, false, lcl_mensaje);
-                        }
-                    }
-                    else
+                    if (string.Equals(txtBoxCUIT.Text.Substring(3, txtBoxDNI.Text.Replace(".", string.Empty).Length), txtBoxDNI.Text.Replace(".", string.Empty)))
                     {
                         lcl_mensaje = "OK";
                         this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
                     }
+                    else
+                    {
+                        lcl_mensaje = "CUIT no coincide con DNI";
+                        respuesta = false;
+                        glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
+                        this.setErrorProvider(this.txtBoxCUIT, false, lcl_mensaje);
+                    }
                 }
                 else
                 {
-                    respuesta = false;
-                    glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
+                    lcl_mensaje = "OK";
+                    this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
                 }
             }
             else
             {
                 lcl_mensaje = "CUIT no válido";
+                if (String.IsNullOrWhiteSpace(this.txtBoxCUIT.Text))
+                {
+                    lcl_mensaje = null;
+                }
+                
                 this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
             }
         }

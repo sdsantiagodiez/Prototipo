@@ -109,7 +109,7 @@ namespace Vista
                     this.inicializarCierrePedidoCliente(p_mod_pedido);
                     break;
                 case ModoFormularioDevolucionCliente:
-                    p_mod_pedido.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona;
+                    //p_mod_pedido.codigoTipoPedido = LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona;
                     this.inicializarDevolucionPedidoCliente(p_mod_pedido);
                     break;
                 case ModoFormularioPedidoProveedor:
@@ -932,10 +932,10 @@ namespace Vista
 
         private bool validarEntidad()
         {
-            this.txtBoxRazonSocial_Leave(new object(), new EventArgs());
             this.txtBoxApellido_Leave(new object(), new EventArgs());
             this.txtBoxNombre_Leave(new object(), new EventArgs());
-
+            this.txtBoxRazonSocial_Leave(new object(), new EventArgs());
+            
             //string mensaje;
             if (this.getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.Proveedor)
             {
@@ -1414,32 +1414,34 @@ namespace Vista
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
+            if (this.cargarControlEnPedido() == null)
+            {
+                return;
+            }
             if (controlador.pedidoActual.numeroPedido == 0)
             {
                 DialogResult dialogResult = MessageBox.Show("El/La " + cmbBoxTipoComprobante.Text
                 + " no esta guardado en la base de datos. Desea guardar antes de imprimir?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == System.Windows.Forms.DialogResult.Yes)
                 {
-
-                    if (this.cargarControlEnPedido() == null)
-                    {
-                        return;
-                    }
+                    //if (this.cargarControlEnPedido() == null)
+                    //{
+                    //    return;
+                    //}
                     if (this.guardarPedido())
                     {
                         this.inicializarPedidoCerrado();
                     }
-
                 }
                
             }
-            else
-            {
-                if (this.cargarControlEnPedido() == null)
-                {
-                    return;
-                }
-            }
+            //else
+            //{
+            //    if (this.cargarControlEnPedido() == null)
+            //    {
+            //        return;
+            //    }
+            //}
             this.imprimirpedido();
         }
 
