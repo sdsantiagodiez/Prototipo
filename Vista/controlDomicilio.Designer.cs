@@ -333,14 +333,14 @@
             this.txtBoxCodigoPostal.Depth = 0;
             this.txtBoxCodigoPostal.Hint = "";
             this.txtBoxCodigoPostal.Location = new System.Drawing.Point(610, 4);
-            this.txtBoxCodigoPostal.Margin = new System.Windows.Forms.Padding(3, 3, 38, 3);
+            this.txtBoxCodigoPostal.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.txtBoxCodigoPostal.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCodigoPostal.Name = "txtBoxCodigoPostal";
             this.txtBoxCodigoPostal.PasswordChar = '\0';
             this.txtBoxCodigoPostal.SelectedText = "";
             this.txtBoxCodigoPostal.SelectionLength = 0;
             this.txtBoxCodigoPostal.SelectionStart = 0;
-            this.txtBoxCodigoPostal.Size = new System.Drawing.Size(109, 23);
+            this.txtBoxCodigoPostal.Size = new System.Drawing.Size(132, 23);
             this.txtBoxCodigoPostal.TabIndex = 22;
             this.txtBoxCodigoPostal.UseSystemPasswordChar = false;
             this.txtBoxCodigoPostal.Leave += new System.EventHandler(this.txtBoxCodigoPostal_Leave);
