@@ -464,7 +464,7 @@ namespace Vista
             lcl_mod_articuloProveedor.codigoOriginal = this.txtBoxCodigoOriginal.Text;
             lcl_mod_articuloProveedor.codigoArticuloProveedor = this.txtBoxCodigoArticuloProveedor.Text;
             lcl_mod_articuloProveedor.descripcion = this.txtBoxDescripcion.Text;
-            lcl_mod_articuloProveedor.descripcionArticuloProveedor = this.txtBoxModelo.Text;
+            lcl_mod_articuloProveedor.modelos = this.txtBoxModelo.Text;
             //FALTA chckboxTieneDescuento
 
             if (this.cmbBoxProveedores.SelectedValue != null)

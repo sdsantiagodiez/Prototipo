@@ -123,12 +123,12 @@
             this.tblLayoutPanelDatosArticulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
             this.tblLayoutPanelDatosArticulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelDatosArticulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tblLayoutPanelDatosArticulo.Controls.Add(this.lblCodigoOriginal, 0, 0);
             this.tblLayoutPanelDatosArticulo.Controls.Add(this.lblModelo, 0, 2);
             this.tblLayoutPanelDatosArticulo.Controls.Add(this.lblDescripcion, 0, 1);
             this.tblLayoutPanelDatosArticulo.Controls.Add(this.txtBoxCodigoOriginal, 1, 0);
             this.tblLayoutPanelDatosArticulo.Controls.Add(this.txtBoxDescripcion, 1, 1);
             this.tblLayoutPanelDatosArticulo.Controls.Add(this.txtBoxModelo, 1, 2);
+            this.tblLayoutPanelDatosArticulo.Controls.Add(this.lblCodigoOriginal, 0, 0);
             this.tblLayoutPanelDatosArticulo.Location = new System.Drawing.Point(3, 8);
             this.tblLayoutPanelDatosArticulo.Margin = new System.Windows.Forms.Padding(3, 8, 3, 3);
             this.tblLayoutPanelDatosArticulo.Name = "tblLayoutPanelDatosArticulo";
@@ -144,11 +144,11 @@
             this.lblCodigoOriginal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCodigoOriginal.AutoSize = true;
             this.lblCodigoOriginal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
-            this.lblCodigoOriginal.Location = new System.Drawing.Point(50, 0);
+            this.lblCodigoOriginal.Location = new System.Drawing.Point(52, 7);
             this.lblCodigoOriginal.Name = "lblCodigoOriginal";
-            this.lblCodigoOriginal.Size = new System.Drawing.Size(58, 32);
+            this.lblCodigoOriginal.Size = new System.Drawing.Size(56, 18);
             this.lblCodigoOriginal.TabIndex = 0;
-            this.lblCodigoOriginal.Text = "Código Original";
+            this.lblCodigoOriginal.Text = "Código";
             this.lblCodigoOriginal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblModelo

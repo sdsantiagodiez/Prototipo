@@ -121,6 +121,14 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articuloProveedor.codigoArticuloProveedor), "@codigo_articulo_proveedor"));
                     string codigoArticuloProveedorQuery = this.parametroBusqueda("@codigo_articulo_proveedor", "ap.codigo_articulo_proveedor", "LIKE");
 
+                    string descripcionArticuloOriginal = String.IsNullOrWhiteSpace(p_mod_articuloProveedor.descripcion) ? null : p_mod_articuloProveedor.descripcion;
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(descripcionArticuloOriginal), "@descripcion_articulo"));
+                    string descripcionArticuloOriginalQuery = this.parametroBusqueda("@descripcion_articulo", "art.descripcion", "LIKE");
+
+                    string modelosArticuloOriginal = String.IsNullOrWhiteSpace(p_mod_articuloProveedor.modelos) ? null : p_mod_articuloProveedor.modelos;
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(modelosArticuloOriginal), "@modelos"));
+                    string modelosArticuloOriginalQuery = this.parametroBusqueda("@modelos", "art.modelos", "LIKE");
+
                     string descripcionArticuloProveedor = String.IsNullOrWhiteSpace(p_mod_articuloProveedor.descripcionArticuloProveedor) ? null : p_mod_articuloProveedor.descripcionArticuloProveedor;
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(descripcionArticuloProveedor), "@descripcion_articulo_proveedor"));
                     string descripcionArticuloProveedorQuery = this.parametroBusqueda("@descripcion_articulo_proveedor", "ap.descripcion", "LIKE");
@@ -133,7 +141,7 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(razonSocialProveedor), "@razon_social"));
                     string razonSocialProveedorQuery = this.parametroBusqueda("@razon_social", "prov.razon_social", "LIKE");
 
-                    return codigoOriginalQuery + " AND " + codigoArticuloProveedorQuery + " AND " + descripcionArticuloProveedorQuery + " AND " + codigoEntidadQuery + " AND " + razonSocialProveedorQuery;
+                    return codigoOriginalQuery + " AND " + codigoArticuloProveedorQuery + " AND " + descripcionArticuloProveedorQuery + " AND " + codigoEntidadQuery + " AND " + razonSocialProveedorQuery + " AND " + descripcionArticuloOriginalQuery + " AND "+modelosArticuloOriginalQuery;
 
                 default:
                     return base.getCondicionBusqueda(p_parametroBusqueda);
