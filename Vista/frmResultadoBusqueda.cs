@@ -206,6 +206,8 @@ namespace Vista
             dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
             dataGridViewResultadoBusqueda.Columns.Add("monto_total", "Monto");
             dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
+            dataGridViewResultadoBusqueda.Columns.Add("nombre_usuario", "Usuario");
+            dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
             
         }
 
@@ -457,6 +459,7 @@ namespace Vista
             row.Cells["apellido_entidad"].Value = (p_mod_pedido.entidad as ModeloCliente).apellido;
             row.Cells["razon_social_cliente"].Value = (p_mod_pedido.entidad as ModeloCliente).razonSocial;
             row.Cells["monto_total"].Value = p_mod_pedido.montoTotal;
+            row.Cells["nombre_usuario"].Value = p_mod_pedido.usuarioGenerador;
         }
         private DataGridView popularDataGridViewResultadoBusqueda(List<ModeloPedido> p_lst_mod_pedido)
         {

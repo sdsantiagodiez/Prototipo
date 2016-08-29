@@ -250,6 +250,8 @@ namespace Vista
             this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
             this.dgvResultadoBusqueda.Columns.Add("facturadoElectronicamente", "Facturado AFIP");
             this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
+            this.dgvResultadoBusqueda.Columns.Add("nombre_usuario", "Usuario");
+            this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
         }
         #endregion
 
@@ -272,6 +274,7 @@ namespace Vista
                 row.Cells["tipoComprobante"].Value = Controladores.ControladorPedido.getNombreComprobante(p.tipoComprobante);
                 row.Cells["codigoEntidad"].Value = p.entidad.codigo.ToString();
                 row.Cells["numeroDocumentoEntidad"].Value = p.codigoTipoPedido == Constantes.CodigosTiposPedidos.Persona ? p.documentoComprador.numero : p.entidad.cuit;
+                row.Cells["nombre_usuario"].Value = p.usuarioGenerador;
                 
                 row.Cells["nombreEntidad"].Value = this.getNombreEntidad(p);
                 row.Cells["montoTotal"].Value = p.montoTotal;
