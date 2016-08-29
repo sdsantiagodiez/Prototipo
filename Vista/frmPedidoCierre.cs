@@ -73,6 +73,7 @@ namespace Vista
             dgvArticulosVenta.EnableHeadersVisualStyles = false; 
             
             this.inicializarControles();
+            this.lblUsuario.Text = "Usuario: " + ControladorSesion.nombreUsuarioLogeado;
         }
         /// <summary>
         /// Inicializa formulario de acuerdo al codigoTipoPedido asignado al pedido
@@ -537,7 +538,8 @@ namespace Vista
             this.cargarDatosMonetariosEnControles(p_mod_pedido);
 
             this.rchTextBoxObservacionesPedido.Text = p_mod_pedido.observaciones;
-            this.lblUsuarioActual.Text = p_mod_pedido.usuarioGenerador;
+            if(p_mod_pedido.usuarioGenerador != null)
+                this.lblUsuario.Text = "Usuario: " + p_mod_pedido.usuarioGenerador;
         }
         private void cargarDatosMonetariosEnControles(ModeloPedido p_mod_pedido)
         {

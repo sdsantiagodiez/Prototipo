@@ -83,12 +83,10 @@
             this.cmbBoxTelefonos = new System.Windows.Forms.ComboBox();
             this.tabPageObservaciones = new System.Windows.Forms.TabPage();
             this.tableLayoutObservaciones = new System.Windows.Forms.TableLayoutPanel();
+            this.lblUsuario = new System.Windows.Forms.Label();
             this.grpBoxObservacionesPedido = new System.Windows.Forms.GroupBox();
             this.pnlObservaciones = new System.Windows.Forms.Panel();
             this.rchTextBoxObservacionesPedido = new System.Windows.Forms.RichTextBox();
-            this.PanelUsuario = new System.Windows.Forms.Panel();
-            this.lblUsuarioActual = new System.Windows.Forms.Label();
-            this.lblUsuario = new System.Windows.Forms.Label();
             this.gbxArticulos = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelLineasPedidos = new System.Windows.Forms.TableLayoutPanel();
             this.dgvArticulosVenta = new System.Windows.Forms.DataGridView();
@@ -155,7 +153,6 @@
             this.tableLayoutObservaciones.SuspendLayout();
             this.grpBoxObservacionesPedido.SuspendLayout();
             this.pnlObservaciones.SuspendLayout();
-            this.PanelUsuario.SuspendLayout();
             this.gbxArticulos.SuspendLayout();
             this.tblLayoutPanelLineasPedidos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosVenta)).BeginInit();
@@ -729,7 +726,7 @@
             this.tblLayoutPanelMail.ColumnCount = 3;
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0578F));
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.9422F));
-            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tblLayoutPanelMail.Controls.Add(this.lblMail, 0, 0);
             this.tblLayoutPanelMail.Controls.Add(this.txtBoxMail, 1, 0);
             this.tblLayoutPanelMail.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -746,7 +743,7 @@
             this.lblMail.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblMail.AutoSize = true;
             this.lblMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblMail.Location = new System.Drawing.Point(27, 12);
+            this.lblMail.Location = new System.Drawing.Point(26, 12);
             this.lblMail.Name = "lblMail";
             this.lblMail.Size = new System.Drawing.Size(63, 26);
             this.lblMail.TabIndex = 9;
@@ -757,14 +754,14 @@
             this.txtBoxMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxMail.Depth = 0;
             this.txtBoxMail.Hint = "";
-            this.txtBoxMail.Location = new System.Drawing.Point(96, 14);
+            this.txtBoxMail.Location = new System.Drawing.Point(95, 14);
             this.txtBoxMail.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxMail.Name = "txtBoxMail";
             this.txtBoxMail.PasswordChar = '\0';
             this.txtBoxMail.SelectedText = "";
             this.txtBoxMail.SelectionLength = 0;
             this.txtBoxMail.SelectionStart = 0;
-            this.txtBoxMail.Size = new System.Drawing.Size(212, 23);
+            this.txtBoxMail.Size = new System.Drawing.Size(209, 23);
             this.txtBoxMail.TabIndex = 10;
             this.txtBoxMail.UseSystemPasswordChar = false;
             this.txtBoxMail.Leave += new System.EventHandler(this.txtBoxMail_Leave);
@@ -907,8 +904,8 @@
             // 
             this.tableLayoutObservaciones.ColumnCount = 1;
             this.tableLayoutObservaciones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutObservaciones.Controls.Add(this.lblUsuario, 0, 1);
             this.tableLayoutObservaciones.Controls.Add(this.grpBoxObservacionesPedido, 0, 0);
-            this.tableLayoutObservaciones.Controls.Add(this.PanelUsuario, 0, 1);
             this.tableLayoutObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutObservaciones.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutObservaciones.Name = "tableLayoutObservaciones";
@@ -917,6 +914,17 @@
             this.tableLayoutObservaciones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutObservaciones.Size = new System.Drawing.Size(995, 152);
             this.tableLayoutObservaciones.TabIndex = 4;
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.Location = new System.Drawing.Point(471, 129);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(53, 15);
+            this.lblUsuario.TabIndex = 4;
+            this.lblUsuario.Text = "Usuario:";
             // 
             // grpBoxObservacionesPedido
             // 
@@ -951,35 +959,6 @@
             this.rchTextBoxObservacionesPedido.Size = new System.Drawing.Size(967, 81);
             this.rchTextBoxObservacionesPedido.TabIndex = 2;
             this.rchTextBoxObservacionesPedido.Text = "";
-            // 
-            // PanelUsuario
-            // 
-            this.PanelUsuario.Controls.Add(this.lblUsuarioActual);
-            this.PanelUsuario.Controls.Add(this.lblUsuario);
-            this.PanelUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelUsuario.Location = new System.Drawing.Point(3, 125);
-            this.PanelUsuario.Name = "PanelUsuario";
-            this.PanelUsuario.Size = new System.Drawing.Size(989, 24);
-            this.PanelUsuario.TabIndex = 4;
-            // 
-            // lblUsuarioActual
-            // 
-            this.lblUsuarioActual.AutoSize = true;
-            this.lblUsuarioActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuarioActual.Location = new System.Drawing.Point(67, 5);
-            this.lblUsuarioActual.Name = "lblUsuarioActual";
-            this.lblUsuarioActual.Size = new System.Drawing.Size(0, 16);
-            this.lblUsuarioActual.TabIndex = 1;
-            // 
-            // lblUsuario
-            // 
-            this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(8, 3);
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(53, 15);
-            this.lblUsuario.TabIndex = 0;
-            this.lblUsuario.Text = "Usuario:";
             // 
             // gbxArticulos
             // 
@@ -1618,10 +1597,9 @@
             this.tblLayoutPanelTelefono.PerformLayout();
             this.tabPageObservaciones.ResumeLayout(false);
             this.tableLayoutObservaciones.ResumeLayout(false);
+            this.tableLayoutObservaciones.PerformLayout();
             this.grpBoxObservacionesPedido.ResumeLayout(false);
             this.pnlObservaciones.ResumeLayout(false);
-            this.PanelUsuario.ResumeLayout(false);
-            this.PanelUsuario.PerformLayout();
             this.gbxArticulos.ResumeLayout(false);
             this.tblLayoutPanelLineasPedidos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulosVenta)).EndInit();
@@ -1738,8 +1716,6 @@
         private System.Windows.Forms.Label lblTipoResponsable;
         private System.Windows.Forms.ComboBox cmbBoxTipoResponsable;
         private System.Windows.Forms.TableLayoutPanel tableLayoutObservaciones;
-        private System.Windows.Forms.Panel PanelUsuario;
-        private System.Windows.Forms.Label lblUsuarioActual;
         private System.Windows.Forms.Label lblUsuario;
     }
 }
