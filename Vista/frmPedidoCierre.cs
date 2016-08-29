@@ -537,6 +537,7 @@ namespace Vista
             this.cargarDatosMonetariosEnControles(p_mod_pedido);
 
             this.rchTextBoxObservacionesPedido.Text = p_mod_pedido.observaciones;
+            this.lblUsuarioActual.Text = p_mod_pedido.usuarioGenerador;
         }
         private void cargarDatosMonetariosEnControles(ModeloPedido p_mod_pedido)
         {
@@ -795,6 +796,7 @@ namespace Vista
             lcl_mod_pedido.telefonoContacto = this.cargarControlEnTelefono();
             lcl_mod_pedido.observaciones = this.rchTextBoxObservacionesPedido.Text;
             lcl_mod_pedido.fecha = this.dtpFechaPedido.Value;
+            lcl_mod_pedido.usuarioGenerador = ControladorSesion.nombreUsuarioLogeado;
 
             return lcl_mod_pedido;
         }

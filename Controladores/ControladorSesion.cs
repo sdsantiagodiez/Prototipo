@@ -7,8 +7,9 @@ using Modelos;
 
 namespace Controladores
 {
-    public class ControladorSesion
+    public static class ControladorSesion
     {
+        public static string nombreUsuarioLogeado;
         public static ModeloUsuario LogIn(ModeloUsuario p_mod_usuario)
         {
             if (p_mod_usuario.usuario == null || p_mod_usuario.contrasenia == null)
@@ -35,7 +36,7 @@ namespace Controladores
                 });
 
                 lcl_mod_usuario.roles.Add(lcl_mod_rol_1);
-
+                nombreUsuarioLogeado = lcl_mod_usuario.usuario;
                 return lcl_mod_usuario;
             }
 

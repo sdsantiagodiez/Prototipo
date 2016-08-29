@@ -97,6 +97,12 @@ namespace Modelos
             get { return _estado; }
             set { _estado = value; }
         }
+        string _usuarioGenerador;
+        public string usuarioGenerador
+        {
+            get { return _usuarioGenerador; }
+            set { _usuarioGenerador = value; }
+        }
         
         //Puede ser un proveedor o un cliente persona
         ModeloEntidad _entidad;
@@ -206,6 +212,7 @@ namespace Modelos
             this.formasDePago = new List<FormaPago>();
             this.addFormaPago(new FormaPago() { forma = LibreriaClasesCompartidas.Constantes.FormaDePago.Contado, restante = true });
             this.entidad = new ModeloEntidad();
+
         }
 
         public ModeloPedido(ModeloEntidad p_mod_entidad) : this()
