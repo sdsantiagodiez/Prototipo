@@ -78,10 +78,11 @@ namespace Vista
             {
                 this.generarComprobante(pedido);
             }
-
-            string destino = this.getFileName(p_lst_pedidos);
-            glb_controladorPDF.concatenarPDFs(destino);
-
+            if (p_lst_pedidos.Count > 1)
+            {
+                string destino = this.getFileName(p_lst_pedidos);
+                glb_controladorPDF.concatenarPDFs(destino);
+            }
             ////System.Diagnostics.Process p = new System.Diagnostics.Process(); // se abre un proceso para abrir el archivo PDF
             ////p.StartInfo.FileName = pathFinalPDFS;
             ////p.Start();

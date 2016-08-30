@@ -229,9 +229,9 @@ namespace Vista
             {
                 return;
             }
-
-            if (!glb_banderaCodigoOriginal)
-            { return; }
+            
+           // if (!glb_banderaCodigoOriginal)
+           // { return; }
 
             ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
             if (lcl_con_modificacion.modificar(glb_mod_articulo))
@@ -567,9 +567,10 @@ namespace Vista
             txtBoxModelo_Leave(sender, e);
             txtBoxPrecioCompra_Leave(sender, e);
             txtBoxPrecioVenta_Leave(sender, e);
-            txtBoxUbicacion_Leave(sender, e);
+            //txtBoxUbicacion_Leave(sender, e);//Comentareo por no ser un campo NECESARIO
             return (glb_lst_respuestasValidaciones[0] & glb_lst_respuestasValidaciones[1] & glb_lst_respuestasValidaciones[2]
-                 & glb_lst_respuestasValidaciones[3] & glb_lst_respuestasValidaciones[4] & glb_lst_respuestasValidaciones[5]
+                 & glb_lst_respuestasValidaciones[3] & //glb_lst_respuestasValidaciones[4] & 
+                 glb_lst_respuestasValidaciones[5]
                   & glb_lst_respuestasValidaciones[6]);
         }
         private bool validarABM(ModeloArticulos p_mod_articulo)
@@ -623,6 +624,7 @@ namespace Vista
         {
             this.modoFormulario = ModoFormularioInicio;
             QuitarTextoEnControles(this);
+            this.clearErrorProviders();
         }
 
         override public void toolStripMenuItemEliminar_Click(object sender, EventArgs e)
@@ -811,13 +813,16 @@ namespace Vista
             }
             else
             {
-                MessageBox.Show("Existen compos erroneamente ingresados, por favor corríjalos");
+                MessageBox.Show("Existen campos erroneamente ingresados, por favor corríjalos");
             }
         }
 
         private void btnEliminarArticuloProveedor_Click(object sender, EventArgs e)
         {
-            this.baja_ArticuloProveedor();
+             DialogResult dialog = MessageBox.Show("Esta seguro que desea eliminar el articulo de proveedor "+ this.glb_mod_articuloProveedor.codigoArticuloProveedor +"?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+             if (dialog == DialogResult.Yes)
+             { this.baja_ArticuloProveedor(); }
+
         }
         #endregion
         private void valorDecimal(object sender, KeyPressEventArgs e)
@@ -840,21 +845,27 @@ namespace Vista
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
+            if(this.glb_mod_articulo == null || String.IsNullOrEmpty(this.txtBoxCodigoOriginal.Text) )
+            {return;}
+
             if (System.IO.File.Exists(this.glb_mod_articulo.imagen))
             {
                 DialogResult dialog = MessageBox.Show("Esta seguro que desea quitar la imagen?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialog == DialogResult.Yes)
                 {
-                    System.IO.File.Delete(this.glb_mod_articulo.imagen);
-                    this.glb_mod_articulo.imagen = null;
+                   
                     this.picBoxImagen.Image = null;
                     this.pathimagen.Text = null;
+                    this.glb_mod_articulo.imagen = null;
                 }
             }
         }
 
         private void btnAgregaImagen_Click(object sender, EventArgs e)
         {
+            if (this.glb_mod_articulo == null || String.IsNullOrEmpty(this.txtBoxCodigoOriginal.Text))
+            { return; }
+
             OpenFileDialog image_dialog = new OpenFileDialog();
             string imagePath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\Vista\Resources\";
             image_dialog.Filter = "*.jpg|*.png";
@@ -863,16 +874,13 @@ namespace Vista
             
             if (result == DialogResult.OK)
             {
-                if (this.glb_mod_articulo.imagen != null)
+                imagePath = imagePath + glb_mod_articulo.codigoOriginal + ".jpg";
+                string imagePath_aux = imagePath + glb_mod_articulo.codigoOriginal ;
+                for (int i = 0; System.IO.File.Exists(imagePath); i++)
                 {
-                    System.IO.File.Delete(glb_mod_articulo.imagen); //SI TIENE ASOCIADA UNA IMAGEN LA BORRA
+                    imagePath = imagePath_aux + "(" + i.ToString() + ")" + ".jpg";
                 }
                 
-                imagePath = imagePath + glb_mod_articulo.codigoOriginal + ".jpg";
-
-                if (System.IO.File.Exists(imagePath))// por las dudas borra un archivo con el mismo nombre
-                { System.IO.File.Delete(imagePath); }
-
                 System.IO.File.Copy(image_dialog.FileName, imagePath);
                 picBoxImagen.Image = Image.FromFile(imagePath);
                 this.glb_mod_articulo.imagen = imagePath;
