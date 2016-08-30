@@ -189,26 +189,50 @@ namespace Vista
         #region TextBoxs
         private void txtBoxCodigoSeleccionado_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoSeleccionado.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad);
-            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Código no válido";
-            this.setErrorProvider(txtBoxCodigoSeleccionado, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxCodigoSeleccionado.Text, Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxCodigoSeleccionado, false, lcl_mensaje);
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoSeleccionado.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Código no válido";
+                this.setErrorProvider(txtBoxCodigoSeleccionado, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxCUITSeleccionado_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxCUITSeleccionado.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit);
-            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "CUIT no válido";
-            this.setErrorProvider(txtBoxCUITSeleccionado, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxCUITSeleccionado.Text, Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxCUITSeleccionado, false, lcl_mensaje);
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxCUITSeleccionado.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "CUIT no válido";
+                this.setErrorProvider(txtBoxCUITSeleccionado, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxRazonSocialSeleccionado_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocialSeleccionado.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
-            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Razón Social no válida";
-            this.setErrorProvider(txtBoxRazonSocialSeleccionado, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxRazonSocialSeleccionado.Text, Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxRazonSocialSeleccionado, false, lcl_mensaje);
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocialSeleccionado.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Razón Social no válida";
+                this.setErrorProvider(txtBoxRazonSocialSeleccionado, respuesta, lcl_mensaje);
+            }
         }
         #endregion
         #endregion

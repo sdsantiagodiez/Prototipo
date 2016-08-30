@@ -200,8 +200,8 @@ namespace LibreriaClasesCompartidas
                     lcl_patron = new Regex(@"^\d{1,2}$");
                     break;
                 case Constantes.ParametrosBusqueda.Domicilios.Departamento:
-                    // Admite 0 a 1 letras, seguida de 1 a 2 números
-                    lcl_patron = new Regex(@"^[a-zA-Z]?\d{1,2}$");
+                    // Admite 1 a 2 números seguidos de 0 o 1 letra. Alternativamente, 1 letra
+                    lcl_patron = new Regex(@"^(\d{1,2}[a-zA-Z]?|[a-zA-Z])$");
                     break;
                 case Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono:
                     // Admite el siguiente patron: "+" opcional  + 10 a 13 dígitos  //quitamos el "+" opcional. Permitia ingresar un "+" mal ubicado. Ejemplo: +3416352233

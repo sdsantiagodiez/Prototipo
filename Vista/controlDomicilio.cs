@@ -183,6 +183,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxCalle.Text, Constantes.ParametrosBusqueda.Domicilios.Calle, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxCalle, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)] = false;
             }
             else
             {
@@ -205,6 +206,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxNumeroDomicilio.Text, Constantes.Numericos.EnteroPositivoSinCero, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxNumeroDomicilio, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)] = false;
             }
             else
             {
@@ -227,6 +229,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxPiso.Text, Constantes.ParametrosBusqueda.Domicilios.Piso, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxPiso, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Piso)] = false;
             }
             else
             {
@@ -248,6 +251,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxDepartamento.Text, Constantes.ParametrosBusqueda.Domicilios.Departamento, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxDepartamento, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Departamento)] = false;
             }
             else
             {
@@ -268,6 +272,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxCodigoPostal.Text, Constantes.ParametrosBusqueda.Domicilios.CodigoPostal, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxCodigoPostal, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.CodigoPostal)] = false;
             }
             else
             {
@@ -288,6 +293,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxCiudad.Text, Constantes.ParametrosBusqueda.Domicilios.Ciudad, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxCiudad, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.CodigoPostal)] = false;
             }
             else
             {
@@ -363,12 +369,27 @@ namespace Vista
         }
         private bool validarInputs()
         {
+            bool lcl_respuesta;
             txtBoxCalle_Leave(new object(),new EventArgs());
             txtBoxNumeroDomicilio_Leave(new object(), new EventArgs());
             txtBoxCiudad_Leave(new object(), new EventArgs());
-            return (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)]
-                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)]
-                & glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)]);
+            lcl_respuesta = (glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Calle)]
+                && glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.NumeroDomicilio)]
+                && glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Domicilios.Ciudad)]);
+            
+            if(!string.IsNullOrWhiteSpace(txtBoxPiso.Text))
+            {
+                lcl_respuesta = lcl_respuesta && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Piso)];
+            }
+            if(!string.IsNullOrWhiteSpace(txtBoxDepartamento.Text))
+            {
+                lcl_respuesta = lcl_respuesta && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Departamento)];
+            }
+            if (!string.IsNullOrWhiteSpace(txtBoxCodigoPostal.Text))
+            {
+                lcl_respuesta = lcl_respuesta && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.CodigoPostal)];
+            }
+            return lcl_respuesta;
         }
         #endregion
 
