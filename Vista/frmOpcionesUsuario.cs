@@ -746,94 +746,128 @@ namespace Vista
         }
         private void txtBoxCUIT_Leave(object sender, EventArgs e)
         {
-            bool respuesta = this.validarCUIT();//Validar.validarInputNoNumerico(txtBoxCUIT.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Cuit);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
             string lcl_mensaje;
-            if (respuesta)
+            if (!Validar.validarLongitud(txtBoxCUIT.Text, Constantes.ParametrosBusqueda.Entidades.Cuit, out lcl_mensaje))
             {
-                if (!string.IsNullOrWhiteSpace(txtBoxDNI.Text))
+                this.setErrorProvider(txtBoxCUIT, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = false;
+            }
+            else
+            {
+                bool respuesta = this.validarCUIT();//Validar.validarInputNoNumerico(txtBoxCUIT.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Cuit);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
+                if (respuesta)
                 {
-                    if (string.Equals(txtBoxCUIT.Text.Substring(3, txtBoxDNI.Text.Replace(".", string.Empty).Length), txtBoxDNI.Text.Replace(".", string.Empty)))
+                    if (!string.IsNullOrWhiteSpace(txtBoxDNI.Text))
+                    {
+                        if (string.Equals(txtBoxCUIT.Text.Substring(3, txtBoxDNI.Text.Replace(".", string.Empty).Length), txtBoxDNI.Text.Replace(".", string.Empty)))
+                        {
+                            lcl_mensaje = "OK";
+                            this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
+                        }
+                        else
+                        {
+                            lcl_mensaje = "CUIT no coincide con DNI";
+                            respuesta = false;
+                            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
+                            this.setErrorProvider(this.txtBoxCUIT, false, lcl_mensaje);
+                        }
+                    }
+                    else
                     {
                         lcl_mensaje = "OK";
                         this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
                     }
-                    else
-                    {
-                        lcl_mensaje = "CUIT no coincide con DNI";
-                        respuesta = false;
-                        glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
-                        this.setErrorProvider(this.txtBoxCUIT, false, lcl_mensaje);
-                    }
                 }
                 else
                 {
-                    lcl_mensaje = "OK";
+                    lcl_mensaje = "CUIT no válido";
+                    if (String.IsNullOrWhiteSpace(this.txtBoxCUIT.Text))
+                    {
+                        lcl_mensaje = null;
+                    }
+
                     this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
                 }
-            }
-            else
-            {
-                lcl_mensaje = "CUIT no válido";
-                if (String.IsNullOrWhiteSpace(this.txtBoxCUIT.Text))
-                {
-                    lcl_mensaje = null;
-                }
-
-                this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
             }
         }
 
         private void txtBoxDNI_Leave(object sender, EventArgs e)
         {
-            //realizo validación
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxDNI.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = respuesta;
             string lcl_mensaje;
-            if (respuesta)
+            if (!Validar.validarLongitud(txtBoxDNI.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Dni, out lcl_mensaje))
             {
-                if (!string.IsNullOrWhiteSpace(txtBoxCUIT.Text))
+                this.setErrorProvider(txtBoxDNI, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = false;
+            }
+            else
+            {
+                //realizo validación
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxDNI.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = respuesta;
+                if (respuesta)
                 {
-                    if (string.Equals(txtBoxCUIT.Text.Substring(3, txtBoxDNI.Text.Replace(".", string.Empty).Length), txtBoxDNI.Text.Replace(".", string.Empty)))
+                    if (!string.IsNullOrWhiteSpace(txtBoxCUIT.Text))
+                    {
+                        if (string.Equals(txtBoxCUIT.Text.Substring(3, txtBoxDNI.Text.Replace(".", string.Empty).Length), txtBoxDNI.Text.Replace(".", string.Empty)))
+                        {
+                            lcl_mensaje = "OK";
+                            this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
+                        }
+                        else
+                        {
+                            lcl_mensaje = "DNI no coincide con CUIT";
+                            respuesta = false;
+                            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = respuesta;
+                            this.setErrorProvider(this.txtBoxDNI, false, lcl_mensaje);
+                        }
+                    }
+                    else
                     {
                         lcl_mensaje = "OK";
                         this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
                     }
-                    else
-                    {
-                        lcl_mensaje = "DNI no coincide con CUIT";
-                        respuesta = false;
-                        glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = respuesta;
-                        this.setErrorProvider(this.txtBoxDNI, false, lcl_mensaje);
-                    }
                 }
                 else
                 {
-                    lcl_mensaje = "OK";
+                    lcl_mensaje = "DNI no válido";
                     this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
                 }
-            }
-            else
-            {
-                lcl_mensaje = "DNI no válido";
-                this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
             }
         }
 
         private void txtBoxNombre_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxNombre.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Nombre);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Nombre no válido";
-            this.setErrorProvider(this.txtBoxNombre, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxNombre.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Nombre, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxNombre, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)] = false;
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxNombre.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Nombre);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Nombre no válido";
+                this.setErrorProvider(this.txtBoxNombre, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxApellido_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxApellido.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Apellido);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Apellido no válido";
-            this.setErrorProvider(this.txtBoxApellido, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxApellido.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Apellido, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxApellido, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)] = false;
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxApellido.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Apellido);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Apellido no válido";
+                this.setErrorProvider(this.txtBoxApellido, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxContraseñaActual_Leave(object sender, EventArgs e)
@@ -854,10 +888,19 @@ namespace Vista
         {
             if (!string.IsNullOrWhiteSpace(txtBoxContraseñaNueva.Text))
             {
-                bool respuesta = Validar.validarInputNoNumerico(txtBoxContraseñaNueva.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
-                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "2")] = respuesta;
-                string lcl_mensaje = respuesta ? "OK" : "Contraseña no válida";
-                this.setErrorProvider(txtBoxContraseñaNueva, respuesta, lcl_mensaje);
+                string lcl_mensaje;
+                if (!Validar.validarLongitud(txtBoxContraseñaNueva.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia, out lcl_mensaje))
+                {
+                    this.setErrorProvider(txtBoxContraseñaNueva, false, lcl_mensaje);
+                    glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia)] = false;
+                }
+                else
+                {
+                    bool respuesta = Validar.validarInputNoNumerico(txtBoxContraseñaNueva.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
+                    glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "2")] = respuesta;
+                    lcl_mensaje = respuesta ? "OK" : "Contraseña no válida";
+                    this.setErrorProvider(txtBoxContraseñaNueva, respuesta, lcl_mensaje);
+                }
             }
             else
             { txtBoxContraseñaNueva.Text = ""; }
@@ -867,21 +910,33 @@ namespace Vista
         {
             if (!string.IsNullOrWhiteSpace(txtBoxContraseñaNuevaRepetir.Text))
             {
-                bool respuesta = Validar.validarInputNoNumerico(txtBoxContraseñaNuevaRepetir.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
-                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "3")] = respuesta;
-                if (!respuesta)
+                string lcl_mensaje;
+                if (!Validar.validarLongitud(txtBoxContraseñaNuevaRepetir.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia, out lcl_mensaje))
                 {
-                    this.setErrorProvider(txtBoxContraseñaNuevaRepetir, false, "Contraseña no válida");
+                    this.setErrorProvider(txtBoxContraseñaNuevaRepetir, false, lcl_mensaje);
+                    glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia)] = false;
                 }
                 else
                 {
-                    if (string.Equals(txtBoxContraseñaNueva.Text.ToString(), txtBoxContraseñaNuevaRepetir.Text.ToString()))
+                    bool respuesta = Validar.validarInputNoNumerico(txtBoxContraseñaNuevaRepetir.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
+                    glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "3")] = respuesta;
+                    if (!respuesta)
                     {
-                        this.setErrorProvider(txtBoxContraseñaNuevaRepetir, true, "OK");
+                        lcl_mensaje = "Contraseña no válida";
+                        this.setErrorProvider(txtBoxContraseñaNuevaRepetir, false, lcl_mensaje);
                     }
                     else
                     {
-                        this.setErrorProvider(txtBoxContraseñaNuevaRepetir, false, "Las contraseñas no coinciden");
+                        if (string.Equals(txtBoxContraseñaNueva.Text.ToString(), txtBoxContraseñaNuevaRepetir.Text.ToString()))
+                        {
+                            lcl_mensaje = "OK";
+                            this.setErrorProvider(txtBoxContraseñaNuevaRepetir, true, lcl_mensaje);
+                        }
+                        else
+                        {
+                            lcl_mensaje = "Las contraseñas no coinciden";
+                            this.setErrorProvider(txtBoxContraseñaNuevaRepetir, false, lcl_mensaje);
+                        }
                     }
                 }
             }
@@ -891,18 +946,36 @@ namespace Vista
 
         private void txtBoxMail_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxMail.Text.ToString(), Constantes.ParametrosBusqueda.Mails.Mail);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Mails.Mail)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Mail no válido";
-            this.setErrorProvider(this.txtBoxMail, respuesta, lcl_mensaje);
+             string lcl_mensaje;
+             if (!Validar.validarLongitud(txtBoxMail.Text, Constantes.ParametrosBusqueda.Mails.Mail, out lcl_mensaje))
+             {
+                 this.setErrorProvider(txtBoxMail, false, lcl_mensaje);
+                 glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Mails.Mail)] = false;
+             }
+             else
+             {
+                 bool respuesta = Validar.validarInputNoNumerico(txtBoxMail.Text.ToString(), Constantes.ParametrosBusqueda.Mails.Mail);
+                 glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Mails.Mail)] = respuesta;
+                 lcl_mensaje = respuesta ? "OK" : "Mail no válido";
+                 this.setErrorProvider(this.txtBoxMail, respuesta, lcl_mensaje);
+             }
         }
 
         private void txtBoxTelefono_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxTelefono.Text.ToString(), Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Numero de Teléfono no válido";
-            this.setErrorProvider(this.txtBoxTelefono, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxTelefono.Text, Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxTelefono, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)] = false;
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxTelefono.Text.ToString(), Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Numero de Teléfono no válido";
+                this.setErrorProvider(this.txtBoxTelefono, respuesta, lcl_mensaje);
+            }
         }
 
         private void permitirCambio(object sender, KeyPressEventArgs e)

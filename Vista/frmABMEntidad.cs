@@ -1381,77 +1381,93 @@ namespace Vista
 
         private void txtBoxCUIT_Leave(object sender, EventArgs e)
         {
-            bool respuesta = this.validarCUIT();//Validar.validarInputNoNumerico(txtBoxCUIT.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Cuit);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
             string lcl_mensaje;
-            if (respuesta)
+            if (!Validar.validarLongitud(txtBoxCUIT.Text, Constantes.ParametrosBusqueda.Entidades.Cuit, out lcl_mensaje))
             {
-                if (!string.IsNullOrWhiteSpace(txtBoxDNI.Text))
+                this.setErrorProvider(txtBoxCUIT, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = false;
+            }
+            else
+            {
+                bool respuesta = this.validarCUIT();//Validar.validarInputNoNumerico(txtBoxCUIT.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Cuit);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
+                if (respuesta)
                 {
-                    if (string.Equals(txtBoxCUIT.Text.Substring(3, txtBoxDNI.Text.Replace(".", string.Empty).Length), txtBoxDNI.Text.Replace(".", string.Empty)))
+                    if (!string.IsNullOrWhiteSpace(txtBoxDNI.Text))
+                    {
+                        if (string.Equals(txtBoxCUIT.Text.Substring(3, txtBoxDNI.Text.Replace(".", string.Empty).Length), txtBoxDNI.Text.Replace(".", string.Empty)))
+                        {
+                            lcl_mensaje = "OK";
+                            this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
+                        }
+                        else
+                        {
+                            lcl_mensaje = "CUIT no coincide con DNI";
+                            respuesta = false;
+                            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
+                            this.setErrorProvider(this.txtBoxCUIT, false, lcl_mensaje);
+                        }
+                    }
+                    else
                     {
                         lcl_mensaje = "OK";
                         this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
                     }
-                    else
-                    {
-                        lcl_mensaje = "CUIT no coincide con DNI";
-                        respuesta = false;
-                        glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
-                        this.setErrorProvider(this.txtBoxCUIT, false, lcl_mensaje);
-                    }
                 }
                 else
                 {
-                    lcl_mensaje = "OK";
+                    lcl_mensaje = "CUIT no válido";
+                    if (String.IsNullOrWhiteSpace(this.txtBoxCUIT.Text))
+                    {
+                        lcl_mensaje = null;
+                    }
+
                     this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
                 }
-            }
-            else
-            {
-                lcl_mensaje = "CUIT no válido";
-                if (String.IsNullOrWhiteSpace(this.txtBoxCUIT.Text))
-                {
-                    lcl_mensaje = null;
-                }
-                
-                this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
             }
         }
 
         private void txtBoxDNI_Leave(object sender, EventArgs e)
         {
-            //realizo validación
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxDNI.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
-            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = respuesta;
             string lcl_mensaje;
-            if(respuesta)
+            if (!Validar.validarLongitud(txtBoxDNI.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Dni, out lcl_mensaje))
             {
-                if (!string.IsNullOrWhiteSpace(txtBoxCUIT.Text))
+                this.setErrorProvider(txtBoxDNI, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = false;
+            }
+            else
+            {
+                //realizo validación
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxDNI.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = respuesta;
+                if (respuesta)
                 {
-                    if (string.Equals(txtBoxCUIT.Text.Substring(3, txtBoxDNI.Text.Replace(".", string.Empty).Length), txtBoxDNI.Text.Replace(".", string.Empty)))
+                    if (!string.IsNullOrWhiteSpace(txtBoxCUIT.Text))
+                    {
+                        if (string.Equals(txtBoxCUIT.Text.Substring(3, txtBoxDNI.Text.Replace(".", string.Empty).Length), txtBoxDNI.Text.Replace(".", string.Empty)))
+                        {
+                            lcl_mensaje = "OK";
+                            this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
+                        }
+                        else
+                        {
+                            lcl_mensaje = "DNI no coincide con CUIT";
+                            respuesta = false;
+                            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = respuesta;
+                            this.setErrorProvider(this.txtBoxDNI, false, lcl_mensaje);
+                        }
+                    }
+                    else
                     {
                         lcl_mensaje = "OK";
                         this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
                     }
-                    else
-                    {
-                        lcl_mensaje = "DNI no coincide con CUIT";
-                        respuesta = false;
-                        glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = respuesta;
-                        this.setErrorProvider(this.txtBoxDNI, false, lcl_mensaje);
-                    }
                 }
                 else
                 {
-                    lcl_mensaje = "OK";
+                    lcl_mensaje = "DNI no válido";
                     this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
                 }
-            }
-            else
-            {
-                lcl_mensaje = "DNI no válido";
-                this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
             }
         }
 
@@ -1461,6 +1477,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxNombre.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Nombre, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxNombre, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)] = false;
             }
             else
             {
@@ -1478,6 +1495,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxApellido.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Apellido, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxApellido, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)] = false;
             }
             else
             {
@@ -1497,6 +1515,7 @@ namespace Vista
                 if (!Validar.validarLongitud(txtBoxRazonSocial.Text, Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial, out lcl_mensaje))
                 {
                     this.setErrorProvider(txtBoxRazonSocial, false, lcl_mensaje);
+                    glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = false;
                 }
                 else
                 {
@@ -1516,6 +1535,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxMail.Text, Constantes.ParametrosBusqueda.Mails.Mail, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxMail, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Mails.Mail)] = false;
             }
             else
             {
@@ -1532,6 +1552,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxTelefono.Text, Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxTelefono, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)] = false;
             }
             else
             {
