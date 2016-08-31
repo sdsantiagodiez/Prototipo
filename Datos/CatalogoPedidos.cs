@@ -132,7 +132,7 @@ namespace Datos
                 case Constantes.ParametrosBusqueda.Any:
                     int? numeroPedido = p_mod_pedido.numeroPedido == 0 ? null : (int?)p_mod_pedido.numeroPedido;
                     p_comando.Parameters.Add(this.instanciarParametro(numeroPedido, "@numero_pedido"));
-                    string numeroPedidoQuery = this.parametroBusqueda("@numero_pedido", "numero_pedido", "=");
+                    string numeroPedidoQuery = this.parametroBusqueda("@numero_pedido", "tbl.numero_pedido", "=");
 
                     int? codigoTipoPedido = p_mod_pedido.codigoTipoPedido == 0 ? null : (int?)p_mod_pedido.codigoTipoPedido;
                     p_comando.Parameters.Add(this.instanciarParametro(codigoTipoPedido, "@codigo_tipo_pedido"));

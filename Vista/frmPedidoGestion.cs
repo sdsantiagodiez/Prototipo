@@ -553,13 +553,39 @@ namespace Vista
                 MessageBox.Show("Ha surgido un error al intentar facturar pedidos. Inténtelo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
-            
-            Controladores.ControladorAFIP lcl_con_afip = new Controladores.ControladorAFIP();
-            if (!lcl_con_afip.validarConexion() || !lcl_con_afip.facturar(glb_lst_pedidosSeleccionados))
-            {
-                MessageBox.Show(lcl_con_afip.errorActual, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+                     BackgroundWorker bw = new BackgroundWorker();
+                     frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Realizando Facturación electrónica.");
+
+                     bw.DoWork += (s, e) =>
+                        {
+                            Controladores.ControladorBusqueda lcl_con_busqueda = new Controladores.ControladorBusqueda();
+                        Controladores.ControladorAFIP lcl_con_afip = new Controladores.ControladorAFIP();
+                        if (!lcl_con_afip.validarConexion() || !lcl_con_afip.facturar(glb_lst_pedidosSeleccionados))
+                            {
+                                MessageBox.Show(lcl_con_afip.errorActual, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        foreach (ModeloPedido p in glb_lst_pedidosSeleccionados)
+                            {   //actualiza pedidos facturados
+                            ModeloPedido temp_ped = new ModeloPedido();
+                            temp_ped=Controladores.ControladorBusqueda.buscar(p,Constantes.ParametrosBusqueda.Any)[0];
+                            glb_lst_pedidosEncontrados.FirstOrDefault(x=> x.numeroPedido == p.numeroPedido).aprobadoAFIP=temp_ped.aprobadoAFIP;
+                            glb_lst_pedidosEncontrados.FirstOrDefault(x=> x.numeroPedido == p.numeroPedido).CAE = temp_ped.CAE;
+                            glb_lst_pedidosEncontrados.FirstOrDefault(x=> x.numeroPedido == p.numeroPedido).VencimientoCAE = temp_ped.VencimientoCAE;
+                            glb_lst_pedidosEncontrados.FirstOrDefault(x=> x.numeroPedido == p.numeroPedido).numeroComprobanteAFIP = temp_ped.numeroComprobanteAFIP;
+                            
+                            }
+                        
+                        };
+                        bw.RunWorkerCompleted += (s, e) =>
+                        {
+                            lcl_frm_loading.DialogResult = DialogResult.OK;
+                            this.cargarModelosPedidosEnDataGridView(glb_lst_pedidosEncontrados);
+                        };
+
+                     bw.RunWorkerAsync();
+                     lcl_frm_loading.ShowDialog();
+        
         }
         #endregion
 
