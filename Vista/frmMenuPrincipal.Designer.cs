@@ -269,22 +269,25 @@
             // 
             // tsmi_ABMentidades
             // 
+            this.tsmi_ABMentidades.Image = global::Vista.Properties.Resources.Entidades1;
             this.tsmi_ABMentidades.Name = "tsmi_ABMentidades";
-            this.tsmi_ABMentidades.Size = new System.Drawing.Size(152, 22);
+            this.tsmi_ABMentidades.Size = new System.Drawing.Size(156, 26);
             this.tsmi_ABMentidades.Text = "Entidades";
             this.tsmi_ABMentidades.Click += new System.EventHandler(this.tsmi_ABMentidades_Click);
             // 
             // tsmi_ABMarticulos
             // 
+            this.tsmi_ABMarticulos.Image = global::Vista.Properties.Resources.articulos;
             this.tsmi_ABMarticulos.Name = "tsmi_ABMarticulos";
-            this.tsmi_ABMarticulos.Size = new System.Drawing.Size(152, 22);
+            this.tsmi_ABMarticulos.Size = new System.Drawing.Size(156, 26);
             this.tsmi_ABMarticulos.Text = "Artículos";
             this.tsmi_ABMarticulos.Click += new System.EventHandler(this.tsmi_ABMarticulos_Click);
             // 
             // tsmi_ABMdescuentos
             // 
+            this.tsmi_ABMdescuentos.Image = global::Vista.Properties.Resources.discount;
             this.tsmi_ABMdescuentos.Name = "tsmi_ABMdescuentos";
-            this.tsmi_ABMdescuentos.Size = new System.Drawing.Size(152, 22);
+            this.tsmi_ABMdescuentos.Size = new System.Drawing.Size(156, 26);
             this.tsmi_ABMdescuentos.Text = "Descuentos";
             this.tsmi_ABMdescuentos.Click += new System.EventHandler(this.tsmi_ABMdescuentos_Click);
             // 
