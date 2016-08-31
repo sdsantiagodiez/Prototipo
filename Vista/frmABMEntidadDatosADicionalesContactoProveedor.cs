@@ -193,6 +193,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxCodigoSeleccionado.Text, Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxCodigoSeleccionado, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.CodigoEntidad)] = false;
             }
             else
             {
@@ -209,6 +210,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxCUITSeleccionado.Text, Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxCUITSeleccionado, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.Cuit)] = false;
             }
             else
             {
@@ -225,6 +227,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxRazonSocialSeleccionado.Text, Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxRazonSocialSeleccionado, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = false;
             }
             else
             {

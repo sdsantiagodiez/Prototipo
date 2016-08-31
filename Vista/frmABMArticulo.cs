@@ -561,17 +561,27 @@ namespace Vista
 
         private bool validarInputs(object sender, EventArgs e)
         {
+            bool lcl_respuesta;
             txtBoxCodigoArticulo_Leave(sender, e);
             txtBoxCodigoOriginal_Leave(sender, e);
             txtBoxDescripcion_Leave(sender, e);
             txtBoxModelo_Leave(sender, e);
             txtBoxPrecioCompra_Leave(sender, e);
             txtBoxPrecioVenta_Leave(sender, e);
-            //txtBoxUbicacion_Leave(sender, e);//Comentareo por no ser un campo NECESARIO
-            return (glb_lst_respuestasValidaciones[0] & glb_lst_respuestasValidaciones[1] & glb_lst_respuestasValidaciones[2]
-                 & glb_lst_respuestasValidaciones[3] & //glb_lst_respuestasValidaciones[4] & 
-                 glb_lst_respuestasValidaciones[5]
-                  & glb_lst_respuestasValidaciones[6]);
+            
+            lcl_respuesta =(glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)]
+                && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)] 
+                && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)]
+                && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor)]
+                && glb_lst_respuestasValidaciones[this.getIndex(Constantes.TipoValorArticulo.Compra)]
+                && glb_lst_respuestasValidaciones[this.getIndex(Constantes.TipoValorArticulo.Venta)]);
+
+            if(!String.IsNullOrWhiteSpace(txtBoxUbicacion.Text))
+            {
+                lcl_respuesta = lcl_respuesta && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion)];
+            }
+
+            return lcl_respuesta;
         }
         private bool validarABM(ModeloArticulos p_mod_articulo)
         {
@@ -668,6 +678,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxCodigoOriginal.Text, Constantes.ParametrosBusqueda.Articulos.CodigoOriginal, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxCodigoOriginal, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)] = false;
             }
             else
             {
@@ -685,6 +696,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxDescripcion.Text, Constantes.ParametrosBusqueda.Articulos.Descripcion, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxDescripcion, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)] = false;
             }
             else
             {
@@ -701,6 +713,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxModelo.Text, Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxModelo, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)] = false;
             }
             else
             {
@@ -716,6 +729,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxCodigoArticulo.Text, Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxCodigoArticulo, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor)] = false;
             }
             else
             {
@@ -747,6 +761,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxUbicacion.Text, Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxUbicacion, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion)] = false;
             }
             else
             {

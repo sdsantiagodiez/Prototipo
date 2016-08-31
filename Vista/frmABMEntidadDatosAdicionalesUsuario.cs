@@ -243,37 +243,67 @@ namespace Vista
         #region TextBoxs
         private void txtBoxUsuario_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxUsuario.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario);
-            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Usuario no válido";
-            this.setErrorProvider(txtBoxUsuario, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxUsuario.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxUsuario, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario)] = false;
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxUsuario.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Usuario)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Usuario no válido";
+                this.setErrorProvider(txtBoxUsuario, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxContraseña_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxContraseña.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
-            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia)] = respuesta;
-            string lcl_mensaje = respuesta ? "OK" : "Contraseña no válida";
-            this.setErrorProvider(txtBoxContraseña, respuesta, lcl_mensaje);
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxContraseña.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxContraseña, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia)] = false;
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxContraseña.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia)] = respuesta;
+                lcl_mensaje = respuesta ? "OK" : "Contraseña no válida";
+                this.setErrorProvider(txtBoxContraseña, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxConfirmarContraseña_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxConfirmarContraseña.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
-            glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "2")] = respuesta;
-            if (!respuesta)
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxConfirmarContraseña.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia, out lcl_mensaje))
             {
-                this.setErrorProvider(txtBoxConfirmarContraseña, false, "Contraseña no válida");
+                this.setErrorProvider(txtBoxConfirmarContraseña, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia)] = false;
             }
             else
             {
-                if (string.Equals(txtBoxContraseña.Text.ToString(), txtBoxConfirmarContraseña.Text.ToString()))
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxConfirmarContraseña.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia);
+                glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "2")] = respuesta;
+                if (!respuesta)
                 {
-                    this.setErrorProvider(txtBoxConfirmarContraseña, true, "OK");
+                    lcl_mensaje = "Contraseña no válida";
+                    this.setErrorProvider(txtBoxConfirmarContraseña, false, lcl_mensaje);
                 }
                 else
                 {
-                    this.setErrorProvider(txtBoxConfirmarContraseña, false, "Las contraseñas no coinciden");
+                    if (string.Equals(txtBoxContraseña.Text.ToString(), txtBoxConfirmarContraseña.Text.ToString()))
+                    {
+                        lcl_mensaje = "OK";
+                        this.setErrorProvider(txtBoxConfirmarContraseña, true, lcl_mensaje);
+                    }
+                    else
+                    {
+                        lcl_mensaje = "Las contraseñas no coinciden";
+                        this.setErrorProvider(txtBoxConfirmarContraseña, false, lcl_mensaje);
+                    }
                 }
             }
         }

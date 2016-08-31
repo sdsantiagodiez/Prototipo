@@ -951,6 +951,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxCodigoOriginal.Text, Constantes.ParametrosBusqueda.Articulos.CodigoOriginal, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxCodigoOriginal, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)] = false;
             }
             else
             {
@@ -972,6 +973,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxDescripcion.Text, Constantes.ParametrosBusqueda.Articulos.Descripcion, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxDescripcion, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)] = false;
             }
             else
             {
@@ -993,6 +995,7 @@ namespace Vista
              if (!Validar.validarLongitud(txtBoxCodigoArticuloProveedor.Text, Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor, out lcl_mensaje))
              {
                  this.setErrorProvider(txtBoxCodigoArticuloProveedor, false, lcl_mensaje);
+                 glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor)] = false;
              }
              else
              {
@@ -1014,6 +1017,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxModelo.Text, Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxModelo, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)] = false;
             }
             else
             {
@@ -1044,6 +1048,7 @@ namespace Vista
             if (!Validar.validarLongitud(txtBoxDescripcionDescuento.Text, Constantes.ParametrosBusqueda.Descuentos.Descripcion, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxDescripcionDescuento, false, lcl_mensaje);
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Descuentos.Descripcion)] = false;
             }
             else
             {

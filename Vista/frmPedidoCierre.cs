@@ -928,10 +928,10 @@ namespace Vista
             txtBoxTelefono_Leave(new object(), new EventArgs());
 
             return (glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Cuit)]
-                & this.validarEntidad()
-                & this.validarDomicilio()
-                & glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Mails.Mail)]
-                & glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)]);
+                && this.validarEntidad()
+                && this.validarDomicilio()
+                && glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Mails.Mail)]
+                && glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)]);
         }
 
         private bool validarEntidad()
@@ -1734,84 +1734,123 @@ namespace Vista
         #region Validaciones
         private void txtBoxNumeroDocumento_Leave(object sender, EventArgs e)
         {
-            bool respuesta = (this.cmbBoxTipoDocumento.SelectedValue as TipoDocumento).codigo == 80? //80 codigo de CUIT
-                ModeloEntidad.CUIT.ValidarCuit(txtBoxNumeroDocumento.Text):
-                Validar.validarInputNoNumerico(txtBoxNumeroDocumento.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
+            string lcl_mensaje;
+            bool lcl_respuesta = (this.cmbBoxTipoDocumento.SelectedValue as TipoDocumento).codigo == 80 ? //80 codigo de CUIT
+                    Validar.validarLongitud(txtBoxNumeroDocumento.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Cuit, out lcl_mensaje) :
+                    Validar.validarLongitud(txtBoxNumeroDocumento.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Dni, out lcl_mensaje);
+            if (!lcl_respuesta)
+            {
+                this.setErrorProvider(txtBoxNumeroDocumento, false, lcl_mensaje);
+                glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Cuit)] = false;
+            }
+            else
+            {
+                lcl_respuesta = (this.cmbBoxTipoDocumento.SelectedValue as TipoDocumento).codigo == 80 ? //80 codigo de CUIT
+                    ModeloEntidad.CUIT.ValidarCuit(txtBoxNumeroDocumento.Text) :
+                    Validar.validarInputNoNumerico(txtBoxNumeroDocumento.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Dni);
 
-            glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Cuit)] = respuesta;
+                glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Cuit)] = lcl_respuesta;
 
-            string mensaje = respuesta ? "OK" : "Número de Documento no válido";
+                lcl_mensaje = lcl_respuesta ? "OK" : "Número de Documento no válido";
 
-            this.setErrorProvider(this.txtBoxNumeroDocumento, respuesta, mensaje);
+                this.setErrorProvider(this.txtBoxNumeroDocumento, lcl_respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxApellido_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxApellido.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Apellido);
-            glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)] = respuesta;
-            
-            string mensaje = null;
-            if (!respuesta)
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxApellido.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Apellido, out lcl_mensaje))
             {
-                mensaje = "Apellido no válido";
+                this.setErrorProvider(txtBoxApellido, false, lcl_mensaje);
+                glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)] = false;
             }
             else
             {
-                mensaje = "OK";
-                this.setErrorProvider(this.txtBoxRazonSocial,true, null);//Quitamos el ep en razon social si se estaba mostrando
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxApellido.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Apellido);
+                glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Apellido)] = respuesta;
 
-                if ((int)this.cmbBoxTipoResponsable.SelectedValue != 1)
+                lcl_mensaje = null;
+                if (!respuesta)
                 {
-                    this.setCuitOnly(false);
+                    lcl_mensaje = "Apellido no válido";
                 }
+                else
+                {
+                    lcl_mensaje = "OK";
+                    this.setErrorProvider(this.txtBoxRazonSocial, true, null);//Quitamos el ep en razon social si se estaba mostrando
+
+                    if ((int)this.cmbBoxTipoResponsable.SelectedValue != 1)
+                    {
+                        this.setCuitOnly(false);
+                    }
+                }
+                this.setErrorProvider(this.txtBoxApellido, respuesta, lcl_mensaje);
             }
-            this.setErrorProvider(this.txtBoxApellido, respuesta, mensaje);
         }
 
         private void txtBoxNombre_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxNombre.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Nombre);
-            glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)] = respuesta;
-
-            string mensaje = respuesta?"OK":"Nombre no válido";
-            if (!respuesta)
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxNombre.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Nombre, out lcl_mensaje))
             {
-                mensaje = "Nombre no válido";
+                this.setErrorProvider(txtBoxNombre, false, lcl_mensaje);
+                glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)] = false;
             }
             else
             {
-                mensaje = "OK";
-                this.setErrorProvider(this.txtBoxRazonSocial, true, null);//Quitamos el ep en razon social si se estaba mostrando
-                
-                if ((int)this.cmbBoxTipoResponsable.SelectedValue != 1)
-                {
-                    this.setCuitOnly(false);
-                }
-            }
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxNombre.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Personas.Nombre);
+                glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Nombre)] = respuesta;
 
-            this.setErrorProvider(this.txtBoxNombre, respuesta, mensaje);
+                lcl_mensaje = respuesta ? "OK" : "Nombre no válido";
+                if (!respuesta)
+                {
+                    lcl_mensaje = "Nombre no válido";
+                }
+                else
+                {
+                    lcl_mensaje = "OK";
+                    this.setErrorProvider(this.txtBoxRazonSocial, true, null);//Quitamos el ep en razon social si se estaba mostrando
+
+                    if ((int)this.cmbBoxTipoResponsable.SelectedValue != 1)
+                    {
+                        this.setCuitOnly(false);
+                    }
+                }
+
+                this.setErrorProvider(this.txtBoxNombre, respuesta, lcl_mensaje);
+            }
         }
        
 
         private void txtBoxRazonSocial_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
-            glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = respuesta;
-
-            string mensaje = null;
-            if (!respuesta)
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxRazonSocial.Text, Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial, out lcl_mensaje))
             {
-                mensaje = "Razón Social no válida";
+                this.setErrorProvider(txtBoxRazonSocial, false, lcl_mensaje);
+                glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = false;
             }
             else
             {
-                mensaje = "OK";
-                this.setErrorProvider(this.txtBoxApellido,true, null);//Quitamos el ep en nombre y apellido si se estaba mostrando porque ya tenemos razon social vailda
-                this.setErrorProvider(this.txtBoxNombre, true, null);
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxRazonSocial.Text.ToString(), Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial);
+                glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial)] = respuesta;
 
-                this.setCuitOnly(true);
+                lcl_mensaje = null;
+                if (!respuesta)
+                {
+                    lcl_mensaje = "Razón Social no válida";
+                }
+                else
+                {
+                    lcl_mensaje = "OK";
+                    this.setErrorProvider(this.txtBoxApellido, true, null);//Quitamos el ep en nombre y apellido si se estaba mostrando porque ya tenemos razon social vailda
+                    this.setErrorProvider(this.txtBoxNombre, true, null);
+
+                    this.setCuitOnly(true);
+                }
+                this.setErrorProvider(this.txtBoxRazonSocial, respuesta, lcl_mensaje);
             }
-            this.setErrorProvider(this.txtBoxRazonSocial, respuesta, mensaje);
         }
 
         private void txtBoxMail_Leave(object sender, EventArgs e)
@@ -1823,11 +1862,20 @@ namespace Vista
                 return;
             }
 
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxMail.Text.ToString(), Constantes.ParametrosBusqueda.Mails.Mail);
-            glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Mails.Mail)] = respuesta;
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxMail.Text, Constantes.ParametrosBusqueda.Mails.Mail, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxMail, false, lcl_mensaje);
+                glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Mails.Mail)] = false;
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxMail.Text.ToString(), Constantes.ParametrosBusqueda.Mails.Mail);
+                glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Mails.Mail)] = respuesta;
 
-            string mensaje = respuesta ? "OK" : "Mail no válido";
-            this.setErrorProvider(this.txtBoxMail, respuesta, mensaje);
+                lcl_mensaje = respuesta ? "OK" : "Mail no válido";
+                this.setErrorProvider(this.txtBoxMail, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxTelefono_Leave(object sender, EventArgs e)
@@ -1838,17 +1886,25 @@ namespace Vista
                 this.setErrorProvider(this.txtBoxTelefono, true, null);
                 return;
             }
-            
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxTelefono.Text.ToString(), Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono);
-            glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)] = respuesta;
+            string lcl_mensaje;
+            if (!Validar.validarLongitud(txtBoxTelefono.Text, Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono, out lcl_mensaje))
+            {
+                this.setErrorProvider(txtBoxTelefono, false, lcl_mensaje);
+                glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)] = false;
+            }
+            else
+            {
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxTelefono.Text.ToString(), Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono);
+                glb_array_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Telefonos.NumeroTelefono)] = respuesta;
 
-            string mensaje = respuesta ? "OK" : "Telefono no válido";
-            this.setErrorProvider(this.txtBoxTelefono, respuesta, mensaje);
+                lcl_mensaje = respuesta ? "OK" : "Telefono no válido";
+                this.setErrorProvider(this.txtBoxTelefono, respuesta, lcl_mensaje);
+            }
         }
 
         private void txtBoxIVAPorcentaje_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxIVAPorcentaje.Text.ToString(), Constantes.Numericos.Porcentual);
+            bool respuesta = Validar.validarInputNumerico(txtBoxIVAPorcentaje.Text.ToString(), Constantes.Numericos.Porcentual);
 
             string mensaje = respuesta ? "OK" : "Porcentaje no válido";
             this.setErrorProvider(this.txtBoxIVAMonto, true, null);
@@ -1856,7 +1912,7 @@ namespace Vista
 
         private void txtBoxIVAMonto_Leave(object sender, EventArgs e)
         {
-            bool respuesta = Validar.validarInputNoNumerico(txtBoxIVAMonto.Text.ToString(), Constantes.Numericos.EnteroPositivo);
+            bool respuesta = Validar.validarInputNumerico(txtBoxIVAMonto.Text.ToString(), Constantes.Numericos.EnteroPositivo);
 
             string mensaje = respuesta ? "OK" : "Monto no válido";
             this.setErrorProvider(this.txtBoxIVAMonto, respuesta, mensaje);
