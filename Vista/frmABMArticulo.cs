@@ -20,10 +20,19 @@ namespace Vista
         List<ModeloArticuloProveedores> glb_lst_mod_articulosProveedores;
         List<bool> glb_lst_respuestasValidaciones;
         bool glb_banderaCodigoOriginal=false;
+        
         /// <summary>
         /// indica si hay un artículo seleccionado desde una búsqueda de artículos
         /// </summary>
-        bool articuloSeleccionado;
+        bool articuloSeleccionado
+        {
+            get { return _articuloSeleccionado; }
+            set { 
+                    _articuloSeleccionado = value;
+                    this.habilitarControlesArticuloProveedor(_articuloSeleccionado);
+                }
+        }
+        bool _articuloSeleccionado;
         /// <summary>
         /// Indica si un artículo proveedor esta seleccionado para edición
         /// </summary>
@@ -160,6 +169,10 @@ namespace Vista
             this.cmbBoxProveedores.DataSource = dataSource;
             InicializarCmbBox(this.cmbBoxProveedores);
         }
+        private void habilitarControlesArticuloProveedor(bool p_habilitar)
+        {
+            this.grpBoxArticulosProveedores.Enabled = p_habilitar;
+        }
         #endregion
 
         #region ABM
@@ -184,6 +197,7 @@ namespace Vista
             {
                 MessageBox.Show("Alta exitosa", "Éxito", MessageBoxButtons.OK);
                 this.inicializarModoFormularioSeleccionado();
+                this.clearErrorProviders();
             }
             else
             {
@@ -209,6 +223,7 @@ namespace Vista
                 MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
                 this.inicializarModoFormularioInicio();
                 QuitarTextoEnControles(this);
+                this.clearErrorProviders();
             }
             else
             {
@@ -229,15 +244,14 @@ namespace Vista
             {
                 return;
             }
-            
-           // if (!glb_banderaCodigoOriginal)
-           // { return; }
 
             ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
             if (lcl_con_modificacion.modificar(glb_mod_articulo))
             {
                 MessageBox.Show("Modificación exitosa", "Éxito", MessageBoxButtons.OK);
                 this.inicializarModoFormularioSeleccionado();
+                this.clearErrorProviders();
+                this.actualizarDataGridView();
             }
             else
             {
@@ -431,7 +445,7 @@ namespace Vista
         private ModeloArticuloProveedores cargarDatosEnModeloArticuloProveedor()
         {
             ModeloArticuloProveedores lcl_mod_articuloProveedores 
-                = new ModeloArticuloProveedores(this.cargarDatosEnModeloArticulo());
+                = new ModeloArticuloProveedores(glb_mod_articulo as ModeloArticulos);// this.cargarDatosEnModeloArticulo());
 
             ModeloProveedor lcl_mod_proveedor = this.cmbBoxProveedores.SelectedValue as ModeloProveedor;
             if (lcl_mod_proveedor == null)
@@ -480,7 +494,7 @@ namespace Vista
             txtBoxDescripcion.Text = p_mod_articulo.descripcion;
             txtBoxModelo.Text = p_mod_articulo.modelos;
             rchTextBoxObservaciones.Text = p_mod_articulo.observaciones;
-            if (p_mod_articulo.imagen != null)
+            if (p_mod_articulo.imagen != null && System.IO.File.Exists(p_mod_articulo.imagen))
             { picBoxImagen.Image = Image.FromFile(p_mod_articulo.imagen);
             this.pathimagen.Text = p_mod_articulo.imagen;
             }
@@ -509,6 +523,8 @@ namespace Vista
         {
             //se lo inicializa así para solo pasar la parte de ModeloArticulo (codigoOriginal, descripcion, modelo)
             ModeloArticuloProveedores lcl_mod_articuloProveedor = new ModeloArticuloProveedores(glb_mod_articuloProveedor as ModeloArticulos);
+            lcl_mod_articuloProveedor.descripcion = glb_mod_articulo.descripcion;
+            lcl_mod_articuloProveedor.modelos = glb_mod_articulo.modelos;
 
             frmResultadoBusqueda lcl_frm_resultadoBusqueda = new frmResultadoBusqueda(lcl_mod_articuloProveedor);
             this.tblLayoutPanelArticulosProveedores_Base.Controls.Remove(this.dgvArticulosProveedores);
@@ -558,16 +574,51 @@ namespace Vista
             }
             return index;
         }
+        private bool validarInputsArticulo()
+        {
+            txtBoxCodigoOriginal_Leave(new object(), new EventArgs());
+            txtBoxDescripcion_Leave(new object(), new EventArgs());
+            txtBoxModelo_Leave(new object(), new EventArgs());
 
-        private bool validarInputs(object sender, EventArgs e)
+            return (glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)]
+                && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)]
+                && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)]);
+        }
+        private bool validarInputsArticuloProveedor()
         {
             bool lcl_respuesta;
-            txtBoxCodigoArticulo_Leave(sender, e);
-            txtBoxCodigoOriginal_Leave(sender, e);
-            txtBoxDescripcion_Leave(sender, e);
-            txtBoxModelo_Leave(sender, e);
-            txtBoxPrecioCompra_Leave(sender, e);
-            txtBoxPrecioVenta_Leave(sender, e);
+            //txtBoxCodigoOriginal_Leave(new object(), new EventArgs());
+            //txtBoxDescripcion_Leave(new object(), new EventArgs());
+            //txtBoxModelo_Leave(new object(), new EventArgs());
+            txtBoxCodigoArticulo_Leave(new object(), new EventArgs());
+            txtBoxPrecioCompra_Leave(new object(), new EventArgs());
+            txtBoxPrecioVenta_Leave(new object(), new EventArgs());
+
+            lcl_respuesta = (
+               //   glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)]
+               //&& glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)]
+               //&& glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)]
+            //   &&
+                glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor)]
+               && glb_lst_respuestasValidaciones[this.getIndex(Constantes.TipoValorArticulo.Compra)]
+               && glb_lst_respuestasValidaciones[this.getIndex(Constantes.TipoValorArticulo.Venta)]);
+
+            if (!String.IsNullOrWhiteSpace(txtBoxUbicacion.Text))
+            {
+                lcl_respuesta = lcl_respuesta && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion)];
+            }
+
+            return lcl_respuesta;
+        }
+        private bool validarInputs()
+        {
+            bool lcl_respuesta;
+            txtBoxCodigoArticulo_Leave(new object(),new EventArgs());
+            txtBoxCodigoOriginal_Leave(new object(), new EventArgs());
+            txtBoxDescripcion_Leave(new object(), new EventArgs());
+            txtBoxModelo_Leave(new object(), new EventArgs());
+            txtBoxPrecioCompra_Leave(new object(), new EventArgs());
+            txtBoxPrecioVenta_Leave(new object(), new EventArgs());
             
             lcl_respuesta =(glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)]
                 && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)] 
@@ -590,6 +641,10 @@ namespace Vista
                 MessageBox.Show("Revisar campos");
                 return false;
             }
+            if (!this.validarInputsArticulo())
+            {
+                return false;
+            }
             //if (String.IsNullOrWhiteSpace(p_mod_articulo.codigoOriginal))
             //{
             //    MessageBox.Show("revisar código original");
@@ -604,7 +659,7 @@ namespace Vista
         }
         private bool validarABM(ModeloArticuloProveedores p_mod_articuloProveedor)
         {
-            if (!this.validarABM(p_mod_articuloProveedor as ModeloArticulos))
+            if (!this.validarInputsArticuloProveedor())
             {
                 return false;
             }
@@ -810,7 +865,7 @@ namespace Vista
         #region Buttons
         private void btnAgregarArticuloProveedor_Click(object sender, EventArgs e)
         {
-            if (this.validarInputs(sender, e))
+            if (this.validarInputsArticuloProveedor())
             {
                 this.alta_ArticuloProveedor();
             }
@@ -822,7 +877,7 @@ namespace Vista
 
         private void btnEditarArticuloProveedor_Click(object sender, EventArgs e)
         {
-            if (this.validarInputs(sender, e))
+            if (this.validarInputsArticuloProveedor())
             {
                 this.actualizar_ArticuloProveedor();
             }
@@ -878,12 +933,12 @@ namespace Vista
 
         private void btnAgregaImagen_Click(object sender, EventArgs e)
         {
-            if (this.glb_mod_articulo == null || String.IsNullOrEmpty(this.txtBoxCodigoOriginal.Text))
-            { return; }
+            //if (this.glb_mod_articulo == null || String.IsNullOrEmpty(this.txtBoxCodigoOriginal.Text))
+            //{ return; }
 
             OpenFileDialog image_dialog = new OpenFileDialog();
             string imagePath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\Vista\Resources\";
-            image_dialog.Filter = "*.jpg|*.png";
+            image_dialog.Filter = "JPG (*.jpg)|*.jpg";
             
             DialogResult result = image_dialog.ShowDialog();
             

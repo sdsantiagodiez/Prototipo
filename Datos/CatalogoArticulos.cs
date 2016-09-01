@@ -73,16 +73,20 @@ namespace Datos
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articulo.descripcion), "@descripcion"));
                     return " descripcion LIKE @descripcion ";
                 case Constantes.ParametrosBusqueda.Any:
-                    
-                    string codigoOriginal = p_mod_articulo.codigoOriginal == "" ? null : p_mod_articulo.codigoOriginal;
+
+                    string codigoOriginal = String.IsNullOrWhiteSpace(p_mod_articulo.codigoOriginal) ? null : p_mod_articulo.codigoOriginal;
                     p_comando.Parameters.Add(this.instanciarParametro(codigoOriginal, "@codigo_original"));
                     string codigoOriginalQuery = this.parametroBusqueda("@codigo_original", "codigo_original", "=");
 
-                    string descripcion = p_mod_articulo.descripcion == "" ? null : p_mod_articulo.descripcion;
+                    string descripcion = String.IsNullOrWhiteSpace(p_mod_articulo.descripcion) ? null : p_mod_articulo.descripcion;
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(descripcion), "@descripcion"));
                     string descripcionQuery = this.parametroBusqueda("@descripcion", "descripcion", "LIKE");
 
-                    return codigoOriginalQuery + " AND " + descripcionQuery;
+                    string modelo = String.IsNullOrWhiteSpace(p_mod_articulo.modelos) ? null : p_mod_articulo.modelos;
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(modelo), "@modelos"));
+                    string modelosQuery = this.parametroBusqueda("@modelos", "modelos", "LIKE");
+
+                    return codigoOriginalQuery + " AND " + descripcionQuery + " AND "+ modelosQuery;
                 default:
                     return base.getCondicionBusqueda(p_parametroBusqueda);
             }

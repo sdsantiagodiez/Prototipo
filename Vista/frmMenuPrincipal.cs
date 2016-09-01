@@ -340,6 +340,7 @@ namespace Vista
                 {
                     glb_lst_formsActivos.Remove(glb_form);
                     glb_form = new Form();
+                    this.pnlContenedorForm.Controls.Clear();
                     return true;
                 }
                 

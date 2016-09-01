@@ -148,16 +148,18 @@ namespace LibreriaClasesCompartidas
                 case Constantes.ParametrosBusqueda.Pedidos.CAE:
                     lcl_patron = new Regex(@"^\d{14}$");
                     break;
+                //case Constantes.ParametrosBusqueda.Articulos.CodigoOriginal:
+                //    //Admite un patrón especifico: 2 nros + "-" + 3letras + "-" + 3 + letras + "-" + 2 nros
+                //    //EJ_ "00-ART-REN-00"
+                //    lcl_patron = new Regex(@"^\d{2}-[a-zA-Z]{3}-[a-zA-Z]{3}-\d{2}$");
+                //    break;
+                //case Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor:
+                //    //Admite un patrón especifico: 4 letras + "-" + 2 nros + "/" + 2 nros + "-" + 3letras + "-" + 3 + letras + "-" + 2 nros + "/" + 2 nros
+                //    //EJ: "PROV-01/00-ART-REN-00/01"
+                //    lcl_patron = new Regex(@"^[a-zA-Z]{4}-\d{2}\x2F\d{2}-[a-zA-Z]{3}-[a-zA-Z]{3}-\d{2}\x2F\d{2}$");
+                //    break;
                 case Constantes.ParametrosBusqueda.Articulos.CodigoOriginal:
-                    //Admite un patrón especifico: 2 nros + "-" + 3letras + "-" + 3 + letras + "-" + 2 nros
-                    //EJ_ "00-ART-REN-00"
-                    lcl_patron = new Regex(@"^\d{2}-[a-zA-Z]{3}-[a-zA-Z]{3}-\d{2}$");
-                    break;
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor:
-                    //Admite un patrón especifico: 4 letras + "-" + 2 nros + "/" + 2 nros + "-" + 3letras + "-" + 3 + letras + "-" + 2 nros + "/" + 2 nros
-                    //EJ: "PROV-01/00-ART-REN-00/01"
-                    lcl_patron = new Regex(@"^[a-zA-Z]{4}-\d{2}\x2F\d{2}-[a-zA-Z]{3}-[a-zA-Z]{3}-\d{2}\x2F\d{2}$");
-                    break;
                 case Constantes.ParametrosBusqueda.Articulos.Descripcion:
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.DescripcionArticuloProveedor:
                 case Constantes.ParametrosBusqueda.Descuentos.Descripcion:

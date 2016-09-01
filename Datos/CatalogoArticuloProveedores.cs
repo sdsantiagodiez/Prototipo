@@ -291,11 +291,19 @@ namespace Datos
 
         public bool update(ModeloArticuloProveedores p_mod_articuloProveedor_nuevo)
         {
-            ModeloArticuloProveedores p_mod_articuloProveedor_original = this.buscar(p_mod_articuloProveedor_nuevo, Constantes.ParametrosBusqueda.One).ToList()[0];
-            if (p_mod_articuloProveedor_original != null)
-                return update(p_mod_articuloProveedor_original, p_mod_articuloProveedor_nuevo);
-            else
-                return false;
+            try
+            {
+                ModeloArticuloProveedores p_mod_articuloProveedor_original = this.buscar(p_mod_articuloProveedor_nuevo, Constantes.ParametrosBusqueda.One).ToList()[0];
+                if (p_mod_articuloProveedor_original != null)
+                    return update(p_mod_articuloProveedor_original, p_mod_articuloProveedor_nuevo);
+                else
+                    return false;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("El artículo que se quiere modificar no existe");
+            }
+            
         }
 
         /// <summary>
