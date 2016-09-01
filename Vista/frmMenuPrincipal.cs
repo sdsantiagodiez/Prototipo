@@ -824,22 +824,31 @@ namespace Vista
             else if (p_ventanaActiva == typeof(frmPedidoNuevo))
             {
                 if ((glb_form as frmPedidoNuevo).controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Persona)
-                { topic = "34_AGREGARUNARTCULOALPEDIDODEVENTA"; }
-                else { topic = "27_AGREGARUNARTCULOALPEDIDODEPROVEEDOR"; }
+                { topic = "37_AGREGARUNARTCULOALPEDIDODEVENTA"; }
+                else { topic = "30_AGREGARUNARTCULOALPEDIDODEPROVEEDOR"; }
             }
             
             else if (p_ventanaActiva == typeof(frmReporteSeleccion))
             {
                 if ((glb_form as frmReporteSeleccion).tabControl.SelectedTab == (glb_form as frmReporteSeleccion).tabProveedores)
-                { topic = "31_REPORTESDEVENTAS"; }
+                { topic = "34_REPORTESDEVENTAS"; }
                 else if ((glb_form as frmReporteSeleccion).tabControl.SelectedTab == (glb_form as frmReporteSeleccion).tabClientes)
                 { topic = "27_AGREGARUNARTCULOALPEDIDODEPROVEEDOR"; }
-                else { topic = "30_REPORTESDEINVENTARIO"; }
+                else { topic = "33_REPORTESDEINVENTARIO"; }
             }
             else if (p_ventanaActiva == typeof(frmImportar))
             { topic = "17_MANEJODEDATOS"; }
             else if (p_ventanaActiva == typeof(frmConfiguracion))
-            { topic = "21_OPCIONESGENERALES"; }
+            { topic = "21_OPCIONESDECONFIGURACION"; }
+            else if (p_ventanaActiva == typeof(frmOpcionesUsuario))
+            {
+                if ((glb_form as frmOpcionesUsuario).tbControlPrincipal.SelectedTab == (glb_form as frmOpcionesUsuario).tbEstiloVisual)
+                { topic = "25_ESTILOVISUAL"; }
+                else if ((glb_form as frmOpcionesUsuario).tbControlPrincipal.SelectedTab == (glb_form as frmOpcionesUsuario).tbPageDatosGenerales)
+                { topic = "26_DATOSGENERALES"; }
+                else
+                { topic = "27_DATOSDECONTACTO"; }
+            }
             else
             { topic = "1_ALTASBAJASYMODIFICACIONES"; }
             

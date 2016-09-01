@@ -698,7 +698,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 11);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 9);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxTipoTelefono.TabIndex = 23;
@@ -994,9 +994,6 @@
         private System.Windows.Forms.Panel pnlBase;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelPrincipal;
         private MaterialSkin.Controls.MaterialTabSelector selectorControlPrincipal;
-        private MaterialSkin.Controls.MaterialTabControl tbControlPrincipal;
-        private System.Windows.Forms.TabPage tbPageDatosGenerales;
-        private System.Windows.Forms.TabPage tbPageDatosContacto;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDatosGenerales;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDatosContacto;
         private System.Windows.Forms.GroupBox grpBoxDomicilio;
@@ -1046,10 +1043,13 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxContraseñaActual;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxContraseñaNueva;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxContraseñaNuevaRepetir;
-        private System.Windows.Forms.TabPage tbEstiloVisual;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelEstiloVisual;
         private System.Windows.Forms.GroupBox grpBoxEstiloVisual;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDiseño;
         private MaterialSkin.Controls.MaterialRaisedButton btnCambiarColores;
+        public MaterialSkin.Controls.MaterialTabControl tbControlPrincipal;
+        public System.Windows.Forms.TabPage tbPageDatosGenerales;
+        public System.Windows.Forms.TabPage tbPageDatosContacto;
+        public System.Windows.Forms.TabPage tbEstiloVisual;
     }
 }
