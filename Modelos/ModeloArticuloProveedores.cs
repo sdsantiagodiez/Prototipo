@@ -304,7 +304,8 @@ namespace Modelos
                 && this.Equals(this.stockActual,p_mod_articuloProveedor.stockActual)
                 && this.Equals(this.stockMinimo,p_mod_articuloProveedor.stockMinimo)
                 && this.Equals(this.descuentos,p_mod_articuloProveedor.descuentos)
-                && this.Equals(this.activo,p_mod_articuloProveedor.activo);
+                && this.Equals(this.activo,p_mod_articuloProveedor.activo)
+                && this.Equals(this.observacionesArticuloProveedor,p_mod_articuloProveedor.observacionesArticuloProveedor);
         }
 
         //public bool Equals(ModeloArticuloProveedores p_mod_articuloProveedor)

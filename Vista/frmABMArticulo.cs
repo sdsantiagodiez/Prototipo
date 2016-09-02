@@ -43,12 +43,13 @@ namespace Vista
         public  frmABMArticulo()
         {
             InitializeComponent();
-            this.inicializarModoFormularioInicio();
+            this.modoFormulario = ModoFormularioInicio;
+            //this.inicializarModoFormularioInicio();
             this.Text = "Gestión de Artículos";
             this.pathimagen.Text = "";
 
             this.inicializarControles();
-
+            
             glb_lst_respuestasValidaciones = new List<bool>();
             for (int i = 0; i < 7; i++)
             {
@@ -141,6 +142,7 @@ namespace Vista
             txtBoxPrecioCompra.KeyPress += this.valorDecimal;
             txtBoxPrecioVenta.KeyPress += this.valorDecimal;
             this.dgvArticulosProveedores.MouseDown += this.dgvArticulosProveedores_MouseDown;
+            this.dgvArticulosProveedores.KeyDown += this.dgvArticulosProveedores_KeyDown;
 
             this.inicializarCmbBoxProveedores();
         }
@@ -478,7 +480,7 @@ namespace Vista
                 lcl_mod_articuloProveedores.valorVenta.valorArticulo = null;
             }
             //lcl_mod_articuloProveedores.valorVenta.valorArticulo = Convert.ToDecimal(txtBoxPrecioVenta.Text);
-            lcl_mod_articuloProveedores.observacionesArticuloProveedor = rchTextBoxObservaciones.Text;
+            lcl_mod_articuloProveedores.observacionesArticuloProveedor = this.rchTextBoxObservaciones_ArticuloProveedor.Text;
 
             return lcl_mod_articuloProveedores;
         }
@@ -531,6 +533,7 @@ namespace Vista
             this.dgvArticulosProveedores = new DataGridView();
             this.dgvArticulosProveedores = lcl_frm_resultadoBusqueda.dataGridViewResultadoBusqueda;
             this.dgvArticulosProveedores.MouseDown += this.dgvArticulosProveedores_MouseDown;
+            this.dgvArticulosProveedores.KeyDown += this.dgvArticulosProveedores_KeyDown;
             this.glb_lst_mod_articulosProveedores = lcl_frm_resultadoBusqueda.glb_lst_objetos.Cast<ModeloArticuloProveedores>().ToList();
             this.tblLayoutPanelArticulosProveedores_Base.Controls.Add(this.dgvArticulosProveedores, 0, 2);
             
@@ -587,18 +590,13 @@ namespace Vista
         private bool validarInputsArticuloProveedor()
         {
             bool lcl_respuesta;
-            //txtBoxCodigoOriginal_Leave(new object(), new EventArgs());
-            //txtBoxDescripcion_Leave(new object(), new EventArgs());
-            //txtBoxModelo_Leave(new object(), new EventArgs());
+
             txtBoxCodigoArticulo_Leave(new object(), new EventArgs());
             txtBoxPrecioCompra_Leave(new object(), new EventArgs());
             txtBoxPrecioVenta_Leave(new object(), new EventArgs());
 
             lcl_respuesta = (
-               //   glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)]
-               //&& glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)]
-               //&& glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)]
-            //   &&
+
                 glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor)]
                && glb_lst_respuestasValidaciones[this.getIndex(Constantes.TipoValorArticulo.Compra)]
                && glb_lst_respuestasValidaciones[this.getIndex(Constantes.TipoValorArticulo.Venta)]);
@@ -610,51 +608,14 @@ namespace Vista
 
             return lcl_respuesta;
         }
-        private bool validarInputs()
-        {
-            bool lcl_respuesta;
-            txtBoxCodigoArticulo_Leave(new object(),new EventArgs());
-            txtBoxCodigoOriginal_Leave(new object(), new EventArgs());
-            txtBoxDescripcion_Leave(new object(), new EventArgs());
-            txtBoxModelo_Leave(new object(), new EventArgs());
-            txtBoxPrecioCompra_Leave(new object(), new EventArgs());
-            txtBoxPrecioVenta_Leave(new object(), new EventArgs());
-            
-            lcl_respuesta =(glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.CodigoOriginal)]
-                && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)] 
-                && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)]
-                && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor)]
-                && glb_lst_respuestasValidaciones[this.getIndex(Constantes.TipoValorArticulo.Compra)]
-                && glb_lst_respuestasValidaciones[this.getIndex(Constantes.TipoValorArticulo.Venta)]);
 
-            if(!String.IsNullOrWhiteSpace(txtBoxUbicacion.Text))
-            {
-                lcl_respuesta = lcl_respuesta && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion)];
-            }
-
-            return lcl_respuesta;
-        }
         private bool validarABM(ModeloArticulos p_mod_articulo)
         {
-            if (p_mod_articulo == null)
-            {//se da cuando se inicia baja de artículo proveedor sin que haya un artículo seleccionado
-                MessageBox.Show("Revisar campos");
-                return false;
-            }
             if (!this.validarInputsArticulo())
             {
                 return false;
             }
-            //if (String.IsNullOrWhiteSpace(p_mod_articulo.codigoOriginal))
-            //{
-            //    MessageBox.Show("revisar código original");
-            //    return false;
-            //}
-            //if (String.IsNullOrWhiteSpace(p_mod_articulo.descripcion))
-            //{
-            //    MessageBox.Show("revisar descripción artículo");
-            //    return false;
-            //}
+
             return true;
         }
         private bool validarABM(ModeloArticuloProveedores p_mod_articuloProveedor)
@@ -664,11 +625,6 @@ namespace Vista
                 return false;
             }
 
-            //if (String.IsNullOrWhiteSpace(p_mod_articuloProveedor.codigoArticuloProveedor))
-            //{
-            //    MessageBox.Show("revisar código artículo proveedor");
-            //    return false;
-            //}
             if (this.cmbBoxProveedores.SelectedValue == null)
             {
                 MessageBox.Show("Debe seleccionar un proveedor");
@@ -860,6 +816,63 @@ namespace Vista
             }
 
         }
+
+        private void dgvArticulosProveedores_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.Equals(Keys.Up))
+            {
+                moveUp();
+            }
+            if (e.KeyCode.Equals(Keys.Down))
+            {
+                moveDown();
+            }
+            e.Handled = true;
+        }
+
+        private void moveUp()
+        {
+            if (this.dgvArticulosProveedores.RowCount > 0)
+            {
+                if (this.dgvArticulosProveedores.SelectedRows.Count > 0)
+                {
+                    int rowCount = this.dgvArticulosProveedores.Rows.Count;
+                    int index = this.dgvArticulosProveedores.SelectedCells[0].OwningRow.Index;
+
+                    if (index == 0)
+                    {
+                        return;
+                    }
+
+                    this.dgvArticulosProveedores.ClearSelection();
+                    this.dgvArticulosProveedores.Rows[index - 1].Selected = true;
+                    int indice = Convert.ToInt32(this.dgvArticulosProveedores.SelectedRows[0].Cells["dgvKey"].Value);
+                    this.cargarArticuloProveedorEnControles(this.glb_lst_mod_articulosProveedores[indice]);
+                }
+            }
+        }
+
+        private void moveDown()
+        {
+            if (this.dgvArticulosProveedores.RowCount > 0)
+            {
+                if (this.dgvArticulosProveedores.SelectedRows.Count > 0)
+                {
+                    int rowCount = this.dgvArticulosProveedores.Rows.Count;
+                    int index = this.dgvArticulosProveedores.SelectedCells[0].OwningRow.Index;
+
+                    if (index == (rowCount - 1)) // include the header row
+                    {
+                        return;
+                    }
+
+                    this.dgvArticulosProveedores.ClearSelection();
+                    this.dgvArticulosProveedores.Rows[index + 1].Selected = true;
+                    int indice = Convert.ToInt32(this.dgvArticulosProveedores.SelectedRows[0].Cells["dgvKey"].Value);
+                    this.cargarArticuloProveedorEnControles(this.glb_lst_mod_articulosProveedores[indice]);
+                }
+            }
+        }
         #endregion
 
         #region Buttons
@@ -915,7 +928,7 @@ namespace Vista
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
-            if(this.glb_mod_articulo == null || String.IsNullOrEmpty(this.txtBoxCodigoOriginal.Text) )
+            if(this.modoFormulario == ModoFormularioInicio )
             {return;}
 
             if (System.IO.File.Exists(this.glb_mod_articulo.imagen))
@@ -933,8 +946,8 @@ namespace Vista
 
         private void btnAgregaImagen_Click(object sender, EventArgs e)
         {
-            //if (this.glb_mod_articulo == null || String.IsNullOrEmpty(this.txtBoxCodigoOriginal.Text))
-            //{ return; }
+            if (this.modoFormulario == ModoFormularioInicio)
+            { return; }
 
             OpenFileDialog image_dialog = new OpenFileDialog();
             string imagePath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\Vista\Resources\";
