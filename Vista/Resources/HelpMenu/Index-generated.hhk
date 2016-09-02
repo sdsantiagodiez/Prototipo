@@ -6,12 +6,12 @@
 <UL>
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="ACTUALIZACIÓN DE PRECIO DE VENTA">
-     <param name="Local" value="38_ACTUALIZACINDEPRECIODEVENTA.htm#node51">
+     <param name="Local" value="38_ACTUALIZACINDEPRECIODEVENTA.htm#node105">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="ADMINISTRADOR DE PEDIDOS">
-     <param name="Local" value="7_ADMINISTRADORDEPEDIDOS.htm#node23">
+     <param name="Local" value="7_ADMINISTRADORDEPEDIDOS.htm#node77">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
@@ -21,32 +21,32 @@
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="AGREGAR UN ARTÍCULO AL PEDIDO DE VENTA">
-     <param name="Local" value="37_AGREGARUNARTCULOALPEDIDODEVENTA.htm#node50">
+     <param name="Local" value="37_AGREGARUNARTCULOALPEDIDODEVENTA.htm#node104">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="AGREGAR UNA DEVOLUCIÓN">
-     <param name="Local" value="12_DEVOLUCIONES.htm#node27">
+     <param name="Local" value="12_DEVOLUCIONES.htm#node81">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="ALMACENAMIENTO DE ARCHIVOS">
-     <param name="Local" value="23_ALMACENAMIENTODEARCHIVOS.htm#node37">
+     <param name="Local" value="23_ALMACENAMIENTODEARCHIVOS.htm#node91">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="ALTAS, BAJAS Y MODIFICACIONES">
-     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#node0">
+     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#node53">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="ARTÍCULOS">
-     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#node1">
+     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#node54">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="BACK UP">
-     <param name="Local" value="17_MANEJODEDATOS.htm#node32">
+     <param name="Local" value="17_MANEJODEDATOS.htm#node86">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
@@ -56,227 +56,227 @@
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="CERRAR UNA DEVOLUCIÓN">
-     <param name="Local" value="14_CERRARUNADEVOLUCIN.htm#node28">
+     <param name="Local" value="14_CERRARUNADEVOLUCIN.htm#node82">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="CLIENTES">
-     <param name="Local" value="3_CLIENTES.htm#node7">
+     <param name="Local" value="3_CLIENTES.htm#node61">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="CONTACTO DE PROVEEDOR">
-     <param name="Local" value="4_CONTACTODEPROVEEDOR.htm#node11">
+     <param name="Local" value="4_CONTACTODEPROVEEDOR.htm#node65">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="CREAR ARTÍCULO">
-     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#ABMArticulo">
+     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#node55">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="CREAR ARTÍCULO DE PROVEEDOR">
-     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#node4">
+     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#node58">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="CREAR CLIENTE">
-     <param name="Local" value="3_CLIENTES.htm#node8">
+     <param name="Local" value="3_CLIENTES.htm#node62">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="CREAR CONTACTO DE PROVEEDOR">
-     <param name="Local" value="4_CONTACTODEPROVEEDOR.htm#node12">
+     <param name="Local" value="4_CONTACTODEPROVEEDOR.htm#node66">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="CREAR PROVEEDOR">
-     <param name="Local" value="5_PROVEEDOR.htm#node16">
+     <param name="Local" value="5_PROVEEDOR.htm#node70">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="CREAR USUARIO">
-     <param name="Local" value="6_USUARIO.htm#node20">
+     <param name="Local" value="6_USUARIO.htm#node74">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="DATOS DE CONTACTO">
-     <param name="Local" value="27_DATOSDECONTACTO.htm#node41">
+     <param name="Local" value="27_DATOSDECONTACTO.htm#node95">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="DATOS GENERALES">
-     <param name="Local" value="26_DATOSGENERALES.htm#node40">
+     <param name="Local" value="26_DATOSGENERALES.htm#node94">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="DEVOLUCIONES">
-     <param name="Local" value="12_DEVOLUCIONES.htm#node26">
-     </OBJECT>
-
-<LI> <OBJECT type="text/sitemap">
-     <param name="Name" value="ELIMINAR ARTÍCULO">
-     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#node3">
-     </OBJECT>
-
-<LI> <OBJECT type="text/sitemap">
-     <param name="Name" value="ELIMINAR ARTÍCULO DE PROVEEDOR">
-     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#node6">
+     <param name="Local" value="12_DEVOLUCIONES.htm#node80">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="ELIMINAR CLIENTE">
-     <param name="Local" value="3_CLIENTES.htm#node10">
-     </OBJECT>
-
-<LI> <OBJECT type="text/sitemap">
-     <param name="Name" value="ELIMINAR DE PROVEEDOR">
-     <param name="Local" value="4_CONTACTODEPROVEEDOR.htm#node14">
+     <param name="Local" value="3_CLIENTES.htm#node64">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="ELIMINAR PROVEEDOR">
-     <param name="Local" value="5_PROVEEDOR.htm#node18">
+     <param name="Local" value="5_PROVEEDOR.htm#node72">
+     </OBJECT>
+
+<LI> <OBJECT type="text/sitemap">
+     <param name="Name" value="ELIMINAR ARTÍCULO">
+     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#node57">
+     </OBJECT>
+
+<LI> <OBJECT type="text/sitemap">
+     <param name="Name" value="ELIMINAR ARTÍCULO DE PROVEEDOR">
+     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#node60">
+     </OBJECT>
+
+<LI> <OBJECT type="text/sitemap">
+     <param name="Name" value="ELIMINAR DE PROVEEDOR">
+     <param name="Local" value="4_CONTACTODEPROVEEDOR.htm#node68">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="ELIMINAR USUARIO">
-     <param name="Local" value="6_USUARIO.htm#node22">
+     <param name="Local" value="6_USUARIO.htm#node76">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="ESTILO VISUAL">
-     <param name="Local" value="25_ESTILOVISUAL.htm#node39">
+     <param name="Local" value="25_ESTILOVISUAL.htm#node93">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="EXPORTACIÓN">
-     <param name="Local" value="19_EXPORTACIN.htm#node33">
+     <param name="Local" value="19_EXPORTACIN.htm#node87">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="FACTURACION ELECTRONICA">
-     <param name="Local" value="22_FACTURACIONELECTRONICA.htm#node36">
+     <param name="Local" value="22_FACTURACIONELECTRONICA.htm#node90">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="FACTURACIÓN DE PEDIDOS DE CLIENTE">
-     <param name="Local" value="11_FACTURACINDEPEDIDOSDECLIENTE.htm#node25">
+     <param name="Local" value="11_FACTURACINDEPEDIDOSDECLIENTE.htm#node79">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="IMPORTACIÓN">
-     <param name="Local" value="20_IMPORTACIN.htm#node34">
+     <param name="Local" value="20_IMPORTACIN.htm#node88">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="IMPRESIÓN DE PEDIDOS DE CLIENTE">
-     <param name="Local" value="10_IMPRESINDEPEDIDOSDECLIENTE.htm#node24">
+     <param name="Local" value="10_IMPRESINDEPEDIDOSDECLIENTE.htm#node78">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="INGRESO DE PEDIDO A PROVEEDOR">
-     <param name="Local" value="28_PEDIDOAPROVEEDORES-COMPRAS.htm#node43">
+     <param name="Local" value="28_PEDIDOAPROVEEDORES-COMPRAS.htm#node97">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="INGRESO DE PEDIDO DE CLIENTES">
-     <param name="Local" value="35_PEDIDODECLIENTE-VENTAS.htm#node49">
+     <param name="Local" value="35_PEDIDODECLIENTE-VENTAS.htm#node103">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="INVENTARIO">
-     <param name="Local" value="15_INVENTARIO.htm#node29">
+     <param name="Local" value="15_INVENTARIO.htm#node83">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="MANEJO DE DATOS">
-     <param name="Local" value="17_MANEJODEDATOS.htm#node31">
-     </OBJECT>
-
-<LI> <OBJECT type="text/sitemap">
-     <param name="Name" value="MODIFICAR ARTÍCULO">
-     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#node2">
-     </OBJECT>
-
-<LI> <OBJECT type="text/sitemap">
-     <param name="Name" value="MODIFICAR ARTÍCULO DE PROVEEDOR">
-     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#node5">
+     <param name="Local" value="17_MANEJODEDATOS.htm#node85">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="MODIFICAR CLIENTE">
-     <param name="Local" value="3_CLIENTES.htm#node9">
+     <param name="Local" value="3_CLIENTES.htm#node63">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="MODIFICAR CONTACTO DE PROVEEDOR">
-     <param name="Local" value="4_CONTACTODEPROVEEDOR.htm#node13">
+     <param name="Local" value="4_CONTACTODEPROVEEDOR.htm#node67">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="MODIFICAR PROVEEDOR">
-     <param name="Local" value="5_PROVEEDOR.htm#node17">
+     <param name="Local" value="5_PROVEEDOR.htm#node71">
+     </OBJECT>
+
+<LI> <OBJECT type="text/sitemap">
+     <param name="Name" value="MODIFICAR ARTÍCULO">
+     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#node56">
+     </OBJECT>
+
+<LI> <OBJECT type="text/sitemap">
+     <param name="Name" value="MODIFICAR ARTÍCULO DE PROVEEDOR">
+     <param name="Local" value="1_ALTASBAJASYMODIFICACIONES.htm#node59">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="MODIFICAR USUARIO">
-     <param name="Local" value="6_USUARIO.htm#node21">
+     <param name="Local" value="6_USUARIO.htm#node75">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="OPCIONES DE CONFIGURACION">
-     <param name="Local" value="21_OPCIONESDECONFIGURACION.htm#node35">
+     <param name="Local" value="21_OPCIONESDECONFIGURACION.htm#node89">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="OPCIONES DE USUARIO">
-     <param name="Local" value="24_OPCIONESDEUSUARIO.htm#node38">
+     <param name="Local" value="24_OPCIONESDEUSUARIO.htm#node92">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="PEDIDO A PROVEEDORES - COMPRAS">
-     <param name="Local" value="28_PEDIDOAPROVEEDORES-COMPRAS.htm#node42">
+     <param name="Local" value="28_PEDIDOAPROVEEDORES-COMPRAS.htm#node96">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="PEDIDO DE CLIENTE - VENTAS">
-     <param name="Local" value="35_PEDIDODECLIENTE-VENTAS.htm#node48">
+     <param name="Local" value="35_PEDIDODECLIENTE-VENTAS.htm#node102">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="PROVEEDOR">
-     <param name="Local" value="5_PROVEEDOR.htm#node15">
+     <param name="Local" value="5_PROVEEDOR.htm#node69">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="REPORTES">
-     <param name="Local" value="31_REPORTES.htm#node44">
+     <param name="Local" value="31_REPORTES.htm#node98">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="REPORTES DE COMPRA">
-     <param name="Local" value="32_REPORTESDECOMPRA.htm#node45">
+     <param name="Local" value="32_REPORTESDECOMPRA.htm#node99">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="REPORTES DE INVENTARIO">
-     <param name="Local" value="33_REPORTESDEINVENTARIO.htm#node46">
+     <param name="Local" value="33_REPORTESDEINVENTARIO.htm#node100">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="REPORTES DE VENTAS">
-     <param name="Local" value="34_REPORTESDEVENTAS.htm#node47">
+     <param name="Local" value="34_REPORTESDEVENTAS.htm#node101">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="SALDOS DE STOCK">
-     <param name="Local" value="15_INVENTARIO.htm#node30">
+     <param name="Local" value="15_INVENTARIO.htm#node84">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
      <param name="Name" value="USUARIO">
-     <param name="Local" value="6_USUARIO.htm#node19">
+     <param name="Local" value="6_USUARIO.htm#node73">
      </OBJECT>
 
 <LI> <OBJECT type="text/sitemap">
