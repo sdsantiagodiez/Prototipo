@@ -59,7 +59,31 @@ namespace Controladores
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
-                errorActual = "SQLexception Message: " + ex.Message;
+                switch (ex.Number)
+                {
+                    case 547:
+                        if (T == typeof(ModeloCliente))
+                        {
+                            errorActual = "No es posible eliminar cliente ya que tiene pedidos asociados.";
+                        }
+                        else if (T == typeof(ModeloContactoProveedor))
+                        {
+                            errorActual = "No es posible eliminar contacto de proveedor ya que tiene pedidos asociados.";
+                        }
+                        else if (T == typeof(ModeloProveedor))
+                        {
+                            errorActual = "No es posible eliminar proveedor ya que tiene artículos asociados.";
+                        }
+                        else
+                        {
+                            errorActual = "No es posible realizar la eliminación.";
+                        }
+                        
+                        break;
+                    default:
+                        errorActual = "SQLexception Message: " + ex.Message;
+                        break;
+                }
             }
             catch (Exception ex)
             {
@@ -91,7 +115,16 @@ namespace Controladores
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
-                errorActual = "SQLexception Message: " + ex.Message;
+                switch (ex.Number)
+                {
+                    case 547:
+                        errorActual = "No es posible eliminar artículo ya que tiene artículos proveedor asociados.";
+                        break;
+                    default:
+                        errorActual = "SQLexception Message: " + ex.Message;
+                        break;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -123,7 +156,15 @@ namespace Controladores
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
-                errorActual = "SQLexception Message: " + ex.Message;
+                switch (ex.Number)
+                {
+                    case 547:
+                        errorActual = "No es posible eliminar artículo ya que tiene pedidos o descuentos asociados.";
+                        break;
+                    default:
+                        errorActual = "SQLexception Message: " + ex.Message;
+                        break;
+                }
             }
             catch (Exception ex)
             {

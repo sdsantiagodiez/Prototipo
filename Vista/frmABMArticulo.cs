@@ -216,10 +216,7 @@ namespace Vista
         private void baja()
         {
             ControladorBaja lcl_con_baja = new ControladorBaja();
-            if (!this.validarABM(glb_mod_articulo))
-            {
-                return;
-            }
+
             if(lcl_con_baja.eliminar(glb_mod_articulo))
             {
                 MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
@@ -300,18 +297,23 @@ namespace Vista
         /// </summary>
         private void baja_ArticuloProveedor()
         {
-            if (!this.validarABM(glb_mod_articuloProveedor))
-            {
-                return;
-            }
+            //if (!this.validarABM(glb_mod_articuloProveedor))
+            //{
+            //    return;
+            //}
+            //if (this.glb_mod_articuloProveedor.codigoArticuloProveedor == null || this.glb_mod_articuloProveedor.codigoOriginal == null)
+            //{ return; }
 
+            ModeloArticuloProveedores lcl_ap_eliminar = new ModeloArticuloProveedores() { codigoOriginal=glb_mod_articuloProveedor.codigoOriginal,codigoArticuloProveedor=glb_mod_articuloProveedor.codigoArticuloProveedor};
             ControladorBaja lcl_con_baja = new ControladorBaja();
-            if (lcl_con_baja.eliminar(glb_mod_articuloProveedor))
+            if (lcl_con_baja.eliminar(lcl_ap_eliminar))
             {
                 QuitarTextoEnControles(this.tblLayoutPanelArticulosProveedores);
-                this.glb_lst_mod_articulosProveedores.Remove(glb_mod_articuloProveedor);
+                lcl_ap_eliminar = this.glb_lst_mod_articulosProveedores.Single(r => r.codigoArticuloProveedor == lcl_ap_eliminar.codigoArticuloProveedor);
+                this.glb_lst_mod_articulosProveedores.Remove(lcl_ap_eliminar);
                 this.actualizarDataGridView();
                 MessageBox.Show("Eliminación exitosa", "Éxito", MessageBoxButtons.OK);
+                this.clearErrorProviders();
             }
             else
             {
@@ -328,12 +330,12 @@ namespace Vista
         /// </summary>
         private void actualizar_ArticuloProveedor()
         {
-            glb_mod_articuloProveedor = this.cargarDatosEnModeloArticuloProveedor();
+            ModeloArticuloProveedores lcl_mod_articuloProveedor = this.cargarDatosEnModeloArticuloProveedor();
             if (!this.validarABM(glb_mod_articuloProveedor))
             {
                 return;
             }
-            
+            glb_mod_articuloProveedor = lcl_mod_articuloProveedor;  //si es válido, lo asignamos. SI no, tira error más tarde cuando queremos eliminar
             ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
             if (lcl_con_modificacion.modificar(glb_mod_articuloProveedor))
             {
@@ -650,6 +652,11 @@ namespace Vista
 
         override public void toolStripMenuItemEliminar_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrWhiteSpace(glb_mod_articulo.codigoOriginal))
+            {
+                MessageBox.Show("No hay artículo seleccionado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
             DialogResult dialogResult = MessageBox.Show("¿Está seguro que desea eliminar el artículo seleccionado?", "Atención", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -812,6 +819,7 @@ namespace Vista
                     this.dgvArticulosProveedores.Rows[currentMouseOverRow].Selected = true;
                     int indice = Convert.ToInt32(this.dgvArticulosProveedores.SelectedRows[0].Cells["dgvKey"].Value);
                     this.cargarArticuloProveedorEnControles(this.glb_lst_mod_articulosProveedores[indice]);
+                    this.clearErrorProviders();
                 }
             }
 
@@ -848,6 +856,7 @@ namespace Vista
                     this.dgvArticulosProveedores.Rows[index - 1].Selected = true;
                     int indice = Convert.ToInt32(this.dgvArticulosProveedores.SelectedRows[0].Cells["dgvKey"].Value);
                     this.cargarArticuloProveedorEnControles(this.glb_lst_mod_articulosProveedores[indice]);
+                    this.clearErrorProviders();
                 }
             }
         }
@@ -870,6 +879,7 @@ namespace Vista
                     this.dgvArticulosProveedores.Rows[index + 1].Selected = true;
                     int indice = Convert.ToInt32(this.dgvArticulosProveedores.SelectedRows[0].Cells["dgvKey"].Value);
                     this.cargarArticuloProveedorEnControles(this.glb_lst_mod_articulosProveedores[indice]);
+                    this.clearErrorProviders();
                 }
             }
         }
@@ -890,6 +900,12 @@ namespace Vista
 
         private void btnEditarArticuloProveedor_Click(object sender, EventArgs e)
         {
+            if (this.glb_mod_articuloProveedor.codigoArticuloProveedor == null)
+            {
+                MessageBox.Show("No hay artículo seleccionado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+
             if (this.validarInputsArticuloProveedor())
             {
                 this.actualizar_ArticuloProveedor();
@@ -902,6 +918,11 @@ namespace Vista
 
         private void btnEliminarArticuloProveedor_Click(object sender, EventArgs e)
         {
+            if (this.glb_mod_articuloProveedor.codigoArticuloProveedor == null)
+            {
+                MessageBox.Show("No hay artículo seleccionado","Error",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
+                return;
+            }
              DialogResult dialog = MessageBox.Show("Esta seguro que desea eliminar el articulo de proveedor "+ this.glb_mod_articuloProveedor.codigoArticuloProveedor +"?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
              if (dialog == DialogResult.Yes)
              { this.baja_ArticuloProveedor(); }
@@ -911,12 +932,15 @@ namespace Vista
         private void valorDecimal(object sender, KeyPressEventArgs e)
         {
             // solo 0-9, borrar y ',' para decimales
-            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != ','))
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != ',' && e.KeyChar != '.'))
             {
                 e.Handled = true;
                 return;
             }
-
+            if (e.KeyChar == '.')
+            {
+                e.KeyChar = ',';
+            }
             // asegurar que la ',' aparece solo una vez
             if (e.KeyChar == ',')
             {

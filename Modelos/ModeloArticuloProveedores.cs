@@ -301,11 +301,13 @@ namespace Modelos
         {
             return this.Equals(this.codigoArticuloProveedor, p_mod_articuloProveedor.codigoArticuloProveedor)
                 && this.Equals(this.codigoEntidad, p_mod_articuloProveedor.codigoEntidad)
-                && this.Equals(this.stockActual,p_mod_articuloProveedor.stockActual)
-                && this.Equals(this.stockMinimo,p_mod_articuloProveedor.stockMinimo)
-                && this.Equals(this.descuentos,p_mod_articuloProveedor.descuentos)
-                && this.Equals(this.activo,p_mod_articuloProveedor.activo)
-                && this.Equals(this.observacionesArticuloProveedor,p_mod_articuloProveedor.observacionesArticuloProveedor);
+                && this.Equals(this.stockActual, p_mod_articuloProveedor.stockActual)
+                && this.Equals(this.stockMinimo, p_mod_articuloProveedor.stockMinimo)
+                && this.Equals(this.descuentos, p_mod_articuloProveedor.descuentos)
+                && this.Equals(this.activo, p_mod_articuloProveedor.activo)
+                && this.Equals(this.observacionesArticuloProveedor, p_mod_articuloProveedor.observacionesArticuloProveedor)
+                && this.Equals(this.valorCompra.valorArticulo,p_mod_articuloProveedor.valorCompra.valorArticulo)
+                && this.Equals(this.valorVenta.valorArticulo,p_mod_articuloProveedor.valorVenta.valorArticulo);
         }
 
         //public bool Equals(ModeloArticuloProveedores p_mod_articuloProveedor)
