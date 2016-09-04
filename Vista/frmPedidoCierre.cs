@@ -936,9 +936,16 @@ namespace Vista
 
         private bool validarEntidad()
         {
-            this.txtBoxApellido_Leave(new object(), new EventArgs());
-            this.txtBoxNombre_Leave(new object(), new EventArgs());
-            this.txtBoxRazonSocial_Leave(new object(), new EventArgs());
+            if(!string.IsNullOrWhiteSpace(txtBoxRazonSocial.Text))
+            {
+                this.txtBoxRazonSocial_Leave(new object(), new EventArgs());
+            }
+            else
+            {
+                this.txtBoxApellido_Leave(new object(), new EventArgs());
+                this.txtBoxNombre_Leave(new object(), new EventArgs());
+            }
+            
             
             //string mensaje;
             if (this.getCodigoTipoPedido() == Constantes.CodigosTiposPedidos.Proveedor)
