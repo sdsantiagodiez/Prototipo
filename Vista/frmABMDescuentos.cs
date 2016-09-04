@@ -14,12 +14,9 @@ using LibreriaClasesCompartidas;
 namespace Vista
 {
     public partial class frmABMDescuentos : frmMaterialSkinBase
-    {//ver comentarios
+    {
         /*
-         *Ver "//FALTA" 
          *Agregar errorProvider a porcentaje personalizado
-         *Convertir punto en coma en porcentaje personalizado. para permitir por ejemplo 12.5 y que lo interprete como 12,5 para convertir a decimal
-         *IMPLEMENTAR en la búsqueda eso de tener o no descuento vigente
          */
         #region Atributos
         public EventHandler abrirDescuentosArticuloProveedor;
@@ -465,7 +462,6 @@ namespace Vista
             lcl_mod_articuloProveedor.codigoArticuloProveedor = this.txtBoxCodigoArticuloProveedor.Text;
             lcl_mod_articuloProveedor.descripcion = this.txtBoxDescripcion.Text;
             lcl_mod_articuloProveedor.modelos = this.txtBoxModelo.Text;
-            //FALTA chckboxTieneDescuento
 
             if (this.cmbBoxProveedores.SelectedValue != null)
             {
@@ -581,7 +577,7 @@ namespace Vista
         #endregion
 
         #region Búsqueda
-
+        ModeloArticuloProveedores glb_mod_articuloProveedor_busqueda;
         private void buscar()
         {
             this.txtBoxCodigoOriginal_Leave(new object(), new EventArgs());
@@ -609,10 +605,10 @@ namespace Vista
                 || glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Articulos.Descripcion)]
                 || glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo)])
             {
-                ModeloArticuloProveedores lcl_mod_articuloProveedor = this.cargarControlesEnArticuloProveedor();
-                if (lcl_mod_articuloProveedor != null)
+                glb_mod_articuloProveedor_busqueda = this.cargarControlesEnArticuloProveedor();
+                if (glb_mod_articuloProveedor_busqueda != null)
                 {
-                    this.buscarArticulosProveedores(lcl_mod_articuloProveedor);
+                    this.buscarArticulosProveedores(glb_mod_articuloProveedor_busqueda);
                 }
             }
             //if (string.IsNullOrWhiteSpace(txtBoxCodigoOriginal.Text.ToString())
@@ -699,6 +695,10 @@ namespace Vista
             }
 
             this.agregarDescuento(lcl_lst_articulosProveedoresDescuento, p_mod_descuento);
+            if (glb_mod_articuloProveedor_busqueda != null)
+            {
+                this.buscarArticulosProveedores(glb_mod_articuloProveedor_busqueda);
+            }
         }
         /// <summary>
         /// Habría que mostrar el mensaje un una richTextBox en caso de que sean muchos artículos seleccionados
@@ -896,6 +896,15 @@ namespace Vista
             }
             frmABMDescuentos lcl_frm_descuentosArticuloProveedor = new frmABMDescuentos(this.getArticulosProveedoresSeleccionados()[0]);
             this.abrirDescuentosArticuloProveedor(lcl_frm_descuentosArticuloProveedor,new EventArgs());
+
+            lcl_frm_descuentosArticuloProveedor.CerrarForm += this.actualizarDataGridView;
+        }
+        private void actualizarDataGridView(object sender,EventArgs e)
+        {
+            if (glb_mod_articuloProveedor_busqueda != null)
+            {
+                this.buscarArticulosProveedores(glb_mod_articuloProveedor_busqueda);
+            }
         }
         #endregion
 

@@ -84,7 +84,6 @@ namespace Modelos
             codigoArticulo = p_articuloProveedor.codigoOriginal;
             codigoArticuloProveedor = p_articuloProveedor.codigoArticuloProveedor;
             descripcionArticulo = p_articuloProveedor.getDescripciones();
-            //descripcionArticuloProveedor = p_articuloProveedor.getDescripciones();
             stockActual = p_articuloProveedor.stockActual ?? default(int);
         }
         public ModeloReporteDetalle_ArticulosDescuentos(ModeloArticuloProveedores p_articuloProveedor, ModeloDescuento p_descuento):this(p_articuloProveedor)

@@ -149,7 +149,6 @@ namespace Vista
         private void mostrarReporte(Constantes.Reportes.TipoReporte p_tipoReporte)
         {
             frmImpresionReporte lcl_frm_reporte = new frmImpresionReporte();
-
             this.mostrarReporte(lcl_frm_reporte, p_tipoReporte);
             this.MostrarComprobante(lcl_frm_reporte, new EventArgs());
         }
