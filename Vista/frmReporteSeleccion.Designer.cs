@@ -46,7 +46,6 @@
             this.grpBoxSeleccion_Clientes = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelParametros_Clientes = new System.Windows.Forms.TableLayoutPanel();
             this.rdButtonTopX_Clientes = new MaterialSkin.Controls.MaterialRadioButton();
-            this.rdButtonTodos_Clientes = new MaterialSkin.Controls.MaterialRadioButton();
             this.nmrcUpDown_Clientes = new System.Windows.Forms.NumericUpDown();
             this.tabProveedores = new System.Windows.Forms.TabPage();
             this.tblLayoutPanelReporte_Proveedores = new System.Windows.Forms.TableLayoutPanel();
@@ -336,13 +335,11 @@
             this.tblLayoutPanelParametros_Clientes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tblLayoutPanelParametros_Clientes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblLayoutPanelParametros_Clientes.Controls.Add(this.rdButtonTopX_Clientes, 0, 0);
-            this.tblLayoutPanelParametros_Clientes.Controls.Add(this.rdButtonTodos_Clientes, 0, 1);
             this.tblLayoutPanelParametros_Clientes.Controls.Add(this.nmrcUpDown_Clientes, 1, 0);
             this.tblLayoutPanelParametros_Clientes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelParametros_Clientes.Location = new System.Drawing.Point(3, 16);
             this.tblLayoutPanelParametros_Clientes.Name = "tblLayoutPanelParametros_Clientes";
-            this.tblLayoutPanelParametros_Clientes.RowCount = 2;
-            this.tblLayoutPanelParametros_Clientes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelParametros_Clientes.RowCount = 1;
             this.tblLayoutPanelParametros_Clientes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelParametros_Clientes.Size = new System.Drawing.Size(388, 95);
             this.tblLayoutPanelParametros_Clientes.TabIndex = 1;
@@ -353,7 +350,7 @@
             this.rdButtonTopX_Clientes.AutoSize = true;
             this.rdButtonTopX_Clientes.Depth = 0;
             this.rdButtonTopX_Clientes.Font = new System.Drawing.Font("Roboto", 10F);
-            this.rdButtonTopX_Clientes.Location = new System.Drawing.Point(0, 8);
+            this.rdButtonTopX_Clientes.Location = new System.Drawing.Point(0, 32);
             this.rdButtonTopX_Clientes.Margin = new System.Windows.Forms.Padding(0);
             this.rdButtonTopX_Clientes.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rdButtonTopX_Clientes.MouseState = MaterialSkin.MouseState.HOVER;
@@ -366,28 +363,10 @@
             this.rdButtonTopX_Clientes.UseVisualStyleBackColor = true;
             this.rdButtonTopX_Clientes.CheckedChanged += new System.EventHandler(this.rdButtonTopX_Clientes_CheckedChanged);
             // 
-            // rdButtonTodos_Clientes
-            // 
-            this.rdButtonTodos_Clientes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.rdButtonTodos_Clientes.AutoSize = true;
-            this.rdButtonTodos_Clientes.Depth = 0;
-            this.rdButtonTodos_Clientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.rdButtonTodos_Clientes.Location = new System.Drawing.Point(0, 56);
-            this.rdButtonTodos_Clientes.Margin = new System.Windows.Forms.Padding(0);
-            this.rdButtonTodos_Clientes.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rdButtonTodos_Clientes.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rdButtonTodos_Clientes.Name = "rdButtonTodos_Clientes";
-            this.rdButtonTodos_Clientes.Ripple = true;
-            this.rdButtonTodos_Clientes.Size = new System.Drawing.Size(110, 30);
-            this.rdButtonTodos_Clientes.TabIndex = 8;
-            this.rdButtonTodos_Clientes.TabStop = true;
-            this.rdButtonTodos_Clientes.Text = "Cliente:";
-            this.rdButtonTodos_Clientes.UseVisualStyleBackColor = true;
-            // 
             // nmrcUpDown_Clientes
             // 
             this.nmrcUpDown_Clientes.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.nmrcUpDown_Clientes.Location = new System.Drawing.Point(113, 13);
+            this.nmrcUpDown_Clientes.Location = new System.Drawing.Point(113, 37);
             this.nmrcUpDown_Clientes.Name = "nmrcUpDown_Clientes";
             this.nmrcUpDown_Clientes.Size = new System.Drawing.Size(50, 20);
             this.nmrcUpDown_Clientes.TabIndex = 9;
@@ -973,7 +952,6 @@
         private System.Windows.Forms.GroupBox grpBoxSeleccion_Clientes;
         private System.Windows.Forms.TableLayoutPanel tblLayoutPanelParametros_Clientes;
         private MaterialSkin.Controls.MaterialRadioButton rdButtonTopX_Clientes;
-        private MaterialSkin.Controls.MaterialRadioButton rdButtonTodos_Clientes;
         private MaterialSkin.Controls.MaterialRaisedButton btnGenerarReporte_Clientes;
         private System.Windows.Forms.DateTimePicker dtpFechaDesde_Clientes;
         private System.Windows.Forms.DateTimePicker dtpFechaHasta_Clientes;

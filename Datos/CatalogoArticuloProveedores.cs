@@ -321,19 +321,24 @@ namespace Datos
                 {
                     return false;
                 }
-                if (!p_mod_articuloProveedor_original.valorCompra.Equals(p_mod_articuloProveedor_nuevo.valorCompra))
-                {
-                    if (!this.updateValor(p_mod_articuloProveedor_nuevo, Constantes.TipoValorArticulo.Compra))
+                if (!p_mod_articuloProveedor_original.valorCompra.Equals(p_mod_articuloProveedor_nuevo.valorCompra) ||
+                    !p_mod_articuloProveedor_original.valorVenta.Equals(p_mod_articuloProveedor_nuevo.valorVenta))
+                {//hacemos este if para diferenciar de descuentos. Si hay un cambio de valor, no va a haber cambio de descuentos y vicebersa
+                    if (!p_mod_articuloProveedor_original.valorCompra.Equals(p_mod_articuloProveedor_nuevo.valorCompra))
                     {
-                        return false;
+                        if (!this.updateValor(p_mod_articuloProveedor_nuevo, Constantes.TipoValorArticulo.Compra))
+                        {
+                            return false;
+                        }
                     }
-                }
-                if (!p_mod_articuloProveedor_original.valorVenta.Equals(p_mod_articuloProveedor_nuevo.valorVenta))
-                {
-                    if (!this.updateValor(p_mod_articuloProveedor_nuevo, Constantes.TipoValorArticulo.Venta))
+                    if (!p_mod_articuloProveedor_original.valorVenta.Equals(p_mod_articuloProveedor_nuevo.valorVenta))
                     {
-                        return false;
+                        if (!this.updateValor(p_mod_articuloProveedor_nuevo, Constantes.TipoValorArticulo.Venta))
+                        {
+                            return false;
+                        }
                     }
+                    return true;
                 }
                 if (!p_mod_articuloProveedor_original.descuentos.Equals(p_mod_articuloProveedor_nuevo.descuentos))
                 {

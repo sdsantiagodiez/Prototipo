@@ -77,14 +77,14 @@ namespace Modelos
         public DateTime fechaVigenciaDescuento_Desde { get; set; }
         public DateTime fechaVigenciaDescuento_Hasta { get; set; }
         public decimal valorVentaSinDescuento { get; set; }
-        public decimal valorVentaConDescuento { get { return valorVentaSinDescuento - descuento; } }
+        public decimal valorVentaConDescuento { get { return valorVentaSinDescuento - (valorVentaSinDescuento*descuento); } }
 
         public ModeloReporteDetalle_ArticulosDescuentos(ModeloArticuloProveedores p_articuloProveedor)
         {
             codigoArticulo = p_articuloProveedor.codigoOriginal;
             codigoArticuloProveedor = p_articuloProveedor.codigoArticuloProveedor;
-            descripcionArticulo = p_articuloProveedor.descripcion;
-            descripcionArticuloProveedor = p_articuloProveedor.descripcionArticuloProveedor;
+            descripcionArticulo = p_articuloProveedor.getDescripciones();
+            //descripcionArticuloProveedor = p_articuloProveedor.getDescripciones();
             stockActual = p_articuloProveedor.stockActual ?? default(int);
         }
         public ModeloReporteDetalle_ArticulosDescuentos(ModeloArticuloProveedores p_articuloProveedor, ModeloDescuento p_descuento):this(p_articuloProveedor)

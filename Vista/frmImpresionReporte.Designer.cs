@@ -52,7 +52,6 @@
             // 
             // ReporteBase
             // 
-            this.ReporteBase.Dock = System.Windows.Forms.DockStyle.Fill;
             reportDataSource1.Name = "DSInformeVentas";
             reportDataSource1.Value = null;
             reportDataSource2.Name = "DSInformeVentaEncabezado";
@@ -60,9 +59,9 @@
             this.ReporteBase.LocalReport.DataSources.Add(reportDataSource1);
             this.ReporteBase.LocalReport.DataSources.Add(reportDataSource2);
             this.ReporteBase.LocalReport.ReportEmbeddedResource = "Reportes.VentasEntreFechas.rdlc";
-            this.ReporteBase.Location = new System.Drawing.Point(0, 0);
+            this.ReporteBase.Location = new System.Drawing.Point(30, 89);
             this.ReporteBase.Name = "ReporteBase";
-            this.ReporteBase.Size = new System.Drawing.Size(827, 552);
+            this.ReporteBase.Size = new System.Drawing.Size(579, 333);
             this.ReporteBase.TabIndex = 0;
             // 
             // ModeloReporteClienteDomicilio
@@ -90,7 +89,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 552);
+            this.ClientSize = new System.Drawing.Size(817, 552);
             this.Controls.Add(this.ReporteBase);
             this.Name = "frmImpresionReporte";
             this.Text = "FormReportes";

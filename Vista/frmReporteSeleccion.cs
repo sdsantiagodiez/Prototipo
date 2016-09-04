@@ -17,6 +17,10 @@ namespace Vista
 {
     public partial class frmReporteSeleccion : frmMaterialSkinBase
     {
+        #region Atributos
+        public event EventHandler MostrarComprobante;
+        #endregion
+
         #region Constructores
         public frmReporteSeleccion()
         {
@@ -147,7 +151,7 @@ namespace Vista
             frmImpresionReporte lcl_frm_reporte = new frmImpresionReporte();
 
             this.mostrarReporte(lcl_frm_reporte, p_tipoReporte);
-            lcl_frm_reporte.ShowDialog();
+            this.MostrarComprobante(lcl_frm_reporte, new EventArgs());
         }
         private void mostrarReporte(frmImpresionReporte p_frm_reporte, Constantes.Reportes.TipoReporte p_tipoReporte)
         {
@@ -205,11 +209,7 @@ namespace Vista
             switch (p_tipoReporte)
             {
                 case Constantes.Reportes.TipoReporte.Clientes:
-                    if (!this.rdButtonTodos_Clientes.Checked)
-                    {
-                        return Convert.ToInt32(this.nmrcUpDown_Clientes.Value);
-                    }
-                    break;
+                    return Convert.ToInt32(this.nmrcUpDown_Clientes.Value);
                 case Constantes.Reportes.TipoReporte.Proveedores:
                     if (!this.rdButtonTodos_Proveedores.Checked)
                     {

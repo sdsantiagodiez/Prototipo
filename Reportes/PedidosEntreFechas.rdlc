@@ -445,7 +445,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -568,7 +567,7 @@
   <Width>8.60218in</Width>
   <Page>
     <PageHeader>
-      <Height>6.45583cm</Height>
+      <Height>5.82083cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -623,8 +622,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>1.27678cm</Top>
-          <Left>15.66928cm</Left>
+          <Top>1.37392cm</Top>
+          <Left>15.44881cm</Left>
           <Height>0.50286cm</Height>
           <Width>1.60042cm</Width>
           <ZIndex>1</ZIndex>
@@ -659,45 +658,11 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <Top>1.27678cm</Top>
-          <Left>17.4461cm</Left>
+          <Top>1.37392cm</Top>
+          <Left>17.22562cm</Left>
           <Height>0.50286cm</Height>
           <Width>2.18251cm</Width>
           <ZIndex>2</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox1">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Proveed. Desde:</Value>
-                  <Style>
-                    <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Left</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>3.92148cm</Top>
-          <Left>0.96854cm</Left>
-          <Height>0.6cm</Height>
-          <Width>2.73944cm</Width>
-          <ZIndex>3</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -727,11 +692,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>4.64054cm</Top>
-          <Left>0.96854cm</Left>
+          <Top>4.29658cm</Top>
+          <Left>0.88506cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.73944cm</Width>
-          <ZIndex>4</ZIndex>
+          <Width>2.26319cm</Width>
+          <ZIndex>3</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -759,44 +724,11 @@
               <Style />
             </Paragraph>
           </Paragraphs>
-          <Top>4.64054cm</Top>
-          <Left>3.88437cm</Left>
+          <Top>4.29658cm</Top>
+          <Left>3.43458cm</Left>
           <Height>0.6cm</Height>
           <Width>2.67701cm</Width>
-          <ZIndex>5</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="txtClienteDesde">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=First(Fields!PersonaDesde.Value, "dsEncabezadoReporte")</Value>
-                  <Style>
-                    <FontSize>9pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                    <Language>es-AR</Language>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <Top>3.92148cm</Top>
-          <Left>3.88437cm</Left>
-          <Height>0.6cm</Height>
-          <Width>6.12951cm</Width>
-          <ZIndex>6</ZIndex>
+          <ZIndex>4</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -815,7 +747,7 @@
           <Left>0.62048cm</Left>
           <Height>2.26729cm</Height>
           <Width>3.0875cm</Width>
-          <ZIndex>7</ZIndex>
+          <ZIndex>5</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -825,8 +757,8 @@
         <Line Name="Line1">
           <Top>3.35703cm</Top>
           <Height>0cm</Height>
-          <Width>20.02548cm</Width>
-          <ZIndex>8</ZIndex>
+          <Width>21.84954cm</Width>
+          <ZIndex>6</ZIndex>
           <Style>
             <Border>
               <Style>Solid</Style>
@@ -856,7 +788,7 @@
           <Left>9.27836cm</Left>
           <Height>0.6cm</Height>
           <Width>4.43557cm</Width>
-          <ZIndex>9</ZIndex>
+          <ZIndex>7</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -888,7 +820,7 @@
           <Left>3.84909cm</Left>
           <Height>1.00541cm</Height>
           <Width>3.16146cm</Width>
-          <ZIndex>10</ZIndex>
+          <ZIndex>8</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -919,7 +851,7 @@
           <Left>3.88437cm</Left>
           <Height>0.6cm</Height>
           <Width>3.12618cm</Width>
-          <ZIndex>11</ZIndex>
+          <ZIndex>9</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -949,11 +881,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>4.64054cm</Top>
+          <Top>4.29658cm</Top>
           <Left>11.59883cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.597cm</Width>
-          <ZIndex>12</ZIndex>
+          <Width>2.1151cm</Width>
+          <ZIndex>10</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -981,77 +913,11 @@
               <Style />
             </Paragraph>
           </Paragraphs>
-          <Top>4.64054cm</Top>
-          <Left>14.37222cm</Left>
+          <Top>4.29658cm</Top>
+          <Left>13.91423cm</Left>
           <Height>0.6cm</Height>
           <Width>2.67701cm</Width>
-          <ZIndex>13</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox2">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Proveed. Hasta:</Value>
-                  <Style>
-                    <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Left</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>3.92148cm</Top>
-          <Left>11.59883cm</Left>
-          <Height>0.6cm</Height>
-          <Width>2.597cm</Width>
-          <ZIndex>14</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="txtClienteHasta">
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=First(Fields!PersonaHasta.Value, "dsEncabezadoReporte")</Value>
-                  <Style>
-                    <FontSize>9pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                    <Language>es-AR</Language>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <Top>3.92148cm</Top>
-          <Left>14.37222cm</Left>
-          <Height>0.6cm</Height>
-          <Width>5.25639cm</Width>
-          <ZIndex>15</ZIndex>
+          <ZIndex>11</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>

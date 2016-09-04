@@ -1,25 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.ComponentModel;
+//using System.Data;
+//using System.Drawing;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelos;
 using Microsoft.Reporting.WinForms;
-using System.IO;
+//using System.IO;
 using LibreriaClasesCompartidas;
 using Controladores;
 
 namespace Vista
 {
-    public partial class frmImpresionReporte : Form
+    public partial class frmImpresionReporte : frmMaterialSkinBase
     {
         public frmImpresionReporte()
         {
             InitializeComponent();
+        }
+
+        public override void inicializarForm(int ventanaAncho, int ventanaAlto)
+        {
+            this.ReporteBase.Width = ventanaAncho;
+            this.ReporteBase.Height = ventanaAlto - 60;
+            this.ReporteBase.Location = new System.Drawing.Point(0, 60);
         }
 
         #region mostrar

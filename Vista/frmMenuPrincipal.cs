@@ -287,16 +287,6 @@ namespace Vista
                     glb_lst_formsActivos.Add(p_form);
                     return;
                 }
-                else if (t == typeof(frmImpresionComprobante))
-                {
-                    p_form.TopLevel = false;
-                    p_form.Dock = DockStyle.Fill;
-                    this.pnlContenedorForm.Controls.Add(p_form);
-                    p_form.Show();
-                    //(p_form as frmMaterialSkinBase).inicializarForm(this.pnlContenedorForm.Width, this.pnlContenedorForm.Height);
-                    glb_lst_formsActivos.Add(p_form);
-                    return;
-                }    
             }
         }
         private bool validarAgregarFormulario(Type T)
@@ -336,6 +326,7 @@ namespace Vista
                 
                 glb_form.DialogResult = System.Windows.Forms.DialogResult.OK;
                 glb_form.Close();
+                System.Threading.Thread.Sleep(100); //Agregando este tiempo entre cierres de ventanas permite que no se cierre sin querer una ventana que estaba debajo
                 if(glb_form.DialogResult != System.Windows.Forms.DialogResult.Cancel)   //En caso de que se agregue mensaje de confirmación cerrar ventana
                 {
                     glb_lst_formsActivos.Remove(glb_form);
@@ -488,6 +479,8 @@ namespace Vista
 
             glb_form = new frmReporteSeleccion();
             this.agregarFormulario(glb_form);
+
+            (glb_form as frmReporteSeleccion).MostrarComprobante += evento_agregarFormEmergente;
         }
         #endregion
 
@@ -500,16 +493,10 @@ namespace Vista
         public void evento_agregarFormEmergente(object sender, EventArgs e)
         {
             this.agregarFormulario(sender as Form);
-            if (sender.GetType() == typeof(frmImpresionComprobante))
-            {
-                (sender as frmImpresionComprobante).BringToFront();
-                (sender as frmImpresionComprobante).CerrarForm += evento_cerrarFormEmergente;
-            }
-            else
-            {
-                (sender as frmMaterialSkinBase).BringToFront();
-                (sender as frmMaterialSkinBase).CerrarForm += evento_cerrarFormEmergente;
-            }
+
+            (sender as frmMaterialSkinBase).BringToFront();
+            (sender as frmMaterialSkinBase).CerrarForm += evento_cerrarFormEmergente;
+
             if (sender.GetType() == typeof(frmPedidoDevolucion))
             {
                 (sender as frmPedidoDevolucion).ContinuarDevolucionPedido += this.evento_continuarDevolverPedido;
@@ -522,7 +509,6 @@ namespace Vista
             {
                 (sender as frmPedidoCierre).MostrarComprobante += this.evento_agregarFormEmergente;
             }
-            //this.currentFormLocked = true;
         }
         
         public void evento_cerrarFormEmergente(object sender, EventArgs e)
