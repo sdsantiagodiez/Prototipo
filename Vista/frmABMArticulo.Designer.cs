@@ -31,12 +31,12 @@
             this.grpBoxObservaciones = new System.Windows.Forms.GroupBox();
             this.rchTextBoxObservaciones = new System.Windows.Forms.RichTextBox();
             this.tblLayoutPanelDatosArticulo = new System.Windows.Forms.TableLayoutPanel();
-            this.lblCodigoOriginal = new System.Windows.Forms.Label();
             this.lblModelo = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.txtBoxCodigoOriginal = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBoxDescripcion = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBoxModelo = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.lblCodigoOriginal = new System.Windows.Forms.Label();
             this.pnlBase = new System.Windows.Forms.Panel();
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxArticulo = new System.Windows.Forms.GroupBox();
@@ -139,18 +139,6 @@
             this.tblLayoutPanelDatosArticulo.Size = new System.Drawing.Size(297, 97);
             this.tblLayoutPanelDatosArticulo.TabIndex = 8;
             // 
-            // lblCodigoOriginal
-            // 
-            this.lblCodigoOriginal.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblCodigoOriginal.AutoSize = true;
-            this.lblCodigoOriginal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
-            this.lblCodigoOriginal.Location = new System.Drawing.Point(52, 7);
-            this.lblCodigoOriginal.Name = "lblCodigoOriginal";
-            this.lblCodigoOriginal.Size = new System.Drawing.Size(56, 18);
-            this.lblCodigoOriginal.TabIndex = 0;
-            this.lblCodigoOriginal.Text = "Código";
-            this.lblCodigoOriginal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // lblModelo
             // 
             this.lblModelo.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -223,6 +211,18 @@
             this.txtBoxModelo.TabIndex = 8;
             this.txtBoxModelo.UseSystemPasswordChar = false;
             this.txtBoxModelo.Leave += new System.EventHandler(this.txtBoxModelo_Leave);
+            // 
+            // lblCodigoOriginal
+            // 
+            this.lblCodigoOriginal.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblCodigoOriginal.AutoSize = true;
+            this.lblCodigoOriginal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
+            this.lblCodigoOriginal.Location = new System.Drawing.Point(52, 7);
+            this.lblCodigoOriginal.Name = "lblCodigoOriginal";
+            this.lblCodigoOriginal.Size = new System.Drawing.Size(56, 18);
+            this.lblCodigoOriginal.TabIndex = 0;
+            this.lblCodigoOriginal.Text = "Código";
+            this.lblCodigoOriginal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlBase
             // 
@@ -699,6 +699,11 @@
             0,
             0,
             0});
+            this.nmrcUpDownStockActual.Minimum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            -2147483648});
             this.nmrcUpDownStockActual.Name = "nmrcUpDownStockActual";
             this.nmrcUpDownStockActual.Size = new System.Drawing.Size(69, 20);
             this.nmrcUpDownStockActual.TabIndex = 11;

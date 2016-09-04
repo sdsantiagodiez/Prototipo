@@ -255,7 +255,7 @@
             this.tblLayoutPanelDescripcion.ColumnCount = 3;
             this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.14569F));
             this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.85431F));
-            this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 188F));
+            this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 189F));
             this.tblLayoutPanelDescripcion.Controls.Add(this.lblDescripcion, 0, 0);
             this.tblLayoutPanelDescripcion.Controls.Add(this.txtBoxDescripcion, 1, 0);
             this.tblLayoutPanelDescripcion.Controls.Add(this.checkBoxStockNegativo, 2, 0);
@@ -289,7 +289,7 @@
             this.txtBoxDescripcion.SelectedText = "";
             this.txtBoxDescripcion.SelectionLength = 0;
             this.txtBoxDescripcion.SelectionStart = 0;
-            this.txtBoxDescripcion.Size = new System.Drawing.Size(198, 23);
+            this.txtBoxDescripcion.Size = new System.Drawing.Size(197, 23);
             this.txtBoxDescripcion.TabIndex = 6;
             this.txtBoxDescripcion.UseSystemPasswordChar = false;
             // 
@@ -299,13 +299,13 @@
             this.checkBoxStockNegativo.AutoSize = true;
             this.checkBoxStockNegativo.Depth = 0;
             this.checkBoxStockNegativo.Font = new System.Drawing.Font("Roboto", 10F);
-            this.checkBoxStockNegativo.Location = new System.Drawing.Point(283, 4);
+            this.checkBoxStockNegativo.Location = new System.Drawing.Point(282, 4);
             this.checkBoxStockNegativo.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxStockNegativo.MouseLocation = new System.Drawing.Point(-1, -1);
             this.checkBoxStockNegativo.MouseState = MaterialSkin.MouseState.HOVER;
             this.checkBoxStockNegativo.Name = "checkBoxStockNegativo";
             this.checkBoxStockNegativo.Ripple = true;
-            this.checkBoxStockNegativo.Size = new System.Drawing.Size(189, 30);
+            this.checkBoxStockNegativo.Size = new System.Drawing.Size(190, 30);
             this.checkBoxStockNegativo.TabIndex = 7;
             this.checkBoxStockNegativo.Text = "Permitir Stock Negativo";
             this.checkBoxStockNegativo.UseVisualStyleBackColor = true;

@@ -494,8 +494,6 @@ namespace Controladores
             {
                 return this.getDataTable(T);
             }
-
-            return null;
         }
         private DataTable getDataTable_Articulo()
         {

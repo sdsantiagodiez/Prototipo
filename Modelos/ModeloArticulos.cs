@@ -9,7 +9,7 @@ namespace Modelos
     [Serializable]
    public class ModeloArticulos : Modelo
    {
-       #region Getters/Setters
+       #region Atributos
        string _codigoOriginal;
        public string codigoOriginal 
        {

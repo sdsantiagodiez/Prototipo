@@ -547,7 +547,7 @@ namespace Vista
         {
             this.txtBoxCodigoOriginal.Text = p_mod_articuloProveedor.codigoOriginal;
             this.txtBoxCodigoArticuloProveedor.Text = p_mod_articuloProveedor.codigoArticuloProveedor;
-            this.txtBoxDescripcion.Text = p_mod_articuloProveedor.descripcion;
+            this.txtBoxDescripcion.Text = p_mod_articuloProveedor.getDescripciones();
             this.txtBoxModelo.Text = p_mod_articuloProveedor.modelos;
             this.cmbBoxProveedores.Text = p_mod_articuloProveedor.razonSocialProveedor;
 
@@ -718,7 +718,7 @@ namespace Vista
             string detallesArticulos = "";
             foreach (ModeloArticuloProveedores ap in p_lst_mod_articuloProveedor)
             {
-                detallesArticulos += System.Environment.NewLine + ap.codigoOriginal + ", " + ap.codigoArticuloProveedor + ", " + ap.descripcion;
+                detallesArticulos += System.Environment.NewLine + ap.codigoOriginal + ", " + ap.codigoArticuloProveedor + ", " + ap.getDescripciones();
             }
             mensaje += detallesArticulos;
 

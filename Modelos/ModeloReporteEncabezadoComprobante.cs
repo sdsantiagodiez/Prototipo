@@ -81,7 +81,7 @@ namespace Modelos
             this.FechaVencimiento = p_mod_pedido.VencimientoCAE;
             this.IVAComprobante = p_mod_pedido.alicuota.monto;
             //this.Remito = p_mod_pedido.numeroPedido.ToString().PadLeft(8,'0');
-            this.Remito = (p_mod_pedido.numeroComprobante != null)? p_mod_pedido.numeroComprobante.ToString().PadLeft(8, '0'):null;
+            this.Remito = (p_mod_pedido.numeroComprobante > 0)? p_mod_pedido.numeroComprobante.ToString().PadLeft(8, '0'):null;
             this.SubtotalComprobante = p_mod_pedido.montoSubTotal;
             this.TotalComprobante = p_mod_pedido.montoTotal;
             this.TotalComprobanteLetras = LibreriaClasesCompartidas.Transformar.NumeroALetras(p_mod_pedido.montoTotal.ToString());

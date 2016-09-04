@@ -299,8 +299,9 @@ namespace Datos
                 else
                     return false;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+                
                 throw new Exception("El artículo que se quiere modificar no existe");
             }
             

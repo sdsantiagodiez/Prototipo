@@ -108,15 +108,10 @@ namespace Datos
         protected SqlParameter instanciarParametro(bool atributo, string nombreAtributo)
         {
             SqlParameter parametro = new SqlParameter();
-            if (atributo == null)
-            {
-                parametro = new SqlParameter(nombreAtributo, DBNull.Value);
-            }
-            else
-            {
-                parametro = new SqlParameter(nombreAtributo, SqlDbType.Bit);
-                parametro.Value = atributo;
-            }
+            
+            parametro = new SqlParameter(nombreAtributo, SqlDbType.Bit);
+            parametro.Value = atributo;
+
             return parametro;
         }
         #endregion

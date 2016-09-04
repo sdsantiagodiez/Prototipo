@@ -103,7 +103,7 @@ namespace Vista
         {
             this.txtBoxCodigoOriginal.Text = p_mod_lineaPedido.articulo.codigoOriginal;
             this.txtBoxCodigoArticuloProveedor.Text = p_mod_lineaPedido.articulo.codigoArticuloProveedor;
-            this.txtBoxDescripcion.Text = p_mod_lineaPedido.articulo.descripcion;
+            this.txtBoxDescripcion.Text = p_mod_lineaPedido.articulo.getDescripciones();
             this.checkBoxStockNegativo.Checked = p_mod_lineaPedido.permitirStockNegativo;
 
             this.txtBoxValorUnitario.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", p_mod_lineaPedido.valorUnitario);

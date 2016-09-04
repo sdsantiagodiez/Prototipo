@@ -9,6 +9,7 @@ namespace Modelos
     [Serializable]
     public class ModeloArticuloProveedores : ModeloArticulos
     {
+        #region Constructores
         public ModeloArticuloProveedores()
         {
             this.valorVenta = new ModeloValorArticulo();
@@ -23,8 +24,32 @@ namespace Modelos
             this.modelos = p_mod_articulo.modelos;
             this.observaciones = p_mod_articulo.observaciones;
         }
+        #endregion
 
-        #region Getters/Setters
+        public string getDescripciones()
+        {
+            string lcl_descripcion = this.descripcion;
+            lcl_descripcion += String.IsNullOrWhiteSpace(this.descripcionArticuloProveedor) ? null : " (" + this.descripcionArticuloProveedor + ")";
+            return lcl_descripcion;
+        }
+
+        public string getObservaciones()
+        {
+            string lcl_observacion_articulo = String.IsNullOrWhiteSpace(this.observaciones) ? null : "Artículo: "+this.observaciones;
+            
+            string lcl_observaciones_articuloProveedor = String.IsNullOrWhiteSpace(this.observacionesArticuloProveedor) ? null : "Artículo Proveedor: "+this.observacionesArticuloProveedor;
+            
+            if (lcl_observacion_articulo != null && lcl_observaciones_articuloProveedor != null)
+            {
+                return lcl_observacion_articulo + System.Environment.NewLine + lcl_observaciones_articuloProveedor;
+            }
+            else
+            {
+                return lcl_observacion_articulo + lcl_observaciones_articuloProveedor;
+            }
+        }
+
+        #region Atributos
 
         #region Variables de Proveedor al que pertenece Artículo Proveedor
         int _codigoEntidad;
@@ -305,25 +330,12 @@ namespace Modelos
                 && this.Equals(this.stockMinimo, p_mod_articuloProveedor.stockMinimo)
                 && this.Equals(this.descuentos, p_mod_articuloProveedor.descuentos)
                 && this.Equals(this.activo, p_mod_articuloProveedor.activo)
+                && this.Equals(this.descripcionArticuloProveedor,p_mod_articuloProveedor.descripcionArticuloProveedor)
+                && this.Equals(this.ubicacion,p_mod_articuloProveedor.ubicacion)
                 && this.Equals(this.observacionesArticuloProveedor, p_mod_articuloProveedor.observacionesArticuloProveedor)
                 && this.Equals(this.valorCompra.valorArticulo,p_mod_articuloProveedor.valorCompra.valorArticulo)
                 && this.Equals(this.valorVenta.valorArticulo,p_mod_articuloProveedor.valorVenta.valorArticulo);
         }
-
-        //public bool Equals(ModeloArticuloProveedores p_mod_articuloProveedor)
-        //{
-        //    return this.Equals(this.codigoArticuloProveedor,p_mod_articuloProveedor.codigoArticuloProveedor)
-        //        && this.Equals(this.codigoEntidad,p_mod_articuloProveedor.codigoEntidad)
-        //        && this.Equals(this.descripcionArticuloProveedor,p_mod_articuloProveedor.descripcionArticuloProveedor)
-        //        && this.Equals(this.fechaActualizacion,p_mod_articuloProveedor.fechaActualizacion)
-        //        && this.Equals(this.observacionesArticuloProveedor,p_mod_articuloProveedor.observacionesArticuloProveedor)
-        //        && this.Equals(this.razonSocialProveedor,p_mod_articuloProveedor.razonSocialProveedor)
-        //        && this.Equals(this.stockActual,p_mod_articuloProveedor.stockActual)
-        //        && this.Equals(this.stockMinimo,p_mod_articuloProveedor.stockMinimo)
-        //        && this.Equals(this.ubicacion,p_mod_articuloProveedor.ubicacion)
-        //        && this.Equals(this.valorCompra,p_mod_articuloProveedor.valorCompra)
-        //        && this.Equals(this.valorVenta,p_mod_articuloProveedor.valorVenta);
-        //}
         #endregion
     }
 

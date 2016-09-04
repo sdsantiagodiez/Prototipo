@@ -300,7 +300,7 @@ namespace Vista
                 row["codigoOriginal"] = ap.codigoOriginal;
                 row["codigoArticuloProveedor"] = ap.codigoArticuloProveedor;
                 row["razonSocialProveedor"] = ap.razonSocialProveedor;
-                row["descripcion"] = ap.descripcionArticuloProveedor;
+                row["descripcion"] = ap.getDescripciones();
 
                 articulosProveedores.Rows.Add(row);
             }
@@ -320,7 +320,7 @@ namespace Vista
             this.lblCodigoOriginalVar.Text = p_mod_articuloProveedor.codigoOriginal;
             this.lblCodigoProveedorVar.Text = p_mod_articuloProveedor.codigoArticuloProveedor;
             this.lblProveedorVar.Text = p_mod_articuloProveedor.razonSocialProveedor;
-            this.lblDescripcionVar.Text = p_mod_articuloProveedor.descripcionArticuloProveedor;
+            this.lblDescripcionVar.Text = p_mod_articuloProveedor.getDescripciones();
             //
             //TODO modificadores de precio segun metodo de pago
             if (controlador.tipoPedido == Constantes.CodigosTiposPedidos.Persona)
@@ -335,7 +335,7 @@ namespace Vista
             this.lblUbicacionVar.Text = p_mod_articuloProveedor.ubicacion;
             this.lblExistenciaVar.Text = Convert.ToString(p_mod_articuloProveedor.stockActual);
             this.lblFechaActualizacionVar.Text = Convert.ToString(p_mod_articuloProveedor.fechaActualizacion);
-            this.lblObservacionesVar.Text = p_mod_articuloProveedor.observacionesArticuloProveedor;
+            this.lblObservacionesVar.Text = p_mod_articuloProveedor.getObservaciones();
         }
         /// <summary>
         /// Carga artículo proveedor en datagrid de pedido actual
@@ -367,7 +367,7 @@ namespace Vista
                 i++;
                 row["codigoOriginal"] = l.articulo.codigoOriginal;
                 row["codigoArticuloProveedor"] = l.articulo.codigoArticuloProveedor;
-                row["descripcion"] = l.articulo.descripcion;
+                row["descripcion"] = l.articulo.getDescripciones();
                 row["cantidad"] = l.cantidadArticulos;
                 row["valorUnitario"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.valorUnitario);
                 row["descuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getDescuento());
@@ -428,7 +428,7 @@ namespace Vista
                 lcl_lst_lineasPedidosEliminar.Add(controlador.pedidoActual.lineasPedido[row.Index]);
 
                 i = lcl_lst_lineasPedidosEliminar.Count - 1;
-                detallesArticulos += Environment.NewLine + "- " + lcl_lst_lineasPedidosEliminar[i].articulo.descripcionArticuloProveedor + " (" + lcl_lst_lineasPedidosEliminar[i].articulo.codigoArticuloProveedor + ")";
+                detallesArticulos += Environment.NewLine + "- " + lcl_lst_lineasPedidosEliminar[i].articulo.getDescripciones() + " (" + lcl_lst_lineasPedidosEliminar[i].articulo.codigoArticuloProveedor + ")";
             }
 
             if (lcl_lst_lineasPedidosEliminar.Count < 1)

@@ -154,8 +154,8 @@ namespace Vista
             dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
             dataGridViewResultadoBusqueda.Columns.Add("modelos", "Modelos");
             dataGridViewResultadoBusqueda.Columns[i++].FillWeight = 1;
-            dataGridViewResultadoBusqueda.Columns.Add("imagen", "Imagen");
-            dataGridViewResultadoBusqueda.Columns[i++].FillWeight =1;
+            //dataGridViewResultadoBusqueda.Columns.Add("imagen", "Imagen");
+            //dataGridViewResultadoBusqueda.Columns[i++].FillWeight =1;
         }
         private void inicializarDataGridViewResultadoBusqueda_ArticulosProveedores()
         {
@@ -492,7 +492,7 @@ namespace Vista
             row.Cells["codigoOriginal"].Value = p_mod_articulo.codigoOriginal.ToString();
             row.Cells["descripcion"].Value = p_mod_articulo.descripcion;
             row.Cells["modelos"].Value = p_mod_articulo.modelos;
-            row.Cells["imagen"].Value = p_mod_articulo.imagen;
+            //row.Cells["imagen"].Value = p_mod_articulo.imagen;
         }
 
         private DataGridView popularDataGridViewResultadoBusqueda(List<ModeloArticuloProveedores> p_lst_mod_articuloProveedor)

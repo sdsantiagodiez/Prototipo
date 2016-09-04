@@ -729,13 +729,11 @@ namespace Vista
                 i++;
                 row["codigoOriginal"] = l.articulo.codigoOriginal;
                 row["codigoArticuloProveedor"] = l.articulo.codigoArticuloProveedor;
-                row["descripcion"] = l.articulo.descripcion;
+                row["descripcion"] = l.articulo.getDescripciones();
                 row["cantidad"] = l.cantidadArticulos;
                 row["valorUnitario"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.valorUnitario);
                 row["descuento"] =  String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getDescuento());
-                //row["descuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.descuentoLinea.PorcentajeDescuento);
                 row["valorParcialSinDescuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getValorParcialSinDescuentos());
-                //row["valorParcialConDescuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getValorParcial());
                 row["valorParcialConDescuento"] = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", l.getValorParcialConDescuento());
                 
                 lineas.Rows.Add(row);
@@ -1627,7 +1625,7 @@ namespace Vista
                 lcl_lst_lineasPedidosEliminar.Add(controlador.pedidoActual.lineasPedido[i]);
 
                 i = lcl_lst_lineasPedidosEliminar.Count - 1;
-                detallesArticulos += Environment.NewLine + "- " + lcl_lst_lineasPedidosEliminar[i].articulo.descripcionArticuloProveedor + " (" + lcl_lst_lineasPedidosEliminar[i].articulo.codigoArticuloProveedor + ")";
+                detallesArticulos += Environment.NewLine + "- " + lcl_lst_lineasPedidosEliminar[i].articulo.getDescripciones() + " (" + lcl_lst_lineasPedidosEliminar[i].articulo.codigoArticuloProveedor + ")";
             }
 
             if (lcl_lst_lineasPedidosEliminar.Count < 1)

@@ -103,14 +103,14 @@ namespace Modelos
         }
         public ModeloLineaPedido(decimal p_montoDescuento):this()
         {
-            this.articulo.descripcionArticuloProveedor = "Descuento";
+            this.articulo.descripcion = "Descuento";
             this.cantidadArticulos=1;
             this.valorUnitario = p_montoDescuento *-1;
             this.valorParcial = p_montoDescuento *-1;
         }
         public ModeloLineaPedido(decimal p_montoDescuento, string p_motivoDescuento, string p_codigoArticulo): this()
         {
-            this.articulo.descripcionArticuloProveedor = "Descuento - "+ p_motivoDescuento+" Articulo:"+p_codigoArticulo;
+            this.articulo.descripcion = "Descuento - "+ p_motivoDescuento+" Articulo:"+p_codigoArticulo;
             this.cantidadArticulos = 1;
             this.valorUnitario = Math.Round(p_montoDescuento * -1,2);
             this.valorParcial = Math.Round(p_montoDescuento * -1,2);

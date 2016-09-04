@@ -19,7 +19,7 @@ namespace Modelos
         {
             this.Cantidad = p_lineaPedido.cantidadArticulos;
             this.CodigoArticulo = p_lineaPedido.articulo.codigoArticuloProveedor;
-            this.Descripcion = p_lineaPedido.articulo.descripcionArticuloProveedor;
+            this.Descripcion = p_lineaPedido.articulo.getDescripciones();
             this.PrecioUnitario = p_lineaPedido.valorUnitario;
             this.Precio = p_lineaPedido.valorParcial;
             this.Descuento = p_lineaPedido.descuentoTotalMonto;
