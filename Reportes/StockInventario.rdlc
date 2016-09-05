@@ -9,19 +9,19 @@
               <Width>1.01833cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.38269cm</Width>
+              <Width>4.38811cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>6.3501cm</Width>
+              <Width>8.17572cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.43233cm</Width>
+              <Width>1.89078cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.37245cm</Width>
+              <Width>3.04614cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.23135cm</Width>
+              <Width>2.5cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -171,50 +171,6 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox2">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style>
-                                <FontSize>9pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox2</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <TopBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </BottomBorder>
-                        <BackgroundColor>LightSteelBlue</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
                     <Textbox Name="Textbox24">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -266,7 +222,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Precio</Value>
+                              <Value>Precio de Venta s/Desc.</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -283,19 +239,53 @@
                           <Style>None</Style>
                         </Border>
                         <TopBorder>
-                          <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
                         </TopBorder>
                         <BottomBorder>
-                          <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <BackgroundColor>LightSteelBlue</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox4">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Precio de Venta c/Desc.</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox4</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <TopBorder>
+                          <Style>Solid</Style>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Style>Solid</Style>
                         </BottomBorder>
                         <RightBorder>
-                          <Color>Black</Color>
                           <Style>Solid</Style>
-                          <Width>1pt</Width>
                         </RightBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -354,7 +344,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!codigoArticulo.Value</Value>
+                              <Value>=Fields!codigoArticulo.Value +" (" + Fields!codigoArticuloProveedor.Value + ")"</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -377,6 +367,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -400,39 +391,6 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>descripcionArticulo</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="precioPromedioVenta">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style>
-                                <FontSize>8pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>precioPromedioVenta</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -481,17 +439,17 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="precioVenta">
+                    <Textbox Name="valorVentaSinDescuento">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!precioVenta.Value</Value>
+                              <Value>=Fields!valorVentaSinDescuento.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <Format>'$' #,0.00;('$' #,0.00)</Format>
+                                <Format>'$' #,0.00;'$' -#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -500,7 +458,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>precioVenta</rd:DefaultName>
+                      <rd:DefaultName>valorVentaSinDescuento</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -512,7 +470,41 @@
                         <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="valorVentaConDescuento">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!valorVentaConDescuento.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <Format>'$' #,0.00;'$' -#,0.00</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>valorVentaConDescuento</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
+                      </Style>
+                    </Textbox>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -548,7 +540,7 @@
         <Top>0.8448cm</Top>
         <Left>0.50668cm</Left>
         <Height>1.2cm</Height>
-        <Width>20.78725cm</Width>
+        <Width>21.01909cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -698,12 +690,13 @@
           </Style>
         </Image>
         <Textbox Name="Textbox11">
+          <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Informe Stock de Invenario</Value>
+                  <Value>Informe Stock de Inventario Valorizado</Value>
                   <Style>
                     <FontFamily>Arial Black</FontFamily>
                     <FontSize>11pt</FontSize>
@@ -718,7 +711,7 @@
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>1.27678cm</Top>
           <Left>8.00836cm</Left>
-          <Height>0.6cm</Height>
+          <Height>1.34083cm</Height>
           <Width>6.40858cm</Width>
           <ZIndex>4</ZIndex>
           <Style>
@@ -832,35 +825,48 @@
           <DataField>codigoArticulo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="codigoArticuloProveedor">
+          <DataField>codigoArticuloProveedor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="descripcionArticulo">
           <DataField>descripcionArticulo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="descripcionArticuloProveedor">
+          <DataField>descripcionArticuloProveedor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="descuento">
           <DataField>descuento</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="fDesde_descuento">
-          <DataField>fDesde_descuento</DataField>
+        <Field Name="fechaVigenciaDescuento_Desde">
+          <DataField>fechaVigenciaDescuento_Desde</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="fHasta_descuento">
-          <DataField>fHasta_descuento</DataField>
+        <Field Name="fechaVigenciaDescuento_Hasta">
+          <DataField>fechaVigenciaDescuento_Hasta</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="precioVenta">
-          <DataField>precioVenta</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="stockActual">
           <DataField>stockActual</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="valorVentaConDescuento">
+          <DataField>valorVentaConDescuento</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="valorVentaSinDescuento">
+          <DataField>valorVentaSinDescuento</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloReporteStock</rd:TableName>
-        <rd:ObjectDataSourceType>Modelos.ModeloReporteStock, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ModeloReporteEncabezado</rd:TableName>
+        <rd:ObjectDataSourceSelectMethod>detalleArticulosDescuentos</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezado, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
