@@ -183,7 +183,7 @@ namespace LibreriaClasesCompartidas
                 case Constantes.ParametrosBusqueda.Entidades.Personas.Nombre:
                 case Constantes.ParametrosBusqueda.Entidades.Personas.Apellido:
                     // Admite sólo letras, minusculas o mayúsculas, exigiendo al menos 1 caracter en la cadena.
-                    lcl_patron = new Regex(@"^[a-zA-Z]+$");
+                    lcl_patron = new Regex(@"^[a-zA-ZñÑñÑáéíóúÁÉÍÓÚ]+$");
                     break;
                 case Constantes.ParametrosBusqueda.Entidades.Cuit:
                 case Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.Cuit_Proveedor:
