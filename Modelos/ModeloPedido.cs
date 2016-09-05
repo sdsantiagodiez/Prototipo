@@ -111,7 +111,13 @@ namespace Modelos
             get { return _entidad; }
             set { _entidad = value; }
         }
-       
+        string _copiaComprobante;
+        public string copiaComprobante
+        {
+            get { return _copiaComprobante; }
+            set { _copiaComprobante = value; }
+        }
+
         #region Contacto (Domicilio, Mail y Teléfono)
         ModeloDomicilio _domicilioDeFacturacion;
         public ModeloDomicilio domicilioDeFacturacion

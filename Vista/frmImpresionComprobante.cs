@@ -53,16 +53,20 @@ namespace Vista
             {
                 return false;
             }
-            try
+            p_pedido.copiaComprobante = Constantes.TipoCopiaComprobante.Duplicado;
+            for (int i = 0; i < 2; i++)
             {
-                this.mostrarComprobante(p_pedido);
+                try
+                {
+                    this.mostrarComprobante(p_pedido);
+                }
+                catch (Exception ex)
+                {
+                    string p = ex.Message;
+                }
+                this.guardarComprobante(p_pedido);
+                p_pedido.copiaComprobante = Constantes.TipoCopiaComprobante.Original;
             }
-            catch (Exception ex)
-            {
-                string p = ex.Message;
-            }
-            this.guardarComprobante(p_pedido);
-
 
             return true;
         }
@@ -280,8 +284,8 @@ namespace Vista
 
             //Pedido_(0|1)_(numeroPedido).pdf   //0|1 si es tipoPedidoCliente o tipoPedidoProveedor
             string tipoPedido = p_pedido.codigoTipoPedido == LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona ? "CLI" : "PROV";
-
-            string fileName_aux = folderPath + "Pedido_" + tipoPedido + "_" + p_pedido.numeroPedido.ToString().PadLeft(10, '0');
+            string fileName_aux = folderPath + "Pedido_" + tipoPedido + "_" + p_pedido.numeroComprobante.ToString().PadLeft(10, '0') + p_pedido.copiaComprobante;
+                         
             string fileName = fileName_aux + ".pdf";
             for (int i = 0; System.IO.File.Exists(fileName); i++)
             {

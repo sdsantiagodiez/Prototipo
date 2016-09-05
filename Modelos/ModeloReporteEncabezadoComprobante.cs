@@ -17,6 +17,7 @@ namespace Modelos
         public string Remito { get; set; }
         public string CentroEmisor { get; set; }
         public string NumeroComprobante { get; set; }
+        public int NumeroControl { get; set; }
         public DateTime FechaComprobante { get; set; }
         public decimal SubtotalComprobante { get; set; }
         public decimal IVAComprobante { get; set; }
@@ -29,6 +30,7 @@ namespace Modelos
         public string CondicionVenta { get; set; }
         public string CodigodeBarras { get; set; }
         public string CuitEmisor { get; set; }
+        public string CopiaComprobante { get; set; }
 
         public ModeloReporteEncabezadoComprobante(ModeloPedido p_mod_pedido) 
         {
@@ -42,6 +44,7 @@ namespace Modelos
             this.CuitEmisor = ModeloPedido.cuitEmisor;
             this.CentroEmisor = "0001";//p_mod_pedido.numeroComprobanteAFIP;
             this.NumeroComprobante = (p_mod_pedido.numeroComprobanteAFIP!=null)?p_mod_pedido.numeroComprobanteAFIP.PadLeft(8, '0'):null;
+            this.NumeroControl = p_mod_pedido.numeroPedido;
             this.Comprador_Cuit = (p_mod_pedido.entidad.cuit != null )? p_mod_pedido.entidad.cuit:p_mod_pedido.documentoComprador.numero;
             this.Comprador_IVAResponsableI = this.defineSituacionIVA((int)p_mod_pedido.entidad.codigoTipoResponsable);
             if (p_mod_pedido.domicilioDeFacturacion == null)
@@ -85,6 +88,7 @@ namespace Modelos
             this.SubtotalComprobante = p_mod_pedido.montoSubTotal;
             this.TotalComprobante = p_mod_pedido.montoTotal;
             this.TotalComprobanteLetras = LibreriaClasesCompartidas.Transformar.NumeroALetras(p_mod_pedido.montoTotal.ToString());
+            this.CopiaComprobante = p_mod_pedido.copiaComprobante;
         }
 
         public string defineSituacionIVA(int p_situacionIVA)

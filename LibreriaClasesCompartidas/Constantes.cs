@@ -384,6 +384,12 @@ namespace LibreriaClasesCompartidas
             }
            
         }
+        public static class TipoCopiaComprobante
+        {
+            public const string Original = "ORIGINAL";
+            public const string Duplicado = "DUPLICADO";
+            public const string Triplicado = "TRIPLICADO";
+        }
     }
     
 }

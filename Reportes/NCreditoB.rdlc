@@ -12,7 +12,7 @@
               <Width>3.34667cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>8.23768cm</Width>
+              <Width>7.92018cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -450,7 +450,7 @@
         <Top>0.68475cm</Top>
         <Left>0.62048cm</Left>
         <Height>1.2cm</Height>
-        <Width>18.44945cm</Width>
+        <Width>18.13195cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -465,7 +465,7 @@
       </Border>
     </Style>
   </Body>
-  <Width>7.87188in</Width>
+  <Width>7.67624in</Width>
   <Page>
     <PageHeader>
       <Height>6.45583cm</Height>
@@ -556,7 +556,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>0.96711cm</Top>
-          <Left>14.96951cm</Left>
+          <Left>14.65201cm</Left>
           <Height>0.50286cm</Height>
           <Width>1.60042cm</Width>
           <ZIndex>2</ZIndex>
@@ -590,7 +590,7 @@
             </Paragraph>
           </Paragraphs>
           <Top>0.96711cm</Top>
-          <Left>17.01816cm</Left>
+          <Left>16.70066cm</Left>
           <Height>0.50286cm</Height>
           <Width>2.47949cm</Width>
           <ZIndex>3</ZIndex>
@@ -727,7 +727,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>3.7539cm</Top>
-          <Left>13.31618cm</Left>
+          <Left>12.99868cm</Left>
           <Height>0.6cm</Height>
           <Width>0.99188cm</Width>
           <ZIndex>7</ZIndex>
@@ -761,7 +761,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>4.60085cm</Top>
-          <Left>12.41659cm</Left>
+          <Left>12.09909cm</Left>
           <Height>0.6cm</Height>
           <Width>1.89147cm</Width>
           <ZIndex>8</ZIndex>
@@ -827,7 +827,7 @@
             </Paragraph>
           </Paragraphs>
           <Top>3.78036cm</Top>
-          <Left>14.45799cm</Left>
+          <Left>14.14049cm</Left>
           <Height>0.6cm</Height>
           <Width>5.03966cm</Width>
           <ZIndex>10</ZIndex>
@@ -861,7 +861,7 @@
           <Top>5.41252cm</Top>
           <Left>3.56554cm</Left>
           <Height>0.6cm</Height>
-          <Width>6.3059cm</Width>
+          <Width>7.90737cm</Width>
           <ZIndex>11</ZIndex>
           <Style>
             <Border>
@@ -891,7 +891,7 @@
             </Paragraph>
           </Paragraphs>
           <Top>4.60085cm</Top>
-          <Left>14.45799cm</Left>
+          <Left>14.14049cm</Left>
           <Height>0.6cm</Height>
           <Width>5.03966cm</Width>
           <ZIndex>12</ZIndex>
@@ -925,7 +925,7 @@
           <Top>3.89502cm</Top>
           <Left>3.56554cm</Left>
           <Height>0.6cm</Height>
-          <Width>6.3059cm</Width>
+          <Width>7.90737cm</Width>
           <ZIndex>13</ZIndex>
           <Style>
             <Border>
@@ -955,7 +955,7 @@
         <Line Name="Line1">
           <Top>3.67453cm</Top>
           <Height>0cm</Height>
-          <Width>19.99458cm</Width>
+          <Width>19.49765cm</Width>
           <ZIndex>15</ZIndex>
           <Style>
             <Border>
@@ -1029,7 +1029,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>0.96711cm</Top>
-          <Left>11.6493cm</Left>
+          <Left>11.3318cm</Left>
           <Height>0.6cm</Height>
           <Width>3.20088cm</Width>
           <ZIndex>17</ZIndex>
@@ -1290,7 +1290,7 @@
           <Top>4.65377cm</Top>
           <Left>3.56554cm</Left>
           <Height>0.6cm</Height>
-          <Width>6.3059cm</Width>
+          <Width>7.90737cm</Width>
           <ZIndex>25</ZIndex>
           <Style>
             <Border>
@@ -1322,7 +1322,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>0.96711cm</Top>
-          <Left>16.67135cm</Left>
+          <Left>16.35385cm</Left>
           <Height>0.50286cm</Height>
           <Width>0.24538cm</Width>
           <ZIndex>26</ZIndex>
@@ -1345,7 +1345,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>4.77572cm</Height>
+      <Height>4.69634cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1357,7 +1357,7 @@
                 <TextRun>
                   <Value>=First(Fields!TotalComprobante.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <Format>'$' #,0.00;('$' #,0.00)</Format>
                   </Style>
                 </TextRun>
@@ -1392,7 +1392,7 @@
                   <Value>Total:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1421,7 +1421,7 @@
         <Line Name="Line2">
           <Top>2.73786cm</Top>
           <Height>0cm</Height>
-          <Width>19.99458cm</Width>
+          <Width>19.49765cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -1430,7 +1430,6 @@
           </Style>
         </Line>
         <Line Name="Line3">
-          <Top>0cm</Top>
           <Height>1.46786cm</Height>
           <Width>0cm</Width>
           <ZIndex>3</ZIndex>
@@ -1457,8 +1456,8 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <Top>3.23175cm</Top>
-          <Left>6.96051cm</Left>
+          <Top>2.91425cm</Top>
+          <Left>6.64301cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.8175cm</Width>
           <ZIndex>4</ZIndex>
@@ -1491,8 +1490,8 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <Top>3.84939cm</Top>
-          <Left>7.33659cm</Left>
+          <Top>3.53189cm</Top>
+          <Left>7.01909cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.44142cm</Width>
           <ZIndex>5</ZIndex>
@@ -1525,8 +1524,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
-          <Top>3.23175cm</Top>
-          <Left>4.31058cm</Left>
+          <Top>2.91425cm</Top>
+          <Left>3.99308cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.5cm</Width>
           <ZIndex>6</ZIndex>
@@ -1559,8 +1558,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
-          <Top>3.84939cm</Top>
-          <Left>4.32095cm</Left>
+          <Top>3.53189cm</Top>
+          <Left>4.00345cm</Left>
           <Height>0.47653cm</Height>
           <Width>2.86571cm</Width>
           <ZIndex>7</ZIndex>
@@ -1594,8 +1593,8 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <Top>3.16119cm</Top>
-          <Left>10.56968cm</Left>
+          <Top>2.84369cm</Top>
+          <Left>10.25218cm</Left>
           <Height>0.82959cm</Height>
           <Width>8.81775cm</Width>
           <ZIndex>8</ZIndex>
@@ -1627,8 +1626,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
-          <Top>4.09633cm</Top>
-          <Left>10.56968cm</Left>
+          <Top>3.77883cm</Top>
+          <Left>10.25218cm</Left>
           <Height>0.54709cm</Height>
           <Width>8.81775cm</Width>
           <ZIndex>9</ZIndex>
@@ -1646,7 +1645,7 @@
         <Line Name="Line4">
           <Top>1.11786cm</Top>
           <Height>0cm</Height>
-          <Width>19.99458cm</Width>
+          <Width>19.49765cm</Width>
           <ZIndex>10</ZIndex>
           <Style>
             <Border>
@@ -1684,6 +1683,109 @@
               <Style>None</Style>
             </Border>
             <VerticalAlign>Middle</VerticalAlign>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox21">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!CopiaComprobante.Value, "DSFactura")</Value>
+                  <Style>
+                    <FontSize>6pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox14</rd:DefaultName>
+          <Top>4.16689cm</Top>
+          <Height>0.47653cm</Height>
+          <Width>2.5cm</Width>
+          <ZIndex>12</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <VerticalAlign>Middle</VerticalAlign>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox16">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>NIC:</Value>
+                  <Style>
+                    <FontFamily>arial</FontFamily>
+                    <FontSize>6pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>4.19348cm</Top>
+          <Left>2.91093cm</Left>
+          <Height>0.50286cm</Height>
+          <Width>0.79705cm</Width>
+          <ZIndex>13</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="txtFecha2">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!NumeroControl.Value, "DSFactura")</Value>
+                  <Style>
+                    <FontSize>6pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Format>d</Format>
+                    <Language>es-AR</Language>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>4.19348cm</Top>
+          <Left>3.88437cm</Left>
+          <Height>0.50286cm</Height>
+          <Width>3.45251cm</Width>
+          <ZIndex>14</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
@@ -1763,6 +1865,10 @@
           <DataField>CondicionVenta</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CopiaComprobante">
+          <DataField>CopiaComprobante</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="CuitEmisor">
           <DataField>CuitEmisor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1782,6 +1888,10 @@
         <Field Name="NumeroComprobante">
           <DataField>NumeroComprobante</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NumeroControl">
+          <DataField>NumeroControl</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="Remito">
           <DataField>Remito</DataField>
