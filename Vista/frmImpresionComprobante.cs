@@ -114,6 +114,16 @@ namespace Vista
 
             //this.iniciarReportEmbeddedResource(p_pedido.tipoComprobante);
             this.iniciarReportEmbeddedResource(p_pedido.tipoComprobante,p_pedido.aprobadoAFIP);
+            
+            this.contenedorComprobante.LocalReport.EnableExternalImages = true;
+            //Seteo de Parametros. Se puede armar un metodo que los setee a todos. Tambien los generales se pueden poner al estilo Opciones de Usuario.
+            this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("directorioImagen", lcl_mod_encabezadoComprobante.CodigodeBarrasImagen));
+            this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("nombreEmpresa", "Mundo Renault"));
+            this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("direccionEmpresa", "Av. Pellegrini 3151 - Rosario, Santa Fe"));
+            this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("telefonoEmpresa", "Tel. 0341- 4353535"));
+            this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("razonSocial", "Mundo Renault S.A."));
+            this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("inicioActividades", "01/01/1982"));
+            
 
             this.contenedorComprobante.LocalReport.Refresh();
             
@@ -231,6 +241,7 @@ namespace Vista
 
         private void iniciarDataSources(ModeloReporteEncabezadoComprobante p_encabezado)
         {
+            
             this.contenedorComprobante.LocalReport.DataSources.Clear();
 
             ModeloReporteEncabezadoFacturaBindingSource.Clear();
@@ -241,6 +252,7 @@ namespace Vista
             modeloReporteDetalleFacturaBindingSource.DataSource = typeof(List<ModeloReporteDetalleComprobante>);
             modeloReporteDetalleFacturaBindingSource.DataSource = p_encabezado.detalleFactura;
             this.contenedorComprobante.LocalReport.DataSources.Add(new ReportDataSource("DSDetalleFactura", modeloReporteDetalleFacturaBindingSource));
+                        
             //ModeloReporteEncabezadoFacturaBindingSource.DataSource = p_lst_mod_EncFac;
             //modeloReporteDetalleFacturaBindingSource.DataSource = p_lst_mod_EncFac;
 

@@ -29,6 +29,7 @@ namespace Modelos
         public DateTime FechaVencimiento { get; set; }
         public string CondicionVenta { get; set; }
         public string CodigodeBarras { get; set; }
+        public string CodigodeBarrasImagen { get; set; }
         public string CuitEmisor { get; set; }
         public string CopiaComprobante { get; set; }
 
@@ -40,6 +41,7 @@ namespace Modelos
             this.detalleFactura = new List<ModeloReporteDetalleComprobante>();
             this.CAINumero = p_mod_pedido.CAE;
             this.CodigodeBarras = p_mod_pedido.getCodigoBarraCAE();
+            this.CodigodeBarrasImagen = LibreriaClasesCompartidas.Interleaved2of5.gifInterleaved(this.CodigodeBarras);
             this.Alicuota = Convert.ToDecimal(p_mod_pedido.alicuota.iva.porcentaje);
             this.CuitEmisor = ModeloPedido.cuitEmisor;
             this.CentroEmisor = "0001";//p_mod_pedido.numeroComprobanteAFIP;

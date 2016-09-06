@@ -117,6 +117,12 @@ namespace Modelos
             get { return _copiaComprobante; }
             set { _copiaComprobante = value; }
         }
+        string _codigodeBarra;
+        public string codigodeBarra 
+        {
+            get { return _codigodeBarra; }
+            set { _codigodeBarra = value; }
+        }
 
         #region Contacto (Domicilio, Mail y Teléfono)
         ModeloDomicilio _domicilioDeFacturacion;
