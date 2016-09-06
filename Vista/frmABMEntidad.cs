@@ -50,6 +50,8 @@ namespace Vista
         ControlDomicilios glb_con_domicilios;
         public ModeloEntidad glb_mod_entidadActual;
         List<bool> glb_lst_respuestasValidaciones;
+        private bool glb_realizoBusqueda = false;
+        private bool glb_esNuevo = false;
 
         ContextMenu cntxtMenuDataGridViews;
         #endregion
@@ -384,6 +386,7 @@ namespace Vista
                 this.glb_con_domicilios.clearErrorProviders();
                 this.inicializarModoFormularioInicio();
                 QuitarTextoEnControles(this);
+                glb_realizoBusqueda = glb_esNuevo = false;
             }
             else
             {
@@ -510,6 +513,7 @@ namespace Vista
                 lcl_frm_resultadoBusqueda.mostrarBusqueda();
                 if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
                 {
+                    glb_realizoBusqueda = true;
                     if (this.modoFormulario != ModoFormularioClientePedido)
                     {
                         this.modoFormulario = ModoFormularioSeleccionado;
@@ -1309,6 +1313,7 @@ namespace Vista
             this.modoFormulario = ModoFormularioInicio;
             this.clearErrorProviders();
             this.glb_con_domicilios.clearErrorProviders();
+            glb_esNuevo = glb_realizoBusqueda = false;
         }
 
         override public void toolStripMenuItemEliminar_Click(object sender, EventArgs e)
@@ -1364,6 +1369,7 @@ namespace Vista
             {
                 modoFormulario = ModoFormularioNuevo;
             }
+            glb_esNuevo = true;
         }
 
         override public void toolStripMenuItemBuscar_Click(object sender, EventArgs e)
@@ -1430,6 +1436,13 @@ namespace Vista
         private void txtBoxDNI_Leave(object sender, EventArgs e)
         {
             string lcl_mensaje;
+            if (!glb_esNuevo && !glb_realizoBusqueda)
+            {
+                if (string.IsNullOrWhiteSpace(txtBoxDNI.Text))
+                {
+                    return;
+                }
+            }
             if (!Validar.validarLongitud(txtBoxDNI.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Dni, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxDNI, false, lcl_mensaje);
@@ -1474,6 +1487,13 @@ namespace Vista
         private void txtBoxNombre_Leave(object sender, EventArgs e)
         {
             string lcl_mensaje;
+            if (!glb_esNuevo && !glb_realizoBusqueda)
+            { 
+                if(string.IsNullOrWhiteSpace(txtBoxNombre.Text))
+                {
+                    return;
+                }
+            }
             if (!Validar.validarLongitud(txtBoxNombre.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Nombre, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxNombre, false, lcl_mensaje);
@@ -1492,6 +1512,13 @@ namespace Vista
         private void txtBoxApellido_Leave(object sender, EventArgs e)
         {
             string lcl_mensaje;
+            if (!glb_esNuevo && !glb_realizoBusqueda)
+            {
+                if (string.IsNullOrWhiteSpace(txtBoxApellido.Text))
+                {
+                    return;
+                }
+            }
             if (!Validar.validarLongitud(txtBoxApellido.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Apellido, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxApellido, false, lcl_mensaje);
