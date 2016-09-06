@@ -20,6 +20,8 @@ namespace Vista
         List<ModeloArticuloProveedores> glb_lst_mod_articulosProveedores;
         List<bool> glb_lst_respuestasValidaciones;
         bool glb_banderaCodigoOriginal=false;
+        private bool glb_realizoBusqueda = false;
+        private bool glb_esNuevo = false;
         
         /// <summary>
         /// indica si hay un artículo seleccionado desde una búsqueda de artículos
@@ -219,6 +221,7 @@ namespace Vista
                 this.inicializarModoFormularioInicio();
                 QuitarTextoEnControles(this);
                 this.clearErrorProviders();
+                glb_realizoBusqueda = glb_esNuevo = false;
             }
             else
             {
@@ -359,22 +362,22 @@ namespace Vista
         {
 
             if (string.IsNullOrWhiteSpace(txtBoxCodigoOriginal.Text.ToString())
-                & string.IsNullOrWhiteSpace(txtBoxDescripcion.Text.ToString())
-                & string.IsNullOrWhiteSpace(txtBoxModelo.Text.ToString()))
+                && string.IsNullOrWhiteSpace(txtBoxDescripcion.Text.ToString())
+                && string.IsNullOrWhiteSpace(txtBoxModelo.Text.ToString()))
             {
                 MessageBox.Show("Por favor ingrese al menos uno de los campos antes de realizar una búsqueda");
                 return;
             }
 
-            if (!string.IsNullOrWhiteSpace(txtBoxCodigoOriginal.Text.ToString()))
+            if (!string.IsNullOrWhiteSpace(txtBoxCodigoOriginal.Text))
             {
                 this.txtBoxCodigoOriginal_Leave(new object(), new EventArgs());
             }
-            if (!string.IsNullOrWhiteSpace(txtBoxDescripcion.Text.ToString()))
+            if (!string.IsNullOrWhiteSpace(txtBoxDescripcion.Text))
             {
                 this.txtBoxDescripcion_Leave(new object(), new EventArgs());
             }
-            if (!string.IsNullOrWhiteSpace(txtBoxModelo.Text.ToString()))
+            if (!string.IsNullOrWhiteSpace(txtBoxModelo.Text))
             {
                 this.txtBoxModelo_Leave(new object(), new EventArgs());
             }
@@ -395,6 +398,7 @@ namespace Vista
             lcl_frm_resultadoBusqueda.mostrarBusqueda(glb_mod_articulo);
             if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
             {
+                glb_realizoBusqueda = true;
                 this.modoFormulario = ModoFormularioSeleccionado;
 
                 glb_mod_articulo = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticulos;
@@ -424,6 +428,7 @@ namespace Vista
             lcl_frm_resultadoBusqueda.mostrarBusqueda(p_mod_articuloProveedor);
             if (lcl_frm_resultadoBusqueda.modeloSeleccionado != null)
             {
+                glb_realizoBusqueda = true;
                 this.modoFormulario = ModoFormularioSeleccionado;
 
                 glb_mod_articuloProveedor = lcl_frm_resultadoBusqueda.modeloSeleccionado as ModeloArticuloProveedores;
@@ -645,6 +650,7 @@ namespace Vista
             this.modoFormulario = ModoFormularioInicio;
             QuitarTextoEnControles(this);
             this.clearErrorProviders();
+            glb_esNuevo = glb_realizoBusqueda = false;
         }
 
         override public void toolStripMenuItemEliminar_Click(object sender, EventArgs e)
@@ -678,6 +684,7 @@ namespace Vista
         override public void toolStripMenuItemNuevo_Click(object sender, EventArgs e)
         {
             modoFormulario = ModoFormularioNuevo;
+            glb_esNuevo = true;
         }
 
         override public void toolStripMenuItemBuscar_Click(object sender, EventArgs e)
@@ -690,6 +697,13 @@ namespace Vista
         private void txtBoxCodigoOriginal_Leave(object sender, EventArgs e)
         {
             string lcl_mensaje;
+            if (!glb_esNuevo && !glb_realizoBusqueda)
+            {
+                if (string.IsNullOrWhiteSpace(txtBoxCodigoOriginal.Text))
+                {
+                    return;
+                }
+            }
             if (!Validar.validarLongitud(txtBoxCodigoOriginal.Text, Constantes.ParametrosBusqueda.Articulos.CodigoOriginal, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxCodigoOriginal, false, lcl_mensaje);
@@ -708,6 +722,13 @@ namespace Vista
         private void txtBoxDescripcion_Leave(object sender, EventArgs e)
         {
             string lcl_mensaje;
+            if (!glb_esNuevo && !glb_realizoBusqueda)
+            {
+                if (string.IsNullOrWhiteSpace(txtBoxDescripcion.Text))
+                {
+                    return;
+                }
+            }
             if (!Validar.validarLongitud(txtBoxDescripcion.Text, Constantes.ParametrosBusqueda.Articulos.Descripcion, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxDescripcion, false, lcl_mensaje);
@@ -725,6 +746,13 @@ namespace Vista
         private void txtBoxModelo_Leave(object sender, EventArgs e)
         {
             string lcl_mensaje;
+            if (!glb_esNuevo && !glb_realizoBusqueda)
+            {
+                if (string.IsNullOrWhiteSpace(txtBoxModelo.Text))
+                {
+                    return;
+                }
+            }
             if (!Validar.validarLongitud(txtBoxModelo.Text, Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo, out lcl_mensaje))
             {
                 this.setErrorProvider(txtBoxModelo, false, lcl_mensaje);
