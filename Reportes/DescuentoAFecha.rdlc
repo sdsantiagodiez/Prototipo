@@ -671,7 +671,6 @@
                         <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -734,13 +733,12 @@
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
         <Textbox Name="parametroEmpresa">
-          <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Mundo Renault</Value>
+                  <Value>=Parameters!nombreEmpresa.Value</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -901,7 +899,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Av. Pellegrini 3151 - Rosario, Santa Fe</Value>
+                  <Value>=Parameters!direccionEmpresa.Value</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -933,7 +931,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Tel. 0341- 4353535</Value>
+                  <Value>=Parameters!telefonoEmpresa.Value</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -1040,6 +1038,20 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="nombreEmpresa">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="telefonoEmpresa">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="direccionEmpresa">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <EmbeddedImages>
     <EmbeddedImage Name="mundo_renault">
       <MIMEType>image/jpeg</MIMEType>

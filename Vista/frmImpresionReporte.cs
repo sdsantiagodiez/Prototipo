@@ -45,11 +45,16 @@ namespace Vista
             this.iniciarDataSources(p_reporte, lcl_mod_encabezadoComprobante);
 
             this.iniciarReportEmbeddedResource(p_reporte);
+
+            seteaParametrosGenerales();
+
             this.ReporteBase.LocalReport.Refresh();
             SafeInvoke(this.ReporteBase, this.ReporteBase.RefreshReport);
 
             return true;
         }
+
+       
 
         /// <summary>
         /// Crea reporte de Clientes especificado para el cliente enviado como parametro
@@ -67,6 +72,9 @@ namespace Vista
             this.iniciarDataSources(p_reporte, lcl_mod_encabezadoComprobante);
 
             this.iniciarReportEmbeddedResource(p_reporte);
+
+            seteaParametrosGenerales();
+
             this.ReporteBase.LocalReport.Refresh();
             SafeInvoke(this.ReporteBase, this.ReporteBase.RefreshReport);
 
@@ -89,6 +97,9 @@ namespace Vista
 
 
             this.iniciarReportEmbeddedResource(p_reporte);
+
+            seteaParametrosGenerales();
+
             this.ReporteBase.LocalReport.Refresh();
             SafeInvoke(this.ReporteBase, this.ReporteBase.RefreshReport);
 
@@ -214,7 +225,12 @@ namespace Vista
             this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsDetalleReporte", ModeloReportePedidoEntreFechasBindingSource));
         }
         #endregion
-
+        private void seteaParametrosGenerales()
+        {
+            this.ReporteBase.LocalReport.SetParameters(new ReportParameter("nombreEmpresa", "Mundo Renault"));
+            this.ReporteBase.LocalReport.SetParameters(new ReportParameter("direccionEmpresa", "Av. Pellegrini 3151 - Rosario, Santa Fe"));
+            this.ReporteBase.LocalReport.SetParameters(new ReportParameter("telefonoEmpresa", "Tel. 0341- 4353535"));
+        }
         public void SafeInvoke(Control uiElement, Action updater)
         {
             if (uiElement == null)
