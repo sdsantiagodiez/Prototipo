@@ -698,7 +698,7 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 11);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 9);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(54, 26);
             this.cmbBoxTipoTelefono.TabIndex = 23;
@@ -891,7 +891,7 @@
             this.tblLayoutPanelEstiloVisual.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelEstiloVisual.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 450F));
             this.tblLayoutPanelEstiloVisual.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelEstiloVisual.Controls.Add(this.grpBoxEstiloVisual, 1, 1);
+            this.tblLayoutPanelEstiloVisual.Controls.Add(this.grpBoxEstiloVisual, 1, 0);
             this.tblLayoutPanelEstiloVisual.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelEstiloVisual.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelEstiloVisual.Name = "tblLayoutPanelEstiloVisual";
@@ -905,8 +905,7 @@
             // grpBoxEstiloVisual
             // 
             this.grpBoxEstiloVisual.Controls.Add(this.tblLayoutPanelDiseño);
-            this.grpBoxEstiloVisual.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpBoxEstiloVisual.Location = new System.Drawing.Point(137, 135);
+            this.grpBoxEstiloVisual.Location = new System.Drawing.Point(137, 2);
             this.grpBoxEstiloVisual.Margin = new System.Windows.Forms.Padding(2);
             this.grpBoxEstiloVisual.Name = "grpBoxEstiloVisual";
             this.grpBoxEstiloVisual.Padding = new System.Windows.Forms.Padding(2);

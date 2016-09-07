@@ -766,7 +766,7 @@ namespace Vista
         #region Manual de Ayuda
         private void mostrarManualDeAyuda(object sender, EventArgs e)
         {
-            if (glb_form == null)
+            if (glb_form == null || glb_form.IsDisposed)//null en caso que no se haya abierto ninguna ventana, y IsDisposed en caso de que se haya abierto y cerrado una ventana
             {
                 string lcl_dir_help = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
                 //lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\helpmenuproyecto.chm";

@@ -185,11 +185,11 @@ namespace LibreriaClasesCompartidas
                     // Admite sólo letras, minusculas o mayúsculas, exigiendo al menos 1 caracter en la cadena.
                     lcl_patron = new Regex(@"^[a-zA-ZñÑñÑáéíóúÁÉÍÓÚ]+$");
                     break;
-                case Constantes.ParametrosBusqueda.Entidades.Cuit:
-                case Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.Cuit_Proveedor:
+                //case Constantes.ParametrosBusqueda.Entidades.Cuit:
+                //case Constantes.ParametrosBusqueda.Entidades.Personas.ContactoProveedor.Cuit_Proveedor:
                     // Admite patrón especifico: 2 nros + "-" + 8 nros + "-" + 1 nro    //También admite que se obvien los guiones
-                    lcl_patron = new Regex(@"^(\d{2}-\d{8}-\d{1}|\d{11})$");
-                    break;
+                    //lcl_patron = new Regex(@"^(\d{2}-\d{8}-\d{1}|\d{11})$");
+                   // break;
                 case Constantes.ParametrosBusqueda.Entidades.Personas.Dni:
                     // Admite exactamente 7 u 8 dígitos
                     lcl_patron = new Regex(@"^(\d{1,2}\.\d{3}\.\d{3}|\d{7,8})$");

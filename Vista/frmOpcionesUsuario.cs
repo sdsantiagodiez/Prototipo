@@ -701,17 +701,17 @@ namespace Vista
                 e.Handled = true;
                 return;
             }
-            //inserta guión luego del caracter 2 y 11
-            if ((sender as TextBox).Text.Length == 2 || (sender as TextBox).Text.Length == 11)
-            {
-                if (e.KeyChar != 8)
-                {
-                    (sender as TextBox).Text += "-" + e.KeyChar;
-                    e.Handled = true;
-                    (sender as TextBox).SelectionStart = (sender as TextBox).Text.Length;
-                }
+            ////inserta guión luego del caracter 2 y 11
+            //if ((sender as TextBox).Text.Length == 2 || (sender as TextBox).Text.Length == 11)
+            //{
+            //    if (e.KeyChar != 8)
+            //    {
+            //        (sender as TextBox).Text += "-" + e.KeyChar;
+            //        e.Handled = true;
+            //        (sender as TextBox).SelectionStart = (sender as TextBox).Text.Length;
+            //    }
 
-            }
+            //}
         }
 
         private void valorDNI(object sender, KeyPressEventArgs e)
@@ -758,12 +758,16 @@ namespace Vista
                 glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Cuit)] = respuesta;
                 if (respuesta)
                 {
+                    this.txtBoxCUIT.Text = ModeloEntidad.CUIT.NormalizarCUIT(this.txtBoxCUIT.Text);
                     if (!string.IsNullOrWhiteSpace(txtBoxDNI.Text))
                     {
                         if (string.Equals(txtBoxCUIT.Text.Substring(3, txtBoxDNI.Text.Replace(".", string.Empty).Length), txtBoxDNI.Text.Replace(".", string.Empty)))
                         {
                             lcl_mensaje = "OK";
                             this.setErrorProvider(this.txtBoxCUIT, respuesta, lcl_mensaje);
+
+                            this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
+                            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = true;
                         }
                         else
                         {
@@ -807,12 +811,14 @@ namespace Vista
                 glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = respuesta;
                 if (respuesta)
                 {
+                    this.txtBoxDNI.Text = ModeloEntidad.DNI.NormalizarDNI(this.txtBoxDNI.Text);
                     if (!string.IsNullOrWhiteSpace(txtBoxCUIT.Text))
                     {
                         if (string.Equals(txtBoxCUIT.Text.Substring(3, txtBoxDNI.Text.Replace(".", string.Empty).Length), txtBoxDNI.Text.Replace(".", string.Empty)))
                         {
                             lcl_mensaje = "OK";
                             this.setErrorProvider(this.txtBoxDNI, respuesta, lcl_mensaje);
+                            this.txtBoxCUIT_Leave(new object(), new EventArgs());
                         }
                         else
                         {

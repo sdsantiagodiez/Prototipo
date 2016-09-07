@@ -1759,6 +1759,13 @@ namespace Vista
                 lcl_mensaje = lcl_respuesta ? "OK" : "Número de Documento no válido";
 
                 this.setErrorProvider(this.txtBoxNumeroDocumento, lcl_respuesta, lcl_mensaje);
+                
+                if (lcl_respuesta)
+                {
+                    this.txtBoxNumeroDocumento.Text = (this.cmbBoxTipoDocumento.SelectedValue as TipoDocumento).codigo == 80 ? //80 codigo de CUIT
+                    ModeloEntidad.CUIT.NormalizarCUIT(this.txtBoxNumeroDocumento.Text) :
+                    ModeloEntidad.DNI.NormalizarDNI(this.txtBoxNumeroDocumento.Text);
+                }
             }
         }
 

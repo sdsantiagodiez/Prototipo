@@ -181,7 +181,7 @@ namespace Modelos
             public string numeroCUIT
             {
                 get { return _numeroCUIT; }
-                set { _numeroCUIT = this.normalizarCUIT(value); }
+                set { _numeroCUIT = NormalizarCUIT(value); }
             }
 
             static public int longitud
@@ -190,7 +190,7 @@ namespace Modelos
             }
             #endregion
             
-            private string normalizarCUIT(string p_cuit)
+            public static string NormalizarCUIT(string p_cuit)
             {
                 if (ValidarCuit(p_cuit))
                 {
@@ -227,7 +227,7 @@ namespace Modelos
             /// <returns>True si el CUIT es válido y False si no.</returns>
             public static bool ValidarCuit(string cuit)
             {
-                if (cuit != null && LibreriaClasesCompartidas.Validar.validarInputNoNumerico(cuit,LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Cuit))
+                if (cuit != null)// && LibreriaClasesCompartidas.Validar.validarInputNoNumerico(cuit,LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Cuit))
                 {
                     //Quito los guiones, el cuit resultante debe tener 11 caracteres.
                     cuit = cuit.Replace("-", string.Empty);
@@ -256,6 +256,28 @@ namespace Modelos
                     return null;
                 }
                 return cuit.Replace(" ", string.Empty).Replace("-", string.Empty);
+            }
+        }
+
+        [Serializable]
+        public class DNI
+        {
+            public static string NormalizarDNI(string p_dni)
+            {
+                if (String.IsNullOrWhiteSpace(p_dni))
+                {
+                    return null;
+                }
+                string dniNormalizado = p_dni.Replace(" ", string.Empty).Replace(".", string.Empty);
+                if (dniNormalizado.Length > 3)
+                {
+                    if (dniNormalizado.Length > 6)
+                    {
+                        dniNormalizado = dniNormalizado.Insert(dniNormalizado.Length-6,".");
+                    }
+                    dniNormalizado = dniNormalizado.Insert(dniNormalizado.Length - 3, ".");
+                }
+                return dniNormalizado;
             }
         }
 

@@ -734,6 +734,30 @@ namespace Modelos
         {
             tipo = new TipoDocumento();
         }
+
+        public bool asignarDocumento(string p_documento)
+        {
+            if (String.IsNullOrWhiteSpace(p_documento))
+            {
+                this.numero = null;
+                return false;
+            }
+
+            if (LibreriaClasesCompartidas.Validar.validarInputNoNumerico(p_documento, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.Entidades.Personas.Dni))
+            {
+                this.numero = ModeloEntidad.DNI.NormalizarDNI(p_documento);
+            }
+            else if (ModeloEntidad.CUIT.ValidarCuit(p_documento))
+            {
+                this.numero = ModeloEntidad.CUIT.NormalizarCUIT(p_documento);
+            }
+            else
+            {
+                this.numero = null;
+                return false;
+            }
+            return true;
+        }
     }
     
 

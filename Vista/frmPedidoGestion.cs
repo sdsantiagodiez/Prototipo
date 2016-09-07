@@ -338,7 +338,7 @@ namespace Vista
             }
             lcl_mod_pedido.CAE = !String.IsNullOrWhiteSpace(this.txtBoxCAE.Text)? this.txtBoxCAE.Text:null;
             
-            lcl_mod_pedido.documentoComprador.numero = !String.IsNullOrWhiteSpace(this.txtBoxNumeroDocumento.Text)?this.txtBoxNumeroDocumento.Text: null;
+            lcl_mod_pedido.documentoComprador.asignarDocumento(this.txtBoxNumeroDocumento.Text);
             
             //usamos cliente porque permite nombre, apellido y razón social
             lcl_mod_pedido.entidad = new ModeloCliente()
@@ -744,6 +744,13 @@ namespace Vista
             
             this.dtpDesde.Enabled = !check;
             this.dtpHasta.Enabled = !check;
+        }
+
+        private void txtBoxNumeroDocumento_Leave(object sender, EventArgs e)
+        {
+            Documento lcl_documento = new Documento();
+            if(lcl_documento.asignarDocumento(this.txtBoxNumeroDocumento.Text))
+                this.txtBoxNumeroDocumento.Text = lcl_documento.numero;
         }
     }
 }
