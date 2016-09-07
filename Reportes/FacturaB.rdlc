@@ -459,6 +459,42 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="txtFecVto2">
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!CodigodeBarras.Value, "DSFactura")</Value>
+                <Style>
+                  <FontFamily>I2OF5TXT</FontFamily>
+                  <FontSize>24pt</FontSize>
+                  <Format>dd/MM/yy</Format>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+              <LineHeight>20pt</LineHeight>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <Top>5.33404cm</Top>
+        <Left>4.5373cm</Left>
+        <Height>2.1434cm</Height>
+        <Width>11.75309cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <VerticalAlign>Top</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>3.17931in</Height>
     <Style>

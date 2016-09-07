@@ -177,5 +177,28 @@ namespace LibreriaClasesCompartidas
 
             return Num2Text;
         }
+
+        public static string codigoBarras(char[] p_codigoOriginal)
+        {
+            char cStart = (char)40;
+            char cStop = (char)41;
+            
+            string i2of5="";
+            if ((p_codigoOriginal.Length % 2) != 0)
+            { p_codigoOriginal = ("0" + p_codigoOriginal.ToString()).ToCharArray(); }
+            for (int i = 0; i < p_codigoOriginal.Length; i+=2)
+            {
+                if ((int)((Convert.ToInt32(Char.GetNumericValue(p_codigoOriginal[i]).ToString() + Char.GetNumericValue(p_codigoOriginal[i+1]).ToString()))) < 50)
+                {
+                    i2of5 += (char)(Convert.ToInt32(Char.GetNumericValue(p_codigoOriginal[i]).ToString() + Char.GetNumericValue(p_codigoOriginal[i+1]).ToString()) + 48); 
+                }
+                else
+                { i2of5 += (char)(Convert.ToInt32(Char.GetNumericValue(p_codigoOriginal[i]).ToString() + Char.GetNumericValue(p_codigoOriginal[i + 1]).ToString()) + 142); }
+            }
+            
+
+
+            return cStart+i2of5+cStop ;
+        }
     }
 }

@@ -41,7 +41,8 @@ namespace Modelos
             this.detalleFactura = new List<ModeloReporteDetalleComprobante>();
             this.CAINumero = p_mod_pedido.CAE;
             this.CodigodeBarras = p_mod_pedido.getCodigoBarraCAE();
-            this.CodigodeBarrasImagen = LibreriaClasesCompartidas.Interleaved2of5.gifInterleaved(this.CodigodeBarras);
+            this.CodigodeBarras = LibreriaClasesCompartidas.Transformar.codigoBarras(p_mod_pedido.getCodigoBarraCAE().ToCharArray());
+            this.CodigodeBarrasImagen = LibreriaClasesCompartidas.Interleaved2of5.gifInterleaved(p_mod_pedido.getCodigoBarraCAE());
             this.Alicuota = Convert.ToDecimal(p_mod_pedido.alicuota.iva.porcentaje);
             this.CuitEmisor = ModeloPedido.cuitEmisor;
             this.CentroEmisor = "0001";//p_mod_pedido.numeroComprobanteAFIP;
