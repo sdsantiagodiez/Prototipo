@@ -524,7 +524,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.96711cm</Top>
+          <Top>0.33211cm</Top>
           <Left>14.92371cm</Left>
           <Height>0.50286cm</Height>
           <Width>1.60042cm</Width>
@@ -558,7 +558,7 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <Top>0.96711cm</Top>
+          <Top>0.33211cm</Top>
           <Left>16.97236cm</Left>
           <Height>0.50286cm</Height>
           <Width>2.34436cm</Width>
@@ -592,7 +592,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>1.7435cm</Top>
+          <Top>1.1085cm</Top>
           <Left>13.65842cm</Left>
           <Height>0.50286cm</Height>
           <Width>1.60042cm</Width>
@@ -627,7 +627,7 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <Top>1.7435cm</Top>
+          <Top>1.1085cm</Top>
           <Left>15.43523cm</Left>
           <Height>0.50286cm</Height>
           <Width>2.18251cm</Width>
@@ -996,7 +996,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.96711cm</Top>
+          <Top>0.33211cm</Top>
           <Left>11.56954cm</Left>
           <Height>0.6cm</Height>
           <Width>3.23484cm</Width>
@@ -1030,7 +1030,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox24</rd:DefaultName>
-          <Top>2.42275cm</Top>
+          <Top>1.78775cm</Top>
           <Left>13.65842cm</Left>
           <Height>0.45076cm</Height>
           <Width>1.62688cm</Width>
@@ -1061,7 +1061,7 @@
               <Style />
             </Paragraph>
           </Paragraphs>
-          <Top>2.42275cm</Top>
+          <Top>1.78775cm</Top>
           <Left>15.4617cm</Left>
           <Height>0.45076cm</Height>
           <Width>2.5cm</Width>
@@ -1095,7 +1095,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox24</rd:DefaultName>
-          <Top>3.0499cm</Top>
+          <Top>2.4149cm</Top>
           <Left>12.37079cm</Left>
           <Height>0.45076cm</Height>
           <Width>2.9498cm</Width>
@@ -1195,7 +1195,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.96711cm</Top>
+          <Top>0.33211cm</Top>
           <Left>16.62555cm</Left>
           <Height>0.50286cm</Height>
           <Width>0.24538cm</Width>
@@ -1394,11 +1394,76 @@
               <Style />
             </Paragraph>
           </Paragraphs>
-          <Top>3.05242cm</Top>
+          <Top>2.41742cm</Top>
           <Left>15.43523cm</Left>
           <Height>0.44824cm</Height>
           <Width>2.5cm</Width>
           <ZIndex>28</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox26">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Ing.Brutos:</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox24</rd:DefaultName>
+          <Top>2.92316cm</Top>
+          <Left>12.37079cm</Left>
+          <Height>0.45076cm</Height>
+          <Width>2.9498cm</Width>
+          <ZIndex>29</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="txtingbrutos">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Parameters!ingresosBrutos.Value</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <Top>2.92316cm</Top>
+          <Left>15.4617cm</Left>
+          <Height>0.44824cm</Height>
+          <Width>2.5cm</Width>
+          <ZIndex>30</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1643,7 +1708,6 @@
           </Style>
         </Line>
         <Line Name="Line3">
-          <Top>0cm</Top>
           <Height>1.16872cm</Height>
           <Width>0cm</Width>
           <ZIndex>7</ZIndex>
@@ -2011,6 +2075,7 @@
         <Image Name="Image1">
           <Source>External</Source>
           <Value>="file:" &amp; Parameters!directorioImagen.Value</Value>
+          <Sizing>Fit</Sizing>
           <Top>2.55265cm</Top>
           <Left>10.0744cm</Left>
           <Height>1.56173cm</Height>
@@ -2042,8 +2107,8 @@
     </PageFooter>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
-    <LeftMargin>0.5cm</LeftMargin>
-    <RightMargin>0.5cm</RightMargin>
+    <LeftMargin>0.65cm</LeftMargin>
+    <RightMargin>0.65cm</RightMargin>
     <TopMargin>0.5cm</TopMargin>
     <BottomMargin>0.5cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
@@ -2222,6 +2287,10 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="inicioActividades">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ingresosBrutos">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>

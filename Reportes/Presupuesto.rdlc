@@ -1422,6 +1422,10 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="ingresosBrutos">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <EmbeddedImages>
     <EmbeddedImage Name="mundo_renault">

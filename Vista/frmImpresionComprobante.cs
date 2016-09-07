@@ -123,6 +123,7 @@ namespace Vista
             this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("telefonoEmpresa", "Tel. 0341- 4353535"));
             this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("razonSocial", "Mundo Renault S.A."));
             this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("inicioActividades", "01/01/1982"));
+            this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("ingresosBrutos", "901-992160-0"));
             
 
             this.contenedorComprobante.LocalReport.Refresh();

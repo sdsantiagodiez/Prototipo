@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Drawing;
 
 namespace LibreriaClasesCompartidas
 {
@@ -17,10 +18,10 @@ namespace LibreriaClasesCompartidas
         public static string limpiarString(string p_string)
         {
             string lcl_stringTransformada = p_string;
-            
+
             lcl_stringTransformada = Transformar.quitarEspaciosEnBlanco(lcl_stringTransformada);
             lcl_stringTransformada = Transformar.transformarVocalesInvalidas(lcl_stringTransformada);
-            
+
             return lcl_stringTransformada;
         }
 
@@ -182,23 +183,67 @@ namespace LibreriaClasesCompartidas
         {
             char cStart = (char)40;
             char cStop = (char)41;
-            
-            string i2of5="";
+
+            string i2of5 = "";
             if ((p_codigoOriginal.Length % 2) != 0)
             { p_codigoOriginal = ("0" + p_codigoOriginal.ToString()).ToCharArray(); }
-            for (int i = 0; i < p_codigoOriginal.Length; i+=2)
+            for (int i = 0; i < p_codigoOriginal.Length; i += 2)
             {
-                if ((int)((Convert.ToInt32(Char.GetNumericValue(p_codigoOriginal[i]).ToString() + Char.GetNumericValue(p_codigoOriginal[i+1]).ToString()))) < 50)
+                if ((int)((Convert.ToInt32(Char.GetNumericValue(p_codigoOriginal[i]).ToString() + Char.GetNumericValue(p_codigoOriginal[i + 1]).ToString()))) < 50)
                 {
-                    i2of5 += (char)(Convert.ToInt32(Char.GetNumericValue(p_codigoOriginal[i]).ToString() + Char.GetNumericValue(p_codigoOriginal[i+1]).ToString()) + 48); 
+                    i2of5 += (char)(Convert.ToInt32(Char.GetNumericValue(p_codigoOriginal[i]).ToString() + Char.GetNumericValue(p_codigoOriginal[i + 1]).ToString()) + 48);
                 }
                 else
                 { i2of5 += (char)(Convert.ToInt32(Char.GetNumericValue(p_codigoOriginal[i]).ToString() + Char.GetNumericValue(p_codigoOriginal[i + 1]).ToString()) + 142); }
             }
+
+
+
+            return cStart + i2of5 + cStop;
+        }
+
+        public static string imagenCodigoBarras(string p_codigo)
+        {
+            //creamos el objeto imagen Bitmap 
+            Bitmap objBitmap = new Bitmap(1, 1);
+            int Width = 0;
+            int Height = 0;
+            //formateamos la fuente (tipo de letra, tamaño) 
+            Font objFont = new Font("I2OF5TXT", 72,
+                System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Pixel);
+            //creamos un objeto Graphics a partir del Bitmap 
+            Graphics objGraphics = Graphics.FromImage(objBitmap);
+
+            //establecemos el tamaño según la longitud del texto 
+            Width = (int)objGraphics.MeasureString(p_codigo, objFont).Width+10;
+            Height = (int)objGraphics.MeasureString(p_codigo, objFont).Height;
+            objBitmap = new Bitmap(objBitmap, new Size(Width, Height));
+
+            objGraphics = Graphics.FromImage(objBitmap);
+
+            objGraphics.SmoothingMode =
+                System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            objGraphics.CompositingQuality =
+                System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+            objGraphics.InterpolationMode =
+                System.Drawing.Drawing2D.InterpolationMode.High;
+            objGraphics.TextRenderingHint =
+                System.Drawing.Text.TextRenderingHint.AntiAlias;
+            objGraphics.DrawString(p_codigo, objFont,
+                new SolidBrush(Color.Black), 0, 0);
+            //objGraphics.PageScale = (float)0.70;
+            objGraphics.Flush();
+            string directorio = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;//"C:\\Users\\lopejmar\\Desktop\\RelProy\\barcode.gif";
+            directorio = directorio + @"\Vista\Resources\barcode.jpg";
+            objBitmap.Save(directorio);
             
-
-
-            return cStart+i2of5+cStop ;
+           /* Bitmap imagen = new Bitmap(@"C:\Users\lopejmar\Desktop\imagen.jpg");
+            Graphics g = Graphics.FromImage(imagen);
+            g.DrawString(p_codigo, new Font("I2OF5TXT", 22, GraphicsUnit.Pixel), new SolidBrush(Color.Black), 0, 0);
+            string directorio = "C:\\Users\\lopejmar\\Desktop\\nuevaimagen.jpg";
+            imagen.Save(directorio);*/
+            return directorio;
         }
     }
 }
