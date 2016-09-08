@@ -125,6 +125,13 @@ namespace Vista
             this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("inicioActividades", "01/01/1982"));
             this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("ingresosBrutos", "901-992160-0"));
             
+            //this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("nombreEmpresa", Controladores.ControladorParametrosGenerales.nombreEmpresa));
+            //this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("direccionEmpresa", Controladores.ControladorParametrosGenerales.direccionEmpresa));
+            //this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("telefonoEmpresa", Controladores.ControladorParametrosGenerales.telefonoEmpresa));
+            //this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("razonSocial", Controladores.ControladorParametrosGenerales.razonSocial));
+            //this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("inicioActividades", Controladores.ControladorParametrosGenerales.inicioActividades.ToShortDateString()));
+            //this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("ingresosBrutos", Controladores.ControladorParametrosGenerales.ingresosBrutos));
+            
 
             this.contenedorComprobante.LocalReport.Refresh();
             

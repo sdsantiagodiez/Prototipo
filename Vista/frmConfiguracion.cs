@@ -63,14 +63,23 @@ namespace Vista
                 this.txtBoxCarpetaPedidosProveedores.ReadOnly = 
                 this.txtBoxCarpetaReportes.ReadOnly = 
                 this.txtBoxCertificado.ReadOnly = true;
-
+            //tabAlmacenamiento
             this.txtBoxCarpetaPedidosClientes.Text = Properties.Settings.Default.carpetaPedidosClientes;
             this.txtBoxCarpetaPedidosProveedores.Text = Properties.Settings.Default.carpetaPedidosProveedores;
             this.txtBoxCarpetaReportes.Text = Properties.Settings.Default.carpetaReportes;
-            
+            //tabFacturacionElectronica
             this.txtBoxCertificado.Text = Controladores.ControladorAFIP.CertificadoPath;
             this.txtBoxContrasenia.Text = Controladores.ControladorAFIP.PasswordCertificado;
             this.txtBoxCUIT.Text = Controladores.ControladorAFIP.CuitEmisor;
+            //tabDatosImpositivos
+            this.txtBoxIngresosBrutos.Text = Controladores.ControladorParametrosGenerales.ingresosBrutos;
+            this.txtBoxRazonSocial.Text = Controladores.ControladorParametrosGenerales.razonSocial;
+            this.dtpInicioActividades.Value = Controladores.ControladorParametrosGenerales.inicioActividades; 
+            //tabComprobantesEInformes
+            this.txtBoxLogotipoPath.Text = Controladores.ControladorParametrosGenerales.pathLogotipo;
+            this.txtBoxNombreEmpresa.Text = Controladores.ControladorParametrosGenerales.nombreEmpresa;
+            this.txtBoxDireccionEmpresa.Text = Controladores.ControladorParametrosGenerales.direccionEmpresa;
+            this.txtBoxTelefonoEmpresa.Text = Controladores.ControladorParametrosGenerales.telefonoEmpresa;
 
         }
         private void inicializarButtons()
@@ -132,10 +141,23 @@ namespace Vista
                 return null;
             }
         }
+        #region Controles -> Modelos
 
+        public void cargaControlesAModelos()
+        {
+            Controladores.ControladorParametrosGenerales.direccionEmpresa = txtBoxDireccionEmpresa.Text;
+            Controladores.ControladorParametrosGenerales.ingresosBrutos = txtBoxIngresosBrutos.Text;
+            Controladores.ControladorParametrosGenerales.inicioActividades = dtpInicioActividades.Value;
+            Controladores.ControladorParametrosGenerales.nombreEmpresa = txtBoxNombreEmpresa.Text;
+            Controladores.ControladorParametrosGenerales.pathLogotipo = txtBoxLogotipoPath.Text;
+            Controladores.ControladorParametrosGenerales.razonSocial = txtBoxRazonSocial.Text;
+            Controladores.ControladorParametrosGenerales.telefonoEmpresa = txtBoxTelefonoEmpresa.Text;
+        }
+
+        #endregion 
         #endregion
 
-        
+
         private void btnCertificado_Click(object sender, EventArgs e)
         {
             string filePath = this.getFilePath("Certificado|*.pfx");
@@ -173,6 +195,16 @@ namespace Vista
                 {
                     e.Cancel = true;
                 }
+            }
+            //this.cargaControlesAModelos();
+        }
+
+        private void btnLogotipoPath_Click(object sender, EventArgs e)
+        {
+            string filePath = this.getFilePath("JPG (*.jpg)|*.jpg");
+            if (!string.IsNullOrWhiteSpace(filePath))
+            {
+                this.txtBoxLogotipoPath.Text = filePath;
             }
         }
     }

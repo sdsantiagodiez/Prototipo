@@ -345,7 +345,7 @@ namespace LibreriaClasesCompartidas
                 /// Ordenado por sumatoria de montos totales y agrupado por cliente
                 /// </summary>
                 [System.ComponentModel.Description("Monto acumulado de pedidos por cliente")]
-                MontoTotalDePedidos = 2
+                MontoTotalDePedidos = 2,
                 ///// <summary>
                 ///// Pedidos por usuario en un período determinado
                 ///// </summary>

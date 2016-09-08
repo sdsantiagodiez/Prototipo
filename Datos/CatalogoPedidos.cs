@@ -631,7 +631,7 @@ namespace Datos
             else
             { return this.getDatosReporte(comando, p_periodos, p_entidad); }
 
-            return this.getDatosReporte(comando, p_periodos, p_entidad);
+            //return this.getDatosReporte(comando, p_periodos, p_entidad);
         }
         private string getQueryReportePedidos(Constantes.Reportes.Proveedores p_reporte, ModeloEntidad p_entidad, int p_cantidad)
         {

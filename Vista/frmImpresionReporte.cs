@@ -119,9 +119,10 @@ namespace Vista
                 case Constantes.Reportes.Clientes.MontoTotalDePedidos:
                     rdlcFile = "Reportes.VentasEntreFechas.rdlc";
                     break;
-                //case Constantes.Reportes.Clientes.PedidosMasElevados:
-                //    //rdlcFile = "Reportes.PedidoMasElevado.rdlc";  //NO CREadO
-                //    break;
+                case Constantes.Reportes.Clientes.PedidosPorUsuario:
+                    rdlcFile = "Reportes.VentasEntreFechasxUsuario.rdlc";
+                    break;
+                
             }
 
             this.loadReportDefinition(rdlcFile);
@@ -137,9 +138,6 @@ namespace Vista
                 case Constantes.Reportes.Proveedores.MontoTotalDePedidos:
                     rdlcFile = "Reportes.PedidosEntreFechas.rdlc";
 					break;
-                case Constantes.Reportes.Clientes.PedidosPorUsuario:
-                    rdlcFile = "Reportes.VentasEntreFechasxUsuario.rdlc";
-                    break;
                 //case Constantes.Reportes.Proveedores.PedidosMasElevados:
                 //    //rdlcFile = "Reportes.PedidoMasElevado.rdlc";    //NO CREADO
                     //break;
@@ -186,8 +184,12 @@ namespace Vista
                     this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsEncabezadoReporte", ModeloReporteEncabezadoBindingSource));
                     this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsDetalleReporte", ModeloReportePedidoEntreFechasBindingSource));
                     break;
-                //case Constantes.Reportes.Clientes.PedidosMasElevados:
-                //    break;
+                case Constantes.Reportes.Clientes.PedidosPorUsuario:
+                    ModeloReporteEncabezadoBindingSource.DataSource = p_encabezado;
+                    ModeloReportePedidoEntreFechasBindingSource.DataSource = p_encabezado.pedidos;
+                    this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsEncabezadoReporte", ModeloReporteEncabezadoBindingSource));
+                    this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsDetalleReporte", ModeloReportePedidoEntreFechasBindingSource));
+                    break;
                 default :
                     break;
             }
@@ -200,12 +202,6 @@ namespace Vista
                 case Constantes.Reportes.Proveedores.MontoTotalDePedidos:
                     ModeloReporteEncabezadoBindingSource.DataSource = p_encabezado;
                     ModeloReportePedidoEntreFechasBindingSource.DataSource = p_encabezado.detallePedido;
-                    this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsEncabezadoReporte", ModeloReporteEncabezadoBindingSource));
-                    this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsDetalleReporte", ModeloReportePedidoEntreFechasBindingSource));
-                    break;
-                case Constantes.Reportes.Clientes.PedidosPorUsuario:
-                    ModeloReporteEncabezadoBindingSource.DataSource = p_encabezado;
-                    ModeloReportePedidoEntreFechasBindingSource.DataSource = p_encabezado.pedidos;
                     this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsEncabezadoReporte", ModeloReporteEncabezadoBindingSource));
                     this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsDetalleReporte", ModeloReportePedidoEntreFechasBindingSource));
                     break;
@@ -237,6 +233,9 @@ namespace Vista
             this.ReporteBase.LocalReport.SetParameters(new ReportParameter("nombreEmpresa", "Mundo Renault"));
             this.ReporteBase.LocalReport.SetParameters(new ReportParameter("direccionEmpresa", "Av. Pellegrini 3151 - Rosario, Santa Fe"));
             this.ReporteBase.LocalReport.SetParameters(new ReportParameter("telefonoEmpresa", "Tel. 0341- 4353535"));
+            //this.ReporteBase.LocalReport.SetParameters(new ReportParameter("nombreEmpresa", Controladores.ControladorParametrosGenerales.nombreEmpresa));
+            //this.ReporteBase.LocalReport.SetParameters(new ReportParameter("direccionEmpresa", Controladores.ControladorParametrosGenerales.direccionEmpresa));
+            //this.ReporteBase.LocalReport.SetParameters(new ReportParameter("telefonoEmpresa", Controladores.ControladorParametrosGenerales.telefonoEmpresa));
         }
         public void SafeInvoke(Control uiElement, Action updater)
         {
