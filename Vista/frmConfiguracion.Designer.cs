@@ -30,6 +30,25 @@
         {
             this.pnlBase = new System.Windows.Forms.Panel();
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
+            this.grpBoxImpositiva = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblRazonSocial = new MaterialSkin.Controls.MaterialLabel();
+            this.lblIngresosBrutos = new MaterialSkin.Controls.MaterialLabel();
+            this.txtBoxIngresosBrutos = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxRazonSocial = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxInicioActividades = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.lblInicioActividades = new MaterialSkin.Controls.MaterialLabel();
+            this.grpBoxComprobantesInformes = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblTelefonoEmpresa = new MaterialSkin.Controls.MaterialLabel();
+            this.btnLogotipoPath = new System.Windows.Forms.Button();
+            this.txtBoxLogotipoPath = new System.Windows.Forms.TextBox();
+            this.lblLogotipoPath = new MaterialSkin.Controls.MaterialLabel();
+            this.lblNombreEmpresa = new MaterialSkin.Controls.MaterialLabel();
+            this.lblDireccionEmpresa = new MaterialSkin.Controls.MaterialLabel();
+            this.txtBoxNombreEmpresa = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxDireccionEmpresa = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtBoxTelefonoEmpresa = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.grpBoxDestinoAlmacenamiento = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelAlmacenamientoArchivos = new System.Windows.Forms.TableLayoutPanel();
             this.txtBoxCarpetaReportes = new System.Windows.Forms.TextBox();
@@ -52,6 +71,10 @@
             this.txtBoxCUIT = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.pnlBase.SuspendLayout();
             this.tblLayoutPanelPrincipal.SuspendLayout();
+            this.grpBoxImpositiva.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.grpBoxComprobantesInformes.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.grpBoxDestinoAlmacenamiento.SuspendLayout();
             this.tblLayoutPanelAlmacenamientoArchivos.SuspendLayout();
             this.grpBoxFacturacionElectronica.SuspendLayout();
@@ -69,10 +92,14 @@
             // 
             // tblLayoutPanelPrincipal
             // 
-            this.tblLayoutPanelPrincipal.ColumnCount = 3;
+            this.tblLayoutPanelPrincipal.ColumnCount = 5;
             this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 450F));
+            this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 480F));
             this.tblLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxImpositiva, 3, 1);
+            this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxComprobantesInformes, 3, 0);
             this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxDestinoAlmacenamiento, 1, 0);
             this.tblLayoutPanelPrincipal.Controls.Add(this.grpBoxFacturacionElectronica, 1, 1);
             this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(15, 12);
@@ -82,15 +109,311 @@
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 203F));
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 202F));
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(870, 558);
             this.tblLayoutPanelPrincipal.TabIndex = 0;
+            // 
+            // grpBoxImpositiva
+            // 
+            this.grpBoxImpositiva.Controls.Add(this.tableLayoutPanel2);
+            this.grpBoxImpositiva.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpBoxImpositiva.Location = new System.Drawing.Point(437, 205);
+            this.grpBoxImpositiva.Margin = new System.Windows.Forms.Padding(2);
+            this.grpBoxImpositiva.Name = "grpBoxImpositiva";
+            this.grpBoxImpositiva.Padding = new System.Windows.Forms.Padding(2);
+            this.grpBoxImpositiva.Size = new System.Drawing.Size(476, 198);
+            this.grpBoxImpositiva.TabIndex = 6;
+            this.grpBoxImpositiva.TabStop = false;
+            this.grpBoxImpositiva.Text = "Datos Impositivos";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel2.Controls.Add(this.lblRazonSocial, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblIngresosBrutos, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtBoxIngresosBrutos, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtBoxRazonSocial, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtBoxInicioActividades, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.lblInicioActividades, 0, 2);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 15);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(472, 181);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // lblRazonSocial
+            // 
+            this.lblRazonSocial.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblRazonSocial.AutoSize = true;
+            this.lblRazonSocial.Depth = 0;
+            this.lblRazonSocial.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblRazonSocial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblRazonSocial.Location = new System.Drawing.Point(38, 12);
+            this.lblRazonSocial.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRazonSocial.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblRazonSocial.Name = "lblRazonSocial";
+            this.lblRazonSocial.Size = new System.Drawing.Size(55, 38);
+            this.lblRazonSocial.TabIndex = 0;
+            this.lblRazonSocial.Text = "Razon Social:";
+            // 
+            // lblIngresosBrutos
+            // 
+            this.lblIngresosBrutos.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblIngresosBrutos.AutoSize = true;
+            this.lblIngresosBrutos.Depth = 0;
+            this.lblIngresosBrutos.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblIngresosBrutos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblIngresosBrutos.Location = new System.Drawing.Point(12, 85);
+            this.lblIngresosBrutos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblIngresosBrutos.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblIngresosBrutos.Name = "lblIngresosBrutos";
+            this.lblIngresosBrutos.Size = new System.Drawing.Size(81, 19);
+            this.lblIngresosBrutos.TabIndex = 2;
+            this.lblIngresosBrutos.Text = "Ing.Brutos:";
+            // 
+            // txtBoxIngresosBrutos
+            // 
+            this.txtBoxIngresosBrutos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxIngresosBrutos.Depth = 0;
+            this.txtBoxIngresosBrutos.Hint = "";
+            this.txtBoxIngresosBrutos.Location = new System.Drawing.Point(98, 83);
+            this.txtBoxIngresosBrutos.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxIngresosBrutos.Name = "txtBoxIngresosBrutos";
+            this.txtBoxIngresosBrutos.PasswordChar = '\0';
+            this.txtBoxIngresosBrutos.SelectedText = "";
+            this.txtBoxIngresosBrutos.SelectionLength = 0;
+            this.txtBoxIngresosBrutos.SelectionStart = 0;
+            this.txtBoxIngresosBrutos.Size = new System.Drawing.Size(332, 23);
+            this.txtBoxIngresosBrutos.TabIndex = 13;
+            this.txtBoxIngresosBrutos.UseSystemPasswordChar = false;
+            // 
+            // txtBoxRazonSocial
+            // 
+            this.txtBoxRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxRazonSocial.Depth = 0;
+            this.txtBoxRazonSocial.Hint = "";
+            this.txtBoxRazonSocial.Location = new System.Drawing.Point(98, 20);
+            this.txtBoxRazonSocial.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
+            this.txtBoxRazonSocial.PasswordChar = '\0';
+            this.txtBoxRazonSocial.SelectedText = "";
+            this.txtBoxRazonSocial.SelectionLength = 0;
+            this.txtBoxRazonSocial.SelectionStart = 0;
+            this.txtBoxRazonSocial.Size = new System.Drawing.Size(332, 23);
+            this.txtBoxRazonSocial.TabIndex = 12;
+            this.txtBoxRazonSocial.UseSystemPasswordChar = false;
+            // 
+            // txtBoxInicioActividades
+            // 
+            this.txtBoxInicioActividades.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxInicioActividades.Depth = 0;
+            this.txtBoxInicioActividades.Hint = "";
+            this.txtBoxInicioActividades.Location = new System.Drawing.Point(98, 142);
+            this.txtBoxInicioActividades.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxInicioActividades.Name = "txtBoxInicioActividades";
+            this.txtBoxInicioActividades.PasswordChar = '\0';
+            this.txtBoxInicioActividades.SelectedText = "";
+            this.txtBoxInicioActividades.SelectionLength = 0;
+            this.txtBoxInicioActividades.SelectionStart = 0;
+            this.txtBoxInicioActividades.Size = new System.Drawing.Size(332, 23);
+            this.txtBoxInicioActividades.TabIndex = 14;
+            this.txtBoxInicioActividades.UseSystemPasswordChar = false;
+            // 
+            // lblInicioActividades
+            // 
+            this.lblInicioActividades.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblInicioActividades.AutoSize = true;
+            this.lblInicioActividades.Depth = 0;
+            this.lblInicioActividades.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblInicioActividades.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblInicioActividades.Location = new System.Drawing.Point(2, 134);
+            this.lblInicioActividades.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblInicioActividades.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblInicioActividades.Name = "lblInicioActividades";
+            this.lblInicioActividades.Size = new System.Drawing.Size(91, 38);
+            this.lblInicioActividades.TabIndex = 1;
+            this.lblInicioActividades.Text = "Inicio Actividades:";
+            // 
+            // grpBoxComprobantesInformes
+            // 
+            this.grpBoxComprobantesInformes.Controls.Add(this.tableLayoutPanel1);
+            this.grpBoxComprobantesInformes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpBoxComprobantesInformes.Location = new System.Drawing.Point(437, 2);
+            this.grpBoxComprobantesInformes.Margin = new System.Windows.Forms.Padding(2);
+            this.grpBoxComprobantesInformes.Name = "grpBoxComprobantesInformes";
+            this.grpBoxComprobantesInformes.Padding = new System.Windows.Forms.Padding(2);
+            this.grpBoxComprobantesInformes.Size = new System.Drawing.Size(476, 199);
+            this.grpBoxComprobantesInformes.TabIndex = 5;
+            this.grpBoxComprobantesInformes.TabStop = false;
+            this.grpBoxComprobantesInformes.Text = "Comprobantes e Informes";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel1.Controls.Add(this.lblTelefonoEmpresa, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnLogotipoPath, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtBoxLogotipoPath, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblLogotipoPath, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblNombreEmpresa, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblDireccionEmpresa, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtBoxNombreEmpresa, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txtBoxDireccionEmpresa, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtBoxTelefonoEmpresa, 1, 3);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 15);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(472, 182);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // lblTelefonoEmpresa
+            // 
+            this.lblTelefonoEmpresa.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblTelefonoEmpresa.AutoSize = true;
+            this.lblTelefonoEmpresa.Depth = 0;
+            this.lblTelefonoEmpresa.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblTelefonoEmpresa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblTelefonoEmpresa.Location = new System.Drawing.Point(20, 139);
+            this.lblTelefonoEmpresa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTelefonoEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblTelefonoEmpresa.Name = "lblTelefonoEmpresa";
+            this.lblTelefonoEmpresa.Size = new System.Drawing.Size(73, 38);
+            this.lblTelefonoEmpresa.TabIndex = 14;
+            this.lblTelefonoEmpresa.Text = "Telefono Empresa:";
+            // 
+            // btnLogotipoPath
+            // 
+            this.btnLogotipoPath.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnLogotipoPath.Location = new System.Drawing.Point(435, 13);
+            this.btnLogotipoPath.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLogotipoPath.Name = "btnLogotipoPath";
+            this.btnLogotipoPath.Size = new System.Drawing.Size(34, 19);
+            this.btnLogotipoPath.TabIndex = 9;
+            this.btnLogotipoPath.Text = "...";
+            this.btnLogotipoPath.UseVisualStyleBackColor = true;
+            // 
+            // txtBoxLogotipoPath
+            // 
+            this.txtBoxLogotipoPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxLogotipoPath.Location = new System.Drawing.Point(97, 12);
+            this.txtBoxLogotipoPath.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBoxLogotipoPath.Name = "txtBoxLogotipoPath";
+            this.txtBoxLogotipoPath.Size = new System.Drawing.Size(334, 20);
+            this.txtBoxLogotipoPath.TabIndex = 8;
+            // 
+            // lblLogotipoPath
+            // 
+            this.lblLogotipoPath.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblLogotipoPath.AutoSize = true;
+            this.lblLogotipoPath.Depth = 0;
+            this.lblLogotipoPath.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblLogotipoPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblLogotipoPath.Location = new System.Drawing.Point(20, 13);
+            this.lblLogotipoPath.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLogotipoPath.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblLogotipoPath.Name = "lblLogotipoPath";
+            this.lblLogotipoPath.Size = new System.Drawing.Size(73, 19);
+            this.lblLogotipoPath.TabIndex = 0;
+            this.lblLogotipoPath.Text = "Logotipo:";
+            // 
+            // lblNombreEmpresa
+            // 
+            this.lblNombreEmpresa.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblNombreEmpresa.AutoSize = true;
+            this.lblNombreEmpresa.Depth = 0;
+            this.lblNombreEmpresa.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblNombreEmpresa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblNombreEmpresa.Location = new System.Drawing.Point(22, 48);
+            this.lblNombreEmpresa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNombreEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblNombreEmpresa.Name = "lblNombreEmpresa";
+            this.lblNombreEmpresa.Size = new System.Drawing.Size(71, 38);
+            this.lblNombreEmpresa.TabIndex = 2;
+            this.lblNombreEmpresa.Text = "Nombre empresa:";
+            // 
+            // lblDireccionEmpresa
+            // 
+            this.lblDireccionEmpresa.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblDireccionEmpresa.AutoSize = true;
+            this.lblDireccionEmpresa.Depth = 0;
+            this.lblDireccionEmpresa.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblDireccionEmpresa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblDireccionEmpresa.Location = new System.Drawing.Point(16, 93);
+            this.lblDireccionEmpresa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDireccionEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblDireccionEmpresa.Name = "lblDireccionEmpresa";
+            this.lblDireccionEmpresa.Size = new System.Drawing.Size(77, 38);
+            this.lblDireccionEmpresa.TabIndex = 1;
+            this.lblDireccionEmpresa.Text = "Direccion Empresa:";
+            // 
+            // txtBoxNombreEmpresa
+            // 
+            this.txtBoxNombreEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxNombreEmpresa.Depth = 0;
+            this.txtBoxNombreEmpresa.Hint = "";
+            this.txtBoxNombreEmpresa.Location = new System.Drawing.Point(98, 56);
+            this.txtBoxNombreEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxNombreEmpresa.Name = "txtBoxNombreEmpresa";
+            this.txtBoxNombreEmpresa.PasswordChar = '\0';
+            this.txtBoxNombreEmpresa.SelectedText = "";
+            this.txtBoxNombreEmpresa.SelectionLength = 0;
+            this.txtBoxNombreEmpresa.SelectionStart = 0;
+            this.txtBoxNombreEmpresa.Size = new System.Drawing.Size(332, 23);
+            this.txtBoxNombreEmpresa.TabIndex = 13;
+            this.txtBoxNombreEmpresa.UseSystemPasswordChar = false;
+            // 
+            // txtBoxDireccionEmpresa
+            // 
+            this.txtBoxDireccionEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxDireccionEmpresa.Depth = 0;
+            this.txtBoxDireccionEmpresa.Hint = "";
+            this.txtBoxDireccionEmpresa.Location = new System.Drawing.Point(98, 101);
+            this.txtBoxDireccionEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxDireccionEmpresa.Name = "txtBoxDireccionEmpresa";
+            this.txtBoxDireccionEmpresa.PasswordChar = '\0';
+            this.txtBoxDireccionEmpresa.SelectedText = "";
+            this.txtBoxDireccionEmpresa.SelectionLength = 0;
+            this.txtBoxDireccionEmpresa.SelectionStart = 0;
+            this.txtBoxDireccionEmpresa.Size = new System.Drawing.Size(332, 23);
+            this.txtBoxDireccionEmpresa.TabIndex = 12;
+            this.txtBoxDireccionEmpresa.UseSystemPasswordChar = false;
+            // 
+            // txtBoxTelefonoEmpresa
+            // 
+            this.txtBoxTelefonoEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxTelefonoEmpresa.Depth = 0;
+            this.txtBoxTelefonoEmpresa.Hint = "";
+            this.txtBoxTelefonoEmpresa.Location = new System.Drawing.Point(98, 147);
+            this.txtBoxTelefonoEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtBoxTelefonoEmpresa.Name = "txtBoxTelefonoEmpresa";
+            this.txtBoxTelefonoEmpresa.PasswordChar = '\0';
+            this.txtBoxTelefonoEmpresa.SelectedText = "";
+            this.txtBoxTelefonoEmpresa.SelectionLength = 0;
+            this.txtBoxTelefonoEmpresa.SelectionStart = 0;
+            this.txtBoxTelefonoEmpresa.Size = new System.Drawing.Size(332, 23);
+            this.txtBoxTelefonoEmpresa.TabIndex = 15;
+            this.txtBoxTelefonoEmpresa.UseSystemPasswordChar = false;
             // 
             // grpBoxDestinoAlmacenamiento
             // 
             this.grpBoxDestinoAlmacenamiento.Controls.Add(this.tblLayoutPanelAlmacenamientoArchivos);
             this.grpBoxDestinoAlmacenamiento.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpBoxDestinoAlmacenamiento.Location = new System.Drawing.Point(212, 2);
+            this.grpBoxDestinoAlmacenamiento.Location = new System.Drawing.Point(-43, 2);
             this.grpBoxDestinoAlmacenamiento.Margin = new System.Windows.Forms.Padding(2);
             this.grpBoxDestinoAlmacenamiento.Name = "grpBoxDestinoAlmacenamiento";
             this.grpBoxDestinoAlmacenamiento.Padding = new System.Windows.Forms.Padding(2);
@@ -234,7 +557,7 @@
             // 
             this.grpBoxFacturacionElectronica.Controls.Add(this.tblLayoutPanelFacturacionElectronica);
             this.grpBoxFacturacionElectronica.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpBoxFacturacionElectronica.Location = new System.Drawing.Point(212, 205);
+            this.grpBoxFacturacionElectronica.Location = new System.Drawing.Point(-43, 205);
             this.grpBoxFacturacionElectronica.Margin = new System.Windows.Forms.Padding(2);
             this.grpBoxFacturacionElectronica.Name = "grpBoxFacturacionElectronica";
             this.grpBoxFacturacionElectronica.Padding = new System.Windows.Forms.Padding(2);
@@ -366,18 +689,24 @@
             this.txtBoxCUIT.TabIndex = 12;
             this.txtBoxCUIT.UseSystemPasswordChar = false;
             // 
-            // frmOpciones
+            // frmConfiguracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(943, 634);
             this.Controls.Add(this.pnlBase);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "frmOpciones";
+            this.Name = "frmConfiguracion";
             this.Text = "frmOpciones";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmOpciones_FormClosing);
             this.pnlBase.ResumeLayout(false);
             this.tblLayoutPanelPrincipal.ResumeLayout(false);
+            this.grpBoxImpositiva.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.grpBoxComprobantesInformes.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.grpBoxDestinoAlmacenamiento.ResumeLayout(false);
             this.tblLayoutPanelAlmacenamientoArchivos.ResumeLayout(false);
             this.tblLayoutPanelAlmacenamientoArchivos.PerformLayout();
@@ -412,5 +741,24 @@
         private MaterialSkin.Controls.MaterialLabel lblCUIT;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxCUIT;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxContrasenia;
+        private System.Windows.Forms.GroupBox grpBoxImpositiva;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private MaterialSkin.Controls.MaterialLabel lblRazonSocial;
+        private MaterialSkin.Controls.MaterialLabel lblIngresosBrutos;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxIngresosBrutos;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxRazonSocial;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxInicioActividades;
+        private MaterialSkin.Controls.MaterialLabel lblInicioActividades;
+        private System.Windows.Forms.GroupBox grpBoxComprobantesInformes;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private MaterialSkin.Controls.MaterialLabel lblTelefonoEmpresa;
+        private System.Windows.Forms.Button btnLogotipoPath;
+        private System.Windows.Forms.TextBox txtBoxLogotipoPath;
+        private MaterialSkin.Controls.MaterialLabel lblLogotipoPath;
+        private MaterialSkin.Controls.MaterialLabel lblNombreEmpresa;
+        private MaterialSkin.Controls.MaterialLabel lblDireccionEmpresa;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxNombreEmpresa;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxDireccionEmpresa;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxTelefonoEmpresa;
     }
 }

@@ -531,6 +531,45 @@ namespace Datos
 
             return lcl_mod_ReporteEncabezado;
         }
+		private ModeloReporteEncabezado getDatosReporteUsuario(SqlCommand comando, List<DateTime> p_periodos)
+        { 
+        comando.Parameters.Add(this.instanciarParametro(p_periodos[0].Date, "@fecha_desde"));
+            comando.Parameters.Add(this.instanciarParametro(p_periodos[1].Date, "@fecha_hasta"));
+            comando.Connection.Open();
+            SqlDataReader drPedidosEntreFechas = comando.ExecuteReader();
+
+            ModeloReporteEncabezado lcl_mod_ReporteEncabezado = new ModeloReporteEncabezado()
+            {
+                FechaDesde = p_periodos[0],
+                FechaHasta = p_periodos[1],
+                PersonaDesde = "",
+                PersonaHasta = "",
+                FechaInforme = DateTime.Today
+            };
+
+            ModeloPedido lcl_mod_detalle = new ModeloPedido();
+            while (drPedidosEntreFechas.Read())
+            {
+                lcl_mod_detalle = new ModeloPedido();
+
+                lcl_mod_detalle.usuarioGenerador = (string)drPedidosEntreFechas["nombre_usuario"];
+                lcl_mod_detalle.numeroComprobante = (int)drPedidosEntreFechas["numero_comprobante"];
+                lcl_mod_detalle.descuentos.descuento_monto_1 = (decimal)drPedidosEntreFechas["descuento_1_monto"];
+                lcl_mod_detalle.descuentos.descuento_monto_2 = (decimal)drPedidosEntreFechas["descuento_2_monto"];
+                lcl_mod_detalle.descuentos.descuento_total_monto = lcl_mod_detalle.descuentos.descuento_monto_1 + lcl_mod_detalle.descuentos.descuento_monto_2;
+                lcl_mod_detalle.montoTotal = (decimal)drPedidosEntreFechas["monto_total"];
+
+                lcl_mod_ReporteEncabezado.pedidos.Add(lcl_mod_detalle);
+                lcl_mod_ReporteEncabezado.MontoTotal += lcl_mod_detalle.montoTotal;
+            }
+            drPedidosEntreFechas.Close();
+            
+            comando.Connection.Dispose();
+
+            return lcl_mod_ReporteEncabezado;
+        
+        }
+		
         private string getQueryReportePedidos(Constantes.Reportes.Clientes p_reporte, ModeloEntidad p_entidad, int p_cantidad)
         {
             string entidadQuery = "";
@@ -571,8 +610,12 @@ namespace Datos
                 case Constantes.Reportes.Clientes.MontoTotalDePedidos:
                     query += " ORDER BY " + montoPedidos + "," + frecuenciaPedidos;
                     break;
-                //case Constantes.Reportes.Clientes.PedidosMasElevados:
-                //    break;
+                case Constantes.Reportes.Clientes.PedidosPorUsuario:
+                    query =
+                "SELECT nombre_usuario, Numero_comprobante, monto_total, descuento_1_monto,descuento_2_monto " +
+                "FROM Pedidos INNER JOIN Pedidos_Personas ON Pedidos_Personas.numero_pedido= Pedidos.numero_pedido " +
+                "WHERE Pedidos.fecha BETWEEN  @fecha_desde AND @fecha_hasta ";
+                    break;
                 default:
                     break;
             }
@@ -583,6 +626,10 @@ namespace Datos
             SqlCommand comando = Conexion.crearComando();
 
             comando.CommandText = this.getQueryReportePedidos(p_reporte, p_entidad, p_cantidad);
+			if (p_reporte == Constantes.Reportes.Clientes.PedidosPorUsuario)
+            { return this.getDatosReporteUsuario(comando,p_periodos); }
+            else
+            { return this.getDatosReporte(comando, p_periodos, p_entidad); }
 
             return this.getDatosReporte(comando, p_periodos, p_entidad);
         }

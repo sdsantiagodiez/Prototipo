@@ -28,7 +28,7 @@ namespace Modelos
         public List<ModeloReporteDetalle_Pedidos> detallePedido { get; set; }
         public List<ModeloReporteDetalle_Articulos> detalleArticulos { get; set; }
         public List<ModeloReporteDetalle_ArticulosDescuentos> detalleArticulosDescuentos { get; set; }
-        
+        public List<ModeloPedido> pedidos { get; set; }
         public decimal MontoTotal { get; set; }
 
         public ModeloReporteEncabezado()
@@ -36,6 +36,7 @@ namespace Modelos
             detalleArticulos = new List<ModeloReporteDetalle_Articulos>();
             detallePedido = new List<ModeloReporteDetalle_Pedidos>();
             detalleArticulosDescuentos = new List<ModeloReporteDetalle_ArticulosDescuentos>();
+			pedidos = new List<ModeloPedido>();
         }
     }
 

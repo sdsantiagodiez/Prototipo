@@ -136,6 +136,9 @@ namespace Vista
                     break;
                 case Constantes.Reportes.Proveedores.MontoTotalDePedidos:
                     rdlcFile = "Reportes.PedidosEntreFechas.rdlc";
+					break;
+                case Constantes.Reportes.Clientes.PedidosPorUsuario:
+                    rdlcFile = "Reportes.VentasEntreFechasxUsuario.rdlc";
                     break;
                 //case Constantes.Reportes.Proveedores.PedidosMasElevados:
                 //    //rdlcFile = "Reportes.PedidoMasElevado.rdlc";    //NO CREADO
@@ -200,8 +203,12 @@ namespace Vista
                     this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsEncabezadoReporte", ModeloReporteEncabezadoBindingSource));
                     this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsDetalleReporte", ModeloReportePedidoEntreFechasBindingSource));
                     break;
-                //case Constantes.Reportes.Proveedores.PedidosMasElevados:
-                //    break;
+                case Constantes.Reportes.Clientes.PedidosPorUsuario:
+                    ModeloReporteEncabezadoBindingSource.DataSource = p_encabezado;
+                    ModeloReportePedidoEntreFechasBindingSource.DataSource = p_encabezado.pedidos;
+                    this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsEncabezadoReporte", ModeloReporteEncabezadoBindingSource));
+                    this.ReporteBase.LocalReport.DataSources.Add(new ReportDataSource("dsDetalleReporte", ModeloReportePedidoEntreFechasBindingSource));
+                    break;
                 default :
                     break;
             }

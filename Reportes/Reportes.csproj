@@ -79,6 +79,7 @@
     <EmbeddedResource Include="StockInventario.rdlc" />
     <EmbeddedResource Include="Top10Articulos.rdlc" />
     <EmbeddedResource Include="VentasEntreFechas.rdlc" />
+	<EmbeddedResource Include="VentasEntreFechasxUsuario.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

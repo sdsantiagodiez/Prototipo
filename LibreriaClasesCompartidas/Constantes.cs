@@ -347,11 +347,10 @@ namespace LibreriaClasesCompartidas
                 [System.ComponentModel.Description("Monto acumulado de pedidos por cliente")]
                 MontoTotalDePedidos = 2
                 ///// <summary>
-                ///// Pedidos cuyo monto total es el más elevado en un período determinado
-                ///// Ordenado por monto total y NO agrupado por clientes. Lista de pedidos simplemente
+                ///// Pedidos por usuario en un período determinado
                 ///// </summary>
-                //[System.ComponentModel.Description("Pedidos más elevados")]
-                //PedidosMasElevados = 3
+                [System.ComponentModel.Description("Pedidos por usuario")]
+                PedidosPorUsuario = 3
             }
             public enum Proveedores
             {
