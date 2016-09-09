@@ -58,5 +58,104 @@ namespace Controladores.Properties {
                 this["afip_cuitEmisor"] = value;
             }
         }
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string pGeneral_nombreEmpresa
+        {
+            get
+            {
+                return ((string)(this["pGeneral_nombreEmpresa"]));
+            }
+            set
+            {
+                this["pGeneral_nombreEmpresa"] = value;
+            }
+        }
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string pGeneral_direccionEmpresa
+        {
+            get
+            {
+                return ((string)(this["pGeneral_direccionEmpresa"]));
+            }
+            set
+            {
+                this["pGeneral_direccionEmpresa"] = value;
+            }
+        }
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string pGeneral_telefonoEmpresa
+        {
+            get
+            {
+                return ((string)(this["pGeneral_telefonoEmpresa"]));
+            }
+            set
+            {
+                this["pGeneral_telefonoEmpresa"] = value;
+            }
+        }
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string pGeneral_razonSocial
+        {
+            get
+            {
+                return ((string)(this["pGeneral_razonSocial"]));
+            }
+            set
+            {
+                this["pGeneral_razonSocial"] = value;
+            }
+        }
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string pGeneral_ingresosBrutos
+        {
+            get
+            {
+                return ((string)(this["pGeneral_ingresosBrutos"]));
+            }
+            set
+            {
+                this["pGeneral_ingresosBrutos"] = value;
+            }
+        }
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string pGeneral_pathLogotipo
+        {
+            get
+            {
+                return ((string)(this["pGeneral_pathLogotipo"]));
+            }
+            set
+            {
+                this["pGeneral_pathLogotipo"] = value;
+            }
+        }
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string pGeneral_inicioActividades
+        {
+            get
+            {
+                return ((string)(this["pGeneral_inicioActividades"]));
+            }
+            set
+            {
+                this["pGeneral_inicioActividades"] = value;
+            }
+        }
+
     }
 }

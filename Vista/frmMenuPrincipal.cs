@@ -113,6 +113,7 @@ namespace Vista
             }
             this.actualizarColores();
             ControladorAFIP.Iniciar();
+            ControladorParametrosGenerales.Iniciar();
             ModeloPedido.cuitEmisor = ControladorAFIP.CuitEmisor;
         }
         #endregion

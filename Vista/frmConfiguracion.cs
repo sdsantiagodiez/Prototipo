@@ -188,9 +188,9 @@ namespace Vista
             Controladores.ControladorAFIP.CuitEmisor = this.txtBoxCUIT.Text;
             Controladores.ControladorAFIP.PasswordCertificado = this.txtBoxContrasenia.Text;
 
-            if (!Controladores.ControladorAFIP.GuardarCambios())
+            if (!Controladores.ControladorAFIP.GuardarCambios() || !Controladores.ControladorParametrosGenerales.GuardarCambios())
             {
-                if (MessageBox.Show("Los datos ingresados para facturación electrónica no son validos. Si continua, los cambios no se guardarán." + System.Environment.NewLine +
+                if (MessageBox.Show("Los datos ingresados para la configuracion no son validos. Si continua, los cambios no se guardarán." + System.Environment.NewLine +
                     "¿Continuar?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == System.Windows.Forms.DialogResult.No)
                 {
                     e.Cancel = true;
