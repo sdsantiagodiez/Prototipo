@@ -905,8 +905,8 @@
           </Style>
         </Textbox>
         <Image Name="logotype">
-          <Source>Embedded</Source>
-          <Value>mundo_renault</Value>
+          <Source>External</Source>
+          <Value>="file:" &amp; Parameters!pathLogotipo.Value</Value>
           <Sizing>Fit</Sizing>
           <Top>0.28872cm</Top>
           <Left>0.74168cm</Left>
@@ -2081,6 +2081,10 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="ingresosBrutos">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="pathLogotipo">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>

@@ -30,7 +30,7 @@ namespace Controladores
             telefonoEmpresa = Properties.Settings.Default.pGeneral_telefonoEmpresa;
             razonSocial = Properties.Settings.Default.pGeneral_razonSocial;
             ingresosBrutos = Properties.Settings.Default.pGeneral_ingresosBrutos;
-            inicioActividades = DateTime.Parse(Properties.Settings.Default.pGeneral_inicioActividades, cultura, System.Globalization.DateTimeStyles.AssumeLocal);
+            inicioActividades = DateTime.Parse((String.IsNullOrEmpty(Properties.Settings.Default.pGeneral_inicioActividades) != true)?Properties.Settings.Default.pGeneral_inicioActividades:"01/01/2016", cultura, System.Globalization.DateTimeStyles.AssumeLocal);
 
         }
         public static bool Validar()
@@ -63,6 +63,7 @@ namespace Controladores
             Properties.Settings.Default.pGeneral_razonSocial = razonSocial;
             Properties.Settings.Default.pGeneral_ingresosBrutos =ingresosBrutos;
             Properties.Settings.Default.pGeneral_inicioActividades = inicioActividades.ToShortDateString();
+            Properties.Settings.Default.Save();
             
             return true;
         }

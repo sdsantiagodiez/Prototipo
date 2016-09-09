@@ -187,6 +187,7 @@ namespace Vista
         {
             Controladores.ControladorAFIP.CuitEmisor = this.txtBoxCUIT.Text;
             Controladores.ControladorAFIP.PasswordCertificado = this.txtBoxContrasenia.Text;
+            this.cargaControlesAModelos();
 
             if (!Controladores.ControladorAFIP.GuardarCambios() || !Controladores.ControladorParametrosGenerales.GuardarCambios())
             {
@@ -196,7 +197,7 @@ namespace Vista
                     e.Cancel = true;
                 }
             }
-            //this.cargaControlesAModelos();
+            
         }
 
         private void btnLogotipoPath_Click(object sender, EventArgs e)

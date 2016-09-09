@@ -118,25 +118,31 @@ namespace Vista
             this.contenedorComprobante.LocalReport.EnableExternalImages = true;
             //Seteo de Parametros. Se puede armar un metodo que los setee a todos. Tambien los generales se pueden poner al estilo Opciones de Usuario.
             this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("directorioImagen", lcl_mod_encabezadoComprobante.CodigodeBarrasImagen));
-            this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("nombreEmpresa", "Mundo Renault"));
+           /* this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("nombreEmpresa", "Mundo Renault"));
             this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("direccionEmpresa", "Av. Pellegrini 3151 - Rosario, Santa Fe"));
             this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("telefonoEmpresa", "Tel. 0341- 4353535"));
             this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("razonSocial", "Mundo Renault S.A."));
             this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("inicioActividades", "01/01/1982"));
             this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("ingresosBrutos", "901-992160-0"));
-            
-            //this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("nombreEmpresa", Controladores.ControladorParametrosGenerales.nombreEmpresa));
-            //this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("direccionEmpresa", Controladores.ControladorParametrosGenerales.direccionEmpresa));
-            //this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("telefonoEmpresa", Controladores.ControladorParametrosGenerales.telefonoEmpresa));
-            //this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("razonSocial", Controladores.ControladorParametrosGenerales.razonSocial));
-            //this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("inicioActividades", Controladores.ControladorParametrosGenerales.inicioActividades.ToShortDateString()));
-            //this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("ingresosBrutos", Controladores.ControladorParametrosGenerales.ingresosBrutos));
-            
+            */
+            asignaParametrosGenerales();
 
             this.contenedorComprobante.LocalReport.Refresh();
             
             SafeInvoke(this.contenedorComprobante, this.contenedorComprobante.RefreshReport);
            
+        }
+
+        private void asignaParametrosGenerales()
+        {
+            this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("nombreEmpresa", Controladores.ControladorParametrosGenerales.nombreEmpresa));
+            this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("direccionEmpresa", Controladores.ControladorParametrosGenerales.direccionEmpresa));
+            this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("telefonoEmpresa", Controladores.ControladorParametrosGenerales.telefonoEmpresa));
+            this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("razonSocial", Controladores.ControladorParametrosGenerales.razonSocial));
+            this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("inicioActividades", Controladores.ControladorParametrosGenerales.inicioActividades.ToShortDateString()));
+            this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("ingresosBrutos", Controladores.ControladorParametrosGenerales.ingresosBrutos));
+            this.contenedorComprobante.LocalReport.SetParameters(new ReportParameter("pathLogotipo", Controladores.ControladorParametrosGenerales.pathLogotipo));
+
         }
         public  void SafeInvoke(Control uiElement, Action updater)
         {
