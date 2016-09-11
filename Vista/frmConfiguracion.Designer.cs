@@ -512,7 +512,7 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 145F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 175F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.Controls.Add(this.lblTelefonoEmpresa, 0, 3);
@@ -543,13 +543,13 @@
             this.lblTelefonoEmpresa.Depth = 0;
             this.lblTelefonoEmpresa.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblTelefonoEmpresa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblTelefonoEmpresa.Location = new System.Drawing.Point(7, 235);
+            this.lblTelefonoEmpresa.Location = new System.Drawing.Point(9, 235);
             this.lblTelefonoEmpresa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTelefonoEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblTelefonoEmpresa.Name = "lblTelefonoEmpresa";
-            this.lblTelefonoEmpresa.Size = new System.Drawing.Size(136, 19);
+            this.lblTelefonoEmpresa.Size = new System.Drawing.Size(164, 19);
             this.lblTelefonoEmpresa.TabIndex = 14;
-            this.lblTelefonoEmpresa.Text = "Telefono Empresa:";
+            this.lblTelefonoEmpresa.Text = "Teléfono Organización:";
             // 
             // btnLogotipoPath
             // 
@@ -566,10 +566,10 @@
             // txtBoxLogotipoPath
             // 
             this.txtBoxLogotipoPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxLogotipoPath.Location = new System.Drawing.Point(147, 25);
+            this.txtBoxLogotipoPath.Location = new System.Drawing.Point(177, 25);
             this.txtBoxLogotipoPath.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxLogotipoPath.Name = "txtBoxLogotipoPath";
-            this.txtBoxLogotipoPath.Size = new System.Drawing.Size(297, 20);
+            this.txtBoxLogotipoPath.Size = new System.Drawing.Size(267, 20);
             this.txtBoxLogotipoPath.TabIndex = 8;
             // 
             // lblLogotipoPath
@@ -579,7 +579,7 @@
             this.lblLogotipoPath.Depth = 0;
             this.lblLogotipoPath.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblLogotipoPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblLogotipoPath.Location = new System.Drawing.Point(70, 25);
+            this.lblLogotipoPath.Location = new System.Drawing.Point(100, 25);
             this.lblLogotipoPath.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLogotipoPath.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblLogotipoPath.Name = "lblLogotipoPath";
@@ -594,13 +594,13 @@
             this.lblNombreEmpresa.Depth = 0;
             this.lblNombreEmpresa.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblNombreEmpresa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblNombreEmpresa.Location = new System.Drawing.Point(14, 95);
+            this.lblNombreEmpresa.Location = new System.Drawing.Point(25, 95);
             this.lblNombreEmpresa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNombreEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblNombreEmpresa.Name = "lblNombreEmpresa";
-            this.lblNombreEmpresa.Size = new System.Drawing.Size(129, 19);
+            this.lblNombreEmpresa.Size = new System.Drawing.Size(148, 19);
             this.lblNombreEmpresa.TabIndex = 2;
-            this.lblNombreEmpresa.Text = "Nombre empresa:";
+            this.lblNombreEmpresa.Text = "Nombre de Fantasía:";
             // 
             // lblDireccionEmpresa
             // 
@@ -609,27 +609,27 @@
             this.lblDireccionEmpresa.Depth = 0;
             this.lblDireccionEmpresa.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblDireccionEmpresa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblDireccionEmpresa.Location = new System.Drawing.Point(3, 165);
+            this.lblDireccionEmpresa.Location = new System.Drawing.Point(5, 165);
             this.lblDireccionEmpresa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDireccionEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblDireccionEmpresa.Name = "lblDireccionEmpresa";
-            this.lblDireccionEmpresa.Size = new System.Drawing.Size(140, 19);
+            this.lblDireccionEmpresa.Size = new System.Drawing.Size(168, 19);
             this.lblDireccionEmpresa.TabIndex = 1;
-            this.lblDireccionEmpresa.Text = "Direccion Empresa:";
+            this.lblDireccionEmpresa.Text = "Direccion Organización:";
             // 
             // txtBoxNombreEmpresa
             // 
             this.txtBoxNombreEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxNombreEmpresa.Depth = 0;
             this.txtBoxNombreEmpresa.Hint = "";
-            this.txtBoxNombreEmpresa.Location = new System.Drawing.Point(148, 93);
+            this.txtBoxNombreEmpresa.Location = new System.Drawing.Point(178, 93);
             this.txtBoxNombreEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxNombreEmpresa.Name = "txtBoxNombreEmpresa";
             this.txtBoxNombreEmpresa.PasswordChar = '\0';
             this.txtBoxNombreEmpresa.SelectedText = "";
             this.txtBoxNombreEmpresa.SelectionLength = 0;
             this.txtBoxNombreEmpresa.SelectionStart = 0;
-            this.txtBoxNombreEmpresa.Size = new System.Drawing.Size(295, 23);
+            this.txtBoxNombreEmpresa.Size = new System.Drawing.Size(265, 23);
             this.txtBoxNombreEmpresa.TabIndex = 13;
             this.txtBoxNombreEmpresa.UseSystemPasswordChar = false;
             // 
@@ -638,14 +638,14 @@
             this.txtBoxDireccionEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxDireccionEmpresa.Depth = 0;
             this.txtBoxDireccionEmpresa.Hint = "";
-            this.txtBoxDireccionEmpresa.Location = new System.Drawing.Point(148, 163);
+            this.txtBoxDireccionEmpresa.Location = new System.Drawing.Point(178, 163);
             this.txtBoxDireccionEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDireccionEmpresa.Name = "txtBoxDireccionEmpresa";
             this.txtBoxDireccionEmpresa.PasswordChar = '\0';
             this.txtBoxDireccionEmpresa.SelectedText = "";
             this.txtBoxDireccionEmpresa.SelectionLength = 0;
             this.txtBoxDireccionEmpresa.SelectionStart = 0;
-            this.txtBoxDireccionEmpresa.Size = new System.Drawing.Size(295, 23);
+            this.txtBoxDireccionEmpresa.Size = new System.Drawing.Size(265, 23);
             this.txtBoxDireccionEmpresa.TabIndex = 12;
             this.txtBoxDireccionEmpresa.UseSystemPasswordChar = false;
             // 
@@ -654,14 +654,14 @@
             this.txtBoxTelefonoEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxTelefonoEmpresa.Depth = 0;
             this.txtBoxTelefonoEmpresa.Hint = "";
-            this.txtBoxTelefonoEmpresa.Location = new System.Drawing.Point(148, 233);
+            this.txtBoxTelefonoEmpresa.Location = new System.Drawing.Point(178, 233);
             this.txtBoxTelefonoEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxTelefonoEmpresa.Name = "txtBoxTelefonoEmpresa";
             this.txtBoxTelefonoEmpresa.PasswordChar = '\0';
             this.txtBoxTelefonoEmpresa.SelectedText = "";
             this.txtBoxTelefonoEmpresa.SelectionLength = 0;
             this.txtBoxTelefonoEmpresa.SelectionStart = 0;
-            this.txtBoxTelefonoEmpresa.Size = new System.Drawing.Size(295, 23);
+            this.txtBoxTelefonoEmpresa.Size = new System.Drawing.Size(265, 23);
             this.txtBoxTelefonoEmpresa.TabIndex = 15;
             this.txtBoxTelefonoEmpresa.UseSystemPasswordChar = false;
             // 
@@ -756,13 +756,13 @@
             this.lblIngresosBrutos.Depth = 0;
             this.lblIngresosBrutos.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblIngresosBrutos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblIngresosBrutos.Location = new System.Drawing.Point(56, 95);
+            this.lblIngresosBrutos.Location = new System.Drawing.Point(18, 95);
             this.lblIngresosBrutos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblIngresosBrutos.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblIngresosBrutos.Name = "lblIngresosBrutos";
-            this.lblIngresosBrutos.Size = new System.Drawing.Size(81, 19);
+            this.lblIngresosBrutos.Size = new System.Drawing.Size(119, 19);
             this.lblIngresosBrutos.TabIndex = 2;
-            this.lblIngresosBrutos.Text = "Ing.Brutos:";
+            this.lblIngresosBrutos.Text = "Ingresos Brutos:";
             // 
             // txtBoxIngresosBrutos
             // 
