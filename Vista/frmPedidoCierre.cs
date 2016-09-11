@@ -1771,6 +1771,11 @@ namespace Vista
 
         private void txtBoxApellido_Leave(object sender, EventArgs e)
         {
+            if (!String.IsNullOrWhiteSpace(this.txtBoxRazonSocial.Text))
+            {
+                return;
+            }
+
             string lcl_mensaje;
             if (!Validar.validarLongitud(txtBoxApellido.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Apellido, out lcl_mensaje))
             {
@@ -1803,6 +1808,11 @@ namespace Vista
 
         private void txtBoxNombre_Leave(object sender, EventArgs e)
         {
+            if (!String.IsNullOrWhiteSpace(this.txtBoxRazonSocial.Text))
+            {
+                return;
+            }
+
             string lcl_mensaje;
             if (!Validar.validarLongitud(txtBoxNombre.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Nombre, out lcl_mensaje))
             {
@@ -1837,6 +1847,10 @@ namespace Vista
 
         private void txtBoxRazonSocial_Leave(object sender, EventArgs e)
         {
+            if (!String.IsNullOrWhiteSpace(this.txtBoxNombre.Text) || !String.IsNullOrWhiteSpace(this.txtBoxApellido.Text))
+            {
+                return;
+            }
             string lcl_mensaje;
             if (!Validar.validarLongitud(txtBoxRazonSocial.Text, Constantes.ParametrosBusqueda.Entidades.Proveedores.RazonSocial, out lcl_mensaje))
             {

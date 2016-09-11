@@ -41,9 +41,11 @@ namespace Modelos
             this.detalleFactura = new List<ModeloReporteDetalleComprobante>();
             this.CAINumero = p_mod_pedido.CAE;
             //this.CodigodeBarras = LibreriaClasesCompartidas.Transformar.imagenCodigoBarras(p_mod_pedido.getCodigoBarraCAE());
-            this.CodigodeBarras = LibreriaClasesCompartidas.Transformar.codigoBarras(p_mod_pedido.getCodigoBarraCAE().ToCharArray());//Codigo de barra luego del algoritmo
+            string codigoBarrasCAE = p_mod_pedido.getCodigoBarraCAE();
+            this.CodigodeBarras = codigoBarrasCAE == null ? codigoBarrasCAE : LibreriaClasesCompartidas.Transformar.codigoBarras(codigoBarrasCAE.ToCharArray());
+            //this.CodigodeBarras = LibreriaClasesCompartidas.Transformar.codigoBarras(p_mod_pedido.getCodigoBarraCAE().ToCharArray());//Codigo de barra luego del algoritmo
             //this.CodigodeBarrasImagen = LibreriaClasesCompartidas.Interleaved2of5.gifInterleaved(p_mod_pedido.getCodigoBarraCAE());
-            this.CodigodeBarrasImagen = LibreriaClasesCompartidas.Transformar.imagenCodigoBarras(this.CodigodeBarras); 
+            this.CodigodeBarrasImagen = this.CodigodeBarras== null? this.CodigodeBarras: LibreriaClasesCompartidas.Transformar.imagenCodigoBarras(this.CodigodeBarras); 
             this.Alicuota = Convert.ToDecimal(p_mod_pedido.alicuota.iva.porcentaje);
             this.CuitEmisor = ModeloPedido.cuitEmisor;
             this.CentroEmisor = "0001";//p_mod_pedido.numeroComprobanteAFIP;

@@ -582,7 +582,7 @@ namespace Modelos
         public string getCodigoBarraCAE()
         {
             if (this.CAE == null)
-                return "0";//o retornar null. ver como afecta el modelo que lo recibe
+                return null;//o retornar null. ver como afecta el modelo que lo recibe
 
             string fechaVencimientoCAE = this.VencimientoCAE.ToString("yyyyMMdd", System.Globalization.CultureInfo.GetCultureInfo("en-US"));
 
