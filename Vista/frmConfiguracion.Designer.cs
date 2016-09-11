@@ -211,7 +211,7 @@
             // txtBoxCarpetaReportes
             // 
             this.txtBoxCarpetaReportes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCarpetaReportes.Location = new System.Drawing.Point(171, 164);
+            this.txtBoxCarpetaReportes.Location = new System.Drawing.Point(171, 165);
             this.txtBoxCarpetaReportes.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxCarpetaReportes.Name = "txtBoxCarpetaReportes";
             this.txtBoxCarpetaReportes.Size = new System.Drawing.Size(273, 20);
@@ -224,7 +224,7 @@
             this.lblCarpetaReportes.Depth = 0;
             this.lblCarpetaReportes.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblCarpetaReportes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCarpetaReportes.Location = new System.Drawing.Point(94, 164);
+            this.lblCarpetaReportes.Location = new System.Drawing.Point(94, 165);
             this.lblCarpetaReportes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCarpetaReportes.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCarpetaReportes.Name = "lblCarpetaReportes";
@@ -254,7 +254,7 @@
             this.lblCarpetaPedidosClientes.Depth = 0;
             this.lblCarpetaPedidosClientes.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblCarpetaPedidosClientes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCarpetaPedidosClientes.Location = new System.Drawing.Point(21, 94);
+            this.lblCarpetaPedidosClientes.Location = new System.Drawing.Point(21, 95);
             this.lblCarpetaPedidosClientes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCarpetaPedidosClientes.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCarpetaPedidosClientes.Name = "lblCarpetaPedidosClientes";
@@ -276,7 +276,7 @@
             // btnCarpetaPedidosClientes
             // 
             this.btnCarpetaPedidosClientes.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnCarpetaPedidosClientes.Location = new System.Drawing.Point(448, 91);
+            this.btnCarpetaPedidosClientes.Location = new System.Drawing.Point(448, 93);
             this.btnCarpetaPedidosClientes.Margin = new System.Windows.Forms.Padding(2);
             this.btnCarpetaPedidosClientes.Name = "btnCarpetaPedidosClientes";
             this.btnCarpetaPedidosClientes.Size = new System.Drawing.Size(26, 24);
@@ -287,7 +287,7 @@
             // btnCarpetaReportes
             // 
             this.btnCarpetaReportes.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnCarpetaReportes.Location = new System.Drawing.Point(448, 163);
+            this.btnCarpetaReportes.Location = new System.Drawing.Point(448, 164);
             this.btnCarpetaReportes.Margin = new System.Windows.Forms.Padding(2);
             this.btnCarpetaReportes.Name = "btnCarpetaReportes";
             this.btnCarpetaReportes.Size = new System.Drawing.Size(26, 21);
@@ -298,7 +298,7 @@
             // txtBoxCarpetaPedidosProveedores
             // 
             this.txtBoxCarpetaPedidosProveedores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCarpetaPedidosProveedores.Location = new System.Drawing.Point(171, 24);
+            this.txtBoxCarpetaPedidosProveedores.Location = new System.Drawing.Point(171, 25);
             this.txtBoxCarpetaPedidosProveedores.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxCarpetaPedidosProveedores.Name = "txtBoxCarpetaPedidosProveedores";
             this.txtBoxCarpetaPedidosProveedores.Size = new System.Drawing.Size(273, 20);
@@ -307,7 +307,7 @@
             // txtBoxCarpetaPedidosClientes
             // 
             this.txtBoxCarpetaPedidosClientes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCarpetaPedidosClientes.Location = new System.Drawing.Point(171, 93);
+            this.txtBoxCarpetaPedidosClientes.Location = new System.Drawing.Point(171, 95);
             this.txtBoxCarpetaPedidosClientes.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxCarpetaPedidosClientes.Name = "txtBoxCarpetaPedidosClientes";
             this.txtBoxCarpetaPedidosClientes.Size = new System.Drawing.Size(273, 20);
@@ -388,7 +388,7 @@
             // txtBoxCertificado
             // 
             this.txtBoxCertificado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCertificado.Location = new System.Drawing.Point(138, 24);
+            this.txtBoxCertificado.Location = new System.Drawing.Point(138, 25);
             this.txtBoxCertificado.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxCertificado.Name = "txtBoxCertificado";
             this.txtBoxCertificado.Size = new System.Drawing.Size(306, 20);
@@ -416,7 +416,7 @@
             this.lblContrasenia.Depth = 0;
             this.lblContrasenia.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblContrasenia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblContrasenia.Location = new System.Drawing.Point(44, 94);
+            this.lblContrasenia.Location = new System.Drawing.Point(44, 95);
             this.lblContrasenia.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblContrasenia.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblContrasenia.Name = "lblContrasenia";
@@ -431,7 +431,7 @@
             this.lblCUIT.Depth = 0;
             this.lblCUIT.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblCUIT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCUIT.Location = new System.Drawing.Point(88, 164);
+            this.lblCUIT.Location = new System.Drawing.Point(88, 165);
             this.lblCUIT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCUIT.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCUIT.Name = "lblCUIT";
@@ -444,7 +444,7 @@
             this.txtBoxContrasenia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxContrasenia.Depth = 0;
             this.txtBoxContrasenia.Hint = "";
-            this.txtBoxContrasenia.Location = new System.Drawing.Point(139, 92);
+            this.txtBoxContrasenia.Location = new System.Drawing.Point(139, 93);
             this.txtBoxContrasenia.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxContrasenia.Name = "txtBoxContrasenia";
             this.txtBoxContrasenia.PasswordChar = '\0';
@@ -460,7 +460,7 @@
             this.txtBoxCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCUIT.Depth = 0;
             this.txtBoxCUIT.Hint = "";
-            this.txtBoxCUIT.Location = new System.Drawing.Point(139, 162);
+            this.txtBoxCUIT.Location = new System.Drawing.Point(139, 163);
             this.txtBoxCUIT.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCUIT.Name = "txtBoxCUIT";
             this.txtBoxCUIT.PasswordChar = '\0';
@@ -470,6 +470,7 @@
             this.txtBoxCUIT.Size = new System.Drawing.Size(304, 23);
             this.txtBoxCUIT.TabIndex = 12;
             this.txtBoxCUIT.UseSystemPasswordChar = false;
+            this.txtBoxCUIT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxCUIT_KeyPress);
             // 
             // tbPageComprobantesInformes
             // 
@@ -727,7 +728,7 @@
             // 
             this.dtpInicioActividades.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpInicioActividades.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpInicioActividades.Location = new System.Drawing.Point(141, 164);
+            this.dtpInicioActividades.Location = new System.Drawing.Point(141, 165);
             this.dtpInicioActividades.Margin = new System.Windows.Forms.Padding(2, 2, 20, 2);
             this.dtpInicioActividades.Name = "dtpInicioActividades";
             this.dtpInicioActividades.Size = new System.Drawing.Size(315, 20);
@@ -755,7 +756,7 @@
             this.lblIngresosBrutos.Depth = 0;
             this.lblIngresosBrutos.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblIngresosBrutos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblIngresosBrutos.Location = new System.Drawing.Point(56, 94);
+            this.lblIngresosBrutos.Location = new System.Drawing.Point(56, 95);
             this.lblIngresosBrutos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblIngresosBrutos.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblIngresosBrutos.Name = "lblIngresosBrutos";
@@ -768,7 +769,7 @@
             this.txtBoxIngresosBrutos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxIngresosBrutos.Depth = 0;
             this.txtBoxIngresosBrutos.Hint = "";
-            this.txtBoxIngresosBrutos.Location = new System.Drawing.Point(142, 92);
+            this.txtBoxIngresosBrutos.Location = new System.Drawing.Point(142, 93);
             this.txtBoxIngresosBrutos.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtBoxIngresosBrutos.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxIngresosBrutos.Name = "txtBoxIngresosBrutos";
@@ -804,7 +805,7 @@
             this.lblInicioActividades.Depth = 0;
             this.lblInicioActividades.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblInicioActividades.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblInicioActividades.Location = new System.Drawing.Point(5, 164);
+            this.lblInicioActividades.Location = new System.Drawing.Point(5, 165);
             this.lblInicioActividades.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblInicioActividades.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblInicioActividades.Name = "lblInicioActividades";

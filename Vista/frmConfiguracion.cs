@@ -208,5 +208,10 @@ namespace Vista
                 this.txtBoxLogotipoPath.Text = filePath;
             }
         }
+
+        private void txtBoxCUIT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            this.valorNumericoTeclado(sender, e);
+        }
     }
 }
