@@ -30,7 +30,7 @@ namespace Vista
         public override void inicializarForm(int ventanaAncho, int ventanaAlto)
         {
             this.tblLayoutPanelPrincipal.Width = ventanaAncho - 20; //un margen derecho de 20 para que se vea scrollbar
-            this.pnlBase.Width = ventanaAncho - 3;  //un márgen derecho de 3
+            this.pnlBase.Width = ventanaAncho ;  
             this.pnlBase.Height = ventanaAlto - 60; //un márgen arriba para que se vea título
 
             if (Height < 500)
@@ -49,7 +49,7 @@ namespace Vista
 
             int x = Convert.ToInt16(Math.Round(Convert.ToDouble((Width - this.tblLayoutPanelPrincipal.Width) / 2)));
             this.tblLayoutPanelPrincipal.Location = new Point(10, 0);
-            this.pnlBase.Location = new Point(0, 65);
+            this.pnlBase.Location = new Point(0, 60);
         }
 
         private void inicializarControles()

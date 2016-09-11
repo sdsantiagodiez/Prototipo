@@ -213,9 +213,10 @@
             // 
             this.grpBoxDatosPersonales.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.grpBoxDatosPersonales.Controls.Add(this.tblLayoutPanelDatosPersonales);
-            this.grpBoxDatosPersonales.Location = new System.Drawing.Point(138, 3);
+            this.grpBoxDatosPersonales.Location = new System.Drawing.Point(138, 10);
+            this.grpBoxDatosPersonales.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.grpBoxDatosPersonales.Name = "grpBoxDatosPersonales";
-            this.grpBoxDatosPersonales.Size = new System.Drawing.Size(445, 204);
+            this.grpBoxDatosPersonales.Size = new System.Drawing.Size(445, 197);
             this.grpBoxDatosPersonales.TabIndex = 1;
             this.grpBoxDatosPersonales.TabStop = false;
             this.grpBoxDatosPersonales.Text = "Datos Personales";
@@ -241,7 +242,7 @@
             this.tblLayoutPanelDatosPersonales.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tblLayoutPanelDatosPersonales.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tblLayoutPanelDatosPersonales.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tblLayoutPanelDatosPersonales.Size = new System.Drawing.Size(439, 185);
+            this.tblLayoutPanelDatosPersonales.Size = new System.Drawing.Size(439, 178);
             this.tblLayoutPanelDatosPersonales.TabIndex = 0;
             // 
             // lblCUIT
@@ -249,7 +250,7 @@
             this.lblCUIT.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCUIT.AutoSize = true;
             this.lblCUIT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCUIT.Location = new System.Drawing.Point(74, 14);
+            this.lblCUIT.Location = new System.Drawing.Point(74, 13);
             this.lblCUIT.Name = "lblCUIT";
             this.lblCUIT.Size = new System.Drawing.Size(43, 17);
             this.lblCUIT.TabIndex = 15;
@@ -260,7 +261,7 @@
             this.txtBoxCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCUIT.Depth = 0;
             this.txtBoxCUIT.Hint = "";
-            this.txtBoxCUIT.Location = new System.Drawing.Point(123, 11);
+            this.txtBoxCUIT.Location = new System.Drawing.Point(123, 10);
             this.txtBoxCUIT.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.txtBoxCUIT.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCUIT.Name = "txtBoxCUIT";
@@ -278,7 +279,7 @@
             this.lblDNI.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDNI.AutoSize = true;
             this.lblDNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDNI.Location = new System.Drawing.Point(82, 60);
+            this.lblDNI.Location = new System.Drawing.Point(82, 57);
             this.lblDNI.Name = "lblDNI";
             this.lblDNI.Size = new System.Drawing.Size(35, 17);
             this.lblDNI.TabIndex = 17;
@@ -289,7 +290,7 @@
             this.txtBoxDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxDNI.Depth = 0;
             this.txtBoxDNI.Hint = "";
-            this.txtBoxDNI.Location = new System.Drawing.Point(123, 57);
+            this.txtBoxDNI.Location = new System.Drawing.Point(123, 54);
             this.txtBoxDNI.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.txtBoxDNI.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDNI.Name = "txtBoxDNI";
@@ -307,7 +308,7 @@
             this.txtBoxNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxNombre.Depth = 0;
             this.txtBoxNombre.Hint = "";
-            this.txtBoxNombre.Location = new System.Drawing.Point(123, 103);
+            this.txtBoxNombre.Location = new System.Drawing.Point(123, 98);
             this.txtBoxNombre.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.txtBoxNombre.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxNombre.Name = "txtBoxNombre";
@@ -325,7 +326,7 @@
             this.lblNombre.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(55, 106);
+            this.lblNombre.Location = new System.Drawing.Point(55, 101);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(62, 17);
             this.lblNombre.TabIndex = 20;
@@ -336,7 +337,7 @@
             this.lblApellido.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblApellido.AutoSize = true;
             this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellido.Location = new System.Drawing.Point(55, 153);
+            this.lblApellido.Location = new System.Drawing.Point(55, 146);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(62, 17);
             this.lblApellido.TabIndex = 21;
@@ -347,7 +348,7 @@
             this.txtBoxApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxApellido.Depth = 0;
             this.txtBoxApellido.Hint = "";
-            this.txtBoxApellido.Location = new System.Drawing.Point(123, 150);
+            this.txtBoxApellido.Location = new System.Drawing.Point(123, 143);
             this.txtBoxApellido.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.txtBoxApellido.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxApellido.Name = "txtBoxApellido";
@@ -887,26 +888,23 @@
             // 
             // tblLayoutPanelEstiloVisual
             // 
-            this.tblLayoutPanelEstiloVisual.ColumnCount = 3;
+            this.tblLayoutPanelEstiloVisual.ColumnCount = 1;
             this.tblLayoutPanelEstiloVisual.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelEstiloVisual.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 450F));
-            this.tblLayoutPanelEstiloVisual.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelEstiloVisual.Controls.Add(this.grpBoxEstiloVisual, 1, 0);
+            this.tblLayoutPanelEstiloVisual.Controls.Add(this.grpBoxEstiloVisual, 0, 0);
             this.tblLayoutPanelEstiloVisual.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelEstiloVisual.Location = new System.Drawing.Point(3, 3);
             this.tblLayoutPanelEstiloVisual.Name = "tblLayoutPanelEstiloVisual";
-            this.tblLayoutPanelEstiloVisual.RowCount = 3;
-            this.tblLayoutPanelEstiloVisual.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelEstiloVisual.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tblLayoutPanelEstiloVisual.RowCount = 1;
             this.tblLayoutPanelEstiloVisual.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblLayoutPanelEstiloVisual.Size = new System.Drawing.Size(721, 387);
             this.tblLayoutPanelEstiloVisual.TabIndex = 0;
             // 
             // grpBoxEstiloVisual
             // 
+            this.grpBoxEstiloVisual.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.grpBoxEstiloVisual.Controls.Add(this.tblLayoutPanelDiseño);
-            this.grpBoxEstiloVisual.Location = new System.Drawing.Point(137, 2);
-            this.grpBoxEstiloVisual.Margin = new System.Windows.Forms.Padding(2);
+            this.grpBoxEstiloVisual.Location = new System.Drawing.Point(137, 10);
+            this.grpBoxEstiloVisual.Margin = new System.Windows.Forms.Padding(2, 10, 2, 2);
             this.grpBoxEstiloVisual.Name = "grpBoxEstiloVisual";
             this.grpBoxEstiloVisual.Padding = new System.Windows.Forms.Padding(2);
             this.grpBoxEstiloVisual.Size = new System.Drawing.Size(446, 116);
@@ -1042,13 +1040,13 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxContraseñaActual;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxContraseñaNueva;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtBoxContraseñaNuevaRepetir;
-        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelEstiloVisual;
-        private System.Windows.Forms.GroupBox grpBoxEstiloVisual;
-        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDiseño;
-        private MaterialSkin.Controls.MaterialRaisedButton btnCambiarColores;
         public MaterialSkin.Controls.MaterialTabControl tbControlPrincipal;
         public System.Windows.Forms.TabPage tbPageDatosGenerales;
         public System.Windows.Forms.TabPage tbPageDatosContacto;
         public System.Windows.Forms.TabPage tbEstiloVisual;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelEstiloVisual;
+        private System.Windows.Forms.GroupBox grpBoxEstiloVisual;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDiseño;
+        private MaterialSkin.Controls.MaterialRaisedButton btnCambiarColores;
     }
 }

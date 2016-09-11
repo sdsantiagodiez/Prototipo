@@ -271,7 +271,7 @@
             // 
             this.tsmi_ABMentidades.Image = global::Vista.Properties.Resources.Entidades1;
             this.tsmi_ABMentidades.Name = "tsmi_ABMentidades";
-            this.tsmi_ABMentidades.Size = new System.Drawing.Size(156, 26);
+            this.tsmi_ABMentidades.Size = new System.Drawing.Size(135, 22);
             this.tsmi_ABMentidades.Text = "Entidades";
             this.tsmi_ABMentidades.Click += new System.EventHandler(this.tsmi_ABMentidades_Click);
             // 
@@ -279,7 +279,7 @@
             // 
             this.tsmi_ABMarticulos.Image = global::Vista.Properties.Resources.articulos;
             this.tsmi_ABMarticulos.Name = "tsmi_ABMarticulos";
-            this.tsmi_ABMarticulos.Size = new System.Drawing.Size(156, 26);
+            this.tsmi_ABMarticulos.Size = new System.Drawing.Size(135, 22);
             this.tsmi_ABMarticulos.Text = "Artículos";
             this.tsmi_ABMarticulos.Click += new System.EventHandler(this.tsmi_ABMarticulos_Click);
             // 
@@ -287,7 +287,7 @@
             // 
             this.tsmi_ABMdescuentos.Image = global::Vista.Properties.Resources.discount;
             this.tsmi_ABMdescuentos.Name = "tsmi_ABMdescuentos";
-            this.tsmi_ABMdescuentos.Size = new System.Drawing.Size(156, 26);
+            this.tsmi_ABMdescuentos.Size = new System.Drawing.Size(135, 22);
             this.tsmi_ABMdescuentos.Text = "Descuentos";
             this.tsmi_ABMdescuentos.Click += new System.EventHandler(this.tsmi_ABMdescuentos_Click);
             // 
@@ -449,52 +449,52 @@
             // deshacerToolStripMenuItem
             // 
             this.deshacerToolStripMenuItem.Name = "deshacerToolStripMenuItem";
-            this.deshacerToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.deshacerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.deshacerToolStripMenuItem.Text = "Deshacer";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(162, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(161, 6);
             // 
             // cortarToolStripMenuItem
             // 
             this.cortarToolStripMenuItem.Name = "cortarToolStripMenuItem";
-            this.cortarToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.cortarToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.cortarToolStripMenuItem.Text = "Cortar";
             // 
             // copiarToolStripMenuItem
             // 
             this.copiarToolStripMenuItem.Name = "copiarToolStripMenuItem";
-            this.copiarToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.copiarToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.copiarToolStripMenuItem.Text = "Copiar";
             // 
             // pegarToolStripMenuItem
             // 
             this.pegarToolStripMenuItem.Name = "pegarToolStripMenuItem";
-            this.pegarToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.pegarToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.pegarToolStripMenuItem.Text = "Pegar";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(162, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 6);
             // 
             // eliminarToolStripMenuItem
             // 
             this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.eliminarToolStripMenuItem.Text = "Eliminar";
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(162, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(161, 6);
             // 
             // seleccionarTodoToolStripMenuItem
             // 
             this.seleccionarTodoToolStripMenuItem.Name = "seleccionarTodoToolStripMenuItem";
-            this.seleccionarTodoToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.seleccionarTodoToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.seleccionarTodoToolStripMenuItem.Text = "Seleccionar Todo";
             // 
             // herramientasToolStripMenuItem
@@ -630,7 +630,7 @@
             // 
             this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
             this.backUpToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.backUpToolStripMenuItem.Text = "Realizar Back Up";
+            this.backUpToolStripMenuItem.Text = "Realizar Back-Up";
             this.backUpToolStripMenuItem.Click += new System.EventHandler(this.backUpToolStripMenuItem_Click);
             // 
             // restaurarBaseDeDatosToolStripMenuItem
@@ -665,18 +665,18 @@
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.acercaDeToolStripMenuItem.Text = "Acerca de";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(125, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 6);
             // 
             // verAyudaToolStripMenuItem
             // 
             this.verAyudaToolStripMenuItem.Name = "verAyudaToolStripMenuItem";
-            this.verAyudaToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.verAyudaToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.verAyudaToolStripMenuItem.Text = "Ver Ayuda";
             // 
             // tlsMenuRapido

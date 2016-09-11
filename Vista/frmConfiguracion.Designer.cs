@@ -32,6 +32,7 @@
             this.tblLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.tbControlPrincipal = new MaterialSkin.Controls.MaterialTabControl();
             this.tbPageAlmacenamiento = new System.Windows.Forms.TabPage();
+            this.tblLayoutPanelAlmacenamientoArchivos_Base = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxDestinoAlmacenamiento = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelAlmacenamientoArchivos = new System.Windows.Forms.TableLayoutPanel();
             this.txtBoxCarpetaReportes = new System.Windows.Forms.TextBox();
@@ -44,6 +45,7 @@
             this.txtBoxCarpetaPedidosProveedores = new System.Windows.Forms.TextBox();
             this.txtBoxCarpetaPedidosClientes = new System.Windows.Forms.TextBox();
             this.tbPageFacturacionElectronica = new System.Windows.Forms.TabPage();
+            this.tblLayoutPanelFacturacionElectronica_Base = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxFacturacionElectronica = new System.Windows.Forms.GroupBox();
             this.tblLayoutPanelFacturacionElectronica = new System.Windows.Forms.TableLayoutPanel();
             this.btnCertificado = new System.Windows.Forms.Button();
@@ -54,6 +56,7 @@
             this.txtBoxContrasenia = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBoxCUIT = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.tbPageComprobantesInformes = new System.Windows.Forms.TabPage();
+            this.tblLayoutPanelComprobantesInformes = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxComprobantesInformes = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblTelefonoEmpresa = new MaterialSkin.Controls.MaterialLabel();
@@ -66,6 +69,7 @@
             this.txtBoxDireccionEmpresa = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBoxTelefonoEmpresa = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.tbPageDatosImpositivos = new System.Windows.Forms.TabPage();
+            this.tblLayoutPanelDatosImpositivos = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxImpositiva = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.dtpInicioActividades = new System.Windows.Forms.DateTimePicker();
@@ -79,15 +83,19 @@
             this.tblLayoutPanelPrincipal.SuspendLayout();
             this.tbControlPrincipal.SuspendLayout();
             this.tbPageAlmacenamiento.SuspendLayout();
+            this.tblLayoutPanelAlmacenamientoArchivos_Base.SuspendLayout();
             this.grpBoxDestinoAlmacenamiento.SuspendLayout();
             this.tblLayoutPanelAlmacenamientoArchivos.SuspendLayout();
             this.tbPageFacturacionElectronica.SuspendLayout();
+            this.tblLayoutPanelFacturacionElectronica_Base.SuspendLayout();
             this.grpBoxFacturacionElectronica.SuspendLayout();
             this.tblLayoutPanelFacturacionElectronica.SuspendLayout();
             this.tbPageComprobantesInformes.SuspendLayout();
+            this.tblLayoutPanelComprobantesInformes.SuspendLayout();
             this.grpBoxComprobantesInformes.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tbPageDatosImpositivos.SuspendLayout();
+            this.tblLayoutPanelDatosImpositivos.SuspendLayout();
             this.grpBoxImpositiva.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -140,7 +148,7 @@
             // tbPageAlmacenamiento
             // 
             this.tbPageAlmacenamiento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.tbPageAlmacenamiento.Controls.Add(this.grpBoxDestinoAlmacenamiento);
+            this.tbPageAlmacenamiento.Controls.Add(this.tblLayoutPanelAlmacenamientoArchivos_Base);
             this.tbPageAlmacenamiento.Location = new System.Drawing.Point(4, 22);
             this.tbPageAlmacenamiento.Name = "tbPageAlmacenamiento";
             this.tbPageAlmacenamiento.Padding = new System.Windows.Forms.Padding(3);
@@ -148,30 +156,38 @@
             this.tbPageAlmacenamiento.TabIndex = 0;
             this.tbPageAlmacenamiento.Text = "Almacenamiento de Archivos";
             // 
+            // tblLayoutPanelAlmacenamientoArchivos_Base
+            // 
+            this.tblLayoutPanelAlmacenamientoArchivos_Base.ColumnCount = 1;
+            this.tblLayoutPanelAlmacenamientoArchivos_Base.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelAlmacenamientoArchivos_Base.Controls.Add(this.grpBoxDestinoAlmacenamiento, 0, 0);
+            this.tblLayoutPanelAlmacenamientoArchivos_Base.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblLayoutPanelAlmacenamientoArchivos_Base.Location = new System.Drawing.Point(3, 3);
+            this.tblLayoutPanelAlmacenamientoArchivos_Base.Name = "tblLayoutPanelAlmacenamientoArchivos_Base";
+            this.tblLayoutPanelAlmacenamientoArchivos_Base.RowCount = 1;
+            this.tblLayoutPanelAlmacenamientoArchivos_Base.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelAlmacenamientoArchivos_Base.Size = new System.Drawing.Size(888, 458);
+            this.tblLayoutPanelAlmacenamientoArchivos_Base.TabIndex = 4;
+            // 
             // grpBoxDestinoAlmacenamiento
             // 
-            this.grpBoxDestinoAlmacenamiento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpBoxDestinoAlmacenamiento.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.grpBoxDestinoAlmacenamiento.Controls.Add(this.tblLayoutPanelAlmacenamientoArchivos);
-            this.grpBoxDestinoAlmacenamiento.Location = new System.Drawing.Point(190, 74);
-            this.grpBoxDestinoAlmacenamiento.Margin = new System.Windows.Forms.Padding(2);
+            this.grpBoxDestinoAlmacenamiento.Location = new System.Drawing.Point(204, 20);
+            this.grpBoxDestinoAlmacenamiento.Margin = new System.Windows.Forms.Padding(2, 20, 2, 2);
             this.grpBoxDestinoAlmacenamiento.Name = "grpBoxDestinoAlmacenamiento";
             this.grpBoxDestinoAlmacenamiento.Padding = new System.Windows.Forms.Padding(2);
-            this.grpBoxDestinoAlmacenamiento.Size = new System.Drawing.Size(548, 313);
+            this.grpBoxDestinoAlmacenamiento.Size = new System.Drawing.Size(480, 227);
             this.grpBoxDestinoAlmacenamiento.TabIndex = 3;
             this.grpBoxDestinoAlmacenamiento.TabStop = false;
             this.grpBoxDestinoAlmacenamiento.Text = "Almacenamiento de Archivos";
             // 
             // tblLayoutPanelAlmacenamientoArchivos
             // 
-            this.tblLayoutPanelAlmacenamientoArchivos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tblLayoutPanelAlmacenamientoArchivos.ColumnCount = 3;
             this.tblLayoutPanelAlmacenamientoArchivos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
             this.tblLayoutPanelAlmacenamientoArchivos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelAlmacenamientoArchivos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tblLayoutPanelAlmacenamientoArchivos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tblLayoutPanelAlmacenamientoArchivos.Controls.Add(this.txtBoxCarpetaReportes, 0, 2);
             this.tblLayoutPanelAlmacenamientoArchivos.Controls.Add(this.lblCarpetaReportes, 0, 2);
             this.tblLayoutPanelAlmacenamientoArchivos.Controls.Add(this.lblCarpetaPedidosProveedores, 0, 0);
@@ -181,6 +197,7 @@
             this.tblLayoutPanelAlmacenamientoArchivos.Controls.Add(this.btnCarpetaReportes, 2, 2);
             this.tblLayoutPanelAlmacenamientoArchivos.Controls.Add(this.txtBoxCarpetaPedidosProveedores, 1, 0);
             this.tblLayoutPanelAlmacenamientoArchivos.Controls.Add(this.txtBoxCarpetaPedidosClientes, 1, 1);
+            this.tblLayoutPanelAlmacenamientoArchivos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelAlmacenamientoArchivos.Location = new System.Drawing.Point(2, 15);
             this.tblLayoutPanelAlmacenamientoArchivos.Margin = new System.Windows.Forms.Padding(2);
             this.tblLayoutPanelAlmacenamientoArchivos.Name = "tblLayoutPanelAlmacenamientoArchivos";
@@ -188,16 +205,16 @@
             this.tblLayoutPanelAlmacenamientoArchivos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tblLayoutPanelAlmacenamientoArchivos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tblLayoutPanelAlmacenamientoArchivos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tblLayoutPanelAlmacenamientoArchivos.Size = new System.Drawing.Size(459, 296);
+            this.tblLayoutPanelAlmacenamientoArchivos.Size = new System.Drawing.Size(476, 210);
             this.tblLayoutPanelAlmacenamientoArchivos.TabIndex = 0;
             // 
             // txtBoxCarpetaReportes
             // 
             this.txtBoxCarpetaReportes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCarpetaReportes.Location = new System.Drawing.Point(171, 236);
+            this.txtBoxCarpetaReportes.Location = new System.Drawing.Point(171, 164);
             this.txtBoxCarpetaReportes.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxCarpetaReportes.Name = "txtBoxCarpetaReportes";
-            this.txtBoxCarpetaReportes.Size = new System.Drawing.Size(247, 20);
+            this.txtBoxCarpetaReportes.Size = new System.Drawing.Size(273, 20);
             this.txtBoxCarpetaReportes.TabIndex = 8;
             // 
             // lblCarpetaReportes
@@ -207,7 +224,7 @@
             this.lblCarpetaReportes.Depth = 0;
             this.lblCarpetaReportes.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblCarpetaReportes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCarpetaReportes.Location = new System.Drawing.Point(94, 236);
+            this.lblCarpetaReportes.Location = new System.Drawing.Point(94, 164);
             this.lblCarpetaReportes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCarpetaReportes.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCarpetaReportes.Name = "lblCarpetaReportes";
@@ -222,7 +239,7 @@
             this.lblCarpetaPedidosProveedores.Depth = 0;
             this.lblCarpetaPedidosProveedores.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblCarpetaPedidosProveedores.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCarpetaPedidosProveedores.Location = new System.Drawing.Point(2, 39);
+            this.lblCarpetaPedidosProveedores.Location = new System.Drawing.Point(2, 25);
             this.lblCarpetaPedidosProveedores.Margin = new System.Windows.Forms.Padding(0);
             this.lblCarpetaPedidosProveedores.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCarpetaPedidosProveedores.Name = "lblCarpetaPedidosProveedores";
@@ -237,7 +254,7 @@
             this.lblCarpetaPedidosClientes.Depth = 0;
             this.lblCarpetaPedidosClientes.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblCarpetaPedidosClientes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCarpetaPedidosClientes.Location = new System.Drawing.Point(21, 137);
+            this.lblCarpetaPedidosClientes.Location = new System.Drawing.Point(21, 94);
             this.lblCarpetaPedidosClientes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCarpetaPedidosClientes.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCarpetaPedidosClientes.Name = "lblCarpetaPedidosClientes";
@@ -248,10 +265,10 @@
             // btnCarpetaPedidosProveedores
             // 
             this.btnCarpetaPedidosProveedores.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnCarpetaPedidosProveedores.Location = new System.Drawing.Point(422, 38);
+            this.btnCarpetaPedidosProveedores.Location = new System.Drawing.Point(448, 24);
             this.btnCarpetaPedidosProveedores.Margin = new System.Windows.Forms.Padding(2);
             this.btnCarpetaPedidosProveedores.Name = "btnCarpetaPedidosProveedores";
-            this.btnCarpetaPedidosProveedores.Size = new System.Drawing.Size(34, 21);
+            this.btnCarpetaPedidosProveedores.Size = new System.Drawing.Size(26, 21);
             this.btnCarpetaPedidosProveedores.TabIndex = 3;
             this.btnCarpetaPedidosProveedores.Text = "...";
             this.btnCarpetaPedidosProveedores.UseVisualStyleBackColor = true;
@@ -259,10 +276,10 @@
             // btnCarpetaPedidosClientes
             // 
             this.btnCarpetaPedidosClientes.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnCarpetaPedidosClientes.Location = new System.Drawing.Point(422, 135);
+            this.btnCarpetaPedidosClientes.Location = new System.Drawing.Point(448, 91);
             this.btnCarpetaPedidosClientes.Margin = new System.Windows.Forms.Padding(2);
             this.btnCarpetaPedidosClientes.Name = "btnCarpetaPedidosClientes";
-            this.btnCarpetaPedidosClientes.Size = new System.Drawing.Size(34, 24);
+            this.btnCarpetaPedidosClientes.Size = new System.Drawing.Size(26, 24);
             this.btnCarpetaPedidosClientes.TabIndex = 4;
             this.btnCarpetaPedidosClientes.Text = "...";
             this.btnCarpetaPedidosClientes.UseVisualStyleBackColor = true;
@@ -270,10 +287,10 @@
             // btnCarpetaReportes
             // 
             this.btnCarpetaReportes.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnCarpetaReportes.Location = new System.Drawing.Point(422, 235);
+            this.btnCarpetaReportes.Location = new System.Drawing.Point(448, 163);
             this.btnCarpetaReportes.Margin = new System.Windows.Forms.Padding(2);
             this.btnCarpetaReportes.Name = "btnCarpetaReportes";
-            this.btnCarpetaReportes.Size = new System.Drawing.Size(34, 21);
+            this.btnCarpetaReportes.Size = new System.Drawing.Size(26, 21);
             this.btnCarpetaReportes.TabIndex = 5;
             this.btnCarpetaReportes.Text = "...";
             this.btnCarpetaReportes.UseVisualStyleBackColor = true;
@@ -281,25 +298,25 @@
             // txtBoxCarpetaPedidosProveedores
             // 
             this.txtBoxCarpetaPedidosProveedores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCarpetaPedidosProveedores.Location = new System.Drawing.Point(171, 39);
+            this.txtBoxCarpetaPedidosProveedores.Location = new System.Drawing.Point(171, 24);
             this.txtBoxCarpetaPedidosProveedores.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxCarpetaPedidosProveedores.Name = "txtBoxCarpetaPedidosProveedores";
-            this.txtBoxCarpetaPedidosProveedores.Size = new System.Drawing.Size(247, 20);
+            this.txtBoxCarpetaPedidosProveedores.Size = new System.Drawing.Size(273, 20);
             this.txtBoxCarpetaPedidosProveedores.TabIndex = 6;
             // 
             // txtBoxCarpetaPedidosClientes
             // 
             this.txtBoxCarpetaPedidosClientes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCarpetaPedidosClientes.Location = new System.Drawing.Point(171, 137);
+            this.txtBoxCarpetaPedidosClientes.Location = new System.Drawing.Point(171, 93);
             this.txtBoxCarpetaPedidosClientes.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxCarpetaPedidosClientes.Name = "txtBoxCarpetaPedidosClientes";
-            this.txtBoxCarpetaPedidosClientes.Size = new System.Drawing.Size(247, 20);
+            this.txtBoxCarpetaPedidosClientes.Size = new System.Drawing.Size(273, 20);
             this.txtBoxCarpetaPedidosClientes.TabIndex = 7;
             // 
             // tbPageFacturacionElectronica
             // 
             this.tbPageFacturacionElectronica.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.tbPageFacturacionElectronica.Controls.Add(this.grpBoxFacturacionElectronica);
+            this.tbPageFacturacionElectronica.Controls.Add(this.tblLayoutPanelFacturacionElectronica_Base);
             this.tbPageFacturacionElectronica.Location = new System.Drawing.Point(4, 22);
             this.tbPageFacturacionElectronica.Name = "tbPageFacturacionElectronica";
             this.tbPageFacturacionElectronica.Padding = new System.Windows.Forms.Padding(3);
@@ -307,17 +324,28 @@
             this.tbPageFacturacionElectronica.TabIndex = 1;
             this.tbPageFacturacionElectronica.Text = "Facturacion Electrónica";
             // 
+            // tblLayoutPanelFacturacionElectronica_Base
+            // 
+            this.tblLayoutPanelFacturacionElectronica_Base.ColumnCount = 1;
+            this.tblLayoutPanelFacturacionElectronica_Base.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelFacturacionElectronica_Base.Controls.Add(this.grpBoxFacturacionElectronica, 0, 0);
+            this.tblLayoutPanelFacturacionElectronica_Base.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblLayoutPanelFacturacionElectronica_Base.Location = new System.Drawing.Point(3, 3);
+            this.tblLayoutPanelFacturacionElectronica_Base.Name = "tblLayoutPanelFacturacionElectronica_Base";
+            this.tblLayoutPanelFacturacionElectronica_Base.RowCount = 1;
+            this.tblLayoutPanelFacturacionElectronica_Base.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelFacturacionElectronica_Base.Size = new System.Drawing.Size(888, 458);
+            this.tblLayoutPanelFacturacionElectronica_Base.TabIndex = 5;
+            // 
             // grpBoxFacturacionElectronica
             // 
-            this.grpBoxFacturacionElectronica.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpBoxFacturacionElectronica.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.grpBoxFacturacionElectronica.Controls.Add(this.tblLayoutPanelFacturacionElectronica);
-            this.grpBoxFacturacionElectronica.Location = new System.Drawing.Point(220, 107);
-            this.grpBoxFacturacionElectronica.Margin = new System.Windows.Forms.Padding(2);
+            this.grpBoxFacturacionElectronica.Location = new System.Drawing.Point(204, 20);
+            this.grpBoxFacturacionElectronica.Margin = new System.Windows.Forms.Padding(2, 20, 2, 2);
             this.grpBoxFacturacionElectronica.Name = "grpBoxFacturacionElectronica";
             this.grpBoxFacturacionElectronica.Padding = new System.Windows.Forms.Padding(2);
-            this.grpBoxFacturacionElectronica.Size = new System.Drawing.Size(483, 166);
+            this.grpBoxFacturacionElectronica.Size = new System.Drawing.Size(480, 227);
             this.grpBoxFacturacionElectronica.TabIndex = 4;
             this.grpBoxFacturacionElectronica.TabStop = false;
             this.grpBoxFacturacionElectronica.Text = "Facturación Electrónica";
@@ -325,9 +353,9 @@
             // tblLayoutPanelFacturacionElectronica
             // 
             this.tblLayoutPanelFacturacionElectronica.ColumnCount = 3;
-            this.tblLayoutPanelFacturacionElectronica.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
+            this.tblLayoutPanelFacturacionElectronica.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 136F));
             this.tblLayoutPanelFacturacionElectronica.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelFacturacionElectronica.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tblLayoutPanelFacturacionElectronica.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tblLayoutPanelFacturacionElectronica.Controls.Add(this.btnCertificado, 2, 0);
             this.tblLayoutPanelFacturacionElectronica.Controls.Add(this.txtBoxCertificado, 1, 0);
             this.tblLayoutPanelFacturacionElectronica.Controls.Add(this.lblCertificado, 0, 0);
@@ -340,20 +368,19 @@
             this.tblLayoutPanelFacturacionElectronica.Margin = new System.Windows.Forms.Padding(2);
             this.tblLayoutPanelFacturacionElectronica.Name = "tblLayoutPanelFacturacionElectronica";
             this.tblLayoutPanelFacturacionElectronica.RowCount = 3;
-            this.tblLayoutPanelFacturacionElectronica.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelFacturacionElectronica.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblLayoutPanelFacturacionElectronica.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
-            this.tblLayoutPanelFacturacionElectronica.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
-            this.tblLayoutPanelFacturacionElectronica.Size = new System.Drawing.Size(479, 149);
+            this.tblLayoutPanelFacturacionElectronica.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tblLayoutPanelFacturacionElectronica.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tblLayoutPanelFacturacionElectronica.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tblLayoutPanelFacturacionElectronica.Size = new System.Drawing.Size(476, 210);
             this.tblLayoutPanelFacturacionElectronica.TabIndex = 0;
             // 
             // btnCertificado
             // 
             this.btnCertificado.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnCertificado.Location = new System.Drawing.Point(442, 14);
+            this.btnCertificado.Location = new System.Drawing.Point(448, 25);
             this.btnCertificado.Margin = new System.Windows.Forms.Padding(2);
             this.btnCertificado.Name = "btnCertificado";
-            this.btnCertificado.Size = new System.Drawing.Size(34, 19);
+            this.btnCertificado.Size = new System.Drawing.Size(26, 19);
             this.btnCertificado.TabIndex = 9;
             this.btnCertificado.Text = "...";
             this.btnCertificado.UseVisualStyleBackColor = true;
@@ -361,10 +388,10 @@
             // txtBoxCertificado
             // 
             this.txtBoxCertificado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCertificado.Location = new System.Drawing.Point(171, 13);
+            this.txtBoxCertificado.Location = new System.Drawing.Point(138, 24);
             this.txtBoxCertificado.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxCertificado.Name = "txtBoxCertificado";
-            this.txtBoxCertificado.Size = new System.Drawing.Size(267, 20);
+            this.txtBoxCertificado.Size = new System.Drawing.Size(306, 20);
             this.txtBoxCertificado.TabIndex = 8;
             // 
             // lblCertificado
@@ -374,7 +401,7 @@
             this.lblCertificado.Depth = 0;
             this.lblCertificado.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblCertificado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCertificado.Location = new System.Drawing.Point(80, 14);
+            this.lblCertificado.Location = new System.Drawing.Point(47, 25);
             this.lblCertificado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCertificado.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCertificado.Name = "lblCertificado";
@@ -389,7 +416,7 @@
             this.lblContrasenia.Depth = 0;
             this.lblContrasenia.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblContrasenia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblContrasenia.Location = new System.Drawing.Point(77, 61);
+            this.lblContrasenia.Location = new System.Drawing.Point(44, 94);
             this.lblContrasenia.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblContrasenia.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblContrasenia.Name = "lblContrasenia";
@@ -404,7 +431,7 @@
             this.lblCUIT.Depth = 0;
             this.lblCUIT.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblCUIT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCUIT.Location = new System.Drawing.Point(121, 112);
+            this.lblCUIT.Location = new System.Drawing.Point(88, 164);
             this.lblCUIT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCUIT.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCUIT.Name = "lblCUIT";
@@ -417,14 +444,14 @@
             this.txtBoxContrasenia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxContrasenia.Depth = 0;
             this.txtBoxContrasenia.Hint = "";
-            this.txtBoxContrasenia.Location = new System.Drawing.Point(172, 59);
+            this.txtBoxContrasenia.Location = new System.Drawing.Point(139, 92);
             this.txtBoxContrasenia.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxContrasenia.Name = "txtBoxContrasenia";
             this.txtBoxContrasenia.PasswordChar = '\0';
             this.txtBoxContrasenia.SelectedText = "";
             this.txtBoxContrasenia.SelectionLength = 0;
             this.txtBoxContrasenia.SelectionStart = 0;
-            this.txtBoxContrasenia.Size = new System.Drawing.Size(265, 23);
+            this.txtBoxContrasenia.Size = new System.Drawing.Size(304, 23);
             this.txtBoxContrasenia.TabIndex = 13;
             this.txtBoxContrasenia.UseSystemPasswordChar = false;
             // 
@@ -433,21 +460,21 @@
             this.txtBoxCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxCUIT.Depth = 0;
             this.txtBoxCUIT.Hint = "";
-            this.txtBoxCUIT.Location = new System.Drawing.Point(172, 110);
+            this.txtBoxCUIT.Location = new System.Drawing.Point(139, 162);
             this.txtBoxCUIT.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCUIT.Name = "txtBoxCUIT";
             this.txtBoxCUIT.PasswordChar = '\0';
             this.txtBoxCUIT.SelectedText = "";
             this.txtBoxCUIT.SelectionLength = 0;
             this.txtBoxCUIT.SelectionStart = 0;
-            this.txtBoxCUIT.Size = new System.Drawing.Size(265, 23);
+            this.txtBoxCUIT.Size = new System.Drawing.Size(304, 23);
             this.txtBoxCUIT.TabIndex = 12;
             this.txtBoxCUIT.UseSystemPasswordChar = false;
             // 
             // tbPageComprobantesInformes
             // 
             this.tbPageComprobantesInformes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.tbPageComprobantesInformes.Controls.Add(this.grpBoxComprobantesInformes);
+            this.tbPageComprobantesInformes.Controls.Add(this.tblLayoutPanelComprobantesInformes);
             this.tbPageComprobantesInformes.Location = new System.Drawing.Point(4, 22);
             this.tbPageComprobantesInformes.Name = "tbPageComprobantesInformes";
             this.tbPageComprobantesInformes.Padding = new System.Windows.Forms.Padding(3);
@@ -455,17 +482,28 @@
             this.tbPageComprobantesInformes.TabIndex = 2;
             this.tbPageComprobantesInformes.Text = "Comprobantes e Informes";
             // 
+            // tblLayoutPanelComprobantesInformes
+            // 
+            this.tblLayoutPanelComprobantesInformes.ColumnCount = 1;
+            this.tblLayoutPanelComprobantesInformes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelComprobantesInformes.Controls.Add(this.grpBoxComprobantesInformes, 0, 0);
+            this.tblLayoutPanelComprobantesInformes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblLayoutPanelComprobantesInformes.Location = new System.Drawing.Point(3, 3);
+            this.tblLayoutPanelComprobantesInformes.Name = "tblLayoutPanelComprobantesInformes";
+            this.tblLayoutPanelComprobantesInformes.RowCount = 1;
+            this.tblLayoutPanelComprobantesInformes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelComprobantesInformes.Size = new System.Drawing.Size(888, 458);
+            this.tblLayoutPanelComprobantesInformes.TabIndex = 7;
+            // 
             // grpBoxComprobantesInformes
             // 
-            this.grpBoxComprobantesInformes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpBoxComprobantesInformes.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.grpBoxComprobantesInformes.Controls.Add(this.tableLayoutPanel1);
-            this.grpBoxComprobantesInformes.Location = new System.Drawing.Point(191, 105);
-            this.grpBoxComprobantesInformes.Margin = new System.Windows.Forms.Padding(2);
+            this.grpBoxComprobantesInformes.Location = new System.Drawing.Point(204, 20);
+            this.grpBoxComprobantesInformes.Margin = new System.Windows.Forms.Padding(2, 20, 2, 2);
             this.grpBoxComprobantesInformes.Name = "grpBoxComprobantesInformes";
             this.grpBoxComprobantesInformes.Padding = new System.Windows.Forms.Padding(2);
-            this.grpBoxComprobantesInformes.Size = new System.Drawing.Size(548, 211);
+            this.grpBoxComprobantesInformes.Size = new System.Drawing.Size(480, 297);
             this.grpBoxComprobantesInformes.TabIndex = 6;
             this.grpBoxComprobantesInformes.TabStop = false;
             this.grpBoxComprobantesInformes.Text = "Comprobantes e Informes";
@@ -473,9 +511,9 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 145F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.Controls.Add(this.lblTelefonoEmpresa, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.btnLogotipoPath, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtBoxLogotipoPath, 1, 0);
@@ -494,7 +532,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(544, 194);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(476, 280);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lblTelefonoEmpresa
@@ -504,21 +542,21 @@
             this.lblTelefonoEmpresa.Depth = 0;
             this.lblTelefonoEmpresa.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblTelefonoEmpresa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblTelefonoEmpresa.Location = new System.Drawing.Point(20, 150);
+            this.lblTelefonoEmpresa.Location = new System.Drawing.Point(7, 235);
             this.lblTelefonoEmpresa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTelefonoEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblTelefonoEmpresa.Name = "lblTelefonoEmpresa";
-            this.lblTelefonoEmpresa.Size = new System.Drawing.Size(73, 38);
+            this.lblTelefonoEmpresa.Size = new System.Drawing.Size(136, 19);
             this.lblTelefonoEmpresa.TabIndex = 14;
             this.lblTelefonoEmpresa.Text = "Telefono Empresa:";
             // 
             // btnLogotipoPath
             // 
             this.btnLogotipoPath.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnLogotipoPath.Location = new System.Drawing.Point(507, 14);
+            this.btnLogotipoPath.Location = new System.Drawing.Point(448, 25);
             this.btnLogotipoPath.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogotipoPath.Name = "btnLogotipoPath";
-            this.btnLogotipoPath.Size = new System.Drawing.Size(34, 19);
+            this.btnLogotipoPath.Size = new System.Drawing.Size(26, 19);
             this.btnLogotipoPath.TabIndex = 9;
             this.btnLogotipoPath.Text = "...";
             this.btnLogotipoPath.UseVisualStyleBackColor = true;
@@ -527,10 +565,10 @@
             // txtBoxLogotipoPath
             // 
             this.txtBoxLogotipoPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxLogotipoPath.Location = new System.Drawing.Point(97, 14);
+            this.txtBoxLogotipoPath.Location = new System.Drawing.Point(147, 25);
             this.txtBoxLogotipoPath.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxLogotipoPath.Name = "txtBoxLogotipoPath";
-            this.txtBoxLogotipoPath.Size = new System.Drawing.Size(406, 20);
+            this.txtBoxLogotipoPath.Size = new System.Drawing.Size(297, 20);
             this.txtBoxLogotipoPath.TabIndex = 8;
             // 
             // lblLogotipoPath
@@ -540,7 +578,7 @@
             this.lblLogotipoPath.Depth = 0;
             this.lblLogotipoPath.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblLogotipoPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblLogotipoPath.Location = new System.Drawing.Point(20, 14);
+            this.lblLogotipoPath.Location = new System.Drawing.Point(70, 25);
             this.lblLogotipoPath.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLogotipoPath.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblLogotipoPath.Name = "lblLogotipoPath";
@@ -555,11 +593,11 @@
             this.lblNombreEmpresa.Depth = 0;
             this.lblNombreEmpresa.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblNombreEmpresa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblNombreEmpresa.Location = new System.Drawing.Point(22, 53);
+            this.lblNombreEmpresa.Location = new System.Drawing.Point(14, 95);
             this.lblNombreEmpresa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNombreEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblNombreEmpresa.Name = "lblNombreEmpresa";
-            this.lblNombreEmpresa.Size = new System.Drawing.Size(71, 38);
+            this.lblNombreEmpresa.Size = new System.Drawing.Size(129, 19);
             this.lblNombreEmpresa.TabIndex = 2;
             this.lblNombreEmpresa.Text = "Nombre empresa:";
             // 
@@ -570,11 +608,11 @@
             this.lblDireccionEmpresa.Depth = 0;
             this.lblDireccionEmpresa.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblDireccionEmpresa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblDireccionEmpresa.Location = new System.Drawing.Point(16, 101);
+            this.lblDireccionEmpresa.Location = new System.Drawing.Point(3, 165);
             this.lblDireccionEmpresa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDireccionEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblDireccionEmpresa.Name = "lblDireccionEmpresa";
-            this.lblDireccionEmpresa.Size = new System.Drawing.Size(77, 38);
+            this.lblDireccionEmpresa.Size = new System.Drawing.Size(140, 19);
             this.lblDireccionEmpresa.TabIndex = 1;
             this.lblDireccionEmpresa.Text = "Direccion Empresa:";
             // 
@@ -583,14 +621,14 @@
             this.txtBoxNombreEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxNombreEmpresa.Depth = 0;
             this.txtBoxNombreEmpresa.Hint = "";
-            this.txtBoxNombreEmpresa.Location = new System.Drawing.Point(98, 60);
+            this.txtBoxNombreEmpresa.Location = new System.Drawing.Point(148, 93);
             this.txtBoxNombreEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxNombreEmpresa.Name = "txtBoxNombreEmpresa";
             this.txtBoxNombreEmpresa.PasswordChar = '\0';
             this.txtBoxNombreEmpresa.SelectedText = "";
             this.txtBoxNombreEmpresa.SelectionLength = 0;
             this.txtBoxNombreEmpresa.SelectionStart = 0;
-            this.txtBoxNombreEmpresa.Size = new System.Drawing.Size(404, 23);
+            this.txtBoxNombreEmpresa.Size = new System.Drawing.Size(295, 23);
             this.txtBoxNombreEmpresa.TabIndex = 13;
             this.txtBoxNombreEmpresa.UseSystemPasswordChar = false;
             // 
@@ -599,14 +637,14 @@
             this.txtBoxDireccionEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxDireccionEmpresa.Depth = 0;
             this.txtBoxDireccionEmpresa.Hint = "";
-            this.txtBoxDireccionEmpresa.Location = new System.Drawing.Point(98, 108);
+            this.txtBoxDireccionEmpresa.Location = new System.Drawing.Point(148, 163);
             this.txtBoxDireccionEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDireccionEmpresa.Name = "txtBoxDireccionEmpresa";
             this.txtBoxDireccionEmpresa.PasswordChar = '\0';
             this.txtBoxDireccionEmpresa.SelectedText = "";
             this.txtBoxDireccionEmpresa.SelectionLength = 0;
             this.txtBoxDireccionEmpresa.SelectionStart = 0;
-            this.txtBoxDireccionEmpresa.Size = new System.Drawing.Size(404, 23);
+            this.txtBoxDireccionEmpresa.Size = new System.Drawing.Size(295, 23);
             this.txtBoxDireccionEmpresa.TabIndex = 12;
             this.txtBoxDireccionEmpresa.UseSystemPasswordChar = false;
             // 
@@ -615,21 +653,21 @@
             this.txtBoxTelefonoEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxTelefonoEmpresa.Depth = 0;
             this.txtBoxTelefonoEmpresa.Hint = "";
-            this.txtBoxTelefonoEmpresa.Location = new System.Drawing.Point(98, 157);
+            this.txtBoxTelefonoEmpresa.Location = new System.Drawing.Point(148, 233);
             this.txtBoxTelefonoEmpresa.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxTelefonoEmpresa.Name = "txtBoxTelefonoEmpresa";
             this.txtBoxTelefonoEmpresa.PasswordChar = '\0';
             this.txtBoxTelefonoEmpresa.SelectedText = "";
             this.txtBoxTelefonoEmpresa.SelectionLength = 0;
             this.txtBoxTelefonoEmpresa.SelectionStart = 0;
-            this.txtBoxTelefonoEmpresa.Size = new System.Drawing.Size(404, 23);
+            this.txtBoxTelefonoEmpresa.Size = new System.Drawing.Size(295, 23);
             this.txtBoxTelefonoEmpresa.TabIndex = 15;
             this.txtBoxTelefonoEmpresa.UseSystemPasswordChar = false;
             // 
             // tbPageDatosImpositivos
             // 
             this.tbPageDatosImpositivos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.tbPageDatosImpositivos.Controls.Add(this.grpBoxImpositiva);
+            this.tbPageDatosImpositivos.Controls.Add(this.tblLayoutPanelDatosImpositivos);
             this.tbPageDatosImpositivos.Location = new System.Drawing.Point(4, 22);
             this.tbPageDatosImpositivos.Name = "tbPageDatosImpositivos";
             this.tbPageDatosImpositivos.Padding = new System.Windows.Forms.Padding(3);
@@ -637,27 +675,37 @@
             this.tbPageDatosImpositivos.TabIndex = 3;
             this.tbPageDatosImpositivos.Text = "Datos Impositivos";
             // 
+            // tblLayoutPanelDatosImpositivos
+            // 
+            this.tblLayoutPanelDatosImpositivos.ColumnCount = 1;
+            this.tblLayoutPanelDatosImpositivos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelDatosImpositivos.Controls.Add(this.grpBoxImpositiva, 0, 0);
+            this.tblLayoutPanelDatosImpositivos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblLayoutPanelDatosImpositivos.Location = new System.Drawing.Point(3, 3);
+            this.tblLayoutPanelDatosImpositivos.Name = "tblLayoutPanelDatosImpositivos";
+            this.tblLayoutPanelDatosImpositivos.RowCount = 1;
+            this.tblLayoutPanelDatosImpositivos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblLayoutPanelDatosImpositivos.Size = new System.Drawing.Size(888, 458);
+            this.tblLayoutPanelDatosImpositivos.TabIndex = 8;
+            // 
             // grpBoxImpositiva
             // 
-            this.grpBoxImpositiva.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpBoxImpositiva.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.grpBoxImpositiva.Controls.Add(this.tableLayoutPanel2);
-            this.grpBoxImpositiva.Location = new System.Drawing.Point(151, 75);
-            this.grpBoxImpositiva.Margin = new System.Windows.Forms.Padding(2);
+            this.grpBoxImpositiva.Location = new System.Drawing.Point(204, 20);
+            this.grpBoxImpositiva.Margin = new System.Windows.Forms.Padding(2, 20, 2, 2);
             this.grpBoxImpositiva.Name = "grpBoxImpositiva";
             this.grpBoxImpositiva.Padding = new System.Windows.Forms.Padding(2);
-            this.grpBoxImpositiva.Size = new System.Drawing.Size(576, 181);
+            this.grpBoxImpositiva.Size = new System.Drawing.Size(480, 227);
             this.grpBoxImpositiva.TabIndex = 7;
             this.grpBoxImpositiva.TabStop = false;
             this.grpBoxImpositiva.Text = "Datos Impositivos";
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 113F));
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel2.Controls.Add(this.dtpInicioActividades, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.lblRazonSocial, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblIngresosBrutos, 0, 1);
@@ -669,20 +717,20 @@
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(572, 164);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(476, 210);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // dtpInicioActividades
             // 
             this.dtpInicioActividades.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpInicioActividades.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpInicioActividades.Location = new System.Drawing.Point(115, 127);
-            this.dtpInicioActividades.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpInicioActividades.Location = new System.Drawing.Point(141, 164);
+            this.dtpInicioActividades.Margin = new System.Windows.Forms.Padding(2, 2, 20, 2);
             this.dtpInicioActividades.Name = "dtpInicioActividades";
-            this.dtpInicioActividades.Size = new System.Drawing.Size(416, 20);
+            this.dtpInicioActividades.Size = new System.Drawing.Size(315, 20);
             this.dtpInicioActividades.TabIndex = 14;
             // 
             // lblRazonSocial
@@ -692,7 +740,7 @@
             this.lblRazonSocial.Depth = 0;
             this.lblRazonSocial.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblRazonSocial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblRazonSocial.Location = new System.Drawing.Point(11, 18);
+            this.lblRazonSocial.Location = new System.Drawing.Point(37, 25);
             this.lblRazonSocial.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRazonSocial.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblRazonSocial.Name = "lblRazonSocial";
@@ -707,7 +755,7 @@
             this.lblIngresosBrutos.Depth = 0;
             this.lblIngresosBrutos.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblIngresosBrutos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblIngresosBrutos.Location = new System.Drawing.Point(30, 73);
+            this.lblIngresosBrutos.Location = new System.Drawing.Point(56, 94);
             this.lblIngresosBrutos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblIngresosBrutos.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblIngresosBrutos.Name = "lblIngresosBrutos";
@@ -720,14 +768,15 @@
             this.txtBoxIngresosBrutos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxIngresosBrutos.Depth = 0;
             this.txtBoxIngresosBrutos.Hint = "";
-            this.txtBoxIngresosBrutos.Location = new System.Drawing.Point(116, 71);
+            this.txtBoxIngresosBrutos.Location = new System.Drawing.Point(142, 92);
+            this.txtBoxIngresosBrutos.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtBoxIngresosBrutos.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxIngresosBrutos.Name = "txtBoxIngresosBrutos";
             this.txtBoxIngresosBrutos.PasswordChar = '\0';
             this.txtBoxIngresosBrutos.SelectedText = "";
             this.txtBoxIngresosBrutos.SelectionLength = 0;
             this.txtBoxIngresosBrutos.SelectionStart = 0;
-            this.txtBoxIngresosBrutos.Size = new System.Drawing.Size(414, 23);
+            this.txtBoxIngresosBrutos.Size = new System.Drawing.Size(314, 23);
             this.txtBoxIngresosBrutos.TabIndex = 13;
             this.txtBoxIngresosBrutos.UseSystemPasswordChar = false;
             // 
@@ -736,14 +785,15 @@
             this.txtBoxRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxRazonSocial.Depth = 0;
             this.txtBoxRazonSocial.Hint = "";
-            this.txtBoxRazonSocial.Location = new System.Drawing.Point(116, 16);
+            this.txtBoxRazonSocial.Location = new System.Drawing.Point(142, 23);
+            this.txtBoxRazonSocial.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtBoxRazonSocial.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
             this.txtBoxRazonSocial.PasswordChar = '\0';
             this.txtBoxRazonSocial.SelectedText = "";
             this.txtBoxRazonSocial.SelectionLength = 0;
             this.txtBoxRazonSocial.SelectionStart = 0;
-            this.txtBoxRazonSocial.Size = new System.Drawing.Size(414, 23);
+            this.txtBoxRazonSocial.Size = new System.Drawing.Size(314, 23);
             this.txtBoxRazonSocial.TabIndex = 12;
             this.txtBoxRazonSocial.UseSystemPasswordChar = false;
             // 
@@ -754,11 +804,11 @@
             this.lblInicioActividades.Depth = 0;
             this.lblInicioActividades.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblInicioActividades.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblInicioActividades.Location = new System.Drawing.Point(20, 118);
+            this.lblInicioActividades.Location = new System.Drawing.Point(5, 164);
             this.lblInicioActividades.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblInicioActividades.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblInicioActividades.Name = "lblInicioActividades";
-            this.lblInicioActividades.Size = new System.Drawing.Size(91, 38);
+            this.lblInicioActividades.Size = new System.Drawing.Size(132, 19);
             this.lblInicioActividades.TabIndex = 1;
             this.lblInicioActividades.Text = "Inicio Actividades:";
             // 
@@ -789,18 +839,22 @@
             this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.tbControlPrincipal.ResumeLayout(false);
             this.tbPageAlmacenamiento.ResumeLayout(false);
+            this.tblLayoutPanelAlmacenamientoArchivos_Base.ResumeLayout(false);
             this.grpBoxDestinoAlmacenamiento.ResumeLayout(false);
             this.tblLayoutPanelAlmacenamientoArchivos.ResumeLayout(false);
             this.tblLayoutPanelAlmacenamientoArchivos.PerformLayout();
             this.tbPageFacturacionElectronica.ResumeLayout(false);
+            this.tblLayoutPanelFacturacionElectronica_Base.ResumeLayout(false);
             this.grpBoxFacturacionElectronica.ResumeLayout(false);
             this.tblLayoutPanelFacturacionElectronica.ResumeLayout(false);
             this.tblLayoutPanelFacturacionElectronica.PerformLayout();
             this.tbPageComprobantesInformes.ResumeLayout(false);
+            this.tblLayoutPanelComprobantesInformes.ResumeLayout(false);
             this.grpBoxComprobantesInformes.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tbPageDatosImpositivos.ResumeLayout(false);
+            this.tblLayoutPanelDatosImpositivos.ResumeLayout(false);
             this.grpBoxImpositiva.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -857,6 +911,10 @@
         private MaterialSkin.Controls.MaterialLabel lblInicioActividades;
         private MaterialSkin.Controls.MaterialTabSelector selectorControlPrincipal;
         private System.Windows.Forms.DateTimePicker dtpInicioActividades;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelAlmacenamientoArchivos_Base;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelFacturacionElectronica_Base;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelComprobantesInformes;
+        private System.Windows.Forms.TableLayoutPanel tblLayoutPanelDatosImpositivos;
 
 
     }
