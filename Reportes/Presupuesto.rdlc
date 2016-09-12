@@ -1333,6 +1333,14 @@
           <DataField>CentroEmisor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CodigodeBarras">
+          <DataField>CodigodeBarras</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CodigodeBarrasImagen">
+          <DataField>CodigodeBarrasImagen</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="Comprador_Cuit">
           <DataField>Comprador_Cuit</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1357,6 +1365,14 @@
           <DataField>CondicionVenta</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CopiaComprobante">
+          <DataField>CopiaComprobante</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CuitEmisor">
+          <DataField>CuitEmisor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="FechaComprobante">
           <DataField>FechaComprobante</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
@@ -1373,6 +1389,10 @@
           <DataField>NumeroComprobante</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="NumeroControl">
+          <DataField>NumeroControl</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="Remito">
           <DataField>Remito</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1385,11 +1405,15 @@
           <DataField>TotalComprobante</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="TotalComprobanteLetras">
+          <DataField>TotalComprobanteLetras</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>Modelos</rd:DataSetName>
-        <rd:TableName>ModeloReporteEncabezadoFactura</rd:TableName>
-        <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezadoFactura, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ModeloReporteEncabezadoComprobante</rd:TableName>
+        <rd:ObjectDataSourceType>Modelos.ModeloReporteEncabezadoComprobante, Modelos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
     <DataSet Name="DSDetalleFactura">
