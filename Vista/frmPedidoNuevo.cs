@@ -672,9 +672,10 @@ namespace Vista
                 List<ModeloArticuloProveedores> lcl_lst_articulosProveedoresEncontrados = this.buscarArticuloProveedor();
                 if (lcl_lst_articulosProveedoresEncontrados != null)
                 {
+                    this.cargarArticulosProveedoresEncontradosEnControles(lcl_lst_articulosProveedoresEncontrados);
                     if (lcl_lst_articulosProveedoresEncontrados.Count > 0)
                     {
-                        this.cargarArticulosProveedoresEncontradosEnControles(lcl_lst_articulosProveedoresEncontrados);
+                        //this.cargarArticulosProveedoresEncontradosEnControles(lcl_lst_articulosProveedoresEncontrados);
                     }
                     else
                     {
