@@ -988,7 +988,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value EvaluationMode="Constant" />
+                  <Value>=First(Fields!Comprador_Mail.Value, "DSFactura")</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -1054,7 +1054,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value />
+                  <Value>=First(Fields!Comprador_Telefono.Value, "DSFactura")</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -1527,6 +1527,10 @@
           <DataField>CodigodeBarras</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CodigodeBarrasImagen">
+          <DataField>CodigodeBarrasImagen</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="Comprador_Cuit">
           <DataField>Comprador_Cuit</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1539,8 +1543,16 @@
           <DataField>Comprador_IVAResponsableI</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Comprador_Mail">
+          <DataField>Comprador_Mail</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="Comprador_RazonSocial">
           <DataField>Comprador_RazonSocial</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Comprador_Telefono">
+          <DataField>Comprador_Telefono</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ConceptosNoGravados">
