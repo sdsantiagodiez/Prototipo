@@ -93,6 +93,7 @@ namespace LibreriaClasesCompartidas
                 public const string CodigoArticuloProveedor = "codigoArticuloProveedor";
                 public const string Descripcion = Articulos.Descripcion;
                 public const string DescripcionArticuloProveedor = "descripcionArticuloProveedor";
+                public const string DescripcionAmbas = "ambasDescripciones";
                 public const string codigoEntidadProveedor = "codigoEntidadProveedor";
                 public const string razonSocialProveedor = "razonSocialProveedor";
                 public const string Observaciones = Constantes.ParametrosBusqueda.Articulos.Observaciones;
@@ -217,9 +218,9 @@ namespace LibreriaClasesCompartidas
         public enum TipoComprobanteVenta
         {
             Factura = 1,
-            Recibo =2,
-            [System.ComponentModel.Description("Nota de Venta al Contado")]
-            NotaVentaAlContado = 3,
+            //Recibo =2,
+            //[System.ComponentModel.Description("Nota de Venta al Contado")]
+            //NotaVentaAlContado = 3,
             Presupuesto = 1001,
             Reserva=1002,
             

@@ -94,6 +94,9 @@ namespace Datos
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.Descripcion:
                     //No devuelve resultados
                     return " 1 = 2 ";
+                case Constantes.ParametrosBusqueda.ArticulosProveedores.DescripcionAmbas:
+                    p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articuloProveedor.descripcionArticuloProveedor), "@descripcion"));
+                    return " ap.descripcion LIKE @descripcion  OR art.descripcion LIKE @descripcion ";
 
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.DescripcionArticuloProveedor:
                     p_comando.Parameters.Add(this.instanciarParametro(this.agregarComodinBusquedaLIKE(p_mod_articuloProveedor.descripcionArticuloProveedor), "@descripcion_articulo_proveedor"));

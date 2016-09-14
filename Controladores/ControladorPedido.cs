@@ -66,6 +66,7 @@ namespace Controladores
                     lcl_mod_ArticuloProveedor.codigoOriginal = p_descripcionParcialArticulo; break;
 
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.DescripcionArticuloProveedor:
+                    p_categoriaBusquedaSeleccionada = LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.ArticulosProveedores.DescripcionAmbas;
                     lcl_mod_ArticuloProveedor.descripcionArticuloProveedor = p_descripcionParcialArticulo; break;
 
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.CodigoArticuloProveedor:
@@ -431,12 +432,12 @@ namespace Controladores
                 //case Constantes.TipoComprobanteVenta.NotaCredito:
                 //    codigoTipoComprobante = p_codigoTipoResponsable == 1 ? 3 : 8; //3=A,8=B
                 //    break;
-                case Constantes.TipoComprobanteVenta.Recibo:
-                    codigoTipoComprobante = p_codigoTipoResponsable == 1 ? 4 : 9; //4=A,9=B
-                    break;
-                case Constantes.TipoComprobanteVenta.NotaVentaAlContado:
-                    codigoTipoComprobante = p_codigoTipoResponsable == 1 ? 5 : 10; //5=A,10=B
-                    break;
+                //case Constantes.TipoComprobanteVenta.Recibo:
+                //    codigoTipoComprobante = p_codigoTipoResponsable == 1 ? 4 : 9; //4=A,9=B
+                //    break;
+                //case Constantes.TipoComprobanteVenta.NotaVentaAlContado:
+                //    codigoTipoComprobante = p_codigoTipoResponsable == 1 ? 5 : 10; //5=A,10=B
+                //    break;
                 default :
                     codigoTipoComprobante = (int)p_tipoComprobante;
                     break;
