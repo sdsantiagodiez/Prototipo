@@ -172,7 +172,89 @@ namespace Controladores
             }
             return respuesta;
         }
+        public bool eliminar(ModeloPedido p_mod_pedido)
+        {
+            CatalogoPedidos lcl_cat_pedidos = new CatalogoPedidos();
+            bool respuesta = false;
+            errorActual = "No se ha podido realizar la eliminación.";
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    respuesta = lcl_cat_pedidos.remove(p_mod_pedido)&& this.devolverStock(p_mod_pedido);
+                    scope.Complete();
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                errorActual = "TransactionAbortedException Message: " + ex.Message;
+            }
+            catch (ApplicationException ex)
+            {
+                errorActual = "ApplicationException Message: " + ex.Message;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                switch (ex.Number)
+                {
+                   default:
+                        errorActual = "SQLexception Message: " + ex.Message;
+                        break;
+                }
 
+            }
+            catch (Exception ex)
+            {
+                errorActual = ex.Message;
+            }
+            return respuesta;
+        }
+        public bool devolverStock(ModeloPedido p_mod_pedido)
+        {
+            ModeloArticuloProveedores lcl_mod_articuloProveedores;
+            ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
+            if (p_mod_pedido.tipoComprobante != 0)
+            {
+                foreach (ModeloLineaPedido lp in p_mod_pedido.lineasPedido)
+                {
+                    //se debe modificar stock
+                    lcl_mod_articuloProveedores = new ModeloArticuloProveedores();
+
+                    lcl_mod_articuloProveedores.codigoOriginal = lp.articulo.codigoOriginal;
+                    lcl_mod_articuloProveedores.codigoArticuloProveedor = lp.articulo.codigoArticuloProveedor;
+
+                    lcl_mod_articuloProveedores = ControladorBusqueda.getOne(lcl_mod_articuloProveedores, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.One);
+                    //Si no se encuentra artículo tira excepción de índice
+                    if (p_mod_pedido.tipoComprobante != 8 && p_mod_pedido.tipoComprobante != 3)//Se agrega para que cuando sea devolucion no suba Stock.
+                    {
+                        if (p_mod_pedido.tipoComprobante != 2001)
+                        {
+                            lcl_mod_articuloProveedores.stockActual = lcl_mod_articuloProveedores.stockActual + lp.cantidadArticulos;
+                            //Excepcion si stock negativo y no esta permitido    
+                            
+                        }
+                        else
+                        { lcl_mod_articuloProveedores.stockActual = lcl_mod_articuloProveedores.stockActual - lp.cantidadArticulos;
+                            if (lcl_mod_articuloProveedores.stockActual < 0 && !lp.permitirStockNegativo)
+                            {
+                                errorActual = "La cantidad solicitada es mayor al stock actual para el artículo " + lcl_mod_articuloProveedores.getDescripciones() + ", " +
+                                                lcl_mod_articuloProveedores.codigoArticuloProveedor;
+                                return false;
+                            }
+                        }
+
+                        //Si hay error al modificar la base de datos agregando linea o modificando stock
+                        if (!lcl_con_modificacion.modificar(lcl_mod_articuloProveedores))
+                        {
+                            errorActual = "Error al modificar stock en la base de datos de artículo " + lcl_mod_articuloProveedores.getDescripciones() + ", " +
+                                            lcl_mod_articuloProveedores.codigoArticuloProveedor;
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
       
 
     }

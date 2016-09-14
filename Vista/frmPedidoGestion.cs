@@ -189,12 +189,18 @@ namespace Vista
             {
                 this.imprimir();
             };
+            this.cntxMenuResultadoBusqueda.Items.Add("Eliminar");
+            this.cntxMenuResultadoBusqueda.Items[3].Click += (s, e) =>
+            {
+                this.eliminar();
+            };
         }
-        private void inicializarContextMenu(bool p_verDetalles, bool p_facturar, bool p_imprimir)
+        private void inicializarContextMenu(bool p_verDetalles, bool p_facturar, bool p_imprimir, bool p_eliminar)
         {
             this.cntxMenuResultadoBusqueda.Items[0].Enabled = p_verDetalles;
             this.cntxMenuResultadoBusqueda.Items[1].Enabled = p_facturar;
             this.cntxMenuResultadoBusqueda.Items[2].Enabled = p_imprimir;
+            this.cntxMenuResultadoBusqueda.Items[3].Enabled = p_eliminar;
         }
         private void inicializarBotones()
         {
@@ -679,6 +685,58 @@ namespace Vista
         }
         #endregion
 
+        #region Eliminar
+        private bool validarEliminacion(List<ModeloPedido> p_lst_pedidosSeleccionados)
+        {
+            if (p_lst_pedidosSeleccionados.Count != 1 || p_lst_pedidosSeleccionados[0].aprobadoAFIP=="A")//faltara alguna validacion mas?
+            {
+                return false;
+            }
+
+            return true;
+        }
+        private void eliminar()
+        {
+            glb_lst_pedidosSeleccionados = this.getPedidosSeleccionados();
+            DialogResult dialog = MessageBox.Show("Esta seguro que desea eliminar el pedido "+glb_lst_pedidosSeleccionados[0].numeroPedido+" ?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialog == DialogResult.Yes)
+            {
+
+                if (!this.validarEliminacion(glb_lst_pedidosSeleccionados))
+                {
+                    MessageBox.Show("Debe seleccionar un unico pedido para eliminar. Inténtelo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    return;
+                }
+                BackgroundWorker bw = new BackgroundWorker();
+                frmLoading lcl_frm_loading = new frmLoading("Espere por favor. Eliminando el pedido seleccionado.");
+
+                bw.DoWork += (s, e) =>
+                {
+                    Controladores.ControladorBaja lcl_con_baja = new Controladores.ControladorBaja();
+
+                    //lcl_con_baja.eliminar(glb_lst_pedidosSeleccionados[0]);
+
+                    if (!lcl_con_baja.eliminar(glb_lst_pedidosSeleccionados[0]))
+                    {
+                        MessageBox.Show(lcl_con_baja.errorActual, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                };
+                bw.RunWorkerCompleted += (s, e) =>
+                {
+                    lcl_frm_loading.DialogResult = DialogResult.OK;
+                    glb_lst_pedidosEncontrados.Remove(glb_lst_pedidosSeleccionados[0]);
+                    this.cargarModelosPedidosEnDataGridView(glb_lst_pedidosEncontrados);
+                };
+
+                bw.RunWorkerAsync();
+                lcl_frm_loading.ShowDialog();
+                MessageBox.Show("Pedido Eliminado Exitosamente", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        #endregion
+
         #endregion
 
         #region Eventos
@@ -693,7 +751,8 @@ namespace Vista
 
             this.inicializarContextMenu(this.validarVerDetalles(glb_lst_pedidosSeleccionados), 
                                         this.validarFacturar(glb_lst_pedidosSeleccionados),
-                                        this.validarImprimir(glb_lst_pedidosSeleccionados));
+                                        this.validarImprimir(glb_lst_pedidosSeleccionados),
+                                        this.validarEliminacion(glb_lst_pedidosSeleccionados));
         }
 
         private void dgvResultadoBusqueda_MouseDown(object sender, MouseEventArgs e)
