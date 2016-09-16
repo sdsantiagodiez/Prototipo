@@ -19,7 +19,7 @@ namespace Controladores
         
         #endregion
 
-        #region
+        #region metodos
         public static void Iniciar()
         {
             IFormatProvider cultura = new System.Globalization.CultureInfo("es-AR", true);

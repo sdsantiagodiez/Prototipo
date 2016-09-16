@@ -91,12 +91,117 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Diagramas\DeClase\DiagramadeClases.cd" />
+    <None Include="Diagramas\DSD\ControladorAlta_agregar.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorAlta_agregar_1.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorAlta_agregar_2.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorAlta_agregar_3.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorAlta_agregar_4.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorBaja_eliminar.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorBaja_eliminar_1.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorBaja_eliminar_2.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorBusqueda_buscar.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorBusqueda_buscar_1.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorBusqueda_buscar_2.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorModificacion_modificar.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorModificacion_modificar_1.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorModificacion_modificar_2.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorPedidoCliente_guardarPedido.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorPedidoCliente_iniciarDevolucion.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorPedidoProveedor_ControladorPedidoProveedor.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorPedidoProveedor_updateLineaPedido.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorPedido_addArticulo.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorPedido_ControladorPedido.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorPedido_guardarPedido.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorPedido_iniciarDevolucion.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorPedido_updateLineaPedido.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorReportes_getReporteDescuentosVigentes.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorReportes_getReporteStock.sequencediagram" />
+    <None Include="Diagramas\DSD\ControladorSesion_LogIn.sequencediagram" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorAlta_agregar.sequencediagram.layout">
+      <DependentUpon>ControladorAlta_agregar.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorAlta_agregar_1.sequencediagram.layout">
+      <DependentUpon>ControladorAlta_agregar_1.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorAlta_agregar_2.sequencediagram.layout">
+      <DependentUpon>ControladorAlta_agregar_2.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorAlta_agregar_3.sequencediagram.layout">
+      <DependentUpon>ControladorAlta_agregar_3.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorAlta_agregar_4.sequencediagram.layout">
+      <DependentUpon>ControladorAlta_agregar_4.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorBaja_eliminar.sequencediagram.layout">
+      <DependentUpon>ControladorBaja_eliminar.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorBaja_eliminar_1.sequencediagram.layout">
+      <DependentUpon>ControladorBaja_eliminar_1.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorBaja_eliminar_2.sequencediagram.layout">
+      <DependentUpon>ControladorBaja_eliminar_2.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorBusqueda_buscar.sequencediagram.layout">
+      <DependentUpon>ControladorBusqueda_buscar.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorBusqueda_buscar_1.sequencediagram.layout">
+      <DependentUpon>ControladorBusqueda_buscar_1.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorBusqueda_buscar_2.sequencediagram.layout">
+      <DependentUpon>ControladorBusqueda_buscar_2.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorModificacion_modificar.sequencediagram.layout">
+      <DependentUpon>ControladorModificacion_modificar.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorModificacion_modificar_1.sequencediagram.layout">
+      <DependentUpon>ControladorModificacion_modificar_1.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorModificacion_modificar_2.sequencediagram.layout">
+      <DependentUpon>ControladorModificacion_modificar_2.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorPedidoCliente_guardarPedido.sequencediagram.layout">
+      <DependentUpon>ControladorPedidoCliente_guardarPedido.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorPedidoCliente_iniciarDevolucion.sequencediagram.layout">
+      <DependentUpon>ControladorPedidoCliente_iniciarDevolucion.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorPedidoProveedor_ControladorPedidoProveedor.sequencediagram.layout">
+      <DependentUpon>ControladorPedidoProveedor_ControladorPedidoProveedor.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorPedidoProveedor_updateLineaPedido.sequencediagram.layout">
+      <DependentUpon>ControladorPedidoProveedor_updateLineaPedido.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorPedido_addArticulo.sequencediagram.layout">
+      <DependentUpon>ControladorPedido_addArticulo.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorPedido_ControladorPedido.sequencediagram.layout">
+      <DependentUpon>ControladorPedido_ControladorPedido.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorPedido_guardarPedido.sequencediagram.layout">
+      <DependentUpon>ControladorPedido_guardarPedido.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorPedido_iniciarDevolucion.sequencediagram.layout">
+      <DependentUpon>ControladorPedido_iniciarDevolucion.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorPedido_updateLineaPedido.sequencediagram.layout">
+      <DependentUpon>ControladorPedido_updateLineaPedido.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorReportes_getReporteDescuentosVigentes.sequencediagram.layout">
+      <DependentUpon>ControladorReportes_getReporteDescuentosVigentes.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorReportes_getReporteStock.sequencediagram.layout">
+      <DependentUpon>ControladorReportes_getReporteStock.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagramas\DSD\ControladorSesion_LogIn.sequencediagram.layout">
+      <DependentUpon>ControladorSesion_LogIn.sequencediagram</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WSAFIPFE.dll" />
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +224,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
