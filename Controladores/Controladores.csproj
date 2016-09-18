@@ -94,7 +94,6 @@
     <None Include="Diagramas\DeClase\DiagramadeClases.cd" />
     <None Include="Diagramas\DSD\ControladorAlta_agregar.sequencediagram" />
     <None Include="Diagramas\DSD\ControladorAlta_agregar_1.sequencediagram" />
-    <None Include="Diagramas\DSD\ControladorAlta_agregar_2.sequencediagram" />
     <None Include="Diagramas\DSD\ControladorAlta_agregar_3.sequencediagram" />
     <None Include="Diagramas\DSD\ControladorAlta_agregar_4.sequencediagram" />
     <None Include="Diagramas\DSD\ControladorBaja_eliminar.sequencediagram" />
@@ -113,7 +112,6 @@
     <None Include="Diagramas\DSD\ControladorPedido_addArticulo.sequencediagram" />
     <None Include="Diagramas\DSD\ControladorPedido_ControladorPedido.sequencediagram" />
     <None Include="Diagramas\DSD\ControladorPedido_guardarPedido.sequencediagram" />
-    <None Include="Diagramas\DSD\ControladorPedido_iniciarDevolucion.sequencediagram" />
     <None Include="Diagramas\DSD\ControladorPedido_updateLineaPedido.sequencediagram" />
     <None Include="Diagramas\DSD\ControladorReportes_getReporteDescuentosVigentes.sequencediagram" />
     <None Include="Diagramas\DSD\ControladorReportes_getReporteStock.sequencediagram" />
@@ -129,9 +127,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Diagramas\DSD\ControladorAlta_agregar_1.sequencediagram.layout">
       <DependentUpon>ControladorAlta_agregar_1.sequencediagram</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Diagramas\DSD\ControladorAlta_agregar_2.sequencediagram.layout">
-      <DependentUpon>ControladorAlta_agregar_2.sequencediagram</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Diagramas\DSD\ControladorAlta_agregar_3.sequencediagram.layout">
       <DependentUpon>ControladorAlta_agregar_3.sequencediagram</DependentUpon>
@@ -186,9 +181,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Diagramas\DSD\ControladorPedido_guardarPedido.sequencediagram.layout">
       <DependentUpon>ControladorPedido_guardarPedido.sequencediagram</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Diagramas\DSD\ControladorPedido_iniciarDevolucion.sequencediagram.layout">
-      <DependentUpon>ControladorPedido_iniciarDevolucion.sequencediagram</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Diagramas\DSD\ControladorPedido_updateLineaPedido.sequencediagram.layout">
       <DependentUpon>ControladorPedido_updateLineaPedido.sequencediagram</DependentUpon>

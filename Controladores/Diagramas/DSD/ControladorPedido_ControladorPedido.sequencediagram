@@ -268,14 +268,14 @@
               <lifelineMoniker Id="d7ca8148-dfd2-4416-8e35-edc5519a0bad" LastKnownName="this._pedidoActual._alicuota : Alicuota" />
             </covered>
           </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification Id="addb3c5a-94bb-4ec2-ad50-961dd7a7e94e" name="MessageOccurrenceSpecification">
-            <covered>
-              <lifelineMoniker Id="02e21517-f2e8-4598-ab37-47e7e068bdd7" LastKnownName="this._pedidoActual : ModeloPedido" />
-            </covered>
-          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="58bf1dcb-00da-47d4-a8e1-ab7fa5dbeaed" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="d7ca8148-dfd2-4416-8e35-edc5519a0bad" LastKnownName="this._pedidoActual._alicuota : Alicuota" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="addb3c5a-94bb-4ec2-ad50-961dd7a7e94e" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="02e21517-f2e8-4598-ab37-47e7e068bdd7" LastKnownName="this._pedidoActual : ModeloPedido" />
             </covered>
           </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="8512f799-af93-4076-9c20-8064dcbc2e6d" name="MessageOccurrenceSpecification">
@@ -330,14 +330,14 @@
               <lifelineMoniker Id="6a29f07d-1f26-446f-80aa-d0d79f114ebc" LastKnownName="this._pedidoActual._documentoComprador : Documento" />
             </covered>
           </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification Id="943a3c6d-995b-43aa-ac83-1024c606bd3c" name="MessageOccurrenceSpecification">
-            <covered>
-              <lifelineMoniker Id="02e21517-f2e8-4598-ab37-47e7e068bdd7" LastKnownName="this._pedidoActual : ModeloPedido" />
-            </covered>
-          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="6ca7be2d-a3e8-42bf-bac7-69c55d803566" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="6a29f07d-1f26-446f-80aa-d0d79f114ebc" LastKnownName="this._pedidoActual._documentoComprador : Documento" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="943a3c6d-995b-43aa-ac83-1024c606bd3c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="02e21517-f2e8-4598-ab37-47e7e068bdd7" LastKnownName="this._pedidoActual : ModeloPedido" />
             </covered>
           </messageOccurrenceSpecification>
           <lostFoundTarget Id="4d5411f9-e9b1-45dc-aab5-48932cea6525" name="LostFoundTarget" />
@@ -391,14 +391,14 @@
               <lifelineMoniker Id="9f40f498-599e-4145-85d9-3845eb0a994e" LastKnownName="this._pedidoActual._descuentos : ModeloDescuentoPedido" />
             </covered>
           </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification Id="60f3bdd6-c19d-4aab-8813-a5e219f9c14b" name="MessageOccurrenceSpecification">
-            <covered>
-              <lifelineMoniker Id="02e21517-f2e8-4598-ab37-47e7e068bdd7" LastKnownName="this._pedidoActual : ModeloPedido" />
-            </covered>
-          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="b1e5f280-e106-4dcd-af09-c6e28a82fe2e" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="9f40f498-599e-4145-85d9-3845eb0a994e" LastKnownName="this._pedidoActual._descuentos : ModeloDescuentoPedido" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="60f3bdd6-c19d-4aab-8813-a5e219f9c14b" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="02e21517-f2e8-4598-ab37-47e7e068bdd7" LastKnownName="this._pedidoActual : ModeloPedido" />
             </covered>
           </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="8ad2ad1b-1e5c-453e-9598-9c83fada0cff" name="MessageOccurrenceSpecification">
@@ -544,14 +544,14 @@
               <lifelineMoniker Id="9f40f498-599e-4145-85d9-3845eb0a994e" LastKnownName="this._pedidoActual._descuentos : ModeloDescuentoPedido" />
             </covered>
           </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification Id="48a0eadf-02af-4960-b2c1-a03f7d4fa587" name="MessageOccurrenceSpecification">
-            <covered>
-              <lifelineMoniker Id="9f40f498-599e-4145-85d9-3845eb0a994e" LastKnownName="this._pedidoActual._descuentos : ModeloDescuentoPedido" />
-            </covered>
-          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="33dffc05-717a-4e8d-b1a7-ec577a8388af" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="02e21517-f2e8-4598-ab37-47e7e068bdd7" LastKnownName="this._pedidoActual : ModeloPedido" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="48a0eadf-02af-4960-b2c1-a03f7d4fa587" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="9f40f498-599e-4145-85d9-3845eb0a994e" LastKnownName="this._pedidoActual._descuentos : ModeloDescuentoPedido" />
             </covered>
           </messageOccurrenceSpecification>
           <lostFoundTarget Id="9b97b89d-911a-4cbe-8e92-1abbfa86fb04" name="LostFoundTarget" />
@@ -666,14 +666,14 @@
               <lifelineMoniker Id="ffc840a1-be65-4228-9723-772ca2af0b9e" LastKnownName="p_formaPago : FormaPago" />
             </covered>
           </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification Id="10f85fb4-fea2-4178-ae6f-a724894befb3" name="MessageOccurrenceSpecification">
-            <covered>
-              <lifelineMoniker Id="02e21517-f2e8-4598-ab37-47e7e068bdd7" LastKnownName="this._pedidoActual : ModeloPedido" />
-            </covered>
-          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="e67851e9-90ab-4aff-b156-346682c89242" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="ffc840a1-be65-4228-9723-772ca2af0b9e" LastKnownName="p_formaPago : FormaPago" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="10f85fb4-fea2-4178-ae6f-a724894befb3" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="02e21517-f2e8-4598-ab37-47e7e068bdd7" LastKnownName="this._pedidoActual : ModeloPedido" />
             </covered>
           </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="102e00f2-ac6e-449b-a7e2-fc205165786a" name="MessageOccurrenceSpecification">
@@ -1089,14 +1089,14 @@
               <lifelineMoniker Id="211811d2-ffbe-431a-a4e9-6aee94fde596" LastKnownName="this._pedidoActual._entidad : ModeloEntidad" />
             </covered>
           </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification Id="311d49dd-b8d9-426e-9c95-80d3b47e7317" name="MessageOccurrenceSpecification">
-            <covered>
-              <lifelineMoniker Id="211811d2-ffbe-431a-a4e9-6aee94fde596" LastKnownName="this._pedidoActual._entidad : ModeloEntidad" />
-            </covered>
-          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="5ed4cb99-ec35-47fa-b519-5cefd297ea68" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="02e21517-f2e8-4598-ab37-47e7e068bdd7" LastKnownName="this._pedidoActual : ModeloPedido" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="311d49dd-b8d9-426e-9c95-80d3b47e7317" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="211811d2-ffbe-431a-a4e9-6aee94fde596" LastKnownName="this._pedidoActual._entidad : ModeloEntidad" />
             </covered>
           </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="17957a6c-d2bb-43f1-be2e-30d525e07d11" name="MessageOccurrenceSpecification">
@@ -1123,12 +1123,12 @@
               <lifelineMoniker Id="211811d2-ffbe-431a-a4e9-6aee94fde596" LastKnownName="this._pedidoActual._entidad : ModeloEntidad" />
             </covered>
           </messageOccurrenceSpecification>
-          <lostFoundTarget Id="f886b6bd-1ca7-4f97-8996-89103be7b5a8" name="LostFoundTarget" />
           <messageOccurrenceSpecification Id="c2d25cf5-e054-43e3-afd5-1d1fa538a7d9" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="211811d2-ffbe-431a-a4e9-6aee94fde596" LastKnownName="this._pedidoActual._entidad : ModeloEntidad" />
             </covered>
           </messageOccurrenceSpecification>
+          <lostFoundTarget Id="f886b6bd-1ca7-4f97-8996-89103be7b5a8" name="LostFoundTarget" />
           <messageOccurrenceSpecification Id="6cc6f124-8193-44cc-8718-9af3bc28cd8d" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="211811d2-ffbe-431a-a4e9-6aee94fde596" LastKnownName="this._pedidoActual._entidad : ModeloEntidad" />

@@ -236,12 +236,12 @@
               <lifelineMoniker Id="7849d464-a965-4e3f-81a4-286433ff0a61" LastKnownName="lcl_con_alta : ControladorAlta" />
             </covered>
           </operandOccurrenceSpecification>
+          <lostFoundTarget Id="b8557ecf-c01d-4aee-a0f4-0e0d6f47eb49" name="LostFoundTarget" />
           <messageOccurrenceSpecification Id="725b82b7-fb45-4c3f-b1da-c46914277444" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="7849d464-a965-4e3f-81a4-286433ff0a61" LastKnownName="lcl_con_alta : ControladorAlta" />
             </covered>
           </messageOccurrenceSpecification>
-          <lostFoundTarget Id="b8557ecf-c01d-4aee-a0f4-0e0d6f47eb49" name="LostFoundTarget" />
           <operandOccurrenceSpecification Id="fd726089-43c3-43ab-a775-29a7a3ef442d" name="OperandOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="7849d464-a965-4e3f-81a4-286433ff0a61" LastKnownName="lcl_con_alta : ControladorAlta" />
@@ -457,12 +457,12 @@
               <lifelineMoniker Id="7342054a-fcd6-466f-ba33-91107ff935b3" LastKnownName="this : ControladorPedidoCliente" />
             </covered>
           </operandOccurrenceSpecification>
-          <lostFoundTarget Id="b12755d2-98ca-42fd-bc74-53b21b79b9c7" name="LostFoundTarget" />
           <messageOccurrenceSpecification Id="31f743fc-dca5-42a0-9bdc-6c543a8ebadc" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="7342054a-fcd6-466f-ba33-91107ff935b3" LastKnownName="this : ControladorPedidoCliente" />
             </covered>
           </messageOccurrenceSpecification>
+          <lostFoundTarget Id="b12755d2-98ca-42fd-bc74-53b21b79b9c7" name="LostFoundTarget" />
           <operandOccurrenceSpecification Id="d0fba98d-60f9-4e11-9248-517af3c8a320" name="OperandOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="7342054a-fcd6-466f-ba33-91107ff935b3" LastKnownName="this : ControladorPedidoCliente" />
@@ -746,14 +746,14 @@
               <lifelineMoniker Id="7342054a-fcd6-466f-ba33-91107ff935b3" LastKnownName="this : ControladorPedidoCliente" />
             </covered>
           </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification Id="15a4dfc7-2d1d-466e-b66e-5a4351b97b64" name="MessageOccurrenceSpecification">
-            <covered>
-              <lifelineMoniker Id="61da1a6b-6c7a-4965-a941-32eefdc725e7" LastKnownName="lcl_con_alta : ControladorAlta" />
-            </covered>
-          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="c170195a-9070-4e5e-9719-867b3e6ddb90" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="7342054a-fcd6-466f-ba33-91107ff935b3" LastKnownName="this : ControladorPedidoCliente" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="15a4dfc7-2d1d-466e-b66e-5a4351b97b64" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="61da1a6b-6c7a-4965-a941-32eefdc725e7" LastKnownName="lcl_con_alta : ControladorAlta" />
             </covered>
           </messageOccurrenceSpecification>
           <executionOccurrenceSpecification Id="b32221a3-1e73-4099-8013-e6e29036617e" name="ExecutionOccurrenceSpecification">
@@ -977,14 +977,14 @@
               <lifelineMoniker Id="6d09a231-1dc0-4091-9d47-d665d97eaa2b" LastKnownName="lcl_cat_pedidos : CatalogoPedidos" />
             </covered>
           </operandOccurrenceSpecification>
-          <messageOccurrenceSpecification Id="fd591617-1e87-489a-8718-b7ad027e278e" name="MessageOccurrenceSpecification">
-            <covered>
-              <lifelineMoniker Id="6d09a231-1dc0-4091-9d47-d665d97eaa2b" LastKnownName="lcl_cat_pedidos : CatalogoPedidos" />
-            </covered>
-          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="2af20904-3283-4719-aca2-1048fda1f1f0" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="61da1a6b-6c7a-4965-a941-32eefdc725e7" LastKnownName="lcl_con_alta : ControladorAlta" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="fd591617-1e87-489a-8718-b7ad027e278e" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="6d09a231-1dc0-4091-9d47-d665d97eaa2b" LastKnownName="lcl_cat_pedidos : CatalogoPedidos" />
             </covered>
           </messageOccurrenceSpecification>
           <executionOccurrenceSpecification Id="a2d41552-b11f-4f13-ad73-b6dafbcc6392" name="ExecutionOccurrenceSpecification">
@@ -1053,24 +1053,24 @@
               <lifelineMoniker Id="61da1a6b-6c7a-4965-a941-32eefdc725e7" LastKnownName="lcl_con_alta : ControladorAlta" />
             </covered>
           </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification Id="399ab533-e540-4425-9707-7a9ea14bcf62" name="OperandOccurrenceSpecification">
-            <covered>
-              <lifelineMoniker Id="6d09a231-1dc0-4091-9d47-d665d97eaa2b" LastKnownName="lcl_cat_pedidos : CatalogoPedidos" />
-            </covered>
-          </operandOccurrenceSpecification>
           <operandOccurrenceSpecification Id="12ab4b2a-c7e2-4bfa-bf60-755e12578c58" name="OperandOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="61da1a6b-6c7a-4965-a941-32eefdc725e7" LastKnownName="lcl_con_alta : ControladorAlta" />
             </covered>
           </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification Id="e78b5614-5421-45f5-b942-3288c04e3604" name="OperandOccurrenceSpecification">
+          <operandOccurrenceSpecification Id="399ab533-e540-4425-9707-7a9ea14bcf62" name="OperandOccurrenceSpecification">
             <covered>
-              <lifelineMoniker Id="61da1a6b-6c7a-4965-a941-32eefdc725e7" LastKnownName="lcl_con_alta : ControladorAlta" />
+              <lifelineMoniker Id="6d09a231-1dc0-4091-9d47-d665d97eaa2b" LastKnownName="lcl_cat_pedidos : CatalogoPedidos" />
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification Id="c47f494e-ce27-4170-9eb3-3dfb34fc3acb" name="OperandOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="6d09a231-1dc0-4091-9d47-d665d97eaa2b" LastKnownName="lcl_cat_pedidos : CatalogoPedidos" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="e78b5614-5421-45f5-b942-3288c04e3604" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="61da1a6b-6c7a-4965-a941-32eefdc725e7" LastKnownName="lcl_con_alta : ControladorAlta" />
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification Id="a5bbdb2c-79a0-4f75-90ab-ee7d80ae9545" name="OperandOccurrenceSpecification">
@@ -1139,11 +1139,6 @@
               <lifelineMoniker Id="7342054a-fcd6-466f-ba33-91107ff935b3" LastKnownName="this : ControladorPedidoCliente" />
             </covered>
           </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification Id="1b19b896-983f-4911-a961-2dda800aa906" name="OperandOccurrenceSpecification">
-            <covered>
-              <lifelineMoniker Id="6d09a231-1dc0-4091-9d47-d665d97eaa2b" LastKnownName="lcl_cat_pedidos : CatalogoPedidos" />
-            </covered>
-          </operandOccurrenceSpecification>
           <operandOccurrenceSpecification Id="0450332a-1ca9-4c3e-a0f0-160652b117da" name="OperandOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="61da1a6b-6c7a-4965-a941-32eefdc725e7" LastKnownName="lcl_con_alta : ControladorAlta" />
@@ -1152,6 +1147,11 @@
           <operandOccurrenceSpecification Id="2c29816c-ebea-4122-af79-c1f772e2a6c3" name="OperandOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="7342054a-fcd6-466f-ba33-91107ff935b3" LastKnownName="this : ControladorPedidoCliente" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="1b19b896-983f-4911-a961-2dda800aa906" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="6d09a231-1dc0-4091-9d47-d665d97eaa2b" LastKnownName="lcl_cat_pedidos : CatalogoPedidos" />
             </covered>
           </operandOccurrenceSpecification>
           <executionOccurrenceSpecification Id="bf93546b-2968-41a9-9183-37789ad11113" name="ExecutionOccurrenceSpecification">

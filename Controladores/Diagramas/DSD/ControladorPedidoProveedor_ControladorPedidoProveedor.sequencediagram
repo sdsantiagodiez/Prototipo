@@ -174,14 +174,14 @@
               <lifelineMoniker Id="0e749e17-b6d9-4c14-b334-f307f6d74c32" LastKnownName="this._pedidosProveedores : List&lt;ModeloPedido&gt;" />
             </covered>
           </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification Id="5e6d495d-e931-4ad4-ae5a-f9c61ef43a8c" name="MessageOccurrenceSpecification">
-            <covered>
-              <lifelineMoniker Id="e823ba7d-eef2-4f67-8de3-da4b7d6ca78f" LastKnownName="this : ControladorPedidoProveedor" />
-            </covered>
-          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="1f57c63f-253d-4ed0-a216-7fdf90f0076c" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="0e749e17-b6d9-4c14-b334-f307f6d74c32" LastKnownName="this._pedidosProveedores : List&lt;ModeloPedido&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="5e6d495d-e931-4ad4-ae5a-f9c61ef43a8c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="e823ba7d-eef2-4f67-8de3-da4b7d6ca78f" LastKnownName="this : ControladorPedidoProveedor" />
             </covered>
           </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="adbaeef1-b003-43fa-b242-7daad0f21a90" name="MessageOccurrenceSpecification">
@@ -280,14 +280,14 @@
               <lifelineMoniker Id="fddeffce-3b49-4748-99bd-52b2caae7c1c" LastKnownName="lcl_mod_pedidoGlobalProveedores : ModeloPedido" />
             </covered>
           </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification Id="a8e25bbb-31ef-42a3-9582-6f9d2eb4efc1" name="MessageOccurrenceSpecification">
-            <covered>
-              <lifelineMoniker Id="e823ba7d-eef2-4f67-8de3-da4b7d6ca78f" LastKnownName="this : ControladorPedidoProveedor" />
-            </covered>
-          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="089d4359-0eea-4573-be44-cf9eb8cebc78" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="fddeffce-3b49-4748-99bd-52b2caae7c1c" LastKnownName="lcl_mod_pedidoGlobalProveedores : ModeloPedido" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="a8e25bbb-31ef-42a3-9582-6f9d2eb4efc1" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="e823ba7d-eef2-4f67-8de3-da4b7d6ca78f" LastKnownName="this : ControladorPedidoProveedor" />
             </covered>
           </messageOccurrenceSpecification>
           <lostFoundTarget Id="60e91b45-4d18-423d-963b-53ced5793a8c" name="LostFoundTarget" />
@@ -314,12 +314,12 @@
             </covered>
           </messageOccurrenceSpecification>
           <lostFoundTarget Id="f4e5e344-423d-4f87-9db2-c440d2d9ecde" name="LostFoundTarget" />
-          <lostFoundTarget Id="b082c995-ab2b-45f7-a4d5-c73db7cef958" name="LostFoundTarget" />
           <messageOccurrenceSpecification Id="4e698ed9-fa1e-47fc-a271-110134294770" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="fddeffce-3b49-4748-99bd-52b2caae7c1c" LastKnownName="lcl_mod_pedidoGlobalProveedores : ModeloPedido" />
             </covered>
           </messageOccurrenceSpecification>
+          <lostFoundTarget Id="b082c995-ab2b-45f7-a4d5-c73db7cef958" name="LostFoundTarget" />
           <lostFoundTarget Id="69f758af-bb56-4000-abc9-c29530f0e6df" name="LostFoundTarget" />
           <messageOccurrenceSpecification Id="95ae1270-8740-4842-88fb-1936469d0c21" name="MessageOccurrenceSpecification">
             <covered>
@@ -344,12 +344,12 @@
               <lifelineMoniker Id="fddeffce-3b49-4748-99bd-52b2caae7c1c" LastKnownName="lcl_mod_pedidoGlobalProveedores : ModeloPedido" />
             </covered>
           </messageOccurrenceSpecification>
-          <lostFoundTarget Id="ff1d5d3b-014d-42cb-accb-729a6dbd06b6" name="LostFoundTarget" />
           <messageOccurrenceSpecification Id="2bc189c8-6a27-4611-b76a-f89c2329431e" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="fddeffce-3b49-4748-99bd-52b2caae7c1c" LastKnownName="lcl_mod_pedidoGlobalProveedores : ModeloPedido" />
             </covered>
           </messageOccurrenceSpecification>
+          <lostFoundTarget Id="ff1d5d3b-014d-42cb-accb-729a6dbd06b6" name="LostFoundTarget" />
           <messageOccurrenceSpecification Id="2b0929d6-b604-4fd0-9475-7ce89b6b9f04" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="fddeffce-3b49-4748-99bd-52b2caae7c1c" LastKnownName="lcl_mod_pedidoGlobalProveedores : ModeloPedido" />
@@ -473,14 +473,14 @@
               <lifelineMoniker Id="fddeffce-3b49-4748-99bd-52b2caae7c1c" LastKnownName="lcl_mod_pedidoGlobalProveedores : ModeloPedido" />
             </covered>
           </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification Id="66002eba-c284-4e05-b313-588575612957" name="MessageOccurrenceSpecification">
-            <covered>
-              <lifelineMoniker Id="e823ba7d-eef2-4f67-8de3-da4b7d6ca78f" LastKnownName="this : ControladorPedidoProveedor" />
-            </covered>
-          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="dbb301ea-d942-474c-88b3-859a73a7508b" name="MessageOccurrenceSpecification">
             <covered>
               <lifelineMoniker Id="fddeffce-3b49-4748-99bd-52b2caae7c1c" LastKnownName="lcl_mod_pedidoGlobalProveedores : ModeloPedido" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="66002eba-c284-4e05-b313-588575612957" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="e823ba7d-eef2-4f67-8de3-da4b7d6ca78f" LastKnownName="this : ControladorPedidoProveedor" />
             </covered>
           </messageOccurrenceSpecification>
           <operandOccurrenceSpecification Id="0de335d8-55f6-4058-99c3-819c69f1b27f" name="OperandOccurrenceSpecification">
