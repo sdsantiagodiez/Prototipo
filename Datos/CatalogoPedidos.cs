@@ -12,7 +12,7 @@ namespace Datos
 {
     public class CatalogoPedidos : Catalogo
     {
-        public static int codigoClienteGenerico = 106242;
+        public static int codigoClienteGenerico = 1000000;
         private ModeloPedido leerDatosPedido(SqlDataReader p_drPedidos)
         {
             ModeloPedido lcl_mod_pedido = new ModeloPedido();
@@ -472,7 +472,7 @@ namespace Datos
             comando.CommandType = CommandType.Text;
 
             comando.CommandText =
-                "SELECT MAX(numero_comprobante) as Mayor " +
+                "SELECT ISNULL(MAX(numero_comprobante), 0 ) as Mayor " +
                 "FROM [Pedidos] WHERE codigo_tipo_pedido=@codigo_tipo_pedido ";
                 
             //Indica los parametros
