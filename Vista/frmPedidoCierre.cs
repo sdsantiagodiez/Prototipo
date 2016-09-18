@@ -817,7 +817,8 @@ namespace Vista
         {
             Documento lcl_documento = new Documento();
             lcl_documento.tipo = this.cmbBoxTipoDocumento.SelectedValue as TipoDocumento;
-            lcl_documento.numero = lcl_documento.tipo.codigo == 80?ModeloEntidad.CUIT.GetCuitNumerico(this.txtBoxNumeroDocumento.Text):this.txtBoxNumeroDocumento.Text.Replace(".","");
+            lcl_documento.numero = this.txtBoxNumeroDocumento.Text;
+            //lcl_documento.numero = lcl_documento.tipo.codigo == 80?ModeloEntidad.CUIT.GetCuitNumerico(this.txtBoxNumeroDocumento.Text):this.txtBoxNumeroDocumento.Text.Replace(".","");
             
             return lcl_documento;
         }

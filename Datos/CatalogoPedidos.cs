@@ -793,11 +793,13 @@ namespace Datos
             comando.CommandText =
             "INSERT INTO [pedidos](codigo_tipo_pedido,fecha,alicuota,monto_subtotal,monto_total,observaciones,codigo_comprobante, "+
             "   senia, descuento_1_monto, descuento_1_porcentaje, descuento_2_monto, descuento_2_porcentaje,numero_comprobante, "+
-            "   descuento_lineas_monto, descuento_lineas_porcentaje, descuento_total_monto, descuento_total_porcentaje,codigo_forma_pago) " +
+            "   descuento_lineas_monto, descuento_lineas_porcentaje, descuento_total_monto, descuento_total_porcentaje,codigo_forma_pago, "+
+            "   nombre_usuario) " +
             "   OUTPUT INSERTED.NUMERO_PEDIDO " +
             "   VALUES (@codigo_tipo_pedido,@fecha, @alicuota,@monto_subtotal,@monto_total, @observaciones,@codigo_comprobante, " +
             "   @senia, @descuento_1_monto, @descuento_1_porcentaje, @descuento_2_monto, @descuento_2_porcentaje,@numero_comprobante, " +
-            "   @descuento_lineas_monto, @descuento_lineas_porcentaje, @descuento_total_monto, @descuento_total_porcentaje,@codigo_forma_pago) ";
+            "   @descuento_lineas_monto, @descuento_lineas_porcentaje, @descuento_total_monto, @descuento_total_porcentaje,@codigo_forma_pago,"+
+            "   @nombre_usuario) ";
 
             //Indica los parametros
             comando.Parameters.Add(this.instanciarParametro((int)p_mod_pedido.codigoTipoPedido, "@codigo_tipo_pedido"));
@@ -823,7 +825,9 @@ namespace Datos
             //Si tiene muchas formas de pago, asignamos Múltiple. Si no, asignamos la única que hay
             //Se pierde el registro de cuanto corresponde a cada forma. Total, cuando vemos los detalles no podemos ver esa información
             comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.formasDePago.Count>1?6:(int)p_mod_pedido.formasDePago[0].forma,"@codigo_forma_pago"));
-            
+
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.usuarioGenerador, "@nombre_usuario"));
+
             comando.Connection.Open();
             int? nuevoNumeroPedido = (int?)comando.ExecuteScalar();
 
