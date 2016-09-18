@@ -354,7 +354,9 @@ namespace Vista
                 this.glb_con_domicilios.clearErrorProviders();
                 if (this.modoFormulario != ModoFormularioClientePedido)
                 {
+                    QuitarTextoEnControles(this);
                     this.inicializarModoFormularioSeleccionado();
+                    
                     this.cargarEntidadEnControles(glb_mod_entidadActual);
                 }
                 else
