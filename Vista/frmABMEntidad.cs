@@ -1402,8 +1402,9 @@ namespace Vista
                 if (respuesta)
                 {
                     this.txtBoxCUIT.Text = ModeloEntidad.CUIT.NormalizarCUIT(this.txtBoxCUIT.Text);
-                    if (!string.IsNullOrWhiteSpace(txtBoxDNI.Text))
+                    if (!string.IsNullOrWhiteSpace(txtBoxDNI.Text) && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)])
                     {
+                        
                         if (string.Equals(txtBoxCUIT.Text.Substring(3, txtBoxDNI.Text.Replace(".", string.Empty).Length), txtBoxDNI.Text.Replace(".", string.Empty)))
                         {
                             lcl_mensaje = "OK";
