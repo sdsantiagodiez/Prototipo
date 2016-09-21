@@ -276,7 +276,7 @@ namespace Vista
             }
             else
             {
-                bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoPostal.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.CodigoPostal);
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoPostal.Text, Constantes.ParametrosBusqueda.Domicilios.CodigoPostal);
                 glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.CodigoPostal)] = respuesta;
                 lcl_mensaje = respuesta ? "OK" : "Código Postal no válido";
                 if (String.IsNullOrWhiteSpace(this.txtBoxCodigoPostal.Text))
