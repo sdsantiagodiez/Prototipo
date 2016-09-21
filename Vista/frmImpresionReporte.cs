@@ -233,6 +233,8 @@ namespace Vista
             //this.ReporteBase.LocalReport.SetParameters(new ReportParameter("nombreEmpresa", "Mundo Renault"));
             //this.ReporteBase.LocalReport.SetParameters(new ReportParameter("direccionEmpresa", "Av. Pellegrini 3151 - Rosario, Santa Fe"));
             //this.ReporteBase.LocalReport.SetParameters(new ReportParameter("telefonoEmpresa", "Tel. 0341- 4353535"));
+            //this.ReporteBase.ProcessingMode = ProcessingMode.Local;
+            this.ReporteBase.LocalReport.EnableExternalImages = true;
             this.ReporteBase.LocalReport.SetParameters(new ReportParameter("nombreEmpresa", Controladores.ControladorParametrosGenerales.nombreEmpresa));
             this.ReporteBase.LocalReport.SetParameters(new ReportParameter("direccionEmpresa", Controladores.ControladorParametrosGenerales.direccionEmpresa));
             this.ReporteBase.LocalReport.SetParameters(new ReportParameter("telefonoEmpresa", Controladores.ControladorParametrosGenerales.telefonoEmpresa));

@@ -62,7 +62,9 @@ namespace Vista
             this.txtBoxCarpetaPedidosClientes.ReadOnly = 
                 this.txtBoxCarpetaPedidosProveedores.ReadOnly = 
                 this.txtBoxCarpetaReportes.ReadOnly = 
-                this.txtBoxCertificado.ReadOnly = true;
+                this.txtBoxCertificado.ReadOnly =
+                this.txtBoxLogotipoPath.ReadOnly =
+                true;
             //tabAlmacenamiento
             this.txtBoxCarpetaPedidosClientes.Text = Properties.Settings.Default.carpetaPedidosClientes;
             this.txtBoxCarpetaPedidosProveedores.Text = Properties.Settings.Default.carpetaPedidosProveedores;

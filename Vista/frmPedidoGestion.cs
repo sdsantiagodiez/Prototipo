@@ -688,7 +688,10 @@ namespace Vista
         #region Eliminar
         private bool validarEliminacion(List<ModeloPedido> p_lst_pedidosSeleccionados)
         {
-            if (p_lst_pedidosSeleccionados.Count != 1 || p_lst_pedidosSeleccionados[0].aprobadoAFIP=="A")//faltara alguna validacion mas?
+            if (p_lst_pedidosSeleccionados.Count != 1 
+                || p_lst_pedidosSeleccionados[0].aprobadoAFIP == "A" 
+                || !(p_lst_pedidosSeleccionados[0].tipoComprobante == 1 ||
+                    p_lst_pedidosSeleccionados[0].tipoComprobante == 6))//faltara alguna validacion mas?
             {
                 return false;
             }

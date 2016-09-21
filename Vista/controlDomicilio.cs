@@ -276,7 +276,7 @@ namespace Vista
             }
             else
             {
-                bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoPostal.Text.ToString(), Constantes.ParametrosBusqueda.Domicilios.CodigoPostal);
+                bool respuesta = Validar.validarInputNoNumerico(txtBoxCodigoPostal.Text, Constantes.ParametrosBusqueda.Domicilios.CodigoPostal);
                 glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.CodigoPostal)] = respuesta;
                 lcl_mensaje = respuesta ? "OK" : "Código Postal no válido";
                 if (String.IsNullOrWhiteSpace(this.txtBoxCodigoPostal.Text))
@@ -379,14 +379,17 @@ namespace Vista
             
             if(!string.IsNullOrWhiteSpace(txtBoxPiso.Text))
             {
+                txtBoxPiso_Leave(new object(), new EventArgs());
                 lcl_respuesta = lcl_respuesta && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Piso)];
             }
             if(!string.IsNullOrWhiteSpace(txtBoxDepartamento.Text))
             {
+                txtBoxDepartamento_Leave(new object(), new EventArgs());
                 lcl_respuesta = lcl_respuesta && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.Departamento)];
             }
             if (!string.IsNullOrWhiteSpace(txtBoxCodigoPostal.Text))
             {
+                txtBoxCodigoPostal_Leave(new object(), new EventArgs());
                 lcl_respuesta = lcl_respuesta && glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Domicilios.CodigoPostal)];
             }
             return lcl_respuesta;

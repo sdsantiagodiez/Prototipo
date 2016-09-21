@@ -218,7 +218,7 @@ namespace LibreriaClasesCompartidas
                 case Constantes.ParametrosBusqueda.Domicilios.Calle:
                 case Constantes.ParametrosBusqueda.Domicilios.Ciudad:
                     //Admite Alfanumericos con espacios
-                    lcl_patron = new Regex(@"^[\w\s]+$");
+                    lcl_patron = new Regex(@"^[\w\s.]+$");
                     break;
                 case Constantes.ParametrosBusqueda.Mails.Mail:
                     especial = Constantes.ParametrosBusqueda.Mails.Mail;

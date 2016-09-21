@@ -9,17 +9,107 @@ namespace Controladores
     public static class ControladorParametrosGenerales
     {
         #region atributos
-        public static string pathLogotipo;
-        public static string nombreEmpresa;
-        public static string direccionEmpresa;
-        public static string telefonoEmpresa;
-        public static string razonSocial;
-        public static string ingresosBrutos;
+        private static string _pathLogotipo;
+        public static string pathLogotipo
+        {
+            get
+            {
+                if (!String.IsNullOrWhiteSpace(_pathLogotipo))
+                {
+                    return _pathLogotipo;
+                }
+                else
+                {
+                    return @"sin imagen";
+                }
+            }
+            set { _pathLogotipo = value; }
+        }
+        private static string _nombreEmpresa;
+        public static string nombreEmpresa
+        {
+            get
+            {
+                if (!String.IsNullOrWhiteSpace(_nombreEmpresa))
+                {
+                    return _nombreEmpresa;
+                }
+                else
+                {
+                    return "<nombre empresa>";
+                }
+            }
+            set { _nombreEmpresa = value; }
+        }
+        private static string _direccionEmpresa;
+        public static string direccionEmpresa
+        {
+            get
+            {
+                if (!String.IsNullOrWhiteSpace(_direccionEmpresa))
+                {
+                    return _direccionEmpresa;
+                }
+                else
+                {
+                    return "<domicilio>";
+                }
+            }
+            set { _direccionEmpresa = value; }
+        }
+        private static string _telefonoEmpresa;
+        public static string telefonoEmpresa
+        {
+            get
+            {
+                if (!String.IsNullOrWhiteSpace(_telefonoEmpresa))
+                {
+                    return _telefonoEmpresa;
+                }
+                else
+                {
+                    return "<teléfono>";
+                }
+            }
+            set { _telefonoEmpresa = value; }
+        }
+        private static string _razonSocial;
+        public static string razonSocial
+        {
+            get
+            {
+                if (!String.IsNullOrWhiteSpace(_razonSocial))
+                {
+                    return _razonSocial;
+                }
+                else
+                {
+                    return "<razón social>";
+                }
+            }
+            set { _razonSocial = value; }
+        }
+        private static string _ingresosBrutos;
+        public static string ingresosBrutos
+        {
+            get
+            {
+                if (!String.IsNullOrWhiteSpace(_ingresosBrutos))
+                {
+                    return _ingresosBrutos;
+                }
+                else
+                {
+                    return "000-00000-00";
+                }
+            }
+            set { _ingresosBrutos = value; }
+        }
         public static DateTime inicioActividades;
         
         #endregion
 
-        #region
+        #region metodos
         public static void Iniciar()
         {
             IFormatProvider cultura = new System.Globalization.CultureInfo("es-AR", true);

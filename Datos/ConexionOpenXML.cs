@@ -115,11 +115,15 @@ namespace Datos
                         for (int i = 0; i < row.Descendants<Cell>().Count(); i++) // < p_indiceAtributos.Count ; i++)
                         {
                             int indiceRealExcel = ConvertColumnNameToNumber(GetColumnName(row.Descendants<Cell>().ElementAt(i).CellReference));
+                            if (indiceRealExcel >= p_indiceAtributos.Count)
+                            {
+                                break;
+                            }
 
                             indiceAux = Convert.ToInt32(p_indiceAtributos[indiceRealExcel]);
                             if (p_indiceAtributos[indiceRealExcel] == null)
                             { continue; }
-
+                            
                             tempRow[indiceAux] = GetCellValue(spreadSheetDocument, row.Descendants<Cell>().ElementAt(i));
                         }
 
@@ -164,7 +168,7 @@ namespace Datos
                     foreach (Row row in rows)   //Lee las rows del archivo y las pasa al dataTablePreview
                     {
                         DataRow tempRow = lcl_dt_preview.NewRow();
-
+                        bool rowValida = false; //se utiliza como bandera para evitar que se agreguen Rows vacias
                         for (int i = 0; i < row.Descendants<Cell>().Count() && i < p_cantidadDeColumnas; i++)
                         {
                             /*
@@ -172,10 +176,17 @@ namespace Datos
                              * Sin el método excel saltea las columnas sin valor, obteniendo menos indices de los que realmente hay
                              */
                             int indiceRealExcel = ConvertColumnNameToNumber(GetColumnName(row.Descendants<Cell>().ElementAt(i).CellReference));
+                            if (indiceRealExcel >= p_cantidadDeColumnas)
+                            {
+                                break;
+                            }
+                            rowValida = true;   //si pasa por aca quiere decir que se agrego por lo menos un valor, y que no fueron todos por el break anterior
                             tempRow[indiceRealExcel] = GetCellValue(spreadSheetDocument, row.Descendants<Cell>().ElementAt(i));
                         }
-
-                        lcl_dt_preview.Rows.Add(tempRow);
+                        if (rowValida)
+                        {
+                            lcl_dt_preview.Rows.Add(tempRow);
+                        }
                     }
                     if (lcl_dt_preview.Rows.Count < 1)
                     {

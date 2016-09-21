@@ -3,8 +3,8 @@
   <FeCabResp xmlns="http://ar.gov.afip.dif.FEV1/">
     <Cuit>20356445393</Cuit>
     <PtoVta>1</PtoVta>
-    <CbteTipo>1</CbteTipo>
-    <FchProceso>20160428115129</FchProceso>
+    <CbteTipo>6</CbteTipo>
+    <FchProceso>20160921060411</FchProceso>
     <CantReg>1</CantReg>
     <Resultado>A</Resultado>
     <Reproceso>N</Reproceso>
@@ -13,13 +13,19 @@
     <FECAEDetResponse>
       <Concepto>1</Concepto>
       <DocTipo>80</DocTipo>
-      <DocNro>20111111112</DocNro>
-      <CbteDesde>9</CbteDesde>
-      <CbteHasta>9</CbteHasta>
-      <CbteFch>20160428</CbteFch>
+      <DocNro>20361962401</DocNro>
+      <CbteDesde>96</CbteDesde>
+      <CbteHasta>96</CbteHasta>
+      <CbteFch>20160921</CbteFch>
       <Resultado>A</Resultado>
-      <CAE>66173386675321</CAE>
-      <CAEFchVto>20160508</CAEFchVto>
+      <CAE>66383430260485</CAE>
+      <CAEFchVto>20161001</CAEFchVto>
     </FECAEDetResponse>
   </FeDetResp>
+  <Events xmlns="http://ar.gov.afip.dif.FEV1/">
+    <Evt>
+      <Code>4</Code>
+      <Msg>IMPORTANTE: El 01/11/2016 se renovarán los certificados SSL utilizados por los webservices de AFIP. Los nuevos certificados utilizarán el algoritmo de encriptación SHA-2. Para más información http://www.afip.gob.ar/ws/comoAfectaElCambio.asp</Msg>
+    </Evt>
+  </Events>
 </FECAEResponse>

@@ -277,6 +277,10 @@ namespace Modelos
                     }
                     dniNormalizado = dniNormalizado.Insert(dniNormalizado.Length - 3, ".");
                 }
+                if(dniNormalizado.Length==9)
+                {
+                    dniNormalizado = "0" + dniNormalizado;
+                }
                 return dniNormalizado;
             }
         }
