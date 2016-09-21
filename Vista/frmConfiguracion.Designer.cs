@@ -384,6 +384,7 @@
             this.btnCertificado.TabIndex = 9;
             this.btnCertificado.Text = "...";
             this.btnCertificado.UseVisualStyleBackColor = true;
+            this.btnCertificado.Click += new System.EventHandler(this.btnCertificado_Click);
             // 
             // txtBoxCertificado
             // 
