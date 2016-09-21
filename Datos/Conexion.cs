@@ -22,7 +22,8 @@ namespace Datos
             string startupPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
             startupPath = startupPath + @"\Datos\DBPrueba.mdf";
             //startupPath = rutaBD();
-            connectionString = @"Data Source=(localDB)\v11.0;AttachDbFilename="+startupPath+";Initial Catalog="+dbNombre+";Integrated Security=True";
+            //connectionString = @"Data Source=(localDB)\v11.0;AttachDbFilename="+startupPath+";Initial Catalog="+dbNombre+";Integrated Security=True";
+            connectionString = Properties.Settings.Default.DBPruebaConnectionString;
             SqlConnection Conexion;
             try
             {
