@@ -755,7 +755,7 @@
             "Código Original",
             "Código Proveedor",
             "Descripción"});
-            this.cbxCategoriaBusqueda.Location = new System.Drawing.Point(94, 9);
+            this.cbxCategoriaBusqueda.Location = new System.Drawing.Point(94, 11);
             this.cbxCategoriaBusqueda.Name = "cbxCategoriaBusqueda";
             this.cbxCategoriaBusqueda.Size = new System.Drawing.Size(119, 24);
             this.cbxCategoriaBusqueda.TabIndex = 6;
@@ -888,7 +888,7 @@
             // 
             this.pnlBase.Controls.Add(this.tblLayoutPanelPrincipal);
             this.pnlBase.Location = new System.Drawing.Point(9, 66);
-            this.pnlBase.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlBase.Margin = new System.Windows.Forms.Padding(2);
             this.pnlBase.Name = "pnlBase";
             this.pnlBase.Size = new System.Drawing.Size(917, 533);
             this.pnlBase.TabIndex = 2;
@@ -899,12 +899,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(958, 620);
             this.Controls.Add(this.pnlBase);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(745, 587);
             this.Name = "frmPedidoNuevo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Selección de Artículos";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPedidoNuevo_FormClosing);
             this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.tblLayoutPanelBotones.ResumeLayout(false);
             this.tblLayoutPanelBotones.PerformLayout();

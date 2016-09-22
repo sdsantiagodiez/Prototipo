@@ -198,9 +198,14 @@ namespace Vista
                 (controlador as ControladorPedidoProveedor).pedidosProveedores[1].domicilioDeFacturacion = p_mod_pedido.domicilioDeFacturacion;
                 (controlador as ControladorPedidoProveedor).pedidosProveedores[1].mailContacto = p_mod_pedido.mailContacto;
                 (controlador as ControladorPedidoProveedor).pedidosProveedores[1].telefonoContacto = p_mod_pedido.telefonoContacto;
+                (controlador as ControladorPedidoProveedor).pedidosProveedores[1].numeroPedido = p_mod_pedido.numeroPedido;
+                (controlador as ControladorPedidoProveedor).pedidosProveedores[1].numeroComprobante = p_mod_pedido.numeroComprobante;
                 this.cmbBoxPedidosProveedores.DataSource = null;
                 this.cmbBoxPedidosProveedores.DataSource = new List<ComboBoxItem>(){ new ComboBoxItem(){Name =(p_mod_pedido.entidad as ModeloProveedor).razonSocial,Value = p_mod_pedido}};
+
                 cmbBoxPedidosProveedores_SelectionChangeCommitted(new object(), new EventArgs());
+
+                pedidoDetalleActual = true;
             }
         }
         private void inicializarDevolucionPedidoCliente(ModeloPedido p_mod_pedido)
@@ -1013,30 +1018,81 @@ namespace Vista
         #endregion
 
         #region Otros
+        enum Carpetas
+        {
+            PedidosClientes = 1,
+            PedidosProveedores = 2
+        }
+        private bool setCarpetaPedidos(Carpetas p_carpeta)
+        {
+            string direccionCarpeta = this.getDireccionCarpeta(p_carpeta);
+
+            if (direccionCarpeta == null)
+            {
+                return false;
+            }
+            if (!System.IO.Directory.Exists(direccionCarpeta))
+            {
+                MessageBox.Show("La dirección de carpeta no existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            switch (p_carpeta)
+            {
+                case Carpetas.PedidosClientes:
+                    Properties.Settings.Default["carpetaPedidosClientes"] = direccionCarpeta;
+                    break;
+                case Carpetas.PedidosProveedores:
+                    Properties.Settings.Default["carpetaPedidosProveedores"] = direccionCarpeta;
+                    break;
+            }
+            Properties.Settings.Default.Save();
+
+            return true;
+        }
+        private string getDireccionCarpeta(Carpetas p_carpeta)
+        {
+            string descripcion = "Carpeta de almacenamiento para ";
+            switch (p_carpeta)
+            {
+                case Carpetas.PedidosClientes:
+                    descripcion += "Pedidos a Clientes:";
+                    break;
+                case Carpetas.PedidosProveedores:
+                    descripcion += "Pedidos a Proveedores:";
+                    break;
+            }
+            FolderBrowserDialog lcl_fbd = new FolderBrowserDialog();
+            lcl_fbd.Description = descripcion;
+            if (lcl_fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                return lcl_fbd.SelectedPath;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         private void imprimirpedido()
         {
-            string lcl_comprobantePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Comprobantes";
             switch (this.controlador.pedidoActual.codigoTipoPedido)
             {
                 case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona:
                     if (string.IsNullOrEmpty(Properties.Settings.Default.carpetaPedidosClientes))
                     {
-                        MessageBox.Show("Actualmente no se encuentra configurado el directorio para guardar los comprobantes de pedido a cliente, por lo que se guardarán en su escritorio. Diríjase a \"Configuraciones\" para modificar el lugar de guardado de los mismos.");
-                        lcl_comprobantePath = lcl_comprobantePath + "\\Clientes";
-                        System.IO.Directory.CreateDirectory(lcl_comprobantePath);
-                        Properties.Settings.Default.carpetaPedidosClientes = lcl_comprobantePath;
-                        Properties.Settings.Default.Save();
+                        if (!this.setCarpetaPedidos(Carpetas.PedidosClientes))
+                        {
+                            return;
+                        }
                     }
                     break;
                 case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Proveedor:
                     if (string.IsNullOrEmpty(Properties.Settings.Default.carpetaPedidosProveedores))
                     {
-                        MessageBox.Show("Actualmente no se encuentra configurado el directorio para guardar los comprobantes de pedido a proveedores, por lo que se guardarán en su escritorio. Diríjase a \"Configuraciones\" para modificar el lugar de guardado de los mismos.");
-                        lcl_comprobantePath = lcl_comprobantePath + "\\Proveedores";
-                        System.IO.Directory.CreateDirectory(lcl_comprobantePath);
-                        Properties.Settings.Default.carpetaPedidosProveedores = lcl_comprobantePath;
-                        Properties.Settings.Default.Save();
+                        if (!this.setCarpetaPedidos(Carpetas.PedidosProveedores))
+                        {
+                            return;
+                        }
                     }
                     break;
                 default:
@@ -1053,8 +1109,13 @@ namespace Vista
                 if (controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor)
                 {
                     //Imprime lote de pedidos a proveedor
-                    List<ModeloPedido> lcl_lst_pedidosProveedoresImprimir = (controlador as ControladorPedidoProveedor).getPedidosProveedores(controlador.pedidoActual);
-                    lcl_lst_pedidosProveedoresImprimir.RemoveAt(0);//Se quita el pedido global que abarca todos los pedidos
+                    List<ModeloPedido> lcl_lst_pedidosProveedoresImprimir = new List<ModeloPedido>();
+                    List<ModeloPedido> lcl_lst_pedidosActuales = (controlador as ControladorPedidoProveedor).pedidosProveedores;
+                    for (int i = 1; i < lcl_lst_pedidosActuales.Count; i++)
+                    {
+                        lcl_lst_pedidosProveedoresImprimir.Add(lcl_lst_pedidosActuales[i]);
+                    }
+                        //lcl_lst_pedidosProveedoresImprimir.RemoveAt(0);//Se quita el pedido global que abarca todos los pedidos
                     exito = lcl_frm_comprobante.generarComprobante(lcl_lst_pedidosProveedoresImprimir);
                 }
                 else
@@ -1329,8 +1390,13 @@ namespace Vista
 
             return valido;
         }
+        bool pedidoDetalleActual;
         private void cmbBoxPedidosProveedores_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            if (pedidoDetalleActual)
+            {
+                return;
+            }
             if (!validarPedidoProveedor())//se valida el proveedor seleccionado anteriormente para si cambiar o no la selección
             {
                 this.cmbBoxPedidosProveedores.SelectedIndex = indiceAnteriorCmbBoxPedidosProveedores;
@@ -1428,23 +1494,45 @@ namespace Vista
             {
                 return;
             }
-            if (controlador.pedidoActual.numeroPedido == 0)
+            if (controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Persona)
             {
-                DialogResult dialogResult = MessageBox.Show("El/La " + cmbBoxTipoComprobante.Text
-                + " no esta guardado en la base de datos. Desea guardar antes de imprimir?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+                if (controlador.pedidoActual.numeroPedido == 0)
                 {
-                    //if (this.cargarControlEnPedido() == null)
-                    //{
-                    //    return;
-                    //}
-                    if (this.guardarPedido())
+                    DialogResult dialogResult = MessageBox.Show("El/La " + cmbBoxTipoComprobante.Text
+                    + " no esta guardado en la base de datos. Desea guardar antes de imprimir?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == System.Windows.Forms.DialogResult.Yes)
                     {
-                        this.inicializarPedidoCerrado();
+                        //if (this.cargarControlEnPedido() == null)
+                        //{
+                        //    return;
+                        //}
+                        if (this.guardarPedido())
+                        {
+                            this.inicializarPedidoCerrado();
+                        }
                     }
                 }
-               
             }
+            else
+            {
+                if ( (controlador as ControladorPedidoProveedor).pedidosProveedores[1].numeroPedido == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("El/La " + cmbBoxTipoComprobante.Text
+                    + " no esta guardado en la base de datos. Desea guardar antes de imprimir?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        //if (this.cargarControlEnPedido() == null)
+                        //{
+                        //    return;
+                        //}
+                        if (this.guardarPedido())
+                        {
+                            this.inicializarPedidoCerrado();
+                        }
+                    }
+                }
+            }
+            
             //else
             //{
             //    if (this.cargarControlEnPedido() == null)

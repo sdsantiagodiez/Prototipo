@@ -659,23 +659,7 @@ namespace Vista
 
         private void frmPedidoDevolucion_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (continuarDevolucion)
-            {
-                e.Cancel = false;
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                return;
-            }
-            DialogResult lcl_dialogResult = MessageBox.Show("¿Desea cerrar la ventana actual?", "Confirmación", MessageBoxButtons.YesNo);
-            if (lcl_dialogResult == DialogResult.Yes)
-            {
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                e.Cancel = false;
-            }
-            else
-            {
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                e.Cancel = true;
-            }
+
         }
         #endregion   
 

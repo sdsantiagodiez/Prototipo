@@ -317,8 +317,18 @@ namespace Controladores
                 pedidosProveedores[i].formasDePago = pedidosProveedores[0].formasDePago;
                 lcl_lst_pedidos_a_guardar.Add(pedidosProveedores[i]);
             }
-            ControladorAlta lcl_con_alta = new ControladorAlta();
-            return lcl_con_alta.agregar(lcl_lst_pedidos_a_guardar);
+            
+            bool respuesta = new ControladorAlta().agregar(lcl_lst_pedidos_a_guardar);
+            if (respuesta)
+            {
+                for (int i = 0; i < lcl_lst_pedidos_a_guardar.Count; i++)
+                {
+                    pedidosProveedores[i + 1].numeroPedido = (lcl_lst_pedidos_a_guardar[i] as ModeloPedido).numeroPedido;
+                    pedidosProveedores[i + 1].numeroComprobante = (lcl_lst_pedidos_a_guardar[i] as ModeloPedido).numeroComprobante;
+                }
+            }
+
+            return respuesta;
         }
         public int getIndice(ModeloPedido p_pedido)
         {

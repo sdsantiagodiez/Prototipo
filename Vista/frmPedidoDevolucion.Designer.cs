@@ -876,7 +876,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPedidoDevolucion";
             this.Text = "Devolución";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPedidoDevolucion_FormClosing);
             this.pnlBase.ResumeLayout(false);
             this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.tblLayoutPanelBotones.ResumeLayout(false);
