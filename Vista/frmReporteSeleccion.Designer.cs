@@ -155,7 +155,7 @@
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(820, 506);
-            this.tabControl.TabIndex = 1;
+            this.tabControl.TabIndex = 0;
             // 
             // tabClientes
             // 
@@ -237,7 +237,7 @@
             this.btnGenerarReporte_Clientes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnGenerarReporte_Clientes.Primary = true;
             this.btnGenerarReporte_Clientes.Size = new System.Drawing.Size(100, 45);
-            this.btnGenerarReporte_Clientes.TabIndex = 7;
+            this.btnGenerarReporte_Clientes.TabIndex = 5;
             this.btnGenerarReporte_Clientes.Text = "Generar Reporte";
             this.btnGenerarReporte_Clientes.UseVisualStyleBackColor = true;
             this.btnGenerarReporte_Clientes.Click += new System.EventHandler(this.btnGenerarReporte_Clientes_Click);
@@ -306,7 +306,7 @@
             this.dtpFechaDesde_Clientes.Location = new System.Drawing.Point(113, 13);
             this.dtpFechaDesde_Clientes.Name = "dtpFechaDesde_Clientes";
             this.dtpFechaDesde_Clientes.Size = new System.Drawing.Size(150, 20);
-            this.dtpFechaDesde_Clientes.TabIndex = 0;
+            this.dtpFechaDesde_Clientes.TabIndex = 2;
             this.dtpFechaDesde_Clientes.ValueChanged += new System.EventHandler(this.dtpFechaDesde_Clientes_ValueChanged);
             // 
             // dtpFechaHasta_Clientes
@@ -316,7 +316,7 @@
             this.dtpFechaHasta_Clientes.Location = new System.Drawing.Point(113, 61);
             this.dtpFechaHasta_Clientes.Name = "dtpFechaHasta_Clientes";
             this.dtpFechaHasta_Clientes.Size = new System.Drawing.Size(150, 20);
-            this.dtpFechaHasta_Clientes.TabIndex = 1;
+            this.dtpFechaHasta_Clientes.TabIndex = 3;
             // 
             // grpBoxSeleccion_Clientes
             // 
@@ -369,7 +369,7 @@
             this.nmrcUpDown_Clientes.Location = new System.Drawing.Point(113, 37);
             this.nmrcUpDown_Clientes.Name = "nmrcUpDown_Clientes";
             this.nmrcUpDown_Clientes.Size = new System.Drawing.Size(50, 20);
-            this.nmrcUpDown_Clientes.TabIndex = 9;
+            this.nmrcUpDown_Clientes.TabIndex = 4;
             // 
             // tabProveedores
             // 
@@ -413,7 +413,7 @@
             this.btnGenerarReporte_Proveedores.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnGenerarReporte_Proveedores.Primary = true;
             this.btnGenerarReporte_Proveedores.Size = new System.Drawing.Size(100, 45);
-            this.btnGenerarReporte_Proveedores.TabIndex = 7;
+            this.btnGenerarReporte_Proveedores.TabIndex = 12;
             this.btnGenerarReporte_Proveedores.Text = "Generar Reporte";
             this.btnGenerarReporte_Proveedores.UseVisualStyleBackColor = true;
             this.btnGenerarReporte_Proveedores.Click += new System.EventHandler(this.btnGenerarReporte_Proveedores_Click);
@@ -454,7 +454,7 @@
             this.cmbBoxReportesSeleccion_Proveedores.Location = new System.Drawing.Point(83, 26);
             this.cmbBoxReportesSeleccion_Proveedores.Name = "cmbBoxReportesSeleccion_Proveedores";
             this.cmbBoxReportesSeleccion_Proveedores.Size = new System.Drawing.Size(308, 21);
-            this.cmbBoxReportesSeleccion_Proveedores.TabIndex = 7;
+            this.cmbBoxReportesSeleccion_Proveedores.TabIndex = 6;
             // 
             // grpBoxPeriodos_Proveedores
             // 
@@ -520,7 +520,7 @@
             this.dtpFechaDesde_Proveedores.Location = new System.Drawing.Point(113, 13);
             this.dtpFechaDesde_Proveedores.Name = "dtpFechaDesde_Proveedores";
             this.dtpFechaDesde_Proveedores.Size = new System.Drawing.Size(150, 20);
-            this.dtpFechaDesde_Proveedores.TabIndex = 0;
+            this.dtpFechaDesde_Proveedores.TabIndex = 7;
             this.dtpFechaDesde_Proveedores.ValueChanged += new System.EventHandler(this.dtpFechaDesde_Proveedores_ValueChanged);
             // 
             // dtpFechaHasta_Proveedores
@@ -530,7 +530,7 @@
             this.dtpFechaHasta_Proveedores.Location = new System.Drawing.Point(113, 61);
             this.dtpFechaHasta_Proveedores.Name = "dtpFechaHasta_Proveedores";
             this.dtpFechaHasta_Proveedores.Size = new System.Drawing.Size(150, 20);
-            this.dtpFechaHasta_Proveedores.TabIndex = 1;
+            this.dtpFechaHasta_Proveedores.TabIndex = 8;
             // 
             // grpBoxSeleccion_Proveedores
             // 
@@ -576,7 +576,7 @@
             this.rdButtonTodos_Proveedores.Name = "rdButtonTodos_Proveedores";
             this.rdButtonTodos_Proveedores.Ripple = true;
             this.rdButtonTodos_Proveedores.Size = new System.Drawing.Size(110, 30);
-            this.rdButtonTodos_Proveedores.TabIndex = 9;
+            this.rdButtonTodos_Proveedores.TabIndex = 11;
             this.rdButtonTodos_Proveedores.TabStop = true;
             this.rdButtonTodos_Proveedores.Text = "Todos";
             this.rdButtonTodos_Proveedores.UseVisualStyleBackColor = true;
@@ -625,7 +625,7 @@
             this.nmrcUpDown_Proveedores.Location = new System.Drawing.Point(113, 14);
             this.nmrcUpDown_Proveedores.Name = "nmrcUpDown_Proveedores";
             this.nmrcUpDown_Proveedores.Size = new System.Drawing.Size(50, 20);
-            this.nmrcUpDown_Proveedores.TabIndex = 10;
+            this.nmrcUpDown_Proveedores.TabIndex = 9;
             // 
             // cmbBoxProveedores
             // 
@@ -635,7 +635,7 @@
             this.cmbBoxProveedores.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.cmbBoxProveedores.Name = "cmbBoxProveedores";
             this.cmbBoxProveedores.Size = new System.Drawing.Size(265, 21);
-            this.cmbBoxProveedores.TabIndex = 11;
+            this.cmbBoxProveedores.TabIndex = 10;
             // 
             // tabArticulos
             // 
@@ -679,7 +679,7 @@
             this.btnGenerarReporte_Articulos.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnGenerarReporte_Articulos.Primary = true;
             this.btnGenerarReporte_Articulos.Size = new System.Drawing.Size(100, 45);
-            this.btnGenerarReporte_Articulos.TabIndex = 7;
+            this.btnGenerarReporte_Articulos.TabIndex = 18;
             this.btnGenerarReporte_Articulos.Text = "Generar Reporte";
             this.btnGenerarReporte_Articulos.UseVisualStyleBackColor = true;
             this.btnGenerarReporte_Articulos.Click += new System.EventHandler(this.btnGenerarReporte_Articulos_Click);
@@ -720,7 +720,7 @@
             this.cmbBoxReportesSeleccion_Articulos.Location = new System.Drawing.Point(83, 26);
             this.cmbBoxReportesSeleccion_Articulos.Name = "cmbBoxReportesSeleccion_Articulos";
             this.cmbBoxReportesSeleccion_Articulos.Size = new System.Drawing.Size(308, 21);
-            this.cmbBoxReportesSeleccion_Articulos.TabIndex = 10;
+            this.cmbBoxReportesSeleccion_Articulos.TabIndex = 13;
             this.cmbBoxReportesSeleccion_Articulos.SelectedValueChanged += new System.EventHandler(this.cmbBoxReportesSeleccion_Articulos_SelectedValueChanged);
             // 
             // grpBoxPeriodos_Articulos
@@ -787,7 +787,7 @@
             this.dtpFechaDesde_Articulos.Location = new System.Drawing.Point(113, 13);
             this.dtpFechaDesde_Articulos.Name = "dtpFechaDesde_Articulos";
             this.dtpFechaDesde_Articulos.Size = new System.Drawing.Size(150, 20);
-            this.dtpFechaDesde_Articulos.TabIndex = 0;
+            this.dtpFechaDesde_Articulos.TabIndex = 14;
             this.dtpFechaDesde_Articulos.ValueChanged += new System.EventHandler(this.dtpFechaDesde_Articulos_ValueChanged);
             // 
             // dtpFechaHasta_Articulos
@@ -797,7 +797,7 @@
             this.dtpFechaHasta_Articulos.Location = new System.Drawing.Point(113, 61);
             this.dtpFechaHasta_Articulos.Name = "dtpFechaHasta_Articulos";
             this.dtpFechaHasta_Articulos.Size = new System.Drawing.Size(150, 20);
-            this.dtpFechaHasta_Articulos.TabIndex = 1;
+            this.dtpFechaHasta_Articulos.TabIndex = 15;
             // 
             // grpBoxSeleccion_Articulos
             // 
@@ -840,7 +840,7 @@
             this.rdButtonTodos_Artículos.Name = "rdButtonTodos_Artículos";
             this.rdButtonTodos_Artículos.Ripple = true;
             this.rdButtonTodos_Artículos.Size = new System.Drawing.Size(110, 30);
-            this.rdButtonTodos_Artículos.TabIndex = 9;
+            this.rdButtonTodos_Artículos.TabIndex = 17;
             this.rdButtonTodos_Artículos.TabStop = true;
             this.rdButtonTodos_Artículos.Text = "Todos";
             this.rdButtonTodos_Artículos.UseVisualStyleBackColor = true;
@@ -870,7 +870,7 @@
             this.nmrcUpDown_Articulos.Location = new System.Drawing.Point(113, 13);
             this.nmrcUpDown_Articulos.Name = "nmrcUpDown_Articulos";
             this.nmrcUpDown_Articulos.Size = new System.Drawing.Size(50, 20);
-            this.nmrcUpDown_Articulos.TabIndex = 10;
+            this.nmrcUpDown_Articulos.TabIndex = 16;
             // 
             // pnlBase
             // 

@@ -172,7 +172,7 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Primary = false;
             this.btnCancelar.Size = new System.Drawing.Size(82, 36);
-            this.btnCancelar.TabIndex = 14;
+            this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -201,7 +201,7 @@
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Primary = false;
             this.btnQuitar.Size = new System.Drawing.Size(112, 36);
-            this.btnQuitar.TabIndex = 15;
+            this.btnQuitar.TabIndex = 10;
             this.btnQuitar.Text = "Quitar Seleccionado";
             this.btnQuitar.UseVisualStyleBackColor = true;
             // 
@@ -217,7 +217,7 @@
             this.btnBorrarDetalleActual.Name = "btnBorrarDetalleActual";
             this.btnBorrarDetalleActual.Primary = false;
             this.btnBorrarDetalleActual.Size = new System.Drawing.Size(112, 36);
-            this.btnBorrarDetalleActual.TabIndex = 16;
+            this.btnBorrarDetalleActual.TabIndex = 9;
             this.btnBorrarDetalleActual.Text = "Quitar Todo";
             this.btnBorrarDetalleActual.UseVisualStyleBackColor = true;
             // 
@@ -233,7 +233,7 @@
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Primary = false;
             this.btnSiguiente.Size = new System.Drawing.Size(90, 36);
-            this.btnSiguiente.TabIndex = 17;
+            this.btnSiguiente.TabIndex = 8;
             this.btnSiguiente.Text = "Siguiente >";
             this.btnSiguiente.UseVisualStyleBackColor = true;
             this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
@@ -322,7 +322,7 @@
             0});
             this.nmrcUpDownCantidad.Name = "nmrcUpDownCantidad";
             this.nmrcUpDownCantidad.Size = new System.Drawing.Size(39, 20);
-            this.nmrcUpDownCantidad.TabIndex = 2;
+            this.nmrcUpDownCantidad.TabIndex = 4;
             this.nmrcUpDownCantidad.Value = new decimal(new int[] {
             1,
             0,
@@ -341,7 +341,7 @@
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Primary = false;
             this.btnAgregar.Size = new System.Drawing.Size(126, 26);
-            this.btnAgregar.TabIndex = 10;
+            this.btnAgregar.TabIndex = 5;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             // 
@@ -372,7 +372,7 @@
             this.chckBoxPermitirStockNegativo.Name = "chckBoxPermitirStockNegativo";
             this.chckBoxPermitirStockNegativo.Ripple = true;
             this.chckBoxPermitirStockNegativo.Size = new System.Drawing.Size(267, 25);
-            this.chckBoxPermitirStockNegativo.TabIndex = 3;
+            this.chckBoxPermitirStockNegativo.TabIndex = 6;
             this.chckBoxPermitirStockNegativo.Text = "Permitir Stock Negativo";
             this.chckBoxPermitirStockNegativo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chckBoxPermitirStockNegativo.UseVisualStyleBackColor = true;
@@ -661,7 +661,7 @@
             this.dgvArticulosResultadoBusqueda.RowHeadersVisible = false;
             this.dgvArticulosResultadoBusqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticulosResultadoBusqueda.Size = new System.Drawing.Size(499, 144);
-            this.dgvArticulosResultadoBusqueda.TabIndex = 4;
+            this.dgvArticulosResultadoBusqueda.TabIndex = 3;
             this.dgvArticulosResultadoBusqueda.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulosResultadoBusqueda_CellClick);
             this.dgvArticulosResultadoBusqueda.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvArticulosResultadoBusqueda_MouseDown);
             // 
@@ -729,7 +729,7 @@
             this.lblLupa.Location = new System.Drawing.Point(462, 5);
             this.lblLupa.Name = "lblLupa";
             this.lblLupa.Size = new System.Drawing.Size(34, 32);
-            this.lblLupa.TabIndex = 8;
+            this.lblLupa.TabIndex = 2;
             this.lblLupa.Click += new System.EventHandler(this.lblLupa_Click);
             // 
             // lblCategoriaBuscar
@@ -755,10 +755,10 @@
             "Código Original",
             "Código Proveedor",
             "Descripción"});
-            this.cbxCategoriaBusqueda.Location = new System.Drawing.Point(94, 11);
+            this.cbxCategoriaBusqueda.Location = new System.Drawing.Point(94, 9);
             this.cbxCategoriaBusqueda.Name = "cbxCategoriaBusqueda";
             this.cbxCategoriaBusqueda.Size = new System.Drawing.Size(119, 24);
-            this.cbxCategoriaBusqueda.TabIndex = 6;
+            this.cbxCategoriaBusqueda.TabIndex = 0;
             this.cbxCategoriaBusqueda.Text = "[Seleccionar...]";
             // 
             // txtDescripcionParcial
@@ -774,7 +774,7 @@
             this.txtDescripcionParcial.SelectionLength = 0;
             this.txtDescripcionParcial.SelectionStart = 0;
             this.txtDescripcionParcial.Size = new System.Drawing.Size(212, 23);
-            this.txtDescripcionParcial.TabIndex = 10;
+            this.txtDescripcionParcial.TabIndex = 1;
             this.txtDescripcionParcial.UseSystemPasswordChar = false;
             this.txtDescripcionParcial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescripcionParcial_KeyPress);
             // 
@@ -816,7 +816,7 @@
             this.dgvArticulosEnPedido.RowHeadersVisible = false;
             this.dgvArticulosEnPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticulosEnPedido.Size = new System.Drawing.Size(505, 200);
-            this.dgvArticulosEnPedido.TabIndex = 6;
+            this.dgvArticulosEnPedido.TabIndex = 7;
             this.dgvArticulosEnPedido.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulosEnPedido_CellClick);
             this.dgvArticulosEnPedido.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvArticulosEnPedido_MouseDown);
             // 

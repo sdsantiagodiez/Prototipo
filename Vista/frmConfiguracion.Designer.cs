@@ -143,7 +143,7 @@
             this.tbControlPrincipal.Name = "tbControlPrincipal";
             this.tbControlPrincipal.SelectedIndex = 0;
             this.tbControlPrincipal.Size = new System.Drawing.Size(902, 490);
-            this.tbControlPrincipal.TabIndex = 8;
+            this.tbControlPrincipal.TabIndex = 0;
             // 
             // tbPageAlmacenamiento
             // 
@@ -215,7 +215,7 @@
             this.txtBoxCarpetaReportes.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxCarpetaReportes.Name = "txtBoxCarpetaReportes";
             this.txtBoxCarpetaReportes.Size = new System.Drawing.Size(273, 20);
-            this.txtBoxCarpetaReportes.TabIndex = 8;
+            this.txtBoxCarpetaReportes.TabIndex = 5;
             // 
             // lblCarpetaReportes
             // 
@@ -269,7 +269,7 @@
             this.btnCarpetaPedidosProveedores.Margin = new System.Windows.Forms.Padding(2);
             this.btnCarpetaPedidosProveedores.Name = "btnCarpetaPedidosProveedores";
             this.btnCarpetaPedidosProveedores.Size = new System.Drawing.Size(26, 21);
-            this.btnCarpetaPedidosProveedores.TabIndex = 3;
+            this.btnCarpetaPedidosProveedores.TabIndex = 2;
             this.btnCarpetaPedidosProveedores.Text = "...";
             this.btnCarpetaPedidosProveedores.UseVisualStyleBackColor = true;
             // 
@@ -291,7 +291,7 @@
             this.btnCarpetaReportes.Margin = new System.Windows.Forms.Padding(2);
             this.btnCarpetaReportes.Name = "btnCarpetaReportes";
             this.btnCarpetaReportes.Size = new System.Drawing.Size(26, 21);
-            this.btnCarpetaReportes.TabIndex = 5;
+            this.btnCarpetaReportes.TabIndex = 6;
             this.btnCarpetaReportes.Text = "...";
             this.btnCarpetaReportes.UseVisualStyleBackColor = true;
             // 
@@ -302,7 +302,7 @@
             this.txtBoxCarpetaPedidosProveedores.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxCarpetaPedidosProveedores.Name = "txtBoxCarpetaPedidosProveedores";
             this.txtBoxCarpetaPedidosProveedores.Size = new System.Drawing.Size(273, 20);
-            this.txtBoxCarpetaPedidosProveedores.TabIndex = 6;
+            this.txtBoxCarpetaPedidosProveedores.TabIndex = 1;
             // 
             // txtBoxCarpetaPedidosClientes
             // 
@@ -311,7 +311,7 @@
             this.txtBoxCarpetaPedidosClientes.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxCarpetaPedidosClientes.Name = "txtBoxCarpetaPedidosClientes";
             this.txtBoxCarpetaPedidosClientes.Size = new System.Drawing.Size(273, 20);
-            this.txtBoxCarpetaPedidosClientes.TabIndex = 7;
+            this.txtBoxCarpetaPedidosClientes.TabIndex = 3;
             // 
             // tbPageFacturacionElectronica
             // 
@@ -381,7 +381,7 @@
             this.btnCertificado.Margin = new System.Windows.Forms.Padding(2);
             this.btnCertificado.Name = "btnCertificado";
             this.btnCertificado.Size = new System.Drawing.Size(26, 19);
-            this.btnCertificado.TabIndex = 9;
+            this.btnCertificado.TabIndex = 7;
             this.btnCertificado.Text = "...";
             this.btnCertificado.UseVisualStyleBackColor = true;
             this.btnCertificado.Click += new System.EventHandler(this.btnCertificado_Click);
@@ -393,7 +393,8 @@
             this.txtBoxCertificado.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxCertificado.Name = "txtBoxCertificado";
             this.txtBoxCertificado.Size = new System.Drawing.Size(306, 20);
-            this.txtBoxCertificado.TabIndex = 8;
+            this.txtBoxCertificado.TabIndex = 7;
+            this.txtBoxCertificado.TabStop = false;
             // 
             // lblCertificado
             // 
@@ -453,7 +454,7 @@
             this.txtBoxContrasenia.SelectionLength = 0;
             this.txtBoxContrasenia.SelectionStart = 0;
             this.txtBoxContrasenia.Size = new System.Drawing.Size(304, 23);
-            this.txtBoxContrasenia.TabIndex = 13;
+            this.txtBoxContrasenia.TabIndex = 8;
             this.txtBoxContrasenia.UseSystemPasswordChar = false;
             // 
             // txtBoxCUIT
@@ -469,7 +470,7 @@
             this.txtBoxCUIT.SelectionLength = 0;
             this.txtBoxCUIT.SelectionStart = 0;
             this.txtBoxCUIT.Size = new System.Drawing.Size(304, 23);
-            this.txtBoxCUIT.TabIndex = 12;
+            this.txtBoxCUIT.TabIndex = 9;
             this.txtBoxCUIT.UseSystemPasswordChar = false;
             this.txtBoxCUIT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxCUIT_KeyPress);
             // 
@@ -559,7 +560,7 @@
             this.btnLogotipoPath.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogotipoPath.Name = "btnLogotipoPath";
             this.btnLogotipoPath.Size = new System.Drawing.Size(26, 19);
-            this.btnLogotipoPath.TabIndex = 9;
+            this.btnLogotipoPath.TabIndex = 11;
             this.btnLogotipoPath.Text = "...";
             this.btnLogotipoPath.UseVisualStyleBackColor = true;
             this.btnLogotipoPath.Click += new System.EventHandler(this.btnLogotipoPath_Click);
@@ -571,7 +572,7 @@
             this.txtBoxLogotipoPath.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxLogotipoPath.Name = "txtBoxLogotipoPath";
             this.txtBoxLogotipoPath.Size = new System.Drawing.Size(267, 20);
-            this.txtBoxLogotipoPath.TabIndex = 8;
+            this.txtBoxLogotipoPath.TabIndex = 10;
             // 
             // lblLogotipoPath
             // 
@@ -631,7 +632,7 @@
             this.txtBoxNombreEmpresa.SelectionLength = 0;
             this.txtBoxNombreEmpresa.SelectionStart = 0;
             this.txtBoxNombreEmpresa.Size = new System.Drawing.Size(265, 23);
-            this.txtBoxNombreEmpresa.TabIndex = 13;
+            this.txtBoxNombreEmpresa.TabIndex = 12;
             this.txtBoxNombreEmpresa.UseSystemPasswordChar = false;
             // 
             // txtBoxDireccionEmpresa
@@ -647,7 +648,7 @@
             this.txtBoxDireccionEmpresa.SelectionLength = 0;
             this.txtBoxDireccionEmpresa.SelectionStart = 0;
             this.txtBoxDireccionEmpresa.Size = new System.Drawing.Size(265, 23);
-            this.txtBoxDireccionEmpresa.TabIndex = 12;
+            this.txtBoxDireccionEmpresa.TabIndex = 13;
             this.txtBoxDireccionEmpresa.UseSystemPasswordChar = false;
             // 
             // txtBoxTelefonoEmpresa
@@ -663,7 +664,7 @@
             this.txtBoxTelefonoEmpresa.SelectionLength = 0;
             this.txtBoxTelefonoEmpresa.SelectionStart = 0;
             this.txtBoxTelefonoEmpresa.Size = new System.Drawing.Size(265, 23);
-            this.txtBoxTelefonoEmpresa.TabIndex = 15;
+            this.txtBoxTelefonoEmpresa.TabIndex = 14;
             this.txtBoxTelefonoEmpresa.UseSystemPasswordChar = false;
             // 
             // tbPageDatosImpositivos
@@ -733,7 +734,7 @@
             this.dtpInicioActividades.Margin = new System.Windows.Forms.Padding(2, 2, 20, 2);
             this.dtpInicioActividades.Name = "dtpInicioActividades";
             this.dtpInicioActividades.Size = new System.Drawing.Size(315, 20);
-            this.dtpInicioActividades.TabIndex = 14;
+            this.dtpInicioActividades.TabIndex = 17;
             // 
             // lblRazonSocial
             // 
@@ -779,7 +780,7 @@
             this.txtBoxIngresosBrutos.SelectionLength = 0;
             this.txtBoxIngresosBrutos.SelectionStart = 0;
             this.txtBoxIngresosBrutos.Size = new System.Drawing.Size(314, 23);
-            this.txtBoxIngresosBrutos.TabIndex = 13;
+            this.txtBoxIngresosBrutos.TabIndex = 16;
             this.txtBoxIngresosBrutos.UseSystemPasswordChar = false;
             // 
             // txtBoxRazonSocial
@@ -796,7 +797,7 @@
             this.txtBoxRazonSocial.SelectionLength = 0;
             this.txtBoxRazonSocial.SelectionStart = 0;
             this.txtBoxRazonSocial.Size = new System.Drawing.Size(314, 23);
-            this.txtBoxRazonSocial.TabIndex = 12;
+            this.txtBoxRazonSocial.TabIndex = 15;
             this.txtBoxRazonSocial.UseSystemPasswordChar = false;
             // 
             // lblInicioActividades

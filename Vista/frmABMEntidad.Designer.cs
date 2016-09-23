@@ -170,7 +170,7 @@
             this.radioButtonCliente.Name = "radioButtonCliente";
             this.radioButtonCliente.Ripple = true;
             this.radioButtonCliente.Size = new System.Drawing.Size(90, 29);
-            this.radioButtonCliente.TabIndex = 5;
+            this.radioButtonCliente.TabIndex = 0;
             this.radioButtonCliente.TabStop = true;
             this.radioButtonCliente.Text = "Cliente";
             this.radioButtonCliente.UseVisualStyleBackColor = true;
@@ -189,7 +189,7 @@
             this.radioButtonProveedor.Name = "radioButtonProveedor";
             this.radioButtonProveedor.Ripple = true;
             this.radioButtonProveedor.Size = new System.Drawing.Size(120, 29);
-            this.radioButtonProveedor.TabIndex = 6;
+            this.radioButtonProveedor.TabIndex = 1;
             this.radioButtonProveedor.TabStop = true;
             this.radioButtonProveedor.Text = "Proveedor";
             this.radioButtonProveedor.UseVisualStyleBackColor = true;
@@ -208,7 +208,7 @@
             this.radioButtonContactoProveedor.Name = "radioButtonContactoProveedor";
             this.radioButtonContactoProveedor.Ripple = true;
             this.radioButtonContactoProveedor.Size = new System.Drawing.Size(172, 29);
-            this.radioButtonContactoProveedor.TabIndex = 7;
+            this.radioButtonContactoProveedor.TabIndex = 2;
             this.radioButtonContactoProveedor.TabStop = true;
             this.radioButtonContactoProveedor.Text = "Contacto Proveedor";
             this.radioButtonContactoProveedor.UseVisualStyleBackColor = true;
@@ -227,7 +227,7 @@
             this.radioButtonUsuario.Name = "radioButtonUsuario";
             this.radioButtonUsuario.Ripple = true;
             this.radioButtonUsuario.Size = new System.Drawing.Size(90, 29);
-            this.radioButtonUsuario.TabIndex = 8;
+            this.radioButtonUsuario.TabIndex = 3;
             this.radioButtonUsuario.TabStop = true;
             this.radioButtonUsuario.Text = "Usuario";
             this.radioButtonUsuario.UseVisualStyleBackColor = true;
@@ -263,7 +263,7 @@
             this.rchTextBoxObservaciones.Margin = new System.Windows.Forms.Padding(0);
             this.rchTextBoxObservaciones.Name = "rchTextBoxObservaciones";
             this.rchTextBoxObservaciones.Size = new System.Drawing.Size(707, 33);
-            this.rchTextBoxObservaciones.TabIndex = 25;
+            this.rchTextBoxObservaciones.TabIndex = 26;
             this.rchTextBoxObservaciones.Text = "";
             // 
             // grpBoxDatosPersonales
@@ -337,7 +337,7 @@
             this.txtBoxApellido.SelectionLength = 0;
             this.txtBoxApellido.SelectionStart = 0;
             this.txtBoxApellido.Size = new System.Drawing.Size(142, 23);
-            this.txtBoxApellido.TabIndex = 17;
+            this.txtBoxApellido.TabIndex = 8;
             this.txtBoxApellido.UseSystemPasswordChar = false;
             this.txtBoxApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxApellido_KeyPress);
             this.txtBoxApellido.Leave += new System.EventHandler(this.txtBoxApellido_Leave);
@@ -389,7 +389,7 @@
             this.txtBoxNombre.SelectionLength = 0;
             this.txtBoxNombre.SelectionStart = 0;
             this.txtBoxNombre.Size = new System.Drawing.Size(142, 23);
-            this.txtBoxNombre.TabIndex = 18;
+            this.txtBoxNombre.TabIndex = 7;
             this.txtBoxNombre.UseSystemPasswordChar = false;
             this.txtBoxNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxNombre_KeyPress);
             this.txtBoxNombre.Leave += new System.EventHandler(this.txtBoxNombre_Leave);
@@ -419,7 +419,7 @@
             this.txtBoxRazonSocial.SelectionLength = 0;
             this.txtBoxRazonSocial.SelectionStart = 0;
             this.txtBoxRazonSocial.Size = new System.Drawing.Size(133, 23);
-            this.txtBoxRazonSocial.TabIndex = 16;
+            this.txtBoxRazonSocial.TabIndex = 9;
             this.txtBoxRazonSocial.UseSystemPasswordChar = false;
             this.txtBoxRazonSocial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxRazonSocial_KeyPress);
             this.txtBoxRazonSocial.Leave += new System.EventHandler(this.txtBoxRazonSocial_Leave);
@@ -460,7 +460,7 @@
             this.txtBoxDNI.SelectionLength = 0;
             this.txtBoxDNI.SelectionStart = 0;
             this.txtBoxDNI.Size = new System.Drawing.Size(133, 23);
-            this.txtBoxDNI.TabIndex = 15;
+            this.txtBoxDNI.TabIndex = 6;
             this.txtBoxDNI.UseSystemPasswordChar = false;
             this.txtBoxDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxDNI_KeyPress);
             this.txtBoxDNI.Leave += new System.EventHandler(this.txtBoxDNI_Leave);
@@ -479,7 +479,7 @@
             this.txtBoxCodigoEntidad.SelectionLength = 0;
             this.txtBoxCodigoEntidad.SelectionStart = 0;
             this.txtBoxCodigoEntidad.Size = new System.Drawing.Size(142, 23);
-            this.txtBoxCodigoEntidad.TabIndex = 13;
+            this.txtBoxCodigoEntidad.TabIndex = 4;
             this.txtBoxCodigoEntidad.UseSystemPasswordChar = false;
             this.txtBoxCodigoEntidad.Leave += new System.EventHandler(this.txtBoxCodigoEntidad_Leave);
             // 
@@ -497,7 +497,7 @@
             this.txtBoxCUIT.SelectionLength = 0;
             this.txtBoxCUIT.SelectionStart = 0;
             this.txtBoxCUIT.Size = new System.Drawing.Size(142, 23);
-            this.txtBoxCUIT.TabIndex = 14;
+            this.txtBoxCUIT.TabIndex = 5;
             this.txtBoxCUIT.UseSystemPasswordChar = false;
             this.txtBoxCUIT.Leave += new System.EventHandler(this.txtBoxCUIT_Leave);
             // 
@@ -624,7 +624,7 @@
             this.dataGridViewTelefono.RowHeadersVisible = false;
             this.dataGridViewTelefono.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewTelefono.Size = new System.Drawing.Size(286, 53);
-            this.dataGridViewTelefono.TabIndex = 3;
+            this.dataGridViewTelefono.TabIndex = 24;
             this.dataGridViewTelefono.TabStop = false;
             // 
             // codigoTelefono
@@ -692,10 +692,10 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 11);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 9);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(54, 26);
-            this.cmbBoxTipoTelefono.TabIndex = 23;
+            this.cmbBoxTipoTelefono.TabIndex = 21;
             // 
             // txtBoxTelefono
             // 
@@ -711,7 +711,7 @@
             this.txtBoxTelefono.SelectionLength = 0;
             this.txtBoxTelefono.SelectionStart = 0;
             this.txtBoxTelefono.Size = new System.Drawing.Size(164, 23);
-            this.txtBoxTelefono.TabIndex = 24;
+            this.txtBoxTelefono.TabIndex = 22;
             this.txtBoxTelefono.UseSystemPasswordChar = false;
             this.txtBoxTelefono.Leave += new System.EventHandler(this.txtBoxTelefono_Leave);
             // 
@@ -755,7 +755,7 @@
             this.txtBoxMail.SelectionLength = 0;
             this.txtBoxMail.SelectionStart = 0;
             this.txtBoxMail.Size = new System.Drawing.Size(254, 23);
-            this.txtBoxMail.TabIndex = 10;
+            this.txtBoxMail.TabIndex = 20;
             this.txtBoxMail.UseSystemPasswordChar = false;
             this.txtBoxMail.Leave += new System.EventHandler(this.txtBoxMail_Leave);
             // 
@@ -840,7 +840,7 @@
             this.dataGridViewMail.RowHeadersVisible = false;
             this.dataGridViewMail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewMail.Size = new System.Drawing.Size(351, 53);
-            this.dataGridViewMail.TabIndex = 14;
+            this.dataGridViewMail.TabIndex = 23;
             this.dataGridViewMail.TabStop = false;
             // 
             // codigoMail

@@ -105,7 +105,7 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Primary = false;
             this.btnCancelar.Size = new System.Drawing.Size(82, 32);
-            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -121,7 +121,7 @@
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Primary = false;
             this.btnGuardar.Size = new System.Drawing.Size(75, 32);
-            this.btnGuardar.TabIndex = 2;
+            this.btnGuardar.TabIndex = 5;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -207,7 +207,7 @@
             this.cmbBoxFormaPagoRestante.Location = new System.Drawing.Point(3, 48);
             this.cmbBoxFormaPagoRestante.Name = "cmbBoxFormaPagoRestante";
             this.cmbBoxFormaPagoRestante.Size = new System.Drawing.Size(253, 21);
-            this.cmbBoxFormaPagoRestante.TabIndex = 7;
+            this.cmbBoxFormaPagoRestante.TabIndex = 4;
             this.cmbBoxFormaPagoRestante.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxFormaPagoRestante_SelectionChangeCommitted);
             // 
             // grpBoxFormaPagoNueva
@@ -285,7 +285,7 @@
             this.cmbBoxFormaPago.Location = new System.Drawing.Point(3, 84);
             this.cmbBoxFormaPago.Name = "cmbBoxFormaPago";
             this.cmbBoxFormaPago.Size = new System.Drawing.Size(123, 21);
-            this.cmbBoxFormaPago.TabIndex = 6;
+            this.cmbBoxFormaPago.TabIndex = 1;
             // 
             // txtBoxMonto
             // 
@@ -301,7 +301,7 @@
             this.txtBoxMonto.SelectionLength = 0;
             this.txtBoxMonto.SelectionStart = 0;
             this.txtBoxMonto.Size = new System.Drawing.Size(123, 23);
-            this.txtBoxMonto.TabIndex = 7;
+            this.txtBoxMonto.TabIndex = 0;
             this.txtBoxMonto.UseSystemPasswordChar = false;
             this.txtBoxMonto.Leave += new System.EventHandler(this.txtBoxMonto_Leave);
             // 
@@ -333,7 +333,7 @@
             this.btnAgrearFormaPago.Name = "btnAgrearFormaPago";
             this.btnAgrearFormaPago.Primary = false;
             this.btnAgrearFormaPago.Size = new System.Drawing.Size(74, 36);
-            this.btnAgrearFormaPago.TabIndex = 3;
+            this.btnAgrearFormaPago.TabIndex = 2;
             this.btnAgrearFormaPago.Text = "Agregar";
             this.btnAgrearFormaPago.UseVisualStyleBackColor = true;
             this.btnAgrearFormaPago.Click += new System.EventHandler(this.btnAgrearFormaPago_Click);
@@ -350,7 +350,7 @@
             this.btnQuitarFormaPago.Name = "btnQuitarFormaPago";
             this.btnQuitarFormaPago.Primary = false;
             this.btnQuitarFormaPago.Size = new System.Drawing.Size(60, 36);
-            this.btnQuitarFormaPago.TabIndex = 4;
+            this.btnQuitarFormaPago.TabIndex = 3;
             this.btnQuitarFormaPago.Text = "Quitar";
             this.btnQuitarFormaPago.UseVisualStyleBackColor = true;
             this.btnQuitarFormaPago.Click += new System.EventHandler(this.btnQuitarFormaPago_Click);

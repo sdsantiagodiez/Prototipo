@@ -214,7 +214,7 @@
             this.txtBoxValorUnitario.SelectionLength = 0;
             this.txtBoxValorUnitario.SelectionStart = 0;
             this.txtBoxValorUnitario.Size = new System.Drawing.Size(130, 23);
-            this.txtBoxValorUnitario.TabIndex = 10;
+            this.txtBoxValorUnitario.TabIndex = 4;
             this.txtBoxValorUnitario.UseSystemPasswordChar = false;
             this.txtBoxValorUnitario.Leave += new System.EventHandler(this.txtBoxValorUnitario_Leave);
             // 
@@ -231,7 +231,7 @@
             this.txtBoxValorParcialSinDescuento.SelectionLength = 0;
             this.txtBoxValorParcialSinDescuento.SelectionStart = 0;
             this.txtBoxValorParcialSinDescuento.Size = new System.Drawing.Size(130, 23);
-            this.txtBoxValorParcialSinDescuento.TabIndex = 11;
+            this.txtBoxValorParcialSinDescuento.TabIndex = 6;
             this.txtBoxValorParcialSinDescuento.UseSystemPasswordChar = false;
             // 
             // txtBoxValorParcialConDescuento
@@ -247,7 +247,7 @@
             this.txtBoxValorParcialConDescuento.SelectionLength = 0;
             this.txtBoxValorParcialConDescuento.SelectionStart = 0;
             this.txtBoxValorParcialConDescuento.Size = new System.Drawing.Size(130, 23);
-            this.txtBoxValorParcialConDescuento.TabIndex = 12;
+            this.txtBoxValorParcialConDescuento.TabIndex = 7;
             this.txtBoxValorParcialConDescuento.UseSystemPasswordChar = false;
             // 
             // tblLayoutPanelDescripcion
@@ -255,7 +255,7 @@
             this.tblLayoutPanelDescripcion.ColumnCount = 3;
             this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.14569F));
             this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.85431F));
-            this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 189F));
+            this.tblLayoutPanelDescripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 190F));
             this.tblLayoutPanelDescripcion.Controls.Add(this.lblDescripcion, 0, 0);
             this.tblLayoutPanelDescripcion.Controls.Add(this.txtBoxDescripcion, 1, 0);
             this.tblLayoutPanelDescripcion.Controls.Add(this.checkBoxStockNegativo, 2, 0);
@@ -289,8 +289,8 @@
             this.txtBoxDescripcion.SelectedText = "";
             this.txtBoxDescripcion.SelectionLength = 0;
             this.txtBoxDescripcion.SelectionStart = 0;
-            this.txtBoxDescripcion.Size = new System.Drawing.Size(197, 23);
-            this.txtBoxDescripcion.TabIndex = 6;
+            this.txtBoxDescripcion.Size = new System.Drawing.Size(196, 23);
+            this.txtBoxDescripcion.TabIndex = 2;
             this.txtBoxDescripcion.UseSystemPasswordChar = false;
             // 
             // checkBoxStockNegativo
@@ -299,14 +299,14 @@
             this.checkBoxStockNegativo.AutoSize = true;
             this.checkBoxStockNegativo.Depth = 0;
             this.checkBoxStockNegativo.Font = new System.Drawing.Font("Roboto", 10F);
-            this.checkBoxStockNegativo.Location = new System.Drawing.Point(282, 4);
+            this.checkBoxStockNegativo.Location = new System.Drawing.Point(281, 4);
             this.checkBoxStockNegativo.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxStockNegativo.MouseLocation = new System.Drawing.Point(-1, -1);
             this.checkBoxStockNegativo.MouseState = MaterialSkin.MouseState.HOVER;
             this.checkBoxStockNegativo.Name = "checkBoxStockNegativo";
             this.checkBoxStockNegativo.Ripple = true;
-            this.checkBoxStockNegativo.Size = new System.Drawing.Size(190, 30);
-            this.checkBoxStockNegativo.TabIndex = 7;
+            this.checkBoxStockNegativo.Size = new System.Drawing.Size(191, 30);
+            this.checkBoxStockNegativo.TabIndex = 3;
             this.checkBoxStockNegativo.Text = "Permitir Stock Negativo";
             this.checkBoxStockNegativo.UseVisualStyleBackColor = true;
             this.checkBoxStockNegativo.CheckedChanged += new System.EventHandler(this.checkBoxStockNegativo_CheckedChanged);
@@ -363,7 +363,7 @@
             this.txtBoxCodigoOriginal.SelectionLength = 0;
             this.txtBoxCodigoOriginal.SelectionStart = 0;
             this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(144, 23);
-            this.txtBoxCodigoOriginal.TabIndex = 4;
+            this.txtBoxCodigoOriginal.TabIndex = 0;
             this.txtBoxCodigoOriginal.UseSystemPasswordChar = false;
             // 
             // txtBoxCodigoArticuloProveedor
@@ -379,7 +379,7 @@
             this.txtBoxCodigoArticuloProveedor.SelectionLength = 0;
             this.txtBoxCodigoArticuloProveedor.SelectionStart = 0;
             this.txtBoxCodigoArticuloProveedor.Size = new System.Drawing.Size(146, 23);
-            this.txtBoxCodigoArticuloProveedor.TabIndex = 5;
+            this.txtBoxCodigoArticuloProveedor.TabIndex = 1;
             this.txtBoxCodigoArticuloProveedor.UseSystemPasswordChar = false;
             // 
             // grpBoxDescuentos
@@ -476,7 +476,7 @@
             this.txtBoxDescuentoDescripcion.SelectionLength = 0;
             this.txtBoxDescuentoDescripcion.SelectionStart = 0;
             this.txtBoxDescuentoDescripcion.Size = new System.Drawing.Size(139, 23);
-            this.txtBoxDescuentoDescripcion.TabIndex = 5;
+            this.txtBoxDescuentoDescripcion.TabIndex = 8;
             this.txtBoxDescuentoDescripcion.UseSystemPasswordChar = false;
             // 
             // txtBoxDescuentoNeto
@@ -492,7 +492,7 @@
             this.txtBoxDescuentoNeto.SelectionLength = 0;
             this.txtBoxDescuentoNeto.SelectionStart = 0;
             this.txtBoxDescuentoNeto.Size = new System.Drawing.Size(139, 23);
-            this.txtBoxDescuentoNeto.TabIndex = 6;
+            this.txtBoxDescuentoNeto.TabIndex = 9;
             this.txtBoxDescuentoNeto.UseSystemPasswordChar = false;
             // 
             // txtBoxDescuentoPorcentaje
@@ -508,7 +508,7 @@
             this.txtBoxDescuentoPorcentaje.SelectionLength = 0;
             this.txtBoxDescuentoPorcentaje.SelectionStart = 0;
             this.txtBoxDescuentoPorcentaje.Size = new System.Drawing.Size(139, 23);
-            this.txtBoxDescuentoPorcentaje.TabIndex = 7;
+            this.txtBoxDescuentoPorcentaje.TabIndex = 10;
             this.txtBoxDescuentoPorcentaje.UseSystemPasswordChar = false;
             // 
             // dgvDescuentos
@@ -555,7 +555,7 @@
             this.btnAgrearDescuento.Name = "btnAgrearDescuento";
             this.btnAgrearDescuento.Primary = false;
             this.btnAgrearDescuento.Size = new System.Drawing.Size(74, 36);
-            this.btnAgrearDescuento.TabIndex = 3;
+            this.btnAgrearDescuento.TabIndex = 11;
             this.btnAgrearDescuento.Text = "Agregar";
             this.btnAgrearDescuento.UseVisualStyleBackColor = true;
             this.btnAgrearDescuento.Click += new System.EventHandler(this.btnAgrearDescuento_Click);
@@ -572,7 +572,7 @@
             this.btnQuitarDescuento.Name = "btnQuitarDescuento";
             this.btnQuitarDescuento.Primary = false;
             this.btnQuitarDescuento.Size = new System.Drawing.Size(60, 36);
-            this.btnQuitarDescuento.TabIndex = 4;
+            this.btnQuitarDescuento.TabIndex = 12;
             this.btnQuitarDescuento.Text = "Quitar";
             this.btnQuitarDescuento.UseVisualStyleBackColor = true;
             this.btnQuitarDescuento.Click += new System.EventHandler(this.btnQuitarDescuento_Click);
@@ -605,7 +605,7 @@
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Primary = false;
             this.btnGuardar.Size = new System.Drawing.Size(75, 31);
-            this.btnGuardar.TabIndex = 2;
+            this.btnGuardar.TabIndex = 13;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -623,7 +623,7 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Primary = false;
             this.btnCancelar.Size = new System.Drawing.Size(82, 31);
-            this.btnCancelar.TabIndex = 3;
+            this.btnCancelar.TabIndex = 14;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);

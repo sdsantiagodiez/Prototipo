@@ -129,7 +129,7 @@
             this.txtBoxNumeroDomicilio.SelectionLength = 0;
             this.txtBoxNumeroDomicilio.SelectionStart = 0;
             this.txtBoxNumeroDomicilio.Size = new System.Drawing.Size(132, 23);
-            this.txtBoxNumeroDomicilio.TabIndex = 20;
+            this.txtBoxNumeroDomicilio.TabIndex = 12;
             this.txtBoxNumeroDomicilio.UseSystemPasswordChar = false;
             this.txtBoxNumeroDomicilio.Leave += new System.EventHandler(this.txtBoxNumeroDomicilio_Leave);
             // 
@@ -147,7 +147,7 @@
             this.txtBoxCalle.SelectionLength = 0;
             this.txtBoxCalle.SelectionStart = 0;
             this.txtBoxCalle.Size = new System.Drawing.Size(389, 23);
-            this.txtBoxCalle.TabIndex = 19;
+            this.txtBoxCalle.TabIndex = 11;
             this.txtBoxCalle.UseSystemPasswordChar = false;
             this.txtBoxCalle.Leave += new System.EventHandler(this.txtBoxCalle_Leave);
             // 
@@ -195,7 +195,7 @@
             this.cmbBoxPais.Margin = new System.Windows.Forms.Padding(3, 3, 30, 3);
             this.cmbBoxPais.Name = "cmbBoxPais";
             this.cmbBoxPais.Size = new System.Drawing.Size(117, 21);
-            this.cmbBoxPais.TabIndex = 17;
+            this.cmbBoxPais.TabIndex = 18;
             this.cmbBoxPais.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxPais_SelectionChangeCommitted);
             // 
             // lblPais
@@ -216,7 +216,7 @@
             this.cmbBoxProvincia.Location = new System.Drawing.Point(324, 40);
             this.cmbBoxProvincia.Name = "cmbBoxProvincia";
             this.cmbBoxProvincia.Size = new System.Drawing.Size(148, 21);
-            this.cmbBoxProvincia.TabIndex = 18;
+            this.cmbBoxProvincia.TabIndex = 17;
             // 
             // lblProvincia
             // 
@@ -276,7 +276,7 @@
             this.txtBoxPiso.SelectionLength = 0;
             this.txtBoxPiso.SelectionStart = 0;
             this.txtBoxPiso.Size = new System.Drawing.Size(136, 23);
-            this.txtBoxPiso.TabIndex = 23;
+            this.txtBoxPiso.TabIndex = 13;
             this.txtBoxPiso.UseSystemPasswordChar = false;
             this.txtBoxPiso.Leave += new System.EventHandler(this.txtBoxPiso_Leave);
             // 
@@ -294,7 +294,7 @@
             this.txtBoxCiudad.SelectionLength = 0;
             this.txtBoxCiudad.SelectionStart = 0;
             this.txtBoxCiudad.Size = new System.Drawing.Size(136, 23);
-            this.txtBoxCiudad.TabIndex = 20;
+            this.txtBoxCiudad.TabIndex = 16;
             this.txtBoxCiudad.UseSystemPasswordChar = false;
             this.txtBoxCiudad.Leave += new System.EventHandler(this.txtBoxCiudad_Leave);
             // 
@@ -323,7 +323,7 @@
             this.txtBoxDepartamento.SelectionLength = 0;
             this.txtBoxDepartamento.SelectionStart = 0;
             this.txtBoxDepartamento.Size = new System.Drawing.Size(136, 23);
-            this.txtBoxDepartamento.TabIndex = 24;
+            this.txtBoxDepartamento.TabIndex = 14;
             this.txtBoxDepartamento.UseSystemPasswordChar = false;
             this.txtBoxDepartamento.Leave += new System.EventHandler(this.txtBoxDepartamento_Leave);
             // 
@@ -341,7 +341,7 @@
             this.txtBoxCodigoPostal.SelectionLength = 0;
             this.txtBoxCodigoPostal.SelectionStart = 0;
             this.txtBoxCodigoPostal.Size = new System.Drawing.Size(132, 23);
-            this.txtBoxCodigoPostal.TabIndex = 22;
+            this.txtBoxCodigoPostal.TabIndex = 15;
             this.txtBoxCodigoPostal.UseSystemPasswordChar = false;
             this.txtBoxCodigoPostal.Leave += new System.EventHandler(this.txtBoxCodigoPostal_Leave);
             // 

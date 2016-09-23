@@ -44,9 +44,10 @@
             // pnlBase
             // 
             this.pnlBase.Controls.Add(this.tblLayoutPanelPrincipal);
-            this.pnlBase.Location = new System.Drawing.Point(13, 76);
+            this.pnlBase.Location = new System.Drawing.Point(10, 62);
+            this.pnlBase.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlBase.Name = "pnlBase";
-            this.pnlBase.Size = new System.Drawing.Size(1271, 621);
+            this.pnlBase.Size = new System.Drawing.Size(953, 505);
             this.pnlBase.TabIndex = 0;
             // 
             // tblLayoutPanelPrincipal
@@ -58,24 +59,26 @@
             this.tblLayoutPanelPrincipal.Controls.Add(this.tblLayoutPanelDireccionArchivo, 0, 0);
             this.tblLayoutPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.tblLayoutPanelPrincipal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tblLayoutPanelPrincipal.Name = "tblLayoutPanelPrincipal";
             this.tblLayoutPanelPrincipal.RowCount = 4;
-            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 81F));
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(1271, 621);
+            this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tblLayoutPanelPrincipal.Size = new System.Drawing.Size(953, 505);
             this.tblLayoutPanelPrincipal.TabIndex = 0;
             // 
             // btnImportar
             // 
             this.btnImportar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnImportar.Depth = 0;
-            this.btnImportar.Location = new System.Drawing.Point(554, 570);
+            this.btnImportar.Location = new System.Drawing.Point(415, 463);
+            this.btnImportar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnImportar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnImportar.Name = "btnImportar";
             this.btnImportar.Primary = true;
-            this.btnImportar.Size = new System.Drawing.Size(163, 37);
+            this.btnImportar.Size = new System.Drawing.Size(122, 30);
             this.btnImportar.TabIndex = 0;
             this.btnImportar.Text = "Importar";
             this.btnImportar.UseVisualStyleBackColor = true;
@@ -87,14 +90,14 @@
             this.chckBoxPrimeraFilaHeaders.AutoSize = true;
             this.chckBoxPrimeraFilaHeaders.Depth = 0;
             this.chckBoxPrimeraFilaHeaders.Font = new System.Drawing.Font("Roboto", 10F);
-            this.chckBoxPrimeraFilaHeaders.Location = new System.Drawing.Point(480, 105);
+            this.chckBoxPrimeraFilaHeaders.Location = new System.Drawing.Point(349, 82);
             this.chckBoxPrimeraFilaHeaders.Margin = new System.Windows.Forms.Padding(0);
             this.chckBoxPrimeraFilaHeaders.MouseLocation = new System.Drawing.Point(-1, -1);
             this.chckBoxPrimeraFilaHeaders.MouseState = MaterialSkin.MouseState.HOVER;
             this.chckBoxPrimeraFilaHeaders.Name = "chckBoxPrimeraFilaHeaders";
             this.chckBoxPrimeraFilaHeaders.Ripple = true;
-            this.chckBoxPrimeraFilaHeaders.Size = new System.Drawing.Size(311, 30);
-            this.chckBoxPrimeraFilaHeaders.TabIndex = 1;
+            this.chckBoxPrimeraFilaHeaders.Size = new System.Drawing.Size(254, 30);
+            this.chckBoxPrimeraFilaHeaders.TabIndex = 3;
             this.chckBoxPrimeraFilaHeaders.Text = "Primera fila es nombres de atributos";
             this.chckBoxPrimeraFilaHeaders.UseVisualStyleBackColor = true;
             this.chckBoxPrimeraFilaHeaders.CheckedChanged += new System.EventHandler(this.chckBoxPrimeraFilaHeaders_CheckedChanged);
@@ -102,18 +105,19 @@
             // tblLayoutPanelDireccionArchivo
             // 
             this.tblLayoutPanelDireccionArchivo.ColumnCount = 3;
-            this.tblLayoutPanelDireccionArchivo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
-            this.tblLayoutPanelDireccionArchivo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
-            this.tblLayoutPanelDireccionArchivo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 665F));
+            this.tblLayoutPanelDireccionArchivo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 165F));
+            this.tblLayoutPanelDireccionArchivo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
+            this.tblLayoutPanelDireccionArchivo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 499F));
             this.tblLayoutPanelDireccionArchivo.Controls.Add(this.lblDireccionDeArchivo, 0, 0);
             this.tblLayoutPanelDireccionArchivo.Controls.Add(this.txtBoxDireccionArchivo, 1, 0);
             this.tblLayoutPanelDireccionArchivo.Controls.Add(this.btnBuscarArchivo, 2, 0);
             this.tblLayoutPanelDireccionArchivo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblLayoutPanelDireccionArchivo.Location = new System.Drawing.Point(3, 3);
+            this.tblLayoutPanelDireccionArchivo.Location = new System.Drawing.Point(2, 2);
+            this.tblLayoutPanelDireccionArchivo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tblLayoutPanelDireccionArchivo.Name = "tblLayoutPanelDireccionArchivo";
             this.tblLayoutPanelDireccionArchivo.RowCount = 1;
             this.tblLayoutPanelDireccionArchivo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLayoutPanelDireccionArchivo.Size = new System.Drawing.Size(1265, 94);
+            this.tblLayoutPanelDireccionArchivo.Size = new System.Drawing.Size(949, 77);
             this.tblLayoutPanelDireccionArchivo.TabIndex = 2;
             // 
             // lblDireccionDeArchivo
@@ -123,39 +127,43 @@
             this.lblDireccionDeArchivo.Depth = 0;
             this.lblDireccionDeArchivo.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblDireccionDeArchivo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblDireccionDeArchivo.Location = new System.Drawing.Point(29, 35);
+            this.lblDireccionDeArchivo.Location = new System.Drawing.Point(11, 29);
+            this.lblDireccionDeArchivo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDireccionDeArchivo.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblDireccionDeArchivo.Name = "lblDireccionDeArchivo";
-            this.lblDireccionDeArchivo.Size = new System.Drawing.Size(188, 24);
+            this.lblDireccionDeArchivo.Size = new System.Drawing.Size(152, 19);
             this.lblDireccionDeArchivo.TabIndex = 0;
             this.lblDireccionDeArchivo.Text = "Dirección de Archivo:";
             // 
             // txtBoxDireccionArchivo
             // 
             this.txtBoxDireccionArchivo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxDireccionArchivo.Location = new System.Drawing.Point(223, 36);
+            this.txtBoxDireccionArchivo.Location = new System.Drawing.Point(167, 28);
+            this.txtBoxDireccionArchivo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtBoxDireccionArchivo.Name = "txtBoxDireccionArchivo";
-            this.txtBoxDireccionArchivo.Size = new System.Drawing.Size(394, 22);
+            this.txtBoxDireccionArchivo.Size = new System.Drawing.Size(296, 20);
             this.txtBoxDireccionArchivo.TabIndex = 1;
             // 
             // btnBuscarArchivo
             // 
             this.btnBuscarArchivo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBuscarArchivo.Location = new System.Drawing.Point(623, 35);
+            this.btnBuscarArchivo.Location = new System.Drawing.Point(467, 29);
+            this.btnBuscarArchivo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBuscarArchivo.Name = "btnBuscarArchivo";
-            this.btnBuscarArchivo.Size = new System.Drawing.Size(45, 23);
+            this.btnBuscarArchivo.Size = new System.Drawing.Size(34, 19);
             this.btnBuscarArchivo.TabIndex = 2;
             this.btnBuscarArchivo.Text = "...";
             this.btnBuscarArchivo.UseVisualStyleBackColor = true;
             this.btnBuscarArchivo.Click += new System.EventHandler(this.btnBuscarArchivo_Click);
             // 
-            // frmImportarPreview
+            // frmImportar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1296, 709);
+            this.ClientSize = new System.Drawing.Size(972, 576);
             this.Controls.Add(this.pnlBase);
-            this.Name = "frmImportarPreview";
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "frmImportar";
             this.Text = "Importar";
             this.pnlBase.ResumeLayout(false);
             this.tblLayoutPanelPrincipal.ResumeLayout(false);

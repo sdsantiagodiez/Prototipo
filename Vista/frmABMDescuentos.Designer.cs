@@ -96,7 +96,7 @@
             this.grpBoxResultadoBusqueda.Location = new System.Drawing.Point(3, 163);
             this.grpBoxResultadoBusqueda.Name = "grpBoxResultadoBusqueda";
             this.grpBoxResultadoBusqueda.Size = new System.Drawing.Size(784, 179);
-            this.grpBoxResultadoBusqueda.TabIndex = 0;
+            this.grpBoxResultadoBusqueda.TabIndex = 7;
             this.grpBoxResultadoBusqueda.TabStop = false;
             this.grpBoxResultadoBusqueda.Text = "Resultado Búsqueda";
             // 
@@ -136,7 +136,7 @@
             this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tblLayoutPanelParametrosBusqueda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.lblCodigoOriginal, 0, 0);
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.lblModelo, 3, 1);
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.txtBoxCodigoOriginal, 1, 0);
@@ -200,7 +200,7 @@
             this.txtBoxCodigoOriginal.SelectionLength = 0;
             this.txtBoxCodigoOriginal.SelectionStart = 0;
             this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(94, 23);
-            this.txtBoxCodigoOriginal.TabIndex = 7;
+            this.txtBoxCodigoOriginal.TabIndex = 0;
             this.txtBoxCodigoOriginal.UseSystemPasswordChar = false;
             this.txtBoxCodigoOriginal.Leave += new System.EventHandler(this.txtBoxCodigoOriginal_Leave);
             // 
@@ -217,8 +217,8 @@
             this.txtBoxModelo.SelectedText = "";
             this.txtBoxModelo.SelectionLength = 0;
             this.txtBoxModelo.SelectionStart = 0;
-            this.txtBoxModelo.Size = new System.Drawing.Size(94, 23);
-            this.txtBoxModelo.TabIndex = 9;
+            this.txtBoxModelo.Size = new System.Drawing.Size(93, 23);
+            this.txtBoxModelo.TabIndex = 5;
             this.txtBoxModelo.UseSystemPasswordChar = false;
             this.txtBoxModelo.Leave += new System.EventHandler(this.txtBoxModelo_Leave);
             // 
@@ -226,7 +226,7 @@
             // 
             this.btnBuscar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBuscar.Depth = 0;
-            this.btnBuscar.Location = new System.Drawing.Point(633, 87);
+            this.btnBuscar.Location = new System.Drawing.Point(632, 87);
             this.btnBuscar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -243,7 +243,7 @@
             this.lblProveedor.Depth = 0;
             this.lblProveedor.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblProveedor.Location = new System.Drawing.Point(546, 11);
+            this.lblProveedor.Location = new System.Drawing.Point(545, 11);
             this.lblProveedor.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblProveedor.Name = "lblProveedor";
             this.lblProveedor.Size = new System.Drawing.Size(81, 19);
@@ -254,11 +254,11 @@
             // 
             this.cmbBoxProveedores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxProveedores.FormattingEnabled = true;
-            this.cmbBoxProveedores.Location = new System.Drawing.Point(633, 10);
+            this.cmbBoxProveedores.Location = new System.Drawing.Point(632, 10);
             this.cmbBoxProveedores.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.cmbBoxProveedores.Name = "cmbBoxProveedores";
             this.cmbBoxProveedores.Size = new System.Drawing.Size(94, 21);
-            this.cmbBoxProveedores.TabIndex = 10;
+            this.cmbBoxProveedores.TabIndex = 3;
             // 
             // lblDescripcion
             // 
@@ -288,7 +288,7 @@
             this.txtBoxDescripcion.SelectionLength = 0;
             this.txtBoxDescripcion.SelectionStart = 0;
             this.txtBoxDescripcion.Size = new System.Drawing.Size(94, 23);
-            this.txtBoxDescripcion.TabIndex = 8;
+            this.txtBoxDescripcion.TabIndex = 4;
             this.txtBoxDescripcion.UseSystemPasswordChar = false;
             this.txtBoxDescripcion.Leave += new System.EventHandler(this.txtBoxDescripcion_Leave);
             // 
@@ -320,8 +320,8 @@
             this.txtBoxCodigoArticuloProveedor.SelectedText = "";
             this.txtBoxCodigoArticuloProveedor.SelectionLength = 0;
             this.txtBoxCodigoArticuloProveedor.SelectionStart = 0;
-            this.txtBoxCodigoArticuloProveedor.Size = new System.Drawing.Size(94, 23);
-            this.txtBoxCodigoArticuloProveedor.TabIndex = 6;
+            this.txtBoxCodigoArticuloProveedor.Size = new System.Drawing.Size(93, 23);
+            this.txtBoxCodigoArticuloProveedor.TabIndex = 2;
             this.txtBoxCodigoArticuloProveedor.UseSystemPasswordChar = false;
             this.txtBoxCodigoArticuloProveedor.Leave += new System.EventHandler(this.txtBoxCodigoArticuloProveedor_Leave);
             // 
@@ -405,7 +405,7 @@
             this.dtpFechaHastaDescuento.Location = new System.Drawing.Point(391, 65);
             this.dtpFechaHastaDescuento.Name = "dtpFechaHastaDescuento";
             this.dtpFechaHastaDescuento.Size = new System.Drawing.Size(113, 20);
-            this.dtpFechaHastaDescuento.TabIndex = 8;
+            this.dtpFechaHastaDescuento.TabIndex = 10;
             // 
             // cmbBoxPorcentajeDescuento
             // 
@@ -414,7 +414,7 @@
             this.cmbBoxPorcentajeDescuento.Location = new System.Drawing.Point(125, 14);
             this.cmbBoxPorcentajeDescuento.Name = "cmbBoxPorcentajeDescuento";
             this.cmbBoxPorcentajeDescuento.Size = new System.Drawing.Size(113, 21);
-            this.cmbBoxPorcentajeDescuento.TabIndex = 6;
+            this.cmbBoxPorcentajeDescuento.TabIndex = 8;
             this.cmbBoxPorcentajeDescuento.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxPorcentajeDescuento_SelectionChangeCommitted);
             // 
             // lblPorcentajeDescuento
@@ -467,7 +467,7 @@
             this.dtpFechaDesdeDescuento.Location = new System.Drawing.Point(391, 15);
             this.dtpFechaDesdeDescuento.Name = "dtpFechaDesdeDescuento";
             this.dtpFechaDesdeDescuento.Size = new System.Drawing.Size(113, 20);
-            this.dtpFechaDesdeDescuento.TabIndex = 7;
+            this.dtpFechaDesdeDescuento.TabIndex = 9;
             this.dtpFechaDesdeDescuento.ValueChanged += new System.EventHandler(this.dtpFechaDesdeDescuento_ValueChanged);
             // 
             // txtBoxDescripcionDescuento
@@ -483,7 +483,7 @@
             this.txtBoxDescripcionDescuento.SelectionLength = 0;
             this.txtBoxDescripcionDescuento.SelectionStart = 0;
             this.txtBoxDescripcionDescuento.Size = new System.Drawing.Size(113, 23);
-            this.txtBoxDescripcionDescuento.TabIndex = 4;
+            this.txtBoxDescripcionDescuento.TabIndex = 11;
             this.txtBoxDescripcionDescuento.UseSystemPasswordChar = false;
             this.txtBoxDescripcionDescuento.Leave += new System.EventHandler(this.txtBoxDescripcionDescuento_Leave);
             // 
@@ -496,7 +496,7 @@
             this.btnGuardarDescuento.Name = "btnGuardarDescuento";
             this.btnGuardarDescuento.Primary = true;
             this.btnGuardarDescuento.Size = new System.Drawing.Size(110, 40);
-            this.btnGuardarDescuento.TabIndex = 9;
+            this.btnGuardarDescuento.TabIndex = 12;
             this.btnGuardarDescuento.Text = "Agregar Descuento";
             this.btnGuardarDescuento.UseVisualStyleBackColor = true;
             this.btnGuardarDescuento.Click += new System.EventHandler(this.btnGuardarDescuento_Click);
