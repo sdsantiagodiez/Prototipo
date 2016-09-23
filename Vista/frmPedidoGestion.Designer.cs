@@ -84,7 +84,7 @@
             // 
             this.pnlBase.Controls.Add(this.tblLayoutPanelPrincipal);
             this.pnlBase.Location = new System.Drawing.Point(9, 58);
-            this.pnlBase.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlBase.Margin = new System.Windows.Forms.Padding(2);
             this.pnlBase.Name = "pnlBase";
             this.pnlBase.Size = new System.Drawing.Size(1051, 583);
             this.pnlBase.TabIndex = 0;
@@ -98,7 +98,7 @@
             this.tblLayoutPanelPrincipal.Controls.Add(this.tblLayoutPanelBotones, 0, 3);
             this.tblLayoutPanelPrincipal.Controls.Add(this.btnBuscar, 0, 1);
             this.tblLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 0);
-            this.tblLayoutPanelPrincipal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tblLayoutPanelPrincipal.Margin = new System.Windows.Forms.Padding(2);
             this.tblLayoutPanelPrincipal.Name = "tblLayoutPanelPrincipal";
             this.tblLayoutPanelPrincipal.RowCount = 4;
             this.tblLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 203F));
@@ -113,9 +113,9 @@
             this.grpBoxResultadoBusqueda.Controls.Add(this.dgvResultadoBusqueda);
             this.grpBoxResultadoBusqueda.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxResultadoBusqueda.Location = new System.Drawing.Point(2, 258);
-            this.grpBoxResultadoBusqueda.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpBoxResultadoBusqueda.Margin = new System.Windows.Forms.Padding(2);
             this.grpBoxResultadoBusqueda.Name = "grpBoxResultadoBusqueda";
-            this.grpBoxResultadoBusqueda.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpBoxResultadoBusqueda.Padding = new System.Windows.Forms.Padding(2);
             this.grpBoxResultadoBusqueda.Size = new System.Drawing.Size(1047, 110);
             this.grpBoxResultadoBusqueda.TabIndex = 1;
             this.grpBoxResultadoBusqueda.TabStop = false;
@@ -126,11 +126,11 @@
             this.dgvResultadoBusqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvResultadoBusqueda.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResultadoBusqueda.Location = new System.Drawing.Point(2, 15);
-            this.dgvResultadoBusqueda.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvResultadoBusqueda.Margin = new System.Windows.Forms.Padding(2);
             this.dgvResultadoBusqueda.Name = "dgvResultadoBusqueda";
             this.dgvResultadoBusqueda.RowTemplate.Height = 24;
             this.dgvResultadoBusqueda.Size = new System.Drawing.Size(1043, 93);
-            this.dgvResultadoBusqueda.TabIndex = 3;
+            this.dgvResultadoBusqueda.TabIndex = 13;
             this.dgvResultadoBusqueda.SelectionChanged += new System.EventHandler(this.dgvResultadoBusqueda_SelectionChanged);
             // 
             // tblLayoutPanelParametrosBusqueda
@@ -141,7 +141,7 @@
             this.tblLayoutPanelParametrosBusqueda.Controls.Add(this.tblLayoutPanelParametrosBusqueda_1, 0, 0);
             this.tblLayoutPanelParametrosBusqueda.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelParametrosBusqueda.Location = new System.Drawing.Point(2, 2);
-            this.tblLayoutPanelParametrosBusqueda.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tblLayoutPanelParametrosBusqueda.Margin = new System.Windows.Forms.Padding(2);
             this.tblLayoutPanelParametrosBusqueda.Name = "tblLayoutPanelParametrosBusqueda";
             this.tblLayoutPanelParametrosBusqueda.RowCount = 2;
             this.tblLayoutPanelParametrosBusqueda.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -162,7 +162,7 @@
             this.tblLayoutPanelParametrosBusqueda_2.Controls.Add(this.grpBoxEntreFechas, 0, 0);
             this.tblLayoutPanelParametrosBusqueda_2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelParametrosBusqueda_2.Location = new System.Drawing.Point(2, 79);
-            this.tblLayoutPanelParametrosBusqueda_2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tblLayoutPanelParametrosBusqueda_2.Margin = new System.Windows.Forms.Padding(2);
             this.tblLayoutPanelParametrosBusqueda_2.Name = "tblLayoutPanelParametrosBusqueda_2";
             this.tblLayoutPanelParametrosBusqueda_2.RowCount = 1;
             this.tblLayoutPanelParametrosBusqueda_2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -178,7 +178,7 @@
             this.grpBoxFacturadoElectronicamente.Location = new System.Drawing.Point(810, 2);
             this.grpBoxFacturadoElectronicamente.Margin = new System.Windows.Forms.Padding(30, 2, 30, 2);
             this.grpBoxFacturadoElectronicamente.Name = "grpBoxFacturadoElectronicamente";
-            this.grpBoxFacturadoElectronicamente.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpBoxFacturadoElectronicamente.Padding = new System.Windows.Forms.Padding(2);
             this.grpBoxFacturadoElectronicamente.Size = new System.Drawing.Size(203, 114);
             this.grpBoxFacturadoElectronicamente.TabIndex = 5;
             this.grpBoxFacturadoElectronicamente.TabStop = false;
@@ -189,10 +189,10 @@
             this.chckdListBoxFacturadoElectronicamente.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chckdListBoxFacturadoElectronicamente.FormattingEnabled = true;
             this.chckdListBoxFacturadoElectronicamente.Location = new System.Drawing.Point(2, 15);
-            this.chckdListBoxFacturadoElectronicamente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chckdListBoxFacturadoElectronicamente.Margin = new System.Windows.Forms.Padding(2);
             this.chckdListBoxFacturadoElectronicamente.Name = "chckdListBoxFacturadoElectronicamente";
             this.chckdListBoxFacturadoElectronicamente.Size = new System.Drawing.Size(199, 97);
-            this.chckdListBoxFacturadoElectronicamente.TabIndex = 0;
+            this.chckdListBoxFacturadoElectronicamente.TabIndex = 11;
             // 
             // grpBoxTipoPedido
             // 
@@ -203,7 +203,7 @@
             this.grpBoxTipoPedido.Location = new System.Drawing.Point(290, 2);
             this.grpBoxTipoPedido.Margin = new System.Windows.Forms.Padding(30, 2, 30, 2);
             this.grpBoxTipoPedido.Name = "grpBoxTipoPedido";
-            this.grpBoxTipoPedido.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpBoxTipoPedido.Padding = new System.Windows.Forms.Padding(2);
             this.grpBoxTipoPedido.Size = new System.Drawing.Size(200, 114);
             this.grpBoxTipoPedido.TabIndex = 3;
             this.grpBoxTipoPedido.TabStop = false;
@@ -214,10 +214,10 @@
             this.chckdListBoxTipoPedido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chckdListBoxTipoPedido.FormattingEnabled = true;
             this.chckdListBoxTipoPedido.Location = new System.Drawing.Point(2, 15);
-            this.chckdListBoxTipoPedido.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chckdListBoxTipoPedido.Margin = new System.Windows.Forms.Padding(2);
             this.chckdListBoxTipoPedido.Name = "chckdListBoxTipoPedido";
             this.chckdListBoxTipoPedido.Size = new System.Drawing.Size(196, 97);
-            this.chckdListBoxTipoPedido.TabIndex = 0;
+            this.chckdListBoxTipoPedido.TabIndex = 9;
             // 
             // grpBoxTipoComprobante
             // 
@@ -228,7 +228,7 @@
             this.grpBoxTipoComprobante.Location = new System.Drawing.Point(550, 2);
             this.grpBoxTipoComprobante.Margin = new System.Windows.Forms.Padding(30, 2, 30, 2);
             this.grpBoxTipoComprobante.Name = "grpBoxTipoComprobante";
-            this.grpBoxTipoComprobante.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpBoxTipoComprobante.Padding = new System.Windows.Forms.Padding(2);
             this.grpBoxTipoComprobante.Size = new System.Drawing.Size(200, 114);
             this.grpBoxTipoComprobante.TabIndex = 4;
             this.grpBoxTipoComprobante.TabStop = false;
@@ -239,10 +239,10 @@
             this.chckdListBoxTipoComprobante.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chckdListBoxTipoComprobante.FormattingEnabled = true;
             this.chckdListBoxTipoComprobante.Location = new System.Drawing.Point(2, 15);
-            this.chckdListBoxTipoComprobante.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chckdListBoxTipoComprobante.Margin = new System.Windows.Forms.Padding(2);
             this.chckdListBoxTipoComprobante.Name = "chckdListBoxTipoComprobante";
             this.chckdListBoxTipoComprobante.Size = new System.Drawing.Size(196, 97);
-            this.chckdListBoxTipoComprobante.TabIndex = 1;
+            this.chckdListBoxTipoComprobante.TabIndex = 10;
             // 
             // grpBoxEntreFechas
             // 
@@ -253,7 +253,7 @@
             this.grpBoxEntreFechas.Location = new System.Drawing.Point(30, 2);
             this.grpBoxEntreFechas.Margin = new System.Windows.Forms.Padding(30, 2, 30, 2);
             this.grpBoxEntreFechas.Name = "grpBoxEntreFechas";
-            this.grpBoxEntreFechas.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpBoxEntreFechas.Padding = new System.Windows.Forms.Padding(2);
             this.grpBoxEntreFechas.Size = new System.Drawing.Size(200, 114);
             this.grpBoxEntreFechas.TabIndex = 2;
             this.grpBoxEntreFechas.TabStop = false;
@@ -271,7 +271,7 @@
             this.tblLayoutPanelEntreFechas.Controls.Add(this.chckBoxPeriodos, 1, 0);
             this.tblLayoutPanelEntreFechas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelEntreFechas.Location = new System.Drawing.Point(2, 15);
-            this.tblLayoutPanelEntreFechas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tblLayoutPanelEntreFechas.Margin = new System.Windows.Forms.Padding(2);
             this.tblLayoutPanelEntreFechas.Name = "tblLayoutPanelEntreFechas";
             this.tblLayoutPanelEntreFechas.RowCount = 3;
             this.tblLayoutPanelEntreFechas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
@@ -285,10 +285,10 @@
             this.dtpDesde.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDesde.Location = new System.Drawing.Point(69, 38);
-            this.dtpDesde.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpDesde.Margin = new System.Windows.Forms.Padding(2);
             this.dtpDesde.Name = "dtpDesde";
             this.dtpDesde.Size = new System.Drawing.Size(125, 20);
-            this.dtpDesde.TabIndex = 0;
+            this.dtpDesde.TabIndex = 7;
             this.dtpDesde.ValueChanged += new System.EventHandler(this.dtpDesde_ValueChanged);
             // 
             // dtpHasta
@@ -296,10 +296,10 @@
             this.dtpHasta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpHasta.Location = new System.Drawing.Point(69, 70);
-            this.dtpHasta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpHasta.Margin = new System.Windows.Forms.Padding(2);
             this.dtpHasta.Name = "dtpHasta";
             this.dtpHasta.Size = new System.Drawing.Size(125, 20);
-            this.dtpHasta.TabIndex = 1;
+            this.dtpHasta.TabIndex = 8;
             // 
             // lblFechaDesde
             // 
@@ -344,7 +344,7 @@
             this.chckBoxPeriodos.Name = "chckBoxPeriodos";
             this.chckBoxPeriodos.Ripple = true;
             this.chckBoxPeriodos.Size = new System.Drawing.Size(69, 30);
-            this.chckBoxPeriodos.TabIndex = 4;
+            this.chckBoxPeriodos.TabIndex = 6;
             this.chckBoxPeriodos.Text = "Todos";
             this.chckBoxPeriodos.UseVisualStyleBackColor = true;
             this.chckBoxPeriodos.CheckedChanged += new System.EventHandler(this.chckBoxPeriodos_CheckedChanged);
@@ -372,7 +372,7 @@
             this.tblLayoutPanelParametrosBusqueda_1.Controls.Add(this.txtBoxNumeroDocumento, 5, 0);
             this.tblLayoutPanelParametrosBusqueda_1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelParametrosBusqueda_1.Location = new System.Drawing.Point(2, 2);
-            this.tblLayoutPanelParametrosBusqueda_1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tblLayoutPanelParametrosBusqueda_1.Margin = new System.Windows.Forms.Padding(2);
             this.tblLayoutPanelParametrosBusqueda_1.Name = "tblLayoutPanelParametrosBusqueda_1";
             this.tblLayoutPanelParametrosBusqueda_1.RowCount = 2;
             this.tblLayoutPanelParametrosBusqueda_1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -476,7 +476,7 @@
             this.txtBoxNumeroPedido.Depth = 0;
             this.txtBoxNumeroPedido.Hint = "";
             this.txtBoxNumeroPedido.Location = new System.Drawing.Point(130, 6);
-            this.txtBoxNumeroPedido.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBoxNumeroPedido.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxNumeroPedido.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxNumeroPedido.Name = "txtBoxNumeroPedido";
             this.txtBoxNumeroPedido.PasswordChar = '\0';
@@ -484,7 +484,7 @@
             this.txtBoxNumeroPedido.SelectionLength = 0;
             this.txtBoxNumeroPedido.SelectionStart = 0;
             this.txtBoxNumeroPedido.Size = new System.Drawing.Size(251, 23);
-            this.txtBoxNumeroPedido.TabIndex = 6;
+            this.txtBoxNumeroPedido.TabIndex = 0;
             this.txtBoxNumeroPedido.UseSystemPasswordChar = false;
             // 
             // txtBoxNombre
@@ -493,7 +493,7 @@
             this.txtBoxNombre.Depth = 0;
             this.txtBoxNombre.Hint = "";
             this.txtBoxNombre.Location = new System.Drawing.Point(130, 43);
-            this.txtBoxNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBoxNombre.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxNombre.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxNombre.Name = "txtBoxNombre";
             this.txtBoxNombre.PasswordChar = '\0';
@@ -501,7 +501,7 @@
             this.txtBoxNombre.SelectionLength = 0;
             this.txtBoxNombre.SelectionStart = 0;
             this.txtBoxNombre.Size = new System.Drawing.Size(251, 23);
-            this.txtBoxNombre.TabIndex = 7;
+            this.txtBoxNombre.TabIndex = 3;
             this.txtBoxNombre.UseSystemPasswordChar = false;
             // 
             // txtBoxCAE
@@ -510,7 +510,7 @@
             this.txtBoxCAE.Depth = 0;
             this.txtBoxCAE.Hint = "";
             this.txtBoxCAE.Location = new System.Drawing.Point(460, 6);
-            this.txtBoxCAE.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBoxCAE.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxCAE.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCAE.Name = "txtBoxCAE";
             this.txtBoxCAE.PasswordChar = '\0';
@@ -518,7 +518,7 @@
             this.txtBoxCAE.SelectionLength = 0;
             this.txtBoxCAE.SelectionStart = 0;
             this.txtBoxCAE.Size = new System.Drawing.Size(192, 23);
-            this.txtBoxCAE.TabIndex = 8;
+            this.txtBoxCAE.TabIndex = 1;
             this.txtBoxCAE.UseSystemPasswordChar = false;
             // 
             // txtBoxApellido
@@ -527,7 +527,7 @@
             this.txtBoxApellido.Depth = 0;
             this.txtBoxApellido.Hint = "";
             this.txtBoxApellido.Location = new System.Drawing.Point(460, 43);
-            this.txtBoxApellido.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBoxApellido.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxApellido.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxApellido.Name = "txtBoxApellido";
             this.txtBoxApellido.PasswordChar = '\0';
@@ -535,7 +535,7 @@
             this.txtBoxApellido.SelectionLength = 0;
             this.txtBoxApellido.SelectionStart = 0;
             this.txtBoxApellido.Size = new System.Drawing.Size(192, 23);
-            this.txtBoxApellido.TabIndex = 9;
+            this.txtBoxApellido.TabIndex = 4;
             this.txtBoxApellido.UseSystemPasswordChar = false;
             // 
             // txtBoxRazonSocial
@@ -544,7 +544,7 @@
             this.txtBoxRazonSocial.Depth = 0;
             this.txtBoxRazonSocial.Hint = "";
             this.txtBoxRazonSocial.Location = new System.Drawing.Point(810, 43);
-            this.txtBoxRazonSocial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBoxRazonSocial.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxRazonSocial.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxRazonSocial.Name = "txtBoxRazonSocial";
             this.txtBoxRazonSocial.PasswordChar = '\0';
@@ -552,7 +552,7 @@
             this.txtBoxRazonSocial.SelectionLength = 0;
             this.txtBoxRazonSocial.SelectionStart = 0;
             this.txtBoxRazonSocial.Size = new System.Drawing.Size(231, 23);
-            this.txtBoxRazonSocial.TabIndex = 10;
+            this.txtBoxRazonSocial.TabIndex = 5;
             this.txtBoxRazonSocial.UseSystemPasswordChar = false;
             // 
             // txtBoxNumeroDocumento
@@ -561,7 +561,7 @@
             this.txtBoxNumeroDocumento.Depth = 0;
             this.txtBoxNumeroDocumento.Hint = "";
             this.txtBoxNumeroDocumento.Location = new System.Drawing.Point(810, 6);
-            this.txtBoxNumeroDocumento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBoxNumeroDocumento.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxNumeroDocumento.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxNumeroDocumento.Name = "txtBoxNumeroDocumento";
             this.txtBoxNumeroDocumento.PasswordChar = '\0';
@@ -569,7 +569,7 @@
             this.txtBoxNumeroDocumento.SelectionLength = 0;
             this.txtBoxNumeroDocumento.SelectionStart = 0;
             this.txtBoxNumeroDocumento.Size = new System.Drawing.Size(231, 23);
-            this.txtBoxNumeroDocumento.TabIndex = 11;
+            this.txtBoxNumeroDocumento.TabIndex = 2;
             this.txtBoxNumeroDocumento.UseSystemPasswordChar = false;
             this.txtBoxNumeroDocumento.Leave += new System.EventHandler(this.txtBoxNumeroDocumento_Leave);
             // 
@@ -584,7 +584,7 @@
             this.tblLayoutPanelBotones.Controls.Add(this.btnFacturar, 2, 0);
             this.tblLayoutPanelBotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelBotones.Location = new System.Drawing.Point(2, 372);
-            this.tblLayoutPanelBotones.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tblLayoutPanelBotones.Margin = new System.Windows.Forms.Padding(2);
             this.tblLayoutPanelBotones.Name = "tblLayoutPanelBotones";
             this.tblLayoutPanelBotones.RowCount = 1;
             this.tblLayoutPanelBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -596,12 +596,12 @@
             this.btnImprimir.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnImprimir.Depth = 0;
             this.btnImprimir.Location = new System.Drawing.Point(371, 4);
-            this.btnImprimir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnImprimir.Margin = new System.Windows.Forms.Padding(2);
             this.btnImprimir.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Primary = true;
             this.btnImprimir.Size = new System.Drawing.Size(90, 41);
-            this.btnImprimir.TabIndex = 0;
+            this.btnImprimir.TabIndex = 14;
             this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.UseVisualStyleBackColor = true;
             // 
@@ -610,12 +610,12 @@
             this.btnVerDetalles.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnVerDetalles.Depth = 0;
             this.btnVerDetalles.Location = new System.Drawing.Point(478, 4);
-            this.btnVerDetalles.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnVerDetalles.Margin = new System.Windows.Forms.Padding(2);
             this.btnVerDetalles.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnVerDetalles.Name = "btnVerDetalles";
             this.btnVerDetalles.Primary = true;
             this.btnVerDetalles.Size = new System.Drawing.Size(90, 41);
-            this.btnVerDetalles.TabIndex = 1;
+            this.btnVerDetalles.TabIndex = 15;
             this.btnVerDetalles.Text = "Ver Detalles";
             this.btnVerDetalles.UseVisualStyleBackColor = true;
             // 
@@ -624,12 +624,12 @@
             this.btnFacturar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnFacturar.Depth = 0;
             this.btnFacturar.Location = new System.Drawing.Point(585, 4);
-            this.btnFacturar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFacturar.Margin = new System.Windows.Forms.Padding(2);
             this.btnFacturar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnFacturar.Name = "btnFacturar";
             this.btnFacturar.Primary = true;
             this.btnFacturar.Size = new System.Drawing.Size(90, 41);
-            this.btnFacturar.TabIndex = 2;
+            this.btnFacturar.TabIndex = 16;
             this.btnFacturar.Text = "Facturar ";
             this.btnFacturar.UseVisualStyleBackColor = true;
             // 
@@ -638,12 +638,12 @@
             this.btnBuscar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnBuscar.Depth = 0;
             this.btnBuscar.Location = new System.Drawing.Point(480, 209);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Primary = true;
             this.btnBuscar.Size = new System.Drawing.Size(90, 41);
-            this.btnBuscar.TabIndex = 2;
+            this.btnBuscar.TabIndex = 12;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             // 
@@ -653,7 +653,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1095, 711);
             this.Controls.Add(this.pnlBase);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmPedidoGestion";
             this.Text = "frmPedido";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPedidoGestion_FormClosing);

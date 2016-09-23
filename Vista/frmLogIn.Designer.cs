@@ -127,6 +127,7 @@
             this.Controls.Add(this.lblUsuario);
             this.Name = "frmLogIn";
             this.Text = "Ingreso al Sistema";
+            this.Enter += new System.EventHandler(this.btnLogIn_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 

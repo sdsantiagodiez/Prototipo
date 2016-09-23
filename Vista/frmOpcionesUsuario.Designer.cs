@@ -149,7 +149,7 @@
             this.btnGuardarCambios.Name = "btnGuardarCambios";
             this.btnGuardarCambios.Primary = true;
             this.btnGuardarCambios.Size = new System.Drawing.Size(110, 40);
-            this.btnGuardarCambios.TabIndex = 10;
+            this.btnGuardarCambios.TabIndex = 15;
             this.btnGuardarCambios.Text = "Guardar Cambios";
             this.btnGuardarCambios.UseVisualStyleBackColor = true;
             this.btnGuardarCambios.Click += new System.EventHandler(this.btnGuardarCambios_Click);
@@ -179,7 +179,7 @@
             this.tbControlPrincipal.Name = "tbControlPrincipal";
             this.tbControlPrincipal.SelectedIndex = 0;
             this.tbControlPrincipal.Size = new System.Drawing.Size(735, 419);
-            this.tbControlPrincipal.TabIndex = 2;
+            this.tbControlPrincipal.TabIndex = 0;
             this.tbControlPrincipal.SelectedIndexChanged += new System.EventHandler(this.tbControlPrincipal_SelectedIndexChanged);
             // 
             // tbPageDatosGenerales
@@ -270,7 +270,7 @@
             this.txtBoxCUIT.SelectionLength = 0;
             this.txtBoxCUIT.SelectionStart = 0;
             this.txtBoxCUIT.Size = new System.Drawing.Size(301, 23);
-            this.txtBoxCUIT.TabIndex = 16;
+            this.txtBoxCUIT.TabIndex = 1;
             this.txtBoxCUIT.UseSystemPasswordChar = false;
             this.txtBoxCUIT.Leave += new System.EventHandler(this.txtBoxCUIT_Leave);
             // 
@@ -299,7 +299,7 @@
             this.txtBoxDNI.SelectionLength = 0;
             this.txtBoxDNI.SelectionStart = 0;
             this.txtBoxDNI.Size = new System.Drawing.Size(301, 23);
-            this.txtBoxDNI.TabIndex = 18;
+            this.txtBoxDNI.TabIndex = 2;
             this.txtBoxDNI.UseSystemPasswordChar = false;
             this.txtBoxDNI.Leave += new System.EventHandler(this.txtBoxDNI_Leave);
             // 
@@ -317,7 +317,7 @@
             this.txtBoxNombre.SelectionLength = 0;
             this.txtBoxNombre.SelectionStart = 0;
             this.txtBoxNombre.Size = new System.Drawing.Size(301, 23);
-            this.txtBoxNombre.TabIndex = 19;
+            this.txtBoxNombre.TabIndex = 3;
             this.txtBoxNombre.UseSystemPasswordChar = false;
             this.txtBoxNombre.Leave += new System.EventHandler(this.txtBoxNombre_Leave);
             // 
@@ -357,7 +357,7 @@
             this.txtBoxApellido.SelectionLength = 0;
             this.txtBoxApellido.SelectionStart = 0;
             this.txtBoxApellido.Size = new System.Drawing.Size(301, 23);
-            this.txtBoxApellido.TabIndex = 22;
+            this.txtBoxApellido.TabIndex = 4;
             this.txtBoxApellido.UseSystemPasswordChar = false;
             this.txtBoxApellido.Leave += new System.EventHandler(this.txtBoxApellido_Leave);
             // 
@@ -444,7 +444,7 @@
             this.txtBoxContraseñaActual.SelectionLength = 0;
             this.txtBoxContraseñaActual.SelectionStart = 0;
             this.txtBoxContraseñaActual.Size = new System.Drawing.Size(301, 23);
-            this.txtBoxContraseñaActual.TabIndex = 20;
+            this.txtBoxContraseñaActual.TabIndex = 5;
             this.txtBoxContraseñaActual.UseSystemPasswordChar = false;
             this.txtBoxContraseñaActual.Leave += new System.EventHandler(this.txtBoxContraseñaActual_Leave);
             // 
@@ -462,7 +462,7 @@
             this.txtBoxContraseñaNueva.SelectionLength = 0;
             this.txtBoxContraseñaNueva.SelectionStart = 0;
             this.txtBoxContraseñaNueva.Size = new System.Drawing.Size(301, 23);
-            this.txtBoxContraseñaNueva.TabIndex = 21;
+            this.txtBoxContraseñaNueva.TabIndex = 6;
             this.txtBoxContraseñaNueva.UseSystemPasswordChar = false;
             this.txtBoxContraseñaNueva.Leave += new System.EventHandler(this.txtBoxContraseñaNueva_Leave);
             // 
@@ -480,7 +480,7 @@
             this.txtBoxContraseñaNuevaRepetir.SelectionLength = 0;
             this.txtBoxContraseñaNuevaRepetir.SelectionStart = 0;
             this.txtBoxContraseñaNuevaRepetir.Size = new System.Drawing.Size(301, 23);
-            this.txtBoxContraseñaNuevaRepetir.TabIndex = 22;
+            this.txtBoxContraseñaNuevaRepetir.TabIndex = 7;
             this.txtBoxContraseñaNuevaRepetir.UseSystemPasswordChar = false;
             this.txtBoxContraseñaNuevaRepetir.Leave += new System.EventHandler(this.txtBoxContraseñaNuevaRepetir_Leave);
             // 
@@ -631,7 +631,7 @@
             this.dataGridViewTelefono.RowHeadersVisible = false;
             this.dataGridViewTelefono.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewTelefono.Size = new System.Drawing.Size(278, 64);
-            this.dataGridViewTelefono.TabIndex = 3;
+            this.dataGridViewTelefono.TabIndex = 13;
             this.dataGridViewTelefono.TabStop = false;
             // 
             // codigoTelefono
@@ -699,10 +699,10 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 9);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(3, 11);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(54, 26);
-            this.cmbBoxTipoTelefono.TabIndex = 23;
+            this.cmbBoxTipoTelefono.TabIndex = 10;
             // 
             // txtBoxTelefono
             // 
@@ -718,7 +718,7 @@
             this.txtBoxTelefono.SelectionLength = 0;
             this.txtBoxTelefono.SelectionStart = 0;
             this.txtBoxTelefono.Size = new System.Drawing.Size(156, 23);
-            this.txtBoxTelefono.TabIndex = 24;
+            this.txtBoxTelefono.TabIndex = 11;
             this.txtBoxTelefono.UseSystemPasswordChar = false;
             this.txtBoxTelefono.Leave += new System.EventHandler(this.txtBoxTelefono_Leave);
             // 
@@ -762,7 +762,7 @@
             this.txtBoxMail.SelectionLength = 0;
             this.txtBoxMail.SelectionStart = 0;
             this.txtBoxMail.Size = new System.Drawing.Size(244, 23);
-            this.txtBoxMail.TabIndex = 10;
+            this.txtBoxMail.TabIndex = 9;
             this.txtBoxMail.UseSystemPasswordChar = false;
             this.txtBoxMail.Leave += new System.EventHandler(this.txtBoxMail_Leave);
             // 
@@ -847,7 +847,7 @@
             this.dataGridViewMail.RowHeadersVisible = false;
             this.dataGridViewMail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewMail.Size = new System.Drawing.Size(341, 64);
-            this.dataGridViewMail.TabIndex = 14;
+            this.dataGridViewMail.TabIndex = 12;
             this.dataGridViewMail.TabStop = false;
             // 
             // codigoMail
@@ -936,7 +936,7 @@
             this.btnCambiarColores.Name = "btnCambiarColores";
             this.btnCambiarColores.Primary = true;
             this.btnCambiarColores.Size = new System.Drawing.Size(112, 41);
-            this.btnCambiarColores.TabIndex = 1;
+            this.btnCambiarColores.TabIndex = 14;
             this.btnCambiarColores.Text = "Cambiar Colores";
             this.btnCambiarColores.UseVisualStyleBackColor = true;
             this.btnCambiarColores.Click += new System.EventHandler(this.btnCambiarColores_Click);

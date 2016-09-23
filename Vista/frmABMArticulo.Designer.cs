@@ -112,7 +112,7 @@
             this.rchTextBoxObservaciones.Location = new System.Drawing.Point(3, 20);
             this.rchTextBoxObservaciones.Name = "rchTextBoxObservaciones";
             this.rchTextBoxObservaciones.Size = new System.Drawing.Size(250, 80);
-            this.rchTextBoxObservaciones.TabIndex = 22;
+            this.rchTextBoxObservaciones.TabIndex = 5;
             this.rchTextBoxObservaciones.Text = "";
             // 
             // tblLayoutPanelDatosArticulo
@@ -174,7 +174,7 @@
             this.txtBoxCodigoOriginal.SelectionLength = 0;
             this.txtBoxCodigoOriginal.SelectionStart = 0;
             this.txtBoxCodigoOriginal.Size = new System.Drawing.Size(155, 23);
-            this.txtBoxCodigoOriginal.TabIndex = 6;
+            this.txtBoxCodigoOriginal.TabIndex = 0;
             this.txtBoxCodigoOriginal.UseSystemPasswordChar = false;
             this.txtBoxCodigoOriginal.Leave += new System.EventHandler(this.txtBoxCodigoOriginal_Leave);
             // 
@@ -191,7 +191,7 @@
             this.txtBoxDescripcion.SelectionLength = 0;
             this.txtBoxDescripcion.SelectionStart = 0;
             this.txtBoxDescripcion.Size = new System.Drawing.Size(155, 23);
-            this.txtBoxDescripcion.TabIndex = 7;
+            this.txtBoxDescripcion.TabIndex = 1;
             this.txtBoxDescripcion.UseSystemPasswordChar = false;
             this.txtBoxDescripcion.Leave += new System.EventHandler(this.txtBoxDescripcion_Leave);
             // 
@@ -208,7 +208,7 @@
             this.txtBoxModelo.SelectionLength = 0;
             this.txtBoxModelo.SelectionStart = 0;
             this.txtBoxModelo.Size = new System.Drawing.Size(155, 23);
-            this.txtBoxModelo.TabIndex = 8;
+            this.txtBoxModelo.TabIndex = 2;
             this.txtBoxModelo.UseSystemPasswordChar = false;
             this.txtBoxModelo.Leave += new System.EventHandler(this.txtBoxModelo_Leave);
             // 
@@ -331,7 +331,7 @@
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Primary = true;
             this.btnQuitar.Size = new System.Drawing.Size(80, 15);
-            this.btnQuitar.TabIndex = 2;
+            this.btnQuitar.TabIndex = 4;
             this.btnQuitar.Text = "Quitar";
             this.btnQuitar.UseVisualStyleBackColor = true;
             this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
@@ -346,7 +346,7 @@
             this.btnAgregaImagen.Name = "btnAgregaImagen";
             this.btnAgregaImagen.Primary = true;
             this.btnAgregaImagen.Size = new System.Drawing.Size(80, 15);
-            this.btnAgregaImagen.TabIndex = 1;
+            this.btnAgregaImagen.TabIndex = 3;
             this.btnAgregaImagen.Text = "Agregar";
             this.btnAgregaImagen.UseVisualStyleBackColor = true;
             this.btnAgregaImagen.Click += new System.EventHandler(this.btnAgregaImagen_Click);
@@ -433,7 +433,7 @@
             this.btnEliminarArticuloProveedor.Name = "btnEliminarArticuloProveedor";
             this.btnEliminarArticuloProveedor.Primary = true;
             this.btnEliminarArticuloProveedor.Size = new System.Drawing.Size(142, 32);
-            this.btnEliminarArticuloProveedor.TabIndex = 2;
+            this.btnEliminarArticuloProveedor.TabIndex = 17;
             this.btnEliminarArticuloProveedor.Text = "Eliminar";
             this.btnEliminarArticuloProveedor.UseVisualStyleBackColor = true;
             this.btnEliminarArticuloProveedor.Click += new System.EventHandler(this.btnEliminarArticuloProveedor_Click);
@@ -448,7 +448,7 @@
             this.btnEditarArticuloProveedor.Name = "btnEditarArticuloProveedor";
             this.btnEditarArticuloProveedor.Primary = true;
             this.btnEditarArticuloProveedor.Size = new System.Drawing.Size(142, 32);
-            this.btnEditarArticuloProveedor.TabIndex = 1;
+            this.btnEditarArticuloProveedor.TabIndex = 16;
             this.btnEditarArticuloProveedor.Text = "Guardar Cambios";
             this.btnEditarArticuloProveedor.UseVisualStyleBackColor = true;
             this.btnEditarArticuloProveedor.Click += new System.EventHandler(this.btnEditarArticuloProveedor_Click);
@@ -463,7 +463,7 @@
             this.btnAgregarArticuloProveedor.Name = "btnAgregarArticuloProveedor";
             this.btnAgregarArticuloProveedor.Primary = true;
             this.btnAgregarArticuloProveedor.Size = new System.Drawing.Size(142, 32);
-            this.btnAgregarArticuloProveedor.TabIndex = 0;
+            this.btnAgregarArticuloProveedor.TabIndex = 15;
             this.btnAgregarArticuloProveedor.Text = "Agregar";
             this.btnAgregarArticuloProveedor.UseVisualStyleBackColor = true;
             this.btnAgregarArticuloProveedor.Click += new System.EventHandler(this.btnAgregarArticuloProveedor_Click);
@@ -502,7 +502,7 @@
             this.rchTextBoxObservaciones_ArticuloProveedor.Location = new System.Drawing.Point(3, 20);
             this.rchTextBoxObservaciones_ArticuloProveedor.Name = "rchTextBoxObservaciones_ArticuloProveedor";
             this.rchTextBoxObservaciones_ArticuloProveedor.Size = new System.Drawing.Size(250, 109);
-            this.rchTextBoxObservaciones_ArticuloProveedor.TabIndex = 22;
+            this.rchTextBoxObservaciones_ArticuloProveedor.TabIndex = 14;
             this.rchTextBoxObservaciones_ArticuloProveedor.Text = "";
             // 
             // tblLayoutPanelArticulosProveedores_Datos_1
@@ -555,7 +555,7 @@
             this.txtBoxCodigoArticulo.SelectionLength = 0;
             this.txtBoxCodigoArticulo.SelectionStart = 0;
             this.txtBoxCodigoArticulo.Size = new System.Drawing.Size(86, 23);
-            this.txtBoxCodigoArticulo.TabIndex = 17;
+            this.txtBoxCodigoArticulo.TabIndex = 6;
             this.txtBoxCodigoArticulo.UseSystemPasswordChar = false;
             this.txtBoxCodigoArticulo.Leave += new System.EventHandler(this.txtBoxCodigoArticulo_Leave);
             // 
@@ -605,7 +605,7 @@
             this.txtBoxPrecioCompra.SelectionLength = 0;
             this.txtBoxPrecioCompra.SelectionStart = 0;
             this.txtBoxPrecioCompra.Size = new System.Drawing.Size(86, 23);
-            this.txtBoxPrecioCompra.TabIndex = 18;
+            this.txtBoxPrecioCompra.TabIndex = 11;
             this.txtBoxPrecioCompra.UseSystemPasswordChar = false;
             this.txtBoxPrecioCompra.Leave += new System.EventHandler(this.txtBoxPrecioCompra_Leave);
             // 
@@ -617,7 +617,7 @@
             this.cmbBoxProveedores.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.cmbBoxProveedores.Name = "cmbBoxProveedores";
             this.cmbBoxProveedores.Size = new System.Drawing.Size(79, 21);
-            this.cmbBoxProveedores.TabIndex = 10;
+            this.cmbBoxProveedores.TabIndex = 7;
             // 
             // materialLabel1
             // 
@@ -669,7 +669,7 @@
             this.txtBoxUbicacion.SelectionLength = 0;
             this.txtBoxUbicacion.SelectionStart = 0;
             this.txtBoxUbicacion.Size = new System.Drawing.Size(86, 23);
-            this.txtBoxUbicacion.TabIndex = 20;
+            this.txtBoxUbicacion.TabIndex = 12;
             this.txtBoxUbicacion.UseSystemPasswordChar = false;
             this.txtBoxUbicacion.Leave += new System.EventHandler(this.txtBoxUbicacion_Leave);
             // 
@@ -686,7 +686,7 @@
             this.txtBoxPrecioVenta.SelectionLength = 0;
             this.txtBoxPrecioVenta.SelectionStart = 0;
             this.txtBoxPrecioVenta.Size = new System.Drawing.Size(86, 23);
-            this.txtBoxPrecioVenta.TabIndex = 19;
+            this.txtBoxPrecioVenta.TabIndex = 10;
             this.txtBoxPrecioVenta.UseSystemPasswordChar = false;
             this.txtBoxPrecioVenta.Leave += new System.EventHandler(this.txtBoxPrecioVenta_Leave);
             // 
@@ -706,7 +706,7 @@
             -2147483648});
             this.nmrcUpDownStockActual.Name = "nmrcUpDownStockActual";
             this.nmrcUpDownStockActual.Size = new System.Drawing.Size(69, 20);
-            this.nmrcUpDownStockActual.TabIndex = 11;
+            this.nmrcUpDownStockActual.TabIndex = 9;
             // 
             // lblStockMinimo
             // 
@@ -731,7 +731,7 @@
             0});
             this.nmrcUpDownStockMinimo.Name = "nmrcUpDownStockMinimo";
             this.nmrcUpDownStockMinimo.Size = new System.Drawing.Size(69, 20);
-            this.nmrcUpDownStockMinimo.TabIndex = 12;
+            this.nmrcUpDownStockMinimo.TabIndex = 8;
             // 
             // lbldescripcionArticuloProveedor
             // 
@@ -757,7 +757,7 @@
             this.txtBoxDescripcionArticuloProveedor.SelectionLength = 0;
             this.txtBoxDescripcionArticuloProveedor.SelectionStart = 0;
             this.txtBoxDescripcionArticuloProveedor.Size = new System.Drawing.Size(86, 23);
-            this.txtBoxDescripcionArticuloProveedor.TabIndex = 22;
+            this.txtBoxDescripcionArticuloProveedor.TabIndex = 13;
             this.txtBoxDescripcionArticuloProveedor.UseSystemPasswordChar = false;
             // 
             // frmABMArticulo

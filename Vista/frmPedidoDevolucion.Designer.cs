@@ -183,7 +183,7 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Primary = false;
             this.btnCancelar.Size = new System.Drawing.Size(82, 36);
-            this.btnCancelar.TabIndex = 14;
+            this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -212,7 +212,7 @@
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Primary = false;
             this.btnQuitar.Size = new System.Drawing.Size(112, 36);
-            this.btnQuitar.TabIndex = 15;
+            this.btnQuitar.TabIndex = 6;
             this.btnQuitar.Text = "Quitar Seleccionado";
             this.btnQuitar.UseVisualStyleBackColor = true;
             // 
@@ -228,7 +228,7 @@
             this.btnQuitarTodos.Name = "btnQuitarTodos";
             this.btnQuitarTodos.Primary = false;
             this.btnQuitarTodos.Size = new System.Drawing.Size(112, 36);
-            this.btnQuitarTodos.TabIndex = 16;
+            this.btnQuitarTodos.TabIndex = 5;
             this.btnQuitarTodos.Text = "Quitar Todo";
             this.btnQuitarTodos.UseVisualStyleBackColor = true;
             // 
@@ -244,7 +244,7 @@
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Primary = false;
             this.btnSiguiente.Size = new System.Drawing.Size(90, 36);
-            this.btnSiguiente.TabIndex = 17;
+            this.btnSiguiente.TabIndex = 4;
             this.btnSiguiente.Text = "Siguiente >";
             this.btnSiguiente.UseVisualStyleBackColor = true;
             this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
@@ -365,7 +365,7 @@
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Primary = false;
             this.btnAgregar.Size = new System.Drawing.Size(114, 36);
-            this.btnAgregar.TabIndex = 10;
+            this.btnAgregar.TabIndex = 3;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             // 
@@ -759,7 +759,7 @@
             this.lblLupa.Location = new System.Drawing.Point(434, 5);
             this.lblLupa.Name = "lblLupa";
             this.lblLupa.Size = new System.Drawing.Size(32, 32);
-            this.lblLupa.TabIndex = 8;
+            this.lblLupa.TabIndex = 1;
             this.lblLupa.Click += new System.EventHandler(this.lblLupa_Click);
             // 
             // txtCAE
@@ -775,7 +775,7 @@
             this.txtCAE.SelectionLength = 0;
             this.txtCAE.SelectionStart = 0;
             this.txtCAE.Size = new System.Drawing.Size(347, 23);
-            this.txtCAE.TabIndex = 9;
+            this.txtCAE.TabIndex = 0;
             this.txtCAE.UseSystemPasswordChar = false;
             this.txtCAE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCAE_KeyPress);
             // 

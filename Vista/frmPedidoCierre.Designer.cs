@@ -211,7 +211,7 @@
             this.tbControlPrincipal.Name = "tbControlPrincipal";
             this.tbControlPrincipal.SelectedIndex = 0;
             this.tbControlPrincipal.Size = new System.Drawing.Size(1009, 184);
-            this.tbControlPrincipal.TabIndex = 1;
+            this.tbControlPrincipal.TabIndex = 0;
             // 
             // tbPageDatosGenerales
             // 
@@ -302,7 +302,7 @@
             this.txtBoxRazonSocial.SelectionLength = 0;
             this.txtBoxRazonSocial.SelectionStart = 0;
             this.txtBoxRazonSocial.Size = new System.Drawing.Size(350, 23);
-            this.txtBoxRazonSocial.TabIndex = 14;
+            this.txtBoxRazonSocial.TabIndex = 7;
             this.txtBoxRazonSocial.UseSystemPasswordChar = false;
             this.txtBoxRazonSocial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxRazonSocial_KeyPress);
             this.txtBoxRazonSocial.Leave += new System.EventHandler(this.txtBoxRazonSocial_Leave);
@@ -324,7 +324,7 @@
             this.rchTextBoxObservaciones.Location = new System.Drawing.Point(3, 16);
             this.rchTextBoxObservaciones.Name = "rchTextBoxObservaciones";
             this.rchTextBoxObservaciones.Size = new System.Drawing.Size(457, 93);
-            this.rchTextBoxObservaciones.TabIndex = 26;
+            this.rchTextBoxObservaciones.TabIndex = 8;
             this.rchTextBoxObservaciones.Text = "";
             // 
             // tblLayoutPanelEntidadDatos
@@ -363,7 +363,7 @@
             this.cmbBoxContactoProveedor.MinimumSize = new System.Drawing.Size(97, 0);
             this.cmbBoxContactoProveedor.Name = "cmbBoxContactoProveedor";
             this.cmbBoxContactoProveedor.Size = new System.Drawing.Size(153, 21);
-            this.cmbBoxContactoProveedor.TabIndex = 22;
+            this.cmbBoxContactoProveedor.TabIndex = 6;
             this.cmbBoxContactoProveedor.Visible = false;
             this.cmbBoxContactoProveedor.SelectedValueChanged += new System.EventHandler(this.cmbBoxContactoProveedor_SelectedValueChanged);
             // 
@@ -387,7 +387,7 @@
             this.cmbBoxTipoResponsable.Location = new System.Drawing.Point(78, 4);
             this.cmbBoxTipoResponsable.Name = "cmbBoxTipoResponsable";
             this.cmbBoxTipoResponsable.Size = new System.Drawing.Size(153, 21);
-            this.cmbBoxTipoResponsable.TabIndex = 16;
+            this.cmbBoxTipoResponsable.TabIndex = 1;
             this.cmbBoxTipoResponsable.SelectedValueChanged += new System.EventHandler(this.cmbBoxTipoResponsable_SelectedValueChanged);
             // 
             // lblTipoResponsable
@@ -425,7 +425,7 @@
             this.txtBoxNombre.SelectionLength = 0;
             this.txtBoxNombre.SelectionStart = 0;
             this.txtBoxNombre.Size = new System.Drawing.Size(153, 23);
-            this.txtBoxNombre.TabIndex = 26;
+            this.txtBoxNombre.TabIndex = 5;
             this.txtBoxNombre.UseSystemPasswordChar = false;
             this.txtBoxNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxNombre_KeyPress);
             this.txtBoxNombre.Leave += new System.EventHandler(this.txtBoxNombre_Leave);
@@ -437,7 +437,7 @@
             this.cmbBoxTipoDocumento.Location = new System.Drawing.Point(20, 33);
             this.cmbBoxTipoDocumento.Name = "cmbBoxTipoDocumento";
             this.cmbBoxTipoDocumento.Size = new System.Drawing.Size(52, 21);
-            this.cmbBoxTipoDocumento.TabIndex = 23;
+            this.cmbBoxTipoDocumento.TabIndex = 2;
             this.cmbBoxTipoDocumento.SelectedValueChanged += new System.EventHandler(this.cmbBoxTipoDocumento_SelectedValueChanged);
             // 
             // lblApellido
@@ -465,7 +465,7 @@
             this.txtBoxNumeroDocumento.SelectionLength = 0;
             this.txtBoxNumeroDocumento.SelectionStart = 0;
             this.txtBoxNumeroDocumento.Size = new System.Drawing.Size(153, 23);
-            this.txtBoxNumeroDocumento.TabIndex = 24;
+            this.txtBoxNumeroDocumento.TabIndex = 3;
             this.txtBoxNumeroDocumento.UseSystemPasswordChar = false;
             this.txtBoxNumeroDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxNumeroDocumento_KeyPress);
             this.txtBoxNumeroDocumento.Leave += new System.EventHandler(this.txtBoxNumeroDocumento_Leave);
@@ -483,7 +483,7 @@
             this.txtBoxApellido.SelectionLength = 0;
             this.txtBoxApellido.SelectionStart = 0;
             this.txtBoxApellido.Size = new System.Drawing.Size(153, 23);
-            this.txtBoxApellido.TabIndex = 25;
+            this.txtBoxApellido.TabIndex = 4;
             this.txtBoxApellido.UseSystemPasswordChar = false;
             this.txtBoxApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxApellido_KeyPress);
             this.txtBoxApellido.Leave += new System.EventHandler(this.txtBoxApellido_Leave);
@@ -552,7 +552,7 @@
             this.cmbBoxTipoComprobante.Location = new System.Drawing.Point(113, 33);
             this.cmbBoxTipoComprobante.Name = "cmbBoxTipoComprobante";
             this.cmbBoxTipoComprobante.Size = new System.Drawing.Size(140, 21);
-            this.cmbBoxTipoComprobante.TabIndex = 10;
+            this.cmbBoxTipoComprobante.TabIndex = 9;
             this.cmbBoxTipoComprobante.SelectedIndexChanged += new System.EventHandler(this.cmbBoxTipoComprobante_SelectedIndexChanged);
             // 
             // lblFormaPago
@@ -575,7 +575,7 @@
             this.cmbBoxFormaPago.Location = new System.Drawing.Point(113, 62);
             this.cmbBoxFormaPago.Name = "cmbBoxFormaPago";
             this.cmbBoxFormaPago.Size = new System.Drawing.Size(140, 21);
-            this.cmbBoxFormaPago.TabIndex = 9;
+            this.cmbBoxFormaPago.TabIndex = 10;
             this.cmbBoxFormaPago.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxFormaPago_SelectionChangeCommitted);
             // 
             // lblFecha
@@ -596,6 +596,7 @@
             this.dtpFechaPedido.Name = "dtpFechaPedido";
             this.dtpFechaPedido.Size = new System.Drawing.Size(140, 20);
             this.dtpFechaPedido.TabIndex = 11;
+            this.dtpFechaPedido.TabStop = false;
             // 
             // txtBoxNumeroPedido
             // 
@@ -627,6 +628,7 @@
             this.txtBoxCAE.SelectionStart = 0;
             this.txtBoxCAE.Size = new System.Drawing.Size(140, 23);
             this.txtBoxCAE.TabIndex = 15;
+            this.txtBoxCAE.TabStop = false;
             this.txtBoxCAE.UseSystemPasswordChar = false;
             // 
             // tbPageDomicilioFacturacion
@@ -726,7 +728,7 @@
             this.tblLayoutPanelMail.ColumnCount = 3;
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0578F));
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.9422F));
-            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 73F));
+            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 74F));
             this.tblLayoutPanelMail.Controls.Add(this.lblMail, 0, 0);
             this.tblLayoutPanelMail.Controls.Add(this.txtBoxMail, 1, 0);
             this.tblLayoutPanelMail.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -761,7 +763,7 @@
             this.txtBoxMail.SelectedText = "";
             this.txtBoxMail.SelectionLength = 0;
             this.txtBoxMail.SelectionStart = 0;
-            this.txtBoxMail.Size = new System.Drawing.Size(207, 23);
+            this.txtBoxMail.Size = new System.Drawing.Size(206, 23);
             this.txtBoxMail.TabIndex = 10;
             this.txtBoxMail.UseSystemPasswordChar = false;
             this.txtBoxMail.Leave += new System.EventHandler(this.txtBoxMail_Leave);
@@ -1111,7 +1113,7 @@
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Primary = false;
             this.btnAgregar.Size = new System.Drawing.Size(74, 21);
-            this.btnAgregar.TabIndex = 5;
+            this.btnAgregar.TabIndex = 11;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             // 
@@ -1127,7 +1129,7 @@
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Primary = false;
             this.btnEditar.Size = new System.Drawing.Size(59, 21);
-            this.btnEditar.TabIndex = 6;
+            this.btnEditar.TabIndex = 12;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
             // 
@@ -1142,7 +1144,7 @@
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Primary = false;
             this.btnEliminar.Size = new System.Drawing.Size(74, 21);
-            this.btnEliminar.TabIndex = 0;
+            this.btnEliminar.TabIndex = 13;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             // 
@@ -1483,7 +1485,7 @@
             this.cmbBoxPedidosProveedores.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbBoxPedidosProveedores.Name = "cmbBoxPedidosProveedores";
             this.cmbBoxPedidosProveedores.Size = new System.Drawing.Size(232, 21);
-            this.cmbBoxPedidosProveedores.TabIndex = 5;
+            this.cmbBoxPedidosProveedores.TabIndex = 14;
             this.cmbBoxPedidosProveedores.SelectionChangeCommitted += new System.EventHandler(this.cmbBoxPedidosProveedores_SelectionChangeCommitted);
             this.cmbBoxPedidosProveedores.Click += new System.EventHandler(this.cmbBoxPedidosProveedores_Click);
             // 
@@ -1499,7 +1501,7 @@
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Primary = false;
             this.btnImprimir.Size = new System.Drawing.Size(74, 36);
-            this.btnImprimir.TabIndex = 8;
+            this.btnImprimir.TabIndex = 15;
             this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
@@ -1516,7 +1518,7 @@
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Primary = false;
             this.btnGuardar.Size = new System.Drawing.Size(75, 36);
-            this.btnGuardar.TabIndex = 9;
+            this.btnGuardar.TabIndex = 16;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -1533,7 +1535,7 @@
             this.btnFacturaElectronica.Name = "btnFacturaElectronica";
             this.btnFacturaElectronica.Primary = false;
             this.btnFacturaElectronica.Size = new System.Drawing.Size(81, 36);
-            this.btnFacturaElectronica.TabIndex = 10;
+            this.btnFacturaElectronica.TabIndex = 17;
             this.btnFacturaElectronica.Text = "Facturar";
             this.btnFacturaElectronica.UseVisualStyleBackColor = true;
             this.btnFacturaElectronica.Click += new System.EventHandler(this.btnFacturaElectronica_Click);
