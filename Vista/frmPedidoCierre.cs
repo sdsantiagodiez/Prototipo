@@ -1235,9 +1235,14 @@ namespace Vista
             if (!Decimal.TryParse(this.txtBoxDescuento1Porcentaje.Text.Replace("%", "").Replace(".", ","), out porcentaje) 
                 || (porcentaje / 100)==controlador.pedidoActual.descuentos.descuento_porcentaje_1)
             {
+                
                 this.txtBoxDescuento1Porcentaje.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), 
                                                             "{0:P1}", (controlador.pedidoActual.descuentos.descuento_porcentaje_1));
                 return;
+            }
+            if (porcentaje > 100)
+            {
+                porcentaje = 100;
             }
             porcentaje = porcentaje/100 ;
 
@@ -1258,7 +1263,10 @@ namespace Vista
                                                     "{0:C}", controlador.pedidoActual.descuentos.descuento_monto_1);
                 return;
             }
-
+            if (descuento > controlador.pedidoActual.montoTotal)
+            {
+                descuento = controlador.pedidoActual.montoTotal;
+            }
             controlador.pedidoActual.descuentos.descuento_monto_1 = descuento;
             this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
         }
@@ -1275,6 +1283,10 @@ namespace Vista
                 this.txtBoxDescuento2Porcentaje.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"),
                                                         "{0:P1}", (controlador.pedidoActual.descuentos.descuento_porcentaje_2));
                 return;
+            }
+            if (porcentaje > 100)
+            {
+                porcentaje = 100;
             }
             porcentaje = porcentaje / 100;
 
@@ -1294,6 +1306,10 @@ namespace Vista
                 this.txtBoxDescuento2Monto.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}",
                     controlador.pedidoActual.descuentos.descuento_monto_2);
                 return;
+            }
+            if (descuento > controlador.pedidoActual.montoTotal)
+            {
+                descuento = controlador.pedidoActual.montoTotal;
             }
 
             controlador.pedidoActual.descuentos.descuento_monto_2 = descuento;

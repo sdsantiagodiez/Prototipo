@@ -384,10 +384,10 @@ namespace Vista
             var enums_venta = Enum.GetValues(typeof(Constantes.TipoComprobanteVenta)).Cast<Constantes.TipoComprobanteVenta>();
             foreach (var e in enums_venta)
             {
-                if (e == Constantes.TipoComprobanteVenta.Otro)
-                {
-                    continue;
-                }
+                //if (e == Constantes.TipoComprobanteVenta.Otro)
+                //{
+                //    continue;
+                //}
                 foreach (ComboBoxItem item in this.chckdListBoxTipoComprobante.CheckedItems)
                 {
                     if (item.Value.Equals(e))
