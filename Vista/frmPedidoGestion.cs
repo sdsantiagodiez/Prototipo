@@ -251,7 +251,7 @@ namespace Vista
             this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
             this.dgvResultadoBusqueda.Columns.Add("nombreEntidad", "Nombre Entidad");
             this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
-            this.dgvResultadoBusqueda.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+           // this.dgvResultadoBusqueda.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             this.dgvResultadoBusqueda.Columns.Add("montoTotal", "Monto");
             this.dgvResultadoBusqueda.Columns[i++].FillWeight = 1;
             this.dgvResultadoBusqueda.Columns.Add("cae", "CAE");
