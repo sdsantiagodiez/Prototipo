@@ -633,7 +633,7 @@
                   <Value>Cliente:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -667,7 +667,7 @@
                   <Value>CUIT/DNI:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -701,7 +701,7 @@
                   <Value>Domicilio:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -727,6 +727,7 @@
           </Style>
         </Textbox>
         <Textbox Name="txtDomicilio">
+          <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
@@ -734,7 +735,7 @@
                 <TextRun>
                   <Value>=First(Fields!Comprador_Domicilio.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>
@@ -766,7 +767,7 @@
                 <TextRun>
                   <Value>=First(Fields!Comprador_RazonSocial.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>
@@ -906,7 +907,7 @@
                   <Value>Mail:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -939,7 +940,7 @@
                 <TextRun>
                   <Value>=First(Fields!Comprador_Mail.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>
@@ -972,7 +973,7 @@
                   <Value>Telefono:</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1005,7 +1006,7 @@
                 <TextRun>
                   <Value>=First(Fields!Comprador_Telefono.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>
@@ -1037,7 +1038,7 @@
                 <TextRun>
                   <Value>=First(Fields!Comprador_Cuit.Value, "DSFactura")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Language>es-AR</Language>
                   </Style>

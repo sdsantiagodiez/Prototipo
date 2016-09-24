@@ -778,6 +778,7 @@
           </Style>
         </Textbox>
         <Textbox Name="txtDomicilio">
+          <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>

@@ -761,7 +761,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>5.41252cm</Top>
+          <Top>5.73002cm</Top>
           <Left>1.40724cm</Left>
           <Height>0.6cm</Height>
           <Width>2.07667cm</Width>
@@ -825,7 +825,7 @@
               <Style />
             </Paragraph>
           </Paragraphs>
-          <Top>5.41252cm</Top>
+          <Top>5.73002cm</Top>
           <Left>3.68674cm</Left>
           <Height>0.6cm</Height>
           <Width>7.90737cm</Width>
@@ -1144,6 +1144,7 @@
           </Style>
         </Textbox>
         <Textbox Name="txtDireccion">
+          <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
@@ -1567,6 +1568,7 @@
           </Style>
         </Line>
         <Line Name="Line3">
+          <Top>0cm</Top>
           <Height>1.11786cm</Height>
           <Width>0cm</Width>
           <ZIndex>3</ZIndex>

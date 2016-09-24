@@ -468,7 +468,7 @@
   <Width>7.77168in</Width>
   <Page>
     <PageHeader>
-      <Height>6.29708cm</Height>
+      <Height>6.33002cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -763,7 +763,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>5.41252cm</Top>
+          <Top>5.73002cm</Top>
           <Left>1.53421cm</Left>
           <Height>0.6cm</Height>
           <Width>2.07667cm</Width>
@@ -827,7 +827,7 @@
               <Style />
             </Paragraph>
           </Paragraphs>
-          <Top>5.41252cm</Top>
+          <Top>5.73002cm</Top>
           <Left>3.81371cm</Left>
           <Height>0.6cm</Height>
           <Width>8.50194cm</Width>
@@ -1145,6 +1145,7 @@
           </Style>
         </Textbox>
         <Textbox Name="txtDireccion">
+          <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
@@ -1708,6 +1709,7 @@
           </Style>
         </Line>
         <Line Name="Line3">
+          <Top>0cm</Top>
           <Height>1.16872cm</Height>
           <Width>0cm</Width>
           <ZIndex>7</ZIndex>
