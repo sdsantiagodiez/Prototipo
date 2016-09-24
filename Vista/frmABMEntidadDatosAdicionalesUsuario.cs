@@ -49,6 +49,8 @@ namespace Vista
             {
                 glb_lst_respuestasValidaciones.Add(false);
             }
+
+            chckBoxMostrarContraseña_CheckedChanged(this.chckBoxMostrarContraseña, new EventArgs());
         }
 
         public frmABMEntidadDatosAdicionalesUsuario(ModeloUsuario p_mod_usuario)
@@ -272,6 +274,10 @@ namespace Vista
                 glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia)] = respuesta;
                 lcl_mensaje = respuesta ? "OK" : "Contraseña no válida";
                 this.setErrorProvider(txtBoxContraseña, respuesta, lcl_mensaje);
+                if (!String.IsNullOrEmpty(this.txtBoxConfirmarContraseña.Text))
+                {
+                    this.txtBoxConfirmarContraseña_Leave(new object(), new EventArgs());
+                }
             }
         }
 

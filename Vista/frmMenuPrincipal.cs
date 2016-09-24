@@ -321,13 +321,13 @@ namespace Vista
 
         private bool cerrarFormActual(Form p_form)
         {
-            System.Threading.Thread.Sleep(300); //Agregando este tiempo entre cierres de ventanas permite que no se cierre sin querer una ventana que estaba debajo
             if (p_form == glb_form)
             {
-                
+                System.Threading.Thread.Sleep(300); //Agregando este tiempo entre cierres de ventanas permite que no se cierre sin querer una ventana que estaba debajo
                 glb_form.DialogResult = System.Windows.Forms.DialogResult.OK;
                 glb_form.Close();
                 System.Threading.Thread.Sleep(100); //Agregando este tiempo entre cierres de ventanas permite que no se cierre sin querer una ventana que estaba debajo
+
                 if(glb_form.DialogResult != System.Windows.Forms.DialogResult.Cancel)   //En caso de que se agregue mensaje de confirmación cerrar ventana
                 {
                     glb_lst_formsActivos.Remove(glb_form);
@@ -339,6 +339,8 @@ namespace Vista
                 return false;
             }
             glb_lst_formsActivos.Remove(p_form);
+
+           
             return true;
         }
         #endregion

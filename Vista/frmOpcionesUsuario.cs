@@ -604,6 +604,8 @@ namespace Vista
                     glb_usuarioActual = new ModeloUsuario(lcl_mod_usuario);
                     MessageBox.Show("Cambios guardados exitosamente", "Éxito", MessageBoxButtons.OK);
                     this.ActualizarUsuario(glb_usuarioActual, new EventArgs());
+                    this.clearErrorProviders();
+                    this.glb_con_domicilios.clearErrorProviders();
                 }
                 else
                 {
@@ -906,6 +908,10 @@ namespace Vista
                     glb_lst_respuestasValidaciones[getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Usuarios.Contrasenia + "2")] = respuesta;
                     lcl_mensaje = respuesta ? "OK" : "Contraseña no válida";
                     this.setErrorProvider(txtBoxContraseñaNueva, respuesta, lcl_mensaje);
+                    if (respuesta && !String.IsNullOrEmpty(this.txtBoxContraseñaNuevaRepetir.Text))
+                    {
+                        this.txtBoxContraseñaNuevaRepetir_Leave(new object(), new EventArgs());
+                    }
                 }
             }
             else

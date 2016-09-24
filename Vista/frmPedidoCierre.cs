@@ -371,6 +371,7 @@ namespace Vista
                 };
 
                 this.cmbBoxTipoComprobante.DataSource = Enum.GetValues(typeof(Constantes.TipoComprobanteDevolucion));
+                this.cmbBoxFormaPago.Enabled = false;
             }
             else
             {

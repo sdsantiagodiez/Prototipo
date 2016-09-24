@@ -1421,6 +1421,14 @@ namespace Vista
                             this.setErrorProvider(this.txtBoxCUIT, false, lcl_mensaje);
                         }
                     }
+                    else if (!string.IsNullOrWhiteSpace(txtBoxDNI.Text))
+                    {
+                        if (Validar.validarInputNoNumerico(txtBoxDNI.Text, Constantes.ParametrosBusqueda.Entidades.Personas.Dni))
+                        {
+                            glb_lst_respuestasValidaciones[this.getIndex(Constantes.ParametrosBusqueda.Entidades.Personas.Dni)] = true;
+                            this.txtBoxCUIT_Leave(sender, e);
+                        }
+                    }
                     else
                     {
                         lcl_mensaje = "OK";
