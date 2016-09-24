@@ -32,11 +32,13 @@
             // 
             // frmMaterialSkinBase
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 300);
+            this.ClientSize = new System.Drawing.Size(400, 369);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmMaterialSkinBase";
             this.Text = "frmMaterialSkinBase";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMaterialSkinBase_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMaterialSkinBase_FormClosed);
             this.ResumeLayout(false);
 

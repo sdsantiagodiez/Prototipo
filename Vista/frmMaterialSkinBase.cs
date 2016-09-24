@@ -221,6 +221,17 @@ namespace Vista
                 return;
             }
         }
+        static DateTime LastCloseTime;
+        private void frmMaterialSkinBase_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            double delta =DateTime.Now.Subtract(LastCloseTime).TotalSeconds ;
+            if (delta < 1)
+            {
+                e.Cancel = true;
+                return;
+            }
+            LastCloseTime = DateTime.Now;
+        }
         
 
     }
