@@ -262,5 +262,100 @@ namespace Controladores
             }
             return true;
         }
+
+        public bool bajarStock(ModeloLineaPedido p_lineaPedido)
+        {
+            ModeloArticuloProveedores lcl_mod_articuloProveedores = new ModeloArticuloProveedores()
+            {
+                codigoOriginal = p_lineaPedido.articulo.codigoOriginal,
+                codigoArticuloProveedor = p_lineaPedido.articulo.codigoArticuloProveedor
+            };
+
+            lcl_mod_articuloProveedores = ControladorBusqueda.getOne(lcl_mod_articuloProveedores, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.One);
+            //Si no se encuentra artículo tira excepción de índice
+
+            lcl_mod_articuloProveedores.stockActual = lcl_mod_articuloProveedores.stockActual - p_lineaPedido.cantidadArticulos;
+            //Excepcion si stock negativo y no esta permitido    
+            if (lcl_mod_articuloProveedores.stockActual < 0 && !p_lineaPedido.permitirStockNegativo)
+            {
+                errorActual = "La cantidad solicitada es mayor al stock actual para el artículo " + lcl_mod_articuloProveedores.getDescripciones() + ", " +
+                                lcl_mod_articuloProveedores.codigoArticuloProveedor;
+                return false;
+            }
+
+            //Si hay error al modificar la base de datos agregando linea o modificando stock
+            if (!new ControladorModificacion().modificar(lcl_mod_articuloProveedores))
+            {
+                errorActual = "Error al modificar stock en la base de datos de artículo " + lcl_mod_articuloProveedores.getDescripciones() + ", " +
+                                lcl_mod_articuloProveedores.codigoArticuloProveedor;
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool subirStock(ModeloLineaPedido p_lineaPedido)
+        {
+            ModeloArticuloProveedores lcl_mod_articuloProveedores = new ModeloArticuloProveedores()
+            {
+                codigoOriginal = p_lineaPedido.articulo.codigoOriginal,
+                codigoArticuloProveedor = p_lineaPedido.articulo.codigoArticuloProveedor
+            };
+
+            lcl_mod_articuloProveedores = ControladorBusqueda.getOne(lcl_mod_articuloProveedores, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.One);
+            //Si no se encuentra artículo tira excepción de índice
+
+            lcl_mod_articuloProveedores.stockActual = lcl_mod_articuloProveedores.stockActual + p_lineaPedido.cantidadArticulos;
+
+            //Si hay error al modificar la base de datos agregando linea o modificando stock
+            if (!this.modificar(lcl_mod_articuloProveedores))
+            {
+                errorActual = "Error al modificar stock en la base de datos de artículo " + lcl_mod_articuloProveedores.getDescripciones() + ", " +
+                                lcl_mod_articuloProveedores.codigoArticuloProveedor;
+                return false;
+            }
+
+            return true;
+        }
+        public bool recepcionarPedidosProveedor(List<ModeloPedido> p_lst_pedidos)
+        {
+            bool respuesta = p_lst_pedidos.Count > 0;
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    foreach (ModeloPedido p in p_lst_pedidos)
+                    {
+                        if (!this.recepcionarPedidoProveedor(p))
+                        {
+                            throw new Exception(errorActual);
+                        }
+                    }
+                    scope.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = false;
+                errorActual = ex.Message;
+            }
+            return respuesta;
+        }
+        public bool recepcionarPedidoProveedor(ModeloPedido p)
+        {
+            if (!new CatalogoPedidos().recepcionarPedidoProveedor(p))
+            {
+                return false;
+            }
+
+            foreach (ModeloLineaPedido lp in p.lineasPedido)
+            {
+                if (!this.subirStock(lp))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

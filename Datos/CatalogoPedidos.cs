@@ -55,7 +55,9 @@ namespace Datos
             }
             else
             {
+                lcl_mod_pedido.recibido = Convert.ToBoolean(p_drPedidos["recepcionado"]);
                 lcl_mod_pedido.tipoComprobante = 2001;
+
             }
             #endregion
 
@@ -250,7 +252,7 @@ namespace Datos
                 "SELECT  tbl.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
                 "        [codigo_entidad], [razon_social_entidad],[descuento_1_monto],[descuento_2_monto], " +
                 "        [numero_comprobante_AFIP],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],[estado],  " +
-                "       codigo_tipo_responsable, codigo_forma_pago, nombre_usuario, "+
+                "       codigo_tipo_responsable, codigo_forma_pago, nombre_usuario,recepcionado, " +
                 "       mail.mail, numero_comprobante, telefono.tipo,telefono.numero as numero_telefono,  "+
 		        "       domicilio.calle,domicilio.numero as numero_domicilio,domicilio.piso,domicilio.departamento,domicilio.ciudad,domicilio.codigo_postal,domicilio.codigo_provincia "+
                 "    FROM  "+
@@ -258,7 +260,7 @@ namespace Datos
                 "(SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], "+
                 "                Pedidos_Personas.[codigo_entidad], Pedidos_Personas.[razon_social_entidad], "+
 	            "                [numero_comprobante_AFIP],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], "+
-                "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante],[pedidos].nombre_usuario, " +
+                "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante],[pedidos].nombre_usuario,0 as recepcionado, " +
                 "               [descuento_1_monto],[descuento_2_monto], [estado],[numero_comprobante], "+
                 "			   pedidos_personas.codigo_tipo_responsable, codigo_forma_pago " +
                 "            FROM pedidos, Pedidos_Personas "+
@@ -268,7 +270,7 @@ namespace Datos
                   "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],Pedidos.[observaciones], " +
                 "                Pedidos_Proveedores.[codigo_entidad], Proveedores.razon_social as [razon_social_entidad]," +
                 "                null as [numero_comprobante_AFIP],NULL as [cae],NULL as [vencimiento_cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
-                "                NULL as [codigo_documento],Entidades.cuit as [numero_documento_entidad],[codigo_comprobante],[pedidos].nombre_usuario, " +
+                "                NULL as [codigo_documento],Entidades.cuit as [numero_documento_entidad],[codigo_comprobante],[pedidos].nombre_usuario,recepcionado, " +
                 "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto], NULL as [estado],[numero_comprobante], " +
                 "               entidades.codigo_tipo_responsable, codigo_forma_pago " +
                 "            FROM pedidos, Pedidos_Proveedores, Proveedores, Entidades    " +
@@ -335,7 +337,7 @@ namespace Datos
             string querySQL = this.getCondicionBusqueda(p_mod_pedido,p_periodo, p_codigosComprobantes, p_clienteGenerico, p_facturadoElectronicamente, ref comando);
             comando.CommandText =
                  "SELECT  tbl.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
-                "       [codigo_entidad],[razon_social_entidad], nombre_usuario, " +
+                "       [codigo_entidad],[razon_social_entidad], nombre_usuario,recepcionado, " +
                 "       [numero_comprobante_afip],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad],[codigo_documento],[numero_documento_entidad],[codigo_comprobante],  " +
                 "       [descuento_1_monto],[descuento_2_monto],[estado], codigo_tipo_responsable, codigo_forma_pago,  " +
                 "       mail.mail, numero_comprobante, " +
@@ -346,7 +348,7 @@ namespace Datos
                 "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],[observaciones], " +
                 "                Pedidos_Personas.[codigo_entidad],Pedidos_Personas.[razon_social_entidad], " +
                 "                [numero_comprobante_AFIP],[cae],[vencimiento_cae],[aprobado_afip],[nombre_entidad],[apellido_entidad], " +
-                "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante],[pedidos].nombre_usuario, " +
+                "                [codigo_documento],[numero_documento_entidad],[codigo_comprobante],[pedidos].nombre_usuario, 0 as recepcionado," +
                 "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto],[estado],[numero_comprobante], " +
                 "               pedidos_personas.codigo_tipo_responsable, codigo_forma_pago " +
                 "            FROM pedidos, Pedidos_Personas  " +
@@ -356,7 +358,7 @@ namespace Datos
                 "        (SELECT pedidos.[numero_pedido],[codigo_tipo_pedido],[fecha],[alicuota],[monto_subtotal],[monto_total],Pedidos.[observaciones], " +
                 "                Pedidos_Proveedores.[codigo_entidad], Proveedores.razon_social as [razon_social_entidad]," +
                 "                null as [numero_comprobante_AFIP],NULL as [cae],NULL as [vencimiento_cae],NULL as [aprobado_afip],NULL as [nombre_entidad],NULL as [apellido_entidad], " +
-                "                NULL as [codigo_documento],Entidades.cuit as [numero_documento_entidad],[codigo_comprobante], [pedidos].nombre_usuario, " +
+                "                NULL as [codigo_documento],Entidades.cuit as [numero_documento_entidad],[codigo_comprobante], [pedidos].nombre_usuario,recepcionado, " +
                 "               pedidos.[descuento_1_monto], pedidos.[descuento_2_monto], NULL as [estado],[numero_comprobante], " +
                 "               entidades.codigo_tipo_responsable, codigo_forma_pago " +
                 "            FROM pedidos, Pedidos_Proveedores, Proveedores, Entidades    " +
@@ -866,8 +868,6 @@ namespace Datos
                 //return false?
                 throw new Exception("Ha ocurrido un error al intentar registrar el Pedido actual.");
             }
-            
-            
         }
 
         private bool addPedido_DatosAdicionales(SqlCommand p_comando, ModeloPedido p_mod_pedido)
@@ -1108,6 +1108,23 @@ namespace Datos
                 return false;
             }
 
+        }
+
+        public bool recepcionarPedidoProveedor(ModeloPedido p_mod_pedido)
+        {
+            SqlCommand comando = Conexion.crearComando();
+            comando.CommandText =
+                "UPDATE Pedidos_Proveedores " +
+                "   SET RECEPCIONADO = 1" +
+                "   WHERE NUMERO_PEDIDO = @NUMERO_PEDIDO";
+            
+            comando.Parameters.Add(this.instanciarParametro(p_mod_pedido.numeroPedido,"@NUMERO_PEDIDO"));
+
+            comando.Connection.Open();
+            int rowAffected = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
+            return rowAffected > 0;
         }
 
         public bool remove(ModeloPedido p_mod_pedido)

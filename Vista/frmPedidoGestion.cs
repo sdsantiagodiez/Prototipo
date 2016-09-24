@@ -194,13 +194,19 @@ namespace Vista
             {
                 this.eliminar();
             };
+            this.cntxMenuResultadoBusqueda.Items.Add("Recepcionar Orden de Compra");
+            this.cntxMenuResultadoBusqueda.Items[4].Click += (s, e) =>
+            {
+                this.recibirPedidoProveedor();
+            };
         }
-        private void inicializarContextMenu(bool p_verDetalles, bool p_facturar, bool p_imprimir, bool p_eliminar)
+        private void inicializarContextMenu(bool p_verDetalles, bool p_facturar, bool p_imprimir, bool p_eliminar,bool p_recibirPedidoProveedor)
         {
             this.cntxMenuResultadoBusqueda.Items[0].Enabled = p_verDetalles;
             this.cntxMenuResultadoBusqueda.Items[1].Enabled = p_facturar;
             this.cntxMenuResultadoBusqueda.Items[2].Enabled = p_imprimir;
             this.cntxMenuResultadoBusqueda.Items[3].Enabled = p_eliminar;
+            this.cntxMenuResultadoBusqueda.Items[4].Enabled = p_recibirPedidoProveedor;
         }
         private void inicializarBotones()
         {
@@ -740,6 +746,54 @@ namespace Vista
         }
         #endregion
 
+        #region Recepcionar Pedido a Proveedor
+        private void recibirPedidoProveedor()
+        {
+            string mensaje;
+            if (new Controladores.ControladorPedidoProveedor().recepcionarPedidos(glb_lst_pedidosSeleccionados, out mensaje))
+            {
+                MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK);
+                foreach (ModeloPedido p_e in glb_lst_pedidosEncontrados)
+                {
+                    foreach (ModeloPedido p_s in glb_lst_pedidosSeleccionados)
+                    {
+                        if (p_e.numeroPedido == p_s.numeroPedido)
+                        {
+                            p_e.recibido = true;
+                            break;
+                        }
+                    }
+                }
+                this.cargarModelosPedidosEnDataGridView(glb_lst_pedidosEncontrados);
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private bool validarRecibirPedidoProveedor(List<ModeloPedido> p_lst_pedidosSeleccionados)
+        {
+            //inicializamos con true si el método entra en el loop
+            //si no, queda en false
+            bool respuesta = p_lst_pedidosSeleccionados.Count >0;   
+            
+            foreach (ModeloPedido p in p_lst_pedidosSeleccionados)
+            {
+                if (p.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor && !p.recibido)
+                {
+                    continue;
+                }
+                else
+                {
+                    respuesta = false;
+                    break;
+                }
+            }
+            //true si hay más de un pedido en la lista y son todos pedidos a proveedor no recibidos
+            return respuesta;
+        }
+        #endregion
+
         #endregion
 
         #region Eventos
@@ -755,7 +809,8 @@ namespace Vista
             this.inicializarContextMenu(this.validarVerDetalles(glb_lst_pedidosSeleccionados), 
                                         this.validarFacturar(glb_lst_pedidosSeleccionados),
                                         this.validarImprimir(glb_lst_pedidosSeleccionados),
-                                        this.validarEliminacion(glb_lst_pedidosSeleccionados));
+                                        this.validarEliminacion(glb_lst_pedidosSeleccionados),
+                                        this.validarRecibirPedidoProveedor(glb_lst_pedidosSeleccionados));
         }
 
         private void dgvResultadoBusqueda_MouseDown(object sender, MouseEventArgs e)

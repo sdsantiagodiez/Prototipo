@@ -344,6 +344,16 @@ namespace Controladores
             
             return indice;
         }
+
+        public bool recepcionarPedidos(List<ModeloPedido> p_lst_pedidos,out string mensaje)
+        {
+            ControladorModificacion lcl_con_modificacion = new ControladorModificacion();
+            bool respuesta = lcl_con_modificacion.recepcionarPedidosProveedor(p_lst_pedidos);
+            
+            mensaje = respuesta?"Recepcion exitosa.":lcl_con_modificacion.errorActual;
+            
+            return respuesta;
+        }
     }
     public class ControladorPedidoCliente : ControladorPedido
     {

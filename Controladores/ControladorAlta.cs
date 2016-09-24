@@ -388,10 +388,13 @@ namespace Controladores
 
             if (p_mod_pedido.tipoComprobante == 1 || p_mod_pedido.tipoComprobante == 6)
             {
+                ControladorModificacion lcl_con = new ControladorModificacion();
+
                 foreach (ModeloLineaPedido lp in p_mod_pedido.lineasPedido)
                 {
-                    if (!this.bajarStock(lp))
+                    if (!lcl_con.bajarStock(lp))
                     {
+                        errorActual = lcl_con.errorActual;
                         return false;
                     }
                 }
@@ -400,36 +403,7 @@ namespace Controladores
             return true;
         }
 
-        private bool bajarStock(ModeloLineaPedido lp)
-        {
-            ModeloArticuloProveedores lcl_mod_articuloProveedores = new ModeloArticuloProveedores()
-            {
-                codigoOriginal = lp.articulo.codigoOriginal,
-                codigoArticuloProveedor = lp.articulo.codigoArticuloProveedor
-            };
-
-            lcl_mod_articuloProveedores = ControladorBusqueda.getOne(lcl_mod_articuloProveedores, LibreriaClasesCompartidas.Constantes.ParametrosBusqueda.One);
-            //Si no se encuentra artículo tira excepción de índice
-
-            lcl_mod_articuloProveedores.stockActual = lcl_mod_articuloProveedores.stockActual - lp.cantidadArticulos;
-            //Excepcion si stock negativo y no esta permitido    
-            if (lcl_mod_articuloProveedores.stockActual < 0 && !lp.permitirStockNegativo)
-            {
-                errorActual = "La cantidad solicitada es mayor al stock actual para el artículo " + lcl_mod_articuloProveedores.getDescripciones() + ", " +
-                                lcl_mod_articuloProveedores.codigoArticuloProveedor;
-                return false;
-            }
-
-            //Si hay error al modificar la base de datos agregando linea o modificando stock
-            if (!new ControladorModificacion().modificar(lcl_mod_articuloProveedores))
-            {
-                errorActual = "Error al modificar stock en la base de datos de artículo " + lcl_mod_articuloProveedores.getDescripciones() + ", " +
-                                lcl_mod_articuloProveedores.codigoArticuloProveedor;
-                return false;
-            }
-
-            return true;
-        }
+        
 
         private bool agrearLineaPedido(ModeloLineaPedido p_mod_lineaPedido)
         {

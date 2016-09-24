@@ -208,9 +208,11 @@ namespace Modelos
             get { return _vencimientoCAE; }
             set { _vencimientoCAE = value; }
         }
-        
+
+        public bool recibido;
+
         public static string cuitEmisor;
-        
+       
         #endregion
 
         public ModeloPedido()
