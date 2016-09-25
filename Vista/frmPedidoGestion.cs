@@ -72,6 +72,7 @@ namespace Vista
             this.inicializarBotones();
             this.inicializarDataGridView();
             this.inicializarPeriodos();
+            this.inicializarTextBox();
         }
         private void inicializarCheckListBox()
         {
@@ -170,7 +171,15 @@ namespace Vista
             this.chckdListBoxFacturadoElectronicamente.CheckOnClick = true;
             #endregion
         }
-
+        private void inicializarTextBox()
+        {
+            this.txtBoxApellido.KeyPress += txtBoxBuscar_KeyPress;
+            this.txtBoxNombre.KeyPress += txtBoxBuscar_KeyPress;
+            this.txtBoxCAE.KeyPress += txtBoxBuscar_KeyPress;
+            this.txtBoxNumeroDocumento.KeyPress += txtBoxBuscar_KeyPress;
+            this.txtBoxNumeroPedido.KeyPress += txtBoxBuscar_KeyPress;
+            this.txtBoxRazonSocial.KeyPress += txtBoxBuscar_KeyPress;
+        }
         private void inicializarContextMenu()
         {
             this.cntxMenuResultadoBusqueda = new MaterialSkin.Controls.MaterialContextMenuStrip();
@@ -481,11 +490,13 @@ namespace Vista
 
         private List<ModeloPedido> getPedidosSeleccionados()
         {
-            
             List<ModeloPedido> lcl_lst_pedidosSeleccionados = new List<ModeloPedido>();
+            int currentRow;
             foreach (DataGridViewRow row in this.dgvResultadoBusqueda.SelectedRows)
             {
-                lcl_lst_pedidosSeleccionados.Add(glb_lst_pedidosEncontrados[row.Index]);
+                currentRow = row.Cells["dgvKey"].Value==null?0:(int)row.Cells["dgvKey"].Value;
+                
+                lcl_lst_pedidosSeleccionados.Add(glb_lst_pedidosEncontrados[currentRow]);
             }
 
             return lcl_lst_pedidosSeleccionados;
@@ -529,7 +540,13 @@ namespace Vista
             bw.RunWorkerAsync();
             lcl_frm_loading.ShowDialog();
         }
-        
+        private void txtBoxBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.buscar();
+            }
+        }
         #endregion
 
         #region Facturación
@@ -826,7 +843,7 @@ namespace Vista
                         this.dgvResultadoBusqueda.ClearSelection();
                     }
                     this.dgvResultadoBusqueda.Rows[currentMouseOverRow].Selected = true;
-
+                    
                     this.cntxMenuResultadoBusqueda.Show(this.dgvResultadoBusqueda, new Point(e.X, e.Y));
                 }
             }

@@ -45,6 +45,7 @@ namespace Controladores
 
             if (lcl_lst_mod_usuarios.Count > 0)
             {
+                nombreUsuarioLogeado = (lcl_lst_mod_usuarios[0] as ModeloUsuario).usuario;
                 return (ModeloUsuario)lcl_lst_mod_usuarios[0];
             }
             return null;

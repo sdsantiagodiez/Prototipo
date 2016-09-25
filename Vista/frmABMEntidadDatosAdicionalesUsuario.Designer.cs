@@ -87,7 +87,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.74095F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.25905F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
             this.tableLayoutPanel1.Controls.Add(this.lblUsuario, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblContraseña, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblConfirmarContraseña, 0, 2);
@@ -112,7 +112,7 @@
             this.lblUsuario.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(51, 14);
+            this.lblUsuario.Location = new System.Drawing.Point(50, 14);
             this.lblUsuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(72, 20);
@@ -124,7 +124,7 @@
             this.lblContraseña.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblContraseña.AutoSize = true;
             this.lblContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContraseña.Location = new System.Drawing.Point(23, 63);
+            this.lblContraseña.Location = new System.Drawing.Point(22, 63);
             this.lblContraseña.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblContraseña.Name = "lblContraseña";
             this.lblContraseña.Size = new System.Drawing.Size(100, 20);
@@ -136,7 +136,7 @@
             this.lblConfirmarContraseña.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblConfirmarContraseña.AutoSize = true;
             this.lblConfirmarContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConfirmarContraseña.Location = new System.Drawing.Point(23, 102);
+            this.lblConfirmarContraseña.Location = new System.Drawing.Point(22, 102);
             this.lblConfirmarContraseña.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConfirmarContraseña.Name = "lblConfirmarContraseña";
             this.lblConfirmarContraseña.Size = new System.Drawing.Size(100, 40);
@@ -148,7 +148,7 @@
             this.txtBoxUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxUsuario.Depth = 0;
             this.txtBoxUsuario.Hint = "";
-            this.txtBoxUsuario.Location = new System.Drawing.Point(131, 10);
+            this.txtBoxUsuario.Location = new System.Drawing.Point(130, 10);
             this.txtBoxUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxUsuario.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxUsuario.Name = "txtBoxUsuario";
@@ -166,7 +166,7 @@
             this.txtBoxContraseña.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxContraseña.Depth = 0;
             this.txtBoxContraseña.Hint = "";
-            this.txtBoxContraseña.Location = new System.Drawing.Point(131, 59);
+            this.txtBoxContraseña.Location = new System.Drawing.Point(130, 59);
             this.txtBoxContraseña.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxContraseña.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxContraseña.Name = "txtBoxContraseña";
@@ -184,7 +184,7 @@
             this.txtBoxConfirmarContraseña.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxConfirmarContraseña.Depth = 0;
             this.txtBoxConfirmarContraseña.Hint = "";
-            this.txtBoxConfirmarContraseña.Location = new System.Drawing.Point(131, 108);
+            this.txtBoxConfirmarContraseña.Location = new System.Drawing.Point(130, 108);
             this.txtBoxConfirmarContraseña.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxConfirmarContraseña.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxConfirmarContraseña.Name = "txtBoxConfirmarContraseña";
@@ -203,7 +203,7 @@
             this.chckBoxMostrarContraseña.AutoSize = true;
             this.chckBoxMostrarContraseña.Depth = 0;
             this.chckBoxMostrarContraseña.Font = new System.Drawing.Font("Roboto", 10F);
-            this.chckBoxMostrarContraseña.Location = new System.Drawing.Point(208, 156);
+            this.chckBoxMostrarContraseña.Location = new System.Drawing.Point(207, 156);
             this.chckBoxMostrarContraseña.Margin = new System.Windows.Forms.Padding(0);
             this.chckBoxMostrarContraseña.MouseLocation = new System.Drawing.Point(-1, -1);
             this.chckBoxMostrarContraseña.MouseState = MaterialSkin.MouseState.HOVER;

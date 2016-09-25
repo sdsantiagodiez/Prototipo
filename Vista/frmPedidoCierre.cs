@@ -70,8 +70,8 @@ namespace Vista
             InitializeComponent();
             
             dgvArticulosVenta.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
-            dgvArticulosVenta.EnableHeadersVisualStyles = false; 
-            
+            dgvArticulosVenta.EnableHeadersVisualStyles = false;
+            this.dtpFechaPedido.Enabled = false;
             this.inicializarControles();
             this.lblUsuario.Text = "Usuario: " + ControladorSesion.nombreUsuarioLogeado;
         }
@@ -1136,6 +1136,10 @@ namespace Vista
 
         private bool guardarPedido()
         {
+            if (controlador.pedidoActual.numeroPedido != 0)
+            {
+                return true;
+            }
             DialogResult dialogResult = new DialogResult();  
             do
             {
@@ -1581,14 +1585,23 @@ namespace Vista
             }
             if (this.facturarAFIP())
             {
-                if (this.guardarPedido())
+                if (controlador.pedidoActual.numeroPedido != 0)
                 {
+                    ControladorModificacion.actualizarAprobacionAFIP(controlador.pedidoActual);
+                    this.cargarDatosPedidoEnControles(controlador.pedidoActual);
                     this.inicializarPedidoCerrado();
                 }
                 else
                 {
-                    this.inicializarPedidoFacturado();
-                }  
+                    if (this.guardarPedido())
+                    {
+                        this.inicializarPedidoCerrado();
+                    }
+                    else
+                    {
+                        this.inicializarPedidoFacturado();
+                    }
+                }
                
                 if(DialogResult.Yes==(MessageBox.Show("¿Desea imprimir la Factura?", "Impresión de Factura Electrónica",MessageBoxButtons.YesNo)))
                 {
@@ -1663,6 +1676,7 @@ namespace Vista
                         this.dgvArticulosVenta.ClearSelection();
                     }
                     this.dgvArticulosVenta.Rows[currentMouseOverRow].Selected = true;
+                    this.dgvArticulosVenta.CurrentCell = this.dgvArticulosVenta[1,currentMouseOverRow];
                     this.actualizarContextMenuStrip();
                     cntxMenuLineasPedido.Show(dgvArticulosVenta, new Point(e.X, e.Y));
                 }

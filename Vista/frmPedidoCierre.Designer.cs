@@ -207,7 +207,7 @@
             this.tbControlPrincipal.Depth = 0;
             this.tbControlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbControlPrincipal.Location = new System.Drawing.Point(4, 53);
-            this.tbControlPrincipal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbControlPrincipal.Margin = new System.Windows.Forms.Padding(4);
             this.tbControlPrincipal.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbControlPrincipal.Name = "tbControlPrincipal";
             this.tbControlPrincipal.SelectedIndex = 0;
@@ -219,9 +219,9 @@
             this.tbPageDatosGenerales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tbPageDatosGenerales.Controls.Add(this.tblLayoutPanelDatosGenerales);
             this.tbPageDatosGenerales.Location = new System.Drawing.Point(4, 25);
-            this.tbPageDatosGenerales.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPageDatosGenerales.Margin = new System.Windows.Forms.Padding(4);
             this.tbPageDatosGenerales.Name = "tbPageDatosGenerales";
-            this.tbPageDatosGenerales.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPageDatosGenerales.Padding = new System.Windows.Forms.Padding(4);
             this.tbPageDatosGenerales.Size = new System.Drawing.Size(1337, 197);
             this.tbPageDatosGenerales.TabIndex = 0;
             this.tbPageDatosGenerales.Text = "Datos Generales";
@@ -237,7 +237,7 @@
             this.tblLayoutPanelDatosGenerales.Controls.Add(this.tblLayoutPanelPedido, 2, 0);
             this.tblLayoutPanelDatosGenerales.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelDatosGenerales.Location = new System.Drawing.Point(4, 4);
-            this.tblLayoutPanelDatosGenerales.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tblLayoutPanelDatosGenerales.Margin = new System.Windows.Forms.Padding(4);
             this.tblLayoutPanelDatosGenerales.Name = "tblLayoutPanelDatosGenerales";
             this.tblLayoutPanelDatosGenerales.RowCount = 1;
             this.tblLayoutPanelDatosGenerales.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -316,9 +316,9 @@
             this.grpBoxObservaciones.Controls.Add(this.rchTextBoxObservaciones);
             this.grpBoxObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxObservaciones.Location = new System.Drawing.Point(4, 41);
-            this.grpBoxObservaciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBoxObservaciones.Margin = new System.Windows.Forms.Padding(4);
             this.grpBoxObservaciones.Name = "grpBoxObservaciones";
-            this.grpBoxObservaciones.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBoxObservaciones.Padding = new System.Windows.Forms.Padding(4);
             this.grpBoxObservaciones.Size = new System.Drawing.Size(619, 140);
             this.grpBoxObservaciones.TabIndex = 13;
             this.grpBoxObservaciones.TabStop = false;
@@ -328,7 +328,7 @@
             // 
             this.rchTextBoxObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rchTextBoxObservaciones.Location = new System.Drawing.Point(4, 19);
-            this.rchTextBoxObservaciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rchTextBoxObservaciones.Margin = new System.Windows.Forms.Padding(4);
             this.rchTextBoxObservaciones.Name = "rchTextBoxObservaciones";
             this.rchTextBoxObservaciones.Size = new System.Drawing.Size(611, 117);
             this.rchTextBoxObservaciones.TabIndex = 8;
@@ -352,7 +352,7 @@
             this.tblLayoutPanelEntidadDatos.Controls.Add(this.txtBoxApellido, 1, 2);
             this.tblLayoutPanelEntidadDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelEntidadDatos.Location = new System.Drawing.Point(4, 4);
-            this.tblLayoutPanelEntidadDatos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tblLayoutPanelEntidadDatos.Margin = new System.Windows.Forms.Padding(4);
             this.tblLayoutPanelEntidadDatos.Name = "tblLayoutPanelEntidadDatos";
             this.tblLayoutPanelEntidadDatos.RowCount = 5;
             this.tblLayoutPanelEntidadDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -368,7 +368,7 @@
             this.cmbBoxContactoProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxContactoProveedor.FormattingEnabled = true;
             this.cmbBoxContactoProveedor.Location = new System.Drawing.Point(104, 150);
-            this.cmbBoxContactoProveedor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbBoxContactoProveedor.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxContactoProveedor.MinimumSize = new System.Drawing.Size(128, 0);
             this.cmbBoxContactoProveedor.Name = "cmbBoxContactoProveedor";
             this.cmbBoxContactoProveedor.Size = new System.Drawing.Size(204, 24);
@@ -394,8 +394,8 @@
             // 
             this.cmbBoxTipoResponsable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxTipoResponsable.FormattingEnabled = true;
-            this.cmbBoxTipoResponsable.Location = new System.Drawing.Point(104, 6);
-            this.cmbBoxTipoResponsable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbBoxTipoResponsable.Location = new System.Drawing.Point(104, 5);
+            this.cmbBoxTipoResponsable.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxTipoResponsable.Name = "cmbBoxTipoResponsable";
             this.cmbBoxTipoResponsable.Size = new System.Drawing.Size(204, 24);
             this.cmbBoxTipoResponsable.TabIndex = 1;
@@ -431,7 +431,7 @@
             this.txtBoxNombre.Depth = 0;
             this.txtBoxNombre.Hint = "";
             this.txtBoxNombre.Location = new System.Drawing.Point(104, 112);
-            this.txtBoxNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxNombre.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxNombre.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxNombre.Name = "txtBoxNombre";
             this.txtBoxNombre.PasswordChar = '\0';
@@ -448,8 +448,8 @@
             // 
             this.cmbBoxTipoDocumento.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cmbBoxTipoDocumento.FormattingEnabled = true;
-            this.cmbBoxTipoDocumento.Location = new System.Drawing.Point(28, 42);
-            this.cmbBoxTipoDocumento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbBoxTipoDocumento.Location = new System.Drawing.Point(28, 41);
+            this.cmbBoxTipoDocumento.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxTipoDocumento.Name = "cmbBoxTipoDocumento";
             this.cmbBoxTipoDocumento.Size = new System.Drawing.Size(68, 24);
             this.cmbBoxTipoDocumento.TabIndex = 2;
@@ -474,7 +474,7 @@
             this.txtBoxNumeroDocumento.Depth = 0;
             this.txtBoxNumeroDocumento.Hint = "";
             this.txtBoxNumeroDocumento.Location = new System.Drawing.Point(104, 40);
-            this.txtBoxNumeroDocumento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxNumeroDocumento.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxNumeroDocumento.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxNumeroDocumento.Name = "txtBoxNumeroDocumento";
             this.txtBoxNumeroDocumento.PasswordChar = '\0';
@@ -493,7 +493,7 @@
             this.txtBoxApellido.Depth = 0;
             this.txtBoxApellido.Hint = "";
             this.txtBoxApellido.Location = new System.Drawing.Point(104, 76);
-            this.txtBoxApellido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxApellido.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxApellido.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxApellido.Name = "txtBoxApellido";
             this.txtBoxApellido.PasswordChar = '\0';
@@ -523,7 +523,7 @@
             this.tblLayoutPanelPedido.Controls.Add(this.txtBoxCAE, 1, 4);
             this.tblLayoutPanelPedido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelPedido.Location = new System.Drawing.Point(984, 4);
-            this.tblLayoutPanelPedido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tblLayoutPanelPedido.Margin = new System.Windows.Forms.Padding(4);
             this.tblLayoutPanelPedido.Name = "tblLayoutPanelPedido";
             this.tblLayoutPanelPedido.RowCount = 5;
             this.tblLayoutPanelPedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -571,8 +571,8 @@
             // 
             this.cmbBoxTipoComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxTipoComprobante.FormattingEnabled = true;
-            this.cmbBoxTipoComprobante.Location = new System.Drawing.Point(150, 42);
-            this.cmbBoxTipoComprobante.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbBoxTipoComprobante.Location = new System.Drawing.Point(150, 41);
+            this.cmbBoxTipoComprobante.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxTipoComprobante.Name = "cmbBoxTipoComprobante";
             this.cmbBoxTipoComprobante.Size = new System.Drawing.Size(187, 24);
             this.cmbBoxTipoComprobante.TabIndex = 9;
@@ -596,8 +596,8 @@
             this.cmbBoxFormaPago.Items.AddRange(new object[] {
             "Contado",
             "Tarjeta"});
-            this.cmbBoxFormaPago.Location = new System.Drawing.Point(150, 78);
-            this.cmbBoxFormaPago.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbBoxFormaPago.Location = new System.Drawing.Point(150, 77);
+            this.cmbBoxFormaPago.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxFormaPago.Name = "cmbBoxFormaPago";
             this.cmbBoxFormaPago.Size = new System.Drawing.Size(187, 24);
             this.cmbBoxFormaPago.TabIndex = 10;
@@ -619,7 +619,7 @@
             this.dtpFechaPedido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpFechaPedido.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaPedido.Location = new System.Drawing.Point(150, 115);
-            this.dtpFechaPedido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpFechaPedido.Margin = new System.Windows.Forms.Padding(4);
             this.dtpFechaPedido.Name = "dtpFechaPedido";
             this.dtpFechaPedido.Size = new System.Drawing.Size(187, 22);
             this.dtpFechaPedido.TabIndex = 11;
@@ -631,7 +631,7 @@
             this.txtBoxNumeroPedido.Depth = 0;
             this.txtBoxNumeroPedido.Hint = "";
             this.txtBoxNumeroPedido.Location = new System.Drawing.Point(150, 4);
-            this.txtBoxNumeroPedido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxNumeroPedido.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxNumeroPedido.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxNumeroPedido.Name = "txtBoxNumeroPedido";
             this.txtBoxNumeroPedido.PasswordChar = '\0';
@@ -648,7 +648,7 @@
             this.txtBoxCAE.Depth = 0;
             this.txtBoxCAE.Hint = "";
             this.txtBoxCAE.Location = new System.Drawing.Point(150, 148);
-            this.txtBoxCAE.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxCAE.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxCAE.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxCAE.Name = "txtBoxCAE";
             this.txtBoxCAE.PasswordChar = '\0';
@@ -665,9 +665,9 @@
             this.tbPageDomicilioFacturacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tbPageDomicilioFacturacion.Controls.Add(this.tblLayoutPanelDomicilioFacturacion);
             this.tbPageDomicilioFacturacion.Location = new System.Drawing.Point(4, 25);
-            this.tbPageDomicilioFacturacion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPageDomicilioFacturacion.Margin = new System.Windows.Forms.Padding(4);
             this.tbPageDomicilioFacturacion.Name = "tbPageDomicilioFacturacion";
-            this.tbPageDomicilioFacturacion.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPageDomicilioFacturacion.Padding = new System.Windows.Forms.Padding(4);
             this.tbPageDomicilioFacturacion.Size = new System.Drawing.Size(1337, 197);
             this.tbPageDomicilioFacturacion.TabIndex = 1;
             this.tbPageDomicilioFacturacion.Text = "Domicilio de Facturación";
@@ -679,7 +679,7 @@
             this.tblLayoutPanelDomicilioFacturacion.Controls.Add(this.cmbBoxDomicilios, 0, 1);
             this.tblLayoutPanelDomicilioFacturacion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelDomicilioFacturacion.Location = new System.Drawing.Point(4, 4);
-            this.tblLayoutPanelDomicilioFacturacion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tblLayoutPanelDomicilioFacturacion.Margin = new System.Windows.Forms.Padding(4);
             this.tblLayoutPanelDomicilioFacturacion.Name = "tblLayoutPanelDomicilioFacturacion";
             this.tblLayoutPanelDomicilioFacturacion.RowCount = 2;
             this.tblLayoutPanelDomicilioFacturacion.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74.84483F));
@@ -692,7 +692,7 @@
             this.cmbBoxDomicilios.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbBoxDomicilios.FormattingEnabled = true;
             this.cmbBoxDomicilios.Location = new System.Drawing.Point(584, 153);
-            this.cmbBoxDomicilios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbBoxDomicilios.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxDomicilios.Name = "cmbBoxDomicilios";
             this.cmbBoxDomicilios.Size = new System.Drawing.Size(160, 24);
             this.cmbBoxDomicilios.TabIndex = 2;
@@ -703,9 +703,9 @@
             this.tbPageDatosContacto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tbPageDatosContacto.Controls.Add(this.tblLayoutPanelDatosContacto);
             this.tbPageDatosContacto.Location = new System.Drawing.Point(4, 25);
-            this.tbPageDatosContacto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPageDatosContacto.Margin = new System.Windows.Forms.Padding(4);
             this.tbPageDatosContacto.Name = "tbPageDatosContacto";
-            this.tbPageDatosContacto.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPageDatosContacto.Padding = new System.Windows.Forms.Padding(4);
             this.tbPageDatosContacto.Size = new System.Drawing.Size(1337, 197);
             this.tbPageDatosContacto.TabIndex = 2;
             this.tbPageDatosContacto.Text = "Datos de Contacto";
@@ -721,7 +721,7 @@
             this.tblLayoutPanelDatosContacto.Controls.Add(this.grpBoxTelefono, 2, 0);
             this.tblLayoutPanelDatosContacto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelDatosContacto.Location = new System.Drawing.Point(4, 4);
-            this.tblLayoutPanelDatosContacto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tblLayoutPanelDatosContacto.Margin = new System.Windows.Forms.Padding(4);
             this.tblLayoutPanelDatosContacto.Name = "tblLayoutPanelDatosContacto";
             this.tblLayoutPanelDatosContacto.RowCount = 1;
             this.tblLayoutPanelDatosContacto.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 73.54498F));
@@ -762,7 +762,7 @@
             this.tblLayoutPanelMail.ColumnCount = 3;
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0578F));
             this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.9422F));
-            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tblLayoutPanelMail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
             this.tblLayoutPanelMail.Controls.Add(this.lblMail, 0, 0);
             this.tblLayoutPanelMail.Controls.Add(this.txtBoxMail, 1, 0);
             this.tblLayoutPanelMail.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -779,7 +779,7 @@
             this.lblMail.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblMail.AutoSize = true;
             this.lblMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblMail.Location = new System.Drawing.Point(35, 15);
+            this.lblMail.Location = new System.Drawing.Point(34, 15);
             this.lblMail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMail.Name = "lblMail";
             this.lblMail.Size = new System.Drawing.Size(82, 34);
@@ -791,8 +791,8 @@
             this.txtBoxMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxMail.Depth = 0;
             this.txtBoxMail.Hint = "";
-            this.txtBoxMail.Location = new System.Drawing.Point(125, 18);
-            this.txtBoxMail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxMail.Location = new System.Drawing.Point(124, 18);
+            this.txtBoxMail.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxMail.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxMail.Name = "txtBoxMail";
             this.txtBoxMail.PasswordChar = '\0';
@@ -808,8 +808,8 @@
             // 
             this.cmbBoxMails.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbBoxMails.FormattingEnabled = true;
-            this.cmbBoxMails.Location = new System.Drawing.Point(175, 110);
-            this.cmbBoxMails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbBoxMails.Location = new System.Drawing.Point(175, 109);
+            this.cmbBoxMails.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxMails.Name = "cmbBoxMails";
             this.cmbBoxMails.Size = new System.Drawing.Size(160, 24);
             this.cmbBoxMails.TabIndex = 4;
@@ -851,7 +851,7 @@
             this.tblLayoutPanelTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tblLayoutPanelTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tblLayoutPanelTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tblLayoutPanelTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tblLayoutPanelTelefono.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tblLayoutPanelTelefono.Controls.Add(this.cmbBoxTipoTelefono, 1, 0);
             this.tblLayoutPanelTelefono.Controls.Add(this.lblTipoTelefono, 0, 0);
             this.tblLayoutPanelTelefono.Controls.Add(this.lblNumeroTelefono, 2, 0);
@@ -873,8 +873,8 @@
             "TEL",
             "CEL",
             "FAX"});
-            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(55, 20);
-            this.cmbBoxTipoTelefono.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbBoxTipoTelefono.Location = new System.Drawing.Point(55, 19);
+            this.cmbBoxTipoTelefono.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxTipoTelefono.Name = "cmbBoxTipoTelefono";
             this.cmbBoxTipoTelefono.Size = new System.Drawing.Size(127, 24);
             this.cmbBoxTipoTelefono.TabIndex = 24;
@@ -909,14 +909,14 @@
             this.txtBoxTelefono.Depth = 0;
             this.txtBoxTelefono.Hint = "";
             this.txtBoxTelefono.Location = new System.Drawing.Point(270, 18);
-            this.txtBoxTelefono.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxTelefono.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxTelefono.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxTelefono.Name = "txtBoxTelefono";
             this.txtBoxTelefono.PasswordChar = '\0';
             this.txtBoxTelefono.SelectedText = "";
             this.txtBoxTelefono.SelectionLength = 0;
             this.txtBoxTelefono.SelectionStart = 0;
-            this.txtBoxTelefono.Size = new System.Drawing.Size(195, 28);
+            this.txtBoxTelefono.Size = new System.Drawing.Size(194, 28);
             this.txtBoxTelefono.TabIndex = 28;
             this.txtBoxTelefono.UseSystemPasswordChar = false;
             this.txtBoxTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxTelefono_KeyPress);
@@ -927,7 +927,7 @@
             this.cmbBoxTelefonos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbBoxTelefonos.FormattingEnabled = true;
             this.cmbBoxTelefonos.Location = new System.Drawing.Point(175, 110);
-            this.cmbBoxTelefonos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbBoxTelefonos.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBoxTelefonos.Name = "cmbBoxTelefonos";
             this.cmbBoxTelefonos.Size = new System.Drawing.Size(160, 24);
             this.cmbBoxTelefonos.TabIndex = 5;
@@ -938,9 +938,9 @@
             this.tabPageObservaciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tabPageObservaciones.Controls.Add(this.tableLayoutObservaciones);
             this.tabPageObservaciones.Location = new System.Drawing.Point(4, 25);
-            this.tabPageObservaciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageObservaciones.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageObservaciones.Name = "tabPageObservaciones";
-            this.tabPageObservaciones.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageObservaciones.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageObservaciones.Size = new System.Drawing.Size(1337, 197);
             this.tabPageObservaciones.TabIndex = 3;
             this.tabPageObservaciones.Text = "Observaciones del Pedido";
@@ -953,7 +953,7 @@
             this.tableLayoutObservaciones.Controls.Add(this.grpBoxObservacionesPedido, 0, 0);
             this.tableLayoutObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutObservaciones.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutObservaciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutObservaciones.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutObservaciones.Name = "tableLayoutObservaciones";
             this.tableLayoutObservaciones.RowCount = 2;
             this.tableLayoutObservaciones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1015,9 +1015,9 @@
             this.gbxArticulos.Controls.Add(this.tblLayoutPanelLineasPedidos);
             this.gbxArticulos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbxArticulos.Location = new System.Drawing.Point(4, 287);
-            this.gbxArticulos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbxArticulos.Margin = new System.Windows.Forms.Padding(4);
             this.gbxArticulos.Name = "gbxArticulos";
-            this.gbxArticulos.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbxArticulos.Padding = new System.Windows.Forms.Padding(4);
             this.gbxArticulos.Size = new System.Drawing.Size(1345, 237);
             this.gbxArticulos.TabIndex = 14;
             this.gbxArticulos.TabStop = false;
@@ -1031,7 +1031,7 @@
             this.tblLayoutPanelLineasPedidos.Controls.Add(this.tblLayoutPanelLineasPedidosBotones, 0, 1);
             this.tblLayoutPanelLineasPedidos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelLineasPedidos.Location = new System.Drawing.Point(4, 23);
-            this.tblLayoutPanelLineasPedidos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tblLayoutPanelLineasPedidos.Margin = new System.Windows.Forms.Padding(4);
             this.tblLayoutPanelLineasPedidos.Name = "tblLayoutPanelLineasPedidos";
             this.tblLayoutPanelLineasPedidos.RowCount = 2;
             this.tblLayoutPanelLineasPedidos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1060,7 +1060,7 @@
             this.dgvArticulosVenta.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvArticulosVenta.GridColor = System.Drawing.Color.White;
             this.dgvArticulosVenta.Location = new System.Drawing.Point(4, 4);
-            this.dgvArticulosVenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvArticulosVenta.Margin = new System.Windows.Forms.Padding(4);
             this.dgvArticulosVenta.Name = "dgvArticulosVenta";
             this.dgvArticulosVenta.ReadOnly = true;
             this.dgvArticulosVenta.RowHeadersVisible = false;
@@ -1144,7 +1144,7 @@
             this.tblLayoutPanelLineasPedidosBotones.Controls.Add(this.btnEliminar, 2, 0);
             this.tblLayoutPanelLineasPedidosBotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelLineasPedidosBotones.Location = new System.Drawing.Point(4, 166);
-            this.tblLayoutPanelLineasPedidosBotones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tblLayoutPanelLineasPedidosBotones.Margin = new System.Windows.Forms.Padding(4);
             this.tblLayoutPanelLineasPedidosBotones.Name = "tblLayoutPanelLineasPedidosBotones";
             this.tblLayoutPanelLineasPedidosBotones.RowCount = 1;
             this.tblLayoutPanelLineasPedidosBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1234,7 +1234,7 @@
             this.tblLayoutPanelValoresPedido.Controls.Add(this.txtBoxTotal, 9, 1);
             this.tblLayoutPanelValoresPedido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelValoresPedido.Location = new System.Drawing.Point(4, 532);
-            this.tblLayoutPanelValoresPedido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tblLayoutPanelValoresPedido.Margin = new System.Windows.Forms.Padding(4);
             this.tblLayoutPanelValoresPedido.Name = "tblLayoutPanelValoresPedido";
             this.tblLayoutPanelValoresPedido.RowCount = 2;
             this.tblLayoutPanelValoresPedido.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1337,7 +1337,7 @@
             this.txtBoxIVAPorcentaje.Depth = 0;
             this.txtBoxIVAPorcentaje.Hint = "";
             this.txtBoxIVAPorcentaje.Location = new System.Drawing.Point(80, 8);
-            this.txtBoxIVAPorcentaje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxIVAPorcentaje.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxIVAPorcentaje.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxIVAPorcentaje.Name = "txtBoxIVAPorcentaje";
             this.txtBoxIVAPorcentaje.PasswordChar = '\0';
@@ -1355,7 +1355,7 @@
             this.txtBoxIVAMonto.Depth = 0;
             this.txtBoxIVAMonto.Hint = "";
             this.txtBoxIVAMonto.Location = new System.Drawing.Point(160, 8);
-            this.txtBoxIVAMonto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxIVAMonto.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxIVAMonto.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxIVAMonto.Name = "txtBoxIVAMonto";
             this.txtBoxIVAMonto.PasswordChar = '\0';
@@ -1373,7 +1373,7 @@
             this.txtBoxSenia.Depth = 0;
             this.txtBoxSenia.Hint = "";
             this.txtBoxSenia.Location = new System.Drawing.Point(160, 52);
-            this.txtBoxSenia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxSenia.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxSenia.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxSenia.Name = "txtBoxSenia";
             this.txtBoxSenia.PasswordChar = '\0';
@@ -1391,7 +1391,7 @@
             this.txtBoxDescuento1Porcentaje.Depth = 0;
             this.txtBoxDescuento1Porcentaje.Hint = "";
             this.txtBoxDescuento1Porcentaje.Location = new System.Drawing.Point(504, 8);
-            this.txtBoxDescuento1Porcentaje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxDescuento1Porcentaje.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxDescuento1Porcentaje.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDescuento1Porcentaje.Name = "txtBoxDescuento1Porcentaje";
             this.txtBoxDescuento1Porcentaje.PasswordChar = '\0';
@@ -1409,7 +1409,7 @@
             this.txtBoxDescuento1Monto.Depth = 0;
             this.txtBoxDescuento1Monto.Hint = "";
             this.txtBoxDescuento1Monto.Location = new System.Drawing.Point(603, 8);
-            this.txtBoxDescuento1Monto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxDescuento1Monto.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxDescuento1Monto.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDescuento1Monto.Name = "txtBoxDescuento1Monto";
             this.txtBoxDescuento1Monto.PasswordChar = '\0';
@@ -1427,7 +1427,7 @@
             this.txtBoxDescuento2Porcentaje.Depth = 0;
             this.txtBoxDescuento2Porcentaje.Hint = "";
             this.txtBoxDescuento2Porcentaje.Location = new System.Drawing.Point(504, 52);
-            this.txtBoxDescuento2Porcentaje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxDescuento2Porcentaje.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxDescuento2Porcentaje.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDescuento2Porcentaje.Name = "txtBoxDescuento2Porcentaje";
             this.txtBoxDescuento2Porcentaje.PasswordChar = '\0';
@@ -1445,7 +1445,7 @@
             this.txtBoxDescuento2Monto.Depth = 0;
             this.txtBoxDescuento2Monto.Hint = "";
             this.txtBoxDescuento2Monto.Location = new System.Drawing.Point(603, 52);
-            this.txtBoxDescuento2Monto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxDescuento2Monto.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxDescuento2Monto.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDescuento2Monto.Name = "txtBoxDescuento2Monto";
             this.txtBoxDescuento2Monto.PasswordChar = '\0';
@@ -1463,7 +1463,7 @@
             this.txtBoxDescuentoLineas.Depth = 0;
             this.txtBoxDescuentoLineas.Hint = "";
             this.txtBoxDescuentoLineas.Location = new System.Drawing.Point(898, 8);
-            this.txtBoxDescuentoLineas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxDescuentoLineas.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxDescuentoLineas.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDescuentoLineas.Name = "txtBoxDescuentoLineas";
             this.txtBoxDescuentoLineas.PasswordChar = '\0';
@@ -1480,7 +1480,7 @@
             this.txtBoxDescuentoTotal.Depth = 0;
             this.txtBoxDescuentoTotal.Hint = "";
             this.txtBoxDescuentoTotal.Location = new System.Drawing.Point(898, 52);
-            this.txtBoxDescuentoTotal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxDescuentoTotal.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxDescuentoTotal.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxDescuentoTotal.Name = "txtBoxDescuentoTotal";
             this.txtBoxDescuentoTotal.PasswordChar = '\0';
@@ -1497,7 +1497,7 @@
             this.txtBoxSubtotal.Depth = 0;
             this.txtBoxSubtotal.Hint = "";
             this.txtBoxSubtotal.Location = new System.Drawing.Point(1176, 8);
-            this.txtBoxSubtotal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxSubtotal.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxSubtotal.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxSubtotal.Name = "txtBoxSubtotal";
             this.txtBoxSubtotal.PasswordChar = '\0';
@@ -1514,7 +1514,7 @@
             this.txtBoxTotal.Depth = 0;
             this.txtBoxTotal.Hint = "";
             this.txtBoxTotal.Location = new System.Drawing.Point(1176, 52);
-            this.txtBoxTotal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxTotal.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxTotal.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBoxTotal.Name = "txtBoxTotal";
             this.txtBoxTotal.PasswordChar = '\0';
@@ -1541,7 +1541,7 @@
             this.tblLayoutPanelBotones.Controls.Add(this.btnSalir, 4, 0);
             this.tblLayoutPanelBotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblLayoutPanelBotones.Location = new System.Drawing.Point(4, 629);
-            this.tblLayoutPanelBotones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tblLayoutPanelBotones.Margin = new System.Windows.Forms.Padding(4);
             this.tblLayoutPanelBotones.Name = "tblLayoutPanelBotones";
             this.tblLayoutPanelBotones.RowCount = 1;
             this.tblLayoutPanelBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1552,7 +1552,7 @@
             // 
             this.cmbBoxPedidosProveedores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbBoxPedidosProveedores.FormattingEnabled = true;
-            this.cmbBoxPedidosProveedores.Location = new System.Drawing.Point(13, 19);
+            this.cmbBoxPedidosProveedores.Location = new System.Drawing.Point(13, 18);
             this.cmbBoxPedidosProveedores.Margin = new System.Windows.Forms.Padding(13, 4, 13, 4);
             this.cmbBoxPedidosProveedores.Name = "cmbBoxPedidosProveedores";
             this.cmbBoxPedidosProveedores.Size = new System.Drawing.Size(310, 24);
@@ -1639,7 +1639,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1353, 763);
             this.Controls.Add(this.tblLayoutPanelPrincipal);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.MinimumSize = new System.Drawing.Size(21, 615);
             this.Name = "frmPedidoCierre";
             this.Text = "Cierre de Pedido";

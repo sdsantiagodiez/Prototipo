@@ -524,6 +524,7 @@ namespace Vista
 
             (glb_form as frmPedidoCierre).AgregarLineaPedido += evento_agregarFormEmergente;
             (glb_form as frmPedidoCierre).BuscarCliente += evento_agregarFormEmergente;
+            (glb_form as frmPedidoCierre).MostrarComprobante += evento_agregarFormEmergente;
         }
         public void evento_continuarDevolverPedido(object sender, EventArgs e)
         {
