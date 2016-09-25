@@ -540,10 +540,11 @@ namespace Controladores
                                         List<Constantes.TipoComprobanteVenta> p_tipoVenta, List<Constantes.TipoComprobanteDevolucion> p_tipoDevolucion,
                                         List<Constantes.TipoPedido> p_tipoPedido, bool? p_facturadoElectronicamente)
         {
+            var temp_entidad = p_mod_pedido.entidad;//se copia a una variable temporal porque tipoPedido tiene un constructor que si se activa elimina los valores que habia en entidad
             bool? clienteGenerico = ControladorBusqueda.getTipoPedido(p_tipoPedido, p_mod_pedido);
-
+            
             List<int> lcl_lst_codigosComprobantes = ControladorBusqueda.getCodigosComprobantes(p_tipoCompra, p_tipoVenta, p_tipoDevolucion);
-
+            p_mod_pedido.entidad = temp_entidad;
             return new CatalogoPedidos().buscar(p_mod_pedido, p_periodo, lcl_lst_codigosComprobantes, clienteGenerico, p_facturadoElectronicamente);
         }
 
