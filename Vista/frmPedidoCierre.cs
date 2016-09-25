@@ -1143,6 +1143,7 @@ namespace Vista
             DialogResult dialogResult = new DialogResult();  
             do
             {
+                controlador.UsuarioActual = ControladorSesion.nombreUsuarioLogeado;
                 //se fija si hay que guardar un pedido cliente o lote de pedidos a proveedor
                 bool guardado = (this.controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Proveedor &&
                     this.cmbBoxPedidosProveedores.SelectedIndex == 0)? (controlador as ControladorPedidoProveedor).guardarPedidos():controlador.guardarPedido();

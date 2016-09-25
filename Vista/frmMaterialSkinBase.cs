@@ -224,8 +224,8 @@ namespace Vista
         static DateTime LastCloseTime;
         private void frmMaterialSkinBase_FormClosing(object sender, FormClosingEventArgs e)
         {
-            double delta =DateTime.Now.Subtract(LastCloseTime).TotalSeconds ;
-            if (delta < 1)
+            double delta =DateTime.Now.Subtract(LastCloseTime).TotalMilliseconds ;
+            if (delta < 300)
             {
                 e.Cancel = true;
                 return;

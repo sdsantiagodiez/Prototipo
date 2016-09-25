@@ -28,7 +28,7 @@ namespace Controladores
             set { _pedidoActual = value; }
         }
 
-
+        public string UsuarioActual;
 
         public ModeloEntidad entidadActual
         {
@@ -315,6 +315,7 @@ namespace Controladores
             {
                 pedidosProveedores[i].actualizarMontos();
                 pedidosProveedores[i].formasDePago = pedidosProveedores[0].formasDePago;
+                pedidosProveedores[i].usuarioGenerador = UsuarioActual;
                 lcl_lst_pedidos_a_guardar.Add(pedidosProveedores[i]);
             }
             
