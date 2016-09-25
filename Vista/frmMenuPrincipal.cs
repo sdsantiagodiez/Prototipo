@@ -773,19 +773,19 @@ namespace Vista
                 //lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\helpmenuproyecto.chm";
                 lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\help.chm";
                 Help.ShowHelp(this, lcl_dir_help, HelpNavigator.TableOfContents);
-                //Help.ShowHelp(this, "C:\\Users\\Martin\\Desktop\\HELPS NUEVOS\\helpmenuproyecto.chm", HelpNavigator.Topic, "4_MANEJODEDATOS.htm");
+                
             }
             else
             { this.mostrarManual(glb_form.GetType()); }
         }
         private void mostrarManual(Type p_ventanaActiva)
         { 
-            //CON AYUDA VIEJA
+            
             string topic = "";
             if (p_ventanaActiva == typeof(frmABMArticulo))
             { topic = "1_ALTASBAJASYMODIFICACIONES"; }
             else if (p_ventanaActiva == typeof(frmABMDescuentos))
-            { topic = "1_ALTASBAJASYMODIFICACIONES"; }
+            { topic = "5_DESCUENTO"; }
             else if (p_ventanaActiva == typeof(frmABMEntidad))
             {
                 if ((glb_form as frmABMEntidad).tipoEntidadSeleccionada == Constantes.TiposEntidad.TiposPersona.Cliente)
@@ -793,49 +793,49 @@ namespace Vista
                 else if ((glb_form as frmABMEntidad).tipoEntidadSeleccionada == Constantes.TiposEntidad.TiposPersona.ContactoProveedor)
                 { topic = "4_CONTACTODEPROVEEDOR"; }
                 else if ((glb_form as frmABMEntidad).tipoEntidadSeleccionada == Constantes.TiposEntidad.TiposPersona.Usuario)
-                { topic = "6_USUARIO"; }
+                { topic = "7_USUARIO"; }
                 else
-                { topic = "5_PROVEEDOR"; }
+                { topic = "6_PROVEEDOR"; }
             }
             else if (p_ventanaActiva == typeof(frmPedidoGestion))
-            { topic = "7_ADMINISTRADORDEPEDIDOS"; }
+            { topic = "8_ADMINISTRADORDEPEDIDOS"; }
             else if (p_ventanaActiva == typeof(frmPedidoCierre))
             {
                 if ((glb_form as frmPedidoCierre).modoFormulario == "Pedido Cliente")
-                { topic = "37_PEDIDODECLIENTE-VENTAS"; }
+                { topic = "38_PEDIDODECLIENTE-VENTAS"; }
                 else if ((glb_form as frmPedidoCierre).modoFormulario == "Pedido a Proveedor(es)")
-                { topic = "30_PEDIDOAPROVEEDORES-COMPRAS"; }
-                else { topic = "12_DEVOLUCIONES"; }
+                { topic = "31_PEDIDOAPROVEEDORES-COMPRAS"; }
+                else { topic = "13_DEVOLUCIONES"; }
             }
             else if (p_ventanaActiva == typeof(frmPedidoDevolucion))
-            { topic = "12_DEVOLUCIONES"; }
+            { topic = "13_DEVOLUCIONES"; }
             else if (p_ventanaActiva == typeof(frmPedidoNuevo))
             {
                 if ((glb_form as frmPedidoNuevo).controlador.pedidoActual.codigoTipoPedido == Constantes.CodigosTiposPedidos.Persona)
-                { topic = "39_AGREGARUNARTCULOALPEDIDODEVENTA"; }
-                else { topic = "32_AGREGARUNARTCULOALPEDIDODEPROVEEDOR"; }
+                { topic = "40_AGREGARUNARTCULOALPEDIDODEVENTA"; }
+                else { topic = "33_AGREGARUNARTCULOALPEDIDODEPROVEEDOR"; }
             }
             
             else if (p_ventanaActiva == typeof(frmReporteSeleccion))
             {
                 if ((glb_form as frmReporteSeleccion).tabControl.SelectedTab == (glb_form as frmReporteSeleccion).tabProveedores)
-                { topic = "34_REPORTESDECOMPRA"; }
+                { topic = "35_REPORTESDECOMPRA"; }
                 else if ((glb_form as frmReporteSeleccion).tabControl.SelectedTab == (glb_form as frmReporteSeleccion).tabClientes)
-                { topic = "36_REPORTESDEVENTAS"; }
-                else { topic = "35_REPORTESDEINVENTARIO"; }
+                { topic = "37_REPORTESDEVENTAS"; }
+                else { topic = "36_REPORTESDEINVENTARIO"; }
             }
             else if (p_ventanaActiva == typeof(frmImportar))
             { topic = "17_MANEJODEDATOS"; }
             else if (p_ventanaActiva == typeof(frmConfiguracion))
-            { topic = "25_CONFIGURACIN"; }
+            { topic = "26_CONFIGURACIN"; }
             else if (p_ventanaActiva == typeof(frmOpcionesUsuario))
             {
                 if ((glb_form as frmOpcionesUsuario).tbControlPrincipal.SelectedTab == (glb_form as frmOpcionesUsuario).tbEstiloVisual)
-                { topic = "22_ESTILOVISUAL"; }
+                { topic = "23_ESTILOVISUAL"; }
                 else if ((glb_form as frmOpcionesUsuario).tbControlPrincipal.SelectedTab == (glb_form as frmOpcionesUsuario).tbPageDatosGenerales)
-                { topic = "23_DATOSGENERALES"; }
+                { topic = "24_DATOSGENERALES"; }
                 else
-                { topic = "24_DATOSDECONTACTO"; }
+                { topic = "25_DATOSDECONTACTO"; }
             }
             else
             { topic = "1_ALTASBAJASYMODIFICACIONES"; }
@@ -845,35 +845,7 @@ namespace Vista
 
             Help.ShowHelp(glb_form, lcl_dir_help, HelpNavigator.Topic, topic + ".htm");
 
-            //CON AYUDA NUEVA
-           /* string topic = "";
-            if (p_ventanaActiva == typeof(frmABMArticulo))
-            { topic = "1_ALTASBAJASYMODIFICACIONES"; }
-            else if (p_ventanaActiva == typeof(frmABMDescuentos))
-            { topic = "1_ALTASBAJASYMODIFICACIONES"; }
-            else if (p_ventanaActiva == typeof(frmABMEntidad))
-            { topic = "1_ALTASBAJASYMODIFICACIONES"; }
-            else if (p_ventanaActiva == typeof(frmPedidoGestion))
-            { topic = "7_VENTAS"; }
-            else if (p_ventanaActiva == typeof(frmPedidoCierre))
-            { topic = "7_VENTAS"; }
-            else if (p_ventanaActiva == typeof(frmPedidoDevolucion))
-            { topic = "2_DEVOLUCIONES"; }
-            else if (p_ventanaActiva == typeof(frmPedidoNuevo))
-            { topic = "2_VENTAS";  }
-            else if (p_ventanaActiva == typeof(frmReporteSeleccion))
-            { topic = "6_REPORTES"; }
-            else if (p_ventanaActiva == typeof(frmImportar))
-            { topic = "4_MANEJODEDATOS"; }
-            else
-            { topic = "3_INVENTARIO"; }
-
-            string lcl_dir_help = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-            lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\NUEVO\\help.chm";
-
-            Help.ShowHelp(glb_form, lcl_dir_help, HelpNavigator.Topic, topic + ".htm");
-            */
-        }
+                    }
         #endregion
 
         #region Funciones de texto
@@ -1014,6 +986,10 @@ namespace Vista
                 e.Cancel = true;
             }
         }
+        private void frmMenuPrincipal_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            this.mostrarManualDeAyuda(sender, hlpevent);
+        }
         #endregion
 
         private void configuracionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1050,5 +1026,7 @@ namespace Vista
             this.actualizarColores();
         }
         #endregion
+
+        
     }    
 }

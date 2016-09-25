@@ -321,6 +321,7 @@
             this.btnSalir.TabIndex = 29;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+
             // 
             // tblLayoutPanelPrincipal_Bottom
             // 
@@ -758,6 +759,7 @@
             this.Name = "frmMenuPrincipal";
             this.Text = "Menú Principal";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMenuPrincipal_FormClosing);
+            this.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.frmMenuPrincipal_HelpRequested);
             this.tblLayoutPanelPrincipal.ResumeLayout(false);
             this.tblLayoutPanelPrincipal.PerformLayout();
             this.tblLayoutPanelPrincipal_Contenedor.ResumeLayout(false);
