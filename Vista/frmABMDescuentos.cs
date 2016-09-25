@@ -27,6 +27,10 @@ namespace Vista
         /// Se inicializa cuando se ven detalles de un artículo particular
         /// </summary>
         ModeloArticuloProveedores glb_mod_articuloProveedorSeleccionado;
+        public ModeloArticuloProveedores getArticuloProveedor()
+        {
+            return glb_mod_articuloProveedorSeleccionado;
+        }
         MaterialSkin.Controls.MaterialContextMenuStrip cntxMenuResultadoBusqueda;
         List<bool> glb_lst_respuestasValidaciones;
         #endregion
@@ -447,7 +451,7 @@ namespace Vista
             }
             if (!valido)
             {
-                MessageBox.Show(mensajeError, "Error", MessageBoxButtons.OK);
+                MessageBox.Show(mensajeError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             return valido;
         }
@@ -754,7 +758,7 @@ namespace Vista
             }
             else
             {
-                DialogResult dialogResult = MessageBox.Show(mensajeResultado, "Error", MessageBoxButtons.RetryCancel);
+                DialogResult dialogResult = MessageBox.Show(mensajeResultado, "Error", MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
                 if (dialogResult == DialogResult.Retry)
                 {
                     this.agregarDescuento(lcl_lst_articulosProveedoresSinDescuento, p_mod_descuento);
@@ -851,7 +855,7 @@ namespace Vista
             }
             else
             {
-                DialogResult dialogResult = MessageBox.Show("Algunos descuentos no han podido ser eliminados","Error",MessageBoxButtons.RetryCancel);
+                DialogResult dialogResult = MessageBox.Show("Algunos descuentos no han podido ser eliminados","Error",MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
                 if (dialogResult == System.Windows.Forms.DialogResult.Retry)
                 {
                     this.eliminarDescuento(lcl_lst_descuentosNoEliminados);
@@ -888,24 +892,23 @@ namespace Vista
             }
             return true;
         }
+        
         private void abrirDescuentosAP()
         {
             if (!this.validarAbrirDescuentosAP())
             {
                 return;
             }
+            //glb_mod_articuloProveedorSeleccionado = this.getArticulosProveedoresSeleccionados()[0];
             frmABMDescuentos lcl_frm_descuentosArticuloProveedor = new frmABMDescuentos(this.getArticulosProveedoresSeleccionados()[0]);
             this.abrirDescuentosArticuloProveedor(lcl_frm_descuentosArticuloProveedor,new EventArgs());
 
-            lcl_frm_descuentosArticuloProveedor.CerrarForm += this.actualizarDataGridView;
+            //lcl_frm_descuentosArticuloProveedor.CerrarForm += this.actualizarDataGridView;
         }
-        private void actualizarDataGridView(object sender,EventArgs e)
-        {
-            if (glb_mod_articuloProveedor_busqueda != null)
-            {
-                this.buscarArticulosProveedores(glb_mod_articuloProveedor_busqueda);
-            }
-        }
+        //private void actualizarDataGridView(object sender,EventArgs e)
+        //{
+            
+        //}
         #endregion
 
         #endregion

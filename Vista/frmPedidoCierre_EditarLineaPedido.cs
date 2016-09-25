@@ -181,7 +181,7 @@ namespace Vista
             }
             else
             {
-                MessageBox.Show("error");
+                MessageBox.Show("El valor no es válido","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             lcl_mod_descuento.codigoDescuento = (int)this.dgvDescuentos.CurrentRow.Cells["codigoDescuento"].Value;
             lcl_mod_descuento.descripcion = (string)this.dgvDescuentos.CurrentRow.Cells["descripcion"].Value;

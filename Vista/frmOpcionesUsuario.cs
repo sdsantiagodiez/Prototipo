@@ -638,7 +638,7 @@ namespace Vista
             }
             else
             {
-                MessageBox.Show(this.errorActual, "Error", MessageBoxButtons.OK);
+                MessageBox.Show(this.errorActual, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void agregarTelefonoEntidad()
@@ -652,7 +652,7 @@ namespace Vista
             }
             else
             {
-                MessageBox.Show(this.errorActual, "Error", MessageBoxButtons.OK);
+                MessageBox.Show(this.errorActual, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void quitarObjetoDataGridViewSeleccionado(DataGridView p_dgvSeleccionada)

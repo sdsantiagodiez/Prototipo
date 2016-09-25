@@ -201,7 +201,7 @@ namespace Vista
             }
             else
             {
-                DialogResult dialogResult = MessageBox.Show(lcl_con_alta.errorActual, "Error", MessageBoxButtons.RetryCancel);
+                DialogResult dialogResult = MessageBox.Show(lcl_con_alta.errorActual, "Error", MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
                 if (dialogResult == DialogResult.Retry)
                 {
                     this.alta();
@@ -253,7 +253,7 @@ namespace Vista
             }
             else
             {
-                DialogResult dialogResult = MessageBox.Show(lcl_con_modificacion.errorActual, "Error", MessageBoxButtons.RetryCancel);
+                DialogResult dialogResult = MessageBox.Show(lcl_con_modificacion.errorActual, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 if (dialogResult == DialogResult.Retry)
                 {
                     this.actualizar();
@@ -283,7 +283,7 @@ namespace Vista
             }
             else
             {
-                DialogResult dialogResult = MessageBox.Show(lcl_con_alta.errorActual, "Error", MessageBoxButtons.RetryCancel);
+                DialogResult dialogResult = MessageBox.Show(lcl_con_alta.errorActual, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 if (dialogResult == DialogResult.Retry)
                 {
                     this.alta_ArticuloProveedor();
@@ -316,7 +316,7 @@ namespace Vista
             }
             else
             {
-                DialogResult dialogResult = MessageBox.Show(lcl_con_baja.errorActual, "Error", MessageBoxButtons.RetryCancel);
+                DialogResult dialogResult = MessageBox.Show(lcl_con_baja.errorActual, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 if (dialogResult == DialogResult.Retry)
                 {
                     this.baja_ArticuloProveedor();
@@ -343,7 +343,7 @@ namespace Vista
             }
             else
             {
-                DialogResult dialogResult = MessageBox.Show(lcl_con_modificacion.errorActual, "Error", MessageBoxButtons.RetryCancel);
+                DialogResult dialogResult = MessageBox.Show(lcl_con_modificacion.errorActual, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 if (dialogResult == DialogResult.Retry)
                 {
                     this.actualizar_ArticuloProveedor();

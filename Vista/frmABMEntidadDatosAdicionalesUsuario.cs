@@ -187,7 +187,7 @@ namespace Vista
             this.cargarDatosControlRoles();
             if (this.cargarDatosControlRoles().Count == 0)
             {
-                MessageBox.Show("Debe seleccionar por lo menos un rol para el Usuario actual", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Debe seleccionar por lo menos un rol para el Usuario actual", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return false;
             }
             return true;

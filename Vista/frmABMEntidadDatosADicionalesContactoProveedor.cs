@@ -157,7 +157,7 @@ namespace Vista
             }
             else
             {
-                MessageBox.Show("Asegurese de seleccionar un Proveedor para el Contacto de Proveedor actual y de ingresar los datos correctamente","Error",MessageBoxButtons.OK);
+                MessageBox.Show("Asegurese de seleccionar un Proveedor para el Contacto de Proveedor actual y de ingresar los datos correctamente","Error",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
             }
             
         }
