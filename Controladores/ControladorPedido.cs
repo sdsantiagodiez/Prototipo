@@ -505,6 +505,18 @@ namespace Controladores
             }
             return codigoTipoComprobante;
         }
+
+        public static Constantes.TipoComprobanteVenta getComprobanteVenta(int codigoComprobante)
+        {
+            switch(codigoComprobante)
+            {
+                case 1:
+                case 6:
+                    return Constantes.TipoComprobanteVenta.Factura;
+                default:
+                    return (Constantes.TipoComprobanteVenta)codigoComprobante;
+            }
+        }
         public bool verificarConexionAFIP()
         {
             ControladorAFIP lcl_con_AFIP = new ControladorAFIP();

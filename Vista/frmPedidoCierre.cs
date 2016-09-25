@@ -85,6 +85,7 @@ namespace Vista
             {
                 case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona:
                     this.inicializarCierrePedidoCliente(p_mod_pedido);
+                    
                     break;
                 case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Proveedor: 
                     this.inicializarCierrePedidosProveedores(p_mod_pedido);
@@ -129,10 +130,6 @@ namespace Vista
             {
                 this.inicializarPedidoCerrado();
                 this.Text = "Detalles de Pedido";
-                if (p_mod_pedido.aprobadoAFIP != "A")
-                {
-                    this.habilitarControl(this.btnFacturaElectronica);
-                }
             }
 
             this.glb_con_domicilio.clearErrorProviders();
@@ -155,6 +152,18 @@ namespace Vista
         #region Métodos
         
         #region Inicialización
+        private bool validarHabilitarFacturacionElectronica(ModeloPedido p_mod_pedido )
+        {       //facutra o nota de crédito
+            if (p_mod_pedido.tipoComprobante == 1 || p_mod_pedido.tipoComprobante == 6 ||
+                p_mod_pedido.tipoComprobante == 3 || p_mod_pedido.tipoComprobante == 8)
+            {
+                if (p_mod_pedido.aprobadoAFIP != "A")
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public override void inicializarForm()
         {
             if (Width - 3 > 1100)
@@ -180,7 +189,14 @@ namespace Vista
 
         private void inicializarCierrePedidoCliente(ModeloPedido p_mod_pedido)
         {
-            modoFormulario = ModoFormularioPedidoCliente;
+            if (p_mod_pedido.tipoComprobante == 3 || p_mod_pedido.tipoComprobante == 8)
+            {
+                modoFormulario = ModoFormularioDevolucionCliente;
+            }
+            else
+            {
+                modoFormulario = ModoFormularioPedidoCliente;
+            }
             
             this.controlador = new ControladorPedidoCliente();
             this.cargarPedidoEnControles(p_mod_pedido);
@@ -228,6 +244,12 @@ namespace Vista
             this.habilitarControl(this.cmbBoxPedidosProveedores);
             this.habilitarControl(this.selectorControlPrincipal);
             this.dgvArticulosVenta.ClearSelection();
+
+            if (validarHabilitarFacturacionElectronica(controlador.pedidoActual))
+            {
+                this.habilitarControl(this.btnFacturaElectronica);
+            }
+
         }
         private void inicializarPedidoFacturado()
         {
@@ -546,6 +568,11 @@ namespace Vista
             this.rchTextBoxObservacionesPedido.Text = p_mod_pedido.observaciones;
             if(p_mod_pedido.usuarioGenerador != null)
                 this.lblUsuario.Text = "Usuario: " + p_mod_pedido.usuarioGenerador;
+
+            if (this.cmbBoxTipoComprobante.SelectedValue.GetType() == typeof(Constantes.TipoComprobanteVenta))
+            {
+                this.cmbBoxTipoComprobante.SelectedItem = ControladorPedidoCliente.getComprobanteVenta(p_mod_pedido.tipoComprobante);
+            }
         }
         private void cargarDatosMonetariosEnControles(ModeloPedido p_mod_pedido)
         {
