@@ -493,7 +493,7 @@ namespace Vista
         {
             if (this.tipoEntidadSeleccionada == null)
             {
-                MessageBox.Show("Debe seleccionar un tipo de entidad para realizar la acción", "Error", MessageBoxButtons.OK,,MessageBoxIcon.Asterisk); 
+                MessageBox.Show("Debe seleccionar un tipo de entidad para realizar la acción", "Error", MessageBoxButtons.OK,MessageBoxIcon.Asterisk); 
                 return false;
             }
             return true;

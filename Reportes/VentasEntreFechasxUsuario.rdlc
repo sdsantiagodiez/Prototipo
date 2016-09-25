@@ -28,7 +28,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Num. Pedido</Value>
+                              <Value>NIC</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -147,6 +147,11 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </BottomBorder>
+                        <RightBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </RightBorder>
                         <BackgroundColor>LightSteelBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -269,7 +274,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!numeroComprobante.Value</Value>
+                              <Value>=Fields!numeroPedido.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -438,6 +443,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!montoTotal.Value)</Value>
                               <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontWeight>Bold</FontWeight>
                                 <Format>'$' #,0.00;'$' -#,0.00</Format>
                               </Style>
                             </TextRun>
@@ -768,7 +775,7 @@
         <Line Name="Line1">
           <Top>3.35703cm</Top>
           <Height>0cm</Height>
-          <Width>21.84954cm</Width>
+          <Width>22.22177cm</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>

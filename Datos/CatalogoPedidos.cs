@@ -556,6 +556,7 @@ namespace Datos
 
                 lcl_mod_detalle.usuarioGenerador = (string)drPedidosEntreFechas["nombre_usuario"];
                 lcl_mod_detalle.numeroComprobante = (int)drPedidosEntreFechas["numero_comprobante"];
+                lcl_mod_detalle.numeroPedido = (int)drPedidosEntreFechas["numero_pedido"];
                 lcl_mod_detalle.descuentos.descuento_monto_1 = (decimal)drPedidosEntreFechas["descuento_1_monto"];
                 lcl_mod_detalle.descuentos.descuento_monto_2 = (decimal)drPedidosEntreFechas["descuento_2_monto"];
                 lcl_mod_detalle.descuentos.descuento_total_monto = lcl_mod_detalle.descuentos.descuento_monto_1 + lcl_mod_detalle.descuentos.descuento_monto_2;
@@ -578,7 +579,7 @@ namespace Datos
             string topCantidadQuery = "";
             if (p_entidad != null && p_entidad.codigo != 0)
             {
-                entidadQuery = " AND Entidades.codigo=@codigo_entidad ";
+                entidadQuery = " AND per.codigo_entidad = @codigo_entidad ";
             }
             else
             {
@@ -588,22 +589,41 @@ namespace Datos
                 }
             }
             string query =
-                "SELECT " + topCantidadQuery +
-                "   Entidades.codigo AS codigo_entidad, " +
-                "   CASE WHEN Personas.razon_social is null THEN CONCAT(Personas.apellido, ', ', Personas.nombre) ELSE Personas.razon_social END as descripcion_entidad," +//ponemos la razon social del cliente, si existe
-                "   COUNT(pedidos.numero_pedido) as cantidad_pedidos,SUM(cantidad) as cantidad_articulos," +
-                "   SUM(Lineas_Pedidos.valor_parcial) as monto_total " +
-                "FROM Pedidos " +
-                "   INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido " +
-                "   INNER JOIN Pedidos_Personas ON Pedidos_Personas.numero_pedido= Pedidos.numero_pedido " +
-                "   INNER JOIN Entidades ON Entidades.codigo= Pedidos_Personas.codigo_entidad " +
-                "   INNER JOIN Personas ON Personas.codigo_entidad= Entidades.codigo " +
-                "WHERE Pedidos.fecha BETWEEN  @fecha_desde AND @fecha_hasta " +
-                entidadQuery +
-                "GROUP BY Entidades.codigo, Personas.apellido, personas.nombre, Personas.razon_social";
+                "SELECT" +
+                "    tbl.codigo_entidad as codigo_entidad,descripcion_entidad,cantidad_articulos,tbl.monto_total," +
+	            "    COUNT(*) as cantidad_pedidos "+
+                "FROM"+
+                "    (SELECT " + topCantidadQuery +
+		        "        per.codigo_entidad AS codigo_entidad,"+
+		        "        CASE WHEN per.razon_social is null THEN CONCAT(per.apellido, ', ', per.nombre) ELSE per.razon_social END as descripcion_entidad," +//ponemos la razon social del cliente, si existe
+		        "        SUM(cantidad) as cantidad_articulos,"+
+		        "        SUM(lp.valor_parcial) as monto_total "+
+                "	"+
+		        "        FROM Pedidos ped"+
+		        "        INNER JOIN Lineas_Pedidos lp"+
+			    "            ON ped.numero_pedido = lp.numero_pedido	"+
+		        "        INNER JOIN Pedidos_Personas ped_per"+
+			    "            ON ped_per.numero_pedido= ped.numero_pedido "+
+		        "        INNER JOIN Personas per"+
+			    "            ON per.codigo_entidad = ped_per.codigo_entidad"+
+		        "        WHERE "+
+                "            ped.fecha BETWEEN  @fecha_desde AND @fecha_hasta AND " +
+			    "            (codigo_Comprobante =1 OR codigo_comprobante=6) "+
+			                 entidadQuery+
+		        "        GROUP BY per.codigo_entidad, per.apellido, per.nombre, per.razon_social"+
+		        "        ) tbl"+
+	            "    INNER JOIN Pedidos_Personas ped_per"+
+		        "        ON ped_per.codigo_entidad = tbl.codigo_entidad"+
+                "    INNER JOIN Pedidos ped"+
+		        "        ON ped.numero_pedido = ped_per.numero_pedido"+
+		        "        WHERE "+
+			    "            ped.fecha BETWEEN  @fecha_desde AND @fecha_hasta AND "+
+                "            (codigo_Comprobante =1 OR codigo_comprobante=6) " +
+	            "    GROUP BY "+
+		        "        tbl.codigo_entidad,tbl.descripcion_entidad,tbl.cantidad_articulos,tbl.monto_total";
 
-            string frecuenciaPedidos = " COUNT(pedidos.numero_pedido) DESC ";
-            string montoPedidos = " SUM(Lineas_Pedidos.valor_parcial) DESC ";
+            string frecuenciaPedidos = " cantidad_pedidos DESC ";
+            string montoPedidos = " tbl.monto_total DESC ";
             switch (p_reporte)
             {
                 case Constantes.Reportes.Clientes.FrecuenciaDePedidos:
@@ -614,9 +634,9 @@ namespace Datos
                     break;
                 case Constantes.Reportes.Clientes.PedidosPorUsuario:
                     query =
-                "SELECT nombre_usuario, Numero_comprobante, monto_total, descuento_1_monto,descuento_2_monto " +
+                "SELECT nombre_usuario, Numero_comprobante,pedidos.numero_pedido, monto_total, descuento_1_monto,descuento_2_monto " +
                 "FROM Pedidos INNER JOIN Pedidos_Personas ON Pedidos_Personas.numero_pedido= Pedidos.numero_pedido " +
-                "WHERE Pedidos.fecha BETWEEN  @fecha_desde AND @fecha_hasta ";
+                "WHERE Pedidos.fecha BETWEEN  @fecha_desde AND @fecha_hasta AND (codigo_Comprobante =1 OR codigo_comprobante=6) ";
                     break;
                 default:
                     break;
@@ -652,21 +672,39 @@ namespace Datos
             }
 
             string query =
-            "SELECT " + topCantidadQuery +
-            "   Entidades.codigo AS codigo_entidad, Proveedores.razon_social as descripcion_entidad," +
-            "   COUNT(pedidos.numero_pedido) as cantidad_pedidos,SUM(cantidad) as cantidad_articulos," +
-            "   SUM(Lineas_Pedidos.valor_parcial) as monto_total " +
-            "FROM Pedidos " +
-            "   INNER JOIN Lineas_Pedidos ON Pedidos.numero_pedido = Lineas_Pedidos.numero_pedido " +
-            "   INNER JOIN Pedidos_Proveedores ON Pedidos_Proveedores.numero_pedido= Pedidos.numero_pedido " +
-            "   INNER JOIN Entidades ON Entidades.codigo= Pedidos_Proveedores.codigo_entidad " +
-            "   INNER JOIN Proveedores ON Proveedores.codigo_entidad= Entidades.codigo " +
-            "WHERE Pedidos.fecha BETWEEN  @fecha_desde AND @fecha_hasta " +
-            entidadQuery +
-            "GROUP BY Entidades.codigo, Proveedores.razon_social ";
+                "SELECT" +
+                "    tbl.codigo_entidad as codigo_entidad,descripcion_entidad,cantidad_articulos,tbl.monto_total," +
+                "    COUNT(*) as cantidad_pedidos " +
+                "FROM" +
+                "    (SELECT " + topCantidadQuery +
+                "        prov.codigo_entidad AS codigo_entidad," +
+                "        prov.razon_social AS descripcion_entidad," +
+                "        SUM(cantidad) as cantidad_articulos," +
+                "        SUM(lp.valor_parcial) as monto_total " +
+                "       " +
+                "        FROM Pedidos ped" +
+                "        INNER JOIN Lineas_Pedidos lp" +
+                "            ON ped.numero_pedido = lp.numero_pedido	" +
+                "        INNER JOIN Pedidos_Proveedores ped_prov" +
+                "            ON ped_prov.numero_pedido= ped.numero_pedido " +
+                "        INNER JOIN Proveedores prov" +
+                "            ON prov.codigo_entidad = ped_prov.codigo_entidad" +
+                "        WHERE " +
+                "            ped.fecha BETWEEN  @fecha_desde AND @fecha_hasta  " +
+                             entidadQuery +
+                "        GROUP BY prov.codigo_entidad, prov.razon_social" +
+                "        ) tbl" +
+                "    INNER JOIN Pedidos_Proveedores ped_prov" +
+                "        ON ped_prov.codigo_entidad = tbl.codigo_entidad" +
+                "    INNER JOIN Pedidos ped"+
+		        "        on ped.numero_pedido = ped_prov.numero_pedido"+
+		        "    WHERE "+
+			    "            ped.fecha BETWEEN  @fecha_desde AND @fecha_hasta "+
+                "    GROUP BY " +
+                "        tbl.codigo_entidad,tbl.descripcion_entidad,tbl.cantidad_articulos,tbl.monto_total";
 
-            string frecuenciaPedidos = " COUNT(pedidos.numero_pedido) DESC ";
-            string montoPedidos = " SUM(Lineas_Pedidos.valor_parcial) DESC ";
+            string frecuenciaPedidos = " cantidad_pedidos DESC ";
+            string montoPedidos = " monto_total DESC ";
             switch (p_reporte)
             {
                 case Constantes.Reportes.Proveedores.FrecuenciaDePedidos:
