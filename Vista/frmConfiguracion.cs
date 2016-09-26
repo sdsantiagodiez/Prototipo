@@ -61,14 +61,14 @@ namespace Vista
         {
             this.txtBoxCarpetaPedidosClientes.ReadOnly = 
                 this.txtBoxCarpetaPedidosProveedores.ReadOnly = 
-                this.txtBoxCarpetaReportes.ReadOnly = 
+                //this.txtBoxCarpetaReportes.ReadOnly = 
                 this.txtBoxCertificado.ReadOnly =
                 this.txtBoxLogotipoPath.ReadOnly =
                 true;
             //tabAlmacenamiento
             this.txtBoxCarpetaPedidosClientes.Text = Properties.Settings.Default.carpetaPedidosClientes;
             this.txtBoxCarpetaPedidosProveedores.Text = Properties.Settings.Default.carpetaPedidosProveedores;
-            this.txtBoxCarpetaReportes.Text = Properties.Settings.Default.carpetaReportes;
+            //this.txtBoxCarpetaReportes.Text = Properties.Settings.Default.carpetaReportes;
             //tabFacturacionElectronica
             this.txtBoxCertificado.Text = Controladores.ControladorAFIP.CertificadoPath;
             this.txtBoxContrasenia.Text = Controladores.ControladorAFIP.PasswordCertificado;
@@ -88,7 +88,7 @@ namespace Vista
         {
             this.btnCarpetaPedidosClientes.Click += (s, e) => { this.seleccionarCarpeta(Carpetas.PedidosClientes); };
             this.btnCarpetaPedidosProveedores.Click += (s, e) => { this.seleccionarCarpeta(Carpetas.PedidosProveedores); };
-            this.btnCarpetaReportes.Click += (s, e) => { this.seleccionarCarpeta(Carpetas.Reportes); };
+            //this.btnCarpetaReportes.Click += (s, e) => { this.seleccionarCarpeta(Carpetas.Reportes); };
         }
 
         private void seleccionarCarpeta(Carpetas p_carpeta)
@@ -111,9 +111,9 @@ namespace Vista
                 case Carpetas.PedidosProveedores:
                     Properties.Settings.Default["carpetaPedidosProveedores"] = this.txtBoxCarpetaPedidosProveedores.Text = direccionCarpeta;
                     break;
-                case Carpetas.Reportes:
-                    Properties.Settings.Default["carpetaReportes"] = this.txtBoxCarpetaReportes.Text = direccionCarpeta;
-                    break;
+                //case Carpetas.Reportes:
+                //    Properties.Settings.Default["carpetaReportes"] = this.txtBoxCarpetaReportes.Text = direccionCarpeta;
+                 //   break;
             }
             Properties.Settings.Default.Save();
         }

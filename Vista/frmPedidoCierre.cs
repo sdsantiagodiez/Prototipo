@@ -1108,19 +1108,19 @@ namespace Vista
                 case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Persona:
                     if (string.IsNullOrEmpty(Properties.Settings.Default.carpetaPedidosClientes))
                     {
-                        if (!this.setCarpetaPedidos(Carpetas.PedidosClientes))
-                        {
-                            return;
-                        }
+                        MessageBox.Show("Actualmente no se encuentra configurado el directorio para guardar los comprobantes de pedido a cliente, por lo que se guardarán en su escritorio. Diríjase a \"Configuraciones\" para modificar el lugar de guardado de los mismos.");
+                        string lcl_comprobantePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Comprobantes\\Clientes";
+                        Properties.Settings.Default.carpetaPedidosClientes = lcl_comprobantePath;
+                        Properties.Settings.Default.Save();
                     }
                     break;
                 case LibreriaClasesCompartidas.Constantes.CodigosTiposPedidos.Proveedor:
                     if (string.IsNullOrEmpty(Properties.Settings.Default.carpetaPedidosProveedores))
                     {
-                        if (!this.setCarpetaPedidos(Carpetas.PedidosProveedores))
-                        {
-                            return;
-                        }
+                        MessageBox.Show("Actualmente no se encuentra configurado el directorio para guardar los comprobantes de pedido a proveedores, por lo que se guardarán en su escritorio. Diríjase a \"Configuraciones\" para modificar el lugar de guardado de los mismos.");
+                        string lcl_comprobantePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Comprobantes\\Proveedores";
+                        Properties.Settings.Default.carpetaPedidosProveedores = lcl_comprobantePath;
+                        Properties.Settings.Default.Save();
                     }
                     break;
                 default:

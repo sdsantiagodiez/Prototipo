@@ -12,8 +12,6 @@ namespace Controladores
     public class ControladorPedido : Controlador
     {
         #region Atributos
-        //funciones a programar
-        //buscarReserva
 
         public List<ModeloArticuloProveedores> resultadoBusquedaArticulosProveedores;
         public Constantes.CodigosTiposPedidos tipoPedido
