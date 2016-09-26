@@ -98,18 +98,47 @@ namespace Datos
 
         public static bool restoreDatabase(string p_direccionArcivo)
         {
-            string query =
-            "use master; RESTORE DATABASE "+dbNombre+" FROM DISK = '"+p_direccionArcivo+"'";
+            //string query =
+            //"use master; RESTORE DATABASE "+dbNombre+" FROM DISK = '"+p_direccionArcivo+"'";
 
-            SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
+            //SqlCommand comando = new SqlCommand(query, Conexion.crearConexion());
 
-            comando.Connection.Open();
-            //Si falla, tira exception
-            comando.ExecuteNonQuery();
+            //comando.Connection.Open();
+            ////Si falla, tira exception
+            //comando.ExecuteNonQuery();
             
-            comando.Connection.Close();
-            
-            return true; 
+            //comando.Connection.Close();
+
+
+            SqlConnection con = Conexion.crearConexion();
+            string database = con.Database.ToString();
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+
+            try
+            {
+                string sqlStmt2 = string.Format("ALTER DATABASE [" + database + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
+                SqlCommand bu2 = new SqlCommand(sqlStmt2, con);
+                bu2.ExecuteNonQuery();
+
+                string sqlStmt3 = "USE MASTER RESTORE DATABASE [" + database + "] FROM DISK='" + p_direccionArcivo + "'WITH REPLACE;";
+                SqlCommand bu3 = new SqlCommand(sqlStmt3, con);
+                bu3.ExecuteNonQuery();
+
+                string sqlStmt4 = string.Format("ALTER DATABASE [" + database + "] SET MULTI_USER");
+                SqlCommand bu4 = new SqlCommand(sqlStmt4, con);
+                bu4.ExecuteNonQuery();
+
+                
+                con.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
