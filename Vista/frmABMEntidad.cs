@@ -23,23 +23,36 @@ namespace Vista
             set 
             {
                 _tipoEntidadSeleccionada = value;
+                Type T = glb_mod_entidadActual.GetType();
                 switch (_tipoEntidadSeleccionada)
                 {
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposProveedor.Proveedor:
                         this.inicializarControlesTipoEntidadProveedor();
-                        glb_mod_entidadActual = new ModeloProveedor();
+                        if (T != typeof(ModeloProveedor))
+                        {
+                            glb_mod_entidadActual = new ModeloProveedor();
+                        }
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Cliente:
                         this.inicializarControlesTipoEntidadCliente();
-                        glb_mod_entidadActual = new ModeloCliente();
+                        if (T != typeof(ModeloCliente))
+                        {
+                            glb_mod_entidadActual = new ModeloCliente();
+                        }
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.Usuario:
                         this.inicializarControlesTipoEntidadUsuario();
-                        glb_mod_entidadActual = new ModeloUsuario();
+                        if (T != typeof(ModeloUsuario))
+                        {
+                            glb_mod_entidadActual = new ModeloUsuario();
+                        }
                         break;
                     case LibreriaClasesCompartidas.Constantes.TiposEntidad.TiposPersona.ContactoProveedor:
                         this.inicializarControlesTipoEntidadContactoProveedor();
-                        glb_mod_entidadActual = new ModeloContactoProveedor();
+                        if (T != typeof(ModeloContactoProveedor))
+                        {
+                            glb_mod_entidadActual = new ModeloContactoProveedor();
+                        }
                         break;
                     default:
                         _tipoEntidadSeleccionada = null;
