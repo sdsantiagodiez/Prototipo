@@ -678,7 +678,7 @@ namespace Vista
         {
             FolderBrowserDialog lcl_fbd = new FolderBrowserDialog();
             lcl_fbd.Description = "Destino de Archivo de Respaldo de Base de Datos";
-            lcl_fbd.SelectedPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Datos";
+            //lcl_fbd.SelectedPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Datos";
             string folderLocation;
             if (lcl_fbd.ShowDialog() == DialogResult.OK)
             {

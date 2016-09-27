@@ -20,20 +20,28 @@ namespace Datos
         public static SqlConnection crearConexion()
         {
             string startupPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-            startupPath = startupPath + @"\Datos\DBPrueba.mdf";
-            //startupPath = rutaBD();
+            //Development
+            //startupPath = startupPath + @"\Datos\DBPrueba.mdf";
             //connectionString = @"Data Source=(localDB)\v11.0;AttachDbFilename="+startupPath+";Initial Catalog="+dbNombre+";Integrated Security=True";
+            
+            //Implementation
+            //startupPath = startupPath + @"\DBPrueba";
+            startupPath = @"C:\Program Files\MundoRenault\MiMundoRenault\DBPrueba";
+            Conexion.compruebaBase(startupPath);
+
             connectionString = Properties.Settings.Default.DBPruebaConnectionString;
-            SqlConnection Conexion;
+            //connectionString = @"Data Source=(LocalDB)\v11.0;Database=DBPrueba;Integrated Security=True";
+
+            SqlConnection ConexionSQL;
             try
             {
-                Conexion = new SqlConnection(connectionString);
-                return Conexion;
+                ConexionSQL = new SqlConnection(connectionString);
+                return ConexionSQL;
 
             }
             finally
             {
-                Conexion = null;
+                ConexionSQL = null;
             }
         }
 
@@ -139,6 +147,70 @@ namespace Datos
             {
                 return false;
             }
+        }
+        public static void compruebaBase(string startupPath)
+        {
+
+            string connectionString = @"Data Source=(LocalDB)\v11.0;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+             SqlConnection Conexion;
+             try
+             { 
+                 Conexion = new SqlConnection(connectionString);
+                 SqlCommand comando = new SqlCommand();
+                 comando.Connection = Conexion;
+                 comando.CommandType = CommandType.Text;
+                 comando.CommandText = " IF NOT EXISTS(SELECT * FROM DBO.SYSDATABASES WHERE NAME = '" + dbNombre + "')" +
+                     " BEGIN     USE MASTER   CREATE DATABASE " + dbNombre +
+                     " ON (FILENAME = '" + startupPath + ".mdf'), " +
+                     " (FILENAME = '" + startupPath + "_Log.ldf')   " +
+                     " FOR ATTACH  END ";
+                 
+                 comando.Connection.Open();
+                 comando.ExecuteNonQuery();
+
+                 comando.CommandText = "BEGIN TRANSACTION ALTER DATABASE " + dbNombre + " SET READ_WRITE commit ";
+                 comando.Connection.Close();
+                 
+                 Conexion.Dispose();
+
+
+             }
+             finally 
+             {
+                 Conexion = null;
+             }           
+            //crea SQL command
+            
+            
+        }
+        public static void compruebaBase2(string startupPath)
+        {
+
+            string connectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename="+startupPath+".mdf; Database=Prueba2; Integrated Security= True";
+            SqlConnection Conexion;
+            try
+            {
+                Conexion = new SqlConnection(connectionString);
+                SqlCommand comando = new SqlCommand();
+                comando.Connection = Conexion;
+                comando.CommandType = CommandType.Text;
+                comando.CommandText = "SELECT * FROM DBO.SYSDATABASES";
+
+                comando.Connection.Open();
+                comando.ExecuteNonQuery();
+                comando.Connection.Close();
+
+                Conexion.Dispose();
+
+
+            }
+            finally
+            {
+                Conexion = null;
+            }
+            //crea SQL command
+
+
         }
     }
 }
