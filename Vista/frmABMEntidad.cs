@@ -23,6 +23,10 @@ namespace Vista
             set 
             {
                 _tipoEntidadSeleccionada = value;
+                if(glb_mod_entidadActual == null)
+                {
+                    glb_mod_entidadActual = new ModeloCliente();
+                }
                 Type T = glb_mod_entidadActual.GetType();
                 switch (_tipoEntidadSeleccionada)
                 {
