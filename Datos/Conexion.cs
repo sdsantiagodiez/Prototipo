@@ -26,7 +26,10 @@ namespace Datos
             
             //Implementation
             //startupPath = startupPath + @"\DBPrueba";
-            startupPath = @"C:\Program Files\MundoRenault\MiMundoRenault\DBPrueba";
+            startupPath = System.IO.Path.GetDirectoryName(
+            System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+            //startupPath = @"C:\Program Files\MundoRenault\MiMundoRenault\DBPrueba";
+            startupPath = startupPath + @"\DBPrueba";
             Conexion.compruebaBase(startupPath);
 
             connectionString = Properties.Settings.Default.DBPruebaConnectionString;

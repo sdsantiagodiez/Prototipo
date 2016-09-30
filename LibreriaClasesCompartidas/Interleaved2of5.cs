@@ -56,8 +56,10 @@ namespace LibreriaClasesCompartidas
 
             // Generate Interleaved 2 of 5 and encode barcode to gif format
             interleaved25.Format = System.Drawing.Imaging.ImageFormat.Gif;
-            string directorio = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;//"C:\\Users\\lopejmar\\Desktop\\RelProy\\barcode.gif";
-            directorio = directorio + @"\Vista\Resources\barcode.gif";
+            //string directorio = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;//"C:\\Users\\lopejmar\\Desktop\\RelProy\\barcode.gif";
+            string directorio = System.IO.Path.GetDirectoryName(
+      System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+            directorio = directorio + @"\Resources\barcode.gif";
             interleaved25.drawBarcode(directorio);
             return directorio;
         }

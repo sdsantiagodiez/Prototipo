@@ -240,15 +240,12 @@ namespace LibreriaClasesCompartidas
                 new SolidBrush(Color.Black), 0, 0);
             //objGraphics.PageScale = (float)0.70;
             objGraphics.Flush();
-            string directorio = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;//"C:\\Users\\lopejmar\\Desktop\\RelProy\\barcode.gif";
-            directorio = directorio + @"\Vista\Resources\barcode.jpg";
+            string directorio = System.IO.Path.GetDirectoryName(
+            System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase); 
+            directorio = directorio + @"\Resources\barcode.jpg";
             objBitmap.Save(directorio);
             
-           /* Bitmap imagen = new Bitmap(@"C:\Users\lopejmar\Desktop\imagen.jpg");
-            Graphics g = Graphics.FromImage(imagen);
-            g.DrawString(p_codigo, new Font("I2OF5TXT", 22, GraphicsUnit.Pixel), new SolidBrush(Color.Black), 0, 0);
-            string directorio = "C:\\Users\\lopejmar\\Desktop\\nuevaimagen.jpg";
-            imagen.Save(directorio);*/
+           
             return directorio;
         }
     }
