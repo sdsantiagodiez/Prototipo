@@ -23,9 +23,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "MundoRenault", "MundoRenault\MundoRenault.isproj", "{D62FEDD3-BAFA-457B-8914-E3436B8DE68C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A98A609F-0A54-4577-BA15-3C75C0F10960} = {A98A609F-0A54-4577-BA15-3C75C0F10960}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -342,8 +342,11 @@
 		<row><td>Datos.Archivos_de_contenido2</td><td>{33A43688-5ADB-477C-AC63-4A900D9C5586}</td><td>INSTALLDIR</td><td>2</td><td/><td>datos.archivos_de_contenido2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{ABF62DFA-7934-4CB8-81D2-26DFBAF8773F}</td><td>RESOURCES</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{474F7DE1-EAA4-48D6-A191-E264962620D5}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{7787BCDC-118B-4172-97D0-37CD542008B3}</td><td>HELPMENU</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT3</td><td>{5DA24014-CAE0-4FA0-94F9-CE24574B307F}</td><td>TMPDE4B.TMP_ARCHIVOS</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>IS_ININSTALL_SHORTCUT</td><td>{98C83D90-8582-46B8-A130-D7E72B12795E}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Vista.Resultado_principal</td><td>{FE7BA0BD-6FC8-4ACD-A113-B0E207D91721}</td><td>INSTALLDIR</td><td>2</td><td/><td>vista.resultado_principal</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>help.chm</td><td>{02C3A159-3340-416C-B49E-D5FB8CADD639}</td><td>HELPMENU</td><td>2</td><td/><td>help.chm</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1052,12 +1055,18 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>HELPMENU</td><td>ISX_DEFAULTCOMPONENT2</td></row>
+		<row><td>HELPMENU</td><td>help.chm</td></row>
 		<row><td>INSTALLDIR</td><td>Datos.Archivos_de_contenido2</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT1</td></row>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT2</td></row>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT3</td></row>
 		<row><td>INSTALLDIR</td><td>IS_ININSTALL_SHORTCUT</td></row>
 		<row><td>INSTALLDIR</td><td>Vista.Resultado_principal</td></row>
+		<row><td>INSTALLDIR</td><td>help.chm</td></row>
 		<row><td>RESOURCES</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>TMPDE4B.TMP_ARCHIVOS</td><td>ISX_DEFAULTCOMPONENT3</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1147,6 +1156,7 @@
 		<row><td>FavoritesFolder</td><td>TARGETDIR</td><td>.:FAVORI~1|Favorites</td><td/><td>0</td><td/></row>
 		<row><td>FontsFolder</td><td>TARGETDIR</td><td>.:Fonts</td><td/><td>0</td><td/></row>
 		<row><td>GlobalAssemblyCache</td><td>TARGETDIR</td><td>.:Global~1|GlobalAssemblyCache</td><td/><td>0</td><td/></row>
+		<row><td>HELPMENU</td><td>RESOURCES</td><td>HelpMenu</td><td/><td>0</td><td/></row>
 		<row><td>INSTALLDIR</td><td>MY_PRODUCT_NAME1</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>ISCommonFilesFolder</td><td>CommonFilesFolder</td><td>Instal~1|InstallShield</td><td/><td>0</td><td/></row>
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
@@ -1174,6 +1184,7 @@
 		<row><td>System64Folder</td><td>TARGETDIR</td><td>.:System64</td><td/><td>0</td><td/></row>
 		<row><td>SystemFolder</td><td>TARGETDIR</td><td>.:System32</td><td/><td>0</td><td/></row>
 		<row><td>TARGETDIR</td><td/><td>SourceDir</td><td/><td>0</td><td/></row>
+		<row><td>TMPDE4B.TMP_ARCHIVOS</td><td>HELPMENU</td><td>TMPDE4~1|tmpDE4B.tmp_archivos</td><td/><td>0</td><td/></row>
 		<row><td>TempFolder</td><td>TARGETDIR</td><td>.:Temp</td><td/><td>0</td><td/></row>
 		<row><td>TemplateFolder</td><td>TARGETDIR</td><td>.:ShellNew</td><td/><td>0</td><td/></row>
 		<row><td>USERPROFILE</td><td>TARGETDIR</td><td>.:USERPR~1|UserProfile</td><td/><td>0</td><td/></row>
@@ -1875,8 +1886,11 @@
 		<row><td>AlwaysInstall</td><td>Datos.Archivos_de_contenido2</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT2</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT3</td></row>
 		<row><td>AlwaysInstall</td><td>IS_ININSTALL_SHORTCUT</td></row>
 		<row><td>AlwaysInstall</td><td>Vista.Resultado_principal</td></row>
+		<row><td>AlwaysInstall</td><td>help.chm</td></row>
 	</table>
 
 	<table name="File">
@@ -1891,7 +1905,160 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
+		<row><td>_0_agregarunartculoalpedidod</td><td>ISX_DEFAULTCOMPONENT2</td><td>40_AGR~1.HTM|40_AGREGARUNARTCULOALPEDIDODEVENTA.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\40_AGREGARUNARTCULOALPEDIDODEVENTA.htm</td><td>1</td><td/></row>
+		<row><td>_0_datosimpositivos.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>30_DAT~1.HTM|30_DATOSIMPOSITIVOS.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\30_DATOSIMPOSITIVOS.htm</td><td>1</td><td/></row>
+		<row><td>_0_exportacin.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>20_EXP~1.HTM|20_EXPORTACIN.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\20_EXPORTACIN.htm</td><td>1</td><td/></row>
+		<row><td>_0_visualizacindepedidos.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>10_VIS~1.HTM|10_VISUALIZACINDEPEDIDOS.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\10_VISUALIZACINDEPEDIDOS.htm</td><td>1</td><td/></row>
+		<row><td>_1_actualizacindepreciodeven</td><td>ISX_DEFAULTCOMPONENT2</td><td>41_ACT~1.HTM|41_ACTUALIZACINDEPRECIODEVENTA.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\41_ACTUALIZACINDEPRECIODEVENTA.htm</td><td>1</td><td/></row>
+		<row><td>_1_importacin.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>21_IMP~1.HTM|21_IMPORTACIN.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\21_IMPORTACIN.htm</td><td>1</td><td/></row>
+		<row><td>_1_impresindepedidosdeclient</td><td>ISX_DEFAULTCOMPONENT2</td><td>11_IMP~1.HTM|11_IMPRESINDEPEDIDOSDECLIENTE.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\11_IMPRESINDEPEDIDOSDECLIENTE.htm</td><td>1</td><td/></row>
+		<row><td>_1_pedidoaproveedores_compra</td><td>ISX_DEFAULTCOMPONENT2</td><td>31_PED~1.HTM|31_PEDIDOAPROVEEDORES-COMPRAS.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\31_PEDIDOAPROVEEDORES-COMPRAS.htm</td><td>1</td><td/></row>
+		<row><td>_2_facturacindepedidosdeclie</td><td>ISX_DEFAULTCOMPONENT2</td><td>12_FAC~1.HTM|12_FACTURACINDEPEDIDOSDECLIENTE.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\12_FACTURACINDEPEDIDOSDECLIENTE.htm</td><td>1</td><td/></row>
+		<row><td>_2_opcionesdeusuario.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>22_OPC~1.HTM|22_OPCIONESDEUSUARIO.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\22_OPCIONESDEUSUARIO.htm</td><td>1</td><td/></row>
+		<row><td>_3_agregarunartculoalpedidod</td><td>ISX_DEFAULTCOMPONENT2</td><td>33_AGR~1.HTM|33_AGREGARUNARTCULOALPEDIDODEPROVEEDOR.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\33_AGREGARUNARTCULOALPEDIDODEPROVEEDOR.htm</td><td>1</td><td/></row>
+		<row><td>_3_devoluciones.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>13_DEV~1.HTM|13_DEVOLUCIONES.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\13_DEVOLUCIONES.htm</td><td>1</td><td/></row>
+		<row><td>_3_estilovisual.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>23_EST~1.HTM|23_ESTILOVISUAL.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\23_ESTILOVISUAL.htm</td><td>1</td><td/></row>
+		<row><td>_4_datosgenerales.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>24_DAT~1.HTM|24_DATOSGENERALES.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\24_DATOSGENERALES.htm</td><td>1</td><td/></row>
+		<row><td>_4_reportes.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>34_REP~1.HTM|34_REPORTES.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\34_REPORTES.htm</td><td>1</td><td/></row>
+		<row><td>_5_datosdecontacto.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>25_DAT~1.HTM|25_DATOSDECONTACTO.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\25_DATOSDECONTACTO.htm</td><td>1</td><td/></row>
+		<row><td>_5_inventario.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>15_INV~1.HTM|15_INVENTARIO.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\15_INVENTARIO.htm</td><td>1</td><td/></row>
+		<row><td>_5_reportesdecompra.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>35_REP~1.HTM|35_REPORTESDECOMPRA.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\35_REPORTESDECOMPRA.htm</td><td>1</td><td/></row>
+		<row><td>_6_configuracin.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>26_CON~1.HTM|26_CONFIGURACIN.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\26_CONFIGURACIN.htm</td><td>1</td><td/></row>
+		<row><td>_6_reportesdeinventario.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>36_REP~1.HTM|36_REPORTESDEINVENTARIO.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\36_REPORTESDEINVENTARIO.htm</td><td>1</td><td/></row>
+		<row><td>_7_almacenamientodearchivos.</td><td>ISX_DEFAULTCOMPONENT2</td><td>27_ALM~1.HTM|27_ALMACENAMIENTODEARCHIVOS.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\27_ALMACENAMIENTODEARCHIVOS.htm</td><td>1</td><td/></row>
+		<row><td>_7_manejodedatos.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>17_MAN~1.HTM|17_MANEJODEDATOS.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\17_MANEJODEDATOS.htm</td><td>1</td><td/></row>
+		<row><td>_7_reportesdeventas.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>37_REP~1.HTM|37_REPORTESDEVENTAS.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\37_REPORTESDEVENTAS.htm</td><td>1</td><td/></row>
+		<row><td>_8_facturacionelectronica.ht</td><td>ISX_DEFAULTCOMPONENT2</td><td>28_FAC~1.HTM|28_FACTURACIONELECTRONICA.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\28_FACTURACIONELECTRONICA.htm</td><td>1</td><td/></row>
+		<row><td>_8_pedidodecliente_ventas.ht</td><td>ISX_DEFAULTCOMPONENT2</td><td>38_PED~1.HTM|38_PEDIDODECLIENTE-VENTAS.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\38_PEDIDODECLIENTE-VENTAS.htm</td><td>1</td><td/></row>
+		<row><td>_9_comprobanteseinformes.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>29_COM~1.HTM|29_COMPROBANTESEINFORMES.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\29_COMPROBANTESEINFORMES.htm</td><td>1</td><td/></row>
+		<row><td>_9_restaurarback_up.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>19_RES~1.HTM|19_RESTAURARBACK-UP.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\19_RESTAURARBACK-UP.htm</td><td>1</td><td/></row>
+		<row><td>__administradordepedidos.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>8_ADMI~1.HTM|8_ADMINISTRADORDEPEDIDOS.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\8_ADMINISTRADORDEPEDIDOS.htm</td><td>1</td><td/></row>
+		<row><td>__altasbajasymodificaciones.</td><td>ISX_DEFAULTCOMPONENT2</td><td>1_ALTA~1.HTM|1_ALTASBAJASYMODIFICACIONES.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\1_ALTASBAJASYMODIFICACIONES.htm</td><td>1</td><td/></row>
+		<row><td>__clientes.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>3_CLIE~1.HTM|3_CLIENTES.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\3_CLIENTES.htm</td><td>1</td><td/></row>
+		<row><td>__contactodeproveedor.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>4_CONT~1.HTM|4_CONTACTODEPROVEEDOR.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\4_CONTACTODEPROVEEDOR.htm</td><td>1</td><td/></row>
+		<row><td>__descuento.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>5_DESC~1.HTM|5_DESCUENTO.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\5_DESCUENTO.htm</td><td>1</td><td/></row>
+		<row><td>__proveedor.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>6_PROV~1.HTM|6_PROVEEDOR.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\6_PROVEEDOR.htm</td><td>1</td><td/></row>
+		<row><td>__usuario.htm</td><td>ISX_DEFAULTCOMPONENT2</td><td>7_USUA~1.HTM|7_USUARIO.htm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\7_USUARIO.htm</td><td>1</td><td/></row>
 		<row><td>datos.archivos_de_contenido2</td><td>Datos.Archivos_de_contenido2</td><td>Datos.Archivos de contenido</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Datos&gt;|ContentFiles</td><td>3</td><td/></row>
+		<row><td>embeddedstyles.css</td><td>ISX_DEFAULTCOMPONENT2</td><td>EMBEDD~1.CSS|embeddedstyles.css</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\embeddedstyles.css</td><td>1</td><td/></row>
+		<row><td>help.chm</td><td>help.chm</td><td>help.chm</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\help.chm</td><td>1</td><td/></row>
+		<row><td>help.hhp</td><td>ISX_DEFAULTCOMPONENT2</td><td>help.hhp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\help.hhp</td><td>1</td><td/></row>
+		<row><td>image001.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image001.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image001.jpg</td><td>1</td><td/></row>
+		<row><td>image002.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image002.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image002.png</td><td>1</td><td/></row>
+		<row><td>image003.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image003.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image003.png</td><td>1</td><td/></row>
+		<row><td>image004.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image004.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image004.png</td><td>1</td><td/></row>
+		<row><td>image005.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image005.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image005.png</td><td>1</td><td/></row>
+		<row><td>image006.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image006.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image006.png</td><td>1</td><td/></row>
+		<row><td>image007.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image007.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image007.jpg</td><td>1</td><td/></row>
+		<row><td>image008.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image008.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image008.jpg</td><td>1</td><td/></row>
+		<row><td>image009.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image009.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image009.jpg</td><td>1</td><td/></row>
+		<row><td>image010.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image010.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image010.jpg</td><td>1</td><td/></row>
+		<row><td>image011.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image011.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image011.jpg</td><td>1</td><td/></row>
+		<row><td>image012.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image012.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image012.jpg</td><td>1</td><td/></row>
+		<row><td>image013.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image013.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image013.jpg</td><td>1</td><td/></row>
+		<row><td>image014.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image014.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image014.jpg</td><td>1</td><td/></row>
+		<row><td>image015.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image015.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image015.jpg</td><td>1</td><td/></row>
+		<row><td>image016.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image016.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image016.png</td><td>1</td><td/></row>
+		<row><td>image017.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image017.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image017.jpg</td><td>1</td><td/></row>
+		<row><td>image018.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image018.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image018.jpg</td><td>1</td><td/></row>
+		<row><td>image019.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image019.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image019.jpg</td><td>1</td><td/></row>
+		<row><td>image020.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image020.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image020.jpg</td><td>1</td><td/></row>
+		<row><td>image021.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image021.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image021.png</td><td>1</td><td/></row>
+		<row><td>image022.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image022.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image022.jpg</td><td>1</td><td/></row>
+		<row><td>image023.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image023.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image023.jpg</td><td>1</td><td/></row>
+		<row><td>image024.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image024.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image024.jpg</td><td>1</td><td/></row>
+		<row><td>image025.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image025.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image025.jpg</td><td>1</td><td/></row>
+		<row><td>image026.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image026.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image026.jpg</td><td>1</td><td/></row>
+		<row><td>image027.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image027.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image027.jpg</td><td>1</td><td/></row>
+		<row><td>image028.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image028.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image028.png</td><td>1</td><td/></row>
+		<row><td>image029.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image029.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image029.jpg</td><td>1</td><td/></row>
+		<row><td>image030.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image030.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image030.png</td><td>1</td><td/></row>
+		<row><td>image031.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image031.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image031.jpg</td><td>1</td><td/></row>
+		<row><td>image032.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image032.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image032.jpg</td><td>1</td><td/></row>
+		<row><td>image033.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image033.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image033.jpg</td><td>1</td><td/></row>
+		<row><td>image034.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image034.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image034.jpg</td><td>1</td><td/></row>
+		<row><td>image035.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image035.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image035.jpg</td><td>1</td><td/></row>
+		<row><td>image036.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image036.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image036.jpg</td><td>1</td><td/></row>
+		<row><td>image037.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image037.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image037.jpg</td><td>1</td><td/></row>
+		<row><td>image038.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image038.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image038.jpg</td><td>1</td><td/></row>
+		<row><td>image039.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image039.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image039.jpg</td><td>1</td><td/></row>
+		<row><td>image040.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image040.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image040.jpg</td><td>1</td><td/></row>
+		<row><td>image041.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image041.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image041.png</td><td>1</td><td/></row>
+		<row><td>image042.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image042.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image042.jpg</td><td>1</td><td/></row>
+		<row><td>image043.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image043.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image043.png</td><td>1</td><td/></row>
+		<row><td>image044.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image044.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image044.jpg</td><td>1</td><td/></row>
+		<row><td>image045.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image045.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image045.png</td><td>1</td><td/></row>
+		<row><td>image046.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image046.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image046.png</td><td>1</td><td/></row>
+		<row><td>image047.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image047.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image047.png</td><td>1</td><td/></row>
+		<row><td>image048.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image048.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image048.png</td><td>1</td><td/></row>
+		<row><td>image049.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image049.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image049.png</td><td>1</td><td/></row>
+		<row><td>image050.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image050.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image050.png</td><td>1</td><td/></row>
+		<row><td>image051.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image051.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image051.png</td><td>1</td><td/></row>
+		<row><td>image052.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image052.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image052.jpg</td><td>1</td><td/></row>
+		<row><td>image053.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image053.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image053.jpg</td><td>1</td><td/></row>
+		<row><td>image054.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image054.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image054.png</td><td>1</td><td/></row>
+		<row><td>image055.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image055.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image055.jpg</td><td>1</td><td/></row>
+		<row><td>image056.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image056.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image056.png</td><td>1</td><td/></row>
+		<row><td>image057.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image057.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image057.jpg</td><td>1</td><td/></row>
+		<row><td>image058.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image058.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image058.jpg</td><td>1</td><td/></row>
+		<row><td>image059.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image059.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image059.jpg</td><td>1</td><td/></row>
+		<row><td>image060.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image060.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image060.jpg</td><td>1</td><td/></row>
+		<row><td>image061.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image061.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image061.jpg</td><td>1</td><td/></row>
+		<row><td>image062.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image062.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image062.jpg</td><td>1</td><td/></row>
+		<row><td>image063.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image063.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image063.jpg</td><td>1</td><td/></row>
+		<row><td>image064.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image064.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image064.jpg</td><td>1</td><td/></row>
+		<row><td>image065.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image065.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image065.jpg</td><td>1</td><td/></row>
+		<row><td>image066.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image066.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image066.jpg</td><td>1</td><td/></row>
+		<row><td>image067.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image067.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image067.jpg</td><td>1</td><td/></row>
+		<row><td>image068.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image068.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image068.jpg</td><td>1</td><td/></row>
+		<row><td>image069.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image069.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image069.jpg</td><td>1</td><td/></row>
+		<row><td>image070.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image070.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image070.jpg</td><td>1</td><td/></row>
+		<row><td>image071.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image071.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image071.jpg</td><td>1</td><td/></row>
+		<row><td>image072.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image072.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image072.jpg</td><td>1</td><td/></row>
+		<row><td>image073.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image073.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image073.jpg</td><td>1</td><td/></row>
+		<row><td>image074.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image074.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image074.png</td><td>1</td><td/></row>
+		<row><td>image075.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image075.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image075.jpg</td><td>1</td><td/></row>
+		<row><td>image076.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image076.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image076.jpg</td><td>1</td><td/></row>
+		<row><td>image077.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image077.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image077.jpg</td><td>1</td><td/></row>
+		<row><td>image078.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image078.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image078.jpg</td><td>1</td><td/></row>
+		<row><td>image079.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image079.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image079.png</td><td>1</td><td/></row>
+		<row><td>image080.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image080.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image080.jpg</td><td>1</td><td/></row>
+		<row><td>image081.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image081.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image081.jpg</td><td>1</td><td/></row>
+		<row><td>image082.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image082.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image082.jpg</td><td>1</td><td/></row>
+		<row><td>image083.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image083.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image083.jpg</td><td>1</td><td/></row>
+		<row><td>image084.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image084.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image084.jpg</td><td>1</td><td/></row>
+		<row><td>image085.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image085.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image085.jpg</td><td>1</td><td/></row>
+		<row><td>image086.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image086.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image086.jpg</td><td>1</td><td/></row>
+		<row><td>image087.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image087.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image087.jpg</td><td>1</td><td/></row>
+		<row><td>image088.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image088.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image088.jpg</td><td>1</td><td/></row>
+		<row><td>image089.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image089.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image089.jpg</td><td>1</td><td/></row>
+		<row><td>image090.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image090.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image090.jpg</td><td>1</td><td/></row>
+		<row><td>image091.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image091.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image091.jpg</td><td>1</td><td/></row>
+		<row><td>image092.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image092.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image092.jpg</td><td>1</td><td/></row>
+		<row><td>image093.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image093.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image093.jpg</td><td>1</td><td/></row>
+		<row><td>image094.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image094.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image094.jpg</td><td>1</td><td/></row>
+		<row><td>image095.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image095.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image095.png</td><td>1</td><td/></row>
+		<row><td>image096.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image096.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image096.png</td><td>1</td><td/></row>
+		<row><td>image097.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image097.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image097.png</td><td>1</td><td/></row>
+		<row><td>image098.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image098.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image098.png</td><td>1</td><td/></row>
+		<row><td>image099.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image099.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image099.png</td><td>1</td><td/></row>
+		<row><td>image100.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image100.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image100.png</td><td>1</td><td/></row>
+		<row><td>image101.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image101.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image101.jpg</td><td>1</td><td/></row>
+		<row><td>image102.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image102.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image102.jpg</td><td>1</td><td/></row>
+		<row><td>image103.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image103.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image103.png</td><td>1</td><td/></row>
+		<row><td>image104.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image104.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image104.jpg</td><td>1</td><td/></row>
+		<row><td>image105.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image105.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image105.jpg</td><td>1</td><td/></row>
+		<row><td>image106.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image106.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image106.png</td><td>1</td><td/></row>
+		<row><td>image107.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image107.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image107.jpg</td><td>1</td><td/></row>
+		<row><td>image108.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image108.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image108.png</td><td>1</td><td/></row>
+		<row><td>image109.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image109.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image109.jpg</td><td>1</td><td/></row>
+		<row><td>image110.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image110.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image110.png</td><td>1</td><td/></row>
+		<row><td>image111.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image111.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image111.jpg</td><td>1</td><td/></row>
+		<row><td>image112.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>image112.png</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image112.png</td><td>1</td><td/></row>
+		<row><td>image113.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image113.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image113.jpg</td><td>1</td><td/></row>
+		<row><td>image114.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>image114.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\tmpDE4B.tmp_archivos\image114.jpg</td><td>1</td><td/></row>
+		<row><td>index_generated.hhk</td><td>ISX_DEFAULTCOMPONENT2</td><td>INDEX-~1.HHK|Index-generated.hhk</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\Index-generated.hhk</td><td>1</td><td/></row>
+		<row><td>toc_generated.hhc</td><td>ISX_DEFAULTCOMPONENT2</td><td>TOC-GE~1.HHC|toc-generated.hhc</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\lopejmar\Desktop\proyecto\Vista\Resources\HelpMenu\toc-generated.hhc</td><td>1</td><td/></row>
 		<row><td>vista.resultado_principal</td><td>Vista.Resultado_principal</td><td>Vista.Resultado principal</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Vista&gt;|Built</td><td>3</td><td/></row>
 	</table>
 
@@ -2039,8 +2206,11 @@
 		<row><td>Datos.Archivos_de_contenido2</td><td/><td/><td>_A2ABE9A2_B015_4626_9F30_A03483C05411_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_DFEFDC16_8435_4CFC_9202_9C8195A00B03_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_E0FEDD32_4DE6_4DD3_8B60_14EED5B7D64D_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_F9F4DE46_49AF_491C_A5FC_8B181E93D7C2_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT3</td><td/><td/><td>_60327BE3_7E18_48B0_BE6F_AEED296CBF1B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>IS_ININSTALL_SHORTCUT</td><td/><td/><td>_B3EFAF56_6995_4B1C_956E_720F33625A2A_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Vista.Resultado_principal</td><td/><td/><td>_6722F8B1_77D5_4EAE_88B4_91AE7E79D566_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>help.chm</td><td/><td/><td>_2B105393_C8D1_4F70_9D1C_A5CC35ECAB0B_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">

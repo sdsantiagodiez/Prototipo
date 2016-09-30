@@ -769,9 +769,10 @@ namespace Vista
         {
             if (glb_form == null || glb_form.IsDisposed)//null en caso que no se haya abierto ninguna ventana, y IsDisposed en caso de que se haya abierto y cerrado una ventana
             {
-                string lcl_dir_help = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+                string lcl_dir_help = System.IO.Path.GetDirectoryName(
+            System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase); 
                 //lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\helpmenuproyecto.chm";
-                lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\help.chm";
+                lcl_dir_help = lcl_dir_help + @"\Resources\HelpMenu\help.chm";
                 Help.ShowHelp(this, lcl_dir_help, HelpNavigator.TableOfContents);
                 
             }
