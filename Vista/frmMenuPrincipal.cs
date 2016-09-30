@@ -839,9 +839,10 @@ namespace Vista
             }
             else
             { topic = "1_ALTASBAJASYMODIFICACIONES"; }
-            
-            string lcl_dir_help = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName; 
-            lcl_dir_help = lcl_dir_help + "\\Vista\\Resources\\HelpMenu\\help.chm";
+
+            string lcl_dir_help = System.IO.Path.GetDirectoryName(
+            System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase); 
+            lcl_dir_help = lcl_dir_help + @"\Resources\HelpMenu\help.chm";
 
             Help.ShowHelp(glb_form, lcl_dir_help, HelpNavigator.Topic, topic + ".htm");
 
