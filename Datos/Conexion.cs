@@ -28,7 +28,8 @@ namespace Datos
             //startupPath = startupPath + @"\DBPrueba";
             startupPath = System.IO.Path.GetDirectoryName(
             System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
-            //startupPath = @"C:\Program Files\MundoRenault\MiMundoRenault\DBPrueba";
+            //startupPath = @"C:\Program Files (x86)\MundoRenault\MiMundoRenault";
+            startupPath = System.IO.Directory.GetCurrentDirectory();
             startupPath = startupPath + @"\DBPrueba";
             Conexion.compruebaBase(startupPath);
 
@@ -170,9 +171,15 @@ namespace Datos
                  
                  comando.Connection.Open();
                  comando.ExecuteNonQuery();
-
-                 comando.CommandText = "BEGIN TRANSACTION ALTER DATABASE " + dbNombre + " SET READ_WRITE commit ";
                  comando.Connection.Close();
+                 
+                 SqlCommand comando2 = new SqlCommand();
+                 comando2.Connection = Conexion;
+                 comando2.CommandType = CommandType.Text;
+                 comando2.CommandText = "ALTER DATABASE " + dbNombre + " SET READ_WRITE ";
+                 comando2.Connection.Open();
+                 comando2.ExecuteNonQuery();
+                 comando2.Connection.Close();
                  
                  Conexion.Dispose();
 

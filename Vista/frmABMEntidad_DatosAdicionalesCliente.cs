@@ -23,6 +23,7 @@ namespace Vista
         public frmABMEntidad_DatosAdicionalesCliente(ModeloCliente p_cliente)
             : this()
         {
+            this.Text = "Datos Adicionales de Cliente";
             this.StartPosition = FormStartPosition.CenterParent;
             this.inicializarForm(this.Width, this.Height);
             this.inicializarComboBoxTipoResponsable();
