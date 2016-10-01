@@ -1360,7 +1360,14 @@ namespace Vista
                 this.txtBoxSenia.Text = String.Format(System.Globalization.CultureInfo.GetCultureInfo("es-AR"), "{0:C}", controlador.pedidoActual.senia);
                 return;
             }
-
+            if(senia<0)
+            {
+                senia = 0;
+            }
+            if(senia>controlador.pedidoActual.getTotal())
+            {
+                senia = 0;
+            }
             controlador.pedidoActual.senia = senia;
             this.cargarDatosMonetariosEnControles(controlador.pedidoActual);
         }
