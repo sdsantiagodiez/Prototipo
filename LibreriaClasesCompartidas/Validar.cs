@@ -215,10 +215,13 @@ namespace LibreriaClasesCompartidas
                     break;
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.Modelo:
                 case Constantes.ParametrosBusqueda.ArticulosProveedores.Ubicacion:
-                case Constantes.ParametrosBusqueda.Domicilios.Calle:
-                case Constantes.ParametrosBusqueda.Domicilios.Ciudad:
                     //Admite Alfanumericos con espacios
                     lcl_patron = new Regex(@"^[\w\s.]+$");
+                    break;
+                case Constantes.ParametrosBusqueda.Domicilios.Calle:
+                case Constantes.ParametrosBusqueda.Domicilios.Ciudad:
+                    //Admite almenos un número seguido de letras espacios y puntos, ó, letras espacios y puntos con cero o muchos números
+                    lcl_patron = new Regex(@"^((\d+[a-zA-Z\s.]+)|([a-zA-Z\s.]+\d*))$");
                     break;
                 case Constantes.ParametrosBusqueda.Mails.Mail:
                     especial = Constantes.ParametrosBusqueda.Mails.Mail;
@@ -236,8 +239,6 @@ namespace LibreriaClasesCompartidas
                 try
                 {
                     System.Net.Mail.MailAddress m = new System.Net.Mail.MailAddress(p_input);
-
-                    return true;
                 }
                 catch (FormatException)
                 {
@@ -247,6 +248,8 @@ namespace LibreriaClasesCompartidas
                 {
                     return false;
                 }
+                    lcl_patron = new Regex(@"^[\w.]+$");
+                    return lcl_patron.IsMatch(p_input.Substring(0,p_input.IndexOf("@")));
             }
 
             if (string.IsNullOrWhiteSpace(p_input))
