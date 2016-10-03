@@ -19,18 +19,18 @@ namespace Datos
         
         public static SqlConnection crearConexion()
         {
-            string startupPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            //string startupPath = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
             //Development
             //startupPath = startupPath + @"\Datos\DBPrueba.mdf";
             //connectionString = @"Data Source=(localDB)\v11.0;AttachDbFilename="+startupPath+";Initial Catalog="+dbNombre+";Integrated Security=True";
             
             //Implementation
             //startupPath = startupPath + @"\DBPrueba";
-            startupPath = System.IO.Path.GetDirectoryName(
-            System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+            //string startupPath = System.IO.Path.GetDirectoryName(
+            //System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
             //startupPath = @"C:\Program Files (x86)\MundoRenault\MiMundoRenault";
-            startupPath = System.IO.Directory.GetCurrentDirectory();
-            startupPath = startupPath + @"\DBPrueba";
+            string startupPath = System.IO.Directory.GetCurrentDirectory();
+            startupPath =  startupPath + @"\DBPrueba";
             Conexion.compruebaBase(startupPath);
 
             connectionString = Properties.Settings.Default.DBPruebaConnectionString;
@@ -176,7 +176,8 @@ namespace Datos
                  SqlCommand comando2 = new SqlCommand();
                  comando2.Connection = Conexion;
                  comando2.CommandType = CommandType.Text;
-                 comando2.CommandText = "ALTER DATABASE " + dbNombre + " SET READ_WRITE ";
+                 comando2.CommandText = "  if ((select is_read_only  from sys.databases where name='" + dbNombre + "')= 1)" +
+                                        "   BEGIN ALTER DATABASE " + dbNombre + " SET READ_WRITE END";
                  comando2.Connection.Open();
                  comando2.ExecuteNonQuery();
                  comando2.Connection.Close();
@@ -193,34 +194,6 @@ namespace Datos
             
             
         }
-        public static void compruebaBase2(string startupPath)
-        {
-
-            string connectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename="+startupPath+".mdf; Database=Prueba2; Integrated Security= True";
-            SqlConnection Conexion;
-            try
-            {
-                Conexion = new SqlConnection(connectionString);
-                SqlCommand comando = new SqlCommand();
-                comando.Connection = Conexion;
-                comando.CommandType = CommandType.Text;
-                comando.CommandText = "SELECT * FROM DBO.SYSDATABASES";
-
-                comando.Connection.Open();
-                comando.ExecuteNonQuery();
-                comando.Connection.Close();
-
-                Conexion.Dispose();
-
-
-            }
-            finally
-            {
-                Conexion = null;
-            }
-            //crea SQL command
-
-
-        }
+        
     }
 }
